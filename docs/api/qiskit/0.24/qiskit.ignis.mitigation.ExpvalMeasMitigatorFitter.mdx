@@ -10,64 +10,56 @@ python_api_name: qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter
 
 # qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter
 
-<span id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter" />
+<Class id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/expval/fitter.py" signature="ExpvalMeasMitigatorFitter(result, metadata)">
+  Expectation value measurement error mitigator calibration fitter.
 
-`ExpvalMeasMitigatorFitter(result, metadata)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/expval/fitter.py "view source code")
+  See [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") for additional documentation.
 
-Expectation value measurement error mitigator calibration fitter.
+  Fit a measurement error mitigator object from experiment data.
 
-See [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") for additional documentation.
+  **Parameters**
 
-Fit a measurement error mitigator object from experiment data.
+  *   **result** (`Result`) – Qiskit result object.
+  *   **metadata** (`List`\[`Dict`\[`str`, `any`]]) – mitigation generator metadata.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **result** (`Result`) – Qiskit result object.
-*   **metadata** (`List`\[`Dict`\[`str`, `any`]]) – mitigation generator metadata.
+  <Function id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.__init__" name="__init__" signature="__init__(result, metadata)">
+    Fit a measurement error mitigator object from experiment data.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.__init__" />
+    *   **result** (`Result`) – Qiskit result object.
+    *   **metadata** (`List`\[`Dict`\[`str`, `any`]]) – mitigation generator metadata.
+  </Function>
 
-`__init__(result, metadata)`
+  ## Methods
 
-Fit a measurement error mitigator object from experiment data.
+  |                                                                                                                                                          |                                                                |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+  | [`__init__`](#qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.__init__ "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.__init__")(result, metadata) | Fit a measurement error mitigator object from experiment data. |
+  | [`fit`](#qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.fit "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.fit")(\[method, generators])           | Fit and return the Mitigator object from the calibration data. |
 
-**Parameters**
+  ## Attributes
 
-*   **result** (`Result`) – Qiskit result object.
-*   **metadata** (`List`\[`Dict`\[`str`, `any`]]) – mitigation generator metadata.
+  |                                                                                                                                           |                                    |
+  | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+  | [`mitigator`](#qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.mitigator "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.mitigator") | Return the fitted mitigator object |
 
-## Methods
+  ### fit
 
-|                                                                                                                                                          |                                                                |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| [`__init__`](#qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.__init__ "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.__init__")(result, metadata) | Fit a measurement error mitigator object from experiment data. |
-| [`fit`](#qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.fit "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.fit")(\[method, generators])           | Fit and return the Mitigator object from the calibration data. |
+  <Function id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.fit" name="fit" signature="fit(method=None, generators=None)">
+    Fit and return the Mitigator object from the calibration data.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                           |                                    |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| [`mitigator`](#qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.mitigator "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.mitigator") | Return the fitted mitigator object |
+    `Union`\[`CompleteExpvalMeasMitigator`, `TensoredExpvalMeasMitigator`, `CTMPExpvalMeasMitigator`]
+  </Function>
 
-### fit
+  ### mitigator
 
-<span id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.fit" />
-
-`fit(method=None, generators=None)`
-
-Fit and return the Mitigator object from the calibration data.
-
-**Return type**
-
-`Union`\[`CompleteExpvalMeasMitigator`, `TensoredExpvalMeasMitigator`, `CTMPExpvalMeasMitigator`]
-
-### mitigator
-
-<span id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.mitigator" />
-
-`property mitigator`
-
-Return the fitted mitigator object
+  <Function id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.mitigator" name="mitigator" signature="property mitigator">
+    Return the fitted mitigator object
+  </Function>
+</Class>
 

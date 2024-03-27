@@ -10,77 +10,69 @@ python_api_name: qiskit.qobj.QasmQobjExperiment
 
 # qiskit.qobj.QasmQobjExperiment
 
-<span id="qiskit.qobj.QasmQobjExperiment" />
+<Class id="qiskit.qobj.QasmQobjExperiment" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/qasm_qobj.py" signature="QasmQobjExperiment(config=None, header=None, instructions=None)">
+  A QASM Qobj Experiment.
 
-`QasmQobjExperiment(config=None, header=None, instructions=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/qasm_qobj.py "view source code")
+  Each instance of this class is used to represent a QASM experiment as part of a larger QASM qobj.
 
-A QASM Qobj Experiment.
+  Instatiate a QasmQobjExperiment.
 
-Each instance of this class is used to represent a QASM experiment as part of a larger QASM qobj.
+  **Parameters**
 
-Instatiate a QasmQobjExperiment.
+  *   **config** ([*QasmQobjExperimentConfig*](qiskit.qobj.QasmQobjExperimentConfig "qiskit.qobj.QasmQobjExperimentConfig")) – A config object for the experiment
+  *   **header** (*QasmQobjExperimentHeader*) – A header object for the experiment
+  *   **instructions** (*list*) – A list of [`QasmQobjInstruction`](qiskit.qobj.QasmQobjInstruction "qiskit.qobj.QasmQobjInstruction") objects
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **config** ([*QasmQobjExperimentConfig*](qiskit.qobj.QasmQobjExperimentConfig "qiskit.qobj.QasmQobjExperimentConfig")) – A config object for the experiment
-*   **header** (*QasmQobjExperimentHeader*) – A header object for the experiment
-*   **instructions** (*list*) – A list of [`QasmQobjInstruction`](qiskit.qobj.QasmQobjInstruction "qiskit.qobj.QasmQobjInstruction") objects
+  <Function id="qiskit.qobj.QasmQobjExperiment.__init__" name="__init__" signature="__init__(config=None, header=None, instructions=None)">
+    Instatiate a QasmQobjExperiment.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.qobj.QasmQobjExperiment.__init__" />
+    *   **config** ([*QasmQobjExperimentConfig*](qiskit.qobj.QasmQobjExperimentConfig "qiskit.qobj.QasmQobjExperimentConfig")) – A config object for the experiment
+    *   **header** (*QasmQobjExperimentHeader*) – A header object for the experiment
+    *   **instructions** (*list*) – A list of [`QasmQobjInstruction`](qiskit.qobj.QasmQobjInstruction "qiskit.qobj.QasmQobjInstruction") objects
+  </Function>
 
-`__init__(config=None, header=None, instructions=None)`
+  ## Methods
 
-Instatiate a QasmQobjExperiment.
+  |                                                                                                                                   |                                                              |
+  | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+  | [`__init__`](#qiskit.qobj.QasmQobjExperiment.__init__ "qiskit.qobj.QasmQobjExperiment.__init__")(\[config, header, instructions]) | Instatiate a QasmQobjExperiment.                             |
+  | [`from_dict`](#qiskit.qobj.QasmQobjExperiment.from_dict "qiskit.qobj.QasmQobjExperiment.from_dict")(data)                         | Create a new QasmQobjExperiment object from a dictionary.    |
+  | [`to_dict`](#qiskit.qobj.QasmQobjExperiment.to_dict "qiskit.qobj.QasmQobjExperiment.to_dict")()                                   | Return a dictionary format representation of the Experiment. |
 
-**Parameters**
+  ### from\_dict
 
-*   **config** ([*QasmQobjExperimentConfig*](qiskit.qobj.QasmQobjExperimentConfig "qiskit.qobj.QasmQobjExperimentConfig")) – A config object for the experiment
-*   **header** (*QasmQobjExperimentHeader*) – A header object for the experiment
-*   **instructions** (*list*) – A list of [`QasmQobjInstruction`](qiskit.qobj.QasmQobjInstruction "qiskit.qobj.QasmQobjInstruction") objects
+  <Function id="qiskit.qobj.QasmQobjExperiment.from_dict" name="from_dict" signature="classmethod from_dict(data)">
+    Create a new QasmQobjExperiment object from a dictionary.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                   |                                                              |
-| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`__init__`](#qiskit.qobj.QasmQobjExperiment.__init__ "qiskit.qobj.QasmQobjExperiment.__init__")(\[config, header, instructions]) | Instatiate a QasmQobjExperiment.                             |
-| [`from_dict`](#qiskit.qobj.QasmQobjExperiment.from_dict "qiskit.qobj.QasmQobjExperiment.from_dict")(data)                         | Create a new QasmQobjExperiment object from a dictionary.    |
-| [`to_dict`](#qiskit.qobj.QasmQobjExperiment.to_dict "qiskit.qobj.QasmQobjExperiment.to_dict")()                                   | Return a dictionary format representation of the Experiment. |
+    **data** (*dict*) – A dictionary for the experiment config
 
-### from\_dict
+    **Returns**
 
-<span id="qiskit.qobj.QasmQobjExperiment.from_dict" />
+    The object from the input dictionary.
 
-`classmethod from_dict(data)`
+    **Return type**
 
-Create a new QasmQobjExperiment object from a dictionary.
+    [QasmQobjExperiment](#qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment")
+  </Function>
 
-**Parameters**
+  ### to\_dict
 
-**data** (*dict*) – A dictionary for the experiment config
+  <Function id="qiskit.qobj.QasmQobjExperiment.to_dict" name="to_dict" signature="to_dict()">
+    Return a dictionary format representation of the Experiment.
 
-**Returns**
+    **Returns**
 
-The object from the input dictionary.
+    The dictionary form of the QasmQObjExperiment.
 
-**Return type**
+    **Return type**
 
-[QasmQobjExperiment](#qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment")
-
-### to\_dict
-
-<span id="qiskit.qobj.QasmQobjExperiment.to_dict" />
-
-`to_dict()`
-
-Return a dictionary format representation of the Experiment.
-
-**Returns**
-
-The dictionary form of the QasmQObjExperiment.
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 

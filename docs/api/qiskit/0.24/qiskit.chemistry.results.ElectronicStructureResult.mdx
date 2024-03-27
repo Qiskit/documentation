@@ -10,518 +10,434 @@ python_api_name: qiskit.chemistry.results.ElectronicStructureResult
 
 # qiskit.chemistry.results.ElectronicStructureResult
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult" />
+<Class id="qiskit.chemistry.results.ElectronicStructureResult" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/results/electronic_structure_result.py" signature="ElectronicStructureResult(a_dict=None)">
+  The electronic structure result.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.__init__" name="__init__" signature="__init__(a_dict=None)">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                 |                                                                                                                                                                                                                      |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.results.ElectronicStructureResult.__init__ "qiskit.chemistry.results.ElectronicStructureResult.__init__")(\[a\_dict])            | Initialize self.                                                                                                                                                                                                     |
+  | [`clear`](#qiskit.chemistry.results.ElectronicStructureResult.clear "qiskit.chemistry.results.ElectronicStructureResult.clear")()                               | **rtype**`None`                                                                                                                                                                                                      |
+  | [`combine`](#qiskit.chemistry.results.ElectronicStructureResult.combine "qiskit.chemistry.results.ElectronicStructureResult.combine")(result)                   | Any property from the argument that exists in the receiver is updated.                                                                                                                                               |
+  | `copy`()                                                                                                                                                        |                                                                                                                                                                                                                      |
+  | `fromkeys`(iterable\[, value])                                                                                                                                  |                                                                                                                                                                                                                      |
+  | [`get`](#qiskit.chemistry.results.ElectronicStructureResult.get "qiskit.chemistry.results.ElectronicStructureResult.get")(k\[,d])                               |                                                                                                                                                                                                                      |
+  | [`has_dipole`](#qiskit.chemistry.results.ElectronicStructureResult.has_dipole "qiskit.chemistry.results.ElectronicStructureResult.has_dipole")()                | Returns whether dipole moment is present in result or not                                                                                                                                                            |
+  | [`has_observables`](#qiskit.chemistry.results.ElectronicStructureResult.has_observables "qiskit.chemistry.results.ElectronicStructureResult.has_observables")() | Returns whether result has aux op observables such as spin, num particles                                                                                                                                            |
+  | [`items`](#qiskit.chemistry.results.ElectronicStructureResult.items "qiskit.chemistry.results.ElectronicStructureResult.items")()                               |                                                                                                                                                                                                                      |
+  | [`keys`](#qiskit.chemistry.results.ElectronicStructureResult.keys "qiskit.chemistry.results.ElectronicStructureResult.keys")()                                  |                                                                                                                                                                                                                      |
+  | [`pop`](#qiskit.chemistry.results.ElectronicStructureResult.pop "qiskit.chemistry.results.ElectronicStructureResult.pop")(key\[, default])                      | If key is not found, d is returned if given, otherwise KeyError is raised.                                                                                                                                           |
+  | [`popitem`](#qiskit.chemistry.results.ElectronicStructureResult.popitem "qiskit.chemistry.results.ElectronicStructureResult.popitem")()                         | as a 2-tuple; but raise KeyError if D is empty.                                                                                                                                                                      |
+  | [`setdefault`](#qiskit.chemistry.results.ElectronicStructureResult.setdefault "qiskit.chemistry.results.ElectronicStructureResult.setdefault")(k\[,d])          |                                                                                                                                                                                                                      |
+  | [`update`](#qiskit.chemistry.results.ElectronicStructureResult.update "qiskit.chemistry.results.ElectronicStructureResult.update")(\*args, \*\*kwargs)          | If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v |
+  | [`values`](#qiskit.chemistry.results.ElectronicStructureResult.values "qiskit.chemistry.results.ElectronicStructureResult.values")()                            |                                                                                                                                                                                                                      |
 
-`ElectronicStructureResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/results/electronic_structure_result.py "view source code")
+  ## Attributes
 
-The electronic structure result.
+  |                                                                                                                                                                                                            |                                                                                    |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+  | [`aux_operator_eigenvalues`](#qiskit.chemistry.results.ElectronicStructureResult.aux_operator_eigenvalues "qiskit.chemistry.results.ElectronicStructureResult.aux_operator_eigenvalues")                   | return aux operator eigen values                                                   |
+  | [`computed_dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.computed_dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.computed_dipole_moment")                         | Returns computed electronic part of dipole moment                                  |
+  | [`computed_energies`](#qiskit.chemistry.results.ElectronicStructureResult.computed_energies "qiskit.chemistry.results.ElectronicStructureResult.computed_energies")                                        | Returns computed electronic part of ground state energy                            |
+  | [`dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.dipole_moment")                                                    | Returns dipole moment                                                              |
+  | [`dipole_moment_in_debye`](#qiskit.chemistry.results.ElectronicStructureResult.dipole_moment_in_debye "qiskit.chemistry.results.ElectronicStructureResult.dipole_moment_in_debye")                         | Returns dipole moment in Debye                                                     |
+  | [`eigenenergies`](#qiskit.chemistry.results.ElectronicStructureResult.eigenenergies "qiskit.chemistry.results.ElectronicStructureResult.eigenenergies")                                                    | returns eigen energies                                                             |
+  | [`eigenstates`](#qiskit.chemistry.results.ElectronicStructureResult.eigenstates "qiskit.chemistry.results.ElectronicStructureResult.eigenstates")                                                          | returns eigen states                                                               |
+  | [`electronic_dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.electronic_dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.electronic_dipole_moment")                   | Returns electronic dipole moment                                                   |
+  | [`electronic_energies`](#qiskit.chemistry.results.ElectronicStructureResult.electronic_energies "qiskit.chemistry.results.ElectronicStructureResult.electronic_energies")                                  | Returns electronic part of ground state energy                                     |
+  | [`formatted`](#qiskit.chemistry.results.ElectronicStructureResult.formatted "qiskit.chemistry.results.ElectronicStructureResult.formatted")                                                                | Formatted result as a list of strings                                              |
+  | [`frozen_extracted_dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.frozen_extracted_dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.frozen_extracted_dipole_moment") | Returns frozen extracted part of dipole moment                                     |
+  | [`frozen_extracted_energy`](#qiskit.chemistry.results.ElectronicStructureResult.frozen_extracted_energy "qiskit.chemistry.results.ElectronicStructureResult.frozen_extracted_energy")                      | Returns frozen extracted part of ground state energy                               |
+  | [`groundenergy`](#qiskit.chemistry.results.ElectronicStructureResult.groundenergy "qiskit.chemistry.results.ElectronicStructureResult.groundenergy")                                                       | returns ground energy                                                              |
+  | [`groundstate`](#qiskit.chemistry.results.ElectronicStructureResult.groundstate "qiskit.chemistry.results.ElectronicStructureResult.groundstate")                                                          | returns ground state                                                               |
+  | [`hartree_fock_energy`](#qiskit.chemistry.results.ElectronicStructureResult.hartree_fock_energy "qiskit.chemistry.results.ElectronicStructureResult.hartree_fock_energy")                                  | Returns Hartree-Fock energy                                                        |
+  | [`magnetization`](#qiskit.chemistry.results.ElectronicStructureResult.magnetization "qiskit.chemistry.results.ElectronicStructureResult.magnetization")                                                    | Returns measured magnetization                                                     |
+  | [`nuclear_dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.nuclear_dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.nuclear_dipole_moment")                            | Returns nuclear dipole moment X,Y,Z components in A.U when available from driver   |
+  | [`nuclear_repulsion_energy`](#qiskit.chemistry.results.ElectronicStructureResult.nuclear_repulsion_energy "qiskit.chemistry.results.ElectronicStructureResult.nuclear_repulsion_energy")                   | Returns nuclear repulsion energy when available from driver                        |
+  | [`num_particles`](#qiskit.chemistry.results.ElectronicStructureResult.num_particles "qiskit.chemistry.results.ElectronicStructureResult.num_particles")                                                    | Returns measured number of particles                                               |
+  | [`ph_extracted_dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.ph_extracted_dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.ph_extracted_dipole_moment")             | Returns particle hole extracted part of dipole moment                              |
+  | [`ph_extracted_energy`](#qiskit.chemistry.results.ElectronicStructureResult.ph_extracted_energy "qiskit.chemistry.results.ElectronicStructureResult.ph_extracted_energy")                                  | Returns particle hole extracted part of ground state energy                        |
+  | [`raw_result`](#qiskit.chemistry.results.ElectronicStructureResult.raw_result "qiskit.chemistry.results.ElectronicStructureResult.raw_result")                                                             | Returns the raw algorithm result.                                                  |
+  | [`reverse_dipole_sign`](#qiskit.chemistry.results.ElectronicStructureResult.reverse_dipole_sign "qiskit.chemistry.results.ElectronicStructureResult.reverse_dipole_sign")                                  | Returns if electronic dipole moment sign should be reversed when adding to nuclear |
+  | [`spin`](#qiskit.chemistry.results.ElectronicStructureResult.spin "qiskit.chemistry.results.ElectronicStructureResult.spin")                                                                               | Returns computed spin                                                              |
+  | [`total_angular_momentum`](#qiskit.chemistry.results.ElectronicStructureResult.total_angular_momentum "qiskit.chemistry.results.ElectronicStructureResult.total_angular_momentum")                         | Returns total angular momentum (S^2)                                               |
+  | [`total_dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment")                                  | Returns total dipole of moment                                                     |
+  | [`total_dipole_moment_in_debye`](#qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment_in_debye "qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment_in_debye")       | Returns total dipole of moment in Debye                                            |
+  | [`total_energies`](#qiskit.chemistry.results.ElectronicStructureResult.total_energies "qiskit.chemistry.results.ElectronicStructureResult.total_energies")                                                 | Returns ground state energy if nuclear\_repulsion\_energy is available from driver |
 
-### \_\_init\_\_
+  ### aux\_operator\_eigenvalues
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.__init__" />
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.aux_operator_eigenvalues" name="aux_operator_eigenvalues" signature="property aux_operator_eigenvalues">
+    return aux operator eigen values
 
-`__init__(a_dict=None)`
+    **Return type**
 
-Initialize self. See help(type(self)) for accurate signature.
+    `Optional`\[`List`\[`float`]]
+  </Function>
 
-## Methods
+  ### clear
 
-|                                                                                                                                                                 |                                                                                                                                                                                                                      |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.results.ElectronicStructureResult.__init__ "qiskit.chemistry.results.ElectronicStructureResult.__init__")(\[a\_dict])            | Initialize self.                                                                                                                                                                                                     |
-| [`clear`](#qiskit.chemistry.results.ElectronicStructureResult.clear "qiskit.chemistry.results.ElectronicStructureResult.clear")()                               | **rtype**`None`                                                                                                                                                                                                      |
-| [`combine`](#qiskit.chemistry.results.ElectronicStructureResult.combine "qiskit.chemistry.results.ElectronicStructureResult.combine")(result)                   | Any property from the argument that exists in the receiver is updated.                                                                                                                                               |
-| `copy`()                                                                                                                                                        |                                                                                                                                                                                                                      |
-| `fromkeys`(iterable\[, value])                                                                                                                                  |                                                                                                                                                                                                                      |
-| [`get`](#qiskit.chemistry.results.ElectronicStructureResult.get "qiskit.chemistry.results.ElectronicStructureResult.get")(k\[,d])                               |                                                                                                                                                                                                                      |
-| [`has_dipole`](#qiskit.chemistry.results.ElectronicStructureResult.has_dipole "qiskit.chemistry.results.ElectronicStructureResult.has_dipole")()                | Returns whether dipole moment is present in result or not                                                                                                                                                            |
-| [`has_observables`](#qiskit.chemistry.results.ElectronicStructureResult.has_observables "qiskit.chemistry.results.ElectronicStructureResult.has_observables")() | Returns whether result has aux op observables such as spin, num particles                                                                                                                                            |
-| [`items`](#qiskit.chemistry.results.ElectronicStructureResult.items "qiskit.chemistry.results.ElectronicStructureResult.items")()                               |                                                                                                                                                                                                                      |
-| [`keys`](#qiskit.chemistry.results.ElectronicStructureResult.keys "qiskit.chemistry.results.ElectronicStructureResult.keys")()                                  |                                                                                                                                                                                                                      |
-| [`pop`](#qiskit.chemistry.results.ElectronicStructureResult.pop "qiskit.chemistry.results.ElectronicStructureResult.pop")(key\[, default])                      | If key is not found, d is returned if given, otherwise KeyError is raised.                                                                                                                                           |
-| [`popitem`](#qiskit.chemistry.results.ElectronicStructureResult.popitem "qiskit.chemistry.results.ElectronicStructureResult.popitem")()                         | as a 2-tuple; but raise KeyError if D is empty.                                                                                                                                                                      |
-| [`setdefault`](#qiskit.chemistry.results.ElectronicStructureResult.setdefault "qiskit.chemistry.results.ElectronicStructureResult.setdefault")(k\[,d])          |                                                                                                                                                                                                                      |
-| [`update`](#qiskit.chemistry.results.ElectronicStructureResult.update "qiskit.chemistry.results.ElectronicStructureResult.update")(\*args, \*\*kwargs)          | If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v |
-| [`values`](#qiskit.chemistry.results.ElectronicStructureResult.values "qiskit.chemistry.results.ElectronicStructureResult.values")()                            |                                                                                                                                                                                                                      |
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.clear" name="clear" signature="clear()">
+    **Return type**
 
-## Attributes
+    `None`
+  </Function>
 
-|                                                                                                                                                                                                            |                                                                                    |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [`aux_operator_eigenvalues`](#qiskit.chemistry.results.ElectronicStructureResult.aux_operator_eigenvalues "qiskit.chemistry.results.ElectronicStructureResult.aux_operator_eigenvalues")                   | return aux operator eigen values                                                   |
-| [`computed_dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.computed_dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.computed_dipole_moment")                         | Returns computed electronic part of dipole moment                                  |
-| [`computed_energies`](#qiskit.chemistry.results.ElectronicStructureResult.computed_energies "qiskit.chemistry.results.ElectronicStructureResult.computed_energies")                                        | Returns computed electronic part of ground state energy                            |
-| [`dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.dipole_moment")                                                    | Returns dipole moment                                                              |
-| [`dipole_moment_in_debye`](#qiskit.chemistry.results.ElectronicStructureResult.dipole_moment_in_debye "qiskit.chemistry.results.ElectronicStructureResult.dipole_moment_in_debye")                         | Returns dipole moment in Debye                                                     |
-| [`eigenenergies`](#qiskit.chemistry.results.ElectronicStructureResult.eigenenergies "qiskit.chemistry.results.ElectronicStructureResult.eigenenergies")                                                    | returns eigen energies                                                             |
-| [`eigenstates`](#qiskit.chemistry.results.ElectronicStructureResult.eigenstates "qiskit.chemistry.results.ElectronicStructureResult.eigenstates")                                                          | returns eigen states                                                               |
-| [`electronic_dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.electronic_dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.electronic_dipole_moment")                   | Returns electronic dipole moment                                                   |
-| [`electronic_energies`](#qiskit.chemistry.results.ElectronicStructureResult.electronic_energies "qiskit.chemistry.results.ElectronicStructureResult.electronic_energies")                                  | Returns electronic part of ground state energy                                     |
-| [`formatted`](#qiskit.chemistry.results.ElectronicStructureResult.formatted "qiskit.chemistry.results.ElectronicStructureResult.formatted")                                                                | Formatted result as a list of strings                                              |
-| [`frozen_extracted_dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.frozen_extracted_dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.frozen_extracted_dipole_moment") | Returns frozen extracted part of dipole moment                                     |
-| [`frozen_extracted_energy`](#qiskit.chemistry.results.ElectronicStructureResult.frozen_extracted_energy "qiskit.chemistry.results.ElectronicStructureResult.frozen_extracted_energy")                      | Returns frozen extracted part of ground state energy                               |
-| [`groundenergy`](#qiskit.chemistry.results.ElectronicStructureResult.groundenergy "qiskit.chemistry.results.ElectronicStructureResult.groundenergy")                                                       | returns ground energy                                                              |
-| [`groundstate`](#qiskit.chemistry.results.ElectronicStructureResult.groundstate "qiskit.chemistry.results.ElectronicStructureResult.groundstate")                                                          | returns ground state                                                               |
-| [`hartree_fock_energy`](#qiskit.chemistry.results.ElectronicStructureResult.hartree_fock_energy "qiskit.chemistry.results.ElectronicStructureResult.hartree_fock_energy")                                  | Returns Hartree-Fock energy                                                        |
-| [`magnetization`](#qiskit.chemistry.results.ElectronicStructureResult.magnetization "qiskit.chemistry.results.ElectronicStructureResult.magnetization")                                                    | Returns measured magnetization                                                     |
-| [`nuclear_dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.nuclear_dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.nuclear_dipole_moment")                            | Returns nuclear dipole moment X,Y,Z components in A.U when available from driver   |
-| [`nuclear_repulsion_energy`](#qiskit.chemistry.results.ElectronicStructureResult.nuclear_repulsion_energy "qiskit.chemistry.results.ElectronicStructureResult.nuclear_repulsion_energy")                   | Returns nuclear repulsion energy when available from driver                        |
-| [`num_particles`](#qiskit.chemistry.results.ElectronicStructureResult.num_particles "qiskit.chemistry.results.ElectronicStructureResult.num_particles")                                                    | Returns measured number of particles                                               |
-| [`ph_extracted_dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.ph_extracted_dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.ph_extracted_dipole_moment")             | Returns particle hole extracted part of dipole moment                              |
-| [`ph_extracted_energy`](#qiskit.chemistry.results.ElectronicStructureResult.ph_extracted_energy "qiskit.chemistry.results.ElectronicStructureResult.ph_extracted_energy")                                  | Returns particle hole extracted part of ground state energy                        |
-| [`raw_result`](#qiskit.chemistry.results.ElectronicStructureResult.raw_result "qiskit.chemistry.results.ElectronicStructureResult.raw_result")                                                             | Returns the raw algorithm result.                                                  |
-| [`reverse_dipole_sign`](#qiskit.chemistry.results.ElectronicStructureResult.reverse_dipole_sign "qiskit.chemistry.results.ElectronicStructureResult.reverse_dipole_sign")                                  | Returns if electronic dipole moment sign should be reversed when adding to nuclear |
-| [`spin`](#qiskit.chemistry.results.ElectronicStructureResult.spin "qiskit.chemistry.results.ElectronicStructureResult.spin")                                                                               | Returns computed spin                                                              |
-| [`total_angular_momentum`](#qiskit.chemistry.results.ElectronicStructureResult.total_angular_momentum "qiskit.chemistry.results.ElectronicStructureResult.total_angular_momentum")                         | Returns total angular momentum (S^2)                                               |
-| [`total_dipole_moment`](#qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment "qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment")                                  | Returns total dipole of moment                                                     |
-| [`total_dipole_moment_in_debye`](#qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment_in_debye "qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment_in_debye")       | Returns total dipole of moment in Debye                                            |
-| [`total_energies`](#qiskit.chemistry.results.ElectronicStructureResult.total_energies "qiskit.chemistry.results.ElectronicStructureResult.total_energies")                                                 | Returns ground state energy if nuclear\_repulsion\_energy is available from driver |
+  ### combine
 
-### aux\_operator\_eigenvalues
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.aux_operator_eigenvalues" />
+    **Raises**
 
-`property aux_operator_eigenvalues`
+    **TypeError** – Argument is None
 
-return aux operator eigen values
+    **Return type**
 
-**Return type**
+    `None`
+  </Function>
 
-`Optional`\[`List`\[`float`]]
+  ### computed\_dipole\_moment
 
-### clear
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.computed_dipole_moment" name="computed_dipole_moment" signature="property computed_dipole_moment">
+    Returns computed electronic part of dipole moment
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.clear" />
+    **Return type**
 
-`clear()`
+    `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
+  </Function>
 
-**Return type**
+  ### computed\_energies
 
-`None`
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.computed_energies" name="computed_energies" signature="property computed_energies">
+    Returns computed electronic part of ground state energy
 
-### combine
+    **Return type**
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.combine" />
+    `ndarray`
+  </Function>
 
-`combine(result)`
+  ### dipole\_moment
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.dipole_moment" name="dipole_moment" signature="property dipole_moment">
+    Returns dipole moment
 
-**Raises**
+    **Return type**
 
-**TypeError** – Argument is None
+    `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
+  </Function>
 
-**Return type**
+  ### dipole\_moment\_in\_debye
 
-`None`
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.dipole_moment_in_debye" name="dipole_moment_in_debye" signature="property dipole_moment_in_debye">
+    Returns dipole moment in Debye
 
-### computed\_dipole\_moment
+    **Return type**
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.computed_dipole_moment" />
+    `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
+  </Function>
 
-`property computed_dipole_moment`
+  ### eigenenergies
 
-Returns computed electronic part of dipole moment
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.eigenenergies" name="eigenenergies" signature="property eigenenergies">
+    returns eigen energies
 
-**Return type**
+    **Return type**
 
-`Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
+    `Optional`\[`ndarray`]
+  </Function>
 
-### computed\_energies
+  ### eigenstates
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.computed_energies" />
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.eigenstates" name="eigenstates" signature="property eigenstates">
+    returns eigen states
 
-`property computed_energies`
+    **Return type**
 
-Returns computed electronic part of ground state energy
+    `Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
+  </Function>
 
-**Return type**
+  ### electronic\_dipole\_moment
 
-`ndarray`
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.electronic_dipole_moment" name="electronic_dipole_moment" signature="property electronic_dipole_moment">
+    Returns electronic dipole moment
 
-### dipole\_moment
+    **Return type**
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.dipole_moment" />
+    `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
+  </Function>
 
-`property dipole_moment`
+  ### electronic\_energies
 
-Returns dipole moment
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.electronic_energies" name="electronic_energies" signature="property electronic_energies">
+    Returns electronic part of ground state energy
 
-**Return type**
+    **Return type**
 
-`Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
+    `ndarray`
+  </Function>
 
-### dipole\_moment\_in\_debye
+  ### formatted
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.dipole_moment_in_debye" />
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.formatted" name="formatted" signature="property formatted">
+    Formatted result as a list of strings
 
-`property dipole_moment_in_debye`
+    **Return type**
 
-Returns dipole moment in Debye
+    `List`\[`str`]
+  </Function>
 
-**Return type**
+  ### frozen\_extracted\_dipole\_moment
 
-`Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.frozen_extracted_dipole_moment" name="frozen_extracted_dipole_moment" signature="property frozen_extracted_dipole_moment">
+    Returns frozen extracted part of dipole moment
 
-### eigenenergies
+    **Return type**
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.eigenenergies" />
+    `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
+  </Function>
 
-`property eigenenergies`
+  ### frozen\_extracted\_energy
 
-returns eigen energies
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.frozen_extracted_energy" name="frozen_extracted_energy" signature="property frozen_extracted_energy">
+    Returns frozen extracted part of ground state energy
 
-**Return type**
+    **Return type**
 
-`Optional`\[`ndarray`]
+    `float`
+  </Function>
 
-### eigenstates
+  ### get
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.eigenstates" />
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.get" name="get" signature="get(k[, d]) → D[k] if k in D, else d. d defaults to None." />
 
-`property eigenstates`
+  ### groundenergy
 
-returns eigen states
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.groundenergy" name="groundenergy" signature="property groundenergy">
+    returns ground energy
 
-**Return type**
+    **Return type**
 
-`Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
+    `Optional`\[`float`]
+  </Function>
 
-### electronic\_dipole\_moment
+  ### groundstate
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.electronic_dipole_moment" />
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.groundstate" name="groundstate" signature="property groundstate">
+    returns ground state
 
-`property electronic_dipole_moment`
+    **Return type**
 
-Returns electronic dipole moment
+    `Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
+  </Function>
 
-**Return type**
+  ### hartree\_fock\_energy
 
-`Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.hartree_fock_energy" name="hartree_fock_energy" signature="property hartree_fock_energy">
+    Returns Hartree-Fock energy
 
-### electronic\_energies
+    **Return type**
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.electronic_energies" />
+    `float`
+  </Function>
 
-`property electronic_energies`
+  ### has\_dipole
 
-Returns electronic part of ground state energy
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.has_dipole" name="has_dipole" signature="has_dipole()">
+    Returns whether dipole moment is present in result or not
 
-**Return type**
+    **Return type**
 
-`ndarray`
+    `bool`
+  </Function>
 
-### formatted
+  ### has\_observables
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.formatted" />
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.has_observables" name="has_observables" signature="has_observables()">
+    Returns whether result has aux op observables such as spin, num particles
+  </Function>
 
-`property formatted`
+  ### items
 
-Formatted result as a list of strings
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.items" name="items" signature="items() → a set-like object providing a view on D’s items" />
 
-**Return type**
+  ### keys
 
-`List`\[`str`]
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.keys" name="keys" signature="keys() → a set-like object providing a view on D’s keys" />
 
-### frozen\_extracted\_dipole\_moment
+  ### magnetization
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.frozen_extracted_dipole_moment" />
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.magnetization" name="magnetization" signature="property magnetization">
+    Returns measured magnetization
 
-`property frozen_extracted_dipole_moment`
+    **Return type**
 
-Returns frozen extracted part of dipole moment
+    `Optional`\[`List`\[`float`]]
+  </Function>
 
-**Return type**
+  ### nuclear\_dipole\_moment
 
-`Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.nuclear_dipole_moment" name="nuclear_dipole_moment" signature="property nuclear_dipole_moment">
+    Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
 
-### frozen\_extracted\_energy
+    **Return type**
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.frozen_extracted_energy" />
+    `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  </Function>
 
-`property frozen_extracted_energy`
+  ### nuclear\_repulsion\_energy
 
-Returns frozen extracted part of ground state energy
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.nuclear_repulsion_energy" name="nuclear_repulsion_energy" signature="property nuclear_repulsion_energy">
+    Returns nuclear repulsion energy when available from driver
 
-**Return type**
+    **Return type**
 
-`float`
+    `Optional`\[`float`]
+  </Function>
 
-### get
+  ### num\_particles
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.get" />
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.num_particles" name="num_particles" signature="property num_particles">
+    Returns measured number of particles
 
-`get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
+    **Return type**
 
-### groundenergy
+    `Optional`\[`List`\[`float`]]
+  </Function>
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.groundenergy" />
+  ### ph\_extracted\_dipole\_moment
 
-`property groundenergy`
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.ph_extracted_dipole_moment" name="ph_extracted_dipole_moment" signature="property ph_extracted_dipole_moment">
+    Returns particle hole extracted part of dipole moment
 
-returns ground energy
+    **Return type**
 
-**Return type**
+    `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
+  </Function>
 
-`Optional`\[`float`]
+  ### ph\_extracted\_energy
 
-### groundstate
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.ph_extracted_energy" name="ph_extracted_energy" signature="property ph_extracted_energy">
+    Returns particle hole extracted part of ground state energy
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.groundstate" />
+    **Return type**
 
-`property groundstate`
+    `float`
+  </Function>
 
-returns ground state
+  ### pop
 
-**Return type**
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.pop" name="pop" signature="pop(key, default=None)">
+    If key is not found, d is returned if given, otherwise KeyError is raised.
 
-`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
+    **Return type**
 
-### hartree\_fock\_energy
+    `object`
+  </Function>
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.hartree_fock_energy" />
+  ### popitem
 
-`property hartree_fock_energy`
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.popitem" name="popitem" signature="popitem()">
+    as a 2-tuple; but raise KeyError if D is empty.
 
-Returns Hartree-Fock energy
+    **Return type**
 
-**Return type**
+    `Tuple`\[`object`, `object`]
+  </Function>
 
-`float`
+  ### raw\_result
 
-### has\_dipole
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.raw_result" name="raw_result" signature="property raw_result">
+    Returns the raw algorithm result.
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.has_dipole" />
+    **Return type**
 
-`has_dipole()`
+    `Optional`\[`AlgorithmResult`]
+  </Function>
 
-Returns whether dipole moment is present in result or not
+  ### reverse\_dipole\_sign
 
-**Return type**
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.reverse_dipole_sign" name="reverse_dipole_sign" signature="property reverse_dipole_sign">
+    Returns if electronic dipole moment sign should be reversed when adding to nuclear
 
-`bool`
+    **Return type**
 
-### has\_observables
+    `bool`
+  </Function>
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.has_observables" />
+  ### setdefault
 
-`has_observables()`
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.setdefault" name="setdefault" signature="setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D" />
 
-Returns whether result has aux op observables such as spin, num particles
+  ### spin
 
-### items
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.spin" name="spin" signature="property spin">
+    Returns computed spin
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.items" />
+    **Return type**
 
-`items() → a set-like object providing a view on D’s items`
+    `Optional`\[`List`\[`float`]]
+  </Function>
 
-### keys
+  ### total\_angular\_momentum
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.keys" />
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.total_angular_momentum" name="total_angular_momentum" signature="property total_angular_momentum">
+    Returns total angular momentum (S^2)
 
-`keys() → a set-like object providing a view on D’s keys`
+    **Return type**
 
-### magnetization
+    `Optional`\[`List`\[`float`]]
+  </Function>
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.magnetization" />
+  ### total\_dipole\_moment
 
-`property magnetization`
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment" name="total_dipole_moment" signature="property total_dipole_moment">
+    Returns total dipole of moment
 
-Returns measured magnetization
+    **Return type**
 
-**Return type**
+    `Optional`\[`List`\[`float`]]
+  </Function>
 
-`Optional`\[`List`\[`float`]]
+  ### total\_dipole\_moment\_in\_debye
 
-### nuclear\_dipole\_moment
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment_in_debye" name="total_dipole_moment_in_debye" signature="property total_dipole_moment_in_debye">
+    Returns total dipole of moment in Debye
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.nuclear_dipole_moment" />
+    **Return type**
 
-`property nuclear_dipole_moment`
+    `Optional`\[`List`\[`float`]]
+  </Function>
 
-Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
+  ### total\_energies
 
-**Return type**
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.total_energies" name="total_energies" signature="property total_energies">
+    Returns ground state energy if nuclear\_repulsion\_energy is available from driver
 
-`Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+    **Return type**
 
-### nuclear\_repulsion\_energy
+    `ndarray`
+  </Function>
 
-<span id="qiskit.chemistry.results.ElectronicStructureResult.nuclear_repulsion_energy" />
+  ### update
 
-`property nuclear_repulsion_energy`
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.update" name="update" signature="update(*args, **kwargs)">
+    If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
 
-Returns nuclear repulsion energy when available from driver
+    **Return type**
 
-**Return type**
+    `None`
+  </Function>
 
-`Optional`\[`float`]
+  ### values
 
-### num\_particles
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.num_particles" />
-
-`property num_particles`
-
-Returns measured number of particles
-
-**Return type**
-
-`Optional`\[`List`\[`float`]]
-
-### ph\_extracted\_dipole\_moment
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.ph_extracted_dipole_moment" />
-
-`property ph_extracted_dipole_moment`
-
-Returns particle hole extracted part of dipole moment
-
-**Return type**
-
-`Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
-
-### ph\_extracted\_energy
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.ph_extracted_energy" />
-
-`property ph_extracted_energy`
-
-Returns particle hole extracted part of ground state energy
-
-**Return type**
-
-`float`
-
-### pop
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.pop" />
-
-`pop(key, default=None)`
-
-If key is not found, d is returned if given, otherwise KeyError is raised.
-
-**Return type**
-
-`object`
-
-### popitem
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.popitem" />
-
-`popitem()`
-
-as a 2-tuple; but raise KeyError if D is empty.
-
-**Return type**
-
-`Tuple`\[`object`, `object`]
-
-### raw\_result
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.raw_result" />
-
-`property raw_result`
-
-Returns the raw algorithm result.
-
-**Return type**
-
-`Optional`\[`AlgorithmResult`]
-
-### reverse\_dipole\_sign
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.reverse_dipole_sign" />
-
-`property reverse_dipole_sign`
-
-Returns if electronic dipole moment sign should be reversed when adding to nuclear
-
-**Return type**
-
-`bool`
-
-### setdefault
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.setdefault" />
-
-`setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
-
-### spin
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.spin" />
-
-`property spin`
-
-Returns computed spin
-
-**Return type**
-
-`Optional`\[`List`\[`float`]]
-
-### total\_angular\_momentum
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.total_angular_momentum" />
-
-`property total_angular_momentum`
-
-Returns total angular momentum (S^2)
-
-**Return type**
-
-`Optional`\[`List`\[`float`]]
-
-### total\_dipole\_moment
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment" />
-
-`property total_dipole_moment`
-
-Returns total dipole of moment
-
-**Return type**
-
-`Optional`\[`List`\[`float`]]
-
-### total\_dipole\_moment\_in\_debye
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment_in_debye" />
-
-`property total_dipole_moment_in_debye`
-
-Returns total dipole of moment in Debye
-
-**Return type**
-
-`Optional`\[`List`\[`float`]]
-
-### total\_energies
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.total_energies" />
-
-`property total_energies`
-
-Returns ground state energy if nuclear\_repulsion\_energy is available from driver
-
-**Return type**
-
-`ndarray`
-
-### update
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.update" />
-
-`update(*args, **kwargs)`
-
-If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
-
-**Return type**
-
-`None`
-
-### values
-
-<span id="qiskit.chemistry.results.ElectronicStructureResult.values" />
-
-`values() → an object providing a view on D’s values`
+  <Function id="qiskit.chemistry.results.ElectronicStructureResult.values" name="values" signature="values() → an object providing a view on D’s values" />
+</Class>
 

@@ -30,112 +30,92 @@ Convert symmetric TSP instances into Pauli list Deal with TSPLIB format. It supp
 | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
 | [`TspData`](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")(name, dim, coord, w) | Create new instance of TspData(name, dim, coord, w) |
 
-<span id="qiskit.optimization.applications.ising.tsp.TspData" />
+<Class id="qiskit.optimization.applications.ising.tsp.TspData" signature="TspData(name, dim, coord, w)">
+  Create new instance of TspData(name, dim, coord, w)
 
-`TspData(name, dim, coord, w)`
+  ### coord
 
-Create new instance of TspData(name, dim, coord, w)
+  <Function id="qiskit.optimization.applications.ising.tsp.TspData.coord" name="coord" signature="property coord">
+    Alias for field number 2
+  </Function>
 
-### coord
+  ### count
 
-<span id="qiskit.optimization.applications.ising.tsp.TspData.coord" />
+  <Function id="qiskit.optimization.applications.ising.tsp.TspData.count" name="count" signature="count(value, /)">
+    Return number of occurrences of value.
+  </Function>
 
-`property coord`
+  ### dim
 
-Alias for field number 2
+  <Function id="qiskit.optimization.applications.ising.tsp.TspData.dim" name="dim" signature="property dim">
+    Alias for field number 1
+  </Function>
 
-### count
+  ### index
 
-<span id="qiskit.optimization.applications.ising.tsp.TspData.count" />
+  <Function id="qiskit.optimization.applications.ising.tsp.TspData.index" name="index" signature="index(value, start=0, stop=9223372036854775807, /)">
+    Return first index of value.
 
-`count(value, /)`
+    Raises ValueError if the value is not present.
+  </Function>
 
-Return number of occurrences of value.
+  ### name
 
-### dim
+  <Function id="qiskit.optimization.applications.ising.tsp.TspData.name" name="name" signature="property name">
+    Alias for field number 0
+  </Function>
 
-<span id="qiskit.optimization.applications.ising.tsp.TspData.dim" />
+  ### w
 
-`property dim`
-
-Alias for field number 1
-
-### index
-
-<span id="qiskit.optimization.applications.ising.tsp.TspData.index" />
-
-`index(value, start=0, stop=9223372036854775807, /)`
-
-Return first index of value.
-
-Raises ValueError if the value is not present.
-
-### name
-
-<span id="qiskit.optimization.applications.ising.tsp.TspData.name" />
-
-`property name`
-
-Alias for field number 0
-
-### w
-
-<span id="qiskit.optimization.applications.ising.tsp.TspData.w" />
-
-`property w`
-
-Alias for field number 3
+  <Function id="qiskit.optimization.applications.ising.tsp.TspData.w" name="w" signature="property w">
+    Alias for field number 3
+  </Function>
+</Class>
 
 ### calc\_distance
 
-<span id="qiskit.optimization.applications.ising.tsp.calc_distance" />
-
-`calc_distance(coord, name='tmp')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
-
-calculate distance
+<Function id="qiskit.optimization.applications.ising.tsp.calc_distance" name="calc_distance" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py" signature="calc_distance(coord, name='tmp')">
+  calculate distance
+</Function>
 
 ### get\_operator
 
-<span id="qiskit.optimization.applications.ising.tsp.get_operator" />
+<Function id="qiskit.optimization.applications.ising.tsp.get_operator" name="get_operator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py" signature="get_operator(ins, penalty=100000.0)">
+  Generate Hamiltonian for TSP of a graph.
 
-`get_operator(ins, penalty=100000.0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
+  **Parameters**
 
-Generate Hamiltonian for TSP of a graph.
+  *   **ins** ([*TspData*](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")) – TSP data including coordinates and distances.
+  *   **penalty** (*float*) – Penalty coefficient for the constraints
 
-**Parameters**
+  **Returns**
 
-*   **ins** ([*TspData*](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")) – TSP data including coordinates and distances.
-*   **penalty** (*float*) – Penalty coefficient for the constraints
+  operator for the Hamiltonian and a constant shift for the obj function.
 
-**Returns**
+  **Return type**
 
-operator for the Hamiltonian and a constant shift for the obj function.
-
-**Return type**
-
-tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+  tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+</Function>
 
 ### get\_tsp\_solution
 
-<span id="qiskit.optimization.applications.ising.tsp.get_tsp_solution" />
+<Function id="qiskit.optimization.applications.ising.tsp.get_tsp_solution" name="get_tsp_solution" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py" signature="get_tsp_solution(x)">
+  Get graph solution from binary string.
 
-`get_tsp_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
+  **Parameters**
 
-Get graph solution from binary string.
+  **x** (*numpy.ndarray*) – binary string as numpy array.
 
-**Parameters**
+  **Returns**
 
-**x** (*numpy.ndarray*) – binary string as numpy array.
+  **sequence of cities to traverse.**
 
-**Returns**
+  The i-th item in the list corresponds to the city which is visited in the i-th step. The list for an infeasible answer e.g. \[\[0,1],1,] can be interpreted as visiting \[city0 and city1] as the first city, then visit city1 as the second city, then visit no where as the third city).
 
-**sequence of cities to traverse.**
+  **Return type**
 
-The i-th item in the list corresponds to the city which is visited in the i-th step. The list for an infeasible answer e.g. \[\[0,1],1,] can be interpreted as visiting \[city0 and city1] as the first city, then visit city1 as the second city, then visit no where as the third city).
-
-**Return type**
-
-list\[int]
+  list\[int]
+</Function>
 
 **`logger` *= \<Logger qiskit.optimization.applications.ising.tsp (WARNING)>***
 
@@ -143,87 +123,79 @@ Instance data of TSP
 
 ### parse\_tsplib\_format
 
-<span id="qiskit.optimization.applications.ising.tsp.parse_tsplib_format" />
+<Function id="qiskit.optimization.applications.ising.tsp.parse_tsplib_format" name="parse_tsplib_format" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py" signature="parse_tsplib_format(filename)">
+  Read graph in TSPLIB format from file.
 
-`parse_tsplib_format(filename)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
+  **Parameters**
 
-Read graph in TSPLIB format from file.
+  **filename** (*str*) – name of the file.
 
-**Parameters**
+  **Returns**
 
-**filename** (*str*) – name of the file.
+  instance data.
 
-**Returns**
+  **Return type**
 
-instance data.
-
-**Return type**
-
-[TspData](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")
+  [TspData](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")
+</Function>
 
 ### random\_tsp
 
-<span id="qiskit.optimization.applications.ising.tsp.random_tsp" />
+<Function id="qiskit.optimization.applications.ising.tsp.random_tsp" name="random_tsp" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py" signature="random_tsp(n, low=0, high=100, savefile=None, seed=None, name='tmp')">
+  Generate a random instance for TSP.
 
-`random_tsp(n, low=0, high=100, savefile=None, seed=None, name='tmp')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
+  **Parameters**
 
-Generate a random instance for TSP.
+  *   **n** (*int*) – number of nodes.
+  *   **low** (*float*) – lower bound of coordinate.
+  *   **high** (*float*) – upper bound of coordinate.
+  *   **savefile** (*str or None*) – name of file where to save graph.
+  *   **seed** (*int or None*) – random seed - if None, will not initialize.
+  *   **name** (*str*) – name of an instance
 
-**Parameters**
+  **Returns**
 
-*   **n** (*int*) – number of nodes.
-*   **low** (*float*) – lower bound of coordinate.
-*   **high** (*float*) – upper bound of coordinate.
-*   **savefile** (*str or None*) – name of file where to save graph.
-*   **seed** (*int or None*) – random seed - if None, will not initialize.
-*   **name** (*str*) – name of an instance
+  instance data.
 
-**Returns**
+  **Return type**
 
-instance data.
-
-**Return type**
-
-[TspData](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")
+  [TspData](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")
+</Function>
 
 ### tsp\_feasible
 
-<span id="qiskit.optimization.applications.ising.tsp.tsp_feasible" />
+<Function id="qiskit.optimization.applications.ising.tsp.tsp_feasible" name="tsp_feasible" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py" signature="tsp_feasible(x)">
+  Check whether a solution is feasible or not.
 
-`tsp_feasible(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
+  **Parameters**
 
-Check whether a solution is feasible or not.
+  **x** (*numpy.ndarray*) – binary string as numpy array.
 
-**Parameters**
+  **Returns**
 
-**x** (*numpy.ndarray*) – binary string as numpy array.
+  feasible or not.
 
-**Returns**
+  **Return type**
 
-feasible or not.
-
-**Return type**
-
-bool
+  bool
+</Function>
 
 ### tsp\_value
 
-<span id="qiskit.optimization.applications.ising.tsp.tsp_value" />
+<Function id="qiskit.optimization.applications.ising.tsp.tsp_value" name="tsp_value" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py" signature="tsp_value(z, w)">
+  Compute the TSP value of a solution.
 
-`tsp_value(z, w)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
+  **Parameters**
 
-Compute the TSP value of a solution.
+  *   **z** (*list\[int]*) – list of cities.
+  *   **w** (*numpy.ndarray*) – adjacency matrix.
 
-**Parameters**
+  **Returns**
 
-*   **z** (*list\[int]*) – list of cities.
-*   **w** (*numpy.ndarray*) – adjacency matrix.
+  value of the cut.
 
-**Returns**
+  **Return type**
 
-value of the cut.
-
-**Return type**
-
-float
+  float
+</Function>
 

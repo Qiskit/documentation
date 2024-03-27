@@ -8,134 +8,122 @@ python_api_name: qiskit.optimization.algorithms.ADMMOptimizer
 
 # qiskit.optimization.algorithms.ADMMOptimizer
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizer" />
+<Class id="qiskit.optimization.algorithms.ADMMOptimizer" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/admm_optimizer.py" signature="ADMMOptimizer(qubo_optimizer=None, continuous_optimizer=None, params=None)">
+  An implementation of the ADMM-based heuristic.
 
-`ADMMOptimizer(qubo_optimizer=None, continuous_optimizer=None, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
+  This algorithm is introduced in \[1].
 
-An implementation of the ADMM-based heuristic.
+  **References:**
 
-This algorithm is introduced in \[1].
+  **\[1] Gambella, C., & Simonetto, A. (2020). Multi-block ADMM Heuristics for Mixed-Binary**
 
-**References:**
+  Optimization on Classical and Quantum Computers. arXiv preprint arXiv:2001.02069.
 
-**\[1] Gambella, C., & Simonetto, A. (2020). Multi-block ADMM Heuristics for Mixed-Binary**
+  **Parameters**
 
-Optimization on Classical and Quantum Computers. arXiv preprint arXiv:2001.02069.
+  *   **qubo\_optimizer** (`Optional`\[`OptimizationAlgorithm`]) – An instance of OptimizationAlgorithm that can effectively solve QUBO problems. If not specified then [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer") initialized with an instance of `NumPyMinimumEigensolver` will be used.
+  *   **continuous\_optimizer** (`Optional`\[`OptimizationAlgorithm`]) – An instance of OptimizationAlgorithm that can solve continuous problems. If not specified then [`SlsqpOptimizer`](qiskit.optimization.algorithms.SlsqpOptimizer "qiskit.optimization.algorithms.SlsqpOptimizer") will be used.
+  *   **params** (`Optional`\[`ADMMParameters`]) – An instance of ADMMParameters.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **qubo\_optimizer** (`Optional`\[`OptimizationAlgorithm`]) – An instance of OptimizationAlgorithm that can effectively solve QUBO problems. If not specified then [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer") initialized with an instance of `NumPyMinimumEigensolver` will be used.
-*   **continuous\_optimizer** (`Optional`\[`OptimizationAlgorithm`]) – An instance of OptimizationAlgorithm that can solve continuous problems. If not specified then [`SlsqpOptimizer`](qiskit.optimization.algorithms.SlsqpOptimizer "qiskit.optimization.algorithms.SlsqpOptimizer") will be used.
-*   **params** (`Optional`\[`ADMMParameters`]) – An instance of ADMMParameters.
+  <Function id="qiskit.optimization.algorithms.ADMMOptimizer.__init__" name="__init__" signature="__init__(qubo_optimizer=None, continuous_optimizer=None, params=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **qubo\_optimizer** (`Optional`\[`OptimizationAlgorithm`]) – An instance of OptimizationAlgorithm that can effectively solve QUBO problems. If not specified then [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer") initialized with an instance of `NumPyMinimumEigensolver` will be used.
+    *   **continuous\_optimizer** (`Optional`\[`OptimizationAlgorithm`]) – An instance of OptimizationAlgorithm that can solve continuous problems. If not specified then [`SlsqpOptimizer`](qiskit.optimization.algorithms.SlsqpOptimizer "qiskit.optimization.algorithms.SlsqpOptimizer") will be used.
+    *   **params** (`Optional`\[`ADMMParameters`]) – An instance of ADMMParameters.
+  </Function>
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizer.__init__" />
+  ## Methods
 
-`__init__(qubo_optimizer=None, continuous_optimizer=None, params=None)`
+  |                                                                                                                                                                              |                                                                                           |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.optimization.algorithms.ADMMOptimizer.__init__ "qiskit.optimization.algorithms.ADMMOptimizer.__init__")(\[qubo\_optimizer, …])                          | **type qubo\_optimizer**`Optional`\[`OptimizationAlgorithm`]                              |
+  | [`get_compatibility_msg`](#qiskit.optimization.algorithms.ADMMOptimizer.get_compatibility_msg "qiskit.optimization.algorithms.ADMMOptimizer.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with the optimizer implementing this method. |
+  | [`is_compatible`](#qiskit.optimization.algorithms.ADMMOptimizer.is_compatible "qiskit.optimization.algorithms.ADMMOptimizer.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
+  | [`solve`](#qiskit.optimization.algorithms.ADMMOptimizer.solve "qiskit.optimization.algorithms.ADMMOptimizer.solve")(problem)                                                 | Tries to solves the given problem using ADMM algorithm.                                   |
 
-**Parameters**
+  ## Attributes
 
-*   **qubo\_optimizer** (`Optional`\[`OptimizationAlgorithm`]) – An instance of OptimizationAlgorithm that can effectively solve QUBO problems. If not specified then [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer") initialized with an instance of `NumPyMinimumEigensolver` will be used.
-*   **continuous\_optimizer** (`Optional`\[`OptimizationAlgorithm`]) – An instance of OptimizationAlgorithm that can solve continuous problems. If not specified then [`SlsqpOptimizer`](qiskit.optimization.algorithms.SlsqpOptimizer "qiskit.optimization.algorithms.SlsqpOptimizer") will be used.
-*   **params** (`Optional`\[`ADMMParameters`]) – An instance of ADMMParameters.
+  |                                                                                                                                    |                                              |
+  | ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+  | [`parameters`](#qiskit.optimization.algorithms.ADMMOptimizer.parameters "qiskit.optimization.algorithms.ADMMOptimizer.parameters") | Returns current parameters of the optimizer. |
 
-## Methods
+  ### get\_compatibility\_msg
 
-|                                                                                                                                                                              |                                                                                           |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.optimization.algorithms.ADMMOptimizer.__init__ "qiskit.optimization.algorithms.ADMMOptimizer.__init__")(\[qubo\_optimizer, …])                          | **type qubo\_optimizer**`Optional`\[`OptimizationAlgorithm`]                              |
-| [`get_compatibility_msg`](#qiskit.optimization.algorithms.ADMMOptimizer.get_compatibility_msg "qiskit.optimization.algorithms.ADMMOptimizer.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with the optimizer implementing this method. |
-| [`is_compatible`](#qiskit.optimization.algorithms.ADMMOptimizer.is_compatible "qiskit.optimization.algorithms.ADMMOptimizer.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
-| [`solve`](#qiskit.optimization.algorithms.ADMMOptimizer.solve "qiskit.optimization.algorithms.ADMMOptimizer.solve")(problem)                                                 | Tries to solves the given problem using ADMM algorithm.                                   |
+  <Function id="qiskit.optimization.algorithms.ADMMOptimizer.get_compatibility_msg" name="get_compatibility_msg" signature="get_compatibility_msg(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                    |                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`parameters`](#qiskit.optimization.algorithms.ADMMOptimizer.parameters "qiskit.optimization.algorithms.ADMMOptimizer.parameters") | Returns current parameters of the optimizer. |
+    **problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
 
-### get\_compatibility\_msg
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizer.get_compatibility_msg" />
+    `Optional`\[`str`]
 
-`get_compatibility_msg(problem)`
+    **Returns**
 
-Checks whether a given problem can be solved with the optimizer implementing this method.
+    Returns True if the problem is compatible, otherwise raises an error.
 
-**Parameters**
+    **Raises**
 
-**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is not compatible with the ADMM optimizer.
+  </Function>
 
-**Return type**
+  ### is\_compatible
 
-`Optional`\[`str`]
+  <Function id="qiskit.optimization.algorithms.ADMMOptimizer.is_compatible" name="is_compatible" signature="is_compatible(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
 
-**Returns**
+    **Parameters**
 
-Returns True if the problem is compatible, otherwise raises an error.
+    **problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
 
-**Raises**
+    **Return type**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is not compatible with the ADMM optimizer.
+    `bool`
 
-### is\_compatible
+    **Returns**
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizer.is_compatible" />
+    Returns True if the problem is compatible, False otherwise.
+  </Function>
 
-`is_compatible(problem)`
+  ### parameters
 
-Checks whether a given problem can be solved with the optimizer implementing this method.
+  <Function id="qiskit.optimization.algorithms.ADMMOptimizer.parameters" name="parameters" signature="property parameters">
+    Returns current parameters of the optimizer.
 
-**Parameters**
+    **Return type**
 
-**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+    `ADMMParameters`
 
-**Return type**
+    **Returns**
 
-`bool`
+    The parameters.
+  </Function>
 
-**Returns**
+  ### solve
 
-Returns True if the problem is compatible, False otherwise.
+  <Function id="qiskit.optimization.algorithms.ADMMOptimizer.solve" name="solve" signature="solve(problem)">
+    Tries to solves the given problem using ADMM algorithm.
 
-### parameters
+    **Parameters**
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizer.parameters" />
+    **problem** (`QuadraticProgram`) – The problem to be solved.
 
-`property parameters`
+    **Return type**
 
-Returns current parameters of the optimizer.
+    `ADMMOptimizationResult`
 
-**Return type**
+    **Returns**
 
-`ADMMParameters`
+    The result of the optimizer applied to the problem.
 
-**Returns**
+    **Raises**
 
-The parameters.
-
-### solve
-
-<span id="qiskit.optimization.algorithms.ADMMOptimizer.solve" />
-
-`solve(problem)`
-
-Tries to solves the given problem using ADMM algorithm.
-
-**Parameters**
-
-**problem** (`QuadraticProgram`) – The problem to be solved.
-
-**Return type**
-
-`ADMMOptimizationResult`
-
-**Returns**
-
-The result of the optimizer applied to the problem.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is not compatible with the ADMM optimizer.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is not compatible with the ADMM optimizer.
+  </Function>
+</Class>
 

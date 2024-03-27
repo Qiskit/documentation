@@ -8,123 +8,109 @@ python_api_name: qiskit.chemistry.drivers.GaussianForcesDriver
 
 # qiskit.chemistry.drivers.GaussianForcesDriver
 
-<span id="qiskit.chemistry.drivers.GaussianForcesDriver" />
+<Class id="qiskit.chemistry.drivers.GaussianForcesDriver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussian_forces_driver.py" signature="GaussianForcesDriver(jcf='\\n#p B3LYP/cc-pVTZ Freq=(Anharm) Int=Ultrafine SCF=VeryTight\\n\\nCO2 geometry optimization B3LYP/cc-pVTZ\\n\\n0 1\\nC -0.848629 2.067624 0.160992\\nO 0.098816 2.655801 -0.159738\\nO -1.796073 1.479446 0.481721\\n\\n', logfile=None, molecule=None, basis='sto-3g', normalize=True)">
+  Gaussian™ 16 forces driver.
 
-`GaussianForcesDriver(jcf='\\n#p B3LYP/cc-pVTZ Freq=(Anharm) Int=Ultrafine SCF=VeryTight\\n\\nCO2 geometry optimization B3LYP/cc-pVTZ\\n\\n0 1\\nC -0.848629 2.067624 0.160992\\nO 0.098816 2.655801 -0.159738\\nO -1.796073 1.479446 0.481721\\n\\n', logfile=None, molecule=None, basis='sto-3g', normalize=True)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussian_forces_driver.py "view source code")
+  **Parameters**
 
-Gaussian™ 16 forces driver.
+  *   **jcf** (`Union`\[`str`, `List`\[`str`]]) – A job control file conforming to Gaussian™ 16 format. This can be provided as a single string with ‘\n’ line separators or as a list of strings.
+  *   **logfile** (`Optional`\[`str`]) – Instead of a job control file a log as output from running such a file can optionally be given.
+  *   **molecule** (`Optional`\[`Molecule`]) – If a molecule is supplied then an appropriate job control file will be built from this, and the basis, and will be used in precedence of either the logfile or the jcf params.
+  *   **basis** (`str`) – The basis set to be used in the resultant job control file when a molecule is provided.
+  *   **normalize** (`bool`) – Whether to normalize the factors used in creation of the WatsonHamiltonian as returned when this driver is run.
 
-**Parameters**
+  **Raises**
 
-*   **jcf** (`Union`\[`str`, `List`\[`str`]]) – A job control file conforming to Gaussian™ 16 format. This can be provided as a single string with ‘\n’ line separators or as a list of strings.
-*   **logfile** (`Optional`\[`str`]) – Instead of a job control file a log as output from running such a file can optionally be given.
-*   **molecule** (`Optional`\[`Molecule`]) – If a molecule is supplied then an appropriate job control file will be built from this, and the basis, and will be used in precedence of either the logfile or the jcf params.
-*   **basis** (`str`) – The basis set to be used in the resultant job control file when a molecule is provided.
-*   **normalize** (`bool`) – Whether to normalize the factors used in creation of the WatsonHamiltonian as returned when this driver is run.
+  [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If jcf or molecule given and Gaussian™ 16 executable cannot be located.
 
-**Raises**
+  ### \_\_init\_\_
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If jcf or molecule given and Gaussian™ 16 executable cannot be located.
+  <Function id="qiskit.chemistry.drivers.GaussianForcesDriver.__init__" name="__init__" signature="__init__(jcf='\\n#p B3LYP/cc-pVTZ Freq=(Anharm) Int=Ultrafine SCF=VeryTight\\n\\nCO2 geometry optimization B3LYP/cc-pVTZ\\n\\n0 1\\nC -0.848629 2.067624 0.160992\\nO 0.098816 2.655801 -0.159738\\nO -1.796073 1.479446 0.481721\\n\\n', logfile=None, molecule=None, basis='sto-3g', normalize=True)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **jcf** (`Union`\[`str`, `List`\[`str`]]) – A job control file conforming to Gaussian™ 16 format. This can be provided as a single string with ‘\n’ line separators or as a list of strings.
+    *   **logfile** (`Optional`\[`str`]) – Instead of a job control file a log as output from running such a file can optionally be given.
+    *   **molecule** (`Optional`\[`Molecule`]) – If a molecule is supplied then an appropriate job control file will be built from this, and the basis, and will be used in precedence of either the logfile or the jcf params.
+    *   **basis** (`str`) – The basis set to be used in the resultant job control file when a molecule is provided.
+    *   **normalize** (`bool`) – Whether to normalize the factors used in creation of the WatsonHamiltonian as returned when this driver is run.
 
-<span id="qiskit.chemistry.drivers.GaussianForcesDriver.__init__" />
+    **Raises**
 
-`__init__(jcf='\\n#p B3LYP/cc-pVTZ Freq=(Anharm) Int=Ultrafine SCF=VeryTight\\n\\nCO2 geometry optimization B3LYP/cc-pVTZ\\n\\n0 1\\nC -0.848629 2.067624 0.160992\\nO 0.098816 2.655801 -0.159738\\nO -1.796073 1.479446 0.481721\\n\\n', logfile=None, molecule=None, basis='sto-3g', normalize=True)`
+    [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If jcf or molecule given and Gaussian™ 16 executable cannot be located.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **jcf** (`Union`\[`str`, `List`\[`str`]]) – A job control file conforming to Gaussian™ 16 format. This can be provided as a single string with ‘\n’ line separators or as a list of strings.
-*   **logfile** (`Optional`\[`str`]) – Instead of a job control file a log as output from running such a file can optionally be given.
-*   **molecule** (`Optional`\[`Molecule`]) – If a molecule is supplied then an appropriate job control file will be built from this, and the basis, and will be used in precedence of either the logfile or the jcf params.
-*   **basis** (`str`) – The basis set to be used in the resultant job control file when a molecule is provided.
-*   **normalize** (`bool`) – Whether to normalize the factors used in creation of the WatsonHamiltonian as returned when this driver is run.
+  |                                                                                                                                                                     |                                                    |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.drivers.GaussianForcesDriver.__init__ "qiskit.chemistry.drivers.GaussianForcesDriver.__init__")(\[jcf, logfile, molecule, basis, …]) | **type jcf**`Union`\[`str`, `List`\[`str`]]        |
+  | [`run`](#qiskit.chemistry.drivers.GaussianForcesDriver.run "qiskit.chemistry.drivers.GaussianForcesDriver.run")()                                                   | Runs driver to produce a WatsonHamiltonian output. |
 
-**Raises**
+  ## Attributes
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If jcf or molecule given and Gaussian™ 16 executable cannot be located.
+  |                                                                                                                                                           |                                                 |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+  | [`basis`](#qiskit.chemistry.drivers.GaussianForcesDriver.basis "qiskit.chemistry.drivers.GaussianForcesDriver.basis")                                     | return basis                                    |
+  | [`hf_method`](#qiskit.chemistry.drivers.GaussianForcesDriver.hf_method "qiskit.chemistry.drivers.GaussianForcesDriver.hf_method")                         | return Hartree-Fock method                      |
+  | [`molecule`](#qiskit.chemistry.drivers.GaussianForcesDriver.molecule "qiskit.chemistry.drivers.GaussianForcesDriver.molecule")                            | return molecule                                 |
+  | [`supports_molecule`](#qiskit.chemistry.drivers.GaussianForcesDriver.supports_molecule "qiskit.chemistry.drivers.GaussianForcesDriver.supports_molecule") | True for derived classes that support Molecule. |
 
-## Methods
+  ### basis
 
-|                                                                                                                                                                     |                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.drivers.GaussianForcesDriver.__init__ "qiskit.chemistry.drivers.GaussianForcesDriver.__init__")(\[jcf, logfile, molecule, basis, …]) | **type jcf**`Union`\[`str`, `List`\[`str`]]        |
-| [`run`](#qiskit.chemistry.drivers.GaussianForcesDriver.run "qiskit.chemistry.drivers.GaussianForcesDriver.run")()                                                   | Runs driver to produce a WatsonHamiltonian output. |
+  <Function id="qiskit.chemistry.drivers.GaussianForcesDriver.basis" name="basis" signature="property basis">
+    return basis
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                                           |                                                 |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`basis`](#qiskit.chemistry.drivers.GaussianForcesDriver.basis "qiskit.chemistry.drivers.GaussianForcesDriver.basis")                                     | return basis                                    |
-| [`hf_method`](#qiskit.chemistry.drivers.GaussianForcesDriver.hf_method "qiskit.chemistry.drivers.GaussianForcesDriver.hf_method")                         | return Hartree-Fock method                      |
-| [`molecule`](#qiskit.chemistry.drivers.GaussianForcesDriver.molecule "qiskit.chemistry.drivers.GaussianForcesDriver.molecule")                            | return molecule                                 |
-| [`supports_molecule`](#qiskit.chemistry.drivers.GaussianForcesDriver.supports_molecule "qiskit.chemistry.drivers.GaussianForcesDriver.supports_molecule") | True for derived classes that support Molecule. |
+    `str`
+  </Function>
 
-### basis
+  ### hf\_method
 
-<span id="qiskit.chemistry.drivers.GaussianForcesDriver.basis" />
+  <Function id="qiskit.chemistry.drivers.GaussianForcesDriver.hf_method" name="hf_method" signature="property hf_method">
+    return Hartree-Fock method
 
-`property basis`
+    **Return type**
 
-return basis
+    `str`
+  </Function>
 
-**Return type**
+  ### molecule
 
-`str`
+  <Function id="qiskit.chemistry.drivers.GaussianForcesDriver.molecule" name="molecule" signature="property molecule">
+    return molecule
 
-### hf\_method
+    **Return type**
 
-<span id="qiskit.chemistry.drivers.GaussianForcesDriver.hf_method" />
+    `Optional`\[`Molecule`]
+  </Function>
 
-`property hf_method`
+  ### run
 
-return Hartree-Fock method
+  <Function id="qiskit.chemistry.drivers.GaussianForcesDriver.run" name="run" signature="run()">
+    Runs driver to produce a WatsonHamiltonian output.
 
-**Return type**
+    **Return type**
 
-`str`
+    `WatsonHamiltonian`
 
-### molecule
+    **Returns**
 
-<span id="qiskit.chemistry.drivers.GaussianForcesDriver.molecule" />
+    A WatsonHamiltonian comprising the bosonic data.
+  </Function>
 
-`property molecule`
+  ### supports\_molecule
 
-return molecule
+  <Function id="qiskit.chemistry.drivers.GaussianForcesDriver.supports_molecule" name="supports_molecule" signature="property supports_molecule">
+    True for derived classes that support Molecule.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`Molecule`]
+    `bool`
 
-### run
+    **Returns**
 
-<span id="qiskit.chemistry.drivers.GaussianForcesDriver.run" />
-
-`run()`
-
-Runs driver to produce a WatsonHamiltonian output.
-
-**Return type**
-
-`WatsonHamiltonian`
-
-**Returns**
-
-A WatsonHamiltonian comprising the bosonic data.
-
-### supports\_molecule
-
-<span id="qiskit.chemistry.drivers.GaussianForcesDriver.supports_molecule" />
-
-`property supports_molecule`
-
-True for derived classes that support Molecule.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if Molecule is supported.
+    True if Molecule is supported.
+  </Function>
+</Class>
 

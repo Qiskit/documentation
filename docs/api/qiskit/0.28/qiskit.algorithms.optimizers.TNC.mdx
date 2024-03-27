@@ -8,311 +8,265 @@ python_api_name: qiskit.algorithms.optimizers.TNC
 
 # qiskit.algorithms.optimizers.TNC
 
-<span id="qiskit.algorithms.optimizers.TNC" />
+<Class id="qiskit.algorithms.optimizers.TNC" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/tnc.py" signature="TNC(maxiter=100, disp=False, accuracy=0, ftol=- 1, xtol=- 1, gtol=- 1, tol=None, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)">
+  Truncated Newton (TNC) optimizer.
+
+  TNC uses a truncated Newton algorithm to minimize a function with variables subject to bounds. This algorithm uses gradient information; it is also called Newton Conjugate-Gradient. It differs from the [`CG`](qiskit.algorithms.optimizers.CG "qiskit.algorithms.optimizers.CG") method as it wraps a C implementation and allows each variable to be given upper and lower bounds.
+
+  Uses scipy.optimize.minimize TNC For further detail, please refer to See [https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html)
+
+  **Parameters**
+
+  *   **maxiter** (`int`) – Maximum number of function evaluation.
+  *   **disp** (`bool`) – Set to True to print convergence messages.
+  *   **accuracy** (`float`) – Relative precision for finite difference calculations. If \<= machine\_precision, set to sqrt(machine\_precision). Defaults to 0.
+  *   **ftol** (`float`) – Precision goal for the value of f in the stopping criterion. If ftol \< 0.0, ftol is set to 0.0 defaults to -1.
+  *   **xtol** (`float`) – Precision goal for the value of x in the stopping criterion (after applying x scaling factors). If xtol \< 0.0, xtol is set to sqrt(machine\_precision). Defaults to -1.
+  *   **gtol** (`float`) – Precision goal for the value of the projected gradient in the stopping criterion (after applying x scaling factors). If gtol \< 0.0, gtol is set to 1e-2 \* sqrt(accuracy). Setting it to 0.0 is not recommended. Defaults to -1.
+  *   **tol** (`Optional`\[`float`]) – Tolerance for termination.
+  *   **eps** (`float`) – Step size used for numerical approximation of the Jacobian.
+  *   **options** (`Optional`\[`dict`]) – A dictionary of solver options.
+  *   **max\_evals\_grouped** (`int`) – Max number of default gradient evaluations performed simultaneously.
+  *   **kwargs** – additional kwargs for scipy.optimize.minimize.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.algorithms.optimizers.TNC.__init__" name="__init__" signature="__init__(maxiter=100, disp=False, accuracy=0, ftol=- 1, xtol=- 1, gtol=- 1, tol=None, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)">
+    **Parameters**
+
+    *   **maxiter** (`int`) – Maximum number of function evaluation.
+    *   **disp** (`bool`) – Set to True to print convergence messages.
+    *   **accuracy** (`float`) – Relative precision for finite difference calculations. If \<= machine\_precision, set to sqrt(machine\_precision). Defaults to 0.
+    *   **ftol** (`float`) – Precision goal for the value of f in the stopping criterion. If ftol \< 0.0, ftol is set to 0.0 defaults to -1.
+    *   **xtol** (`float`) – Precision goal for the value of x in the stopping criterion (after applying x scaling factors). If xtol \< 0.0, xtol is set to sqrt(machine\_precision). Defaults to -1.
+    *   **gtol** (`float`) – Precision goal for the value of the projected gradient in the stopping criterion (after applying x scaling factors). If gtol \< 0.0, gtol is set to 1e-2 \* sqrt(accuracy). Setting it to 0.0 is not recommended. Defaults to -1.
+    *   **tol** (`Optional`\[`float`]) – Tolerance for termination.
+    *   **eps** (`float`) – Step size used for numerical approximation of the Jacobian.
+    *   **options** (`Optional`\[`dict`]) – A dictionary of solver options.
+    *   **max\_evals\_grouped** (`int`) – Max number of default gradient evaluations performed simultaneously.
+    *   **kwargs** – additional kwargs for scipy.optimize.minimize.
+  </Function>
 
-`TNC(maxiter=100, disp=False, accuracy=0, ftol=- 1, xtol=- 1, gtol=- 1, tol=None, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/tnc.py "view source code")
+  ## Methods
 
-Truncated Newton (TNC) optimizer.
+  |                                                                                                                                                              |                                                                                                           |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.optimizers.TNC.__init__ "qiskit.algorithms.optimizers.TNC.__init__")(\[maxiter, disp, accuracy, ftol, …])                    | **type maxiter**`int`                                                                                     |
+  | [`get_support_level`](#qiskit.algorithms.optimizers.TNC.get_support_level "qiskit.algorithms.optimizers.TNC.get_support_level")()                            | Return support level dictionary                                                                           |
+  | [`gradient_num_diff`](#qiskit.algorithms.optimizers.TNC.gradient_num_diff "qiskit.algorithms.optimizers.TNC.gradient_num_diff")(x\_center, f, epsilon\[, …]) | We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center. |
+  | [`optimize`](#qiskit.algorithms.optimizers.TNC.optimize "qiskit.algorithms.optimizers.TNC.optimize")(num\_vars, objective\_function\[, …])                   | Perform optimization.                                                                                     |
+  | [`print_options`](#qiskit.algorithms.optimizers.TNC.print_options "qiskit.algorithms.optimizers.TNC.print_options")()                                        | Print algorithm-specific options.                                                                         |
+  | [`set_max_evals_grouped`](#qiskit.algorithms.optimizers.TNC.set_max_evals_grouped "qiskit.algorithms.optimizers.TNC.set_max_evals_grouped")(limit)           | Set max evals grouped                                                                                     |
+  | [`set_options`](#qiskit.algorithms.optimizers.TNC.set_options "qiskit.algorithms.optimizers.TNC.set_options")(\*\*kwargs)                                    | Sets or updates values in the options dictionary.                                                         |
+  | [`wrap_function`](#qiskit.algorithms.optimizers.TNC.wrap_function "qiskit.algorithms.optimizers.TNC.wrap_function")(function, args)                          | Wrap the function to implicitly inject the args at the call of the function.                              |
 
-TNC uses a truncated Newton algorithm to minimize a function with variables subject to bounds. This algorithm uses gradient information; it is also called Newton Conjugate-Gradient. It differs from the [`CG`](qiskit.algorithms.optimizers.CG "qiskit.algorithms.optimizers.CG") method as it wraps a C implementation and allows each variable to be given upper and lower bounds.
+  ## Attributes
 
-Uses scipy.optimize.minimize TNC For further detail, please refer to See [https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html)
+  |                                                                                                                                                               |                                                |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+  | [`bounds_support_level`](#qiskit.algorithms.optimizers.TNC.bounds_support_level "qiskit.algorithms.optimizers.TNC.bounds_support_level")                      | Returns bounds support level                   |
+  | [`gradient_support_level`](#qiskit.algorithms.optimizers.TNC.gradient_support_level "qiskit.algorithms.optimizers.TNC.gradient_support_level")                | Returns gradient support level                 |
+  | [`initial_point_support_level`](#qiskit.algorithms.optimizers.TNC.initial_point_support_level "qiskit.algorithms.optimizers.TNC.initial_point_support_level") | Returns initial point support level            |
+  | [`is_bounds_ignored`](#qiskit.algorithms.optimizers.TNC.is_bounds_ignored "qiskit.algorithms.optimizers.TNC.is_bounds_ignored")                               | Returns is bounds ignored                      |
+  | [`is_bounds_required`](#qiskit.algorithms.optimizers.TNC.is_bounds_required "qiskit.algorithms.optimizers.TNC.is_bounds_required")                            | Returns is bounds required                     |
+  | [`is_bounds_supported`](#qiskit.algorithms.optimizers.TNC.is_bounds_supported "qiskit.algorithms.optimizers.TNC.is_bounds_supported")                         | Returns is bounds supported                    |
+  | [`is_gradient_ignored`](#qiskit.algorithms.optimizers.TNC.is_gradient_ignored "qiskit.algorithms.optimizers.TNC.is_gradient_ignored")                         | Returns is gradient ignored                    |
+  | [`is_gradient_required`](#qiskit.algorithms.optimizers.TNC.is_gradient_required "qiskit.algorithms.optimizers.TNC.is_gradient_required")                      | Returns is gradient required                   |
+  | [`is_gradient_supported`](#qiskit.algorithms.optimizers.TNC.is_gradient_supported "qiskit.algorithms.optimizers.TNC.is_gradient_supported")                   | Returns is gradient supported                  |
+  | [`is_initial_point_ignored`](#qiskit.algorithms.optimizers.TNC.is_initial_point_ignored "qiskit.algorithms.optimizers.TNC.is_initial_point_ignored")          | Returns is initial point ignored               |
+  | [`is_initial_point_required`](#qiskit.algorithms.optimizers.TNC.is_initial_point_required "qiskit.algorithms.optimizers.TNC.is_initial_point_required")       | Returns is initial point required              |
+  | [`is_initial_point_supported`](#qiskit.algorithms.optimizers.TNC.is_initial_point_supported "qiskit.algorithms.optimizers.TNC.is_initial_point_supported")    | Returns is initial point supported             |
+  | [`setting`](#qiskit.algorithms.optimizers.TNC.setting "qiskit.algorithms.optimizers.TNC.setting")                                                             | Return setting                                 |
+  | [`settings`](#qiskit.algorithms.optimizers.TNC.settings "qiskit.algorithms.optimizers.TNC.settings")                                                          | The optimizer settings in a dictionary format. |
 
-**Parameters**
+  ### bounds\_support\_level
 
-*   **maxiter** (`int`) – Maximum number of function evaluation.
-*   **disp** (`bool`) – Set to True to print convergence messages.
-*   **accuracy** (`float`) – Relative precision for finite difference calculations. If \<= machine\_precision, set to sqrt(machine\_precision). Defaults to 0.
-*   **ftol** (`float`) – Precision goal for the value of f in the stopping criterion. If ftol \< 0.0, ftol is set to 0.0 defaults to -1.
-*   **xtol** (`float`) – Precision goal for the value of x in the stopping criterion (after applying x scaling factors). If xtol \< 0.0, xtol is set to sqrt(machine\_precision). Defaults to -1.
-*   **gtol** (`float`) – Precision goal for the value of the projected gradient in the stopping criterion (after applying x scaling factors). If gtol \< 0.0, gtol is set to 1e-2 \* sqrt(accuracy). Setting it to 0.0 is not recommended. Defaults to -1.
-*   **tol** (`Optional`\[`float`]) – Tolerance for termination.
-*   **eps** (`float`) – Step size used for numerical approximation of the Jacobian.
-*   **options** (`Optional`\[`dict`]) – A dictionary of solver options.
-*   **max\_evals\_grouped** (`int`) – Max number of default gradient evaluations performed simultaneously.
-*   **kwargs** – additional kwargs for scipy.optimize.minimize.
+  <Function id="qiskit.algorithms.optimizers.TNC.bounds_support_level" name="bounds_support_level" signature="property bounds_support_level">
+    Returns bounds support level
+  </Function>
 
-### \_\_init\_\_
+  ### get\_support\_level
 
-<span id="qiskit.algorithms.optimizers.TNC.__init__" />
+  <Function id="qiskit.algorithms.optimizers.TNC.get_support_level" name="get_support_level" signature="get_support_level()">
+    Return support level dictionary
+  </Function>
 
-`__init__(maxiter=100, disp=False, accuracy=0, ftol=- 1, xtol=- 1, gtol=- 1, tol=None, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)`
+  ### gradient\_num\_diff
 
-**Parameters**
+  <Function id="qiskit.algorithms.optimizers.TNC.gradient_num_diff" name="gradient_num_diff" signature="static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-*   **maxiter** (`int`) – Maximum number of function evaluation.
-*   **disp** (`bool`) – Set to True to print convergence messages.
-*   **accuracy** (`float`) – Relative precision for finite difference calculations. If \<= machine\_precision, set to sqrt(machine\_precision). Defaults to 0.
-*   **ftol** (`float`) – Precision goal for the value of f in the stopping criterion. If ftol \< 0.0, ftol is set to 0.0 defaults to -1.
-*   **xtol** (`float`) – Precision goal for the value of x in the stopping criterion (after applying x scaling factors). If xtol \< 0.0, xtol is set to sqrt(machine\_precision). Defaults to -1.
-*   **gtol** (`float`) – Precision goal for the value of the projected gradient in the stopping criterion (after applying x scaling factors). If gtol \< 0.0, gtol is set to 1e-2 \* sqrt(accuracy). Setting it to 0.0 is not recommended. Defaults to -1.
-*   **tol** (`Optional`\[`float`]) – Tolerance for termination.
-*   **eps** (`float`) – Step size used for numerical approximation of the Jacobian.
-*   **options** (`Optional`\[`dict`]) – A dictionary of solver options.
-*   **max\_evals\_grouped** (`int`) – Max number of default gradient evaluations performed simultaneously.
-*   **kwargs** – additional kwargs for scipy.optimize.minimize.
+    **Parameters**
 
-## Methods
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped
 
-|                                                                                                                                                              |                                                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.optimizers.TNC.__init__ "qiskit.algorithms.optimizers.TNC.__init__")(\[maxiter, disp, accuracy, ftol, …])                    | **type maxiter**`int`                                                                                     |
-| [`get_support_level`](#qiskit.algorithms.optimizers.TNC.get_support_level "qiskit.algorithms.optimizers.TNC.get_support_level")()                            | Return support level dictionary                                                                           |
-| [`gradient_num_diff`](#qiskit.algorithms.optimizers.TNC.gradient_num_diff "qiskit.algorithms.optimizers.TNC.gradient_num_diff")(x\_center, f, epsilon\[, …]) | We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center. |
-| [`optimize`](#qiskit.algorithms.optimizers.TNC.optimize "qiskit.algorithms.optimizers.TNC.optimize")(num\_vars, objective\_function\[, …])                   | Perform optimization.                                                                                     |
-| [`print_options`](#qiskit.algorithms.optimizers.TNC.print_options "qiskit.algorithms.optimizers.TNC.print_options")()                                        | Print algorithm-specific options.                                                                         |
-| [`set_max_evals_grouped`](#qiskit.algorithms.optimizers.TNC.set_max_evals_grouped "qiskit.algorithms.optimizers.TNC.set_max_evals_grouped")(limit)           | Set max evals grouped                                                                                     |
-| [`set_options`](#qiskit.algorithms.optimizers.TNC.set_options "qiskit.algorithms.optimizers.TNC.set_options")(\*\*kwargs)                                    | Sets or updates values in the options dictionary.                                                         |
-| [`wrap_function`](#qiskit.algorithms.optimizers.TNC.wrap_function "qiskit.algorithms.optimizers.TNC.wrap_function")(function, args)                          | Wrap the function to implicitly inject the args at the call of the function.                              |
+    **Returns**
 
-## Attributes
+    the gradient computed
 
-|                                                                                                                                                               |                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [`bounds_support_level`](#qiskit.algorithms.optimizers.TNC.bounds_support_level "qiskit.algorithms.optimizers.TNC.bounds_support_level")                      | Returns bounds support level                   |
-| [`gradient_support_level`](#qiskit.algorithms.optimizers.TNC.gradient_support_level "qiskit.algorithms.optimizers.TNC.gradient_support_level")                | Returns gradient support level                 |
-| [`initial_point_support_level`](#qiskit.algorithms.optimizers.TNC.initial_point_support_level "qiskit.algorithms.optimizers.TNC.initial_point_support_level") | Returns initial point support level            |
-| [`is_bounds_ignored`](#qiskit.algorithms.optimizers.TNC.is_bounds_ignored "qiskit.algorithms.optimizers.TNC.is_bounds_ignored")                               | Returns is bounds ignored                      |
-| [`is_bounds_required`](#qiskit.algorithms.optimizers.TNC.is_bounds_required "qiskit.algorithms.optimizers.TNC.is_bounds_required")                            | Returns is bounds required                     |
-| [`is_bounds_supported`](#qiskit.algorithms.optimizers.TNC.is_bounds_supported "qiskit.algorithms.optimizers.TNC.is_bounds_supported")                         | Returns is bounds supported                    |
-| [`is_gradient_ignored`](#qiskit.algorithms.optimizers.TNC.is_gradient_ignored "qiskit.algorithms.optimizers.TNC.is_gradient_ignored")                         | Returns is gradient ignored                    |
-| [`is_gradient_required`](#qiskit.algorithms.optimizers.TNC.is_gradient_required "qiskit.algorithms.optimizers.TNC.is_gradient_required")                      | Returns is gradient required                   |
-| [`is_gradient_supported`](#qiskit.algorithms.optimizers.TNC.is_gradient_supported "qiskit.algorithms.optimizers.TNC.is_gradient_supported")                   | Returns is gradient supported                  |
-| [`is_initial_point_ignored`](#qiskit.algorithms.optimizers.TNC.is_initial_point_ignored "qiskit.algorithms.optimizers.TNC.is_initial_point_ignored")          | Returns is initial point ignored               |
-| [`is_initial_point_required`](#qiskit.algorithms.optimizers.TNC.is_initial_point_required "qiskit.algorithms.optimizers.TNC.is_initial_point_required")       | Returns is initial point required              |
-| [`is_initial_point_supported`](#qiskit.algorithms.optimizers.TNC.is_initial_point_supported "qiskit.algorithms.optimizers.TNC.is_initial_point_supported")    | Returns is initial point supported             |
-| [`setting`](#qiskit.algorithms.optimizers.TNC.setting "qiskit.algorithms.optimizers.TNC.setting")                                                             | Return setting                                 |
-| [`settings`](#qiskit.algorithms.optimizers.TNC.settings "qiskit.algorithms.optimizers.TNC.settings")                                                          | The optimizer settings in a dictionary format. |
+    **Return type**
 
-### bounds\_support\_level
+    grad
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.TNC.bounds_support_level" />
+  ### gradient\_support\_level
 
-`property bounds_support_level`
+  <Function id="qiskit.algorithms.optimizers.TNC.gradient_support_level" name="gradient_support_level" signature="property gradient_support_level">
+    Returns gradient support level
+  </Function>
 
-Returns bounds support level
+  ### initial\_point\_support\_level
 
-### get\_support\_level
+  <Function id="qiskit.algorithms.optimizers.TNC.initial_point_support_level" name="initial_point_support_level" signature="property initial_point_support_level">
+    Returns initial point support level
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.TNC.get_support_level" />
+  ### is\_bounds\_ignored
 
-`get_support_level()`
+  <Function id="qiskit.algorithms.optimizers.TNC.is_bounds_ignored" name="is_bounds_ignored" signature="property is_bounds_ignored">
+    Returns is bounds ignored
+  </Function>
 
-Return support level dictionary
+  ### is\_bounds\_required
 
-### gradient\_num\_diff
+  <Function id="qiskit.algorithms.optimizers.TNC.is_bounds_required" name="is_bounds_required" signature="property is_bounds_required">
+    Returns is bounds required
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.TNC.gradient_num_diff" />
+  ### is\_bounds\_supported
 
-`static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
+  <Function id="qiskit.algorithms.optimizers.TNC.is_bounds_supported" name="is_bounds_supported" signature="property is_bounds_supported">
+    Returns is bounds supported
+  </Function>
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+  ### is\_gradient\_ignored
 
-**Parameters**
+  <Function id="qiskit.algorithms.optimizers.TNC.is_gradient_ignored" name="is_gradient_ignored" signature="property is_gradient_ignored">
+    Returns is gradient ignored
+  </Function>
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped
+  ### is\_gradient\_required
 
-**Returns**
+  <Function id="qiskit.algorithms.optimizers.TNC.is_gradient_required" name="is_gradient_required" signature="property is_gradient_required">
+    Returns is gradient required
+  </Function>
 
-the gradient computed
+  ### is\_gradient\_supported
 
-**Return type**
+  <Function id="qiskit.algorithms.optimizers.TNC.is_gradient_supported" name="is_gradient_supported" signature="property is_gradient_supported">
+    Returns is gradient supported
+  </Function>
 
-grad
+  ### is\_initial\_point\_ignored
 
-### gradient\_support\_level
+  <Function id="qiskit.algorithms.optimizers.TNC.is_initial_point_ignored" name="is_initial_point_ignored" signature="property is_initial_point_ignored">
+    Returns is initial point ignored
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.TNC.gradient_support_level" />
+  ### is\_initial\_point\_required
 
-`property gradient_support_level`
+  <Function id="qiskit.algorithms.optimizers.TNC.is_initial_point_required" name="is_initial_point_required" signature="property is_initial_point_required">
+    Returns is initial point required
+  </Function>
 
-Returns gradient support level
+  ### is\_initial\_point\_supported
 
-### initial\_point\_support\_level
+  <Function id="qiskit.algorithms.optimizers.TNC.is_initial_point_supported" name="is_initial_point_supported" signature="property is_initial_point_supported">
+    Returns is initial point supported
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.TNC.initial_point_support_level" />
+  ### optimize
 
-`property initial_point_support_level`
+  <Function id="qiskit.algorithms.optimizers.TNC.optimize" name="optimize" signature="optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)">
+    Perform optimization.
 
-Returns initial point support level
+    **Parameters**
 
-### is\_bounds\_ignored
+    *   **num\_vars** (*int*) – Number of parameters to be optimized.
+    *   **objective\_function** (*callable*) – A function that computes the objective function.
+    *   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+    *   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
+    *   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
 
-<span id="qiskit.algorithms.optimizers.TNC.is_bounds_ignored" />
+    **Returns**
 
-`property is_bounds_ignored`
+    **point, value, nfev**
 
-Returns is bounds ignored
+    point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
 
-### is\_bounds\_required
+    **Raises**
 
-<span id="qiskit.algorithms.optimizers.TNC.is_bounds_required" />
+    **ValueError** – invalid input
+  </Function>
 
-`property is_bounds_required`
+  ### print\_options
 
-Returns is bounds required
+  <Function id="qiskit.algorithms.optimizers.TNC.print_options" name="print_options" signature="print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-### is\_bounds\_supported
+  ### set\_max\_evals\_grouped
 
-<span id="qiskit.algorithms.optimizers.TNC.is_bounds_supported" />
+  <Function id="qiskit.algorithms.optimizers.TNC.set_max_evals_grouped" name="set_max_evals_grouped" signature="set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-`property is_bounds_supported`
+  ### set\_options
 
-Returns is bounds supported
+  <Function id="qiskit.algorithms.optimizers.TNC.set_options" name="set_options" signature="set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-### is\_gradient\_ignored
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-<span id="qiskit.algorithms.optimizers.TNC.is_gradient_ignored" />
+    **Parameters**
 
-`property is_gradient_ignored`
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-Returns is gradient ignored
+  ### setting
 
-### is\_gradient\_required
+  <Function id="qiskit.algorithms.optimizers.TNC.setting" name="setting" signature="property setting">
+    Return setting
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.TNC.is_gradient_required" />
+  ### settings
 
-`property is_gradient_required`
+  <Function id="qiskit.algorithms.optimizers.TNC.settings" name="settings" signature="property settings">
+    The optimizer settings in a dictionary format.
 
-Returns is gradient required
+    The settings can for instance be used for JSON-serialization (if all settings are serializable, which e.g. doesn’t hold per default for callables), such that the optimizer object can be reconstructed as
 
-### is\_gradient\_supported
+    ```python
+    settings = optimizer.settings
+    # JSON serialize and send to another server
+    optimizer = OptimizerClass(**settings)
+    ```
 
-<span id="qiskit.algorithms.optimizers.TNC.is_gradient_supported" />
+    **Return type**
 
-`property is_gradient_supported`
+    `Dict`\[`str`, `Any`]
+  </Function>
 
-Returns is gradient supported
+  ### wrap\_function
 
-### is\_initial\_point\_ignored
+  <Function id="qiskit.algorithms.optimizers.TNC.wrap_function" name="wrap_function" signature="static wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-<span id="qiskit.algorithms.optimizers.TNC.is_initial_point_ignored" />
+    **Parameters**
 
-`property is_initial_point_ignored`
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-Returns is initial point ignored
+    **Returns**
 
-### is\_initial\_point\_required
+    wrapper
 
-<span id="qiskit.algorithms.optimizers.TNC.is_initial_point_required" />
+    **Return type**
 
-`property is_initial_point_required`
-
-Returns is initial point required
-
-### is\_initial\_point\_supported
-
-<span id="qiskit.algorithms.optimizers.TNC.is_initial_point_supported" />
-
-`property is_initial_point_supported`
-
-Returns is initial point supported
-
-### optimize
-
-<span id="qiskit.algorithms.optimizers.TNC.optimize" />
-
-`optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
-
-Perform optimization.
-
-**Parameters**
-
-*   **num\_vars** (*int*) – Number of parameters to be optimized.
-*   **objective\_function** (*callable*) – A function that computes the objective function.
-*   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
-*   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
-*   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
-
-**Returns**
-
-**point, value, nfev**
-
-point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
-
-**Raises**
-
-**ValueError** – invalid input
-
-### print\_options
-
-<span id="qiskit.algorithms.optimizers.TNC.print_options" />
-
-`print_options()`
-
-Print algorithm-specific options.
-
-### set\_max\_evals\_grouped
-
-<span id="qiskit.algorithms.optimizers.TNC.set_max_evals_grouped" />
-
-`set_max_evals_grouped(limit)`
-
-Set max evals grouped
-
-### set\_options
-
-<span id="qiskit.algorithms.optimizers.TNC.set_options" />
-
-`set_options(**kwargs)`
-
-Sets or updates values in the options dictionary.
-
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
-
-**Parameters**
-
-**kwargs** (*dict*) – options, given as name=value.
-
-### setting
-
-<span id="qiskit.algorithms.optimizers.TNC.setting" />
-
-`property setting`
-
-Return setting
-
-### settings
-
-<span id="qiskit.algorithms.optimizers.TNC.settings" />
-
-`property settings`
-
-The optimizer settings in a dictionary format.
-
-The settings can for instance be used for JSON-serialization (if all settings are serializable, which e.g. doesn’t hold per default for callables), such that the optimizer object can be reconstructed as
-
-```python
-settings = optimizer.settings
-# JSON serialize and send to another server
-optimizer = OptimizerClass(**settings)
-```
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
-
-### wrap\_function
-
-<span id="qiskit.algorithms.optimizers.TNC.wrap_function" />
-
-`static wrap_function(function, args)`
-
-Wrap the function to implicitly inject the args at the call of the function.
-
-**Parameters**
-
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
-
-**Returns**
-
-wrapper
-
-**Return type**
-
-function\_wrapper
+    function\_wrapper
+  </Function>
+</Class>
 

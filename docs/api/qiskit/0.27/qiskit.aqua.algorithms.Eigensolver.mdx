@@ -8,95 +8,83 @@ python_api_name: qiskit.aqua.algorithms.Eigensolver
 
 # qiskit.aqua.algorithms.Eigensolver
 
-<span id="qiskit.aqua.algorithms.Eigensolver" />
+<Class id="qiskit.aqua.algorithms.Eigensolver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/eigen_solvers/eigen_solver.py" signature="Eigensolver">
+  The Eigensolver Interface.
 
-`Eigensolver` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/eigen_solvers/eigen_solver.py "view source code")
+  Algorithms that can compute eigenvalues for an operator may implement this interface to allow different algorithms to be used interchangeably.
 
-The Eigensolver Interface.
+  ### \_\_init\_\_
 
-Algorithms that can compute eigenvalues for an operator may implement this interface to allow different algorithms to be used interchangeably.
+  <Function id="qiskit.aqua.algorithms.Eigensolver.__init__" name="__init__" signature="abstract __init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.aqua.algorithms.Eigensolver.__init__" />
+  |                                                                                                                                                                        |                                                                              |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.algorithms.Eigensolver.__init__ "qiskit.aqua.algorithms.Eigensolver.__init__")()                                                             | Initialize self.                                                             |
+  | [`compute_eigenvalues`](#qiskit.aqua.algorithms.Eigensolver.compute_eigenvalues "qiskit.aqua.algorithms.Eigensolver.compute_eigenvalues")(\[operator, aux\_operators]) | Computes eigenvalues.                                                        |
+  | [`supports_aux_operators`](#qiskit.aqua.algorithms.Eigensolver.supports_aux_operators "qiskit.aqua.algorithms.Eigensolver.supports_aux_operators")()                   | Whether computing the expectation value of auxiliary operators is supported. |
 
-`abstract __init__()`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |                                                                                                                         |                                  |
+  | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+  | [`aux_operators`](#qiskit.aqua.algorithms.Eigensolver.aux_operators "qiskit.aqua.algorithms.Eigensolver.aux_operators") | Returns the auxiliary operators. |
+  | [`operator`](#qiskit.aqua.algorithms.Eigensolver.operator "qiskit.aqua.algorithms.Eigensolver.operator")                | Return the operator.             |
 
-## Methods
+  ### aux\_operators
 
-|                                                                                                                                                                        |                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.algorithms.Eigensolver.__init__ "qiskit.aqua.algorithms.Eigensolver.__init__")()                                                             | Initialize self.                                                             |
-| [`compute_eigenvalues`](#qiskit.aqua.algorithms.Eigensolver.compute_eigenvalues "qiskit.aqua.algorithms.Eigensolver.compute_eigenvalues")(\[operator, aux\_operators]) | Computes eigenvalues.                                                        |
-| [`supports_aux_operators`](#qiskit.aqua.algorithms.Eigensolver.supports_aux_operators "qiskit.aqua.algorithms.Eigensolver.supports_aux_operators")()                   | Whether computing the expectation value of auxiliary operators is supported. |
+  <Function id="qiskit.aqua.algorithms.Eigensolver.aux_operators" name="aux_operators" signature="abstract property aux_operators">
+    Returns the auxiliary operators.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                         |                                  |
-| ----------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| [`aux_operators`](#qiskit.aqua.algorithms.Eigensolver.aux_operators "qiskit.aqua.algorithms.Eigensolver.aux_operators") | Returns the auxiliary operators. |
-| [`operator`](#qiskit.aqua.algorithms.Eigensolver.operator "qiskit.aqua.algorithms.Eigensolver.operator")                | Return the operator.             |
+    `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
+  </Function>
 
-### aux\_operators
+  ### compute\_eigenvalues
 
-<span id="qiskit.aqua.algorithms.Eigensolver.aux_operators" />
+  <Function id="qiskit.aqua.algorithms.Eigensolver.compute_eigenvalues" name="compute_eigenvalues" signature="abstract compute_eigenvalues(operator=None, aux_operators=None)">
+    Computes eigenvalues. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
-`abstract property aux_operators`
+    **Parameters**
 
-Returns the auxiliary operators.
+    *   **operator** (`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]) – If not None replaces operator in algorithm
+    *   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – If not None replaces aux\_operators in algorithm
 
-**Return type**
+    **Return type**
 
-`Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
+    `EigensolverResult`
 
-### compute\_eigenvalues
+    **Returns**
 
-<span id="qiskit.aqua.algorithms.Eigensolver.compute_eigenvalues" />
+    EigensolverResult
+  </Function>
 
-`abstract compute_eigenvalues(operator=None, aux_operators=None)`
+  ### operator
 
-Computes eigenvalues. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
+  <Function id="qiskit.aqua.algorithms.Eigensolver.operator" name="operator" signature="abstract property operator">
+    Return the operator.
 
-**Parameters**
+    **Return type**
 
-*   **operator** (`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]) – If not None replaces operator in algorithm
-*   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – If not None replaces aux\_operators in algorithm
+    `Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]
+  </Function>
 
-**Return type**
+  ### supports\_aux\_operators
 
-`EigensolverResult`
+  <Function id="qiskit.aqua.algorithms.Eigensolver.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-**Returns**
+    **Return type**
 
-EigensolverResult
+    `bool`
 
-### operator
+    **Returns**
 
-<span id="qiskit.aqua.algorithms.Eigensolver.operator" />
-
-`abstract property operator`
-
-Return the operator.
-
-**Return type**
-
-`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]
-
-### supports\_aux\_operators
-
-<span id="qiskit.aqua.algorithms.Eigensolver.supports_aux_operators" />
-
-`classmethod supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
+    True if aux\_operator expectations can be evaluated, False otherwise
+  </Function>
+</Class>
 

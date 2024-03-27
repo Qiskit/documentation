@@ -8,120 +8,106 @@ python_api_name: qiskit.ignis.verification.RepetitionCode
 
 # qiskit.ignis.verification.RepetitionCode
 
-<span id="qiskit.ignis.verification.RepetitionCode" />
+<Class id="qiskit.ignis.verification.RepetitionCode" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py" signature="RepetitionCode(d, T=0)">
+  Implementation of a distance d repetition code, implemented over T syndrome measurement rounds.
 
-`RepetitionCode(d, T=0)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py "view source code")
+  Creates the circuits corresponding to a logical 0 and 1 encoded using a repetition code.
 
-Implementation of a distance d repetition code, implemented over T syndrome measurement rounds.
+  **Parameters**
 
-Creates the circuits corresponding to a logical 0 and 1 encoded using a repetition code.
+  *   **d** (*int*) – Number of code qubits (and hence repetitions) used.
+  *   **T** (*int*) – Number of rounds of ancilla-assisted syndrome measurement.
 
-**Parameters**
+  **Additional information:**
 
-*   **d** (*int*) – Number of code qubits (and hence repetitions) used.
-*   **T** (*int*) – Number of rounds of ancilla-assisted syndrome measurement.
+  No measurements are added to the circuit if T=0. Otherwise T rounds are added, followed by measurement of the code qubits (corresponding to a logical measurement and final syndrome measurement round).
 
-**Additional information:**
+  ### \_\_init\_\_
 
-No measurements are added to the circuit if T=0. Otherwise T rounds are added, followed by measurement of the code qubits (corresponding to a logical measurement and final syndrome measurement round).
+  <Function id="qiskit.ignis.verification.RepetitionCode.__init__" name="__init__" signature="__init__(d, T=0)">
+    Creates the circuits corresponding to a logical 0 and 1 encoded using a repetition code.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.ignis.verification.RepetitionCode.__init__" />
+    *   **d** (*int*) – Number of code qubits (and hence repetitions) used.
+    *   **T** (*int*) – Number of rounds of ancilla-assisted syndrome measurement.
 
-`__init__(d, T=0)`
+    **Additional information:**
 
-Creates the circuits corresponding to a logical 0 and 1 encoded using a repetition code.
+    No measurements are added to the circuit if T=0. Otherwise T rounds are added, followed by measurement of the code qubits (corresponding to a logical measurement and final syndrome measurement round).
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **d** (*int*) – Number of code qubits (and hence repetitions) used.
-*   **T** (*int*) – Number of rounds of ancilla-assisted syndrome measurement.
+  |                                                                                                                                                                             |                                                                                                                                              |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.ignis.verification.RepetitionCode.__init__ "qiskit.ignis.verification.RepetitionCode.__init__")(d\[, T])                                               | Creates the circuits corresponding to a logical 0 and 1 encoded using a repetition code.                                                     |
+  | [`get_circuit_list`](#qiskit.ignis.verification.RepetitionCode.get_circuit_list "qiskit.ignis.verification.RepetitionCode.get_circuit_list")()                              | **returns**self.circuit as a list, with                                                                                                      |
+  | [`process_results`](#qiskit.ignis.verification.RepetitionCode.process_results "qiskit.ignis.verification.RepetitionCode.process_results")(raw\_results)                     | **param raw\_results**A dictionary whose keys are logical values,                                                                            |
+  | [`readout`](#qiskit.ignis.verification.RepetitionCode.readout "qiskit.ignis.verification.RepetitionCode.readout")()                                                         | Readout of all code qubits, which corresponds to a logical measurement as well as allowing for a measurement of the syndrome to be inferred. |
+  | [`syndrome_measurement`](#qiskit.ignis.verification.RepetitionCode.syndrome_measurement "qiskit.ignis.verification.RepetitionCode.syndrome_measurement")(\[reset, barrier]) | Application of a syndrome measurement round.                                                                                                 |
+  | [`x`](#qiskit.ignis.verification.RepetitionCode.x "qiskit.ignis.verification.RepetitionCode.x")(\[logs, barrier])                                                           | Applies a logical x to the circuits for the given logical values.                                                                            |
 
-**Additional information:**
+  ### get\_circuit\_list
 
-No measurements are added to the circuit if T=0. Otherwise T rounds are added, followed by measurement of the code qubits (corresponding to a logical measurement and final syndrome measurement round).
+  <Function id="qiskit.ignis.verification.RepetitionCode.get_circuit_list" name="get_circuit_list" signature="get_circuit_list()">
+    **Returns**
 
-## Methods
+    self.circuit as a list, with circuit\_list\[0] = circuit\[‘0’] circuit\_list\[1] = circuit\[‘1’]
 
-|                                                                                                                                                                             |                                                                                                                                              |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.ignis.verification.RepetitionCode.__init__ "qiskit.ignis.verification.RepetitionCode.__init__")(d\[, T])                                               | Creates the circuits corresponding to a logical 0 and 1 encoded using a repetition code.                                                     |
-| [`get_circuit_list`](#qiskit.ignis.verification.RepetitionCode.get_circuit_list "qiskit.ignis.verification.RepetitionCode.get_circuit_list")()                              | **returns**self.circuit as a list, with                                                                                                      |
-| [`process_results`](#qiskit.ignis.verification.RepetitionCode.process_results "qiskit.ignis.verification.RepetitionCode.process_results")(raw\_results)                     | **param raw\_results**A dictionary whose keys are logical values,                                                                            |
-| [`readout`](#qiskit.ignis.verification.RepetitionCode.readout "qiskit.ignis.verification.RepetitionCode.readout")()                                                         | Readout of all code qubits, which corresponds to a logical measurement as well as allowing for a measurement of the syndrome to be inferred. |
-| [`syndrome_measurement`](#qiskit.ignis.verification.RepetitionCode.syndrome_measurement "qiskit.ignis.verification.RepetitionCode.syndrome_measurement")(\[reset, barrier]) | Application of a syndrome measurement round.                                                                                                 |
-| [`x`](#qiskit.ignis.verification.RepetitionCode.x "qiskit.ignis.verification.RepetitionCode.x")(\[logs, barrier])                                                           | Applies a logical x to the circuits for the given logical values.                                                                            |
+    **Return type**
 
-### get\_circuit\_list
+    circuit\_list
+  </Function>
 
-<span id="qiskit.ignis.verification.RepetitionCode.get_circuit_list" />
+  ### process\_results
 
-`get_circuit_list()`
+  <Function id="qiskit.ignis.verification.RepetitionCode.process_results" name="process_results" signature="process_results(raw_results)">
+    **Parameters**
 
-**Returns**
+    **raw\_results** (*dict*) – A dictionary whose keys are logical values, and whose values are standard counts dictionaries, (as obtained from the get\_counts method of a `qiskit.Result` object).
 
-self.circuit as a list, with circuit\_list\[0] = circuit\[‘0’] circuit\_list\[1] = circuit\[‘1’]
+    **Returns**
 
-**Return type**
+    **Dictionary with the same structure as the input, but with**
 
-circuit\_list
+    the bit strings used as keys in the counts dictionaries converted to the form required by the decoder.
 
-### process\_results
+    **Return type**
 
-<span id="qiskit.ignis.verification.RepetitionCode.process_results" />
+    results
 
-`process_results(raw_results)`
+    **Additional information:**
 
-**Parameters**
+    The circuits must be executed outside of this class, so that their is full freedom to compile, choose a backend, use a noise model, etc. The results from these executions should then be used to create the input for this method.
+  </Function>
 
-**raw\_results** (*dict*) – A dictionary whose keys are logical values, and whose values are standard counts dictionaries, (as obtained from the get\_counts method of a `qiskit.Result` object).
+  ### readout
 
-**Returns**
+  <Function id="qiskit.ignis.verification.RepetitionCode.readout" name="readout" signature="readout()">
+    Readout of all code qubits, which corresponds to a logical measurement as well as allowing for a measurement of the syndrome to be inferred.
+  </Function>
 
-**Dictionary with the same structure as the input, but with**
+  ### syndrome\_measurement
 
-the bit strings used as keys in the counts dictionaries converted to the form required by the decoder.
+  <Function id="qiskit.ignis.verification.RepetitionCode.syndrome_measurement" name="syndrome_measurement" signature="syndrome_measurement(reset=True, barrier=False)">
+    Application of a syndrome measurement round.
 
-**Return type**
+    **Parameters**
 
-results
+    *   **reset** (*bool*) – If set to true add a boolean at the end of each round
+    *   **barrier** (*bool*) – Boolean denoting whether to include a barrier at the end.
+  </Function>
 
-**Additional information:**
+  ### x
 
-The circuits must be executed outside of this class, so that their is full freedom to compile, choose a backend, use a noise model, etc. The results from these executions should then be used to create the input for this method.
+  <Function id="qiskit.ignis.verification.RepetitionCode.x" name="x" signature="x(logs=('0', '1'), barrier=False)">
+    Applies a logical x to the circuits for the given logical values.
 
-### readout
+    **Parameters**
 
-<span id="qiskit.ignis.verification.RepetitionCode.readout" />
-
-`readout()`
-
-Readout of all code qubits, which corresponds to a logical measurement as well as allowing for a measurement of the syndrome to be inferred.
-
-### syndrome\_measurement
-
-<span id="qiskit.ignis.verification.RepetitionCode.syndrome_measurement" />
-
-`syndrome_measurement(reset=True, barrier=False)`
-
-Application of a syndrome measurement round.
-
-**Parameters**
-
-*   **reset** (*bool*) – If set to true add a boolean at the end of each round
-*   **barrier** (*bool*) – Boolean denoting whether to include a barrier at the end.
-
-### x
-
-<span id="qiskit.ignis.verification.RepetitionCode.x" />
-
-`x(logs=('0', '1'), barrier=False)`
-
-Applies a logical x to the circuits for the given logical values.
-
-**Parameters**
-
-*   **logs** (*list or tuple*) – List or tuple of logical values expressed as strings.
-*   **barrier** (*bool*) – Boolean denoting whether to include a barrier at the end.
+    *   **logs** (*list or tuple*) – List or tuple of logical values expressed as strings.
+    *   **barrier** (*bool*) – Boolean denoting whether to include a barrier at the end.
+  </Function>
+</Class>
 

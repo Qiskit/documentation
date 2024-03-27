@@ -8,64 +8,56 @@ python_api_name: qiskit.algorithms.Eigensolver
 
 # qiskit.algorithms.Eigensolver
 
-<span id="qiskit.algorithms.Eigensolver" />
+<Class id="qiskit.algorithms.Eigensolver" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/eigen_solvers/eigen_solver.py" signature="Eigensolver">
+  The Eigensolver Interface.
 
-`Eigensolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/eigen_solvers/eigen_solver.py "view source code")
+  Algorithms that can compute eigenvalues for an operator may implement this interface to allow different algorithms to be used interchangeably.
 
-The Eigensolver Interface.
+  ### \_\_init\_\_
 
-Algorithms that can compute eigenvalues for an operator may implement this interface to allow different algorithms to be used interchangeably.
+  <Function id="qiskit.algorithms.Eigensolver.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.algorithms.Eigensolver.__init__" />
+  |                                                                                                                                                              |                                                                              |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.Eigensolver.__init__ "qiskit.algorithms.Eigensolver.__init__")()                                                             | Initialize self.                                                             |
+  | [`compute_eigenvalues`](#qiskit.algorithms.Eigensolver.compute_eigenvalues "qiskit.algorithms.Eigensolver.compute_eigenvalues")(operator\[, aux\_operators]) | Computes eigenvalues.                                                        |
+  | [`supports_aux_operators`](#qiskit.algorithms.Eigensolver.supports_aux_operators "qiskit.algorithms.Eigensolver.supports_aux_operators")()                   | Whether computing the expectation value of auxiliary operators is supported. |
 
-`__init__()`
+  ### compute\_eigenvalues
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.algorithms.Eigensolver.compute_eigenvalues" name="compute_eigenvalues" signature="abstract compute_eigenvalues(operator, aux_operators=None)">
+    Computes eigenvalues. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                              |                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.Eigensolver.__init__ "qiskit.algorithms.Eigensolver.__init__")()                                                             | Initialize self.                                                             |
-| [`compute_eigenvalues`](#qiskit.algorithms.Eigensolver.compute_eigenvalues "qiskit.algorithms.Eigensolver.compute_eigenvalues")(operator\[, aux\_operators]) | Computes eigenvalues.                                                        |
-| [`supports_aux_operators`](#qiskit.algorithms.Eigensolver.supports_aux_operators "qiskit.algorithms.Eigensolver.supports_aux_operators")()                   | Whether computing the expectation value of auxiliary operators is supported. |
+    *   **operator** (`OperatorBase`) – Qubit operator of the Observable
+    *   **aux\_operators** (`Optional`\[`List`\[`Optional`\[`OperatorBase`]]]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
 
-### compute\_eigenvalues
+    **Return type**
 
-<span id="qiskit.algorithms.Eigensolver.compute_eigenvalues" />
+    `EigensolverResult`
 
-`abstract compute_eigenvalues(operator, aux_operators=None)`
+    **Returns**
 
-Computes eigenvalues. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
+    EigensolverResult
+  </Function>
 
-**Parameters**
+  ### supports\_aux\_operators
 
-*   **operator** (`OperatorBase`) – Qubit operator of the Observable
-*   **aux\_operators** (`Optional`\[`List`\[`Optional`\[`OperatorBase`]]]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
+  <Function id="qiskit.algorithms.Eigensolver.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-**Return type**
+    **Return type**
 
-`EigensolverResult`
+    `bool`
 
-**Returns**
+    **Returns**
 
-EigensolverResult
-
-### supports\_aux\_operators
-
-<span id="qiskit.algorithms.Eigensolver.supports_aux_operators" />
-
-`classmethod supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
+    True if aux\_operator expectations can be evaluated, False otherwise
+  </Function>
+</Class>
 

@@ -10,71 +10,65 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.BOPESSampler
 
 # qiskit.chemistry.algorithms.pes\_samplers.BOPESSampler
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.BOPESSampler" />
+<Class id="qiskit.chemistry.algorithms.pes_samplers.BOPESSampler" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/bopes_sampler.py" signature="BOPESSampler(gss, tolerance=0.001, bootstrap=True, num_bootstrap=None, extrapolator=None)">
+  Class to evaluate the Born-Oppenheimer Potential Energy Surface (BOPES).
 
-`BOPESSampler(gss, tolerance=0.001, bootstrap=True, num_bootstrap=None, extrapolator=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/bopes_sampler.py "view source code")
+  **Parameters**
 
-Class to evaluate the Born-Oppenheimer Potential Energy Surface (BOPES).
+  *   **gss** (`GroundStateSolver`) – GroundStateSolver
+  *   **tolerance** (`float`) – Tolerance desired for minimum energy.
+  *   **bootstrap** (`bool`) – Whether to warm-start the solution of variational minimum eigensolvers.
+  *   **num\_bootstrap** (`Optional`\[`int`]) – Number of previous points for extrapolation and bootstrapping. If None and a list of extrapolators is defined, the first two points will be used for bootstrapping. If no extrapolator is defined and bootstrap is True, all previous points will be used for bootstrapping.
+  *   **extrapolator** (`Optional`\[`Extrapolator`]) – Extrapolator objects that define space/window and method to extrapolate variational parameters.
 
-**Parameters**
+  **Raises**
 
-*   **gss** (`GroundStateSolver`) – GroundStateSolver
-*   **tolerance** (`float`) – Tolerance desired for minimum energy.
-*   **bootstrap** (`bool`) – Whether to warm-start the solution of variational minimum eigensolvers.
-*   **num\_bootstrap** (`Optional`\[`int`]) – Number of previous points for extrapolation and bootstrapping. If None and a list of extrapolators is defined, the first two points will be used for bootstrapping. If no extrapolator is defined and bootstrap is True, all previous points will be used for bootstrapping.
-*   **extrapolator** (`Optional`\[`Extrapolator`]) – Extrapolator objects that define space/window and method to extrapolate variational parameters.
+  [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If `num_boostrap` is an integer smaller than 2, or if `num_boostrap` is larger than 2 and the extrapolator is not an instance of `WindowExtrapolator`.
 
-**Raises**
+  ### \_\_init\_\_
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If `num_boostrap` is an integer smaller than 2, or if `num_boostrap` is larger than 2 and the extrapolator is not an instance of `WindowExtrapolator`.
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.__init__" name="__init__" signature="__init__(gss, tolerance=0.001, bootstrap=True, num_bootstrap=None, extrapolator=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **gss** (`GroundStateSolver`) – GroundStateSolver
+    *   **tolerance** (`float`) – Tolerance desired for minimum energy.
+    *   **bootstrap** (`bool`) – Whether to warm-start the solution of variational minimum eigensolvers.
+    *   **num\_bootstrap** (`Optional`\[`int`]) – Number of previous points for extrapolation and bootstrapping. If None and a list of extrapolators is defined, the first two points will be used for bootstrapping. If no extrapolator is defined and bootstrap is True, all previous points will be used for bootstrapping.
+    *   **extrapolator** (`Optional`\[`Extrapolator`]) – Extrapolator objects that define space/window and method to extrapolate variational parameters.
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.__init__" />
+    **Raises**
 
-`__init__(gss, tolerance=0.001, bootstrap=True, num_bootstrap=None, extrapolator=None)`
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If `num_boostrap` is an integer smaller than 2, or if `num_boostrap` is larger than 2 and the extrapolator is not an instance of `WindowExtrapolator`.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **gss** (`GroundStateSolver`) – GroundStateSolver
-*   **tolerance** (`float`) – Tolerance desired for minimum energy.
-*   **bootstrap** (`bool`) – Whether to warm-start the solution of variational minimum eigensolvers.
-*   **num\_bootstrap** (`Optional`\[`int`]) – Number of previous points for extrapolation and bootstrapping. If None and a list of extrapolators is defined, the first two points will be used for bootstrapping. If no extrapolator is defined and bootstrap is True, all previous points will be used for bootstrapping.
-*   **extrapolator** (`Optional`\[`Extrapolator`]) – Extrapolator objects that define space/window and method to extrapolate variational parameters.
+  |                                                                                                                                                                                 |                                                                    |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.__init__ "qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.__init__")(gss\[, tolerance, bootstrap, …]) | **type gss**`GroundStateSolver`                                    |
+  | [`sample`](#qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample "qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample")(driver, points)                        | Run the sampler at the given points, potentially with repetitions. |
 
-**Raises**
+  ### sample
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If `num_boostrap` is an integer smaller than 2, or if `num_boostrap` is larger than 2 and the extrapolator is not an instance of `WindowExtrapolator`.
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample" name="sample" signature="sample(driver, points)">
+    Run the sampler at the given points, potentially with repetitions.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                                 |                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [`__init__`](#qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.__init__ "qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.__init__")(gss\[, tolerance, bootstrap, …]) | **type gss**`GroundStateSolver`                                    |
-| [`sample`](#qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample "qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample")(driver, points)                        | Run the sampler at the given points, potentially with repetitions. |
+    *   **driver** (`BaseDriver`) – BaseDriver specific for the problem. The driver should be based on a Molecule object that has perturbations to be varied.
+    *   **points** (`List`\[`float`]) – The points along the degrees of freedom to evaluate.
 
-### sample
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample" />
+    `BOPESSamplerResult`
 
-`sample(driver, points)`
+    **Returns**
 
-Run the sampler at the given points, potentially with repetitions.
+    BOPES Sampler Result
 
-**Parameters**
+    **Raises**
 
-*   **driver** (`BaseDriver`) – BaseDriver specific for the problem. The driver should be based on a Molecule object that has perturbations to be varied.
-*   **points** (`List`\[`float`]) – The points along the degrees of freedom to evaluate.
-
-**Return type**
-
-`BOPESSamplerResult`
-
-**Returns**
-
-BOPES Sampler Result
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the driver does not have a molecule specified.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the driver does not have a molecule specified.
+  </Function>
+</Class>
 

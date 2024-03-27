@@ -8,159 +8,153 @@ python_api_name: qiskit.circuit.library.RVGate
 
 # RVGate
 
-<span id="qiskit.circuit.library.RVGate" />
+<Class id="qiskit.circuit.library.RVGate" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/rv.py" signature="qiskit.circuit.library.RVGate(v_x, v_y, v_z, basis='U')">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`qiskit.circuit.library.RVGate(v_x, v_y, v_z, basis='U')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/rv.py "view source code")
+  Rotation around arbitrary rotation axis $v$ where $|v|$ is angle of rotation in radians.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rv()`](qiskit.circuit.QuantumCircuit#rv "qiskit.circuit.QuantumCircuit.rv") method.
 
-Rotation around arbitrary rotation axis $v$ where $|v|$ is angle of rotation in radians.
+  **Circuit symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rv()`](qiskit.circuit.QuantumCircuit#rv "qiskit.circuit.QuantumCircuit.rv") method.
+  ```python
+       ┌─────────────────┐
+  q_0: ┤ RV(v_x,v_y,v_z) ├
+       └─────────────────┘
+  ```
 
-**Circuit symbol:**
+  **Matrix Representation:**
 
-```python
-     ┌─────────────────┐
-q_0: ┤ RV(v_x,v_y,v_z) ├
-     └─────────────────┘
-```
+  $$
+  \newcommand{\rotationangle}{|\vec{v}|}
+  \newcommand{\sinc}{\text{sinc}}
+      R(\vec{v}) = e^{-i \vec{v}\cdot\vec{\sigma}} =
+          \begin{pmatrix}
+              \cos\left(\rotationangle\right) -i v_z \sinc\left(\rotationangle\right)
+              & -(i v_x + v_y) \sinc\left(\rotationangle\right) \\
+              -(i v_x - v_y) \sinc\left(\rotationangle\right)
+              & \cos\left(\rotationangle\right) + i v_z \sinc\left(\rotationangle\right)
+          \end{pmatrix}
+  $$
 
-**Matrix Representation:**
+  Create new rv single-qubit gate.
 
-$$
-\newcommand{\rotationangle}{|\vec{v}|}
-\newcommand{\sinc}{\text{sinc}}
-    R(\vec{v}) = e^{-i \vec{v}\cdot\vec{\sigma}} =
-        \begin{pmatrix}
-            \cos\left(\rotationangle\right) -i v_z \sinc\left(\rotationangle\right)
-            & -(i v_x + v_y) \sinc\left(\rotationangle\right) \\
-            -(i v_x - v_y) \sinc\left(\rotationangle\right)
-            & \cos\left(\rotationangle\right) + i v_z \sinc\left(\rotationangle\right)
-        \end{pmatrix}
-$$
+  **Parameters**
 
-Create new rv single-qubit gate.
+  *   **v\_x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – x-component
+  *   **v\_y** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – y-component
+  *   **v\_z** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – z-component
+  *   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, optional*) – basis (see [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.one_qubit.one_qubit_decompose.OneQubitEulerDecomposer"))
 
-**Parameters**
+  ## Attributes
 
-*   **v\_x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – x-component
-*   **v\_y** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – y-component
-*   **v\_z** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – z-component
-*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, optional*) – basis (see [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.one_qubit.one_qubit_decompose.OneQubitEulerDecomposer"))
+  ### base\_class
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.RVGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-<span id="qiskit.circuit.library.RVGate.base_class" />
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.RVGate.base_class "qiskit.circuit.library.RVGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-### base\_class
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.RVGate.base_class "qiskit.circuit.library.RVGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### condition
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.library.RVGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition\_bits
 
-<span id="qiskit.circuit.library.RVGate.condition" />
+  <Attribute id="qiskit.circuit.library.RVGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### condition
+  ### decompositions
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.RVGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RVGate.condition_bits" />
+  ### definition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.RVGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get Clbits in condition.
+  ### duration
 
-<span id="qiskit.circuit.library.RVGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.RVGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.RVGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.library.RVGate.definition" />
+  ### mutable
 
-### definition
+  <Attribute id="qiskit.circuit.library.RVGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-Return definition in terms of other basic gates.
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RVGate.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.circuit.library.RVGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-Get the duration.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.RVGate.label" />
+  <Attribute id="qiskit.circuit.library.RVGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### label
+  ### num\_qubits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.RVGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RVGate.mutable" />
+  ### params
 
-### mutable
+  <Attribute id="qiskit.circuit.library.RVGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### unit
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.library.RVGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RVGate.name" />
+  ## Methods
 
-### name
+  ### inverse
 
-Return the name.
+  <Function id="qiskit.circuit.library.RVGate.inverse" name="inverse" signature="inverse(annotated=False)">
+    Invert this gate.
+  </Function>
 
-<span id="qiskit.circuit.library.RVGate.num_clbits" />
+  ### to\_matrix
 
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.RVGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.RVGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.RVGate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### inverse
-
-<span id="qiskit.circuit.library.RVGate.inverse" />
-
-`inverse(annotated=False)`
-
-Invert this gate.
-
-### to\_matrix
-
-<span id="qiskit.circuit.library.RVGate.to_matrix" />
-
-`to_matrix()`
-
-Return a numpy.array for the R(v) gate.
+  <Function id="qiskit.circuit.library.RVGate.to_matrix" name="to_matrix" signature="to_matrix()">
+    Return a numpy.array for the R(v) gate.
+  </Function>
+</Class>
 

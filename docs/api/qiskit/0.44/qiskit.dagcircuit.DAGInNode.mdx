@@ -8,48 +8,44 @@ python_api_name: qiskit.dagcircuit.DAGInNode
 
 # DAGInNode
 
-<span id="qiskit.dagcircuit.DAGInNode" />
+<Class id="qiskit.dagcircuit.DAGInNode" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/dagcircuit/dagnode.py" signature="qiskit.dagcircuit.DAGInNode(wire)">
+  Bases: [`DAGNode`](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.dagnode.DAGNode")
 
-`qiskit.dagcircuit.DAGInNode(wire)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/dagcircuit/dagnode.py "view source code")
+  Object to represent an incoming wire node in the DAGCircuit.
 
-Bases: [`DAGNode`](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.dagnode.DAGNode")
+  Create an incoming node
 
-Object to represent an incoming wire node in the DAGCircuit.
+  ## Attributes
 
-Create an incoming node
+  ### wire
 
-## Attributes
+  <Attribute id="qiskit.dagcircuit.DAGInNode.wire" name="wire" />
 
-<span id="qiskit.dagcircuit.DAGInNode.wire" />
+  ### sort\_key
 
-### wire
+  <Attribute id="qiskit.dagcircuit.DAGInNode.sort_key" name="sort_key" />
 
-<span id="qiskit.dagcircuit.DAGInNode.sort_key" />
+  ## Methods
 
-### sort\_key
+  ### semantic\_eq
 
-## Methods
+  <Function id="qiskit.dagcircuit.DAGInNode.semantic_eq" name="semantic_eq" signature="static semantic_eq(node1, node2, bit_indices1, bit_indices2)">
+    Check if DAG nodes are considered equivalent, e.g., as a node\_match for [`rustworkx.is_isomorphic_node_match()`](https://qiskit.org/ecosystem/rustworkx/apiref/rustworkx.is_isomorphic_node_match.html#rustworkx.is_isomorphic_node_match "(in rustworkx v0.13.2)").
 
-### semantic\_eq
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGInNode.semantic_eq" />
+    *   **node1** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](#qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – A node to compare.
+    *   **node2** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](#qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – The other node to compare.
+    *   **bit\_indices1** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Dictionary mapping Bit instances to their index within the circuit containing node1
+    *   **bit\_indices2** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Dictionary mapping Bit instances to their index within the circuit containing node2
 
-`static semantic_eq(node1, node2, bit_indices1, bit_indices2)`
+    **Returns**
 
-Check if DAG nodes are considered equivalent, e.g., as a node\_match for [`rustworkx.is_isomorphic_node_match()`](https://qiskit.org/ecosystem/rustworkx/apiref/rustworkx.is_isomorphic_node_match.html#rustworkx.is_isomorphic_node_match "(in rustworkx v0.13.2)").
+    If node1 == node2
 
-**Parameters**
+    **Return type**
 
-*   **node1** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](#qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – A node to compare.
-*   **node2** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](#qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – The other node to compare.
-*   **bit\_indices1** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Dictionary mapping Bit instances to their index within the circuit containing node1
-*   **bit\_indices2** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Dictionary mapping Bit instances to their index within the circuit containing node2
-
-**Returns**
-
-If node1 == node2
-
-**Return type**
-
-[Bool](circuit_classical#qiskit.circuit.classical.types.Bool "qiskit.circuit.classical.types.Bool")
+    [Bool](circuit_classical#qiskit.circuit.classical.types.Bool "qiskit.circuit.classical.types.Bool")
+  </Function>
+</Class>
 

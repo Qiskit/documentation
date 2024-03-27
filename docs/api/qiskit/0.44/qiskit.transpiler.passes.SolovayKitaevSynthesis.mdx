@@ -8,166 +8,162 @@ python_api_name: qiskit.transpiler.passes.SolovayKitaevSynthesis
 
 # SolovayKitaevSynthesis
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis" />
+<Class id="qiskit.transpiler.passes.SolovayKitaevSynthesis" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py" signature="qiskit.transpiler.passes.SolovayKitaevSynthesis">
+  Bases: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
 
-`qiskit.transpiler.passes.SolovayKitaevSynthesis` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py "view source code")
+  A Solovay-Kitaev Qiskit unitary synthesis plugin.
 
-Bases: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
+  This plugin is invoked by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") when the `unitary_synthesis_method` parameter is set to `"sk"`.
 
-A Solovay-Kitaev Qiskit unitary synthesis plugin.
+  This plugin supports customization and additional parameters can be passed to the plugin by passing a dictionary as the `unitary_synthesis_plugin_config` parameter of the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function.
 
-This plugin is invoked by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") when the `unitary_synthesis_method` parameter is set to `"sk"`.
+  Supported parameters in the dictionary:
 
-This plugin supports customization and additional parameters can be passed to the plugin by passing a dictionary as the `unitary_synthesis_plugin_config` parameter of the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function.
+  **basis\_approximations (str | dict):**
 
-Supported parameters in the dictionary:
+  The basic approximations for the finding the best discrete decomposition at the root of the recursion. If a string, it specifies the `.npy` file to load the approximations from. If a dictionary, it contains `{label: SO(3)-matrix}` pairs. If None, a default based on the specified `basis_gates` and `depth` is generated.
 
-**basis\_approximations (str | dict):**
+  **basis\_gates (list):**
 
-The basic approximations for the finding the best discrete decomposition at the root of the recursion. If a string, it specifies the `.npy` file to load the approximations from. If a dictionary, it contains `{label: SO(3)-matrix}` pairs. If None, a default based on the specified `basis_gates` and `depth` is generated.
+  A list of strings specifying the discrete basis gates to decompose to. If None, defaults to `["h", "t", "tdg"]`.
 
-**basis\_gates (list):**
+  **depth (int):**
 
-A list of strings specifying the discrete basis gates to decompose to. If None, defaults to `["h", "t", "tdg"]`.
+  The gate-depth of the basic approximations. All possible, unique combinations of the basis gates up to length `depth` are considered. If None, defaults to 10.
 
-**depth (int):**
+  **recursion\_degree (int):**
 
-The gate-depth of the basic approximations. All possible, unique combinations of the basis gates up to length `depth` are considered. If None, defaults to 10.
+  The number of times the decomposition is recursively improved. If None, defaults to 3.
 
-**recursion\_degree (int):**
+  ## Attributes
 
-The number of times the decomposition is recursively improved. If None, defaults to 3.
+  ### max\_qubits
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaevSynthesis.max_qubits" name="max_qubits">
+    Maximum number of supported qubits is `1`.
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.max_qubits" />
+  ### min\_qubits
 
-### max\_qubits
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaevSynthesis.min_qubits" name="min_qubits">
+    Minimum number of supported qubits is `1`.
+  </Attribute>
 
-Maximum number of supported qubits is `1`.
+  ### supported\_bases
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.min_qubits" />
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supported_bases" name="supported_bases">
+    The plugin does not support bases for synthesis.
+  </Attribute>
 
-### min\_qubits
+  ### supports\_basis\_gates
 
-Minimum number of supported qubits is `1`.
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_basis_gates" name="supports_basis_gates">
+    The plugin does not support basis gates. By default it synthesis to the `["h", "t", "tdg"]` gate basis.
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supported_bases" />
+  ### supports\_coupling\_map
 
-### supported\_bases
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_coupling_map" name="supports_coupling_map">
+    The plugin does not support coupling maps.
+  </Attribute>
 
-The plugin does not support bases for synthesis.
+  ### supports\_gate\_errors
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_basis_gates" />
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_gate_errors" name="supports_gate_errors">
+    The plugin does not support gate errors.
+  </Attribute>
 
-### supports\_basis\_gates
+  ### supports\_gate\_errors\_by\_qubit
 
-The plugin does not support basis gates. By default it synthesis to the `["h", "t", "tdg"]` gate basis.
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_gate_errors_by_qubit" name="supports_gate_errors_by_qubit">
+    Return whether the plugin supports taking `gate_errors_by_qubit`
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_coupling_map" />
+    This differs from `supports_gate_errors`/`gate_errors` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names).
 
-### supports\_coupling\_map
+    `gate_errors_by_qubit` will be a dictionary in the form of `{(qubits,): [Gate, error]}`. For example:
 
-The plugin does not support coupling maps.
+    ```python
+    {
+    (0,): [SXGate(): 0.0006149355812506126, RZGate(): 0.0],
+    (0, 1): [CXGate(): 0.012012477900732316]
+    }
+    ```
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_gate_errors" />
+    Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate errors on every gate for each qubit. The gate error rates reported in `gate_errors` are provided by the target device `Backend` object and the exact meaning might be different depending on the backend.
 
-### supports\_gate\_errors
+    This defaults to False
+  </Attribute>
 
-The plugin does not support gate errors.
+  ### supports\_gate\_lengths
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_gate_errors_by_qubit" />
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_gate_lengths" name="supports_gate_lengths">
+    The plugin does not support gate lengths.
+  </Attribute>
 
-### supports\_gate\_errors\_by\_qubit
+  ### supports\_gate\_lengths\_by\_qubit
 
-Return whether the plugin supports taking `gate_errors_by_qubit`
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_gate_lengths_by_qubit" name="supports_gate_lengths_by_qubit">
+    Return whether the plugin supports taking `gate_lengths_by_qubit`
 
-This differs from `supports_gate_errors`/`gate_errors` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names).
+    This differs from `supports_gate_lengths`/`gate_lengths` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names)
 
-`gate_errors_by_qubit` will be a dictionary in the form of `{(qubits,): [Gate, error]}`. For example:
+    `gate_lengths_by_qubit` will be a dictionary in the form of `{(qubits,): [Gate, length]}`. For example:
 
-```python
-{
-(0,): [SXGate(): 0.0006149355812506126, RZGate(): 0.0],
-(0, 1): [CXGate(): 0.012012477900732316]
-}
-```
+    ```python
+    {
+    (0,): [SXGate(): 0.0006149355812506126, RZGate(): 0.0],
+    (0, 1): [CXGate(): 0.012012477900732316]
+    }
+    ```
 
-Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate errors on every gate for each qubit. The gate error rates reported in `gate_errors` are provided by the target device `Backend` object and the exact meaning might be different depending on the backend.
+    where the `length` value is in units of seconds.
 
-This defaults to False
+    Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate lengths on every gate for each qubit.
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_gate_lengths" />
+    This defaults to False
+  </Attribute>
 
-### supports\_gate\_lengths
+  ### supports\_natural\_direction
 
-The plugin does not support gate lengths.
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_natural_direction" name="supports_natural_direction">
+    The plugin does not support natural direction, it does not assume bidirectional two qubit gates.
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_gate_lengths_by_qubit" />
+  ### supports\_pulse\_optimize
 
-### supports\_gate\_lengths\_by\_qubit
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_pulse_optimize" name="supports_pulse_optimize">
+    The plugin does not support optimization of pulses.
+  </Attribute>
 
-Return whether the plugin supports taking `gate_lengths_by_qubit`
+  ### supports\_target
 
-This differs from `supports_gate_lengths`/`gate_lengths` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names)
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_target" name="supports_target">
+    Whether the plugin supports taking `target` as an option
 
-`gate_lengths_by_qubit` will be a dictionary in the form of `{(qubits,): [Gate, length]}`. For example:
+    `target` will be a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the target device for the output of the synthesis pass.
 
-```python
-{
-(0,): [SXGate(): 0.0006149355812506126, RZGate(): 0.0],
-(0, 1): [CXGate(): 0.012012477900732316]
-}
-```
+    By default this will be `False` since the plugin interface predates the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") class. If a plugin returns `True` for this attribute, it is expected that the plugin will use the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") instead of the values passed if any of `supports_gate_lengths`, `supports_gate_errors`, `supports_coupling_map`, and `supports_basis_gates` are set (although ideally all those parameters should contain duplicate information).
+  </Attribute>
 
-where the `length` value is in units of seconds.
+  ## Methods
 
-Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate lengths on every gate for each qubit.
+  ### run
 
-This defaults to False
+  <Function id="qiskit.transpiler.passes.SolovayKitaevSynthesis.run" name="run" signature="run(unitary, **options)">
+    Run synthesis for the given unitary matrix
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_natural_direction" />
+    **Parameters**
 
-### supports\_natural\_direction
+    *   **unitary** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – The unitary matrix to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object
+    *   **options** – The optional kwargs that are passed based on the output the `support_*` methods on the class. Refer to the documentation for these methods on [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin") to see what the keys and values are.
 
-The plugin does not support natural direction, it does not assume bidirectional two qubit gates.
+    **Returns**
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_pulse_optimize" />
+    The dag circuit representation of the unitary. Alternatively, you can return a tuple of the form `(dag, wires)` where `dag` is the dag circuit representation of the circuit representation of the unitary and `wires` is the mapping wires to use for [`qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag()`](qiskit.dagcircuit.DAGCircuit#substitute_node_with_dag "qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag"). If you return a tuple and `wires` is `None` this will behave just as if only a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") was returned. Additionally if this returns `None` no substitution will be made.
 
-### supports\_pulse\_optimize
+    **Return type**
 
-The plugin does not support optimization of pulses.
-
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_target" />
-
-### supports\_target
-
-Whether the plugin supports taking `target` as an option
-
-`target` will be a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the target device for the output of the synthesis pass.
-
-By default this will be `False` since the plugin interface predates the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") class. If a plugin returns `True` for this attribute, it is expected that the plugin will use the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") instead of the values passed if any of `supports_gate_lengths`, `supports_gate_errors`, `supports_coupling_map`, and `supports_basis_gates` are set (although ideally all those parameters should contain duplicate information).
-
-## Methods
-
-### run
-
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.run" />
-
-`run(unitary, **options)`
-
-Run synthesis for the given unitary matrix
-
-**Parameters**
-
-*   **unitary** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – The unitary matrix to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object
-*   **options** – The optional kwargs that are passed based on the output the `support_*` methods on the class. Refer to the documentation for these methods on [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin") to see what the keys and values are.
-
-**Returns**
-
-The dag circuit representation of the unitary. Alternatively, you can return a tuple of the form `(dag, wires)` where `dag` is the dag circuit representation of the circuit representation of the unitary and `wires` is the mapping wires to use for [`qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag()`](qiskit.dagcircuit.DAGCircuit#substitute_node_with_dag "qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag"). If you return a tuple and `wires` is `None` this will behave just as if only a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") was returned. Additionally if this returns `None` no substitution will be made.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  </Function>
+</Class>
 

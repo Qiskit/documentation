@@ -8,49 +8,45 @@ python_api_name: qiskit.opflow.evolutions.TrotterizationBase
 
 # TrotterizationBase
 
-<span id="qiskit.opflow.evolutions.TrotterizationBase" />
+<Class id="qiskit.opflow.evolutions.TrotterizationBase" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/evolutions/trotterizations/trotterization_base.py" signature="qiskit.opflow.evolutions.TrotterizationBase(reps=1)">
+  Bases: [`EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.evolution_base.EvolutionBase")
 
-`qiskit.opflow.evolutions.TrotterizationBase(reps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/evolutions/trotterizations/trotterization_base.py "view source code")
+  Deprecated: A base for Trotterization methods, algorithms for approximating exponentiations of operator sums by compositions of exponentiations.
 
-Bases: [`EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.evolution_base.EvolutionBase")
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Deprecated: A base for Trotterization methods, algorithms for approximating exponentiations of operator sums by compositions of exponentiations.
+  ## Attributes
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  ### reps
 
-## Attributes
+  <Attribute id="qiskit.opflow.evolutions.TrotterizationBase.reps" name="reps">
+    The number of repetitions to use in the Trotterization, improving the approximation accuracy.
+  </Attribute>
 
-<span id="qiskit.opflow.evolutions.TrotterizationBase.reps" />
+  ## Methods
 
-### reps
+  ### convert
 
-The number of repetitions to use in the Trotterization, improving the approximation accuracy.
+  <Function id="qiskit.opflow.evolutions.TrotterizationBase.convert" name="convert" signature="abstract convert(operator)">
+    Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 
-## Methods
+    **Parameters**
 
-### convert
+    **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
 
-<span id="qiskit.opflow.evolutions.TrotterizationBase.convert" />
+    **Returns**
 
-`abstract convert(operator)`
+    The Operator approximating op\_sum’s evolution.
 
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
+    **Raises**
 
-**Parameters**
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – A non-SummedOps Operator is passed into `convert`.
 
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
+    **Return type**
 
-**Returns**
-
-The Operator approximating op\_sum’s evolution.
-
-**Raises**
-
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – A non-SummedOps Operator is passed into `convert`.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
+</Class>
 

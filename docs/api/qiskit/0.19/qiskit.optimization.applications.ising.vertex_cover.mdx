@@ -22,62 +22,56 @@ Convert vertex cover instances into Pauli list Deal with Gset format. See [https
 
 ### check\_full\_edge\_coverage
 
-<span id="qiskit.optimization.applications.ising.vertex_cover.check_full_edge_coverage" />
+<Function id="qiskit.optimization.applications.ising.vertex_cover.check_full_edge_coverage" name="check_full_edge_coverage" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/vertex_cover.py" signature="check_full_edge_coverage(x, w)">
+  **Parameters**
 
-`check_full_edge_coverage(x, w)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
+  *   **x** (*numpy.ndarray*) – binary string as numpy array.
+  *   **w** (*numpy.ndarray*) – adjacency matrix.
 
-**Parameters**
+  **Returns**
 
-*   **x** (*numpy.ndarray*) – binary string as numpy array.
-*   **w** (*numpy.ndarray*) – adjacency matrix.
+  value of the cut.
 
-**Returns**
+  **Return type**
 
-value of the cut.
-
-**Return type**
-
-float
+  float
+</Function>
 
 ### get\_graph\_solution
 
-<span id="qiskit.optimization.applications.ising.vertex_cover.get_graph_solution" />
+<Function id="qiskit.optimization.applications.ising.vertex_cover.get_graph_solution" name="get_graph_solution" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/vertex_cover.py" signature="get_graph_solution(x)">
+  Get graph solution from binary string.
 
-`get_graph_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
+  **Parameters**
 
-Get graph solution from binary string.
+  **x** (*numpy.ndarray*) – binary string as numpy array.
 
-**Parameters**
+  **Returns**
 
-**x** (*numpy.ndarray*) – binary string as numpy array.
+  graph solution as binary numpy array.
 
-**Returns**
+  **Return type**
 
-graph solution as binary numpy array.
-
-**Return type**
-
-numpy.ndarray
+  numpy.ndarray
+</Function>
 
 ### get\_operator
 
-<span id="qiskit.optimization.applications.ising.vertex_cover.get_operator" />
+<Function id="qiskit.optimization.applications.ising.vertex_cover.get_operator" name="get_operator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/vertex_cover.py" signature="get_operator(weight_matrix)">
+  Generate Hamiltonian for the vertex cover :param weight\_matrix: adjacency matrix. :type weight\_matrix: numpy.ndarray
 
-`get_operator(weight_matrix)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
+  **Returns**
 
-Generate Hamiltonian for the vertex cover :param weight\_matrix: adjacency matrix. :type weight\_matrix: numpy.ndarray
+  operator for the Hamiltonian and a constant shift for the obj function.
 
-**Returns**
+  **Return type**
 
-operator for the Hamiltonian and a constant shift for the obj function.
+  tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
 
-**Return type**
+  Goals: 1 color some vertices as red such that every edge is connected to some red vertex 2 minimize the vertices to be colored as red
 
-tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+  Hamiltonian: H = A \* H\_A + H\_B H\_A = sum\_\{(i,j)in E}\{(1-Xi)(1-Xj)} H\_B = sum\_\{i}\{Zi}
 
-Goals: 1 color some vertices as red such that every edge is connected to some red vertex 2 minimize the vertices to be colored as red
-
-Hamiltonian: H = A \* H\_A + H\_B H\_A = sum\_\{(i,j)in E}\{(1-Xi)(1-Xj)} H\_B = sum\_\{i}\{Zi}
-
-H\_A is to achieve goal 1 while H\_b is to achieve goal 2. H\_A is hard constraint so we place a huge penality on it. A=5. Note Xi = (Zi+1)/2
+  H\_A is to achieve goal 1 while H\_b is to achieve goal 2. H\_A is hard constraint so we place a huge penality on it. A=5. Note Xi = (Zi+1)/2
+</Function>
 

@@ -8,42 +8,38 @@ python_api_name: qiskit.opflow.evolutions.TrotterizationFactory
 
 # TrotterizationFactory
 
-<span id="qiskit.opflow.evolutions.TrotterizationFactory" />
+<Class id="qiskit.opflow.evolutions.TrotterizationFactory" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/evolutions/trotterizations/trotterization_factory.py" signature="qiskit.opflow.evolutions.TrotterizationFactory">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.opflow.evolutions.TrotterizationFactory` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/evolutions/trotterizations/trotterization_factory.py "view source code")
+  Deprecated: A factory for conveniently creating TrotterizationBase instances.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  ## Methods
 
-Deprecated: A factory for conveniently creating TrotterizationBase instances.
+  ### build
 
-## Methods
+  <Function id="qiskit.opflow.evolutions.TrotterizationFactory.build" name="build" signature="static build(mode='trotter', reps=1)">
+    A factory for conveniently creating TrotterizationBase instances.
 
-### build
+    <Admonition title="Deprecated since version 0.24.0" type="danger">
+      The method `qiskit.opflow.evolutions.trotterizations.trotterization_factory.TrotterizationFactory.build()` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+    </Admonition>
 
-<span id="qiskit.opflow.evolutions.TrotterizationFactory.build" />
+    **Parameters**
 
-`static build(mode='trotter', reps=1)`
+    *   **mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – One of ‘trotter’, ‘suzuki’, ‘qdrift’
+    *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of times to repeat the Trotterization circuit.
 
-A factory for conveniently creating TrotterizationBase instances.
+    **Returns**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The method `qiskit.opflow.evolutions.trotterizations.trotterization_factory.TrotterizationFactory.build()` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+    The desired TrotterizationBase instance.
 
-**Parameters**
+    **Raises**
 
-*   **mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – One of ‘trotter’, ‘suzuki’, ‘qdrift’
-*   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of times to repeat the Trotterization circuit.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – A string not in \[‘trotter’, ‘suzuki’, ‘qdrift’] is given for mode.
 
-**Returns**
+    **Return type**
 
-The desired TrotterizationBase instance.
-
-**Raises**
-
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – A string not in \[‘trotter’, ‘suzuki’, ‘qdrift’] is given for mode.
-
-**Return type**
-
-[*TrotterizationBase*](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
+    [*TrotterizationBase*](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
+  </Function>
+</Class>
 

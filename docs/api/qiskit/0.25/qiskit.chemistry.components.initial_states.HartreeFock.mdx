@@ -8,87 +8,79 @@ python_api_name: qiskit.chemistry.components.initial_states.HartreeFock
 
 # qiskit.chemistry.components.initial\_states.HartreeFock
 
-<span id="qiskit.chemistry.components.initial_states.HartreeFock" />
+<Class id="qiskit.chemistry.components.initial_states.HartreeFock" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/initial_states/hartree_fock.py" signature="HartreeFock(num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, sq_list=None)">
+  A Hartree-Fock initial state.
 
-`HartreeFock(num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, sq_list=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/initial_states/hartree_fock.py "view source code")
+  **Parameters**
 
-A Hartree-Fock initial state.
+  *   **num\_orbitals** (`int`) – number of spin orbitals, has a min. value of 1.
+  *   **num\_particles** (`Union`\[`List`\[`int`], `int`]) – number of particles, if it is a list, the first number is alpha and the second number if beta.
+  *   **qubit\_mapping** (`str`) – mapping type for qubit operator
+  *   **two\_qubit\_reduction** (`bool`) – flag indicating whether or not two qubit is reduced
+  *   **sq\_list** (`Optional`\[`List`\[`int`]]) – position of the single-qubit operators that anticommute with the cliffords
 
-**Parameters**
+  **Raises**
 
-*   **num\_orbitals** (`int`) – number of spin orbitals, has a min. value of 1.
-*   **num\_particles** (`Union`\[`List`\[`int`], `int`]) – number of particles, if it is a list, the first number is alpha and the second number if beta.
-*   **qubit\_mapping** (`str`) – mapping type for qubit operator
-*   **two\_qubit\_reduction** (`bool`) – flag indicating whether or not two qubit is reduced
-*   **sq\_list** (`Optional`\[`List`\[`int`]]) – position of the single-qubit operators that anticommute with the cliffords
+  *   **ValueError** – wrong setting in num\_particles and num\_orbitals.
+  *   **ValueError** – wrong setting for computed num\_qubits and supplied num\_qubits.
 
-**Raises**
+  ### \_\_init\_\_
 
-*   **ValueError** – wrong setting in num\_particles and num\_orbitals.
-*   **ValueError** – wrong setting for computed num\_qubits and supplied num\_qubits.
+  <Function id="qiskit.chemistry.components.initial_states.HartreeFock.__init__" name="__init__" signature="__init__(num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, sq_list=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **num\_orbitals** (`int`) – number of spin orbitals, has a min. value of 1.
+    *   **num\_particles** (`Union`\[`List`\[`int`], `int`]) – number of particles, if it is a list, the first number is alpha and the second number if beta.
+    *   **qubit\_mapping** (`str`) – mapping type for qubit operator
+    *   **two\_qubit\_reduction** (`bool`) – flag indicating whether or not two qubit is reduced
+    *   **sq\_list** (`Optional`\[`List`\[`int`]]) – position of the single-qubit operators that anticommute with the cliffords
 
-<span id="qiskit.chemistry.components.initial_states.HartreeFock.__init__" />
+    **Raises**
 
-`__init__(num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, sq_list=None)`
+    *   **ValueError** – wrong setting in num\_particles and num\_orbitals.
+    *   **ValueError** – wrong setting for computed num\_qubits and supplied num\_qubits.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **num\_orbitals** (`int`) – number of spin orbitals, has a min. value of 1.
-*   **num\_particles** (`Union`\[`List`\[`int`], `int`]) – number of particles, if it is a list, the first number is alpha and the second number if beta.
-*   **qubit\_mapping** (`str`) – mapping type for qubit operator
-*   **two\_qubit\_reduction** (`bool`) – flag indicating whether or not two qubit is reduced
-*   **sq\_list** (`Optional`\[`List`\[`int`]]) – position of the single-qubit operators that anticommute with the cliffords
+  |                                                                                                                                                                                                |                                                     |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.components.initial_states.HartreeFock.__init__ "qiskit.chemistry.components.initial_states.HartreeFock.__init__")(num\_orbitals, num\_particles\[, …])          | **type num\_orbitals**`int`                         |
+  | [`construct_circuit`](#qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit "qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit")(\[mode, register]) | Construct the statevector of desired initial state. |
 
-**Raises**
+  ## Attributes
 
-*   **ValueError** – wrong setting in num\_particles and num\_orbitals.
-*   **ValueError** – wrong setting for computed num\_qubits and supplied num\_qubits.
+  |                                                                                                                                            |                                                       |
+  | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
+  | [`bitstr`](#qiskit.chemistry.components.initial_states.HartreeFock.bitstr "qiskit.chemistry.components.initial_states.HartreeFock.bitstr") | Getter of the bit string represented the statevector. |
 
-## Methods
+  ### bitstr
 
-|                                                                                                                                                                                                |                                                     |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.components.initial_states.HartreeFock.__init__ "qiskit.chemistry.components.initial_states.HartreeFock.__init__")(num\_orbitals, num\_particles\[, …])          | **type num\_orbitals**`int`                         |
-| [`construct_circuit`](#qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit "qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit")(\[mode, register]) | Construct the statevector of desired initial state. |
+  <Function id="qiskit.chemistry.components.initial_states.HartreeFock.bitstr" name="bitstr" signature="property bitstr">
+    Getter of the bit string represented the statevector.
+  </Function>
 
-## Attributes
+  ### construct\_circuit
 
-|                                                                                                                                            |                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
-| [`bitstr`](#qiskit.chemistry.components.initial_states.HartreeFock.bitstr "qiskit.chemistry.components.initial_states.HartreeFock.bitstr") | Getter of the bit string represented the statevector. |
+  <Function id="qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit" name="construct_circuit" signature="construct_circuit(mode='circuit', register=None)">
+    Construct the statevector of desired initial state.
 
-### bitstr
+    **Parameters**
 
-<span id="qiskit.chemistry.components.initial_states.HartreeFock.bitstr" />
+    *   **mode** (*string*) – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
+    *   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – register for circuit construction.
 
-`property bitstr`
+    **Returns**
 
-Getter of the bit string represented the statevector.
+    statevector.
 
-### construct\_circuit
+    **Return type**
 
-<span id="qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
 
-`construct_circuit(mode='circuit', register=None)`
+    **Raises**
 
-Construct the statevector of desired initial state.
-
-**Parameters**
-
-*   **mode** (*string*) – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
-*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – register for circuit construction.
-
-**Returns**
-
-statevector.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
-
-**Raises**
-
-**ValueError** – when mode is not ‘vector’ or ‘circuit’.
+    **ValueError** – when mode is not ‘vector’ or ‘circuit’.
+  </Function>
+</Class>
 

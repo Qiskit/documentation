@@ -10,431 +10,381 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
 # qiskit.circuit.library.MCPhaseGate
 
-<span id="qiskit.circuit.library.MCPhaseGate" />
+<Class id="qiskit.circuit.library.MCPhaseGate" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/p.py" signature="MCPhaseGate(lam, num_ctrl_qubits, label=None)">
+  Multi-controlled-Phase gate.
+
+  This is a diagonal and symmetric gate that induces a phase on the state of the target qubit, depending on the state of the control qubits.
+
+  **Circuit symbol:**
+
+  ```python
+      q_0: ───■────
+              │
+              .
+              │
+  q_(n-1): ───■────
+           ┌──┴───┐
+      q_n: ┤ P(λ) ├
+           └──────┘
+  ```
+
+  <Admonition title="See also" type="note">
+    `CPhaseGate`: The singly-controlled-version of this gate.
+  </Admonition>
+
+  Create new MCPhase gate.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.circuit.library.MCPhaseGate.__init__" name="__init__" signature="__init__(lam, num_ctrl_qubits, label=None)">
+    Create new MCPhase gate.
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                         |                                                                          |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.circuit.library.MCPhaseGate.__init__ "qiskit.circuit.library.MCPhaseGate.__init__")(lam, num\_ctrl\_qubits\[, label])              | Create new MCPhase gate.                                                 |
+  | [`add_decomposition`](#qiskit.circuit.library.MCPhaseGate.add_decomposition "qiskit.circuit.library.MCPhaseGate.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
+  | [`assemble`](#qiskit.circuit.library.MCPhaseGate.assemble "qiskit.circuit.library.MCPhaseGate.assemble")()                                              | Assemble a QasmQobjInstruction                                           |
+  | [`broadcast_arguments`](#qiskit.circuit.library.MCPhaseGate.broadcast_arguments "qiskit.circuit.library.MCPhaseGate.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.           |
+  | [`c_if`](#qiskit.circuit.library.MCPhaseGate.c_if "qiskit.circuit.library.MCPhaseGate.c_if")(classical, val)                                            | Add classical condition on register classical and value val.             |
+  | [`control`](#qiskit.circuit.library.MCPhaseGate.control "qiskit.circuit.library.MCPhaseGate.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Controlled version of this gate.                                         |
+  | [`copy`](#qiskit.circuit.library.MCPhaseGate.copy "qiskit.circuit.library.MCPhaseGate.copy")(\[name])                                                   | Copy of the instruction.                                                 |
+  | [`inverse`](#qiskit.circuit.library.MCPhaseGate.inverse "qiskit.circuit.library.MCPhaseGate.inverse")()                                                 | Return inverted MCU1 gate ($MCU1(\lambda){\dagger} = MCU1(-\lambda)$)    |
+  | [`is_parameterized`](#qiskit.circuit.library.MCPhaseGate.is_parameterized "qiskit.circuit.library.MCPhaseGate.is_parameterized")()                      | Return True .IFF.                                                        |
+  | [`mirror`](#qiskit.circuit.library.MCPhaseGate.mirror "qiskit.circuit.library.MCPhaseGate.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                              |
+  | [`power`](#qiskit.circuit.library.MCPhaseGate.power "qiskit.circuit.library.MCPhaseGate.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                 |
+  | [`qasm`](#qiskit.circuit.library.MCPhaseGate.qasm "qiskit.circuit.library.MCPhaseGate.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
+  | [`repeat`](#qiskit.circuit.library.MCPhaseGate.repeat "qiskit.circuit.library.MCPhaseGate.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
+  | [`reverse_ops`](#qiskit.circuit.library.MCPhaseGate.reverse_ops "qiskit.circuit.library.MCPhaseGate.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.      |
+  | [`to_matrix`](#qiskit.circuit.library.MCPhaseGate.to_matrix "qiskit.circuit.library.MCPhaseGate.to_matrix")()                                           | Return a Numpy.array for the gate unitary matrix.                        |
+  | [`validate_parameter`](#qiskit.circuit.library.MCPhaseGate.validate_parameter "qiskit.circuit.library.MCPhaseGate.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression             |
 
-`MCPhaseGate(lam, num_ctrl_qubits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/p.py "view source code")
+  ## Attributes
 
-Multi-controlled-Phase gate.
+  |                                                                                                                               |                                                                               |
+  | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+  | [`ctrl_state`](#qiskit.circuit.library.MCPhaseGate.ctrl_state "qiskit.circuit.library.MCPhaseGate.ctrl_state")                | Return the control state of the gate as a decimal integer.                    |
+  | [`decompositions`](#qiskit.circuit.library.MCPhaseGate.decompositions "qiskit.circuit.library.MCPhaseGate.decompositions")    | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
+  | [`definition`](#qiskit.circuit.library.MCPhaseGate.definition "qiskit.circuit.library.MCPhaseGate.definition")                | Return definition in terms of other basic gates.                              |
+  | [`duration`](#qiskit.circuit.library.MCPhaseGate.duration "qiskit.circuit.library.MCPhaseGate.duration")                      | Get the duration.                                                             |
+  | [`label`](#qiskit.circuit.library.MCPhaseGate.label "qiskit.circuit.library.MCPhaseGate.label")                               | Return gate label                                                             |
+  | [`num_ctrl_qubits`](#qiskit.circuit.library.MCPhaseGate.num_ctrl_qubits "qiskit.circuit.library.MCPhaseGate.num_ctrl_qubits") | Get number of control qubits.                                                 |
+  | [`params`](#qiskit.circuit.library.MCPhaseGate.params "qiskit.circuit.library.MCPhaseGate.params")                            | Get parameters from base\_gate.                                               |
+  | [`unit`](#qiskit.circuit.library.MCPhaseGate.unit "qiskit.circuit.library.MCPhaseGate.unit")                                  | Get the time unit of duration.                                                |
 
-This is a diagonal and symmetric gate that induces a phase on the state of the target qubit, depending on the state of the control qubits.
+  ### add\_decomposition
 
-**Circuit symbol:**
+  <Function id="qiskit.circuit.library.MCPhaseGate.add_decomposition" name="add_decomposition" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-```python
-    q_0: ───■────
-            │
-            .
-            │
-q_(n-1): ───■────
-         ┌──┴───┐
-    q_n: ┤ P(λ) ├
-         └──────┘
-```
+  ### assemble
 
-<Admonition title="See also" type="note">
-  `CPhaseGate`: The singly-controlled-version of this gate.
-</Admonition>
+  <Function id="qiskit.circuit.library.MCPhaseGate.assemble" name="assemble" signature="assemble()">
+    Assemble a QasmQobjInstruction
 
-Create new MCPhase gate.
+    **Return type**
 
-### \_\_init\_\_
+    `Instruction`
+  </Function>
 
-<span id="qiskit.circuit.library.MCPhaseGate.__init__" />
+  ### broadcast\_arguments
 
-`__init__(lam, num_ctrl_qubits, label=None)`
+  <Function id="qiskit.circuit.library.MCPhaseGate.broadcast_arguments" name="broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-Create new MCPhase gate.
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-## Methods
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-|                                                                                                                                                         |                                                                          |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.circuit.library.MCPhaseGate.__init__ "qiskit.circuit.library.MCPhaseGate.__init__")(lam, num\_ctrl\_qubits\[, label])              | Create new MCPhase gate.                                                 |
-| [`add_decomposition`](#qiskit.circuit.library.MCPhaseGate.add_decomposition "qiskit.circuit.library.MCPhaseGate.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
-| [`assemble`](#qiskit.circuit.library.MCPhaseGate.assemble "qiskit.circuit.library.MCPhaseGate.assemble")()                                              | Assemble a QasmQobjInstruction                                           |
-| [`broadcast_arguments`](#qiskit.circuit.library.MCPhaseGate.broadcast_arguments "qiskit.circuit.library.MCPhaseGate.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.           |
-| [`c_if`](#qiskit.circuit.library.MCPhaseGate.c_if "qiskit.circuit.library.MCPhaseGate.c_if")(classical, val)                                            | Add classical condition on register classical and value val.             |
-| [`control`](#qiskit.circuit.library.MCPhaseGate.control "qiskit.circuit.library.MCPhaseGate.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Controlled version of this gate.                                         |
-| [`copy`](#qiskit.circuit.library.MCPhaseGate.copy "qiskit.circuit.library.MCPhaseGate.copy")(\[name])                                                   | Copy of the instruction.                                                 |
-| [`inverse`](#qiskit.circuit.library.MCPhaseGate.inverse "qiskit.circuit.library.MCPhaseGate.inverse")()                                                 | Return inverted MCU1 gate ($MCU1(\lambda){\dagger} = MCU1(-\lambda)$)    |
-| [`is_parameterized`](#qiskit.circuit.library.MCPhaseGate.is_parameterized "qiskit.circuit.library.MCPhaseGate.is_parameterized")()                      | Return True .IFF.                                                        |
-| [`mirror`](#qiskit.circuit.library.MCPhaseGate.mirror "qiskit.circuit.library.MCPhaseGate.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                              |
-| [`power`](#qiskit.circuit.library.MCPhaseGate.power "qiskit.circuit.library.MCPhaseGate.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                 |
-| [`qasm`](#qiskit.circuit.library.MCPhaseGate.qasm "qiskit.circuit.library.MCPhaseGate.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
-| [`repeat`](#qiskit.circuit.library.MCPhaseGate.repeat "qiskit.circuit.library.MCPhaseGate.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
-| [`reverse_ops`](#qiskit.circuit.library.MCPhaseGate.reverse_ops "qiskit.circuit.library.MCPhaseGate.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.      |
-| [`to_matrix`](#qiskit.circuit.library.MCPhaseGate.to_matrix "qiskit.circuit.library.MCPhaseGate.to_matrix")()                                           | Return a Numpy.array for the gate unitary matrix.                        |
-| [`validate_parameter`](#qiskit.circuit.library.MCPhaseGate.validate_parameter "qiskit.circuit.library.MCPhaseGate.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression             |
+    The general broadcasting rules are:
 
-## Attributes
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-|                                                                                                                               |                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`ctrl_state`](#qiskit.circuit.library.MCPhaseGate.ctrl_state "qiskit.circuit.library.MCPhaseGate.ctrl_state")                | Return the control state of the gate as a decimal integer.                    |
-| [`decompositions`](#qiskit.circuit.library.MCPhaseGate.decompositions "qiskit.circuit.library.MCPhaseGate.decompositions")    | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
-| [`definition`](#qiskit.circuit.library.MCPhaseGate.definition "qiskit.circuit.library.MCPhaseGate.definition")                | Return definition in terms of other basic gates.                              |
-| [`duration`](#qiskit.circuit.library.MCPhaseGate.duration "qiskit.circuit.library.MCPhaseGate.duration")                      | Get the duration.                                                             |
-| [`label`](#qiskit.circuit.library.MCPhaseGate.label "qiskit.circuit.library.MCPhaseGate.label")                               | Return gate label                                                             |
-| [`num_ctrl_qubits`](#qiskit.circuit.library.MCPhaseGate.num_ctrl_qubits "qiskit.circuit.library.MCPhaseGate.num_ctrl_qubits") | Get number of control qubits.                                                 |
-| [`params`](#qiskit.circuit.library.MCPhaseGate.params "qiskit.circuit.library.MCPhaseGate.params")                            | Get parameters from base\_gate.                                               |
-| [`unit`](#qiskit.circuit.library.MCPhaseGate.unit "qiskit.circuit.library.MCPhaseGate.unit")                                  | Get the time unit of duration.                                                |
+    **Parameters**
 
-### add\_decomposition
+    *   **qargs** (`List`) – List of quantum bit arguments.
+    *   **cargs** (`List`) – List of classical bit arguments.
 
-<span id="qiskit.circuit.library.MCPhaseGate.add_decomposition" />
+    **Return type**
 
-`add_decomposition(decomposition)`
+    `Tuple`\[`List`, `List`]
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    **Returns**
 
-### assemble
+    A tuple with single arguments.
 
-<span id="qiskit.circuit.library.MCPhaseGate.assemble" />
+    **Raises**
 
-`assemble()`
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-Assemble a QasmQobjInstruction
+  ### c\_if
 
-**Return type**
+  <Function id="qiskit.circuit.library.MCPhaseGate.c_if" name="c_if" signature="c_if(classical, val)">
+    Add classical condition on register classical and value val.
+  </Function>
 
-`Instruction`
+  ### control
 
-### broadcast\_arguments
+  <Function id="qiskit.circuit.library.MCPhaseGate.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Controlled version of this gate.
 
-<span id="qiskit.circuit.library.MCPhaseGate.broadcast_arguments" />
+    **Parameters**
 
-`broadcast_arguments(qargs, cargs)`
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-Validation and handling of the arguments and its relationship.
+    **Returns**
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+    controlled version of this gate.
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+    **Return type**
 
-The general broadcasting rules are:
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+  ### copy
 
-**Parameters**
+  <Function id="qiskit.circuit.library.MCPhaseGate.copy" name="copy" signature="copy(name=None)">
+    Copy of the instruction.
 
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
+    **Parameters**
 
-**Return type**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-`Tuple`\[`List`, `List`]
+    **Returns**
 
-**Returns**
+    **a copy of the current instruction, with the name**
 
-A tuple with single arguments.
+    updated if it was provided
 
-**Raises**
+    **Return type**
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-### c\_if
+  ### ctrl\_state
 
-<span id="qiskit.circuit.library.MCPhaseGate.c_if" />
+  <Function id="qiskit.circuit.library.MCPhaseGate.ctrl_state" name="ctrl_state" signature="property ctrl_state">
+    Return the control state of the gate as a decimal integer.
 
-`c_if(classical, val)`
+    **Return type**
 
-Add classical condition on register classical and value val.
+    `int`
+  </Function>
 
-### control
+  ### decompositions
 
-<span id="qiskit.circuit.library.MCPhaseGate.control" />
+  <Function id="qiskit.circuit.library.MCPhaseGate.decompositions" name="decompositions" signature="property decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Function>
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+  ### definition
 
-Controlled version of this gate.
+  <Function id="qiskit.circuit.library.MCPhaseGate.definition" name="definition" signature="property definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
 
-**Parameters**
+    **Return type**
 
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+    `List`
+  </Function>
 
-**Returns**
+  ### duration
 
-controlled version of this gate.
+  <Function id="qiskit.circuit.library.MCPhaseGate.duration" name="duration" signature="property duration">
+    Get the duration.
+  </Function>
 
-**Return type**
+  ### inverse
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  <Function id="qiskit.circuit.library.MCPhaseGate.inverse" name="inverse" signature="inverse()">
+    Return inverted MCU1 gate ($MCU1(\lambda){\dagger} = MCU1(-\lambda)$)
+  </Function>
 
-### copy
+  ### is\_parameterized
 
-<span id="qiskit.circuit.library.MCPhaseGate.copy" />
+  <Function id="qiskit.circuit.library.MCPhaseGate.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-`copy(name=None)`
+  ### label
 
-Copy of the instruction.
+  <Function id="qiskit.circuit.library.MCPhaseGate.label" name="label" signature="property label">
+    Return gate label
 
-**Parameters**
+    **Return type**
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    `str`
+  </Function>
 
-**Returns**
+  ### mirror
 
-**a copy of the current instruction, with the name**
+  <Function id="qiskit.circuit.library.MCPhaseGate.mirror" name="mirror" signature="mirror()">
+    DEPRECATED: use instruction.reverse\_ops().
 
-updated if it was provided
+    **Returns**
 
-**Return type**
+    **a new instruction with sub-instructions**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    reversed.
 
-### ctrl\_state
+    **Return type**
 
-<span id="qiskit.circuit.library.MCPhaseGate.ctrl_state" />
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-`property ctrl_state`
+  ### num\_ctrl\_qubits
 
-Return the control state of the gate as a decimal integer.
+  <Function id="qiskit.circuit.library.MCPhaseGate.num_ctrl_qubits" name="num_ctrl_qubits" signature="property num_ctrl_qubits">
+    Get number of control qubits.
 
-**Return type**
+    **Returns**
 
-`int`
+    The number of control qubits for the gate.
 
-### decompositions
+    **Return type**
 
-<span id="qiskit.circuit.library.MCPhaseGate.decompositions" />
+    int
+  </Function>
 
-`property decompositions`
+  ### params
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Function id="qiskit.circuit.library.MCPhaseGate.params" name="params" signature="property params">
+    Get parameters from base\_gate.
 
-### definition
+    **Returns**
 
-<span id="qiskit.circuit.library.MCPhaseGate.definition" />
+    List of gate parameters.
 
-`property definition`
+    **Return type**
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+    list
 
-**Return type**
+    **Raises**
 
-`List`
+    **CircuitError** – Controlled gate does not define a base gate
+  </Function>
 
-### duration
+  ### power
 
-<span id="qiskit.circuit.library.MCPhaseGate.duration" />
+  <Function id="qiskit.circuit.library.MCPhaseGate.power" name="power" signature="power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-`property duration`
+    **Parameters**
 
-Get the duration.
+    **exponent** (*float*) – Gate^exponent
 
-### inverse
+    **Returns**
 
-<span id="qiskit.circuit.library.MCPhaseGate.inverse" />
+    To which to\_matrix is self.to\_matrix^exponent.
 
-`inverse()`
+    **Return type**
 
-Return inverted MCU1 gate ($MCU1(\lambda){\dagger} = MCU1(-\lambda)$)
+    [qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-### is\_parameterized
+    **Raises**
 
-<span id="qiskit.circuit.library.MCPhaseGate.is_parameterized" />
+    **CircuitError** – If Gate is not unitary
+  </Function>
 
-`is_parameterized()`
+  ### qasm
 
-Return True .IFF. instruction is parameterized else False
+  <Function id="qiskit.circuit.library.MCPhaseGate.qasm" name="qasm" signature="qasm()">
+    Return a default OpenQASM string for the instruction.
 
-### label
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-<span id="qiskit.circuit.library.MCPhaseGate.label" />
+  ### repeat
 
-`property label`
+  <Function id="qiskit.circuit.library.MCPhaseGate.repeat" name="repeat" signature="repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-Return gate label
+    **Parameters**
 
-**Return type**
+    **n** (*int*) – Number of times to repeat the instruction
 
-`str`
+    **Returns**
 
-### mirror
+    Containing the definition.
 
-<span id="qiskit.circuit.library.MCPhaseGate.mirror" />
+    **Return type**
 
-`mirror()`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-DEPRECATED: use instruction.reverse\_ops().
+    **Raises**
 
-**Returns**
+    **CircuitError** – If n \< 1.
+  </Function>
 
-**a new instruction with sub-instructions**
+  ### reverse\_ops
 
-reversed.
+  <Function id="qiskit.circuit.library.MCPhaseGate.reverse_ops" name="reverse_ops" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-**Return type**
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Returns**
 
-### num\_ctrl\_qubits
+    **a new instruction with**
 
-<span id="qiskit.circuit.library.MCPhaseGate.num_ctrl_qubits" />
+    sub-instructions reversed.
 
-`property num_ctrl_qubits`
+    **Return type**
 
-Get number of control qubits.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**Returns**
+  ### to\_matrix
 
-The number of control qubits for the gate.
+  <Function id="qiskit.circuit.library.MCPhaseGate.to_matrix" name="to_matrix" signature="to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
 
-**Return type**
+    **Raises**
 
-int
+    **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
 
-### params
+    **Return type**
 
-<span id="qiskit.circuit.library.MCPhaseGate.params" />
+    `ndarray`
+  </Function>
 
-`property params`
+  ### unit
 
-Get parameters from base\_gate.
+  <Function id="qiskit.circuit.library.MCPhaseGate.unit" name="unit" signature="property unit">
+    Get the time unit of duration.
+  </Function>
 
-**Returns**
+  ### validate\_parameter
 
-List of gate parameters.
-
-**Return type**
-
-list
-
-**Raises**
-
-**CircuitError** – Controlled gate does not define a base gate
-
-### power
-
-<span id="qiskit.circuit.library.MCPhaseGate.power" />
-
-`power(exponent)`
-
-Creates a unitary gate as gate^exponent.
-
-**Parameters**
-
-**exponent** (*float*) – Gate^exponent
-
-**Returns**
-
-To which to\_matrix is self.to\_matrix^exponent.
-
-**Return type**
-
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
-
-**Raises**
-
-**CircuitError** – If Gate is not unitary
-
-### qasm
-
-<span id="qiskit.circuit.library.MCPhaseGate.qasm" />
-
-`qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.circuit.library.MCPhaseGate.repeat" />
-
-`repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### reverse\_ops
-
-<span id="qiskit.circuit.library.MCPhaseGate.reverse_ops" />
-
-`reverse_ops()`
-
-For a composite instruction, reverse the order of sub-instructions.
-
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-**a new instruction with**
-
-sub-instructions reversed.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### to\_matrix
-
-<span id="qiskit.circuit.library.MCPhaseGate.to_matrix" />
-
-`to_matrix()`
-
-Return a Numpy.array for the gate unitary matrix.
-
-**Raises**
-
-**CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
-
-**Return type**
-
-`ndarray`
-
-### unit
-
-<span id="qiskit.circuit.library.MCPhaseGate.unit" />
-
-`property unit`
-
-Get the time unit of duration.
-
-### validate\_parameter
-
-<span id="qiskit.circuit.library.MCPhaseGate.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Gate parameters should be int, float, or ParameterExpression
+  <Function id="qiskit.circuit.library.MCPhaseGate.validate_parameter" name="validate_parameter" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
+</Class>
 

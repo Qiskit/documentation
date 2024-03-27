@@ -10,178 +10,160 @@ python_api_name: qiskit.optimization.converters.QuadraticProgramToQubo
 
 # qiskit.optimization.converters.QuadraticProgramToQubo
 
-<span id="qiskit.optimization.converters.QuadraticProgramToQubo" />
+<Class id="qiskit.optimization.converters.QuadraticProgramToQubo" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/converters/quadratic_program_to_qubo.py" signature="QuadraticProgramToQubo(penalty=None)">
+  Convert a given optimization problem to a new problem that is a QUBO.
 
-`QuadraticProgramToQubo(penalty=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/converters/quadratic_program_to_qubo.py "view source code")
+  **Examples**
 
-Convert a given optimization problem to a new problem that is a QUBO.
+  ```python
+  >>> from qiskit.optimization.problems import QuadraticProgram
+  >>> from qiskit.optimization.converters import QuadraticProgramToQubo
+  >>> problem = QuadraticProgram()
+  >>> # define a problem
+  >>> conv = QuadraticProgramToQubo()
+  >>> problem2 = conv.convert(problem)
+  ```
 
-**Examples**
+  **Parameters**
 
-```python
->>> from qiskit.optimization.problems import QuadraticProgram
->>> from qiskit.optimization.converters import QuadraticProgramToQubo
->>> problem = QuadraticProgram()
->>> # define a problem
->>> conv = QuadraticProgramToQubo()
->>> problem2 = conv.convert(problem)
-```
+  **penalty** (`Optional`\[`float`]) – Penalty factor to scale equality constraints that are added to objective. If None is passed, penalty factor will be automatically calculated.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**penalty** (`Optional`\[`float`]) – Penalty factor to scale equality constraints that are added to objective. If None is passed, penalty factor will be automatically calculated.
+  <Function id="qiskit.optimization.converters.QuadraticProgramToQubo.__init__" name="__init__" signature="__init__(penalty=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    **penalty** (`Optional`\[`float`]) – Penalty factor to scale equality constraints that are added to objective. If None is passed, penalty factor will be automatically calculated.
+  </Function>
 
-<span id="qiskit.optimization.converters.QuadraticProgramToQubo.__init__" />
+  ## Methods
 
-`__init__(penalty=None)`
+  |                                                                                                                                                                                                |                                                                                                                |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.optimization.converters.QuadraticProgramToQubo.__init__ "qiskit.optimization.converters.QuadraticProgramToQubo.__init__")(\[penalty])                                     | **type penalty**`Optional`\[`float`]                                                                           |
+  | [`convert`](#qiskit.optimization.converters.QuadraticProgramToQubo.convert "qiskit.optimization.converters.QuadraticProgramToQubo.convert")(problem)                                           | Convert a problem with linear equality constraints into new one with a QUBO form.                              |
+  | [`decode`](#qiskit.optimization.converters.QuadraticProgramToQubo.decode "qiskit.optimization.converters.QuadraticProgramToQubo.decode")(result)                                               | DEPRECATED Decode a result into another form using the information of conversion.                              |
+  | [`encode`](#qiskit.optimization.converters.QuadraticProgramToQubo.encode "qiskit.optimization.converters.QuadraticProgramToQubo.encode")(problem)                                              | DEPRECATED Encode a QuadraticProgram into another form and keep the information required to decode the result. |
+  | [`get_compatibility_msg`](#qiskit.optimization.converters.QuadraticProgramToQubo.get_compatibility_msg "qiskit.optimization.converters.QuadraticProgramToQubo.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with this optimizer.                                              |
+  | [`interpret`](#qiskit.optimization.converters.QuadraticProgramToQubo.interpret "qiskit.optimization.converters.QuadraticProgramToQubo.interpret")(result)                                      | Convert a result of a converted problem into that of the original problem.                                     |
+  | [`is_compatible`](#qiskit.optimization.converters.QuadraticProgramToQubo.is_compatible "qiskit.optimization.converters.QuadraticProgramToQubo.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method.                      |
 
-**Parameters**
+  ## Attributes
 
-**penalty** (`Optional`\[`float`]) – Penalty factor to scale equality constraints that are added to objective. If None is passed, penalty factor will be automatically calculated.
+  |                                                                                                                                             |                                                |
+  | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+  | [`penalty`](#qiskit.optimization.converters.QuadraticProgramToQubo.penalty "qiskit.optimization.converters.QuadraticProgramToQubo.penalty") | Returns the penalty factor used in conversion. |
 
-## Methods
+  ### convert
 
-|                                                                                                                                                                                                |                                                                                                                |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.optimization.converters.QuadraticProgramToQubo.__init__ "qiskit.optimization.converters.QuadraticProgramToQubo.__init__")(\[penalty])                                     | **type penalty**`Optional`\[`float`]                                                                           |
-| [`convert`](#qiskit.optimization.converters.QuadraticProgramToQubo.convert "qiskit.optimization.converters.QuadraticProgramToQubo.convert")(problem)                                           | Convert a problem with linear equality constraints into new one with a QUBO form.                              |
-| [`decode`](#qiskit.optimization.converters.QuadraticProgramToQubo.decode "qiskit.optimization.converters.QuadraticProgramToQubo.decode")(result)                                               | DEPRECATED Decode a result into another form using the information of conversion.                              |
-| [`encode`](#qiskit.optimization.converters.QuadraticProgramToQubo.encode "qiskit.optimization.converters.QuadraticProgramToQubo.encode")(problem)                                              | DEPRECATED Encode a QuadraticProgram into another form and keep the information required to decode the result. |
-| [`get_compatibility_msg`](#qiskit.optimization.converters.QuadraticProgramToQubo.get_compatibility_msg "qiskit.optimization.converters.QuadraticProgramToQubo.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with this optimizer.                                              |
-| [`interpret`](#qiskit.optimization.converters.QuadraticProgramToQubo.interpret "qiskit.optimization.converters.QuadraticProgramToQubo.interpret")(result)                                      | Convert a result of a converted problem into that of the original problem.                                     |
-| [`is_compatible`](#qiskit.optimization.converters.QuadraticProgramToQubo.is_compatible "qiskit.optimization.converters.QuadraticProgramToQubo.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method.                      |
+  <Function id="qiskit.optimization.converters.QuadraticProgramToQubo.convert" name="convert" signature="convert(problem)">
+    Convert a problem with linear equality constraints into new one with a QUBO form.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                             |                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [`penalty`](#qiskit.optimization.converters.QuadraticProgramToQubo.penalty "qiskit.optimization.converters.QuadraticProgramToQubo.penalty") | Returns the penalty factor used in conversion. |
+    **problem** (`QuadraticProgram`) – The problem with linear equality constraints to be solved.
 
-### convert
+    **Return type**
 
-<span id="qiskit.optimization.converters.QuadraticProgramToQubo.convert" />
+    `QuadraticProgram`
 
-`convert(problem)`
+    **Returns**
 
-Convert a problem with linear equality constraints into new one with a QUBO form.
+    The problem converted in QUBO format.
 
-**Parameters**
+    **Raises**
 
-**problem** (`QuadraticProgram`) – The problem with linear equality constraints to be solved.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – In case of an incompatible problem.
+  </Function>
 
-**Return type**
+  ### decode
 
-`QuadraticProgram`
+  <Function id="qiskit.optimization.converters.QuadraticProgramToQubo.decode" name="decode" signature="decode(result)">
+    DEPRECATED Decode a result into another form using the information of conversion.
 
-**Returns**
+    **Return type**
 
-The problem converted in QUBO format.
+    `OptimizationResult`
+  </Function>
 
-**Raises**
+  ### encode
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – In case of an incompatible problem.
+  <Function id="qiskit.optimization.converters.QuadraticProgramToQubo.encode" name="encode" signature="encode(problem)">
+    DEPRECATED Encode a QuadraticProgram into another form and keep the information required to decode the result.
 
-### decode
+    **Return type**
 
-<span id="qiskit.optimization.converters.QuadraticProgramToQubo.decode" />
+    `QuadraticProgram`
+  </Function>
 
-`decode(result)`
+  ### get\_compatibility\_msg
 
-DEPRECATED Decode a result into another form using the information of conversion.
+  <Function id="qiskit.optimization.converters.QuadraticProgramToQubo.get_compatibility_msg" name="get_compatibility_msg" signature="static get_compatibility_msg(problem)">
+    Checks whether a given problem can be solved with this optimizer.
 
-**Return type**
+    Checks whether the given problem is compatible, i.e., whether the problem can be converted to a QUBO, and otherwise, returns a message explaining the incompatibility.
 
-`OptimizationResult`
+    **Parameters**
 
-### encode
+    **problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
 
-<span id="qiskit.optimization.converters.QuadraticProgramToQubo.encode" />
+    **Return type**
 
-`encode(problem)`
+    `str`
 
-DEPRECATED Encode a QuadraticProgram into another form and keep the information required to decode the result.
+    **Returns**
 
-**Return type**
+    A message describing the incompatibility.
+  </Function>
 
-`QuadraticProgram`
+  ### interpret
 
-### get\_compatibility\_msg
+  <Function id="qiskit.optimization.converters.QuadraticProgramToQubo.interpret" name="interpret" signature="interpret(result)">
+    Convert a result of a converted problem into that of the original problem.
 
-<span id="qiskit.optimization.converters.QuadraticProgramToQubo.get_compatibility_msg" />
+    **Parameters**
 
-`static get_compatibility_msg(problem)`
+    **result** (`OptimizationResult`) – The result of the converted problem.
 
-Checks whether a given problem can be solved with this optimizer.
+    **Return type**
 
-Checks whether the given problem is compatible, i.e., whether the problem can be converted to a QUBO, and otherwise, returns a message explaining the incompatibility.
+    `OptimizationResult`
 
-**Parameters**
+    **Returns**
 
-**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+    The result of the original problem.
+  </Function>
 
-**Return type**
+  ### is\_compatible
 
-`str`
+  <Function id="qiskit.optimization.converters.QuadraticProgramToQubo.is_compatible" name="is_compatible" signature="is_compatible(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
 
-**Returns**
+    **Parameters**
 
-A message describing the incompatibility.
+    **problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
 
-### interpret
+    **Return type**
 
-<span id="qiskit.optimization.converters.QuadraticProgramToQubo.interpret" />
+    `bool`
 
-`interpret(result)`
+    **Returns**
 
-Convert a result of a converted problem into that of the original problem.
+    Returns True if the problem is compatible, False otherwise.
+  </Function>
 
-**Parameters**
+  ### penalty
 
-**result** (`OptimizationResult`) – The result of the converted problem.
+  <Function id="qiskit.optimization.converters.QuadraticProgramToQubo.penalty" name="penalty" signature="property penalty">
+    Returns the penalty factor used in conversion.
 
-**Return type**
+    **Return type**
 
-`OptimizationResult`
+    `Optional`\[`float`]
 
-**Returns**
+    **Returns**
 
-The result of the original problem.
-
-### is\_compatible
-
-<span id="qiskit.optimization.converters.QuadraticProgramToQubo.is_compatible" />
-
-`is_compatible(problem)`
-
-Checks whether a given problem can be solved with the optimizer implementing this method.
-
-**Parameters**
-
-**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-Returns True if the problem is compatible, False otherwise.
-
-### penalty
-
-<span id="qiskit.optimization.converters.QuadraticProgramToQubo.penalty" />
-
-`property penalty`
-
-Returns the penalty factor used in conversion.
-
-**Return type**
-
-`Optional`\[`float`]
-
-**Returns**
-
-The penalty factor used in conversion.
+    The penalty factor used in conversion.
+  </Function>
+</Class>
 

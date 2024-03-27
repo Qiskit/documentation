@@ -8,282 +8,264 @@ python_api_name: qiskit.pulse.instructions.Acquire
 
 # Acquire
 
-<span id="qiskit.pulse.instructions.Acquire" />
+<Class id="qiskit.pulse.instructions.Acquire" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/instructions/acquire.py" signature="qiskit.pulse.instructions.Acquire(duration, channel, mem_slot=None, reg_slot=None, kernel=None, discriminator=None, name=None)">
+  Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 
-`qiskit.pulse.instructions.Acquire(duration, channel, mem_slot=None, reg_slot=None, kernel=None, discriminator=None, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/instructions/acquire.py "view source code")
+  The Acquire instruction is used to trigger the ADC associated with a particular qubit; e.g. instantiated with AcquireChannel(0), the Acquire command will trigger data collection for the channel associated with qubit 0 readout. This instruction also provides acquisition metadata:
 
-Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
+  > *   the number of cycles during which to acquire (in terms of dt),
+  > *   the register slot to store classified, intermediary readout results,
+  > *   the memory slot to return classified results,
+  > *   the kernel to integrate raw data for each shot, and
+  > *   the discriminator to classify kerneled IQ points.
 
-The Acquire instruction is used to trigger the ADC associated with a particular qubit; e.g. instantiated with AcquireChannel(0), the Acquire command will trigger data collection for the channel associated with qubit 0 readout. This instruction also provides acquisition metadata:
+  Create a new Acquire instruction.
 
-> *   the number of cycles during which to acquire (in terms of dt),
-> *   the register slot to store classified, intermediary readout results,
-> *   the memory slot to return classified results,
-> *   the kernel to integrate raw data for each shot, and
-> *   the discriminator to classify kerneled IQ points.
+  **Parameters**
 
-Create a new Acquire instruction.
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Length of time to acquire data in terms of dt.
+  *   **channel** ([*AcquireChannel*](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")) – The channel that will acquire data.
+  *   **mem\_slot** ([*MemorySlot*](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot") *| None*) – The classical memory slot in which to store the classified readout result.
+  *   **reg\_slot** ([*RegisterSlot*](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot") *| None*) – The fast-access register slot in which to store the classified readout result for fast feedback.
+  *   **kernel** (*Kernel | None*) – A `Kernel` for integrating raw data.
+  *   **discriminator** (*Discriminator | None*) – A `Discriminator` for discriminating kerneled IQ data into 0/1 results.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction for display purposes.
 
-**Parameters**
+  ## Attributes
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Length of time to acquire data in terms of dt.
-*   **channel** ([*AcquireChannel*](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")) – The channel that will acquire data.
-*   **mem\_slot** ([*MemorySlot*](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot") *| None*) – The classical memory slot in which to store the classified readout result.
-*   **reg\_slot** ([*RegisterSlot*](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot") *| None*) – The fast-access register slot in which to store the classified readout result for fast feedback.
-*   **kernel** (*Kernel | None*) – A `Kernel` for integrating raw data.
-*   **discriminator** (*Discriminator | None*) – A `Discriminator` for discriminating kerneled IQ data into 0/1 results.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction for display purposes.
+  ### acquire
 
-## Attributes
+  <Attribute id="qiskit.pulse.instructions.Acquire.acquire" name="acquire">
+    Acquire channel to acquire data. The `AcquireChannel` index maps trivially to qubit index.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.Acquire.acquire" />
+  ### channel
 
-### acquire
+  <Attribute id="qiskit.pulse.instructions.Acquire.channel" name="channel">
+    Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+  </Attribute>
 
-Acquire channel to acquire data. The `AcquireChannel` index maps trivially to qubit index.
+  ### channels
 
-<span id="qiskit.pulse.instructions.Acquire.channel" />
+  <Attribute id="qiskit.pulse.instructions.Acquire.channels" name="channels">
+    Returns the channels that this schedule uses.
+  </Attribute>
 
-### channel
+  ### discriminator
 
-Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+  <Attribute id="qiskit.pulse.instructions.Acquire.discriminator" name="discriminator">
+    Return discrimination settings.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.Acquire.channels" />
+  ### duration
 
-### channels
+  <Attribute id="qiskit.pulse.instructions.Acquire.duration" name="duration">
+    Duration of this instruction.
+  </Attribute>
 
-Returns the channels that this schedule uses.
+  ### id
 
-<span id="qiskit.pulse.instructions.Acquire.discriminator" />
+  <Attribute id="qiskit.pulse.instructions.Acquire.id" name="id">
+    Unique identifier for this instruction.
+  </Attribute>
 
-### discriminator
+  ### instructions
 
-Return discrimination settings.
+  <Attribute id="qiskit.pulse.instructions.Acquire.instructions" name="instructions">
+    Iterable for getting instructions from Schedule tree.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.Acquire.duration" />
+  ### kernel
 
-### duration
+  <Attribute id="qiskit.pulse.instructions.Acquire.kernel" name="kernel">
+    Return kernel settings.
+  </Attribute>
 
-Duration of this instruction.
+  ### mem\_slot
 
-<span id="qiskit.pulse.instructions.Acquire.id" />
+  <Attribute id="qiskit.pulse.instructions.Acquire.mem_slot" name="mem_slot">
+    The classical memory slot which will store the classified readout result.
+  </Attribute>
 
-### id
+  ### name
 
-Unique identifier for this instruction.
+  <Attribute id="qiskit.pulse.instructions.Acquire.name" name="name">
+    Name of this instruction.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.Acquire.instructions" />
+  ### operands
 
-### instructions
+  <Attribute id="qiskit.pulse.instructions.Acquire.operands" name="operands">
+    Return instruction operands.
+  </Attribute>
 
-Iterable for getting instructions from Schedule tree.
+  ### parameters
 
-<span id="qiskit.pulse.instructions.Acquire.kernel" />
+  <Attribute id="qiskit.pulse.instructions.Acquire.parameters" name="parameters">
+    Parameters which determine the instruction behavior.
+  </Attribute>
 
-### kernel
+  ### reg\_slot
 
-Return kernel settings.
+  <Attribute id="qiskit.pulse.instructions.Acquire.reg_slot" name="reg_slot">
+    The fast-access register slot which will store the classified readout result for fast-feedback computation.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.Acquire.mem_slot" />
+  ### start\_time
 
-### mem\_slot
+  <Attribute id="qiskit.pulse.instructions.Acquire.start_time" name="start_time">
+    Relative begin time of this instruction.
+  </Attribute>
 
-The classical memory slot which will store the classified readout result.
+  ### stop\_time
 
-<span id="qiskit.pulse.instructions.Acquire.name" />
+  <Attribute id="qiskit.pulse.instructions.Acquire.stop_time" name="stop_time">
+    Relative end time of this instruction.
+  </Attribute>
 
-### name
+  ## Methods
 
-Name of this instruction.
+  ### append
 
-<span id="qiskit.pulse.instructions.Acquire.operands" />
+  <Function id="qiskit.pulse.instructions.Acquire.append" name="append" signature="append(schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
-### operands
+    **Parameters**
 
-Return instruction operands.
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
 
-<span id="qiskit.pulse.instructions.Acquire.parameters" />
+    **Returns**
 
-### parameters
+    A new schedule with `schedule` a this instruction at t=0.
 
-Parameters which determine the instruction behavior.
+    **Return type**
 
-<span id="qiskit.pulse.instructions.Acquire.reg_slot" />
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-### reg\_slot
+  ### ch\_duration
 
-The fast-access register slot which will store the classified readout result for fast-feedback computation.
+  <Function id="qiskit.pulse.instructions.Acquire.ch_duration" name="ch_duration" signature="ch_duration(*channels)">
+    Return duration of the supplied channels in this Instruction.
 
-<span id="qiskit.pulse.instructions.Acquire.start_time" />
+    **Parameters**
 
-### start\_time
+    **\*channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
 
-Relative begin time of this instruction.
+    **Return type**
 
-<span id="qiskit.pulse.instructions.Acquire.stop_time" />
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Function>
 
-### stop\_time
+  ### ch\_start\_time
 
-Relative end time of this instruction.
+  <Function id="qiskit.pulse.instructions.Acquire.ch_start_time" name="ch_start_time" signature="ch_start_time(*channels)">
+    Return minimum start time for supplied channels.
 
-## Methods
+    **Parameters**
 
-### append
+    **\*channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
 
-<span id="qiskit.pulse.instructions.Acquire.append" />
+    **Return type**
 
-`append(schedule, name=None)`
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Function>
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+  ### ch\_stop\_time
 
-**Parameters**
+  <Function id="qiskit.pulse.instructions.Acquire.ch_stop_time" name="ch_stop_time" signature="ch_stop_time(*channels)">
+    Return maximum start time for supplied channels.
 
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
+    **Parameters**
 
-**Returns**
+    **\*channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
 
-A new schedule with `schedule` a this instruction at t=0.
+    **Return type**
 
-**Return type**
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Function>
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  ### draw
 
-### ch\_duration
+  <Function id="qiskit.pulse.instructions.Acquire.draw" name="draw" signature="draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)">
+    Plot the instruction.
 
-<span id="qiskit.pulse.instructions.Acquire.ch_duration" />
+    <Admonition title="Deprecated since version 0.23.0" type="danger">
+      The method `qiskit.pulse.instructions.instruction.Instruction.draw()` is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. No direct alternative is being provided to drawing individual pulses. But, instructions can be visualized as part of a complete schedule using `qiskit.visualization.pulse_drawer`.
+    </Admonition>
 
-`ch_duration(*channels)`
+    **Parameters**
 
-Return duration of the supplied channels in this Instruction.
+    *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Time interval of samples
+    *   **style** (*Optional\[SchedStyle]*) – A style sheet to configure plot appearance
+    *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name required to save pulse image
+    *   **interp\_method** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)") *| None*) – A function for interpolation
+    *   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Relative visual scaling of waveform amplitudes
+    *   **plot\_all** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Plot empty channels
+    *   **plot\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – A tuple of time range to plot
+    *   **interactive** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
+    *   **table** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Draw event table for supported instructions
+    *   **label** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Label individual instructions
+    *   **framechange** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Add framechange indicators
+    *   **channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A list of channel names to plot
 
-**Parameters**
+    **Returns**
 
-**\*channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
+    A matplotlib figure object of the pulse schedule
 
-**Return type**
+    **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    matplotlib.figure
+  </Function>
 
-### ch\_start\_time
+  ### insert
 
-<span id="qiskit.pulse.instructions.Acquire.ch_start_time" />
+  <Function id="qiskit.pulse.instructions.Acquire.insert" name="insert" signature="insert(start_time, schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
-`ch_start_time(*channels)`
+    **Parameters**
 
-Return minimum start time for supplied channels.
+    *   **start\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to insert the schedule schedule
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
 
-**Parameters**
+    **Returns**
 
-**\*channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
+    A new schedule with `schedule` inserted with this instruction at t=0.
 
-**Return type**
+    **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-### ch\_stop\_time
+  ### is\_parameterized
 
-<span id="qiskit.pulse.instructions.Acquire.ch_stop_time" />
+  <Function id="qiskit.pulse.instructions.Acquire.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the instruction is parameterized.
 
-`ch_stop_time(*channels)`
+    **Return type**
 
-Return maximum start time for supplied channels.
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-**Parameters**
+  ### shift
 
-**\*channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
+  <Function id="qiskit.pulse.instructions.Acquire.shift" name="shift" signature="shift(time, name=None)">
+    Return a new schedule shifted forward by time.
 
-**Return type**
+    **Parameters**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    *   **time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to shift by
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
 
-### draw
+    **Returns**
 
-<span id="qiskit.pulse.instructions.Acquire.draw" />
+    The shifted schedule.
 
-`draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
+    **Return type**
 
-Plot the instruction.
-
-<Admonition title="Deprecated since version 0.23.0" type="danger">
-  The method `qiskit.pulse.instructions.instruction.Instruction.draw()` is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. No direct alternative is being provided to drawing individual pulses. But, instructions can be visualized as part of a complete schedule using `qiskit.visualization.pulse_drawer`.
-</Admonition>
-
-**Parameters**
-
-*   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Time interval of samples
-*   **style** (*Optional\[SchedStyle]*) – A style sheet to configure plot appearance
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name required to save pulse image
-*   **interp\_method** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)") *| None*) – A function for interpolation
-*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Relative visual scaling of waveform amplitudes
-*   **plot\_all** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Plot empty channels
-*   **plot\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – A tuple of time range to plot
-*   **interactive** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
-*   **table** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Draw event table for supported instructions
-*   **label** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Label individual instructions
-*   **framechange** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Add framechange indicators
-*   **channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A list of channel names to plot
-
-**Returns**
-
-A matplotlib figure object of the pulse schedule
-
-**Return type**
-
-matplotlib.figure
-
-### insert
-
-<span id="qiskit.pulse.instructions.Acquire.insert" />
-
-`insert(start_time, schedule, name=None)`
-
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
-
-**Parameters**
-
-*   **start\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to insert the schedule schedule
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
-
-**Returns**
-
-A new schedule with `schedule` inserted with this instruction at t=0.
-
-**Return type**
-
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
-
-### is\_parameterized
-
-<span id="qiskit.pulse.instructions.Acquire.is_parameterized" />
-
-`is_parameterized()`
-
-Return True iff the instruction is parameterized.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
-
-### shift
-
-<span id="qiskit.pulse.instructions.Acquire.shift" />
-
-`shift(time, name=None)`
-
-Return a new schedule shifted forward by time.
-
-**Parameters**
-
-*   **time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to shift by
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
-
-**Returns**
-
-The shifted schedule.
-
-**Return type**
-
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
+</Class>
 

@@ -8,140 +8,134 @@ python_api_name: qiskit.circuit.library.SXGate
 
 # SXGate
 
-<span id="qiskit.circuit.library.SXGate" />
+<Class id="qiskit.circuit.library.SXGate" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/sx.py" signature="qiskit.circuit.library.SXGate(label=None)">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`qiskit.circuit.library.SXGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/sx.py "view source code")
+  The single-qubit Sqrt(X) gate ($\sqrt{X}$).
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`sx()`](qiskit.circuit.QuantumCircuit#sx "qiskit.circuit.QuantumCircuit.sx") method.
 
-The single-qubit Sqrt(X) gate ($\sqrt{X}$).
-
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`sx()`](qiskit.circuit.QuantumCircuit#sx "qiskit.circuit.QuantumCircuit.sx") method.
-
-**Matrix Representation:**
-
-$$
-\begin{split}\sqrt{X} = \frac{1}{2} \begin{pmatrix}
-        1 + i & 1 - i \\
-        1 - i & 1 + i
-    \end{pmatrix}\end{split}
-$$
-
-**Circuit symbol:**
-
-```python
-     ┌────┐
-q_0: ┤ √X ├
-     └────┘
-```
-
-<Admonition title="Note" type="note">
-  A global phase difference exists between the definitions of $RX(\pi/2)$ and $\sqrt{X}$.
+  **Matrix Representation:**
 
   $$
-  \begin{split}RX(\pi/2) = \frac{1}{\sqrt{2}} \begin{pmatrix}
-              1 & -i \\
-              -i & 1
-            \end{pmatrix}
-          = e^{-i \pi/4} \sqrt{X}\end{split}
+  \begin{split}\sqrt{X} = \frac{1}{2} \begin{pmatrix}
+          1 + i & 1 - i \\
+          1 - i & 1 + i
+      \end{pmatrix}\end{split}
   $$
-</Admonition>
 
-Create new SX gate.
+  **Circuit symbol:**
 
-## Attributes
+  ```python
+       ┌────┐
+  q_0: ┤ √X ├
+       └────┘
+  ```
 
-<span id="qiskit.circuit.library.SXGate.condition_bits" />
+  <Admonition title="Note" type="note">
+    A global phase difference exists between the definitions of $RX(\pi/2)$ and $\sqrt{X}$.
 
-### condition\_bits
+    $$
+    \begin{split}RX(\pi/2) = \frac{1}{\sqrt{2}} \begin{pmatrix}
+                1 & -i \\
+                -i & 1
+              \end{pmatrix}
+            = e^{-i \pi/4} \sqrt{X}\end{split}
+    $$
+  </Admonition>
 
-Get Clbits in condition.
+  Create new SX gate.
 
-<span id="qiskit.circuit.library.SXGate.decompositions" />
+  ## Attributes
 
-### decompositions
+  ### condition\_bits
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.SXGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SXGate.definition" />
+  ### decompositions
 
-### definition
+  <Attribute id="qiskit.circuit.library.SXGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### definition
 
-<span id="qiskit.circuit.library.SXGate.duration" />
+  <Attribute id="qiskit.circuit.library.SXGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### duration
+  ### duration
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.SXGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SXGate.label" />
+  ### label
 
-### label
+  <Attribute id="qiskit.circuit.library.SXGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Return instruction label
+  ### name
 
-<span id="qiskit.circuit.library.SXGate.name" />
+  <Attribute id="qiskit.circuit.library.SXGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-### name
+  ### num\_clbits
 
-Return the name.
+  <Attribute id="qiskit.circuit.library.SXGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SXGate.num_clbits" />
+  ### num\_qubits
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.SXGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Return the number of clbits.
+  ### params
 
-<span id="qiskit.circuit.library.SXGate.num_qubits" />
+  <Attribute id="qiskit.circuit.library.SXGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### num\_qubits
+  ### unit
 
-Return the number of qubits.
+  <Attribute id="qiskit.circuit.library.SXGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SXGate.params" />
+  ## Methods
 
-### params
+  ### control
 
-return instruction params.
+  <Function id="qiskit.circuit.library.SXGate.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a (multi-)controlled-SX gate.
 
-<span id="qiskit.circuit.library.SXGate.unit" />
+    One control returns a CSX gate.
 
-### unit
+    **Parameters**
 
-Get the time unit of duration.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-## Methods
+    **Returns**
 
-### control
+    controlled version of this gate.
 
-<span id="qiskit.circuit.library.SXGate.control" />
+    **Return type**
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-Return a (multi-)controlled-SX gate.
+  ### inverse
 
-One control returns a CSX gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.SXGate.inverse" />
-
-`inverse()`
-
-Return inverse SX gate (i.e. SXdg).
+  <Function id="qiskit.circuit.library.SXGate.inverse" name="inverse" signature="inverse()">
+    Return inverse SX gate (i.e. SXdg).
+  </Function>
+</Class>
 

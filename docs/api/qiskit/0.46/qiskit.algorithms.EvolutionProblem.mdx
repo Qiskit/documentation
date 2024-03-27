@@ -8,55 +8,51 @@ python_api_name: qiskit.algorithms.EvolutionProblem
 
 # EvolutionProblem
 
-<span id="qiskit.algorithms.EvolutionProblem" />
+<Class id="qiskit.algorithms.EvolutionProblem" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/evolvers/evolution_problem.py" signature="qiskit.algorithms.EvolutionProblem(hamiltonian, time, initial_state=None, aux_operators=None, truncation_threshold=1e-12, t_param=None, param_value_dict=None)">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.algorithms.EvolutionProblem(hamiltonian, time, initial_state=None, aux_operators=None, truncation_threshold=1e-12, t_param=None, param_value_dict=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/evolvers/evolution_problem.py "view source code")
+  Deprecated: Evolution problem class.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  The EvolutionProblem class has been superseded by the `qiskit.algorithms.time_evolvers.TimeEvolutionProblem` class. This class will be deprecated in a future release and subsequently removed after that.
 
-Deprecated: Evolution problem class.
+  This class is the input to time evolution algorithms and must contain information on the total evolution time, a quantum state to be evolved and under which Hamiltonian the state is evolved.
 
-The EvolutionProblem class has been superseded by the `qiskit.algorithms.time_evolvers.TimeEvolutionProblem` class. This class will be deprecated in a future release and subsequently removed after that.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.algorithms.evolvers.evolution_problem.EvolutionProblem` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the class `qiskit.algorithms.time_evolvers.TimeEvolutionProblem`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  </Admonition>
 
-This class is the input to time evolution algorithms and must contain information on the total evolution time, a quantum state to be evolved and under which Hamiltonian the state is evolved.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.algorithms.evolvers.evolution_problem.EvolutionProblem` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the class `qiskit.algorithms.time_evolvers.TimeEvolutionProblem`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+  *   **hamiltonian** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – The Hamiltonian under which to evolve the system.
+  *   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Total time of evolution.
+  *   **initial\_state** ([*StateFn*](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.StateFn")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – The quantum state to be evolved for methods like Trotterization. For variational time evolutions, where the evolution happens in an ansatz, this argument is not required.
+  *   **aux\_operators** (*ListOrDict\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")*] | None*) – Optional list of auxiliary operators to be evaluated with the evolved `initial_state` and their expectation values returned.
+  *   **truncation\_threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Defines a threshold under which values can be assumed to be 0. Used when `aux_operators` is provided.
+  *   **t\_param** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter") *| None*) – Time parameter in case of a time-dependent Hamiltonian. This free parameter must be within the `hamiltonian`.
+  *   **param\_value\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*] | None*) – Maps free parameters in the problem to values. Depending on the algorithm, it might refer to e.g. a Hamiltonian or an initial state.
 
-**Parameters**
+  **Raises**
 
-*   **hamiltonian** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – The Hamiltonian under which to evolve the system.
-*   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Total time of evolution.
-*   **initial\_state** ([*StateFn*](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.StateFn")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – The quantum state to be evolved for methods like Trotterization. For variational time evolutions, where the evolution happens in an ansatz, this argument is not required.
-*   **aux\_operators** (*ListOrDict\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")*] | None*) – Optional list of auxiliary operators to be evaluated with the evolved `initial_state` and their expectation values returned.
-*   **truncation\_threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Defines a threshold under which values can be assumed to be 0. Used when `aux_operators` is provided.
-*   **t\_param** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter") *| None*) – Time parameter in case of a time-dependent Hamiltonian. This free parameter must be within the `hamiltonian`.
-*   **param\_value\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*] | None*) – Maps free parameters in the problem to values. Depending on the algorithm, it might refer to e.g. a Hamiltonian or an initial state.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If non-positive time of evolution is provided.
 
-**Raises**
+  ## Attributes
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If non-positive time of evolution is provided.
+  ### time
 
-## Attributes
+  <Attribute id="qiskit.algorithms.EvolutionProblem.time" name="time">
+    Returns time.
+  </Attribute>
 
-<span id="qiskit.algorithms.EvolutionProblem.time" />
+  ## Methods
 
-### time
+  ### validate\_params
 
-Returns time.
+  <Function id="qiskit.algorithms.EvolutionProblem.validate_params" name="validate_params" signature="validate_params()">
+    Checks if all parameters present in the Hamiltonian are also present in the dictionary that maps them to values.
 
-## Methods
+    **Raises**
 
-### validate\_params
-
-<span id="qiskit.algorithms.EvolutionProblem.validate_params" />
-
-`validate_params()`
-
-Checks if all parameters present in the Hamiltonian are also present in the dictionary that maps them to values.
-
-**Raises**
-
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If Hamiltonian parameters cannot be bound with data provided.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If Hamiltonian parameters cannot be bound with data provided.
+  </Function>
+</Class>
 

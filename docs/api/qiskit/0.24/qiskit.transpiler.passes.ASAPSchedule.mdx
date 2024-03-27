@@ -10,95 +10,83 @@ python_api_name: qiskit.transpiler.passes.ASAPSchedule
 
 # qiskit.transpiler.passes.ASAPSchedule
 
-<span id="qiskit.transpiler.passes.ASAPSchedule" />
+<Class id="qiskit.transpiler.passes.ASAPSchedule" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/scheduling/asap.py" signature="ASAPSchedule(*args, **kwargs)">
+  ASAP Scheduling.
 
-`ASAPSchedule(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/scheduling/asap.py "view source code")
+  ASAPSchedule initializer.
 
-ASAP Scheduling.
+  **Parameters**
 
-ASAPSchedule initializer.
+  **durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Durations of instructions to be used in scheduling
 
-**Parameters**
+  ### \_\_init\_\_
 
-**durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Durations of instructions to be used in scheduling
+  <Function id="qiskit.transpiler.passes.ASAPSchedule.__init__" name="__init__" signature="__init__(durations)">
+    ASAPSchedule initializer.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.ASAPSchedule.__init__" />
+    **durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Durations of instructions to be used in scheduling
+  </Function>
 
-`__init__(durations)`
+  ## Methods
 
-ASAPSchedule initializer.
+  |                                                                                                                           |                                   |
+  | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+  | [`__init__`](#qiskit.transpiler.passes.ASAPSchedule.__init__ "qiskit.transpiler.passes.ASAPSchedule.__init__")(durations) | ASAPSchedule initializer.         |
+  | [`name`](#qiskit.transpiler.passes.ASAPSchedule.name "qiskit.transpiler.passes.ASAPSchedule.name")()                      | Return the name of the pass.      |
+  | [`run`](#qiskit.transpiler.passes.ASAPSchedule.run "qiskit.transpiler.passes.ASAPSchedule.run")(dag\[, time\_unit])       | Run the ASAPSchedule pass on dag. |
 
-**Parameters**
+  ## Attributes
 
-**durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Durations of instructions to be used in scheduling
+  |                                                                                                                                                          |                                             |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+  | [`is_analysis_pass`](#qiskit.transpiler.passes.ASAPSchedule.is_analysis_pass "qiskit.transpiler.passes.ASAPSchedule.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
+  | [`is_transformation_pass`](#qiskit.transpiler.passes.ASAPSchedule.is_transformation_pass "qiskit.transpiler.passes.ASAPSchedule.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-## Methods
+  ### is\_analysis\_pass
 
-|                                                                                                                           |                                   |
-| ------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| [`__init__`](#qiskit.transpiler.passes.ASAPSchedule.__init__ "qiskit.transpiler.passes.ASAPSchedule.__init__")(durations) | ASAPSchedule initializer.         |
-| [`name`](#qiskit.transpiler.passes.ASAPSchedule.name "qiskit.transpiler.passes.ASAPSchedule.name")()                      | Return the name of the pass.      |
-| [`run`](#qiskit.transpiler.passes.ASAPSchedule.run "qiskit.transpiler.passes.ASAPSchedule.run")(dag\[, time\_unit])       | Run the ASAPSchedule pass on dag. |
+  <Function id="qiskit.transpiler.passes.ASAPSchedule.is_analysis_pass" name="is_analysis_pass" signature="property is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-## Attributes
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Function>
 
-|                                                                                                                                                          |                                             |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| [`is_analysis_pass`](#qiskit.transpiler.passes.ASAPSchedule.is_analysis_pass "qiskit.transpiler.passes.ASAPSchedule.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
-| [`is_transformation_pass`](#qiskit.transpiler.passes.ASAPSchedule.is_transformation_pass "qiskit.transpiler.passes.ASAPSchedule.is_transformation_pass") | Check if the pass is a transformation pass. |
+  ### is\_transformation\_pass
 
-### is\_analysis\_pass
+  <Function id="qiskit.transpiler.passes.ASAPSchedule.is_transformation_pass" name="is_transformation_pass" signature="property is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-<span id="qiskit.transpiler.passes.ASAPSchedule.is_analysis_pass" />
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Function>
 
-`property is_analysis_pass`
+  ### name
 
-Check if the pass is an analysis pass.
+  <Function id="qiskit.transpiler.passes.ASAPSchedule.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  ### run
 
-### is\_transformation\_pass
+  <Function id="qiskit.transpiler.passes.ASAPSchedule.run" name="run" signature="run(dag, time_unit=None)">
+    Run the ASAPSchedule pass on dag.
 
-<span id="qiskit.transpiler.passes.ASAPSchedule.is_transformation_pass" />
+    **Parameters**
 
-`property is_transformation_pass`
+    *   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to schedule.
+    *   **time\_unit** (*str*) – Time unit to be used in scheduling: ‘dt’ or ‘s’.
 
-Check if the pass is a transformation pass.
+    **Returns**
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    A scheduled DAG.
 
-### name
+    **Return type**
 
-<span id="qiskit.transpiler.passes.ASAPSchedule.name" />
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-`name()`
+    **Raises**
 
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.ASAPSchedule.run" />
-
-`run(dag, time_unit=None)`
-
-Run the ASAPSchedule pass on dag.
-
-**Parameters**
-
-*   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to schedule.
-*   **time\_unit** (*str*) – Time unit to be used in scheduling: ‘dt’ or ‘s’.
-
-**Returns**
-
-A scheduled DAG.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-**Raises**
-
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the circuit is not mapped on physical qubits.
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the circuit is not mapped on physical qubits.
+  </Function>
+</Class>
 

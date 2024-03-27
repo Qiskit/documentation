@@ -8,170 +8,152 @@ python_api_name: qiskit.aqua.algorithms.Shor
 
 # qiskit.aqua.algorithms.Shor
 
-<span id="qiskit.aqua.algorithms.Shor" />
+<Class id="qiskit.aqua.algorithms.Shor" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/factorizers/shor.py" signature="Shor(N=15, a=2, quantum_instance=None)">
+  Shor’s factoring algorithm.
 
-`Shor(N=15, a=2, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/factorizers/shor.py "view source code")
+  Shor’s Factoring algorithm is one of the most well-known quantum algorithms and finds the prime factors for input integer $N$ in polynomial time.
 
-Shor’s factoring algorithm.
+  The input integer $N$ to be factored is expected to be odd and greater than 2. Even though this implementation is general, its capability will be limited by the capacity of the simulator/hardware. Another input integer $a$ can also be supplied, which needs to be a co-prime smaller than $N$ .
 
-Shor’s Factoring algorithm is one of the most well-known quantum algorithms and finds the prime factors for input integer $N$ in polynomial time.
+  Adapted from [https://github.com/ttlion/ShorAlgQiskit](https://github.com/ttlion/ShorAlgQiskit)
 
-The input integer $N$ to be factored is expected to be odd and greater than 2. Even though this implementation is general, its capability will be limited by the capacity of the simulator/hardware. Another input integer $a$ can also be supplied, which needs to be a co-prime smaller than $N$ .
+  See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph/0205095)
 
-Adapted from [https://github.com/ttlion/ShorAlgQiskit](https://github.com/ttlion/ShorAlgQiskit)
+  **Parameters**
 
-See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph/0205095)
+  *   **N** (`int`) – The integer to be factored, has a min. value of 3.
 
-**Parameters**
+  *   **a** (`int`) – Any integer that satisfies 1 \< a \< N and gcd(a, N) = 1.
 
-*   **N** (`int`) – The integer to be factored, has a min. value of 3.
+  *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) –
 
-*   **a** (`int`) – Any integer that satisfies 1 \< a \< N and gcd(a, N) = 1.
+      Quantum Instance or Backend
 
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) –
+      **Raises:**
 
-    Quantum Instance or Backend
+      ValueError: Invalid input
 
-    **Raises:**
+  ### \_\_init\_\_
 
-    ValueError: Invalid input
+  <Function id="qiskit.aqua.algorithms.Shor.__init__" name="__init__" signature="__init__(N=15, a=2, quantum_instance=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **N** (`int`) – The integer to be factored, has a min. value of 3.
 
-<span id="qiskit.aqua.algorithms.Shor.__init__" />
+    *   **a** (`int`) – Any integer that satisfies 1 \< a \< N and gcd(a, N) = 1.
 
-`__init__(N=15, a=2, quantum_instance=None)`
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) –
 
-**Parameters**
+        Quantum Instance or Backend
 
-*   **N** (`int`) – The integer to be factored, has a min. value of 3.
+        **Raises:**
 
-*   **a** (`int`) – Any integer that satisfies 1 \< a \< N and gcd(a, N) = 1.
+        ValueError: Invalid input
+  </Function>
 
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) –
+  ## Methods
 
-    Quantum Instance or Backend
+  |                                                                                                                                       |                                                                                |
+  | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.aqua.algorithms.Shor.__init__ "qiskit.aqua.algorithms.Shor.__init__")(\[N, a, quantum\_instance])                | **type N**`int`                                                                |
+  | [`construct_circuit`](#qiskit.aqua.algorithms.Shor.construct_circuit "qiskit.aqua.algorithms.Shor.construct_circuit")(\[measurement]) | Construct circuit.                                                             |
+  | [`modinv`](#qiskit.aqua.algorithms.Shor.modinv "qiskit.aqua.algorithms.Shor.modinv")(a, m)                                            | Returns the modular multiplicative inverse of a with respect to the modulus m. |
+  | [`run`](#qiskit.aqua.algorithms.Shor.run "qiskit.aqua.algorithms.Shor.run")(\[quantum\_instance])                                     | Execute the algorithm with selected backend.                                   |
+  | [`set_backend`](#qiskit.aqua.algorithms.Shor.set_backend "qiskit.aqua.algorithms.Shor.set_backend")(backend, \*\*kwargs)              | Sets backend with configuration.                                               |
 
-    **Raises:**
+  ## Attributes
 
-    ValueError: Invalid input
+  |                                                                                                                    |                           |
+  | ------------------------------------------------------------------------------------------------------------------ | ------------------------- |
+  | [`backend`](#qiskit.aqua.algorithms.Shor.backend "qiskit.aqua.algorithms.Shor.backend")                            | Returns backend.          |
+  | [`quantum_instance`](#qiskit.aqua.algorithms.Shor.quantum_instance "qiskit.aqua.algorithms.Shor.quantum_instance") | Returns quantum instance. |
+  | [`random`](#qiskit.aqua.algorithms.Shor.random "qiskit.aqua.algorithms.Shor.random")                               | Return a numpy random.    |
 
-## Methods
+  ### backend
 
-|                                                                                                                                       |                                                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.aqua.algorithms.Shor.__init__ "qiskit.aqua.algorithms.Shor.__init__")(\[N, a, quantum\_instance])                | **type N**`int`                                                                |
-| [`construct_circuit`](#qiskit.aqua.algorithms.Shor.construct_circuit "qiskit.aqua.algorithms.Shor.construct_circuit")(\[measurement]) | Construct circuit.                                                             |
-| [`modinv`](#qiskit.aqua.algorithms.Shor.modinv "qiskit.aqua.algorithms.Shor.modinv")(a, m)                                            | Returns the modular multiplicative inverse of a with respect to the modulus m. |
-| [`run`](#qiskit.aqua.algorithms.Shor.run "qiskit.aqua.algorithms.Shor.run")(\[quantum\_instance])                                     | Execute the algorithm with selected backend.                                   |
-| [`set_backend`](#qiskit.aqua.algorithms.Shor.set_backend "qiskit.aqua.algorithms.Shor.set_backend")(backend, \*\*kwargs)              | Sets backend with configuration.                                               |
+  <Function id="qiskit.aqua.algorithms.Shor.backend" name="backend" signature="property backend">
+    Returns backend.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                    |                           |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------- |
-| [`backend`](#qiskit.aqua.algorithms.Shor.backend "qiskit.aqua.algorithms.Shor.backend")                            | Returns backend.          |
-| [`quantum_instance`](#qiskit.aqua.algorithms.Shor.quantum_instance "qiskit.aqua.algorithms.Shor.quantum_instance") | Returns quantum instance. |
-| [`random`](#qiskit.aqua.algorithms.Shor.random "qiskit.aqua.algorithms.Shor.random")                               | Return a numpy random.    |
+    `Union`\[`Backend`, `BaseBackend`]
+  </Function>
 
-### backend
+  ### construct\_circuit
 
-<span id="qiskit.aqua.algorithms.Shor.backend" />
+  <Function id="qiskit.aqua.algorithms.Shor.construct_circuit" name="construct_circuit" signature="construct_circuit(measurement=False)">
+    Construct circuit.
 
-`property backend`
+    **Parameters**
 
-Returns backend.
+    **measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
 
-**Return type**
+    **Return type**
 
-`Union`\[`Backend`, `BaseBackend`]
+    `QuantumCircuit`
 
-### construct\_circuit
+    **Returns**
 
-<span id="qiskit.aqua.algorithms.Shor.construct_circuit" />
+    Quantum circuit.
+  </Function>
 
-`construct_circuit(measurement=False)`
+  ### modinv
 
-Construct circuit.
+  <Function id="qiskit.aqua.algorithms.Shor.modinv" name="modinv" signature="static modinv(a, m)">
+    Returns the modular multiplicative inverse of a with respect to the modulus m.
 
-**Parameters**
+    **Return type**
 
-**measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
+    `int`
+  </Function>
 
-**Return type**
+  ### quantum\_instance
 
-`QuantumCircuit`
+  <Function id="qiskit.aqua.algorithms.Shor.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+    Returns quantum instance.
 
-**Returns**
+    **Return type**
 
-Quantum circuit.
+    `Optional`\[`QuantumInstance`]
+  </Function>
 
-### modinv
+  ### random
 
-<span id="qiskit.aqua.algorithms.Shor.modinv" />
+  <Function id="qiskit.aqua.algorithms.Shor.random" name="random" signature="property random">
+    Return a numpy random.
+  </Function>
 
-`static modinv(a, m)`
+  ### run
 
-Returns the modular multiplicative inverse of a with respect to the modulus m.
+  <Function id="qiskit.aqua.algorithms.Shor.run" name="run" signature="run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-**Return type**
+    **Parameters**
 
-`int`
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-### quantum\_instance
+    **Returns**
 
-<span id="qiskit.aqua.algorithms.Shor.quantum_instance" />
+    results of an algorithm.
 
-`property quantum_instance`
+    **Return type**
 
-Returns quantum instance.
+    dict
 
-**Return type**
+    **Raises**
 
-`Optional`\[`QuantumInstance`]
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-### random
+  ### set\_backend
 
-<span id="qiskit.aqua.algorithms.Shor.random" />
+  <Function id="qiskit.aqua.algorithms.Shor.set_backend" name="set_backend" signature="set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-`property random`
+    **Return type**
 
-Return a numpy random.
-
-### run
-
-<span id="qiskit.aqua.algorithms.Shor.run" />
-
-`run(quantum_instance=None, **kwargs)`
-
-Execute the algorithm with selected backend.
-
-**Parameters**
-
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.Shor.set_backend" />
-
-`set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

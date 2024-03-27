@@ -8,61 +8,55 @@ python_api_name: qiskit.opflow.expectations.PauliExpectation
 
 # PauliExpectation
 
-<span id="qiskit.opflow.expectations.PauliExpectation" />
+<Class id="qiskit.opflow.expectations.PauliExpectation" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/pauli_expectation.py" signature="qiskit.opflow.expectations.PauliExpectation(group_paulis=True)">
+  Bases: [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
 
-`qiskit.opflow.expectations.PauliExpectation(group_paulis=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/pauli_expectation.py "view source code")
+  An Expectation converter for Pauli-basis observables by changing Pauli measurements to a diagonal (\{Z, I}^n) basis and appending circuit post-rotations to the measured state function. Optionally groups the Paulis with the same post-rotations (those that commute with one another, or form Abelian groups) into single measurements to reduce circuit execution overhead.
 
-Bases: [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.expectations.pauli_expectation.PauliExpectation` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-An Expectation converter for Pauli-basis observables by changing Pauli measurements to a diagonal (\{Z, I}^n) basis and appending circuit post-rotations to the measured state function. Optionally groups the Paulis with the same post-rotations (those that commute with one another, or form Abelian groups) into single measurements to reduce circuit execution overhead.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.expectations.pauli_expectation.PauliExpectation` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  **group\_paulis** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to group the Pauli measurements into commuting sums, which all have the same diagonalizing circuit.
 
-**Parameters**
+  ## Methods
 
-**group\_paulis** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to group the Pauli measurements into commuting sums, which all have the same diagonalizing circuit.
+  ### compute\_variance
 
-## Methods
+  <Function id="qiskit.opflow.expectations.PauliExpectation.compute_variance" name="compute_variance" signature="compute_variance(exp_op)">
+    Compute the variance of the expectation estimator.
 
-### compute\_variance
+    **Parameters**
 
-<span id="qiskit.opflow.expectations.PauliExpectation.compute_variance" />
+    **exp\_op** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The full expectation value Operator after sampling.
 
-`compute_variance(exp_op)`
+    **Returns**
 
-Compute the variance of the expectation estimator.
+    The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation.
 
-**Parameters**
+    **Return type**
 
-**exp\_op** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The full expectation value Operator after sampling.
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") | [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
+  </Function>
 
-**Returns**
+  ### convert
 
-The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation.
+  <Function id="qiskit.opflow.expectations.PauliExpectation.convert" name="convert" signature="convert(operator)">
+    Accepts an Operator and returns a new Operator with the Pauli measurements replaced by diagonal Pauli post-rotation based measurements so they can be evaluated by sampling and averaging.
 
-**Return type**
+    **Parameters**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") | [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
+    **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator to convert.
 
-### convert
+    **Returns**
 
-<span id="qiskit.opflow.expectations.PauliExpectation.convert" />
+    The converted operator.
 
-`convert(operator)`
+    **Return type**
 
-Accepts an Operator and returns a new Operator with the Pauli measurements replaced by diagonal Pauli post-rotation based measurements so they can be evaluated by sampling and averaging.
-
-**Parameters**
-
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator to convert.
-
-**Returns**
-
-The converted operator.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
+</Class>
 

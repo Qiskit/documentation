@@ -8,119 +8,105 @@ python_api_name: qiskit.quantum_info.Quaternion
 
 # Quaternion
 
-<span id="qiskit.quantum_info.Quaternion" />
+<Class id="qiskit.quantum_info.Quaternion" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/synthesis/quaternion.py" signature="qiskit.quantum_info.Quaternion(data)">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.quantum_info.Quaternion(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/synthesis/quaternion.py "view source code")
+  A class representing a Quaternion.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  ## Methods
 
-A class representing a Quaternion.
+  ### from\_axis\_rotation
 
-## Methods
+  <Function id="qiskit.quantum_info.Quaternion.from_axis_rotation" name="from_axis_rotation" signature="classmethod from_axis_rotation(angle, axis)">
+    Return quaternion for rotation about given axis.
 
-### from\_axis\_rotation
+    **Parameters**
 
-<span id="qiskit.quantum_info.Quaternion.from_axis_rotation" />
+    *   **angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Angle in radians.
+    *   **axis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Axis for rotation
 
-`classmethod from_axis_rotation(angle, axis)`
+    **Returns**
 
-Return quaternion for rotation about given axis.
+    Quaternion for axis rotation.
 
-**Parameters**
+    **Return type**
 
-*   **angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Angle in radians.
-*   **axis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Axis for rotation
+    [Quaternion](#qiskit.quantum_info.Quaternion "qiskit.quantum_info.Quaternion")
 
-**Returns**
+    **Raises**
 
-Quaternion for axis rotation.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid input axis.
+  </Function>
 
-**Return type**
+  ### from\_euler
 
-[Quaternion](#qiskit.quantum_info.Quaternion "qiskit.quantum_info.Quaternion")
+  <Function id="qiskit.quantum_info.Quaternion.from_euler" name="from_euler" signature="classmethod from_euler(angles, order='yzy')">
+    Generate a quaternion from a set of Euler angles.
 
-**Raises**
+    **Parameters**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid input axis.
+    *   **angles** (*array\_like*) – Array of Euler angles.
+    *   **order** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Order of Euler rotations. ‘yzy’ is default.
 
-### from\_euler
+    **Returns**
 
-<span id="qiskit.quantum_info.Quaternion.from_euler" />
+    Quaternion representation of Euler rotation.
 
-`classmethod from_euler(angles, order='yzy')`
+    **Return type**
 
-Generate a quaternion from a set of Euler angles.
+    [Quaternion](#qiskit.quantum_info.Quaternion "qiskit.quantum_info.Quaternion")
+  </Function>
 
-**Parameters**
+  ### norm
 
-*   **angles** (*array\_like*) – Array of Euler angles.
-*   **order** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Order of Euler rotations. ‘yzy’ is default.
+  <Function id="qiskit.quantum_info.Quaternion.norm" name="norm" signature="norm()">
+    Norm of quaternion.
+  </Function>
 
-**Returns**
+  ### normalize
 
-Quaternion representation of Euler rotation.
+  <Function id="qiskit.quantum_info.Quaternion.normalize" name="normalize" signature="normalize(inplace=False)">
+    Normalizes a Quaternion to unit length so that it represents a valid rotation.
 
-**Return type**
+    **Parameters**
 
-[Quaternion](#qiskit.quantum_info.Quaternion "qiskit.quantum_info.Quaternion")
+    **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Do an inplace normalization.
 
-### norm
+    **Returns**
 
-<span id="qiskit.quantum_info.Quaternion.norm" />
+    Normalized quaternion.
 
-`norm()`
+    **Return type**
 
-Norm of quaternion.
+    [Quaternion](#qiskit.quantum_info.Quaternion "qiskit.quantum_info.Quaternion")
+  </Function>
 
-### normalize
+  ### to\_matrix
 
-<span id="qiskit.quantum_info.Quaternion.normalize" />
+  <Function id="qiskit.quantum_info.Quaternion.to_matrix" name="to_matrix" signature="to_matrix()">
+    Converts a unit-length quaternion to a rotation matrix.
 
-`normalize(inplace=False)`
+    **Returns**
 
-Normalizes a Quaternion to unit length so that it represents a valid rotation.
+    Rotation matrix.
 
-**Parameters**
+    **Return type**
 
-**inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Do an inplace normalization.
+    ndarray
+  </Function>
 
-**Returns**
+  ### to\_zyz
 
-Normalized quaternion.
+  <Function id="qiskit.quantum_info.Quaternion.to_zyz" name="to_zyz" signature="to_zyz()">
+    Converts a unit-length quaternion to a sequence of ZYZ Euler angles.
 
-**Return type**
+    **Returns**
 
-[Quaternion](#qiskit.quantum_info.Quaternion "qiskit.quantum_info.Quaternion")
+    Array of Euler angles.
 
-### to\_matrix
+    **Return type**
 
-<span id="qiskit.quantum_info.Quaternion.to_matrix" />
-
-`to_matrix()`
-
-Converts a unit-length quaternion to a rotation matrix.
-
-**Returns**
-
-Rotation matrix.
-
-**Return type**
-
-ndarray
-
-### to\_zyz
-
-<span id="qiskit.quantum_info.Quaternion.to_zyz" />
-
-`to_zyz()`
-
-Converts a unit-length quaternion to a sequence of ZYZ Euler angles.
-
-**Returns**
-
-Array of Euler angles.
-
-**Return type**
-
-ndarray
+    ndarray
+  </Function>
+</Class>
 

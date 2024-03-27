@@ -286,44 +286,42 @@ with qc.switch(cr) as case:
 
 ### random\_circuit
 
-<span id="qiskit.circuit.random.random_circuit" />
+<Function id="qiskit.circuit.random.random_circuit" name="random_circuit" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/random/utils.py" signature="qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)">
+  Generate random circuit of arbitrary size and form.
 
-`qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/random/utils.py "view source code")
+  This function will generate a random circuit by randomly selecting gates from the set of standard gates in [`qiskit.extensions`](extensions#module-qiskit.extensions "qiskit.extensions"). For example:
 
-Generate random circuit of arbitrary size and form.
+  ```python
+  from qiskit.circuit.random import random_circuit
 
-This function will generate a random circuit by randomly selecting gates from the set of standard gates in [`qiskit.extensions`](extensions#module-qiskit.extensions "qiskit.extensions"). For example:
+  circ = random_circuit(2, 2, measure=True)
+  circ.draw(output='mpl')
+  ```
 
-```python
-from qiskit.circuit.random import random_circuit
+  ![../\_images/circuit-5.png](/images/api/qiskit/0.45/circuit-5.png)
 
-circ = random_circuit(2, 2, measure=True)
-circ.draw(output='mpl')
-```
+  **Parameters**
 
-![../\_images/circuit-5.png](/images/api/qiskit/0.45/circuit-5.png)
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of quantum wires
+  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – layers of operations (i.e. critical path length)
+  *   **max\_operands** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – maximum qubit operands of each gate (between 1 and 4)
+  *   **measure** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, measure all qubits at the end
+  *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, insert middle measurements and conditionals
+  *   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, insert middle resets
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – sets random seed (optional)
 
-**Parameters**
+  **Returns**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of quantum wires
-*   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – layers of operations (i.e. critical path length)
-*   **max\_operands** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – maximum qubit operands of each gate (between 1 and 4)
-*   **measure** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, measure all qubits at the end
-*   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, insert middle measurements and conditionals
-*   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, insert middle resets
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – sets random seed (optional)
+  constructed circuit
 
-**Returns**
+  **Return type**
 
-constructed circuit
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-[**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – when invalid options given
+  [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – when invalid options given
+</Function>
 
 ### Circuit Analysis
 
@@ -346,11 +344,9 @@ Almost all circuit functions and methods will raise a [`CircuitError`](#qiskit.c
 
 ### CircuitError
 
-<span id="qiskit.circuit.CircuitError" />
+<Class id="qiskit.circuit.CircuitError" name="CircuitError" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/exceptions.py" signature="qiskit.circuit.CircuitError(*message)">
+  Base class for errors raised while processing a circuit.
 
-`qiskit.circuit.CircuitError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/exceptions.py "view source code")
-
-Base class for errors raised while processing a circuit.
-
-Set the error message.
+  Set the error message.
+</Class>
 

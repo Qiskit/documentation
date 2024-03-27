@@ -20,172 +20,170 @@ python_api_name: qiskit.execute_function
 
 ### execute
 
-<span id="qiskit.execute_function.execute" />
+<Function id="qiskit.execute_function.execute" name="execute" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/execute_function.py" signature="qiskit.execute_function.execute(experiments, backend, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, seed_transpiler=None, optimization_level=None, pass_manager=None, qobj_id=None, qobj_header=None, shots=None, memory=None, seed_simulator=None, default_qubit_los=None, default_meas_los=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, parameter_binds=None, schedule_circuit=False, inst_map=None, meas_map=None, scheduling_method=None, init_qubits=None, **run_config)">
+  Execute a list of [`qiskit.circuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`qiskit.pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") on a backend.
 
-`qiskit.execute_function.execute(experiments, backend, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, seed_transpiler=None, optimization_level=None, pass_manager=None, qobj_id=None, qobj_header=None, shots=None, memory=None, seed_simulator=None, default_qubit_los=None, default_meas_los=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, parameter_binds=None, schedule_circuit=False, inst_map=None, meas_map=None, scheduling_method=None, init_qubits=None, **run_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/execute_function.py "view source code")
+  The execution is asynchronous, and a handle to a job instance is returned.
 
-Execute a list of [`qiskit.circuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`qiskit.pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") on a backend.
+  <Admonition title="Deprecated since version 0.21.0" type="danger">
+    `qiskit.execute_function.execute()`’s argument `qobj_header` is deprecated as of qiskit-terra 0.21.0. It will be removed no earlier than 3 months after the release date. This argument has no effect anymore.
+  </Admonition>
 
-The execution is asynchronous, and a handle to a job instance is returned.
+  <Admonition title="Deprecated since version 0.21.0" type="danger">
+    `qiskit.execute_function.execute()`’s argument `qobj_id` is deprecated as of qiskit-terra 0.21.0. It will be removed no earlier than 3 months after the release date. This argument has no effect anymore.
+  </Admonition>
 
-<Admonition title="Deprecated since version 0.21.0" type="danger">
-  `qiskit.execute_function.execute()`’s argument `qobj_header` is deprecated as of qiskit-terra 0.21.0. It will be removed no earlier than 3 months after the release date. This argument has no effect anymore.
-</Admonition>
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.21.0" type="danger">
-  `qiskit.execute_function.execute()`’s argument `qobj_id` is deprecated as of qiskit-terra 0.21.0. It will be removed no earlier than 3 months after the release date. This argument has no effect anymore.
-</Admonition>
+  *   **experiments** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] or* [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")*]*) – Circuit(s) or pulse schedule(s) to execute
 
-**Parameters**
+  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Backend to execute circuits on. Transpiler options are automatically grabbed from backend.configuration() and backend.properties(). If any other option is explicitly set (e.g. coupling\_map), it will override the backend’s.
 
-*   **experiments** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] or* [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")*]*) – Circuit(s) or pulse schedule(s) to execute
+  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – List of basis gate names to unroll to. e.g: `['u1', 'u2', 'u3', 'cx']`. If `None`, do not unroll.
 
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Backend to execute circuits on. Transpiler options are automatically grabbed from backend.configuration() and backend.properties(). If any other option is explicitly set (e.g. coupling\_map), it will override the backend’s.
+  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) –
 
-*   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – List of basis gate names to unroll to. e.g: `['u1', 'u2', 'u3', 'cx']`. If `None`, do not unroll.
+      Coupling map (perhaps custom) to target in mapping. Multiple formats are supported:
 
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) –
+      1.  [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") instance
+      2.  `list`: must be given as an adjacency matrix, where each entry specifies all two-qubit interactions supported by backend e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
 
-    Coupling map (perhaps custom) to target in mapping. Multiple formats are supported:
+  *   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc. Find a backend that provides this information with: `backend.properties()`
 
-    1.  [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") instance
-    2.  `list`: must be given as an adjacency matrix, where each entry specifies all two-qubit interactions supported by backend e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
+  *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")  *or*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) –
 
-*   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc. Find a backend that provides this information with: `backend.properties()`
+      Initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the coupling\_map constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler may permute qubits through swaps or other means.
 
-*   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")  *or*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) –
+      Multiple formats are supported:
 
-    Initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the coupling\_map constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler may permute qubits through swaps or other means.
+      1.  [`qiskit.transpiler.Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") instance
 
-    Multiple formats are supported:
+      2.  `dict`:
 
-    1.  [`qiskit.transpiler.Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") instance
+          *   virtual to physical:
 
-    2.  `dict`:
+              ```python
+              {qr[0]: 0,
+               qr[1]: 3,
+               qr[2]: 5}
+              ```
 
-        *   virtual to physical:
+          *   physical to virtual:
 
-            ```python
-            {qr[0]: 0,
-             qr[1]: 3,
-             qr[2]: 5}
-            ```
+              ```python
+              {0: qr[0],
+               3: qr[1],
+               5: qr[2]}
+              ```
 
-        *   physical to virtual:
+      3.  `list`:
 
-            ```python
-            {0: qr[0],
-             3: qr[1],
-             5: qr[2]}
-            ```
+          *   virtual to physical:
 
-    3.  `list`:
+              ```python
+              [0, 3, 5]  # virtual qubits are ordered (in addition to named)
+              ```
 
-        *   virtual to physical:
+          *   physical to virtual:
 
-            ```python
-            [0, 3, 5]  # virtual qubits are ordered (in addition to named)
-            ```
+              ```python
+              [qr[0], None, None, qr[1], None, qr[2]]
+              ```
 
-        *   physical to virtual:
+  *   **seed\_transpiler** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Sets random seed for the stochastic parts of the transpiler
 
-            ```python
-            [qr[0], None, None, qr[1], None, qr[2]]
-            ```
+  *   **optimization\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) –
 
-*   **seed\_transpiler** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Sets random seed for the stochastic parts of the transpiler
+      How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer transpilation time.
 
-*   **optimization\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) –
+      *   0: no optimization
+      *   1: light optimization
+      *   2: heavy optimization
+      *   3: even heavier optimization
 
-    How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer transpilation time.
+      If None, level 1 will be chosen as default.
 
-    *   0: no optimization
-    *   1: light optimization
-    *   2: heavy optimization
-    *   3: even heavier optimization
+  *   **pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")) – The pass manager to use during transpilation. If this arg is present, auto-selection of pass manager based on the transpile options will be turned off and this pass manager will be used directly.
 
-    If None, level 1 will be chosen as default.
+  *   **qobj\_id** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – DEPRECATED: String identifier to annotate the Qobj. This has no effect and the `name` attribute of the input circuit(s) should be used instead.
 
-*   **pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")) – The pass manager to use during transpilation. If this arg is present, auto-selection of pass manager based on the transpile options will be turned off and this pass manager will be used directly.
+  *   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")  *or*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – DEPRECATED: User input that will be inserted in Qobj header, and will also be copied to the corresponding [`qiskit.result.Result`](qiskit.result.Result "qiskit.result.Result") header. Headers do not affect the run. Headers do not affect the run. This kwarg has no effect anymore and the [`metadata`](qiskit.circuit.QuantumCircuit#metadata "qiskit.circuit.QuantumCircuit.metadata") attribute of the input circuit(s) should be used instead.
 
-*   **qobj\_id** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – DEPRECATED: String identifier to annotate the Qobj. This has no effect and the `name` attribute of the input circuit(s) should be used instead.
+  *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of repetitions of each circuit, for sampling. Default: 1024
 
-*   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")  *or*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – DEPRECATED: User input that will be inserted in Qobj header, and will also be copied to the corresponding [`qiskit.result.Result`](qiskit.result.Result "qiskit.result.Result") header. Headers do not affect the run. Headers do not affect the run. This kwarg has no effect anymore and the [`metadata`](qiskit.circuit.QuantumCircuit#metadata "qiskit.circuit.QuantumCircuit.metadata") attribute of the input circuit(s) should be used instead.
+  *   **memory** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, per-shot measurement bitstrings are returned as well (provided the backend supports it). For OpenPulse jobs, only measurement level 2 supports this option. Default: False
 
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of repetitions of each circuit, for sampling. Default: 1024
+  *   **seed\_simulator** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Random seed to control sampling, for when backend is a simulator
 
-*   **memory** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, per-shot measurement bitstrings are returned as well (provided the backend supports it). For OpenPulse jobs, only measurement level 2 supports this option. Default: False
+  *   **default\_qubit\_los** (*Optional\[List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – List of job level qubit drive LO frequencies in Hz. Overridden by `schedule_los` if specified. Must have length `n_qubits`.
 
-*   **seed\_simulator** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Random seed to control sampling, for when backend is a simulator
+  *   **default\_meas\_los** (*Optional\[List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – List of job level measurement LO frequencies in Hz. Overridden by `schedule_los` if specified. Must have length `n_qubits`.
 
-*   **default\_qubit\_los** (*Optional\[List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – List of job level qubit drive LO frequencies in Hz. Overridden by `schedule_los` if specified. Must have length `n_qubits`.
+  *   **qubit\_lo\_range** (*Optional\[List\[List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]]*) – List of job level drive LO ranges each of form `[range_min, range_max]` in Hz. Used to validate `qubit_lo_freq`. Must have length `n_qubits`.
 
-*   **default\_meas\_los** (*Optional\[List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – List of job level measurement LO frequencies in Hz. Overridden by `schedule_los` if specified. Must have length `n_qubits`.
+  *   **meas\_lo\_range** (*Optional\[List\[List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]]*) – List of job level measurement LO ranges each of form `[range_min, range_max]` in Hz. Used to validate `meas_lo_freq`. Must have length `n_qubits`.
 
-*   **qubit\_lo\_range** (*Optional\[List\[List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]]*) – List of job level drive LO ranges each of form `[range_min, range_max]` in Hz. Used to validate `qubit_lo_freq`. Must have length `n_qubits`.
+  *   **schedule\_los** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) –
 
-*   **meas\_lo\_range** (*Optional\[List\[List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]]*) – List of job level measurement LO ranges each of form `[range_min, range_max]` in Hz. Used to validate `meas_lo_freq`. Must have length `n_qubits`.
+      Experiment level (ie circuit or schedule) LO frequency configurations for qubit drive and measurement channels. These values override the job level values from `default_qubit_los` and `default_meas_los`. Frequencies are in Hz. Settable for qasm and pulse jobs.
 
-*   **schedule\_los** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) –
+      If a single LO config or dict is used, the values are set at job level. If a list is used, the list must be the size of the number of experiments in the job, except in the case of a single experiment. In this case, a frequency sweep will be assumed and one experiment will be created for every list entry.
 
-    Experiment level (ie circuit or schedule) LO frequency configurations for qubit drive and measurement channels. These values override the job level values from `default_qubit_los` and `default_meas_los`. Frequencies are in Hz. Settable for qasm and pulse jobs.
+      Not every channel is required to be specified. If not specified, the backend default value will be used.
 
-    If a single LO config or dict is used, the values are set at job level. If a list is used, the list must be the size of the number of experiments in the job, except in the case of a single experiment. In this case, a frequency sweep will be assumed and one experiment will be created for every list entry.
+  *   **meas\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or MeasLevel*) – Set the appropriate level of the measurement output for pulse experiments.
 
-    Not every channel is required to be specified. If not specified, the backend default value will be used.
+  *   **meas\_return** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or MeasReturn*) – Level of measurement data for the backend to return For `meas_level` 0 and 1: `"single"` returns information from every shot. `"avg"` returns average measurement output (averaged over number of shots).
 
-*   **meas\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or MeasLevel*) – Set the appropriate level of the measurement output for pulse experiments.
+  *   **memory\_slots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of classical memory slots used in this job.
 
-*   **meas\_return** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or MeasReturn*) – Level of measurement data for the backend to return For `meas_level` 0 and 1: `"single"` returns information from every shot. `"avg"` returns average measurement output (averaged over number of shots).
+  *   **memory\_slot\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Size of each memory slot if the output is Level 0.
 
-*   **memory\_slots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of classical memory slots used in this job.
+  *   **rep\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time per program execution in seconds. Must be from the list provided by the backend (`backend.configuration().rep_times`). Defaults to the first entry.
 
-*   **memory\_slot\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Size of each memory slot if the output is Level 0.
+  *   **rep\_delay** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Delay between programs in seconds. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). If supported, `rep_delay` will be used instead of `rep_time` and must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is given by `backend.configuration().default_rep_delay`.
 
-*   **rep\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time per program execution in seconds. Must be from the list provided by the backend (`backend.configuration().rep_times`). Defaults to the first entry.
+  *   **parameter\_binds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*]*) – List of Parameter bindings over which the set of experiments will be executed. Each list element (bind) should be of the form `{Parameter1: value1, Parameter2: value2, ...}`. All binds will be executed across all experiments, e.g. if parameter\_binds is a length-$n$ list, and there are $m$ experiments, a total of $m \times n$ experiments will be run (one for each experiment/bind pair).
 
-*   **rep\_delay** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Delay between programs in seconds. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). If supported, `rep_delay` will be used instead of `rep_time` and must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is given by `backend.configuration().default_rep_delay`.
+  *   **schedule\_circuit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, `experiments` will be converted to [`qiskit.pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects prior to execution.
 
-*   **parameter\_binds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*]*) – List of Parameter bindings over which the set of experiments will be executed. Each list element (bind) should be of the form `{Parameter1: value1, Parameter2: value2, ...}`. All binds will be executed across all experiments, e.g. if parameter\_binds is a length-$n$ list, and there are $m$ experiments, a total of $m \times n$ experiments will be run (one for each experiment/bind pair).
+  *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – Mapping of circuit operations to pulse schedules. If None, defaults to the `instruction_schedule_map` of `backend`.
 
-*   **schedule\_circuit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, `experiments` will be converted to [`qiskit.pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects prior to execution.
+  *   **meas\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*))*) – List of sets of qubits that must be measured together. If None, defaults to the `meas_map` of `backend`.
 
-*   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – Mapping of circuit operations to pulse schedules. If None, defaults to the `instruction_schedule_map` of `backend`.
+  *   **scheduling\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*)*) – Optionally specify a particular scheduling method.
 
-*   **meas\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*))*) – List of sets of qubits that must be measured together. If None, defaults to the `meas_map` of `backend`.
+  *   **init\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to reset the qubits to the ground state for each shot. Default: `True`.
 
-*   **scheduling\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*)*) – Optionally specify a particular scheduling method.
+  *   **run\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Extra arguments used to configure the run (e.g. for Aer configurable backends). Refer to the backend documentation for details on these arguments. Note: for now, these keyword arguments will both be copied to the Qobj config, and passed to backend.run()
 
-*   **init\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to reset the qubits to the ground state for each shot. Default: `True`.
+  **Returns**
 
-*   **run\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Extra arguments used to configure the run (e.g. for Aer configurable backends). Refer to the backend documentation for details on these arguments. Note: for now, these keyword arguments will both be copied to the Qobj config, and passed to backend.run()
+  returns job instance derived from Job
 
-**Returns**
+  **Return type**
 
-returns job instance derived from Job
+  [Job](qiskit.providers.Job "qiskit.providers.Job")
 
-**Return type**
+  **Raises**
 
-[Job](qiskit.providers.Job "qiskit.providers.Job")
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the execution cannot be interpreted as either circuits or schedules
 
-**Raises**
+  **Example**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the execution cannot be interpreted as either circuits or schedules
+  Construct a 5-qubit GHZ circuit and execute 4321 shots on a backend.
 
-**Example**
+  ```python
+  from qiskit import QuantumCircuit, execute, BasicAer
 
-Construct a 5-qubit GHZ circuit and execute 4321 shots on a backend.
+  backend = BasicAer.get_backend('qasm_simulator')
 
-```python
-from qiskit import QuantumCircuit, execute, BasicAer
+  qc = QuantumCircuit(5, 5)
+  qc.h(0)
+  qc.cx(0, range(1, 5))
+  qc.measure_all()
 
-backend = BasicAer.get_backend('qasm_simulator')
-
-qc = QuantumCircuit(5, 5)
-qc.h(0)
-qc.cx(0, range(1, 5))
-qc.measure_all()
-
-job = execute(qc, backend, shots=4321)
-```
+  job = execute(qc, backend, shots=4321)
+  ```
+</Function>
 

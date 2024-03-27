@@ -8,67 +8,59 @@ python_api_name: qiskit.providers.models.PulseDefaults
 
 # qiskit.providers.models.PulseDefaults
 
-<span id="qiskit.providers.models.PulseDefaults" />
+<Class id="qiskit.providers.models.PulseDefaults" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/models/pulsedefaults.py" signature="PulseDefaults(qubit_freq_est, meas_freq_est, buffer, pulse_library, cmd_def, meas_kernel=None, discriminator=None, **kwargs)">
+  Description of default settings for Pulse systems. These are instructions or settings that may be good starting points for the Pulse user. The user may modify these defaults for custom scheduling.
 
-`PulseDefaults(qubit_freq_est, meas_freq_est, buffer, pulse_library, cmd_def, meas_kernel=None, discriminator=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/models/pulsedefaults.py "view source code")
+  Validate and reformat transport layer inputs to initialize. :type qubit\_freq\_est: `List`\[`float`] :param qubit\_freq\_est: Estimated qubit frequencies in GHz. :type meas\_freq\_est: `List`\[`float`] :param meas\_freq\_est: Estimated measurement cavity frequencies in GHz. :type buffer: `int` :param buffer: Default buffer time (in units of dt) between pulses. :type pulse\_library: `List`\[`PulseLibraryItem`] :param pulse\_library: Pulse name and sample definitions. :type cmd\_def: `List`\[`Command`] :param cmd\_def: Operation name and definition in terms of Commands. :type meas\_kernel: `Optional`\[`MeasurementKernel`] :param meas\_kernel: The measurement kernels :type discriminator: `Optional`\[`Discriminator`] :param discriminator: The discriminators :param \*\*kwargs: Other attributes for the super class.
 
-Description of default settings for Pulse systems. These are instructions or settings that may be good starting points for the Pulse user. The user may modify these defaults for custom scheduling.
+  ### \_\_init\_\_
 
-Validate and reformat transport layer inputs to initialize. :type qubit\_freq\_est: `List`\[`float`] :param qubit\_freq\_est: Estimated qubit frequencies in GHz. :type meas\_freq\_est: `List`\[`float`] :param meas\_freq\_est: Estimated measurement cavity frequencies in GHz. :type buffer: `int` :param buffer: Default buffer time (in units of dt) between pulses. :type pulse\_library: `List`\[`PulseLibraryItem`] :param pulse\_library: Pulse name and sample definitions. :type cmd\_def: `List`\[`Command`] :param cmd\_def: Operation name and definition in terms of Commands. :type meas\_kernel: `Optional`\[`MeasurementKernel`] :param meas\_kernel: The measurement kernels :type discriminator: `Optional`\[`Discriminator`] :param discriminator: The discriminators :param \*\*kwargs: Other attributes for the super class.
+  <Function id="qiskit.providers.models.PulseDefaults.__init__" name="__init__" signature="__init__(qubit_freq_est, meas_freq_est, buffer, pulse_library, cmd_def, meas_kernel=None, discriminator=None, **kwargs)">
+    Validate and reformat transport layer inputs to initialize. :type qubit\_freq\_est: `List`\[`float`] :param qubit\_freq\_est: Estimated qubit frequencies in GHz. :type meas\_freq\_est: `List`\[`float`] :param meas\_freq\_est: Estimated measurement cavity frequencies in GHz. :type buffer: `int` :param buffer: Default buffer time (in units of dt) between pulses. :type pulse\_library: `List`\[`PulseLibraryItem`] :param pulse\_library: Pulse name and sample definitions. :type cmd\_def: `List`\[`Command`] :param cmd\_def: Operation name and definition in terms of Commands. :type meas\_kernel: `Optional`\[`MeasurementKernel`] :param meas\_kernel: The measurement kernels :type discriminator: `Optional`\[`Discriminator`] :param discriminator: The discriminators :param \*\*kwargs: Other attributes for the super class.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.providers.models.PulseDefaults.__init__" />
+  |                                                                                                                                                      |                                                                 |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+  | [`__init__`](#qiskit.providers.models.PulseDefaults.__init__ "qiskit.providers.models.PulseDefaults.__init__")(qubit\_freq\_est, meas\_freq\_est, …) | Validate and reformat transport layer inputs to initialize.     |
+  | [`from_dict`](#qiskit.providers.models.PulseDefaults.from_dict "qiskit.providers.models.PulseDefaults.from_dict")(data)                              | Create a new PulseDefaults object from a dictionary.            |
+  | [`to_dict`](#qiskit.providers.models.PulseDefaults.to_dict "qiskit.providers.models.PulseDefaults.to_dict")()                                        | Return a dictionary format representation of the PulseDefaults. |
 
-`__init__(qubit_freq_est, meas_freq_est, buffer, pulse_library, cmd_def, meas_kernel=None, discriminator=None, **kwargs)`
+  ### from\_dict
 
-Validate and reformat transport layer inputs to initialize. :type qubit\_freq\_est: `List`\[`float`] :param qubit\_freq\_est: Estimated qubit frequencies in GHz. :type meas\_freq\_est: `List`\[`float`] :param meas\_freq\_est: Estimated measurement cavity frequencies in GHz. :type buffer: `int` :param buffer: Default buffer time (in units of dt) between pulses. :type pulse\_library: `List`\[`PulseLibraryItem`] :param pulse\_library: Pulse name and sample definitions. :type cmd\_def: `List`\[`Command`] :param cmd\_def: Operation name and definition in terms of Commands. :type meas\_kernel: `Optional`\[`MeasurementKernel`] :param meas\_kernel: The measurement kernels :type discriminator: `Optional`\[`Discriminator`] :param discriminator: The discriminators :param \*\*kwargs: Other attributes for the super class.
+  <Function id="qiskit.providers.models.PulseDefaults.from_dict" name="from_dict" signature="classmethod from_dict(data)">
+    Create a new PulseDefaults object from a dictionary.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                      |                                                                 |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [`__init__`](#qiskit.providers.models.PulseDefaults.__init__ "qiskit.providers.models.PulseDefaults.__init__")(qubit\_freq\_est, meas\_freq\_est, …) | Validate and reformat transport layer inputs to initialize.     |
-| [`from_dict`](#qiskit.providers.models.PulseDefaults.from_dict "qiskit.providers.models.PulseDefaults.from_dict")(data)                              | Create a new PulseDefaults object from a dictionary.            |
-| [`to_dict`](#qiskit.providers.models.PulseDefaults.to_dict "qiskit.providers.models.PulseDefaults.to_dict")()                                        | Return a dictionary format representation of the PulseDefaults. |
+    **data** (*dict*) – A dictionary representing the PulseDefaults to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.PulseDefaults.to_dict "qiskit.providers.models.PulseDefaults.to_dict").
 
-### from\_dict
+    **Returns**
 
-<span id="qiskit.providers.models.PulseDefaults.from_dict" />
+    The PulseDefaults from the input dictionary.
 
-`classmethod from_dict(data)`
+    **Return type**
 
-Create a new PulseDefaults object from a dictionary.
+    [PulseDefaults](#qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+  </Function>
 
-**Parameters**
+  ### meas\_freq\_est
 
-**data** (*dict*) – A dictionary representing the PulseDefaults to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.PulseDefaults.to_dict "qiskit.providers.models.PulseDefaults.to_dict").
+  <Attribute id="qiskit.providers.models.PulseDefaults.meas_freq_est" name="meas_freq_est">
+    Measurement frequencies in Hertz.
+  </Attribute>
 
-**Returns**
+  ### qubit\_freq\_est
 
-The PulseDefaults from the input dictionary.
+  <Attribute id="qiskit.providers.models.PulseDefaults.qubit_freq_est" name="qubit_freq_est">
+    Qubit frequencies in Hertz.
+  </Attribute>
 
-**Return type**
+  ### to\_dict
 
-[PulseDefaults](#qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
-
-<span id="qiskit.providers.models.PulseDefaults.meas_freq_est" />
-
-### meas\_freq\_est
-
-Measurement frequencies in Hertz.
-
-<span id="qiskit.providers.models.PulseDefaults.qubit_freq_est" />
-
-### qubit\_freq\_est
-
-Qubit frequencies in Hertz.
-
-### to\_dict
-
-<span id="qiskit.providers.models.PulseDefaults.to_dict" />
-
-`to_dict()`
-
-Return a dictionary format representation of the PulseDefaults. :returns: The dictionary form of the PulseDefaults. :rtype: dict
+  <Function id="qiskit.providers.models.PulseDefaults.to_dict" name="to_dict" signature="to_dict()">
+    Return a dictionary format representation of the PulseDefaults. :returns: The dictionary form of the PulseDefaults. :rtype: dict
+  </Function>
+</Class>
 

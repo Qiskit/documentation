@@ -8,53 +8,49 @@ python_api_name: qiskit.opflow.evolutions.QDrift
 
 # QDrift
 
-<span id="qiskit.opflow.evolutions.QDrift" />
+<Class id="qiskit.opflow.evolutions.QDrift" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/evolutions/trotterizations/qdrift.py" signature="qiskit.opflow.evolutions.QDrift(reps=1)">
+  Bases: [`TrotterizationBase`](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
 
-`qiskit.opflow.evolutions.QDrift(reps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/evolutions/trotterizations/qdrift.py "view source code")
+  Deprecated: The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight. Based on the work of Earl Campbell in [https://arxiv.org/abs/1811.08017](https://arxiv.org/abs/1811.08017).
 
-Bases: [`TrotterizationBase`](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.evolutions.trotterizations.qdrift.QDrift` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Deprecated: The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight. Based on the work of Earl Campbell in [https://arxiv.org/abs/1811.08017](https://arxiv.org/abs/1811.08017).
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.evolutions.trotterizations.qdrift.QDrift` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of times to repeat the Trotterization circuit.
 
-**Parameters**
+  ## Attributes
 
-**reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of times to repeat the Trotterization circuit.
+  ### reps
 
-## Attributes
+  <Attribute id="qiskit.opflow.evolutions.QDrift.reps" name="reps">
+    The number of repetitions to use in the Trotterization, improving the approximation accuracy.
+  </Attribute>
 
-<span id="qiskit.opflow.evolutions.QDrift.reps" />
+  ## Methods
 
-### reps
+  ### convert
 
-The number of repetitions to use in the Trotterization, improving the approximation accuracy.
+  <Function id="qiskit.opflow.evolutions.QDrift.convert" name="convert" signature="convert(operator)">
+    Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 
-## Methods
+    **Parameters**
 
-### convert
+    **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
 
-<span id="qiskit.opflow.evolutions.QDrift.convert" />
+    **Returns**
 
-`convert(operator)`
+    The Operator approximating op\_sum’s evolution.
 
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
+    **Raises**
 
-**Parameters**
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – A non-SummedOps Operator is passed into `convert`.
 
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
+    **Return type**
 
-**Returns**
-
-The Operator approximating op\_sum’s evolution.
-
-**Raises**
-
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – A non-SummedOps Operator is passed into `convert`.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
+</Class>
 

@@ -8,438 +8,384 @@ python_api_name: qiskit.quantum_info.PTM
 
 # qiskit.quantum\_info.PTM
 
-<span id="qiskit.quantum_info.PTM" />
+<Class id="qiskit.quantum_info.PTM" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/ptm.py" signature="PTM(data, input_dims=None, output_dims=None)">
+  Pauli Transfer Matrix (PTM) representation of a Quantum Channel.
 
-`PTM(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/ptm.py "view source code")
+  The PTM representation of an $n$-qubit quantum channel $\mathcal{E}$ is an $n$-qubit [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") $R$ defined with respect to vectorization in the Pauli basis instead of column-vectorization. The elements of the PTM $R$ are given by
 
-Pauli Transfer Matrix (PTM) representation of a Quantum Channel.
+  $$
+  R_{i,j} = \mbox{Tr}\left[P_i \mathcal{E}(P_j) \right]
+  $$
 
-The PTM representation of an $n$-qubit quantum channel $\mathcal{E}$ is an $n$-qubit [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") $R$ defined with respect to vectorization in the Pauli basis instead of column-vectorization. The elements of the PTM $R$ are given by
+  where $[P_0, P_1, ..., P_{4^{n}-1}]$ is the $n$-qubit Pauli basis in lexicographic order.
 
-$$
-R_{i,j} = \mbox{Tr}\left[P_i \mathcal{E}(P_j) \right]
-$$
+  Evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ with respect to the PTM is given by
 
-where $[P_0, P_1, ..., P_{4^{n}-1}]$ is the $n$-qubit Pauli basis in lexicographic order.
+  $$
+  |\mathcal{E}(\rho)\rangle\!\rangle_P = S_P |\rho\rangle\!\rangle_P
+  $$
 
-Evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ with respect to the PTM is given by
+  where $|A\rangle\!\rangle_P$ denotes vectorization in the Pauli basis $\langle i | A\rangle\!\rangle_P = \mbox{Tr}[P_i A]$.
 
-$$
-|\mathcal{E}(\rho)\rangle\!\rangle_P = S_P |\rho\rangle\!\rangle_P
-$$
+  See reference \[1] for further details.
 
-where $|A\rangle\!\rangle_P$ denotes vectorization in the Pauli basis $\langle i | A\rangle\!\rangle_P = \mbox{Tr}[P_i A]$.
+  **References**
 
-See reference \[1] for further details.
+  1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
 
-**References**
+  Initialize a PTM quantum channel operator.
 
-1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
+  **Parameters**
 
-Initialize a PTM quantum channel operator.
+  *   \*\*(\*\***QuantumCircuit or** (*data*) – Instruction or BaseOperator or matrix): data to initialize superoperator.
+  *   **input\_dims** (*tuple*) – the input subsystem dimensions. \[Default: None]
+  *   **output\_dims** (*tuple*) – the output subsystem dimensions. \[Default: None]
 
-**Parameters**
+  **Raises**
 
-*   \*\*(\*\***QuantumCircuit or** (*data*) – Instruction or BaseOperator or matrix): data to initialize superoperator.
-*   **input\_dims** (*tuple*) – the input subsystem dimensions. \[Default: None]
-*   **output\_dims** (*tuple*) – the output subsystem dimensions. \[Default: None]
+  **QiskitError** – if input data is not an N-qubit channel or cannot be initialized as a PTM.
 
-**Raises**
+  **Additional Information:**
 
-**QiskitError** – if input data is not an N-qubit channel or cannot be initialized as a PTM.
+  If the input or output dimensions are None, they will be automatically determined from the input data. The PTM representation is only valid for N-qubit channels.
 
-**Additional Information:**
+  ### \_\_init\_\_
 
-If the input or output dimensions are None, they will be automatically determined from the input data. The PTM representation is only valid for N-qubit channels.
+  <Function id="qiskit.quantum_info.PTM.__init__" name="__init__" signature="__init__(data, input_dims=None, output_dims=None)">
+    Initialize a PTM quantum channel operator.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.quantum_info.PTM.__init__" />
+    *   \*\*(\*\***QuantumCircuit or** (*data*) – Instruction or BaseOperator or matrix): data to initialize superoperator.
+    *   **input\_dims** (*tuple*) – the input subsystem dimensions. \[Default: None]
+    *   **output\_dims** (*tuple*) – the output subsystem dimensions. \[Default: None]
 
-`__init__(data, input_dims=None, output_dims=None)`
+    **Raises**
 
-Initialize a PTM quantum channel operator.
+    **QiskitError** – if input data is not an N-qubit channel or cannot be initialized as a PTM.
 
-**Parameters**
+    **Additional Information:**
 
-*   \*\*(\*\***QuantumCircuit or** (*data*) – Instruction or BaseOperator or matrix): data to initialize superoperator.
-*   **input\_dims** (*tuple*) – the input subsystem dimensions. \[Default: None]
-*   **output\_dims** (*tuple*) – the output subsystem dimensions. \[Default: None]
+    If the input or output dimensions are None, they will be automatically determined from the input data. The PTM representation is only valid for N-qubit channels.
+  </Function>
 
-**Raises**
+  ## Methods
 
-**QiskitError** – if input data is not an N-qubit channel or cannot be initialized as a PTM.
+  |                                                                                                                            |                                                                            |
+  | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.quantum_info.PTM.__init__ "qiskit.quantum_info.PTM.__init__")(data\[, input\_dims, output\_dims])     | Initialize a PTM quantum channel operator.                                 |
+  | [`adjoint`](#qiskit.quantum_info.PTM.adjoint "qiskit.quantum_info.PTM.adjoint")()                                          | Return the adjoint quantum channel.                                        |
+  | [`compose`](#qiskit.quantum_info.PTM.compose "qiskit.quantum_info.PTM.compose")(other\[, qargs, front])                    | Return the operator composition with another PTM.                          |
+  | [`conjugate`](#qiskit.quantum_info.PTM.conjugate "qiskit.quantum_info.PTM.conjugate")()                                    | Return the conjugate quantum channel.                                      |
+  | [`copy`](#qiskit.quantum_info.PTM.copy "qiskit.quantum_info.PTM.copy")()                                                   | Make a deep copy of current operator.                                      |
+  | [`dot`](#qiskit.quantum_info.PTM.dot "qiskit.quantum_info.PTM.dot")(other\[, qargs])                                       | Return the right multiplied operator self \* other.                        |
+  | [`expand`](#qiskit.quantum_info.PTM.expand "qiskit.quantum_info.PTM.expand")(other)                                        | Return the reverse-order tensor product with another PTM.                  |
+  | [`input_dims`](#qiskit.quantum_info.PTM.input_dims "qiskit.quantum_info.PTM.input_dims")(\[qargs])                         | Return tuple of input dimension for specified subsystems.                  |
+  | [`is_cp`](#qiskit.quantum_info.PTM.is_cp "qiskit.quantum_info.PTM.is_cp")(\[atol, rtol])                                   | Test if Choi-matrix is completely-positive (CP)                            |
+  | [`is_cptp`](#qiskit.quantum_info.PTM.is_cptp "qiskit.quantum_info.PTM.is_cptp")(\[atol, rtol])                             | Return True if completely-positive trace-preserving (CPTP).                |
+  | [`is_tp`](#qiskit.quantum_info.PTM.is_tp "qiskit.quantum_info.PTM.is_tp")(\[atol, rtol])                                   | Test if a channel is trace-preserving (TP)                                 |
+  | [`is_unitary`](#qiskit.quantum_info.PTM.is_unitary "qiskit.quantum_info.PTM.is_unitary")(\[atol, rtol])                    | Return True if QuantumChannel is a unitary channel.                        |
+  | [`output_dims`](#qiskit.quantum_info.PTM.output_dims "qiskit.quantum_info.PTM.output_dims")(\[qargs])                      | Return tuple of output dimension for specified subsystems.                 |
+  | [`power`](#qiskit.quantum_info.PTM.power "qiskit.quantum_info.PTM.power")(n)                                               | Return the power of the quantum channel.                                   |
+  | [`reshape`](#qiskit.quantum_info.PTM.reshape "qiskit.quantum_info.PTM.reshape")(\[input\_dims, output\_dims, num\_qubits]) | Return a shallow copy with reshaped input and output subsystem dimensions. |
+  | [`tensor`](#qiskit.quantum_info.PTM.tensor "qiskit.quantum_info.PTM.tensor")(other)                                        | Return the tensor product with another PTM.                                |
+  | [`to_instruction`](#qiskit.quantum_info.PTM.to_instruction "qiskit.quantum_info.PTM.to_instruction")()                     | Convert to a Kraus or UnitaryGate circuit instruction.                     |
+  | [`to_operator`](#qiskit.quantum_info.PTM.to_operator "qiskit.quantum_info.PTM.to_operator")()                              | Try to convert channel to a unitary representation Operator.               |
+  | [`transpose`](#qiskit.quantum_info.PTM.transpose "qiskit.quantum_info.PTM.transpose")()                                    | Return the transpose quantum channel.                                      |
 
-**Additional Information:**
+  ## Attributes
 
-If the input or output dimensions are None, they will be automatically determined from the input data. The PTM representation is only valid for N-qubit channels.
+  |                                                                                          |                                                                      |
+  | ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+  | [`atol`](#qiskit.quantum_info.PTM.atol "qiskit.quantum_info.PTM.atol")                   | Default absolute tolerance parameter for float comparisons.          |
+  | [`data`](#qiskit.quantum_info.PTM.data "qiskit.quantum_info.PTM.data")                   | Return data.                                                         |
+  | [`dim`](#qiskit.quantum_info.PTM.dim "qiskit.quantum_info.PTM.dim")                      | Return tuple (input\_shape, output\_shape).                          |
+  | [`num_qubits`](#qiskit.quantum_info.PTM.num_qubits "qiskit.quantum_info.PTM.num_qubits") | Return the number of qubits if a N-qubit operator or None otherwise. |
+  | [`qargs`](#qiskit.quantum_info.PTM.qargs "qiskit.quantum_info.PTM.qargs")                | Return the qargs for the operator.                                   |
+  | [`rtol`](#qiskit.quantum_info.PTM.rtol "qiskit.quantum_info.PTM.rtol")                   | Default relative tolerance parameter for float comparisons.          |
+  | [`settings`](#qiskit.quantum_info.PTM.settings "qiskit.quantum_info.PTM.settings")       | Return operator settings.                                            |
 
-## Methods
+  ### adjoint
 
-|                                                                                                                            |                                                                            |
-| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.quantum_info.PTM.__init__ "qiskit.quantum_info.PTM.__init__")(data\[, input\_dims, output\_dims])     | Initialize a PTM quantum channel operator.                                 |
-| [`adjoint`](#qiskit.quantum_info.PTM.adjoint "qiskit.quantum_info.PTM.adjoint")()                                          | Return the adjoint quantum channel.                                        |
-| [`compose`](#qiskit.quantum_info.PTM.compose "qiskit.quantum_info.PTM.compose")(other\[, qargs, front])                    | Return the operator composition with another PTM.                          |
-| [`conjugate`](#qiskit.quantum_info.PTM.conjugate "qiskit.quantum_info.PTM.conjugate")()                                    | Return the conjugate quantum channel.                                      |
-| [`copy`](#qiskit.quantum_info.PTM.copy "qiskit.quantum_info.PTM.copy")()                                                   | Make a deep copy of current operator.                                      |
-| [`dot`](#qiskit.quantum_info.PTM.dot "qiskit.quantum_info.PTM.dot")(other\[, qargs])                                       | Return the right multiplied operator self \* other.                        |
-| [`expand`](#qiskit.quantum_info.PTM.expand "qiskit.quantum_info.PTM.expand")(other)                                        | Return the reverse-order tensor product with another PTM.                  |
-| [`input_dims`](#qiskit.quantum_info.PTM.input_dims "qiskit.quantum_info.PTM.input_dims")(\[qargs])                         | Return tuple of input dimension for specified subsystems.                  |
-| [`is_cp`](#qiskit.quantum_info.PTM.is_cp "qiskit.quantum_info.PTM.is_cp")(\[atol, rtol])                                   | Test if Choi-matrix is completely-positive (CP)                            |
-| [`is_cptp`](#qiskit.quantum_info.PTM.is_cptp "qiskit.quantum_info.PTM.is_cptp")(\[atol, rtol])                             | Return True if completely-positive trace-preserving (CPTP).                |
-| [`is_tp`](#qiskit.quantum_info.PTM.is_tp "qiskit.quantum_info.PTM.is_tp")(\[atol, rtol])                                   | Test if a channel is trace-preserving (TP)                                 |
-| [`is_unitary`](#qiskit.quantum_info.PTM.is_unitary "qiskit.quantum_info.PTM.is_unitary")(\[atol, rtol])                    | Return True if QuantumChannel is a unitary channel.                        |
-| [`output_dims`](#qiskit.quantum_info.PTM.output_dims "qiskit.quantum_info.PTM.output_dims")(\[qargs])                      | Return tuple of output dimension for specified subsystems.                 |
-| [`power`](#qiskit.quantum_info.PTM.power "qiskit.quantum_info.PTM.power")(n)                                               | Return the power of the quantum channel.                                   |
-| [`reshape`](#qiskit.quantum_info.PTM.reshape "qiskit.quantum_info.PTM.reshape")(\[input\_dims, output\_dims, num\_qubits]) | Return a shallow copy with reshaped input and output subsystem dimensions. |
-| [`tensor`](#qiskit.quantum_info.PTM.tensor "qiskit.quantum_info.PTM.tensor")(other)                                        | Return the tensor product with another PTM.                                |
-| [`to_instruction`](#qiskit.quantum_info.PTM.to_instruction "qiskit.quantum_info.PTM.to_instruction")()                     | Convert to a Kraus or UnitaryGate circuit instruction.                     |
-| [`to_operator`](#qiskit.quantum_info.PTM.to_operator "qiskit.quantum_info.PTM.to_operator")()                              | Try to convert channel to a unitary representation Operator.               |
-| [`transpose`](#qiskit.quantum_info.PTM.transpose "qiskit.quantum_info.PTM.transpose")()                                    | Return the transpose quantum channel.                                      |
+  <Function id="qiskit.quantum_info.PTM.adjoint" name="adjoint" signature="adjoint()">
+    Return the adjoint quantum channel.
 
-## Attributes
+    <Admonition title="Note" type="note">
+      This is equivalent to the matrix Hermitian conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the adjoint channel $\mathcal{{E}}^\dagger$ is $S_{\mathcal{E}^\dagger} = S_{\mathcal{E}}^\dagger$.
+    </Admonition>
+  </Function>
 
-|                                                                                          |                                                                      |
-| ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| [`atol`](#qiskit.quantum_info.PTM.atol "qiskit.quantum_info.PTM.atol")                   | Default absolute tolerance parameter for float comparisons.          |
-| [`data`](#qiskit.quantum_info.PTM.data "qiskit.quantum_info.PTM.data")                   | Return data.                                                         |
-| [`dim`](#qiskit.quantum_info.PTM.dim "qiskit.quantum_info.PTM.dim")                      | Return tuple (input\_shape, output\_shape).                          |
-| [`num_qubits`](#qiskit.quantum_info.PTM.num_qubits "qiskit.quantum_info.PTM.num_qubits") | Return the number of qubits if a N-qubit operator or None otherwise. |
-| [`qargs`](#qiskit.quantum_info.PTM.qargs "qiskit.quantum_info.PTM.qargs")                | Return the qargs for the operator.                                   |
-| [`rtol`](#qiskit.quantum_info.PTM.rtol "qiskit.quantum_info.PTM.rtol")                   | Default relative tolerance parameter for float comparisons.          |
-| [`settings`](#qiskit.quantum_info.PTM.settings "qiskit.quantum_info.PTM.settings")       | Return operator settings.                                            |
+  ### atol
 
-### adjoint
+  <Function id="qiskit.quantum_info.PTM.atol" name="atol" signature="property atol">
+    Default absolute tolerance parameter for float comparisons.
+  </Function>
 
-<span id="qiskit.quantum_info.PTM.adjoint" />
+  ### compose
 
-`adjoint()`
+  <Function id="qiskit.quantum_info.PTM.compose" name="compose" signature="compose(other, qargs=None, front=False)">
+    Return the operator composition with another PTM.
 
-Return the adjoint quantum channel.
+    **Parameters**
 
-<Admonition title="Note" type="note">
-  This is equivalent to the matrix Hermitian conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the adjoint channel $\mathcal{{E}}^\dagger$ is $S_{\mathcal{E}^\dagger} = S_{\mathcal{E}}^\dagger$.
-</Admonition>
+    *   **other** ([*PTM*](#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")) – a PTM object.
+    *   **qargs** (*list or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **front** (*bool*) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
-### atol
+    **Returns**
 
-<span id="qiskit.quantum_info.PTM.atol" />
+    The composed PTM.
 
-`property atol`
+    **Return type**
 
-Default absolute tolerance parameter for float comparisons.
+    [PTM](#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")
 
-### compose
+    **Raises**
 
-<span id="qiskit.quantum_info.PTM.compose" />
+    **QiskitError** – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
-`compose(other, qargs=None, front=False)`
+    <Admonition title="Note" type="note">
+      Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while [`dot()`](#qiskit.quantum_info.PTM.dot "qiskit.quantum_info.PTM.dot") is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B.dot(A)` when `A` and `B` are of the same type.
 
-Return the operator composition with another PTM.
+      Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.PTM.dot "qiskit.quantum_info.PTM.dot") method `A.dot(B) == A.compose(B, front=True)`.
+    </Admonition>
+  </Function>
 
-**Parameters**
+  ### conjugate
 
-*   **other** ([*PTM*](#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")) – a PTM object.
-*   **qargs** (*list or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
-*   **front** (*bool*) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+  <Function id="qiskit.quantum_info.PTM.conjugate" name="conjugate" signature="conjugate()">
+    Return the conjugate quantum channel.
 
-**Returns**
+    <Admonition title="Note" type="note">
+      This is equivalent to the matrix complex conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the conjugate channel $\overline{{\mathcal{{E}}}}$ is $S_{\overline{\mathcal{E}^\dagger}} = \overline{S_{\mathcal{E}}}$.
+    </Admonition>
+  </Function>
 
-The composed PTM.
+  ### copy
 
-**Return type**
+  <Function id="qiskit.quantum_info.PTM.copy" name="copy" signature="copy()">
+    Make a deep copy of current operator.
+  </Function>
 
-[PTM](#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")
+  ### data
 
-**Raises**
+  <Function id="qiskit.quantum_info.PTM.data" name="data" signature="property data">
+    Return data.
+  </Function>
 
-**QiskitError** – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
+  ### dim
 
-<Admonition title="Note" type="note">
-  Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while [`dot()`](#qiskit.quantum_info.PTM.dot "qiskit.quantum_info.PTM.dot") is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B.dot(A)` when `A` and `B` are of the same type.
+  <Function id="qiskit.quantum_info.PTM.dim" name="dim" signature="property dim">
+    Return tuple (input\_shape, output\_shape).
+  </Function>
 
-  Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.PTM.dot "qiskit.quantum_info.PTM.dot") method `A.dot(B) == A.compose(B, front=True)`.
-</Admonition>
+  ### dot
 
-### conjugate
+  <Function id="qiskit.quantum_info.PTM.dot" name="dot" signature="dot(other, qargs=None)">
+    Return the right multiplied operator self \* other.
 
-<span id="qiskit.quantum_info.PTM.conjugate" />
+    **Parameters**
 
-`conjugate()`
+    *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
+    *   **qargs** (*list or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
 
-Return the conjugate quantum channel.
+    **Returns**
 
-<Admonition title="Note" type="note">
-  This is equivalent to the matrix complex conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the conjugate channel $\overline{{\mathcal{{E}}}}$ is $S_{\overline{\mathcal{E}^\dagger}} = \overline{S_{\mathcal{E}}}$.
-</Admonition>
+    The right matrix multiplied Operator.
 
-### copy
+    **Return type**
 
-<span id="qiskit.quantum_info.PTM.copy" />
+    [Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+  </Function>
 
-`copy()`
+  ### expand
 
-Make a deep copy of current operator.
+  <Function id="qiskit.quantum_info.PTM.expand" name="expand" signature="expand(other)">
+    Return the reverse-order tensor product with another PTM.
 
-### data
+    **Parameters**
 
-<span id="qiskit.quantum_info.PTM.data" />
+    **other** ([*PTM*](#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")) – a PTM object.
 
-`property data`
+    **Returns**
 
-Return data.
+    **the tensor product $b \otimes a$, where $a$**
 
-### dim
+    is the current PTM, and $b$ is the other PTM.
 
-<span id="qiskit.quantum_info.PTM.dim" />
+    **Return type**
 
-`property dim`
+    [PTM](#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")
+  </Function>
 
-Return tuple (input\_shape, output\_shape).
+  ### input\_dims
 
-### dot
+  <Function id="qiskit.quantum_info.PTM.input_dims" name="input_dims" signature="input_dims(qargs=None)">
+    Return tuple of input dimension for specified subsystems.
+  </Function>
 
-<span id="qiskit.quantum_info.PTM.dot" />
+  ### is\_cp
 
-`dot(other, qargs=None)`
+  <Function id="qiskit.quantum_info.PTM.is_cp" name="is_cp" signature="is_cp(atol=None, rtol=None)">
+    Test if Choi-matrix is completely-positive (CP)
+  </Function>
 
-Return the right multiplied operator self \* other.
+  ### is\_cptp
 
-**Parameters**
+  <Function id="qiskit.quantum_info.PTM.is_cptp" name="is_cptp" signature="is_cptp(atol=None, rtol=None)">
+    Return True if completely-positive trace-preserving (CPTP).
+  </Function>
 
-*   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-*   **qargs** (*list or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+  ### is\_tp
 
-**Returns**
+  <Function id="qiskit.quantum_info.PTM.is_tp" name="is_tp" signature="is_tp(atol=None, rtol=None)">
+    Test if a channel is trace-preserving (TP)
+  </Function>
 
-The right matrix multiplied Operator.
+  ### is\_unitary
 
-**Return type**
+  <Function id="qiskit.quantum_info.PTM.is_unitary" name="is_unitary" signature="is_unitary(atol=None, rtol=None)">
+    Return True if QuantumChannel is a unitary channel.
+  </Function>
 
-[Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+  ### num\_qubits
 
-### expand
+  <Function id="qiskit.quantum_info.PTM.num_qubits" name="num_qubits" signature="property num_qubits">
+    Return the number of qubits if a N-qubit operator or None otherwise.
+  </Function>
 
-<span id="qiskit.quantum_info.PTM.expand" />
+  ### output\_dims
 
-`expand(other)`
+  <Function id="qiskit.quantum_info.PTM.output_dims" name="output_dims" signature="output_dims(qargs=None)">
+    Return tuple of output dimension for specified subsystems.
+  </Function>
 
-Return the reverse-order tensor product with another PTM.
+  ### power
 
-**Parameters**
+  <Function id="qiskit.quantum_info.PTM.power" name="power" signature="power(n)">
+    Return the power of the quantum channel.
 
-**other** ([*PTM*](#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")) – a PTM object.
+    **Parameters**
 
-**Returns**
+    **n** (*float*) – the power exponent.
 
-**the tensor product $b \otimes a$, where $a$**
+    **Returns**
 
-is the current PTM, and $b$ is the other PTM.
+    the channel $\mathcal{{E}} ^n$.
 
-**Return type**
+    **Return type**
 
-[PTM](#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")
+    [SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
 
-### input\_dims
+    **Raises**
 
-<span id="qiskit.quantum_info.PTM.input_dims" />
+    **QiskitError** – if the input and output dimensions of the SuperOp are not equal.
 
-`input_dims(qargs=None)`
+    <Admonition title="Note" type="note">
+      For non-positive or non-integer exponents the power is defined as the matrix power of the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{{E}}$, the SuperOp of the powered channel $\mathcal{{E}}^\n$ is $S_{{\mathcal{{E}}^n}} = S_{{\mathcal{{E}}}}^n$.
+    </Admonition>
+  </Function>
 
-Return tuple of input dimension for specified subsystems.
+  ### qargs
 
-### is\_cp
+  <Function id="qiskit.quantum_info.PTM.qargs" name="qargs" signature="property qargs">
+    Return the qargs for the operator.
+  </Function>
 
-<span id="qiskit.quantum_info.PTM.is_cp" />
+  ### reshape
 
-`is_cp(atol=None, rtol=None)`
+  <Function id="qiskit.quantum_info.PTM.reshape" name="reshape" signature="reshape(input_dims=None, output_dims=None, num_qubits=None)">
+    Return a shallow copy with reshaped input and output subsystem dimensions.
 
-Test if Choi-matrix is completely-positive (CP)
+    **Parameters**
 
-### is\_cptp
+    *   **input\_dims** (*None or tuple*) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+    *   **output\_dims** (*None or tuple*) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+    *   **num\_qubits** (*None or int*) – reshape to an N-qubit operator \[Default: None].
 
-<span id="qiskit.quantum_info.PTM.is_cptp" />
+    **Returns**
 
-`is_cptp(atol=None, rtol=None)`
+    returns self with reshaped input and output dimensions.
 
-Return True if completely-positive trace-preserving (CPTP).
+    **Return type**
 
-### is\_tp
+    BaseOperator
 
-<span id="qiskit.quantum_info.PTM.is_tp" />
+    **Raises**
 
-`is_tp(atol=None, rtol=None)`
+    **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  </Function>
 
-Test if a channel is trace-preserving (TP)
+  ### rtol
 
-### is\_unitary
+  <Function id="qiskit.quantum_info.PTM.rtol" name="rtol" signature="property rtol">
+    Default relative tolerance parameter for float comparisons.
+  </Function>
 
-<span id="qiskit.quantum_info.PTM.is_unitary" />
+  ### settings
 
-`is_unitary(atol=None, rtol=None)`
+  <Function id="qiskit.quantum_info.PTM.settings" name="settings" signature="property settings">
+    Return operator settings.
+  </Function>
 
-Return True if QuantumChannel is a unitary channel.
+  ### tensor
 
-### num\_qubits
+  <Function id="qiskit.quantum_info.PTM.tensor" name="tensor" signature="tensor(other)">
+    Return the tensor product with another PTM.
 
-<span id="qiskit.quantum_info.PTM.num_qubits" />
+    **Parameters**
 
-`property num_qubits`
+    **other** ([*PTM*](#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")) – a PTM object.
 
-Return the number of qubits if a N-qubit operator or None otherwise.
+    **Returns**
 
-### output\_dims
+    **the tensor product $a \otimes b$, where $a$**
 
-<span id="qiskit.quantum_info.PTM.output_dims" />
+    is the current PTM, and $b$ is the other PTM.
 
-`output_dims(qargs=None)`
+    **Return type**
 
-Return tuple of output dimension for specified subsystems.
+    [PTM](#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")
 
-### power
+    <Admonition title="Note" type="note">
+      The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
+    </Admonition>
+  </Function>
 
-<span id="qiskit.quantum_info.PTM.power" />
+  ### to\_instruction
 
-`power(n)`
+  <Function id="qiskit.quantum_info.PTM.to_instruction" name="to_instruction" signature="to_instruction()">
+    Convert to a Kraus or UnitaryGate circuit instruction.
 
-Return the power of the quantum channel.
+    If the channel is unitary it will be added as a unitary gate, otherwise it will be added as a kraus simulator instruction.
 
-**Parameters**
+    **Returns**
 
-**n** (*float*) – the power exponent.
+    A kraus instruction for the channel.
 
-**Returns**
+    **Return type**
 
-the channel $\mathcal{{E}} ^n$.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**Return type**
+    **Raises**
 
-[SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
+    **QiskitError** – if input data is not an N-qubit CPTP quantum channel.
+  </Function>
 
-**Raises**
+  ### to\_operator
 
-**QiskitError** – if the input and output dimensions of the SuperOp are not equal.
+  <Function id="qiskit.quantum_info.PTM.to_operator" name="to_operator" signature="to_operator()">
+    Try to convert channel to a unitary representation Operator.
+  </Function>
 
-<Admonition title="Note" type="note">
-  For non-positive or non-integer exponents the power is defined as the matrix power of the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{{E}}$, the SuperOp of the powered channel $\mathcal{{E}}^\n$ is $S_{{\mathcal{{E}}^n}} = S_{{\mathcal{{E}}}}^n$.
-</Admonition>
+  ### transpose
 
-### qargs
+  <Function id="qiskit.quantum_info.PTM.transpose" name="transpose" signature="transpose()">
+    Return the transpose quantum channel.
 
-<span id="qiskit.quantum_info.PTM.qargs" />
-
-`property qargs`
-
-Return the qargs for the operator.
-
-### reshape
-
-<span id="qiskit.quantum_info.PTM.reshape" />
-
-`reshape(input_dims=None, output_dims=None, num_qubits=None)`
-
-Return a shallow copy with reshaped input and output subsystem dimensions.
-
-**Parameters**
-
-*   **input\_dims** (*None or tuple*) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-*   **output\_dims** (*None or tuple*) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-*   **num\_qubits** (*None or int*) – reshape to an N-qubit operator \[Default: None].
-
-**Returns**
-
-returns self with reshaped input and output dimensions.
-
-**Return type**
-
-BaseOperator
-
-**Raises**
-
-**QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
-
-### rtol
-
-<span id="qiskit.quantum_info.PTM.rtol" />
-
-`property rtol`
-
-Default relative tolerance parameter for float comparisons.
-
-### settings
-
-<span id="qiskit.quantum_info.PTM.settings" />
-
-`property settings`
-
-Return operator settings.
-
-### tensor
-
-<span id="qiskit.quantum_info.PTM.tensor" />
-
-`tensor(other)`
-
-Return the tensor product with another PTM.
-
-**Parameters**
-
-**other** ([*PTM*](#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")) – a PTM object.
-
-**Returns**
-
-**the tensor product $a \otimes b$, where $a$**
-
-is the current PTM, and $b$ is the other PTM.
-
-**Return type**
-
-[PTM](#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")
-
-<Admonition title="Note" type="note">
-  The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
-</Admonition>
-
-### to\_instruction
-
-<span id="qiskit.quantum_info.PTM.to_instruction" />
-
-`to_instruction()`
-
-Convert to a Kraus or UnitaryGate circuit instruction.
-
-If the channel is unitary it will be added as a unitary gate, otherwise it will be added as a kraus simulator instruction.
-
-**Returns**
-
-A kraus instruction for the channel.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**QiskitError** – if input data is not an N-qubit CPTP quantum channel.
-
-### to\_operator
-
-<span id="qiskit.quantum_info.PTM.to_operator" />
-
-`to_operator()`
-
-Try to convert channel to a unitary representation Operator.
-
-### transpose
-
-<span id="qiskit.quantum_info.PTM.transpose" />
-
-`transpose()`
-
-Return the transpose quantum channel.
-
-<Admonition title="Note" type="note">
-  This is equivalent to the matrix transpose in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation, ie. for a channel $\mathcal{E}$, the SuperOp of the transpose channel $\mathcal{{E}}^T$ is $S_{mathcal{E}^T} = S_{\mathcal{E}}^T$.
-</Admonition>
+    <Admonition title="Note" type="note">
+      This is equivalent to the matrix transpose in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation, ie. for a channel $\mathcal{E}$, the SuperOp of the transpose channel $\mathcal{{E}}^T$ is $S_{mathcal{E}^T} = S_{\mathcal{E}}^T$.
+    </Admonition>
+  </Function>
+</Class>
 

@@ -8,481 +8,431 @@ python_api_name: qiskit.quantum_info.Operator
 
 # Operator
 
-<span id="qiskit.quantum_info.Operator" />
+<Class id="qiskit.quantum_info.Operator" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/quantum_info/operators/operator.py" signature="qiskit.quantum_info.Operator(data, input_dims=None, output_dims=None)">
+  Bases: `LinearOp`
 
-`qiskit.quantum_info.Operator(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/quantum_info/operators/operator.py "view source code")
+  Matrix operator class
 
-Bases: `LinearOp`
+  This represents a matrix operator $M$ that will [`evolve()`](qiskit.quantum_info.Statevector#evolve "qiskit.quantum_info.Statevector.evolve") a [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") $|\psi\rangle$ by matrix-vector multiplication
 
-Matrix operator class
+  $$
+  |\psi\rangle \mapsto M|\psi\rangle,
+  $$
 
-This represents a matrix operator $M$ that will [`evolve()`](qiskit.quantum_info.Statevector#evolve "qiskit.quantum_info.Statevector.evolve") a [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") $|\psi\rangle$ by matrix-vector multiplication
+  and will [`evolve()`](qiskit.quantum_info.DensityMatrix#evolve "qiskit.quantum_info.DensityMatrix.evolve") a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ by left and right multiplication
 
-$$
-|\psi\rangle \mapsto M|\psi\rangle,
-$$
+  $$
+  \rho \mapsto M \rho M^\dagger.
+  $$
 
-and will [`evolve()`](qiskit.quantum_info.DensityMatrix#evolve "qiskit.quantum_info.DensityMatrix.evolve") a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ by left and right multiplication
+  Initialize an operator object.
 
-$$
-\rho \mapsto M \rho M^\dagger.
-$$
+  **Parameters**
 
-Initialize an operator object.
+  *   **data** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation") *or BaseOperator or matrix*) – data to initialize operator.
+  *   **input\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the input subsystem dimensions. \[Default: None]
+  *   **output\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the output subsystem dimensions. \[Default: None]
 
-**Parameters**
+  **Raises**
 
-*   **data** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation") *or BaseOperator or matrix*) – data to initialize operator.
-*   **input\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the input subsystem dimensions. \[Default: None]
-*   **output\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the output subsystem dimensions. \[Default: None]
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data cannot be initialized as an operator.
 
-**Raises**
+  **Additional Information:**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data cannot be initialized as an operator.
+  If the input or output dimensions are None, they will be automatically determined from the input data. If the input data is a Numpy array of shape (2\*\*N, 2\*\*N) qubit systems will be used. If the input operator is not an N-qubit operator, it will assign a single subsystem with dimension specified by the shape of the input.
 
-**Additional Information:**
+  ## Attributes
 
-If the input or output dimensions are None, they will be automatically determined from the input data. If the input data is a Numpy array of shape (2\*\*N, 2\*\*N) qubit systems will be used. If the input operator is not an N-qubit operator, it will assign a single subsystem with dimension specified by the shape of the input.
+  ### atol
 
-## Attributes
+  <Attribute id="qiskit.quantum_info.Operator.atol" name="atol" attributeValue="= 1e-08" />
 
-<span id="qiskit.quantum_info.Operator.atol" />
+  ### data
 
-### atol
+  <Attribute id="qiskit.quantum_info.Operator.data" name="data">
+    The underlying Numpy array.
+  </Attribute>
 
-`= 1e-08`
+  ### dim
 
-<span id="qiskit.quantum_info.Operator.data" />
+  <Attribute id="qiskit.quantum_info.Operator.dim" name="dim">
+    Return tuple (input\_shape, output\_shape).
+  </Attribute>
 
-### data
+  ### num\_qubits
 
-The underlying Numpy array.
+  <Attribute id="qiskit.quantum_info.Operator.num_qubits" name="num_qubits">
+    Return the number of qubits if a N-qubit operator or None otherwise.
+  </Attribute>
 
-<span id="qiskit.quantum_info.Operator.dim" />
+  ### qargs
 
-### dim
+  <Attribute id="qiskit.quantum_info.Operator.qargs" name="qargs">
+    Return the qargs for the operator.
+  </Attribute>
 
-Return tuple (input\_shape, output\_shape).
+  ### rtol
 
-<span id="qiskit.quantum_info.Operator.num_qubits" />
+  <Attribute id="qiskit.quantum_info.Operator.rtol" name="rtol" attributeValue="= 1e-05" />
 
-### num\_qubits
+  ### settings
 
-Return the number of qubits if a N-qubit operator or None otherwise.
+  <Attribute id="qiskit.quantum_info.Operator.settings" name="settings">
+    Return operator settings.
+  </Attribute>
 
-<span id="qiskit.quantum_info.Operator.qargs" />
+  ## Methods
 
-### qargs
+  ### adjoint
 
-Return the qargs for the operator.
+  <Function id="qiskit.quantum_info.Operator.adjoint" name="adjoint" signature="adjoint()">
+    Return the adjoint of the Operator.
 
-<span id="qiskit.quantum_info.Operator.rtol" />
+    **Return type**
 
-### rtol
+    *Self*
+  </Function>
 
-`= 1e-05`
+  ### apply\_permutation
 
-<span id="qiskit.quantum_info.Operator.settings" />
+  <Function id="qiskit.quantum_info.Operator.apply_permutation" name="apply_permutation" signature="apply_permutation(perm, front=False)">
+    Modifies operator’s data by composing it with a permutation.
 
-### settings
+    **Parameters**
 
-Return operator settings.
+    *   **perm** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation.
+    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to `True` the permutation is applied before the operator, when set to `False` the permutation is applied after the operator.
 
-## Methods
+    **Returns**
 
-### adjoint
+    The modified operator.
 
-<span id="qiskit.quantum_info.Operator.adjoint" />
+    **Return type**
 
-`adjoint()`
+    [Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-Return the adjoint of the Operator.
+    **Raises**
 
-**Return type**
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the size of the permutation pattern does not match the dimensions of the operator.
+  </Function>
 
-*Self*
+  ### compose
 
-### apply\_permutation
+  <Function id="qiskit.quantum_info.Operator.compose" name="compose" signature="compose(other, qargs=None, front=False)">
+    Return the operator composition with another Operator.
 
-<span id="qiskit.quantum_info.Operator.apply_permutation" />
+    **Parameters**
 
-`apply_permutation(perm, front=False)`
+    *   **other** ([*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a Operator object.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
-Modifies operator’s data by composing it with a permutation.
+    **Returns**
 
-**Parameters**
+    The composed Operator.
 
-*   **perm** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation.
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to `True` the permutation is applied before the operator, when set to `False` the permutation is applied after the operator.
+    **Return type**
 
-**Returns**
+    [Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-The modified operator.
+    **Raises**
 
-**Return type**
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
-[Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+    <Admonition title="Note" type="note">
+      Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](#qiskit.quantum_info.Operator.dot "qiskit.quantum_info.Operator.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
 
-**Raises**
+      Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.Operator.dot "qiskit.quantum_info.Operator.dot") method `A.dot(B) == A.compose(B, front=True)`.
+    </Admonition>
+  </Function>
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the size of the permutation pattern does not match the dimensions of the operator.
+  ### conjugate
 
-### compose
+  <Function id="qiskit.quantum_info.Operator.conjugate" name="conjugate" signature="conjugate()">
+    Return the conjugate of the Operator.
+  </Function>
 
-<span id="qiskit.quantum_info.Operator.compose" />
+  ### copy
 
-`compose(other, qargs=None, front=False)`
+  <Function id="qiskit.quantum_info.Operator.copy" name="copy" signature="copy()">
+    Make a deep copy of current operator.
+  </Function>
 
-Return the operator composition with another Operator.
+  ### dot
 
-**Parameters**
+  <Function id="qiskit.quantum_info.Operator.dot" name="dot" signature="dot(other, qargs=None)">
+    Return the right multiplied operator self \* other.
 
-*   **other** ([*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a Operator object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+    **Parameters**
 
-**Returns**
+    *   **other** ([*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
 
-The composed Operator.
+    **Returns**
 
-**Return type**
+    The right matrix multiplied Operator.
 
-[Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+    **Return type**
 
-**Raises**
+    [Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
+    <Admonition title="Note" type="note">
+      The dot product can be obtained using the `@` binary operator. Hence `a.dot(b)` is equivalent to `a @ b`.
+    </Admonition>
+  </Function>
 
-<Admonition title="Note" type="note">
-  Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](#qiskit.quantum_info.Operator.dot "qiskit.quantum_info.Operator.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
+  ### draw
 
-  Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.Operator.dot "qiskit.quantum_info.Operator.dot") method `A.dot(B) == A.compose(B, front=True)`.
-</Admonition>
+  <Function id="qiskit.quantum_info.Operator.draw" name="draw" signature="draw(output=None, **drawer_args)">
+    Return a visualization of the Operator.
 
-### conjugate
+    **repr**: String of the state’s `__repr__`.
 
-<span id="qiskit.quantum_info.Operator.conjugate" />
+    **text**: ASCII TextMatrix that can be printed in the console.
 
-`conjugate()`
+    **latex**: An IPython Latex object for displaying in Jupyter Notebooks.
 
-Return the conjugate of the Operator.
+    **latex\_source**: Raw, uncompiled ASCII source to generate array using LaTeX.
 
-### copy
+    **Parameters**
 
-<span id="qiskit.quantum_info.Operator.copy" />
+    *   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Select the output method to use for drawing the state. Valid choices are repr, text, latex, latex\_source, Default is repr.
+    *   **drawer\_args** – Arguments to be passed directly to the relevant drawing function or constructor (TextMatrix(), array\_to\_latex()). See the relevant function under qiskit.visualization for that function’s documentation.
 
-`copy()`
+    **Returns**
 
-Make a deep copy of current operator.
+    Drawing of the Operator.
 
-### dot
+    **Return type**
 
-<span id="qiskit.quantum_info.Operator.dot" />
+    [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") or `TextMatrix` or `IPython.display.Latex`
 
-`dot(other, qargs=None)`
+    **Raises**
 
-Return the right multiplied operator self \* other.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – when an invalid output method is selected.
+  </Function>
 
-**Parameters**
+  ### equiv
 
-*   **other** ([*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+  <Function id="qiskit.quantum_info.Operator.equiv" name="equiv" signature="equiv(other, rtol=None, atol=None)">
+    Return True if operators are equivalent up to global phase.
 
-**Returns**
+    **Parameters**
 
-The right matrix multiplied Operator.
+    *   **other** ([*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
+    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – relative tolerance value for comparison.
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – absolute tolerance value for comparison.
 
-**Return type**
+    **Returns**
 
-[Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+    True if operators are equivalent up to global phase.
 
-<Admonition title="Note" type="note">
-  The dot product can be obtained using the `@` binary operator. Hence `a.dot(b)` is equivalent to `a @ b`.
-</Admonition>
+    **Return type**
 
-### draw
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-<span id="qiskit.quantum_info.Operator.draw" />
+  ### expand
 
-`draw(output=None, **drawer_args)`
+  <Function id="qiskit.quantum_info.Operator.expand" name="expand" signature="expand(other)">
+    Return the reverse-order tensor product with another Operator.
 
-Return a visualization of the Operator.
+    **Parameters**
 
-**repr**: String of the state’s `__repr__`.
+    **other** ([*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a Operator object.
 
-**text**: ASCII TextMatrix that can be printed in the console.
+    **Returns**
 
-**latex**: An IPython Latex object for displaying in Jupyter Notebooks.
+    **the tensor product $b \otimes a$, where $a$**
 
-**latex\_source**: Raw, uncompiled ASCII source to generate array using LaTeX.
+    is the current Operator, and $b$ is the other Operator.
 
-**Parameters**
+    **Return type**
 
-*   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Select the output method to use for drawing the state. Valid choices are repr, text, latex, latex\_source, Default is repr.
-*   **drawer\_args** – Arguments to be passed directly to the relevant drawing function or constructor (TextMatrix(), array\_to\_latex()). See the relevant function under qiskit.visualization for that function’s documentation.
+    [Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+  </Function>
 
-**Returns**
+  ### from\_circuit
 
-Drawing of the Operator.
+  <Function id="qiskit.quantum_info.Operator.from_circuit" name="from_circuit" signature="classmethod from_circuit(circuit, ignore_set_layout=False, layout=None, final_layout=None)">
+    Create a new Operator object from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+    While a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object can passed directly as `data` to the class constructor this provides no options on how the circuit is used to create an [`Operator`](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator"). This constructor method lets you control how the [`Operator`](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") is created so it can be adjusted for a particular use case.
 
-[`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") or `TextMatrix` or `IPython.display.Latex`
+    By default this constructor method will permute the qubits based on a configured initial layout (i.e. after it was transpiled). It also provides an option to manually provide a [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object directly.
 
-**Raises**
+    **Parameters**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – when an invalid output method is selected.
+    *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") to create an Operator object from.
+    *   **ignore\_set\_layout** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to `True` if the input `circuit` has a layout set it will be ignored
+    *   **layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – If specified this kwarg can be used to specify a particular layout to use to permute the qubits in the created [`Operator`](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator"). If this is specified it will be used instead of a layout contained in the `circuit` input. If specified the virtual bits in the [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") must be present in the `circuit` input.
+    *   **final\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – If specified this kwarg can be used to represent the output permutation caused by swap insertions during the routing stage of the transpiler.
 
-### equiv
+    **Returns**
 
-<span id="qiskit.quantum_info.Operator.equiv" />
+    An operator representing the input circuit
 
-`equiv(other, rtol=None, atol=None)`
+    **Return type**
 
-Return True if operators are equivalent up to global phase.
+    [Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+  </Function>
 
-**Parameters**
+  ### from\_label
 
-*   **other** ([*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-*   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – relative tolerance value for comparison.
-*   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – absolute tolerance value for comparison.
+  <Function id="qiskit.quantum_info.Operator.from_label" name="from_label" signature="classmethod from_label(label)">
+    Return a tensor product of single-qubit operators.
 
-**Returns**
+    **Parameters**
 
-True if operators are equivalent up to global phase.
+    **label** (*string*) – single-qubit operator string.
 
-**Return type**
+    **Returns**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    The N-qubit operator.
 
-### expand
+    **Return type**
 
-<span id="qiskit.quantum_info.Operator.expand" />
+    [Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-`expand(other)`
+    **Raises**
 
-Return the reverse-order tensor product with another Operator.
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the label contains invalid characters, or the length of the label is larger than an explicitly specified num\_qubits.
 
-**Parameters**
+    **Additional Information:**
 
-**other** ([*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a Operator object.
+    The labels correspond to the single-qubit matrices: ‘I’: \[\[1, 0], \[0, 1]] ‘X’: \[\[0, 1], \[1, 0]] ‘Y’: \[\[0, -1j], \[1j, 0]] ‘Z’: \[\[1, 0], \[0, -1]] ‘H’: \[\[1, 1], \[1, -1]] / sqrt(2) ‘S’: \[\[1, 0], \[0 , 1j]] ‘T’: \[\[1, 0], \[0, (1+1j) / sqrt(2)]] ‘0’: \[\[1, 0], \[0, 0]] ‘1’: \[\[0, 0], \[0, 1]] ‘+’: \[\[0.5, 0.5], \[0.5 , 0.5]] ‘-’: \[\[0.5, -0.5], \[-0.5 , 0.5]] ‘r’: \[\[0.5, -0.5j], \[0.5j , 0.5]] ‘l’: \[\[0.5, 0.5j], \[-0.5j , 0.5]]
+  </Function>
 
-**Returns**
+  ### input\_dims
 
-**the tensor product $b \otimes a$, where $a$**
+  <Function id="qiskit.quantum_info.Operator.input_dims" name="input_dims" signature="input_dims(qargs=None)">
+    Return tuple of input dimension for specified subsystems.
+  </Function>
 
-is the current Operator, and $b$ is the other Operator.
+  ### is\_unitary
 
-**Return type**
+  <Function id="qiskit.quantum_info.Operator.is_unitary" name="is_unitary" signature="is_unitary(atol=None, rtol=None)">
+    Return True if operator is a unitary matrix.
+  </Function>
 
-[Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+  ### output\_dims
 
-### from\_circuit
+  <Function id="qiskit.quantum_info.Operator.output_dims" name="output_dims" signature="output_dims(qargs=None)">
+    Return tuple of output dimension for specified subsystems.
+  </Function>
 
-<span id="qiskit.quantum_info.Operator.from_circuit" />
+  ### power
 
-`classmethod from_circuit(circuit, ignore_set_layout=False, layout=None, final_layout=None)`
+  <Function id="qiskit.quantum_info.Operator.power" name="power" signature="power(n)">
+    Return the matrix power of the operator.
 
-Create a new Operator object from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **Parameters**
 
-While a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object can passed directly as `data` to the class constructor this provides no options on how the circuit is used to create an [`Operator`](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator"). This constructor method lets you control how the [`Operator`](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") is created so it can be adjusted for a particular use case.
+    **n** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the power to raise the matrix to.
 
-By default this constructor method will permute the qubits based on a configured initial layout (i.e. after it was transpiled). It also provides an option to manually provide a [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object directly.
+    **Returns**
 
-**Parameters**
+    the resulting operator `O ** n`.
 
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") to create an Operator object from.
-*   **ignore\_set\_layout** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to `True` if the input `circuit` has a layout set it will be ignored
-*   **layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – If specified this kwarg can be used to specify a particular layout to use to permute the qubits in the created [`Operator`](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator"). If this is specified it will be used instead of a layout contained in the `circuit` input. If specified the virtual bits in the [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") must be present in the `circuit` input.
-*   **final\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – If specified this kwarg can be used to represent the output permutation caused by swap insertions during the routing stage of the transpiler.
+    **Return type**
 
-**Returns**
+    [Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-An operator representing the input circuit
+    **Raises**
 
-**Return type**
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the operator are not equal.
+  </Function>
 
-[Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+  ### reshape
 
-### from\_label
+  <Function id="qiskit.quantum_info.Operator.reshape" name="reshape" signature="reshape(input_dims=None, output_dims=None, num_qubits=None)">
+    Return a shallow copy with reshaped input and output subsystem dimensions.
 
-<span id="qiskit.quantum_info.Operator.from_label" />
+    **Parameters**
 
-`classmethod from_label(label)`
+    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
 
-Return a tensor product of single-qubit operators.
+    **Returns**
 
-**Parameters**
+    returns self with reshaped input and output dimensions.
 
-**label** (*string*) – single-qubit operator string.
+    **Return type**
 
-**Returns**
+    BaseOperator
 
-The N-qubit operator.
+    **Raises**
 
-**Return type**
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  </Function>
 
-[Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+  ### reverse\_qargs
 
-**Raises**
+  <Function id="qiskit.quantum_info.Operator.reverse_qargs" name="reverse_qargs" signature="reverse_qargs()">
+    Return an Operator with reversed subsystem ordering.
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the label contains invalid characters, or the length of the label is larger than an explicitly specified num\_qubits.
+    For a tensor product operator this is equivalent to reversing the order of tensor product subsystems. For an operator $A = A_{n-1} \otimes ... \otimes A_0$ the returned operator will be $A_0 \otimes ... \otimes A_{n-1}$.
 
-**Additional Information:**
+    **Returns**
 
-The labels correspond to the single-qubit matrices: ‘I’: \[\[1, 0], \[0, 1]] ‘X’: \[\[0, 1], \[1, 0]] ‘Y’: \[\[0, -1j], \[1j, 0]] ‘Z’: \[\[1, 0], \[0, -1]] ‘H’: \[\[1, 1], \[1, -1]] / sqrt(2) ‘S’: \[\[1, 0], \[0 , 1j]] ‘T’: \[\[1, 0], \[0, (1+1j) / sqrt(2)]] ‘0’: \[\[1, 0], \[0, 0]] ‘1’: \[\[0, 0], \[0, 1]] ‘+’: \[\[0.5, 0.5], \[0.5 , 0.5]] ‘-’: \[\[0.5, -0.5], \[-0.5 , 0.5]] ‘r’: \[\[0.5, -0.5j], \[0.5j , 0.5]] ‘l’: \[\[0.5, 0.5j], \[-0.5j , 0.5]]
+    the operator with reversed subsystem order.
 
-### input\_dims
+    **Return type**
 
-<span id="qiskit.quantum_info.Operator.input_dims" />
+    [Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+  </Function>
 
-`input_dims(qargs=None)`
+  ### tensor
 
-Return tuple of input dimension for specified subsystems.
+  <Function id="qiskit.quantum_info.Operator.tensor" name="tensor" signature="tensor(other)">
+    Return the tensor product with another Operator.
 
-### is\_unitary
+    **Parameters**
 
-<span id="qiskit.quantum_info.Operator.is_unitary" />
+    **other** ([*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a Operator object.
 
-`is_unitary(atol=None, rtol=None)`
+    **Returns**
 
-Return True if operator is a unitary matrix.
+    **the tensor product $a \otimes b$, where $a$**
 
-### output\_dims
+    is the current Operator, and $b$ is the other Operator.
 
-<span id="qiskit.quantum_info.Operator.output_dims" />
+    **Return type**
 
-`output_dims(qargs=None)`
+    [Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-Return tuple of output dimension for specified subsystems.
+    <Admonition title="Note" type="note">
+      The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
+    </Admonition>
+  </Function>
 
-### power
+  ### to\_instruction
 
-<span id="qiskit.quantum_info.Operator.power" />
+  <Function id="qiskit.quantum_info.Operator.to_instruction" name="to_instruction" signature="to_instruction()">
+    Convert to a UnitaryGate instruction.
+  </Function>
 
-`power(n)`
+  ### to\_matrix
 
-Return the matrix power of the operator.
+  <Function id="qiskit.quantum_info.Operator.to_matrix" name="to_matrix" signature="to_matrix()">
+    Convert operator to NumPy matrix.
+  </Function>
 
-**Parameters**
+  ### to\_operator
 
-**n** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the power to raise the matrix to.
+  <Function id="qiskit.quantum_info.Operator.to_operator" name="to_operator" signature="to_operator()">
+    Convert operator to matrix operator class
 
-**Returns**
+    **Return type**
 
-the resulting operator `O ** n`.
+    [*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator")
+  </Function>
 
-**Return type**
+  ### transpose
 
-[Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the operator are not equal.
-
-### reshape
-
-<span id="qiskit.quantum_info.Operator.reshape" />
-
-`reshape(input_dims=None, output_dims=None, num_qubits=None)`
-
-Return a shallow copy with reshaped input and output subsystem dimensions.
-
-**Parameters**
-
-*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
-
-**Returns**
-
-returns self with reshaped input and output dimensions.
-
-**Return type**
-
-BaseOperator
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
-
-### reverse\_qargs
-
-<span id="qiskit.quantum_info.Operator.reverse_qargs" />
-
-`reverse_qargs()`
-
-Return an Operator with reversed subsystem ordering.
-
-For a tensor product operator this is equivalent to reversing the order of tensor product subsystems. For an operator $A = A_{n-1} \otimes ... \otimes A_0$ the returned operator will be $A_0 \otimes ... \otimes A_{n-1}$.
-
-**Returns**
-
-the operator with reversed subsystem order.
-
-**Return type**
-
-[Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
-
-### tensor
-
-<span id="qiskit.quantum_info.Operator.tensor" />
-
-`tensor(other)`
-
-Return the tensor product with another Operator.
-
-**Parameters**
-
-**other** ([*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a Operator object.
-
-**Returns**
-
-**the tensor product $a \otimes b$, where $a$**
-
-is the current Operator, and $b$ is the other Operator.
-
-**Return type**
-
-[Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
-
-<Admonition title="Note" type="note">
-  The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
-</Admonition>
-
-### to\_instruction
-
-<span id="qiskit.quantum_info.Operator.to_instruction" />
-
-`to_instruction()`
-
-Convert to a UnitaryGate instruction.
-
-### to\_matrix
-
-<span id="qiskit.quantum_info.Operator.to_matrix" />
-
-`to_matrix()`
-
-Convert operator to NumPy matrix.
-
-### to\_operator
-
-<span id="qiskit.quantum_info.Operator.to_operator" />
-
-`to_operator()`
-
-Convert operator to matrix operator class
-
-**Return type**
-
-[*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator")
-
-### transpose
-
-<span id="qiskit.quantum_info.Operator.transpose" />
-
-`transpose()`
-
-Return the transpose of the Operator.
+  <Function id="qiskit.quantum_info.Operator.transpose" name="transpose" signature="transpose()">
+    Return the transpose of the Operator.
+  </Function>
+</Class>
 

@@ -57,114 +57,108 @@ and then loading that file will return a list with all the circuits
 
 ### load
 
-<span id="qiskit.qpy.load" />
+<Function id="qiskit.qpy.load" name="load" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/qpy/interface.py" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None)">
+  Load a QPY binary file
 
-`qiskit.qpy.load(file_obj, metadata_deserializer=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/qpy/interface.py "view source code")
+  This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from its contents. For example:
 
-Load a QPY binary file
+  ```python
+  from qiskit import qpy
 
-This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from its contents. For example:
+  with open('bell.qpy', 'rb') as fd:
+      circuits = qpy.load(fd)
+  ```
 
-```python
-from qiskit import qpy
+  or with a gzip compressed file:
 
-with open('bell.qpy', 'rb') as fd:
-    circuits = qpy.load(fd)
-```
+  ```python
+  import gzip
+  from qiskit import qpy
 
-or with a gzip compressed file:
+  with gzip.open('bell.qpy.gz', 'rb') as fd:
+      circuits = qpy.load(fd)
+  ```
 
-```python
-import gzip
-from qiskit import qpy
+  which will read the contents of the qpy and return a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from the file.
 
-with gzip.open('bell.qpy.gz', 'rb') as fd:
-    circuits = qpy.load(fd)
-```
+  **Parameters**
 
-which will read the contents of the qpy and return a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from the file.
+  *   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.12)")) – A file like object that contains the QPY binary data for a circuit or pulse schedule.
+  *   **metadata\_deserializer** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.12)")*\[JSONDecoder] | None*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
 
-**Parameters**
+  **Returns**
 
-*   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.12)")) – A file like object that contains the QPY binary data for a circuit or pulse schedule.
-*   **metadata\_deserializer** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.12)")*\[JSONDecoder] | None*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
+  The list of Qiskit programs contained in the QPY data. A list is always returned, even if there is only 1 program in the QPY data.
 
-**Returns**
+  **Raises**
 
-The list of Qiskit programs contained in the QPY data. A list is always returned, even if there is only 1 program in the QPY data.
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if `file_obj` is not a valid QPY file
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – When invalid data type is loaded.
 
-**Raises**
+  **Return type**
 
-*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if `file_obj` is not a valid QPY file
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – When invalid data type is loaded.
-
-**Return type**
-
-[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
+  [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
+</Function>
 
 ### dump
 
-<span id="qiskit.qpy.dump" />
+<Function id="qiskit.qpy.dump" name="dump" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/qpy/interface.py" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False)">
+  Write QPY binary data to a file
 
-`qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/qpy/interface.py "view source code")
+  This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
 
-Write QPY binary data to a file
+  For example:
 
-This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit import qpy
 
-For example:
+  qc = QuantumCircuit(2, name='Bell', metadata={'test': True})
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.measure_all()
+  ```
 
-```python
-from qiskit.circuit import QuantumCircuit
-from qiskit import qpy
+  from this you can write the qpy data to a file:
 
-qc = QuantumCircuit(2, name='Bell', metadata={'test': True})
-qc.h(0)
-qc.cx(0, 1)
-qc.measure_all()
-```
+  ```python
+  with open('bell.qpy', 'wb') as fd:
+      qpy.dump(qc, fd)
+  ```
 
-from this you can write the qpy data to a file:
+  or a gzip compressed file:
 
-```python
-with open('bell.qpy', 'wb') as fd:
-    qpy.dump(qc, fd)
-```
+  ```python
+  import gzip
 
-or a gzip compressed file:
+  with gzip.open('bell.qpy.gz', 'wb') as fd:
+      qpy.dump(qc, fd)
+  ```
 
-```python
-import gzip
+  Which will save the qpy serialized circuit to the provided file.
 
-with gzip.open('bell.qpy.gz', 'wb') as fd:
-    qpy.dump(qc, fd)
-```
+  **Parameters**
 
-Which will save the qpy serialized circuit to the provided file.
+  *   **programs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – QPY supported object(s) to store in the specified file like object. QPY supports [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"). Different data types must be separately serialized.
+  *   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.12)")) – The file like object to write the QPY data too
+  *   **metadata\_serializer** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.12)")*\[JSONEncoder] | None*) – An optional JSONEncoder class that will be passed the `.metadata` attribute for each program in `programs` and will be used as the `cls` kwarg on the json.dump()\` call to JSON serialize that dictionary.
+  *   **use\_symengine** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, all objects containing symbolic expressions will be serialized using symengine’s native mechanism. This is a faster serialization alternative, but not supported in all platforms. Please check that your target platform is supported by the symengine library before setting this option, as it will be required by qpy to deserialize the payload. For this reason, the option defaults to False.
 
-**Parameters**
+  **Raises**
 
-*   **programs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – QPY supported object(s) to store in the specified file like object. QPY supports [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"). Different data types must be separately serialized.
-*   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.12)")) – The file like object to write the QPY data too
-*   **metadata\_serializer** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.12)")*\[JSONEncoder] | None*) – An optional JSONEncoder class that will be passed the `.metadata` attribute for each program in `programs` and will be used as the `cls` kwarg on the json.dump()\` call to JSON serialize that dictionary.
-*   **use\_symengine** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, all objects containing symbolic expressions will be serialized using symengine’s native mechanism. This is a faster serialization alternative, but not supported in all platforms. Please check that your target platform is supported by the symengine library before setting this option, as it will be required by qpy to deserialize the payload. For this reason, the option defaults to False.
-
-**Raises**
-
-*   [**QpyError**](#qiskit.qpy.QpyError "qiskit.qpy.QpyError") – When multiple data format is mixed in the output.
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – When invalid data type is input.
+  *   [**QpyError**](#qiskit.qpy.QpyError "qiskit.qpy.QpyError") – When multiple data format is mixed in the output.
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – When invalid data type is input.
+</Function>
 
 These functions will raise a custom subclass of [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") if they encounter problems during serialization or deserialization.
 
 ### QpyError
 
-<span id="qiskit.qpy.QpyError" />
+<Class id="qiskit.qpy.QpyError" name="QpyError" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/qpy/exceptions.py" signature="qiskit.qpy.QpyError(*message)">
+  Errors raised by the qpy module.
 
-`qiskit.qpy.QpyError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/qpy/exceptions.py "view source code")
-
-Errors raised by the qpy module.
-
-Set the error message.
+  Set the error message.
+</Class>
 
 ### QPY Compatibility
 

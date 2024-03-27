@@ -8,69 +8,61 @@ python_api_name: qiskit.providers.basic_provider.BasicProvider
 
 # BasicProvider
 
-<span id="qiskit.providers.basic_provider.BasicProvider" />
+<Class id="qiskit.providers.basic_provider.BasicProvider" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/basic_provider/basic_provider.py" signature="qiskit.providers.basic_provider.BasicProvider">
+  Bases: [`ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.provider.ProviderV1")
 
-`qiskit.providers.basic_provider.BasicProvider` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/basic_provider/basic_provider.py "view source code")
+  Provider for test simulators.
 
-Bases: [`ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.provider.ProviderV1")
+  ## Attributes
 
-Provider for test simulators.
+  ### version
 
-## Attributes
+  <Attribute id="qiskit.providers.basic_provider.BasicProvider.version" name="version" attributeValue="= 1" />
 
-<span id="qiskit.providers.basic_provider.BasicProvider.version" />
+  ## Methods
 
-### version
+  ### backends
 
-`= 1`
+  <Function id="qiskit.providers.basic_provider.BasicProvider.backends" name="backends" signature="backends(name=None, filters=None, **kwargs)">
+    Return a list of backends matching the specified filtering.
 
-## Methods
+    **Parameters**
 
-### backends
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-<span id="qiskit.providers.basic_provider.BasicProvider.backends" />
+    **Returns**
 
-`backends(name=None, filters=None, **kwargs)`
+    **a list of Backends that match the filtering**
 
-Return a list of backends matching the specified filtering.
+    criteria.
 
-**Parameters**
+    **Return type**
 
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
+  </Function>
 
-**Returns**
+  ### get\_backend
 
-**a list of Backends that match the filtering**
+  <Function id="qiskit.providers.basic_provider.BasicProvider.get_backend" name="get_backend" signature="get_backend(name=None, **kwargs)">
+    Return a single backend matching the specified filtering.
 
-criteria.
+    **Parameters**
 
-**Return type**
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
+    **Returns**
 
-### get\_backend
+    a backend matching the filtering.
 
-<span id="qiskit.providers.basic_provider.BasicProvider.get_backend" />
+    **Return type**
 
-`get_backend(name=None, **kwargs)`
+    [Backend](qiskit.providers.Backend "qiskit.providers.Backend")
 
-Return a single backend matching the specified filtering.
+    **Raises**
 
-**Parameters**
-
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
-
-**Returns**
-
-a backend matching the filtering.
-
-**Return type**
-
-[Backend](qiskit.providers.Backend "qiskit.providers.Backend")
-
-**Raises**
-
-[**QiskitBackendNotFoundError**](providers#qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+    [**QiskitBackendNotFoundError**](providers#qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+  </Function>
+</Class>
 

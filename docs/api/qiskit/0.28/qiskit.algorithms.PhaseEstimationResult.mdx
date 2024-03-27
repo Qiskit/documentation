@@ -8,143 +8,127 @@ python_api_name: qiskit.algorithms.PhaseEstimationResult
 
 # qiskit.algorithms.PhaseEstimationResult
 
-<span id="qiskit.algorithms.PhaseEstimationResult" />
+<Class id="qiskit.algorithms.PhaseEstimationResult" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation_result.py" signature="PhaseEstimationResult(num_evaluation_qubits, circuit_result, phases)">
+  Store and manipulate results from running PhaseEstimation.
 
-`PhaseEstimationResult(num_evaluation_qubits, circuit_result, phases)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation_result.py "view source code")
+  This class is instantiated by the `PhaseEstimation` class, not via user code. The `PhaseEstimation` class generates a list of phases and corresponding weights. Upon completion it returns the results as an instance of this class. The main method for accessing the results is filter\_phases.
 
-Store and manipulate results from running PhaseEstimation.
+  The canonical phase satisfying the `PhaseEstimator` interface, returned by the attribute phase, is the most likely phase.
 
-This class is instantiated by the `PhaseEstimation` class, not via user code. The `PhaseEstimation` class generates a list of phases and corresponding weights. Upon completion it returns the results as an instance of this class. The main method for accessing the results is filter\_phases.
+  **Parameters**
 
-The canonical phase satisfying the `PhaseEstimator` interface, returned by the attribute phase, is the most likely phase.
+  *   **num\_evaluation\_qubits** (`int`) – number of qubits in phase-readout register.
+  *   **circuit\_result** (`Result`) – result object returned by method running circuit.
+  *   **phases** (`Union`\[`ndarray`, `Dict`\[`str`, `float`]]) – ndarray or dict of phases and frequencies determined by QPE.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **num\_evaluation\_qubits** (`int`) – number of qubits in phase-readout register.
-*   **circuit\_result** (`Result`) – result object returned by method running circuit.
-*   **phases** (`Union`\[`ndarray`, `Dict`\[`str`, `float`]]) – ndarray or dict of phases and frequencies determined by QPE.
+  <Function id="qiskit.algorithms.PhaseEstimationResult.__init__" name="__init__" signature="__init__(num_evaluation_qubits, circuit_result, phases)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **num\_evaluation\_qubits** (`int`) – number of qubits in phase-readout register.
+    *   **circuit\_result** (`Result`) – result object returned by method running circuit.
+    *   **phases** (`Union`\[`ndarray`, `Dict`\[`str`, `float`]]) – ndarray or dict of phases and frequencies determined by QPE.
+  </Function>
 
-<span id="qiskit.algorithms.PhaseEstimationResult.__init__" />
+  ## Methods
 
-`__init__(num_evaluation_qubits, circuit_result, phases)`
+  |                                                                                                                                                         |                                                                        |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.PhaseEstimationResult.__init__ "qiskit.algorithms.PhaseEstimationResult.__init__")(num\_evaluation\_qubits, …)          | **type num\_evaluation\_qubits**`int`                                  |
+  | [`combine`](#qiskit.algorithms.PhaseEstimationResult.combine "qiskit.algorithms.PhaseEstimationResult.combine")(result)                                 | Any property from the argument that exists in the receiver is updated. |
+  | [`filter_phases`](#qiskit.algorithms.PhaseEstimationResult.filter_phases "qiskit.algorithms.PhaseEstimationResult.filter_phases")(\[cutoff, as\_float]) | Return a filtered dict of phases (keys) and frequencies (values).      |
 
-**Parameters**
+  ## Attributes
 
-*   **num\_evaluation\_qubits** (`int`) – number of qubits in phase-readout register.
-*   **circuit\_result** (`Result`) – result object returned by method running circuit.
-*   **phases** (`Union`\[`ndarray`, `Dict`\[`str`, `float`]]) – ndarray or dict of phases and frequencies determined by QPE.
+  |                                                                                                                                               |                                                                                          |
+  | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+  | [`circuit_result`](#qiskit.algorithms.PhaseEstimationResult.circuit_result "qiskit.algorithms.PhaseEstimationResult.circuit_result")          | Return the result object returned by running the QPE circuit (on hardware or simulator). |
+  | [`most_likely_phase`](#qiskit.algorithms.PhaseEstimationResult.most_likely_phase "qiskit.algorithms.PhaseEstimationResult.most_likely_phase") | DEPRECATED - Return the most likely phase as a number in $[0.0, 1.0)$.                   |
+  | [`phase`](#qiskit.algorithms.PhaseEstimationResult.phase "qiskit.algorithms.PhaseEstimationResult.phase")                                     | Return the most likely phase as a number in $[0.0, 1.0)$.                                |
+  | [`phases`](#qiskit.algorithms.PhaseEstimationResult.phases "qiskit.algorithms.PhaseEstimationResult.phases")                                  | Return all phases and their frequencies computed by QPE.                                 |
 
-## Methods
+  ### circuit\_result
 
-|                                                                                                                                                         |                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.PhaseEstimationResult.__init__ "qiskit.algorithms.PhaseEstimationResult.__init__")(num\_evaluation\_qubits, …)          | **type num\_evaluation\_qubits**`int`                                  |
-| [`combine`](#qiskit.algorithms.PhaseEstimationResult.combine "qiskit.algorithms.PhaseEstimationResult.combine")(result)                                 | Any property from the argument that exists in the receiver is updated. |
-| [`filter_phases`](#qiskit.algorithms.PhaseEstimationResult.filter_phases "qiskit.algorithms.PhaseEstimationResult.filter_phases")(\[cutoff, as\_float]) | Return a filtered dict of phases (keys) and frequencies (values).      |
+  <Function id="qiskit.algorithms.PhaseEstimationResult.circuit_result" name="circuit_result" signature="property circuit_result">
+    Return the result object returned by running the QPE circuit (on hardware or simulator).
 
-## Attributes
+    This is useful for inspecting and troubleshooting the QPE algorithm.
 
-|                                                                                                                                               |                                                                                          |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| [`circuit_result`](#qiskit.algorithms.PhaseEstimationResult.circuit_result "qiskit.algorithms.PhaseEstimationResult.circuit_result")          | Return the result object returned by running the QPE circuit (on hardware or simulator). |
-| [`most_likely_phase`](#qiskit.algorithms.PhaseEstimationResult.most_likely_phase "qiskit.algorithms.PhaseEstimationResult.most_likely_phase") | DEPRECATED - Return the most likely phase as a number in $[0.0, 1.0)$.                   |
-| [`phase`](#qiskit.algorithms.PhaseEstimationResult.phase "qiskit.algorithms.PhaseEstimationResult.phase")                                     | Return the most likely phase as a number in $[0.0, 1.0)$.                                |
-| [`phases`](#qiskit.algorithms.PhaseEstimationResult.phases "qiskit.algorithms.PhaseEstimationResult.phases")                                  | Return all phases and their frequencies computed by QPE.                                 |
+    **Return type**
 
-### circuit\_result
+    `Result`
+  </Function>
 
-<span id="qiskit.algorithms.PhaseEstimationResult.circuit_result" />
+  ### combine
 
-`property circuit_result`
+  <Function id="qiskit.algorithms.PhaseEstimationResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-Return the result object returned by running the QPE circuit (on hardware or simulator).
+    **Raises**
 
-This is useful for inspecting and troubleshooting the QPE algorithm.
+    **TypeError** – Argument is None
 
-**Return type**
+    **Return type**
 
-`Result`
+    `None`
+  </Function>
 
-### combine
+  ### filter\_phases
 
-<span id="qiskit.algorithms.PhaseEstimationResult.combine" />
+  <Function id="qiskit.algorithms.PhaseEstimationResult.filter_phases" name="filter_phases" signature="filter_phases(cutoff=0.0, as_float=True)">
+    Return a filtered dict of phases (keys) and frequencies (values).
 
-`combine(result)`
+    Only phases with frequencies (counts) larger than cutoff are included. It is assumed that the run method has been called so that the phases have been computed. When using a noiseless, shot-based simulator to read a single phase that can be represented exactly by num\_evaluation\_qubits, all the weight will be concentrated on a single phase. In all other cases, many, or all, bit strings will have non-zero weight. This method is useful for filtering out these uninteresting bit strings.
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    **Parameters**
 
-**Raises**
+    *   **cutoff** (`float`) – Minimum weight of number of counts required to keep a bit string. The default value is 0.0.
+    *   **as\_float** (`bool`) – If True, returned keys are floats in $[0.0, 1.0)$. If False returned keys are bit strings.
 
-**TypeError** – Argument is None
+    **Return type**
 
-**Return type**
+    `Dict`
 
-`None`
+    **Returns**
 
-### filter\_phases
+    A filtered dict of phases (keys) and frequencies (values).
+  </Function>
 
-<span id="qiskit.algorithms.PhaseEstimationResult.filter_phases" />
+  ### most\_likely\_phase
 
-`filter_phases(cutoff=0.0, as_float=True)`
+  <Function id="qiskit.algorithms.PhaseEstimationResult.most_likely_phase" name="most_likely_phase" signature="property most_likely_phase">
+    DEPRECATED - Return the most likely phase as a number in $[0.0, 1.0)$.
 
-Return a filtered dict of phases (keys) and frequencies (values).
+    1.0 corresponds to a phase of $2\pi$. This selects the phase corresponding to the bit string with the highesest probability. This is the most likely phase.
 
-Only phases with frequencies (counts) larger than cutoff are included. It is assumed that the run method has been called so that the phases have been computed. When using a noiseless, shot-based simulator to read a single phase that can be represented exactly by num\_evaluation\_qubits, all the weight will be concentrated on a single phase. In all other cases, many, or all, bit strings will have non-zero weight. This method is useful for filtering out these uninteresting bit strings.
+    **Return type**
 
-**Parameters**
+    `float`
+  </Function>
 
-*   **cutoff** (`float`) – Minimum weight of number of counts required to keep a bit string. The default value is 0.0.
-*   **as\_float** (`bool`) – If True, returned keys are floats in $[0.0, 1.0)$. If False returned keys are bit strings.
+  ### phase
 
-**Return type**
+  <Function id="qiskit.algorithms.PhaseEstimationResult.phase" name="phase" signature="property phase">
+    Return the most likely phase as a number in $[0.0, 1.0)$.
 
-`Dict`
+    1.0 corresponds to a phase of $2\pi$. This selects the phase corresponding to the bit string with the highesest probability. This is the most likely phase.
 
-**Returns**
+    **Return type**
 
-A filtered dict of phases (keys) and frequencies (values).
+    `float`
+  </Function>
 
-### most\_likely\_phase
+  ### phases
 
-<span id="qiskit.algorithms.PhaseEstimationResult.most_likely_phase" />
+  <Function id="qiskit.algorithms.PhaseEstimationResult.phases" name="phases" signature="property phases">
+    Return all phases and their frequencies computed by QPE.
 
-`property most_likely_phase`
+    This is an array or dict whose values correspond to weights on bit strings.
 
-DEPRECATED - Return the most likely phase as a number in $[0.0, 1.0)$.
+    **Return type**
 
-1.0 corresponds to a phase of $2\pi$. This selects the phase corresponding to the bit string with the highesest probability. This is the most likely phase.
-
-**Return type**
-
-`float`
-
-### phase
-
-<span id="qiskit.algorithms.PhaseEstimationResult.phase" />
-
-`property phase`
-
-Return the most likely phase as a number in $[0.0, 1.0)$.
-
-1.0 corresponds to a phase of $2\pi$. This selects the phase corresponding to the bit string with the highesest probability. This is the most likely phase.
-
-**Return type**
-
-`float`
-
-### phases
-
-<span id="qiskit.algorithms.PhaseEstimationResult.phases" />
-
-`property phases`
-
-Return all phases and their frequencies computed by QPE.
-
-This is an array or dict whose values correspond to weights on bit strings.
-
-**Return type**
-
-`Union`\[`ndarray`, `dict`]
+    `Union`\[`ndarray`, `dict`]
+  </Function>
+</Class>
 

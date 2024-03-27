@@ -8,184 +8,178 @@ python_api_name: qiskit.circuit.library.MCXRecursive
 
 # MCXRecursive
 
-<span id="qiskit.circuit.library.MCXRecursive" />
+<Class id="qiskit.circuit.library.MCXRecursive" github="https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py" signature="qiskit.circuit.library.MCXRecursive(num_ctrl_qubits=None, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)">
+  Bases: [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.standard_gates.x.MCXGate")
 
-`qiskit.circuit.library.MCXRecursive(num_ctrl_qubits=None, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py "view source code")
+  Implement the multi-controlled X gate using recursion.
 
-Bases: [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.standard_gates.x.MCXGate")
+  Using a single ancilla qubit, the multi-controlled X gate is recursively split onto four sub-registers. This is done until we reach the 3- or 4-controlled X gate since for these we have a concrete implementation that do not require ancillas.
 
-Implement the multi-controlled X gate using recursion.
+  Create new MCX gate.
 
-Using a single ancilla qubit, the multi-controlled X gate is recursively split onto four sub-registers. This is done until we reach the 3- or 4-controlled X gate since for these we have a concrete implementation that do not require ancillas.
+  ## Attributes
 
-Create new MCX gate.
+  ### base\_class
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.MCXRecursive.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-<span id="qiskit.circuit.library.MCXRecursive.base_class" />
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.MCXRecursive.base_class "qiskit.circuit.library.MCXRecursive.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-### base\_class
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.MCXRecursive.base_class "qiskit.circuit.library.MCXRecursive.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### condition
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.library.MCXRecursive.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition\_bits
 
-<span id="qiskit.circuit.library.MCXRecursive.condition" />
+  <Attribute id="qiskit.circuit.library.MCXRecursive.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### condition
+  ### ctrl\_state
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.MCXRecursive.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCXRecursive.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.MCXRecursive.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-<span id="qiskit.circuit.library.MCXRecursive.ctrl_state" />
+  <Attribute id="qiskit.circuit.library.MCXRecursive.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  </Attribute>
 
-### ctrl\_state
+  ### duration
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.MCXRecursive.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCXRecursive.decompositions" />
+  ### label
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.MCXRecursive.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### mutable
 
-<span id="qiskit.circuit.library.MCXRecursive.definition" />
+  <Attribute id="qiskit.circuit.library.MCXRecursive.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-### definition
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  ### name
 
-<span id="qiskit.circuit.library.MCXRecursive.duration" />
+  <Attribute id="qiskit.circuit.library.MCXRecursive.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-### duration
+    > \<original\_name\_o\<ctrl\_state>
 
-Get the duration.
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCXRecursive.label" />
+  ### num\_ancilla\_qubits
 
-### label
+  <Attribute id="qiskit.circuit.library.MCXRecursive.num_ancilla_qubits" name="num_ancilla_qubits">
+    The number of ancilla qubits.
+  </Attribute>
 
-Return instruction label
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.MCXRecursive.mutable" />
+  <Attribute id="qiskit.circuit.library.MCXRecursive.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### mutable
+  ### num\_ctrl\_qubits
 
-Is this instance is a mutable unique instance or not.
+  <Attribute id="qiskit.circuit.library.MCXRecursive.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+    **Returns**
 
-<span id="qiskit.circuit.library.MCXRecursive.name" />
+    The number of control qubits for the gate.
 
-### name
+    **Return type**
 
-Get name of gate. If the gate has open controls the gate name will become:
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Attribute>
 
-> \<original\_name\_o\<ctrl\_state>
+  ### num\_qubits
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  <Attribute id="qiskit.circuit.library.MCXRecursive.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCXRecursive.num_ancilla_qubits" />
+  ### params
 
-### num\_ancilla\_qubits
+  <Attribute id="qiskit.circuit.library.MCXRecursive.params" name="params">
+    Get parameters from base\_gate.
 
-The number of ancilla qubits.
+    **Returns**
 
-<span id="qiskit.circuit.library.MCXRecursive.num_clbits" />
+    List of gate parameters.
 
-### num\_clbits
+    **Return type**
 
-Return the number of clbits.
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
-<span id="qiskit.circuit.library.MCXRecursive.num_ctrl_qubits" />
+    **Raises**
 
-### num\_ctrl\_qubits
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+  </Attribute>
 
-Get number of control qubits.
+  ### unit
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.MCXRecursive.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-The number of control qubits for the gate.
+  ## Methods
 
-**Return type**
+  ### get\_num\_ancilla\_qubits
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  <Function id="qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits" name="get_num_ancilla_qubits" signature="static get_num_ancilla_qubits(num_ctrl_qubits, mode='recursion')">
+    Get the number of required ancilla qubits.
+  </Function>
 
-<span id="qiskit.circuit.library.MCXRecursive.num_qubits" />
+  ### inverse
 
-### num\_qubits
+  <Function id="qiskit.circuit.library.MCXRecursive.inverse" name="inverse" signature="inverse(annotated=False)">
+    Invert this gate. The MCX is its own inverse.
 
-Return the number of qubits.
+    **Parameters**
 
-<span id="qiskit.circuit.library.MCXRecursive.params" />
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
 
-### params
+    **Returns**
 
-Get parameters from base\_gate.
+    inverse gate (self-inverse).
 
-**Returns**
+    **Return type**
 
-List of gate parameters.
-
-**Return type**
-
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
-
-**Raises**
-
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
-
-<span id="qiskit.circuit.library.MCXRecursive.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### get\_num\_ancilla\_qubits
-
-<span id="qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits" />
-
-`static get_num_ancilla_qubits(num_ctrl_qubits, mode='recursion')`
-
-Get the number of required ancilla qubits.
-
-### inverse
-
-<span id="qiskit.circuit.library.MCXRecursive.inverse" />
-
-`inverse(annotated=False)`
-
-Invert this gate. The MCX is its own inverse.
-
-**Parameters**
-
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
-
-**Returns**
-
-inverse gate (self-inverse).
-
-**Return type**
-
-[MCXRecursive](#qiskit.circuit.library.MCXRecursive "qiskit.circuit.library.MCXRecursive")
+    [MCXRecursive](#qiskit.circuit.library.MCXRecursive "qiskit.circuit.library.MCXRecursive")
+  </Function>
+</Class>
 

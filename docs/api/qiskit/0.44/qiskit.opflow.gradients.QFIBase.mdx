@@ -8,41 +8,39 @@ python_api_name: qiskit.opflow.gradients.QFIBase
 
 # QFIBase
 
-<span id="qiskit.opflow.gradients.QFIBase" />
+<Class id="qiskit.opflow.gradients.QFIBase" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/gradients/qfi_base.py" signature="qiskit.opflow.gradients.QFIBase(qfi_method='lin_comb_full')">
+  Bases: [`DerivativeBase`](qiskit.opflow.gradients.DerivativeBase "qiskit.opflow.gradients.derivative_base.DerivativeBase")
 
-`qiskit.opflow.gradients.QFIBase(qfi_method='lin_comb_full')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/gradients/qfi_base.py "view source code")
+  Deprecated: Base class for Quantum Fisher Information (QFI).
 
-Bases: [`DerivativeBase`](qiskit.opflow.gradients.DerivativeBase "qiskit.opflow.gradients.derivative_base.DerivativeBase")
+  Compute the Quantum Fisher Information (QFI) given a pure, parameterized quantum state.
 
-Deprecated: Base class for Quantum Fisher Information (QFI).
+  The QFI is:
 
-Compute the Quantum Fisher Information (QFI) given a pure, parameterized quantum state.
+  > \[QFI]kl= Re\[〈∂kψ|∂lψ〉−〈∂kψ|ψ〉〈ψ|∂lψ〉] \* 4.
 
-The QFI is:
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.gradients.qfi_base.QFIBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-> \[QFI]kl= Re\[〈∂kψ|∂lψ〉−〈∂kψ|ψ〉〈ψ|∂lψ〉] \* 4.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.gradients.qfi_base.QFIBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  **qfi\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*CircuitQFI*](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")) – The method used to compute the state/probability gradient. Can be either a [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.CircuitQFI") instance or one of the following pre-defined strings `'lin_comb_full'`, `` 'overlap_diag'` `` or `` 'overlap_block_diag'` ``.
 
-**Parameters**
+  **Raises**
 
-**qfi\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*CircuitQFI*](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")) – The method used to compute the state/probability gradient. Can be either a [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.CircuitQFI") instance or one of the following pre-defined strings `'lin_comb_full'`, `` 'overlap_diag'` `` or `` 'overlap_block_diag'` ``.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if `qfi_method` is neither a `CircuitQFI` object nor one of the predefined strings.
 
-**Raises**
+  ## Attributes
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if `qfi_method` is neither a `CircuitQFI` object nor one of the predefined strings.
+  ### qfi\_method
 
-## Attributes
+  <Attribute id="qiskit.opflow.gradients.QFIBase.qfi_method" name="qfi_method">
+    Returns `CircuitQFI`.
 
-<span id="qiskit.opflow.gradients.QFIBase.qfi_method" />
+    **Returns**
 
-### qfi\_method
-
-Returns `CircuitQFI`.
-
-**Returns**
-
-`CircuitQFI`.
+    `CircuitQFI`.
+  </Attribute>
+</Class>
 

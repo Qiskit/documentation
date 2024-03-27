@@ -8,270 +8,260 @@ python_api_name: qiskit.circuit.library.HRSCumulativeMultiplier
 
 # HRSCumulativeMultiplier
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier" />
+<Class id="qiskit.circuit.library.HRSCumulativeMultiplier" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/multipliers/hrs_cumulative_multiplier.py" signature="qiskit.circuit.library.HRSCumulativeMultiplier(num_state_qubits, num_result_qubits=None, adder=None, name='HRSCumulativeMultiplier')">
+  Bases: `Multiplier`
 
-`qiskit.circuit.library.HRSCumulativeMultiplier(num_state_qubits, num_result_qubits=None, adder=None, name='HRSCumulativeMultiplier')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/multipliers/hrs_cumulative_multiplier.py "view source code")
+  A multiplication circuit to store product of two input registers out-of-place.
 
-Bases: `Multiplier`
+  Circuit uses the approach from \[1]. As an example, a multiplier circuit that performs a non-modular multiplication on two 3-qubit sized registers with the default adder is as follows (where `Adder` denotes the `CDKMRippleCarryAdder`):
 
-A multiplication circuit to store product of two input registers out-of-place.
+  ```python
+    a_0: ────■─────────────────────────
+             │
+    a_1: ────┼─────────■───────────────
+             │         │
+    a_2: ────┼─────────┼─────────■─────
+         ┌───┴────┐┌───┴────┐┌───┴────┐
+    b_0: ┤0       ├┤0       ├┤0       ├
+         │        ││        ││        │
+    b_1: ┤1       ├┤1       ├┤1       ├
+         │        ││        ││        │
+    b_2: ┤2       ├┤2       ├┤2       ├
+         │        ││        ││        │
+  out_0: ┤3       ├┤        ├┤        ├
+         │        ││        ││        │
+  out_1: ┤4       ├┤3       ├┤        ├
+         │  Adder ││  Adder ││  Adder │
+  out_2: ┤5       ├┤4       ├┤3       ├
+         │        ││        ││        │
+  out_3: ┤6       ├┤5       ├┤4       ├
+         │        ││        ││        │
+  out_4: ┤        ├┤6       ├┤5       ├
+         │        ││        ││        │
+  out_5: ┤        ├┤        ├┤6       ├
+         │        ││        ││        │
+  aux_0: ┤7       ├┤7       ├┤7       ├
+         └────────┘└────────┘└────────┘
+  ```
 
-Circuit uses the approach from \[1]. As an example, a multiplier circuit that performs a non-modular multiplication on two 3-qubit sized registers with the default adder is as follows (where `Adder` denotes the `CDKMRippleCarryAdder`):
+  Multiplication in this circuit is implemented in a classical approach by performing a series of shifted additions using one of the input registers while the qubits from the other input register act as control qubits for the adders.
 
-```python
-  a_0: ────■─────────────────────────
-           │
-  a_1: ────┼─────────■───────────────
-           │         │
-  a_2: ────┼─────────┼─────────■─────
-       ┌───┴────┐┌───┴────┐┌───┴────┐
-  b_0: ┤0       ├┤0       ├┤0       ├
-       │        ││        ││        │
-  b_1: ┤1       ├┤1       ├┤1       ├
-       │        ││        ││        │
-  b_2: ┤2       ├┤2       ├┤2       ├
-       │        ││        ││        │
-out_0: ┤3       ├┤        ├┤        ├
-       │        ││        ││        │
-out_1: ┤4       ├┤3       ├┤        ├
-       │  Adder ││  Adder ││  Adder │
-out_2: ┤5       ├┤4       ├┤3       ├
-       │        ││        ││        │
-out_3: ┤6       ├┤5       ├┤4       ├
-       │        ││        ││        │
-out_4: ┤        ├┤6       ├┤5       ├
-       │        ││        ││        │
-out_5: ┤        ├┤        ├┤6       ├
-       │        ││        ││        │
-aux_0: ┤7       ├┤7       ├┤7       ├
-       └────────┘└────────┘└────────┘
-```
+  **References:**
 
-Multiplication in this circuit is implemented in a classical approach by performing a series of shifted additions using one of the input registers while the qubits from the other input register act as control qubits for the adders.
+  \[1] Häner et al., Optimizing Quantum Circuits for Arithmetic, 2018. [arXiv:1805.12445](https://arxiv.org/pdf/1805.12445.pdf)
 
-**References:**
+  **Parameters**
 
-\[1] Häner et al., Optimizing Quantum Circuits for Arithmetic, 2018. [arXiv:1805.12445](https://arxiv.org/pdf/1805.12445.pdf)
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits in either input register for state $|a\rangle$ or $|b\rangle$. The two input registers must have the same number of qubits.
+  *   **num\_result\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of result qubits to limit the output to. If number of result qubits is $n$, multiplication modulo $2^n$ is performed to limit the output to the specified number of qubits. Default value is `2 * num_state_qubits` to represent any possible result from the multiplication of the two inputs.
+  *   **adder** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") *| None*) – Half adder circuit to be used for performing multiplication. The CDKMRippleCarryAdder is used as default if no adder is provided.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
 
-**Parameters**
+  **Raises**
 
-*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits in either input register for state $|a\rangle$ or $|b\rangle$. The two input registers must have the same number of qubits.
-*   **num\_result\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of result qubits to limit the output to. If number of result qubits is $n$, multiplication modulo $2^n$ is performed to limit the output to the specified number of qubits. Default value is `2 * num_state_qubits` to represent any possible result from the multiplication of the two inputs.
-*   **adder** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") *| None*) – Half adder circuit to be used for performing multiplication. The CDKMRippleCarryAdder is used as default if no adder is provided.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
+  [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – If `num_result_qubits` is not default and a custom adder is provided.
 
-**Raises**
+  ## Attributes
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – If `num_result_qubits` is not default and a custom adder is provided.
+  ### ancillas
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.ancillas" />
+  ### calibrations
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.calibrations" />
+  ### clbits
 
-### calibrations
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-Return calibration dictionary.
+  ### data
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.data" name="data">
+    Return the circuit data (instructions and context).
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.clbits" />
+    **Returns**
 
-### clbits
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
-Returns a list of classical bits in the order that the registers were added.
+    **Return type**
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.data" />
+    QuantumCircuitData
+  </Attribute>
 
-### data
+  ### extension\_lib
 
-Return the circuit data (instructions and context).
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-**Returns**
+  ### global\_phase
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.global_phase" name="global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
 
-**Return type**
+  ### header
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.extension_lib" />
+  ### instances
 
-### extension\_lib
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.instances" name="instances" attributeValue="= 197" />
 
-`= 'include "qelib1.inc";'`
+  ### layout
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.global_phase" />
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.layout" name="layout">
+    Return any associated layout information about the circuit
 
-### global\_phase
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
-Return the global phase of the current circuit scope in radians.
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.header" />
+  ### metadata
 
-### header
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.metadata" name="metadata">
+    The user provided metadata associated with the circuit.
 
-`= 'OPENQASM 2.0;'`
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.instances" />
+  ### num\_ancillas
 
-### instances
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-`= 197`
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.layout" />
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-### layout
+  ### num\_parameters
 
-Return any associated layout information about the circuit
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.num_parameters" name="num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
 
-This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+  ### num\_qubits
 
-There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.metadata" />
+  ### num\_result\_qubits
 
-### metadata
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.num_result_qubits" name="num_result_qubits">
+    The number of result qubits to limit the output to.
 
-The user provided metadata associated with the circuit.
+    **Returns**
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    The number of result qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.num_ancillas" />
+  ### num\_state\_qubits
 
-### num\_ancillas
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.num_state_qubits" name="num_state_qubits">
+    The number of state qubits, i.e. the number of bits in each input register.
 
-Return the number of ancilla qubits.
+    **Returns**
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.num_clbits" />
+    The number of state qubits.
+  </Attribute>
 
-### num\_clbits
+  ### op\_start\_times
 
-Return number of classical bits.
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.num_parameters" />
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-### num\_parameters
+    **Returns**
 
-The number of parameter objects in the circuit.
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.num_qubits" />
+    **Raises**
 
-### num\_qubits
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
 
-Return number of qubits.
+  ### parameters
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.num_result_qubits" />
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.parameters" name="parameters">
+    The parameters defined in the circuit.
 
-### num\_result\_qubits
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-The number of result qubits to limit the output to.
+    **Examples**
 
-**Returns**
+    The snippet below shows that insertion order of parameters does not matter.
 
-The number of result qubits.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.num_state_qubits" />
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
-### num\_state\_qubits
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
 
-The number of state qubits, i.e. the number of bits in each input register.
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
-**Returns**
+    ```python
+    ```
 
-The number of state qubits.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.op_start_times" />
+    **Returns**
 
-### op\_start\_times
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
-Return a list of operation start times.
+  ### prefix
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-**Returns**
+  ### qubits
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
-
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.parameters" />
-
-### parameters
-
-The parameters defined in the circuit.
-
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
-
-**Examples**
-
-The snippet below shows that insertion order of parameters does not matter.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
->>> circuit = QuantumCircuit(1)
->>> circuit.rx(b, 0)
->>> circuit.rz(elephant, 0)
->>> circuit.ry(a, 0)
->>> circuit.parameters  # sorted alphabetically!
-ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
-```
-
-Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
->>> circuit = QuantumCircuit(1)
->>> circuit.u(*angles, 0)
->>> circuit.draw()
-   ┌─────────────────────────────┐
-q: ┤ U(angle_1,angle_2,angle_10) ├
-   └─────────────────────────────┘
->>> circuit.parameters
-ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
-```
-
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
->>> x = ParameterVector("x", 12)
->>> circuit = QuantumCircuit(1)
->>> for x_i in x:
-...     circuit.rx(x_i, 0)
->>> circuit.parameters
-ParameterView([
-    ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
-    ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
-    ..., ParameterVectorElement(x[11])
-])
-```
-
-**Returns**
-
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
-
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.HRSCumulativeMultiplier.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+</Class>
 

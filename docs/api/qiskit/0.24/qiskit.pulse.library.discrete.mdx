@@ -36,427 +36,401 @@ Note the sampling strategy use for all discrete pulses is `midpoint`.
 
 ### constant
 
-<span id="qiskit.pulse.library.discrete.constant" />
+<Function id="qiskit.pulse.library.discrete.constant" name="constant" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py" signature="constant(duration, amp, name=None)">
+  Generates constant-sampled [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
 
-`constant(duration, amp, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py "view source code")
+  For $A=$ `amp`, samples from the function:
 
-Generates constant-sampled [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
+  $$
+  f(x) = A
+  $$
 
-For $A=$ `amp`, samples from the function:
+  **Parameters**
 
-$$
-f(x) = A
-$$
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Complex pulse amplitude.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
 
-**Parameters**
+  **Return type**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Complex pulse amplitude.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
-
-**Return type**
-
-`Waveform`
+  `Waveform`
+</Function>
 
 ### cos
 
-<span id="qiskit.pulse.library.discrete.cos" />
+<Function id="qiskit.pulse.library.discrete.cos" name="cos" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py" signature="cos(duration, amp, freq=None, phase=0, name=None)">
+  Generates cosine wave [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
 
-`cos(duration, amp, freq=None, phase=0, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py "view source code")
+  For $A=$ `amp`, $\omega=$ `freq`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-Generates cosine wave [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
+  $$
+  f(x) = A \cos(2 \pi \omega x + \phi)
+  $$
 
-For $A=$ `amp`, $\omega=$ `freq`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
+  **Parameters**
 
-$$
-f(x) = A \cos(2 \pi \omega x + \phi)
-$$
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Pulse amplitude.
+  *   **freq** (`Optional`\[`float`]) – Pulse frequency, units of 1/dt. If `None` defaults to single cycle.
+  *   **phase** (`float`) – Pulse phase.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
 
-**Parameters**
+  **Return type**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude.
-*   **freq** (`Optional`\[`float`]) – Pulse frequency, units of 1/dt. If `None` defaults to single cycle.
-*   **phase** (`float`) – Pulse phase.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
-
-**Return type**
-
-`Waveform`
+  `Waveform`
+</Function>
 
 ### drag
 
-<span id="qiskit.pulse.library.discrete.drag" />
+<Function id="qiskit.pulse.library.discrete.drag" name="drag" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py" signature="drag(duration, amp, sigma, beta, name=None, zero_ends=True)">
+  Generates Y-only correction DRAG [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform") for standard nonlinear oscillator (SNO) \[1].
 
-`drag(duration, amp, sigma, beta, name=None, zero_ends=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py "view source code")
+  For $A=$ `amp`, $\sigma=$ `sigma`, and $\beta=$ `beta`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-Generates Y-only correction DRAG [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform") for standard nonlinear oscillator (SNO) \[1].
+  $$
+  f(x) = g(x) + i \beta h(x),
+  $$
 
-For $A=$ `amp`, $\sigma=$ `sigma`, and $\beta=$ `beta`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
+  where $g(x)$ is the function sampled in [`gaussian()`](#qiskit.pulse.library.discrete.gaussian "qiskit.pulse.library.discrete.gaussian"), and $h(x)$ is the function sampled in [`gaussian_deriv()`](#qiskit.pulse.library.discrete.gaussian_deriv "qiskit.pulse.library.discrete.gaussian_deriv").
 
-$$
-f(x) = g(x) + i \beta h(x),
-$$
+  If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`](#qiskit.pulse.library.discrete.gaussian "qiskit.pulse.library.discrete.gaussian").
 
-where $g(x)$ is the function sampled in [`gaussian()`](#qiskit.pulse.library.discrete.gaussian "qiskit.pulse.library.discrete.gaussian"), and $h(x)$ is the function sampled in [`gaussian_deriv()`](#qiskit.pulse.library.discrete.gaussian_deriv "qiskit.pulse.library.discrete.gaussian_deriv").
+  **References**
 
-If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`](#qiskit.pulse.library.discrete.gaussian "qiskit.pulse.library.discrete.gaussian").
+  1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. “Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator.” Phys. Rev. A 83, 012308 (2011).*](http://dx.doi.org/10.1103/PhysRevA.83.012308)
 
-**References**
+  **Parameters**
 
-1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. “Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator.” Phys. Rev. A 83, 012308 (2011).*](http://dx.doi.org/10.1103/PhysRevA.83.012308)
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Pulse amplitude at center `duration/2`.
+  *   **sigma** (`float`) – Width (standard deviation) of pulse.
+  *   **beta** (`float`) – Y correction amplitude. For the SNO this is $\beta=-\frac{\lambda_1^2}{4\Delta_2}$. Where $\lambda_1$ is the relative coupling strength between the first excited and second excited states and $\Delta_2$ is the detuning between the respective excited states.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
+  *   **zero\_ends** (`bool`) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
 
-**Parameters**
+  **Return type**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude at center `duration/2`.
-*   **sigma** (`float`) – Width (standard deviation) of pulse.
-*   **beta** (`float`) – Y correction amplitude. For the SNO this is $\beta=-\frac{\lambda_1^2}{4\Delta_2}$. Where $\lambda_1$ is the relative coupling strength between the first excited and second excited states and $\Delta_2$ is the detuning between the respective excited states.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
-*   **zero\_ends** (`bool`) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
-
-**Return type**
-
-`Waveform`
+  `Waveform`
+</Function>
 
 ### gaussian
 
-<span id="qiskit.pulse.library.discrete.gaussian" />
+<Function id="qiskit.pulse.library.discrete.gaussian" name="gaussian" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py" signature="gaussian(duration, amp, sigma, name=None, zero_ends=True)">
+  Generates unnormalized gaussian [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
 
-`gaussian(duration, amp, sigma, name=None, zero_ends=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py "view source code")
+  For $A=$ `amp` and $\sigma=$ `sigma`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-Generates unnormalized gaussian [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
+  $$
+  f(x) = A\exp\left(\left(\frac{x - \mu}{2\sigma}\right)^2 \right),
+  $$
 
-For $A=$ `amp` and $\sigma=$ `sigma`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
+  with the center $\mu=$ `duration/2`.
 
-$$
-f(x) = A\exp\left(\left(\frac{x - \mu}{2\sigma}\right)^2 \right),
-$$
+  If `zero_ends==True`, each output sample $y$ is modifed according to:
 
-with the center $\mu=$ `duration/2`.
+  $$
+  y \mapsto A\frac{y-y^*}{A-y^*},
+  $$
 
-If `zero_ends==True`, each output sample $y$ is modifed according to:
+  where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$ while preserving the amplitude at the center. If $A=y^*$, $y$ is set to $1$. By default, the endpoints are at `x = -1, x = duration + 1`.
 
-$$
-y \mapsto A\frac{y-y^*}{A-y^*},
-$$
+  Integrated area under the full curve is `amp * np.sqrt(2*np.pi*sigma**2)`
 
-where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$ while preserving the amplitude at the center. If $A=y^*$, $y$ is set to $1$. By default, the endpoints are at `x = -1, x = duration + 1`.
+  **Parameters**
 
-Integrated area under the full curve is `amp * np.sqrt(2*np.pi*sigma**2)`
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Pulse amplitude at `duration/2`.
+  *   **sigma** (`float`) – Width (standard deviation) of pulse.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
+  *   **zero\_ends** (`bool`) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
 
-**Parameters**
+  **Return type**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude at `duration/2`.
-*   **sigma** (`float`) – Width (standard deviation) of pulse.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
-*   **zero\_ends** (`bool`) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
-
-**Return type**
-
-`Waveform`
+  `Waveform`
+</Function>
 
 ### gaussian\_deriv
 
-<span id="qiskit.pulse.library.discrete.gaussian_deriv" />
+<Function id="qiskit.pulse.library.discrete.gaussian_deriv" name="gaussian_deriv" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py" signature="gaussian_deriv(duration, amp, sigma, name=None)">
+  Generates unnormalized gaussian derivative [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
 
-`gaussian_deriv(duration, amp, sigma, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py "view source code")
+  For $A=$ `amp` and $\sigma=$ `sigma` applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-Generates unnormalized gaussian derivative [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
+  $$
+  f(x) = A\frac{(x - \mu)}{\sigma^2}\exp\left(\left(\frac{x - \mu}{2\sigma}\right)^2 \right)
+  $$
 
-For $A=$ `amp` and $\sigma=$ `sigma` applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
+  i.e. the derivative of the Gaussian function, with center $\mu=$ `duration/2`.
 
-$$
-f(x) = A\frac{(x - \mu)}{\sigma^2}\exp\left(\left(\frac{x - \mu}{2\sigma}\right)^2 \right)
-$$
+  **Parameters**
 
-i.e. the derivative of the Gaussian function, with center $\mu=$ `duration/2`.
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Pulse amplitude of corresponding Gaussian at the pulse center (`duration/2`).
+  *   **sigma** (`float`) – Width (standard deviation) of pulse.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
 
-**Parameters**
+  **Return type**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude of corresponding Gaussian at the pulse center (`duration/2`).
-*   **sigma** (`float`) – Width (standard deviation) of pulse.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
-
-**Return type**
-
-`Waveform`
+  `Waveform`
+</Function>
 
 ### gaussian\_square
 
-<span id="qiskit.pulse.library.discrete.gaussian_square" />
+<Function id="qiskit.pulse.library.discrete.gaussian_square" name="gaussian_square" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py" signature="gaussian_square(duration, amp, sigma, risefall=None, width=None, name=None, zero_ends=True)">
+  Generates gaussian square [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
 
-`gaussian_square(duration, amp, sigma, risefall=None, width=None, name=None, zero_ends=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py "view source code")
+  For $d=$ `duration`, $A=$ `amp`, $\sigma=$ `sigma`, and $r=$ `risefall`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-Generates gaussian square [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
+  $$
+  \begin{split}f(x) = \begin{cases}
+              g(x - r) ) & x\leq r \\
+              A & r\leq x\leq d-r \\
+              g(x - (d - r)) & d-r\leq x
+          \end{cases}\end{split}
+  $$
 
-For $d=$ `duration`, $A=$ `amp`, $\sigma=$ `sigma`, and $r=$ `risefall`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
+  where $g(x)$ is the Gaussian function sampled from in [`gaussian()`](#qiskit.pulse.library.discrete.gaussian "qiskit.pulse.library.discrete.gaussian") with $A=$ `amp`, $\mu=1$, and $\sigma=$ `sigma`. I.e. $f(x)$ represents a square pulse with smooth Gaussian edges.
 
-$$
-\begin{split}f(x) = \begin{cases}
-            g(x - r) ) & x\leq r \\
-            A & r\leq x\leq d-r \\
-            g(x - (d - r)) & d-r\leq x
-        \end{cases}\end{split}
-$$
+  If `zero_ends == True`, the samples for the Gaussian ramps are remapped as in [`gaussian()`](#qiskit.pulse.library.discrete.gaussian "qiskit.pulse.library.discrete.gaussian").
 
-where $g(x)$ is the Gaussian function sampled from in [`gaussian()`](#qiskit.pulse.library.discrete.gaussian "qiskit.pulse.library.discrete.gaussian") with $A=$ `amp`, $\mu=1$, and $\sigma=$ `sigma`. I.e. $f(x)$ represents a square pulse with smooth Gaussian edges.
+  **Parameters**
 
-If `zero_ends == True`, the samples for the Gaussian ramps are remapped as in [`gaussian()`](#qiskit.pulse.library.discrete.gaussian "qiskit.pulse.library.discrete.gaussian").
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Pulse amplitude.
+  *   **sigma** (`float`) – Width (standard deviation) of Gaussian rise/fall portion of the pulse.
+  *   **risefall** (`Optional`\[`float`]) – Number of samples over which pulse rise and fall happen. Width of square portion of pulse will be `duration-2*risefall`.
+  *   **width** (`Optional`\[`float`]) – The duration of the embedded square pulse. Only one of `width` or `risefall` should be specified as the functional form requires `width = duration - 2 * risefall`.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
+  *   **zero\_ends** (`bool`) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
 
-**Parameters**
+  **Raises**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude.
-*   **sigma** (`float`) – Width (standard deviation) of Gaussian rise/fall portion of the pulse.
-*   **risefall** (`Optional`\[`float`]) – Number of samples over which pulse rise and fall happen. Width of square portion of pulse will be `duration-2*risefall`.
-*   **width** (`Optional`\[`float`]) – The duration of the embedded square pulse. Only one of `width` or `risefall` should be specified as the functional form requires `width = duration - 2 * risefall`.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
-*   **zero\_ends** (`bool`) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
+  [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `risefall` and `width` arguments are inconsistent or not enough info.
 
-**Raises**
+  **Return type**
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `risefall` and `width` arguments are inconsistent or not enough info.
-
-**Return type**
-
-`Waveform`
+  `Waveform`
+</Function>
 
 ### sawtooth
 
-<span id="qiskit.pulse.library.discrete.sawtooth" />
+<Function id="qiskit.pulse.library.discrete.sawtooth" name="sawtooth" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py" signature="sawtooth(duration, amp, freq=None, phase=0, name=None)">
+  Generates sawtooth wave [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
 
-`sawtooth(duration, amp, freq=None, phase=0, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py "view source code")
+  For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-Generates sawtooth wave [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
+  $$
+  f(x) = 2 A \left( g(x) - \left\lfloor \frac{1}{2} + g(x) \right\rfloor\right)
+  $$
 
-For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
+  where $g(x) = x/T + \phi/\pi$.
 
-$$
-f(x) = 2 A \left( g(x) - \left\lfloor \frac{1}{2} + g(x) \right\rfloor\right)
-$$
+  **Parameters**
 
-where $g(x) = x/T + \phi/\pi$.
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
+  *   **freq** (`Optional`\[`float`]) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
+  *   **phase** (`float`) – Pulse phase.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
 
-**Parameters**
+  **Example**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
-*   **freq** (`Optional`\[`float`]) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
-*   **phase** (`float`) – Pulse phase.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
+  ```python
+  import matplotlib.pyplot as plt
+  from qiskit.pulse.library import sawtooth
+  import numpy as np
 
-**Example**
+  duration = 100
+  amp = 1
+  freq = 1 / duration
+  sawtooth_wave = np.real(sawtooth(duration, amp, freq).samples)
+  plt.plot(range(duration), sawtooth_wave)
+  ```
 
-```python
-import matplotlib.pyplot as plt
-from qiskit.pulse.library import sawtooth
-import numpy as np
+  ```python
+  [<matplotlib.lines.Line2D at 0x7fc352516090>]
+  ```
 
-duration = 100
-amp = 1
-freq = 1 / duration
-sawtooth_wave = np.real(sawtooth(duration, amp, freq).samples)
-plt.plot(range(duration), sawtooth_wave)
-```
+  ![../\_images/qiskit.pulse.library.discrete\_0\_1.png](/images/api/qiskit/0.24/qiskit.pulse.library.discrete_0_1.png)
 
-```python
-[<matplotlib.lines.Line2D at 0x7fc352516090>]
-```
+  **Return type**
 
-![../\_images/qiskit.pulse.library.discrete\_0\_1.png](/images/api/qiskit/0.24/qiskit.pulse.library.discrete_0_1.png)
-
-**Return type**
-
-`Waveform`
+  `Waveform`
+</Function>
 
 ### sech
 
-<span id="qiskit.pulse.library.discrete.sech" />
+<Function id="qiskit.pulse.library.discrete.sech" name="sech" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py" signature="sech(duration, amp, sigma, name=None, zero_ends=True)">
+  Generates unnormalized sech [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
 
-`sech(duration, amp, sigma, name=None, zero_ends=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py "view source code")
+  For $A=$ `amp` and $\sigma=$ `sigma`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-Generates unnormalized sech [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
+  $$
+  f(x) = A\text{sech}\left(\frac{x-\mu}{\sigma} \right)
+  $$
 
-For $A=$ `amp` and $\sigma=$ `sigma`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
+  with the center $\mu=$ `duration/2`.
 
-$$
-f(x) = A\text{sech}\left(\frac{x-\mu}{\sigma} \right)
-$$
+  If `zero_ends==True`, each output sample $y$ is modifed according to:
 
-with the center $\mu=$ `duration/2`.
+  $$
+  y \mapsto A\frac{y-y^*}{A-y^*},
+  $$
 
-If `zero_ends==True`, each output sample $y$ is modifed according to:
+  where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$ while preserving the amplitude at the center. If $A=y^*$, $y$ is set to $1$. By default, the endpoints are at `x = -1, x = duration + 1`.
 
-$$
-y \mapsto A\frac{y-y^*}{A-y^*},
-$$
+  **Parameters**
 
-where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$ while preserving the amplitude at the center. If $A=y^*$, $y$ is set to $1$. By default, the endpoints are at `x = -1, x = duration + 1`.
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Pulse amplitude at duration/2.
+  *   **sigma** (`float`) – Width (standard deviation) of pulse.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
+  *   **zero\_ends** (`bool`) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
 
-**Parameters**
+  **Return type**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude at duration/2.
-*   **sigma** (`float`) – Width (standard deviation) of pulse.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
-*   **zero\_ends** (`bool`) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
-
-**Return type**
-
-`Waveform`
+  `Waveform`
+</Function>
 
 ### sech\_deriv
 
-<span id="qiskit.pulse.library.discrete.sech_deriv" />
+<Function id="qiskit.pulse.library.discrete.sech_deriv" name="sech_deriv" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py" signature="sech_deriv(duration, amp, sigma, name=None)">
+  Generates unnormalized sech derivative [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
 
-`sech_deriv(duration, amp, sigma, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py "view source code")
+  For $A=$ `amp`, $\sigma=$ `sigma`, and center $\mu=$ `duration/2`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-Generates unnormalized sech derivative [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
+  $$
+  f(x) = \frac{d}{dx}\left[A\text{sech}\left(\frac{x-\mu}{\sigma} \right)\right],
+  $$
 
-For $A=$ `amp`, $\sigma=$ `sigma`, and center $\mu=$ `duration/2`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
+  i.e. the derivative of $\text{sech}$.
 
-$$
-f(x) = \frac{d}{dx}\left[A\text{sech}\left(\frac{x-\mu}{\sigma} \right)\right],
-$$
+  **Parameters**
 
-i.e. the derivative of $\text{sech}$.
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Pulse amplitude at center.
+  *   **sigma** (`float`) – Width (standard deviation) of pulse.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
 
-**Parameters**
+  **Return type**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude at center.
-*   **sigma** (`float`) – Width (standard deviation) of pulse.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
-
-**Return type**
-
-`Waveform`
+  `Waveform`
+</Function>
 
 ### sin
 
-<span id="qiskit.pulse.library.discrete.sin" />
+<Function id="qiskit.pulse.library.discrete.sin" name="sin" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py" signature="sin(duration, amp, freq=None, phase=0, name=None)">
+  Generates sine wave [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
 
-`sin(duration, amp, freq=None, phase=0, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py "view source code")
+  For $A=$ `amp`, $\omega=$ `freq`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-Generates sine wave [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
+  $$
+  f(x) = A \sin(2 \pi \omega x + \phi)
+  $$
 
-For $A=$ `amp`, $\omega=$ `freq`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
+  **Parameters**
 
-$$
-f(x) = A \sin(2 \pi \omega x + \phi)
-$$
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Pulse amplitude.
+  *   **freq** (`Optional`\[`float`]) – Pulse frequency, units of 1/dt. If `None` defaults to single cycle.
+  *   **phase** (`float`) – Pulse phase.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
 
-**Parameters**
+  **Return type**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude.
-*   **freq** (`Optional`\[`float`]) – Pulse frequency, units of 1/dt. If `None` defaults to single cycle.
-*   **phase** (`float`) – Pulse phase.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
-
-**Return type**
-
-`Waveform`
+  `Waveform`
+</Function>
 
 ### square
 
-<span id="qiskit.pulse.library.discrete.square" />
+<Function id="qiskit.pulse.library.discrete.square" name="square" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py" signature="square(duration, amp, freq=None, phase=0, name=None)">
+  Generates square wave [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
 
-`square(duration, amp, freq=None, phase=0, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py "view source code")
+  For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-Generates square wave [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
+  $$
+  f(x) = A \text{sign}\left[ \sin\left(\frac{2 \pi x}{T} + 2\phi\right) \right]
+  $$
 
-For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
+  with the convention $\text{sign}(0) = 1$.
 
-$$
-f(x) = A \text{sign}\left[ \sin\left(\frac{2 \pi x}{T} + 2\phi\right) \right]
-$$
+  **Parameters**
 
-with the convention $\text{sign}(0) = 1$.
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
+  *   **freq** (`Optional`\[`float`]) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
+  *   **phase** (`float`) – Pulse phase.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
 
-**Parameters**
+  **Return type**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
-*   **freq** (`Optional`\[`float`]) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
-*   **phase** (`float`) – Pulse phase.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
-
-**Return type**
-
-`Waveform`
+  `Waveform`
+</Function>
 
 ### triangle
 
-<span id="qiskit.pulse.library.discrete.triangle" />
+<Function id="qiskit.pulse.library.discrete.triangle" name="triangle" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py" signature="triangle(duration, amp, freq=None, phase=0, name=None)">
+  Generates triangle wave [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
 
-`triangle(duration, amp, freq=None, phase=0, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py "view source code")
+  For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-Generates triangle wave [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
+  $$
+  f(x) = A \left(-2\left|\text{sawtooth}(x, A, T, \phi)\right| + 1\right)
+  $$
 
-For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
+  This a non-sinusoidal wave with linear ramping.
 
-$$
-f(x) = A \left(-2\left|\text{sawtooth}(x, A, T, \phi)\right| + 1\right)
-$$
+  **Parameters**
 
-This a non-sinusoidal wave with linear ramping.
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
+  *   **freq** (`Optional`\[`float`]) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
+  *   **phase** (`float`) – Pulse phase.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
 
-**Parameters**
+  **Example**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
-*   **freq** (`Optional`\[`float`]) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
-*   **phase** (`float`) – Pulse phase.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
+  ```python
+  import matplotlib.pyplot as plt
+  from qiskit.pulse.library import triangle
+  import numpy as np
 
-**Example**
+  duration = 100
+  amp = 1
+  freq = 1 / duration
+  triangle_wave = np.real(triangle(duration, amp, freq).samples)
+  plt.plot(range(duration), triangle_wave)
+  ```
 
-```python
-import matplotlib.pyplot as plt
-from qiskit.pulse.library import triangle
-import numpy as np
+  ```python
+  [<matplotlib.lines.Line2D at 0x7fc352006190>]
+  ```
 
-duration = 100
-amp = 1
-freq = 1 / duration
-triangle_wave = np.real(triangle(duration, amp, freq).samples)
-plt.plot(range(duration), triangle_wave)
-```
+  ![../\_images/qiskit.pulse.library.discrete\_1\_1.png](/images/api/qiskit/0.24/qiskit.pulse.library.discrete_1_1.png)
 
-```python
-[<matplotlib.lines.Line2D at 0x7fc352006190>]
-```
+  **Return type**
 
-![../\_images/qiskit.pulse.library.discrete\_1\_1.png](/images/api/qiskit/0.24/qiskit.pulse.library.discrete_1_1.png)
-
-**Return type**
-
-`Waveform`
+  `Waveform`
+</Function>
 
 ### zero
 
-<span id="qiskit.pulse.library.discrete.zero" />
+<Function id="qiskit.pulse.library.discrete.zero" name="zero" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py" signature="zero(duration, name=None)">
+  Generates zero-sampled [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
 
-`zero(duration, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/discrete.py "view source code")
+  Samples from the function:
 
-Generates zero-sampled [`Waveform`](qiskit.pulse.Waveform "qiskit.pulse.Waveform").
+  $$
+  f(x) = 0
+  $$
 
-Samples from the function:
+  **Parameters**
 
-$$
-f(x) = 0
-$$
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
 
-**Parameters**
+  **Return type**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
-
-**Return type**
-
-`Waveform`
+  `Waveform`
+</Function>
 

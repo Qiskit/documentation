@@ -8,287 +8,241 @@ python_api_name: qiskit.algorithms.optimizers.SNOBFIT
 
 # qiskit.algorithms.optimizers.SNOBFIT
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT" />
+<Class id="qiskit.algorithms.optimizers.SNOBFIT" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/snobfit.py" signature="SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)">
+  Stable Noisy Optimization by Branch and FIT algorithm.
 
-`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/snobfit.py "view source code")
+  SnobFit is used for the optimization of derivative-free, noisy objective functions providing robust and fast solutions of problems with continuous variables varying within bound.
 
-Stable Noisy Optimization by Branch and FIT algorithm.
+  Uses skquant.opt installed with pip install scikit-quant. For further detail, please refer to [https://github.com/scikit-quant/scikit-quant](https://github.com/scikit-quant/scikit-quant) and [https://qat4chem.lbl.gov/software](https://qat4chem.lbl.gov/software).
 
-SnobFit is used for the optimization of derivative-free, noisy objective functions providing robust and fast solutions of problems with continuous variables varying within bound.
+  **Parameters**
 
-Uses skquant.opt installed with pip install scikit-quant. For further detail, please refer to [https://github.com/scikit-quant/scikit-quant](https://github.com/scikit-quant/scikit-quant) and [https://qat4chem.lbl.gov/software](https://qat4chem.lbl.gov/software).
+  *   **maxiter** (`int`) – Maximum number of function evaluations.
+  *   **maxmp** (`Optional`\[`int`]) – Maximum number of model points requested for the local fit. Default = 2 \* number of parameters + 6 set to this value when None.
+  *   **maxfail** (`int`) – Maximum number of failures to improve the solution. Stops the algorithm after maxfail is reached.
+  *   **verbose** (`bool`) – Provide verbose (debugging) output.
 
-**Parameters**
+  **Raises**
 
-*   **maxiter** (`int`) – Maximum number of function evaluations.
-*   **maxmp** (`Optional`\[`int`]) – Maximum number of model points requested for the local fit. Default = 2 \* number of parameters + 6 set to this value when None.
-*   **maxfail** (`int`) – Maximum number of failures to improve the solution. Stops the algorithm after maxfail is reached.
-*   **verbose** (`bool`) – Provide verbose (debugging) output.
+  [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant or SQSnobFit not installed
 
-**Raises**
+  ### \_\_init\_\_
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant or SQSnobFit not installed
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.__init__" name="__init__" signature="__init__(maxiter=1000, maxfail=10, maxmp=None, verbose=False)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **maxiter** (`int`) – Maximum number of function evaluations.
+    *   **maxmp** (`Optional`\[`int`]) – Maximum number of model points requested for the local fit. Default = 2 \* number of parameters + 6 set to this value when None.
+    *   **maxfail** (`int`) – Maximum number of failures to improve the solution. Stops the algorithm after maxfail is reached.
+    *   **verbose** (`bool`) – Provide verbose (debugging) output.
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.__init__" />
+    **Raises**
 
-`__init__(maxiter=1000, maxfail=10, maxmp=None, verbose=False)`
+    [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant or SQSnobFit not installed
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **maxiter** (`int`) – Maximum number of function evaluations.
-*   **maxmp** (`Optional`\[`int`]) – Maximum number of model points requested for the local fit. Default = 2 \* number of parameters + 6 set to this value when None.
-*   **maxfail** (`int`) – Maximum number of failures to improve the solution. Stops the algorithm after maxfail is reached.
-*   **verbose** (`bool`) – Provide verbose (debugging) output.
+  |                                                                                                                                                                      |                                                                                                           |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.optimizers.SNOBFIT.__init__ "qiskit.algorithms.optimizers.SNOBFIT.__init__")(\[maxiter, maxfail, maxmp, verbose])                    | **type maxiter**`int`                                                                                     |
+  | [`get_support_level`](#qiskit.algorithms.optimizers.SNOBFIT.get_support_level "qiskit.algorithms.optimizers.SNOBFIT.get_support_level")()                            | Returns support level dictionary.                                                                         |
+  | [`gradient_num_diff`](#qiskit.algorithms.optimizers.SNOBFIT.gradient_num_diff "qiskit.algorithms.optimizers.SNOBFIT.gradient_num_diff")(x\_center, f, epsilon\[, …]) | We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center. |
+  | [`optimize`](#qiskit.algorithms.optimizers.SNOBFIT.optimize "qiskit.algorithms.optimizers.SNOBFIT.optimize")(num\_vars, objective\_function\[, …])                   | Runs the optimization.                                                                                    |
+  | [`print_options`](#qiskit.algorithms.optimizers.SNOBFIT.print_options "qiskit.algorithms.optimizers.SNOBFIT.print_options")()                                        | Print algorithm-specific options.                                                                         |
+  | [`set_max_evals_grouped`](#qiskit.algorithms.optimizers.SNOBFIT.set_max_evals_grouped "qiskit.algorithms.optimizers.SNOBFIT.set_max_evals_grouped")(limit)           | Set max evals grouped                                                                                     |
+  | [`set_options`](#qiskit.algorithms.optimizers.SNOBFIT.set_options "qiskit.algorithms.optimizers.SNOBFIT.set_options")(\*\*kwargs)                                    | Sets or updates values in the options dictionary.                                                         |
+  | [`wrap_function`](#qiskit.algorithms.optimizers.SNOBFIT.wrap_function "qiskit.algorithms.optimizers.SNOBFIT.wrap_function")(function, args)                          | Wrap the function to implicitly inject the args at the call of the function.                              |
 
-**Raises**
+  ## Attributes
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant or SQSnobFit not installed
+  |                                                                                                                                                                       |                                                |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+  | [`bounds_support_level`](#qiskit.algorithms.optimizers.SNOBFIT.bounds_support_level "qiskit.algorithms.optimizers.SNOBFIT.bounds_support_level")                      | Returns bounds support level                   |
+  | [`gradient_support_level`](#qiskit.algorithms.optimizers.SNOBFIT.gradient_support_level "qiskit.algorithms.optimizers.SNOBFIT.gradient_support_level")                | Returns gradient support level                 |
+  | [`initial_point_support_level`](#qiskit.algorithms.optimizers.SNOBFIT.initial_point_support_level "qiskit.algorithms.optimizers.SNOBFIT.initial_point_support_level") | Returns initial point support level            |
+  | [`is_bounds_ignored`](#qiskit.algorithms.optimizers.SNOBFIT.is_bounds_ignored "qiskit.algorithms.optimizers.SNOBFIT.is_bounds_ignored")                               | Returns is bounds ignored                      |
+  | [`is_bounds_required`](#qiskit.algorithms.optimizers.SNOBFIT.is_bounds_required "qiskit.algorithms.optimizers.SNOBFIT.is_bounds_required")                            | Returns is bounds required                     |
+  | [`is_bounds_supported`](#qiskit.algorithms.optimizers.SNOBFIT.is_bounds_supported "qiskit.algorithms.optimizers.SNOBFIT.is_bounds_supported")                         | Returns is bounds supported                    |
+  | [`is_gradient_ignored`](#qiskit.algorithms.optimizers.SNOBFIT.is_gradient_ignored "qiskit.algorithms.optimizers.SNOBFIT.is_gradient_ignored")                         | Returns is gradient ignored                    |
+  | [`is_gradient_required`](#qiskit.algorithms.optimizers.SNOBFIT.is_gradient_required "qiskit.algorithms.optimizers.SNOBFIT.is_gradient_required")                      | Returns is gradient required                   |
+  | [`is_gradient_supported`](#qiskit.algorithms.optimizers.SNOBFIT.is_gradient_supported "qiskit.algorithms.optimizers.SNOBFIT.is_gradient_supported")                   | Returns is gradient supported                  |
+  | [`is_initial_point_ignored`](#qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_ignored "qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_ignored")          | Returns is initial point ignored               |
+  | [`is_initial_point_required`](#qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_required "qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_required")       | Returns is initial point required              |
+  | [`is_initial_point_supported`](#qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_supported "qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_supported")    | Returns is initial point supported             |
+  | [`setting`](#qiskit.algorithms.optimizers.SNOBFIT.setting "qiskit.algorithms.optimizers.SNOBFIT.setting")                                                             | Return setting                                 |
+  | [`settings`](#qiskit.algorithms.optimizers.SNOBFIT.settings "qiskit.algorithms.optimizers.SNOBFIT.settings")                                                          | The optimizer settings in a dictionary format. |
 
-## Methods
+  ### bounds\_support\_level
 
-|                                                                                                                                                                      |                                                                                                           |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.optimizers.SNOBFIT.__init__ "qiskit.algorithms.optimizers.SNOBFIT.__init__")(\[maxiter, maxfail, maxmp, verbose])                    | **type maxiter**`int`                                                                                     |
-| [`get_support_level`](#qiskit.algorithms.optimizers.SNOBFIT.get_support_level "qiskit.algorithms.optimizers.SNOBFIT.get_support_level")()                            | Returns support level dictionary.                                                                         |
-| [`gradient_num_diff`](#qiskit.algorithms.optimizers.SNOBFIT.gradient_num_diff "qiskit.algorithms.optimizers.SNOBFIT.gradient_num_diff")(x\_center, f, epsilon\[, …]) | We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center. |
-| [`optimize`](#qiskit.algorithms.optimizers.SNOBFIT.optimize "qiskit.algorithms.optimizers.SNOBFIT.optimize")(num\_vars, objective\_function\[, …])                   | Runs the optimization.                                                                                    |
-| [`print_options`](#qiskit.algorithms.optimizers.SNOBFIT.print_options "qiskit.algorithms.optimizers.SNOBFIT.print_options")()                                        | Print algorithm-specific options.                                                                         |
-| [`set_max_evals_grouped`](#qiskit.algorithms.optimizers.SNOBFIT.set_max_evals_grouped "qiskit.algorithms.optimizers.SNOBFIT.set_max_evals_grouped")(limit)           | Set max evals grouped                                                                                     |
-| [`set_options`](#qiskit.algorithms.optimizers.SNOBFIT.set_options "qiskit.algorithms.optimizers.SNOBFIT.set_options")(\*\*kwargs)                                    | Sets or updates values in the options dictionary.                                                         |
-| [`wrap_function`](#qiskit.algorithms.optimizers.SNOBFIT.wrap_function "qiskit.algorithms.optimizers.SNOBFIT.wrap_function")(function, args)                          | Wrap the function to implicitly inject the args at the call of the function.                              |
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.bounds_support_level" name="bounds_support_level" signature="property bounds_support_level">
+    Returns bounds support level
+  </Function>
 
-## Attributes
+  ### get\_support\_level
 
-|                                                                                                                                                                       |                                                |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [`bounds_support_level`](#qiskit.algorithms.optimizers.SNOBFIT.bounds_support_level "qiskit.algorithms.optimizers.SNOBFIT.bounds_support_level")                      | Returns bounds support level                   |
-| [`gradient_support_level`](#qiskit.algorithms.optimizers.SNOBFIT.gradient_support_level "qiskit.algorithms.optimizers.SNOBFIT.gradient_support_level")                | Returns gradient support level                 |
-| [`initial_point_support_level`](#qiskit.algorithms.optimizers.SNOBFIT.initial_point_support_level "qiskit.algorithms.optimizers.SNOBFIT.initial_point_support_level") | Returns initial point support level            |
-| [`is_bounds_ignored`](#qiskit.algorithms.optimizers.SNOBFIT.is_bounds_ignored "qiskit.algorithms.optimizers.SNOBFIT.is_bounds_ignored")                               | Returns is bounds ignored                      |
-| [`is_bounds_required`](#qiskit.algorithms.optimizers.SNOBFIT.is_bounds_required "qiskit.algorithms.optimizers.SNOBFIT.is_bounds_required")                            | Returns is bounds required                     |
-| [`is_bounds_supported`](#qiskit.algorithms.optimizers.SNOBFIT.is_bounds_supported "qiskit.algorithms.optimizers.SNOBFIT.is_bounds_supported")                         | Returns is bounds supported                    |
-| [`is_gradient_ignored`](#qiskit.algorithms.optimizers.SNOBFIT.is_gradient_ignored "qiskit.algorithms.optimizers.SNOBFIT.is_gradient_ignored")                         | Returns is gradient ignored                    |
-| [`is_gradient_required`](#qiskit.algorithms.optimizers.SNOBFIT.is_gradient_required "qiskit.algorithms.optimizers.SNOBFIT.is_gradient_required")                      | Returns is gradient required                   |
-| [`is_gradient_supported`](#qiskit.algorithms.optimizers.SNOBFIT.is_gradient_supported "qiskit.algorithms.optimizers.SNOBFIT.is_gradient_supported")                   | Returns is gradient supported                  |
-| [`is_initial_point_ignored`](#qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_ignored "qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_ignored")          | Returns is initial point ignored               |
-| [`is_initial_point_required`](#qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_required "qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_required")       | Returns is initial point required              |
-| [`is_initial_point_supported`](#qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_supported "qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_supported")    | Returns is initial point supported             |
-| [`setting`](#qiskit.algorithms.optimizers.SNOBFIT.setting "qiskit.algorithms.optimizers.SNOBFIT.setting")                                                             | Return setting                                 |
-| [`settings`](#qiskit.algorithms.optimizers.SNOBFIT.settings "qiskit.algorithms.optimizers.SNOBFIT.settings")                                                          | The optimizer settings in a dictionary format. |
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.get_support_level" name="get_support_level" signature="get_support_level()">
+    Returns support level dictionary.
+  </Function>
 
-### bounds\_support\_level
+  ### gradient\_num\_diff
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.bounds_support_level" />
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.gradient_num_diff" name="gradient_num_diff" signature="static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-`property bounds_support_level`
+    **Parameters**
 
-Returns bounds support level
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped
 
-### get\_support\_level
+    **Returns**
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.get_support_level" />
+    the gradient computed
 
-`get_support_level()`
+    **Return type**
 
-Returns support level dictionary.
+    grad
+  </Function>
 
-### gradient\_num\_diff
+  ### gradient\_support\_level
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.gradient_num_diff" />
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.gradient_support_level" name="gradient_support_level" signature="property gradient_support_level">
+    Returns gradient support level
+  </Function>
 
-`static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
+  ### initial\_point\_support\_level
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.initial_point_support_level" name="initial_point_support_level" signature="property initial_point_support_level">
+    Returns initial point support level
+  </Function>
 
-**Parameters**
+  ### is\_bounds\_ignored
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.is_bounds_ignored" name="is_bounds_ignored" signature="property is_bounds_ignored">
+    Returns is bounds ignored
+  </Function>
 
-**Returns**
+  ### is\_bounds\_required
 
-the gradient computed
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.is_bounds_required" name="is_bounds_required" signature="property is_bounds_required">
+    Returns is bounds required
+  </Function>
 
-**Return type**
+  ### is\_bounds\_supported
 
-grad
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.is_bounds_supported" name="is_bounds_supported" signature="property is_bounds_supported">
+    Returns is bounds supported
+  </Function>
 
-### gradient\_support\_level
+  ### is\_gradient\_ignored
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.gradient_support_level" />
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.is_gradient_ignored" name="is_gradient_ignored" signature="property is_gradient_ignored">
+    Returns is gradient ignored
+  </Function>
 
-`property gradient_support_level`
+  ### is\_gradient\_required
 
-Returns gradient support level
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.is_gradient_required" name="is_gradient_required" signature="property is_gradient_required">
+    Returns is gradient required
+  </Function>
 
-### initial\_point\_support\_level
+  ### is\_gradient\_supported
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.initial_point_support_level" />
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.is_gradient_supported" name="is_gradient_supported" signature="property is_gradient_supported">
+    Returns is gradient supported
+  </Function>
 
-`property initial_point_support_level`
+  ### is\_initial\_point\_ignored
 
-Returns initial point support level
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_ignored" name="is_initial_point_ignored" signature="property is_initial_point_ignored">
+    Returns is initial point ignored
+  </Function>
 
-### is\_bounds\_ignored
+  ### is\_initial\_point\_required
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.is_bounds_ignored" />
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_required" name="is_initial_point_required" signature="property is_initial_point_required">
+    Returns is initial point required
+  </Function>
 
-`property is_bounds_ignored`
+  ### is\_initial\_point\_supported
 
-Returns is bounds ignored
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_supported" name="is_initial_point_supported" signature="property is_initial_point_supported">
+    Returns is initial point supported
+  </Function>
 
-### is\_bounds\_required
+  ### optimize
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.is_bounds_required" />
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.optimize" name="optimize" signature="optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)">
+    Runs the optimization.
+  </Function>
 
-`property is_bounds_required`
+  ### print\_options
 
-Returns is bounds required
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.print_options" name="print_options" signature="print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-### is\_bounds\_supported
+  ### set\_max\_evals\_grouped
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.is_bounds_supported" />
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.set_max_evals_grouped" name="set_max_evals_grouped" signature="set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-`property is_bounds_supported`
+  ### set\_options
 
-Returns is bounds supported
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.set_options" name="set_options" signature="set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-### is\_gradient\_ignored
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.is_gradient_ignored" />
+    **Parameters**
 
-`property is_gradient_ignored`
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-Returns is gradient ignored
+  ### setting
 
-### is\_gradient\_required
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.setting" name="setting" signature="property setting">
+    Return setting
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.is_gradient_required" />
+  ### settings
 
-`property is_gradient_required`
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.settings" name="settings" signature="property settings">
+    The optimizer settings in a dictionary format.
 
-Returns is gradient required
+    The settings can for instance be used for JSON-serialization (if all settings are serializable, which e.g. doesn’t hold per default for callables), such that the optimizer object can be reconstructed as
 
-### is\_gradient\_supported
+    ```python
+    settings = optimizer.settings
+    # JSON serialize and send to another server
+    optimizer = OptimizerClass(**settings)
+    ```
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.is_gradient_supported" />
+    **Return type**
 
-`property is_gradient_supported`
+    `Dict`\[`str`, `Any`]
+  </Function>
 
-Returns is gradient supported
+  ### wrap\_function
 
-### is\_initial\_point\_ignored
+  <Function id="qiskit.algorithms.optimizers.SNOBFIT.wrap_function" name="wrap_function" signature="static wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_ignored" />
+    **Parameters**
 
-`property is_initial_point_ignored`
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-Returns is initial point ignored
+    **Returns**
 
-### is\_initial\_point\_required
+    wrapper
 
-<span id="qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_required" />
+    **Return type**
 
-`property is_initial_point_required`
-
-Returns is initial point required
-
-### is\_initial\_point\_supported
-
-<span id="qiskit.algorithms.optimizers.SNOBFIT.is_initial_point_supported" />
-
-`property is_initial_point_supported`
-
-Returns is initial point supported
-
-### optimize
-
-<span id="qiskit.algorithms.optimizers.SNOBFIT.optimize" />
-
-`optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
-
-Runs the optimization.
-
-### print\_options
-
-<span id="qiskit.algorithms.optimizers.SNOBFIT.print_options" />
-
-`print_options()`
-
-Print algorithm-specific options.
-
-### set\_max\_evals\_grouped
-
-<span id="qiskit.algorithms.optimizers.SNOBFIT.set_max_evals_grouped" />
-
-`set_max_evals_grouped(limit)`
-
-Set max evals grouped
-
-### set\_options
-
-<span id="qiskit.algorithms.optimizers.SNOBFIT.set_options" />
-
-`set_options(**kwargs)`
-
-Sets or updates values in the options dictionary.
-
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
-
-**Parameters**
-
-**kwargs** (*dict*) – options, given as name=value.
-
-### setting
-
-<span id="qiskit.algorithms.optimizers.SNOBFIT.setting" />
-
-`property setting`
-
-Return setting
-
-### settings
-
-<span id="qiskit.algorithms.optimizers.SNOBFIT.settings" />
-
-`property settings`
-
-The optimizer settings in a dictionary format.
-
-The settings can for instance be used for JSON-serialization (if all settings are serializable, which e.g. doesn’t hold per default for callables), such that the optimizer object can be reconstructed as
-
-```python
-settings = optimizer.settings
-# JSON serialize and send to another server
-optimizer = OptimizerClass(**settings)
-```
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
-
-### wrap\_function
-
-<span id="qiskit.algorithms.optimizers.SNOBFIT.wrap_function" />
-
-`static wrap_function(function, args)`
-
-Wrap the function to implicitly inject the args at the call of the function.
-
-**Parameters**
-
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
-
-**Returns**
-
-wrapper
-
-**Return type**
-
-function\_wrapper
+    function\_wrapper
+  </Function>
+</Class>
 

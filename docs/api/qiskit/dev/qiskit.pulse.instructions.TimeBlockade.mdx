@@ -8,238 +8,222 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
 
 # TimeBlockade
 
-<span id="qiskit.pulse.instructions.TimeBlockade" />
+<Class id="qiskit.pulse.instructions.TimeBlockade" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/instructions/directives.py" signature="qiskit.pulse.instructions.TimeBlockade(duration, channel, name=None)">
+  Bases: `Directive`
 
-`qiskit.pulse.instructions.TimeBlockade(duration, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/instructions/directives.py "view source code")
+  Pulse `TimeBlockade` directive.
 
-Bases: `Directive`
+  This instruction is intended to be used internally within the pulse builder, to convert [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") into [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"). Because [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") cannot take an absolute instruction time interval, this directive helps the block representation to find the starting time of an instruction.
 
-Pulse `TimeBlockade` directive.
+  **Example**
 
-This instruction is intended to be used internally within the pulse builder, to convert [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") into [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"). Because [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") cannot take an absolute instruction time interval, this directive helps the block representation to find the starting time of an instruction.
+  This schedule plays constant pulse at t0 = 120.
 
-**Example**
+  ```python
+  schedule = Schedule()
+  schedule.insert(120, Play(Constant(10, 0.1), DriveChannel(0)))
+  ```
 
-This schedule plays constant pulse at t0 = 120.
+  This schedule block is expected to be identical to above at a time of execution.
 
-```python
-schedule = Schedule()
-schedule.insert(120, Play(Constant(10, 0.1), DriveChannel(0)))
-```
+  ```python
+  block = ScheduleBlock()
+  block.append(TimeBlockade(120, DriveChannel(0)))
+  block.append(Play(Constant(10, 0.1), DriveChannel(0)))
+  ```
 
-This schedule block is expected to be identical to above at a time of execution.
+  Such conversion may be done by
 
-```python
-block = ScheduleBlock()
-block.append(TimeBlockade(120, DriveChannel(0)))
-block.append(Play(Constant(10, 0.1), DriveChannel(0)))
-```
+  ```python
+  from qiskit.pulse.transforms import block_to_schedule, remove_directives
 
-Such conversion may be done by
+  schedule = remove_directives(block_to_schedule(block))
+  ```
 
-```python
-from qiskit.pulse.transforms import block_to_schedule, remove_directives
+  <Admonition title="Note" type="note">
+    The TimeBlockade instruction behaves almost identically to [`Delay`](qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay") instruction. However, the TimeBlockade is just a compiler directive and must be removed before execution. This may be done by [`remove_directives()`](pulse#qiskit.pulse.transforms.remove_directives "qiskit.pulse.transforms.remove_directives") transform. Once these directives are removed, occupied timeslots are released and user can insert another instruction without timing overlap.
+  </Admonition>
 
-schedule = remove_directives(block_to_schedule(block))
-```
+  Create a time blockade directive.
 
-<Admonition title="Note" type="note">
-  The TimeBlockade instruction behaves almost identically to [`Delay`](qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay") instruction. However, the TimeBlockade is just a compiler directive and must be removed before execution. This may be done by [`remove_directives()`](pulse#qiskit.pulse.transforms.remove_directives "qiskit.pulse.transforms.remove_directives") transform. Once these directives are removed, occupied timeslots are released and user can insert another instruction without timing overlap.
-</Admonition>
+  **Parameters**
 
-Create a time blockade directive.
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Length of time of the occupation in terms of dt.
+  *   **channel** (*chans.Channel*) – The channel that will be the occupied.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the time blockade for display purposes.
 
-**Parameters**
+  ## Attributes
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Length of time of the occupation in terms of dt.
-*   **channel** (*chans.Channel*) – The channel that will be the occupied.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the time blockade for display purposes.
+  ### channel
 
-## Attributes
+  <Attribute id="qiskit.pulse.instructions.TimeBlockade.channel" name="channel">
+    Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.TimeBlockade.channel" />
+  ### channels
 
-### channel
+  <Attribute id="qiskit.pulse.instructions.TimeBlockade.channels" name="channels">
+    Returns the channels that this schedule uses.
+  </Attribute>
 
-Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+  ### duration
 
-<span id="qiskit.pulse.instructions.TimeBlockade.channels" />
+  <Attribute id="qiskit.pulse.instructions.TimeBlockade.duration" name="duration">
+    Duration of this instruction.
+  </Attribute>
 
-### channels
+  ### id
 
-Returns the channels that this schedule uses.
+  <Attribute id="qiskit.pulse.instructions.TimeBlockade.id" name="id">
+    Unique identifier for this instruction.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.TimeBlockade.duration" />
+  ### instructions
 
-### duration
+  <Attribute id="qiskit.pulse.instructions.TimeBlockade.instructions" name="instructions">
+    Iterable for getting instructions from Schedule tree.
+  </Attribute>
 
-Duration of this instruction.
+  ### name
 
-<span id="qiskit.pulse.instructions.TimeBlockade.id" />
+  <Attribute id="qiskit.pulse.instructions.TimeBlockade.name" name="name">
+    Name of this instruction.
+  </Attribute>
 
-### id
+  ### operands
 
-Unique identifier for this instruction.
+  <Attribute id="qiskit.pulse.instructions.TimeBlockade.operands" name="operands">
+    Return instruction operands.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.TimeBlockade.instructions" />
+  ### parameters
 
-### instructions
+  <Attribute id="qiskit.pulse.instructions.TimeBlockade.parameters" name="parameters">
+    Parameters which determine the instruction behavior.
+  </Attribute>
 
-Iterable for getting instructions from Schedule tree.
+  ### start\_time
 
-<span id="qiskit.pulse.instructions.TimeBlockade.name" />
+  <Attribute id="qiskit.pulse.instructions.TimeBlockade.start_time" name="start_time">
+    Relative begin time of this instruction.
+  </Attribute>
 
-### name
+  ### stop\_time
 
-Name of this instruction.
+  <Attribute id="qiskit.pulse.instructions.TimeBlockade.stop_time" name="stop_time">
+    Relative end time of this instruction.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.TimeBlockade.operands" />
+  ## Methods
 
-### operands
+  ### append
 
-Return instruction operands.
+  <Function id="qiskit.pulse.instructions.TimeBlockade.append" name="append" signature="append(schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
-<span id="qiskit.pulse.instructions.TimeBlockade.parameters" />
+    **Parameters**
 
-### parameters
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
 
-Parameters which determine the instruction behavior.
+    **Returns**
 
-<span id="qiskit.pulse.instructions.TimeBlockade.start_time" />
+    A new schedule with `schedule` a this instruction at t=0.
 
-### start\_time
+    **Return type**
 
-Relative begin time of this instruction.
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-<span id="qiskit.pulse.instructions.TimeBlockade.stop_time" />
+  ### ch\_duration
 
-### stop\_time
+  <Function id="qiskit.pulse.instructions.TimeBlockade.ch_duration" name="ch_duration" signature="ch_duration(*channels)">
+    Return duration of the supplied channels in this Instruction.
 
-Relative end time of this instruction.
+    **Parameters**
 
-## Methods
+    **\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
 
-### append
+    **Return type**
 
-<span id="qiskit.pulse.instructions.TimeBlockade.append" />
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Function>
 
-`append(schedule, name=None)`
+  ### ch\_start\_time
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+  <Function id="qiskit.pulse.instructions.TimeBlockade.ch_start_time" name="ch_start_time" signature="ch_start_time(*channels)">
+    Return minimum start time for supplied channels.
 
-**Parameters**
+    **Parameters**
 
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
+    **\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
 
-**Returns**
+    **Return type**
 
-A new schedule with `schedule` a this instruction at t=0.
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Function>
 
-**Return type**
+  ### ch\_stop\_time
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  <Function id="qiskit.pulse.instructions.TimeBlockade.ch_stop_time" name="ch_stop_time" signature="ch_stop_time(*channels)">
+    Return maximum start time for supplied channels.
 
-### ch\_duration
+    **Parameters**
 
-<span id="qiskit.pulse.instructions.TimeBlockade.ch_duration" />
+    **\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
 
-`ch_duration(*channels)`
+    **Return type**
 
-Return duration of the supplied channels in this Instruction.
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Function>
 
-**Parameters**
+  ### insert
 
-**\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
+  <Function id="qiskit.pulse.instructions.TimeBlockade.insert" name="insert" signature="insert(start_time, schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
-**Return type**
+    **Parameters**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    *   **start\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to insert the schedule schedule
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
 
-### ch\_start\_time
+    **Returns**
 
-<span id="qiskit.pulse.instructions.TimeBlockade.ch_start_time" />
+    A new schedule with `schedule` inserted with this instruction at t=0.
 
-`ch_start_time(*channels)`
+    **Return type**
 
-Return minimum start time for supplied channels.
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-**Parameters**
+  ### is\_parameterized
 
-**\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
+  <Function id="qiskit.pulse.instructions.TimeBlockade.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the instruction is parameterized.
 
-**Return type**
+    **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-### ch\_stop\_time
+  ### shift
 
-<span id="qiskit.pulse.instructions.TimeBlockade.ch_stop_time" />
+  <Function id="qiskit.pulse.instructions.TimeBlockade.shift" name="shift" signature="shift(time, name=None)">
+    Return a new schedule shifted forward by time.
 
-`ch_stop_time(*channels)`
+    **Parameters**
 
-Return maximum start time for supplied channels.
+    *   **time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to shift by
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
 
-**Parameters**
+    **Returns**
 
-**\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
+    The shifted schedule.
 
-**Return type**
+    **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
-
-### insert
-
-<span id="qiskit.pulse.instructions.TimeBlockade.insert" />
-
-`insert(start_time, schedule, name=None)`
-
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
-
-**Parameters**
-
-*   **start\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to insert the schedule schedule
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
-
-**Returns**
-
-A new schedule with `schedule` inserted with this instruction at t=0.
-
-**Return type**
-
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
-
-### is\_parameterized
-
-<span id="qiskit.pulse.instructions.TimeBlockade.is_parameterized" />
-
-`is_parameterized()`
-
-Return True iff the instruction is parameterized.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
-
-### shift
-
-<span id="qiskit.pulse.instructions.TimeBlockade.shift" />
-
-`shift(time, name=None)`
-
-Return a new schedule shifted forward by time.
-
-**Parameters**
-
-*   **time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to shift by
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
-
-**Returns**
-
-The shifted schedule.
-
-**Return type**
-
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
+</Class>
 

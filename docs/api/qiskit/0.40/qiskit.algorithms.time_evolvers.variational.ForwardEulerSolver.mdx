@@ -8,35 +8,31 @@ python_api_name: qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver
 
 # ForwardEulerSolver
 
-<span id="qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver" />
+<Class id="qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/variational/solvers/ode/forward_euler_solver.py" signature="ForwardEulerSolver(function, t0, y0, t_bound, vectorized=False, support_complex=False, num_t_steps=15)">
+  Bases: `scipy.integrate._ivp.base.OdeSolver`
 
-`ForwardEulerSolver(function, t0, y0, t_bound, vectorized=False, support_complex=False, num_t_steps=15)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/variational/solvers/ode/forward_euler_solver.py "view source code")
+  Forward Euler ODE solver.
 
-Bases: `scipy.integrate._ivp.base.OdeSolver`
+  Forward Euler ODE solver that implements an interface from SciPy.
 
-Forward Euler ODE solver.
+  **Parameters**
 
-Forward Euler ODE solver that implements an interface from SciPy.
+  *   **function** (`callable`) – Right-hand side of the system. The calling signature is `fun(t, y)`. Here `t` is a scalar, and there are two options for the ndarray `y`: It can either have shape (n,); then `fun` must return array\_like with shape (n,). Alternatively it can have shape (n, k); then `fun` must return an array\_like with shape (n, k), i.e., each column corresponds to a single column in `y`. The choice between the two options is determined by vectorized argument (see below). The vectorized implementation allows a faster approximation of the Jacobian by finite differences (required for this solver).
+  *   **t0** (`float`) – Initial time.
+  *   **y0** (`Sequence`) – Initial state.
+  *   **t\_bound** (`float`) – Boundary time - the integration won’t continue beyond it. It also determines the direction of the integration.
+  *   **vectorized** (`bool`) – Whether `fun` is implemented in a vectorized fashion. Default is False.
+  *   **support\_complex** (`bool`) – Whether integration in a complex domain should be supported. Generally determined by a derived solver class capabilities. Default is False.
+  *   **num\_t\_steps** (`int`) – Number of time steps for the forward Euler method.
 
-**Parameters**
+  ## Attributes
 
-*   **function** (`callable`) – Right-hand side of the system. The calling signature is `fun(t, y)`. Here `t` is a scalar, and there are two options for the ndarray `y`: It can either have shape (n,); then `fun` must return array\_like with shape (n,). Alternatively it can have shape (n, k); then `fun` must return an array\_like with shape (n, k), i.e., each column corresponds to a single column in `y`. The choice between the two options is determined by vectorized argument (see below). The vectorized implementation allows a faster approximation of the Jacobian by finite differences (required for this solver).
-*   **t0** (`float`) – Initial time.
-*   **y0** (`Sequence`) – Initial state.
-*   **t\_bound** (`float`) – Boundary time - the integration won’t continue beyond it. It also determines the direction of the integration.
-*   **vectorized** (`bool`) – Whether `fun` is implemented in a vectorized fashion. Default is False.
-*   **support\_complex** (`bool`) – Whether integration in a complex domain should be supported. Generally determined by a derived solver class capabilities. Default is False.
-*   **num\_t\_steps** (`int`) – Number of time steps for the forward Euler method.
+  ### TOO\_SMALL\_STEP
 
-## Attributes
+  <Attribute id="qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver.TOO_SMALL_STEP" name="TOO_SMALL_STEP" attributeValue="= 'Required step size is less than spacing between numbers.'" />
 
-<span id="qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver.TOO_SMALL_STEP" />
+  ### step\_size
 
-### TOO\_SMALL\_STEP
-
-`= 'Required step size is less than spacing between numbers.'`
-
-<span id="qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver.step_size" />
-
-### step\_size
+  <Attribute id="qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver.step_size" name="step_size" />
+</Class>
 

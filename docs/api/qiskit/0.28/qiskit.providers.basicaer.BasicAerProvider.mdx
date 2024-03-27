@@ -8,79 +8,71 @@ python_api_name: qiskit.providers.basicaer.BasicAerProvider
 
 # qiskit.providers.basicaer.BasicAerProvider
 
-<span id="qiskit.providers.basicaer.BasicAerProvider" />
+<Class id="qiskit.providers.basicaer.BasicAerProvider" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/basicaer/basicaerprovider.py" signature="BasicAerProvider">
+  Provider for Basic Aer backends.
 
-`BasicAerProvider` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/basicaer/basicaerprovider.py "view source code")
+  ### \_\_init\_\_
 
-Provider for Basic Aer backends.
+  <Function id="qiskit.providers.basicaer.BasicAerProvider.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.providers.basicaer.BasicAerProvider.__init__" />
+  |                                                                                                                                            |                                                             |
+  | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+  | [`__init__`](#qiskit.providers.basicaer.BasicAerProvider.__init__ "qiskit.providers.basicaer.BasicAerProvider.__init__")()                 | Initialize self.                                            |
+  | [`backends`](#qiskit.providers.basicaer.BasicAerProvider.backends "qiskit.providers.basicaer.BasicAerProvider.backends")(\[name, filters]) | Return a list of backends matching the specified filtering. |
+  | [`get_backend`](#qiskit.providers.basicaer.BasicAerProvider.get_backend "qiskit.providers.basicaer.BasicAerProvider.get_backend")(\[name]) | Return a single backend matching the specified filtering.   |
 
-`__init__()`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |           |   |
+  | --------- | - |
+  | `version` |   |
 
-## Methods
+  ### backends
 
-|                                                                                                                                            |                                                             |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
-| [`__init__`](#qiskit.providers.basicaer.BasicAerProvider.__init__ "qiskit.providers.basicaer.BasicAerProvider.__init__")()                 | Initialize self.                                            |
-| [`backends`](#qiskit.providers.basicaer.BasicAerProvider.backends "qiskit.providers.basicaer.BasicAerProvider.backends")(\[name, filters]) | Return a list of backends matching the specified filtering. |
-| [`get_backend`](#qiskit.providers.basicaer.BasicAerProvider.get_backend "qiskit.providers.basicaer.BasicAerProvider.get_backend")(\[name]) | Return a single backend matching the specified filtering.   |
+  <Function id="qiskit.providers.basicaer.BasicAerProvider.backends" name="backends" signature="backends(name=None, filters=None, **kwargs)">
+    Return a list of backends matching the specified filtering.
 
-## Attributes
+    **Parameters**
 
-|           |   |
-| --------- | - |
-| `version` |   |
+    *   **name** (*str*) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-### backends
+    **Returns**
 
-<span id="qiskit.providers.basicaer.BasicAerProvider.backends" />
+    **a list of Backends that match the filtering**
 
-`backends(name=None, filters=None, **kwargs)`
+    criteria.
 
-Return a list of backends matching the specified filtering.
+    **Return type**
 
-**Parameters**
+    list\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
+  </Function>
 
-*   **name** (*str*) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
+  ### get\_backend
 
-**Returns**
+  <Function id="qiskit.providers.basicaer.BasicAerProvider.get_backend" name="get_backend" signature="get_backend(name=None, **kwargs)">
+    Return a single backend matching the specified filtering.
 
-**a list of Backends that match the filtering**
+    **Parameters**
 
-criteria.
+    *   **name** (*str*) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-**Return type**
+    **Returns**
 
-list\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
+    a backend matching the filtering.
 
-### get\_backend
+    **Return type**
 
-<span id="qiskit.providers.basicaer.BasicAerProvider.get_backend" />
+    [Backend](qiskit.providers.Backend "qiskit.providers.Backend")
 
-`get_backend(name=None, **kwargs)`
+    **Raises**
 
-Return a single backend matching the specified filtering.
-
-**Parameters**
-
-*   **name** (*str*) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
-
-**Returns**
-
-a backend matching the filtering.
-
-**Return type**
-
-[Backend](qiskit.providers.Backend "qiskit.providers.Backend")
-
-**Raises**
-
-[**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+    [**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+  </Function>
+</Class>
 

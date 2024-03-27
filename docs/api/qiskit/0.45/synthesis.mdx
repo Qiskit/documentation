@@ -35,537 +35,501 @@ python_api_name: qiskit.synthesis
 
 ### synth\_cnot\_count\_full\_pmh
 
-<span id="qiskit.synthesis.synth_cnot_count_full_pmh" />
+<Function id="qiskit.synthesis.synth_cnot_count_full_pmh" name="synth_cnot_count_full_pmh" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/linear/cnot_synth.py" signature="qiskit.synthesis.synth_cnot_count_full_pmh(state, section_size=2)">
+  Synthesize linear reversible circuits for all-to-all architecture using Patel, Markov and Hayes method.
 
-`qiskit.synthesis.synth_cnot_count_full_pmh(state, section_size=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/linear/cnot_synth.py "view source code")
+  This function is an implementation of the Patel, Markov and Hayes algorithm from \[1] for optimal synthesis of linear reversible circuits for all-to-all architecture, as specified by an n x n matrix.
 
-Synthesize linear reversible circuits for all-to-all architecture using Patel, Markov and Hayes method.
+  **Parameters**
 
-This function is an implementation of the Patel, Markov and Hayes algorithm from \[1] for optimal synthesis of linear reversible circuits for all-to-all architecture, as specified by an n x n matrix.
+  *   **state** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*] or ndarray*) – n x n boolean invertible matrix, describing the state of the input circuit
+  *   **section\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the size of each section, used in the Patel–Markov–Hayes algorithm \[1]. section\_size must be a factor of num\_qubits.
 
-**Parameters**
+  **Returns**
 
-*   **state** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*] or ndarray*) – n x n boolean invertible matrix, describing the state of the input circuit
-*   **section\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the size of each section, used in the Patel–Markov–Hayes algorithm \[1]. section\_size must be a factor of num\_qubits.
+  a CX-only circuit implementing the linear transformation.
 
-**Returns**
+  **Return type**
 
-a CX-only circuit implementing the linear transformation.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – when variable “state” isn’t of type numpy.ndarray
 
-**Raises**
+  **References**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – when variable “state” isn’t of type numpy.ndarray
-
-**References**
-
-1.  Patel, Ketan N., Igor L. Markov, and John P. Hayes, *Optimal synthesis of linear reversible circuits*, Quantum Information & Computation 8.3 (2008): 282-294. [arXiv:quant-ph/0302002 \[quant-ph\]](https://arxiv.org/abs/quant-ph/0302002)
+  1.  Patel, Ketan N., Igor L. Markov, and John P. Hayes, *Optimal synthesis of linear reversible circuits*, Quantum Information & Computation 8.3 (2008): 282-294. [arXiv:quant-ph/0302002 \[quant-ph\]](https://arxiv.org/abs/quant-ph/0302002)
+</Function>
 
 ### synth\_cnot\_depth\_line\_kms
 
-<span id="qiskit.synthesis.synth_cnot_depth_line_kms" />
+<Function id="qiskit.synthesis.synth_cnot_depth_line_kms" name="synth_cnot_depth_line_kms" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/linear/linear_depth_lnn.py" signature="qiskit.synthesis.synth_cnot_depth_line_kms(mat)">
+  Synthesize linear reversible circuit for linear nearest-neighbor architectures using Kutin, Moulton, Smithline method.
 
-`qiskit.synthesis.synth_cnot_depth_line_kms(mat)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/linear/linear_depth_lnn.py "view source code")
+  Synthesis algorithm for linear reversible circuits from \[1], Chapter 7. Synthesizes any linear reversible circuit of n qubits over linear nearest-neighbor architecture using CX gates with depth at most 5\*n.
 
-Synthesize linear reversible circuit for linear nearest-neighbor architectures using Kutin, Moulton, Smithline method.
+  **Parameters**
 
-Synthesis algorithm for linear reversible circuits from \[1], Chapter 7. Synthesizes any linear reversible circuit of n qubits over linear nearest-neighbor architecture using CX gates with depth at most 5\*n.
+  **mat** (*np.ndarray]*) – A boolean invertible matrix.
 
-**Parameters**
+  **Returns**
 
-**mat** (*np.ndarray]*) – A boolean invertible matrix.
+  the synthesized quantum circuit.
 
-**Returns**
+  **Return type**
 
-the synthesized quantum circuit.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if mat is not invertible.
 
-**Raises**
+  **References**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if mat is not invertible.
-
-**References**
-
-1.  Kutin, S., Moulton, D. P., Smithline, L., *Computation at a distance*, Chicago J. Theor. Comput. Sci., vol. 2007, (2007), [arXiv:quant-ph/0701194](https://arxiv.org/abs/quant-ph/0701194)
+  1.  Kutin, S., Moulton, D. P., Smithline, L., *Computation at a distance*, Chicago J. Theor. Comput. Sci., vol. 2007, (2007), [arXiv:quant-ph/0701194](https://arxiv.org/abs/quant-ph/0701194)
+</Function>
 
 ## Linear-Phase Synthesis
 
 ### synth\_cz\_depth\_line\_mr
 
-<span id="qiskit.synthesis.synth_cz_depth_line_mr" />
+<Function id="qiskit.synthesis.synth_cz_depth_line_mr" name="synth_cz_depth_line_mr" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/linear_phase/cz_depth_lnn.py" signature="qiskit.synthesis.synth_cz_depth_line_mr(mat)">
+  Synthesis of a CZ circuit for linear nearest neighbour (LNN) connectivity, based on Maslov and Roetteler.
 
-`qiskit.synthesis.synth_cz_depth_line_mr(mat)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/linear_phase/cz_depth_lnn.py "view source code")
+  Note that this method *reverts* the order of qubits in the circuit, and returns a circuit containing CX and phase (S, Sdg or Z) gates.
 
-Synthesis of a CZ circuit for linear nearest neighbour (LNN) connectivity, based on Maslov and Roetteler.
+  **Parameters**
 
-Note that this method *reverts* the order of qubits in the circuit, and returns a circuit containing CX and phase (S, Sdg or Z) gates.
+  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – an upper-diagonal matrix representing the CZ circuit. mat\[i]\[j]=1 for i\<j represents a CZ(i,j) gate
 
-**Parameters**
+  **Returns**
 
-**mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – an upper-diagonal matrix representing the CZ circuit. mat\[i]\[j]=1 for i\<j represents a CZ(i,j) gate
+  a circuit implementation of the CZ circuit of depth 2\*n+2 for LNN connectivity.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the CZ circuit of depth 2\*n+2 for LNN connectivity.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Reference:**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Reference:**
-
-1.  Dmitri Maslov, Martin Roetteler, *Shorter stabilizer circuits via Bruhat decomposition and quantum circuit transformations*, [arXiv:1705.09176](https://arxiv.org/abs/1705.09176).
+  1.  Dmitri Maslov, Martin Roetteler, *Shorter stabilizer circuits via Bruhat decomposition and quantum circuit transformations*, [arXiv:1705.09176](https://arxiv.org/abs/1705.09176).
+</Function>
 
 ### synth\_cx\_cz\_depth\_line\_my
 
-<span id="qiskit.synthesis.synth_cx_cz_depth_line_my" />
+<Function id="qiskit.synthesis.synth_cx_cz_depth_line_my" name="synth_cx_cz_depth_line_my" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/linear_phase/cx_cz_depth_lnn.py" signature="qiskit.synthesis.synth_cx_cz_depth_line_my(mat_x, mat_z)">
+  Joint synthesis of a -CZ-CX- circuit for linear nearest neighbour (LNN) connectivity, with 2-qubit depth at most 5n, based on Maslov and Yang. This method computes the CZ circuit inside the CX circuit via phase gate insertions.
 
-`qiskit.synthesis.synth_cx_cz_depth_line_my(mat_x, mat_z)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/linear_phase/cx_cz_depth_lnn.py "view source code")
+  **Parameters**
 
-Joint synthesis of a -CZ-CX- circuit for linear nearest neighbour (LNN) connectivity, with 2-qubit depth at most 5n, based on Maslov and Yang. This method computes the CZ circuit inside the CX circuit via phase gate insertions.
+  *   **mat\_z** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a boolean symmetric matrix representing a CZ circuit. Mz\[i]\[j]=1 represents a CZ(i,j) gate
+  *   **mat\_x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a boolean invertible matrix representing a CX circuit.
 
-**Parameters**
+  **Returns**
 
-*   **mat\_z** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a boolean symmetric matrix representing a CZ circuit. Mz\[i]\[j]=1 represents a CZ(i,j) gate
-*   **mat\_x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a boolean invertible matrix representing a CX circuit.
+  a circuit implementation of a CX circuit following a CZ circuit, denoted as a -CZ-CX- circuit,in two-qubit depth at most 5n, for LNN connectivity.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of a CX circuit following a CZ circuit, denoted as a -CZ-CX- circuit,in two-qubit depth at most 5n, for LNN connectivity.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Reference:**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Reference:**
-
-1.  Kutin, S., Moulton, D. P., Smithline, L., *Computation at a distance*, Chicago J. Theor. Comput. Sci., vol. 2007, (2007), [arXiv:quant-ph/0701194](https://arxiv.org/abs/quant-ph/0701194)
-2.  Dmitri Maslov, Willers Yang, *CNOT circuits need little help to implement arbitrary Hadamard-free Clifford transformations they generate*, [arXiv:2210.16195](https://arxiv.org/abs/2210.16195).
+  1.  Kutin, S., Moulton, D. P., Smithline, L., *Computation at a distance*, Chicago J. Theor. Comput. Sci., vol. 2007, (2007), [arXiv:quant-ph/0701194](https://arxiv.org/abs/quant-ph/0701194)
+  2.  Dmitri Maslov, Willers Yang, *CNOT circuits need little help to implement arbitrary Hadamard-free Clifford transformations they generate*, [arXiv:2210.16195](https://arxiv.org/abs/2210.16195).
+</Function>
 
 ## Permutation Synthesis
 
 ### synth\_permutation\_depth\_lnn\_kms
 
-<span id="qiskit.synthesis.synth_permutation_depth_lnn_kms" />
+<Function id="qiskit.synthesis.synth_permutation_depth_lnn_kms" name="synth_permutation_depth_lnn_kms" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/permutation/permutation_lnn.py" signature="qiskit.synthesis.synth_permutation_depth_lnn_kms(pattern)">
+  Synthesize a permutation circuit for a linear nearest-neighbor architecture using the Kutin, Moulton, Smithline method.
 
-`qiskit.synthesis.synth_permutation_depth_lnn_kms(pattern)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/permutation/permutation_lnn.py "view source code")
+  This is the permutation synthesis algorithm from [https://arxiv.org/abs/quant-ph/0701194](https://arxiv.org/abs/quant-ph/0701194), Chapter 6. It synthesizes any permutation of n qubits over linear nearest-neighbor architecture using SWAP gates with depth at most n and size at most n(n-1)/2 (where both depth and size are measured with respect to SWAPs).
 
-Synthesize a permutation circuit for a linear nearest-neighbor architecture using the Kutin, Moulton, Smithline method.
+  **Parameters**
 
-This is the permutation synthesis algorithm from [https://arxiv.org/abs/quant-ph/0701194](https://arxiv.org/abs/quant-ph/0701194), Chapter 6. It synthesizes any permutation of n qubits over linear nearest-neighbor architecture using SWAP gates with depth at most n and size at most n(n-1)/2 (where both depth and size are measured with respect to SWAPs).
+  **pattern** (*Union\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
 
-**Parameters**
+  **Returns**
 
-**pattern** (*Union\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
+  the synthesized quantum circuit.
 
-**Returns**
+  **Return type**
 
-the synthesized quantum circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+</Function>
 
 ### synth\_permutation\_basic
 
-<span id="qiskit.synthesis.synth_permutation_basic" />
+<Function id="qiskit.synthesis.synth_permutation_basic" name="synth_permutation_basic" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/permutation/permutation_full.py" signature="qiskit.synthesis.synth_permutation_basic(pattern)">
+  Synthesize a permutation circuit for a fully-connected architecture using sorting.
 
-`qiskit.synthesis.synth_permutation_basic(pattern)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/permutation/permutation_full.py "view source code")
+  More precisely, if the input permutation is a cycle of length `m`, then this creates a quantum circuit with `m-1` SWAPs (and of depth `m-1`); if the input permutation consists of several disjoint cycles, then each cycle is essentially treated independently.
 
-Synthesize a permutation circuit for a fully-connected architecture using sorting.
+  **Parameters**
 
-More precisely, if the input permutation is a cycle of length `m`, then this creates a quantum circuit with `m-1` SWAPs (and of depth `m-1`); if the input permutation consists of several disjoint cycles, then each cycle is essentially treated independently.
+  **pattern** (*Union\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
 
-**Parameters**
+  **Returns**
 
-**pattern** (*Union\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
+  the synthesized quantum circuit.
 
-**Returns**
+  **Return type**
 
-the synthesized quantum circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+</Function>
 
 ### synth\_permutation\_acg
 
-<span id="qiskit.synthesis.synth_permutation_acg" />
+<Function id="qiskit.synthesis.synth_permutation_acg" name="synth_permutation_acg" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/permutation/permutation_full.py" signature="qiskit.synthesis.synth_permutation_acg(pattern)">
+  Synthesize a permutation circuit for a fully-connected architecture using the Alon, Chung, Graham method.
 
-`qiskit.synthesis.synth_permutation_acg(pattern)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/permutation/permutation_full.py "view source code")
+  This produces a quantum circuit of depth 2 (measured in the number of SWAPs).
 
-Synthesize a permutation circuit for a fully-connected architecture using the Alon, Chung, Graham method.
+  This implementation is based on the Theorem 2 in the paper “Routing Permutations on Graphs Via Matchings” (1993), available at [https://www.cs.tau.ac.il/\~nogaa/PDFS/r.pdf](https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf).
 
-This produces a quantum circuit of depth 2 (measured in the number of SWAPs).
+  **Parameters**
 
-This implementation is based on the Theorem 2 in the paper “Routing Permutations on Graphs Via Matchings” (1993), available at [https://www.cs.tau.ac.il/\~nogaa/PDFS/r.pdf](https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf).
+  **pattern** (*Union\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
 
-**Parameters**
+  **Returns**
 
-**pattern** (*Union\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
+  the synthesized quantum circuit.
 
-**Returns**
+  **Return type**
 
-the synthesized quantum circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+</Function>
 
 ## Clifford Synthesis
 
 ### synth\_clifford\_full
 
-<span id="qiskit.synthesis.synth_clifford_full" />
+<Function id="qiskit.synthesis.synth_clifford_full" name="synth_clifford_full" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/clifford/clifford_decompose_full.py" signature="qiskit.synthesis.synth_clifford_full(clifford, method=None)">
+  Decompose a Clifford operator into a QuantumCircuit.
 
-`qiskit.synthesis.synth_clifford_full(clifford, method=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/clifford/clifford_decompose_full.py "view source code")
+  For N \<= 3 qubits this is based on optimal CX cost decomposition from reference \[1]. For N > 3 qubits this is done using the general non-optimal greedy compilation routine from reference \[3], which typically yields better CX cost compared to the AG method in \[2].
 
-Decompose a Clifford operator into a QuantumCircuit.
+  **Parameters**
 
-For N \<= 3 qubits this is based on optimal CX cost decomposition from reference \[1]. For N > 3 qubits this is done using the general non-optimal greedy compilation routine from reference \[3], which typically yields better CX cost compared to the AG method in \[2].
+  *   **clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
+  *   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional, a synthesis method (‘AG’ or ‘greedy’). If set this overrides optimal decomposition for N \<=3 qubits.
 
-**Parameters**
+  **Returns**
 
-*   **clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
-*   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional, a synthesis method (‘AG’ or ‘greedy’). If set this overrides optimal decomposition for N \<=3 qubits.
+  a circuit implementation of the Clifford.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the Clifford.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **References**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**References**
-
-1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
-2.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
-3.  Sergey Bravyi, Shaohan Hu, Dmitri Maslov, Ruslan Shaydulin, *Clifford Circuit Optimization with Templates and Symbolic Pauli Gates*, [arXiv:2105.02291 \[quant-ph\]](https://arxiv.org/abs/2105.02291)
+  1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+  2.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
+  3.  Sergey Bravyi, Shaohan Hu, Dmitri Maslov, Ruslan Shaydulin, *Clifford Circuit Optimization with Templates and Symbolic Pauli Gates*, [arXiv:2105.02291 \[quant-ph\]](https://arxiv.org/abs/2105.02291)
+</Function>
 
 ### synth\_clifford\_ag
 
-<span id="qiskit.synthesis.synth_clifford_ag" />
+<Function id="qiskit.synthesis.synth_clifford_ag" name="synth_clifford_ag" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/clifford/clifford_decompose_ag.py" signature="qiskit.synthesis.synth_clifford_ag(clifford)">
+  Decompose a Clifford operator into a QuantumCircuit based on Aaronson-Gottesman method.
 
-`qiskit.synthesis.synth_clifford_ag(clifford)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/clifford/clifford_decompose_ag.py "view source code")
+  **Parameters**
 
-Decompose a Clifford operator into a QuantumCircuit based on Aaronson-Gottesman method.
+  **clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
 
-**Parameters**
+  **Returns**
 
-**clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
+  a circuit implementation of the Clifford.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the Clifford.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Reference:**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Reference:**
-
-1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
+  1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
+</Function>
 
 ### synth\_clifford\_bm
 
-<span id="qiskit.synthesis.synth_clifford_bm" />
+<Function id="qiskit.synthesis.synth_clifford_bm" name="synth_clifford_bm" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/clifford/clifford_decompose_bm.py" signature="qiskit.synthesis.synth_clifford_bm(clifford)">
+  Optimal CX-cost decomposition of a Clifford operator on 2-qubits or 3-qubits into a QuantumCircuit based on Bravyi-Maslov method.
 
-`qiskit.synthesis.synth_clifford_bm(clifford)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/clifford/clifford_decompose_bm.py "view source code")
+  **Parameters**
 
-Optimal CX-cost decomposition of a Clifford operator on 2-qubits or 3-qubits into a QuantumCircuit based on Bravyi-Maslov method.
+  **clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
 
-**Parameters**
+  **Returns**
 
-**clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
+  a circuit implementation of the Clifford.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the Clifford.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if clifford is on more than 3 qubits.
 
-**Raises**
+  **Reference:**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if clifford is on more than 3 qubits.
-
-**Reference:**
-
-1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+  1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+</Function>
 
 ### synth\_clifford\_greedy
 
-<span id="qiskit.synthesis.synth_clifford_greedy" />
+<Function id="qiskit.synthesis.synth_clifford_greedy" name="synth_clifford_greedy" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/clifford/clifford_decompose_greedy.py" signature="qiskit.synthesis.synth_clifford_greedy(clifford)">
+  Decompose a Clifford operator into a QuantumCircuit based on the greedy Clifford compiler that is described in Appendix A of Bravyi, Hu, Maslov and Shaydulin.
 
-`qiskit.synthesis.synth_clifford_greedy(clifford)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/clifford/clifford_decompose_greedy.py "view source code")
+  This method typically yields better CX cost compared to the Aaronson-Gottesman method.
 
-Decompose a Clifford operator into a QuantumCircuit based on the greedy Clifford compiler that is described in Appendix A of Bravyi, Hu, Maslov and Shaydulin.
+  **Parameters**
 
-This method typically yields better CX cost compared to the Aaronson-Gottesman method.
+  **clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
 
-**Parameters**
+  **Returns**
 
-**clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
+  a circuit implementation of the Clifford.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the Clifford.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if symplectic Gaussian elimination fails.
 
-**Raises**
+  **Reference:**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if symplectic Gaussian elimination fails.
-
-**Reference:**
-
-1.  Sergey Bravyi, Shaohan Hu, Dmitri Maslov, Ruslan Shaydulin, *Clifford Circuit Optimization with Templates and Symbolic Pauli Gates*, [arXiv:2105.02291 \[quant-ph\]](https://arxiv.org/abs/2105.02291)
+  1.  Sergey Bravyi, Shaohan Hu, Dmitri Maslov, Ruslan Shaydulin, *Clifford Circuit Optimization with Templates and Symbolic Pauli Gates*, [arXiv:2105.02291 \[quant-ph\]](https://arxiv.org/abs/2105.02291)
+</Function>
 
 ### synth\_clifford\_layers
 
-<span id="qiskit.synthesis.synth_clifford_layers" />
+<Function id="qiskit.synthesis.synth_clifford_layers" name="synth_clifford_layers" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/clifford/clifford_decompose_layers.py" signature="qiskit.synthesis.synth_clifford_layers(cliff, cx_synth_func=<function _default_cx_synth_func>, cz_synth_func=<function _default_cz_synth_func>, cx_cz_synth_func=None, cz_func_reverse_qubits=False, validate=False)">
+  Synthesis of a Clifford into layers, it provides a similar decomposition to the synthesis described in Lemma 8 of Bravyi and Maslov.
 
-`qiskit.synthesis.synth_clifford_layers(cliff, cx_synth_func=<function _default_cx_synth_func>, cz_synth_func=<function _default_cz_synth_func>, cx_cz_synth_func=None, cz_func_reverse_qubits=False, validate=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/clifford/clifford_decompose_layers.py "view source code")
+  For example, a 5-qubit Clifford circuit is decomposed into the following layers:
 
-Synthesis of a Clifford into layers, it provides a similar decomposition to the synthesis described in Lemma 8 of Bravyi and Maslov.
+  ```python
+       ┌─────┐┌─────┐┌────────┐┌─────┐┌─────┐┌─────┐┌─────┐┌────────┐
+  q_0: ┤0    ├┤0    ├┤0       ├┤0    ├┤0    ├┤0    ├┤0    ├┤0       ├
+       │     ││     ││        ││     ││     ││     ││     ││        │
+  q_1: ┤1    ├┤1    ├┤1       ├┤1    ├┤1    ├┤1    ├┤1    ├┤1       ├
+       │     ││     ││        ││     ││     ││     ││     ││        │
+  q_2: ┤2 S2 ├┤2 CZ ├┤2 CX_dg ├┤2 H2 ├┤2 S1 ├┤2 CZ ├┤2 H1 ├┤2 Pauli ├
+       │     ││     ││        ││     ││     ││     ││     ││        │
+  q_3: ┤3    ├┤3    ├┤3       ├┤3    ├┤3    ├┤3    ├┤3    ├┤3       ├
+       │     ││     ││        ││     ││     ││     ││     ││        │
+  q_4: ┤4    ├┤4    ├┤4       ├┤4    ├┤4    ├┤4    ├┤4    ├┤4       ├
+       └─────┘└─────┘└────────┘└─────┘└─────┘└─────┘└─────┘└────────┘
+  ```
 
-For example, a 5-qubit Clifford circuit is decomposed into the following layers:
+  This decomposition is for the default cz\_synth\_func and cx\_synth\_func functions, with other functions one may see slightly different decomposition.
 
-```python
-     ┌─────┐┌─────┐┌────────┐┌─────┐┌─────┐┌─────┐┌─────┐┌────────┐
-q_0: ┤0    ├┤0    ├┤0       ├┤0    ├┤0    ├┤0    ├┤0    ├┤0       ├
-     │     ││     ││        ││     ││     ││     ││     ││        │
-q_1: ┤1    ├┤1    ├┤1       ├┤1    ├┤1    ├┤1    ├┤1    ├┤1       ├
-     │     ││     ││        ││     ││     ││     ││     ││        │
-q_2: ┤2 S2 ├┤2 CZ ├┤2 CX_dg ├┤2 H2 ├┤2 S1 ├┤2 CZ ├┤2 H1 ├┤2 Pauli ├
-     │     ││     ││        ││     ││     ││     ││     ││        │
-q_3: ┤3    ├┤3    ├┤3       ├┤3    ├┤3    ├┤3    ├┤3    ├┤3       ├
-     │     ││     ││        ││     ││     ││     ││     ││        │
-q_4: ┤4    ├┤4    ├┤4       ├┤4    ├┤4    ├┤4    ├┤4    ├┤4       ├
-     └─────┘└─────┘└────────┘└─────┘└─────┘└─────┘└─────┘└────────┘
-```
+  **Parameters**
 
-This decomposition is for the default cz\_synth\_func and cx\_synth\_func functions, with other functions one may see slightly different decomposition.
+  *   **cliff** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
+  *   **cx\_synth\_func** (*Callable*) – a function to decompose the CX sub-circuit. It gets as input a boolean invertible matrix, and outputs a QuantumCircuit.
+  *   **cz\_synth\_func** (*Callable*) – a function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a QuantumCircuit.
+  *   **cx\_cz\_synth\_func** (*Callable*) – optional, a function to decompose both sub-circuits CZ and CX.
+  *   **validate** (*Boolean*) – if True, validates the synthesis process.
+  *   **cz\_func\_reverse\_qubits** (*Boolean*) – True only if cz\_synth\_func is synth\_cz\_depth\_line\_mr, since this function returns a circuit that reverts the order of qubits.
 
-**Parameters**
+  **Returns**
 
-*   **cliff** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
-*   **cx\_synth\_func** (*Callable*) – a function to decompose the CX sub-circuit. It gets as input a boolean invertible matrix, and outputs a QuantumCircuit.
-*   **cz\_synth\_func** (*Callable*) – a function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a QuantumCircuit.
-*   **cx\_cz\_synth\_func** (*Callable*) – optional, a function to decompose both sub-circuits CZ and CX.
-*   **validate** (*Boolean*) – if True, validates the synthesis process.
-*   **cz\_func\_reverse\_qubits** (*Boolean*) – True only if cz\_synth\_func is synth\_cz\_depth\_line\_mr, since this function returns a circuit that reverts the order of qubits.
+  a circuit implementation of the Clifford.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the Clifford.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Reference:**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Reference:**
-
-1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+  1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+</Function>
 
 ### synth\_clifford\_depth\_lnn
 
-<span id="qiskit.synthesis.synth_clifford_depth_lnn" />
+<Function id="qiskit.synthesis.synth_clifford_depth_lnn" name="synth_clifford_depth_lnn" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/clifford/clifford_decompose_layers.py" signature="qiskit.synthesis.synth_clifford_depth_lnn(cliff)">
+  Synthesis of a Clifford into layers for linear-nearest neighbour connectivity.
 
-`qiskit.synthesis.synth_clifford_depth_lnn(cliff)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/clifford/clifford_decompose_layers.py "view source code")
+  The depth of the synthesized n-qubit circuit is bounded by 7\*n+2, which is not optimal. It should be replaced by a better algorithm that provides depth bounded by 7\*n-4 \[3].
 
-Synthesis of a Clifford into layers for linear-nearest neighbour connectivity.
+  **Parameters**
 
-The depth of the synthesized n-qubit circuit is bounded by 7\*n+2, which is not optimal. It should be replaced by a better algorithm that provides depth bounded by 7\*n-4 \[3].
+  **cliff** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
 
-**Parameters**
+  **Returns**
 
-**cliff** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
+  a circuit implementation of the Clifford.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the Clifford.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Reference:**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Reference:**
-
-1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
-2.  Dmitri Maslov, Martin Roetteler, *Shorter stabilizer circuits via Bruhat decomposition and quantum circuit transformations*, [arXiv:1705.09176](https://arxiv.org/abs/1705.09176).
-3.  Dmitri Maslov, Willers Yang, *CNOT circuits need little help to implement arbitrary Hadamard-free Clifford transformations they generate*, [arXiv:2210.16195](https://arxiv.org/abs/2210.16195).
+  1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+  2.  Dmitri Maslov, Martin Roetteler, *Shorter stabilizer circuits via Bruhat decomposition and quantum circuit transformations*, [arXiv:1705.09176](https://arxiv.org/abs/1705.09176).
+  3.  Dmitri Maslov, Willers Yang, *CNOT circuits need little help to implement arbitrary Hadamard-free Clifford transformations they generate*, [arXiv:2210.16195](https://arxiv.org/abs/2210.16195).
+</Function>
 
 ## CNOTDihedral Synthesis
 
 ### synth\_cnotdihedral\_full
 
-<span id="qiskit.synthesis.synth_cnotdihedral_full" />
+<Function id="qiskit.synthesis.synth_cnotdihedral_full" name="synth_cnotdihedral_full" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_full.py" signature="qiskit.synthesis.synth_cnotdihedral_full(elem)">
+  Decompose a CNOTDihedral element into a QuantumCircuit. For N \<= 2 qubits this is based on optimal CX cost decomposition from reference \[1]. For N > 2 qubits this is done using the general non-optimal compilation routine from reference \[2].
 
-`qiskit.synthesis.synth_cnotdihedral_full(elem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_full.py "view source code")
+  **Parameters**
 
-Decompose a CNOTDihedral element into a QuantumCircuit. For N \<= 2 qubits this is based on optimal CX cost decomposition from reference \[1]. For N > 2 qubits this is done using the general non-optimal compilation routine from reference \[2].
+  **elem** ([*CNOTDihedral*](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")) – a CNOTDihedral element.
 
-**Parameters**
+  **Returns**
 
-**elem** ([*CNOTDihedral*](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")) – a CNOTDihedral element.
+  a circuit implementation of the CNOTDihedral element.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the CNOTDihedral element.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **References**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**References**
-
-1.  Shelly Garion and Andrew W. Cross, *Synthesis of CNOT-Dihedral circuits with optimal number of two qubit gates*, [Quantum 4(369), 2020](https://quantum-journal.org/papers/q-2020-12-07-369/)
-2.  Andrew W. Cross, Easwar Magesan, Lev S. Bishop, John A. Smolin and Jay M. Gambetta, *Scalable randomised benchmarking of non-Clifford gates*, npj Quantum Inf 2, 16012 (2016).
+  1.  Shelly Garion and Andrew W. Cross, *Synthesis of CNOT-Dihedral circuits with optimal number of two qubit gates*, [Quantum 4(369), 2020](https://quantum-journal.org/papers/q-2020-12-07-369/)
+  2.  Andrew W. Cross, Easwar Magesan, Lev S. Bishop, John A. Smolin and Jay M. Gambetta, *Scalable randomised benchmarking of non-Clifford gates*, npj Quantum Inf 2, 16012 (2016).
+</Function>
 
 ### synth\_cnotdihedral\_two\_qubits
 
-<span id="qiskit.synthesis.synth_cnotdihedral_two_qubits" />
+<Function id="qiskit.synthesis.synth_cnotdihedral_two_qubits" name="synth_cnotdihedral_two_qubits" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_two_qubits.py" signature="qiskit.synthesis.synth_cnotdihedral_two_qubits(elem)">
+  Decompose a CNOTDihedral element on a single qubit and two qubits into a QuantumCircuit. This decomposition has an optimal number of CX gates.
 
-`qiskit.synthesis.synth_cnotdihedral_two_qubits(elem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_two_qubits.py "view source code")
+  **Parameters**
 
-Decompose a CNOTDihedral element on a single qubit and two qubits into a QuantumCircuit. This decomposition has an optimal number of CX gates.
+  **elem** ([*CNOTDihedral*](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")) – a CNOTDihedral element.
 
-**Parameters**
+  **Returns**
 
-**elem** ([*CNOTDihedral*](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")) – a CNOTDihedral element.
+  a circuit implementation of the CNOTDihedral element.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the CNOTDihedral element.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the element in not 1-qubit or 2-qubit CNOTDihedral.
 
-**Raises**
+  **Reference:**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the element in not 1-qubit or 2-qubit CNOTDihedral.
-
-**Reference:**
-
-1.  Shelly Garion and Andrew W. Cross, *On the structure of the CNOT-Dihedral group*, [arXiv:2006.12042 \[quant-ph\]](https://arxiv.org/abs/2006.12042)
+  1.  Shelly Garion and Andrew W. Cross, *On the structure of the CNOT-Dihedral group*, [arXiv:2006.12042 \[quant-ph\]](https://arxiv.org/abs/2006.12042)
+</Function>
 
 ### synth\_cnotdihedral\_general
 
-<span id="qiskit.synthesis.synth_cnotdihedral_general" />
+<Function id="qiskit.synthesis.synth_cnotdihedral_general" name="synth_cnotdihedral_general" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_general.py" signature="qiskit.synthesis.synth_cnotdihedral_general(elem)">
+  Decompose a CNOTDihedral element into a QuantumCircuit.
 
-`qiskit.synthesis.synth_cnotdihedral_general(elem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_general.py "view source code")
+  Decompose a general CNOTDihedral elements. The number of CNOT gates is not necessarily optimal. For a decomposition of a 1-qubit or 2-qubit element, call synth\_cnotdihedral\_two\_qubits.
 
-Decompose a CNOTDihedral element into a QuantumCircuit.
+  **Parameters**
 
-Decompose a general CNOTDihedral elements. The number of CNOT gates is not necessarily optimal. For a decomposition of a 1-qubit or 2-qubit element, call synth\_cnotdihedral\_two\_qubits.
+  **elem** ([*CNOTDihedral*](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")) – a CNOTDihedral element.
 
-**Parameters**
+  **Returns**
 
-**elem** ([*CNOTDihedral*](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")) – a CNOTDihedral element.
+  a circuit implementation of the CNOTDihedral element.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the CNOTDihedral element.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the element could not be decomposed into a circuit.
 
-**Raises**
+  **Reference:**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the element could not be decomposed into a circuit.
-
-**Reference:**
-
-1.  Andrew W. Cross, Easwar Magesan, Lev S. Bishop, John A. Smolin and Jay M. Gambetta, *Scalable randomised benchmarking of non-Clifford gates*, npj Quantum Inf 2, 16012 (2016).
+  1.  Andrew W. Cross, Easwar Magesan, Lev S. Bishop, John A. Smolin and Jay M. Gambetta, *Scalable randomised benchmarking of non-Clifford gates*, npj Quantum Inf 2, 16012 (2016).
+</Function>
 
 ## Stabilizer State Synthesis
 
 ### synth\_stabilizer\_layers
 
-<span id="qiskit.synthesis.synth_stabilizer_layers" />
+<Function id="qiskit.synthesis.synth_stabilizer_layers" name="synth_stabilizer_layers" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/stabilizer/stabilizer_decompose.py" signature="qiskit.synthesis.synth_stabilizer_layers(stab, cz_synth_func=<function _default_cz_synth_func>, cz_func_reverse_qubits=False, validate=False)">
+  Synthesis of a stabilizer state into layers.
 
-`qiskit.synthesis.synth_stabilizer_layers(stab, cz_synth_func=<function _default_cz_synth_func>, cz_func_reverse_qubits=False, validate=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/stabilizer/stabilizer_decompose.py "view source code")
+  It provides a similar decomposition to the synthesis described in Lemma 8 of Bravyi and Maslov, without the initial Hadamard-free sub-circuit which do not affect the stabilizer state.
 
-Synthesis of a stabilizer state into layers.
+  For example, a 5-qubit stabilizer state is decomposed into the following layers:
 
-It provides a similar decomposition to the synthesis described in Lemma 8 of Bravyi and Maslov, without the initial Hadamard-free sub-circuit which do not affect the stabilizer state.
+  ```python
+       ┌─────┐┌─────┐┌─────┐┌─────┐┌────────┐
+  q_0: ┤0    ├┤0    ├┤0    ├┤0    ├┤0       ├
+       │     ││     ││     ││     ││        │
+  q_1: ┤1    ├┤1    ├┤1    ├┤1    ├┤1       ├
+       │     ││     ││     ││     ││        │
+  q_2: ┤2 H2 ├┤2 S1 ├┤2 CZ ├┤2 H1 ├┤2 Pauli ├
+       │     ││     ││     ││     ││        │
+  q_3: ┤3    ├┤3    ├┤3    ├┤3    ├┤3       ├
+       │     ││     ││     ││     ││        │
+  q_4: ┤4    ├┤4    ├┤4    ├┤4    ├┤4       ├
+       └─────┘└─────┘└─────┘└─────┘└────────┘
+  ```
 
-For example, a 5-qubit stabilizer state is decomposed into the following layers:
+  **Parameters**
 
-```python
-     ┌─────┐┌─────┐┌─────┐┌─────┐┌────────┐
-q_0: ┤0    ├┤0    ├┤0    ├┤0    ├┤0       ├
-     │     ││     ││     ││     ││        │
-q_1: ┤1    ├┤1    ├┤1    ├┤1    ├┤1       ├
-     │     ││     ││     ││     ││        │
-q_2: ┤2 H2 ├┤2 S1 ├┤2 CZ ├┤2 H1 ├┤2 Pauli ├
-     │     ││     ││     ││     ││        │
-q_3: ┤3    ├┤3    ├┤3    ├┤3    ├┤3       ├
-     │     ││     ││     ││     ││        │
-q_4: ┤4    ├┤4    ├┤4    ├┤4    ├┤4       ├
-     └─────┘└─────┘└─────┘└─────┘└────────┘
-```
+  *   **stab** ([*StabilizerState*](qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")) – a stabilizer state.
+  *   **cz\_synth\_func** (*Callable*) – a function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a QuantumCircuit.
+  *   **validate** (*Boolean*) – if True, validates the synthesis process.
+  *   **cz\_func\_reverse\_qubits** (*Boolean*) – True only if cz\_synth\_func is synth\_cz\_depth\_line\_mr, since this function returns a circuit that reverts the order of qubits.
 
-**Parameters**
+  **Returns**
 
-*   **stab** ([*StabilizerState*](qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")) – a stabilizer state.
-*   **cz\_synth\_func** (*Callable*) – a function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a QuantumCircuit.
-*   **validate** (*Boolean*) – if True, validates the synthesis process.
-*   **cz\_func\_reverse\_qubits** (*Boolean*) – True only if cz\_synth\_func is synth\_cz\_depth\_line\_mr, since this function returns a circuit that reverts the order of qubits.
+  a circuit implementation of the stabilizer state.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the stabilizer state.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input is not a StabilizerState.
 
-**Raises**
+  **Reference:**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input is not a StabilizerState.
-
-**Reference:**
-
-1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+  1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+</Function>
 
 ### synth\_stabilizer\_depth\_lnn
 
-<span id="qiskit.synthesis.synth_stabilizer_depth_lnn" />
+<Function id="qiskit.synthesis.synth_stabilizer_depth_lnn" name="synth_stabilizer_depth_lnn" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/stabilizer/stabilizer_decompose.py" signature="qiskit.synthesis.synth_stabilizer_depth_lnn(stab)">
+  Synthesis of an n-qubit stabilizer state for linear-nearest neighbour connectivity, in 2-qubit depth 2\*n+2 and two distinct CX layers, using CX and phase gates (S, Sdg or Z).
 
-`qiskit.synthesis.synth_stabilizer_depth_lnn(stab)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/stabilizer/stabilizer_decompose.py "view source code")
+  **Parameters**
 
-Synthesis of an n-qubit stabilizer state for linear-nearest neighbour connectivity, in 2-qubit depth 2\*n+2 and two distinct CX layers, using CX and phase gates (S, Sdg or Z).
+  **stab** ([*StabilizerState*](qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")) – a stabilizer state.
 
-**Parameters**
+  **Returns**
 
-**stab** ([*StabilizerState*](qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")) – a stabilizer state.
+  a circuit implementation of the stabilizer state.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the stabilizer state.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Reference:**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Reference:**
-
-1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
-2.  Dmitri Maslov, Martin Roetteler, *Shorter stabilizer circuits via Bruhat decomposition and quantum circuit transformations*, [arXiv:1705.09176](https://arxiv.org/abs/1705.09176).
+  1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+  2.  Dmitri Maslov, Martin Roetteler, *Shorter stabilizer circuits via Bruhat decomposition and quantum circuit transformations*, [arXiv:1705.09176](https://arxiv.org/abs/1705.09176).
+</Function>
 
 ## Discrete Basis Synthesis
 
@@ -575,27 +539,25 @@ a circuit implementation of the stabilizer state.
 
 ### generate\_basic\_approximations
 
-<span id="qiskit.synthesis.generate_basic_approximations" />
+<Function id="qiskit.synthesis.generate_basic_approximations" name="generate_basic_approximations" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/discrete_basis/generate_basis_approximations.py" signature="qiskit.synthesis.generate_basic_approximations(basis_gates, depth, filename=None)">
+  Generates a list of `GateSequence``s with the gates in ``basic_gates`.
 
-`qiskit.synthesis.generate_basic_approximations(basis_gates, depth, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/discrete_basis/generate_basis_approximations.py "view source code")
+  **Parameters**
 
-Generates a list of `GateSequence``s with the gates in ``basic_gates`.
+  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The gates from which to create the sequences of gates.
+  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum depth of the approximations.
+  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – If provided, the basic approximations are stored in this file.
 
-**Parameters**
+  **Returns**
 
-*   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The gates from which to create the sequences of gates.
-*   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum depth of the approximations.
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – If provided, the basic approximations are stored in this file.
+  List of `GateSequences` using the gates in `basic_gates`.
 
-**Returns**
+  **Raises**
 
-List of `GateSequences` using the gates in `basic_gates`.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `basis_gates` contains an invalid gate identifier.
 
-**Raises**
+  **Return type**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `basis_gates` contains an invalid gate identifier.
-
-**Return type**
-
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[GateSequence]
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[GateSequence]
+</Function>
 

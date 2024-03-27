@@ -8,71 +8,63 @@ python_api_name: qiskit.providers.fake_provider.FakeProviderForBackendV2
 
 # FakeProviderForBackendV2
 
-<span id="qiskit.providers.fake_provider.FakeProviderForBackendV2" />
+<Class id="qiskit.providers.fake_provider.FakeProviderForBackendV2" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/fake_provider.py" signature="qiskit.providers.fake_provider.FakeProviderForBackendV2">
+  Bases: [`ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.provider.ProviderV1")
 
-`qiskit.providers.fake_provider.FakeProviderForBackendV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/fake_provider.py "view source code")
+  Fake provider containing fake V2 backends.
 
-Bases: [`ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.provider.ProviderV1")
+  Only filtering backends by name is implemented. This class contains all fake V2 backends available in the [`qiskit.providers.fake_provider`](providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider").
 
-Fake provider containing fake V2 backends.
+  ## Attributes
 
-Only filtering backends by name is implemented. This class contains all fake V2 backends available in the [`qiskit.providers.fake_provider`](providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider").
+  ### version
 
-## Attributes
+  <Attribute id="qiskit.providers.fake_provider.FakeProviderForBackendV2.version" name="version" attributeValue="= 1" />
 
-<span id="qiskit.providers.fake_provider.FakeProviderForBackendV2.version" />
+  ## Methods
 
-### version
+  ### backends
 
-`= 1`
+  <Function id="qiskit.providers.fake_provider.FakeProviderForBackendV2.backends" name="backends" signature="backends(name=None, **kwargs)">
+    Return a list of backends matching the specified filtering.
 
-## Methods
+    **Parameters**
 
-### backends
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-<span id="qiskit.providers.fake_provider.FakeProviderForBackendV2.backends" />
+    **Returns**
 
-`backends(name=None, **kwargs)`
+    **a list of Backends that match the filtering**
 
-Return a list of backends matching the specified filtering.
+    criteria.
 
-**Parameters**
+    **Return type**
 
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
+  </Function>
 
-**Returns**
+  ### get\_backend
 
-**a list of Backends that match the filtering**
+  <Function id="qiskit.providers.fake_provider.FakeProviderForBackendV2.get_backend" name="get_backend" signature="get_backend(name=None, **kwargs)">
+    Return a single backend matching the specified filtering.
 
-criteria.
+    **Parameters**
 
-**Return type**
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
+    **Returns**
 
-### get\_backend
+    a backend matching the filtering.
 
-<span id="qiskit.providers.fake_provider.FakeProviderForBackendV2.get_backend" />
+    **Return type**
 
-`get_backend(name=None, **kwargs)`
+    [Backend](qiskit.providers.Backend "qiskit.providers.Backend")
 
-Return a single backend matching the specified filtering.
+    **Raises**
 
-**Parameters**
-
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
-
-**Returns**
-
-a backend matching the filtering.
-
-**Return type**
-
-[Backend](qiskit.providers.Backend "qiskit.providers.Backend")
-
-**Raises**
-
-[**QiskitBackendNotFoundError**](providers#qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+    [**QiskitBackendNotFoundError**](providers#qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+  </Function>
+</Class>
 

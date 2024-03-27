@@ -8,83 +8,77 @@ python_api_name: qiskit.opflow.gradients.Gradient
 
 # Gradient
 
-<span id="qiskit.opflow.gradients.Gradient" />
+<Class id="qiskit.opflow.gradients.Gradient" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/gradients/gradient.py" signature="qiskit.opflow.gradients.Gradient(grad_method='param_shift', **kwargs)">
+  Bases: [`GradientBase`](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.gradient_base.GradientBase")
 
-`qiskit.opflow.gradients.Gradient(grad_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/gradients/gradient.py "view source code")
+  Deprecated: Convert an operator expression to the first-order gradient.
 
-Bases: [`GradientBase`](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.gradient_base.GradientBase")
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.gradients.gradient.Gradient` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Deprecated: Convert an operator expression to the first-order gradient.
+  ## Attributes
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.gradients.gradient.Gradient` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  ### grad\_method
 
-## Attributes
+  <Attribute id="qiskit.opflow.gradients.Gradient.grad_method" name="grad_method">
+    Returns `CircuitGradient`.
 
-<span id="qiskit.opflow.gradients.Gradient.grad_method" />
+    **Returns**
 
-### grad\_method
+    `CircuitGradient`.
+  </Attribute>
 
-Returns `CircuitGradient`.
+  ## Methods
 
-**Returns**
+  ### convert
 
-`CircuitGradient`.
+  <Function id="qiskit.opflow.gradients.Gradient.convert" name="convert" signature="convert(operator, params=None)">
+    **Parameters**
 
-## Methods
+    *   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator we are taking the gradient of.
+    *   **params** ([*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*] | None*) – The parameters we are taking the gradient with respect to. If not explicitly passed, they are inferred from the operator and sorted by name.
 
-### convert
+    **Returns**
 
-<span id="qiskit.opflow.gradients.Gradient.convert" />
+    An operator whose evaluation yields the Gradient.
 
-`convert(operator, params=None)`
+    **Raises**
 
-**Parameters**
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `params` contains a parameter not present in `operator`.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `operator` is not parameterized.
 
-*   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator we are taking the gradient of.
-*   **params** ([*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*] | None*) – The parameters we are taking the gradient with respect to. If not explicitly passed, they are inferred from the operator and sorted by name.
+    **Return type**
 
-**Returns**
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-An operator whose evaluation yields the Gradient.
+  ### get\_gradient
 
-**Raises**
+  <Function id="qiskit.opflow.gradients.Gradient.get_gradient" name="get_gradient" signature="get_gradient(operator, params)">
+    Get the gradient for the given operator w\.r.t. the given parameters
 
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `params` contains a parameter not present in `operator`.
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `operator` is not parameterized.
+    **Parameters**
 
-**Return type**
+    *   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Operator w\.r.t. which we take the gradient.
+    *   **params** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*]*) – Parameters w\.r.t. which we compute the gradient.
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **Returns**
 
-### get\_gradient
+    Operator which represents the gradient w\.r.t. the given params.
 
-<span id="qiskit.opflow.gradients.Gradient.get_gradient" />
+    **Raises**
 
-`get_gradient(operator, params)`
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `params` contains a parameter not present in `operator`.
+    *   [**OpflowError**](opflow#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the coefficient of the operator could not be reduced to 1.
+    *   [**OpflowError**](opflow#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the differentiation of a combo\_fn requires JAX but the package is not installed.
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If the operator does not include a StateFn given by a quantum circuit
+    *   [**Exception**](https://docs.python.org/3/library/exceptions.html#Exception "(in Python v3.12)") – Unintended code is reached
+    *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – jax not installed
 
-Get the gradient for the given operator w\.r.t. the given parameters
+    **Return type**
 
-**Parameters**
-
-*   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Operator w\.r.t. which we take the gradient.
-*   **params** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*]*) – Parameters w\.r.t. which we compute the gradient.
-
-**Returns**
-
-Operator which represents the gradient w\.r.t. the given params.
-
-**Raises**
-
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `params` contains a parameter not present in `operator`.
-*   [**OpflowError**](opflow#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the coefficient of the operator could not be reduced to 1.
-*   [**OpflowError**](opflow#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the differentiation of a combo\_fn requires JAX but the package is not installed.
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If the operator does not include a StateFn given by a quantum circuit
-*   [**Exception**](https://docs.python.org/3/library/exceptions.html#Exception "(in Python v3.12)") – Unintended code is reached
-*   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – jax not installed
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
+</Class>
 

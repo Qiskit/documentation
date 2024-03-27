@@ -8,36 +8,34 @@ python_api_name: qiskit.synthesis.unitary.aqc.CNOTUnitObjective
 
 # CNOTUnitObjective
 
-<span id="qiskit.synthesis.unitary.aqc.CNOTUnitObjective" />
+<Class id="qiskit.synthesis.unitary.aqc.CNOTUnitObjective" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/synthesis/unitary/aqc/cnot_unit_objective.py" signature="qiskit.synthesis.unitary.aqc.CNOTUnitObjective(num_qubits, cnots)">
+  Bases: [`ApproximatingObjective`](qiskit.synthesis.unitary.aqc.ApproximatingObjective "qiskit.synthesis.unitary.aqc.approximate.ApproximatingObjective"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-`qiskit.synthesis.unitary.aqc.CNOTUnitObjective(num_qubits, cnots)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/synthesis/unitary/aqc/cnot_unit_objective.py "view source code")
+  A base class for a problem definition based on CNOT unit. This class may have different subclasses for objective and gradient computations.
 
-Bases: [`ApproximatingObjective`](qiskit.synthesis.unitary.aqc.ApproximatingObjective "qiskit.synthesis.unitary.aqc.approximate.ApproximatingObjective"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  **Parameters**
 
-A base class for a problem definition based on CNOT unit. This class may have different subclasses for objective and gradient computations.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
+  *   **cnots** (*np.ndarray*) – a CNOT structure to be used in the optimization procedure.
 
-**Parameters**
+  ## Attributes
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
-*   **cnots** (*np.ndarray*) – a CNOT structure to be used in the optimization procedure.
+  ### num\_cnots
 
-## Attributes
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitObjective.num_cnots" name="num_cnots">
+    Returns: A number of CNOT units to be used by the approximate circuit.
+  </Attribute>
 
-<span id="qiskit.synthesis.unitary.aqc.CNOTUnitObjective.num_cnots" />
+  ### num\_thetas
 
-### num\_cnots
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitObjective.num_thetas" name="num_thetas">
+    Returns: Number of parameters (angles) of rotation gates in this circuit.
+  </Attribute>
 
-Returns: A number of CNOT units to be used by the approximate circuit.
+  ### target\_matrix
 
-<span id="qiskit.synthesis.unitary.aqc.CNOTUnitObjective.num_thetas" />
-
-### num\_thetas
-
-Returns: Number of parameters (angles) of rotation gates in this circuit.
-
-<span id="qiskit.synthesis.unitary.aqc.CNOTUnitObjective.target_matrix" />
-
-### target\_matrix
-
-Returns: a matrix being approximated
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitObjective.target_matrix" name="target_matrix">
+    Returns: a matrix being approximated
+  </Attribute>
+</Class>
 

@@ -8,112 +8,96 @@ python_api_name: qiskit.aqua.components.oracles.TruthTableOracle
 
 # qiskit.aqua.components.oracles.TruthTableOracle
 
-<span id="qiskit.aqua.components.oracles.TruthTableOracle" />
+<Class id="qiskit.aqua.components.oracles.TruthTableOracle" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/truth_table_oracle.py" signature="TruthTableOracle(bitmaps, optimization=False, mct_mode='basic')">
+  The Truth Table-based Quantum Oracle.
 
-`TruthTableOracle(bitmaps, optimization=False, mct_mode='basic')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/truth_table_oracle.py "view source code")
+  Besides logical expressions, (see [`LogicalExpressionOracle`](qiskit.aqua.components.oracles.LogicalExpressionOracle "qiskit.aqua.components.oracles.LogicalExpressionOracle")) another common way of specifying boolean functions is using truth tables, which is basically an exhaustive mapping from input binary bit-strings of length $n$ to corresponding output bit-strings of length $m$. For example, the following is a simple truth table that corresponds to the XOR of two variables:
 
-The Truth Table-based Quantum Oracle.
+  | Inputs |   | Output  |
+  | ------ | - | ------- |
+  | A      | B | A xor B |
+  | 0      | 0 | 0       |
+  | 0      | 1 | 1       |
+  | 1      | 0 | 1       |
+  | 1      | 1 | 0       |
 
-Besides logical expressions, (see [`LogicalExpressionOracle`](qiskit.aqua.components.oracles.LogicalExpressionOracle "qiskit.aqua.components.oracles.LogicalExpressionOracle")) another common way of specifying boolean functions is using truth tables, which is basically an exhaustive mapping from input binary bit-strings of length $n$ to corresponding output bit-strings of length $m$. For example, the following is a simple truth table that corresponds to the XOR of two variables:
+  In this case $n=2$, and $m=1$. Often, for brevity, the input bit-strings are omitted because they can be easily derived for any given $n$. So to completely specify a truth table, we only need a Length-2 n bit-string for each of the $m$ outputs. In the above example, a single bit-string ‘0110’ would suffice. Besides ‘0’ and ‘1’, one can also use ‘x’ in the output string to indicate ‘do-not-care’ entries. For example, ‘101x’ specifies a truth table (again $n=2$ and $m=1$) for which the output upon input ‘11’ doesn’t matter. The truth table oracle takes either a single string or a list of equal-length strings for truth table specifications.
 
-| Inputs |   | Output  |
-| ------ | - | ------- |
-| A      | B | A xor B |
-| 0      | 0 | 0       |
-| 0      | 1 | 1       |
-| 1      | 0 | 1       |
-| 1      | 1 | 0       |
+  Regarding circuit optimization and mct usages, the truth table oracle is similar to the [`LogicalExpressionOracle`](qiskit.aqua.components.oracles.LogicalExpressionOracle "qiskit.aqua.components.oracles.LogicalExpressionOracle"). One difference is that, unlike the logical expression oracle which builds circuits out of CNF or DNF, the truth table oracle uses Exclusive Sum of Products (ESOP), which is similar to DNF, with the only difference being the outermost operation being XOR as opposed to a disjunction. Because of this difference, an implicant-based method is used here for circuit optimization: First, the [Quine-McCluskey algorithm](https://en.wikipedia.org/wiki/Quine-McCluskey_algorithm) is used to find all prime implicants of the input truth table; then an [Exact Cover](https://en.wikipedia.org/wiki/Knuth%27s_Algorithm_X) is found among all prime implicants and truth table onset row entries. The exact cover is then used to build the corresponding oracle circuit.
 
-In this case $n=2$, and $m=1$. Often, for brevity, the input bit-strings are omitted because they can be easily derived for any given $n$. So to completely specify a truth table, we only need a Length-2 n bit-string for each of the $m$ outputs. In the above example, a single bit-string ‘0110’ would suffice. Besides ‘0’ and ‘1’, one can also use ‘x’ in the output string to indicate ‘do-not-care’ entries. For example, ‘101x’ specifies a truth table (again $n=2$ and $m=1$) for which the output upon input ‘11’ doesn’t matter. The truth table oracle takes either a single string or a list of equal-length strings for truth table specifications.
+  **Parameters**
 
-Regarding circuit optimization and mct usages, the truth table oracle is similar to the [`LogicalExpressionOracle`](qiskit.aqua.components.oracles.LogicalExpressionOracle "qiskit.aqua.components.oracles.LogicalExpressionOracle"). One difference is that, unlike the logical expression oracle which builds circuits out of CNF or DNF, the truth table oracle uses Exclusive Sum of Products (ESOP), which is similar to DNF, with the only difference being the outermost operation being XOR as opposed to a disjunction. Because of this difference, an implicant-based method is used here for circuit optimization: First, the [Quine-McCluskey algorithm](https://en.wikipedia.org/wiki/Quine-McCluskey_algorithm) is used to find all prime implicants of the input truth table; then an [Exact Cover](https://en.wikipedia.org/wiki/Knuth%27s_Algorithm_X) is found among all prime implicants and truth table onset row entries. The exact cover is then used to build the corresponding oracle circuit.
+  *   **bitmaps** (`Union`\[`str`, `List`\[`str`]]) – A single binary string or a list of binary strings representing the desired single- and multi-value truth table.
+  *   **optimization** (`bool`) – Boolean flag for attempting circuit optimization. When set, the Quine-McCluskey algorithm is used to compute the prime implicants of the truth table, and then its exact cover is computed to try to reduce the circuit.
+  *   **mct\_mode** (`str`) – The mode to use when constructing multiple-control Toffoli.
 
-**Parameters**
+  **Raises**
 
-*   **bitmaps** (`Union`\[`str`, `List`\[`str`]]) – A single binary string or a list of binary strings representing the desired single- and multi-value truth table.
-*   **optimization** (`bool`) – Boolean flag for attempting circuit optimization. When set, the Quine-McCluskey algorithm is used to compute the prime implicants of the truth table, and then its exact cover is computed to try to reduce the circuit.
-*   **mct\_mode** (`str`) – The mode to use when constructing multiple-control Toffoli.
+  [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
 
-**Raises**
+  ### \_\_init\_\_
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
+  <Function id="qiskit.aqua.components.oracles.TruthTableOracle.__init__" name="__init__" signature="__init__(bitmaps, optimization=False, mct_mode='basic')">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **bitmaps** (`Union`\[`str`, `List`\[`str`]]) – A single binary string or a list of binary strings representing the desired single- and multi-value truth table.
+    *   **optimization** (`bool`) – Boolean flag for attempting circuit optimization. When set, the Quine-McCluskey algorithm is used to compute the prime implicants of the truth table, and then its exact cover is computed to try to reduce the circuit.
+    *   **mct\_mode** (`str`) – The mode to use when constructing multiple-control Toffoli.
 
-<span id="qiskit.aqua.components.oracles.TruthTableOracle.__init__" />
+    **Raises**
 
-`__init__(bitmaps, optimization=False, mct_mode='basic')`
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **bitmaps** (`Union`\[`str`, `List`\[`str`]]) – A single binary string or a list of binary strings representing the desired single- and multi-value truth table.
-*   **optimization** (`bool`) – Boolean flag for attempting circuit optimization. When set, the Quine-McCluskey algorithm is used to compute the prime implicants of the truth table, and then its exact cover is computed to try to reduce the circuit.
-*   **mct\_mode** (`str`) – The mode to use when constructing multiple-control Toffoli.
+  |                                                                                                                                                                                     |                                                 |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.components.oracles.TruthTableOracle.__init__ "qiskit.aqua.components.oracles.TruthTableOracle.__init__")(bitmaps\[, optimization, mct\_mode])             | **type bitmaps**`Union`\[`str`, `List`\[`str`]] |
+  | [`construct_circuit`](#qiskit.aqua.components.oracles.TruthTableOracle.construct_circuit "qiskit.aqua.components.oracles.TruthTableOracle.construct_circuit")()                     | construct circuit                               |
+  | [`evaluate_classically`](#qiskit.aqua.components.oracles.TruthTableOracle.evaluate_classically "qiskit.aqua.components.oracles.TruthTableOracle.evaluate_classically")(measurement) | evaluate classical                              |
 
-**Raises**
+  ## Attributes
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
+  |                                                                                                                                                                  |                            |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+  | [`ancillary_register`](#qiskit.aqua.components.oracles.TruthTableOracle.ancillary_register "qiskit.aqua.components.oracles.TruthTableOracle.ancillary_register") | returns ancillary register |
+  | [`circuit`](#qiskit.aqua.components.oracles.TruthTableOracle.circuit "qiskit.aqua.components.oracles.TruthTableOracle.circuit")                                  |                            |
+  | [`output_register`](#qiskit.aqua.components.oracles.TruthTableOracle.output_register "qiskit.aqua.components.oracles.TruthTableOracle.output_register")          | returns output register    |
+  | [`variable_register`](#qiskit.aqua.components.oracles.TruthTableOracle.variable_register "qiskit.aqua.components.oracles.TruthTableOracle.variable_register")    | returns variable register  |
 
-## Methods
+  ### ancillary\_register
 
-|                                                                                                                                                                                     |                                                 |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`__init__`](#qiskit.aqua.components.oracles.TruthTableOracle.__init__ "qiskit.aqua.components.oracles.TruthTableOracle.__init__")(bitmaps\[, optimization, mct\_mode])             | **type bitmaps**`Union`\[`str`, `List`\[`str`]] |
-| [`construct_circuit`](#qiskit.aqua.components.oracles.TruthTableOracle.construct_circuit "qiskit.aqua.components.oracles.TruthTableOracle.construct_circuit")()                     | construct circuit                               |
-| [`evaluate_classically`](#qiskit.aqua.components.oracles.TruthTableOracle.evaluate_classically "qiskit.aqua.components.oracles.TruthTableOracle.evaluate_classically")(measurement) | evaluate classical                              |
+  <Function id="qiskit.aqua.components.oracles.TruthTableOracle.ancillary_register" name="ancillary_register" signature="property ancillary_register">
+    returns ancillary register
+  </Function>
 
-## Attributes
+  ### circuit
 
-|                                                                                                                                                                  |                            |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| [`ancillary_register`](#qiskit.aqua.components.oracles.TruthTableOracle.ancillary_register "qiskit.aqua.components.oracles.TruthTableOracle.ancillary_register") | returns ancillary register |
-| [`circuit`](#qiskit.aqua.components.oracles.TruthTableOracle.circuit "qiskit.aqua.components.oracles.TruthTableOracle.circuit")                                  |                            |
-| [`output_register`](#qiskit.aqua.components.oracles.TruthTableOracle.output_register "qiskit.aqua.components.oracles.TruthTableOracle.output_register")          | returns output register    |
-| [`variable_register`](#qiskit.aqua.components.oracles.TruthTableOracle.variable_register "qiskit.aqua.components.oracles.TruthTableOracle.variable_register")    | returns variable register  |
+  <Function id="qiskit.aqua.components.oracles.TruthTableOracle.circuit" name="circuit" signature="property circuit" />
 
-### ancillary\_register
+  ### construct\_circuit
 
-<span id="qiskit.aqua.components.oracles.TruthTableOracle.ancillary_register" />
+  <Function id="qiskit.aqua.components.oracles.TruthTableOracle.construct_circuit" name="construct_circuit" signature="construct_circuit()">
+    construct circuit
+  </Function>
 
-`property ancillary_register`
+  ### evaluate\_classically
 
-returns ancillary register
+  <Function id="qiskit.aqua.components.oracles.TruthTableOracle.evaluate_classically" name="evaluate_classically" signature="evaluate_classically(measurement)">
+    evaluate classical
+  </Function>
 
-### circuit
+  ### output\_register
 
-<span id="qiskit.aqua.components.oracles.TruthTableOracle.circuit" />
+  <Function id="qiskit.aqua.components.oracles.TruthTableOracle.output_register" name="output_register" signature="property output_register">
+    returns output register
+  </Function>
 
-`property circuit`
+  ### variable\_register
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.oracles.TruthTableOracle.construct_circuit" />
-
-`construct_circuit()`
-
-construct circuit
-
-### evaluate\_classically
-
-<span id="qiskit.aqua.components.oracles.TruthTableOracle.evaluate_classically" />
-
-`evaluate_classically(measurement)`
-
-evaluate classical
-
-### output\_register
-
-<span id="qiskit.aqua.components.oracles.TruthTableOracle.output_register" />
-
-`property output_register`
-
-returns output register
-
-### variable\_register
-
-<span id="qiskit.aqua.components.oracles.TruthTableOracle.variable_register" />
-
-`property variable_register`
-
-returns variable register
+  <Function id="qiskit.aqua.components.oracles.TruthTableOracle.variable_register" name="variable_register" signature="property variable_register">
+    returns variable register
+  </Function>
+</Class>
 

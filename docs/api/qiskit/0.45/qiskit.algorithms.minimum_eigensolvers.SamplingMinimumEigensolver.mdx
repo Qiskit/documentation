@@ -8,52 +8,46 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolv
 
 # SamplingMinimumEigensolver
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver" />
+<Class id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigensolvers/sampling_mes.py" signature="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-`qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigensolvers/sampling_mes.py "view source code")
+  The Sampling Minimum Eigensolver Interface.
 
-Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  ## Methods
 
-The Sampling Minimum Eigensolver Interface.
+  ### compute\_minimum\_eigenvalue
 
-## Methods
+  <Function id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="abstract compute_minimum_eigenvalue(operator, aux_operators=None)">
+    Compute the minimum eigenvalue of a diagonal operator.
 
-### compute\_minimum\_eigenvalue
+    **Parameters**
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver.compute_minimum_eigenvalue" />
+    *   **operator** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – Diagonal qubit operator.
+    *   **aux\_operators** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*] | None*) – Optional list of auxiliary operators to be evaluated with the final state.
 
-`abstract compute_minimum_eigenvalue(operator, aux_operators=None)`
+    **Returns**
 
-Compute the minimum eigenvalue of a diagonal operator.
+    A [`SamplingMinimumEigensolverResult`](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult") containing the optimization result.
 
-**Parameters**
+    **Return type**
 
-*   **operator** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – Diagonal qubit operator.
-*   **aux\_operators** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*] | None*) – Optional list of auxiliary operators to be evaluated with the final state.
+    [SamplingMinimumEigensolverResult](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult")
+  </Function>
 
-**Returns**
+  ### supports\_aux\_operators
 
-A [`SamplingMinimumEigensolverResult`](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult") containing the optimization result.
+  <Function id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-**Return type**
+    If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
 
-[SamplingMinimumEigensolverResult](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult")
+    **Returns**
 
-### supports\_aux\_operators
+    True if aux\_operator expectations can be evaluated, False otherwise
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver.supports_aux_operators" />
+    **Return type**
 
-`classmethod supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
-
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
+</Class>
 

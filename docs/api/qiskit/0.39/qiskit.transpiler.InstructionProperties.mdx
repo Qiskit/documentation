@@ -8,35 +8,33 @@ python_api_name: qiskit.transpiler.InstructionProperties
 
 # InstructionProperties
 
-<span id="qiskit.transpiler.InstructionProperties" />
+<Class id="qiskit.transpiler.InstructionProperties" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/target.py" signature="InstructionProperties(duration=None, error=None, calibration=None)">
+  Bases: `object`
 
-`InstructionProperties(duration=None, error=None, calibration=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/target.py "view source code")
+  A representation of the properties of a gate implementation.
 
-Bases: `object`
+  This class provides the optional properties that a backend can provide about an instruction. These represent the set that the transpiler can currently work with if present. However, if your backend provides additional properties for instructions you should subclass this to add additional custom attributes for those custom/additional properties by the backend.
 
-A representation of the properties of a gate implementation.
+  Create a new `InstructionProperties` object
 
-This class provides the optional properties that a backend can provide about an instruction. These represent the set that the transpiler can currently work with if present. However, if your backend provides additional properties for instructions you should subclass this to add additional custom attributes for those custom/additional properties by the backend.
+  **Parameters**
 
-Create a new `InstructionProperties` object
+  *   **duration** (`Optional`\[`float`]) – The duration, in seconds, of the instruction on the specified set of qubits
+  *   **error** (`Optional`\[`float`]) – The average error rate for the instruction on the specified set of qubits.
+  *   **calibration** (*Union\["qiskit.pulse.Schedule", "qiskit.pulse.ScheduleBlock"]*) – The pulse representation of the instruction
 
-**Parameters**
+  ## Attributes
 
-*   **duration** (`Optional`\[`float`]) – The duration, in seconds, of the instruction on the specified set of qubits
-*   **error** (`Optional`\[`float`]) – The average error rate for the instruction on the specified set of qubits.
-*   **calibration** (*Union\["qiskit.pulse.Schedule", "qiskit.pulse.ScheduleBlock"]*) – The pulse representation of the instruction
+  ### duration
 
-## Attributes
+  <Attribute id="qiskit.transpiler.InstructionProperties.duration" name="duration" />
 
-<span id="qiskit.transpiler.InstructionProperties.duration" />
+  ### error
 
-### duration
+  <Attribute id="qiskit.transpiler.InstructionProperties.error" name="error" />
 
-<span id="qiskit.transpiler.InstructionProperties.error" />
+  ### calibration
 
-### error
-
-<span id="qiskit.transpiler.InstructionProperties.calibration" />
-
-### calibration
+  <Attribute id="qiskit.transpiler.InstructionProperties.calibration" name="calibration" />
+</Class>
 

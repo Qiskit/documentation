@@ -8,120 +8,108 @@ python_api_name: qiskit.aqua.components.eigs.EigsQPE
 
 # qiskit.aqua.components.eigs.EigsQPE
 
-<span id="qiskit.aqua.components.eigs.EigsQPE" />
+<Class id="qiskit.aqua.components.eigs.EigsQPE" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs_qpe.py" signature="EigsQPE(operator, iqft, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=None, negative_evals=False, ne_qfts=None)">
+  Eigenvalues using Quantum Phase Estimation.
 
-`EigsQPE(operator, iqft, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=None, negative_evals=False, ne_qfts=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs_qpe.py "view source code")
+  Specifically, this class is based on PhaseEstimationCircuit with no measurements and has additional handling of negative eigenvalues, e.g. for [`HHL`](qiskit.aqua.algorithms.HHL "qiskit.aqua.algorithms.HHL"). It depends on the [`QFT`](qiskit.circuit.library.QFT "qiskit.circuit.library.QFT") class.
 
-Eigenvalues using Quantum Phase Estimation.
+  **Parameters**
 
-Specifically, this class is based on PhaseEstimationCircuit with no measurements and has additional handling of negative eigenvalues, e.g. for [`HHL`](qiskit.aqua.algorithms.HHL "qiskit.aqua.algorithms.HHL"). It depends on the [`QFT`](qiskit.circuit.library.QFT "qiskit.circuit.library.QFT") class.
+  *   **operator** (`LegacyBaseOperator`) – The Hamiltonian Operator object
+  *   **iqft** (`QuantumCircuit`) – The Inverse Quantum Fourier Transform circuit
+  *   **num\_time\_slices** (`int`) – The number of time slices, has a minimum value of 1.
+  *   **num\_ancillae** (`int`) – The number of ancillary qubits to use for the measurement, has a minimum value of 1.
+  *   **expansion\_mode** (`str`) – The expansion mode (‘trotter’ | ‘suzuki’)
+  *   **expansion\_order** (`int`) – The suzuki expansion order, has a minimum value of 1.
+  *   **evo\_time** (`Optional`\[`float`]) – An optional evolution time which should scale the eigenvalue onto the range $(0,1]$ (or $(-0.5,0.5]$ for negative eigenvalues). Defaults to `None` in which case a suitably estimated evolution time is internally computed.
+  *   **negative\_evals** (`bool`) – Set `True` to indicate negative eigenvalues need to be handled
+  *   **ne\_qfts** (`Optional`\[`List`]) – The QFT and IQFT circuits for handling negative eigenvalues
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **operator** (`LegacyBaseOperator`) – The Hamiltonian Operator object
-*   **iqft** (`QuantumCircuit`) – The Inverse Quantum Fourier Transform circuit
-*   **num\_time\_slices** (`int`) – The number of time slices, has a minimum value of 1.
-*   **num\_ancillae** (`int`) – The number of ancillary qubits to use for the measurement, has a minimum value of 1.
-*   **expansion\_mode** (`str`) – The expansion mode (‘trotter’ | ‘suzuki’)
-*   **expansion\_order** (`int`) – The suzuki expansion order, has a minimum value of 1.
-*   **evo\_time** (`Optional`\[`float`]) – An optional evolution time which should scale the eigenvalue onto the range $(0,1]$ (or $(-0.5,0.5]$ for negative eigenvalues). Defaults to `None` in which case a suitably estimated evolution time is internally computed.
-*   **negative\_evals** (`bool`) – Set `True` to indicate negative eigenvalues need to be handled
-*   **ne\_qfts** (`Optional`\[`List`]) – The QFT and IQFT circuits for handling negative eigenvalues
+  <Function id="qiskit.aqua.components.eigs.EigsQPE.__init__" name="__init__" signature="__init__(operator, iqft, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=None, negative_evals=False, ne_qfts=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **operator** (`LegacyBaseOperator`) – The Hamiltonian Operator object
+    *   **iqft** (`QuantumCircuit`) – The Inverse Quantum Fourier Transform circuit
+    *   **num\_time\_slices** (`int`) – The number of time slices, has a minimum value of 1.
+    *   **num\_ancillae** (`int`) – The number of ancillary qubits to use for the measurement, has a minimum value of 1.
+    *   **expansion\_mode** (`str`) – The expansion mode (‘trotter’ | ‘suzuki’)
+    *   **expansion\_order** (`int`) – The suzuki expansion order, has a minimum value of 1.
+    *   **evo\_time** (`Optional`\[`float`]) – An optional evolution time which should scale the eigenvalue onto the range $(0,1]$ (or $(-0.5,0.5]$ for negative eigenvalues). Defaults to `None` in which case a suitably estimated evolution time is internally computed.
+    *   **negative\_evals** (`bool`) – Set `True` to indicate negative eigenvalues need to be handled
+    *   **ne\_qfts** (`Optional`\[`List`]) – The QFT and IQFT circuits for handling negative eigenvalues
+  </Function>
 
-<span id="qiskit.aqua.components.eigs.EigsQPE.__init__" />
+  ## Methods
 
-`__init__(operator, iqft, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=None, negative_evals=False, ne_qfts=None)`
+  |                                                                                                                                                          |                                                                       |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.components.eigs.EigsQPE.__init__ "qiskit.aqua.components.eigs.EigsQPE.__init__")(operator, iqft\[, num\_time\_slices, …])      | **type operator**`LegacyBaseOperator`                                 |
+  | [`construct_circuit`](#qiskit.aqua.components.eigs.EigsQPE.construct_circuit "qiskit.aqua.components.eigs.EigsQPE.construct_circuit")(mode\[, register]) | Construct the eigenvalues estimation using the PhaseEstimationCircuit |
+  | [`construct_inverse`](#qiskit.aqua.components.eigs.EigsQPE.construct_inverse "qiskit.aqua.components.eigs.EigsQPE.construct_inverse")(mode, circuit)     | Construct the inverse eigenvalue estimation quantum circuit.          |
+  | [`get_register_sizes`](#qiskit.aqua.components.eigs.EigsQPE.get_register_sizes "qiskit.aqua.components.eigs.EigsQPE.get_register_sizes")()               | get register sizes                                                    |
+  | [`get_scaling`](#qiskit.aqua.components.eigs.EigsQPE.get_scaling "qiskit.aqua.components.eigs.EigsQPE.get_scaling")()                                    | get scaling                                                           |
 
-**Parameters**
+  ### construct\_circuit
 
-*   **operator** (`LegacyBaseOperator`) – The Hamiltonian Operator object
-*   **iqft** (`QuantumCircuit`) – The Inverse Quantum Fourier Transform circuit
-*   **num\_time\_slices** (`int`) – The number of time slices, has a minimum value of 1.
-*   **num\_ancillae** (`int`) – The number of ancillary qubits to use for the measurement, has a minimum value of 1.
-*   **expansion\_mode** (`str`) – The expansion mode (‘trotter’ | ‘suzuki’)
-*   **expansion\_order** (`int`) – The suzuki expansion order, has a minimum value of 1.
-*   **evo\_time** (`Optional`\[`float`]) – An optional evolution time which should scale the eigenvalue onto the range $(0,1]$ (or $(-0.5,0.5]$ for negative eigenvalues). Defaults to `None` in which case a suitably estimated evolution time is internally computed.
-*   **negative\_evals** (`bool`) – Set `True` to indicate negative eigenvalues need to be handled
-*   **ne\_qfts** (`Optional`\[`List`]) – The QFT and IQFT circuits for handling negative eigenvalues
+  <Function id="qiskit.aqua.components.eigs.EigsQPE.construct_circuit" name="construct_circuit" signature="construct_circuit(mode, register=None)">
+    Construct the eigenvalues estimation using the PhaseEstimationCircuit
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                          |                                                                       |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.components.eigs.EigsQPE.__init__ "qiskit.aqua.components.eigs.EigsQPE.__init__")(operator, iqft\[, num\_time\_slices, …])      | **type operator**`LegacyBaseOperator`                                 |
-| [`construct_circuit`](#qiskit.aqua.components.eigs.EigsQPE.construct_circuit "qiskit.aqua.components.eigs.EigsQPE.construct_circuit")(mode\[, register]) | Construct the eigenvalues estimation using the PhaseEstimationCircuit |
-| [`construct_inverse`](#qiskit.aqua.components.eigs.EigsQPE.construct_inverse "qiskit.aqua.components.eigs.EigsQPE.construct_inverse")(mode, circuit)     | Construct the inverse eigenvalue estimation quantum circuit.          |
-| [`get_register_sizes`](#qiskit.aqua.components.eigs.EigsQPE.get_register_sizes "qiskit.aqua.components.eigs.EigsQPE.get_register_sizes")()               | get register sizes                                                    |
-| [`get_scaling`](#qiskit.aqua.components.eigs.EigsQPE.get_scaling "qiskit.aqua.components.eigs.EigsQPE.get_scaling")()                                    | get scaling                                                           |
+    *   **mode** (*str*) – construction mode, ‘matrix’ not supported
+    *   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the register to use for the quantum state
 
-### construct\_circuit
+    **Returns**
 
-<span id="qiskit.aqua.components.eigs.EigsQPE.construct_circuit" />
+    object for the constructed circuit
 
-`construct_circuit(mode, register=None)`
+    **Return type**
 
-Construct the eigenvalues estimation using the PhaseEstimationCircuit
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Parameters**
+    **Raises**
 
-*   **mode** (*str*) – construction mode, ‘matrix’ not supported
-*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the register to use for the quantum state
+    **ValueError** – QPE is only possible as a circuit not as a matrix
+  </Function>
 
-**Returns**
+  ### construct\_inverse
 
-object for the constructed circuit
+  <Function id="qiskit.aqua.components.eigs.EigsQPE.construct_inverse" name="construct_inverse" signature="construct_inverse(mode, circuit)">
+    Construct the inverse eigenvalue estimation quantum circuit.
 
-**Return type**
+    **Parameters**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    *   **mode** (*str*) – construction mode, ‘matrix’ not supported
+    *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit to invert
 
-**Raises**
+    **Returns**
 
-**ValueError** – QPE is only possible as a circuit not as a matrix
+    **object for of the inverted eigenvalue estimation**
 
-### construct\_inverse
+    circuit.
 
-<span id="qiskit.aqua.components.eigs.EigsQPE.construct_inverse" />
+    **Return type**
 
-`construct_inverse(mode, circuit)`
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-Construct the inverse eigenvalue estimation quantum circuit.
+    **Raises**
 
-**Parameters**
+    *   **NotImplementedError** – not implemented for matrix mode
+    *   **ValueError** – Circuit was not constructed beforehand
+  </Function>
 
-*   **mode** (*str*) – construction mode, ‘matrix’ not supported
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit to invert
+  ### get\_register\_sizes
 
-**Returns**
+  <Function id="qiskit.aqua.components.eigs.EigsQPE.get_register_sizes" name="get_register_sizes" signature="get_register_sizes()">
+    get register sizes
+  </Function>
 
-**object for of the inverted eigenvalue estimation**
+  ### get\_scaling
 
-circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-*   **NotImplementedError** – not implemented for matrix mode
-*   **ValueError** – Circuit was not constructed beforehand
-
-### get\_register\_sizes
-
-<span id="qiskit.aqua.components.eigs.EigsQPE.get_register_sizes" />
-
-`get_register_sizes()`
-
-get register sizes
-
-### get\_scaling
-
-<span id="qiskit.aqua.components.eigs.EigsQPE.get_scaling" />
-
-`get_scaling()`
-
-get scaling
+  <Function id="qiskit.aqua.components.eigs.EigsQPE.get_scaling" name="get_scaling" signature="get_scaling()">
+    get scaling
+  </Function>
+</Class>
 

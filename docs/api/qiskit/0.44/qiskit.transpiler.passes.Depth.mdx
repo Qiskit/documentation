@@ -8,51 +8,45 @@ python_api_name: qiskit.transpiler.passes.Depth
 
 # Depth
 
-<span id="qiskit.transpiler.passes.Depth" />
+<Class id="qiskit.transpiler.passes.Depth" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/analysis/depth.py" signature="qiskit.transpiler.passes.Depth(*args, **kwargs)">
+  Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-`qiskit.transpiler.passes.Depth(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/analysis/depth.py "view source code")
+  Calculate the depth of a DAG circuit.
 
-Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+  **Parameters**
 
-Calculate the depth of a DAG circuit.
+  **recurse** – whether to allow recursion into control flow. If this is `False` (default), the pass will throw an error when control flow is present, to avoid returning a number with little meaning.
 
-**Parameters**
+  ## Attributes
 
-**recurse** – whether to allow recursion into control flow. If this is `False` (default), the pass will throw an error when control flow is present, to avoid returning a number with little meaning.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.Depth.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.Depth.is_analysis_pass" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### is\_analysis\_pass
+  ### is\_transformation\_pass
 
-Check if the pass is an analysis pass.
+  <Attribute id="qiskit.transpiler.passes.Depth.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.Depth.is_transformation_pass" />
+  ## Methods
 
-### is\_transformation\_pass
+  ### name
 
-Check if the pass is a transformation pass.
+  <Function id="qiskit.transpiler.passes.Depth.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  ### run
 
-## Methods
-
-### name
-
-<span id="qiskit.transpiler.passes.Depth.name" />
-
-`name()`
-
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.Depth.run" />
-
-`run(dag)`
-
-Run the Depth pass on dag.
+  <Function id="qiskit.transpiler.passes.Depth.run" name="run" signature="run(dag)">
+    Run the Depth pass on dag.
+  </Function>
+</Class>
 

@@ -8,22 +8,20 @@ python_api_name: qiskit.primitives.SamplerResult
 
 # SamplerResult
 
-<span id="qiskit.primitives.SamplerResult" />
+<Class id="qiskit.primitives.SamplerResult" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/sampler_result.py" signature="SamplerResult(quasi_dists, metadata)">
+  Bases: `object`
 
-`SamplerResult(quasi_dists, metadata)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/sampler_result.py "view source code")
+  Result of Sampler
 
-Bases: `object`
+  ```python
+  result = sampler(circuits, params)
+  ```
 
-Result of Sampler
+  where the i-th elements of `result` correspond to the circuit given by `circuit_indices[i]`, and the parameter\_values bounds by `params[i]`. For example, `results.quasi_dists[i]` gives the quasi-probabilities of bitstrings, and `result.metadata[i]` is a metadata dictionary for this circuit and parameters.
 
-```python
-result = sampler(circuits, params)
-```
+  **Parameters**
 
-where the i-th elements of `result` correspond to the circuit given by `circuit_indices[i]`, and the parameter\_values bounds by `params[i]`. For example, `results.quasi_dists[i]` gives the quasi-probabilities of bitstrings, and `result.metadata[i]` is a metadata dictionary for this circuit and parameters.
-
-**Parameters**
-
-*   **quasi\_dists** (*list\[*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")*]*) – list of the quasi-probabilities.
-*   **metadata** (*list\[dict]*) – list of the metadata.
+  *   **quasi\_dists** (*list\[*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")*]*) – list of the quasi-probabilities.
+  *   **metadata** (*list\[dict]*) – list of the metadata.
+</Class>
 

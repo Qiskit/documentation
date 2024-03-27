@@ -8,104 +8,90 @@ python_api_name: qiskit.aqua.algorithms.QuantumAlgorithm
 
 # qiskit.aqua.algorithms.QuantumAlgorithm
 
-<span id="qiskit.aqua.algorithms.QuantumAlgorithm" />
+<Class id="qiskit.aqua.algorithms.QuantumAlgorithm" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/quantum_algorithm.py" signature="QuantumAlgorithm(quantum_instance)">
+  Base class for Quantum Algorithms.
 
-`QuantumAlgorithm(quantum_instance)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/quantum_algorithm.py "view source code")
+  This method should initialize the module and use an exception if a component of the module is available.
 
-Base class for Quantum Algorithms.
+  ### \_\_init\_\_
 
-This method should initialize the module and use an exception if a component of the module is available.
+  <Function id="qiskit.aqua.algorithms.QuantumAlgorithm.__init__" name="__init__" signature="abstract __init__(quantum_instance)">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.aqua.algorithms.QuantumAlgorithm.__init__" />
+  |                                                                                                                                                  |                                              |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.algorithms.QuantumAlgorithm.__init__ "qiskit.aqua.algorithms.QuantumAlgorithm.__init__")(quantum\_instance)            | Initialize self.                             |
+  | [`run`](#qiskit.aqua.algorithms.QuantumAlgorithm.run "qiskit.aqua.algorithms.QuantumAlgorithm.run")(\[quantum\_instance])                        | Execute the algorithm with selected backend. |
+  | [`set_backend`](#qiskit.aqua.algorithms.QuantumAlgorithm.set_backend "qiskit.aqua.algorithms.QuantumAlgorithm.set_backend")(backend, \*\*kwargs) | Sets backend with configuration.             |
 
-`abstract __init__(quantum_instance)`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |                                                                                                                                            |                           |
+  | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
+  | [`backend`](#qiskit.aqua.algorithms.QuantumAlgorithm.backend "qiskit.aqua.algorithms.QuantumAlgorithm.backend")                            | Returns backend.          |
+  | [`quantum_instance`](#qiskit.aqua.algorithms.QuantumAlgorithm.quantum_instance "qiskit.aqua.algorithms.QuantumAlgorithm.quantum_instance") | Returns quantum instance. |
+  | [`random`](#qiskit.aqua.algorithms.QuantumAlgorithm.random "qiskit.aqua.algorithms.QuantumAlgorithm.random")                               | Return a numpy random.    |
 
-## Methods
+  ### backend
 
-|                                                                                                                                                  |                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
-| [`__init__`](#qiskit.aqua.algorithms.QuantumAlgorithm.__init__ "qiskit.aqua.algorithms.QuantumAlgorithm.__init__")(quantum\_instance)            | Initialize self.                             |
-| [`run`](#qiskit.aqua.algorithms.QuantumAlgorithm.run "qiskit.aqua.algorithms.QuantumAlgorithm.run")(\[quantum\_instance])                        | Execute the algorithm with selected backend. |
-| [`set_backend`](#qiskit.aqua.algorithms.QuantumAlgorithm.set_backend "qiskit.aqua.algorithms.QuantumAlgorithm.set_backend")(backend, \*\*kwargs) | Sets backend with configuration.             |
+  <Function id="qiskit.aqua.algorithms.QuantumAlgorithm.backend" name="backend" signature="property backend">
+    Returns backend.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                            |                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
-| [`backend`](#qiskit.aqua.algorithms.QuantumAlgorithm.backend "qiskit.aqua.algorithms.QuantumAlgorithm.backend")                            | Returns backend.          |
-| [`quantum_instance`](#qiskit.aqua.algorithms.QuantumAlgorithm.quantum_instance "qiskit.aqua.algorithms.QuantumAlgorithm.quantum_instance") | Returns quantum instance. |
-| [`random`](#qiskit.aqua.algorithms.QuantumAlgorithm.random "qiskit.aqua.algorithms.QuantumAlgorithm.random")                               | Return a numpy random.    |
+    `Union`\[`Backend`, `BaseBackend`]
+  </Function>
 
-### backend
+  ### quantum\_instance
 
-<span id="qiskit.aqua.algorithms.QuantumAlgorithm.backend" />
+  <Function id="qiskit.aqua.algorithms.QuantumAlgorithm.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+    Returns quantum instance.
 
-`property backend`
+    **Return type**
 
-Returns backend.
+    `Optional`\[`QuantumInstance`]
+  </Function>
 
-**Return type**
+  ### random
 
-`Union`\[`Backend`, `BaseBackend`]
+  <Function id="qiskit.aqua.algorithms.QuantumAlgorithm.random" name="random" signature="property random">
+    Return a numpy random.
+  </Function>
 
-### quantum\_instance
+  ### run
 
-<span id="qiskit.aqua.algorithms.QuantumAlgorithm.quantum_instance" />
+  <Function id="qiskit.aqua.algorithms.QuantumAlgorithm.run" name="run" signature="run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-`property quantum_instance`
+    **Parameters**
 
-Returns quantum instance.
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-**Return type**
+    **Returns**
 
-`Optional`\[`QuantumInstance`]
+    results of an algorithm.
 
-### random
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.QuantumAlgorithm.random" />
+    dict
 
-`property random`
+    **Raises**
 
-Return a numpy random.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-### run
+  ### set\_backend
 
-<span id="qiskit.aqua.algorithms.QuantumAlgorithm.run" />
+  <Function id="qiskit.aqua.algorithms.QuantumAlgorithm.set_backend" name="set_backend" signature="set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-`run(quantum_instance=None, **kwargs)`
+    **Return type**
 
-Execute the algorithm with selected backend.
-
-**Parameters**
-
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.QuantumAlgorithm.set_backend" />
-
-`set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

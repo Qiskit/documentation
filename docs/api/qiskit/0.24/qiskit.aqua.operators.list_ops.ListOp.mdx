@@ -10,636 +10,568 @@ python_api_name: qiskit.aqua.operators.list_ops.ListOp
 
 # qiskit.aqua.operators.list\_ops.ListOp
 
-<span id="qiskit.aqua.operators.list_ops.ListOp" />
-
-`ListOp(oplist, combo_fn=<function ListOp.<lambda>>, coeff=1.0, abelian=False, grad_combo_fn=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+<Class id="qiskit.aqua.operators.list_ops.ListOp" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/list_ops/list_op.py" signature="ListOp(oplist, combo_fn=<function ListOp.<lambda>>, coeff=1.0, abelian=False, grad_combo_fn=None)">
+  A Class for manipulating List Operators, and parent class to `SummedOp`, `ComposedOp`, and `TensoredOp`.
+
+  List Operators are classes for storing and manipulating lists of Operators, State functions, or Measurements, and include some rule or `combo_fn` defining how the Operator functions of the list constituents should be combined to form to cumulative Operator function of the `ListOp`. For example, a `SummedOp` has an addition-based `combo_fn`, so once the Operators in its list are evaluated against some bitstring to produce a list of results, we know to add up those results to produce the final result of the `SummedOp`’s evaluation. In theory, this `combo_fn` can be any function over classical complex values, but for convenience we’ve chosen for them to be defined over NumPy arrays and values. This way, large numbers of evaluations, such as after calling `to_matrix` on the list constituents, can be efficiently combined. While the combination function is defined over classical values, it should be understood as the operation by which each Operators’ underlying function is combined to form the underlying Operator function of the `ListOp`. In this way, the `ListOps` are the basis for constructing large and sophisticated Operators, State Functions, and Measurements in Aqua.
+
+  The base `ListOp` class is particularly interesting, as its `combo_fn` is “the identity list Operation”. Meaning, if we understand the `combo_fn` as a function from a list of complex values to some output, one such function is returning the list as-is. This is powerful for constructing compact hierarchical Operators which return many measurements in multiple dimensional lists.
+
+  **Parameters**
+
+  *   **oplist** (`List`\[`OperatorBase`]) – The list of `OperatorBases` defining this Operator’s underlying function.
+  *   **combo\_fn** (*callable*) – The recombination function to combine classical results of the `oplist` Operators’ eval functions (e.g. sum).
+  *   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – A coefficient multiplying the operator
+  *   **abelian** (`bool`) – Indicates whether the Operators in `oplist` are known to mutually commute.
+  *   **grad\_combo\_fn** (`Optional`\[`Callable`]) – The gradient of recombination function. If None, the gradient will be computed automatically.
+  *   **that the default "recombination function" lambda above is essentially the** (*Note*) –
+  *   **- it accepts the list of values** (*identity*) –
+  *   **returns them in a list.** (*and*) –
+
+  ### \_\_init\_\_
 
-A Class for manipulating List Operators, and parent class to `SummedOp`, `ComposedOp`, and `TensoredOp`.
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.__init__" name="__init__" signature="__init__(oplist, combo_fn=<function ListOp.<lambda>>, coeff=1.0, abelian=False, grad_combo_fn=None)">
+    **Parameters**
 
-List Operators are classes for storing and manipulating lists of Operators, State functions, or Measurements, and include some rule or `combo_fn` defining how the Operator functions of the list constituents should be combined to form to cumulative Operator function of the `ListOp`. For example, a `SummedOp` has an addition-based `combo_fn`, so once the Operators in its list are evaluated against some bitstring to produce a list of results, we know to add up those results to produce the final result of the `SummedOp`’s evaluation. In theory, this `combo_fn` can be any function over classical complex values, but for convenience we’ve chosen for them to be defined over NumPy arrays and values. This way, large numbers of evaluations, such as after calling `to_matrix` on the list constituents, can be efficiently combined. While the combination function is defined over classical values, it should be understood as the operation by which each Operators’ underlying function is combined to form the underlying Operator function of the `ListOp`. In this way, the `ListOps` are the basis for constructing large and sophisticated Operators, State Functions, and Measurements in Aqua.
+    *   **oplist** (`List`\[`OperatorBase`]) – The list of `OperatorBases` defining this Operator’s underlying function.
+    *   **combo\_fn** (*callable*) – The recombination function to combine classical results of the `oplist` Operators’ eval functions (e.g. sum).
+    *   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – A coefficient multiplying the operator
+    *   **abelian** (`bool`) – Indicates whether the Operators in `oplist` are known to mutually commute.
+    *   **grad\_combo\_fn** (`Optional`\[`Callable`]) – The gradient of recombination function. If None, the gradient will be computed automatically.
+    *   **that the default "recombination function" lambda above is essentially the** (*Note*) –
+    *   **- it accepts the list of values** (*identity*) –
+    *   **returns them in a list.** (*and*) –
+  </Function>
 
-The base `ListOp` class is particularly interesting, as its `combo_fn` is “the identity list Operation”. Meaning, if we understand the `combo_fn` as a function from a list of complex values to some output, one such function is returning the list as-is. This is powerful for constructing compact hierarchical Operators which return many measurements in multiple dimensional lists.
+  ## Methods
 
-**Parameters**
+  |                                                                                                                                                         |                                                                                                                                                                               |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.operators.list_ops.ListOp.__init__ "qiskit.aqua.operators.list_ops.ListOp.__init__")(oplist\[, combo\_fn, coeff, abelian, …]) | **type oplist**`List`\[`OperatorBase`]                                                                                                                                        |
+  | [`add`](#qiskit.aqua.operators.list_ops.ListOp.add "qiskit.aqua.operators.list_ops.ListOp.add")(other)                                                  | Return Operator addition of self and other, overloaded by `+`.                                                                                                                |
+  | [`adjoint`](#qiskit.aqua.operators.list_ops.ListOp.adjoint "qiskit.aqua.operators.list_ops.ListOp.adjoint")()                                           | Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`.                                                                               |
+  | [`assign_parameters`](#qiskit.aqua.operators.list_ops.ListOp.assign_parameters "qiskit.aqua.operators.list_ops.ListOp.assign_parameters")(param\_dict)  | Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another.                                  |
+  | [`bind_parameters`](#qiskit.aqua.operators.list_ops.ListOp.bind_parameters "qiskit.aqua.operators.list_ops.ListOp.bind_parameters")(param\_dict)        | Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).                             |
+  | [`compose`](#qiskit.aqua.operators.list_ops.ListOp.compose "qiskit.aqua.operators.list_ops.ListOp.compose")(other\[, permutation, front])               | Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.                                                              |
+  | [`equals`](#qiskit.aqua.operators.list_ops.ListOp.equals "qiskit.aqua.operators.list_ops.ListOp.equals")(other)                                         | Evaluate Equality between Operators, overloaded by `==`.                                                                                                                      |
+  | [`eval`](#qiskit.aqua.operators.list_ops.ListOp.eval "qiskit.aqua.operators.list_ops.ListOp.eval")(\[front])                                            | Evaluate the Operator’s underlying function, either on a binary string or another Operator.                                                                                   |
+  | [`exp_i`](#qiskit.aqua.operators.list_ops.ListOp.exp_i "qiskit.aqua.operators.list_ops.ListOp.exp_i")()                                                 | Return an `OperatorBase` equivalent to an exponentiation of self \* -i, e^(-i\*op).                                                                                           |
+  | [`log_i`](#qiskit.aqua.operators.list_ops.ListOp.log_i "qiskit.aqua.operators.list_ops.ListOp.log_i")(\[massive])                                       | Return a `MatrixOp` equivalent to log(H)/-i for this operator H.                                                                                                              |
+  | [`mul`](#qiskit.aqua.operators.list_ops.ListOp.mul "qiskit.aqua.operators.list_ops.ListOp.mul")(scalar)                                                 | Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`). |
+  | [`neg`](#qiskit.aqua.operators.list_ops.ListOp.neg "qiskit.aqua.operators.list_ops.ListOp.neg")()                                                       | Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.                                                                                      |
+  | [`permute`](#qiskit.aqua.operators.list_ops.ListOp.permute "qiskit.aqua.operators.list_ops.ListOp.permute")(permutation)                                | Permute the qubits of the operator.                                                                                                                                           |
+  | [`power`](#qiskit.aqua.operators.list_ops.ListOp.power "qiskit.aqua.operators.list_ops.ListOp.power")(exponent)                                         | Return Operator composed with self multiple times, overloaded by `**`.                                                                                                        |
+  | [`primitive_strings`](#qiskit.aqua.operators.list_ops.ListOp.primitive_strings "qiskit.aqua.operators.list_ops.ListOp.primitive_strings")()             | Return a set of strings describing the primitives contained in the Operator.                                                                                                  |
+  | [`reduce`](#qiskit.aqua.operators.list_ops.ListOp.reduce "qiskit.aqua.operators.list_ops.ListOp.reduce")()                                              | Try collapsing the Operator structure, usually after some type of conversion, e.g.                                                                                            |
+  | [`tensor`](#qiskit.aqua.operators.list_ops.ListOp.tensor "qiskit.aqua.operators.list_ops.ListOp.tensor")(other)                                         | Return tensor product between self and other, overloaded by `^`.                                                                                                              |
+  | [`tensorpower`](#qiskit.aqua.operators.list_ops.ListOp.tensorpower "qiskit.aqua.operators.list_ops.ListOp.tensorpower")(other)                          | Return tensor product with self multiple times, overloaded by `^`.                                                                                                            |
+  | [`to_circuit_op`](#qiskit.aqua.operators.list_ops.ListOp.to_circuit_op "qiskit.aqua.operators.list_ops.ListOp.to_circuit_op")()                         | Returns an equivalent Operator composed of only QuantumCircuit-based primitives, such as `CircuitOp` and `CircuitStateFn`.                                                    |
+  | [`to_legacy_op`](#qiskit.aqua.operators.list_ops.ListOp.to_legacy_op "qiskit.aqua.operators.list_ops.ListOp.to_legacy_op")(\[massive])                  | Attempt to return the Legacy Operator representation of the Operator.                                                                                                         |
+  | [`to_matrix`](#qiskit.aqua.operators.list_ops.ListOp.to_matrix "qiskit.aqua.operators.list_ops.ListOp.to_matrix")(\[massive])                           | Return NumPy representation of the Operator.                                                                                                                                  |
+  | [`to_matrix_op`](#qiskit.aqua.operators.list_ops.ListOp.to_matrix_op "qiskit.aqua.operators.list_ops.ListOp.to_matrix_op")(\[massive])                  | Returns an equivalent Operator composed of only NumPy-based primitives, such as `MatrixOp` and `VectorStateFn`.                                                               |
+  | [`to_pauli_op`](#qiskit.aqua.operators.list_ops.ListOp.to_pauli_op "qiskit.aqua.operators.list_ops.ListOp.to_pauli_op")(\[massive])                     | Returns an equivalent Operator composed of only Pauli-based primitives, such as `PauliOp`.                                                                                    |
+  | [`to_spmatrix`](#qiskit.aqua.operators.list_ops.ListOp.to_spmatrix "qiskit.aqua.operators.list_ops.ListOp.to_spmatrix")()                               | Returns SciPy sparse matrix representation of the Operator.                                                                                                                   |
+  | [`traverse`](#qiskit.aqua.operators.list_ops.ListOp.traverse "qiskit.aqua.operators.list_ops.ListOp.traverse")(convert\_fn\[, coeff])                   | Apply the convert\_fn to each node in the oplist.                                                                                                                             |
 
-*   **oplist** (`List`\[`OperatorBase`]) – The list of `OperatorBases` defining this Operator’s underlying function.
-*   **combo\_fn** (*callable*) – The recombination function to combine classical results of the `oplist` Operators’ eval functions (e.g. sum).
-*   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – A coefficient multiplying the operator
-*   **abelian** (`bool`) – Indicates whether the Operators in `oplist` are known to mutually commute.
-*   **grad\_combo\_fn** (`Optional`\[`Callable`]) – The gradient of recombination function. If None, the gradient will be computed automatically.
-*   **that the default "recombination function" lambda above is essentially the** (*Note*) –
-*   **- it accepts the list of values** (*identity*) –
-*   **returns them in a list.** (*and*) –
+  ## Attributes
 
-### \_\_init\_\_
+  |                                                                                                                               |                                                                                                                            |
+  | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+  | `INDENTATION`                                                                                                                 |                                                                                                                            |
+  | [`abelian`](#qiskit.aqua.operators.list_ops.ListOp.abelian "qiskit.aqua.operators.list_ops.ListOp.abelian")                   | Whether the Operators in `oplist` are known to commute with one another.                                                   |
+  | [`coeff`](#qiskit.aqua.operators.list_ops.ListOp.coeff "qiskit.aqua.operators.list_ops.ListOp.coeff")                         | The scalar coefficient multiplying the Operator.                                                                           |
+  | [`combo_fn`](#qiskit.aqua.operators.list_ops.ListOp.combo_fn "qiskit.aqua.operators.list_ops.ListOp.combo_fn")                | The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. |
+  | [`distributive`](#qiskit.aqua.operators.list_ops.ListOp.distributive "qiskit.aqua.operators.list_ops.ListOp.distributive")    | Indicates whether the ListOp or subclass is distributive under composition.                                                |
+  | [`grad_combo_fn`](#qiskit.aqua.operators.list_ops.ListOp.grad_combo_fn "qiskit.aqua.operators.list_ops.ListOp.grad_combo_fn") | The gradient of `combo_fn`.                                                                                                |
+  | [`num_qubits`](#qiskit.aqua.operators.list_ops.ListOp.num_qubits "qiskit.aqua.operators.list_ops.ListOp.num_qubits")          | The number of qubits over which the Operator is defined.                                                                   |
+  | [`oplist`](#qiskit.aqua.operators.list_ops.ListOp.oplist "qiskit.aqua.operators.list_ops.ListOp.oplist")                      | The list of `OperatorBases` defining the underlying function of this Operator.                                             |
+  | [`parameters`](#qiskit.aqua.operators.list_ops.ListOp.parameters "qiskit.aqua.operators.list_ops.ListOp.parameters")          | Return a set of Parameter objects contained in the Operator.                                                               |
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.__init__" />
+  ### abelian
 
-`__init__(oplist, combo_fn=<function ListOp.<lambda>>, coeff=1.0, abelian=False, grad_combo_fn=None)`
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.abelian" name="abelian" signature="property abelian">
+    Whether the Operators in `oplist` are known to commute with one another.
 
-**Parameters**
+    **Return type**
 
-*   **oplist** (`List`\[`OperatorBase`]) – The list of `OperatorBases` defining this Operator’s underlying function.
-*   **combo\_fn** (*callable*) – The recombination function to combine classical results of the `oplist` Operators’ eval functions (e.g. sum).
-*   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – A coefficient multiplying the operator
-*   **abelian** (`bool`) – Indicates whether the Operators in `oplist` are known to mutually commute.
-*   **grad\_combo\_fn** (`Optional`\[`Callable`]) – The gradient of recombination function. If None, the gradient will be computed automatically.
-*   **that the default "recombination function" lambda above is essentially the** (*Note*) –
-*   **- it accepts the list of values** (*identity*) –
-*   **returns them in a list.** (*and*) –
+    `bool`
 
-## Methods
+    **Returns**
 
-|                                                                                                                                                         |                                                                                                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.list_ops.ListOp.__init__ "qiskit.aqua.operators.list_ops.ListOp.__init__")(oplist\[, combo\_fn, coeff, abelian, …]) | **type oplist**`List`\[`OperatorBase`]                                                                                                                                        |
-| [`add`](#qiskit.aqua.operators.list_ops.ListOp.add "qiskit.aqua.operators.list_ops.ListOp.add")(other)                                                  | Return Operator addition of self and other, overloaded by `+`.                                                                                                                |
-| [`adjoint`](#qiskit.aqua.operators.list_ops.ListOp.adjoint "qiskit.aqua.operators.list_ops.ListOp.adjoint")()                                           | Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`.                                                                               |
-| [`assign_parameters`](#qiskit.aqua.operators.list_ops.ListOp.assign_parameters "qiskit.aqua.operators.list_ops.ListOp.assign_parameters")(param\_dict)  | Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another.                                  |
-| [`bind_parameters`](#qiskit.aqua.operators.list_ops.ListOp.bind_parameters "qiskit.aqua.operators.list_ops.ListOp.bind_parameters")(param\_dict)        | Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).                             |
-| [`compose`](#qiskit.aqua.operators.list_ops.ListOp.compose "qiskit.aqua.operators.list_ops.ListOp.compose")(other\[, permutation, front])               | Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.                                                              |
-| [`equals`](#qiskit.aqua.operators.list_ops.ListOp.equals "qiskit.aqua.operators.list_ops.ListOp.equals")(other)                                         | Evaluate Equality between Operators, overloaded by `==`.                                                                                                                      |
-| [`eval`](#qiskit.aqua.operators.list_ops.ListOp.eval "qiskit.aqua.operators.list_ops.ListOp.eval")(\[front])                                            | Evaluate the Operator’s underlying function, either on a binary string or another Operator.                                                                                   |
-| [`exp_i`](#qiskit.aqua.operators.list_ops.ListOp.exp_i "qiskit.aqua.operators.list_ops.ListOp.exp_i")()                                                 | Return an `OperatorBase` equivalent to an exponentiation of self \* -i, e^(-i\*op).                                                                                           |
-| [`log_i`](#qiskit.aqua.operators.list_ops.ListOp.log_i "qiskit.aqua.operators.list_ops.ListOp.log_i")(\[massive])                                       | Return a `MatrixOp` equivalent to log(H)/-i for this operator H.                                                                                                              |
-| [`mul`](#qiskit.aqua.operators.list_ops.ListOp.mul "qiskit.aqua.operators.list_ops.ListOp.mul")(scalar)                                                 | Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`). |
-| [`neg`](#qiskit.aqua.operators.list_ops.ListOp.neg "qiskit.aqua.operators.list_ops.ListOp.neg")()                                                       | Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.                                                                                      |
-| [`permute`](#qiskit.aqua.operators.list_ops.ListOp.permute "qiskit.aqua.operators.list_ops.ListOp.permute")(permutation)                                | Permute the qubits of the operator.                                                                                                                                           |
-| [`power`](#qiskit.aqua.operators.list_ops.ListOp.power "qiskit.aqua.operators.list_ops.ListOp.power")(exponent)                                         | Return Operator composed with self multiple times, overloaded by `**`.                                                                                                        |
-| [`primitive_strings`](#qiskit.aqua.operators.list_ops.ListOp.primitive_strings "qiskit.aqua.operators.list_ops.ListOp.primitive_strings")()             | Return a set of strings describing the primitives contained in the Operator.                                                                                                  |
-| [`reduce`](#qiskit.aqua.operators.list_ops.ListOp.reduce "qiskit.aqua.operators.list_ops.ListOp.reduce")()                                              | Try collapsing the Operator structure, usually after some type of conversion, e.g.                                                                                            |
-| [`tensor`](#qiskit.aqua.operators.list_ops.ListOp.tensor "qiskit.aqua.operators.list_ops.ListOp.tensor")(other)                                         | Return tensor product between self and other, overloaded by `^`.                                                                                                              |
-| [`tensorpower`](#qiskit.aqua.operators.list_ops.ListOp.tensorpower "qiskit.aqua.operators.list_ops.ListOp.tensorpower")(other)                          | Return tensor product with self multiple times, overloaded by `^`.                                                                                                            |
-| [`to_circuit_op`](#qiskit.aqua.operators.list_ops.ListOp.to_circuit_op "qiskit.aqua.operators.list_ops.ListOp.to_circuit_op")()                         | Returns an equivalent Operator composed of only QuantumCircuit-based primitives, such as `CircuitOp` and `CircuitStateFn`.                                                    |
-| [`to_legacy_op`](#qiskit.aqua.operators.list_ops.ListOp.to_legacy_op "qiskit.aqua.operators.list_ops.ListOp.to_legacy_op")(\[massive])                  | Attempt to return the Legacy Operator representation of the Operator.                                                                                                         |
-| [`to_matrix`](#qiskit.aqua.operators.list_ops.ListOp.to_matrix "qiskit.aqua.operators.list_ops.ListOp.to_matrix")(\[massive])                           | Return NumPy representation of the Operator.                                                                                                                                  |
-| [`to_matrix_op`](#qiskit.aqua.operators.list_ops.ListOp.to_matrix_op "qiskit.aqua.operators.list_ops.ListOp.to_matrix_op")(\[massive])                  | Returns an equivalent Operator composed of only NumPy-based primitives, such as `MatrixOp` and `VectorStateFn`.                                                               |
-| [`to_pauli_op`](#qiskit.aqua.operators.list_ops.ListOp.to_pauli_op "qiskit.aqua.operators.list_ops.ListOp.to_pauli_op")(\[massive])                     | Returns an equivalent Operator composed of only Pauli-based primitives, such as `PauliOp`.                                                                                    |
-| [`to_spmatrix`](#qiskit.aqua.operators.list_ops.ListOp.to_spmatrix "qiskit.aqua.operators.list_ops.ListOp.to_spmatrix")()                               | Returns SciPy sparse matrix representation of the Operator.                                                                                                                   |
-| [`traverse`](#qiskit.aqua.operators.list_ops.ListOp.traverse "qiskit.aqua.operators.list_ops.ListOp.traverse")(convert\_fn\[, coeff])                   | Apply the convert\_fn to each node in the oplist.                                                                                                                             |
+    A bool indicating whether the `oplist` is Abelian.
+  </Function>
 
-## Attributes
+  ### add
 
-|                                                                                                                               |                                                                                                                            |
-| ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `INDENTATION`                                                                                                                 |                                                                                                                            |
-| [`abelian`](#qiskit.aqua.operators.list_ops.ListOp.abelian "qiskit.aqua.operators.list_ops.ListOp.abelian")                   | Whether the Operators in `oplist` are known to commute with one another.                                                   |
-| [`coeff`](#qiskit.aqua.operators.list_ops.ListOp.coeff "qiskit.aqua.operators.list_ops.ListOp.coeff")                         | The scalar coefficient multiplying the Operator.                                                                           |
-| [`combo_fn`](#qiskit.aqua.operators.list_ops.ListOp.combo_fn "qiskit.aqua.operators.list_ops.ListOp.combo_fn")                | The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. |
-| [`distributive`](#qiskit.aqua.operators.list_ops.ListOp.distributive "qiskit.aqua.operators.list_ops.ListOp.distributive")    | Indicates whether the ListOp or subclass is distributive under composition.                                                |
-| [`grad_combo_fn`](#qiskit.aqua.operators.list_ops.ListOp.grad_combo_fn "qiskit.aqua.operators.list_ops.ListOp.grad_combo_fn") | The gradient of `combo_fn`.                                                                                                |
-| [`num_qubits`](#qiskit.aqua.operators.list_ops.ListOp.num_qubits "qiskit.aqua.operators.list_ops.ListOp.num_qubits")          | The number of qubits over which the Operator is defined.                                                                   |
-| [`oplist`](#qiskit.aqua.operators.list_ops.ListOp.oplist "qiskit.aqua.operators.list_ops.ListOp.oplist")                      | The list of `OperatorBases` defining the underlying function of this Operator.                                             |
-| [`parameters`](#qiskit.aqua.operators.list_ops.ListOp.parameters "qiskit.aqua.operators.list_ops.ListOp.parameters")          | Return a set of Parameter objects contained in the Operator.                                                               |
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.add" name="add" signature="add(other)">
+    Return Operator addition of self and other, overloaded by `+`.
 
-### abelian
+    **Parameters**
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.abelian" />
+    **other** (`OperatorBase`) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
 
-`property abelian`
+    **Return type**
 
-Whether the Operators in `oplist` are known to commute with one another.
+    `OperatorBase`
 
-**Return type**
+    **Returns**
 
-`bool`
+    An `OperatorBase` equivalent to the sum of self and other.
+  </Function>
 
-**Returns**
+  ### adjoint
 
-A bool indicating whether the `oplist` is Abelian.
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.adjoint" name="adjoint" signature="adjoint()">
+    Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
-### add
+    **Return type**
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.add" />
+    `OperatorBase`
 
-`add(other)`
+    **Returns**
 
-Return Operator addition of self and other, overloaded by `+`.
+    An `OperatorBase` equivalent to the adjoint of self.
+  </Function>
 
-**Parameters**
+  ### assign\_parameters
 
-**other** (`OperatorBase`) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.assign_parameters" name="assign_parameters" signature="assign_parameters(param_dict)">
+    Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
 
-**Return type**
+    **Parameters**
 
-`OperatorBase`
+    **param\_dict** (`dict`) – The dictionary of `Parameters` to replace, and values or lists of values by which to replace them.
 
-**Returns**
+    **Return type**
 
-An `OperatorBase` equivalent to the sum of self and other.
+    `OperatorBase`
 
-### adjoint
+    **Returns**
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.adjoint" />
+    The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
+  </Function>
 
-`adjoint()`
+  ### bind\_parameters
 
-Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.bind_parameters" name="bind_parameters" signature="bind_parameters(param_dict)">
+    Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).
 
-**Return type**
+    **Return type**
 
-`OperatorBase`
+    `OperatorBase`
+  </Function>
 
-**Returns**
+  ### coeff
 
-An `OperatorBase` equivalent to the adjoint of self.
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.coeff" name="coeff" signature="property coeff">
+    The scalar coefficient multiplying the Operator.
 
-### assign\_parameters
+    **Return type**
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.assign_parameters" />
+    `Union`\[`int`, `float`, `complex`, `ParameterExpression`]
 
-`assign_parameters(param_dict)`
+    **Returns**
 
-Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
+    The coefficient.
+  </Function>
 
-**Parameters**
+  ### combo\_fn
 
-**param\_dict** (`dict`) – The dictionary of `Parameters` to replace, and values or lists of values by which to replace them.
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.combo_fn" name="combo_fn" signature="property combo_fn">
+    The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
 
-**Return type**
+    **Return type**
 
-`OperatorBase`
+    `Callable`
 
-**Returns**
+    **Returns**
 
-The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
+    The combination function.
+  </Function>
 
-### bind\_parameters
+  ### compose
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.bind_parameters" />
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.compose" name="compose" signature="compose(other, permutation=None, front=False)">
+    Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
 
-`bind_parameters(param_dict)`
+    Note: You must be conscious of Quantum Circuit vs. Linear Algebra ordering conventions. Meaning, X.compose(Y) produces an X∘Y on qubit 0, but would produce a QuantumCircuit which looks like
 
-Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).
+    > -\[Y]-\[X]-
 
-**Return type**
+    Because Terra prints circuits with the initial state at the left side of the circuit.
 
-`OperatorBase`
+    **Parameters**
 
-### coeff
+    *   **other** (`OperatorBase`) – The `OperatorBase` with which to compose self.
+    *   **permutation** (`Optional`\[`List`\[`int`]]) – `List[int]` which defines permutation on other operator.
+    *   **front** (`bool`) – If front==True, return `other.compose(self)`.
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.coeff" />
+    **Return type**
 
-`property coeff`
+    `OperatorBase`
 
-The scalar coefficient multiplying the Operator.
+    **Returns**
 
-**Return type**
+    An `OperatorBase` equivalent to the function composition of self and other.
+  </Function>
 
-`Union`\[`int`, `float`, `complex`, `ParameterExpression`]
+  ### distributive
 
-**Returns**
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.distributive" name="distributive" signature="property distributive">
+    Indicates whether the ListOp or subclass is distributive under composition. ListOp and SummedOp are, meaning that (opv @ op) = (opv\[0] @ op + opv\[1] @ op) (using plus for SummedOp, list for ListOp, etc.), while ComposedOp and TensoredOp do not behave this way.
 
-The coefficient.
+    **Return type**
 
-### combo\_fn
+    `bool`
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.combo_fn" />
+    **Returns**
 
-`property combo_fn`
+    A bool indicating whether the ListOp is distributive under composition.
+  </Function>
 
-The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
+  ### equals
 
-**Return type**
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.equals" name="equals" signature="equals(other)">
+    Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
-`Callable`
+    **Parameters**
 
-**Returns**
+    **other** (`OperatorBase`) – The `OperatorBase` to compare to self.
 
-The combination function.
+    **Return type**
 
-### compose
+    `bool`
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.compose" />
+    **Returns**
 
-`compose(other, permutation=None, front=False)`
+    A bool equal to the equality of self and other.
+  </Function>
 
-Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
+  ### eval
 
-Note: You must be conscious of Quantum Circuit vs. Linear Algebra ordering conventions. Meaning, X.compose(Y) produces an X∘Y on qubit 0, but would produce a QuantumCircuit which looks like
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.eval" name="eval" signature="eval(front=None)">
+    Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
-> -\[Y]-\[X]-
+    ListOp’s eval recursively evaluates each Operator in `oplist`, and combines the results using the recombination function `combo_fn`.
 
-Because Terra prints circuits with the initial state at the left side of the circuit.
+    **Parameters**
 
-**Parameters**
+    **front** (`Union`\[`str`, `Dict`\[`str`, `complex`], `OperatorBase`, `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function.
 
-*   **other** (`OperatorBase`) – The `OperatorBase` with which to compose self.
-*   **permutation** (`Optional`\[`List`\[`int`]]) – `List[int]` which defines permutation on other operator.
-*   **front** (`bool`) – If front==True, return `other.compose(self)`.
+    **Return type**
 
-**Return type**
+    `Union`\[`OperatorBase`, `float`, `complex`, `list`]
 
-`OperatorBase`
+    **Returns**
 
-**Returns**
+    The output of the `oplist` Operators’ evaluation function, combined with the `combo_fn`. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
 
-An `OperatorBase` equivalent to the function composition of self and other.
+    **Raises**
 
-### distributive
+    *   **NotImplementedError** – Raised if called for a subclass which is not distributive.
+    *   **TypeError** – Operators with mixed hierarchies, such as a ListOp containing both PrimitiveOps and ListOps, are not supported.
+    *   **NotImplementedError** – Attempting to call ListOp’s eval from a non-distributive subclass.
+  </Function>
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.distributive" />
+  ### exp\_i
 
-`property distributive`
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.exp_i" name="exp_i" signature="exp_i()">
+    Return an `OperatorBase` equivalent to an exponentiation of self \* -i, e^(-i\*op).
 
-Indicates whether the ListOp or subclass is distributive under composition. ListOp and SummedOp are, meaning that (opv @ op) = (opv\[0] @ op + opv\[1] @ op) (using plus for SummedOp, list for ListOp, etc.), while ComposedOp and TensoredOp do not behave this way.
+    **Return type**
 
-**Return type**
+    `OperatorBase`
+  </Function>
 
-`bool`
+  ### grad\_combo\_fn
 
-**Returns**
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.grad_combo_fn" name="grad_combo_fn" signature="property grad_combo_fn">
+    The gradient of `combo_fn`.
 
-A bool indicating whether the ListOp is distributive under composition.
+    **Return type**
 
-### equals
+    `Optional`\[`Callable`]
+  </Function>
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.equals" />
+  ### log\_i
 
-`equals(other)`
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.log_i" name="log_i" signature="log_i(massive=False)">
+    Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function is the effective inverse of exp\_i, equivalent to finding the Hermitian Operator which produces self when exponentiated. For proper ListOps, applies `log_i` to all ops in oplist.
 
-Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
+    **Return type**
 
-**Parameters**
+    `OperatorBase`
+  </Function>
 
-**other** (`OperatorBase`) – The `OperatorBase` to compare to self.
+  ### mul
 
-**Return type**
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.mul" name="mul" signature="mul(scalar)">
+    Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
 
-`bool`
+    **Parameters**
 
-**Returns**
+    **scalar** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
 
-A bool equal to the equality of self and other.
+    **Return type**
 
-### eval
+    `OperatorBase`
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.eval" />
+    **Returns**
 
-`eval(front=None)`
+    An `OperatorBase` equivalent to product of self and scalar.
+  </Function>
 
-Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
+  ### neg
 
-ListOp’s eval recursively evaluates each Operator in `oplist`, and combines the results using the recombination function `combo_fn`.
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.neg" name="neg" signature="neg()">
+    Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.
 
-**Parameters**
+    **Return type**
 
-**front** (`Union`\[`str`, `Dict`\[`str`, `complex`], `OperatorBase`, `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function.
+    `OperatorBase`
 
-**Return type**
+    **Returns**
 
-`Union`\[`OperatorBase`, `float`, `complex`, `list`]
+    An `OperatorBase` equivalent to the negation of self.
+  </Function>
 
-**Returns**
+  ### num\_qubits
 
-The output of the `oplist` Operators’ evaluation function, combined with the `combo_fn`. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.num_qubits" name="num_qubits" signature="property num_qubits">
+    The number of qubits over which the Operator is defined. If `op.num_qubits == 5`, then `op.eval('1' * 5)` will be valid, but `op.eval('11')` will not.
 
-**Raises**
+    **Return type**
 
-*   **NotImplementedError** – Raised if called for a subclass which is not distributive.
-*   **TypeError** – Operators with mixed hierarchies, such as a ListOp containing both PrimitiveOps and ListOps, are not supported.
-*   **NotImplementedError** – Attempting to call ListOp’s eval from a non-distributive subclass.
+    `int`
 
-### exp\_i
+    **Returns**
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.exp_i" />
+    The number of qubits accepted by the Operator’s underlying function.
+  </Function>
 
-`exp_i()`
+  ### oplist
 
-Return an `OperatorBase` equivalent to an exponentiation of self \* -i, e^(-i\*op).
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.oplist" name="oplist" signature="property oplist">
+    The list of `OperatorBases` defining the underlying function of this Operator.
 
-**Return type**
+    **Return type**
 
-`OperatorBase`
+    `List`\[`OperatorBase`]
 
-### grad\_combo\_fn
+    **Returns**
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.grad_combo_fn" />
+    The Operators defining the ListOp
+  </Function>
 
-`property grad_combo_fn`
+  ### parameters
 
-The gradient of `combo_fn`.
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.parameters" name="parameters" signature="property parameters">
+    Return a set of Parameter objects contained in the Operator.
+  </Function>
 
-**Return type**
+  ### permute
 
-`Optional`\[`Callable`]
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.permute" name="permute" signature="permute(permutation)">
+    Permute the qubits of the operator.
 
-### log\_i
+    **Parameters**
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.log_i" />
+    **permutation** (`List`\[`int`]) – A list defining where each qubit should be permuted. The qubit at index j should be permuted to position permutation\[j].
 
-`log_i(massive=False)`
+    **Return type**
 
-Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function is the effective inverse of exp\_i, equivalent to finding the Hermitian Operator which produces self when exponentiated. For proper ListOps, applies `log_i` to all ops in oplist.
+    `ListOp`
 
-**Return type**
+    **Returns**
 
-`OperatorBase`
+    A new ListOp representing the permuted operator.
 
-### mul
+    **Raises**
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.mul" />
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if indices do not define a new index for each qubit.
+  </Function>
 
-`mul(scalar)`
+  ### power
 
-Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.power" name="power" signature="power(exponent)">
+    Return Operator composed with self multiple times, overloaded by `**`.
 
-**Parameters**
+    **Parameters**
 
-**scalar** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
+    **exponent** (`int`) – The int number of times to compose self with itself.
 
-**Return type**
+    **Return type**
 
-`OperatorBase`
+    `OperatorBase`
 
-**Returns**
+    **Returns**
 
-An `OperatorBase` equivalent to product of self and scalar.
+    An `OperatorBase` equivalent to self composed with itself exponent times.
+  </Function>
 
-### neg
+  ### primitive\_strings
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.neg" />
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.primitive_strings" name="primitive_strings" signature="primitive_strings()">
+    Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
-`neg()`
+    **Return type**
 
-Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.
+    `Set`\[`str`]
 
-**Return type**
+    **Returns**
 
-`OperatorBase`
+    A set of strings describing the primitives contained within the Operator.
+  </Function>
 
-**Returns**
+  ### reduce
 
-An `OperatorBase` equivalent to the negation of self.
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.reduce" name="reduce" signature="reduce()">
+    Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
-### num\_qubits
+    **Return type**
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.num_qubits" />
+    `OperatorBase`
 
-`property num_qubits`
+    **Returns**
 
-The number of qubits over which the Operator is defined. If `op.num_qubits == 5`, then `op.eval('1' * 5)` will be valid, but `op.eval('11')` will not.
+    The reduced `OperatorBase`.
+  </Function>
 
-**Return type**
+  ### tensor
 
-`int`
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.tensor" name="tensor" signature="tensor(other)">
+    Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
-**Returns**
+    > -\[Y]- -\[X]-
 
-The number of qubits accepted by the Operator’s underlying function.
+    Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
 
-### oplist
+    **Parameters**
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.oplist" />
+    **other** (`OperatorBase`) – The `OperatorBase` to tensor product with self.
 
-`property oplist`
+    **Return type**
 
-The list of `OperatorBases` defining the underlying function of this Operator.
+    `OperatorBase`
 
-**Return type**
+    **Returns**
 
-`List`\[`OperatorBase`]
+    An `OperatorBase` equivalent to the tensor product of self and other.
+  </Function>
 
-**Returns**
+  ### tensorpower
 
-The Operators defining the ListOp
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.tensorpower" name="tensorpower" signature="tensorpower(other)">
+    Return tensor product with self multiple times, overloaded by `^`.
 
-### parameters
+    **Parameters**
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.parameters" />
+    **other** (`int`) – The int number of times to tensor product self with itself via `tensorpower`.
 
-`property parameters`
+    **Return type**
 
-Return a set of Parameter objects contained in the Operator.
+    `Union`\[`OperatorBase`, `int`]
 
-### permute
+    **Returns**
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.permute" />
+    An `OperatorBase` equivalent to the tensorpower of self by other.
+  </Function>
 
-`permute(permutation)`
+  ### to\_circuit\_op
 
-Permute the qubits of the operator.
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.to_circuit_op" name="to_circuit_op" signature="to_circuit_op()">
+    Returns an equivalent Operator composed of only QuantumCircuit-based primitives, such as `CircuitOp` and `CircuitStateFn`.
 
-**Parameters**
+    **Return type**
 
-**permutation** (`List`\[`int`]) – A list defining where each qubit should be permuted. The qubit at index j should be permuted to position permutation\[j].
+    `OperatorBase`
+  </Function>
 
-**Return type**
+  ### to\_legacy\_op
 
-`ListOp`
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.to_legacy_op" name="to_legacy_op" signature="to_legacy_op(massive=False)">
+    Attempt to return the Legacy Operator representation of the Operator. If self is a `SummedOp` of `PauliOps`, will attempt to convert to `WeightedPauliOperator`, and otherwise will simply convert to `MatrixOp` and then to `MatrixOperator`. The Legacy Operators cannot represent `StateFns` or proper `ListOps` (meaning not one of the `ListOp` subclasses), so an error will be thrown if this method is called on such an Operator. Also, Legacy Operators cannot represent unbound Parameter coeffs, so an error will be thrown if any are present in self.
 
-**Returns**
+    Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
-A new ListOp representing the permuted operator.
+    **Return type**
 
-**Raises**
+    `LegacyBaseOperator`
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if indices do not define a new index for each qubit.
+    **Returns**
 
-### power
+    The `LegacyBaseOperator` representing this Operator.
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.power" />
+    **Raises**
 
-`power(exponent)`
+    **TypeError** – self is an Operator which cannot be represented by a `LegacyBaseOperator`, such as `StateFn`, proper (non-subclass) `ListOp`, or an Operator with an unbound coeff Parameter.
+  </Function>
 
-Return Operator composed with self multiple times, overloaded by `**`.
+  ### to\_matrix
 
-**Parameters**
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.to_matrix" name="to_matrix" signature="to_matrix(massive=False)">
+    Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
-**exponent** (`int`) – The int number of times to compose self with itself.
+    **Return type**
 
-**Return type**
+    `ndarray`
 
-`OperatorBase`
+    **Returns**
 
-**Returns**
+    The NumPy `ndarray` equivalent to this Operator.
+  </Function>
 
-An `OperatorBase` equivalent to self composed with itself exponent times.
+  ### to\_matrix\_op
 
-### primitive\_strings
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.to_matrix_op" name="to_matrix_op" signature="to_matrix_op(massive=False)">
+    Returns an equivalent Operator composed of only NumPy-based primitives, such as `MatrixOp` and `VectorStateFn`.
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.primitive_strings" />
+    **Return type**
 
-`primitive_strings()`
+    `OperatorBase`
+  </Function>
 
-Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
+  ### to\_pauli\_op
 
-**Return type**
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.to_pauli_op" name="to_pauli_op" signature="to_pauli_op(massive=False)">
+    Returns an equivalent Operator composed of only Pauli-based primitives, such as `PauliOp`.
 
-`Set`\[`str`]
+    **Return type**
 
-**Returns**
+    `OperatorBase`
+  </Function>
 
-A set of strings describing the primitives contained within the Operator.
+  ### to\_spmatrix
 
-### reduce
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.to_spmatrix" name="to_spmatrix" signature="to_spmatrix()">
+    Returns SciPy sparse matrix representation of the Operator.
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.reduce" />
+    **Return type**
 
-`reduce()`
+    `Union`\[`spmatrix`, `List`\[`spmatrix`]]
 
-Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
+    **Returns**
 
-**Return type**
+    CSR sparse matrix representation of the Operator, or List thereof.
+  </Function>
 
-`OperatorBase`
+  ### traverse
 
-**Returns**
+  <Function id="qiskit.aqua.operators.list_ops.ListOp.traverse" name="traverse" signature="traverse(convert_fn, coeff=None)">
+    Apply the convert\_fn to each node in the oplist.
 
-The reduced `OperatorBase`.
+    **Parameters**
 
-### tensor
+    *   **convert\_fn** (`Callable`) – The function to apply to the internal OperatorBase.
+    *   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`, `None`]) – A coefficient to multiply by after applying convert\_fn. If it is None, self.coeff is used instead.
 
-<span id="qiskit.aqua.operators.list_ops.ListOp.tensor" />
+    **Return type**
 
-`tensor(other)`
+    `OperatorBase`
 
-Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
+    **Returns**
 
-> -\[Y]- -\[X]-
-
-Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
-
-**Parameters**
-
-**other** (`OperatorBase`) – The `OperatorBase` to tensor product with self.
-
-**Return type**
-
-`OperatorBase`
-
-**Returns**
-
-An `OperatorBase` equivalent to the tensor product of self and other.
-
-### tensorpower
-
-<span id="qiskit.aqua.operators.list_ops.ListOp.tensorpower" />
-
-`tensorpower(other)`
-
-Return tensor product with self multiple times, overloaded by `^`.
-
-**Parameters**
-
-**other** (`int`) – The int number of times to tensor product self with itself via `tensorpower`.
-
-**Return type**
-
-`Union`\[`OperatorBase`, `int`]
-
-**Returns**
-
-An `OperatorBase` equivalent to the tensorpower of self by other.
-
-### to\_circuit\_op
-
-<span id="qiskit.aqua.operators.list_ops.ListOp.to_circuit_op" />
-
-`to_circuit_op()`
-
-Returns an equivalent Operator composed of only QuantumCircuit-based primitives, such as `CircuitOp` and `CircuitStateFn`.
-
-**Return type**
-
-`OperatorBase`
-
-### to\_legacy\_op
-
-<span id="qiskit.aqua.operators.list_ops.ListOp.to_legacy_op" />
-
-`to_legacy_op(massive=False)`
-
-Attempt to return the Legacy Operator representation of the Operator. If self is a `SummedOp` of `PauliOps`, will attempt to convert to `WeightedPauliOperator`, and otherwise will simply convert to `MatrixOp` and then to `MatrixOperator`. The Legacy Operators cannot represent `StateFns` or proper `ListOps` (meaning not one of the `ListOp` subclasses), so an error will be thrown if this method is called on such an Operator. Also, Legacy Operators cannot represent unbound Parameter coeffs, so an error will be thrown if any are present in self.
-
-Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
-
-**Return type**
-
-`LegacyBaseOperator`
-
-**Returns**
-
-The `LegacyBaseOperator` representing this Operator.
-
-**Raises**
-
-**TypeError** – self is an Operator which cannot be represented by a `LegacyBaseOperator`, such as `StateFn`, proper (non-subclass) `ListOp`, or an Operator with an unbound coeff Parameter.
-
-### to\_matrix
-
-<span id="qiskit.aqua.operators.list_ops.ListOp.to_matrix" />
-
-`to_matrix(massive=False)`
-
-Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
-
-**Return type**
-
-`ndarray`
-
-**Returns**
-
-The NumPy `ndarray` equivalent to this Operator.
-
-### to\_matrix\_op
-
-<span id="qiskit.aqua.operators.list_ops.ListOp.to_matrix_op" />
-
-`to_matrix_op(massive=False)`
-
-Returns an equivalent Operator composed of only NumPy-based primitives, such as `MatrixOp` and `VectorStateFn`.
-
-**Return type**
-
-`OperatorBase`
-
-### to\_pauli\_op
-
-<span id="qiskit.aqua.operators.list_ops.ListOp.to_pauli_op" />
-
-`to_pauli_op(massive=False)`
-
-Returns an equivalent Operator composed of only Pauli-based primitives, such as `PauliOp`.
-
-**Return type**
-
-`OperatorBase`
-
-### to\_spmatrix
-
-<span id="qiskit.aqua.operators.list_ops.ListOp.to_spmatrix" />
-
-`to_spmatrix()`
-
-Returns SciPy sparse matrix representation of the Operator.
-
-**Return type**
-
-`Union`\[`spmatrix`, `List`\[`spmatrix`]]
-
-**Returns**
-
-CSR sparse matrix representation of the Operator, or List thereof.
-
-### traverse
-
-<span id="qiskit.aqua.operators.list_ops.ListOp.traverse" />
-
-`traverse(convert_fn, coeff=None)`
-
-Apply the convert\_fn to each node in the oplist.
-
-**Parameters**
-
-*   **convert\_fn** (`Callable`) – The function to apply to the internal OperatorBase.
-*   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`, `None`]) – A coefficient to multiply by after applying convert\_fn. If it is None, self.coeff is used instead.
-
-**Return type**
-
-`OperatorBase`
-
-**Returns**
-
-The converted ListOp.
+    The converted ListOp.
+  </Function>
+</Class>
 

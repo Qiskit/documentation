@@ -8,269 +8,259 @@ python_api_name: qiskit.circuit.library.FourierChecking
 
 # FourierChecking
 
-<span id="qiskit.circuit.library.FourierChecking" />
+<Class id="qiskit.circuit.library.FourierChecking" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/fourier_checking.py" signature="FourierChecking(f, g)">
+  Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
-`FourierChecking(f, g)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/fourier_checking.py "view source code")
+  Fourier checking circuit.
 
-Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  The circuit for the Fourier checking algorithm, introduced in \[1], involves a layer of Hadamards, the function $f$, another layer of Hadamards, the function $g$, followed by a final layer of Hadamards. The functions $f$ and $g$ are classical functions realized as phase oracles (diagonal operators with \{-1, 1} on the diagonal).
 
-Fourier checking circuit.
+  The probability of observing the all-zeros string is $p(f,g)$. The algorithm solves the promise Fourier checking problem, which decides if f is correlated with the Fourier transform of g, by testing if $p(f,g) <= 0.01$ or $p(f,g) >= 0.05$, promised that one or the other of these is true.
 
-The circuit for the Fourier checking algorithm, introduced in \[1], involves a layer of Hadamards, the function $f$, another layer of Hadamards, the function $g$, followed by a final layer of Hadamards. The functions $f$ and $g$ are classical functions realized as phase oracles (diagonal operators with \{-1, 1} on the diagonal).
+  The functions $f$ and $g$ are currently implemented from their truth tables but could be represented concisely and implemented efficiently for special classes of functions.
 
-The probability of observing the all-zeros string is $p(f,g)$. The algorithm solves the promise Fourier checking problem, which decides if f is correlated with the Fourier transform of g, by testing if $p(f,g) <= 0.01$ or $p(f,g) >= 0.05$, promised that one or the other of these is true.
+  Fourier checking is a special case of $k$-fold forrelation \[2].
 
-The functions $f$ and $g$ are currently implemented from their truth tables but could be represented concisely and implemented efficiently for special classes of functions.
+  **Reference:**
 
-Fourier checking is a special case of $k$-fold forrelation \[2].
+  \[1] S. Aaronson, BQP and the Polynomial Hierarchy, 2009 (Section 3.2). [arXiv:0910.4698](https://arxiv.org/abs/0910.4698)
 
-**Reference:**
+  \[2] S. Aaronson, A. Ambainis, Forrelation: a problem that optimally separates quantum from classical computing, 2014. [arXiv:1411.5729](https://arxiv.org/abs/1411.5729)
 
-\[1] S. Aaronson, BQP and the Polynomial Hierarchy, 2009 (Section 3.2). [arXiv:0910.4698](https://arxiv.org/abs/0910.4698)
+  Create Fourier checking circuit.
 
-\[2] S. Aaronson, A. Ambainis, Forrelation: a problem that optimally separates quantum from classical computing, 2014. [arXiv:1411.5729](https://arxiv.org/abs/1411.5729)
+  **Parameters**
 
-Create Fourier checking circuit.
+  *   **f** (`List`\[`int`]) – truth table for f, length 2\*\*n list of \{1,-1}.
+  *   **g** (`List`\[`int`]) – truth table for g, length 2\*\*n list of \{1,-1}.
 
-**Parameters**
+  **Raises**
 
-*   **f** (`List`\[`int`]) – truth table for f, length 2\*\*n list of \{1,-1}.
-*   **g** (`List`\[`int`]) – truth table for g, length 2\*\*n list of \{1,-1}.
+  **CircuitError** – if the inputs f and g are not valid.
 
-**Raises**
+  **Reference Circuit:**
 
-**CircuitError** – if the inputs f and g are not valid.
+  ![../\_images/qiskit-circuit-library-FourierChecking-1.png](/images/api/qiskit/0.42/qiskit-circuit-library-FourierChecking-1.png)
 
-**Reference Circuit:**
+  ## Attributes
 
-![../\_images/qiskit-circuit-library-FourierChecking-1.png](/images/api/qiskit/0.42/qiskit-circuit-library-FourierChecking-1.png)
+  ### ancillas
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.FourierChecking.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-<span id="qiskit.circuit.library.FourierChecking.ancillas" />
+    **Return type**
 
-### ancillas
+    `List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  </Attribute>
 
-Returns a list of ancilla bits in the order that the registers were added.
+  ### calibrations
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.FourierChecking.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
 
-<span id="qiskit.circuit.library.FourierChecking.calibrations" />
+    **Return type**
 
-### calibrations
+    `dict`
+  </Attribute>
 
-Return calibration dictionary.
+  ### clbits
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  <Attribute id="qiskit.circuit.library.FourierChecking.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-**Return type**
+    **Return type**
 
-`dict`
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-<span id="qiskit.circuit.library.FourierChecking.clbits" />
+  ### data
 
-### clbits
+  <Attribute id="qiskit.circuit.library.FourierChecking.data" name="data">
+    Return the circuit data (instructions and context).
 
-Returns a list of classical bits in the order that the registers were added.
+    **Returns**
 
-**Return type**
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+    **Return type**
 
-<span id="qiskit.circuit.library.FourierChecking.data" />
+    QuantumCircuitData
+  </Attribute>
 
-### data
+  ### extension\_lib
 
-Return the circuit data (instructions and context).
+  <Attribute id="qiskit.circuit.library.FourierChecking.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-**Returns**
+  ### global\_phase
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+  <Attribute id="qiskit.circuit.library.FourierChecking.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-**Return type**
+    **Return type**
 
-QuantumCircuitData
+    `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  </Attribute>
 
-<span id="qiskit.circuit.library.FourierChecking.extension_lib" />
+  ### header
 
-### extension\_lib
+  <Attribute id="qiskit.circuit.library.FourierChecking.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-`= 'include "qelib1.inc";'`
+  ### instances
 
-<span id="qiskit.circuit.library.FourierChecking.global_phase" />
+  <Attribute id="qiskit.circuit.library.FourierChecking.instances" name="instances" attributeValue="= 2053" />
 
-### global\_phase
+  ### metadata
 
-Return the global phase of the circuit in radians.
+  <Attribute id="qiskit.circuit.library.FourierChecking.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-**Return type**
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+    **Return type**
 
-<span id="qiskit.circuit.library.FourierChecking.header" />
+    `dict`
+  </Attribute>
 
-### header
+  ### num\_ancillas
 
-`= 'OPENQASM 2.0;'`
+  <Attribute id="qiskit.circuit.library.FourierChecking.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-<span id="qiskit.circuit.library.FourierChecking.instances" />
+    **Return type**
 
-### instances
+    `int`
+  </Attribute>
 
-`= 2053`
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.FourierChecking.metadata" />
+  <Attribute id="qiskit.circuit.library.FourierChecking.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-### metadata
+    **Return type**
 
-The user provided metadata associated with the circuit
+    `int`
+  </Attribute>
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  ### num\_parameters
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.FourierChecking.num_parameters" name="num_parameters">
+    The number of parameter objects in the circuit.
 
-`dict`
+    **Return type**
 
-<span id="qiskit.circuit.library.FourierChecking.num_ancillas" />
+    `int`
+  </Attribute>
 
-### num\_ancillas
+  ### num\_qubits
 
-Return the number of ancilla qubits.
+  <Attribute id="qiskit.circuit.library.FourierChecking.num_qubits" name="num_qubits">
+    Return number of qubits.
 
-**Return type**
+    **Return type**
 
-`int`
+    `int`
+  </Attribute>
 
-<span id="qiskit.circuit.library.FourierChecking.num_clbits" />
+  ### op\_start\_times
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.FourierChecking.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-Return number of classical bits.
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-**Return type**
+    **Return type**
 
-`int`
+    `List`\[`int`]
 
-<span id="qiskit.circuit.library.FourierChecking.num_parameters" />
+    **Returns**
 
-### num\_parameters
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-The number of parameter objects in the circuit.
+    **Raises**
 
-**Return type**
+    **AttributeError** – When circuit is not scheduled.
+  </Attribute>
 
-`int`
+  ### parameters
 
-<span id="qiskit.circuit.library.FourierChecking.num_qubits" />
+  <Attribute id="qiskit.circuit.library.FourierChecking.parameters" name="parameters">
+    The parameters defined in the circuit.
 
-### num\_qubits
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-Return number of qubits.
+    **Examples**
 
-**Return type**
+    The snippet below shows that insertion order of parameters does not matter.
 
-`int`
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
 
-<span id="qiskit.circuit.library.FourierChecking.op_start_times" />
+    Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
-### op\_start\_times
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
 
-Return a list of operation start times.
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    ```python
+    ```
 
-**Return type**
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
 
-`List`\[`int`]
+    **Return type**
 
-**Returns**
+    `ParameterView`
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    **Returns**
 
-**Raises**
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
-**AttributeError** – When circuit is not scheduled.
+  ### prefix
 
-<span id="qiskit.circuit.library.FourierChecking.parameters" />
+  <Attribute id="qiskit.circuit.library.FourierChecking.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-### parameters
+  ### qubits
 
-The parameters defined in the circuit.
+  <Attribute id="qiskit.circuit.library.FourierChecking.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+    **Return type**
 
-**Examples**
-
-The snippet below shows that insertion order of parameters does not matter.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
->>> circuit = QuantumCircuit(1)
->>> circuit.rx(b, 0)
->>> circuit.rz(elephant, 0)
->>> circuit.ry(a, 0)
->>> circuit.parameters  # sorted alphabetically!
-ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
-```
-
-Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
->>> circuit = QuantumCircuit(1)
->>> circuit.u(*angles, 0)
->>> circuit.draw()
-   ┌─────────────────────────────┐
-q: ┤ U(angle_1,angle_2,angle_10) ├
-   └─────────────────────────────┘
->>> circuit.parameters
-ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
-```
-
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
->>> x = ParameterVector("x", 12)
->>> circuit = QuantumCircuit(1)
->>> for x_i in x:
-...     circuit.rx(x_i, 0)
->>> circuit.parameters
-ParameterView([
-    ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
-    ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
-    ..., ParameterVectorElement(x[11])
-])
-```
-
-**Return type**
-
-`ParameterView`
-
-**Returns**
-
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
-
-<span id="qiskit.circuit.library.FourierChecking.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.FourierChecking.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+    `List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+  </Attribute>
+</Class>
 

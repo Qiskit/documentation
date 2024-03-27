@@ -8,102 +8,94 @@ python_api_name: qiskit.qobj.QasmQobj
 
 # qiskit.qobj.QasmQobj
 
-<span id="qiskit.qobj.QasmQobj" />
+<Class id="qiskit.qobj.QasmQobj" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qobj/qasm_qobj.py" signature="QasmQobj(qobj_id=None, config=None, experiments=None, header=None)">
+  A QASM Qobj.
 
-`QasmQobj(qobj_id=None, config=None, experiments=None, header=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qobj/qasm_qobj.py "view source code")
+  Instantiate a new QASM Qobj Object.
 
-A QASM Qobj.
+  Each QASM Qobj object is used to represent a single payload that will be passed to a Qiskit provider. It mirrors the Qobj the published [Qobj specification](https://arxiv.org/abs/1809.03452) for OpenQASM experiments.
 
-Instantiate a new QASM Qobj Object.
+  **Parameters**
 
-Each QASM Qobj object is used to represent a single payload that will be passed to a Qiskit provider. It mirrors the Qobj the published [Qobj specification](https://arxiv.org/abs/1809.03452) for OpenQASM experiments.
+  *   **qobj\_id** (*str*) – An identifier for the qobj
+  *   **config** (*QasmQobjRunConfig*) – A config for the entire run
+  *   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
+  *   **experiments** (*list*) – A list of lists of [`QasmQobjExperiment`](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment") objects representing an experiment
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **qobj\_id** (*str*) – An identifier for the qobj
-*   **config** (*QasmQobjRunConfig*) – A config for the entire run
-*   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
-*   **experiments** (*list*) – A list of lists of [`QasmQobjExperiment`](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment") objects representing an experiment
+  <Function id="qiskit.qobj.QasmQobj.__init__" name="__init__" signature="__init__(qobj_id=None, config=None, experiments=None, header=None)">
+    Instantiate a new QASM Qobj Object.
 
-### \_\_init\_\_
+    Each QASM Qobj object is used to represent a single payload that will be passed to a Qiskit provider. It mirrors the Qobj the published [Qobj specification](https://arxiv.org/abs/1809.03452) for OpenQASM experiments.
 
-<span id="qiskit.qobj.QasmQobj.__init__" />
+    **Parameters**
 
-`__init__(qobj_id=None, config=None, experiments=None, header=None)`
+    *   **qobj\_id** (*str*) – An identifier for the qobj
+    *   **config** (*QasmQobjRunConfig*) – A config for the entire run
+    *   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
+    *   **experiments** (*list*) – A list of lists of [`QasmQobjExperiment`](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment") objects representing an experiment
+  </Function>
 
-Instantiate a new QASM Qobj Object.
+  ## Methods
 
-Each QASM Qobj object is used to represent a single payload that will be passed to a Qiskit provider. It mirrors the Qobj the published [Qobj specification](https://arxiv.org/abs/1809.03452) for OpenQASM experiments.
+  |                                                                                                                        |                                                             |
+  | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+  | [`__init__`](#qiskit.qobj.QasmQobj.__init__ "qiskit.qobj.QasmQobj.__init__")(\[qobj\_id, config, experiments, header]) | Instantiate a new QASM Qobj Object.                         |
+  | [`from_dict`](#qiskit.qobj.QasmQobj.from_dict "qiskit.qobj.QasmQobj.from_dict")(data)                                  | Create a new QASMQobj object from a dictionary.             |
+  | [`to_dict`](#qiskit.qobj.QasmQobj.to_dict "qiskit.qobj.QasmQobj.to_dict")(\[validate])                                 | Return a dictionary format representation of the QASM Qobj. |
 
-**Parameters**
+  ### from\_dict
 
-*   **qobj\_id** (*str*) – An identifier for the qobj
-*   **config** (*QasmQobjRunConfig*) – A config for the entire run
-*   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
-*   **experiments** (*list*) – A list of lists of [`QasmQobjExperiment`](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment") objects representing an experiment
+  <Function id="qiskit.qobj.QasmQobj.from_dict" name="from_dict" signature="classmethod from_dict(data)">
+    Create a new QASMQobj object from a dictionary.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                        |                                                             |
-| ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| [`__init__`](#qiskit.qobj.QasmQobj.__init__ "qiskit.qobj.QasmQobj.__init__")(\[qobj\_id, config, experiments, header]) | Instantiate a new QASM Qobj Object.                         |
-| [`from_dict`](#qiskit.qobj.QasmQobj.from_dict "qiskit.qobj.QasmQobj.from_dict")(data)                                  | Create a new QASMQobj object from a dictionary.             |
-| [`to_dict`](#qiskit.qobj.QasmQobj.to_dict "qiskit.qobj.QasmQobj.to_dict")(\[validate])                                 | Return a dictionary format representation of the QASM Qobj. |
+    **data** (*dict*) – A dictionary representing the QasmQobj to create. It will be in the same format as output by [`to_dict()`](#qiskit.qobj.QasmQobj.to_dict "qiskit.qobj.QasmQobj.to_dict").
 
-### from\_dict
+    **Returns**
 
-<span id="qiskit.qobj.QasmQobj.from_dict" />
+    The QasmQobj from the input dictionary.
 
-`classmethod from_dict(data)`
+    **Return type**
 
-Create a new QASMQobj object from a dictionary.
+    [QasmQobj](#qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj")
+  </Function>
 
-**Parameters**
+  ### to\_dict
 
-**data** (*dict*) – A dictionary representing the QasmQobj to create. It will be in the same format as output by [`to_dict()`](#qiskit.qobj.QasmQobj.to_dict "qiskit.qobj.QasmQobj.to_dict").
+  <Function id="qiskit.qobj.QasmQobj.to_dict" name="to_dict" signature="to_dict(validate=False)">
+    Return a dictionary format representation of the QASM Qobj.
 
-**Returns**
+    Note this dict is not in the json wire format expected by IBMQ and qobj specification because complex numbers are still of type complex. Also this may contain native numpy arrays. When serializing this output for use with IBMQ you can leverage a json encoder that converts these as expected. For example:
 
-The QasmQobj from the input dictionary.
+    ```python
+    import json
+    import numpy
 
-**Return type**
+    class QobjEncoder(json.JSONEncoder):
+        def default(self, obj):
+            if isinstance(obj, numpy.ndarray):
+                return obj.tolist()
+            if isinstance(obj, complex):
+                return (obj.real, obj.imag)
+            return json.JSONEncoder.default(self, obj)
 
-[QasmQobj](#qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj")
+    json.dumps(qobj.to_dict(), cls=QobjEncoder)
+    ```
 
-### to\_dict
+    **Parameters**
 
-<span id="qiskit.qobj.QasmQobj.to_dict" />
+    **validate** (*bool*) – When set to true validate the output dictionary against the jsonschema for qobj spec.
 
-`to_dict(validate=False)`
+    **Returns**
 
-Return a dictionary format representation of the QASM Qobj.
+    A dictionary representation of the QasmQobj object
 
-Note this dict is not in the json wire format expected by IBMQ and qobj specification because complex numbers are still of type complex. Also this may contain native numpy arrays. When serializing this output for use with IBMQ you can leverage a json encoder that converts these as expected. For example:
+    **Return type**
 
-```python
-import json
-import numpy
-
-class QobjEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, numpy.ndarray):
-            return obj.tolist()
-        if isinstance(obj, complex):
-            return (obj.real, obj.imag)
-        return json.JSONEncoder.default(self, obj)
-
-json.dumps(qobj.to_dict(), cls=QobjEncoder)
-```
-
-**Parameters**
-
-**validate** (*bool*) – When set to true validate the output dictionary against the jsonschema for qobj spec.
-
-**Returns**
-
-A dictionary representation of the QasmQobj object
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 

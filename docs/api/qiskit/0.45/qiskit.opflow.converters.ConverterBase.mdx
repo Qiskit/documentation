@@ -8,37 +8,33 @@ python_api_name: qiskit.opflow.converters.ConverterBase
 
 # ConverterBase
 
-<span id="qiskit.opflow.converters.ConverterBase" />
+<Class id="qiskit.opflow.converters.ConverterBase" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/converters/converter_base.py" signature="qiskit.opflow.converters.ConverterBase">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-`qiskit.opflow.converters.ConverterBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/converters/converter_base.py "view source code")
+  Deprecated: Converters take an Operator and return a new Operator, generally isomorphic in some way with the first, but with certain desired properties. For example, a converter may accept `CircuitOp` and return a `SummedOp` of `PauliOps` representing the circuit unitary. Converters may not have polynomial space or time scaling in their operations. On the contrary, many converters, such as a `MatrixExpectation` or `MatrixEvolution`, which convert `PauliOps` to `MatrixOps` internally, will require time or space exponential in the number of qubits unless a clever trick is known (such as the use of sparse matrices).
 
-Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.converters.converter_base.ConverterBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Deprecated: Converters take an Operator and return a new Operator, generally isomorphic in some way with the first, but with certain desired properties. For example, a converter may accept `CircuitOp` and return a `SummedOp` of `PauliOps` representing the circuit unitary. Converters may not have polynomial space or time scaling in their operations. On the contrary, many converters, such as a `MatrixExpectation` or `MatrixEvolution`, which convert `PauliOps` to `MatrixOps` internally, will require time or space exponential in the number of qubits unless a clever trick is known (such as the use of sparse matrices).
+  ## Methods
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.converters.converter_base.ConverterBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  ### convert
 
-## Methods
+  <Function id="qiskit.opflow.converters.ConverterBase.convert" name="convert" signature="abstract convert(operator)">
+    Accept the Operator and return the converted Operator
 
-### convert
+    **Parameters**
 
-<span id="qiskit.opflow.converters.ConverterBase.convert" />
+    **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator to convert.
 
-`abstract convert(operator)`
+    **Returns**
 
-Accept the Operator and return the converted Operator
+    The converted Operator.
 
-**Parameters**
+    **Return type**
 
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator to convert.
-
-**Returns**
-
-The converted Operator.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
+</Class>
 

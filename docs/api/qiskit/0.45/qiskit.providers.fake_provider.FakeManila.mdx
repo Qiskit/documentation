@@ -8,172 +8,142 @@ python_api_name: qiskit.providers.fake_provider.FakeManila
 
 # FakeManila
 
-<span id="qiskit.providers.fake_provider.FakeManila" />
+<Class id="qiskit.providers.fake_provider.FakeManila" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/backends/manila/fake_manila.py" signature="qiskit.providers.fake_provider.FakeManila">
+  Bases: [`FakePulseBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakePulseBackend "qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend")
 
-`qiskit.providers.fake_provider.FakeManila` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/backends/manila/fake_manila.py "view source code")
+  A fake 5 qubit backend.
 
-Bases: [`FakePulseBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakePulseBackend "qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend")
+  FakeBackend initializer.
 
-A fake 5 qubit backend.
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+  *   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
 
-**Parameters**
+  ## Attributes
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
+  ### backend\_name
 
-## Attributes
+  <Attribute id="qiskit.providers.fake_provider.FakeManila.backend_name" name="backend_name" attributeValue="= 'fake_manila'" />
 
-<span id="qiskit.providers.fake_provider.FakeManila.backend_name" />
+  ### conf\_filename
 
-### backend\_name
+  <Attribute id="qiskit.providers.fake_provider.FakeManila.conf_filename" name="conf_filename" attributeValue="= 'conf_manila.json'" />
 
-`= 'fake_manila'`
+  ### defs\_filename
 
-<span id="qiskit.providers.fake_provider.FakeManila.conf_filename" />
+  <Attribute id="qiskit.providers.fake_provider.FakeManila.defs_filename" name="defs_filename" attributeValue="= 'defs_manila.json'" />
 
-### conf\_filename
+  ### dirname
 
-`= 'conf_manila.json'`
+  <Attribute id="qiskit.providers.fake_provider.FakeManila.dirname" name="dirname" attributeValue="= '/home/runner/work/qiskit/qiskit/qiskit/providers/fake_provider/backends/manila'" />
 
-<span id="qiskit.providers.fake_provider.FakeManila.defs_filename" />
+  ### options
 
-### defs\_filename
+  <Attribute id="qiskit.providers.fake_provider.FakeManila.options" name="options">
+    Return the options for the backend
 
-`= 'defs_manila.json'`
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.fake_provider.FakeManila.run "qiskit.providers.fake_provider.FakeManila.run") method.
+  </Attribute>
 
-<span id="qiskit.providers.fake_provider.FakeManila.dirname" />
+  ### props\_filename
 
-### dirname
+  <Attribute id="qiskit.providers.fake_provider.FakeManila.props_filename" name="props_filename" attributeValue="= 'props_manila.json'" />
 
-`= '/home/runner/work/qiskit/qiskit/qiskit/providers/fake_provider/backends/manila'`
+  ### version
 
-<span id="qiskit.providers.fake_provider.FakeManila.options" />
+  <Attribute id="qiskit.providers.fake_provider.FakeManila.version" name="version" attributeValue="= 1" />
 
-### options
+  ## Methods
 
-Return the options for the backend
+  ### configuration
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.fake_provider.FakeManila.run "qiskit.providers.fake_provider.FakeManila.run") method.
+  <Function id="qiskit.providers.fake_provider.FakeManila.configuration" name="configuration" signature="configuration()">
+    Return the backend configuration.
 
-<span id="qiskit.providers.fake_provider.FakeManila.props_filename" />
+    **Returns**
 
-### props\_filename
+    the configuration for the backend.
 
-`= 'props_manila.json'`
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeManila.version" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-### version
+  ### defaults
 
-`= 1`
+  <Function id="qiskit.providers.fake_provider.FakeManila.defaults" name="defaults" signature="defaults()">
+    Returns a snapshot of device defaults
+  </Function>
 
-## Methods
+  ### name
 
-### configuration
+  <Function id="qiskit.providers.fake_provider.FakeManila.name" name="name" signature="name()">
+    Return the backend name.
 
-<span id="qiskit.providers.fake_provider.FakeManila.configuration" />
+    **Returns**
 
-`configuration()`
+    the name of the backend.
 
-Return the backend configuration.
+    **Return type**
 
-**Returns**
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-the configuration for the backend.
+  ### properties
 
-**Return type**
+  <Function id="qiskit.providers.fake_provider.FakeManila.properties" name="properties" signature="properties()">
+    Returns a snapshot of device properties
+  </Function>
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  ### provider
 
-### defaults
+  <Function id="qiskit.providers.fake_provider.FakeManila.provider" name="provider" signature="provider()">
+    Return the backend Provider.
 
-<span id="qiskit.providers.fake_provider.FakeManila.defaults" />
+    **Returns**
 
-`defaults()`
+    the Provider responsible for the backend.
 
-Returns a snapshot of device defaults
+    **Return type**
 
-### name
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-<span id="qiskit.providers.fake_provider.FakeManila.name" />
+  ### run
 
-`name()`
+  <Function id="qiskit.providers.fake_provider.FakeManila.run" name="run" signature="run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-Return the backend name.
+  ### set\_options
 
-**Returns**
+  <Function id="qiskit.providers.fake_provider.FakeManila.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-the name of the backend.
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-**Return type**
+    **Parameters**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    **fields** – The fields to update the options
 
-### properties
+    **Raises**
 
-<span id="qiskit.providers.fake_provider.FakeManila.properties" />
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
+  </Function>
 
-`properties()`
+  ### status
 
-Returns a snapshot of device properties
+  <Function id="qiskit.providers.fake_provider.FakeManila.status" name="status" signature="status()">
+    Return the backend status.
 
-### provider
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeManila.provider" />
+    the status of the backend.
 
-`provider()`
+    **Return type**
 
-Return the backend Provider.
-
-**Returns**
-
-the Provider responsible for the backend.
-
-**Return type**
-
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
-
-### run
-
-<span id="qiskit.providers.fake_provider.FakeManila.run" />
-
-`run(run_input, **kwargs)`
-
-Main job in simulator
-
-### set\_options
-
-<span id="qiskit.providers.fake_provider.FakeManila.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit.providers.fake_provider.FakeManila.status" />
-
-`status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
+</Class>
 

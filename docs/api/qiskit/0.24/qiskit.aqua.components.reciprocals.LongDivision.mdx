@@ -10,88 +10,80 @@ python_api_name: qiskit.aqua.components.reciprocals.LongDivision
 
 # qiskit.aqua.components.reciprocals.LongDivision
 
-<span id="qiskit.aqua.components.reciprocals.LongDivision" />
+<Class id="qiskit.aqua.components.reciprocals.LongDivision" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/reciprocals/long_division.py" signature="LongDivision(scale=0, precision=None, negative_evals=False, evo_time=None, lambda_min=None)">
+  The Long Division Rotation for Reciprocals.
 
-`LongDivision(scale=0, precision=None, negative_evals=False, evo_time=None, lambda_min=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/reciprocals/long_division.py "view source code")
+  This method calculates inverse of eigenvalues using binary long division and performs the corresponding rotation. Long division is implemented as a sequence of subtraction (utilizing ripple carry adder module) and bit shifting. The method allows for adjusting of the reciprocal precision by changing number of iterations. The method was optimized for register conventions used in HHL algorithm (i.e. eigenvalues rescaled to values between 0 and 1).
 
-The Long Division Rotation for Reciprocals.
+  The rotation value is always scaled down additionally to the normal scale parameter by 0.5 to get the angle into the linear part of the arcsin(x).
 
-This method calculates inverse of eigenvalues using binary long division and performs the corresponding rotation. Long division is implemented as a sequence of subtraction (utilizing ripple carry adder module) and bit shifting. The method allows for adjusting of the reciprocal precision by changing number of iterations. The method was optimized for register conventions used in HHL algorithm (i.e. eigenvalues rescaled to values between 0 and 1).
+  It finds the reciprocal with long division method and rotates the ancillary qubit by C/lambda. This is a first order approximation of arcsin(C/lambda).
 
-The rotation value is always scaled down additionally to the normal scale parameter by 0.5 to get the angle into the linear part of the arcsin(x).
+  **Parameters**
 
-It finds the reciprocal with long division method and rotates the ancillary qubit by C/lambda. This is a first order approximation of arcsin(C/lambda).
+  *   **scale** (`float`) – The scale of rotation angle, corresponds to HHL constant C. This parameter is used to scale the reciprocals such that for a scale C, the rotation is performed by an angle $\arcsin{\frac{C}{\lambda}}$. If neither the scale nor the evo\_time and lambda\_min parameters are specified, the smallest resolvable Eigenvalue is used.
+  *   **precision** (`Optional`\[`int`]) – Number of qubits that defines the precision of long division. The parameter sets minimum desired bit precision for the reciprocal. Due to shifting some of reciprocals, however, are effectively estimated with higher than this minimum specified precision.
+  *   **negative\_evals** (`bool`) – Indicate if negative eigenvalues need to be handled
+  *   **evo\_time** (`Optional`\[`float`]) – The evolution time. This parameter scales the Eigenvalues in the phase estimation onto the range (0,1] ( (-0.5,0.5] for negative Eigenvalues ).
+  *   **lambda\_min** (`Optional`\[`float`]) – The smallest expected eigenvalue
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **scale** (`float`) – The scale of rotation angle, corresponds to HHL constant C. This parameter is used to scale the reciprocals such that for a scale C, the rotation is performed by an angle $\arcsin{\frac{C}{\lambda}}$. If neither the scale nor the evo\_time and lambda\_min parameters are specified, the smallest resolvable Eigenvalue is used.
-*   **precision** (`Optional`\[`int`]) – Number of qubits that defines the precision of long division. The parameter sets minimum desired bit precision for the reciprocal. Due to shifting some of reciprocals, however, are effectively estimated with higher than this minimum specified precision.
-*   **negative\_evals** (`bool`) – Indicate if negative eigenvalues need to be handled
-*   **evo\_time** (`Optional`\[`float`]) – The evolution time. This parameter scales the Eigenvalues in the phase estimation onto the range (0,1] ( (-0.5,0.5] for negative Eigenvalues ).
-*   **lambda\_min** (`Optional`\[`float`]) – The smallest expected eigenvalue
+  <Function id="qiskit.aqua.components.reciprocals.LongDivision.__init__" name="__init__" signature="__init__(scale=0, precision=None, negative_evals=False, evo_time=None, lambda_min=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **scale** (`float`) – The scale of rotation angle, corresponds to HHL constant C. This parameter is used to scale the reciprocals such that for a scale C, the rotation is performed by an angle $\arcsin{\frac{C}{\lambda}}$. If neither the scale nor the evo\_time and lambda\_min parameters are specified, the smallest resolvable Eigenvalue is used.
+    *   **precision** (`Optional`\[`int`]) – Number of qubits that defines the precision of long division. The parameter sets minimum desired bit precision for the reciprocal. Due to shifting some of reciprocals, however, are effectively estimated with higher than this minimum specified precision.
+    *   **negative\_evals** (`bool`) – Indicate if negative eigenvalues need to be handled
+    *   **evo\_time** (`Optional`\[`float`]) – The evolution time. This parameter scales the Eigenvalues in the phase estimation onto the range (0,1] ( (-0.5,0.5] for negative Eigenvalues ).
+    *   **lambda\_min** (`Optional`\[`float`]) – The smallest expected eigenvalue
+  </Function>
 
-<span id="qiskit.aqua.components.reciprocals.LongDivision.__init__" />
+  ## Methods
 
-`__init__(scale=0, precision=None, negative_evals=False, evo_time=None, lambda_min=None)`
+  |                                                                                                                                                                                           |                                               |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.components.reciprocals.LongDivision.__init__ "qiskit.aqua.components.reciprocals.LongDivision.__init__")(\[scale, precision, negative\_evals, …])               | **type scale**`float`                         |
+  | [`construct_circuit`](#qiskit.aqua.components.reciprocals.LongDivision.construct_circuit "qiskit.aqua.components.reciprocals.LongDivision.construct_circuit")(mode\[, register, circuit]) | Construct the Long Division Rotation circuit. |
+  | [`sv_to_resvec`](#qiskit.aqua.components.reciprocals.LongDivision.sv_to_resvec "qiskit.aqua.components.reciprocals.LongDivision.sv_to_resvec")(statevector, num\_q)                       | Convert statevector to result vector.         |
 
-**Parameters**
+  ### construct\_circuit
 
-*   **scale** (`float`) – The scale of rotation angle, corresponds to HHL constant C. This parameter is used to scale the reciprocals such that for a scale C, the rotation is performed by an angle $\arcsin{\frac{C}{\lambda}}$. If neither the scale nor the evo\_time and lambda\_min parameters are specified, the smallest resolvable Eigenvalue is used.
-*   **precision** (`Optional`\[`int`]) – Number of qubits that defines the precision of long division. The parameter sets minimum desired bit precision for the reciprocal. Due to shifting some of reciprocals, however, are effectively estimated with higher than this minimum specified precision.
-*   **negative\_evals** (`bool`) – Indicate if negative eigenvalues need to be handled
-*   **evo\_time** (`Optional`\[`float`]) – The evolution time. This parameter scales the Eigenvalues in the phase estimation onto the range (0,1] ( (-0.5,0.5] for negative Eigenvalues ).
-*   **lambda\_min** (`Optional`\[`float`]) – The smallest expected eigenvalue
+  <Function id="qiskit.aqua.components.reciprocals.LongDivision.construct_circuit" name="construct_circuit" signature="construct_circuit(mode, register=None, circuit=None)">
+    Construct the Long Division Rotation circuit.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                                           |                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [`__init__`](#qiskit.aqua.components.reciprocals.LongDivision.__init__ "qiskit.aqua.components.reciprocals.LongDivision.__init__")(\[scale, precision, negative\_evals, …])               | **type scale**`float`                         |
-| [`construct_circuit`](#qiskit.aqua.components.reciprocals.LongDivision.construct_circuit "qiskit.aqua.components.reciprocals.LongDivision.construct_circuit")(mode\[, register, circuit]) | Construct the Long Division Rotation circuit. |
-| [`sv_to_resvec`](#qiskit.aqua.components.reciprocals.LongDivision.sv_to_resvec "qiskit.aqua.components.reciprocals.LongDivision.sv_to_resvec")(statevector, num\_q)                       | Convert statevector to result vector.         |
+    *   **mode** (*str*) – construction mode, ‘matrix’ not supported
+    *   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – input register, typically output register of Eigenvalues
+    *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Quantum Circuit or None
 
-### construct\_circuit
+    **Returns**
 
-<span id="qiskit.aqua.components.reciprocals.LongDivision.construct_circuit" />
+    containing the Long Division Rotation circuit.
 
-`construct_circuit(mode, register=None, circuit=None)`
+    **Return type**
 
-Construct the Long Division Rotation circuit.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Parameters**
+    **Raises**
 
-*   **mode** (*str*) – construction mode, ‘matrix’ not supported
-*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – input register, typically output register of Eigenvalues
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Quantum Circuit or None
+    **NotImplementedError** – mode not supported
+  </Function>
 
-**Returns**
+  ### sv\_to\_resvec
 
-containing the Long Division Rotation circuit.
+  <Function id="qiskit.aqua.components.reciprocals.LongDivision.sv_to_resvec" name="sv_to_resvec" signature="sv_to_resvec(statevector, num_q)">
+    Convert statevector to result vector.
 
-**Return type**
+    **Parameters**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    *   **statevector** (*list*) – The statevector from simulation.
+    *   **num\_q** (*int*) – Number of qubits of result register.
 
-**Raises**
+    **Returns**
 
-**NotImplementedError** – mode not supported
-
-### sv\_to\_resvec
-
-<span id="qiskit.aqua.components.reciprocals.LongDivision.sv_to_resvec" />
-
-`sv_to_resvec(statevector, num_q)`
-
-Convert statevector to result vector.
-
-**Parameters**
-
-*   **statevector** (*list*) – The statevector from simulation.
-*   **num\_q** (*int*) – Number of qubits of result register.
-
-**Returns**
-
-The result vector.
+    The result vector.
+  </Function>
+</Class>
 

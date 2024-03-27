@@ -8,113 +8,107 @@ python_api_name: qiskit.algorithms.TrotterQRTE
 
 # TrotterQRTE
 
-<span id="qiskit.algorithms.TrotterQRTE" />
+<Class id="qiskit.algorithms.TrotterQRTE" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/evolvers/trotterization/trotter_qrte.py" signature="qiskit.algorithms.TrotterQRTE(product_formula=None, expectation=None, quantum_instance=None)">
+  Bases: [`RealEvolver`](qiskit.algorithms.RealEvolver "qiskit.algorithms.evolvers.real_evolver.RealEvolver")
 
-`qiskit.algorithms.TrotterQRTE(product_formula=None, expectation=None, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/evolvers/trotterization/trotter_qrte.py "view source code")
+  Deprecated: Quantum Real Time Evolution using Trotterization.
 
-Bases: [`RealEvolver`](qiskit.algorithms.RealEvolver "qiskit.algorithms.evolvers.real_evolver.RealEvolver")
+  The TrotterQRTE class has been superseded by the [`qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE`](qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE "qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE") class. This class will be deprecated in a future release and subsequently removed after that.
 
-Deprecated: Quantum Real Time Evolution using Trotterization.
+  Type of Trotterization is defined by a ProductFormula provided.
 
-The TrotterQRTE class has been superseded by the [`qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE`](qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE "qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE") class. This class will be deprecated in a future release and subsequently removed after that.
+  Examples:
 
-Type of Trotterization is defined by a ProductFormula provided.
+  ```python
+  from qiskit.opflow import X, Z, Zero
+  from qiskit.algorithms import EvolutionProblem, TrotterQRTE
+  from qiskit import BasicAer
+  from qiskit.utils import QuantumInstance
 
-Examples:
+  operator = X + Z
+  initial_state = Zero
+  time = 1
+  evolution_problem = EvolutionProblem(operator, 1, initial_state)
+  # LieTrotter with 1 rep
+  backend = BasicAer.get_backend("statevector_simulator")
+  quantum_instance = QuantumInstance(backend=backend)
+  trotter_qrte = TrotterQRTE(quantum_instance=quantum_instance)
+  evolved_state = trotter_qrte.evolve(evolution_problem).evolved_state
+  ```
 
-```python
-from qiskit.opflow import X, Z, Zero
-from qiskit.algorithms import EvolutionProblem, TrotterQRTE
-from qiskit import BasicAer
-from qiskit.utils import QuantumInstance
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.algorithms.evolvers.trotterization.trotter_qrte.TrotterQRTE` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the class `qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  </Admonition>
 
-operator = X + Z
-initial_state = Zero
-time = 1
-evolution_problem = EvolutionProblem(operator, 1, initial_state)
-# LieTrotter with 1 rep
-backend = BasicAer.get_backend("statevector_simulator")
-quantum_instance = QuantumInstance(backend=backend)
-trotter_qrte = TrotterQRTE(quantum_instance=quantum_instance)
-evolved_state = trotter_qrte.evolve(evolution_problem).evolved_state
-```
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.algorithms.evolvers.trotterization.trotter_qrte.TrotterQRTE` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the class `qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+  *   **product\_formula** ([*ProductFormula*](qiskit.synthesis.ProductFormula "qiskit.synthesis.ProductFormula") *| None*) – A Lie-Trotter-Suzuki product formula. The default is the Lie-Trotter first order product formula with a single repetition.
+  *   **expectation** ([*ExpectationBase*](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase") *| None*) – An instance of ExpectationBase which defines a method for calculating expectation values of EvolutionProblem.aux\_operators.
+  *   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – A quantum instance used for calculating expectation values of EvolutionProblem.aux\_operators.
 
-**Parameters**
+  ## Attributes
 
-*   **product\_formula** ([*ProductFormula*](qiskit.synthesis.ProductFormula "qiskit.synthesis.ProductFormula") *| None*) – A Lie-Trotter-Suzuki product formula. The default is the Lie-Trotter first order product formula with a single repetition.
-*   **expectation** ([*ExpectationBase*](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase") *| None*) – An instance of ExpectationBase which defines a method for calculating expectation values of EvolutionProblem.aux\_operators.
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – A quantum instance used for calculating expectation values of EvolutionProblem.aux\_operators.
+  ### expectation
 
-## Attributes
+  <Attribute id="qiskit.algorithms.TrotterQRTE.expectation" name="expectation">
+    Returns an expectation used in the algorithm.
+  </Attribute>
 
-<span id="qiskit.algorithms.TrotterQRTE.expectation" />
+  ### product\_formula
 
-### expectation
+  <Attribute id="qiskit.algorithms.TrotterQRTE.product_formula" name="product_formula">
+    Returns a product formula used in the algorithm.
+  </Attribute>
 
-Returns an expectation used in the algorithm.
+  ### quantum\_instance
 
-<span id="qiskit.algorithms.TrotterQRTE.product_formula" />
+  <Attribute id="qiskit.algorithms.TrotterQRTE.quantum_instance" name="quantum_instance">
+    Returns a quantum instance used in the algorithm.
+  </Attribute>
 
-### product\_formula
+  ## Methods
 
-Returns a product formula used in the algorithm.
+  ### evolve
 
-<span id="qiskit.algorithms.TrotterQRTE.quantum_instance" />
+  <Function id="qiskit.algorithms.TrotterQRTE.evolve" name="evolve" signature="evolve(evolution_problem)">
+    Evolves a quantum state for a given time using the Trotterization method based on a product formula provided. The result is provided in the form of a quantum circuit. If auxiliary operators are included in the `evolution_problem`, they are evaluated on an evolved state using a backend provided.
 
-### quantum\_instance
+    <Admonition title="Note" type="note">
+      Time-dependent Hamiltonians are not yet supported.
+    </Admonition>
 
-Returns a quantum instance used in the algorithm.
+    **Parameters**
 
-## Methods
+    **evolution\_problem** ([*EvolutionProblem*](qiskit.algorithms.EvolutionProblem "qiskit.algorithms.evolvers.evolution_problem.EvolutionProblem")) – Instance defining evolution problem. For the included Hamiltonian, `PauliOp`, `SummedOp` or `PauliSumOp` are supported by TrotterQRTE.
 
-### evolve
+    **Returns**
 
-<span id="qiskit.algorithms.TrotterQRTE.evolve" />
+    Evolution result that includes an evolved state as a quantum circuit and, optionally, auxiliary operators evaluated for a resulting state on a backend.
 
-`evolve(evolution_problem)`
+    **Raises**
 
-Evolves a quantum state for a given time using the Trotterization method based on a product formula provided. The result is provided in the form of a quantum circuit. If auxiliary operators are included in the `evolution_problem`, they are evaluated on an evolved state using a backend provided.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `t_param` is not set to None in the EvolutionProblem (feature not currently supported).
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the `initial_state` is not provided in the EvolutionProblem.
 
-<Admonition title="Note" type="note">
-  Time-dependent Hamiltonians are not yet supported.
-</Admonition>
+    **Return type**
 
-**Parameters**
+    [*EvolutionResult*](qiskit.algorithms.EvolutionResult "qiskit.algorithms.evolvers.evolution_result.EvolutionResult")
+  </Function>
 
-**evolution\_problem** ([*EvolutionProblem*](qiskit.algorithms.EvolutionProblem "qiskit.algorithms.evolvers.evolution_problem.EvolutionProblem")) – Instance defining evolution problem. For the included Hamiltonian, `PauliOp`, `SummedOp` or `PauliSumOp` are supported by TrotterQRTE.
+  ### supports\_aux\_operators
 
-**Returns**
+  <Function id="qiskit.algorithms.TrotterQRTE.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-Evolution result that includes an evolved state as a quantum circuit and, optionally, auxiliary operators evaluated for a resulting state on a backend.
+    **Returns**
 
-**Raises**
+    **True if `aux_operators` expectations in the EvolutionProblem can be evaluated, False**
 
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `t_param` is not set to None in the EvolutionProblem (feature not currently supported).
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the `initial_state` is not provided in the EvolutionProblem.
+    otherwise.
 
-**Return type**
+    **Return type**
 
-[*EvolutionResult*](qiskit.algorithms.EvolutionResult "qiskit.algorithms.evolvers.evolution_result.EvolutionResult")
-
-### supports\_aux\_operators
-
-<span id="qiskit.algorithms.TrotterQRTE.supports_aux_operators" />
-
-`classmethod supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-**Returns**
-
-**True if `aux_operators` expectations in the EvolutionProblem can be evaluated, False**
-
-otherwise.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
+</Class>
 

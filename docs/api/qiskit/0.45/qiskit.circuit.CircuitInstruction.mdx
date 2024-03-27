@@ -8,75 +8,63 @@ python_api_name: qiskit.circuit.CircuitInstruction
 
 # CircuitInstruction
 
-<span id="qiskit.circuit.CircuitInstruction" />
+<Class id="qiskit.circuit.CircuitInstruction" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/quantumcircuitdata.py" signature="qiskit.circuit.CircuitInstruction(operation, qubits=(), clbits=())">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.circuit.CircuitInstruction(operation, qubits=(), clbits=())` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/quantumcircuitdata.py "view source code")
+  A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), comprised of the [`operation`](#qiskit.circuit.CircuitInstruction.operation "qiskit.circuit.CircuitInstruction.operation") and various operands.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  <Admonition title="Note" type="note">
+    There is some possible confusion in the names of this class, [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), and [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation"), and this class’s attribute [`operation`](#qiskit.circuit.CircuitInstruction.operation "qiskit.circuit.CircuitInstruction.operation"). Our preferred terminology is by analogy to assembly languages, where an “instruction” is made up of an “operation” and its “operands”.
 
-A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), comprised of the [`operation`](#qiskit.circuit.CircuitInstruction.operation "qiskit.circuit.CircuitInstruction.operation") and various operands.
+    Historically, [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") came first, and originally contained the qubits it operated on and any parameters, so it was a true “instruction”. Over time, [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") became responsible for tracking qubits and clbits, and the class became better described as an “operation”. Changing the name of such a core object would be a very unpleasant API break for users, and so we have stuck with it.
 
-<Admonition title="Note" type="note">
-  There is some possible confusion in the names of this class, [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), and [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation"), and this class’s attribute [`operation`](#qiskit.circuit.CircuitInstruction.operation "qiskit.circuit.CircuitInstruction.operation"). Our preferred terminology is by analogy to assembly languages, where an “instruction” is made up of an “operation” and its “operands”.
+    This class was created to provide a formal “instruction” context object in `QuantumCircuit.data`, which had long been made of ad-hoc tuples. With this, and the advent of the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") interface for adding more complex objects to circuits, we took the opportunity to correct the historical naming. For the time being, this leads to an awkward case where [`CircuitInstruction.operation`](#qiskit.circuit.CircuitInstruction.operation "qiskit.circuit.CircuitInstruction.operation") is often an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instance ([`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") implements the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") interface), but as the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") interface gains more use, this confusion will hopefully abate.
+  </Admonition>
 
-  Historically, [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") came first, and originally contained the qubits it operated on and any parameters, so it was a true “instruction”. Over time, [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") became responsible for tracking qubits and clbits, and the class became better described as an “operation”. Changing the name of such a core object would be a very unpleasant API break for users, and so we have stuck with it.
+  <Admonition title="Warning" type="caution">
+    This is a lightweight internal class and there is minimal error checking; you must respect the type hints when using it. It is the user’s responsibility to ensure that direct mutations of the object do not invalidate the types, nor the restrictions placed on it by its context. Typically this will mean, for example, that [`qubits`](#qiskit.circuit.CircuitInstruction.qubits "qiskit.circuit.CircuitInstruction.qubits") must be a sequence of distinct items, with no duplicates.
+  </Admonition>
 
-  This class was created to provide a formal “instruction” context object in `QuantumCircuit.data`, which had long been made of ad-hoc tuples. With this, and the advent of the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") interface for adding more complex objects to circuits, we took the opportunity to correct the historical naming. For the time being, this leads to an awkward case where [`CircuitInstruction.operation`](#qiskit.circuit.CircuitInstruction.operation "qiskit.circuit.CircuitInstruction.operation") is often an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instance ([`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") implements the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") interface), but as the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") interface gains more use, this confusion will hopefully abate.
-</Admonition>
+  ## Attributes
 
-<Admonition title="Warning" type="caution">
-  This is a lightweight internal class and there is minimal error checking; you must respect the type hints when using it. It is the user’s responsibility to ensure that direct mutations of the object do not invalidate the types, nor the restrictions placed on it by its context. Typically this will mean, for example, that [`qubits`](#qiskit.circuit.CircuitInstruction.qubits "qiskit.circuit.CircuitInstruction.qubits") must be a sequence of distinct items, with no duplicates.
-</Admonition>
+  ### operation
 
-## Attributes
+  <Attribute id="qiskit.circuit.CircuitInstruction.operation" name="operation" attributeTypeHint="Operation">
+    The logical operation that this instruction represents an execution of.
+  </Attribute>
 
-<span id="qiskit.circuit.CircuitInstruction.operation" />
+  ### qubits
 
-### operation
+  <Attribute id="qiskit.circuit.CircuitInstruction.qubits" name="qubits" attributeTypeHint="Tuple[Qubit, ...]">
+    A sequence of the qubits that the operation is applied to.
+  </Attribute>
 
-`Operation`
+  ### clbits
 
-The logical operation that this instruction represents an execution of.
+  <Attribute id="qiskit.circuit.CircuitInstruction.clbits" name="clbits" attributeTypeHint="Tuple[Clbit, ...]">
+    A sequence of the classical bits that this operation reads from or writes to.
+  </Attribute>
 
-<span id="qiskit.circuit.CircuitInstruction.qubits" />
+  ## Methods
 
-### qubits
+  ### copy
 
-`Tuple[Qubit, ...]`
+  <Function id="qiskit.circuit.CircuitInstruction.copy" name="copy" signature="copy()">
+    Return a shallow copy of the [`CircuitInstruction`](#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction").
 
-A sequence of the qubits that the operation is applied to.
+    **Return type**
 
-<span id="qiskit.circuit.CircuitInstruction.clbits" />
+    [*CircuitInstruction*](#qiskit.circuit.CircuitInstruction "qiskit.circuit.quantumcircuitdata.CircuitInstruction")
+  </Function>
 
-### clbits
+  ### replace
 
-`Tuple[Clbit, ...]`
+  <Function id="qiskit.circuit.CircuitInstruction.replace" name="replace" signature="replace(operation=None, qubits=None, clbits=None)">
+    Return a new [`CircuitInstruction`](#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") with the given fields replaced.
 
-A sequence of the classical bits that this operation reads from or writes to.
+    **Return type**
 
-## Methods
-
-### copy
-
-<span id="qiskit.circuit.CircuitInstruction.copy" />
-
-`copy()`
-
-Return a shallow copy of the [`CircuitInstruction`](#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction").
-
-**Return type**
-
-[*CircuitInstruction*](#qiskit.circuit.CircuitInstruction "qiskit.circuit.quantumcircuitdata.CircuitInstruction")
-
-### replace
-
-<span id="qiskit.circuit.CircuitInstruction.replace" />
-
-`replace(operation=None, qubits=None, clbits=None)`
-
-Return a new [`CircuitInstruction`](#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") with the given fields replaced.
-
-**Return type**
-
-[*CircuitInstruction*](#qiskit.circuit.CircuitInstruction "qiskit.circuit.quantumcircuitdata.CircuitInstruction")
+    [*CircuitInstruction*](#qiskit.circuit.CircuitInstruction "qiskit.circuit.quantumcircuitdata.CircuitInstruction")
+  </Function>
+</Class>
 

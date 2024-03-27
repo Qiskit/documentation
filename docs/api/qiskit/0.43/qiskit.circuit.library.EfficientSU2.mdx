@@ -8,339 +8,327 @@ python_api_name: qiskit.circuit.library.EfficientSU2
 
 # EfficientSU2
 
-<span id="qiskit.circuit.library.EfficientSU2" />
+<Class id="qiskit.circuit.library.EfficientSU2" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/n_local/efficient_su2.py" signature="EfficientSU2(num_qubits=None, su2_gates=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='EfficientSU2')">
+  Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
-`EfficientSU2(num_qubits=None, su2_gates=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='EfficientSU2')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/n_local/efficient_su2.py "view source code")
+  The hardware efficient SU(2) 2-local circuit.
 
-Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
+  The `EfficientSU2` circuit consists of layers of single qubit operations spanned by SU(2) and $CX$ entanglements. This is a heuristic pattern that can be used to prepare trial wave functions for variational quantum algorithms or classification circuit for machine learning.
 
-The hardware efficient SU(2) 2-local circuit.
+  SU(2) stands for special unitary group of degree 2, its elements are $2 \times 2$ unitary matrices with determinant 1, such as the Pauli rotation gates.
 
-The `EfficientSU2` circuit consists of layers of single qubit operations spanned by SU(2) and $CX$ entanglements. This is a heuristic pattern that can be used to prepare trial wave functions for variational quantum algorithms or classification circuit for machine learning.
+  On 3 qubits and using the Pauli $Y$ and $Z$ su2\_gates as single qubit gates, the hardware efficient SU(2) circuit is represented by:
 
-SU(2) stands for special unitary group of degree 2, its elements are $2 \times 2$ unitary matrices with determinant 1, such as the Pauli rotation gates.
+  ```python
+  ┌──────────┐┌──────────┐ ░            ░       ░ ┌───────────┐┌───────────┐
+  ┤ RY(θ[0]) ├┤ RZ(θ[3]) ├─░────────■───░─ ... ─░─┤ RY(θ[12]) ├┤ RZ(θ[15]) ├
+  ├──────────┤├──────────┤ ░      ┌─┴─┐ ░       ░ ├───────────┤├───────────┤
+  ┤ RY(θ[1]) ├┤ RZ(θ[4]) ├─░───■──┤ X ├─░─ ... ─░─┤ RY(θ[13]) ├┤ RZ(θ[16]) ├
+  ├──────────┤├──────────┤ ░ ┌─┴─┐└───┘ ░       ░ ├───────────┤├───────────┤
+  ┤ RY(θ[2]) ├┤ RZ(θ[5]) ├─░─┤ X ├──────░─ ... ─░─┤ RY(θ[14]) ├┤ RZ(θ[17]) ├
+  └──────────┘└──────────┘ ░ └───┘      ░       ░ └───────────┘└───────────┘
+  ```
 
-On 3 qubits and using the Pauli $Y$ and $Z$ su2\_gates as single qubit gates, the hardware efficient SU(2) circuit is represented by:
+  See [`RealAmplitudes`](qiskit.circuit.library.RealAmplitudes "qiskit.circuit.library.RealAmplitudes") for more detail on the possible arguments and options such as skipping unentanglement qubits, which apply here too.
 
-```python
-┌──────────┐┌──────────┐ ░            ░       ░ ┌───────────┐┌───────────┐
-┤ RY(θ[0]) ├┤ RZ(θ[3]) ├─░────────■───░─ ... ─░─┤ RY(θ[12]) ├┤ RZ(θ[15]) ├
-├──────────┤├──────────┤ ░      ┌─┴─┐ ░       ░ ├───────────┤├───────────┤
-┤ RY(θ[1]) ├┤ RZ(θ[4]) ├─░───■──┤ X ├─░─ ... ─░─┤ RY(θ[13]) ├┤ RZ(θ[16]) ├
-├──────────┤├──────────┤ ░ ┌─┴─┐└───┘ ░       ░ ├───────────┤├───────────┤
-┤ RY(θ[2]) ├┤ RZ(θ[5]) ├─░─┤ X ├──────░─ ... ─░─┤ RY(θ[14]) ├┤ RZ(θ[17]) ├
-└──────────┘└──────────┘ ░ └───┘      ░       ░ └───────────┘└───────────┘
-```
+  **Examples**
 
-See [`RealAmplitudes`](qiskit.circuit.library.RealAmplitudes "qiskit.circuit.library.RealAmplitudes") for more detail on the possible arguments and options such as skipping unentanglement qubits, which apply here too.
+  ```python
+  >>> circuit = EfficientSU2(3, reps=1)
+  >>> print(circuit)
+       ┌──────────┐┌──────────┐          ┌──────────┐┌──────────┐
+  q_0: ┤ RY(θ[0]) ├┤ RZ(θ[3]) ├──■────■──┤ RY(θ[6]) ├┤ RZ(θ[9]) ├─────────────
+       ├──────────┤├──────────┤┌─┴─┐  │  └──────────┘├──────────┤┌───────────┐
+  q_1: ┤ RY(θ[1]) ├┤ RZ(θ[4]) ├┤ X ├──┼───────■──────┤ RY(θ[7]) ├┤ RZ(θ[10]) ├
+       ├──────────┤├──────────┤└───┘┌─┴─┐   ┌─┴─┐    ├──────────┤├───────────┤
+  q_2: ┤ RY(θ[2]) ├┤ RZ(θ[5]) ├─────┤ X ├───┤ X ├────┤ RY(θ[8]) ├┤ RZ(θ[11]) ├
+       └──────────┘└──────────┘     └───┘   └───┘    └──────────┘└───────────┘
+  ```
 
-**Examples**
+  ```python
+  >>> ansatz = EfficientSU2(4, su2_gates=['rx', 'y'], entanglement='circular', reps=1)
+  >>> qc = QuantumCircuit(4)  # create a circuit and append the RY variational form
+  >>> qc.compose(ansatz, inplace=True)
+  >>> qc.draw()
+       ┌──────────┐┌───┐┌───┐     ┌──────────┐   ┌───┐
+  q_0: ┤ RX(θ[0]) ├┤ Y ├┤ X ├──■──┤ RX(θ[4]) ├───┤ Y ├─────────────────────
+       ├──────────┤├───┤└─┬─┘┌─┴─┐└──────────┘┌──┴───┴───┐   ┌───┐
+  q_1: ┤ RX(θ[1]) ├┤ Y ├──┼──┤ X ├─────■──────┤ RX(θ[5]) ├───┤ Y ├─────────
+       ├──────────┤├───┤  │  └───┘   ┌─┴─┐    └──────────┘┌──┴───┴───┐┌───┐
+  q_2: ┤ RX(θ[2]) ├┤ Y ├──┼──────────┤ X ├─────────■──────┤ RX(θ[6]) ├┤ Y ├
+       ├──────────┤├───┤  │          └───┘       ┌─┴─┐    ├──────────┤├───┤
+  q_3: ┤ RX(θ[3]) ├┤ Y ├──■──────────────────────┤ X ├────┤ RX(θ[7]) ├┤ Y ├
+       └──────────┘└───┘                         └───┘    └──────────┘└───┘
+  ```
 
-```python
->>> circuit = EfficientSU2(3, reps=1)
->>> print(circuit)
-     ┌──────────┐┌──────────┐          ┌──────────┐┌──────────┐
-q_0: ┤ RY(θ[0]) ├┤ RZ(θ[3]) ├──■────■──┤ RY(θ[6]) ├┤ RZ(θ[9]) ├─────────────
-     ├──────────┤├──────────┤┌─┴─┐  │  └──────────┘├──────────┤┌───────────┐
-q_1: ┤ RY(θ[1]) ├┤ RZ(θ[4]) ├┤ X ├──┼───────■──────┤ RY(θ[7]) ├┤ RZ(θ[10]) ├
-     ├──────────┤├──────────┤└───┘┌─┴─┐   ┌─┴─┐    ├──────────┤├───────────┤
-q_2: ┤ RY(θ[2]) ├┤ RZ(θ[5]) ├─────┤ X ├───┤ X ├────┤ RY(θ[8]) ├┤ RZ(θ[11]) ├
-     └──────────┘└──────────┘     └───┘   └───┘    └──────────┘└───────────┘
-```
+  Create a new EfficientSU2 2-local circuit.
 
-```python
->>> ansatz = EfficientSU2(4, su2_gates=['rx', 'y'], entanglement='circular', reps=1)
->>> qc = QuantumCircuit(4)  # create a circuit and append the RY variational form
->>> qc.compose(ansatz, inplace=True)
->>> qc.draw()
-     ┌──────────┐┌───┐┌───┐     ┌──────────┐   ┌───┐
-q_0: ┤ RX(θ[0]) ├┤ Y ├┤ X ├──■──┤ RX(θ[4]) ├───┤ Y ├─────────────────────
-     ├──────────┤├───┤└─┬─┘┌─┴─┐└──────────┘┌──┴───┴───┐   ┌───┐
-q_1: ┤ RX(θ[1]) ├┤ Y ├──┼──┤ X ├─────■──────┤ RX(θ[5]) ├───┤ Y ├─────────
-     ├──────────┤├───┤  │  └───┘   ┌─┴─┐    └──────────┘┌──┴───┴───┐┌───┐
-q_2: ┤ RX(θ[2]) ├┤ Y ├──┼──────────┤ X ├─────────■──────┤ RX(θ[6]) ├┤ Y ├
-     ├──────────┤├───┤  │          └───┘       ┌─┴─┐    ├──────────┤├───┤
-q_3: ┤ RX(θ[3]) ├┤ Y ├──■──────────────────────┤ X ├────┤ RX(θ[7]) ├┤ Y ├
-     └──────────┘└───┘                         └───┘    └──────────┘└───┘
-```
+  **Parameters**
 
-Create a new EfficientSU2 2-local circuit.
+  *   **num\_qubits** (*int | None*) – The number of qubits of the EfficientSU2 circuit.
+  *   **reps** (*int*) – Specifies how often the structure of a rotation layer followed by an entanglement layer is repeated.
+  *   **su2\_gates** (*str | type |* [*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *| List\[str | type |*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – The SU(2) single qubit gates to apply in single qubit gate layers. If only one gate is provided, the same gate is applied to each qubit. If a list of gates is provided, all gates are applied to each qubit in the provided order.
+  *   **entanglement** (*str | List\[List\[int]] | Callable\[\[int], List\[int]]*) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ , ‘reverse\_linear’, ‘circular’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. Default to ‘reverse\_linear’ entanglement. Note that ‘reverse\_linear’ entanglement provides the same unitary as ‘full’ with fewer entangling gates. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
+  *   **initial\_state** (*Any | None*) – A QuantumCircuit object to prepend to the circuit.
+  *   **skip\_unentangled\_qubits** (*bool*) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
+  *   **skip\_final\_rotation\_layer** (*bool*) – If False, a rotation layer is added at the end of the ansatz. If True, no rotation layer is added.
+  *   **parameter\_prefix** (*str*) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
+  *   **insert\_barriers** (*bool*) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
 
-**Parameters**
+  ## Attributes
 
-*   **num\_qubits** (*int | None*) – The number of qubits of the EfficientSU2 circuit.
-*   **reps** (*int*) – Specifies how often the structure of a rotation layer followed by an entanglement layer is repeated.
-*   **su2\_gates** (*str | type |* [*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *| List\[str | type |*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – The SU(2) single qubit gates to apply in single qubit gate layers. If only one gate is provided, the same gate is applied to each qubit. If a list of gates is provided, all gates are applied to each qubit in the provided order.
-*   **entanglement** (*str | List\[List\[int]] | Callable\[\[int], List\[int]]*) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ , ‘reverse\_linear’, ‘circular’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. Default to ‘reverse\_linear’ entanglement. Note that ‘reverse\_linear’ entanglement provides the same unitary as ‘full’ with fewer entangling gates. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
-*   **initial\_state** (*Any | None*) – A QuantumCircuit object to prepend to the circuit.
-*   **skip\_unentangled\_qubits** (*bool*) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
-*   **skip\_final\_rotation\_layer** (*bool*) – If False, a rotation layer is added at the end of the ansatz. If True, no rotation layer is added.
-*   **parameter\_prefix** (*str*) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
-*   **insert\_barriers** (*bool*) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
+  ### ancillas
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.EfficientSU2.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.EfficientSU2.ancillas" />
+  ### calibrations
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.EfficientSU2.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
 
-<span id="qiskit.circuit.library.EfficientSU2.calibrations" />
+  ### clbits
 
-### calibrations
+  <Attribute id="qiskit.circuit.library.EfficientSU2.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-Return calibration dictionary.
+  ### data
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  <Attribute id="qiskit.circuit.library.EfficientSU2.data" name="data" />
 
-<span id="qiskit.circuit.library.EfficientSU2.clbits" />
+  ### entanglement
 
-### clbits
+  <Attribute id="qiskit.circuit.library.EfficientSU2.entanglement" name="entanglement">
+    Get the entanglement strategy.
 
-Returns a list of classical bits in the order that the registers were added.
+    **Returns**
 
-<span id="qiskit.circuit.library.EfficientSU2.data" />
+    The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
+  </Attribute>
 
-### data
+  ### entanglement\_blocks
 
-<span id="qiskit.circuit.library.EfficientSU2.entanglement" />
+  <Attribute id="qiskit.circuit.library.EfficientSU2.entanglement_blocks" name="entanglement_blocks">
+    The blocks in the entanglement layers.
 
-### entanglement
+    **Returns**
 
-Get the entanglement strategy.
+    The blocks in the entanglement layers.
+  </Attribute>
 
-**Returns**
+  ### extension\_lib
 
-The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
+  <Attribute id="qiskit.circuit.library.EfficientSU2.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-<span id="qiskit.circuit.library.EfficientSU2.entanglement_blocks" />
+  ### global\_phase
 
-### entanglement\_blocks
+  <Attribute id="qiskit.circuit.library.EfficientSU2.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
+  </Attribute>
 
-The blocks in the entanglement layers.
+  ### header
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.EfficientSU2.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-The blocks in the entanglement layers.
+  ### initial\_state
 
-<span id="qiskit.circuit.library.EfficientSU2.extension_lib" />
+  <Attribute id="qiskit.circuit.library.EfficientSU2.initial_state" name="initial_state">
+    Return the initial state that is added in front of the n-local circuit.
 
-### extension\_lib
+    **Returns**
 
-`= 'include "qelib1.inc";'`
+    The initial state.
+  </Attribute>
 
-<span id="qiskit.circuit.library.EfficientSU2.global_phase" />
+  ### insert\_barriers
 
-### global\_phase
+  <Attribute id="qiskit.circuit.library.EfficientSU2.insert_barriers" name="insert_barriers">
+    If barriers are inserted in between the layers or not.
 
-Return the global phase of the circuit in radians.
+    **Returns**
 
-<span id="qiskit.circuit.library.EfficientSU2.header" />
+    `True`, if barriers are inserted in between the layers, `False` if not.
+  </Attribute>
 
-### header
+  ### instances
 
-`= 'OPENQASM 2.0;'`
+  <Attribute id="qiskit.circuit.library.EfficientSU2.instances" name="instances" attributeValue="= 121" />
 
-<span id="qiskit.circuit.library.EfficientSU2.initial_state" />
+  ### layout
 
-### initial\_state
+  <Attribute id="qiskit.circuit.library.EfficientSU2.layout" name="layout">
+    Return any associated layout information anout the circuit
 
-Return the initial state that is added in front of the n-local circuit.
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
-**Returns**
+    There are two types of permutations caused by the [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
 
-The initial state.
+  ### metadata
 
-<span id="qiskit.circuit.library.EfficientSU2.insert_barriers" />
+  <Attribute id="qiskit.circuit.library.EfficientSU2.metadata" name="metadata">
+    The user provided metadata associated with the circuit.
 
-### insert\_barriers
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-If barriers are inserted in between the layers or not.
+  ### num\_ancillas
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.EfficientSU2.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-`True`, if barriers are inserted in between the layers, `False` if not.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.EfficientSU2.instances" />
+  <Attribute id="qiskit.circuit.library.EfficientSU2.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-### instances
+  ### num\_layers
 
-`= 121`
+  <Attribute id="qiskit.circuit.library.EfficientSU2.num_layers" name="num_layers">
+    Return the number of layers in the n-local circuit.
 
-<span id="qiskit.circuit.library.EfficientSU2.layout" />
+    **Returns**
 
-### layout
+    The number of layers in the circuit.
+  </Attribute>
 
-Return any associated layout information anout the circuit
+  ### num\_parameters
 
-This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+  <Attribute id="qiskit.circuit.library.EfficientSU2.num_parameters" name="num_parameters" />
 
-There are two types of permutations caused by the [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  ### num\_parameters\_settable
 
-<span id="qiskit.circuit.library.EfficientSU2.metadata" />
+  <Attribute id="qiskit.circuit.library.EfficientSU2.num_parameters_settable" name="num_parameters_settable">
+    The number of total parameters that can be set to distinct values.
 
-### metadata
+    This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
 
-The user provided metadata associated with the circuit.
+    **Returns**
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    The number of parameters originally available in the circuit.
 
-<span id="qiskit.circuit.library.EfficientSU2.num_ancillas" />
+    <Admonition title="Note" type="note">
+      This quantity does not require the circuit to be built yet.
+    </Admonition>
+  </Attribute>
 
-### num\_ancillas
+  ### num\_qubits
 
-Return the number of ancilla qubits.
+  <Attribute id="qiskit.circuit.library.EfficientSU2.num_qubits" name="num_qubits">
+    Returns the number of qubits in this circuit.
 
-<span id="qiskit.circuit.library.EfficientSU2.num_clbits" />
+    **Returns**
 
-### num\_clbits
+    The number of qubits.
+  </Attribute>
 
-Return number of classical bits.
+  ### op\_start\_times
 
-<span id="qiskit.circuit.library.EfficientSU2.num_layers" />
+  <Attribute id="qiskit.circuit.library.EfficientSU2.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-### num\_layers
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-Return the number of layers in the n-local circuit.
+    **Returns**
 
-**Returns**
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-The number of layers in the circuit.
+    **Raises**
 
-<span id="qiskit.circuit.library.EfficientSU2.num_parameters" />
+    **AttributeError** – When circuit is not scheduled.
+  </Attribute>
 
-### num\_parameters
+  ### ordered\_parameters
 
-<span id="qiskit.circuit.library.EfficientSU2.num_parameters_settable" />
+  <Attribute id="qiskit.circuit.library.EfficientSU2.ordered_parameters" name="ordered_parameters">
+    The parameters used in the underlying circuit.
 
-### num\_parameters\_settable
+    This includes float values and duplicates.
 
-The number of total parameters that can be set to distinct values.
+    **Examples**
 
-This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
+    ```python
+    >>> # prepare circuit ...
+    >>> print(nlocal)
+         ┌───────┐┌──────────┐┌──────────┐┌──────────┐
+    q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
+         └───────┘└──────────┘└──────────┘└──────────┘
+    >>> nlocal.parameters
+    {Parameter(θ[1]), Parameter(θ[3])}
+    >>> nlocal.ordered_parameters
+    [1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
+    ```
 
-**Returns**
+    **Returns**
 
-The number of parameters originally available in the circuit.
+    The parameters objects used in the circuit.
+  </Attribute>
 
-<Admonition title="Note" type="note">
-  This quantity does not require the circuit to be built yet.
-</Admonition>
+  ### parameter\_bounds
 
-<span id="qiskit.circuit.library.EfficientSU2.num_qubits" />
+  <Attribute id="qiskit.circuit.library.EfficientSU2.parameter_bounds" name="parameter_bounds">
+    Return the parameter bounds.
 
-### num\_qubits
+    **Returns**
 
-Returns the number of qubits in this circuit.
+    The parameter bounds.
+  </Attribute>
 
-**Returns**
+  ### parameters
 
-The number of qubits.
+  <Attribute id="qiskit.circuit.library.EfficientSU2.parameters" name="parameters" />
 
-<span id="qiskit.circuit.library.EfficientSU2.op_start_times" />
+  ### preferred\_init\_points
 
-### op\_start\_times
+  <Attribute id="qiskit.circuit.library.EfficientSU2.preferred_init_points" name="preferred_init_points">
+    The initial points for the parameters. Can be stored as initial guess in optimization.
 
-Return a list of operation start times.
+    **Returns**
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    The initial values for the parameters, or None, if none have been set.
+  </Attribute>
 
-**Returns**
+  ### prefix
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+  <Attribute id="qiskit.circuit.library.EfficientSU2.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-**Raises**
+  ### qregs
 
-**AttributeError** – When circuit is not scheduled.
+  <Attribute id="qiskit.circuit.library.EfficientSU2.qregs" name="qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-<span id="qiskit.circuit.library.EfficientSU2.ordered_parameters" />
+  ### qubits
 
-### ordered\_parameters
+  <Attribute id="qiskit.circuit.library.EfficientSU2.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
 
-The parameters used in the underlying circuit.
+  ### reps
 
-This includes float values and duplicates.
+  <Attribute id="qiskit.circuit.library.EfficientSU2.reps" name="reps">
+    The number of times rotation and entanglement block are repeated.
 
-**Examples**
+    **Returns**
 
-```python
->>> # prepare circuit ...
->>> print(nlocal)
-     ┌───────┐┌──────────┐┌──────────┐┌──────────┐
-q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
-     └───────┘└──────────┘└──────────┘└──────────┘
->>> nlocal.parameters
-{Parameter(θ[1]), Parameter(θ[3])}
->>> nlocal.ordered_parameters
-[1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
-```
+    The number of repetitions.
+  </Attribute>
 
-**Returns**
+  ### rotation\_blocks
 
-The parameters objects used in the circuit.
+  <Attribute id="qiskit.circuit.library.EfficientSU2.rotation_blocks" name="rotation_blocks">
+    The blocks in the rotation layers.
 
-<span id="qiskit.circuit.library.EfficientSU2.parameter_bounds" />
+    **Returns**
 
-### parameter\_bounds
-
-Return the parameter bounds.
-
-**Returns**
-
-The parameter bounds.
-
-<span id="qiskit.circuit.library.EfficientSU2.parameters" />
-
-### parameters
-
-<span id="qiskit.circuit.library.EfficientSU2.preferred_init_points" />
-
-### preferred\_init\_points
-
-The initial points for the parameters. Can be stored as initial guess in optimization.
-
-**Returns**
-
-The initial values for the parameters, or None, if none have been set.
-
-<span id="qiskit.circuit.library.EfficientSU2.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.EfficientSU2.qregs" />
-
-### qregs
-
-`list[QuantumRegister]`
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.EfficientSU2.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-<span id="qiskit.circuit.library.EfficientSU2.reps" />
-
-### reps
-
-The number of times rotation and entanglement block are repeated.
-
-**Returns**
-
-The number of repetitions.
-
-<span id="qiskit.circuit.library.EfficientSU2.rotation_blocks" />
-
-### rotation\_blocks
-
-The blocks in the rotation layers.
-
-**Returns**
-
-The blocks in the rotation layers.
+    The blocks in the rotation layers.
+  </Attribute>
+</Class>
 

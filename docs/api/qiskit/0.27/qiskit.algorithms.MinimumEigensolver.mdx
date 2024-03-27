@@ -8,66 +8,58 @@ python_api_name: qiskit.algorithms.MinimumEigensolver
 
 # qiskit.algorithms.MinimumEigensolver
 
-<span id="qiskit.algorithms.MinimumEigensolver" />
+<Class id="qiskit.algorithms.MinimumEigensolver" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/minimum_eigen_solvers/minimum_eigen_solver.py" signature="MinimumEigensolver">
+  The Minimum Eigensolver Interface.
 
-`MinimumEigensolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/minimum_eigen_solvers/minimum_eigen_solver.py "view source code")
+  Algorithms that can compute a minimum eigenvalue for an operator may implement this interface to allow different algorithms to be used interchangeably.
 
-The Minimum Eigensolver Interface.
+  ### \_\_init\_\_
 
-Algorithms that can compute a minimum eigenvalue for an operator may implement this interface to allow different algorithms to be used interchangeably.
+  <Function id="qiskit.algorithms.MinimumEigensolver.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.algorithms.MinimumEigensolver.__init__" />
+  |                                                                                                                                                                                    |                                                                              |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.MinimumEigensolver.__init__ "qiskit.algorithms.MinimumEigensolver.__init__")()                                                                     | Initialize self.                                                             |
+  | [`compute_minimum_eigenvalue`](#qiskit.algorithms.MinimumEigensolver.compute_minimum_eigenvalue "qiskit.algorithms.MinimumEigensolver.compute_minimum_eigenvalue")(operator\[, …]) | Computes minimum eigenvalue.                                                 |
+  | [`supports_aux_operators`](#qiskit.algorithms.MinimumEigensolver.supports_aux_operators "qiskit.algorithms.MinimumEigensolver.supports_aux_operators")()                           | Whether computing the expectation value of auxiliary operators is supported. |
 
-`__init__()`
+  ### compute\_minimum\_eigenvalue
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.algorithms.MinimumEigensolver.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="abstract compute_minimum_eigenvalue(operator, aux_operators=None)">
+    Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                                    |                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.MinimumEigensolver.__init__ "qiskit.algorithms.MinimumEigensolver.__init__")()                                                                     | Initialize self.                                                             |
-| [`compute_minimum_eigenvalue`](#qiskit.algorithms.MinimumEigensolver.compute_minimum_eigenvalue "qiskit.algorithms.MinimumEigensolver.compute_minimum_eigenvalue")(operator\[, …]) | Computes minimum eigenvalue.                                                 |
-| [`supports_aux_operators`](#qiskit.algorithms.MinimumEigensolver.supports_aux_operators "qiskit.algorithms.MinimumEigensolver.supports_aux_operators")()                           | Whether computing the expectation value of auxiliary operators is supported. |
+    *   **operator** (`OperatorBase`) – Qubit operator of the Observable
+    *   **aux\_operators** (`Optional`\[`List`\[`Optional`\[`OperatorBase`]]]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
 
-### compute\_minimum\_eigenvalue
+    **Return type**
 
-<span id="qiskit.algorithms.MinimumEigensolver.compute_minimum_eigenvalue" />
+    `MinimumEigensolverResult`
 
-`abstract compute_minimum_eigenvalue(operator, aux_operators=None)`
+    **Returns**
 
-Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
+    MinimumEigensolverResult
+  </Function>
 
-**Parameters**
+  ### supports\_aux\_operators
 
-*   **operator** (`OperatorBase`) – Qubit operator of the Observable
-*   **aux\_operators** (`Optional`\[`List`\[`Optional`\[`OperatorBase`]]]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
+  <Function id="qiskit.algorithms.MinimumEigensolver.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-**Return type**
+    If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
 
-`MinimumEigensolverResult`
+    **Return type**
 
-**Returns**
+    `bool`
 
-MinimumEigensolverResult
+    **Returns**
 
-### supports\_aux\_operators
-
-<span id="qiskit.algorithms.MinimumEigensolver.supports_aux_operators" />
-
-`classmethod supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
+    True if aux\_operator expectations can be evaluated, False otherwise
+  </Function>
+</Class>
 

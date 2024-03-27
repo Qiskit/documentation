@@ -8,172 +8,154 @@ python_api_name: qiskit.chemistry.algorithms.QEomEE
 
 # qiskit.chemistry.algorithms.QEomEE
 
-<span id="qiskit.chemistry.algorithms.QEomEE" />
+<Class id="qiskit.chemistry.algorithms.QEomEE" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/eigen_solvers/q_eom_ee.py" signature="QEomEE(operator, num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, active_occupied=None, active_unoccupied=None, is_eom_matrix_symmetric=True, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None)">
+  QEomEE algorithm (classical)
 
-`QEomEE(operator, num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, active_occupied=None, active_unoccupied=None, is_eom_matrix_symmetric=True, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/eigen_solvers/q_eom_ee.py "view source code")
+  **Parameters**
 
-QEomEE algorithm (classical)
+  *   **operator** (`LegacyBaseOperator`) – qubit operator
+  *   **num\_orbitals** (`int`) – total number of spin orbitals, has a min. value of 1.
+  *   **num\_particles** (`Union`\[`List`\[`int`], `int`]) – number of particles, if it is a list, the first number is alpha and the second number if beta.
+  *   **qubit\_mapping** (`str`) – qubit mapping type
+  *   **two\_qubit\_reduction** (`bool`) – two qubit reduction is applied or not
+  *   **active\_occupied** (`Optional`\[`List`\[`int`]]) – list of occupied orbitals to include, indices are 0 to n where n is num particles // 2
+  *   **active\_unoccupied** (`Optional`\[`List`\[`int`]]) – list of unoccupied orbitals to include, indices are 0 to m where m is (num\_orbitals - num particles) // 2
+  *   **is\_eom\_matrix\_symmetric** (`bool`) – is EoM matrix symmetric
+  *   **se\_list** (`Optional`\[`List`\[`List`\[`int`]]]) – single excitation list, overwrite the setting in active space
+  *   **de\_list** (`Optional`\[`List`\[`List`\[`int`]]]) – double excitation list, overwrite the setting in active space
+  *   **z2\_symmetries** (`Optional`\[`Z2Symmetries`]) – represent the Z2 symmetries
+  *   **untapered\_op** (`Optional`\[`LegacyBaseOperator`]) – if the operator is tapered, we need untapered operator to build element of EoM matrix
+  *   **aux\_operators** (`Optional`\[`List`\[`LegacyBaseOperator`]]) – Auxiliary operators to be evaluated at each eigenvalue
 
-**Parameters**
+  **Raises**
 
-*   **operator** (`LegacyBaseOperator`) – qubit operator
-*   **num\_orbitals** (`int`) – total number of spin orbitals, has a min. value of 1.
-*   **num\_particles** (`Union`\[`List`\[`int`], `int`]) – number of particles, if it is a list, the first number is alpha and the second number if beta.
-*   **qubit\_mapping** (`str`) – qubit mapping type
-*   **two\_qubit\_reduction** (`bool`) – two qubit reduction is applied or not
-*   **active\_occupied** (`Optional`\[`List`\[`int`]]) – list of occupied orbitals to include, indices are 0 to n where n is num particles // 2
-*   **active\_unoccupied** (`Optional`\[`List`\[`int`]]) – list of unoccupied orbitals to include, indices are 0 to m where m is (num\_orbitals - num particles) // 2
-*   **is\_eom\_matrix\_symmetric** (`bool`) – is EoM matrix symmetric
-*   **se\_list** (`Optional`\[`List`\[`List`\[`int`]]]) – single excitation list, overwrite the setting in active space
-*   **de\_list** (`Optional`\[`List`\[`List`\[`int`]]]) – double excitation list, overwrite the setting in active space
-*   **z2\_symmetries** (`Optional`\[`Z2Symmetries`]) – represent the Z2 symmetries
-*   **untapered\_op** (`Optional`\[`LegacyBaseOperator`]) – if the operator is tapered, we need untapered operator to build element of EoM matrix
-*   **aux\_operators** (`Optional`\[`List`\[`LegacyBaseOperator`]]) – Auxiliary operators to be evaluated at each eigenvalue
+  **ValueError** – invalid parameter
 
-**Raises**
+  ### \_\_init\_\_
 
-**ValueError** – invalid parameter
+  <Function id="qiskit.chemistry.algorithms.QEomEE.__init__" name="__init__" signature="__init__(operator, num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, active_occupied=None, active_unoccupied=None, is_eom_matrix_symmetric=True, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **operator** (`LegacyBaseOperator`) – qubit operator
+    *   **num\_orbitals** (`int`) – total number of spin orbitals, has a min. value of 1.
+    *   **num\_particles** (`Union`\[`List`\[`int`], `int`]) – number of particles, if it is a list, the first number is alpha and the second number if beta.
+    *   **qubit\_mapping** (`str`) – qubit mapping type
+    *   **two\_qubit\_reduction** (`bool`) – two qubit reduction is applied or not
+    *   **active\_occupied** (`Optional`\[`List`\[`int`]]) – list of occupied orbitals to include, indices are 0 to n where n is num particles // 2
+    *   **active\_unoccupied** (`Optional`\[`List`\[`int`]]) – list of unoccupied orbitals to include, indices are 0 to m where m is (num\_orbitals - num particles) // 2
+    *   **is\_eom\_matrix\_symmetric** (`bool`) – is EoM matrix symmetric
+    *   **se\_list** (`Optional`\[`List`\[`List`\[`int`]]]) – single excitation list, overwrite the setting in active space
+    *   **de\_list** (`Optional`\[`List`\[`List`\[`int`]]]) – double excitation list, overwrite the setting in active space
+    *   **z2\_symmetries** (`Optional`\[`Z2Symmetries`]) – represent the Z2 symmetries
+    *   **untapered\_op** (`Optional`\[`LegacyBaseOperator`]) – if the operator is tapered, we need untapered operator to build element of EoM matrix
+    *   **aux\_operators** (`Optional`\[`List`\[`LegacyBaseOperator`]]) – Auxiliary operators to be evaluated at each eigenvalue
 
-<span id="qiskit.chemistry.algorithms.QEomEE.__init__" />
+    **Raises**
 
-`__init__(operator, num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, active_occupied=None, active_unoccupied=None, is_eom_matrix_symmetric=True, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None)`
+    **ValueError** – invalid parameter
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **operator** (`LegacyBaseOperator`) – qubit operator
-*   **num\_orbitals** (`int`) – total number of spin orbitals, has a min. value of 1.
-*   **num\_particles** (`Union`\[`List`\[`int`], `int`]) – number of particles, if it is a list, the first number is alpha and the second number if beta.
-*   **qubit\_mapping** (`str`) – qubit mapping type
-*   **two\_qubit\_reduction** (`bool`) – two qubit reduction is applied or not
-*   **active\_occupied** (`Optional`\[`List`\[`int`]]) – list of occupied orbitals to include, indices are 0 to n where n is num particles // 2
-*   **active\_unoccupied** (`Optional`\[`List`\[`int`]]) – list of unoccupied orbitals to include, indices are 0 to m where m is (num\_orbitals - num particles) // 2
-*   **is\_eom\_matrix\_symmetric** (`bool`) – is EoM matrix symmetric
-*   **se\_list** (`Optional`\[`List`\[`List`\[`int`]]]) – single excitation list, overwrite the setting in active space
-*   **de\_list** (`Optional`\[`List`\[`List`\[`int`]]]) – double excitation list, overwrite the setting in active space
-*   **z2\_symmetries** (`Optional`\[`Z2Symmetries`]) – represent the Z2 symmetries
-*   **untapered\_op** (`Optional`\[`LegacyBaseOperator`]) – if the operator is tapered, we need untapered operator to build element of EoM matrix
-*   **aux\_operators** (`Optional`\[`List`\[`LegacyBaseOperator`]]) – Auxiliary operators to be evaluated at each eigenvalue
+  |                                                                                                                                                                                |                                                                              |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.algorithms.QEomEE.__init__ "qiskit.chemistry.algorithms.QEomEE.__init__")(operator, num\_orbitals, num\_particles)                              | **type operator**`LegacyBaseOperator`                                        |
+  | [`compute_minimum_eigenvalue`](#qiskit.chemistry.algorithms.QEomEE.compute_minimum_eigenvalue "qiskit.chemistry.algorithms.QEomEE.compute_minimum_eigenvalue")(\[operator, …]) | Computes minimum eigenvalue.                                                 |
+  | [`run`](#qiskit.chemistry.algorithms.QEomEE.run "qiskit.chemistry.algorithms.QEomEE.run")()                                                                                    | Execute the classical algorithm.                                             |
+  | [`supports_aux_operators`](#qiskit.chemistry.algorithms.QEomEE.supports_aux_operators "qiskit.chemistry.algorithms.QEomEE.supports_aux_operators")()                           | Whether computing the expectation value of auxiliary operators is supported. |
 
-**Raises**
+  ## Attributes
 
-**ValueError** – invalid parameter
+  |                                                                                                                                  |                                     |
+  | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+  | [`aux_operators`](#qiskit.chemistry.algorithms.QEomEE.aux_operators "qiskit.chemistry.algorithms.QEomEE.aux_operators")          | Returns the auxiliary operators.    |
+  | [`filter_criterion`](#qiskit.chemistry.algorithms.QEomEE.filter_criterion "qiskit.chemistry.algorithms.QEomEE.filter_criterion") | returns the filter criterion if set |
+  | [`operator`](#qiskit.chemistry.algorithms.QEomEE.operator "qiskit.chemistry.algorithms.QEomEE.operator")                         | Return the operator.                |
+  | [`random`](#qiskit.chemistry.algorithms.QEomEE.random "qiskit.chemistry.algorithms.QEomEE.random")                               | Return a numpy random.              |
 
-## Methods
+  ### aux\_operators
 
-|                                                                                                                                                                                |                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.algorithms.QEomEE.__init__ "qiskit.chemistry.algorithms.QEomEE.__init__")(operator, num\_orbitals, num\_particles)                              | **type operator**`LegacyBaseOperator`                                        |
-| [`compute_minimum_eigenvalue`](#qiskit.chemistry.algorithms.QEomEE.compute_minimum_eigenvalue "qiskit.chemistry.algorithms.QEomEE.compute_minimum_eigenvalue")(\[operator, …]) | Computes minimum eigenvalue.                                                 |
-| [`run`](#qiskit.chemistry.algorithms.QEomEE.run "qiskit.chemistry.algorithms.QEomEE.run")()                                                                                    | Execute the classical algorithm.                                             |
-| [`supports_aux_operators`](#qiskit.chemistry.algorithms.QEomEE.supports_aux_operators "qiskit.chemistry.algorithms.QEomEE.supports_aux_operators")()                           | Whether computing the expectation value of auxiliary operators is supported. |
+  <Function id="qiskit.chemistry.algorithms.QEomEE.aux_operators" name="aux_operators" signature="property aux_operators">
+    Returns the auxiliary operators.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                  |                                     |
-| -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| [`aux_operators`](#qiskit.chemistry.algorithms.QEomEE.aux_operators "qiskit.chemistry.algorithms.QEomEE.aux_operators")          | Returns the auxiliary operators.    |
-| [`filter_criterion`](#qiskit.chemistry.algorithms.QEomEE.filter_criterion "qiskit.chemistry.algorithms.QEomEE.filter_criterion") | returns the filter criterion if set |
-| [`operator`](#qiskit.chemistry.algorithms.QEomEE.operator "qiskit.chemistry.algorithms.QEomEE.operator")                         | Return the operator.                |
-| [`random`](#qiskit.chemistry.algorithms.QEomEE.random "qiskit.chemistry.algorithms.QEomEE.random")                               | Return a numpy random.              |
+    `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
+  </Function>
 
-### aux\_operators
+  ### compute\_minimum\_eigenvalue
 
-<span id="qiskit.chemistry.algorithms.QEomEE.aux_operators" />
+  <Function id="qiskit.chemistry.algorithms.QEomEE.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="compute_minimum_eigenvalue(operator=None, aux_operators=None)">
+    Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
-`property aux_operators`
+    **Parameters**
 
-Returns the auxiliary operators.
+    *   **operator** (`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]) – If not None replaces operator in algorithm
+    *   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – If not None replaces aux\_operators in algorithm
 
-**Return type**
+    **Return type**
 
-`Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
+    `MinimumEigensolverResult`
 
-### compute\_minimum\_eigenvalue
+    **Returns**
 
-<span id="qiskit.chemistry.algorithms.QEomEE.compute_minimum_eigenvalue" />
+    MinimumEigensolverResult
+  </Function>
 
-`compute_minimum_eigenvalue(operator=None, aux_operators=None)`
+  ### filter\_criterion
 
-Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
+  <Function id="qiskit.chemistry.algorithms.QEomEE.filter_criterion" name="filter_criterion" signature="property filter_criterion">
+    returns the filter criterion if set
 
-**Parameters**
+    **Return type**
 
-*   **operator** (`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]) – If not None replaces operator in algorithm
-*   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – If not None replaces aux\_operators in algorithm
+    `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
+  </Function>
 
-**Return type**
+  ### operator
 
-`MinimumEigensolverResult`
+  <Function id="qiskit.chemistry.algorithms.QEomEE.operator" name="operator" signature="property operator">
+    Return the operator.
 
-**Returns**
+    **Return type**
 
-MinimumEigensolverResult
+    `Optional`\[`OperatorBase`]
+  </Function>
 
-### filter\_criterion
+  ### random
 
-<span id="qiskit.chemistry.algorithms.QEomEE.filter_criterion" />
+  <Function id="qiskit.chemistry.algorithms.QEomEE.random" name="random" signature="property random">
+    Return a numpy random.
+  </Function>
 
-`property filter_criterion`
+  ### run
 
-returns the filter criterion if set
+  <Function id="qiskit.chemistry.algorithms.QEomEE.run" name="run" signature="run()">
+    Execute the classical algorithm.
 
-**Return type**
+    **Returns**
 
-`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
+    results of an algorithm.
 
-### operator
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.QEomEE.operator" />
+    dict
+  </Function>
 
-`property operator`
+  ### supports\_aux\_operators
 
-Return the operator.
+  <Function id="qiskit.chemistry.algorithms.QEomEE.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-**Return type**
+    If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
 
-`Optional`\[`OperatorBase`]
+    **Return type**
 
-### random
+    `bool`
 
-<span id="qiskit.chemistry.algorithms.QEomEE.random" />
+    **Returns**
 
-`property random`
-
-Return a numpy random.
-
-### run
-
-<span id="qiskit.chemistry.algorithms.QEomEE.run" />
-
-`run()`
-
-Execute the classical algorithm.
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-### supports\_aux\_operators
-
-<span id="qiskit.chemistry.algorithms.QEomEE.supports_aux_operators" />
-
-`classmethod supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
+    True if aux\_operator expectations can be evaluated, False otherwise
+  </Function>
+</Class>
 

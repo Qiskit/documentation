@@ -8,128 +8,122 @@ python_api_name: qiskit.circuit.library.RVGate
 
 # RVGate
 
-<span id="qiskit.circuit.library.RVGate" />
+<Class id="qiskit.circuit.library.RVGate" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/rv.py" signature="RVGate(v_x, v_y, v_z, basis='U')">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`RVGate(v_x, v_y, v_z, basis='U')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/rv.py "view source code")
+  Rotation around arbitrary rotation axis $v$ where $|v|$ is angle of rotation in radians.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rv()`](qiskit.circuit.QuantumCircuit#rv "qiskit.circuit.QuantumCircuit.rv") method.
 
-Rotation around arbitrary rotation axis $v$ where $|v|$ is angle of rotation in radians.
+  **Circuit symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rv()`](qiskit.circuit.QuantumCircuit#rv "qiskit.circuit.QuantumCircuit.rv") method.
+  ```python
+       ┌─────────────────┐
+  q_0: ┤ RV(v_x,v_y,v_z) ├
+       └─────────────────┘
+  ```
 
-**Circuit symbol:**
+  **Matrix Representation:**
 
-```python
-     ┌─────────────────┐
-q_0: ┤ RV(v_x,v_y,v_z) ├
-     └─────────────────┘
-```
+  $$
+  \begin{split}\newcommand{\th}{|\vec{v}|}
+  \newcommand{\sinc}{\text{sinc}}
+      R(\vec{v}) = e^{-i \vec{v}\cdot\vec{\sigma}} =
+          \begin{pmatrix}
+              \cos\left(\th\right) -i v_z \sinc\left(\th\right)
+              & -(i v_x + v_y) \sinc\left(\th\right) \\
+              -(i v_x - v_y) \sinc\left(\th\right)
+              & \cos\left(\th\right) + i v_z \sinc\left(\th\right)
+          \end{pmatrix}\end{split}
+  $$
 
-**Matrix Representation:**
+  Create new rv single-qubit gate.
 
-$$
-\begin{split}\newcommand{\th}{|\vec{v}|}
-\newcommand{\sinc}{\text{sinc}}
-    R(\vec{v}) = e^{-i \vec{v}\cdot\vec{\sigma}} =
-        \begin{pmatrix}
-            \cos\left(\th\right) -i v_z \sinc\left(\th\right)
-            & -(i v_x + v_y) \sinc\left(\th\right) \\
-            -(i v_x - v_y) \sinc\left(\th\right)
-            & \cos\left(\th\right) + i v_z \sinc\left(\th\right)
-        \end{pmatrix}\end{split}
-$$
+  **Parameters**
 
-Create new rv single-qubit gate.
+  *   **v\_x** (*float*) – x-component
+  *   **v\_y** (*float*) – y-component
+  *   **v\_z** (*float*) – z-component
+  *   **basis** (*str, optional*) – basis (see [`OneQubitEulerDecomposer`](qiskit.quantum_info.OneQubitEulerDecomposer "qiskit.quantum_info.synthesis.one_qubit_decompose.OneQubitEulerDecomposer"))
 
-**Parameters**
+  ## Methods Defined Here
 
-*   **v\_x** (*float*) – x-component
-*   **v\_y** (*float*) – y-component
-*   **v\_z** (*float*) – z-component
-*   **basis** (*str, optional*) – basis (see [`OneQubitEulerDecomposer`](qiskit.quantum_info.OneQubitEulerDecomposer "qiskit.quantum_info.synthesis.one_qubit_decompose.OneQubitEulerDecomposer"))
+  <span id="qiskit-circuit-library-rvgate-inverse" />
 
-## Methods Defined Here
+  ### inverse
 
-<span id="qiskit-circuit-library-rvgate-inverse" />
+  <Function id="qiskit.circuit.library.RVGate.inverse" signature="RVGate.inverse()">
+    Invert this gate.
+  </Function>
 
-### inverse
+  <span id="qiskit-circuit-library-rvgate-to-matrix" />
 
-<span id="qiskit.circuit.library.RVGate.inverse" />
+  ### to\_matrix
 
-`RVGate.inverse()`
+  <Function id="qiskit.circuit.library.RVGate.to_matrix" signature="RVGate.to_matrix()">
+    Return a numpy.array for the R(v) gate.
+  </Function>
 
-Invert this gate.
+  ## Attributes
 
-<span id="qiskit-circuit-library-rvgate-to-matrix" />
+  ### condition\_bits
 
-### to\_matrix
+  <Attribute id="qiskit.circuit.library.RVGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RVGate.to_matrix" />
+  ### decompositions
 
-`RVGate.to_matrix()`
+  <Attribute id="qiskit.circuit.library.RVGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Return a numpy.array for the R(v) gate.
+  ### definition
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.RVGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RVGate.condition_bits" />
+  ### duration
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.RVGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Get Clbits in condition.
+  ### label
 
-<span id="qiskit.circuit.library.RVGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.RVGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-### decompositions
+  ### name
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.RVGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RVGate.definition" />
+  ### num\_clbits
 
-### definition
+  <Attribute id="qiskit.circuit.library.RVGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.RVGate.duration" />
+  <Attribute id="qiskit.circuit.library.RVGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-### duration
+  ### params
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.RVGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RVGate.label" />
+  ### unit
 
-### label
-
-Return instruction label
-
-<span id="qiskit.circuit.library.RVGate.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.RVGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.RVGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.RVGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.RVGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.RVGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

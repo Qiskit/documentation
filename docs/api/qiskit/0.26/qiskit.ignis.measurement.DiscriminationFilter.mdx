@@ -8,108 +8,98 @@ python_api_name: qiskit.ignis.measurement.DiscriminationFilter
 
 # qiskit.ignis.measurement.DiscriminationFilter
 
-<span id="qiskit.ignis.measurement.DiscriminationFilter" />
+<Class id="qiskit.ignis.measurement.DiscriminationFilter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/filters.py" signature="DiscriminationFilter(discriminator, base=None)">
+  Implements a filter based on a discriminator that takes level 1 data to level 2 data.
 
-`DiscriminationFilter(discriminator, base=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/filters.py "view source code")
+  **Usage:**
 
-Implements a filter based on a discriminator that takes level 1 data to level 2 data.
+  my\_filter = DiscriminationFilter(my\_discriminator) new\_result = filter.apply(level\_1\_data)
 
-**Usage:**
+  **Parameters**
 
-my\_filter = DiscriminationFilter(my\_discriminator) new\_result = filter.apply(level\_1\_data)
+  *   **discriminator** (*BaseDiscriminationFitter*) – a discriminator that maps level 1 data to level 2 data. - Level 1 data may correspond to, e. g., IQ data. - Level 2 data is the state counts.
+  *   **base** (`Optional`\[`int`]) – the base of the expected states. If it is not given the base is inferred from the expected\_state instance of discriminator.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **discriminator** (*BaseDiscriminationFitter*) – a discriminator that maps level 1 data to level 2 data. - Level 1 data may correspond to, e. g., IQ data. - Level 2 data is the state counts.
-*   **base** (`Optional`\[`int`]) – the base of the expected states. If it is not given the base is inferred from the expected\_state instance of discriminator.
+  <Function id="qiskit.ignis.measurement.DiscriminationFilter.__init__" name="__init__" signature="__init__(discriminator, base=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **discriminator** (*BaseDiscriminationFitter*) – a discriminator that maps level 1 data to level 2 data. - Level 1 data may correspond to, e. g., IQ data. - Level 2 data is the state counts.
+    *   **base** (`Optional`\[`int`]) – the base of the expected states. If it is not given the base is inferred from the expected\_state instance of discriminator.
+  </Function>
 
-<span id="qiskit.ignis.measurement.DiscriminationFilter.__init__" />
+  ## Methods
 
-`__init__(discriminator, base=None)`
+  |                                                                                                                                                        |                                                                                    |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.ignis.measurement.DiscriminationFilter.__init__ "qiskit.ignis.measurement.DiscriminationFilter.__init__")(discriminator\[, base]) | **type discriminator**`BaseDiscriminationFitter`                                   |
+  | [`apply`](#qiskit.ignis.measurement.DiscriminationFilter.apply "qiskit.ignis.measurement.DiscriminationFilter.apply")(raw\_data)                       | Create a new result from the raw\_data by converting level 1 data to level 2 data. |
+  | [`count`](#qiskit.ignis.measurement.DiscriminationFilter.count "qiskit.ignis.measurement.DiscriminationFilter.count")(y\_data)                         | Converts discriminated results into raw counts.                                    |
+  | [`get_base`](#qiskit.ignis.measurement.DiscriminationFilter.get_base "qiskit.ignis.measurement.DiscriminationFilter.get_base")(expected\_states)       | Returns the base inferred from expected\_states.                                   |
 
-**Parameters**
+  ### apply
 
-*   **discriminator** (*BaseDiscriminationFitter*) – a discriminator that maps level 1 data to level 2 data. - Level 1 data may correspond to, e. g., IQ data. - Level 2 data is the state counts.
-*   **base** (`Optional`\[`int`]) – the base of the expected states. If it is not given the base is inferred from the expected\_state instance of discriminator.
+  <Function id="qiskit.ignis.measurement.DiscriminationFilter.apply" name="apply" signature="apply(raw_data)">
+    Create a new result from the raw\_data by converting level 1 data to level 2 data.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                        |                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.ignis.measurement.DiscriminationFilter.__init__ "qiskit.ignis.measurement.DiscriminationFilter.__init__")(discriminator\[, base]) | **type discriminator**`BaseDiscriminationFitter`                                   |
-| [`apply`](#qiskit.ignis.measurement.DiscriminationFilter.apply "qiskit.ignis.measurement.DiscriminationFilter.apply")(raw\_data)                       | Create a new result from the raw\_data by converting level 1 data to level 2 data. |
-| [`count`](#qiskit.ignis.measurement.DiscriminationFilter.count "qiskit.ignis.measurement.DiscriminationFilter.count")(y\_data)                         | Converts discriminated results into raw counts.                                    |
-| [`get_base`](#qiskit.ignis.measurement.DiscriminationFilter.get_base "qiskit.ignis.measurement.DiscriminationFilter.get_base")(expected\_states)       | Returns the base inferred from expected\_states.                                   |
+    **raw\_data** (`Result`) – list of qiskit.Result or qiskit.Result.
 
-### apply
+    **Return type**
 
-<span id="qiskit.ignis.measurement.DiscriminationFilter.apply" />
+    `Result`
 
-`apply(raw_data)`
+    **Returns**
 
-Create a new result from the raw\_data by converting level 1 data to level 2 data.
+    A list of qiskit.Result or qiskit.Result.
+  </Function>
 
-**Parameters**
+  ### count
 
-**raw\_data** (`Result`) – list of qiskit.Result or qiskit.Result.
+  <Function id="qiskit.ignis.measurement.DiscriminationFilter.count" name="count" signature="count(y_data)">
+    Converts discriminated results into raw counts.
 
-**Return type**
+    **Parameters**
 
-`Result`
+    **y\_data** (`List`\[`str`]) – result of a discrimination.
 
-**Returns**
+    **Return type**
 
-A list of qiskit.Result or qiskit.Result.
+    `dict`
 
-### count
+    **Returns**
 
-<span id="qiskit.ignis.measurement.DiscriminationFilter.count" />
+    A dict of raw counts.
+  </Function>
 
-`count(y_data)`
+  ### get\_base
 
-Converts discriminated results into raw counts.
+  <Function id="qiskit.ignis.measurement.DiscriminationFilter.get_base" name="get_base" signature="static get_base(expected_states)">
+    Returns the base inferred from expected\_states.
 
-**Parameters**
+    The intent is to allow users to discriminate states higher than 0/1.
 
-**y\_data** (`List`\[`str`]) – result of a discrimination.
+    DiscriminationFilter infers the basis from the expected states to allow users to discriminate states outside of the computational sub-space. For example, if the discriminated states are 00, 01, 02, 10, 11, …, 22 the basis will be 3.
 
-**Return type**
+    With this implementation the basis can be at most 10.
 
-`dict`
+    **Parameters**
 
-**Returns**
+    **expected\_states** (`dict`) –
 
-A dict of raw counts.
+    **Returns**
 
-### get\_base
+    the base inferred from the expected states
 
-<span id="qiskit.ignis.measurement.DiscriminationFilter.get_base" />
+    **Return type**
 
-`static get_base(expected_states)`
+    int
 
-Returns the base inferred from expected\_states.
+    **Raises**
 
-The intent is to allow users to discriminate states higher than 0/1.
-
-DiscriminationFilter infers the basis from the expected states to allow users to discriminate states outside of the computational sub-space. For example, if the discriminated states are 00, 01, 02, 10, 11, …, 22 the basis will be 3.
-
-With this implementation the basis can be at most 10.
-
-**Parameters**
-
-**expected\_states** (`dict`) –
-
-**Returns**
-
-the base inferred from the expected states
-
-**Return type**
-
-int
-
-**Raises**
-
-**QiskitError** – if there is an invalid input in the expected states
+    **QiskitError** – if there is an invalid input in the expected states
+  </Function>
+</Class>
 

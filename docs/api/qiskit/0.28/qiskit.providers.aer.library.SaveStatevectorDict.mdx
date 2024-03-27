@@ -8,306 +8,264 @@ python_api_name: qiskit.providers.aer.library.SaveStatevectorDict
 
 # qiskit.providers.aer.library.SaveStatevectorDict
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict" />
+<Class id="qiskit.providers.aer.library.SaveStatevectorDict" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_statevector.py" signature="SaveStatevectorDict(num_qubits, label='statevector_dict', pershot=False, conditional=False)">
+  Save statevector as ket-form dictionary.
 
-`SaveStatevectorDict(num_qubits, label='statevector_dict', pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_statevector.py "view source code")
+  Create new instruction to save the simulator statevector as a dict.
 
-Save statevector as ket-form dictionary.
+  **Parameters**
 
-Create new instruction to save the simulator statevector as a dict.
+  *   **num\_qubits** (*int*) – the number of qubits
+  *   **label** (*str*) – the key for retrieving saved data from results.
+  *   **pershot** (*bool*) – if True save a list of statevectors for each shot of the simulation rather than a single statevector \[Default: False].
+  *   **conditional** (*bool*) – if True save data conditional on the current classical register values \[Default: False].
 
-**Parameters**
+  <Admonition title="Note" type="note">
+    This save instruction must always be performed on the full width of qubits in a circuit, otherwise an exception will be raised during simulation.
+  </Admonition>
 
-*   **num\_qubits** (*int*) – the number of qubits
-*   **label** (*str*) – the key for retrieving saved data from results.
-*   **pershot** (*bool*) – if True save a list of statevectors for each shot of the simulation rather than a single statevector \[Default: False].
-*   **conditional** (*bool*) – if True save data conditional on the current classical register values \[Default: False].
+  ### \_\_init\_\_
 
-<Admonition title="Note" type="note">
-  This save instruction must always be performed on the full width of qubits in a circuit, otherwise an exception will be raised during simulation.
-</Admonition>
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.__init__" name="__init__" signature="__init__(num_qubits, label='statevector_dict', pershot=False, conditional=False)">
+    Create new instruction to save the simulator statevector as a dict.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.__init__" />
+    *   **num\_qubits** (*int*) – the number of qubits
+    *   **label** (*str*) – the key for retrieving saved data from results.
+    *   **pershot** (*bool*) – if True save a list of statevectors for each shot of the simulation rather than a single statevector \[Default: False].
+    *   **conditional** (*bool*) – if True save data conditional on the current classical register values \[Default: False].
 
-`__init__(num_qubits, label='statevector_dict', pershot=False, conditional=False)`
+    <Admonition title="Note" type="note">
+      This save instruction must always be performed on the full width of qubits in a circuit, otherwise an exception will be raised during simulation.
+    </Admonition>
+  </Function>
 
-Create new instruction to save the simulator statevector as a dict.
+  ## Methods
 
-**Parameters**
+  |                                                                                                                                                                                     |                                                                          |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.providers.aer.library.SaveStatevectorDict.__init__ "qiskit.providers.aer.library.SaveStatevectorDict.__init__")(num\_qubits\[, label, pershot, …])             | Create new instruction to save the simulator statevector as a dict.      |
+  | [`add_decomposition`](#qiskit.providers.aer.library.SaveStatevectorDict.add_decomposition "qiskit.providers.aer.library.SaveStatevectorDict.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
+  | [`assemble`](#qiskit.providers.aer.library.SaveStatevectorDict.assemble "qiskit.providers.aer.library.SaveStatevectorDict.assemble")()                                              | Return the QasmQobjInstruction for the intructions.                      |
+  | [`broadcast_arguments`](#qiskit.providers.aer.library.SaveStatevectorDict.broadcast_arguments "qiskit.providers.aer.library.SaveStatevectorDict.broadcast_arguments")(qargs, cargs) | Validation of the arguments.                                             |
+  | [`c_if`](#qiskit.providers.aer.library.SaveStatevectorDict.c_if "qiskit.providers.aer.library.SaveStatevectorDict.c_if")(classical, val)                                            | Add classical condition on register or cbit classical and value val.     |
+  | [`copy`](#qiskit.providers.aer.library.SaveStatevectorDict.copy "qiskit.providers.aer.library.SaveStatevectorDict.copy")(\[name])                                                   | Copy of the instruction.                                                 |
+  | [`inverse`](#qiskit.providers.aer.library.SaveStatevectorDict.inverse "qiskit.providers.aer.library.SaveStatevectorDict.inverse")()                                                 | Special case.                                                            |
+  | [`is_parameterized`](#qiskit.providers.aer.library.SaveStatevectorDict.is_parameterized "qiskit.providers.aer.library.SaveStatevectorDict.is_parameterized")()                      | Return True .IFF.                                                        |
+  | [`mirror`](#qiskit.providers.aer.library.SaveStatevectorDict.mirror "qiskit.providers.aer.library.SaveStatevectorDict.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                              |
+  | [`qasm`](#qiskit.providers.aer.library.SaveStatevectorDict.qasm "qiskit.providers.aer.library.SaveStatevectorDict.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
+  | [`repeat`](#qiskit.providers.aer.library.SaveStatevectorDict.repeat "qiskit.providers.aer.library.SaveStatevectorDict.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
+  | [`reverse_ops`](#qiskit.providers.aer.library.SaveStatevectorDict.reverse_ops "qiskit.providers.aer.library.SaveStatevectorDict.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.      |
+  | [`soft_compare`](#qiskit.providers.aer.library.SaveStatevectorDict.soft_compare "qiskit.providers.aer.library.SaveStatevectorDict.soft_compare")(other)                             | Soft comparison between gates.                                           |
+  | [`validate_parameter`](#qiskit.providers.aer.library.SaveStatevectorDict.validate_parameter "qiskit.providers.aer.library.SaveStatevectorDict.validate_parameter")(parameter)       | Instruction parameters has no validation or normalization.               |
 
-*   **num\_qubits** (*int*) – the number of qubits
-*   **label** (*str*) – the key for retrieving saved data from results.
-*   **pershot** (*bool*) – if True save a list of statevectors for each shot of the simulation rather than a single statevector \[Default: False].
-*   **conditional** (*bool*) – if True save data conditional on the current classical register values \[Default: False].
+  ## Attributes
 
-<Admonition title="Note" type="note">
-  This save instruction must always be performed on the full width of qubits in a circuit, otherwise an exception will be raised during simulation.
-</Admonition>
+  |                                                                                                                                                        |                                                                               |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+  | [`decompositions`](#qiskit.providers.aer.library.SaveStatevectorDict.decompositions "qiskit.providers.aer.library.SaveStatevectorDict.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
+  | [`definition`](#qiskit.providers.aer.library.SaveStatevectorDict.definition "qiskit.providers.aer.library.SaveStatevectorDict.definition")             | Return definition in terms of other basic gates.                              |
+  | [`duration`](#qiskit.providers.aer.library.SaveStatevectorDict.duration "qiskit.providers.aer.library.SaveStatevectorDict.duration")                   | Get the duration.                                                             |
+  | [`label`](#qiskit.providers.aer.library.SaveStatevectorDict.label "qiskit.providers.aer.library.SaveStatevectorDict.label")                            | Return instruction label                                                      |
+  | [`params`](#qiskit.providers.aer.library.SaveStatevectorDict.params "qiskit.providers.aer.library.SaveStatevectorDict.params")                         | return instruction params.                                                    |
+  | [`unit`](#qiskit.providers.aer.library.SaveStatevectorDict.unit "qiskit.providers.aer.library.SaveStatevectorDict.unit")                               | Get the time unit of duration.                                                |
 
-## Methods
+  ### add\_decomposition
 
-|                                                                                                                                                                                     |                                                                          |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.providers.aer.library.SaveStatevectorDict.__init__ "qiskit.providers.aer.library.SaveStatevectorDict.__init__")(num\_qubits\[, label, pershot, …])             | Create new instruction to save the simulator statevector as a dict.      |
-| [`add_decomposition`](#qiskit.providers.aer.library.SaveStatevectorDict.add_decomposition "qiskit.providers.aer.library.SaveStatevectorDict.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
-| [`assemble`](#qiskit.providers.aer.library.SaveStatevectorDict.assemble "qiskit.providers.aer.library.SaveStatevectorDict.assemble")()                                              | Return the QasmQobjInstruction for the intructions.                      |
-| [`broadcast_arguments`](#qiskit.providers.aer.library.SaveStatevectorDict.broadcast_arguments "qiskit.providers.aer.library.SaveStatevectorDict.broadcast_arguments")(qargs, cargs) | Validation of the arguments.                                             |
-| [`c_if`](#qiskit.providers.aer.library.SaveStatevectorDict.c_if "qiskit.providers.aer.library.SaveStatevectorDict.c_if")(classical, val)                                            | Add classical condition on register or cbit classical and value val.     |
-| [`copy`](#qiskit.providers.aer.library.SaveStatevectorDict.copy "qiskit.providers.aer.library.SaveStatevectorDict.copy")(\[name])                                                   | Copy of the instruction.                                                 |
-| [`inverse`](#qiskit.providers.aer.library.SaveStatevectorDict.inverse "qiskit.providers.aer.library.SaveStatevectorDict.inverse")()                                                 | Special case.                                                            |
-| [`is_parameterized`](#qiskit.providers.aer.library.SaveStatevectorDict.is_parameterized "qiskit.providers.aer.library.SaveStatevectorDict.is_parameterized")()                      | Return True .IFF.                                                        |
-| [`mirror`](#qiskit.providers.aer.library.SaveStatevectorDict.mirror "qiskit.providers.aer.library.SaveStatevectorDict.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                              |
-| [`qasm`](#qiskit.providers.aer.library.SaveStatevectorDict.qasm "qiskit.providers.aer.library.SaveStatevectorDict.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
-| [`repeat`](#qiskit.providers.aer.library.SaveStatevectorDict.repeat "qiskit.providers.aer.library.SaveStatevectorDict.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
-| [`reverse_ops`](#qiskit.providers.aer.library.SaveStatevectorDict.reverse_ops "qiskit.providers.aer.library.SaveStatevectorDict.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.      |
-| [`soft_compare`](#qiskit.providers.aer.library.SaveStatevectorDict.soft_compare "qiskit.providers.aer.library.SaveStatevectorDict.soft_compare")(other)                             | Soft comparison between gates.                                           |
-| [`validate_parameter`](#qiskit.providers.aer.library.SaveStatevectorDict.validate_parameter "qiskit.providers.aer.library.SaveStatevectorDict.validate_parameter")(parameter)       | Instruction parameters has no validation or normalization.               |
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.add_decomposition" name="add_decomposition" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-## Attributes
+  ### assemble
 
-|                                                                                                                                                        |                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| [`decompositions`](#qiskit.providers.aer.library.SaveStatevectorDict.decompositions "qiskit.providers.aer.library.SaveStatevectorDict.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
-| [`definition`](#qiskit.providers.aer.library.SaveStatevectorDict.definition "qiskit.providers.aer.library.SaveStatevectorDict.definition")             | Return definition in terms of other basic gates.                              |
-| [`duration`](#qiskit.providers.aer.library.SaveStatevectorDict.duration "qiskit.providers.aer.library.SaveStatevectorDict.duration")                   | Get the duration.                                                             |
-| [`label`](#qiskit.providers.aer.library.SaveStatevectorDict.label "qiskit.providers.aer.library.SaveStatevectorDict.label")                            | Return instruction label                                                      |
-| [`params`](#qiskit.providers.aer.library.SaveStatevectorDict.params "qiskit.providers.aer.library.SaveStatevectorDict.params")                         | return instruction params.                                                    |
-| [`unit`](#qiskit.providers.aer.library.SaveStatevectorDict.unit "qiskit.providers.aer.library.SaveStatevectorDict.unit")                               | Get the time unit of duration.                                                |
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.assemble" name="assemble" signature="assemble()">
+    Return the QasmQobjInstruction for the intructions.
+  </Function>
 
-### add\_decomposition
+  ### broadcast\_arguments
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.add_decomposition" />
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.broadcast_arguments" name="broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-`add_decomposition(decomposition)`
+    **Parameters**
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-### assemble
+    **Yields**
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.assemble" />
+    *Tuple(List, List)* – A tuple with single arguments.
 
-`assemble()`
+    **Raises**
 
-Return the QasmQobjInstruction for the intructions.
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-### broadcast\_arguments
+  ### c\_if
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.broadcast_arguments" />
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.c_if" name="c_if" signature="c_if(classical, val)">
+    Add classical condition on register or cbit classical and value val.
+  </Function>
 
-`broadcast_arguments(qargs, cargs)`
+  ### copy
 
-Validation of the arguments.
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.copy" name="copy" signature="copy(name=None)">
+    Copy of the instruction.
 
-**Parameters**
+    **Parameters**
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**Yields**
+    **Returns**
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **a copy of the current instruction, with the name**
 
-**Raises**
+    updated if it was provided
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Return type**
 
-### c\_if
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.c_if" />
+  ### decompositions
 
-`c_if(classical, val)`
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.decompositions" name="decompositions" signature="property decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Function>
 
-Add classical condition on register or cbit classical and value val.
+  ### definition
 
-### copy
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.definition" name="definition" signature="property definition">
+    Return definition in terms of other basic gates.
+  </Function>
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.copy" />
+  ### duration
 
-`copy(name=None)`
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.duration" name="duration" signature="property duration">
+    Get the duration.
+  </Function>
 
-Copy of the instruction.
+  ### inverse
 
-**Parameters**
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.inverse" name="inverse" signature="inverse()">
+    Special case. Return self.
+  </Function>
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+  ### is\_parameterized
 
-**Returns**
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-**a copy of the current instruction, with the name**
+  ### label
 
-updated if it was provided
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.label" name="label" signature="property label">
+    Return instruction label
 
-**Return type**
+    **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    `str`
+  </Function>
 
-### decompositions
+  ### mirror
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.decompositions" />
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.mirror" name="mirror" signature="mirror()">
+    DEPRECATED: use instruction.reverse\_ops().
 
-`property decompositions`
+    **Returns**
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+    **a new instruction with sub-instructions**
 
-### definition
+    reversed.
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.definition" />
+    **Return type**
 
-`property definition`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Return definition in terms of other basic gates.
+  ### params
 
-### duration
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.params" name="params" signature="property params">
+    return instruction params.
+  </Function>
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.duration" />
+  ### qasm
 
-`property duration`
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.qasm" name="qasm" signature="qasm()">
+    Return a default OpenQASM string for the instruction.
 
-Get the duration.
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-### inverse
+  ### repeat
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.inverse" />
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.repeat" name="repeat" signature="repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-`inverse()`
+    **Parameters**
 
-Special case. Return self.
+    **n** (*int*) – Number of times to repeat the instruction
 
-### is\_parameterized
+    **Returns**
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.is_parameterized" />
+    Containing the definition.
 
-`is_parameterized()`
+    **Return type**
 
-Return True .IFF. instruction is parameterized else False
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-### label
+    **Raises**
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.label" />
+    **CircuitError** – If n \< 1.
+  </Function>
 
-`property label`
+  ### reverse\_ops
 
-Return instruction label
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.reverse_ops" name="reverse_ops" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-**Return type**
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-`str`
+    **Returns**
 
-### mirror
+    **a new instruction with**
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.mirror" />
+    sub-instructions reversed.
 
-`mirror()`
+    **Return type**
 
-DEPRECATED: use instruction.reverse\_ops().
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**Returns**
+  ### soft\_compare
 
-**a new instruction with sub-instructions**
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.soft_compare" name="soft_compare" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-reversed.
+    **Parameters**
 
-**Return type**
+    **other** (*instruction*) – other instruction.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Returns**
 
-### params
+    are self and other equal up to parameter expressions.
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.params" />
+    **Return type**
 
-`property params`
+    bool
+  </Function>
 
-return instruction params.
+  ### unit
 
-### qasm
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.unit" name="unit" signature="property unit">
+    Get the time unit of duration.
+  </Function>
 
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.qasm" />
+  ### validate\_parameter
 
-`qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.repeat" />
-
-`repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### reverse\_ops
-
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.reverse_ops" />
-
-`reverse_ops()`
-
-For a composite instruction, reverse the order of sub-instructions.
-
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-**a new instruction with**
-
-sub-instructions reversed.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### soft\_compare
-
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.soft_compare" />
-
-`soft_compare(other)`
-
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
-
-**Parameters**
-
-**other** (*instruction*) – other instruction.
-
-**Returns**
-
-are self and other equal up to parameter expressions.
-
-**Return type**
-
-bool
-
-### unit
-
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.unit" />
-
-`property unit`
-
-Get the time unit of duration.
-
-### validate\_parameter
-
-<span id="qiskit.providers.aer.library.SaveStatevectorDict.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
+  <Function id="qiskit.providers.aer.library.SaveStatevectorDict.validate_parameter" name="validate_parameter" signature="validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
+</Class>
 

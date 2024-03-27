@@ -8,471 +8,435 @@ python_api_name: qiskit.providers.ibmq.experiment.ExperimentService
 
 # qiskit.providers.ibmq.experiment.ExperimentService
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService" />
+<Class id="qiskit.providers.ibmq.experiment.ExperimentService" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/experiment/experimentservice.py" signature="ExperimentService(provider)">
+  Provides experiment related services.
 
-`ExperimentService(provider)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/experiment/experimentservice.py "view source code")
+  This class is the main interface to invoke IBM Quantum Experience experiment services, which allow you to create, delete, update, query, and retrieve experiments, experiment plots, and analysis results. The `experiment` attribute of `AccountProvider` is an instance of this class, and the main syntax for using the services is `provider.experiment.<action>`. For example:
 
-Provides experiment related services.
+  ```python
+  from qiskit import IBMQ
+  provider = IBMQ.load_account()
 
-This class is the main interface to invoke IBM Quantum Experience experiment services, which allow you to create, delete, update, query, and retrieve experiments, experiment plots, and analysis results. The `experiment` attribute of `AccountProvider` is an instance of this class, and the main syntax for using the services is `provider.experiment.<action>`. For example:
+  # Retrieve all experiments.
+  experiments = provider.experiment.experiments()
 
-```python
-from qiskit import IBMQ
-provider = IBMQ.load_account()
+  # Retrieve experiments with filtering.
+  experiment_filtered = provider.experiment.experiments(backend_name='foo')
 
-# Retrieve all experiments.
-experiments = provider.experiment.experiments()
+  # Retrieve a specific experiment using its ID.
+  experiment = provider.experiment.retrieve_experiment(EXPERIMENT_ID)
 
-# Retrieve experiments with filtering.
-experiment_filtered = provider.experiment.experiments(backend_name='foo')
+  # Upload a new experiment.
+  from qiskit.providers.ibmq.experiment import Experiment
+  new_exp = Experiment(
+      provider=provider,
+      backend_name=backend_name,
+      experiment_type='test',
+      tags=['qiskit-test']
+  )
+  provider.experiment.upload_experiment(new_exp)
 
-# Retrieve a specific experiment using its ID.
-experiment = provider.experiment.retrieve_experiment(EXPERIMENT_ID)
+  # Update an experiment.
+  new_exp.end_datetime = datetime.now()
+  provider.experiment.update_experiment(new_exp)
 
-# Upload a new experiment.
-from qiskit.providers.ibmq.experiment import Experiment
-new_exp = Experiment(
-    provider=provider,
-    backend_name=backend_name,
-    experiment_type='test',
-    tags=['qiskit-test']
-)
-provider.experiment.upload_experiment(new_exp)
+  # Delete an experiment.
+  provider.experiment.delete_experiment(EXPERIMENT_ID)
+  ```
 
-# Update an experiment.
-new_exp.end_datetime = datetime.now()
-provider.experiment.update_experiment(new_exp)
+  Similar syntax applies to analysis results and experiment plots. Classes [`Experiment`](qiskit.providers.ibmq.experiment.Experiment "qiskit.providers.ibmq.experiment.Experiment") and [`AnalysisResult`](qiskit.providers.ibmq.experiment.AnalysisResult "qiskit.providers.ibmq.experiment.AnalysisResult") encapsulate data of an experiment and an analysis result, respectively.
 
-# Delete an experiment.
-provider.experiment.delete_experiment(EXPERIMENT_ID)
-```
+  IBMQBackendService constructor.
 
-Similar syntax applies to analysis results and experiment plots. Classes [`Experiment`](qiskit.providers.ibmq.experiment.Experiment "qiskit.providers.ibmq.experiment.Experiment") and [`AnalysisResult`](qiskit.providers.ibmq.experiment.AnalysisResult "qiskit.providers.ibmq.experiment.AnalysisResult") encapsulate data of an experiment and an analysis result, respectively.
+  **Parameters**
 
-IBMQBackendService constructor.
+  **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**provider** (`AccountProvider`) – IBM Quantum Experience account provider.
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.__init__" name="__init__" signature="__init__(provider)">
+    IBMQBackendService constructor.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.__init__" />
+    **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
+  </Function>
 
-`__init__(provider)`
+  ## Methods
 
-IBMQBackendService constructor.
+  |                                                                                                                                                                                                      |                                                         |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+  | [`__init__`](#qiskit.providers.ibmq.experiment.ExperimentService.__init__ "qiskit.providers.ibmq.experiment.ExperimentService.__init__")(provider)                                                   | IBMQBackendService constructor.                         |
+  | [`analysis_results`](#qiskit.providers.ibmq.experiment.ExperimentService.analysis_results "qiskit.providers.ibmq.experiment.ExperimentService.analysis_results")(\[limit, backend\_name, …])         | Retrieve all analysis results, with optional filtering. |
+  | [`backends`](#qiskit.providers.ibmq.experiment.ExperimentService.backends "qiskit.providers.ibmq.experiment.ExperimentService.backends")()                                                           | Return a list of backends.                              |
+  | [`delete_analysis_result`](#qiskit.providers.ibmq.experiment.ExperimentService.delete_analysis_result "qiskit.providers.ibmq.experiment.ExperimentService.delete_analysis_result")(result)           | Delete an analysis result.                              |
+  | [`delete_experiment`](#qiskit.providers.ibmq.experiment.ExperimentService.delete_experiment "qiskit.providers.ibmq.experiment.ExperimentService.delete_experiment")(experiment)                      | Delete an experiment.                                   |
+  | [`delete_plot`](#qiskit.providers.ibmq.experiment.ExperimentService.delete_plot "qiskit.providers.ibmq.experiment.ExperimentService.delete_plot")(experiment, plot\_name)                            | Delete an experiment plot.                              |
+  | [`device_components`](#qiskit.providers.ibmq.experiment.ExperimentService.device_components "qiskit.providers.ibmq.experiment.ExperimentService.device_components")(\[backend\_name])                | Return the device components.                           |
+  | [`experiments`](#qiskit.providers.ibmq.experiment.ExperimentService.experiments "qiskit.providers.ibmq.experiment.ExperimentService.experiments")(\[limit, backend\_name, type, …])                  | Retrieve all experiments, with optional filtering.      |
+  | [`retrieve_analysis_result`](#qiskit.providers.ibmq.experiment.ExperimentService.retrieve_analysis_result "qiskit.providers.ibmq.experiment.ExperimentService.retrieve_analysis_result")(result\_id) | Retrieve an analysis result.                            |
+  | [`retrieve_experiment`](#qiskit.providers.ibmq.experiment.ExperimentService.retrieve_experiment "qiskit.providers.ibmq.experiment.ExperimentService.retrieve_experiment")(experiment\_id)            | Retrieve an experiment.                                 |
+  | [`retrieve_plot`](#qiskit.providers.ibmq.experiment.ExperimentService.retrieve_plot "qiskit.providers.ibmq.experiment.ExperimentService.retrieve_plot")(experiment, plot\_name\[, file\_name])       | Retrieve an experiment plot.                            |
+  | [`update_analysis_result`](#qiskit.providers.ibmq.experiment.ExperimentService.update_analysis_result "qiskit.providers.ibmq.experiment.ExperimentService.update_analysis_result")(result)           | Update an analysis result.                              |
+  | [`update_experiment`](#qiskit.providers.ibmq.experiment.ExperimentService.update_experiment "qiskit.providers.ibmq.experiment.ExperimentService.update_experiment")(experiment)                      | Update an experiment.                                   |
+  | [`update_plot`](#qiskit.providers.ibmq.experiment.ExperimentService.update_plot "qiskit.providers.ibmq.experiment.ExperimentService.update_plot")(experiment, plot, plot\_name)                      | Update an experiment plot.                              |
+  | [`upload_analysis_result`](#qiskit.providers.ibmq.experiment.ExperimentService.upload_analysis_result "qiskit.providers.ibmq.experiment.ExperimentService.upload_analysis_result")(result)           | Upload an analysis result.                              |
+  | [`upload_experiment`](#qiskit.providers.ibmq.experiment.ExperimentService.upload_experiment "qiskit.providers.ibmq.experiment.ExperimentService.upload_experiment")(experiment)                      | Upload a new experiment.                                |
+  | [`upload_plot`](#qiskit.providers.ibmq.experiment.ExperimentService.upload_plot "qiskit.providers.ibmq.experiment.ExperimentService.upload_plot")(experiment, plot\[, plot\_name])                   | Upload an experiment plot.                              |
 
-**Parameters**
+  ### analysis\_results
 
-**provider** (`AccountProvider`) – IBM Quantum Experience account provider.
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.analysis_results" name="analysis_results" signature="analysis_results(limit=10, backend_name=None, device_components=None, experiment_id=None, result_type=None, quality=None, verified=None)">
+    Retrieve all analysis results, with optional filtering.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                                                      |                                                         |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| [`__init__`](#qiskit.providers.ibmq.experiment.ExperimentService.__init__ "qiskit.providers.ibmq.experiment.ExperimentService.__init__")(provider)                                                   | IBMQBackendService constructor.                         |
-| [`analysis_results`](#qiskit.providers.ibmq.experiment.ExperimentService.analysis_results "qiskit.providers.ibmq.experiment.ExperimentService.analysis_results")(\[limit, backend\_name, …])         | Retrieve all analysis results, with optional filtering. |
-| [`backends`](#qiskit.providers.ibmq.experiment.ExperimentService.backends "qiskit.providers.ibmq.experiment.ExperimentService.backends")()                                                           | Return a list of backends.                              |
-| [`delete_analysis_result`](#qiskit.providers.ibmq.experiment.ExperimentService.delete_analysis_result "qiskit.providers.ibmq.experiment.ExperimentService.delete_analysis_result")(result)           | Delete an analysis result.                              |
-| [`delete_experiment`](#qiskit.providers.ibmq.experiment.ExperimentService.delete_experiment "qiskit.providers.ibmq.experiment.ExperimentService.delete_experiment")(experiment)                      | Delete an experiment.                                   |
-| [`delete_plot`](#qiskit.providers.ibmq.experiment.ExperimentService.delete_plot "qiskit.providers.ibmq.experiment.ExperimentService.delete_plot")(experiment, plot\_name)                            | Delete an experiment plot.                              |
-| [`device_components`](#qiskit.providers.ibmq.experiment.ExperimentService.device_components "qiskit.providers.ibmq.experiment.ExperimentService.device_components")(\[backend\_name])                | Return the device components.                           |
-| [`experiments`](#qiskit.providers.ibmq.experiment.ExperimentService.experiments "qiskit.providers.ibmq.experiment.ExperimentService.experiments")(\[limit, backend\_name, type, …])                  | Retrieve all experiments, with optional filtering.      |
-| [`retrieve_analysis_result`](#qiskit.providers.ibmq.experiment.ExperimentService.retrieve_analysis_result "qiskit.providers.ibmq.experiment.ExperimentService.retrieve_analysis_result")(result\_id) | Retrieve an analysis result.                            |
-| [`retrieve_experiment`](#qiskit.providers.ibmq.experiment.ExperimentService.retrieve_experiment "qiskit.providers.ibmq.experiment.ExperimentService.retrieve_experiment")(experiment\_id)            | Retrieve an experiment.                                 |
-| [`retrieve_plot`](#qiskit.providers.ibmq.experiment.ExperimentService.retrieve_plot "qiskit.providers.ibmq.experiment.ExperimentService.retrieve_plot")(experiment, plot\_name\[, file\_name])       | Retrieve an experiment plot.                            |
-| [`update_analysis_result`](#qiskit.providers.ibmq.experiment.ExperimentService.update_analysis_result "qiskit.providers.ibmq.experiment.ExperimentService.update_analysis_result")(result)           | Update an analysis result.                              |
-| [`update_experiment`](#qiskit.providers.ibmq.experiment.ExperimentService.update_experiment "qiskit.providers.ibmq.experiment.ExperimentService.update_experiment")(experiment)                      | Update an experiment.                                   |
-| [`update_plot`](#qiskit.providers.ibmq.experiment.ExperimentService.update_plot "qiskit.providers.ibmq.experiment.ExperimentService.update_plot")(experiment, plot, plot\_name)                      | Update an experiment plot.                              |
-| [`upload_analysis_result`](#qiskit.providers.ibmq.experiment.ExperimentService.upload_analysis_result "qiskit.providers.ibmq.experiment.ExperimentService.upload_analysis_result")(result)           | Upload an analysis result.                              |
-| [`upload_experiment`](#qiskit.providers.ibmq.experiment.ExperimentService.upload_experiment "qiskit.providers.ibmq.experiment.ExperimentService.upload_experiment")(experiment)                      | Upload a new experiment.                                |
-| [`upload_plot`](#qiskit.providers.ibmq.experiment.ExperimentService.upload_plot "qiskit.providers.ibmq.experiment.ExperimentService.upload_plot")(experiment, plot\[, plot\_name])                   | Upload an experiment plot.                              |
+    *   **limit** (`Optional`\[`int`]) – Number of analysis results to retrieve.
+    *   **backend\_name** (`Optional`\[`str`]) – Backend name used for filtering.
+    *   **device\_components** (`Optional`\[`List`\[`str`]]) – Filter by device components. An analysis result’s device components must match this list exactly for it to be included.
+    *   **experiment\_id** (`Optional`\[`str`]) – Experiment ID used for filtering.
+    *   **result\_type** (`Optional`\[`str`]) – Analysis result type used for filtering.
+    *   **quality** (`Optional`\[`List`\[`Tuple`\[`str`, `Union`\[`str`, `ResultQuality`]]]]) – Quality value used for filtering. Each element in this list is a tuple of an operator and a value. The operator is one of `lt`, `le`, `gt`, `ge`, and `eq`. The value is one of the `ResultQuality` values. For example, `analysis_results(quality=[('ge', 'Bad'), ('lt', 'Good')])` will return all analysis results with a quality of `Bad` and `No Information`.
+    *   **verified** (`Optional`\[`bool`]) – Indicates whether this result has been verified..
 
-### analysis\_results
+    **Return type**
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.analysis_results" />
+    `List`\[`AnalysisResult`]
 
-`analysis_results(limit=10, backend_name=None, device_components=None, experiment_id=None, result_type=None, quality=None, verified=None)`
+    **Returns**
 
-Retrieve all analysis results, with optional filtering.
+    A list of analysis results.
 
-**Parameters**
+    **Raises**
 
-*   **limit** (`Optional`\[`int`]) – Number of analysis results to retrieve.
-*   **backend\_name** (`Optional`\[`str`]) – Backend name used for filtering.
-*   **device\_components** (`Optional`\[`List`\[`str`]]) – Filter by device components. An analysis result’s device components must match this list exactly for it to be included.
-*   **experiment\_id** (`Optional`\[`str`]) – Experiment ID used for filtering.
-*   **result\_type** (`Optional`\[`str`]) – Analysis result type used for filtering.
-*   **quality** (`Optional`\[`List`\[`Tuple`\[`str`, `Union`\[`str`, `ResultQuality`]]]]) – Quality value used for filtering. Each element in this list is a tuple of an operator and a value. The operator is one of `lt`, `le`, `gt`, `ge`, and `eq`. The value is one of the `ResultQuality` values. For example, `analysis_results(quality=[('ge', 'Bad'), ('lt', 'Good')])` will return all analysis results with a quality of `Bad` and `No Information`.
-*   **verified** (`Optional`\[`bool`]) – Indicates whether this result has been verified..
+    **ValueError** – If an invalid parameter value is specified.
+  </Function>
 
-**Return type**
+  ### backends
 
-`List`\[`AnalysisResult`]
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.backends" name="backends" signature="backends()">
+    Return a list of backends.
 
-**Returns**
+    **Return type**
 
-A list of analysis results.
+    `List`\[`Dict`]
 
-**Raises**
+    **Returns**
 
-**ValueError** – If an invalid parameter value is specified.
+    A list of backends.
+  </Function>
 
-### backends
+  ### delete\_analysis\_result
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.backends" />
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.delete_analysis_result" name="delete_analysis_result" signature="delete_analysis_result(result)">
+    Delete an analysis result.
 
-`backends()`
+    **Parameters**
 
-Return a list of backends.
+    **result** (`Union`\[`AnalysisResult`, `str`]) – The `AnalysisResult` object or the analysis result UUID.
 
-**Return type**
+    <Admonition title="Note" type="note">
+      This method prompts for confirmation and requires a response before proceeding.
+    </Admonition>
 
-`List`\[`Dict`]
+    **Return type**
 
-**Returns**
+    `Optional`\[`AnalysisResult`]
 
-A list of backends.
+    **Returns**
 
-### delete\_analysis\_result
+    The deleted analysis result.
+  </Function>
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.delete_analysis_result" />
+  ### delete\_experiment
 
-`delete_analysis_result(result)`
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.delete_experiment" name="delete_experiment" signature="delete_experiment(experiment)">
+    Delete an experiment.
 
-Delete an analysis result.
+    **Parameters**
 
-**Parameters**
+    **experiment** (`Union`\[`Experiment`, `str`]) – The `Experiment` object or the experiment ID.
 
-**result** (`Union`\[`AnalysisResult`, `str`]) – The `AnalysisResult` object or the analysis result UUID.
+    <Admonition title="Note" type="note">
+      This method prompts for confirmation and requires a response before proceeding.
+    </Admonition>
 
-<Admonition title="Note" type="note">
-  This method prompts for confirmation and requires a response before proceeding.
-</Admonition>
+    **Return type**
 
-**Return type**
+    `Optional`\[`Experiment`]
 
-`Optional`\[`AnalysisResult`]
+    **Returns**
 
-**Returns**
+    Deleted experiment.
+  </Function>
 
-The deleted analysis result.
+  ### delete\_plot
 
-### delete\_experiment
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.delete_plot" name="delete_plot" signature="delete_plot(experiment, plot_name)">
+    Delete an experiment plot.
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.delete_experiment" />
+    <Admonition title="Note" type="note">
+      This method prompts for confirmation and requires a response before proceeding.
+    </Admonition>
 
-`delete_experiment(experiment)`
+    **Parameters**
 
-Delete an experiment.
+    *   **experiment** (`Union`\[`Experiment`, `str`]) – The `Experiment` object or the experiment UUID.
+    *   **plot\_name** (`str`) – Name of the plot.
 
-**Parameters**
+    **Return type**
 
-**experiment** (`Union`\[`Experiment`, `str`]) – The `Experiment` object or the experiment ID.
+    `None`
+  </Function>
 
-<Admonition title="Note" type="note">
-  This method prompts for confirmation and requires a response before proceeding.
-</Admonition>
+  ### device\_components
 
-**Return type**
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.device_components" name="device_components" signature="device_components(backend_name=None)">
+    Return the device components.
 
-`Optional`\[`Experiment`]
+    **Parameters**
 
-**Returns**
+    **backend\_name** (`Optional`\[`str`]) – Name of the backend whose components are to be retrieved.
 
-Deleted experiment.
+    **Return type**
 
-### delete\_plot
+    `List`\[`DeviceComponent`]
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.delete_plot" />
+    **Returns**
 
-`delete_plot(experiment, plot_name)`
+    A list of device components.
+  </Function>
 
-Delete an experiment plot.
+  ### experiments
 
-<Admonition title="Note" type="note">
-  This method prompts for confirmation and requires a response before proceeding.
-</Admonition>
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.experiments" name="experiments" signature="experiments(limit=10, backend_name=None, type=None, start_datetime=None, end_datetime=None, device_components=None, tags=None, tags_operator='OR', hub=None, group=None, project=None, exclude_public=False, public_only=False, exclude_mine=False, mine_only=False)">
+    Retrieve all experiments, with optional filtering.
 
-**Parameters**
+    By default, results returned are as inclusive as possible. For example, if you don’t specify any filters, all experiments visible to you are returned. This includes your own experiments as well as those shared with you, from all providers you have access to (not just from the provider you used to invoke this experiment service).
 
-*   **experiment** (`Union`\[`Experiment`, `str`]) – The `Experiment` object or the experiment UUID.
-*   **plot\_name** (`str`) – Name of the plot.
+    **Parameters**
 
-**Return type**
+    *   **limit** (`Optional`\[`int`]) – Number of experiments to retrieve. `None` indicates no limit.
 
-`None`
+    *   **backend\_name** (`Optional`\[`str`]) – Backend name used for filtering.
 
-### device\_components
+    *   **type** (`Optional`\[`str`]) – Experiment type used for filtering.
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.device_components" />
+    *   **start\_datetime** (`Optional`\[`datetime`]) – Filter by the given start timestamp, in local time. This is used to find experiments whose start date/time is after (greater than or equal to) this local timestamp.
 
-`device_components(backend_name=None)`
+    *   **end\_datetime** (`Optional`\[`datetime`]) – Filter by the given end timestamp, in local time. This is used to find experiments whose start date/time is before (less than or equal to) this local timestamp.
 
-Return the device components.
+    *   **device\_components** (`Optional`\[`List`\[`str`]]) – Filter by device components. An experiment must have analysis results with device components matching the given list exactly to be included.
 
-**Parameters**
+    *   **tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to experiments.
 
-**backend\_name** (`Optional`\[`str`]) – Name of the backend whose components are to be retrieved.
+    *   **tags\_operator** (`Optional`\[`str`]) –
 
-**Return type**
+        Logical operator to use when filtering by job tags. Valid values are “AND” and “OR”:
 
-`List`\[`DeviceComponent`]
+        > *   If “AND” is specified, then an experiment must have all of the tags specified in tags to be included.
+        > *   If “OR” is specified, then an experiment only needs to have any of the tags specified in tags to be included.
 
-**Returns**
+    *   **hub** (`Optional`\[`str`]) – Filter by hub.
 
-A list of device components.
+    *   **group** (`Optional`\[`str`]) – Filter by hub and group. hub must also be specified if group is.
 
-### experiments
+    *   **project** (`Optional`\[`str`]) – Filter by hub, group, and project. hub and group must also be specified if project is.
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.experiments" />
+    *   **exclude\_public** (`Optional`\[`bool`]) – If `True`, experiments with `share_level=public` (that is, experiments visible to all users) will not be returned. Cannot be `True` if public\_only is `True`.
 
-`experiments(limit=10, backend_name=None, type=None, start_datetime=None, end_datetime=None, device_components=None, tags=None, tags_operator='OR', hub=None, group=None, project=None, exclude_public=False, public_only=False, exclude_mine=False, mine_only=False)`
+    *   **public\_only** (`Optional`\[`bool`]) – If `True`, only experiments with `share_level=public` (that is, experiments visible to all users) will be returned. Cannot be `True` if exclude\_public is `True`.
 
-Retrieve all experiments, with optional filtering.
+    *   **exclude\_mine** (`Optional`\[`bool`]) – If `True`, experiments where I am the owner will not be returned. Cannot be `True` if mine\_only is `True`.
 
-By default, results returned are as inclusive as possible. For example, if you don’t specify any filters, all experiments visible to you are returned. This includes your own experiments as well as those shared with you, from all providers you have access to (not just from the provider you used to invoke this experiment service).
+    *   **mine\_only** (`Optional`\[`bool`]) – If `True`, only experiments where I am the owner will be returned. Cannot be `True` if exclude\_mine is `True`.
 
-**Parameters**
+    **Return type**
 
-*   **limit** (`Optional`\[`int`]) – Number of experiments to retrieve. `None` indicates no limit.
+    `List`\[`Experiment`]
 
-*   **backend\_name** (`Optional`\[`str`]) – Backend name used for filtering.
+    **Returns**
 
-*   **type** (`Optional`\[`str`]) – Experiment type used for filtering.
+    A list of experiments.
 
-*   **start\_datetime** (`Optional`\[`datetime`]) – Filter by the given start timestamp, in local time. This is used to find experiments whose start date/time is after (greater than or equal to) this local timestamp.
+    **Raises**
 
-*   **end\_datetime** (`Optional`\[`datetime`]) – Filter by the given end timestamp, in local time. This is used to find experiments whose start date/time is before (less than or equal to) this local timestamp.
+    **ValueError** – If an invalid parameter value is specified.
+  </Function>
 
-*   **device\_components** (`Optional`\[`List`\[`str`]]) – Filter by device components. An experiment must have analysis results with device components matching the given list exactly to be included.
+  ### retrieve\_analysis\_result
 
-*   **tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to experiments.
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.retrieve_analysis_result" name="retrieve_analysis_result" signature="retrieve_analysis_result(result_id)">
+    Retrieve an analysis result.
 
-*   **tags\_operator** (`Optional`\[`str`]) –
+    **Parameters**
 
-    Logical operator to use when filtering by job tags. Valid values are “AND” and “OR”:
+    **result\_id** (`str`) – Analysis result UUID.
 
-    > *   If “AND” is specified, then an experiment must have all of the tags specified in tags to be included.
-    > *   If “OR” is specified, then an experiment only needs to have any of the tags specified in tags to be included.
+    **Return type**
 
-*   **hub** (`Optional`\[`str`]) – Filter by hub.
+    `AnalysisResult`
 
-*   **group** (`Optional`\[`str`]) – Filter by hub and group. hub must also be specified if group is.
+    **Returns**
 
-*   **project** (`Optional`\[`str`]) – Filter by hub, group, and project. hub and group must also be specified if project is.
+    Retrieved analysis result.
 
-*   **exclude\_public** (`Optional`\[`bool`]) – If `True`, experiments with `share_level=public` (that is, experiments visible to all users) will not be returned. Cannot be `True` if public\_only is `True`.
+    **Raises**
 
-*   **public\_only** (`Optional`\[`bool`]) – If `True`, only experiments with `share_level=public` (that is, experiments visible to all users) will be returned. Cannot be `True` if exclude\_public is `True`.
+    *   **AnalysisResultNotFoundError** – If the analysis result is not found.
+    *   **RequestsApiError** – If an unexpected error occurred when retrieving analysis result from the server.
+  </Function>
 
-*   **exclude\_mine** (`Optional`\[`bool`]) – If `True`, experiments where I am the owner will not be returned. Cannot be `True` if mine\_only is `True`.
+  ### retrieve\_experiment
 
-*   **mine\_only** (`Optional`\[`bool`]) – If `True`, only experiments where I am the owner will be returned. Cannot be `True` if exclude\_mine is `True`.
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.retrieve_experiment" name="retrieve_experiment" signature="retrieve_experiment(experiment_id)">
+    Retrieve an experiment.
 
-**Return type**
+    **Parameters**
 
-`List`\[`Experiment`]
+    **experiment\_id** (`str`) – Experiment uuid.
 
-**Returns**
+    **Return type**
 
-A list of experiments.
+    `Experiment`
 
-**Raises**
+    **Returns**
 
-**ValueError** – If an invalid parameter value is specified.
+    Retrieved experiment.
 
-### retrieve\_analysis\_result
+    **Raises**
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.retrieve_analysis_result" />
+    *   **ExperimentNotFoundError** – If the experiment is not found.
+    *   **RequestsApiError** – If an unexpected error occurred when retrieving experiment from the server.
+  </Function>
 
-`retrieve_analysis_result(result_id)`
+  ### retrieve\_plot
 
-Retrieve an analysis result.
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.retrieve_plot" name="retrieve_plot" signature="retrieve_plot(experiment, plot_name, file_name=None)">
+    Retrieve an experiment plot.
 
-**Parameters**
+    **Parameters**
 
-**result\_id** (`str`) – Analysis result UUID.
+    *   **experiment** (`Union`\[`Experiment`, `str`]) – The `Experiment` object or the experiment UUID.
+    *   **plot\_name** (`str`) – Name of the plot.
+    *   **file\_name** (`Optional`\[`str`]) – Name of the local file to save the plot to. If `None`, the content of the plot is returned instead.
 
-**Return type**
+    **Return type**
 
-`AnalysisResult`
+    `Union`\[`int`, `bytes`]
 
-**Returns**
+    **Returns**
 
-Retrieved analysis result.
+    The size of the plot if file\_name is specified. Otherwise the content of the plot in bytes.
 
-**Raises**
+    **Raises**
 
-*   **AnalysisResultNotFoundError** – If the analysis result is not found.
-*   **RequestsApiError** – If an unexpected error occurred when retrieving analysis result from the server.
+    *   **PlotNotFoundError** – If the plot is not found.
+    *   **RequestsApiError** – If an unexpected error occurred when retrieving plot from the server.
+  </Function>
 
-### retrieve\_experiment
+  ### update\_analysis\_result
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.retrieve_experiment" />
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.update_analysis_result" name="update_analysis_result" signature="update_analysis_result(result)">
+    Update an analysis result.
 
-`retrieve_experiment(experiment_id)`
+    **Parameters**
 
-Retrieve an experiment.
+    **result** (`AnalysisResult`) – The analysis result to update.
 
-**Parameters**
+    **Return type**
 
-**experiment\_id** (`str`) – Experiment uuid.
+    `None`
+  </Function>
 
-**Return type**
+  ### update\_experiment
 
-`Experiment`
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.update_experiment" name="update_experiment" signature="update_experiment(experiment)">
+    Update an experiment.
 
-**Returns**
+    <Admonition title="Note" type="note">
+      Only the following experiment attributes can be updated:
 
-Retrieved experiment.
+      > *   end\_datetime
+      > *   share\_level (visibility)
+      > *   notes (use empty string to clear notes)
+    </Admonition>
 
-**Raises**
+    **Parameters**
 
-*   **ExperimentNotFoundError** – If the experiment is not found.
-*   **RequestsApiError** – If an unexpected error occurred when retrieving experiment from the server.
+    **experiment** (`Experiment`) – Experiment to be updated.
 
-### retrieve\_plot
+    **Return type**
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.retrieve_plot" />
+    `None`
+  </Function>
 
-`retrieve_plot(experiment, plot_name, file_name=None)`
+  ### update\_plot
 
-Retrieve an experiment plot.
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.update_plot" name="update_plot" signature="update_plot(experiment, plot, plot_name)">
+    Update an experiment plot.
 
-**Parameters**
+    **Parameters**
 
-*   **experiment** (`Union`\[`Experiment`, `str`]) – The `Experiment` object or the experiment UUID.
-*   **plot\_name** (`str`) – Name of the plot.
-*   **file\_name** (`Optional`\[`str`]) – Name of the local file to save the plot to. If `None`, the content of the plot is returned instead.
+    *   **experiment** (`Union`\[`Experiment`, `str`]) – The `Experiment` object or the experiment UUID.
+    *   **plot** (`Union`\[`str`, `bytes`]) – Name of the plot file or plot data to upload.
+    *   **plot\_name** (`str`) – Name of the plot to update.
 
-**Return type**
+    **Return type**
 
-`Union`\[`int`, `bytes`]
+    `Dict`
 
-**Returns**
+    **Returns**
 
-The size of the plot if file\_name is specified. Otherwise the content of the plot in bytes.
+    A dictionary with name and size of the uploaded plot.
+  </Function>
 
-**Raises**
+  ### upload\_analysis\_result
 
-*   **PlotNotFoundError** – If the plot is not found.
-*   **RequestsApiError** – If an unexpected error occurred when retrieving plot from the server.
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.upload_analysis_result" name="upload_analysis_result" signature="upload_analysis_result(result)">
+    Upload an analysis result.
 
-### update\_analysis\_result
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.update_analysis_result" />
+    **result** (`AnalysisResult`) – The analysis result to upload.
 
-`update_analysis_result(result)`
+    **Return type**
 
-Update an analysis result.
+    `None`
+  </Function>
 
-**Parameters**
+  ### upload\_experiment
 
-**result** (`AnalysisResult`) – The analysis result to update.
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.upload_experiment" name="upload_experiment" signature="upload_experiment(experiment)">
+    Upload a new experiment.
 
-**Return type**
+    **Parameters**
 
-`None`
+    **experiment** (`Experiment`) – The experiment to upload.
 
-### update\_experiment
+    **Return type**
 
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.update_experiment" />
+    `None`
+  </Function>
 
-`update_experiment(experiment)`
+  ### upload\_plot
 
-Update an experiment.
+  <Function id="qiskit.providers.ibmq.experiment.ExperimentService.upload_plot" name="upload_plot" signature="upload_plot(experiment, plot, plot_name=None)">
+    Upload an experiment plot.
 
-<Admonition title="Note" type="note">
-  Only the following experiment attributes can be updated:
+    **Parameters**
 
-  > *   end\_datetime
-  > *   share\_level (visibility)
-  > *   notes (use empty string to clear notes)
-</Admonition>
+    *   **experiment** (`Union`\[`Experiment`, `str`]) – The `Experiment` object or the experiment UUID.
+    *   **plot** (`Union`\[`str`, `bytes`]) – Name of the plot file or plot data to upload.
+    *   **plot\_name** (`Optional`\[`str`]) – Name of the plot. If `None`, the plot file name, if given, or a generated name is used.
 
-**Parameters**
+    **Return type**
 
-**experiment** (`Experiment`) – Experiment to be updated.
+    `Dict`
 
-**Return type**
+    **Returns**
 
-`None`
-
-### update\_plot
-
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.update_plot" />
-
-`update_plot(experiment, plot, plot_name)`
-
-Update an experiment plot.
-
-**Parameters**
-
-*   **experiment** (`Union`\[`Experiment`, `str`]) – The `Experiment` object or the experiment UUID.
-*   **plot** (`Union`\[`str`, `bytes`]) – Name of the plot file or plot data to upload.
-*   **plot\_name** (`str`) – Name of the plot to update.
-
-**Return type**
-
-`Dict`
-
-**Returns**
-
-A dictionary with name and size of the uploaded plot.
-
-### upload\_analysis\_result
-
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.upload_analysis_result" />
-
-`upload_analysis_result(result)`
-
-Upload an analysis result.
-
-**Parameters**
-
-**result** (`AnalysisResult`) – The analysis result to upload.
-
-**Return type**
-
-`None`
-
-### upload\_experiment
-
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.upload_experiment" />
-
-`upload_experiment(experiment)`
-
-Upload a new experiment.
-
-**Parameters**
-
-**experiment** (`Experiment`) – The experiment to upload.
-
-**Return type**
-
-`None`
-
-### upload\_plot
-
-<span id="qiskit.providers.ibmq.experiment.ExperimentService.upload_plot" />
-
-`upload_plot(experiment, plot, plot_name=None)`
-
-Upload an experiment plot.
-
-**Parameters**
-
-*   **experiment** (`Union`\[`Experiment`, `str`]) – The `Experiment` object or the experiment UUID.
-*   **plot** (`Union`\[`str`, `bytes`]) – Name of the plot file or plot data to upload.
-*   **plot\_name** (`Optional`\[`str`]) – Name of the plot. If `None`, the plot file name, if given, or a generated name is used.
-
-**Return type**
-
-`Dict`
-
-**Returns**
-
-A dictionary with name and size of the uploaded plot.
+    A dictionary with name and size of the uploaded plot.
+  </Function>
+</Class>
 

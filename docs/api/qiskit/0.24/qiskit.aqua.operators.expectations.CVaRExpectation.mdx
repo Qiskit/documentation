@@ -10,87 +10,79 @@ python_api_name: qiskit.aqua.operators.expectations.CVaRExpectation
 
 # qiskit.aqua.operators.expectations.CVaRExpectation
 
-<span id="qiskit.aqua.operators.expectations.CVaRExpectation" />
+<Class id="qiskit.aqua.operators.expectations.CVaRExpectation" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/expectations/cvar_expectation.py" signature="CVaRExpectation(alpha, expectation=None)">
+  Compute the Conditional Value at Risk (CVaR) expectation value.
 
-`CVaRExpectation(alpha, expectation=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
+  The standard approach to calculating the expectation value of a Hamiltonian w\.r.t. a state is to take the sample mean of the measurement outcomes. This corresponds to an estimator of the energy. However in several problem settings with a diagonal Hamiltonian, e.g. in combinatorial optimization where the Hamiltonian encodes a cost function, we are not interested in calculating the energy but in the lowest possible value we can find.
 
-Compute the Conditional Value at Risk (CVaR) expectation value.
+  To this end, we might consider using the best observed sample as a cost function during variational optimization. The issue here, is that this can result in a non-smooth optimization surface. To resolve this issue, we can smooth the optimization surface by using not just the best observed sample, but instead average over some fraction of best observed samples. This is exactly what the CVaR estimator accomplishes \[1].
 
-The standard approach to calculating the expectation value of a Hamiltonian w\.r.t. a state is to take the sample mean of the measurement outcomes. This corresponds to an estimator of the energy. However in several problem settings with a diagonal Hamiltonian, e.g. in combinatorial optimization where the Hamiltonian encodes a cost function, we are not interested in calculating the energy but in the lowest possible value we can find.
+  It is empirically shown, that this can lead to faster convergence for combinatorial optimization problems.
 
-To this end, we might consider using the best observed sample as a cost function during variational optimization. The issue here, is that this can result in a non-smooth optimization surface. To resolve this issue, we can smooth the optimization surface by using not just the best observed sample, but instead average over some fraction of best observed samples. This is exactly what the CVaR estimator accomplishes \[1].
+  Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best observed samples which are used to compute the objective function. Observe that if $\alpha = 1$, CVaR is equivalent to a standard expectation value. Similarly, if $\alpha = 0$, then CVaR corresponds to using the best observed sample. Intermediate values of $\alpha$ interpolate between these two objective functions.
 
-It is empirically shown, that this can lead to faster convergence for combinatorial optimization problems.
+  **References**
 
-Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best observed samples which are used to compute the objective function. Observe that if $\alpha = 1$, CVaR is equivalent to a standard expectation value. Similarly, if $\alpha = 0$, then CVaR corresponds to using the best observed sample. Intermediate values of $\alpha$ interpolate between these two objective functions.
+  **\[1]: Barkoutsos, P. K., Nannicini, G., Robert, A., Tavernelli, I., and Woerner, S.,**
 
-**References**
+  “Improving Variational Quantum Optimization using CVaR” [arXiv:1907.04769](https://arxiv.org/abs/1907.04769)
 
-**\[1]: Barkoutsos, P. K., Nannicini, G., Robert, A., Tavernelli, I., and Woerner, S.,**
+  **Parameters**
 
-“Improving Variational Quantum Optimization using CVaR” [arXiv:1907.04769](https://arxiv.org/abs/1907.04769)
+  *   **alpha** (`float`) – The alpha value describing the quantile considered in the expectation value.
+  *   **expectation** (`Optional`\[`ExpectationBase`]) – An expectation object to compute the expectation value. Defaults to the PauliExpectation calculation.
 
-**Parameters**
+  **Raises**
 
-*   **alpha** (`float`) – The alpha value describing the quantile considered in the expectation value.
-*   **expectation** (`Optional`\[`ExpectationBase`]) – An expectation object to compute the expectation value. Defaults to the PauliExpectation calculation.
+  **NotImplementedError** – If the `expectation` is an AerPauliExpecation.
 
-**Raises**
+  ### \_\_init\_\_
 
-**NotImplementedError** – If the `expectation` is an AerPauliExpecation.
+  <Function id="qiskit.aqua.operators.expectations.CVaRExpectation.__init__" name="__init__" signature="__init__(alpha, expectation=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **alpha** (`float`) – The alpha value describing the quantile considered in the expectation value.
+    *   **expectation** (`Optional`\[`ExpectationBase`]) – An expectation object to compute the expectation value. Defaults to the PauliExpectation calculation.
 
-<span id="qiskit.aqua.operators.expectations.CVaRExpectation.__init__" />
+    **Raises**
 
-`__init__(alpha, expectation=None)`
+    **NotImplementedError** – If the `expectation` is an AerPauliExpecation.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **alpha** (`float`) – The alpha value describing the quantile considered in the expectation value.
-*   **expectation** (`Optional`\[`ExpectationBase`]) – An expectation object to compute the expectation value. Defaults to the PauliExpectation calculation.
+  |                                                                                                                                                                           |                                                                              |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.operators.expectations.CVaRExpectation.__init__ "qiskit.aqua.operators.expectations.CVaRExpectation.__init__")(alpha\[, expectation])           | **type alpha**`float`                                                        |
+  | [`compute_variance`](#qiskit.aqua.operators.expectations.CVaRExpectation.compute_variance "qiskit.aqua.operators.expectations.CVaRExpectation.compute_variance")(exp\_op) | Not implemented.                                                             |
+  | [`convert`](#qiskit.aqua.operators.expectations.CVaRExpectation.convert "qiskit.aqua.operators.expectations.CVaRExpectation.convert")(operator)                           | Return an expression that computes the CVaR expectation upon calling `eval`. |
 
-**Raises**
+  ### compute\_variance
 
-**NotImplementedError** – If the `expectation` is an AerPauliExpecation.
+  <Function id="qiskit.aqua.operators.expectations.CVaRExpectation.compute_variance" name="compute_variance" signature="compute_variance(exp_op)">
+    Not implemented.
 
-## Methods
+    **Return type**
 
-|                                                                                                                                                                           |                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.expectations.CVaRExpectation.__init__ "qiskit.aqua.operators.expectations.CVaRExpectation.__init__")(alpha\[, expectation])           | **type alpha**`float`                                                        |
-| [`compute_variance`](#qiskit.aqua.operators.expectations.CVaRExpectation.compute_variance "qiskit.aqua.operators.expectations.CVaRExpectation.compute_variance")(exp\_op) | Not implemented.                                                             |
-| [`convert`](#qiskit.aqua.operators.expectations.CVaRExpectation.convert "qiskit.aqua.operators.expectations.CVaRExpectation.convert")(operator)                           | Return an expression that computes the CVaR expectation upon calling `eval`. |
+    `Union`\[`list`, `float`]
+  </Function>
 
-### compute\_variance
+  ### convert
 
-<span id="qiskit.aqua.operators.expectations.CVaRExpectation.compute_variance" />
+  <Function id="qiskit.aqua.operators.expectations.CVaRExpectation.convert" name="convert" signature="convert(operator)">
+    Return an expression that computes the CVaR expectation upon calling `eval`.
 
-`compute_variance(exp_op)`
+    **Parameters**
 
-Not implemented.
+    **operator** (`OperatorBase`) – The operator to convert.
 
-**Return type**
+    **Return type**
 
-`Union`\[`list`, `float`]
+    `OperatorBase`
 
-### convert
+    **Returns**
 
-<span id="qiskit.aqua.operators.expectations.CVaRExpectation.convert" />
-
-`convert(operator)`
-
-Return an expression that computes the CVaR expectation upon calling `eval`.
-
-**Parameters**
-
-**operator** (`OperatorBase`) – The operator to convert.
-
-**Return type**
-
-`OperatorBase`
-
-**Returns**
-
-The converted operator.
+    The converted operator.
+  </Function>
+</Class>
 

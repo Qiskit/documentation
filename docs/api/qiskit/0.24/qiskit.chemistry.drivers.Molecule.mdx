@@ -10,252 +10,224 @@ python_api_name: qiskit.chemistry.drivers.Molecule
 
 # qiskit.chemistry.drivers.Molecule
 
-<span id="qiskit.chemistry.drivers.Molecule" />
+<Class id="qiskit.chemistry.drivers.Molecule" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/molecule.py" signature="Molecule(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)">
+  Driver-independent Molecule definition.
 
-`Molecule(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/molecule.py "view source code")
+  This module implements an interface for a driver-independent, i.e. generic molecule definition. It defines the composing atoms (with properties like masses), and allows for changing the molecular geometry through given degrees of freedom (e.g. bond-stretching, angle-bending, etc.). The geometry as provided in the constructor can be affected, through setting perturbations, and it is this perturbed geometry that is supplied by the geometry getter. Setting perturbations to None will cause the original geometry to be returned, and there is a getter to get this value directly if its needed.
 
-Driver-independent Molecule definition.
+  **Parameters**
 
-This module implements an interface for a driver-independent, i.e. generic molecule definition. It defines the composing atoms (with properties like masses), and allows for changing the molecular geometry through given degrees of freedom (e.g. bond-stretching, angle-bending, etc.). The geometry as provided in the constructor can be affected, through setting perturbations, and it is this perturbed geometry that is supplied by the geometry getter. Setting perturbations to None will cause the original geometry to be returned, and there is a getter to get this value directly if its needed.
+  *   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – A list of atoms defining a given molecule where each item in the list is an atom name together with a list of 3 floats representing the x,y and z Cartesian coordinates of the atom’s position in units of **Angstrom**.
+  *   **multiplicity** (`int`) – Multiplicity (2S+1) of the molecule
+  *   **charge** (`int`) – Charge on the molecule
+  *   **degrees\_of\_freedom** (`Optional`\[`List`\[`Callable`]]) – List of functions taking a perturbation value and geometry and returns a perturbed geometry. Helper functions for typical perturbations are provided and can be used by the form itertools.partial(Molecule.stretching\_potential,\{‘atom\_pair’: (1, 2)) to specify the desired degree of freedom.
+  *   **masses** (`Optional`\[`List`\[`float`]]) – Mass of each atom the molecule may optionally be provided.
 
-**Parameters**
+  **Raises**
 
-*   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – A list of atoms defining a given molecule where each item in the list is an atom name together with a list of 3 floats representing the x,y and z Cartesian coordinates of the atom’s position in units of **Angstrom**.
-*   **multiplicity** (`int`) – Multiplicity (2S+1) of the molecule
-*   **charge** (`int`) – Charge on the molecule
-*   **degrees\_of\_freedom** (`Optional`\[`List`\[`Callable`]]) – List of functions taking a perturbation value and geometry and returns a perturbed geometry. Helper functions for typical perturbations are provided and can be used by the form itertools.partial(Molecule.stretching\_potential,\{‘atom\_pair’: (1, 2)) to specify the desired degree of freedom.
-*   **masses** (`Optional`\[`List`\[`float`]]) – Mass of each atom the molecule may optionally be provided.
+  **ValueError** – Length of masses must match length of geometries.
 
-**Raises**
+  ### \_\_init\_\_
 
-**ValueError** – Length of masses must match length of geometries.
+  <Function id="qiskit.chemistry.drivers.Molecule.__init__" name="__init__" signature="__init__(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – A list of atoms defining a given molecule where each item in the list is an atom name together with a list of 3 floats representing the x,y and z Cartesian coordinates of the atom’s position in units of **Angstrom**.
+    *   **multiplicity** (`int`) – Multiplicity (2S+1) of the molecule
+    *   **charge** (`int`) – Charge on the molecule
+    *   **degrees\_of\_freedom** (`Optional`\[`List`\[`Callable`]]) – List of functions taking a perturbation value and geometry and returns a perturbed geometry. Helper functions for typical perturbations are provided and can be used by the form itertools.partial(Molecule.stretching\_potential,\{‘atom\_pair’: (1, 2)) to specify the desired degree of freedom.
+    *   **masses** (`Optional`\[`List`\[`float`]]) – Mass of each atom the molecule may optionally be provided.
 
-<span id="qiskit.chemistry.drivers.Molecule.__init__" />
+    **Raises**
 
-`__init__(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)`
+    **ValueError** – Length of masses must match length of geometries.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – A list of atoms defining a given molecule where each item in the list is an atom name together with a list of 3 floats representing the x,y and z Cartesian coordinates of the atom’s position in units of **Angstrom**.
-*   **multiplicity** (`int`) – Multiplicity (2S+1) of the molecule
-*   **charge** (`int`) – Charge on the molecule
-*   **degrees\_of\_freedom** (`Optional`\[`List`\[`Callable`]]) – List of functions taking a perturbation value and geometry and returns a perturbed geometry. Helper functions for typical perturbations are provided and can be used by the form itertools.partial(Molecule.stretching\_potential,\{‘atom\_pair’: (1, 2)) to specify the desired degree of freedom.
-*   **masses** (`Optional`\[`List`\[`float`]]) – Mass of each atom the molecule may optionally be provided.
+  |                                                                                                                                                                    |                                                             |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.drivers.Molecule.__init__ "qiskit.chemistry.drivers.Molecule.__init__")(geometry\[, multiplicity, charge, …])                       | **type geometry**`List`\[`Tuple`\[`str`, `List`\[`float`]]] |
+  | [`absolute_angle`](#qiskit.chemistry.drivers.Molecule.absolute_angle "qiskit.chemistry.drivers.Molecule.absolute_angle")(angle, geometry, atom\_trio)              | **type angle**`float`                                       |
+  | [`absolute_bending`](#qiskit.chemistry.drivers.Molecule.absolute_bending "qiskit.chemistry.drivers.Molecule.absolute_bending")(bend, geometry, atom\_trio)         | **type bend**`float`                                        |
+  | [`absolute_distance`](#qiskit.chemistry.drivers.Molecule.absolute_distance "qiskit.chemistry.drivers.Molecule.absolute_distance")(distance, geometry, atom\_pair)  | **type distance**`float`                                    |
+  | [`absolute_stretching`](#qiskit.chemistry.drivers.Molecule.absolute_stretching "qiskit.chemistry.drivers.Molecule.absolute_stretching")(perturbation, geometry, …) | **type perturbation**`float`                                |
+  | [`relative_bending`](#qiskit.chemistry.drivers.Molecule.relative_bending "qiskit.chemistry.drivers.Molecule.relative_bending")(bend, geometry, atom\_trio)         | **type bend**`float`                                        |
+  | [`relative_stretching`](#qiskit.chemistry.drivers.Molecule.relative_stretching "qiskit.chemistry.drivers.Molecule.relative_stretching")(perturbation, geometry, …) | **type perturbation**`float`                                |
 
-**Raises**
+  ## Attributes
 
-**ValueError** – Length of masses must match length of geometries.
+  |                                                                                                                       |                                               |
+  | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+  | [`charge`](#qiskit.chemistry.drivers.Molecule.charge "qiskit.chemistry.drivers.Molecule.charge")                      | Get charge                                    |
+  | [`geometry`](#qiskit.chemistry.drivers.Molecule.geometry "qiskit.chemistry.drivers.Molecule.geometry")                | Get geometry accounting for any perturbations |
+  | [`masses`](#qiskit.chemistry.drivers.Molecule.masses "qiskit.chemistry.drivers.Molecule.masses")                      | Get masses                                    |
+  | [`multiplicity`](#qiskit.chemistry.drivers.Molecule.multiplicity "qiskit.chemistry.drivers.Molecule.multiplicity")    | Get multiplicity                              |
+  | [`perturbations`](#qiskit.chemistry.drivers.Molecule.perturbations "qiskit.chemistry.drivers.Molecule.perturbations") | Get perturbations                             |
+  | [`units`](#qiskit.chemistry.drivers.Molecule.units "qiskit.chemistry.drivers.Molecule.units")                         | The geometry coordinate units                 |
 
-## Methods
+  ### absolute\_angle
 
-|                                                                                                                                                                    |                                                             |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.drivers.Molecule.__init__ "qiskit.chemistry.drivers.Molecule.__init__")(geometry\[, multiplicity, charge, …])                       | **type geometry**`List`\[`Tuple`\[`str`, `List`\[`float`]]] |
-| [`absolute_angle`](#qiskit.chemistry.drivers.Molecule.absolute_angle "qiskit.chemistry.drivers.Molecule.absolute_angle")(angle, geometry, atom\_trio)              | **type angle**`float`                                       |
-| [`absolute_bending`](#qiskit.chemistry.drivers.Molecule.absolute_bending "qiskit.chemistry.drivers.Molecule.absolute_bending")(bend, geometry, atom\_trio)         | **type bend**`float`                                        |
-| [`absolute_distance`](#qiskit.chemistry.drivers.Molecule.absolute_distance "qiskit.chemistry.drivers.Molecule.absolute_distance")(distance, geometry, atom\_pair)  | **type distance**`float`                                    |
-| [`absolute_stretching`](#qiskit.chemistry.drivers.Molecule.absolute_stretching "qiskit.chemistry.drivers.Molecule.absolute_stretching")(perturbation, geometry, …) | **type perturbation**`float`                                |
-| [`relative_bending`](#qiskit.chemistry.drivers.Molecule.relative_bending "qiskit.chemistry.drivers.Molecule.relative_bending")(bend, geometry, atom\_trio)         | **type bend**`float`                                        |
-| [`relative_stretching`](#qiskit.chemistry.drivers.Molecule.relative_stretching "qiskit.chemistry.drivers.Molecule.relative_stretching")(perturbation, geometry, …) | **type perturbation**`float`                                |
+  <Function id="qiskit.chemistry.drivers.Molecule.absolute_angle" name="absolute_angle" signature="classmethod absolute_angle(angle, geometry, atom_trio)">
+    **Parameters**
 
-## Attributes
+    *   **angle** (`float`) – The magnitude of the perturbation in **radians**. **Positive bend is always in the direction toward Atom3.** the direction of increasing the starting angle.\*\*
+    *   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – The initial geometry to perturb.
+    *   **atom\_trio** (`Tuple`\[`int`, `int`, `int`]) – A tuple with three integers, indexing which atoms from the starting geometry should be bent apart. **Atom1 is bent \*away\* from Atom3 by an angle whose vertex is Atom2 and equal to \*\*angle**, while Atom2 and Atom3 remain stationary.\*\*
 
-|                                                                                                                       |                                               |
-| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [`charge`](#qiskit.chemistry.drivers.Molecule.charge "qiskit.chemistry.drivers.Molecule.charge")                      | Get charge                                    |
-| [`geometry`](#qiskit.chemistry.drivers.Molecule.geometry "qiskit.chemistry.drivers.Molecule.geometry")                | Get geometry accounting for any perturbations |
-| [`masses`](#qiskit.chemistry.drivers.Molecule.masses "qiskit.chemistry.drivers.Molecule.masses")                      | Get masses                                    |
-| [`multiplicity`](#qiskit.chemistry.drivers.Molecule.multiplicity "qiskit.chemistry.drivers.Molecule.multiplicity")    | Get multiplicity                              |
-| [`perturbations`](#qiskit.chemistry.drivers.Molecule.perturbations "qiskit.chemistry.drivers.Molecule.perturbations") | Get perturbations                             |
-| [`units`](#qiskit.chemistry.drivers.Molecule.units "qiskit.chemistry.drivers.Molecule.units")                         | The geometry coordinate units                 |
+    **Return type**
 
-### absolute\_angle
+    `List`\[`Tuple`\[`str`, `List`\[`float`]]]
 
-<span id="qiskit.chemistry.drivers.Molecule.absolute_angle" />
+    **Returns**
 
-`classmethod absolute_angle(angle, geometry, atom_trio)`
+    end geometry
+  </Function>
 
-**Parameters**
+  ### absolute\_bending
 
-*   **angle** (`float`) – The magnitude of the perturbation in **radians**. **Positive bend is always in the direction toward Atom3.** the direction of increasing the starting angle.\*\*
-*   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – The initial geometry to perturb.
-*   **atom\_trio** (`Tuple`\[`int`, `int`, `int`]) – A tuple with three integers, indexing which atoms from the starting geometry should be bent apart. **Atom1 is bent \*away\* from Atom3 by an angle whose vertex is Atom2 and equal to \*\*angle**, while Atom2 and Atom3 remain stationary.\*\*
+  <Function id="qiskit.chemistry.drivers.Molecule.absolute_bending" name="absolute_bending" signature="classmethod absolute_bending(bend, geometry, atom_trio)">
+    **Parameters**
 
-**Return type**
+    *   **bend** (`float`) – The magnitude of the perturbation in **radians**. **Positive bend is always in the direction toward Atom3.** the direction of increasing the starting angle.\*\*
+    *   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – The initial geometry to perturb.
+    *   **atom\_trio** (`Tuple`\[`int`, `int`, `int`]) – A tuple with three integers, indexing which atoms from the starting geometry should be bent apart. **Atom1 is bent \*away\* from Atom3 by an angle whose vertex is Atom2 and equal to the initial angle \*\*plus** bend, while Atom2 and Atom3 remain stationary.\*\*
 
-`List`\[`Tuple`\[`str`, `List`\[`float`]]]
+    **Return type**
 
-**Returns**
+    `List`\[`Tuple`\[`str`, `List`\[`float`]]]
 
-end geometry
+    **Returns**
 
-### absolute\_bending
+    end geometry
+  </Function>
 
-<span id="qiskit.chemistry.drivers.Molecule.absolute_bending" />
+  ### absolute\_distance
 
-`classmethod absolute_bending(bend, geometry, atom_trio)`
+  <Function id="qiskit.chemistry.drivers.Molecule.absolute_distance" name="absolute_distance" signature="classmethod absolute_distance(distance, geometry, atom_pair)">
+    **Parameters**
 
-**Parameters**
+    *   **distance** (`float`) – The (new) distance between the two atoms.
+    *   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – The initial geometry to perturb.
+    *   **atom\_pair** (`Tuple`\[`int`, `int`]) – A tuple with two integers, indexing which atoms from the starting geometry should be moved apart. **Atom1 is moved away (at the given distance) from Atom2, while Atom2 remains stationary.**
 
-*   **bend** (`float`) – The magnitude of the perturbation in **radians**. **Positive bend is always in the direction toward Atom3.** the direction of increasing the starting angle.\*\*
-*   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – The initial geometry to perturb.
-*   **atom\_trio** (`Tuple`\[`int`, `int`, `int`]) – A tuple with three integers, indexing which atoms from the starting geometry should be bent apart. **Atom1 is bent \*away\* from Atom3 by an angle whose vertex is Atom2 and equal to the initial angle \*\*plus** bend, while Atom2 and Atom3 remain stationary.\*\*
+    **Return type**
 
-**Return type**
+    `List`\[`Tuple`\[`str`, `List`\[`float`]]]
 
-`List`\[`Tuple`\[`str`, `List`\[`float`]]]
+    **Returns**
 
-**Returns**
+    end geometry
+  </Function>
 
-end geometry
+  ### absolute\_stretching
 
-### absolute\_distance
+  <Function id="qiskit.chemistry.drivers.Molecule.absolute_stretching" name="absolute_stretching" signature="classmethod absolute_stretching(perturbation, geometry, atom_pair)">
+    **Parameters**
 
-<span id="qiskit.chemistry.drivers.Molecule.absolute_distance" />
+    *   **perturbation** (`float`) – The magnitude of the stretch. (New distance = stretch + old distance)
+    *   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – The initial geometry to perturb.
+    *   **atom\_pair** (`Tuple`\[`int`, `int`]) – A tuple with two integers, indexing which atoms from the starting geometry should be stretched apart. **Atom1 is stretched away from Atom2, while Atom2 remains stationary.**
 
-`classmethod absolute_distance(distance, geometry, atom_pair)`
+    **Return type**
 
-**Parameters**
+    `List`\[`Tuple`\[`str`, `List`\[`float`]]]
 
-*   **distance** (`float`) – The (new) distance between the two atoms.
-*   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – The initial geometry to perturb.
-*   **atom\_pair** (`Tuple`\[`int`, `int`]) – A tuple with two integers, indexing which atoms from the starting geometry should be moved apart. **Atom1 is moved away (at the given distance) from Atom2, while Atom2 remains stationary.**
+    **Returns**
 
-**Return type**
+    end geometry
+  </Function>
 
-`List`\[`Tuple`\[`str`, `List`\[`float`]]]
+  ### charge
 
-**Returns**
+  <Function id="qiskit.chemistry.drivers.Molecule.charge" name="charge" signature="property charge">
+    Get charge
 
-end geometry
+    **Return type**
 
-### absolute\_stretching
+    `int`
+  </Function>
 
-<span id="qiskit.chemistry.drivers.Molecule.absolute_stretching" />
+  ### geometry
 
-`classmethod absolute_stretching(perturbation, geometry, atom_pair)`
+  <Function id="qiskit.chemistry.drivers.Molecule.geometry" name="geometry" signature="property geometry">
+    Get geometry accounting for any perturbations
 
-**Parameters**
+    **Return type**
 
-*   **perturbation** (`float`) – The magnitude of the stretch. (New distance = stretch + old distance)
-*   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – The initial geometry to perturb.
-*   **atom\_pair** (`Tuple`\[`int`, `int`]) – A tuple with two integers, indexing which atoms from the starting geometry should be stretched apart. **Atom1 is stretched away from Atom2, while Atom2 remains stationary.**
+    `List`\[`Tuple`\[`str`, `List`\[`float`]]]
+  </Function>
 
-**Return type**
+  ### masses
 
-`List`\[`Tuple`\[`str`, `List`\[`float`]]]
+  <Function id="qiskit.chemistry.drivers.Molecule.masses" name="masses" signature="property masses">
+    Get masses
 
-**Returns**
+    **Return type**
 
-end geometry
+    `Optional`\[`List`\[`float`]]
+  </Function>
 
-### charge
+  ### multiplicity
 
-<span id="qiskit.chemistry.drivers.Molecule.charge" />
+  <Function id="qiskit.chemistry.drivers.Molecule.multiplicity" name="multiplicity" signature="property multiplicity">
+    Get multiplicity
 
-`property charge`
+    **Return type**
 
-Get charge
+    `int`
+  </Function>
 
-**Return type**
+  ### perturbations
 
-`int`
+  <Function id="qiskit.chemistry.drivers.Molecule.perturbations" name="perturbations" signature="property perturbations">
+    Get perturbations
 
-### geometry
+    **Return type**
 
-<span id="qiskit.chemistry.drivers.Molecule.geometry" />
+    `Optional`\[`List`\[`float`]]
+  </Function>
 
-`property geometry`
+  ### relative\_bending
 
-Get geometry accounting for any perturbations
+  <Function id="qiskit.chemistry.drivers.Molecule.relative_bending" name="relative_bending" signature="classmethod relative_bending(bend, geometry, atom_trio)">
+    **Parameters**
 
-**Return type**
+    *   **bend** (`float`) – The magnitude of the perturbation in **radians**. **Positive bend is always in the direction toward Atom3.** the direction of increasing the starting angle.\*\*
+    *   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – The initial geometry to perturb.
+    *   **atom\_trio** (`Tuple`\[`int`, `int`, `int`]) – A tuple with three integers, indexing which atoms from the starting geometry should be bent apart. **Atom1 is bent \*away\* from Atom3 by an angle whose vertex is Atom2 and equal to the initial angle \*\*times** bend, while Atom2 and Atom3 remain stationary.\*\*
 
-`List`\[`Tuple`\[`str`, `List`\[`float`]]]
+    **Return type**
 
-### masses
+    `List`\[`Tuple`\[`str`, `List`\[`float`]]]
 
-<span id="qiskit.chemistry.drivers.Molecule.masses" />
+    **Returns**
 
-`property masses`
+    end geometry
+  </Function>
 
-Get masses
+  ### relative\_stretching
 
-**Return type**
+  <Function id="qiskit.chemistry.drivers.Molecule.relative_stretching" name="relative_stretching" signature="classmethod relative_stretching(perturbation, geometry, atom_pair)">
+    **Parameters**
 
-`Optional`\[`List`\[`float`]]
+    *   **perturbation** (`float`) – The magnitude of the stretch. (New distance = stretch \* old distance)
+    *   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – The initial geometry to perturb.
+    *   **atom\_pair** (`Tuple`\[`int`, `int`]) – A tuple with two integers, indexing which atoms from the starting geometry should be stretched apart. **Atom1 is stretched away from Atom2, while Atom2 remains stationary.**
 
-### multiplicity
+    **Return type**
 
-<span id="qiskit.chemistry.drivers.Molecule.multiplicity" />
+    `List`\[`Tuple`\[`str`, `List`\[`float`]]]
 
-`property multiplicity`
+    **Returns**
 
-Get multiplicity
+    end geometry
+  </Function>
 
-**Return type**
+  ### units
 
-`int`
-
-### perturbations
-
-<span id="qiskit.chemistry.drivers.Molecule.perturbations" />
-
-`property perturbations`
-
-Get perturbations
-
-**Return type**
-
-`Optional`\[`List`\[`float`]]
-
-### relative\_bending
-
-<span id="qiskit.chemistry.drivers.Molecule.relative_bending" />
-
-`classmethod relative_bending(bend, geometry, atom_trio)`
-
-**Parameters**
-
-*   **bend** (`float`) – The magnitude of the perturbation in **radians**. **Positive bend is always in the direction toward Atom3.** the direction of increasing the starting angle.\*\*
-*   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – The initial geometry to perturb.
-*   **atom\_trio** (`Tuple`\[`int`, `int`, `int`]) – A tuple with three integers, indexing which atoms from the starting geometry should be bent apart. **Atom1 is bent \*away\* from Atom3 by an angle whose vertex is Atom2 and equal to the initial angle \*\*times** bend, while Atom2 and Atom3 remain stationary.\*\*
-
-**Return type**
-
-`List`\[`Tuple`\[`str`, `List`\[`float`]]]
-
-**Returns**
-
-end geometry
-
-### relative\_stretching
-
-<span id="qiskit.chemistry.drivers.Molecule.relative_stretching" />
-
-`classmethod relative_stretching(perturbation, geometry, atom_pair)`
-
-**Parameters**
-
-*   **perturbation** (`float`) – The magnitude of the stretch. (New distance = stretch \* old distance)
-*   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – The initial geometry to perturb.
-*   **atom\_pair** (`Tuple`\[`int`, `int`]) – A tuple with two integers, indexing which atoms from the starting geometry should be stretched apart. **Atom1 is stretched away from Atom2, while Atom2 remains stationary.**
-
-**Return type**
-
-`List`\[`Tuple`\[`str`, `List`\[`float`]]]
-
-**Returns**
-
-end geometry
-
-### units
-
-<span id="qiskit.chemistry.drivers.Molecule.units" />
-
-`property units`
-
-The geometry coordinate units
+  <Function id="qiskit.chemistry.drivers.Molecule.units" name="units" signature="property units">
+    The geometry coordinate units
+  </Function>
+</Class>
 

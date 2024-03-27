@@ -10,44 +10,38 @@ python_api_name: qiskit.chemistry.algorithms.EigensolverFactory
 
 # qiskit.chemistry.algorithms.EigensolverFactory
 
-<span id="qiskit.chemistry.algorithms.EigensolverFactory" />
+<Class id="qiskit.chemistry.algorithms.EigensolverFactory" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/eigensolver_factory.py" signature="EigensolverFactory">
+  A factory to construct a eigensolver based on a qubit operator transformation.
 
-`EigensolverFactory` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/eigensolver_factory.py "view source code")
+  ### \_\_init\_\_
 
-A factory to construct a eigensolver based on a qubit operator transformation.
+  <Function id="qiskit.chemistry.algorithms.EigensolverFactory.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.chemistry.algorithms.EigensolverFactory.__init__" />
+  |                                                                                                                                                        |                                                                    |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.chemistry.algorithms.EigensolverFactory.__init__ "qiskit.chemistry.algorithms.EigensolverFactory.__init__")()                     | Initialize self.                                                   |
+  | [`get_solver`](#qiskit.chemistry.algorithms.EigensolverFactory.get_solver "qiskit.chemistry.algorithms.EigensolverFactory.get_solver")(transformation) | Returns a eigensolver, based on the qubit operator transformation. |
 
-`__init__()`
+  ### get\_solver
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.chemistry.algorithms.EigensolverFactory.get_solver" name="get_solver" signature="abstract get_solver(transformation)">
+    Returns a eigensolver, based on the qubit operator transformation.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                        |                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| [`__init__`](#qiskit.chemistry.algorithms.EigensolverFactory.__init__ "qiskit.chemistry.algorithms.EigensolverFactory.__init__")()                     | Initialize self.                                                   |
-| [`get_solver`](#qiskit.chemistry.algorithms.EigensolverFactory.get_solver "qiskit.chemistry.algorithms.EigensolverFactory.get_solver")(transformation) | Returns a eigensolver, based on the qubit operator transformation. |
+    **transformation** (`Transformation`) – The qubit operator transformation.
 
-### get\_solver
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.EigensolverFactory.get_solver" />
+    `Eigensolver`
 
-`abstract get_solver(transformation)`
+    **Returns**
 
-Returns a eigensolver, based on the qubit operator transformation.
-
-**Parameters**
-
-**transformation** (`Transformation`) – The qubit operator transformation.
-
-**Return type**
-
-`Eigensolver`
-
-**Returns**
-
-An eigensolver suitable to compute the excited states of the molecule transformed by `transformation`.
+    An eigensolver suitable to compute the excited states of the molecule transformed by `transformation`.
+  </Function>
+</Class>
 

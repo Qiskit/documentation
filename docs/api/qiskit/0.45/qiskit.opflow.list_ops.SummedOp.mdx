@@ -8,246 +8,228 @@ python_api_name: qiskit.opflow.list_ops.SummedOp
 
 # SummedOp
 
-<span id="qiskit.opflow.list_ops.SummedOp" />
+<Class id="qiskit.opflow.list_ops.SummedOp" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/list_ops/summed_op.py" signature="qiskit.opflow.list_ops.SummedOp(oplist, coeff=1.0, abelian=False)">
+  Bases: [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
 
-`qiskit.opflow.list_ops.SummedOp(oplist, coeff=1.0, abelian=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/list_ops/summed_op.py "view source code")
+  Deprecated: A class for lazily representing sums of Operators. Often Operators cannot be efficiently added to one another, but may be manipulated further so that they can be later. This class holds logic to indicate that the Operators in `oplist` are meant to be added together, and therefore if they reach a point in which they can be, such as after evaluation or conversion to matrices, they can be reduced by addition.
 
-Bases: [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.list_ops.summed_op.SummedOp` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Deprecated: A class for lazily representing sums of Operators. Often Operators cannot be efficiently added to one another, but may be manipulated further so that they can be later. This class holds logic to indicate that the Operators in `oplist` are meant to be added together, and therefore if they reach a point in which they can be, such as after evaluation or conversion to matrices, they can be reduced by addition.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.list_ops.summed_op.SummedOp` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  *   **oplist** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")*]*) – The Operators being summed.
+  *   **coeff** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – A coefficient multiplying the operator
+  *   **abelian** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Indicates whether the Operators in `oplist` are known to mutually commute.
 
-**Parameters**
+  ## Attributes
 
-*   **oplist** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")*]*) – The Operators being summed.
-*   **coeff** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – A coefficient multiplying the operator
-*   **abelian** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Indicates whether the Operators in `oplist` are known to mutually commute.
+  ### INDENTATION
 
-## Attributes
+  <Attribute id="qiskit.opflow.list_ops.SummedOp.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
 
-<span id="qiskit.opflow.list_ops.SummedOp.INDENTATION" />
+  ### abelian
 
-### INDENTATION
+  <Attribute id="qiskit.opflow.list_ops.SummedOp.abelian" name="abelian">
+    Whether the Operators in `oplist` are known to commute with one another.
 
-`= '  '`
+    **Returns**
 
-<span id="qiskit.opflow.list_ops.SummedOp.abelian" />
+    A bool indicating whether the `oplist` is Abelian.
+  </Attribute>
 
-### abelian
+  ### coeff
 
-Whether the Operators in `oplist` are known to commute with one another.
+  <Attribute id="qiskit.opflow.list_ops.SummedOp.coeff" name="coeff">
+    The scalar coefficient multiplying the Operator.
 
-**Returns**
+    **Returns**
 
-A bool indicating whether the `oplist` is Abelian.
+    The coefficient.
+  </Attribute>
 
-<span id="qiskit.opflow.list_ops.SummedOp.coeff" />
+  ### coeffs
 
-### coeff
+  <Attribute id="qiskit.opflow.list_ops.SummedOp.coeffs" name="coeffs">
+    Return a list of the coefficients of the operators listed. Raises exception for nested Listops.
+  </Attribute>
 
-The scalar coefficient multiplying the Operator.
+  ### combo\_fn
 
-**Returns**
+  <Attribute id="qiskit.opflow.list_ops.SummedOp.combo_fn" name="combo_fn">
+    The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
 
-The coefficient.
+    **Returns**
 
-<span id="qiskit.opflow.list_ops.SummedOp.coeffs" />
+    The combination function.
+  </Attribute>
 
-### coeffs
+  ### distributive
 
-Return a list of the coefficients of the operators listed. Raises exception for nested Listops.
+  <Attribute id="qiskit.opflow.list_ops.SummedOp.distributive" name="distributive" />
 
-<span id="qiskit.opflow.list_ops.SummedOp.combo_fn" />
+  ### grad\_combo\_fn
 
-### combo\_fn
+  <Attribute id="qiskit.opflow.list_ops.SummedOp.grad_combo_fn" name="grad_combo_fn">
+    The gradient of `combo_fn`.
+  </Attribute>
 
-The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
+  ### instance\_id
 
-**Returns**
+  <Attribute id="qiskit.opflow.list_ops.SummedOp.instance_id" name="instance_id">
+    Return the unique instance id.
+  </Attribute>
 
-The combination function.
+  ### num\_qubits
 
-<span id="qiskit.opflow.list_ops.SummedOp.distributive" />
+  <Attribute id="qiskit.opflow.list_ops.SummedOp.num_qubits" name="num_qubits" />
 
-### distributive
+  ### oplist
 
-<span id="qiskit.opflow.list_ops.SummedOp.grad_combo_fn" />
+  <Attribute id="qiskit.opflow.list_ops.SummedOp.oplist" name="oplist">
+    The list of `OperatorBases` defining the underlying function of this Operator.
 
-### grad\_combo\_fn
+    **Returns**
 
-The gradient of `combo_fn`.
+    The Operators defining the ListOp
+  </Attribute>
 
-<span id="qiskit.opflow.list_ops.SummedOp.instance_id" />
+  ### parameters
 
-### instance\_id
+  <Attribute id="qiskit.opflow.list_ops.SummedOp.parameters" name="parameters" />
 
-Return the unique instance id.
+  ### settings
 
-<span id="qiskit.opflow.list_ops.SummedOp.num_qubits" />
+  <Attribute id="qiskit.opflow.list_ops.SummedOp.settings" name="settings">
+    Return settings.
+  </Attribute>
 
-### num\_qubits
+  ## Methods
 
-<span id="qiskit.opflow.list_ops.SummedOp.oplist" />
+  ### add
 
-### oplist
+  <Function id="qiskit.opflow.list_ops.SummedOp.add" name="add" signature="add(other)">
+    Return Operator addition of `self` and `other`, overloaded by `+`.
 
-The list of `OperatorBases` defining the underlying function of this Operator.
+    <Admonition title="Note" type="note">
+      This appends `other` to `self.oplist` without checking `other` is already included or not. If you want to simplify them, please use `simplify()`.
+    </Admonition>
 
-**Returns**
+    **Parameters**
 
-The Operators defining the ListOp
+    **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
 
-<span id="qiskit.opflow.list_ops.SummedOp.parameters" />
+    **Returns**
 
-### parameters
+    A `SummedOp` equivalent to the sum of self and other.
 
-<span id="qiskit.opflow.list_ops.SummedOp.settings" />
+    **Return type**
 
-### settings
+    [*SummedOp*](#qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.summed_op.SummedOp")
+  </Function>
 
-Return settings.
+  ### collapse\_summands
 
-## Methods
+  <Function id="qiskit.opflow.list_ops.SummedOp.collapse_summands" name="collapse_summands" signature="collapse_summands()">
+    Return Operator by simplifying duplicate operators.
 
-### add
+    E.g., `SummedOp([2 * X ^ Y, X ^ Y]).collapse_summands() -> SummedOp([3 * X ^ Y])`.
 
-<span id="qiskit.opflow.list_ops.SummedOp.add" />
+    **Returns**
 
-`add(other)`
+    A simplified `SummedOp` equivalent to self.
 
-Return Operator addition of `self` and `other`, overloaded by `+`.
+    **Return type**
 
-<Admonition title="Note" type="note">
-  This appends `other` to `self.oplist` without checking `other` is already included or not. If you want to simplify them, please use `simplify()`.
-</Admonition>
+    [*SummedOp*](#qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.summed_op.SummedOp")
+  </Function>
 
-**Parameters**
+  ### equals
 
-**other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
+  <Function id="qiskit.opflow.list_ops.SummedOp.equals" name="equals" signature="equals(other)">
+    Check if other is equal to self.
 
-**Returns**
+    <Admonition title="Note" type="note">
+      This is not a mathematical check for equality. If `self` and `other` implement the same operation but differ in the representation (e.g. different type of summands) `equals` will evaluate to `False`.
+    </Admonition>
 
-A `SummedOp` equivalent to the sum of self and other.
+    **Parameters**
 
-**Return type**
+    **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The other operator to check for equality.
 
-[*SummedOp*](#qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.summed_op.SummedOp")
+    **Returns**
 
-### collapse\_summands
+    True, if other and self are equal, otherwise False.
 
-<span id="qiskit.opflow.list_ops.SummedOp.collapse_summands" />
+    **Return type**
 
-`collapse_summands()`
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
-Return Operator by simplifying duplicate operators.
+    **Examples**
 
-E.g., `SummedOp([2 * X ^ Y, X ^ Y]).collapse_summands() -> SummedOp([3 * X ^ Y])`.
+    ```python
+    >>> from qiskit.opflow import X, Z
+    >>> 2 * X == X + X
+    True
+    >>> X + Z == Z + X
+    True
+    ```
+  </Function>
 
-**Returns**
+  ### reduce
 
-A simplified `SummedOp` equivalent to self.
+  <Function id="qiskit.opflow.list_ops.SummedOp.reduce" name="reduce" signature="reduce()">
+    Try collapsing list or trees of sums.
 
-**Return type**
+    Tries to sum up duplicate operators and reduces the operators in the sum.
 
-[*SummedOp*](#qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.summed_op.SummedOp")
+    **Returns**
 
-### equals
+    A collapsed version of self, if possible.
 
-<span id="qiskit.opflow.list_ops.SummedOp.equals" />
+    **Return type**
 
-`equals(other)`
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-Check if other is equal to self.
+  ### to\_circuit
 
-<Admonition title="Note" type="note">
-  This is not a mathematical check for equality. If `self` and `other` implement the same operation but differ in the representation (e.g. different type of summands) `equals` will evaluate to `False`.
-</Admonition>
+  <Function id="qiskit.opflow.list_ops.SummedOp.to_circuit" name="to_circuit" signature="to_circuit()">
+    Returns the quantum circuit, representing the SummedOp. In the first step, the SummedOp is converted to MatrixOp. This is straightforward for most operators, but it is not supported for operators containing parameterized PrimitiveOps (in that case, OpflowError is raised). In the next step, the MatrixOp representation of SummedOp is converted to circuit. In most cases, if the summands themselves are unitary operators, the SummedOp itself is non-unitary and can not be converted to circuit. In that case, ExtensionError is raised in the underlying modules.
 
-**Parameters**
+    **Returns**
 
-**other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The other operator to check for equality.
+    The circuit representation of the summed operator.
 
-**Returns**
+    **Raises**
 
-True, if other and self are equal, otherwise False.
+    *   [**OpflowError**](opflow#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if SummedOp can not be converted to MatrixOp (e.g. SummedOp is composed of
+    *   **parameterized PrimitiveOps**\*\*)\*\*\*\*.\*\* –
 
-**Return type**
+    **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  </Function>
 
-**Examples**
+  ### to\_matrix\_op
 
-```python
->>> from qiskit.opflow import X, Z
->>> 2 * X == X + X
-True
->>> X + Z == Z + X
-True
-```
+  <Function id="qiskit.opflow.list_ops.SummedOp.to_matrix_op" name="to_matrix_op" signature="to_matrix_op(massive=False)">
+    Returns an equivalent Operator composed of only NumPy-based primitives, such as `MatrixOp` and `VectorStateFn`.
 
-### reduce
+    **Return type**
 
-<span id="qiskit.opflow.list_ops.SummedOp.reduce" />
+    [*SummedOp*](#qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.summed_op.SummedOp")
+  </Function>
 
-`reduce()`
+  ### to\_pauli\_op
 
-Try collapsing list or trees of sums.
+  <Function id="qiskit.opflow.list_ops.SummedOp.to_pauli_op" name="to_pauli_op" signature="to_pauli_op(massive=False)">
+    Returns an equivalent Operator composed of only Pauli-based primitives, such as `PauliOp`.
 
-Tries to sum up duplicate operators and reduces the operators in the sum.
+    **Return type**
 
-**Returns**
-
-A collapsed version of self, if possible.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
-
-### to\_circuit
-
-<span id="qiskit.opflow.list_ops.SummedOp.to_circuit" />
-
-`to_circuit()`
-
-Returns the quantum circuit, representing the SummedOp. In the first step, the SummedOp is converted to MatrixOp. This is straightforward for most operators, but it is not supported for operators containing parameterized PrimitiveOps (in that case, OpflowError is raised). In the next step, the MatrixOp representation of SummedOp is converted to circuit. In most cases, if the summands themselves are unitary operators, the SummedOp itself is non-unitary and can not be converted to circuit. In that case, ExtensionError is raised in the underlying modules.
-
-**Returns**
-
-The circuit representation of the summed operator.
-
-**Raises**
-
-*   [**OpflowError**](opflow#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if SummedOp can not be converted to MatrixOp (e.g. SummedOp is composed of
-*   **parameterized PrimitiveOps**\*\*)\*\*\*\*.\*\* –
-
-**Return type**
-
-[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
-
-### to\_matrix\_op
-
-<span id="qiskit.opflow.list_ops.SummedOp.to_matrix_op" />
-
-`to_matrix_op(massive=False)`
-
-Returns an equivalent Operator composed of only NumPy-based primitives, such as `MatrixOp` and `VectorStateFn`.
-
-**Return type**
-
-[*SummedOp*](#qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.summed_op.SummedOp")
-
-### to\_pauli\_op
-
-<span id="qiskit.opflow.list_ops.SummedOp.to_pauli_op" />
-
-`to_pauli_op(massive=False)`
-
-Returns an equivalent Operator composed of only Pauli-based primitives, such as `PauliOp`.
-
-**Return type**
-
-[*SummedOp*](#qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.summed_op.SummedOp")
+    [*SummedOp*](#qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.summed_op.SummedOp")
+  </Function>
+</Class>
 

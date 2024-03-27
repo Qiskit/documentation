@@ -8,253 +8,209 @@ python_api_name: qiskit.aqua.components.uncertainty_models.BernoulliDistribution
 
 # qiskit.aqua.components.uncertainty\_models.BernoulliDistribution
 
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution" />
+<Class id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/bernoulli_distribution.py" signature="BernoulliDistribution(p, low=0, high=1)">
+  The Univariate Bernoulli Distribution.
 
-`BernoulliDistribution(p, low=0, high=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/bernoulli_distribution.py "view source code")
+  Distribution with only two values (low, high) and the corresponding probabilities represented by a single qubit.
 
-The Univariate Bernoulli Distribution.
+  **Parameters**
 
-Distribution with only two values (low, high) and the corresponding probabilities represented by a single qubit.
+  *   **p** (`float`) – Probability
+  *   **low** (`float`) – Low value
+  *   **high** (`float`) – High value
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **p** (`float`) – Probability
-*   **low** (`float`) – Low value
-*   **high** (`float`) – High value
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.__init__" name="__init__" signature="__init__(p, low=0, high=1)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **p** (`float`) – Probability
+    *   **low** (`float`) – Low value
+    *   **high** (`float`) – High value
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.__init__" />
+  ## Methods
 
-`__init__(p, low=0, high=1)`
+  |                                                                                                                                                                                                                                                      |                                                                                                                                |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.__init__ "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.__init__")(p\[, low, high])                                                                  | **type p**`float`                                                                                                              |
+  | [`build`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build")(qc, q\[, q\_ancillas, params])                                                             |                                                                                                                                |
+  | [`build_controlled`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled")(qc, q, q\_control\[, …])                                  | Adds corresponding controlled sub-circuit to given circuit                                                                     |
+  | [`build_controlled_inverse`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_inverse "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_inverse")(qc, q, q\_control\[, …])          | Adds controlled inverse of corresponding sub-circuit to given circuit                                                          |
+  | [`build_controlled_inverse_power`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_inverse_power "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_inverse_power")(qc, q, …\[, …]) | Adds controlled, inverse, power of corresponding circuit.                                                                      |
+  | [`build_controlled_power`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_power "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_power")(qc, q, q\_control, power)               | Adds controlled power of corresponding circuit.                                                                                |
+  | [`build_inverse`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_inverse "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_inverse")(qc, q\[, q\_ancillas])                                             | Adds inverse of corresponding sub-circuit to given circuit                                                                     |
+  | [`build_inverse_power`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_inverse_power "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_inverse_power")(qc, q, power\[, q\_ancillas])                    | Adds inverse power of corresponding circuit.                                                                                   |
+  | [`build_power`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_power "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_power")(qc, q, power\[, q\_ancillas])                                            | Adds power of corresponding circuit.                                                                                           |
+  | [`get_num_qubits`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.get_num_qubits "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.get_num_qubits")()                                                               | returns number of qubits                                                                                                       |
+  | [`get_num_qubits_controlled`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.get_num_qubits_controlled "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.get_num_qubits_controlled")()                              | returns number of qubits controlled                                                                                            |
+  | [`pdf_to_probabilities`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.pdf_to_probabilities "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.pdf_to_probabilities")(pdf, low, high, num\_values)                  | Takes a probability density function (pdf), and returns a truncated and discretized array of probabilities corresponding to it |
+  | [`required_ancillas`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.required_ancillas "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.required_ancillas")()                                                      | returns required ancillas                                                                                                      |
+  | [`required_ancillas_controlled`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.required_ancillas_controlled "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.required_ancillas_controlled")()                     | returns required ancillas controlled                                                                                           |
 
-**Parameters**
+  ## Attributes
 
-*   **p** (`float`) – Probability
-*   **low** (`float`) – Low value
-*   **high** (`float`) – High value
+  |                                                                                                                                                                                               |                                     |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+  | [`high`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.high "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.high")                                        | returns high                        |
+  | [`low`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.low "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.low")                                           | returns low                         |
+  | [`num_target_qubits`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.num_target_qubits "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.num_target_qubits") | Returns the number of target qubits |
+  | [`num_values`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.num_values "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.num_values")                      | returns number of values            |
+  | [`p`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.p "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.p")                                                 |                                     |
+  | [`probabilities`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.probabilities "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.probabilities")             | returns probabilities               |
+  | [`values`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.values "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.values")                                  | returns values                      |
 
-## Methods
+  ### build
 
-|                                                                                                                                                                                                                                                      |                                                                                                                                |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.__init__ "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.__init__")(p\[, low, high])                                                                  | **type p**`float`                                                                                                              |
-| [`build`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build")(qc, q\[, q\_ancillas, params])                                                             |                                                                                                                                |
-| [`build_controlled`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled")(qc, q, q\_control\[, …])                                  | Adds corresponding controlled sub-circuit to given circuit                                                                     |
-| [`build_controlled_inverse`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_inverse "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_inverse")(qc, q, q\_control\[, …])          | Adds controlled inverse of corresponding sub-circuit to given circuit                                                          |
-| [`build_controlled_inverse_power`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_inverse_power "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_inverse_power")(qc, q, …\[, …]) | Adds controlled, inverse, power of corresponding circuit.                                                                      |
-| [`build_controlled_power`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_power "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_power")(qc, q, q\_control, power)               | Adds controlled power of corresponding circuit.                                                                                |
-| [`build_inverse`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_inverse "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_inverse")(qc, q\[, q\_ancillas])                                             | Adds inverse of corresponding sub-circuit to given circuit                                                                     |
-| [`build_inverse_power`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_inverse_power "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_inverse_power")(qc, q, power\[, q\_ancillas])                    | Adds inverse power of corresponding circuit.                                                                                   |
-| [`build_power`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_power "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_power")(qc, q, power\[, q\_ancillas])                                            | Adds power of corresponding circuit.                                                                                           |
-| [`get_num_qubits`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.get_num_qubits "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.get_num_qubits")()                                                               | returns number of qubits                                                                                                       |
-| [`get_num_qubits_controlled`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.get_num_qubits_controlled "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.get_num_qubits_controlled")()                              | returns number of qubits controlled                                                                                            |
-| [`pdf_to_probabilities`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.pdf_to_probabilities "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.pdf_to_probabilities")(pdf, low, high, num\_values)                  | Takes a probability density function (pdf), and returns a truncated and discretized array of probabilities corresponding to it |
-| [`required_ancillas`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.required_ancillas "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.required_ancillas")()                                                      | returns required ancillas                                                                                                      |
-| [`required_ancillas_controlled`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.required_ancillas_controlled "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.required_ancillas_controlled")()                     | returns required ancillas controlled                                                                                           |
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build" name="build" signature="build(qc, q, q_ancillas=None, params=None)" />
 
-## Attributes
+  ### build\_controlled
 
-|                                                                                                                                                                                               |                                     |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| [`high`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.high "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.high")                                        | returns high                        |
-| [`low`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.low "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.low")                                           | returns low                         |
-| [`num_target_qubits`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.num_target_qubits "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.num_target_qubits") | Returns the number of target qubits |
-| [`num_values`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.num_values "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.num_values")                      | returns number of values            |
-| [`p`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.p "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.p")                                                 |                                     |
-| [`probabilities`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.probabilities "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.probabilities")             | returns probabilities               |
-| [`values`](#qiskit.aqua.components.uncertainty_models.BernoulliDistribution.values "qiskit.aqua.components.uncertainty_models.BernoulliDistribution.values")                                  | returns values                      |
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled" name="build_controlled" signature="build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds corresponding controlled sub-circuit to given circuit
 
-### build
+    **Parameters**
 
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build" />
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-`build(qc, q, q_ancillas=None, params=None)`
+  ### build\_controlled\_inverse
 
-### build\_controlled
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_inverse" name="build_controlled_inverse" signature="build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled inverse of corresponding sub-circuit to given circuit
 
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled" />
+    **Parameters**
 
-`build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-Adds corresponding controlled sub-circuit to given circuit
+  ### build\_controlled\_inverse\_power
 
-**Parameters**
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_inverse_power" name="build_controlled_inverse_power" signature="build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  ### build\_controlled\_power
 
-### build\_controlled\_inverse
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_power" name="build_controlled_power" signature="build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_inverse" />
+  ### build\_inverse
 
-`build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_inverse" name="build_inverse" signature="build_inverse(qc, q, q_ancillas=None)">
+    Adds inverse of corresponding sub-circuit to given circuit
 
-Adds controlled inverse of corresponding sub-circuit to given circuit
+    **Parameters**
 
-**Parameters**
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  </Function>
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  ### build\_inverse\_power
 
-### build\_controlled\_inverse\_power
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_inverse_power" name="build_inverse_power" signature="build_inverse_power(qc, q, power, q_ancillas=None)">
+    Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_inverse_power" />
+  ### build\_power
 
-`build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_power" name="build_power" signature="build_power(qc, q, power, q_ancillas=None)">
+    Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ### get\_num\_qubits
 
-### build\_controlled\_power
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.get_num_qubits" name="get_num_qubits" signature="get_num_qubits()">
+    returns number of qubits
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_controlled_power" />
+  ### get\_num\_qubits\_controlled
 
-`build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.get_num_qubits_controlled" name="get_num_qubits_controlled" signature="get_num_qubits_controlled()">
+    returns number of qubits controlled
+  </Function>
 
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ### high
 
-### build\_inverse
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.high" name="high" signature="property high">
+    returns high
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_inverse" />
+  ### low
 
-`build_inverse(qc, q, q_ancillas=None)`
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.low" name="low" signature="property low">
+    returns low
+  </Function>
 
-Adds inverse of corresponding sub-circuit to given circuit
+  ### num\_target\_qubits
 
-**Parameters**
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.num_target_qubits" name="num_target_qubits" signature="property num_target_qubits">
+    Returns the number of target qubits
+  </Function>
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  ### num\_values
 
-### build\_inverse\_power
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.num_values" name="num_values" signature="property num_values">
+    returns number of values
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_inverse_power" />
+  ### p
 
-`build_inverse_power(qc, q, power, q_ancillas=None)`
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.p" name="p" signature="property p" />
 
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ### pdf\_to\_probabilities
 
-### build\_power
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.pdf_to_probabilities" name="pdf_to_probabilities" signature="static pdf_to_probabilities(pdf, low, high, num_values)">
+    Takes a probability density function (pdf), and returns a truncated and discretized array of probabilities corresponding to it
 
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.build_power" />
+    **Parameters**
 
-`build_power(qc, q, power, q_ancillas=None)`
+    *   **pdf** (*function*) – probability density function
+    *   **low** (*float*) – lower bound of equidistant grid
+    *   **high** (*float*) – upper bound of equidistant grid
+    *   **num\_values** (*int*) – number of grid points
 
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+    **Returns**
 
-### get\_num\_qubits
+    array of probabilities
 
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.get_num_qubits" />
+    **Return type**
 
-`get_num_qubits()`
+    list
+  </Function>
 
-returns number of qubits
+  ### probabilities
 
-### get\_num\_qubits\_controlled
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.probabilities" name="probabilities" signature="property probabilities">
+    returns probabilities
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.get_num_qubits_controlled" />
+  ### required\_ancillas
 
-`get_num_qubits_controlled()`
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.required_ancillas" name="required_ancillas" signature="required_ancillas()">
+    returns required ancillas
+  </Function>
 
-returns number of qubits controlled
+  ### required\_ancillas\_controlled
 
-### high
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.required_ancillas_controlled" name="required_ancillas_controlled" signature="required_ancillas_controlled()">
+    returns required ancillas controlled
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.high" />
+  ### values
 
-`property high`
-
-returns high
-
-### low
-
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.low" />
-
-`property low`
-
-returns low
-
-### num\_target\_qubits
-
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.num_target_qubits" />
-
-`property num_target_qubits`
-
-Returns the number of target qubits
-
-### num\_values
-
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.num_values" />
-
-`property num_values`
-
-returns number of values
-
-### p
-
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.p" />
-
-`property p`
-
-### pdf\_to\_probabilities
-
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.pdf_to_probabilities" />
-
-`static pdf_to_probabilities(pdf, low, high, num_values)`
-
-Takes a probability density function (pdf), and returns a truncated and discretized array of probabilities corresponding to it
-
-**Parameters**
-
-*   **pdf** (*function*) – probability density function
-*   **low** (*float*) – lower bound of equidistant grid
-*   **high** (*float*) – upper bound of equidistant grid
-*   **num\_values** (*int*) – number of grid points
-
-**Returns**
-
-array of probabilities
-
-**Return type**
-
-list
-
-### probabilities
-
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.probabilities" />
-
-`property probabilities`
-
-returns probabilities
-
-### required\_ancillas
-
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.required_ancillas" />
-
-`required_ancillas()`
-
-returns required ancillas
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.required_ancillas_controlled" />
-
-`required_ancillas_controlled()`
-
-returns required ancillas controlled
-
-### values
-
-<span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.values" />
-
-`property values`
-
-returns values
+  <Function id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution.values" name="values" signature="property values">
+    returns values
+  </Function>
+</Class>
 

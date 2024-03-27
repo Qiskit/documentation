@@ -8,134 +8,122 @@ python_api_name: qiskit.providers.ibmq.random.CQCExtractorJob
 
 # qiskit.providers.ibmq.random.CQCExtractorJob
 
-<span id="qiskit.providers.ibmq.random.CQCExtractorJob" />
+<Class id="qiskit.providers.ibmq.random.CQCExtractorJob" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/random/cqcextractorjob.py" signature="CQCExtractorJob(job_id, client, parameters=None)">
+  Representation of an asynchronous call to the CQC extractor.
 
-`CQCExtractorJob(job_id, client, parameters=None)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/random/cqcextractorjob.py "view source code")
+  An instance of this class is returned when you call [`run_async_ext1()`](qiskit.providers.ibmq.random.CQCExtractor#run_async_ext1 "qiskit.providers.ibmq.random.CQCExtractor.run_async_ext1"), [`run_async_ext2()`](qiskit.providers.ibmq.random.CQCExtractor#run_async_ext2 "qiskit.providers.ibmq.random.CQCExtractor.run_async_ext2"), or [`retrieve_job()`](qiskit.providers.ibmq.random.CQCExtractor#retrieve_job "qiskit.providers.ibmq.random.CQCExtractor.retrieve_job") method of the [`CQCExtractor`](qiskit.providers.ibmq.random.CQCExtractor "qiskit.providers.ibmq.random.CQCExtractor") class.
 
-Representation of an asynchronous call to the CQC extractor.
+  If the job is successfully submitted, you can inspect the job’s status by calling [`status()`](#qiskit.providers.ibmq.random.CQCExtractorJob.status "qiskit.providers.ibmq.random.CQCExtractorJob.status").
 
-An instance of this class is returned when you call [`run_async_ext1()`](qiskit.providers.ibmq.random.CQCExtractor#run_async_ext1 "qiskit.providers.ibmq.random.CQCExtractor.run_async_ext1"), [`run_async_ext2()`](qiskit.providers.ibmq.random.CQCExtractor#run_async_ext2 "qiskit.providers.ibmq.random.CQCExtractor.run_async_ext2"), or [`retrieve_job()`](qiskit.providers.ibmq.random.CQCExtractor#retrieve_job "qiskit.providers.ibmq.random.CQCExtractor.retrieve_job") method of the [`CQCExtractor`](qiskit.providers.ibmq.random.CQCExtractor "qiskit.providers.ibmq.random.CQCExtractor") class.
+  Some of the methods in this class are blocking, which means control may not be returned immediately. [`block_until_ready()`](#qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready "qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready") is an example of a blocking method, which waits until the job completes:
 
-If the job is successfully submitted, you can inspect the job’s status by calling [`status()`](#qiskit.providers.ibmq.random.CQCExtractorJob.status "qiskit.providers.ibmq.random.CQCExtractorJob.status").
+  ```python
+  job = extractor.run_async_ext1(...)
+  random_bits = job.block_until_ready()
+  ```
 
-Some of the methods in this class are blocking, which means control may not be returned immediately. [`block_until_ready()`](#qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready "qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready") is an example of a blocking method, which waits until the job completes:
+  <Admonition title="Note" type="note">
+    An error may occur when querying the remote server to get job information. The most common errors are temporary network failures and server errors, in which case an `RequestsApiError` is raised. These errors usually clear quickly, so retrying the operation is likely to succeed.
+  </Admonition>
 
-```python
-job = extractor.run_async_ext1(...)
-random_bits = job.block_until_ready()
-```
+  CQCExtractorJob constructor.
 
-<Admonition title="Note" type="note">
-  An error may occur when querying the remote server to get job information. The most common errors are temporary network failures and server errors, in which case an `RequestsApiError` is raised. These errors usually clear quickly, so retrying the operation is likely to succeed.
-</Admonition>
+  **Parameters**
 
-CQCExtractorJob constructor.
+  *   **job\_id** (`str`) – Job ID.
+  *   **client** (`RandomClient`) – Object for connecting to the server.
+  *   **parameters** (`Optional`\[`Dict`]) – Parameters used for this job.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **job\_id** (`str`) – Job ID.
-*   **client** (`RandomClient`) – Object for connecting to the server.
-*   **parameters** (`Optional`\[`Dict`]) – Parameters used for this job.
+  <Function id="qiskit.providers.ibmq.random.CQCExtractorJob.__init__" name="__init__" signature="__init__(job_id, client, parameters=None)">
+    CQCExtractorJob constructor.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.random.CQCExtractorJob.__init__" />
+    *   **job\_id** (`str`) – Job ID.
+    *   **client** (`RandomClient`) – Object for connecting to the server.
+    *   **parameters** (`Optional`\[`Dict`]) – Parameters used for this job.
+  </Function>
 
-`__init__(job_id, client, parameters=None)`
+  ## Methods
 
-CQCExtractorJob constructor.
+  |                                                                                                                                                                           |                                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+  | [`__init__`](#qiskit.providers.ibmq.random.CQCExtractorJob.__init__ "qiskit.providers.ibmq.random.CQCExtractorJob.__init__")(job\_id, client\[, parameters])              | CQCExtractorJob constructor.                      |
+  | [`block_until_ready`](#qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready "qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready")(\[timeout, wait]) | Wait for the job to finish and return the result. |
+  | [`status`](#qiskit.providers.ibmq.random.CQCExtractorJob.status "qiskit.providers.ibmq.random.CQCExtractorJob.status")()                                                  | Query the server for the latest job status.       |
 
-**Parameters**
+  ## Attributes
 
-*   **job\_id** (`str`) – Job ID.
-*   **client** (`RandomClient`) – Object for connecting to the server.
-*   **parameters** (`Optional`\[`Dict`]) – Parameters used for this job.
+  |                                                                                                                                                      |                                                |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+  | [`extractor_method`](#qiskit.providers.ibmq.random.CQCExtractorJob.extractor_method "qiskit.providers.ibmq.random.CQCExtractorJob.extractor_method") | Return the extractor method used.              |
+  | [`parameters`](#qiskit.providers.ibmq.random.CQCExtractorJob.parameters "qiskit.providers.ibmq.random.CQCExtractorJob.parameters")                   | Return the parameters passed to the extractor. |
 
-## Methods
+  ### block\_until\_ready
 
-|                                                                                                                                                                           |                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| [`__init__`](#qiskit.providers.ibmq.random.CQCExtractorJob.__init__ "qiskit.providers.ibmq.random.CQCExtractorJob.__init__")(job\_id, client\[, parameters])              | CQCExtractorJob constructor.                      |
-| [`block_until_ready`](#qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready "qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready")(\[timeout, wait]) | Wait for the job to finish and return the result. |
-| [`status`](#qiskit.providers.ibmq.random.CQCExtractorJob.status "qiskit.providers.ibmq.random.CQCExtractorJob.status")()                                                  | Query the server for the latest job status.       |
+  <Function id="qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready" name="block_until_ready" signature="block_until_ready(timeout=None, wait=10)">
+    Wait for the job to finish and return the result.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                                      |                                                |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [`extractor_method`](#qiskit.providers.ibmq.random.CQCExtractorJob.extractor_method "qiskit.providers.ibmq.random.CQCExtractorJob.extractor_method") | Return the extractor method used.              |
-| [`parameters`](#qiskit.providers.ibmq.random.CQCExtractorJob.parameters "qiskit.providers.ibmq.random.CQCExtractorJob.parameters")                   | Return the parameters passed to the extractor. |
+    *   **timeout** (`Optional`\[`float`]) – Seconds to wait for the job. If `None`, wait indefinitely.
+    *   **wait** (`float`) – Seconds between queries. Use a larger number if the job is expected to run for a long time.
 
-### block\_until\_ready
+    **Return type**
 
-<span id="qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready" />
+    `List`\[`int`]
 
-`block_until_ready(timeout=None, wait=10)`
+    **Returns**
 
-Wait for the job to finish and return the result.
+    Extractor output.
 
-**Parameters**
+    **Raises**
 
-*   **timeout** (`Optional`\[`float`]) – Seconds to wait for the job. If `None`, wait indefinitely.
-*   **wait** (`float`) – Seconds between queries. Use a larger number if the job is expected to run for a long time.
+    [**JobTimeoutError**](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not finish before the specified timeout.
+  </Function>
 
-**Return type**
+  ### extractor\_method
 
-`List`\[`int`]
+  <Function id="qiskit.providers.ibmq.random.CQCExtractorJob.extractor_method" name="extractor_method" signature="property extractor_method">
+    Return the extractor method used.
 
-**Returns**
+    **Return type**
 
-Extractor output.
+    `str`
 
-**Raises**
+    **Returns**
 
-[**JobTimeoutError**](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not finish before the specified timeout.
+    Extractor method used.
+  </Function>
 
-### extractor\_method
+  ### parameters
 
-<span id="qiskit.providers.ibmq.random.CQCExtractorJob.extractor_method" />
+  <Function id="qiskit.providers.ibmq.random.CQCExtractorJob.parameters" name="parameters" signature="property parameters">
+    Return the parameters passed to the extractor.
 
-`property extractor_method`
+    **Return type**
 
-Return the extractor method used.
+    `Dict`
 
-**Return type**
+    **Returns**
 
-`str`
+    Parameters passed to the extractor.
+  </Function>
 
-**Returns**
+  ### status
 
-Extractor method used.
+  <Function id="qiskit.providers.ibmq.random.CQCExtractorJob.status" name="status" signature="status()">
+    Query the server for the latest job status.
 
-### parameters
+    **Return type**
 
-<span id="qiskit.providers.ibmq.random.CQCExtractorJob.parameters" />
+    `JobStatus`
 
-`property parameters`
+    **Returns**
 
-Return the parameters passed to the extractor.
-
-**Return type**
-
-`Dict`
-
-**Returns**
-
-Parameters passed to the extractor.
-
-### status
-
-<span id="qiskit.providers.ibmq.random.CQCExtractorJob.status" />
-
-`status()`
-
-Query the server for the latest job status.
-
-**Return type**
-
-`JobStatus`
-
-**Returns**
-
-The status of the job.
+    The status of the job.
+  </Function>
+</Class>
 

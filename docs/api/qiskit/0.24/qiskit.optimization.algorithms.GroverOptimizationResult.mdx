@@ -10,260 +10,232 @@ python_api_name: qiskit.optimization.algorithms.GroverOptimizationResult
 
 # qiskit.optimization.algorithms.GroverOptimizationResult
 
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult" />
+<Class id="qiskit.optimization.algorithms.GroverOptimizationResult" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/grover_optimizer.py" signature="GroverOptimizationResult(x, fval, variables, operation_counts, n_input_qubits, n_output_qubits, intermediate_fval, threshold, status)">
+  A result object for Grover Optimization methods.
 
-`GroverOptimizationResult(x, fval, variables, operation_counts, n_input_qubits, n_output_qubits, intermediate_fval, threshold, status)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/grover_optimizer.py "view source code")
+  Constructs a result object with the specific Grover properties.
 
-A result object for Grover Optimization methods.
+  **Parameters**
 
-Constructs a result object with the specific Grover properties.
+  *   **x** (`Union`\[`List`\[`float`], `ndarray`]) – The solution of the problem
+  *   **fval** (`float`) – The value of the objective function of the solution
+  *   **variables** (`List`\[`Variable`]) – A list of variables defined in the problem
+  *   **operation\_counts** (`Dict`\[`int`, `Dict`\[`str`, `int`]]) – The counts of each operation performed per iteration.
+  *   **n\_input\_qubits** (`int`) – The number of qubits used to represent the input.
+  *   **n\_output\_qubits** (`int`) – The number of qubits used to represent the output.
+  *   **intermediate\_fval** (`float`) – The intermediate value of the objective function of the solution, that is expected to be identical with `fval`.
+  *   **threshold** (`float`) – The threshold of Grover algorithm.
+  *   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **x** (`Union`\[`List`\[`float`], `ndarray`]) – The solution of the problem
-*   **fval** (`float`) – The value of the objective function of the solution
-*   **variables** (`List`\[`Variable`]) – A list of variables defined in the problem
-*   **operation\_counts** (`Dict`\[`int`, `Dict`\[`str`, `int`]]) – The counts of each operation performed per iteration.
-*   **n\_input\_qubits** (`int`) – The number of qubits used to represent the input.
-*   **n\_output\_qubits** (`int`) – The number of qubits used to represent the output.
-*   **intermediate\_fval** (`float`) – The intermediate value of the objective function of the solution, that is expected to be identical with `fval`.
-*   **threshold** (`float`) – The threshold of Grover algorithm.
-*   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
+  <Function id="qiskit.optimization.algorithms.GroverOptimizationResult.__init__" name="__init__" signature="__init__(x, fval, variables, operation_counts, n_input_qubits, n_output_qubits, intermediate_fval, threshold, status)">
+    Constructs a result object with the specific Grover properties.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult.__init__" />
+    *   **x** (`Union`\[`List`\[`float`], `ndarray`]) – The solution of the problem
+    *   **fval** (`float`) – The value of the objective function of the solution
+    *   **variables** (`List`\[`Variable`]) – A list of variables defined in the problem
+    *   **operation\_counts** (`Dict`\[`int`, `Dict`\[`str`, `int`]]) – The counts of each operation performed per iteration.
+    *   **n\_input\_qubits** (`int`) – The number of qubits used to represent the input.
+    *   **n\_output\_qubits** (`int`) – The number of qubits used to represent the output.
+    *   **intermediate\_fval** (`float`) – The intermediate value of the objective function of the solution, that is expected to be identical with `fval`.
+    *   **threshold** (`float`) – The threshold of Grover algorithm.
+    *   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
+  </Function>
 
-`__init__(x, fval, variables, operation_counts, n_input_qubits, n_output_qubits, intermediate_fval, threshold, status)`
+  ## Methods
 
-Constructs a result object with the specific Grover properties.
+  |                                                                                                                                                                           |                                                                 |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+  | [`__init__`](#qiskit.optimization.algorithms.GroverOptimizationResult.__init__ "qiskit.optimization.algorithms.GroverOptimizationResult.__init__")(x, fval, variables, …) | Constructs a result object with the specific Grover properties. |
 
-**Parameters**
+  ## Attributes
 
-*   **x** (`Union`\[`List`\[`float`], `ndarray`]) – The solution of the problem
-*   **fval** (`float`) – The value of the objective function of the solution
-*   **variables** (`List`\[`Variable`]) – A list of variables defined in the problem
-*   **operation\_counts** (`Dict`\[`int`, `Dict`\[`str`, `int`]]) – The counts of each operation performed per iteration.
-*   **n\_input\_qubits** (`int`) – The number of qubits used to represent the input.
-*   **n\_output\_qubits** (`int`) – The number of qubits used to represent the output.
-*   **intermediate\_fval** (`float`) – The intermediate value of the objective function of the solution, that is expected to be identical with `fval`.
-*   **threshold** (`float`) – The threshold of Grover algorithm.
-*   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
+  |                                                                                                                                                                               |                                                                                         |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+  | [`fval`](#qiskit.optimization.algorithms.GroverOptimizationResult.fval "qiskit.optimization.algorithms.GroverOptimizationResult.fval")                                        | Returns the optimal function value.                                                     |
+  | [`intermediate_fval`](#qiskit.optimization.algorithms.GroverOptimizationResult.intermediate_fval "qiskit.optimization.algorithms.GroverOptimizationResult.intermediate_fval") | Getter of the intermediate fval                                                         |
+  | [`n_input_qubits`](#qiskit.optimization.algorithms.GroverOptimizationResult.n_input_qubits "qiskit.optimization.algorithms.GroverOptimizationResult.n_input_qubits")          | Getter of n\_input\_qubits                                                              |
+  | [`n_output_qubits`](#qiskit.optimization.algorithms.GroverOptimizationResult.n_output_qubits "qiskit.optimization.algorithms.GroverOptimizationResult.n_output_qubits")       | Getter of n\_output\_qubits                                                             |
+  | [`operation_counts`](#qiskit.optimization.algorithms.GroverOptimizationResult.operation_counts "qiskit.optimization.algorithms.GroverOptimizationResult.operation_counts")    | Get the operation counts.                                                               |
+  | [`raw_results`](#qiskit.optimization.algorithms.GroverOptimizationResult.raw_results "qiskit.optimization.algorithms.GroverOptimizationResult.raw_results")                   | Return the original results object from the optimization algorithm.                     |
+  | [`status`](#qiskit.optimization.algorithms.GroverOptimizationResult.status "qiskit.optimization.algorithms.GroverOptimizationResult.status")                                  | Returns the termination status of the optimization algorithm.                           |
+  | [`threshold`](#qiskit.optimization.algorithms.GroverOptimizationResult.threshold "qiskit.optimization.algorithms.GroverOptimizationResult.threshold")                         | Getter of the threshold of Grover algorithm.                                            |
+  | [`variable_names`](#qiskit.optimization.algorithms.GroverOptimizationResult.variable_names "qiskit.optimization.algorithms.GroverOptimizationResult.variable_names")          | Returns the list of variable names of the optimization problem.                         |
+  | [`variables`](#qiskit.optimization.algorithms.GroverOptimizationResult.variables "qiskit.optimization.algorithms.GroverOptimizationResult.variables")                         | Returns the list of variables of the optimization problem.                              |
+  | [`variables_dict`](#qiskit.optimization.algorithms.GroverOptimizationResult.variables_dict "qiskit.optimization.algorithms.GroverOptimizationResult.variables_dict")          | Returns the optimal value as a dictionary of the variable name and corresponding value. |
+  | [`x`](#qiskit.optimization.algorithms.GroverOptimizationResult.x "qiskit.optimization.algorithms.GroverOptimizationResult.x")                                                 | Returns the optimal value found in the optimization or None in case of FAILURE.         |
 
-## Methods
+  ### fval
 
-|                                                                                                                                                                           |                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [`__init__`](#qiskit.optimization.algorithms.GroverOptimizationResult.__init__ "qiskit.optimization.algorithms.GroverOptimizationResult.__init__")(x, fval, variables, …) | Constructs a result object with the specific Grover properties. |
+  <Function id="qiskit.optimization.algorithms.GroverOptimizationResult.fval" name="fval" signature="property fval">
+    Returns the optimal function value.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                                                               |                                                                                         |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| [`fval`](#qiskit.optimization.algorithms.GroverOptimizationResult.fval "qiskit.optimization.algorithms.GroverOptimizationResult.fval")                                        | Returns the optimal function value.                                                     |
-| [`intermediate_fval`](#qiskit.optimization.algorithms.GroverOptimizationResult.intermediate_fval "qiskit.optimization.algorithms.GroverOptimizationResult.intermediate_fval") | Getter of the intermediate fval                                                         |
-| [`n_input_qubits`](#qiskit.optimization.algorithms.GroverOptimizationResult.n_input_qubits "qiskit.optimization.algorithms.GroverOptimizationResult.n_input_qubits")          | Getter of n\_input\_qubits                                                              |
-| [`n_output_qubits`](#qiskit.optimization.algorithms.GroverOptimizationResult.n_output_qubits "qiskit.optimization.algorithms.GroverOptimizationResult.n_output_qubits")       | Getter of n\_output\_qubits                                                             |
-| [`operation_counts`](#qiskit.optimization.algorithms.GroverOptimizationResult.operation_counts "qiskit.optimization.algorithms.GroverOptimizationResult.operation_counts")    | Get the operation counts.                                                               |
-| [`raw_results`](#qiskit.optimization.algorithms.GroverOptimizationResult.raw_results "qiskit.optimization.algorithms.GroverOptimizationResult.raw_results")                   | Return the original results object from the optimization algorithm.                     |
-| [`status`](#qiskit.optimization.algorithms.GroverOptimizationResult.status "qiskit.optimization.algorithms.GroverOptimizationResult.status")                                  | Returns the termination status of the optimization algorithm.                           |
-| [`threshold`](#qiskit.optimization.algorithms.GroverOptimizationResult.threshold "qiskit.optimization.algorithms.GroverOptimizationResult.threshold")                         | Getter of the threshold of Grover algorithm.                                            |
-| [`variable_names`](#qiskit.optimization.algorithms.GroverOptimizationResult.variable_names "qiskit.optimization.algorithms.GroverOptimizationResult.variable_names")          | Returns the list of variable names of the optimization problem.                         |
-| [`variables`](#qiskit.optimization.algorithms.GroverOptimizationResult.variables "qiskit.optimization.algorithms.GroverOptimizationResult.variables")                         | Returns the list of variables of the optimization problem.                              |
-| [`variables_dict`](#qiskit.optimization.algorithms.GroverOptimizationResult.variables_dict "qiskit.optimization.algorithms.GroverOptimizationResult.variables_dict")          | Returns the optimal value as a dictionary of the variable name and corresponding value. |
-| [`x`](#qiskit.optimization.algorithms.GroverOptimizationResult.x "qiskit.optimization.algorithms.GroverOptimizationResult.x")                                                 | Returns the optimal value found in the optimization or None in case of FAILURE.         |
+    `float`
 
-### fval
+    **Returns**
 
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult.fval" />
+    The function value corresponding to the optimal value found in the optimization.
+  </Function>
 
-`property fval`
+  ### intermediate\_fval
 
-Returns the optimal function value.
+  <Function id="qiskit.optimization.algorithms.GroverOptimizationResult.intermediate_fval" name="intermediate_fval" signature="property intermediate_fval">
+    Getter of the intermediate fval
 
-**Return type**
+    **Return type**
 
-`float`
+    `float`
 
-**Returns**
+    **Returns**
 
-The function value corresponding to the optimal value found in the optimization.
+    The intermediate value of fval before interpret.
+  </Function>
 
-### intermediate\_fval
+  ### n\_input\_qubits
 
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult.intermediate_fval" />
+  <Function id="qiskit.optimization.algorithms.GroverOptimizationResult.n_input_qubits" name="n_input_qubits" signature="property n_input_qubits">
+    Getter of n\_input\_qubits
 
-`property intermediate_fval`
+    **Return type**
 
-Getter of the intermediate fval
+    `int`
 
-**Return type**
+    **Returns**
 
-`float`
+    The number of qubits used to represent the input.
+  </Function>
 
-**Returns**
+  ### n\_output\_qubits
 
-The intermediate value of fval before interpret.
+  <Function id="qiskit.optimization.algorithms.GroverOptimizationResult.n_output_qubits" name="n_output_qubits" signature="property n_output_qubits">
+    Getter of n\_output\_qubits
 
-### n\_input\_qubits
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult.n_input_qubits" />
+    `int`
 
-`property n_input_qubits`
+    **Returns**
 
-Getter of n\_input\_qubits
+    The number of qubits used to represent the output.
+  </Function>
 
-**Return type**
+  ### operation\_counts
 
-`int`
+  <Function id="qiskit.optimization.algorithms.GroverOptimizationResult.operation_counts" name="operation_counts" signature="property operation_counts">
+    Get the operation counts.
 
-**Returns**
+    **Return type**
 
-The number of qubits used to represent the input.
+    `Dict`\[`int`, `Dict`\[`str`, `int`]]
 
-### n\_output\_qubits
+    **Returns**
 
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult.n_output_qubits" />
+    The counts of each operation performed per iteration.
+  </Function>
 
-`property n_output_qubits`
+  ### raw\_results
 
-Getter of n\_output\_qubits
+  <Function id="qiskit.optimization.algorithms.GroverOptimizationResult.raw_results" name="raw_results" signature="property raw_results">
+    Return the original results object from the optimization algorithm.
 
-**Return type**
+    Currently a dump for any leftovers.
 
-`int`
+    **Return type**
 
-**Returns**
+    `Any`
 
-The number of qubits used to represent the output.
+    **Returns**
 
-### operation\_counts
+    Additional result information of the optimization algorithm.
+  </Function>
 
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult.operation_counts" />
+  ### status
 
-`property operation_counts`
+  <Function id="qiskit.optimization.algorithms.GroverOptimizationResult.status" name="status" signature="property status">
+    Returns the termination status of the optimization algorithm.
 
-Get the operation counts.
+    **Return type**
 
-**Return type**
+    `OptimizationResultStatus`
 
-`Dict`\[`int`, `Dict`\[`str`, `int`]]
+    **Returns**
 
-**Returns**
+    The termination status of the algorithm.
+  </Function>
 
-The counts of each operation performed per iteration.
+  ### threshold
 
-### raw\_results
+  <Function id="qiskit.optimization.algorithms.GroverOptimizationResult.threshold" name="threshold" signature="property threshold">
+    Getter of the threshold of Grover algorithm.
 
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult.raw_results" />
+    **Return type**
 
-`property raw_results`
+    `float`
 
-Return the original results object from the optimization algorithm.
+    **Returns**
 
-Currently a dump for any leftovers.
+    The threshold of Grover algorithm.
+  </Function>
 
-**Return type**
+  ### variable\_names
 
-`Any`
+  <Function id="qiskit.optimization.algorithms.GroverOptimizationResult.variable_names" name="variable_names" signature="property variable_names">
+    Returns the list of variable names of the optimization problem.
 
-**Returns**
+    **Return type**
 
-Additional result information of the optimization algorithm.
+    `List`\[`str`]
 
-### status
+    **Returns**
 
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult.status" />
+    The list of variable names of the optimization problem.
+  </Function>
 
-`property status`
+  ### variables
 
-Returns the termination status of the optimization algorithm.
+  <Function id="qiskit.optimization.algorithms.GroverOptimizationResult.variables" name="variables" signature="property variables">
+    Returns the list of variables of the optimization problem.
 
-**Return type**
+    **Return type**
 
-`OptimizationResultStatus`
+    `List`\[`Variable`]
 
-**Returns**
+    **Returns**
 
-The termination status of the algorithm.
+    The list of variables.
+  </Function>
 
-### threshold
+  ### variables\_dict
 
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult.threshold" />
+  <Function id="qiskit.optimization.algorithms.GroverOptimizationResult.variables_dict" name="variables_dict" signature="property variables_dict">
+    Returns the optimal value as a dictionary of the variable name and corresponding value.
 
-`property threshold`
+    **Return type**
 
-Getter of the threshold of Grover algorithm.
+    `Dict`\[`str`, `float`]
 
-**Return type**
+    **Returns**
 
-`float`
+    The optimal value as a dictionary of the variable name and corresponding value.
+  </Function>
 
-**Returns**
+  ### x
 
-The threshold of Grover algorithm.
+  <Function id="qiskit.optimization.algorithms.GroverOptimizationResult.x" name="x" signature="property x">
+    Returns the optimal value found in the optimization or None in case of FAILURE.
 
-### variable\_names
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult.variable_names" />
+    `Optional`\[`ndarray`]
 
-`property variable_names`
+    **Returns**
 
-Returns the list of variable names of the optimization problem.
-
-**Return type**
-
-`List`\[`str`]
-
-**Returns**
-
-The list of variable names of the optimization problem.
-
-### variables
-
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult.variables" />
-
-`property variables`
-
-Returns the list of variables of the optimization problem.
-
-**Return type**
-
-`List`\[`Variable`]
-
-**Returns**
-
-The list of variables.
-
-### variables\_dict
-
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult.variables_dict" />
-
-`property variables_dict`
-
-Returns the optimal value as a dictionary of the variable name and corresponding value.
-
-**Return type**
-
-`Dict`\[`str`, `float`]
-
-**Returns**
-
-The optimal value as a dictionary of the variable name and corresponding value.
-
-### x
-
-<span id="qiskit.optimization.algorithms.GroverOptimizationResult.x" />
-
-`property x`
-
-Returns the optimal value found in the optimization or None in case of FAILURE.
-
-**Return type**
-
-`Optional`\[`ndarray`]
-
-**Returns**
-
-The optimal value found in the optimization.
+    The optimal value found in the optimization.
+  </Function>
+</Class>
 

@@ -8,266 +8,260 @@ python_api_name: qiskit.circuit.library.UnitaryOverlap
 
 # UnitaryOverlap
 
-<span id="qiskit.circuit.library.UnitaryOverlap" />
+<Class id="qiskit.circuit.library.UnitaryOverlap" github="https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/overlap.py" signature="qiskit.circuit.library.UnitaryOverlap(unitary1, unitary2, prefix1='p1', prefix2='p2')">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
-`qiskit.circuit.library.UnitaryOverlap(unitary1, unitary2, prefix1='p1', prefix2='p2')` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/overlap.py "view source code")
+  Circuit that returns the overlap between two unitaries $U_2^{\dag} U_1$.
 
-Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  The input quantum circuits must represent unitary operations, since they must be invertible. If the inputs will have parameters, they are replaced by [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")s with names “p1” (for circuit `unitary1`) and “p2” (for circuit `unitary_2`) in the output circuit.
 
-Circuit that returns the overlap between two unitaries $U_2^{\dag} U_1$.
+  This circuit is usually employed in computing the fidelity:
 
-The input quantum circuits must represent unitary operations, since they must be invertible. If the inputs will have parameters, they are replaced by [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")s with names “p1” (for circuit `unitary1`) and “p2” (for circuit `unitary_2`) in the output circuit.
+  ```python
+  .. math::
 
-This circuit is usually employed in computing the fidelity:
+      \left|\langle 0| U_2^{\dag} U_1|0\rangle\right|^{2}
+  ```
 
-```python
-.. math::
+  by computing the probability of being in the all-zeros bit-string, or equivalently, the expectation value of projector $|0\rangle\langle 0|$.
 
-    \left|\langle 0| U_2^{\dag} U_1|0\rangle\right|^{2}
-```
+  Example:
 
-by computing the probability of being in the all-zeros bit-string, or equivalently, the expectation value of projector $|0\rangle\langle 0|$.
+  ```python
+  import numpy as np
+  from qiskit.circuit.library import EfficientSU2, UnitaryOverlap
+  from qiskit.primitives import Sampler
 
-Example:
+  # get two circuit to prepare states of which we comput the overlap
+  circuit = EfficientSU2(2, reps=1)
+  unitary1 = circuit.assign_parameters(np.random.random(circuit.num_parameters))
+  unitary2 = circuit.assign_parameters(np.random.random(circuit.num_parameters))
 
-```python
-import numpy as np
-from qiskit.circuit.library import EfficientSU2, UnitaryOverlap
-from qiskit.primitives import Sampler
+  # create the overlap circuit
+  overlap = UnitaryOverap(unitary1, unitary2)
 
-# get two circuit to prepare states of which we comput the overlap
-circuit = EfficientSU2(2, reps=1)
-unitary1 = circuit.assign_parameters(np.random.random(circuit.num_parameters))
-unitary2 = circuit.assign_parameters(np.random.random(circuit.num_parameters))
+  # sample from the overlap
+  sampler = Sampler(options={"shots": 100})
+  result = sampler.run(overlap).result()
 
-# create the overlap circuit
-overlap = UnitaryOverap(unitary1, unitary2)
+  # the fidelity is the probability to measure 0
+  fidelity = result.quasi_dists[0].get(0, 0)
+  ```
 
-# sample from the overlap
-sampler = Sampler(options={"shots": 100})
-result = sampler.run(overlap).result()
+  **Parameters**
 
-# the fidelity is the probability to measure 0
-fidelity = result.quasi_dists[0].get(0, 0)
-```
+  *   **unitary1** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – Unitary acting on the ket vector.
+  *   **unitary2** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – Unitary whose inverse operates on the bra vector.
+  *   **prefix1** – The name of the parameter vector associated to `unitary1`, if it is parameterized. Defaults to `"p1"`.
+  *   **prefix2** – The name of the parameter vector associated to `unitary2`, if it is parameterized. Defaults to `"p2"`.
 
-**Parameters**
+  **Raises**
 
-*   **unitary1** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – Unitary acting on the ket vector.
-*   **unitary2** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – Unitary whose inverse operates on the bra vector.
-*   **prefix1** – The name of the parameter vector associated to `unitary1`, if it is parameterized. Defaults to `"p1"`.
-*   **prefix2** – The name of the parameter vector associated to `unitary2`, if it is parameterized. Defaults to `"p2"`.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Number of qubits in `unitary1` and `unitary2` does not match.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Inputs contain measurements and/or resets.
 
-**Raises**
+  ## Attributes
 
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Number of qubits in `unitary1` and `unitary2` does not match.
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Inputs contain measurements and/or resets.
+  ### ancillas
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.UnitaryOverlap.ancillas" />
+  ### calibrations
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
 
-<span id="qiskit.circuit.library.UnitaryOverlap.calibrations" />
+  ### clbits
 
-### calibrations
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-Return calibration dictionary.
+  ### data
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.data" name="data">
+    Return the circuit data (instructions and context).
 
-<span id="qiskit.circuit.library.UnitaryOverlap.clbits" />
+    **Returns**
 
-### clbits
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
-Returns a list of classical bits in the order that the registers were added.
+    **Return type**
 
-<span id="qiskit.circuit.library.UnitaryOverlap.data" />
+    QuantumCircuitData
+  </Attribute>
 
-### data
+  ### global\_phase
 
-Return the circuit data (instructions and context).
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.global_phase" name="global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
 
-**Returns**
+  ### instances
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.instances" name="instances" attributeValue="= 158" />
 
-**Return type**
+  ### layout
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.layout" name="layout">
+    Return any associated layout information about the circuit
 
-<span id="qiskit.circuit.library.UnitaryOverlap.global_phase" />
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
-### global\_phase
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
 
-Return the global phase of the current circuit scope in radians.
+  ### metadata
 
-<span id="qiskit.circuit.library.UnitaryOverlap.instances" />
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.metadata" name="metadata">
+    The user provided metadata associated with the circuit.
 
-### instances
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-`= 158`
+  ### num\_ancillas
 
-<span id="qiskit.circuit.library.UnitaryOverlap.layout" />
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-### layout
+  ### num\_captured\_vars
 
-Return any associated layout information about the circuit
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.num_captured_vars" name="num_captured_vars">
+    The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
 
-This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.UnitaryOverlap.num_input_vars "qiskit.circuit.library.UnitaryOverlap.num_input_vars") must be zero.
+  </Attribute>
 
-There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.UnitaryOverlap.metadata" />
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-### metadata
+  ### num\_declared\_vars
 
-The user provided metadata associated with the circuit.
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.num_declared_vars" name="num_declared_vars">
+    The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
 
-<span id="qiskit.circuit.library.UnitaryOverlap.num_ancillas" />
+  ### num\_input\_vars
 
-### num\_ancillas
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.num_input_vars" name="num_input_vars">
+    The number of runtime classical variables in the circuit marked as circuit inputs.
 
-Return the number of ancilla qubits.
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.UnitaryOverlap.num_captured_vars "qiskit.circuit.library.UnitaryOverlap.num_captured_vars") must be zero.
+  </Attribute>
 
-<span id="qiskit.circuit.library.UnitaryOverlap.num_captured_vars" />
+  ### num\_parameters
 
-### num\_captured\_vars
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.num_parameters" name="num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
 
-The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+  ### num\_qubits
 
-This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.UnitaryOverlap.num_input_vars "qiskit.circuit.library.UnitaryOverlap.num_input_vars") must be zero.
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.UnitaryOverlap.num_clbits" />
+  ### num\_vars
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.num_vars" name="num_vars">
+    The number of runtime classical variables in the circuit.
 
-Return number of classical bits.
+    This is the length of the `iter_vars()` iterable.
+  </Attribute>
 
-<span id="qiskit.circuit.library.UnitaryOverlap.num_declared_vars" />
+  ### op\_start\_times
 
-### num\_declared\_vars
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-This is the length of the `iter_declared_vars()` iterable.
+    **Returns**
 
-<span id="qiskit.circuit.library.UnitaryOverlap.num_input_vars" />
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-### num\_input\_vars
+    **Raises**
 
-The number of runtime classical variables in the circuit marked as circuit inputs.
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
 
-This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.UnitaryOverlap.num_captured_vars "qiskit.circuit.library.UnitaryOverlap.num_captured_vars") must be zero.
+  ### parameters
 
-<span id="qiskit.circuit.library.UnitaryOverlap.num_parameters" />
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.parameters" name="parameters">
+    The parameters defined in the circuit.
 
-### num\_parameters
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-The number of parameter objects in the circuit.
+    **Examples**
 
-<span id="qiskit.circuit.library.UnitaryOverlap.num_qubits" />
+    The snippet below shows that insertion order of parameters does not matter.
 
-### num\_qubits
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
 
-Return number of qubits.
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
-<span id="qiskit.circuit.library.UnitaryOverlap.num_vars" />
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
 
-### num\_vars
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
-The number of runtime classical variables in the circuit.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
 
-This is the length of the `iter_vars()` iterable.
+    **Returns**
 
-<span id="qiskit.circuit.library.UnitaryOverlap.op_start_times" />
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
-### op\_start\_times
+  ### prefix
 
-Return a list of operation start times.
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+  ### qubits
 
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
-
-<span id="qiskit.circuit.library.UnitaryOverlap.parameters" />
-
-### parameters
-
-The parameters defined in the circuit.
-
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
-
-**Examples**
-
-The snippet below shows that insertion order of parameters does not matter.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
->>> circuit = QuantumCircuit(1)
->>> circuit.rx(b, 0)
->>> circuit.rz(elephant, 0)
->>> circuit.ry(a, 0)
->>> circuit.parameters  # sorted alphabetically!
-ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
-```
-
-Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
->>> circuit = QuantumCircuit(1)
->>> circuit.u(*angles, 0)
->>> circuit.draw()
-   ┌─────────────────────────────┐
-q: ┤ U(angle_1,angle_2,angle_10) ├
-   └─────────────────────────────┘
->>> circuit.parameters
-ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
-```
-
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
->>> x = ParameterVector("x", 12)
->>> circuit = QuantumCircuit(1)
->>> for x_i in x:
-...     circuit.rx(x_i, 0)
->>> circuit.parameters
-ParameterView([
-    ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
-    ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
-    ..., ParameterVectorElement(x[11])
-])
-```
-
-**Returns**
-
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
-
-<span id="qiskit.circuit.library.UnitaryOverlap.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.UnitaryOverlap.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.UnitaryOverlap.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+</Class>
 

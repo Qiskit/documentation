@@ -8,83 +8,71 @@ python_api_name: qiskit.circuit.AncillaRegister
 
 # AncillaRegister
 
-<span id="qiskit.circuit.AncillaRegister" />
+<Class id="qiskit.circuit.AncillaRegister" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/quantumregister.py" signature="qiskit.circuit.AncillaRegister(size=None, name=None, bits=None)">
+  Bases: [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")
 
-`qiskit.circuit.AncillaRegister(size=None, name=None, bits=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/quantumregister.py "view source code")
+  Implement an ancilla register.
 
-Bases: [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")
+  Create a new generic register.
 
-Implement an ancilla register.
+  Either the `size` or the `bits` argument must be provided. If `size` is not None, the register will be pre-populated with bits of the correct type.
 
-Create a new generic register.
+  **Parameters**
 
-Either the `size` or the `bits` argument must be provided. If `size` is not None, the register will be pre-populated with bits of the correct type.
+  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The number of bits to include in the register.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
+  *   **bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – Optional. A list of Bit() instances to be used to populate the register.
 
-**Parameters**
+  **Raises**
 
-*   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The number of bits to include in the register.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
-*   **bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – Optional. A list of Bit() instances to be used to populate the register.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if both the `size` and `bits` arguments are provided, or if neither are.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `size` is not valid.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `name` is not a valid name according to the OpenQASM spec.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `bits` contained duplicated bits.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `bits` contained bits of an incorrect type.
 
-**Raises**
+  ## Attributes
 
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if both the `size` and `bits` arguments are provided, or if neither are.
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `size` is not valid.
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `name` is not a valid name according to the OpenQASM spec.
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `bits` contained duplicated bits.
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `bits` contained bits of an incorrect type.
+  ### instances\_counter
 
-## Attributes
+  <Attribute id="qiskit.circuit.AncillaRegister.instances_counter" name="instances_counter" attributeValue="= count(0)" />
 
-<span id="qiskit.circuit.AncillaRegister.instances_counter" />
+  ### name
 
-### instances\_counter
+  <Attribute id="qiskit.circuit.AncillaRegister.name" name="name">
+    Get the register name.
+  </Attribute>
 
-`= count(0)`
+  ### name\_format
 
-<span id="qiskit.circuit.AncillaRegister.name" />
+  <Attribute id="qiskit.circuit.AncillaRegister.name_format" name="name_format" attributeValue="= re.compile('[a-z][a-zA-Z0-9_]*')" />
 
-### name
+  ### prefix
 
-Get the register name.
+  <Attribute id="qiskit.circuit.AncillaRegister.prefix" name="prefix" attributeValue="= 'a'" />
 
-<span id="qiskit.circuit.AncillaRegister.name_format" />
+  ### size
 
-### name\_format
+  <Attribute id="qiskit.circuit.AncillaRegister.size" name="size">
+    Get the register size.
+  </Attribute>
 
-`= re.compile('[a-z][a-zA-Z0-9_]*')`
+  ## Methods
 
-<span id="qiskit.circuit.AncillaRegister.prefix" />
+  ### index
 
-### prefix
+  <Function id="qiskit.circuit.AncillaRegister.index" name="index" signature="index(bit)">
+    Find the index of the provided bit within this register.
+  </Function>
 
-`= 'a'`
+  ### qasm
 
-<span id="qiskit.circuit.AncillaRegister.size" />
+  <Function id="qiskit.circuit.AncillaRegister.qasm" name="qasm" signature="qasm()">
+    Return OPENQASM string for this register.
 
-### size
-
-Get the register size.
-
-## Methods
-
-### index
-
-<span id="qiskit.circuit.AncillaRegister.index" />
-
-`index(bit)`
-
-Find the index of the provided bit within this register.
-
-### qasm
-
-<span id="qiskit.circuit.AncillaRegister.qasm" />
-
-`qasm()`
-
-Return OPENQASM string for this register.
-
-<Admonition title="Deprecated since version 0.23.0" type="danger">
-  The method `qiskit.circuit.quantumregister.QuantumRegister.qasm()` is deprecated as of qiskit-terra 0.23.0. It will be removed in the Qiskit 1.0 release. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
-</Admonition>
+    <Admonition title="Deprecated since version 0.23.0" type="danger">
+      The method `qiskit.circuit.quantumregister.QuantumRegister.qasm()` is deprecated as of qiskit-terra 0.23.0. It will be removed in the Qiskit 1.0 release. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
+    </Admonition>
+  </Function>
+</Class>
 

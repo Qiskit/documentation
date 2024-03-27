@@ -8,81 +8,69 @@ python_api_name: qiskit.circuit.Register
 
 # Register
 
-<span id="qiskit.circuit.Register" />
+<Class id="qiskit.circuit.Register" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/register.py" signature="qiskit.circuit.Register(size=None, name=None, bits=None)">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.circuit.Register(size=None, name=None, bits=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/register.py "view source code")
+  Implement a generic register.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  <Admonition title="Note" type="note">
+    This class should not be instantiated directly. This is just a superclass for [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") and [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister").
+  </Admonition>
 
-Implement a generic register.
+  Create a new generic register.
 
-<Admonition title="Note" type="note">
-  This class should not be instantiated directly. This is just a superclass for [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") and [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister").
-</Admonition>
+  Either the `size` or the `bits` argument must be provided. If `size` is not None, the register will be pre-populated with bits of the correct type.
 
-Create a new generic register.
+  **Parameters**
 
-Either the `size` or the `bits` argument must be provided. If `size` is not None, the register will be pre-populated with bits of the correct type.
+  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The number of bits to include in the register.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
+  *   **bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – Optional. A list of Bit() instances to be used to populate the register.
 
-**Parameters**
+  **Raises**
 
-*   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The number of bits to include in the register.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
-*   **bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – Optional. A list of Bit() instances to be used to populate the register.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if both the `size` and `bits` arguments are provided, or if neither are.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `size` is not valid.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `name` is not a valid name according to the OpenQASM spec.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `bits` contained duplicated bits.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `bits` contained bits of an incorrect type.
 
-**Raises**
+  ## Attributes
 
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if both the `size` and `bits` arguments are provided, or if neither are.
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `size` is not valid.
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `name` is not a valid name according to the OpenQASM spec.
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `bits` contained duplicated bits.
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `bits` contained bits of an incorrect type.
+  ### bit\_type
 
-## Attributes
+  <Attribute id="qiskit.circuit.Register.bit_type" name="bit_type" attributeValue="= None" />
 
-<span id="qiskit.circuit.Register.bit_type" />
+  ### instances\_counter
 
-### bit\_type
+  <Attribute id="qiskit.circuit.Register.instances_counter" name="instances_counter" attributeValue="= count(0)" />
 
-`= None`
+  ### name
 
-<span id="qiskit.circuit.Register.instances_counter" />
+  <Attribute id="qiskit.circuit.Register.name" name="name">
+    Get the register name.
+  </Attribute>
 
-### instances\_counter
+  ### name\_format
 
-`= count(0)`
+  <Attribute id="qiskit.circuit.Register.name_format" name="name_format" attributeValue="= re.compile('[a-z][a-zA-Z0-9_]*')" />
 
-<span id="qiskit.circuit.Register.name" />
+  ### prefix
 
-### name
+  <Attribute id="qiskit.circuit.Register.prefix" name="prefix" attributeValue="= 'reg'" />
 
-Get the register name.
+  ### size
 
-<span id="qiskit.circuit.Register.name_format" />
+  <Attribute id="qiskit.circuit.Register.size" name="size">
+    Get the register size.
+  </Attribute>
 
-### name\_format
+  ## Methods
 
-`= re.compile('[a-z][a-zA-Z0-9_]*')`
+  ### index
 
-<span id="qiskit.circuit.Register.prefix" />
-
-### prefix
-
-`= 'reg'`
-
-<span id="qiskit.circuit.Register.size" />
-
-### size
-
-Get the register size.
-
-## Methods
-
-### index
-
-<span id="qiskit.circuit.Register.index" />
-
-`index(bit)`
-
-Find the index of the provided bit within this register.
+  <Function id="qiskit.circuit.Register.index" name="index" signature="index(bit)">
+    Find the index of the provided bit within this register.
+  </Function>
+</Class>
 

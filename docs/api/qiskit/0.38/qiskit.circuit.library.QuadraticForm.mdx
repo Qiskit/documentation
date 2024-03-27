@@ -8,305 +8,293 @@ python_api_name: qiskit.circuit.library.QuadraticForm
 
 # QuadraticForm
 
-<span id="qiskit.circuit.library.QuadraticForm" />
+<Class id="qiskit.circuit.library.QuadraticForm" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/arithmetic/quadratic_form.py" signature="QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)">
+  Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
-`QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
+  Implements a quadratic form on binary variables encoded in qubit registers.
 
-Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  A quadratic form on binary variables is a quadratic function $Q$ acting on a binary variable of $n$ bits, $x = x_0 ... x_{n-1}$. For an integer matrix $A$, an integer vector $b$ and an integer $c$ the function can be written as
 
-Implements a quadratic form on binary variables encoded in qubit registers.
+  $$
+  Q(x) = x^T A x + x^T b + c
+  $$
 
-A quadratic form on binary variables is a quadratic function $Q$ acting on a binary variable of $n$ bits, $x = x_0 ... x_{n-1}$. For an integer matrix $A$, an integer vector $b$ and an integer $c$ the function can be written as
+  If $A$, $b$ or $c$ contain scalar values, this circuit computes only an approximation of the quadratic form.
 
-$$
-Q(x) = x^T A x + x^T b + c
-$$
+  Provided with $m$ qubits to encode the value, this circuit computes $Q(x) \mod 2^m$ in \[two’s complement]\([https://stackoverflow.com/questions/1049722/what-is-2s-complement](https://stackoverflow.com/questions/1049722/what-is-2s-complement)) representation.
 
-If $A$, $b$ or $c$ contain scalar values, this circuit computes only an approximation of the quadratic form.
+  $$
+  |x\rangle_n |0\rangle_m \mapsto |x\rangle_n |(Q(x) + 2^m) \mod 2^m \rangle_m
+  $$
 
-Provided with $m$ qubits to encode the value, this circuit computes $Q(x) \mod 2^m$ in \[two’s complement]\([https://stackoverflow.com/questions/1049722/what-is-2s-complement](https://stackoverflow.com/questions/1049722/what-is-2s-complement)) representation.
+  Since we use two’s complement e.g. the value of $Q(x) = 3$ requires 2 bits to represent the value and 1 bit for the sign: 3 = ‘011’ where the first 0 indicates a positive value. On the other hand, $Q(x) = -3$ would be -3 = ‘101’, where the first 1 indicates a negative value and 01 is the two’s complement of 3.
 
-$$
-|x\rangle_n |0\rangle_m \mapsto |x\rangle_n |(Q(x) + 2^m) \mod 2^m \rangle_m
-$$
+  If the value of $Q(x)$ is too large to be represented with m qubits, the resulting bitstring is $(Q(x) + 2^m) \mod 2^m)$.
 
-Since we use two’s complement e.g. the value of $Q(x) = 3$ requires 2 bits to represent the value and 1 bit for the sign: 3 = ‘011’ where the first 0 indicates a positive value. On the other hand, $Q(x) = -3$ would be -3 = ‘101’, where the first 1 indicates a negative value and 01 is the two’s complement of 3.
+  The implementation of this circuit is discussed in \[1], Fig. 6.
 
-If the value of $Q(x)$ is too large to be represented with m qubits, the resulting bitstring is $(Q(x) + 2^m) \mod 2^m)$.
+  **References**
 
-The implementation of this circuit is discussed in \[1], Fig. 6.
+  **\[1]: Gilliam et al., Grover Adaptive Search for Constrained Polynomial Binary Optimization.**
 
-**References**
+  [arXiv:1912.04088](https://arxiv.org/pdf/1912.04088.pdf)
 
-**\[1]: Gilliam et al., Grover Adaptive Search for Constrained Polynomial Binary Optimization.**
+  **Parameters**
 
-[arXiv:1912.04088](https://arxiv.org/pdf/1912.04088.pdf)
+  *   **num\_result\_qubits** (`Optional`\[`int`]) – The number of qubits to encode the result. Called $m$ in the class documentation.
+  *   **quadratic** (`Union`\[`ndarray`, `List`\[`List`\[`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]]], `None`]) – A matrix containing the quadratic coefficients, $A$.
+  *   **linear** (`Union`\[`ndarray`, `List`\[`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]], `None`]) – An array containing the linear coefficients, $b$.
+  *   **offset** (`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `None`]) – A constant offset, $c$.
+  *   **little\_endian** (`bool`) – Encode the result in little endianness.
 
-**Parameters**
+  **Raises**
 
-*   **num\_result\_qubits** (`Optional`\[`int`]) – The number of qubits to encode the result. Called $m$ in the class documentation.
-*   **quadratic** (`Union`\[`ndarray`, `List`\[`List`\[`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]]], `None`]) – A matrix containing the quadratic coefficients, $A$.
-*   **linear** (`Union`\[`ndarray`, `List`\[`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]], `None`]) – An array containing the linear coefficients, $b$.
-*   **offset** (`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `None`]) – A constant offset, $c$.
-*   **little\_endian** (`bool`) – Encode the result in little endianness.
+  *   **ValueError** – If `linear` and `quadratic` have mismatching sizes.
+  *   **ValueError** – If `num_result_qubits` is unspecified but cannot be determined because some values of the quadratic form are parameterized.
 
-**Raises**
+  ## Methods Defined Here
 
-*   **ValueError** – If `linear` and `quadratic` have mismatching sizes.
-*   **ValueError** – If `num_result_qubits` is unspecified but cannot be determined because some values of the quadratic form are parameterized.
+  ### required\_result\_qubits
 
-## Methods Defined Here
+  <Function id="qiskit.circuit.library.QuadraticForm.required_result_qubits" signature="static QuadraticForm.required_result_qubits(quadratic, linear, offset)">
+    Get the number of required result qubits.
 
-### required\_result\_qubits
+    **Parameters**
 
-<span id="qiskit.circuit.library.QuadraticForm.required_result_qubits" />
+    *   **quadratic** (`Union`\[`ndarray`, `List`\[`List`\[`float`]]]) – A matrix containing the quadratic coefficients.
+    *   **linear** (`Union`\[`ndarray`, `List`\[`float`]]) – An array containing the linear coefficients.
+    *   **offset** (`float`) – A constant offset.
 
-`static QuadraticForm.required_result_qubits(quadratic, linear, offset)`
+    **Return type**
 
-Get the number of required result qubits.
+    `int`
 
-**Parameters**
+    **Returns**
 
-*   **quadratic** (`Union`\[`ndarray`, `List`\[`List`\[`float`]]]) – A matrix containing the quadratic coefficients.
-*   **linear** (`Union`\[`ndarray`, `List`\[`float`]]) – An array containing the linear coefficients.
-*   **offset** (`float`) – A constant offset.
+    The number of qubits needed to represent the value of the quadratic form in twos complement.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`int`
+  ### ancillas
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.QuadraticForm.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-The number of qubits needed to represent the value of the quadratic form in twos complement.
+    **Return type**
 
-## Attributes
+    `List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  </Attribute>
 
-<span id="qiskit.circuit.library.QuadraticForm.ancillas" />
+  ### calibrations
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.QuadraticForm.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **The custom pulse definition of a given gate is of the form**
 
-**Return type**
+    \{‘gate\_name’: \{(qubits, params): schedule}}
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+    **Return type**
 
-<span id="qiskit.circuit.library.QuadraticForm.calibrations" />
+    `dict`
+  </Attribute>
 
-### calibrations
+  ### clbits
 
-Return calibration dictionary.
+  <Attribute id="qiskit.circuit.library.QuadraticForm.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-**The custom pulse definition of a given gate is of the form**
+    **Return type**
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-**Return type**
+  ### data
 
-`dict`
+  <Attribute id="qiskit.circuit.library.QuadraticForm.data" name="data">
+    Return the circuit data (instructions and context).
 
-<span id="qiskit.circuit.library.QuadraticForm.clbits" />
+    **Returns**
 
-### clbits
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
-Returns a list of classical bits in the order that the registers were added.
+    **Return type**
 
-**Return type**
+    QuantumCircuitData
+  </Attribute>
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  ### extension\_lib
 
-<span id="qiskit.circuit.library.QuadraticForm.data" />
+  <Attribute id="qiskit.circuit.library.QuadraticForm.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-### data
+  ### global\_phase
 
-Return the circuit data (instructions and context).
+  <Attribute id="qiskit.circuit.library.QuadraticForm.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-**Returns**
+    **Return type**
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+    `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  </Attribute>
 
-**Return type**
+  ### header
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.QuadraticForm.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-<span id="qiskit.circuit.library.QuadraticForm.extension_lib" />
+  ### instances
 
-### extension\_lib
+  <Attribute id="qiskit.circuit.library.QuadraticForm.instances" name="instances" attributeValue="= 87" />
 
-`= 'include "qelib1.inc";'`
+  ### metadata
 
-<span id="qiskit.circuit.library.QuadraticForm.global_phase" />
+  <Attribute id="qiskit.circuit.library.QuadraticForm.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-### global\_phase
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-Return the global phase of the circuit in radians.
+    **Return type**
 
-**Return type**
+    `dict`
+  </Attribute>
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  ### num\_ancillas
 
-<span id="qiskit.circuit.library.QuadraticForm.header" />
+  <Attribute id="qiskit.circuit.library.QuadraticForm.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-### header
+    **Return type**
 
-`= 'OPENQASM 2.0;'`
+    `int`
+  </Attribute>
 
-<span id="qiskit.circuit.library.QuadraticForm.instances" />
+  ### num\_clbits
 
-### instances
+  <Attribute id="qiskit.circuit.library.QuadraticForm.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-`= 87`
+    **Return type**
 
-<span id="qiskit.circuit.library.QuadraticForm.metadata" />
+    `int`
+  </Attribute>
 
-### metadata
+  ### num\_parameters
 
-The user provided metadata associated with the circuit
+  <Attribute id="qiskit.circuit.library.QuadraticForm.num_parameters" name="num_parameters">
+    The number of parameter objects in the circuit.
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`dict`
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.QuadraticForm.num_ancillas" />
+  <Attribute id="qiskit.circuit.library.QuadraticForm.num_qubits" name="num_qubits">
+    Return number of qubits.
 
-### num\_ancillas
+    **Return type**
 
-Return the number of ancilla qubits.
+    `int`
+  </Attribute>
 
-**Return type**
+  ### op\_start\_times
 
-`int`
+  <Attribute id="qiskit.circuit.library.QuadraticForm.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-<span id="qiskit.circuit.library.QuadraticForm.num_clbits" />
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-### num\_clbits
+    **Return type**
 
-Return number of classical bits.
+    `List`\[`int`]
 
-**Return type**
+    **Returns**
 
-`int`
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-<span id="qiskit.circuit.library.QuadraticForm.num_parameters" />
+    **Raises**
 
-### num\_parameters
+    **AttributeError** – When circuit is not scheduled.
+  </Attribute>
 
-The number of parameter objects in the circuit.
+  ### parameters
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.QuadraticForm.parameters" name="parameters">
+    The parameters defined in the circuit.
 
-`int`
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-<span id="qiskit.circuit.library.QuadraticForm.num_qubits" />
+    **Examples**
 
-### num\_qubits
+    The snippet below shows that insertion order of parameters does not matter.
 
-Return number of qubits.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
 
-**Return type**
+    Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
-`int`
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
 
-<span id="qiskit.circuit.library.QuadraticForm.op_start_times" />
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
-### op\_start\_times
+    ```python
+    ```
 
-Return a list of operation start times.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    **Return type**
 
-**Return type**
+    `ParameterView`
 
-`List`\[`int`]
+    **Returns**
 
-**Returns**
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+  ### prefix
 
-**Raises**
+  <Attribute id="qiskit.circuit.library.QuadraticForm.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-**AttributeError** – When circuit is not scheduled.
+  ### qubits
 
-<span id="qiskit.circuit.library.QuadraticForm.parameters" />
+  <Attribute id="qiskit.circuit.library.QuadraticForm.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-### parameters
+    **Return type**
 
-The parameters defined in the circuit.
-
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
-
-**Examples**
-
-The snippet below shows that insertion order of parameters does not matter.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
->>> circuit = QuantumCircuit(1)
->>> circuit.rx(b, 0)
->>> circuit.rz(elephant, 0)
->>> circuit.ry(a, 0)
->>> circuit.parameters  # sorted alphabetically!
-ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
-```
-
-Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
->>> circuit = QuantumCircuit(1)
->>> circuit.u(*angles, 0)
->>> circuit.draw()
-   ┌─────────────────────────────┐
-q: ┤ U(angle_1,angle_2,angle_10) ├
-   └─────────────────────────────┘
->>> circuit.parameters
-ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
-```
-
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
->>> x = ParameterVector("x", 12)
->>> circuit = QuantumCircuit(1)
->>> for x_i in x:
-...     circuit.rx(x_i, 0)
->>> circuit.parameters
-ParameterView([
-    ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
-    ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
-    ..., ParameterVectorElement(x[11])
-])
-```
-
-**Return type**
-
-`ParameterView`
-
-**Returns**
-
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
-
-<span id="qiskit.circuit.library.QuadraticForm.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.QuadraticForm.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+    `List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+  </Attribute>
+</Class>
 

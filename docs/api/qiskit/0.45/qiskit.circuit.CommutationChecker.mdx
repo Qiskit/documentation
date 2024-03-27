@@ -8,39 +8,35 @@ python_api_name: qiskit.circuit.CommutationChecker
 
 # CommutationChecker
 
-<span id="qiskit.circuit.CommutationChecker" />
+<Class id="qiskit.circuit.CommutationChecker" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/commutation_checker.py" signature="qiskit.circuit.CommutationChecker">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.circuit.CommutationChecker` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/commutation_checker.py "view source code")
+  This code is essentially copy-pasted from commutative\_analysis.py. This code cleverly hashes commutativity and non-commutativity results between DAG nodes and seems quite efficient for large Clifford circuits. They may be other possible efficiency improvements: using rule-based commutativity analysis, evicting from the cache less useful entries, etc.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  ## Methods
 
-This code is essentially copy-pasted from commutative\_analysis.py. This code cleverly hashes commutativity and non-commutativity results between DAG nodes and seems quite efficient for large Clifford circuits. They may be other possible efficiency improvements: using rule-based commutativity analysis, evicting from the cache less useful entries, etc.
+  ### commute
 
-## Methods
+  <Function id="qiskit.circuit.CommutationChecker.commute" name="commute" signature="commute(op1, qargs1, cargs1, op2, qargs2, cargs2, max_num_qubits=3)">
+    Checks if two Operations commute. The return value of True means that the operations truly commute, and the return value of False means that either the operations do not commute or that the commutation check was skipped (for example, when the operations have conditions or have too many qubits).
 
-### commute
+    **Parameters**
 
-<span id="qiskit.circuit.CommutationChecker.commute" />
+    *   **op1** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – first operation.
+    *   **qargs1** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")) – first operation’s qubits.
+    *   **cargs1** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")) – first operation’s clbits.
+    *   **op2** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – second operation.
+    *   **qargs2** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")) – second operation’s qubits.
+    *   **cargs2** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")) – second operation’s clbits.
+    *   **max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the maximum number of qubits to consider, the check may be skipped if the number of qubits for either operation exceeds this amount.
 
-`commute(op1, qargs1, cargs1, op2, qargs2, cargs2, max_num_qubits=3)`
+    **Returns**
 
-Checks if two Operations commute. The return value of True means that the operations truly commute, and the return value of False means that either the operations do not commute or that the commutation check was skipped (for example, when the operations have conditions or have too many qubits).
+    whether two operations commute.
 
-**Parameters**
+    **Return type**
 
-*   **op1** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – first operation.
-*   **qargs1** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")) – first operation’s qubits.
-*   **cargs1** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")) – first operation’s clbits.
-*   **op2** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – second operation.
-*   **qargs2** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")) – second operation’s qubits.
-*   **cargs2** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")) – second operation’s clbits.
-*   **max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the maximum number of qubits to consider, the check may be skipped if the number of qubits for either operation exceeds this amount.
-
-**Returns**
-
-whether two operations commute.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
+</Class>
 

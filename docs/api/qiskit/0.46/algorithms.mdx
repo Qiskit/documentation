@@ -195,13 +195,11 @@ Algorithms that compute the fidelity of pairs of quantum states.
 
 ### AlgorithmError
 
-<span id="qiskit.algorithms.AlgorithmError" />
+<Class id="qiskit.algorithms.AlgorithmError" name="AlgorithmError" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/exceptions.py" signature="qiskit.algorithms.AlgorithmError(*message)">
+  For Algorithm specific errors.
 
-`qiskit.algorithms.AlgorithmError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/exceptions.py "view source code")
-
-For Algorithm specific errors.
-
-Set the error message.
+  Set the error message.
+</Class>
 
 ### Utility classes
 
@@ -217,63 +215,59 @@ Utility functions used by algorithms.
 
 ### eval\_observables
 
-<span id="qiskit.algorithms.eval_observables" />
+<Function id="qiskit.algorithms.eval_observables" name="eval_observables" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/aux_ops_evaluator.py" signature="qiskit.algorithms.eval_observables(quantum_instance, quantum_state, observables, expectation, threshold=1e-12)">
+  Deprecated: Accepts a list or a dictionary of operators and calculates their expectation values - means and standard deviations. They are calculated with respect to a quantum state provided. A user can optionally provide a threshold value which filters mean values falling below the threshold.
 
-`qiskit.algorithms.eval_observables(quantum_instance, quantum_state, observables, expectation, threshold=1e-12)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/aux_ops_evaluator.py "view source code")
+  This function has been superseded by the `qiskit.algorithms.observables_evaluator.eval_observables()` function. It will be deprecated in a future release and subsequently removed after that.
 
-Deprecated: Accepts a list or a dictionary of operators and calculates their expectation values - means and standard deviations. They are calculated with respect to a quantum state provided. A user can optionally provide a threshold value which filters mean values falling below the threshold.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The function `qiskit.algorithms.aux_ops_evaluator.eval_observables()` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the function `qiskit.algorithms.observables_evaluator.estimate_observables`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  </Admonition>
 
-This function has been superseded by the `qiskit.algorithms.observables_evaluator.eval_observables()` function. It will be deprecated in a future release and subsequently removed after that.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The function `qiskit.algorithms.aux_ops_evaluator.eval_observables()` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the function `qiskit.algorithms.observables_evaluator.estimate_observables`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+  *   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – A quantum instance used for calculations.
+  *   **quantum\_state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – An unparametrized quantum circuit representing a quantum state that expectation values are computed against.
+  *   **observables** (*ListOrDict\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")*]*) – A list or a dictionary of operators whose expectation values are to be calculated.
+  *   **expectation** ([*ExpectationBase*](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase")) – An instance of ExpectationBase which defines a method for calculating expectation values.
+  *   **threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – A threshold value that defines which mean values should be neglected (helpful for ignoring numerical instabilities close to 0).
 
-**Parameters**
+  **Returns**
 
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – A quantum instance used for calculations.
-*   **quantum\_state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – An unparametrized quantum circuit representing a quantum state that expectation values are computed against.
-*   **observables** (*ListOrDict\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")*]*) – A list or a dictionary of operators whose expectation values are to be calculated.
-*   **expectation** ([*ExpectationBase*](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase")) – An instance of ExpectationBase which defines a method for calculating expectation values.
-*   **threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – A threshold value that defines which mean values should be neglected (helpful for ignoring numerical instabilities close to 0).
+  A list or a dictionary of tuples (mean, standard deviation).
 
-**Returns**
+  **Raises**
 
-A list or a dictionary of tuples (mean, standard deviation).
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If a `quantum_state` with free parameters is provided.
 
-**Raises**
+  **Return type**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If a `quantum_state` with free parameters is provided.
-
-**Return type**
-
-ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"), [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")]]
+  ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"), [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")]]
+</Function>
 
 ### estimate\_observables
 
-<span id="qiskit.algorithms.estimate_observables" />
+<Function id="qiskit.algorithms.estimate_observables" name="estimate_observables" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/observables_evaluator.py" signature="qiskit.algorithms.estimate_observables(estimator, quantum_state, observables, parameter_values=None, threshold=1e-12)">
+  Accepts a sequence of operators and calculates their expectation values - means and metadata. They are calculated with respect to a quantum state provided. A user can optionally provide a threshold value which filters mean values falling below the threshold.
 
-`qiskit.algorithms.estimate_observables(estimator, quantum_state, observables, parameter_values=None, threshold=1e-12)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/observables_evaluator.py "view source code")
+  **Parameters**
 
-Accepts a sequence of operators and calculates their expectation values - means and metadata. They are calculated with respect to a quantum state provided. A user can optionally provide a threshold value which filters mean values falling below the threshold.
+  *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – An estimator primitive used for calculations.
+  *   **quantum\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A (parameterized) quantum circuit preparing a quantum state that expectation values are computed against.
+  *   **observables** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*]*) – A list or a dictionary of operators whose expectation values are to be calculated.
+  *   **parameter\_values** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – Optional list of parameters values to evaluate the quantum circuit on.
+  *   **threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – A threshold value that defines which mean values should be neglected (helpful for ignoring numerical instabilities close to 0).
 
-**Parameters**
+  **Returns**
 
-*   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – An estimator primitive used for calculations.
-*   **quantum\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A (parameterized) quantum circuit preparing a quantum state that expectation values are computed against.
-*   **observables** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*]*) – A list or a dictionary of operators whose expectation values are to be calculated.
-*   **parameter\_values** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – Optional list of parameters values to evaluate the quantum circuit on.
-*   **threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – A threshold value that defines which mean values should be neglected (helpful for ignoring numerical instabilities close to 0).
+  A list or a dictionary of tuples (mean, metadata).
 
-**Returns**
+  **Raises**
 
-A list or a dictionary of tuples (mean, metadata).
+  [**AlgorithmError**](#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a primitive job is not successful.
 
-**Raises**
+  **Return type**
 
-[**AlgorithmError**](#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a primitive job is not successful.
-
-**Return type**
-
-ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"), [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), Any]]]
+  ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"), [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), Any]]]
+</Function>
 

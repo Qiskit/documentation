@@ -8,564 +8,496 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
 # qiskit.circuit.classicalfunction.ClassicalFunction
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction" />
+<Class id="qiskit.circuit.classicalfunction.ClassicalFunction" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/classicalfunction/classicalfunction.py" signature="ClassicalFunction(source, name=None)">
+  Represent a classical function function and its logic network.
 
-`ClassicalFunction(source, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
+  Creates a `ClassicalFunction` from Python source code in `source`.
 
-Represent a classical function function and its logic network.
+  The code should be a single function with types.
 
-Creates a `ClassicalFunction` from Python source code in `source`.
+  **Parameters**
 
-The code should be a single function with types.
+  *   **source** (*str*) – Python code with type hints.
+  *   **name** (*str*) – Optional. Default: “*classicalfunction*”. ClassicalFunction name.
 
-**Parameters**
+  **Raises**
 
-*   **source** (*str*) – Python code with type hints.
-*   **name** (*str*) – Optional. Default: “*classicalfunction*”. ClassicalFunction name.
+  **QiskitError** – If source is not a string.
 
-**Raises**
+  ### \_\_init\_\_
+
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.__init__" name="__init__" signature="__init__(source, name=None)">
+    Creates a `ClassicalFunction` from Python source code in `source`.
+
+    The code should be a single function with types.
+
+    **Parameters**
+
+    *   **source** (*str*) – Python code with type hints.
+    *   **name** (*str*) – Optional. Default: “*classicalfunction*”. ClassicalFunction name.
+
+    **Raises**
+
+    **QiskitError** – If source is not a string.
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                                         |                                                                                                                       |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.circuit.classicalfunction.ClassicalFunction.__init__ "qiskit.circuit.classicalfunction.ClassicalFunction.__init__")(source\[, name])                               | Creates a `ClassicalFunction` from Python source code in `source`.                                                    |
+  | [`add_decomposition`](#qiskit.circuit.classicalfunction.ClassicalFunction.add_decomposition "qiskit.circuit.classicalfunction.ClassicalFunction.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary.                                              |
+  | [`assemble`](#qiskit.circuit.classicalfunction.ClassicalFunction.assemble "qiskit.circuit.classicalfunction.ClassicalFunction.assemble")()                                              | Assemble a QasmQobjInstruction                                                                                        |
+  | [`broadcast_arguments`](#qiskit.circuit.classicalfunction.ClassicalFunction.broadcast_arguments "qiskit.circuit.classicalfunction.ClassicalFunction.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.                                                        |
+  | [`c_if`](#qiskit.circuit.classicalfunction.ClassicalFunction.c_if "qiskit.circuit.classicalfunction.ClassicalFunction.c_if")(classical, val)                                            | Add classical condition on register or cbit classical and value val.                                                  |
+  | [`compile`](#qiskit.circuit.classicalfunction.ClassicalFunction.compile "qiskit.circuit.classicalfunction.ClassicalFunction.compile")()                                                 | Parses and creates the logical circuit                                                                                |
+  | [`control`](#qiskit.circuit.classicalfunction.ClassicalFunction.control "qiskit.circuit.classicalfunction.ClassicalFunction.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Return controlled version of gate.                                                                                    |
+  | [`copy`](#qiskit.circuit.classicalfunction.ClassicalFunction.copy "qiskit.circuit.classicalfunction.ClassicalFunction.copy")(\[name])                                                   | Copy of the instruction.                                                                                              |
+  | [`inverse`](#qiskit.circuit.classicalfunction.ClassicalFunction.inverse "qiskit.circuit.classicalfunction.ClassicalFunction.inverse")()                                                 | Invert this instruction.                                                                                              |
+  | [`is_parameterized`](#qiskit.circuit.classicalfunction.ClassicalFunction.is_parameterized "qiskit.circuit.classicalfunction.ClassicalFunction.is_parameterized")()                      | Return True .IFF.                                                                                                     |
+  | [`mirror`](#qiskit.circuit.classicalfunction.ClassicalFunction.mirror "qiskit.circuit.classicalfunction.ClassicalFunction.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                                                                           |
+  | [`power`](#qiskit.circuit.classicalfunction.ClassicalFunction.power "qiskit.circuit.classicalfunction.ClassicalFunction.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                                                              |
+  | [`qasm`](#qiskit.circuit.classicalfunction.ClassicalFunction.qasm "qiskit.circuit.classicalfunction.ClassicalFunction.qasm")()                                                          | Return a default OpenQASM string for the instruction.                                                                 |
+  | [`repeat`](#qiskit.circuit.classicalfunction.ClassicalFunction.repeat "qiskit.circuit.classicalfunction.ClassicalFunction.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.                                                          |
+  | [`reverse_ops`](#qiskit.circuit.classicalfunction.ClassicalFunction.reverse_ops "qiskit.circuit.classicalfunction.ClassicalFunction.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.                                                   |
+  | [`simulate`](#qiskit.circuit.classicalfunction.ClassicalFunction.simulate "qiskit.circuit.classicalfunction.ClassicalFunction.simulate")(bitstring)                                     | Evaluate the expression on a bitstring.                                                                               |
+  | [`simulate_all`](#qiskit.circuit.classicalfunction.ClassicalFunction.simulate_all "qiskit.circuit.classicalfunction.ClassicalFunction.simulate_all")()                                  | Returns a truth table.                                                                                                |
+  | [`soft_compare`](#qiskit.circuit.classicalfunction.ClassicalFunction.soft_compare "qiskit.circuit.classicalfunction.ClassicalFunction.soft_compare")(other)                             | Soft comparison between gates.                                                                                        |
+  | [`synth`](#qiskit.circuit.classicalfunction.ClassicalFunction.synth "qiskit.circuit.classicalfunction.ClassicalFunction.synth")(\[registerless, synthesizer])                           | Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). |
+  | [`to_matrix`](#qiskit.circuit.classicalfunction.ClassicalFunction.to_matrix "qiskit.circuit.classicalfunction.ClassicalFunction.to_matrix")()                                           | Return a Numpy.array for the gate unitary matrix.                                                                     |
+  | [`validate_parameter`](#qiskit.circuit.classicalfunction.ClassicalFunction.validate_parameter "qiskit.circuit.classicalfunction.ClassicalFunction.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression                                                          |
 
-**QiskitError** – If source is not a string.
+  ## Attributes
 
-### \_\_init\_\_
+  |                                                                                                                                                            |                                                                               |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+  | [`args`](#qiskit.circuit.classicalfunction.ClassicalFunction.args "qiskit.circuit.classicalfunction.ClassicalFunction.args")                               | Returns the classicalfunction arguments                                       |
+  | [`decompositions`](#qiskit.circuit.classicalfunction.ClassicalFunction.decompositions "qiskit.circuit.classicalfunction.ClassicalFunction.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
+  | [`definition`](#qiskit.circuit.classicalfunction.ClassicalFunction.definition "qiskit.circuit.classicalfunction.ClassicalFunction.definition")             | Return definition in terms of other basic gates.                              |
+  | [`duration`](#qiskit.circuit.classicalfunction.ClassicalFunction.duration "qiskit.circuit.classicalfunction.ClassicalFunction.duration")                   | Get the duration.                                                             |
+  | [`label`](#qiskit.circuit.classicalfunction.ClassicalFunction.label "qiskit.circuit.classicalfunction.ClassicalFunction.label")                            | Return instruction label                                                      |
+  | [`network`](#qiskit.circuit.classicalfunction.ClassicalFunction.network "qiskit.circuit.classicalfunction.ClassicalFunction.network")                      | Returns the logical network                                                   |
+  | [`params`](#qiskit.circuit.classicalfunction.ClassicalFunction.params "qiskit.circuit.classicalfunction.ClassicalFunction.params")                         | return instruction params.                                                    |
+  | [`qregs`](#qiskit.circuit.classicalfunction.ClassicalFunction.qregs "qiskit.circuit.classicalfunction.ClassicalFunction.qregs")                            | The list of qregs used by the classicalfunction                               |
+  | [`scopes`](#qiskit.circuit.classicalfunction.ClassicalFunction.scopes "qiskit.circuit.classicalfunction.ClassicalFunction.scopes")                         | Returns the scope dict                                                        |
+  | [`truth_table`](#qiskit.circuit.classicalfunction.ClassicalFunction.truth_table "qiskit.circuit.classicalfunction.ClassicalFunction.truth_table")          | Returns (and computes) the truth table                                        |
+  | [`types`](#qiskit.circuit.classicalfunction.ClassicalFunction.types "qiskit.circuit.classicalfunction.ClassicalFunction.types")                            | Dumps a list of scopes with their variables and types.                        |
+  | [`unit`](#qiskit.circuit.classicalfunction.ClassicalFunction.unit "qiskit.circuit.classicalfunction.ClassicalFunction.unit")                               | Get the time unit of duration.                                                |
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.__init__" />
+  ### add\_decomposition
 
-`__init__(source, name=None)`
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.add_decomposition" name="add_decomposition" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-Creates a `ClassicalFunction` from Python source code in `source`.
+  ### args
 
-The code should be a single function with types.
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.args" name="args" signature="property args">
+    Returns the classicalfunction arguments
+  </Function>
 
-**Parameters**
+  ### assemble
 
-*   **source** (*str*) – Python code with type hints.
-*   **name** (*str*) – Optional. Default: “*classicalfunction*”. ClassicalFunction name.
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.assemble" name="assemble" signature="assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-**Raises**
+  ### broadcast\_arguments
 
-**QiskitError** – If source is not a string.
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.broadcast_arguments" name="broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-## Methods
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-|                                                                                                                                                                                         |                                                                                                                       |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.circuit.classicalfunction.ClassicalFunction.__init__ "qiskit.circuit.classicalfunction.ClassicalFunction.__init__")(source\[, name])                               | Creates a `ClassicalFunction` from Python source code in `source`.                                                    |
-| [`add_decomposition`](#qiskit.circuit.classicalfunction.ClassicalFunction.add_decomposition "qiskit.circuit.classicalfunction.ClassicalFunction.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary.                                              |
-| [`assemble`](#qiskit.circuit.classicalfunction.ClassicalFunction.assemble "qiskit.circuit.classicalfunction.ClassicalFunction.assemble")()                                              | Assemble a QasmQobjInstruction                                                                                        |
-| [`broadcast_arguments`](#qiskit.circuit.classicalfunction.ClassicalFunction.broadcast_arguments "qiskit.circuit.classicalfunction.ClassicalFunction.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.                                                        |
-| [`c_if`](#qiskit.circuit.classicalfunction.ClassicalFunction.c_if "qiskit.circuit.classicalfunction.ClassicalFunction.c_if")(classical, val)                                            | Add classical condition on register or cbit classical and value val.                                                  |
-| [`compile`](#qiskit.circuit.classicalfunction.ClassicalFunction.compile "qiskit.circuit.classicalfunction.ClassicalFunction.compile")()                                                 | Parses and creates the logical circuit                                                                                |
-| [`control`](#qiskit.circuit.classicalfunction.ClassicalFunction.control "qiskit.circuit.classicalfunction.ClassicalFunction.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Return controlled version of gate.                                                                                    |
-| [`copy`](#qiskit.circuit.classicalfunction.ClassicalFunction.copy "qiskit.circuit.classicalfunction.ClassicalFunction.copy")(\[name])                                                   | Copy of the instruction.                                                                                              |
-| [`inverse`](#qiskit.circuit.classicalfunction.ClassicalFunction.inverse "qiskit.circuit.classicalfunction.ClassicalFunction.inverse")()                                                 | Invert this instruction.                                                                                              |
-| [`is_parameterized`](#qiskit.circuit.classicalfunction.ClassicalFunction.is_parameterized "qiskit.circuit.classicalfunction.ClassicalFunction.is_parameterized")()                      | Return True .IFF.                                                                                                     |
-| [`mirror`](#qiskit.circuit.classicalfunction.ClassicalFunction.mirror "qiskit.circuit.classicalfunction.ClassicalFunction.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                                                                           |
-| [`power`](#qiskit.circuit.classicalfunction.ClassicalFunction.power "qiskit.circuit.classicalfunction.ClassicalFunction.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                                                              |
-| [`qasm`](#qiskit.circuit.classicalfunction.ClassicalFunction.qasm "qiskit.circuit.classicalfunction.ClassicalFunction.qasm")()                                                          | Return a default OpenQASM string for the instruction.                                                                 |
-| [`repeat`](#qiskit.circuit.classicalfunction.ClassicalFunction.repeat "qiskit.circuit.classicalfunction.ClassicalFunction.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.                                                          |
-| [`reverse_ops`](#qiskit.circuit.classicalfunction.ClassicalFunction.reverse_ops "qiskit.circuit.classicalfunction.ClassicalFunction.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.                                                   |
-| [`simulate`](#qiskit.circuit.classicalfunction.ClassicalFunction.simulate "qiskit.circuit.classicalfunction.ClassicalFunction.simulate")(bitstring)                                     | Evaluate the expression on a bitstring.                                                                               |
-| [`simulate_all`](#qiskit.circuit.classicalfunction.ClassicalFunction.simulate_all "qiskit.circuit.classicalfunction.ClassicalFunction.simulate_all")()                                  | Returns a truth table.                                                                                                |
-| [`soft_compare`](#qiskit.circuit.classicalfunction.ClassicalFunction.soft_compare "qiskit.circuit.classicalfunction.ClassicalFunction.soft_compare")(other)                             | Soft comparison between gates.                                                                                        |
-| [`synth`](#qiskit.circuit.classicalfunction.ClassicalFunction.synth "qiskit.circuit.classicalfunction.ClassicalFunction.synth")(\[registerless, synthesizer])                           | Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). |
-| [`to_matrix`](#qiskit.circuit.classicalfunction.ClassicalFunction.to_matrix "qiskit.circuit.classicalfunction.ClassicalFunction.to_matrix")()                                           | Return a Numpy.array for the gate unitary matrix.                                                                     |
-| [`validate_parameter`](#qiskit.circuit.classicalfunction.ClassicalFunction.validate_parameter "qiskit.circuit.classicalfunction.ClassicalFunction.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression                                                          |
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-## Attributes
+    The general broadcasting rules are:
 
-|                                                                                                                                                            |                                                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`args`](#qiskit.circuit.classicalfunction.ClassicalFunction.args "qiskit.circuit.classicalfunction.ClassicalFunction.args")                               | Returns the classicalfunction arguments                                       |
-| [`decompositions`](#qiskit.circuit.classicalfunction.ClassicalFunction.decompositions "qiskit.circuit.classicalfunction.ClassicalFunction.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
-| [`definition`](#qiskit.circuit.classicalfunction.ClassicalFunction.definition "qiskit.circuit.classicalfunction.ClassicalFunction.definition")             | Return definition in terms of other basic gates.                              |
-| [`duration`](#qiskit.circuit.classicalfunction.ClassicalFunction.duration "qiskit.circuit.classicalfunction.ClassicalFunction.duration")                   | Get the duration.                                                             |
-| [`label`](#qiskit.circuit.classicalfunction.ClassicalFunction.label "qiskit.circuit.classicalfunction.ClassicalFunction.label")                            | Return instruction label                                                      |
-| [`network`](#qiskit.circuit.classicalfunction.ClassicalFunction.network "qiskit.circuit.classicalfunction.ClassicalFunction.network")                      | Returns the logical network                                                   |
-| [`params`](#qiskit.circuit.classicalfunction.ClassicalFunction.params "qiskit.circuit.classicalfunction.ClassicalFunction.params")                         | return instruction params.                                                    |
-| [`qregs`](#qiskit.circuit.classicalfunction.ClassicalFunction.qregs "qiskit.circuit.classicalfunction.ClassicalFunction.qregs")                            | The list of qregs used by the classicalfunction                               |
-| [`scopes`](#qiskit.circuit.classicalfunction.ClassicalFunction.scopes "qiskit.circuit.classicalfunction.ClassicalFunction.scopes")                         | Returns the scope dict                                                        |
-| [`truth_table`](#qiskit.circuit.classicalfunction.ClassicalFunction.truth_table "qiskit.circuit.classicalfunction.ClassicalFunction.truth_table")          | Returns (and computes) the truth table                                        |
-| [`types`](#qiskit.circuit.classicalfunction.ClassicalFunction.types "qiskit.circuit.classicalfunction.ClassicalFunction.types")                            | Dumps a list of scopes with their variables and types.                        |
-| [`unit`](#qiskit.circuit.classicalfunction.ClassicalFunction.unit "qiskit.circuit.classicalfunction.ClassicalFunction.unit")                               | Get the time unit of duration.                                                |
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-### add\_decomposition
+    **Parameters**
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.add_decomposition" />
+    *   **qargs** (`List`) – List of quantum bit arguments.
+    *   **cargs** (`List`) – List of classical bit arguments.
 
-`add_decomposition(decomposition)`
+    **Return type**
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    `Tuple`\[`List`, `List`]
 
-### args
+    **Returns**
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.args" />
+    A tuple with single arguments.
 
-`property args`
+    **Raises**
 
-Returns the classicalfunction arguments
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-### assemble
+  ### c\_if
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.assemble" />
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.c_if" name="c_if" signature="c_if(classical, val)">
+    Add classical condition on register or cbit classical and value val.
+  </Function>
 
-`assemble()`
+  ### compile
 
-Assemble a QasmQobjInstruction
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.compile" name="compile" signature="compile()">
+    Parses and creates the logical circuit
+  </Function>
 
-### broadcast\_arguments
+  ### control
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.broadcast_arguments" />
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
-`broadcast_arguments(qargs, cargs)`
+    **Parameters**
 
-Validation and handling of the arguments and its relationship.
+    *   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
+    *   **label** (`Optional`\[`str`]) – optional gate label
+    *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+    **Returns**
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+    Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
 
-The general broadcasting rules are:
+    **Return type**
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+    [qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
-**Parameters**
+    **Raises**
 
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
+    **QiskitError** – unrecognized mode or invalid ctrl\_state
+  </Function>
 
-**Return type**
+  ### copy
 
-`Tuple`\[`List`, `List`]
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.copy" name="copy" signature="copy(name=None)">
+    Copy of the instruction.
 
-**Returns**
+    **Parameters**
 
-A tuple with single arguments.
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**Raises**
+    **Returns**
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **a copy of the current instruction, with the name**
 
-### c\_if
+    updated if it was provided
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.c_if" />
+    **Return type**
 
-`c_if(classical, val)`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Add classical condition on register or cbit classical and value val.
+  ### decompositions
 
-### compile
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.decompositions" name="decompositions" signature="property decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Function>
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.compile" />
+  ### definition
 
-`compile()`
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.definition" name="definition" signature="property definition">
+    Return definition in terms of other basic gates.
+  </Function>
 
-Parses and creates the logical circuit
+  ### duration
 
-### control
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.duration" name="duration" signature="property duration">
+    Get the duration.
+  </Function>
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.control" />
+  ### inverse
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.inverse" name="inverse" signature="inverse()">
+    Invert this instruction.
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+    If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
 
-**Parameters**
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
 
-*   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
-*   **label** (`Optional`\[`str`]) – optional gate label
-*   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
+    **Returns**
 
-**Returns**
+    a fresh instruction for the inverse
 
-Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
+    **Return type**
 
-**Return type**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+    **Raises**
 
-**Raises**
+    **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
 
-**QiskitError** – unrecognized mode or invalid ctrl\_state
+  ### is\_parameterized
 
-### copy
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.copy" />
+  ### label
 
-`copy(name=None)`
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.label" name="label" signature="property label">
+    Return instruction label
 
-Copy of the instruction.
+    **Return type**
 
-**Parameters**
+    `str`
+  </Function>
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+  ### mirror
 
-**Returns**
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.mirror" name="mirror" signature="mirror()">
+    DEPRECATED: use instruction.reverse\_ops().
 
-**a copy of the current instruction, with the name**
+    **Returns**
 
-updated if it was provided
+    **a new instruction with sub-instructions**
 
-**Return type**
+    reversed.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Return type**
 
-### decompositions
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.decompositions" />
+  ### network
 
-`property decompositions`
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.network" name="network" signature="property network">
+    Returns the logical network
+  </Function>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### params
 
-### definition
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.params" name="params" signature="property params">
+    return instruction params.
+  </Function>
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.definition" />
+  ### power
 
-`property definition`
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.power" name="power" signature="power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-Return definition in terms of other basic gates.
+    **Parameters**
 
-### duration
+    **exponent** (*float*) – Gate^exponent
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.duration" />
+    **Returns**
 
-`property duration`
+    To which to\_matrix is self.to\_matrix^exponent.
 
-Get the duration.
+    **Return type**
 
-### inverse
+    [qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.inverse" />
+    **Raises**
 
-`inverse()`
+    **CircuitError** – If Gate is not unitary
+  </Function>
 
-Invert this instruction.
+  ### qasm
 
-If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.qasm" name="qasm" signature="qasm()">
+    Return a default OpenQASM string for the instruction.
 
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-**Returns**
+  ### qregs
 
-a fresh instruction for the inverse
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.qregs" name="qregs" signature="property qregs">
+    The list of qregs used by the classicalfunction
+  </Function>
 
-**Return type**
+  ### repeat
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.repeat" name="repeat" signature="repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-**Raises**
+    **Parameters**
 
-**CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+    **n** (*int*) – Number of times to repeat the instruction
 
-### is\_parameterized
+    **Returns**
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.is_parameterized" />
+    Containing the definition.
 
-`is_parameterized()`
+    **Return type**
 
-Return True .IFF. instruction is parameterized else False
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-### label
+    **Raises**
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.label" />
+    **CircuitError** – If n \< 1.
+  </Function>
 
-`property label`
+  ### reverse\_ops
 
-Return instruction label
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.reverse_ops" name="reverse_ops" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-**Return type**
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-`str`
+    **Returns**
 
-### mirror
+    **a new instruction with**
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.mirror" />
+    sub-instructions reversed.
 
-`mirror()`
+    **Return type**
 
-DEPRECATED: use instruction.reverse\_ops().
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**Returns**
+  ### scopes
 
-**a new instruction with sub-instructions**
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.scopes" name="scopes" signature="property scopes">
+    Returns the scope dict
+  </Function>
 
-reversed.
+  ### simulate
 
-**Return type**
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.simulate" name="simulate" signature="simulate(bitstring)">
+    Evaluate the expression on a bitstring.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    This evaluation is done classically.
 
-### network
+    **Parameters**
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.network" />
+    **bitstring** (`str`) – The bitstring for which to evaluate.
 
-`property network`
+    **Returns**
 
-Returns the logical network
+    result of the evaluation.
 
-### params
+    **Return type**
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.params" />
+    bool
+  </Function>
 
-`property params`
+  ### simulate\_all
 
-return instruction params.
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.simulate_all" name="simulate_all" signature="simulate_all()">
+    Returns a truth table.
 
-### power
+    **Returns**
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.power" />
+    a bitstring with a truth table
 
-`power(exponent)`
+    **Return type**
 
-Creates a unitary gate as gate^exponent.
+    str
+  </Function>
 
-**Parameters**
+  ### soft\_compare
 
-**exponent** (*float*) – Gate^exponent
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.soft_compare" name="soft_compare" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-**Returns**
+    **Parameters**
 
-To which to\_matrix is self.to\_matrix^exponent.
+    **other** (*instruction*) – other instruction.
 
-**Return type**
+    **Returns**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+    are self and other equal up to parameter expressions.
 
-**Raises**
+    **Return type**
 
-**CircuitError** – If Gate is not unitary
+    bool
+  </Function>
 
-### qasm
+  ### synth
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.qasm" />
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.synth" name="synth" signature="synth(registerless=True, synthesizer=None)">
+    Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
-`qasm()`
+    **Parameters**
 
-Return a default OpenQASM string for the instruction.
+    *   **registerless** (`bool`) – Default `True`. If `False` uses the parameter names to create
+    *   **with those names. Otherwise** (*registers*) –
+    *   **a circuit with a flat quantum register.** (*creates*) –
+    *   **synthesizer** (`Optional`\[`Callable`\[\[`ClassicalElement`], `QuantumCircuit`]]) – Optional. If None tweedledum’s pkrm\_synth is used.
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+    **Returns**
 
-### qregs
+    A circuit implementing the logic network.
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.qregs" />
+    **Return type**
 
-`property qregs`
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-The list of qregs used by the classicalfunction
+  ### to\_matrix
 
-### repeat
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.to_matrix" name="to_matrix" signature="to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.repeat" />
+    **Returns**
 
-`repeat(n)`
+    if the Gate subclass has a matrix definition.
 
-Creates an instruction with gate repeated n amount of times.
+    **Return type**
 
-**Parameters**
+    np.ndarray
 
-**n** (*int*) – Number of times to repeat the instruction
+    **Raises**
 
-**Returns**
+    **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+  </Function>
 
-Containing the definition.
+  ### truth\_table
 
-**Return type**
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.truth_table" name="truth_table" signature="property truth_table">
+    Returns (and computes) the truth table
+  </Function>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### types
 
-**Raises**
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.types" name="types" signature="property types">
+    Dumps a list of scopes with their variables and types.
 
-**CircuitError** – If n \< 1.
+    **Returns**
 
-### reverse\_ops
+    A list of scopes as dicts, where key is the variable name and value is its type.
 
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.reverse_ops" />
+    **Return type**
 
-`reverse_ops()`
+    list(dict)
+  </Function>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### unit
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.unit" name="unit" signature="property unit">
+    Get the time unit of duration.
+  </Function>
 
-**Returns**
+  ### validate\_parameter
 
-**a new instruction with**
-
-sub-instructions reversed.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### scopes
-
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.scopes" />
-
-`property scopes`
-
-Returns the scope dict
-
-### simulate
-
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.simulate" />
-
-`simulate(bitstring)`
-
-Evaluate the expression on a bitstring.
-
-This evaluation is done classically.
-
-**Parameters**
-
-**bitstring** (`str`) – The bitstring for which to evaluate.
-
-**Returns**
-
-result of the evaluation.
-
-**Return type**
-
-bool
-
-### simulate\_all
-
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.simulate_all" />
-
-`simulate_all()`
-
-Returns a truth table.
-
-**Returns**
-
-a bitstring with a truth table
-
-**Return type**
-
-str
-
-### soft\_compare
-
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.soft_compare" />
-
-`soft_compare(other)`
-
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
-
-**Parameters**
-
-**other** (*instruction*) – other instruction.
-
-**Returns**
-
-are self and other equal up to parameter expressions.
-
-**Return type**
-
-bool
-
-### synth
-
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.synth" />
-
-`synth(registerless=True, synthesizer=None)`
-
-Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
-
-**Parameters**
-
-*   **registerless** (`bool`) – Default `True`. If `False` uses the parameter names to create
-*   **with those names. Otherwise** (*registers*) –
-*   **a circuit with a flat quantum register.** (*creates*) –
-*   **synthesizer** (`Optional`\[`Callable`\[\[`ClassicalElement`], `QuantumCircuit`]]) – Optional. If None tweedledum’s pkrm\_synth is used.
-
-**Returns**
-
-A circuit implementing the logic network.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### to\_matrix
-
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.to_matrix" />
-
-`to_matrix()`
-
-Return a Numpy.array for the gate unitary matrix.
-
-**Returns**
-
-if the Gate subclass has a matrix definition.
-
-**Return type**
-
-np.ndarray
-
-**Raises**
-
-**CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
-
-### truth\_table
-
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.truth_table" />
-
-`property truth_table`
-
-Returns (and computes) the truth table
-
-### types
-
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.types" />
-
-`property types`
-
-Dumps a list of scopes with their variables and types.
-
-**Returns**
-
-A list of scopes as dicts, where key is the variable name and value is its type.
-
-**Return type**
-
-list(dict)
-
-### unit
-
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.unit" />
-
-`property unit`
-
-Get the time unit of duration.
-
-### validate\_parameter
-
-<span id="qiskit.circuit.classicalfunction.ClassicalFunction.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Gate parameters should be int, float, or ParameterExpression
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.validate_parameter" name="validate_parameter" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
+</Class>
 

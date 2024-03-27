@@ -8,250 +8,228 @@ python_api_name: qiskit.providers.ibmq.RunnerResult
 
 # qiskit.providers.ibmq.RunnerResult
 
-<span id="qiskit.providers.ibmq.RunnerResult" />
+<Class id="qiskit.providers.ibmq.RunnerResult" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runner_result.py" signature="RunnerResult(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)">
+  Result class for Qiskit Runtime program circuit-runner.
 
-`RunnerResult(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runner_result.py "view source code")
+  ### \_\_init\_\_
 
-Result class for Qiskit Runtime program circuit-runner.
+  <Function id="qiskit.providers.ibmq.RunnerResult.__init__" name="__init__" signature="__init__(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.providers.ibmq.RunnerResult.__init__" />
+  |                                                                                                                                                                   |                                                                                                                                                                                          |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.providers.ibmq.RunnerResult.__init__ "qiskit.providers.ibmq.RunnerResult.__init__")(backend\_name, backend\_version, …)                      | Initialize self.                                                                                                                                                                         |
+  | [`data`](#qiskit.providers.ibmq.RunnerResult.data "qiskit.providers.ibmq.RunnerResult.data")(\[experiment])                                                       | Get the raw data for an experiment.                                                                                                                                                      |
+  | [`decode`](#qiskit.providers.ibmq.RunnerResult.decode "qiskit.providers.ibmq.RunnerResult.decode")(data)                                                          | Decoding for results from Qiskit runtime jobs.                                                                                                                                           |
+  | [`from_dict`](#qiskit.providers.ibmq.RunnerResult.from_dict "qiskit.providers.ibmq.RunnerResult.from_dict")(data)                                                 | Create a new ExperimentResultData object from a dictionary.                                                                                                                              |
+  | [`get_counts`](#qiskit.providers.ibmq.RunnerResult.get_counts "qiskit.providers.ibmq.RunnerResult.get_counts")(\[experiment])                                     | Get the histogram data of an experiment.                                                                                                                                                 |
+  | [`get_memory`](#qiskit.providers.ibmq.RunnerResult.get_memory "qiskit.providers.ibmq.RunnerResult.get_memory")(\[experiment])                                     | Get the sequence of memory states (readouts) for each shot The data from the experiment is a list of format \[‘00000’, ‘01000’, ‘10100’, ‘10100’, ‘11101’, ‘11100’, ‘00101’, …, ‘01010’] |
+  | [`get_quasiprobabilities`](#qiskit.providers.ibmq.RunnerResult.get_quasiprobabilities "qiskit.providers.ibmq.RunnerResult.get_quasiprobabilities")(\[experiment]) | Get quasiprobabilites associated with one or more experiments.                                                                                                                           |
+  | [`get_statevector`](#qiskit.providers.ibmq.RunnerResult.get_statevector "qiskit.providers.ibmq.RunnerResult.get_statevector")(\[experiment, decimals])            | Get the final statevector of an experiment.                                                                                                                                              |
+  | [`get_unitary`](#qiskit.providers.ibmq.RunnerResult.get_unitary "qiskit.providers.ibmq.RunnerResult.get_unitary")(\[experiment, decimals])                        | Get the final unitary of an experiment.                                                                                                                                                  |
+  | [`to_dict`](#qiskit.providers.ibmq.RunnerResult.to_dict "qiskit.providers.ibmq.RunnerResult.to_dict")()                                                           | Return a dictionary format representation of the Result                                                                                                                                  |
 
-`__init__(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`
+  ### data
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.providers.ibmq.RunnerResult.data" name="data" signature="data(experiment=None)">
+    Get the raw data for an experiment.
 
-## Methods
+    Note this data will be a single classical and quantum register and in a format required by the results schema. We recommend that most users use the get\_xxx method, and the data will be post-processed for the data type.
 
-|                                                                                                                                                                   |                                                                                                                                                                                          |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.providers.ibmq.RunnerResult.__init__ "qiskit.providers.ibmq.RunnerResult.__init__")(backend\_name, backend\_version, …)                      | Initialize self.                                                                                                                                                                         |
-| [`data`](#qiskit.providers.ibmq.RunnerResult.data "qiskit.providers.ibmq.RunnerResult.data")(\[experiment])                                                       | Get the raw data for an experiment.                                                                                                                                                      |
-| [`decode`](#qiskit.providers.ibmq.RunnerResult.decode "qiskit.providers.ibmq.RunnerResult.decode")(data)                                                          | Decoding for results from Qiskit runtime jobs.                                                                                                                                           |
-| [`from_dict`](#qiskit.providers.ibmq.RunnerResult.from_dict "qiskit.providers.ibmq.RunnerResult.from_dict")(data)                                                 | Create a new ExperimentResultData object from a dictionary.                                                                                                                              |
-| [`get_counts`](#qiskit.providers.ibmq.RunnerResult.get_counts "qiskit.providers.ibmq.RunnerResult.get_counts")(\[experiment])                                     | Get the histogram data of an experiment.                                                                                                                                                 |
-| [`get_memory`](#qiskit.providers.ibmq.RunnerResult.get_memory "qiskit.providers.ibmq.RunnerResult.get_memory")(\[experiment])                                     | Get the sequence of memory states (readouts) for each shot The data from the experiment is a list of format \[‘00000’, ‘01000’, ‘10100’, ‘10100’, ‘11101’, ‘11100’, ‘00101’, …, ‘01010’] |
-| [`get_quasiprobabilities`](#qiskit.providers.ibmq.RunnerResult.get_quasiprobabilities "qiskit.providers.ibmq.RunnerResult.get_quasiprobabilities")(\[experiment]) | Get quasiprobabilites associated with one or more experiments.                                                                                                                           |
-| [`get_statevector`](#qiskit.providers.ibmq.RunnerResult.get_statevector "qiskit.providers.ibmq.RunnerResult.get_statevector")(\[experiment, decimals])            | Get the final statevector of an experiment.                                                                                                                                              |
-| [`get_unitary`](#qiskit.providers.ibmq.RunnerResult.get_unitary "qiskit.providers.ibmq.RunnerResult.get_unitary")(\[experiment, decimals])                        | Get the final unitary of an experiment.                                                                                                                                                  |
-| [`to_dict`](#qiskit.providers.ibmq.RunnerResult.to_dict "qiskit.providers.ibmq.RunnerResult.to_dict")()                                                           | Return a dictionary format representation of the Result                                                                                                                                  |
+    **Parameters**
 
-### data
+    **experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment. Several types are accepted for convenience:: \* str: the name of the experiment. \* QuantumCircuit: the name of the circuit instance will be used. \* Schedule: the name of the schedule instance will be used. \* int: the position of the experiment. \* None: if there is only one experiment, returns it.
 
-<span id="qiskit.providers.ibmq.RunnerResult.data" />
+    **Returns**
 
-`data(experiment=None)`
+    A dictionary of results data for an experiment. The data depends on the backend it ran on and the settings of meas\_level, meas\_return and memory.
 
-Get the raw data for an experiment.
+    QASM backends return a dictionary of dictionary with the key ‘counts’ and with the counts, with the second dictionary keys containing a string in hex format (`0x123`) and values equal to the number of times this outcome was measured.
 
-Note this data will be a single classical and quantum register and in a format required by the results schema. We recommend that most users use the get\_xxx method, and the data will be post-processed for the data type.
+    Statevector backends return a dictionary with key ‘statevector’ and values being a list\[list\[complex components]] list of 2^num\_qubits complex amplitudes. Where each complex number is represented as a 2 entry list for each component. For example, a list of \[0.5+1j, 0-1j] would be represented as \[\[0.5, 1], \[0, -1]].
 
-**Parameters**
+    Unitary backends return a dictionary with key ‘unitary’ and values being a list\[list\[list\[complex components]]] list of 2^num\_qubits x 2^num\_qubits complex amplitudes in a two entry list for each component. For example if the amplitude is \[\[0.5+0j, 0-1j], …] the value returned will be \[\[\[0.5, 0], \[0, -1]], …].
 
-**experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment. Several types are accepted for convenience:: \* str: the name of the experiment. \* QuantumCircuit: the name of the circuit instance will be used. \* Schedule: the name of the schedule instance will be used. \* int: the position of the experiment. \* None: if there is only one experiment, returns it.
+    The simulator backends also have an optional key ‘snapshots’ which returns a dict of snapshots specified by the simulator backend. The value is of the form dict\[slot: dict\[str: array]] where the keys are the requested snapshot slots, and the values are a dictionary of the snapshots.
 
-**Returns**
+    **Return type**
 
-A dictionary of results data for an experiment. The data depends on the backend it ran on and the settings of meas\_level, meas\_return and memory.
+    dict
 
-QASM backends return a dictionary of dictionary with the key ‘counts’ and with the counts, with the second dictionary keys containing a string in hex format (`0x123`) and values equal to the number of times this outcome was measured.
+    **Raises**
 
-Statevector backends return a dictionary with key ‘statevector’ and values being a list\[list\[complex components]] list of 2^num\_qubits complex amplitudes. Where each complex number is represented as a 2 entry list for each component. For example, a list of \[0.5+1j, 0-1j] would be represented as \[\[0.5, 1], \[0, -1]].
+    **QiskitError** – if data for the experiment could not be retrieved.
+  </Function>
 
-Unitary backends return a dictionary with key ‘unitary’ and values being a list\[list\[list\[complex components]]] list of 2^num\_qubits x 2^num\_qubits complex amplitudes in a two entry list for each component. For example if the amplitude is \[\[0.5+0j, 0-1j], …] the value returned will be \[\[\[0.5, 0], \[0, -1]], …].
+  ### decode
 
-The simulator backends also have an optional key ‘snapshots’ which returns a dict of snapshots specified by the simulator backend. The value is of the form dict\[slot: dict\[str: array]] where the keys are the requested snapshot slots, and the values are a dictionary of the snapshots.
+  <Function id="qiskit.providers.ibmq.RunnerResult.decode" name="decode" signature="classmethod decode(data)">
+    Decoding for results from Qiskit runtime jobs.
 
-**Return type**
+    **Return type**
 
-dict
+    `RunnerResult`
+  </Function>
 
-**Raises**
+  ### from\_dict
 
-**QiskitError** – if data for the experiment could not be retrieved.
+  <Function id="qiskit.providers.ibmq.RunnerResult.from_dict" name="from_dict" signature="classmethod from_dict(data)">
+    Create a new ExperimentResultData object from a dictionary.
 
-### decode
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.RunnerResult.decode" />
+    **data** (*dict*) – A dictionary representing the Result to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.ibmq.RunnerResult.to_dict "qiskit.providers.ibmq.RunnerResult.to_dict").
 
-`classmethod decode(data)`
+    **Returns**
 
-Decoding for results from Qiskit runtime jobs.
+    The `Result` object from the input dictionary.
 
-**Return type**
+    **Return type**
 
-`RunnerResult`
+    [Result](qiskit.result.Result "qiskit.result.Result")
+  </Function>
 
-### from\_dict
+  ### get\_counts
 
-<span id="qiskit.providers.ibmq.RunnerResult.from_dict" />
+  <Function id="qiskit.providers.ibmq.RunnerResult.get_counts" name="get_counts" signature="get_counts(experiment=None)">
+    Get the histogram data of an experiment.
 
-`classmethod from_dict(data)`
+    **Parameters**
 
-Create a new ExperimentResultData object from a dictionary.
+    **experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data([experiment])`.
 
-**Parameters**
+    **Returns**
 
-**data** (*dict*) – A dictionary representing the Result to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.ibmq.RunnerResult.to_dict "qiskit.providers.ibmq.RunnerResult.to_dict").
+    **int] or list\[dict\[str:int]]: a dictionary or a list of**
 
-**Returns**
+    dictionaries. A dictionary has the counts for each qubit with the keys containing a string in binary format and separated according to the registers in circuit (e.g. `0100 1110`). The string is little-endian (cr\[0] on the right hand side).
 
-The `Result` object from the input dictionary.
+    **Return type**
 
-**Return type**
+    dict\[str
 
-[Result](qiskit.result.Result "qiskit.result.Result")
+    **Raises**
 
-### get\_counts
+    **QiskitError** – if there are no counts for the experiment.
+  </Function>
 
-<span id="qiskit.providers.ibmq.RunnerResult.get_counts" />
+  ### get\_memory
 
-`get_counts(experiment=None)`
+  <Function id="qiskit.providers.ibmq.RunnerResult.get_memory" name="get_memory" signature="get_memory(experiment=None)">
+    Get the sequence of memory states (readouts) for each shot The data from the experiment is a list of format \[‘00000’, ‘01000’, ‘10100’, ‘10100’, ‘11101’, ‘11100’, ‘00101’, …, ‘01010’]
 
-Get the histogram data of an experiment.
+    **Parameters**
 
-**Parameters**
+    **experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data()`.
 
-**experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data([experiment])`.
+    **Returns**
 
-**Returns**
+    **Either the list of each outcome, formatted according to**
 
-**int] or list\[dict\[str:int]]: a dictionary or a list of**
+    registers in circuit or a complex numpy np.ndarray with shape:
 
-dictionaries. A dictionary has the counts for each qubit with the keys containing a string in binary format and separated according to the registers in circuit (e.g. `0100 1110`). The string is little-endian (cr\[0] on the right hand side).
+    | meas\_level | meas\_return | shape                                                 |
+    | ----------- | ------------ | ----------------------------------------------------- |
+    | 0           | single       | np.ndarray\[shots, memory\_slots, memory\_slot\_size] |
+    | 0           | avg          | np.ndarray\[memory\_slots, memory\_slot\_size]        |
+    | 1           | single       | np.ndarray\[shots, memory\_slots]                     |
+    | 1           | avg          | np.ndarray\[memory\_slots]                            |
+    | 2           | memory=True  | list                                                  |
 
-**Return type**
+    **Return type**
 
-dict\[str
+    List\[str] or np.ndarray
 
-**Raises**
+    **Raises**
 
-**QiskitError** – if there are no counts for the experiment.
+    **QiskitError** – if there is no memory data for the circuit.
+  </Function>
 
-### get\_memory
+  ### get\_quasiprobabilities
 
-<span id="qiskit.providers.ibmq.RunnerResult.get_memory" />
+  <Function id="qiskit.providers.ibmq.RunnerResult.get_quasiprobabilities" name="get_quasiprobabilities" signature="get_quasiprobabilities(experiment=None)">
+    Get quasiprobabilites associated with one or more experiments.
 
-`get_memory(experiment=None)`
+    **Parameters**
 
-Get the sequence of memory states (readouts) for each shot The data from the experiment is a list of format \[‘00000’, ‘01000’, ‘10100’, ‘10100’, ‘11101’, ‘11100’, ‘00101’, …, ‘01010’]
+    **experiment** (`Union`\[`int`, `List`, `None`]) – Indices of experiments to grab quasiprobabilities from.
 
-**Parameters**
+    **Return type**
 
-**experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data()`.
+    `Union`\[`QuasiDistribution`, `List`\[`QuasiDistribution`]]
 
-**Returns**
+    **Returns**
 
-**Either the list of each outcome, formatted according to**
+    A single distribution or a list of distributions.
 
-registers in circuit or a complex numpy np.ndarray with shape:
+    **Raises**
 
-| meas\_level | meas\_return | shape                                                 |
-| ----------- | ------------ | ----------------------------------------------------- |
-| 0           | single       | np.ndarray\[shots, memory\_slots, memory\_slot\_size] |
-| 0           | avg          | np.ndarray\[memory\_slots, memory\_slot\_size]        |
-| 1           | single       | np.ndarray\[shots, memory\_slots]                     |
-| 1           | avg          | np.ndarray\[memory\_slots]                            |
-| 2           | memory=True  | list                                                  |
+    **QiskitError** – If experiment result doesn’t contain quasiprobabilities.
+  </Function>
 
-**Return type**
+  ### get\_statevector
 
-List\[str] or np.ndarray
+  <Function id="qiskit.providers.ibmq.RunnerResult.get_statevector" name="get_statevector" signature="get_statevector(experiment=None, decimals=None)">
+    Get the final statevector of an experiment.
 
-**Raises**
+    **Parameters**
 
-**QiskitError** – if there is no memory data for the circuit.
+    *   **experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data()`.
+    *   **decimals** (*int*) – the number of decimals in the statevector. If None, does not round.
 
-### get\_quasiprobabilities
+    **Returns**
 
-<span id="qiskit.providers.ibmq.RunnerResult.get_quasiprobabilities" />
+    list of 2^num\_qubits complex amplitudes.
 
-`get_quasiprobabilities(experiment=None)`
+    **Return type**
 
-Get quasiprobabilites associated with one or more experiments.
+    list\[complex]
 
-**Parameters**
+    **Raises**
 
-**experiment** (`Union`\[`int`, `List`, `None`]) – Indices of experiments to grab quasiprobabilities from.
+    **QiskitError** – if there is no statevector for the experiment.
+  </Function>
 
-**Return type**
+  ### get\_unitary
 
-`Union`\[`QuasiDistribution`, `List`\[`QuasiDistribution`]]
+  <Function id="qiskit.providers.ibmq.RunnerResult.get_unitary" name="get_unitary" signature="get_unitary(experiment=None, decimals=None)">
+    Get the final unitary of an experiment.
 
-**Returns**
+    **Parameters**
 
-A single distribution or a list of distributions.
+    *   **experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data()`.
+    *   **decimals** (*int*) – the number of decimals in the unitary. If None, does not round.
 
-**Raises**
+    **Returns**
 
-**QiskitError** – If experiment result doesn’t contain quasiprobabilities.
+    **list of 2^num\_qubits x 2^num\_qubits complex**
 
-### get\_statevector
+    amplitudes.
 
-<span id="qiskit.providers.ibmq.RunnerResult.get_statevector" />
+    **Return type**
 
-`get_statevector(experiment=None, decimals=None)`
+    list\[list\[complex]]
 
-Get the final statevector of an experiment.
+    **Raises**
 
-**Parameters**
+    **QiskitError** – if there is no unitary for the experiment.
+  </Function>
 
-*   **experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data()`.
-*   **decimals** (*int*) – the number of decimals in the statevector. If None, does not round.
+  ### to\_dict
 
-**Returns**
+  <Function id="qiskit.providers.ibmq.RunnerResult.to_dict" name="to_dict" signature="to_dict()">
+    Return a dictionary format representation of the Result
 
-list of 2^num\_qubits complex amplitudes.
+    **Returns**
 
-**Return type**
+    The dictionary form of the Result
 
-list\[complex]
+    **Return type**
 
-**Raises**
-
-**QiskitError** – if there is no statevector for the experiment.
-
-### get\_unitary
-
-<span id="qiskit.providers.ibmq.RunnerResult.get_unitary" />
-
-`get_unitary(experiment=None, decimals=None)`
-
-Get the final unitary of an experiment.
-
-**Parameters**
-
-*   **experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data()`.
-*   **decimals** (*int*) – the number of decimals in the unitary. If None, does not round.
-
-**Returns**
-
-**list of 2^num\_qubits x 2^num\_qubits complex**
-
-amplitudes.
-
-**Return type**
-
-list\[list\[complex]]
-
-**Raises**
-
-**QiskitError** – if there is no unitary for the experiment.
-
-### to\_dict
-
-<span id="qiskit.providers.ibmq.RunnerResult.to_dict" />
-
-`to_dict()`
-
-Return a dictionary format representation of the Result
-
-**Returns**
-
-The dictionary form of the Result
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 

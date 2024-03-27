@@ -8,226 +8,200 @@ python_api_name: qiskit.chemistry.components.variational_forms.UVCC
 
 # qiskit.chemistry.components.variational\_forms.UVCC
 
-<span id="qiskit.chemistry.components.variational_forms.UVCC" />
+<Class id="qiskit.chemistry.components.variational_forms.UVCC" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uvcc.py" signature="UVCC(num_qubits, basis, degrees, reps=1, excitations=None, initial_state=None, qubit_mapping='direct', num_time_slices=1, shallow_circuit_concat=True)">
+  This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Double excitations variational form. For more information, see Ollitrault Pauline J., Chemical science 11 (2020): 6842-6855.
 
-`UVCC(num_qubits, basis, degrees, reps=1, excitations=None, initial_state=None, qubit_mapping='direct', num_time_slices=1, shallow_circuit_concat=True)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uvcc.py "view source code")
+  **Parameters**
 
-This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Double excitations variational form. For more information, see Ollitrault Pauline J., Chemical science 11 (2020): 6842-6855.
+  *   **num\_qubits** (`int`) – number of qubits
+  *   **basis** (`List`\[`int`]) – Is a list defining the number of modals per mode. E.g. for a 3 modes system with 4 modals per mode basis = \[4,4,4]
+  *   **degrees** (`List`\[`int`]) – degree of excitation to be included (for single and double excitations degrees=\[0,1])
+  *   **reps** (`int`) – number of replica of basic module
+  *   **excitations** (`Optional`\[`List`\[`List`\[`List`\[`int`]]]]) – The excitations to be included in the circuit. If not provided the default is to compute all singles and doubles.
+  *   **initial\_state** (`Union`\[`QuantumCircuit`, `InitialState`, `None`]) – An initial state object.
+  *   **qubit\_mapping** (`str`) – the qubits mapping type. Only ‘direct’ is supported at the moment.
+  *   **num\_time\_slices** (`int`) – parameters for dynamics.
+  *   **shallow\_circuit\_concat** (`bool`) – indicate whether to use shallow (cheap) mode for circuit concatenation
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **num\_qubits** (`int`) – number of qubits
-*   **basis** (`List`\[`int`]) – Is a list defining the number of modals per mode. E.g. for a 3 modes system with 4 modals per mode basis = \[4,4,4]
-*   **degrees** (`List`\[`int`]) – degree of excitation to be included (for single and double excitations degrees=\[0,1])
-*   **reps** (`int`) – number of replica of basic module
-*   **excitations** (`Optional`\[`List`\[`List`\[`List`\[`int`]]]]) – The excitations to be included in the circuit. If not provided the default is to compute all singles and doubles.
-*   **initial\_state** (`Union`\[`QuantumCircuit`, `InitialState`, `None`]) – An initial state object.
-*   **qubit\_mapping** (`str`) – the qubits mapping type. Only ‘direct’ is supported at the moment.
-*   **num\_time\_slices** (`int`) – parameters for dynamics.
-*   **shallow\_circuit\_concat** (`bool`) – indicate whether to use shallow (cheap) mode for circuit concatenation
+  <Function id="qiskit.chemistry.components.variational_forms.UVCC.__init__" name="__init__" signature="__init__(num_qubits, basis, degrees, reps=1, excitations=None, initial_state=None, qubit_mapping='direct', num_time_slices=1, shallow_circuit_concat=True)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **num\_qubits** (`int`) – number of qubits
+    *   **basis** (`List`\[`int`]) – Is a list defining the number of modals per mode. E.g. for a 3 modes system with 4 modals per mode basis = \[4,4,4]
+    *   **degrees** (`List`\[`int`]) – degree of excitation to be included (for single and double excitations degrees=\[0,1])
+    *   **reps** (`int`) – number of replica of basic module
+    *   **excitations** (`Optional`\[`List`\[`List`\[`List`\[`int`]]]]) – The excitations to be included in the circuit. If not provided the default is to compute all singles and doubles.
+    *   **initial\_state** (`Union`\[`QuantumCircuit`, `InitialState`, `None`]) – An initial state object.
+    *   **qubit\_mapping** (`str`) – the qubits mapping type. Only ‘direct’ is supported at the moment.
+    *   **num\_time\_slices** (`int`) – parameters for dynamics.
+    *   **shallow\_circuit\_concat** (`bool`) – indicate whether to use shallow (cheap) mode for circuit concatenation
+  </Function>
 
-<span id="qiskit.chemistry.components.variational_forms.UVCC.__init__" />
+  ## Methods
 
-`__init__(num_qubits, basis, degrees, reps=1, excitations=None, initial_state=None, qubit_mapping='direct', num_time_slices=1, shallow_circuit_concat=True)`
+  |                                                                                                                                                                                                                 |                                                                       |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.components.variational_forms.UVCC.__init__ "qiskit.chemistry.components.variational_forms.UVCC.__init__")(num\_qubits, basis, degrees\[, reps, …])                               | **type num\_qubits**`int`                                             |
+  | [`compute_excitation_lists`](#qiskit.chemistry.components.variational_forms.UVCC.compute_excitation_lists "qiskit.chemistry.components.variational_forms.UVCC.compute_excitation_lists")(basis, degrees)        | Compute the list with all possible excitation for given orders        |
+  | [`construct_circuit`](#qiskit.chemistry.components.variational_forms.UVCC.construct_circuit "qiskit.chemistry.components.variational_forms.UVCC.construct_circuit")(parameters\[, q])                           | Construct the variational form, given its parameters.                 |
+  | [`excitations_in_qubit_format`](#qiskit.chemistry.components.variational_forms.UVCC.excitations_in_qubit_format "qiskit.chemistry.components.variational_forms.UVCC.excitations_in_qubit_format")()             | Gives the list of excitation indexes in terms of qubit indexes rather |
+  | [`get_entangler_map`](#qiskit.chemistry.components.variational_forms.UVCC.get_entangler_map "qiskit.chemistry.components.variational_forms.UVCC.get_entangler_map")(map\_type, num\_qubits\[, offset])          | returns entangler map                                                 |
+  | [`validate_entangler_map`](#qiskit.chemistry.components.variational_forms.UVCC.validate_entangler_map "qiskit.chemistry.components.variational_forms.UVCC.validate_entangler_map")(entangler\_map, num\_qubits) | validate entangler map                                                |
 
-**Parameters**
+  ## Attributes
 
-*   **num\_qubits** (`int`) – number of qubits
-*   **basis** (`List`\[`int`]) – Is a list defining the number of modals per mode. E.g. for a 3 modes system with 4 modals per mode basis = \[4,4,4]
-*   **degrees** (`List`\[`int`]) – degree of excitation to be included (for single and double excitations degrees=\[0,1])
-*   **reps** (`int`) – number of replica of basic module
-*   **excitations** (`Optional`\[`List`\[`List`\[`List`\[`int`]]]]) – The excitations to be included in the circuit. If not provided the default is to compute all singles and doubles.
-*   **initial\_state** (`Union`\[`QuantumCircuit`, `InitialState`, `None`]) – An initial state object.
-*   **qubit\_mapping** (`str`) – the qubits mapping type. Only ‘direct’ is supported at the moment.
-*   **num\_time\_slices** (`int`) – parameters for dynamics.
-*   **shallow\_circuit\_concat** (`bool`) – indicate whether to use shallow (cheap) mode for circuit concatenation
+  |                                                                                                                                                                                                         |                                                             |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+  | [`num_parameters`](#qiskit.chemistry.components.variational_forms.UVCC.num_parameters "qiskit.chemistry.components.variational_forms.UVCC.num_parameters")                                              | Number of parameters of the variational form.               |
+  | [`num_qubits`](#qiskit.chemistry.components.variational_forms.UVCC.num_qubits "qiskit.chemistry.components.variational_forms.UVCC.num_qubits")                                                          | Number of qubits of the variational form.                   |
+  | [`parameter_bounds`](#qiskit.chemistry.components.variational_forms.UVCC.parameter_bounds "qiskit.chemistry.components.variational_forms.UVCC.parameter_bounds")                                        | Parameter bounds.                                           |
+  | [`preferred_init_points`](#qiskit.chemistry.components.variational_forms.UVCC.preferred_init_points "qiskit.chemistry.components.variational_forms.UVCC.preferred_init_points")                         | Return preferred init points.                               |
+  | [`setting`](#qiskit.chemistry.components.variational_forms.UVCC.setting "qiskit.chemistry.components.variational_forms.UVCC.setting")                                                                   |                                                             |
+  | [`support_parameterized_circuit`](#qiskit.chemistry.components.variational_forms.UVCC.support_parameterized_circuit "qiskit.chemistry.components.variational_forms.UVCC.support_parameterized_circuit") | Whether or not the sub-class support parameterized circuit. |
 
-## Methods
+  ### compute\_excitation\_lists
 
-|                                                                                                                                                                                                                 |                                                                       |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.components.variational_forms.UVCC.__init__ "qiskit.chemistry.components.variational_forms.UVCC.__init__")(num\_qubits, basis, degrees\[, reps, …])                               | **type num\_qubits**`int`                                             |
-| [`compute_excitation_lists`](#qiskit.chemistry.components.variational_forms.UVCC.compute_excitation_lists "qiskit.chemistry.components.variational_forms.UVCC.compute_excitation_lists")(basis, degrees)        | Compute the list with all possible excitation for given orders        |
-| [`construct_circuit`](#qiskit.chemistry.components.variational_forms.UVCC.construct_circuit "qiskit.chemistry.components.variational_forms.UVCC.construct_circuit")(parameters\[, q])                           | Construct the variational form, given its parameters.                 |
-| [`excitations_in_qubit_format`](#qiskit.chemistry.components.variational_forms.UVCC.excitations_in_qubit_format "qiskit.chemistry.components.variational_forms.UVCC.excitations_in_qubit_format")()             | Gives the list of excitation indexes in terms of qubit indexes rather |
-| [`get_entangler_map`](#qiskit.chemistry.components.variational_forms.UVCC.get_entangler_map "qiskit.chemistry.components.variational_forms.UVCC.get_entangler_map")(map\_type, num\_qubits\[, offset])          | returns entangler map                                                 |
-| [`validate_entangler_map`](#qiskit.chemistry.components.variational_forms.UVCC.validate_entangler_map "qiskit.chemistry.components.variational_forms.UVCC.validate_entangler_map")(entangler\_map, num\_qubits) | validate entangler map                                                |
+  <Function id="qiskit.chemistry.components.variational_forms.UVCC.compute_excitation_lists" name="compute_excitation_lists" signature="static compute_excitation_lists(basis, degrees)">
+    Compute the list with all possible excitation for given orders
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                                                                                         |                                                             |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| [`num_parameters`](#qiskit.chemistry.components.variational_forms.UVCC.num_parameters "qiskit.chemistry.components.variational_forms.UVCC.num_parameters")                                              | Number of parameters of the variational form.               |
-| [`num_qubits`](#qiskit.chemistry.components.variational_forms.UVCC.num_qubits "qiskit.chemistry.components.variational_forms.UVCC.num_qubits")                                                          | Number of qubits of the variational form.                   |
-| [`parameter_bounds`](#qiskit.chemistry.components.variational_forms.UVCC.parameter_bounds "qiskit.chemistry.components.variational_forms.UVCC.parameter_bounds")                                        | Parameter bounds.                                           |
-| [`preferred_init_points`](#qiskit.chemistry.components.variational_forms.UVCC.preferred_init_points "qiskit.chemistry.components.variational_forms.UVCC.preferred_init_points")                         | Return preferred init points.                               |
-| [`setting`](#qiskit.chemistry.components.variational_forms.UVCC.setting "qiskit.chemistry.components.variational_forms.UVCC.setting")                                                                   |                                                             |
-| [`support_parameterized_circuit`](#qiskit.chemistry.components.variational_forms.UVCC.support_parameterized_circuit "qiskit.chemistry.components.variational_forms.UVCC.support_parameterized_circuit") | Whether or not the sub-class support parameterized circuit. |
+    *   **basis** (`List`\[`int`]) – Is a list defining the number of modals per mode. E.g. for a 3 modes system with 4 modals per mode basis = \[4,4,4]
+    *   **degrees** (`List`\[`int`]) – degree of excitation to be included (for single and double excitations degrees=\[0,1])
 
-### compute\_excitation\_lists
+    **Return type**
 
-<span id="qiskit.chemistry.components.variational_forms.UVCC.compute_excitation_lists" />
+    `List`\[`List`\[`int`]]
 
-`static compute_excitation_lists(basis, degrees)`
+    **Returns**
 
-Compute the list with all possible excitation for given orders
+    List of excitation indexes in terms of modes and modals
 
-**Parameters**
+    **Raises**
 
-*   **basis** (`List`\[`int`]) – Is a list defining the number of modals per mode. E.g. for a 3 modes system with 4 modals per mode basis = \[4,4,4]
-*   **degrees** (`List`\[`int`]) – degree of excitation to be included (for single and double excitations degrees=\[0,1])
+    **ValueError** – If excitation degree is greater than size of basis
+  </Function>
 
-**Return type**
+  ### construct\_circuit
 
-`List`\[`List`\[`int`]]
+  <Function id="qiskit.chemistry.components.variational_forms.UVCC.construct_circuit" name="construct_circuit" signature="construct_circuit(parameters, q=None)">
+    Construct the variational form, given its parameters.
 
-**Returns**
+    **Parameters**
 
-List of excitation indexes in terms of modes and modals
+    *   **parameters** (`Union`\[`ndarray`, `List`\[`Parameter`], `ParameterVector`]) – circuit parameters
+    *   **q** (`Optional`\[`QuantumRegister`]) – Quantum Register for the circuit.
 
-**Raises**
+    **Return type**
 
-**ValueError** – If excitation degree is greater than size of basis
+    `QuantumCircuit`
 
-### construct\_circuit
+    **Returns**
 
-<span id="qiskit.chemistry.components.variational_forms.UVCC.construct_circuit" />
+    Quantum Circuit a quantum circuit with given parameters
 
-`construct_circuit(parameters, q=None)`
+    **Raises**
 
-Construct the variational form, given its parameters.
+    *   **ValueError** – the number of parameters is incorrect.
+    *   **ValueError** – if num\_qubits has not been set and is still None
+  </Function>
 
-**Parameters**
+  ### excitations\_in\_qubit\_format
 
-*   **parameters** (`Union`\[`ndarray`, `List`\[`Parameter`], `ParameterVector`]) – circuit parameters
-*   **q** (`Optional`\[`QuantumRegister`]) – Quantum Register for the circuit.
+  <Function id="qiskit.chemistry.components.variational_forms.UVCC.excitations_in_qubit_format" name="excitations_in_qubit_format" signature="excitations_in_qubit_format()">
+    **Gives the list of excitation indexes in terms of qubit indexes rather**
 
-**Return type**
+    than in modes and modals
 
-`QuantumCircuit`
+    **Return type**
 
-**Returns**
+    `List`\[`List`\[`int`]]
 
-Quantum Circuit a quantum circuit with given parameters
+    **Returns**
 
-**Raises**
+    List of excitation indexes
+  </Function>
 
-*   **ValueError** – the number of parameters is incorrect.
-*   **ValueError** – if num\_qubits has not been set and is still None
+  ### get\_entangler\_map
 
-### excitations\_in\_qubit\_format
+  <Function id="qiskit.chemistry.components.variational_forms.UVCC.get_entangler_map" name="get_entangler_map" signature="static get_entangler_map(map_type, num_qubits, offset=0)">
+    returns entangler map
+  </Function>
 
-<span id="qiskit.chemistry.components.variational_forms.UVCC.excitations_in_qubit_format" />
+  ### num\_parameters
 
-`excitations_in_qubit_format()`
+  <Function id="qiskit.chemistry.components.variational_forms.UVCC.num_parameters" name="num_parameters" signature="property num_parameters">
+    Number of parameters of the variational form.
 
-**Gives the list of excitation indexes in terms of qubit indexes rather**
+    **Returns**
 
-than in modes and modals
+    An integer indicating the number of parameters.
 
-**Return type**
+    **Return type**
 
-`List`\[`List`\[`int`]]
+    int
+  </Function>
 
-**Returns**
+  ### num\_qubits
 
-List of excitation indexes
+  <Function id="qiskit.chemistry.components.variational_forms.UVCC.num_qubits" name="num_qubits" signature="property num_qubits">
+    Number of qubits of the variational form.
 
-### get\_entangler\_map
+    **Returns**
 
-<span id="qiskit.chemistry.components.variational_forms.UVCC.get_entangler_map" />
+    An integer indicating the number of qubits.
 
-`static get_entangler_map(map_type, num_qubits, offset=0)`
+    **Return type**
 
-returns entangler map
+    int
+  </Function>
 
-### num\_parameters
+  ### parameter\_bounds
 
-<span id="qiskit.chemistry.components.variational_forms.UVCC.num_parameters" />
+  <Function id="qiskit.chemistry.components.variational_forms.UVCC.parameter_bounds" name="parameter_bounds" signature="property parameter_bounds">
+    Parameter bounds.
 
-`property num_parameters`
+    **Returns**
 
-Number of parameters of the variational form.
+    A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
 
-**Returns**
+    **Return type**
 
-An integer indicating the number of parameters.
+    list
+  </Function>
 
-**Return type**
+  ### preferred\_init\_points
 
-int
+  <Function id="qiskit.chemistry.components.variational_forms.UVCC.preferred_init_points" name="preferred_init_points" signature="property preferred_init_points">
+    Return preferred init points.
 
-### num\_qubits
+    If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
+  </Function>
 
-<span id="qiskit.chemistry.components.variational_forms.UVCC.num_qubits" />
+  ### setting
 
-`property num_qubits`
+  <Function id="qiskit.chemistry.components.variational_forms.UVCC.setting" name="setting" signature="property setting" />
 
-Number of qubits of the variational form.
+  ### support\_parameterized\_circuit
 
-**Returns**
+  <Function id="qiskit.chemistry.components.variational_forms.UVCC.support_parameterized_circuit" name="support_parameterized_circuit" signature="property support_parameterized_circuit">
+    Whether or not the sub-class support parameterized circuit.
 
-An integer indicating the number of qubits.
+    **Returns**
 
-**Return type**
+    indicate the sub-class support parameterized circuit
 
-int
+    **Return type**
 
-### parameter\_bounds
+    boolean
+  </Function>
 
-<span id="qiskit.chemistry.components.variational_forms.UVCC.parameter_bounds" />
+  ### validate\_entangler\_map
 
-`property parameter_bounds`
-
-Parameter bounds.
-
-**Returns**
-
-A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
-
-**Return type**
-
-list
-
-### preferred\_init\_points
-
-<span id="qiskit.chemistry.components.variational_forms.UVCC.preferred_init_points" />
-
-`property preferred_init_points`
-
-Return preferred init points.
-
-If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
-
-### setting
-
-<span id="qiskit.chemistry.components.variational_forms.UVCC.setting" />
-
-`property setting`
-
-### support\_parameterized\_circuit
-
-<span id="qiskit.chemistry.components.variational_forms.UVCC.support_parameterized_circuit" />
-
-`property support_parameterized_circuit`
-
-Whether or not the sub-class support parameterized circuit.
-
-**Returns**
-
-indicate the sub-class support parameterized circuit
-
-**Return type**
-
-boolean
-
-### validate\_entangler\_map
-
-<span id="qiskit.chemistry.components.variational_forms.UVCC.validate_entangler_map" />
-
-`static validate_entangler_map(entangler_map, num_qubits)`
-
-validate entangler map
+  <Function id="qiskit.chemistry.components.variational_forms.UVCC.validate_entangler_map" name="validate_entangler_map" signature="static validate_entangler_map(entangler_map, num_qubits)">
+    validate entangler map
+  </Function>
+</Class>
 

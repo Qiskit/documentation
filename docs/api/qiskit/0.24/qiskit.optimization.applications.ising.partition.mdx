@@ -23,46 +23,42 @@ Generate Number Partitioning (Partition) instances, and convert them into a Hami
 
 ### get\_operator
 
-<span id="qiskit.optimization.applications.ising.partition.get_operator" />
+<Function id="qiskit.optimization.applications.ising.partition.get_operator" name="get_operator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/partition.py" signature="get_operator(values)">
+  Construct the Hamiltonian for a given Partition instance.
 
-`get_operator(values)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/partition.py "view source code")
+  Given a list of numbers for the Number Partitioning problem, we construct the Hamiltonian described as a list of Pauli gates.
 
-Construct the Hamiltonian for a given Partition instance.
+  **Parameters**
 
-Given a list of numbers for the Number Partitioning problem, we construct the Hamiltonian described as a list of Pauli gates.
+  **values** (*numpy.ndarray*) – array of values.
 
-**Parameters**
+  **Returns**
 
-**values** (*numpy.ndarray*) – array of values.
+  operator for the Hamiltonian and a constant shift for the obj function.
 
-**Returns**
+  **Return type**
 
-operator for the Hamiltonian and a constant shift for the obj function.
-
-**Return type**
-
-tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+  tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+</Function>
 
 ### partition\_value
 
-<span id="qiskit.optimization.applications.ising.partition.partition_value" />
+<Function id="qiskit.optimization.applications.ising.partition.partition_value" name="partition_value" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/partition.py" signature="partition_value(x, number_list)">
+  Compute the value of a partition.
 
-`partition_value(x, number_list)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/partition.py "view source code")
+  **Parameters**
 
-Compute the value of a partition.
+  *   **x** (*numpy.ndarray*) – binary string as numpy array.
+  *   **number\_list** (*numpy.ndarray*) – list of numbers in the instance.
 
-**Parameters**
+  **Returns**
 
-*   **x** (*numpy.ndarray*) – binary string as numpy array.
-*   **number\_list** (*numpy.ndarray*) – list of numbers in the instance.
+  **difference squared between the two sides of the number**
 
-**Returns**
+  partition.
 
-**difference squared between the two sides of the number**
+  **Return type**
 
-partition.
-
-**Return type**
-
-float
+  float
+</Function>
 

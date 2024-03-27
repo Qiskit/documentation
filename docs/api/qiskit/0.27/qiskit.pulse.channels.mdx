@@ -32,776 +32,666 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 | [`RegisterSlot`](#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")(index)                       | Classical resister slot channels represent classical registers (low-latency classical memory). |
 | [`SnapshotChannel`](#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")(\*args, \*\*kwargs) | Snapshot channels are used to specify instructions for simulators.                             |
 
-<span id="qiskit.pulse.channels.AcquireChannel" />
+<Class id="qiskit.pulse.channels.AcquireChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py" signature="AcquireChannel(index)">
+  Acquire channels are used to collect data.
 
-`AcquireChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py "view source code")
+  Channel class.
 
-Acquire channels are used to collect data.
+  **Parameters**
 
-Channel class.
+  **index** (`int`) – Index of channel.
 
-**Parameters**
+  ### assign
 
-**index** (`int`) – Index of channel.
+  <Function id="qiskit.pulse.channels.AcquireChannel.assign" name="assign" signature="assign(parameter, value)">
+    Return a new channel with the input Parameter assigned to value.
 
-### assign
+    **Parameters**
 
-<span id="qiskit.pulse.channels.AcquireChannel.assign" />
+    *   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
+    *   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
 
-`assign(parameter, value)`
+    **Return type**
 
-Return a new channel with the input Parameter assigned to value.
+    [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 
-**Parameters**
+    **Returns**
 
-*   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
-*   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
+    A new channel with updated parameters.
 
-**Return type**
+    **Raises**
 
-[`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  </Function>
 
-**Returns**
+  ### index
 
-A new channel with updated parameters.
+  <Function id="qiskit.pulse.channels.AcquireChannel.index" name="index" signature="property index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
 
-**Raises**
+    **Return type**
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+    `Union`\[`int`, `ParameterExpression`]
+  </Function>
 
-### index
+  ### is\_parameterized
 
-<span id="qiskit.pulse.channels.AcquireChannel.index" />
+  <Function id="qiskit.pulse.channels.AcquireChannel.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the channel is parameterized.
 
-`property index`
+    **Return type**
 
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
+    `bool`
+  </Function>
 
-**Return type**
+  ### name
 
-`Union`\[`int`, `ParameterExpression`]
+  <Function id="qiskit.pulse.channels.AcquireChannel.name" name="name" signature="property name">
+    Return the shorthand alias for this channel, which is based on its type and index.
 
-### is\_parameterized
+    **Return type**
 
-<span id="qiskit.pulse.channels.AcquireChannel.is_parameterized" />
+    `str`
+  </Function>
 
-`is_parameterized()`
+  ### parameters
 
-Return True iff the channel is parameterized.
+  <Function id="qiskit.pulse.channels.AcquireChannel.parameters" name="parameters" signature="property parameters">
+    Parameters which determine the channel index.
 
-**Return type**
+    **Return type**
 
-`bool`
+    `Set`
+  </Function>
+</Class>
 
-### name
+<Class id="qiskit.pulse.channels.Channel" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py" signature="Channel(index)">
+  Base class of channels. Channels provide a Qiskit-side label for typical quantum control hardware signal channels. The final label -> physical channel mapping is the responsibility of the hardware backend. For instance, `DriveChannel(0)` holds instructions which the backend should map to the signal line driving gate operations on the qubit labeled (indexed) 0.
 
-<span id="qiskit.pulse.channels.AcquireChannel.name" />
+  When serialized channels are identified by their serialized name `<prefix><index>`. The type of the channel is interpreted from the prefix, and the index often (but not always) maps to the qubit index. All concrete channel classes must have a `prefix` class attribute (and instances of that class have an index attribute). Base classes which have `prefix` set to `None` are prevented from being instantiated.
 
-`property name`
+  To implement a new channel inherit from [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") and provide a unique string identifier for the `prefix` class attribute.
 
-Return the shorthand alias for this channel, which is based on its type and index.
+  Channel class.
 
-**Return type**
+  **Parameters**
 
-`str`
+  **index** (`int`) – Index of channel.
 
-### parameters
+  ### assign
 
-<span id="qiskit.pulse.channels.AcquireChannel.parameters" />
+  <Function id="qiskit.pulse.channels.Channel.assign" name="assign" signature="assign(parameter, value)">
+    Return a new channel with the input Parameter assigned to value.
 
-`property parameters`
+    **Parameters**
 
-Parameters which determine the channel index.
+    *   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
+    *   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
 
-**Return type**
+    **Return type**
 
-`Set`
+    [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 
-<span id="qiskit.pulse.channels.Channel" />
+    **Returns**
 
-`Channel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py "view source code")
+    A new channel with updated parameters.
 
-Base class of channels. Channels provide a Qiskit-side label for typical quantum control hardware signal channels. The final label -> physical channel mapping is the responsibility of the hardware backend. For instance, `DriveChannel(0)` holds instructions which the backend should map to the signal line driving gate operations on the qubit labeled (indexed) 0.
+    **Raises**
 
-When serialized channels are identified by their serialized name `<prefix><index>`. The type of the channel is interpreted from the prefix, and the index often (but not always) maps to the qubit index. All concrete channel classes must have a `prefix` class attribute (and instances of that class have an index attribute). Base classes which have `prefix` set to `None` are prevented from being instantiated.
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  </Function>
 
-To implement a new channel inherit from [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") and provide a unique string identifier for the `prefix` class attribute.
+  ### index
 
-Channel class.
+  <Function id="qiskit.pulse.channels.Channel.index" name="index" signature="property index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
 
-**Parameters**
+    **Return type**
 
-**index** (`int`) – Index of channel.
+    `Union`\[`int`, `ParameterExpression`]
+  </Function>
 
-### assign
+  ### is\_parameterized
 
-<span id="qiskit.pulse.channels.Channel.assign" />
+  <Function id="qiskit.pulse.channels.Channel.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the channel is parameterized.
 
-`assign(parameter, value)`
+    **Return type**
 
-Return a new channel with the input Parameter assigned to value.
+    `bool`
+  </Function>
 
-**Parameters**
+  ### name
 
-*   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
-*   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
+  <Function id="qiskit.pulse.channels.Channel.name" name="name" signature="property name">
+    Return the shorthand alias for this channel, which is based on its type and index.
 
-**Return type**
+    **Return type**
 
-[`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
+    `str`
+  </Function>
 
-**Returns**
+  ### parameters
 
-A new channel with updated parameters.
+  <Function id="qiskit.pulse.channels.Channel.parameters" name="parameters" signature="property parameters">
+    Parameters which determine the channel index.
 
-**Raises**
+    **Return type**
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+    `Set`
+  </Function>
 
-### index
+  ### prefix
 
-<span id="qiskit.pulse.channels.Channel.index" />
+  <Attribute id="qiskit.pulse.channels.Channel.prefix" name="prefix" attributeValue="= None">
+    A shorthand string prefix for characterizing the channel type.
+  </Attribute>
+</Class>
 
-`property index`
+<Class id="qiskit.pulse.channels.ControlChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py" signature="ControlChannel(index)">
+  Control channels provide supplementary control over the qubit to the drive channel. These are often associated with multi-qubit gate operations. They may not map trivially to a particular qubit index.
 
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
+  Channel class.
 
-**Return type**
+  **Parameters**
 
-`Union`\[`int`, `ParameterExpression`]
+  **index** (`int`) – Index of channel.
 
-### is\_parameterized
+  ### assign
 
-<span id="qiskit.pulse.channels.Channel.is_parameterized" />
+  <Function id="qiskit.pulse.channels.ControlChannel.assign" name="assign" signature="assign(parameter, value)">
+    Return a new channel with the input Parameter assigned to value.
 
-`is_parameterized()`
+    **Parameters**
 
-Return True iff the channel is parameterized.
+    *   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
+    *   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
 
-**Return type**
+    **Return type**
 
-`bool`
+    [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 
-### name
+    **Returns**
 
-<span id="qiskit.pulse.channels.Channel.name" />
+    A new channel with updated parameters.
 
-`property name`
+    **Raises**
 
-Return the shorthand alias for this channel, which is based on its type and index.
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  </Function>
 
-**Return type**
+  ### index
 
-`str`
+  <Function id="qiskit.pulse.channels.ControlChannel.index" name="index" signature="property index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
 
-### parameters
+    **Return type**
 
-<span id="qiskit.pulse.channels.Channel.parameters" />
+    `Union`\[`int`, `ParameterExpression`]
+  </Function>
 
-`property parameters`
+  ### is\_parameterized
 
-Parameters which determine the channel index.
+  <Function id="qiskit.pulse.channels.ControlChannel.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the channel is parameterized.
 
-**Return type**
+    **Return type**
 
-`Set`
+    `bool`
+  </Function>
 
-<span id="qiskit.pulse.channels.Channel.prefix" />
+  ### name
 
-### prefix
+  <Function id="qiskit.pulse.channels.ControlChannel.name" name="name" signature="property name">
+    Return the shorthand alias for this channel, which is based on its type and index.
 
-`= None`
+    **Return type**
 
-A shorthand string prefix for characterizing the channel type.
+    `str`
+  </Function>
 
-<span id="qiskit.pulse.channels.ControlChannel" />
+  ### parameters
 
-`ControlChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py "view source code")
+  <Function id="qiskit.pulse.channels.ControlChannel.parameters" name="parameters" signature="property parameters">
+    Parameters which determine the channel index.
 
-Control channels provide supplementary control over the qubit to the drive channel. These are often associated with multi-qubit gate operations. They may not map trivially to a particular qubit index.
+    **Return type**
 
-Channel class.
+    `Set`
+  </Function>
+</Class>
 
-**Parameters**
+<Class id="qiskit.pulse.channels.DriveChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py" signature="DriveChannel(index)">
+  Drive channels transmit signals to qubits which enact gate operations.
 
-**index** (`int`) – Index of channel.
+  Channel class.
 
-### assign
+  **Parameters**
 
-<span id="qiskit.pulse.channels.ControlChannel.assign" />
+  **index** (`int`) – Index of channel.
 
-`assign(parameter, value)`
+  ### assign
 
-Return a new channel with the input Parameter assigned to value.
+  <Function id="qiskit.pulse.channels.DriveChannel.assign" name="assign" signature="assign(parameter, value)">
+    Return a new channel with the input Parameter assigned to value.
 
-**Parameters**
+    **Parameters**
 
-*   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
-*   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
+    *   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
+    *   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
 
-**Return type**
+    **Return type**
 
-[`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
+    [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 
-**Returns**
+    **Returns**
 
-A new channel with updated parameters.
+    A new channel with updated parameters.
 
-**Raises**
+    **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  </Function>
 
-### index
+  ### index
 
-<span id="qiskit.pulse.channels.ControlChannel.index" />
+  <Function id="qiskit.pulse.channels.DriveChannel.index" name="index" signature="property index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
 
-`property index`
+    **Return type**
 
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
+    `Union`\[`int`, `ParameterExpression`]
+  </Function>
 
-**Return type**
+  ### is\_parameterized
 
-`Union`\[`int`, `ParameterExpression`]
+  <Function id="qiskit.pulse.channels.DriveChannel.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the channel is parameterized.
 
-### is\_parameterized
+    **Return type**
 
-<span id="qiskit.pulse.channels.ControlChannel.is_parameterized" />
+    `bool`
+  </Function>
 
-`is_parameterized()`
+  ### name
 
-Return True iff the channel is parameterized.
+  <Function id="qiskit.pulse.channels.DriveChannel.name" name="name" signature="property name">
+    Return the shorthand alias for this channel, which is based on its type and index.
 
-**Return type**
+    **Return type**
 
-`bool`
+    `str`
+  </Function>
 
-### name
+  ### parameters
 
-<span id="qiskit.pulse.channels.ControlChannel.name" />
+  <Function id="qiskit.pulse.channels.DriveChannel.parameters" name="parameters" signature="property parameters">
+    Parameters which determine the channel index.
 
-`property name`
+    **Return type**
 
-Return the shorthand alias for this channel, which is based on its type and index.
+    `Set`
+  </Function>
+</Class>
 
-**Return type**
+<Class id="qiskit.pulse.channels.MeasureChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py" signature="MeasureChannel(index)">
+  Measure channels transmit measurement stimulus pulses for readout.
 
-`str`
+  Channel class.
 
-### parameters
+  **Parameters**
 
-<span id="qiskit.pulse.channels.ControlChannel.parameters" />
+  **index** (`int`) – Index of channel.
 
-`property parameters`
+  ### assign
 
-Parameters which determine the channel index.
+  <Function id="qiskit.pulse.channels.MeasureChannel.assign" name="assign" signature="assign(parameter, value)">
+    Return a new channel with the input Parameter assigned to value.
 
-**Return type**
+    **Parameters**
 
-`Set`
+    *   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
+    *   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
 
-<span id="qiskit.pulse.channels.DriveChannel" />
+    **Return type**
 
-`DriveChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py "view source code")
+    [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 
-Drive channels transmit signals to qubits which enact gate operations.
+    **Returns**
 
-Channel class.
+    A new channel with updated parameters.
 
-**Parameters**
+    **Raises**
 
-**index** (`int`) – Index of channel.
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  </Function>
 
-### assign
+  ### index
 
-<span id="qiskit.pulse.channels.DriveChannel.assign" />
+  <Function id="qiskit.pulse.channels.MeasureChannel.index" name="index" signature="property index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
 
-`assign(parameter, value)`
+    **Return type**
 
-Return a new channel with the input Parameter assigned to value.
+    `Union`\[`int`, `ParameterExpression`]
+  </Function>
 
-**Parameters**
+  ### is\_parameterized
 
-*   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
-*   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
+  <Function id="qiskit.pulse.channels.MeasureChannel.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the channel is parameterized.
 
-**Return type**
+    **Return type**
 
-[`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
+    `bool`
+  </Function>
 
-**Returns**
+  ### name
 
-A new channel with updated parameters.
+  <Function id="qiskit.pulse.channels.MeasureChannel.name" name="name" signature="property name">
+    Return the shorthand alias for this channel, which is based on its type and index.
 
-**Raises**
+    **Return type**
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+    `str`
+  </Function>
 
-### index
+  ### parameters
 
-<span id="qiskit.pulse.channels.DriveChannel.index" />
+  <Function id="qiskit.pulse.channels.MeasureChannel.parameters" name="parameters" signature="property parameters">
+    Parameters which determine the channel index.
 
-`property index`
+    **Return type**
 
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
+    `Set`
+  </Function>
+</Class>
 
-**Return type**
+<Class id="qiskit.pulse.channels.MemorySlot" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py" signature="MemorySlot(index)">
+  Memory slot channels represent classical memory storage.
 
-`Union`\[`int`, `ParameterExpression`]
+  Channel class.
 
-### is\_parameterized
+  **Parameters**
 
-<span id="qiskit.pulse.channels.DriveChannel.is_parameterized" />
+  **index** (`int`) – Index of channel.
 
-`is_parameterized()`
+  ### assign
 
-Return True iff the channel is parameterized.
+  <Function id="qiskit.pulse.channels.MemorySlot.assign" name="assign" signature="assign(parameter, value)">
+    Return a new channel with the input Parameter assigned to value.
 
-**Return type**
+    **Parameters**
 
-`bool`
+    *   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
+    *   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
 
-### name
+    **Return type**
 
-<span id="qiskit.pulse.channels.DriveChannel.name" />
+    [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 
-`property name`
+    **Returns**
 
-Return the shorthand alias for this channel, which is based on its type and index.
+    A new channel with updated parameters.
 
-**Return type**
+    **Raises**
 
-`str`
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  </Function>
 
-### parameters
+  ### index
 
-<span id="qiskit.pulse.channels.DriveChannel.parameters" />
+  <Function id="qiskit.pulse.channels.MemorySlot.index" name="index" signature="property index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
 
-`property parameters`
+    **Return type**
 
-Parameters which determine the channel index.
+    `Union`\[`int`, `ParameterExpression`]
+  </Function>
 
-**Return type**
+  ### is\_parameterized
 
-`Set`
+  <Function id="qiskit.pulse.channels.MemorySlot.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the channel is parameterized.
 
-<span id="qiskit.pulse.channels.MeasureChannel" />
+    **Return type**
 
-`MeasureChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py "view source code")
+    `bool`
+  </Function>
 
-Measure channels transmit measurement stimulus pulses for readout.
+  ### name
 
-Channel class.
+  <Function id="qiskit.pulse.channels.MemorySlot.name" name="name" signature="property name">
+    Return the shorthand alias for this channel, which is based on its type and index.
 
-**Parameters**
+    **Return type**
 
-**index** (`int`) – Index of channel.
+    `str`
+  </Function>
 
-### assign
+  ### parameters
 
-<span id="qiskit.pulse.channels.MeasureChannel.assign" />
+  <Function id="qiskit.pulse.channels.MemorySlot.parameters" name="parameters" signature="property parameters">
+    Parameters which determine the channel index.
 
-`assign(parameter, value)`
+    **Return type**
 
-Return a new channel with the input Parameter assigned to value.
+    `Set`
+  </Function>
+</Class>
 
-**Parameters**
+<Class id="qiskit.pulse.channels.PulseChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py" signature="PulseChannel(index)">
+  Base class of transmit Channels. Pulses can be played on these channels.
 
-*   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
-*   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
+  Channel class.
 
-**Return type**
+  **Parameters**
 
-[`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
+  **index** (`int`) – Index of channel.
 
-**Returns**
+  ### assign
 
-A new channel with updated parameters.
+  <Function id="qiskit.pulse.channels.PulseChannel.assign" name="assign" signature="assign(parameter, value)">
+    Return a new channel with the input Parameter assigned to value.
 
-**Raises**
+    **Parameters**
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+    *   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
+    *   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
 
-### index
+    **Return type**
 
-<span id="qiskit.pulse.channels.MeasureChannel.index" />
+    [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 
-`property index`
+    **Returns**
 
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
+    A new channel with updated parameters.
 
-**Return type**
+    **Raises**
 
-`Union`\[`int`, `ParameterExpression`]
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  </Function>
 
-### is\_parameterized
+  ### index
 
-<span id="qiskit.pulse.channels.MeasureChannel.is_parameterized" />
+  <Function id="qiskit.pulse.channels.PulseChannel.index" name="index" signature="property index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
 
-`is_parameterized()`
+    **Return type**
 
-Return True iff the channel is parameterized.
+    `Union`\[`int`, `ParameterExpression`]
+  </Function>
 
-**Return type**
+  ### is\_parameterized
 
-`bool`
+  <Function id="qiskit.pulse.channels.PulseChannel.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the channel is parameterized.
 
-### name
+    **Return type**
 
-<span id="qiskit.pulse.channels.MeasureChannel.name" />
+    `bool`
+  </Function>
 
-`property name`
+  ### name
 
-Return the shorthand alias for this channel, which is based on its type and index.
+  <Function id="qiskit.pulse.channels.PulseChannel.name" name="name" signature="property name">
+    Return the shorthand alias for this channel, which is based on its type and index.
 
-**Return type**
+    **Return type**
 
-`str`
+    `str`
+  </Function>
 
-### parameters
+  ### parameters
 
-<span id="qiskit.pulse.channels.MeasureChannel.parameters" />
+  <Function id="qiskit.pulse.channels.PulseChannel.parameters" name="parameters" signature="property parameters">
+    Parameters which determine the channel index.
 
-`property parameters`
+    **Return type**
 
-Parameters which determine the channel index.
+    `Set`
+  </Function>
+</Class>
 
-**Return type**
+<Class id="qiskit.pulse.channels.RegisterSlot" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py" signature="RegisterSlot(index)">
+  Classical resister slot channels represent classical registers (low-latency classical memory).
 
-`Set`
+  Channel class.
 
-<span id="qiskit.pulse.channels.MemorySlot" />
+  **Parameters**
 
-`MemorySlot(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py "view source code")
+  **index** (`int`) – Index of channel.
 
-Memory slot channels represent classical memory storage.
+  ### assign
 
-Channel class.
+  <Function id="qiskit.pulse.channels.RegisterSlot.assign" name="assign" signature="assign(parameter, value)">
+    Return a new channel with the input Parameter assigned to value.
 
-**Parameters**
+    **Parameters**
 
-**index** (`int`) – Index of channel.
+    *   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
+    *   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
 
-### assign
+    **Return type**
 
-<span id="qiskit.pulse.channels.MemorySlot.assign" />
+    [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 
-`assign(parameter, value)`
+    **Returns**
 
-Return a new channel with the input Parameter assigned to value.
+    A new channel with updated parameters.
 
-**Parameters**
+    **Raises**
 
-*   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
-*   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  </Function>
 
-**Return type**
+  ### index
 
-[`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
+  <Function id="qiskit.pulse.channels.RegisterSlot.index" name="index" signature="property index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
 
-**Returns**
+    **Return type**
 
-A new channel with updated parameters.
+    `Union`\[`int`, `ParameterExpression`]
+  </Function>
 
-**Raises**
+  ### is\_parameterized
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  <Function id="qiskit.pulse.channels.RegisterSlot.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the channel is parameterized.
 
-### index
+    **Return type**
 
-<span id="qiskit.pulse.channels.MemorySlot.index" />
+    `bool`
+  </Function>
 
-`property index`
+  ### name
 
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
+  <Function id="qiskit.pulse.channels.RegisterSlot.name" name="name" signature="property name">
+    Return the shorthand alias for this channel, which is based on its type and index.
 
-**Return type**
+    **Return type**
 
-`Union`\[`int`, `ParameterExpression`]
+    `str`
+  </Function>
 
-### is\_parameterized
+  ### parameters
 
-<span id="qiskit.pulse.channels.MemorySlot.is_parameterized" />
+  <Function id="qiskit.pulse.channels.RegisterSlot.parameters" name="parameters" signature="property parameters">
+    Parameters which determine the channel index.
 
-`is_parameterized()`
+    **Return type**
 
-Return True iff the channel is parameterized.
+    `Set`
+  </Function>
+</Class>
 
-**Return type**
+<Class id="qiskit.pulse.channels.SnapshotChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py" signature="SnapshotChannel(*args, **kwargs)">
+  Snapshot channels are used to specify instructions for simulators.
 
-`bool`
+  Create new snapshot channel.
 
-### name
+  ### assign
 
-<span id="qiskit.pulse.channels.MemorySlot.name" />
+  <Function id="qiskit.pulse.channels.SnapshotChannel.assign" name="assign" signature="assign(parameter, value)">
+    Return a new channel with the input Parameter assigned to value.
 
-`property name`
+    **Parameters**
 
-Return the shorthand alias for this channel, which is based on its type and index.
+    *   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
+    *   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
 
-**Return type**
+    **Return type**
 
-`str`
+    [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 
-### parameters
+    **Returns**
 
-<span id="qiskit.pulse.channels.MemorySlot.parameters" />
+    A new channel with updated parameters.
 
-`property parameters`
+    **Raises**
 
-Parameters which determine the channel index.
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  </Function>
 
-**Return type**
+  ### index
 
-`Set`
+  <Function id="qiskit.pulse.channels.SnapshotChannel.index" name="index" signature="property index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
 
-<span id="qiskit.pulse.channels.PulseChannel" />
+    **Return type**
 
-`PulseChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py "view source code")
+    `Union`\[`int`, `ParameterExpression`]
+  </Function>
 
-Base class of transmit Channels. Pulses can be played on these channels.
+  ### is\_parameterized
 
-Channel class.
+  <Function id="qiskit.pulse.channels.SnapshotChannel.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the channel is parameterized.
 
-**Parameters**
+    **Return type**
 
-**index** (`int`) – Index of channel.
+    `bool`
+  </Function>
 
-### assign
+  ### name
 
-<span id="qiskit.pulse.channels.PulseChannel.assign" />
+  <Function id="qiskit.pulse.channels.SnapshotChannel.name" name="name" signature="property name">
+    Return the shorthand alias for this channel, which is based on its type and index.
 
-`assign(parameter, value)`
+    **Return type**
 
-Return a new channel with the input Parameter assigned to value.
+    `str`
+  </Function>
 
-**Parameters**
+  ### parameters
 
-*   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
-*   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
+  <Function id="qiskit.pulse.channels.SnapshotChannel.parameters" name="parameters" signature="property parameters">
+    Parameters which determine the channel index.
 
-**Return type**
+    **Return type**
 
-[`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
-
-**Returns**
-
-A new channel with updated parameters.
-
-**Raises**
-
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
-
-### index
-
-<span id="qiskit.pulse.channels.PulseChannel.index" />
-
-`property index`
-
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
-
-**Return type**
-
-`Union`\[`int`, `ParameterExpression`]
-
-### is\_parameterized
-
-<span id="qiskit.pulse.channels.PulseChannel.is_parameterized" />
-
-`is_parameterized()`
-
-Return True iff the channel is parameterized.
-
-**Return type**
-
-`bool`
-
-### name
-
-<span id="qiskit.pulse.channels.PulseChannel.name" />
-
-`property name`
-
-Return the shorthand alias for this channel, which is based on its type and index.
-
-**Return type**
-
-`str`
-
-### parameters
-
-<span id="qiskit.pulse.channels.PulseChannel.parameters" />
-
-`property parameters`
-
-Parameters which determine the channel index.
-
-**Return type**
-
-`Set`
-
-<span id="qiskit.pulse.channels.RegisterSlot" />
-
-`RegisterSlot(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py "view source code")
-
-Classical resister slot channels represent classical registers (low-latency classical memory).
-
-Channel class.
-
-**Parameters**
-
-**index** (`int`) – Index of channel.
-
-### assign
-
-<span id="qiskit.pulse.channels.RegisterSlot.assign" />
-
-`assign(parameter, value)`
-
-Return a new channel with the input Parameter assigned to value.
-
-**Parameters**
-
-*   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
-*   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
-
-**Return type**
-
-[`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
-
-**Returns**
-
-A new channel with updated parameters.
-
-**Raises**
-
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
-
-### index
-
-<span id="qiskit.pulse.channels.RegisterSlot.index" />
-
-`property index`
-
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
-
-**Return type**
-
-`Union`\[`int`, `ParameterExpression`]
-
-### is\_parameterized
-
-<span id="qiskit.pulse.channels.RegisterSlot.is_parameterized" />
-
-`is_parameterized()`
-
-Return True iff the channel is parameterized.
-
-**Return type**
-
-`bool`
-
-### name
-
-<span id="qiskit.pulse.channels.RegisterSlot.name" />
-
-`property name`
-
-Return the shorthand alias for this channel, which is based on its type and index.
-
-**Return type**
-
-`str`
-
-### parameters
-
-<span id="qiskit.pulse.channels.RegisterSlot.parameters" />
-
-`property parameters`
-
-Parameters which determine the channel index.
-
-**Return type**
-
-`Set`
-
-<span id="qiskit.pulse.channels.SnapshotChannel" />
-
-`SnapshotChannel(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py "view source code")
-
-Snapshot channels are used to specify instructions for simulators.
-
-Create new snapshot channel.
-
-### assign
-
-<span id="qiskit.pulse.channels.SnapshotChannel.assign" />
-
-`assign(parameter, value)`
-
-Return a new channel with the input Parameter assigned to value.
-
-**Parameters**
-
-*   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
-*   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
-
-**Return type**
-
-[`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
-
-**Returns**
-
-A new channel with updated parameters.
-
-**Raises**
-
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
-
-### index
-
-<span id="qiskit.pulse.channels.SnapshotChannel.index" />
-
-`property index`
-
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
-
-**Return type**
-
-`Union`\[`int`, `ParameterExpression`]
-
-### is\_parameterized
-
-<span id="qiskit.pulse.channels.SnapshotChannel.is_parameterized" />
-
-`is_parameterized()`
-
-Return True iff the channel is parameterized.
-
-**Return type**
-
-`bool`
-
-### name
-
-<span id="qiskit.pulse.channels.SnapshotChannel.name" />
-
-`property name`
-
-Return the shorthand alias for this channel, which is based on its type and index.
-
-**Return type**
-
-`str`
-
-### parameters
-
-<span id="qiskit.pulse.channels.SnapshotChannel.parameters" />
-
-`property parameters`
-
-Parameters which determine the channel index.
-
-**Return type**
-
-`Set`
+    `Set`
+  </Function>
+</Class>
 

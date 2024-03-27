@@ -10,156 +10,134 @@ python_api_name: qiskit.aqua.components.variational_forms.VariationalForm
 
 # qiskit.aqua.components.variational\_forms.VariationalForm
 
-<span id="qiskit.aqua.components.variational_forms.VariationalForm" />
+<Class id="qiskit.aqua.components.variational_forms.VariationalForm" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/variational_forms/variational_form.py" signature="VariationalForm">
+  Base class for VariationalForms.
 
-`VariationalForm` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/variational_forms/variational_form.py "view source code")
+  This method should initialize the module and use an exception if a component of the module is not available.
 
-Base class for VariationalForms.
+  ### \_\_init\_\_
 
-This method should initialize the module and use an exception if a component of the module is not available.
+  <Function id="qiskit.aqua.components.variational_forms.VariationalForm.__init__" name="__init__" signature="abstract __init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.aqua.components.variational_forms.VariationalForm.__init__" />
+  |                                                                                                                                                                                                                             |                                                       |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.components.variational_forms.VariationalForm.__init__ "qiskit.aqua.components.variational_forms.VariationalForm.__init__")()                                                                      | Initialize self.                                      |
+  | [`construct_circuit`](#qiskit.aqua.components.variational_forms.VariationalForm.construct_circuit "qiskit.aqua.components.variational_forms.VariationalForm.construct_circuit")(parameters\[, q])                           | Construct the variational form, given its parameters. |
+  | [`get_entangler_map`](#qiskit.aqua.components.variational_forms.VariationalForm.get_entangler_map "qiskit.aqua.components.variational_forms.VariationalForm.get_entangler_map")(map\_type, num\_qubits\[, offset])          | returns entangler map                                 |
+  | [`validate_entangler_map`](#qiskit.aqua.components.variational_forms.VariationalForm.validate_entangler_map "qiskit.aqua.components.variational_forms.VariationalForm.validate_entangler_map")(entangler\_map, num\_qubits) | validate entangler map                                |
 
-`abstract __init__()`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |                                                                                                                                                                                                                     |                                                             |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+  | [`num_parameters`](#qiskit.aqua.components.variational_forms.VariationalForm.num_parameters "qiskit.aqua.components.variational_forms.VariationalForm.num_parameters")                                              | Number of parameters of the variational form.               |
+  | [`num_qubits`](#qiskit.aqua.components.variational_forms.VariationalForm.num_qubits "qiskit.aqua.components.variational_forms.VariationalForm.num_qubits")                                                          | Number of qubits of the variational form.                   |
+  | [`parameter_bounds`](#qiskit.aqua.components.variational_forms.VariationalForm.parameter_bounds "qiskit.aqua.components.variational_forms.VariationalForm.parameter_bounds")                                        | Parameter bounds.                                           |
+  | [`preferred_init_points`](#qiskit.aqua.components.variational_forms.VariationalForm.preferred_init_points "qiskit.aqua.components.variational_forms.VariationalForm.preferred_init_points")                         | Return preferred init points.                               |
+  | [`setting`](#qiskit.aqua.components.variational_forms.VariationalForm.setting "qiskit.aqua.components.variational_forms.VariationalForm.setting")                                                                   |                                                             |
+  | [`support_parameterized_circuit`](#qiskit.aqua.components.variational_forms.VariationalForm.support_parameterized_circuit "qiskit.aqua.components.variational_forms.VariationalForm.support_parameterized_circuit") | Whether or not the sub-class support parameterized circuit. |
 
-## Methods
+  ### construct\_circuit
 
-|                                                                                                                                                                                                                             |                                                       |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.components.variational_forms.VariationalForm.__init__ "qiskit.aqua.components.variational_forms.VariationalForm.__init__")()                                                                      | Initialize self.                                      |
-| [`construct_circuit`](#qiskit.aqua.components.variational_forms.VariationalForm.construct_circuit "qiskit.aqua.components.variational_forms.VariationalForm.construct_circuit")(parameters\[, q])                           | Construct the variational form, given its parameters. |
-| [`get_entangler_map`](#qiskit.aqua.components.variational_forms.VariationalForm.get_entangler_map "qiskit.aqua.components.variational_forms.VariationalForm.get_entangler_map")(map\_type, num\_qubits\[, offset])          | returns entangler map                                 |
-| [`validate_entangler_map`](#qiskit.aqua.components.variational_forms.VariationalForm.validate_entangler_map "qiskit.aqua.components.variational_forms.VariationalForm.validate_entangler_map")(entangler\_map, num\_qubits) | validate entangler map                                |
+  <Function id="qiskit.aqua.components.variational_forms.VariationalForm.construct_circuit" name="construct_circuit" signature="abstract construct_circuit(parameters, q=None)">
+    Construct the variational form, given its parameters.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                                                                                                     |                                                             |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| [`num_parameters`](#qiskit.aqua.components.variational_forms.VariationalForm.num_parameters "qiskit.aqua.components.variational_forms.VariationalForm.num_parameters")                                              | Number of parameters of the variational form.               |
-| [`num_qubits`](#qiskit.aqua.components.variational_forms.VariationalForm.num_qubits "qiskit.aqua.components.variational_forms.VariationalForm.num_qubits")                                                          | Number of qubits of the variational form.                   |
-| [`parameter_bounds`](#qiskit.aqua.components.variational_forms.VariationalForm.parameter_bounds "qiskit.aqua.components.variational_forms.VariationalForm.parameter_bounds")                                        | Parameter bounds.                                           |
-| [`preferred_init_points`](#qiskit.aqua.components.variational_forms.VariationalForm.preferred_init_points "qiskit.aqua.components.variational_forms.VariationalForm.preferred_init_points")                         | Return preferred init points.                               |
-| [`setting`](#qiskit.aqua.components.variational_forms.VariationalForm.setting "qiskit.aqua.components.variational_forms.VariationalForm.setting")                                                                   |                                                             |
-| [`support_parameterized_circuit`](#qiskit.aqua.components.variational_forms.VariationalForm.support_parameterized_circuit "qiskit.aqua.components.variational_forms.VariationalForm.support_parameterized_circuit") | Whether or not the sub-class support parameterized circuit. |
+    *   **parameters** (`Union`\[`List`\[`float`], `ndarray`]) – circuit parameters.
+    *   **q** (`Optional`\[`QuantumRegister`]) – Quantum Register for the circuit.
 
-### construct\_circuit
+    **Returns**
 
-<span id="qiskit.aqua.components.variational_forms.VariationalForm.construct_circuit" />
+    A quantum circuit.
 
-`abstract construct_circuit(parameters, q=None)`
+    **Return type**
 
-Construct the variational form, given its parameters.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-**Parameters**
+  ### get\_entangler\_map
 
-*   **parameters** (`Union`\[`List`\[`float`], `ndarray`]) – circuit parameters.
-*   **q** (`Optional`\[`QuantumRegister`]) – Quantum Register for the circuit.
+  <Function id="qiskit.aqua.components.variational_forms.VariationalForm.get_entangler_map" name="get_entangler_map" signature="static get_entangler_map(map_type, num_qubits, offset=0)">
+    returns entangler map
+  </Function>
 
-**Returns**
+  ### num\_parameters
 
-A quantum circuit.
+  <Function id="qiskit.aqua.components.variational_forms.VariationalForm.num_parameters" name="num_parameters" signature="property num_parameters">
+    Number of parameters of the variational form.
 
-**Return type**
+    **Returns**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    An integer indicating the number of parameters.
 
-### get\_entangler\_map
+    **Return type**
 
-<span id="qiskit.aqua.components.variational_forms.VariationalForm.get_entangler_map" />
+    int
+  </Function>
 
-`static get_entangler_map(map_type, num_qubits, offset=0)`
+  ### num\_qubits
 
-returns entangler map
+  <Function id="qiskit.aqua.components.variational_forms.VariationalForm.num_qubits" name="num_qubits" signature="property num_qubits">
+    Number of qubits of the variational form.
 
-### num\_parameters
+    **Returns**
 
-<span id="qiskit.aqua.components.variational_forms.VariationalForm.num_parameters" />
+    An integer indicating the number of qubits.
 
-`property num_parameters`
+    **Return type**
 
-Number of parameters of the variational form.
+    int
+  </Function>
 
-**Returns**
+  ### parameter\_bounds
 
-An integer indicating the number of parameters.
+  <Function id="qiskit.aqua.components.variational_forms.VariationalForm.parameter_bounds" name="parameter_bounds" signature="property parameter_bounds">
+    Parameter bounds.
 
-**Return type**
+    **Returns**
 
-int
+    A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
 
-### num\_qubits
+    **Return type**
 
-<span id="qiskit.aqua.components.variational_forms.VariationalForm.num_qubits" />
+    list
+  </Function>
 
-`property num_qubits`
+  ### preferred\_init\_points
 
-Number of qubits of the variational form.
+  <Function id="qiskit.aqua.components.variational_forms.VariationalForm.preferred_init_points" name="preferred_init_points" signature="property preferred_init_points">
+    Return preferred init points.
 
-**Returns**
+    If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
+  </Function>
 
-An integer indicating the number of qubits.
+  ### setting
 
-**Return type**
+  <Function id="qiskit.aqua.components.variational_forms.VariationalForm.setting" name="setting" signature="property setting" />
 
-int
+  ### support\_parameterized\_circuit
 
-### parameter\_bounds
+  <Function id="qiskit.aqua.components.variational_forms.VariationalForm.support_parameterized_circuit" name="support_parameterized_circuit" signature="property support_parameterized_circuit">
+    Whether or not the sub-class support parameterized circuit.
 
-<span id="qiskit.aqua.components.variational_forms.VariationalForm.parameter_bounds" />
+    **Returns**
 
-`property parameter_bounds`
+    indicate the sub-class support parameterized circuit
 
-Parameter bounds.
+    **Return type**
 
-**Returns**
+    boolean
+  </Function>
 
-A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
+  ### validate\_entangler\_map
 
-**Return type**
-
-list
-
-### preferred\_init\_points
-
-<span id="qiskit.aqua.components.variational_forms.VariationalForm.preferred_init_points" />
-
-`property preferred_init_points`
-
-Return preferred init points.
-
-If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
-
-### setting
-
-<span id="qiskit.aqua.components.variational_forms.VariationalForm.setting" />
-
-`property setting`
-
-### support\_parameterized\_circuit
-
-<span id="qiskit.aqua.components.variational_forms.VariationalForm.support_parameterized_circuit" />
-
-`property support_parameterized_circuit`
-
-Whether or not the sub-class support parameterized circuit.
-
-**Returns**
-
-indicate the sub-class support parameterized circuit
-
-**Return type**
-
-boolean
-
-### validate\_entangler\_map
-
-<span id="qiskit.aqua.components.variational_forms.VariationalForm.validate_entangler_map" />
-
-`static validate_entangler_map(entangler_map, num_qubits)`
-
-validate entangler map
+  <Function id="qiskit.aqua.components.variational_forms.VariationalForm.validate_entangler_map" name="validate_entangler_map" signature="static validate_entangler_map(entangler_map, num_qubits)">
+    validate entangler map
+  </Function>
+</Class>
 

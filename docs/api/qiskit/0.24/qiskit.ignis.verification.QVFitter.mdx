@@ -10,320 +10,280 @@ python_api_name: qiskit.ignis.verification.QVFitter
 
 # qiskit.ignis.verification.QVFitter
 
-<span id="qiskit.ignis.verification.QVFitter" />
+<Class id="qiskit.ignis.verification.QVFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/quantum_volume/fitters.py" signature="QVFitter(backend_result=None, statevector_result=None, qubit_lists=None)">
+  Class for fitters for quantum volume.
 
-`QVFitter(backend_result=None, statevector_result=None, qubit_lists=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/quantum_volume/fitters.py "view source code")
+  **Parameters**
 
-Class for fitters for quantum volume.
+  *   **backend\_result** (*list*) – list of results (qiskit.Result).
+  *   **statevector\_result** (*list*) – the ideal statevectors of each circuit
+  *   **qubit\_lists** (*list*) – list of qubit lists (what was passed to the circuit generation)
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **backend\_result** (*list*) – list of results (qiskit.Result).
-*   **statevector\_result** (*list*) – the ideal statevectors of each circuit
-*   **qubit\_lists** (*list*) – list of qubit lists (what was passed to the circuit generation)
+  <Function id="qiskit.ignis.verification.QVFitter.__init__" name="__init__" signature="__init__(backend_result=None, statevector_result=None, qubit_lists=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **backend\_result** (*list*) – list of results (qiskit.Result).
+    *   **statevector\_result** (*list*) – the ideal statevectors of each circuit
+    *   **qubit\_lists** (*list*) – list of qubit lists (what was passed to the circuit generation)
+  </Function>
 
-<span id="qiskit.ignis.verification.QVFitter.__init__" />
+  ## Methods
 
-`__init__(backend_result=None, statevector_result=None, qubit_lists=None)`
+  |                                                                                                                                                                        |                                                                                                                                        |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.ignis.verification.QVFitter.__init__ "qiskit.ignis.verification.QVFitter.__init__")(\[backend\_result, …])                                        | **param backend\_result**list of results (qiskit.Result).                                                                              |
+  | [`add_data`](#qiskit.ignis.verification.QVFitter.add_data "qiskit.ignis.verification.QVFitter.add_data")(new\_backend\_result\[, rerun\_fit])                          | Add a new result.                                                                                                                      |
+  | [`add_statevectors`](#qiskit.ignis.verification.QVFitter.add_statevectors "qiskit.ignis.verification.QVFitter.add_statevectors")(new\_statevector\_result)             | Add the ideal results and convert to the heavy outputs.                                                                                |
+  | [`calc_confidence_level`](#qiskit.ignis.verification.QVFitter.calc_confidence_level "qiskit.ignis.verification.QVFitter.calc_confidence_level")(z\_value)              | Calculate confidence level using z value.                                                                                              |
+  | [`calc_data`](#qiskit.ignis.verification.QVFitter.calc_data "qiskit.ignis.verification.QVFitter.calc_data")()                                                          | Make a count dictionary for each unique circuit from all the results.                                                                  |
+  | [`calc_statistics`](#qiskit.ignis.verification.QVFitter.calc_statistics "qiskit.ignis.verification.QVFitter.calc_statistics")()                                        | Convert the heavy outputs in the different trials into mean and error for plotting.                                                    |
+  | [`calc_z_value`](#qiskit.ignis.verification.QVFitter.calc_z_value "qiskit.ignis.verification.QVFitter.calc_z_value")(mean, sigma)                                      | Calculate z value using mean and sigma.                                                                                                |
+  | [`plot_hop_accumulative`](#qiskit.ignis.verification.QVFitter.plot_hop_accumulative "qiskit.ignis.verification.QVFitter.plot_hop_accumulative")(depth\[, ax, figsize]) | Plot individual and accumulative heavy output probability (HOP) as a function of number of trials.                                     |
+  | [`plot_qv_data`](#qiskit.ignis.verification.QVFitter.plot_qv_data "qiskit.ignis.verification.QVFitter.plot_qv_data")(\[ax, show\_plt, figsize, …])                     | Plot the qv data as a function of depth                                                                                                |
+  | [`plot_qv_trial`](#qiskit.ignis.verification.QVFitter.plot_qv_trial "qiskit.ignis.verification.QVFitter.plot_qv_trial")(depth, trial\_index\[, figsize, ax])           | Plot individual trial.                                                                                                                 |
+  | [`quantum_volume`](#qiskit.ignis.verification.QVFitter.quantum_volume "qiskit.ignis.verification.QVFitter.quantum_volume")()                                           | Return the volume for each depth.                                                                                                      |
+  | [`qv_success`](#qiskit.ignis.verification.QVFitter.qv_success "qiskit.ignis.verification.QVFitter.qv_success")()                                                       | Return whether each depth was successful (> 2/3 with confidence level > 0.977 corresponding to z\_value = 2) and the confidence level. |
 
-**Parameters**
+  ## Attributes
 
-*   **backend\_result** (*list*) – list of results (qiskit.Result).
-*   **statevector\_result** (*list*) – the ideal statevectors of each circuit
-*   **qubit\_lists** (*list*) – list of qubit lists (what was passed to the circuit generation)
+  |                                                                                                                                                       |                                                       |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+  | [`depths`](#qiskit.ignis.verification.QVFitter.depths "qiskit.ignis.verification.QVFitter.depths")                                                    | Return depth list.                                    |
+  | [`heavy_output_counts`](#qiskit.ignis.verification.QVFitter.heavy_output_counts "qiskit.ignis.verification.QVFitter.heavy_output_counts")             | Return the number of heavy output counts as measured. |
+  | [`heavy_output_prob_ideal`](#qiskit.ignis.verification.QVFitter.heavy_output_prob_ideal "qiskit.ignis.verification.QVFitter.heavy_output_prob_ideal") | Return the heavy output probability ideally.          |
+  | [`heavy_outputs`](#qiskit.ignis.verification.QVFitter.heavy_outputs "qiskit.ignis.verification.QVFitter.heavy_outputs")                               | Return the ideal heavy outputs dictionary.            |
+  | [`qubit_lists`](#qiskit.ignis.verification.QVFitter.qubit_lists "qiskit.ignis.verification.QVFitter.qubit_lists")                                     | Return depth list.                                    |
+  | [`results`](#qiskit.ignis.verification.QVFitter.results "qiskit.ignis.verification.QVFitter.results")                                                 | Return all the results.                               |
+  | [`ydata`](#qiskit.ignis.verification.QVFitter.ydata "qiskit.ignis.verification.QVFitter.ydata")                                                       | Return the average and std of the output probability. |
 
-## Methods
+  ### add\_data
 
-|                                                                                                                                                                        |                                                                                                                                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.ignis.verification.QVFitter.__init__ "qiskit.ignis.verification.QVFitter.__init__")(\[backend\_result, …])                                        | **param backend\_result**list of results (qiskit.Result).                                                                              |
-| [`add_data`](#qiskit.ignis.verification.QVFitter.add_data "qiskit.ignis.verification.QVFitter.add_data")(new\_backend\_result\[, rerun\_fit])                          | Add a new result.                                                                                                                      |
-| [`add_statevectors`](#qiskit.ignis.verification.QVFitter.add_statevectors "qiskit.ignis.verification.QVFitter.add_statevectors")(new\_statevector\_result)             | Add the ideal results and convert to the heavy outputs.                                                                                |
-| [`calc_confidence_level`](#qiskit.ignis.verification.QVFitter.calc_confidence_level "qiskit.ignis.verification.QVFitter.calc_confidence_level")(z\_value)              | Calculate confidence level using z value.                                                                                              |
-| [`calc_data`](#qiskit.ignis.verification.QVFitter.calc_data "qiskit.ignis.verification.QVFitter.calc_data")()                                                          | Make a count dictionary for each unique circuit from all the results.                                                                  |
-| [`calc_statistics`](#qiskit.ignis.verification.QVFitter.calc_statistics "qiskit.ignis.verification.QVFitter.calc_statistics")()                                        | Convert the heavy outputs in the different trials into mean and error for plotting.                                                    |
-| [`calc_z_value`](#qiskit.ignis.verification.QVFitter.calc_z_value "qiskit.ignis.verification.QVFitter.calc_z_value")(mean, sigma)                                      | Calculate z value using mean and sigma.                                                                                                |
-| [`plot_hop_accumulative`](#qiskit.ignis.verification.QVFitter.plot_hop_accumulative "qiskit.ignis.verification.QVFitter.plot_hop_accumulative")(depth\[, ax, figsize]) | Plot individual and accumulative heavy output probability (HOP) as a function of number of trials.                                     |
-| [`plot_qv_data`](#qiskit.ignis.verification.QVFitter.plot_qv_data "qiskit.ignis.verification.QVFitter.plot_qv_data")(\[ax, show\_plt, figsize, …])                     | Plot the qv data as a function of depth                                                                                                |
-| [`plot_qv_trial`](#qiskit.ignis.verification.QVFitter.plot_qv_trial "qiskit.ignis.verification.QVFitter.plot_qv_trial")(depth, trial\_index\[, figsize, ax])           | Plot individual trial.                                                                                                                 |
-| [`quantum_volume`](#qiskit.ignis.verification.QVFitter.quantum_volume "qiskit.ignis.verification.QVFitter.quantum_volume")()                                           | Return the volume for each depth.                                                                                                      |
-| [`qv_success`](#qiskit.ignis.verification.QVFitter.qv_success "qiskit.ignis.verification.QVFitter.qv_success")()                                                       | Return whether each depth was successful (> 2/3 with confidence level > 0.977 corresponding to z\_value = 2) and the confidence level. |
+  <Function id="qiskit.ignis.verification.QVFitter.add_data" name="add_data" signature="add_data(new_backend_result, rerun_fit=True)">
+    Add a new result. Re calculate fit
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                                       |                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [`depths`](#qiskit.ignis.verification.QVFitter.depths "qiskit.ignis.verification.QVFitter.depths")                                                    | Return depth list.                                    |
-| [`heavy_output_counts`](#qiskit.ignis.verification.QVFitter.heavy_output_counts "qiskit.ignis.verification.QVFitter.heavy_output_counts")             | Return the number of heavy output counts as measured. |
-| [`heavy_output_prob_ideal`](#qiskit.ignis.verification.QVFitter.heavy_output_prob_ideal "qiskit.ignis.verification.QVFitter.heavy_output_prob_ideal") | Return the heavy output probability ideally.          |
-| [`heavy_outputs`](#qiskit.ignis.verification.QVFitter.heavy_outputs "qiskit.ignis.verification.QVFitter.heavy_outputs")                               | Return the ideal heavy outputs dictionary.            |
-| [`qubit_lists`](#qiskit.ignis.verification.QVFitter.qubit_lists "qiskit.ignis.verification.QVFitter.qubit_lists")                                     | Return depth list.                                    |
-| [`results`](#qiskit.ignis.verification.QVFitter.results "qiskit.ignis.verification.QVFitter.results")                                                 | Return all the results.                               |
-| [`ydata`](#qiskit.ignis.verification.QVFitter.ydata "qiskit.ignis.verification.QVFitter.ydata")                                                       | Return the average and std of the output probability. |
+    *   **new\_backend\_result** (*list*) – list of qv results
+    *   **rerun\_fit** (*bool*) – re calculate the means and fit the result
 
-### add\_data
+    **Raises**
 
-<span id="qiskit.ignis.verification.QVFitter.add_data" />
+    **QiskitError** – If the ideal distribution isn’t loaded yet
 
-`add_data(new_backend_result, rerun_fit=True)`
+    **Additional information:**
 
-Add a new result. Re calculate fit
+    Assumes that ‘result’ was executed is the output of circuits generated by qv\_circuits,
+  </Function>
 
-**Parameters**
+  ### add\_statevectors
 
-*   **new\_backend\_result** (*list*) – list of qv results
-*   **rerun\_fit** (*bool*) – re calculate the means and fit the result
+  <Function id="qiskit.ignis.verification.QVFitter.add_statevectors" name="add_statevectors" signature="add_statevectors(new_statevector_result)">
+    Add the ideal results and convert to the heavy outputs.
 
-**Raises**
+    Assume the result is from ‘statevector\_simulator’
 
-**QiskitError** – If the ideal distribution isn’t loaded yet
+    **Parameters**
 
-**Additional information:**
+    **new\_statevector\_result** (*list*) – ideal results
 
-Assumes that ‘result’ was executed is the output of circuits generated by qv\_circuits,
+    **Raises**
 
-### add\_statevectors
+    **QiskitError** – If the result has already been added for the circuit
+  </Function>
 
-<span id="qiskit.ignis.verification.QVFitter.add_statevectors" />
+  ### calc\_confidence\_level
 
-`add_statevectors(new_statevector_result)`
+  <Function id="qiskit.ignis.verification.QVFitter.calc_confidence_level" name="calc_confidence_level" signature="calc_confidence_level(z_value)">
+    Calculate confidence level using z value.
 
-Add the ideal results and convert to the heavy outputs.
+    Accumulative probability for standard normal distribution in \[-z, +infinity] is 1/2 (1 + erf(z/sqrt(2))), where z = (X - mu)/sigma = (hmean - 2/3)/sigma
 
-Assume the result is from ‘statevector\_simulator’
+    **Parameters**
 
-**Parameters**
+    **z\_value** (*float*) – z value in in standard normal distibution.
 
-**new\_statevector\_result** (*list*) – ideal results
+    **Returns**
 
-**Raises**
+    confidence level in decimal (not percentage).
 
-**QiskitError** – If the result has already been added for the circuit
+    **Return type**
 
-### calc\_confidence\_level
+    float
+  </Function>
 
-<span id="qiskit.ignis.verification.QVFitter.calc_confidence_level" />
+  ### calc\_data
 
-`calc_confidence_level(z_value)`
+  <Function id="qiskit.ignis.verification.QVFitter.calc_data" name="calc_data" signature="calc_data()">
+    Make a count dictionary for each unique circuit from all the results.
 
-Calculate confidence level using z value.
+    Calculate the heavy output probability.
 
-Accumulative probability for standard normal distribution in \[-z, +infinity] is 1/2 (1 + erf(z/sqrt(2))), where z = (X - mu)/sigma = (hmean - 2/3)/sigma
+    **Additional information:**
 
-**Parameters**
+    Assumes that ‘result’ was executed is the output of circuits generated by qv\_circuits,
+  </Function>
 
-**z\_value** (*float*) – z value in in standard normal distibution.
+  ### calc\_statistics
 
-**Returns**
+  <Function id="qiskit.ignis.verification.QVFitter.calc_statistics" name="calc_statistics" signature="calc_statistics()">
+    Convert the heavy outputs in the different trials into mean and error for plotting.
 
-confidence level in decimal (not percentage).
+    Here we assume the error is due to a binomial distribution. Error (standard deviation) for binomial distribution is sqrt(np(1-p)), where n is the number of trials (self.\_ntrials) and p is the success probability (self.\_ydata\[0]\[depthidx]/self.\_ntrials).
+  </Function>
 
-**Return type**
+  ### calc\_z\_value
 
-float
+  <Function id="qiskit.ignis.verification.QVFitter.calc_z_value" name="calc_z_value" signature="calc_z_value(mean, sigma)">
+    Calculate z value using mean and sigma.
 
-### calc\_data
+    **Parameters**
 
-<span id="qiskit.ignis.verification.QVFitter.calc_data" />
+    *   **mean** (*float*) – mean
+    *   **sigma** (*float*) – standard deviation
 
-`calc_data()`
+    **Returns**
 
-Make a count dictionary for each unique circuit from all the results.
+    z\_value in standard normal distibution.
 
-Calculate the heavy output probability.
+    **Return type**
 
-**Additional information:**
+    float
+  </Function>
 
-Assumes that ‘result’ was executed is the output of circuits generated by qv\_circuits,
+  ### depths
 
-### calc\_statistics
+  <Function id="qiskit.ignis.verification.QVFitter.depths" name="depths" signature="property depths">
+    Return depth list.
+  </Function>
 
-<span id="qiskit.ignis.verification.QVFitter.calc_statistics" />
+  ### heavy\_output\_counts
 
-`calc_statistics()`
+  <Function id="qiskit.ignis.verification.QVFitter.heavy_output_counts" name="heavy_output_counts" signature="property heavy_output_counts">
+    Return the number of heavy output counts as measured.
+  </Function>
 
-Convert the heavy outputs in the different trials into mean and error for plotting.
+  ### heavy\_output\_prob\_ideal
 
-Here we assume the error is due to a binomial distribution. Error (standard deviation) for binomial distribution is sqrt(np(1-p)), where n is the number of trials (self.\_ntrials) and p is the success probability (self.\_ydata\[0]\[depthidx]/self.\_ntrials).
+  <Function id="qiskit.ignis.verification.QVFitter.heavy_output_prob_ideal" name="heavy_output_prob_ideal" signature="property heavy_output_prob_ideal">
+    Return the heavy output probability ideally.
+  </Function>
 
-### calc\_z\_value
+  ### heavy\_outputs
 
-<span id="qiskit.ignis.verification.QVFitter.calc_z_value" />
+  <Function id="qiskit.ignis.verification.QVFitter.heavy_outputs" name="heavy_outputs" signature="property heavy_outputs">
+    Return the ideal heavy outputs dictionary.
+  </Function>
 
-`calc_z_value(mean, sigma)`
+  ### plot\_hop\_accumulative
 
-Calculate z value using mean and sigma.
+  <Function id="qiskit.ignis.verification.QVFitter.plot_hop_accumulative" name="plot_hop_accumulative" signature="plot_hop_accumulative(depth, ax=None, figsize=(7, 5))">
+    Plot individual and accumulative heavy output probability (HOP) as a function of number of trials.
 
-**Parameters**
+    **Parameters**
 
-*   **mean** (*float*) – mean
-*   **sigma** (*float*) – standard deviation
+    *   **depth** (*int*) – depth of QV circuits
+    *   **ax** (*Axes or None*) – plot axis (if passed in).
+    *   **figsize** (*tuple*) – figure size in inches.
 
-**Returns**
+    **Raises**
 
-z\_value in standard normal distibution.
+    **ImportError** – If matplotlib is not installed.
 
-**Return type**
+    **Returns**
 
-float
+    A figure of individual and accumulative HOP as a function of number of trials, with 2-sigma confidence interval and 2/3 threshold.
 
-### depths
+    **Return type**
 
-<span id="qiskit.ignis.verification.QVFitter.depths" />
+    matplotlib.Figure
+  </Function>
 
-`property depths`
+  ### plot\_qv\_data
 
-Return depth list.
+  <Function id="qiskit.ignis.verification.QVFitter.plot_qv_data" name="plot_qv_data" signature="plot_qv_data(ax=None, show_plt=True, figsize=(7, 5), set_title=True, title=None)">
+    Plot the qv data as a function of depth
 
-### heavy\_output\_counts
+    **Parameters**
 
-<span id="qiskit.ignis.verification.QVFitter.heavy_output_counts" />
+    *   **ax** (*Axes or None*) – plot axis (if passed in).
+    *   **show\_plt** (*bool*) – display the plot.
+    *   **figsize** (*tuple*) – Figure size in inches.
+    *   **set\_title** (*bool*) – set figure title.
+    *   **title** (*String or None*) – text for setting figure title
 
-`property heavy_output_counts`
+    **Raises**
 
-Return the number of heavy output counts as measured.
+    **ImportError** – If matplotlib is not installed.
 
-### heavy\_output\_prob\_ideal
+    **Returns**
 
-<span id="qiskit.ignis.verification.QVFitter.heavy_output_prob_ideal" />
+    A figure of Quantum Volume data (heavy output probability) with two-sigma error bar as a function of circuit depth.
 
-`property heavy_output_prob_ideal`
+    **Return type**
 
-Return the heavy output probability ideally.
+    matplotlib.Figure
+  </Function>
 
-### heavy\_outputs
+  ### plot\_qv\_trial
 
-<span id="qiskit.ignis.verification.QVFitter.heavy_outputs" />
+  <Function id="qiskit.ignis.verification.QVFitter.plot_qv_trial" name="plot_qv_trial" signature="plot_qv_trial(depth, trial_index, figsize=(7, 5), ax=None)">
+    Plot individual trial. :param depth: circuit depth :type depth: int :param trial\_index: trial index :type trial\_index: int :param figsize: Figure size in inches. :type figsize: tuple :param ax: plot axis (if passed in). :type ax: Axes or None
 
-`property heavy_outputs`
+    **Returns**
 
-Return the ideal heavy outputs dictionary.
+    A figure for histogram of ideal and experiment probabilities.
 
-### plot\_hop\_accumulative
+    **Return type**
 
-<span id="qiskit.ignis.verification.QVFitter.plot_hop_accumulative" />
+    matplotlib.Figure
+  </Function>
 
-`plot_hop_accumulative(depth, ax=None, figsize=(7, 5))`
+  ### quantum\_volume
 
-Plot individual and accumulative heavy output probability (HOP) as a function of number of trials.
+  <Function id="qiskit.ignis.verification.QVFitter.quantum_volume" name="quantum_volume" signature="quantum_volume()">
+    Return the volume for each depth.
 
-**Parameters**
+    **Returns**
 
-*   **depth** (*int*) – depth of QV circuits
-*   **ax** (*Axes or None*) – plot axis (if passed in).
-*   **figsize** (*tuple*) – figure size in inches.
+    List of quantum volumes
 
-**Raises**
+    **Return type**
 
-**ImportError** – If matplotlib is not installed.
+    list
+  </Function>
 
-**Returns**
+  ### qubit\_lists
 
-A figure of individual and accumulative HOP as a function of number of trials, with 2-sigma confidence interval and 2/3 threshold.
+  <Function id="qiskit.ignis.verification.QVFitter.qubit_lists" name="qubit_lists" signature="property qubit_lists">
+    Return depth list.
+  </Function>
 
-**Return type**
+  ### qv\_success
 
-matplotlib.Figure
+  <Function id="qiskit.ignis.verification.QVFitter.qv_success" name="qv_success" signature="qv_success()">
+    Return whether each depth was successful (> 2/3 with confidence level > 0.977 corresponding to z\_value = 2) and the confidence level.
 
-### plot\_qv\_data
+    **Returns**
 
-<span id="qiskit.ignis.verification.QVFitter.plot_qv_data" />
+    List of list of 2 elements for each depth: - success True/False - confidence level
 
-`plot_qv_data(ax=None, show_plt=True, figsize=(7, 5), set_title=True, title=None)`
+    **Return type**
 
-Plot the qv data as a function of depth
+    list
+  </Function>
 
-**Parameters**
+  ### results
 
-*   **ax** (*Axes or None*) – plot axis (if passed in).
-*   **show\_plt** (*bool*) – display the plot.
-*   **figsize** (*tuple*) – Figure size in inches.
-*   **set\_title** (*bool*) – set figure title.
-*   **title** (*String or None*) – text for setting figure title
+  <Function id="qiskit.ignis.verification.QVFitter.results" name="results" signature="property results">
+    Return all the results.
+  </Function>
 
-**Raises**
+  ### ydata
 
-**ImportError** – If matplotlib is not installed.
-
-**Returns**
-
-A figure of Quantum Volume data (heavy output probability) with two-sigma error bar as a function of circuit depth.
-
-**Return type**
-
-matplotlib.Figure
-
-### plot\_qv\_trial
-
-<span id="qiskit.ignis.verification.QVFitter.plot_qv_trial" />
-
-`plot_qv_trial(depth, trial_index, figsize=(7, 5), ax=None)`
-
-Plot individual trial. :param depth: circuit depth :type depth: int :param trial\_index: trial index :type trial\_index: int :param figsize: Figure size in inches. :type figsize: tuple :param ax: plot axis (if passed in). :type ax: Axes or None
-
-**Returns**
-
-A figure for histogram of ideal and experiment probabilities.
-
-**Return type**
-
-matplotlib.Figure
-
-### quantum\_volume
-
-<span id="qiskit.ignis.verification.QVFitter.quantum_volume" />
-
-`quantum_volume()`
-
-Return the volume for each depth.
-
-**Returns**
-
-List of quantum volumes
-
-**Return type**
-
-list
-
-### qubit\_lists
-
-<span id="qiskit.ignis.verification.QVFitter.qubit_lists" />
-
-`property qubit_lists`
-
-Return depth list.
-
-### qv\_success
-
-<span id="qiskit.ignis.verification.QVFitter.qv_success" />
-
-`qv_success()`
-
-Return whether each depth was successful (> 2/3 with confidence level > 0.977 corresponding to z\_value = 2) and the confidence level.
-
-**Returns**
-
-List of list of 2 elements for each depth: - success True/False - confidence level
-
-**Return type**
-
-list
-
-### results
-
-<span id="qiskit.ignis.verification.QVFitter.results" />
-
-`property results`
-
-Return all the results.
-
-### ydata
-
-<span id="qiskit.ignis.verification.QVFitter.ydata" />
-
-`property ydata`
-
-Return the average and std of the output probability.
+  <Function id="qiskit.ignis.verification.QVFitter.ydata" name="ydata" signature="property ydata">
+    Return the average and std of the output probability.
+  </Function>
+</Class>
 

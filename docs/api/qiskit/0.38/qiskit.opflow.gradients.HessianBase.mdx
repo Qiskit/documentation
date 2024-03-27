@@ -8,36 +8,34 @@ python_api_name: qiskit.opflow.gradients.HessianBase
 
 # HessianBase
 
-<span id="qiskit.opflow.gradients.HessianBase" />
+<Class id="qiskit.opflow.gradients.HessianBase" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/gradients/hessian_base.py" signature="HessianBase(hess_method='param_shift', **kwargs)">
+  Bases: [`qiskit.opflow.gradients.derivative_base.DerivativeBase`](qiskit.opflow.gradients.DerivativeBase "qiskit.opflow.gradients.derivative_base.DerivativeBase")
 
-`HessianBase(hess_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/gradients/hessian_base.py "view source code")
+  Base class for the Hessian of an expected value.
 
-Bases: [`qiskit.opflow.gradients.derivative_base.DerivativeBase`](qiskit.opflow.gradients.DerivativeBase "qiskit.opflow.gradients.derivative_base.DerivativeBase")
+  **Parameters**
 
-Base class for the Hessian of an expected value.
+  *   **hess\_method** (`Union`\[`str`, [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
+  *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
 
-**Parameters**
+  **Raises**
 
-*   **hess\_method** (`Union`\[`str`, [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
-*   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
+  **ValueError** – If method != `fin_diff` and `epsilon` is not None.
 
-**Raises**
+  ## Attributes
 
-**ValueError** – If method != `fin_diff` and `epsilon` is not None.
+  ### hess\_method
 
-## Attributes
+  <Attribute id="qiskit.opflow.gradients.HessianBase.hess_method" name="hess_method">
+    Returns `CircuitGradient`.
 
-<span id="qiskit.opflow.gradients.HessianBase.hess_method" />
+    **Return type**
 
-### hess\_method
+    [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")
 
-Returns `CircuitGradient`.
+    **Returns**
 
-**Return type**
-
-[`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")
-
-**Returns**
-
-`CircuitGradient`.
+    `CircuitGradient`.
+  </Attribute>
+</Class>
 

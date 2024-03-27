@@ -8,77 +8,69 @@ python_api_name: qiskit.qobj.PulseQobjExperiment
 
 # qiskit.qobj.PulseQobjExperiment
 
-<span id="qiskit.qobj.PulseQobjExperiment" />
+<Class id="qiskit.qobj.PulseQobjExperiment" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/qobj/pulse_qobj.py" signature="PulseQobjExperiment(instructions, config=None, header=None)">
+  A Pulse Qobj Experiment.
 
-`PulseQobjExperiment(instructions, config=None, header=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/qobj/pulse_qobj.py "view source code")
+  Each instance of this class is used to represent an individual Pulse experiment as part of a larger Pulse Qobj.
 
-A Pulse Qobj Experiment.
+  Instantiate a PulseQobjExperiment.
 
-Each instance of this class is used to represent an individual Pulse experiment as part of a larger Pulse Qobj.
+  **Parameters**
 
-Instantiate a PulseQobjExperiment.
+  *   **config** ([*PulseQobjExperimentConfig*](qiskit.qobj.PulseQobjExperimentConfig "qiskit.qobj.PulseQobjExperimentConfig")) – A config object for the experiment
+  *   **header** (*PulseQobjExperimentHeader*) – A header object for the experiment
+  *   **instructions** (*list*) – A list of [`PulseQobjInstruction`](qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction") objects
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **config** ([*PulseQobjExperimentConfig*](qiskit.qobj.PulseQobjExperimentConfig "qiskit.qobj.PulseQobjExperimentConfig")) – A config object for the experiment
-*   **header** (*PulseQobjExperimentHeader*) – A header object for the experiment
-*   **instructions** (*list*) – A list of [`PulseQobjInstruction`](qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction") objects
+  <Function id="qiskit.qobj.PulseQobjExperiment.__init__" name="__init__" signature="__init__(instructions, config=None, header=None)">
+    Instantiate a PulseQobjExperiment.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.qobj.PulseQobjExperiment.__init__" />
+    *   **config** ([*PulseQobjExperimentConfig*](qiskit.qobj.PulseQobjExperimentConfig "qiskit.qobj.PulseQobjExperimentConfig")) – A config object for the experiment
+    *   **header** (*PulseQobjExperimentHeader*) – A header object for the experiment
+    *   **instructions** (*list*) – A list of [`PulseQobjInstruction`](qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction") objects
+  </Function>
 
-`__init__(instructions, config=None, header=None)`
+  ## Methods
 
-Instantiate a PulseQobjExperiment.
+  |                                                                                                                                     |                                                              |
+  | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+  | [`__init__`](#qiskit.qobj.PulseQobjExperiment.__init__ "qiskit.qobj.PulseQobjExperiment.__init__")(instructions\[, config, header]) | Instantiate a PulseQobjExperiment.                           |
+  | [`from_dict`](#qiskit.qobj.PulseQobjExperiment.from_dict "qiskit.qobj.PulseQobjExperiment.from_dict")(data)                         | Create a new PulseQobjExperiment object from a dictionary.   |
+  | [`to_dict`](#qiskit.qobj.PulseQobjExperiment.to_dict "qiskit.qobj.PulseQobjExperiment.to_dict")()                                   | Return a dictionary format representation of the Experiment. |
 
-**Parameters**
+  ### from\_dict
 
-*   **config** ([*PulseQobjExperimentConfig*](qiskit.qobj.PulseQobjExperimentConfig "qiskit.qobj.PulseQobjExperimentConfig")) – A config object for the experiment
-*   **header** (*PulseQobjExperimentHeader*) – A header object for the experiment
-*   **instructions** (*list*) – A list of [`PulseQobjInstruction`](qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction") objects
+  <Function id="qiskit.qobj.PulseQobjExperiment.from_dict" name="from_dict" signature="classmethod from_dict(data)">
+    Create a new PulseQobjExperiment object from a dictionary.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                     |                                                              |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`__init__`](#qiskit.qobj.PulseQobjExperiment.__init__ "qiskit.qobj.PulseQobjExperiment.__init__")(instructions\[, config, header]) | Instantiate a PulseQobjExperiment.                           |
-| [`from_dict`](#qiskit.qobj.PulseQobjExperiment.from_dict "qiskit.qobj.PulseQobjExperiment.from_dict")(data)                         | Create a new PulseQobjExperiment object from a dictionary.   |
-| [`to_dict`](#qiskit.qobj.PulseQobjExperiment.to_dict "qiskit.qobj.PulseQobjExperiment.to_dict")()                                   | Return a dictionary format representation of the Experiment. |
+    **data** (*dict*) – A dictionary for the experiment config
 
-### from\_dict
+    **Returns**
 
-<span id="qiskit.qobj.PulseQobjExperiment.from_dict" />
+    The object from the input dictionary.
 
-`classmethod from_dict(data)`
+    **Return type**
 
-Create a new PulseQobjExperiment object from a dictionary.
+    [PulseQobjExperiment](#qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment")
+  </Function>
 
-**Parameters**
+  ### to\_dict
 
-**data** (*dict*) – A dictionary for the experiment config
+  <Function id="qiskit.qobj.PulseQobjExperiment.to_dict" name="to_dict" signature="to_dict()">
+    Return a dictionary format representation of the Experiment.
 
-**Returns**
+    **Returns**
 
-The object from the input dictionary.
+    The dictionary form of the PulseQobjExperiment.
 
-**Return type**
+    **Return type**
 
-[PulseQobjExperiment](#qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment")
-
-### to\_dict
-
-<span id="qiskit.qobj.PulseQobjExperiment.to_dict" />
-
-`to_dict()`
-
-Return a dictionary format representation of the Experiment.
-
-**Returns**
-
-The dictionary form of the PulseQobjExperiment.
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 

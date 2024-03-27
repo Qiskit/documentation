@@ -8,63 +8,57 @@ python_api_name: qiskit.providers.models.BackendStatus
 
 # BackendStatus
 
-<span id="qiskit.providers.models.BackendStatus" />
+<Class id="qiskit.providers.models.BackendStatus" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/models/backendstatus.py" signature="qiskit.providers.models.BackendStatus(backend_name, backend_version, operational, pending_jobs, status_msg)">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.providers.models.BackendStatus(backend_name, backend_version, operational, pending_jobs, status_msg)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/models/backendstatus.py "view source code")
+  Class representing Backend Status.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  Initialize a BackendStatus object
 
-Class representing Backend Status.
+  **Parameters**
 
-Initialize a BackendStatus object
+  *   **backend\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The backend’s name
+  *   **backend\_version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The backend’s version of the form X.Y.Z
+  *   **operational** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend is operational
+  *   **pending\_jobs** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of pending jobs on the backend
+  *   **status\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The status msg for the backend
 
-**Parameters**
+  **Raises**
 
-*   **backend\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The backend’s name
-*   **backend\_version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The backend’s version of the form X.Y.Z
-*   **operational** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend is operational
-*   **pending\_jobs** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of pending jobs on the backend
-*   **status\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The status msg for the backend
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the backend version is in an invalid format
 
-**Raises**
+  ## Methods
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the backend version is in an invalid format
+  ### from\_dict
 
-## Methods
+  <Function id="qiskit.providers.models.BackendStatus.from_dict" name="from_dict" signature="classmethod from_dict(data)">
+    Create a new BackendStatus object from a dictionary.
 
-### from\_dict
+    **Parameters**
 
-<span id="qiskit.providers.models.BackendStatus.from_dict" />
+    **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the BaseBakend to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.BackendStatus.to_dict "qiskit.providers.models.BackendStatus.to_dict").
 
-`classmethod from_dict(data)`
+    **Returns**
 
-Create a new BackendStatus object from a dictionary.
+    The BackendStatus from the input dictionary.
 
-**Parameters**
+    **Return type**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the BaseBakend to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.BackendStatus.to_dict "qiskit.providers.models.BackendStatus.to_dict").
+    [BackendStatus](#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-**Returns**
+  ### to\_dict
 
-The BackendStatus from the input dictionary.
+  <Function id="qiskit.providers.models.BackendStatus.to_dict" name="to_dict" signature="to_dict()">
+    Return a dictionary format representation of the BackendStatus.
 
-**Return type**
+    **Returns**
 
-[BackendStatus](#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+    The dictionary form of the QobjHeader.
 
-### to\_dict
+    **Return type**
 
-<span id="qiskit.providers.models.BackendStatus.to_dict" />
-
-`to_dict()`
-
-Return a dictionary format representation of the BackendStatus.
-
-**Returns**
-
-The dictionary form of the QobjHeader.
-
-**Return type**
-
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
+  </Function>
+</Class>
 

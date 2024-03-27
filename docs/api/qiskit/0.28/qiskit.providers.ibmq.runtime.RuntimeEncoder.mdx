@@ -8,122 +8,112 @@ python_api_name: qiskit.providers.ibmq.runtime.RuntimeEncoder
 
 # qiskit.providers.ibmq.runtime.RuntimeEncoder
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder" />
+<Class id="qiskit.providers.ibmq.runtime.RuntimeEncoder" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runtime/utils.py" signature="RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)">
+  JSON Encoder used by runtime service.
 
-`RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runtime/utils.py "view source code")
+  Constructor for JSONEncoder, with sensible defaults.
 
-JSON Encoder used by runtime service.
+  If skipkeys is false, then it is a TypeError to attempt encoding of keys that are not str, int, float or None. If skipkeys is True, such items are simply skipped.
 
-Constructor for JSONEncoder, with sensible defaults.
+  If ensure\_ascii is true, the output is guaranteed to be str objects with all incoming non-ASCII characters escaped. If ensure\_ascii is false, the output can contain non-ASCII characters.
 
-If skipkeys is false, then it is a TypeError to attempt encoding of keys that are not str, int, float or None. If skipkeys is True, such items are simply skipped.
+  If check\_circular is true, then lists, dicts, and custom encoded objects will be checked for circular references during encoding to prevent an infinite recursion (which would cause an OverflowError). Otherwise, no such check takes place.
 
-If ensure\_ascii is true, the output is guaranteed to be str objects with all incoming non-ASCII characters escaped. If ensure\_ascii is false, the output can contain non-ASCII characters.
+  If allow\_nan is true, then NaN, Infinity, and -Infinity will be encoded as such. This behavior is not JSON specification compliant, but is consistent with most JavaScript based encoders and decoders. Otherwise, it will be a ValueError to encode such floats.
 
-If check\_circular is true, then lists, dicts, and custom encoded objects will be checked for circular references during encoding to prevent an infinite recursion (which would cause an OverflowError). Otherwise, no such check takes place.
+  If sort\_keys is true, then the output of dictionaries will be sorted by key; this is useful for regression tests to ensure that JSON serializations can be compared on a day-to-day basis.
 
-If allow\_nan is true, then NaN, Infinity, and -Infinity will be encoded as such. This behavior is not JSON specification compliant, but is consistent with most JavaScript based encoders and decoders. Otherwise, it will be a ValueError to encode such floats.
+  If indent is a non-negative integer, then JSON array elements and object members will be pretty-printed with that indent level. An indent level of 0 will only insert newlines. None is the most compact representation.
 
-If sort\_keys is true, then the output of dictionaries will be sorted by key; this is useful for regression tests to ensure that JSON serializations can be compared on a day-to-day basis.
+  If specified, separators should be an (item\_separator, key\_separator) tuple. The default is (‘, ‘, ‘: ‘) if *indent* is `None` and (‘,’, ‘: ‘) otherwise. To get the most compact JSON representation, you should specify (‘,’, ‘:’) to eliminate whitespace.
 
-If indent is a non-negative integer, then JSON array elements and object members will be pretty-printed with that indent level. An indent level of 0 will only insert newlines. None is the most compact representation.
+  If specified, default is a function that gets called for objects that can’t otherwise be serialized. It should return a JSON encodable version of the object or raise a `TypeError`.
 
-If specified, separators should be an (item\_separator, key\_separator) tuple. The default is (‘, ‘, ‘: ‘) if *indent* is `None` and (‘,’, ‘: ‘) otherwise. To get the most compact JSON representation, you should specify (‘,’, ‘:’) to eliminate whitespace.
+  ### \_\_init\_\_
 
-If specified, default is a function that gets called for objects that can’t otherwise be serialized. It should return a JSON encodable version of the object or raise a `TypeError`.
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeEncoder.__init__" name="__init__" signature="__init__(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)">
+    Constructor for JSONEncoder, with sensible defaults.
 
-### \_\_init\_\_
+    If skipkeys is false, then it is a TypeError to attempt encoding of keys that are not str, int, float or None. If skipkeys is True, such items are simply skipped.
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.__init__" />
+    If ensure\_ascii is true, the output is guaranteed to be str objects with all incoming non-ASCII characters escaped. If ensure\_ascii is false, the output can contain non-ASCII characters.
 
-`__init__(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)`
+    If check\_circular is true, then lists, dicts, and custom encoded objects will be checked for circular references during encoding to prevent an infinite recursion (which would cause an OverflowError). Otherwise, no such check takes place.
 
-Constructor for JSONEncoder, with sensible defaults.
+    If allow\_nan is true, then NaN, Infinity, and -Infinity will be encoded as such. This behavior is not JSON specification compliant, but is consistent with most JavaScript based encoders and decoders. Otherwise, it will be a ValueError to encode such floats.
 
-If skipkeys is false, then it is a TypeError to attempt encoding of keys that are not str, int, float or None. If skipkeys is True, such items are simply skipped.
+    If sort\_keys is true, then the output of dictionaries will be sorted by key; this is useful for regression tests to ensure that JSON serializations can be compared on a day-to-day basis.
 
-If ensure\_ascii is true, the output is guaranteed to be str objects with all incoming non-ASCII characters escaped. If ensure\_ascii is false, the output can contain non-ASCII characters.
+    If indent is a non-negative integer, then JSON array elements and object members will be pretty-printed with that indent level. An indent level of 0 will only insert newlines. None is the most compact representation.
 
-If check\_circular is true, then lists, dicts, and custom encoded objects will be checked for circular references during encoding to prevent an infinite recursion (which would cause an OverflowError). Otherwise, no such check takes place.
+    If specified, separators should be an (item\_separator, key\_separator) tuple. The default is (‘, ‘, ‘: ‘) if *indent* is `None` and (‘,’, ‘: ‘) otherwise. To get the most compact JSON representation, you should specify (‘,’, ‘:’) to eliminate whitespace.
 
-If allow\_nan is true, then NaN, Infinity, and -Infinity will be encoded as such. This behavior is not JSON specification compliant, but is consistent with most JavaScript based encoders and decoders. Otherwise, it will be a ValueError to encode such floats.
+    If specified, default is a function that gets called for objects that can’t otherwise be serialized. It should return a JSON encodable version of the object or raise a `TypeError`.
+  </Function>
 
-If sort\_keys is true, then the output of dictionaries will be sorted by key; this is useful for regression tests to ensure that JSON serializations can be compared on a day-to-day basis.
+  ## Methods
 
-If indent is a non-negative integer, then JSON array elements and object members will be pretty-printed with that indent level. An indent level of 0 will only insert newlines. None is the most compact representation.
+  |                                                                                                                                                                 |                                                                                                                                                    |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.providers.ibmq.runtime.RuntimeEncoder.__init__ "qiskit.providers.ibmq.runtime.RuntimeEncoder.__init__")(\*\[, skipkeys, ensure\_ascii, …]) | Constructor for JSONEncoder, with sensible defaults.                                                                                               |
+  | [`default`](#qiskit.providers.ibmq.runtime.RuntimeEncoder.default "qiskit.providers.ibmq.runtime.RuntimeEncoder.default")(obj)                                  | Implement this method in a subclass such that it returns a serializable object for `o`, or calls the base implementation (to raise a `TypeError`). |
+  | [`encode`](#qiskit.providers.ibmq.runtime.RuntimeEncoder.encode "qiskit.providers.ibmq.runtime.RuntimeEncoder.encode")(o)                                       | Return a JSON string representation of a Python data structure.                                                                                    |
+  | [`iterencode`](#qiskit.providers.ibmq.runtime.RuntimeEncoder.iterencode "qiskit.providers.ibmq.runtime.RuntimeEncoder.iterencode")(o\[, \_one\_shot])           | Encode the given object and yield each string representation as available.                                                                         |
 
-If specified, separators should be an (item\_separator, key\_separator) tuple. The default is (‘, ‘, ‘: ‘) if *indent* is `None` and (‘,’, ‘: ‘) otherwise. To get the most compact JSON representation, you should specify (‘,’, ‘:’) to eliminate whitespace.
+  ## Attributes
 
-If specified, default is a function that gets called for objects that can’t otherwise be serialized. It should return a JSON encodable version of the object or raise a `TypeError`.
+  |                  |   |
+  | ---------------- | - |
+  | `item_separator` |   |
+  | `key_separator`  |   |
 
-## Methods
+  ### default
 
-|                                                                                                                                                                 |                                                                                                                                                    |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.providers.ibmq.runtime.RuntimeEncoder.__init__ "qiskit.providers.ibmq.runtime.RuntimeEncoder.__init__")(\*\[, skipkeys, ensure\_ascii, …]) | Constructor for JSONEncoder, with sensible defaults.                                                                                               |
-| [`default`](#qiskit.providers.ibmq.runtime.RuntimeEncoder.default "qiskit.providers.ibmq.runtime.RuntimeEncoder.default")(obj)                                  | Implement this method in a subclass such that it returns a serializable object for `o`, or calls the base implementation (to raise a `TypeError`). |
-| [`encode`](#qiskit.providers.ibmq.runtime.RuntimeEncoder.encode "qiskit.providers.ibmq.runtime.RuntimeEncoder.encode")(o)                                       | Return a JSON string representation of a Python data structure.                                                                                    |
-| [`iterencode`](#qiskit.providers.ibmq.runtime.RuntimeEncoder.iterencode "qiskit.providers.ibmq.runtime.RuntimeEncoder.iterencode")(o\[, \_one\_shot])           | Encode the given object and yield each string representation as available.                                                                         |
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeEncoder.default" name="default" signature="default(obj)">
+    Implement this method in a subclass such that it returns a serializable object for `o`, or calls the base implementation (to raise a `TypeError`).
 
-## Attributes
+    For example, to support arbitrary iterators, you could implement default like this:
 
-|                  |   |
-| ---------------- | - |
-| `item_separator` |   |
-| `key_separator`  |   |
+    ```python
+    def default(self, o):
+        try:
+            iterable = iter(o)
+        except TypeError:
+            pass
+        else:
+            return list(iterable)
+        # Let the base class default method raise the TypeError
+        return JSONEncoder.default(self, o)
+    ```
 
-### default
+    **Return type**
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.default" />
+    `Any`
+  </Function>
 
-`default(obj)`
+  ### encode
 
-Implement this method in a subclass such that it returns a serializable object for `o`, or calls the base implementation (to raise a `TypeError`).
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeEncoder.encode" name="encode" signature="encode(o)">
+    Return a JSON string representation of a Python data structure.
 
-For example, to support arbitrary iterators, you could implement default like this:
+    ```python
+    >>> from json.encoder import JSONEncoder
+    >>> JSONEncoder().encode({"foo": ["bar", "baz"]})
+    '{"foo": ["bar", "baz"]}'
+    ```
+  </Function>
 
-```python
-def default(self, o):
-    try:
-        iterable = iter(o)
-    except TypeError:
-        pass
-    else:
-        return list(iterable)
-    # Let the base class default method raise the TypeError
-    return JSONEncoder.default(self, o)
-```
+  ### iterencode
 
-**Return type**
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeEncoder.iterencode" name="iterencode" signature="iterencode(o, _one_shot=False)">
+    Encode the given object and yield each string representation as available.
 
-`Any`
+    For example:
 
-### encode
-
-<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.encode" />
-
-`encode(o)`
-
-Return a JSON string representation of a Python data structure.
-
-```python
->>> from json.encoder import JSONEncoder
->>> JSONEncoder().encode({"foo": ["bar", "baz"]})
-'{"foo": ["bar", "baz"]}'
-```
-
-### iterencode
-
-<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.iterencode" />
-
-`iterencode(o, _one_shot=False)`
-
-Encode the given object and yield each string representation as available.
-
-For example:
-
-```python
-for chunk in JSONEncoder().iterencode(bigobject):
-    mysocket.write(chunk)
-```
+    ```python
+    for chunk in JSONEncoder().iterencode(bigobject):
+        mysocket.write(chunk)
+    ```
+  </Function>
+</Class>
 

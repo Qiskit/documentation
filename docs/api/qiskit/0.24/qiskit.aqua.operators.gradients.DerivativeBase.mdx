@@ -10,99 +10,89 @@ python_api_name: qiskit.aqua.operators.gradients.DerivativeBase
 
 # qiskit.aqua.operators.gradients.DerivativeBase
 
-<span id="qiskit.aqua.operators.gradients.DerivativeBase" />
+<Class id="qiskit.aqua.operators.gradients.DerivativeBase" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/derivative_base.py" signature="DerivativeBase">
+  Base class for differentiating opflow objects.
 
-`DerivativeBase` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/derivative_base.py "view source code")
+  Converter for differentiating opflow objects and handling things like properly differentiating combo\_fn’s and enforcing product rules when operator coefficients are parameterized.
 
-Base class for differentiating opflow objects.
+  This is distinct from CircuitGradient converters which use quantum techniques such as parameter shifts and linear combination of unitaries to compute derivatives of circuits.
 
-Converter for differentiating opflow objects and handling things like properly differentiating combo\_fn’s and enforcing product rules when operator coefficients are parameterized.
+  CircuitGradient - uses quantum techniques to get derivatives of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
 
-This is distinct from CircuitGradient converters which use quantum techniques such as parameter shifts and linear combination of unitaries to compute derivatives of circuits.
+  ### \_\_init\_\_
 
-CircuitGradient - uses quantum techniques to get derivatives of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
+  <Function id="qiskit.aqua.operators.gradients.DerivativeBase.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.aqua.operators.gradients.DerivativeBase.__init__" />
+  |                                                                                                                                                                                                         |                                                                                                            |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.operators.gradients.DerivativeBase.__init__ "qiskit.aqua.operators.gradients.DerivativeBase.__init__")()                                                                      | Initialize self.                                                                                           |
+  | [`convert`](#qiskit.aqua.operators.gradients.DerivativeBase.convert "qiskit.aqua.operators.gradients.DerivativeBase.convert")(operator\[, params])                                                      | **type operator**`OperatorBase`                                                                            |
+  | [`gradient_wrapper`](#qiskit.aqua.operators.gradients.DerivativeBase.gradient_wrapper "qiskit.aqua.operators.gradients.DerivativeBase.gradient_wrapper")(operator, bind\_params\[, …])                  | Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. |
+  | [`parameter_expression_grad`](#qiskit.aqua.operators.gradients.DerivativeBase.parameter_expression_grad "qiskit.aqua.operators.gradients.DerivativeBase.parameter_expression_grad")(param\_expr, param) | Get the derivative of a parameter expression w\.r.t.                                                       |
 
-`__init__()`
+  ### convert
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.aqua.operators.gradients.DerivativeBase.convert" name="convert" signature="abstract convert(operator, params=None)">
+    **Parameters**
 
-## Methods
+    *   **operator** (`OperatorBase`) – The operator we are taking the gradient, Hessian or QFI of
+    *   **params** (`Union`\[`ParameterVector`, `ParameterExpression`, `List`\[`ParameterExpression`], `None`]) – The parameters we are taking the gradient, Hessian or QFI with respect to.
 
-|                                                                                                                                                                                                         |                                                                                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.gradients.DerivativeBase.__init__ "qiskit.aqua.operators.gradients.DerivativeBase.__init__")()                                                                      | Initialize self.                                                                                           |
-| [`convert`](#qiskit.aqua.operators.gradients.DerivativeBase.convert "qiskit.aqua.operators.gradients.DerivativeBase.convert")(operator\[, params])                                                      | **type operator**`OperatorBase`                                                                            |
-| [`gradient_wrapper`](#qiskit.aqua.operators.gradients.DerivativeBase.gradient_wrapper "qiskit.aqua.operators.gradients.DerivativeBase.gradient_wrapper")(operator, bind\_params\[, …])                  | Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. |
-| [`parameter_expression_grad`](#qiskit.aqua.operators.gradients.DerivativeBase.parameter_expression_grad "qiskit.aqua.operators.gradients.DerivativeBase.parameter_expression_grad")(param\_expr, param) | Get the derivative of a parameter expression w\.r.t.                                                       |
+    **Return type**
 
-### convert
+    `OperatorBase`
 
-<span id="qiskit.aqua.operators.gradients.DerivativeBase.convert" />
+    **Returns**
 
-`abstract convert(operator, params=None)`
+    An operator whose evaluation yields the gradient, Hessian or QFI.
 
-**Parameters**
+    **Raises**
 
-*   **operator** (`OperatorBase`) – The operator we are taking the gradient, Hessian or QFI of
-*   **params** (`Union`\[`ParameterVector`, `ParameterExpression`, `List`\[`ParameterExpression`], `None`]) – The parameters we are taking the gradient, Hessian or QFI with respect to.
+    **ValueError** – If `params` contains a parameter not present in `operator`.
+  </Function>
 
-**Return type**
+  ### gradient\_wrapper
 
-`OperatorBase`
+  <Function id="qiskit.aqua.operators.gradients.DerivativeBase.gradient_wrapper" name="gradient_wrapper" signature="gradient_wrapper(operator, bind_params, grad_params=None, backend=None)">
+    Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. This callable can be used as gradient function for optimizers.
 
-**Returns**
+    **Parameters**
 
-An operator whose evaluation yields the gradient, Hessian or QFI.
+    *   **operator** (`OperatorBase`) – The operator for which we want to get the gradient, Hessian or QFI.
+    *   **bind\_params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`]]) – The operator parameters to which the parameter values are assigned.
+    *   **grad\_params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`], `Tuple`\[`ParameterExpression`, `ParameterExpression`], `List`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`]], `None`]) – The parameters with respect to which we are taking the gradient, Hessian or QFI. If grad\_params = None, then grad\_params = bind\_params
+    *   **backend** (`Union`\[`BaseBackend`, `QuantumInstance`, `None`]) – The quantum backend or QuantumInstance to use to evaluate the gradient, Hessian or QFI.
 
-**Raises**
+    **Returns**
 
-**ValueError** – If `params` contains a parameter not present in `operator`.
+    Function to compute a gradient, Hessian or QFI. The function takes an iterable as argument which holds the parameter values.
 
-### gradient\_wrapper
+    **Return type**
 
-<span id="qiskit.aqua.operators.gradients.DerivativeBase.gradient_wrapper" />
+    callable(param\_values)
+  </Function>
 
-`gradient_wrapper(operator, bind_params, grad_params=None, backend=None)`
+  ### parameter\_expression\_grad
 
-Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. This callable can be used as gradient function for optimizers.
+  <Function id="qiskit.aqua.operators.gradients.DerivativeBase.parameter_expression_grad" name="parameter_expression_grad" signature="static parameter_expression_grad(param_expr, param)">
+    Get the derivative of a parameter expression w\.r.t. the given parameter.
 
-**Parameters**
+    **Parameters**
 
-*   **operator** (`OperatorBase`) – The operator for which we want to get the gradient, Hessian or QFI.
-*   **bind\_params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`]]) – The operator parameters to which the parameter values are assigned.
-*   **grad\_params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`], `Tuple`\[`ParameterExpression`, `ParameterExpression`], `List`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`]], `None`]) – The parameters with respect to which we are taking the gradient, Hessian or QFI. If grad\_params = None, then grad\_params = bind\_params
-*   **backend** (`Union`\[`BaseBackend`, `QuantumInstance`, `None`]) – The quantum backend or QuantumInstance to use to evaluate the gradient, Hessian or QFI.
+    *   **param\_expr** (`ParameterExpression`) – The Parameter Expression for which we compute the derivative
+    *   **param** (`ParameterExpression`) – Parameter w\.r.t. which we want to take the derivative
 
-**Returns**
+    **Return type**
 
-Function to compute a gradient, Hessian or QFI. The function takes an iterable as argument which holds the parameter values.
+    `Union`\[`ParameterExpression`, `float`]
 
-**Return type**
+    **Returns**
 
-callable(param\_values)
-
-### parameter\_expression\_grad
-
-<span id="qiskit.aqua.operators.gradients.DerivativeBase.parameter_expression_grad" />
-
-`static parameter_expression_grad(param_expr, param)`
-
-Get the derivative of a parameter expression w\.r.t. the given parameter.
-
-**Parameters**
-
-*   **param\_expr** (`ParameterExpression`) – The Parameter Expression for which we compute the derivative
-*   **param** (`ParameterExpression`) – Parameter w\.r.t. which we want to take the derivative
-
-**Return type**
-
-`Union`\[`ParameterExpression`, `float`]
-
-**Returns**
-
-ParameterExpression representing the gradient of param\_expr w\.r.t. param
+    ParameterExpression representing the gradient of param\_expr w\.r.t. param
+  </Function>
+</Class>
 

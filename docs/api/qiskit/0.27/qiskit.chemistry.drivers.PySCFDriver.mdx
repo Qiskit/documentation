@@ -8,137 +8,123 @@ python_api_name: qiskit.chemistry.drivers.PySCFDriver
 
 # qiskit.chemistry.drivers.PySCFDriver
 
-<span id="qiskit.chemistry.drivers.PySCFDriver" />
+<Class id="qiskit.chemistry.drivers.PySCFDriver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/pyscfd/pyscfdriver.py" signature="PySCFDriver(atom='H 0.0 0.0 0.0; H 0.0 0.0 0.735', unit=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, spin=0, basis='sto3g', hf_method=<HFMethodType.RHF: 'rhf'>, conv_tol=1e-09, max_cycle=50, init_guess=<InitialGuess.MINAO: 'minao'>, max_memory=None, molecule=None)">
+  Qiskit chemistry driver using the PySCF library.
 
-`PySCFDriver(atom='H 0.0 0.0 0.0; H 0.0 0.0 0.735', unit=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, spin=0, basis='sto3g', hf_method=<HFMethodType.RHF: 'rhf'>, conv_tol=1e-09, max_cycle=50, init_guess=<InitialGuess.MINAO: 'minao'>, max_memory=None, molecule=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/pyscfd/pyscfdriver.py "view source code")
+  See [https://sunqm.github.io/pyscf/](https://sunqm.github.io/pyscf/)
 
-Qiskit chemistry driver using the PySCF library.
+  **Parameters**
 
-See [https://sunqm.github.io/pyscf/](https://sunqm.github.io/pyscf/)
+  *   **atom** (`Union`\[`str`, `List`\[`str`]]) – Atom list or string separated by semicolons or line breaks. Each element in the list is an atom followed by position e.g. H 0.0 0.0 0.5. The preceding example shows the XYZ format for position but Z-Matrix format is supported too here.
+  *   **unit** (`UnitsType`) – Angstrom or Bohr
+  *   **charge** (`int`) – Charge on the molecule
+  *   **spin** (`int`) – Spin (2S), in accordance with how PySCF defines a molecule in pyscf.gto.mole.Mole
+  *   **basis** (`str`) – Basis set
+  *   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
+  *   **conv\_tol** (`float`) – Convergence tolerance see PySCF docs and pyscf/scf/hf.py
+  *   **max\_cycle** (`int`) – Max convergence cycles see PySCF docs and pyscf/scf/hf.py, has a min. value of 1.
+  *   **init\_guess** (`InitialGuess`) – See PySCF pyscf/scf/hf.py init\_guess\_by\_minao/1e/atom methods
+  *   **max\_memory** (`Optional`\[`int`]) – Maximum memory that PySCF should use
+  *   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the atom, unit, charge and spin parameters are all ignored as the Molecule instance now defines these instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
 
-**Parameters**
+  **Raises**
 
-*   **atom** (`Union`\[`str`, `List`\[`str`]]) – Atom list or string separated by semicolons or line breaks. Each element in the list is an atom followed by position e.g. H 0.0 0.0 0.5. The preceding example shows the XYZ format for position but Z-Matrix format is supported too here.
-*   **unit** (`UnitsType`) – Angstrom or Bohr
-*   **charge** (`int`) – Charge on the molecule
-*   **spin** (`int`) – Spin (2S), in accordance with how PySCF defines a molecule in pyscf.gto.mole.Mole
-*   **basis** (`str`) – Basis set
-*   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
-*   **conv\_tol** (`float`) – Convergence tolerance see PySCF docs and pyscf/scf/hf.py
-*   **max\_cycle** (`int`) – Max convergence cycles see PySCF docs and pyscf/scf/hf.py, has a min. value of 1.
-*   **init\_guess** (`InitialGuess`) – See PySCF pyscf/scf/hf.py init\_guess\_by\_minao/1e/atom methods
-*   **max\_memory** (`Optional`\[`int`]) – Maximum memory that PySCF should use
-*   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the atom, unit, charge and spin parameters are all ignored as the Molecule instance now defines these instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
+  [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
-**Raises**
+  ### \_\_init\_\_
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+  <Function id="qiskit.chemistry.drivers.PySCFDriver.__init__" name="__init__" signature="__init__(atom='H 0.0 0.0 0.0; H 0.0 0.0 0.735', unit=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, spin=0, basis='sto3g', hf_method=<HFMethodType.RHF: 'rhf'>, conv_tol=1e-09, max_cycle=50, init_guess=<InitialGuess.MINAO: 'minao'>, max_memory=None, molecule=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **atom** (`Union`\[`str`, `List`\[`str`]]) – Atom list or string separated by semicolons or line breaks. Each element in the list is an atom followed by position e.g. H 0.0 0.0 0.5. The preceding example shows the XYZ format for position but Z-Matrix format is supported too here.
+    *   **unit** (`UnitsType`) – Angstrom or Bohr
+    *   **charge** (`int`) – Charge on the molecule
+    *   **spin** (`int`) – Spin (2S), in accordance with how PySCF defines a molecule in pyscf.gto.mole.Mole
+    *   **basis** (`str`) – Basis set
+    *   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
+    *   **conv\_tol** (`float`) – Convergence tolerance see PySCF docs and pyscf/scf/hf.py
+    *   **max\_cycle** (`int`) – Max convergence cycles see PySCF docs and pyscf/scf/hf.py, has a min. value of 1.
+    *   **init\_guess** (`InitialGuess`) – See PySCF pyscf/scf/hf.py init\_guess\_by\_minao/1e/atom methods
+    *   **max\_memory** (`Optional`\[`int`]) – Maximum memory that PySCF should use
+    *   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the atom, unit, charge and spin parameters are all ignored as the Molecule instance now defines these instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
 
-<span id="qiskit.chemistry.drivers.PySCFDriver.__init__" />
+    **Raises**
 
-`__init__(atom='H 0.0 0.0 0.0; H 0.0 0.0 0.735', unit=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, spin=0, basis='sto3g', hf_method=<HFMethodType.RHF: 'rhf'>, conv_tol=1e-09, max_cycle=50, init_guess=<InitialGuess.MINAO: 'minao'>, max_memory=None, molecule=None)`
+    [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **atom** (`Union`\[`str`, `List`\[`str`]]) – Atom list or string separated by semicolons or line breaks. Each element in the list is an atom followed by position e.g. H 0.0 0.0 0.5. The preceding example shows the XYZ format for position but Z-Matrix format is supported too here.
-*   **unit** (`UnitsType`) – Angstrom or Bohr
-*   **charge** (`int`) – Charge on the molecule
-*   **spin** (`int`) – Spin (2S), in accordance with how PySCF defines a molecule in pyscf.gto.mole.Mole
-*   **basis** (`str`) – Basis set
-*   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
-*   **conv\_tol** (`float`) – Convergence tolerance see PySCF docs and pyscf/scf/hf.py
-*   **max\_cycle** (`int`) – Max convergence cycles see PySCF docs and pyscf/scf/hf.py, has a min. value of 1.
-*   **init\_guess** (`InitialGuess`) – See PySCF pyscf/scf/hf.py init\_guess\_by\_minao/1e/atom methods
-*   **max\_memory** (`Optional`\[`int`]) – Maximum memory that PySCF should use
-*   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the atom, unit, charge and spin parameters are all ignored as the Molecule instance now defines these instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
+  |                                                                                                                                                     |                                              |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.drivers.PySCFDriver.__init__ "qiskit.chemistry.drivers.PySCFDriver.__init__")(\[atom, unit, charge, spin, basis, …]) | **type atom**`Union`\[`str`, `List`\[`str`]] |
+  | [`run`](#qiskit.chemistry.drivers.PySCFDriver.run "qiskit.chemistry.drivers.PySCFDriver.run")()                                                     | Runs driver to produce a QMolecule output.   |
 
-**Raises**
+  ## Attributes
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+  |                                                                                                                                         |                                                 |
+  | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+  | [`basis`](#qiskit.chemistry.drivers.PySCFDriver.basis "qiskit.chemistry.drivers.PySCFDriver.basis")                                     | return basis                                    |
+  | [`hf_method`](#qiskit.chemistry.drivers.PySCFDriver.hf_method "qiskit.chemistry.drivers.PySCFDriver.hf_method")                         | return Hartree-Fock method                      |
+  | [`molecule`](#qiskit.chemistry.drivers.PySCFDriver.molecule "qiskit.chemistry.drivers.PySCFDriver.molecule")                            | return molecule                                 |
+  | [`supports_molecule`](#qiskit.chemistry.drivers.PySCFDriver.supports_molecule "qiskit.chemistry.drivers.PySCFDriver.supports_molecule") | True for derived classes that support Molecule. |
 
-## Methods
+  ### basis
 
-|                                                                                                                                                     |                                              |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.drivers.PySCFDriver.__init__ "qiskit.chemistry.drivers.PySCFDriver.__init__")(\[atom, unit, charge, spin, basis, …]) | **type atom**`Union`\[`str`, `List`\[`str`]] |
-| [`run`](#qiskit.chemistry.drivers.PySCFDriver.run "qiskit.chemistry.drivers.PySCFDriver.run")()                                                     | Runs driver to produce a QMolecule output.   |
+  <Function id="qiskit.chemistry.drivers.PySCFDriver.basis" name="basis" signature="property basis">
+    return basis
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                         |                                                 |
-| --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`basis`](#qiskit.chemistry.drivers.PySCFDriver.basis "qiskit.chemistry.drivers.PySCFDriver.basis")                                     | return basis                                    |
-| [`hf_method`](#qiskit.chemistry.drivers.PySCFDriver.hf_method "qiskit.chemistry.drivers.PySCFDriver.hf_method")                         | return Hartree-Fock method                      |
-| [`molecule`](#qiskit.chemistry.drivers.PySCFDriver.molecule "qiskit.chemistry.drivers.PySCFDriver.molecule")                            | return molecule                                 |
-| [`supports_molecule`](#qiskit.chemistry.drivers.PySCFDriver.supports_molecule "qiskit.chemistry.drivers.PySCFDriver.supports_molecule") | True for derived classes that support Molecule. |
+    `str`
+  </Function>
 
-### basis
+  ### hf\_method
 
-<span id="qiskit.chemistry.drivers.PySCFDriver.basis" />
+  <Function id="qiskit.chemistry.drivers.PySCFDriver.hf_method" name="hf_method" signature="property hf_method">
+    return Hartree-Fock method
 
-`property basis`
+    **Return type**
 
-return basis
+    `str`
+  </Function>
 
-**Return type**
+  ### molecule
 
-`str`
+  <Function id="qiskit.chemistry.drivers.PySCFDriver.molecule" name="molecule" signature="property molecule">
+    return molecule
 
-### hf\_method
+    **Return type**
 
-<span id="qiskit.chemistry.drivers.PySCFDriver.hf_method" />
+    `Optional`\[`Molecule`]
+  </Function>
 
-`property hf_method`
+  ### run
 
-return Hartree-Fock method
+  <Function id="qiskit.chemistry.drivers.PySCFDriver.run" name="run" signature="run()">
+    Runs driver to produce a QMolecule output.
 
-**Return type**
+    **Return type**
 
-`str`
+    `QMolecule`
 
-### molecule
+    **Returns**
 
-<span id="qiskit.chemistry.drivers.PySCFDriver.molecule" />
+    A QMolecule containing the molecular data.
+  </Function>
 
-`property molecule`
+  ### supports\_molecule
 
-return molecule
+  <Function id="qiskit.chemistry.drivers.PySCFDriver.supports_molecule" name="supports_molecule" signature="property supports_molecule">
+    True for derived classes that support Molecule.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`Molecule`]
+    `bool`
 
-### run
+    **Returns**
 
-<span id="qiskit.chemistry.drivers.PySCFDriver.run" />
-
-`run()`
-
-Runs driver to produce a QMolecule output.
-
-**Return type**
-
-`QMolecule`
-
-**Returns**
-
-A QMolecule containing the molecular data.
-
-### supports\_molecule
-
-<span id="qiskit.chemistry.drivers.PySCFDriver.supports_molecule" />
-
-`property supports_molecule`
-
-True for derived classes that support Molecule.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if Molecule is supported.
+    True if Molecule is supported.
+  </Function>
+</Class>
 

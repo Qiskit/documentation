@@ -8,38 +8,36 @@ python_api_name: qiskit.opflow.gradients.GradientBase
 
 # GradientBase
 
-<span id="qiskit.opflow.gradients.GradientBase" />
+<Class id="qiskit.opflow.gradients.GradientBase" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/gradient_base.py" signature="GradientBase(grad_method='param_shift', **kwargs)">
+  Bases: [`DerivativeBase`](qiskit.opflow.gradients.DerivativeBase "qiskit.opflow.gradients.derivative_base.DerivativeBase")
 
-`GradientBase(grad_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/gradient_base.py "view source code")
+  Deprecated: Base class for first-order operator gradient.
 
-Bases: [`DerivativeBase`](qiskit.opflow.gradients.DerivativeBase "qiskit.opflow.gradients.derivative_base.DerivativeBase")
+  Convert an operator expression to the first-order gradient.
 
-Deprecated: Base class for first-order operator gradient.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.gradients.gradient_base.GradientBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Convert an operator expression to the first-order gradient.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.gradients.gradient_base.GradientBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  *   **grad\_method** (*str |* [*CircuitGradient*](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
+  *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
 
-**Parameters**
+  **Raises**
 
-*   **grad\_method** (*str |* [*CircuitGradient*](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
-*   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
+  **ValueError** – If method != `fin_diff` and `epsilon` is not None.
 
-**Raises**
+  ## Attributes
 
-**ValueError** – If method != `fin_diff` and `epsilon` is not None.
+  ### grad\_method
 
-## Attributes
+  <Attribute id="qiskit.opflow.gradients.GradientBase.grad_method" name="grad_method">
+    Returns `CircuitGradient`.
 
-<span id="qiskit.opflow.gradients.GradientBase.grad_method" />
+    **Returns**
 
-### grad\_method
-
-Returns `CircuitGradient`.
-
-**Returns**
-
-`CircuitGradient`.
+    `CircuitGradient`.
+  </Attribute>
+</Class>
 

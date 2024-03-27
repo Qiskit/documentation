@@ -10,834 +10,706 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
 # qiskit.dagcircuit.DAGCircuit
 
-<span id="qiskit.dagcircuit.DAGCircuit" />
-
-`DAGCircuit` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/dagcircuit/dagcircuit.py "view source code")
-
-Quantum circuit as a directed acyclic graph.
-
-There are 3 types of nodes in the graph: inputs, outputs, and operations. The nodes are connected by directed edges that correspond to qubits and bits.
-
-Create an empty circuit.
-
-### \_\_init\_\_
-
-<span id="qiskit.dagcircuit.DAGCircuit.__init__" />
-
-`__init__()`
-
-Create an empty circuit.
-
-## Methods
-
-|                                                                                                                                                                      |                                                                                                                                              |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.dagcircuit.DAGCircuit.__init__ "qiskit.dagcircuit.DAGCircuit.__init__")()                                                                       | Create an empty circuit.                                                                                                                     |
-| [`add_creg`](#qiskit.dagcircuit.DAGCircuit.add_creg "qiskit.dagcircuit.DAGCircuit.add_creg")(creg)                                                                   | Add all wires in a classical register.                                                                                                       |
-| [`add_qreg`](#qiskit.dagcircuit.DAGCircuit.add_qreg "qiskit.dagcircuit.DAGCircuit.add_qreg")(qreg)                                                                   | Add all wires in a quantum register.                                                                                                         |
-| [`ancestors`](#qiskit.dagcircuit.DAGCircuit.ancestors "qiskit.dagcircuit.DAGCircuit.ancestors")(node)                                                                | Returns set of the ancestors of a node as DAGNodes.                                                                                          |
-| [`apply_operation_back`](#qiskit.dagcircuit.DAGCircuit.apply_operation_back "qiskit.dagcircuit.DAGCircuit.apply_operation_back")(op\[, qargs, cargs, …])             | Apply an operation to the output of the circuit.                                                                                             |
-| [`apply_operation_front`](#qiskit.dagcircuit.DAGCircuit.apply_operation_front "qiskit.dagcircuit.DAGCircuit.apply_operation_front")(op, qargs, cargs\[, …])          | Apply an operation to the input of the circuit.                                                                                              |
-| [`bfs_successors`](#qiskit.dagcircuit.DAGCircuit.bfs_successors "qiskit.dagcircuit.DAGCircuit.bfs_successors")(node)                                                 | Returns an iterator of tuples of (DAGNode, \[DAGNodes]) where the DAGNode is the current node and \[DAGNode] is its successors in BFS order. |
-| [`collect_runs`](#qiskit.dagcircuit.DAGCircuit.collect_runs "qiskit.dagcircuit.DAGCircuit.collect_runs")(namelist)                                                   | Return a set of non-conditional runs of “op” nodes with the given names.                                                                     |
-| [`compose`](#qiskit.dagcircuit.DAGCircuit.compose "qiskit.dagcircuit.DAGCircuit.compose")(other\[, edge\_map, qubits, clbits, …])                                    | Compose the `other` circuit onto the output of this circuit.                                                                                 |
-| [`compose_back`](#qiskit.dagcircuit.DAGCircuit.compose_back "qiskit.dagcircuit.DAGCircuit.compose_back")(input\_circuit\[, edge\_map])                               | DEPRECATED: use DAGCircuit.compose() instead.                                                                                                |
-| [`count_ops`](#qiskit.dagcircuit.DAGCircuit.count_ops "qiskit.dagcircuit.DAGCircuit.count_ops")()                                                                    | Count the occurrences of operation names.                                                                                                    |
-| [`count_ops_longest_path`](#qiskit.dagcircuit.DAGCircuit.count_ops_longest_path "qiskit.dagcircuit.DAGCircuit.count_ops_longest_path")()                             | Count the occurrences of operation names on the longest path.                                                                                |
-| [`depth`](#qiskit.dagcircuit.DAGCircuit.depth "qiskit.dagcircuit.DAGCircuit.depth")()                                                                                | Return the circuit depth.                                                                                                                    |
-| [`descendants`](#qiskit.dagcircuit.DAGCircuit.descendants "qiskit.dagcircuit.DAGCircuit.descendants")(node)                                                          | Returns set of the descendants of a node as DAGNodes.                                                                                        |
-| [`draw`](#qiskit.dagcircuit.DAGCircuit.draw "qiskit.dagcircuit.DAGCircuit.draw")(\[scale, filename, style])                                                          | Draws the dag circuit.                                                                                                                       |
-| [`edges`](#qiskit.dagcircuit.DAGCircuit.edges "qiskit.dagcircuit.DAGCircuit.edges")(\[nodes])                                                                        | Iterator for edge values and source and dest node                                                                                            |
-| [`extend_back`](#qiskit.dagcircuit.DAGCircuit.extend_back "qiskit.dagcircuit.DAGCircuit.extend_back")(dag\[, edge\_map])                                             | DEPRECATED: Add dag at the end of self, using edge\_map.                                                                                     |
-| [`from_networkx`](#qiskit.dagcircuit.DAGCircuit.from_networkx "qiskit.dagcircuit.DAGCircuit.from_networkx")(graph)                                                   | Take a networkx MultiDigraph and create a new DAGCircuit.                                                                                    |
-| [`front_layer`](#qiskit.dagcircuit.DAGCircuit.front_layer "qiskit.dagcircuit.DAGCircuit.front_layer")()                                                              | Return a list of op nodes in the first layer of this dag.                                                                                    |
-| [`gate_nodes`](#qiskit.dagcircuit.DAGCircuit.gate_nodes "qiskit.dagcircuit.DAGCircuit.gate_nodes")()                                                                 | Get the list of gate nodes in the dag.                                                                                                       |
-| [`has_calibration_for`](#qiskit.dagcircuit.DAGCircuit.has_calibration_for "qiskit.dagcircuit.DAGCircuit.has_calibration_for")(node)                                  | Return True if the dag has a calibration defined for the node operation.                                                                     |
-| [`idle_wires`](#qiskit.dagcircuit.DAGCircuit.idle_wires "qiskit.dagcircuit.DAGCircuit.idle_wires")(\[ignore])                                                        | Return idle wires.                                                                                                                           |
-| [`layers`](#qiskit.dagcircuit.DAGCircuit.layers "qiskit.dagcircuit.DAGCircuit.layers")()                                                                             | Yield a shallow view on a layer of this DAGCircuit for all d layers of this circuit.                                                         |
-| [`longest_path`](#qiskit.dagcircuit.DAGCircuit.longest_path "qiskit.dagcircuit.DAGCircuit.longest_path")()                                                           | Returns the longest path in the dag as a list of DAGNodes.                                                                                   |
-| [`multi_qubit_ops`](#qiskit.dagcircuit.DAGCircuit.multi_qubit_ops "qiskit.dagcircuit.DAGCircuit.multi_qubit_ops")()                                                  | Get list of 3+ qubit operations.                                                                                                             |
-| [`multigraph_layers`](#qiskit.dagcircuit.DAGCircuit.multigraph_layers "qiskit.dagcircuit.DAGCircuit.multigraph_layers")()                                            | Yield layers of the multigraph.                                                                                                              |
-| [`named_nodes`](#qiskit.dagcircuit.DAGCircuit.named_nodes "qiskit.dagcircuit.DAGCircuit.named_nodes")(\*names)                                                       | Get the set of “op” nodes with the given name.                                                                                               |
-| [`node`](#qiskit.dagcircuit.DAGCircuit.node "qiskit.dagcircuit.DAGCircuit.node")(node\_id)                                                                           | Get the node in the dag.                                                                                                                     |
-| [`nodes`](#qiskit.dagcircuit.DAGCircuit.nodes "qiskit.dagcircuit.DAGCircuit.nodes")()                                                                                | Iterator for node values.                                                                                                                    |
-| [`nodes_on_wire`](#qiskit.dagcircuit.DAGCircuit.nodes_on_wire "qiskit.dagcircuit.DAGCircuit.nodes_on_wire")(wire\[, only\_ops])                                      | Iterator for nodes that affect a given wire.                                                                                                 |
-| [`num_clbits`](#qiskit.dagcircuit.DAGCircuit.num_clbits "qiskit.dagcircuit.DAGCircuit.num_clbits")()                                                                 | Return the total number of classical bits used by the circuit.                                                                               |
-| [`num_qubits`](#qiskit.dagcircuit.DAGCircuit.num_qubits "qiskit.dagcircuit.DAGCircuit.num_qubits")()                                                                 | Return the total number of qubits used by the circuit.                                                                                       |
-| [`num_tensor_factors`](#qiskit.dagcircuit.DAGCircuit.num_tensor_factors "qiskit.dagcircuit.DAGCircuit.num_tensor_factors")()                                         | Compute how many components the circuit can decompose into.                                                                                  |
-| [`op_nodes`](#qiskit.dagcircuit.DAGCircuit.op_nodes "qiskit.dagcircuit.DAGCircuit.op_nodes")(\[op, include\_directives])                                             | Get the list of “op” nodes in the dag.                                                                                                       |
-| [`predecessors`](#qiskit.dagcircuit.DAGCircuit.predecessors "qiskit.dagcircuit.DAGCircuit.predecessors")(node)                                                       | Returns iterator of the predecessors of a node as DAGNodes.                                                                                  |
-| [`properties`](#qiskit.dagcircuit.DAGCircuit.properties "qiskit.dagcircuit.DAGCircuit.properties")()                                                                 | Return a dictionary of circuit properties.                                                                                                   |
-| [`quantum_predecessors`](#qiskit.dagcircuit.DAGCircuit.quantum_predecessors "qiskit.dagcircuit.DAGCircuit.quantum_predecessors")(node)                               | Returns iterator of the predecessors of a node that are connected by a quantum edge as DAGNodes.                                             |
-| [`quantum_successors`](#qiskit.dagcircuit.DAGCircuit.quantum_successors "qiskit.dagcircuit.DAGCircuit.quantum_successors")(node)                                     | Returns iterator of the successors of a node that are connected by a quantum edge as DAGNodes.                                               |
-| [`remove_all_ops_named`](#qiskit.dagcircuit.DAGCircuit.remove_all_ops_named "qiskit.dagcircuit.DAGCircuit.remove_all_ops_named")(opname)                             | Remove all operation nodes with the given name.                                                                                              |
-| [`remove_ancestors_of`](#qiskit.dagcircuit.DAGCircuit.remove_ancestors_of "qiskit.dagcircuit.DAGCircuit.remove_ancestors_of")(node)                                  | Remove all of the ancestor operation nodes of node.                                                                                          |
-| [`remove_descendants_of`](#qiskit.dagcircuit.DAGCircuit.remove_descendants_of "qiskit.dagcircuit.DAGCircuit.remove_descendants_of")(node)                            | Remove all of the descendant operation nodes of node.                                                                                        |
-| [`remove_nonancestors_of`](#qiskit.dagcircuit.DAGCircuit.remove_nonancestors_of "qiskit.dagcircuit.DAGCircuit.remove_nonancestors_of")(node)                         | Remove all of the non-ancestors operation nodes of node.                                                                                     |
-| [`remove_nondescendants_of`](#qiskit.dagcircuit.DAGCircuit.remove_nondescendants_of "qiskit.dagcircuit.DAGCircuit.remove_nondescendants_of")(node)                   | Remove all of the non-descendants operation nodes of node.                                                                                   |
-| [`remove_op_node`](#qiskit.dagcircuit.DAGCircuit.remove_op_node "qiskit.dagcircuit.DAGCircuit.remove_op_node")(node)                                                 | Remove an operation node n.                                                                                                                  |
-| [`reverse_ops`](#qiskit.dagcircuit.DAGCircuit.reverse_ops "qiskit.dagcircuit.DAGCircuit.reverse_ops")()                                                              | Reverse the operations in the `self` circuit.                                                                                                |
-| [`serial_layers`](#qiskit.dagcircuit.DAGCircuit.serial_layers "qiskit.dagcircuit.DAGCircuit.serial_layers")()                                                        | Yield a layer for all gates of this circuit.                                                                                                 |
-| [`size`](#qiskit.dagcircuit.DAGCircuit.size "qiskit.dagcircuit.DAGCircuit.size")()                                                                                   | Return the number of operations.                                                                                                             |
-| [`substitute_node`](#qiskit.dagcircuit.DAGCircuit.substitute_node "qiskit.dagcircuit.DAGCircuit.substitute_node")(node, op\[, inplace])                              | Replace a DAGNode with a single instruction.                                                                                                 |
-| [`substitute_node_with_dag`](#qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag "qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag")(node, input\_dag\[, …]) | Replace one node with dag.                                                                                                                   |
-| [`successors`](#qiskit.dagcircuit.DAGCircuit.successors "qiskit.dagcircuit.DAGCircuit.successors")(node)                                                             | Returns iterator of the successors of a node as DAGNodes.                                                                                    |
-| [`threeQ_or_more_gates`](#qiskit.dagcircuit.DAGCircuit.threeQ_or_more_gates "qiskit.dagcircuit.DAGCircuit.threeQ_or_more_gates")()                                   | Get list of 3-or-more-qubit gates: (id, data).                                                                                               |
-| [`to_networkx`](#qiskit.dagcircuit.DAGCircuit.to_networkx "qiskit.dagcircuit.DAGCircuit.to_networkx")()                                                              | Returns a copy of the DAGCircuit in networkx format.                                                                                         |
-| [`topological_nodes`](#qiskit.dagcircuit.DAGCircuit.topological_nodes "qiskit.dagcircuit.DAGCircuit.topological_nodes")()                                            | Yield nodes in topological order.                                                                                                            |
-| [`topological_op_nodes`](#qiskit.dagcircuit.DAGCircuit.topological_op_nodes "qiskit.dagcircuit.DAGCircuit.topological_op_nodes")()                                   | Yield op nodes in topological order.                                                                                                         |
-| [`twoQ_gates`](#qiskit.dagcircuit.DAGCircuit.twoQ_gates "qiskit.dagcircuit.DAGCircuit.twoQ_gates")()                                                                 | Get list of 2-qubit gates.                                                                                                                   |
-| [`two_qubit_ops`](#qiskit.dagcircuit.DAGCircuit.two_qubit_ops "qiskit.dagcircuit.DAGCircuit.two_qubit_ops")()                                                        | Get list of 2 qubit operations.                                                                                                              |
-| [`width`](#qiskit.dagcircuit.DAGCircuit.width "qiskit.dagcircuit.DAGCircuit.width")()                                                                                | Return the total number of qubits + clbits used by the circuit.                                                                              |
+<Class id="qiskit.dagcircuit.DAGCircuit" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/dagcircuit/dagcircuit.py" signature="DAGCircuit">
+  Quantum circuit as a directed acyclic graph.
+
+  There are 3 types of nodes in the graph: inputs, outputs, and operations. The nodes are connected by directed edges that correspond to qubits and bits.
+
+  Create an empty circuit.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.__init__" name="__init__" signature="__init__()">
+    Create an empty circuit.
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                      |                                                                                                                                              |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.dagcircuit.DAGCircuit.__init__ "qiskit.dagcircuit.DAGCircuit.__init__")()                                                                       | Create an empty circuit.                                                                                                                     |
+  | [`add_creg`](#qiskit.dagcircuit.DAGCircuit.add_creg "qiskit.dagcircuit.DAGCircuit.add_creg")(creg)                                                                   | Add all wires in a classical register.                                                                                                       |
+  | [`add_qreg`](#qiskit.dagcircuit.DAGCircuit.add_qreg "qiskit.dagcircuit.DAGCircuit.add_qreg")(qreg)                                                                   | Add all wires in a quantum register.                                                                                                         |
+  | [`ancestors`](#qiskit.dagcircuit.DAGCircuit.ancestors "qiskit.dagcircuit.DAGCircuit.ancestors")(node)                                                                | Returns set of the ancestors of a node as DAGNodes.                                                                                          |
+  | [`apply_operation_back`](#qiskit.dagcircuit.DAGCircuit.apply_operation_back "qiskit.dagcircuit.DAGCircuit.apply_operation_back")(op\[, qargs, cargs, …])             | Apply an operation to the output of the circuit.                                                                                             |
+  | [`apply_operation_front`](#qiskit.dagcircuit.DAGCircuit.apply_operation_front "qiskit.dagcircuit.DAGCircuit.apply_operation_front")(op, qargs, cargs\[, …])          | Apply an operation to the input of the circuit.                                                                                              |
+  | [`bfs_successors`](#qiskit.dagcircuit.DAGCircuit.bfs_successors "qiskit.dagcircuit.DAGCircuit.bfs_successors")(node)                                                 | Returns an iterator of tuples of (DAGNode, \[DAGNodes]) where the DAGNode is the current node and \[DAGNode] is its successors in BFS order. |
+  | [`collect_runs`](#qiskit.dagcircuit.DAGCircuit.collect_runs "qiskit.dagcircuit.DAGCircuit.collect_runs")(namelist)                                                   | Return a set of non-conditional runs of “op” nodes with the given names.                                                                     |
+  | [`compose`](#qiskit.dagcircuit.DAGCircuit.compose "qiskit.dagcircuit.DAGCircuit.compose")(other\[, edge\_map, qubits, clbits, …])                                    | Compose the `other` circuit onto the output of this circuit.                                                                                 |
+  | [`compose_back`](#qiskit.dagcircuit.DAGCircuit.compose_back "qiskit.dagcircuit.DAGCircuit.compose_back")(input\_circuit\[, edge\_map])                               | DEPRECATED: use DAGCircuit.compose() instead.                                                                                                |
+  | [`count_ops`](#qiskit.dagcircuit.DAGCircuit.count_ops "qiskit.dagcircuit.DAGCircuit.count_ops")()                                                                    | Count the occurrences of operation names.                                                                                                    |
+  | [`count_ops_longest_path`](#qiskit.dagcircuit.DAGCircuit.count_ops_longest_path "qiskit.dagcircuit.DAGCircuit.count_ops_longest_path")()                             | Count the occurrences of operation names on the longest path.                                                                                |
+  | [`depth`](#qiskit.dagcircuit.DAGCircuit.depth "qiskit.dagcircuit.DAGCircuit.depth")()                                                                                | Return the circuit depth.                                                                                                                    |
+  | [`descendants`](#qiskit.dagcircuit.DAGCircuit.descendants "qiskit.dagcircuit.DAGCircuit.descendants")(node)                                                          | Returns set of the descendants of a node as DAGNodes.                                                                                        |
+  | [`draw`](#qiskit.dagcircuit.DAGCircuit.draw "qiskit.dagcircuit.DAGCircuit.draw")(\[scale, filename, style])                                                          | Draws the dag circuit.                                                                                                                       |
+  | [`edges`](#qiskit.dagcircuit.DAGCircuit.edges "qiskit.dagcircuit.DAGCircuit.edges")(\[nodes])                                                                        | Iterator for edge values and source and dest node                                                                                            |
+  | [`extend_back`](#qiskit.dagcircuit.DAGCircuit.extend_back "qiskit.dagcircuit.DAGCircuit.extend_back")(dag\[, edge\_map])                                             | DEPRECATED: Add dag at the end of self, using edge\_map.                                                                                     |
+  | [`from_networkx`](#qiskit.dagcircuit.DAGCircuit.from_networkx "qiskit.dagcircuit.DAGCircuit.from_networkx")(graph)                                                   | Take a networkx MultiDigraph and create a new DAGCircuit.                                                                                    |
+  | [`front_layer`](#qiskit.dagcircuit.DAGCircuit.front_layer "qiskit.dagcircuit.DAGCircuit.front_layer")()                                                              | Return a list of op nodes in the first layer of this dag.                                                                                    |
+  | [`gate_nodes`](#qiskit.dagcircuit.DAGCircuit.gate_nodes "qiskit.dagcircuit.DAGCircuit.gate_nodes")()                                                                 | Get the list of gate nodes in the dag.                                                                                                       |
+  | [`has_calibration_for`](#qiskit.dagcircuit.DAGCircuit.has_calibration_for "qiskit.dagcircuit.DAGCircuit.has_calibration_for")(node)                                  | Return True if the dag has a calibration defined for the node operation.                                                                     |
+  | [`idle_wires`](#qiskit.dagcircuit.DAGCircuit.idle_wires "qiskit.dagcircuit.DAGCircuit.idle_wires")(\[ignore])                                                        | Return idle wires.                                                                                                                           |
+  | [`layers`](#qiskit.dagcircuit.DAGCircuit.layers "qiskit.dagcircuit.DAGCircuit.layers")()                                                                             | Yield a shallow view on a layer of this DAGCircuit for all d layers of this circuit.                                                         |
+  | [`longest_path`](#qiskit.dagcircuit.DAGCircuit.longest_path "qiskit.dagcircuit.DAGCircuit.longest_path")()                                                           | Returns the longest path in the dag as a list of DAGNodes.                                                                                   |
+  | [`multi_qubit_ops`](#qiskit.dagcircuit.DAGCircuit.multi_qubit_ops "qiskit.dagcircuit.DAGCircuit.multi_qubit_ops")()                                                  | Get list of 3+ qubit operations.                                                                                                             |
+  | [`multigraph_layers`](#qiskit.dagcircuit.DAGCircuit.multigraph_layers "qiskit.dagcircuit.DAGCircuit.multigraph_layers")()                                            | Yield layers of the multigraph.                                                                                                              |
+  | [`named_nodes`](#qiskit.dagcircuit.DAGCircuit.named_nodes "qiskit.dagcircuit.DAGCircuit.named_nodes")(\*names)                                                       | Get the set of “op” nodes with the given name.                                                                                               |
+  | [`node`](#qiskit.dagcircuit.DAGCircuit.node "qiskit.dagcircuit.DAGCircuit.node")(node\_id)                                                                           | Get the node in the dag.                                                                                                                     |
+  | [`nodes`](#qiskit.dagcircuit.DAGCircuit.nodes "qiskit.dagcircuit.DAGCircuit.nodes")()                                                                                | Iterator for node values.                                                                                                                    |
+  | [`nodes_on_wire`](#qiskit.dagcircuit.DAGCircuit.nodes_on_wire "qiskit.dagcircuit.DAGCircuit.nodes_on_wire")(wire\[, only\_ops])                                      | Iterator for nodes that affect a given wire.                                                                                                 |
+  | [`num_clbits`](#qiskit.dagcircuit.DAGCircuit.num_clbits "qiskit.dagcircuit.DAGCircuit.num_clbits")()                                                                 | Return the total number of classical bits used by the circuit.                                                                               |
+  | [`num_qubits`](#qiskit.dagcircuit.DAGCircuit.num_qubits "qiskit.dagcircuit.DAGCircuit.num_qubits")()                                                                 | Return the total number of qubits used by the circuit.                                                                                       |
+  | [`num_tensor_factors`](#qiskit.dagcircuit.DAGCircuit.num_tensor_factors "qiskit.dagcircuit.DAGCircuit.num_tensor_factors")()                                         | Compute how many components the circuit can decompose into.                                                                                  |
+  | [`op_nodes`](#qiskit.dagcircuit.DAGCircuit.op_nodes "qiskit.dagcircuit.DAGCircuit.op_nodes")(\[op, include\_directives])                                             | Get the list of “op” nodes in the dag.                                                                                                       |
+  | [`predecessors`](#qiskit.dagcircuit.DAGCircuit.predecessors "qiskit.dagcircuit.DAGCircuit.predecessors")(node)                                                       | Returns iterator of the predecessors of a node as DAGNodes.                                                                                  |
+  | [`properties`](#qiskit.dagcircuit.DAGCircuit.properties "qiskit.dagcircuit.DAGCircuit.properties")()                                                                 | Return a dictionary of circuit properties.                                                                                                   |
+  | [`quantum_predecessors`](#qiskit.dagcircuit.DAGCircuit.quantum_predecessors "qiskit.dagcircuit.DAGCircuit.quantum_predecessors")(node)                               | Returns iterator of the predecessors of a node that are connected by a quantum edge as DAGNodes.                                             |
+  | [`quantum_successors`](#qiskit.dagcircuit.DAGCircuit.quantum_successors "qiskit.dagcircuit.DAGCircuit.quantum_successors")(node)                                     | Returns iterator of the successors of a node that are connected by a quantum edge as DAGNodes.                                               |
+  | [`remove_all_ops_named`](#qiskit.dagcircuit.DAGCircuit.remove_all_ops_named "qiskit.dagcircuit.DAGCircuit.remove_all_ops_named")(opname)                             | Remove all operation nodes with the given name.                                                                                              |
+  | [`remove_ancestors_of`](#qiskit.dagcircuit.DAGCircuit.remove_ancestors_of "qiskit.dagcircuit.DAGCircuit.remove_ancestors_of")(node)                                  | Remove all of the ancestor operation nodes of node.                                                                                          |
+  | [`remove_descendants_of`](#qiskit.dagcircuit.DAGCircuit.remove_descendants_of "qiskit.dagcircuit.DAGCircuit.remove_descendants_of")(node)                            | Remove all of the descendant operation nodes of node.                                                                                        |
+  | [`remove_nonancestors_of`](#qiskit.dagcircuit.DAGCircuit.remove_nonancestors_of "qiskit.dagcircuit.DAGCircuit.remove_nonancestors_of")(node)                         | Remove all of the non-ancestors operation nodes of node.                                                                                     |
+  | [`remove_nondescendants_of`](#qiskit.dagcircuit.DAGCircuit.remove_nondescendants_of "qiskit.dagcircuit.DAGCircuit.remove_nondescendants_of")(node)                   | Remove all of the non-descendants operation nodes of node.                                                                                   |
+  | [`remove_op_node`](#qiskit.dagcircuit.DAGCircuit.remove_op_node "qiskit.dagcircuit.DAGCircuit.remove_op_node")(node)                                                 | Remove an operation node n.                                                                                                                  |
+  | [`reverse_ops`](#qiskit.dagcircuit.DAGCircuit.reverse_ops "qiskit.dagcircuit.DAGCircuit.reverse_ops")()                                                              | Reverse the operations in the `self` circuit.                                                                                                |
+  | [`serial_layers`](#qiskit.dagcircuit.DAGCircuit.serial_layers "qiskit.dagcircuit.DAGCircuit.serial_layers")()                                                        | Yield a layer for all gates of this circuit.                                                                                                 |
+  | [`size`](#qiskit.dagcircuit.DAGCircuit.size "qiskit.dagcircuit.DAGCircuit.size")()                                                                                   | Return the number of operations.                                                                                                             |
+  | [`substitute_node`](#qiskit.dagcircuit.DAGCircuit.substitute_node "qiskit.dagcircuit.DAGCircuit.substitute_node")(node, op\[, inplace])                              | Replace a DAGNode with a single instruction.                                                                                                 |
+  | [`substitute_node_with_dag`](#qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag "qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag")(node, input\_dag\[, …]) | Replace one node with dag.                                                                                                                   |
+  | [`successors`](#qiskit.dagcircuit.DAGCircuit.successors "qiskit.dagcircuit.DAGCircuit.successors")(node)                                                             | Returns iterator of the successors of a node as DAGNodes.                                                                                    |
+  | [`threeQ_or_more_gates`](#qiskit.dagcircuit.DAGCircuit.threeQ_or_more_gates "qiskit.dagcircuit.DAGCircuit.threeQ_or_more_gates")()                                   | Get list of 3-or-more-qubit gates: (id, data).                                                                                               |
+  | [`to_networkx`](#qiskit.dagcircuit.DAGCircuit.to_networkx "qiskit.dagcircuit.DAGCircuit.to_networkx")()                                                              | Returns a copy of the DAGCircuit in networkx format.                                                                                         |
+  | [`topological_nodes`](#qiskit.dagcircuit.DAGCircuit.topological_nodes "qiskit.dagcircuit.DAGCircuit.topological_nodes")()                                            | Yield nodes in topological order.                                                                                                            |
+  | [`topological_op_nodes`](#qiskit.dagcircuit.DAGCircuit.topological_op_nodes "qiskit.dagcircuit.DAGCircuit.topological_op_nodes")()                                   | Yield op nodes in topological order.                                                                                                         |
+  | [`twoQ_gates`](#qiskit.dagcircuit.DAGCircuit.twoQ_gates "qiskit.dagcircuit.DAGCircuit.twoQ_gates")()                                                                 | Get list of 2-qubit gates.                                                                                                                   |
+  | [`two_qubit_ops`](#qiskit.dagcircuit.DAGCircuit.two_qubit_ops "qiskit.dagcircuit.DAGCircuit.two_qubit_ops")()                                                        | Get list of 2 qubit operations.                                                                                                              |
+  | [`width`](#qiskit.dagcircuit.DAGCircuit.width "qiskit.dagcircuit.DAGCircuit.width")()                                                                                | Return the total number of qubits + clbits used by the circuit.                                                                              |
+
+  ## Attributes
+
+  |                                                                                                          |                                                                 |
+  | -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+  | [`calibrations`](#qiskit.dagcircuit.DAGCircuit.calibrations "qiskit.dagcircuit.DAGCircuit.calibrations") | Return calibration dictionary.                                  |
+  | [`clbits`](#qiskit.dagcircuit.DAGCircuit.clbits "qiskit.dagcircuit.DAGCircuit.clbits")                   | Return a list of classical bits (as a list of Clbit instances). |
+  | [`global_phase`](#qiskit.dagcircuit.DAGCircuit.global_phase "qiskit.dagcircuit.DAGCircuit.global_phase") | Return the global phase of the circuit.                         |
+  | [`node_counter`](#qiskit.dagcircuit.DAGCircuit.node_counter "qiskit.dagcircuit.DAGCircuit.node_counter") | Returns the number of nodes in the dag.                         |
+  | [`qubits`](#qiskit.dagcircuit.DAGCircuit.qubits "qiskit.dagcircuit.DAGCircuit.qubits")                   | Return a list of qubits (as a list of Qubit instances).         |
+  | [`wires`](#qiskit.dagcircuit.DAGCircuit.wires "qiskit.dagcircuit.DAGCircuit.wires")                      | Return a list of the wires in order.                            |
+
+  ### add\_creg
 
-## Attributes
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_creg" name="add_creg" signature="add_creg(creg)">
+    Add all wires in a classical register.
+  </Function>
 
-|                                                                                                          |                                                                 |
-| -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [`calibrations`](#qiskit.dagcircuit.DAGCircuit.calibrations "qiskit.dagcircuit.DAGCircuit.calibrations") | Return calibration dictionary.                                  |
-| [`clbits`](#qiskit.dagcircuit.DAGCircuit.clbits "qiskit.dagcircuit.DAGCircuit.clbits")                   | Return a list of classical bits (as a list of Clbit instances). |
-| [`global_phase`](#qiskit.dagcircuit.DAGCircuit.global_phase "qiskit.dagcircuit.DAGCircuit.global_phase") | Return the global phase of the circuit.                         |
-| [`node_counter`](#qiskit.dagcircuit.DAGCircuit.node_counter "qiskit.dagcircuit.DAGCircuit.node_counter") | Returns the number of nodes in the dag.                         |
-| [`qubits`](#qiskit.dagcircuit.DAGCircuit.qubits "qiskit.dagcircuit.DAGCircuit.qubits")                   | Return a list of qubits (as a list of Qubit instances).         |
-| [`wires`](#qiskit.dagcircuit.DAGCircuit.wires "qiskit.dagcircuit.DAGCircuit.wires")                      | Return a list of the wires in order.                            |
+  ### add\_qreg
 
-### add\_creg
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_qreg" name="add_qreg" signature="add_qreg(qreg)">
+    Add all wires in a quantum register.
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.add_creg" />
+  ### ancestors
 
-`add_creg(creg)`
+  <Function id="qiskit.dagcircuit.DAGCircuit.ancestors" name="ancestors" signature="ancestors(node)">
+    Returns set of the ancestors of a node as DAGNodes.
+  </Function>
 
-Add all wires in a classical register.
+  ### apply\_operation\_back
 
-### add\_qreg
+  <Function id="qiskit.dagcircuit.DAGCircuit.apply_operation_back" name="apply_operation_back" signature="apply_operation_back(op, qargs=None, cargs=None, condition=None)">
+    Apply an operation to the output of the circuit.
 
-<span id="qiskit.dagcircuit.DAGCircuit.add_qreg" />
+    **Parameters**
 
-`add_qreg(qreg)`
+    *   **op** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – the operation associated with the DAG node
+    *   **qargs** (*list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
+    *   **cargs** (*list\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
+    *   **condition** (*tuple or None*) – DEPRACTED optional condition (ClassicalRegister, int)
 
-Add all wires in a quantum register.
+    **Returns**
 
-### ancestors
+    the current max node
 
-<span id="qiskit.dagcircuit.DAGCircuit.ancestors" />
+    **Return type**
 
-`ancestors(node)`
+    [DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")
 
-Returns set of the ancestors of a node as DAGNodes.
+    **Raises**
 
-### apply\_operation\_back
+    [**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if a leaf node is connected to multiple outputs
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.apply_operation_back" />
+  ### apply\_operation\_front
 
-`apply_operation_back(op, qargs=None, cargs=None, condition=None)`
+  <Function id="qiskit.dagcircuit.DAGCircuit.apply_operation_front" name="apply_operation_front" signature="apply_operation_front(op, qargs, cargs, condition=None)">
+    Apply an operation to the input of the circuit.
 
-Apply an operation to the output of the circuit.
+    **Parameters**
 
-**Parameters**
+    *   **op** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – the operation associated with the DAG node
+    *   **qargs** (*list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
+    *   **cargs** (*list\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
+    *   **condition** (*tuple or None*) – DEPRACTED optional condition (ClassicalRegister, int)
 
-*   **op** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – the operation associated with the DAG node
-*   **qargs** (*list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
-*   **cargs** (*list\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
-*   **condition** (*tuple or None*) – DEPRACTED optional condition (ClassicalRegister, int)
+    **Returns**
 
-**Returns**
+    the current max node
 
-the current max node
+    **Return type**
 
-**Return type**
+    [DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")
 
-[DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")
+    **Raises**
 
-**Raises**
+    [**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if initial nodes connected to multiple out edges
+  </Function>
 
-[**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if a leaf node is connected to multiple outputs
+  ### bfs\_successors
 
-### apply\_operation\_front
+  <Function id="qiskit.dagcircuit.DAGCircuit.bfs_successors" name="bfs_successors" signature="bfs_successors(node)">
+    Returns an iterator of tuples of (DAGNode, \[DAGNodes]) where the DAGNode is the current node and \[DAGNode] is its successors in BFS order.
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.apply_operation_front" />
+  ### calibrations
 
-`apply_operation_front(op, qargs, cargs, condition=None)`
+  <Function id="qiskit.dagcircuit.DAGCircuit.calibrations" name="calibrations" signature="property calibrations">
+    Return calibration dictionary.
 
-Apply an operation to the input of the circuit.
+    **The custom pulse definition of a given gate is of the form**
 
-**Parameters**
+    \{‘gate\_name’: \{(qubits, params): schedule}}
+  </Function>
 
-*   **op** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – the operation associated with the DAG node
-*   **qargs** (*list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
-*   **cargs** (*list\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
-*   **condition** (*tuple or None*) – DEPRACTED optional condition (ClassicalRegister, int)
+  ### clbits
 
-**Returns**
+  <Function id="qiskit.dagcircuit.DAGCircuit.clbits" name="clbits" signature="property clbits">
+    Return a list of classical bits (as a list of Clbit instances).
+  </Function>
 
-the current max node
+  ### collect\_runs
 
-**Return type**
+  <Function id="qiskit.dagcircuit.DAGCircuit.collect_runs" name="collect_runs" signature="collect_runs(namelist)">
+    Return a set of non-conditional runs of “op” nodes with the given names.
 
-[DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")
+    For example, “… h q\[0]; cx q\[0],q\[1]; cx q\[0],q\[1]; h q\[1]; ..” would produce the tuple of cx nodes as an element of the set returned from a call to collect\_runs(\[“cx”]). If instead the cx nodes were “cx q\[0],q\[1]; cx q\[1],q\[0];”, the method would still return the pair in a tuple. The namelist can contain names that are not in the circuit’s basis.
 
-**Raises**
+    Nodes must have only one successor to continue the run.
+  </Function>
 
-[**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if initial nodes connected to multiple out edges
+  ### compose
 
-### bfs\_successors
+  <Function id="qiskit.dagcircuit.DAGCircuit.compose" name="compose" signature="compose(other, edge_map=None, qubits=None, clbits=None, front=False, inplace=True)">
+    Compose the `other` circuit onto the output of this circuit.
 
-<span id="qiskit.dagcircuit.DAGCircuit.bfs_successors" />
+    A subset of input wires of `other` are mapped to a subset of output wires of this circuit.
 
-`bfs_successors(node)`
+    `other` can be narrower or of equal width to `self`.
 
-Returns an iterator of tuples of (DAGNode, \[DAGNodes]) where the DAGNode is the current node and \[DAGNode] is its successors in BFS order.
+    **Parameters**
 
-### calibrations
+    *   **other** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit to compose with self
+    *   **edge\_map** (*dict*) – DEPRECATED - a \{Bit: Bit} map from input wires of other to output wires of self (i.e. rhs->lhs). The key, value pairs can be either Qubit or Clbit mappings.
+    *   **qubits** (*list\[Qubit|int]*) – qubits of self to compose onto.
+    *   **clbits** (*list\[Clbit|int]*) – clbits of self to compose onto.
+    *   **front** (*bool*) – If True, front composition will be performed (not implemented yet)
+    *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
 
-<span id="qiskit.dagcircuit.DAGCircuit.calibrations" />
+    **Returns**
 
-`property calibrations`
+    the composed dag (returns None if inplace==True).
 
-Return calibration dictionary.
+    **Return type**
 
-**The custom pulse definition of a given gate is of the form**
+    [DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+    **Raises**
 
-### clbits
+    [**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if `other` is wider or there are duplicate edge mappings.
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.clbits" />
+  ### compose\_back
 
-`property clbits`
+  <Function id="qiskit.dagcircuit.DAGCircuit.compose_back" name="compose_back" signature="compose_back(input_circuit, edge_map=None)">
+    DEPRECATED: use DAGCircuit.compose() instead.
+  </Function>
 
-Return a list of classical bits (as a list of Clbit instances).
+  ### count\_ops
 
-### collect\_runs
+  <Function id="qiskit.dagcircuit.DAGCircuit.count_ops" name="count_ops" signature="count_ops()">
+    Count the occurrences of operation names.
 
-<span id="qiskit.dagcircuit.DAGCircuit.collect_runs" />
+    Returns a dictionary of counts keyed on the operation name.
+  </Function>
 
-`collect_runs(namelist)`
+  ### count\_ops\_longest\_path
 
-Return a set of non-conditional runs of “op” nodes with the given names.
+  <Function id="qiskit.dagcircuit.DAGCircuit.count_ops_longest_path" name="count_ops_longest_path" signature="count_ops_longest_path()">
+    Count the occurrences of operation names on the longest path.
 
-For example, “… h q\[0]; cx q\[0],q\[1]; cx q\[0],q\[1]; h q\[1]; ..” would produce the tuple of cx nodes as an element of the set returned from a call to collect\_runs(\[“cx”]). If instead the cx nodes were “cx q\[0],q\[1]; cx q\[1],q\[0];”, the method would still return the pair in a tuple. The namelist can contain names that are not in the circuit’s basis.
+    Returns a dictionary of counts keyed on the operation name.
+  </Function>
 
-Nodes must have only one successor to continue the run.
+  ### depth
 
-### compose
+  <Function id="qiskit.dagcircuit.DAGCircuit.depth" name="depth" signature="depth()">
+    Return the circuit depth. :returns: the circuit depth :rtype: int
 
-<span id="qiskit.dagcircuit.DAGCircuit.compose" />
+    **Raises**
 
-`compose(other, edge_map=None, qubits=None, clbits=None, front=False, inplace=True)`
+    [**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if not a directed acyclic graph
+  </Function>
 
-Compose the `other` circuit onto the output of this circuit.
+  ### descendants
 
-A subset of input wires of `other` are mapped to a subset of output wires of this circuit.
+  <Function id="qiskit.dagcircuit.DAGCircuit.descendants" name="descendants" signature="descendants(node)">
+    Returns set of the descendants of a node as DAGNodes.
+  </Function>
 
-`other` can be narrower or of equal width to `self`.
+  ### draw
 
-**Parameters**
+  <Function id="qiskit.dagcircuit.DAGCircuit.draw" name="draw" signature="draw(scale=0.7, filename=None, style='color')">
+    Draws the dag circuit.
 
-*   **other** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit to compose with self
-*   **edge\_map** (*dict*) – DEPRECATED - a \{Bit: Bit} map from input wires of other to output wires of self (i.e. rhs->lhs). The key, value pairs can be either Qubit or Clbit mappings.
-*   **qubits** (*list\[Qubit|int]*) – qubits of self to compose onto.
-*   **clbits** (*list\[Clbit|int]*) – clbits of self to compose onto.
-*   **front** (*bool*) – If True, front composition will be performed (not implemented yet)
-*   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
+    This function needs [pydot](https://github.com/erocarrera/pydot), which in turn needs [Graphviz](https://www.graphviz.org/) to be installed.
 
-**Returns**
+    **Parameters**
 
-the composed dag (returns None if inplace==True).
+    *   **scale** (*float*) – scaling factor
+    *   **filename** (*str*) – file path to save image to (format inferred from name)
+    *   **style** (*str*) – ‘plain’: B\&W graph; ‘color’ (default): color input/output/op nodes
 
-**Return type**
+    **Returns**
 
-[DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+    if in Jupyter notebook and not saving to file, otherwise None.
 
-**Raises**
+    **Return type**
 
-[**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if `other` is wider or there are duplicate edge mappings.
+    Ipython.display.Image
+  </Function>
 
-### compose\_back
+  ### edges
 
-<span id="qiskit.dagcircuit.DAGCircuit.compose_back" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.edges" name="edges" signature="edges(nodes=None)">
+    Iterator for edge values and source and dest node
 
-`compose_back(input_circuit, edge_map=None)`
+    This works by returning the output edges from the specified nodes. If no nodes are specified all edges from the graph are returned.
 
-DEPRECATED: use DAGCircuit.compose() instead.
+    **Parameters**
 
-### count\_ops
+    **nodes** (*DAGNode|list(*[*DAGNode*](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")) – Either a list of nodes or a single input node. If none is specified all edges are returned from the graph.
 
-<span id="qiskit.dagcircuit.DAGCircuit.count_ops" />
+    **Yields**
 
-`count_ops()`
+    *edge* –
 
-Count the occurrences of operation names.
+    **the edge in the same format as out\_edges the tuple**
 
-Returns a dictionary of counts keyed on the operation name.
+    (source node, destination node, edge data)
+  </Function>
 
-### count\_ops\_longest\_path
+  ### extend\_back
 
-<span id="qiskit.dagcircuit.DAGCircuit.count_ops_longest_path" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.extend_back" name="extend_back" signature="extend_back(dag, edge_map=None)">
+    DEPRECATED: Add dag at the end of self, using edge\_map.
+  </Function>
 
-`count_ops_longest_path()`
+  ### from\_networkx
 
-Count the occurrences of operation names on the longest path.
+  <Function id="qiskit.dagcircuit.DAGCircuit.from_networkx" name="from_networkx" signature="classmethod from_networkx(graph)">
+    Take a networkx MultiDigraph and create a new DAGCircuit.
 
-Returns a dictionary of counts keyed on the operation name.
+    **Parameters**
 
-### depth
+    **graph** (*networkx.MultiDiGraph*) – The graph to create a DAGCircuit object from. The format of this MultiDiGraph format must be in the same format as returned by to\_networkx.
 
-<span id="qiskit.dagcircuit.DAGCircuit.depth" />
+    **Returns**
 
-`depth()`
+    **The dagcircuit object created from the networkx**
 
-Return the circuit depth. :returns: the circuit depth :rtype: int
+    MultiDiGraph.
 
-**Raises**
+    **Return type**
 
-[**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if not a directed acyclic graph
+    [DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  </Function>
 
-### descendants
+  ### front\_layer
 
-<span id="qiskit.dagcircuit.DAGCircuit.descendants" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.front_layer" name="front_layer" signature="front_layer()">
+    Return a list of op nodes in the first layer of this dag.
+  </Function>
 
-`descendants(node)`
+  ### gate\_nodes
 
-Returns set of the descendants of a node as DAGNodes.
+  <Function id="qiskit.dagcircuit.DAGCircuit.gate_nodes" name="gate_nodes" signature="gate_nodes()">
+    Get the list of gate nodes in the dag.
 
-### draw
+    **Returns**
 
-<span id="qiskit.dagcircuit.DAGCircuit.draw" />
+    the list of DAGNodes that represent gates.
 
-`draw(scale=0.7, filename=None, style='color')`
+    **Return type**
 
-Draws the dag circuit.
+    list\[[DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")]
+  </Function>
 
-This function needs [pydot](https://github.com/erocarrera/pydot), which in turn needs [Graphviz](https://www.graphviz.org/) to be installed.
+  ### global\_phase
 
-**Parameters**
+  <Function id="qiskit.dagcircuit.DAGCircuit.global_phase" name="global_phase" signature="property global_phase">
+    Return the global phase of the circuit.
+  </Function>
 
-*   **scale** (*float*) – scaling factor
-*   **filename** (*str*) – file path to save image to (format inferred from name)
-*   **style** (*str*) – ‘plain’: B\&W graph; ‘color’ (default): color input/output/op nodes
+  ### has\_calibration\_for
 
-**Returns**
+  <Function id="qiskit.dagcircuit.DAGCircuit.has_calibration_for" name="has_calibration_for" signature="has_calibration_for(node)">
+    Return True if the dag has a calibration defined for the node operation. In this case, the operation does not need to be translated to the device basis.
+  </Function>
 
-if in Jupyter notebook and not saving to file, otherwise None.
+  ### idle\_wires
 
-**Return type**
+  <Function id="qiskit.dagcircuit.DAGCircuit.idle_wires" name="idle_wires" signature="idle_wires(ignore=None)">
+    Return idle wires.
 
-Ipython.display.Image
+    **Parameters**
 
-### edges
+    **ignore** (*list(str)*) – List of node names to ignore. Default: \[]
 
-<span id="qiskit.dagcircuit.DAGCircuit.edges" />
+    **Yields**
 
-`edges(nodes=None)`
+    *Bit* – Bit in idle wire.
+  </Function>
 
-Iterator for edge values and source and dest node
+  ### layers
 
-This works by returning the output edges from the specified nodes. If no nodes are specified all edges from the graph are returned.
+  <Function id="qiskit.dagcircuit.DAGCircuit.layers" name="layers" signature="layers()">
+    Yield a shallow view on a layer of this DAGCircuit for all d layers of this circuit.
 
-**Parameters**
+    A layer is a circuit whose gates act on disjoint qubits, i.e., a layer has depth 1. The total number of layers equals the circuit depth d. The layers are indexed from 0 to d-1 with the earliest layer at index 0. The layers are constructed using a greedy algorithm. Each returned layer is a dict containing \{“graph”: circuit graph, “partition”: list of qubit lists}.
 
-**nodes** (*DAGNode|list(*[*DAGNode*](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")) – Either a list of nodes or a single input node. If none is specified all edges are returned from the graph.
+    The returned layer contains new (but semantically equivalent) DAGNodes. These are not the same as nodes of the original dag, but are equivalent via DAGNode.semantic\_eq(node1, node2).
 
-**Yields**
+    TODO: Gates that use the same cbits will end up in different layers as this is currently implemented. This may not be the desired behavior.
+  </Function>
 
-*edge* –
+  ### longest\_path
 
-**the edge in the same format as out\_edges the tuple**
+  <Function id="qiskit.dagcircuit.DAGCircuit.longest_path" name="longest_path" signature="longest_path()">
+    Returns the longest path in the dag as a list of DAGNodes.
+  </Function>
 
-(source node, destination node, edge data)
+  ### multi\_qubit\_ops
 
-### extend\_back
+  <Function id="qiskit.dagcircuit.DAGCircuit.multi_qubit_ops" name="multi_qubit_ops" signature="multi_qubit_ops()">
+    Get list of 3+ qubit operations. Ignore directives like snapshot and barrier.
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.extend_back" />
+  ### multigraph\_layers
 
-`extend_back(dag, edge_map=None)`
+  <Function id="qiskit.dagcircuit.DAGCircuit.multigraph_layers" name="multigraph_layers" signature="multigraph_layers()">
+    Yield layers of the multigraph.
+  </Function>
 
-DEPRECATED: Add dag at the end of self, using edge\_map.
+  ### named\_nodes
 
-### from\_networkx
+  <Function id="qiskit.dagcircuit.DAGCircuit.named_nodes" name="named_nodes" signature="named_nodes(*names)">
+    Get the set of “op” nodes with the given name.
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.from_networkx" />
+  ### node
 
-`classmethod from_networkx(graph)`
+  <Function id="qiskit.dagcircuit.DAGCircuit.node" name="node" signature="node(node_id)">
+    Get the node in the dag.
 
-Take a networkx MultiDigraph and create a new DAGCircuit.
+    **Parameters**
 
-**Parameters**
+    **node\_id** (*int*) – Node identifier.
 
-**graph** (*networkx.MultiDiGraph*) – The graph to create a DAGCircuit object from. The format of this MultiDiGraph format must be in the same format as returned by to\_networkx.
+    **Returns**
 
-**Returns**
+    the node.
 
-**The dagcircuit object created from the networkx**
+    **Return type**
 
-MultiDiGraph.
+    node
+  </Function>
 
-**Return type**
+  ### node\_counter
 
-[DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  <Function id="qiskit.dagcircuit.DAGCircuit.node_counter" name="node_counter" signature="property node_counter">
+    Returns the number of nodes in the dag.
+  </Function>
 
-### front\_layer
+  ### nodes
 
-<span id="qiskit.dagcircuit.DAGCircuit.front_layer" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.nodes" name="nodes" signature="nodes()">
+    Iterator for node values.
 
-`front_layer()`
+    **Yields**
 
-Return a list of op nodes in the first layer of this dag.
+    *node* – the node.
+  </Function>
 
-### gate\_nodes
+  ### nodes\_on\_wire
 
-<span id="qiskit.dagcircuit.DAGCircuit.gate_nodes" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.nodes_on_wire" name="nodes_on_wire" signature="nodes_on_wire(wire, only_ops=False)">
+    Iterator for nodes that affect a given wire.
 
-`gate_nodes()`
+    **Parameters**
 
-Get the list of gate nodes in the dag.
+    *   **wire** (*Bit*) – the wire to be looked at.
+    *   **only\_ops** (*bool*) – True if only the ops nodes are wanted; otherwise, all nodes are returned.
 
-**Returns**
+    **Yields**
 
-the list of DAGNodes that represent gates.
+    *DAGNode* – the successive ops on the given wire
 
-**Return type**
+    **Raises**
 
-list\[[DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")]
+    [**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if the given wire doesn’t exist in the DAG
+  </Function>
 
-### global\_phase
+  ### num\_clbits
 
-<span id="qiskit.dagcircuit.DAGCircuit.global_phase" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.num_clbits" name="num_clbits" signature="num_clbits()">
+    Return the total number of classical bits used by the circuit.
+  </Function>
 
-`property global_phase`
+  ### num\_qubits
 
-Return the global phase of the circuit.
+  <Function id="qiskit.dagcircuit.DAGCircuit.num_qubits" name="num_qubits" signature="num_qubits()">
+    Return the total number of qubits used by the circuit. num\_qubits() replaces former use of width(). DAGCircuit.width() now returns qubits + clbits for consistency with Circuit.width() \[qiskit-terra #2564].
+  </Function>
 
-### has\_calibration\_for
+  ### num\_tensor\_factors
 
-<span id="qiskit.dagcircuit.DAGCircuit.has_calibration_for" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.num_tensor_factors" name="num_tensor_factors" signature="num_tensor_factors()">
+    Compute how many components the circuit can decompose into.
+  </Function>
 
-`has_calibration_for(node)`
+  ### op\_nodes
 
-Return True if the dag has a calibration defined for the node operation. In this case, the operation does not need to be translated to the device basis.
+  <Function id="qiskit.dagcircuit.DAGCircuit.op_nodes" name="op_nodes" signature="op_nodes(op=None, include_directives=True)">
+    Get the list of “op” nodes in the dag.
 
-### idle\_wires
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGCircuit.idle_wires" />
+    *   **op** (*Type*) – [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") subclass op nodes to return. If None, return all op nodes.
+    *   **include\_directives** (*bool*) – include barrier, snapshot etc.
 
-`idle_wires(ignore=None)`
+    **Returns**
 
-Return idle wires.
+    the list of node ids containing the given op.
 
-**Parameters**
+    **Return type**
 
-**ignore** (*list(str)*) – List of node names to ignore. Default: \[]
+    list\[[DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")]
+  </Function>
 
-**Yields**
+  ### predecessors
 
-*Bit* – Bit in idle wire.
+  <Function id="qiskit.dagcircuit.DAGCircuit.predecessors" name="predecessors" signature="predecessors(node)">
+    Returns iterator of the predecessors of a node as DAGNodes.
+  </Function>
 
-### layers
+  ### properties
 
-<span id="qiskit.dagcircuit.DAGCircuit.layers" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.properties" name="properties" signature="properties()">
+    Return a dictionary of circuit properties.
+  </Function>
 
-`layers()`
+  ### quantum\_predecessors
 
-Yield a shallow view on a layer of this DAGCircuit for all d layers of this circuit.
+  <Function id="qiskit.dagcircuit.DAGCircuit.quantum_predecessors" name="quantum_predecessors" signature="quantum_predecessors(node)">
+    Returns iterator of the predecessors of a node that are connected by a quantum edge as DAGNodes.
+  </Function>
 
-A layer is a circuit whose gates act on disjoint qubits, i.e., a layer has depth 1. The total number of layers equals the circuit depth d. The layers are indexed from 0 to d-1 with the earliest layer at index 0. The layers are constructed using a greedy algorithm. Each returned layer is a dict containing \{“graph”: circuit graph, “partition”: list of qubit lists}.
+  ### quantum\_successors
 
-The returned layer contains new (but semantically equivalent) DAGNodes. These are not the same as nodes of the original dag, but are equivalent via DAGNode.semantic\_eq(node1, node2).
+  <Function id="qiskit.dagcircuit.DAGCircuit.quantum_successors" name="quantum_successors" signature="quantum_successors(node)">
+    Returns iterator of the successors of a node that are connected by a quantum edge as DAGNodes.
+  </Function>
 
-TODO: Gates that use the same cbits will end up in different layers as this is currently implemented. This may not be the desired behavior.
+  ### qubits
 
-### longest\_path
+  <Function id="qiskit.dagcircuit.DAGCircuit.qubits" name="qubits" signature="property qubits">
+    Return a list of qubits (as a list of Qubit instances).
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.longest_path" />
+  ### remove\_all\_ops\_named
 
-`longest_path()`
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_all_ops_named" name="remove_all_ops_named" signature="remove_all_ops_named(opname)">
+    Remove all operation nodes with the given name.
+  </Function>
 
-Returns the longest path in the dag as a list of DAGNodes.
+  ### remove\_ancestors\_of
 
-### multi\_qubit\_ops
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_ancestors_of" name="remove_ancestors_of" signature="remove_ancestors_of(node)">
+    Remove all of the ancestor operation nodes of node.
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.multi_qubit_ops" />
+  ### remove\_descendants\_of
 
-`multi_qubit_ops()`
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_descendants_of" name="remove_descendants_of" signature="remove_descendants_of(node)">
+    Remove all of the descendant operation nodes of node.
+  </Function>
 
-Get list of 3+ qubit operations. Ignore directives like snapshot and barrier.
+  ### remove\_nonancestors\_of
 
-### multigraph\_layers
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_nonancestors_of" name="remove_nonancestors_of" signature="remove_nonancestors_of(node)">
+    Remove all of the non-ancestors operation nodes of node.
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.multigraph_layers" />
+  ### remove\_nondescendants\_of
 
-`multigraph_layers()`
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_nondescendants_of" name="remove_nondescendants_of" signature="remove_nondescendants_of(node)">
+    Remove all of the non-descendants operation nodes of node.
+  </Function>
 
-Yield layers of the multigraph.
+  ### remove\_op\_node
 
-### named\_nodes
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_op_node" name="remove_op_node" signature="remove_op_node(node)">
+    Remove an operation node n.
 
-<span id="qiskit.dagcircuit.DAGCircuit.named_nodes" />
+    Add edges from predecessors to successors.
+  </Function>
 
-`named_nodes(*names)`
+  ### reverse\_ops
 
-Get the set of “op” nodes with the given name.
+  <Function id="qiskit.dagcircuit.DAGCircuit.reverse_ops" name="reverse_ops" signature="reverse_ops()">
+    Reverse the operations in the `self` circuit.
 
-### node
+    **Returns**
 
-<span id="qiskit.dagcircuit.DAGCircuit.node" />
+    the reversed dag.
 
-`node(node_id)`
+    **Return type**
 
-Get the node in the dag.
+    [DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  </Function>
 
-**Parameters**
+  ### serial\_layers
 
-**node\_id** (*int*) – Node identifier.
+  <Function id="qiskit.dagcircuit.DAGCircuit.serial_layers" name="serial_layers" signature="serial_layers()">
+    Yield a layer for all gates of this circuit.
 
-**Returns**
+    A serial layer is a circuit with one gate. The layers have the same structure as in layers().
+  </Function>
 
-the node.
+  ### size
 
-**Return type**
+  <Function id="qiskit.dagcircuit.DAGCircuit.size" name="size" signature="size()">
+    Return the number of operations.
+  </Function>
 
-node
+  ### substitute\_node
 
-### node\_counter
+  <Function id="qiskit.dagcircuit.DAGCircuit.substitute_node" name="substitute_node" signature="substitute_node(node, op, inplace=False)">
+    Replace a DAGNode with a single instruction. qargs, cargs and conditions for the new instruction will be inferred from the node to be replaced. The new instruction will be checked to match the shape of the replaced instruction.
 
-<span id="qiskit.dagcircuit.DAGCircuit.node_counter" />
+    **Parameters**
 
-`property node_counter`
+    *   **node** ([*DAGNode*](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")) – Node to be replaced
+    *   **op** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instance to be added to the DAG
+    *   **inplace** (*bool*) – Optional, default False. If True, existing DAG node will be modified to include op. Otherwise, a new DAG node will be used.
 
-Returns the number of nodes in the dag.
+    **Returns**
 
-### nodes
+    the new node containing the added instruction.
 
-<span id="qiskit.dagcircuit.DAGCircuit.nodes" />
+    **Return type**
 
-`nodes()`
+    [DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")
 
-Iterator for node values.
+    **Raises**
 
-**Yields**
+    *   [**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – If replacement instruction was incompatible with
+    *   **location of target node.** –
+  </Function>
 
-*node* – the node.
+  ### substitute\_node\_with\_dag
 
-### nodes\_on\_wire
+  <Function id="qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag" name="substitute_node_with_dag" signature="substitute_node_with_dag(node, input_dag, wires=None)">
+    Replace one node with dag.
 
-<span id="qiskit.dagcircuit.DAGCircuit.nodes_on_wire" />
+    **Parameters**
 
-`nodes_on_wire(wire, only_ops=False)`
+    *   **node** ([*DAGNode*](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")) – node to substitute
+    *   **input\_dag** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit that will substitute the node
+    *   **wires** (*list\[Bit]*) – gives an order for (qu)bits in the input circuit. This order gets matched to the node wires by qargs first, then cargs, then conditions.
 
-Iterator for nodes that affect a given wire.
+    **Raises**
 
-**Parameters**
+    [**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if met with unexpected predecessor/successors
+  </Function>
 
-*   **wire** (*Bit*) – the wire to be looked at.
-*   **only\_ops** (*bool*) – True if only the ops nodes are wanted; otherwise, all nodes are returned.
+  ### successors
 
-**Yields**
+  <Function id="qiskit.dagcircuit.DAGCircuit.successors" name="successors" signature="successors(node)">
+    Returns iterator of the successors of a node as DAGNodes.
+  </Function>
 
-*DAGNode* – the successive ops on the given wire
+  ### threeQ\_or\_more\_gates
 
-**Raises**
+  <Function id="qiskit.dagcircuit.DAGCircuit.threeQ_or_more_gates" name="threeQ_or_more_gates" signature="threeQ_or_more_gates()">
+    Get list of 3-or-more-qubit gates: (id, data).
+  </Function>
 
-[**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if the given wire doesn’t exist in the DAG
+  ### to\_networkx
 
-### num\_clbits
+  <Function id="qiskit.dagcircuit.DAGCircuit.to_networkx" name="to_networkx" signature="to_networkx()">
+    Returns a copy of the DAGCircuit in networkx format.
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.num_clbits" />
+  ### topological\_nodes
 
-`num_clbits()`
+  <Function id="qiskit.dagcircuit.DAGCircuit.topological_nodes" name="topological_nodes" signature="topological_nodes()">
+    Yield nodes in topological order.
 
-Return the total number of classical bits used by the circuit.
+    **Returns**
 
-### num\_qubits
+    node in topological order
 
-<span id="qiskit.dagcircuit.DAGCircuit.num_qubits" />
+    **Return type**
 
-`num_qubits()`
+    generator([DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode"))
+  </Function>
 
-Return the total number of qubits used by the circuit. num\_qubits() replaces former use of width(). DAGCircuit.width() now returns qubits + clbits for consistency with Circuit.width() \[qiskit-terra #2564].
+  ### topological\_op\_nodes
 
-### num\_tensor\_factors
+  <Function id="qiskit.dagcircuit.DAGCircuit.topological_op_nodes" name="topological_op_nodes" signature="topological_op_nodes()">
+    Yield op nodes in topological order.
 
-<span id="qiskit.dagcircuit.DAGCircuit.num_tensor_factors" />
+    **Returns**
 
-`num_tensor_factors()`
+    op node in topological order
 
-Compute how many components the circuit can decompose into.
+    **Return type**
 
-### op\_nodes
+    generator([DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode"))
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.op_nodes" />
+  ### twoQ\_gates
 
-`op_nodes(op=None, include_directives=True)`
+  <Function id="qiskit.dagcircuit.DAGCircuit.twoQ_gates" name="twoQ_gates" signature="twoQ_gates()">
+    Get list of 2-qubit gates. Ignore snapshot, barriers, and the like.
+  </Function>
 
-Get the list of “op” nodes in the dag.
+  ### two\_qubit\_ops
 
-**Parameters**
+  <Function id="qiskit.dagcircuit.DAGCircuit.two_qubit_ops" name="two_qubit_ops" signature="two_qubit_ops()">
+    Get list of 2 qubit operations. Ignore directives like snapshot and barrier.
+  </Function>
 
-*   **op** (*Type*) – [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") subclass op nodes to return. If None, return all op nodes.
-*   **include\_directives** (*bool*) – include barrier, snapshot etc.
+  ### width
 
-**Returns**
+  <Function id="qiskit.dagcircuit.DAGCircuit.width" name="width" signature="width()">
+    Return the total number of qubits + clbits used by the circuit. This function formerly returned the number of qubits by the calculation return len(self.\_wires) - self.num\_clbits() but was changed by issue #2564 to return number of qubits + clbits with the new function DAGCircuit.num\_qubits replacing the former semantic of DAGCircuit.width().
+  </Function>
 
-the list of node ids containing the given op.
+  ### wires
 
-**Return type**
-
-list\[[DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")]
-
-### predecessors
-
-<span id="qiskit.dagcircuit.DAGCircuit.predecessors" />
-
-`predecessors(node)`
-
-Returns iterator of the predecessors of a node as DAGNodes.
-
-### properties
-
-<span id="qiskit.dagcircuit.DAGCircuit.properties" />
-
-`properties()`
-
-Return a dictionary of circuit properties.
-
-### quantum\_predecessors
-
-<span id="qiskit.dagcircuit.DAGCircuit.quantum_predecessors" />
-
-`quantum_predecessors(node)`
-
-Returns iterator of the predecessors of a node that are connected by a quantum edge as DAGNodes.
-
-### quantum\_successors
-
-<span id="qiskit.dagcircuit.DAGCircuit.quantum_successors" />
-
-`quantum_successors(node)`
-
-Returns iterator of the successors of a node that are connected by a quantum edge as DAGNodes.
-
-### qubits
-
-<span id="qiskit.dagcircuit.DAGCircuit.qubits" />
-
-`property qubits`
-
-Return a list of qubits (as a list of Qubit instances).
-
-### remove\_all\_ops\_named
-
-<span id="qiskit.dagcircuit.DAGCircuit.remove_all_ops_named" />
-
-`remove_all_ops_named(opname)`
-
-Remove all operation nodes with the given name.
-
-### remove\_ancestors\_of
-
-<span id="qiskit.dagcircuit.DAGCircuit.remove_ancestors_of" />
-
-`remove_ancestors_of(node)`
-
-Remove all of the ancestor operation nodes of node.
-
-### remove\_descendants\_of
-
-<span id="qiskit.dagcircuit.DAGCircuit.remove_descendants_of" />
-
-`remove_descendants_of(node)`
-
-Remove all of the descendant operation nodes of node.
-
-### remove\_nonancestors\_of
-
-<span id="qiskit.dagcircuit.DAGCircuit.remove_nonancestors_of" />
-
-`remove_nonancestors_of(node)`
-
-Remove all of the non-ancestors operation nodes of node.
-
-### remove\_nondescendants\_of
-
-<span id="qiskit.dagcircuit.DAGCircuit.remove_nondescendants_of" />
-
-`remove_nondescendants_of(node)`
-
-Remove all of the non-descendants operation nodes of node.
-
-### remove\_op\_node
-
-<span id="qiskit.dagcircuit.DAGCircuit.remove_op_node" />
-
-`remove_op_node(node)`
-
-Remove an operation node n.
-
-Add edges from predecessors to successors.
-
-### reverse\_ops
-
-<span id="qiskit.dagcircuit.DAGCircuit.reverse_ops" />
-
-`reverse_ops()`
-
-Reverse the operations in the `self` circuit.
-
-**Returns**
-
-the reversed dag.
-
-**Return type**
-
-[DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-### serial\_layers
-
-<span id="qiskit.dagcircuit.DAGCircuit.serial_layers" />
-
-`serial_layers()`
-
-Yield a layer for all gates of this circuit.
-
-A serial layer is a circuit with one gate. The layers have the same structure as in layers().
-
-### size
-
-<span id="qiskit.dagcircuit.DAGCircuit.size" />
-
-`size()`
-
-Return the number of operations.
-
-### substitute\_node
-
-<span id="qiskit.dagcircuit.DAGCircuit.substitute_node" />
-
-`substitute_node(node, op, inplace=False)`
-
-Replace a DAGNode with a single instruction. qargs, cargs and conditions for the new instruction will be inferred from the node to be replaced. The new instruction will be checked to match the shape of the replaced instruction.
-
-**Parameters**
-
-*   **node** ([*DAGNode*](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")) – Node to be replaced
-*   **op** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instance to be added to the DAG
-*   **inplace** (*bool*) – Optional, default False. If True, existing DAG node will be modified to include op. Otherwise, a new DAG node will be used.
-
-**Returns**
-
-the new node containing the added instruction.
-
-**Return type**
-
-[DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")
-
-**Raises**
-
-*   [**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – If replacement instruction was incompatible with
-*   **location of target node.** –
-
-### substitute\_node\_with\_dag
-
-<span id="qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag" />
-
-`substitute_node_with_dag(node, input_dag, wires=None)`
-
-Replace one node with dag.
-
-**Parameters**
-
-*   **node** ([*DAGNode*](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")) – node to substitute
-*   **input\_dag** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit that will substitute the node
-*   **wires** (*list\[Bit]*) – gives an order for (qu)bits in the input circuit. This order gets matched to the node wires by qargs first, then cargs, then conditions.
-
-**Raises**
-
-[**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if met with unexpected predecessor/successors
-
-### successors
-
-<span id="qiskit.dagcircuit.DAGCircuit.successors" />
-
-`successors(node)`
-
-Returns iterator of the successors of a node as DAGNodes.
-
-### threeQ\_or\_more\_gates
-
-<span id="qiskit.dagcircuit.DAGCircuit.threeQ_or_more_gates" />
-
-`threeQ_or_more_gates()`
-
-Get list of 3-or-more-qubit gates: (id, data).
-
-### to\_networkx
-
-<span id="qiskit.dagcircuit.DAGCircuit.to_networkx" />
-
-`to_networkx()`
-
-Returns a copy of the DAGCircuit in networkx format.
-
-### topological\_nodes
-
-<span id="qiskit.dagcircuit.DAGCircuit.topological_nodes" />
-
-`topological_nodes()`
-
-Yield nodes in topological order.
-
-**Returns**
-
-node in topological order
-
-**Return type**
-
-generator([DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode"))
-
-### topological\_op\_nodes
-
-<span id="qiskit.dagcircuit.DAGCircuit.topological_op_nodes" />
-
-`topological_op_nodes()`
-
-Yield op nodes in topological order.
-
-**Returns**
-
-op node in topological order
-
-**Return type**
-
-generator([DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode"))
-
-### twoQ\_gates
-
-<span id="qiskit.dagcircuit.DAGCircuit.twoQ_gates" />
-
-`twoQ_gates()`
-
-Get list of 2-qubit gates. Ignore snapshot, barriers, and the like.
-
-### two\_qubit\_ops
-
-<span id="qiskit.dagcircuit.DAGCircuit.two_qubit_ops" />
-
-`two_qubit_ops()`
-
-Get list of 2 qubit operations. Ignore directives like snapshot and barrier.
-
-### width
-
-<span id="qiskit.dagcircuit.DAGCircuit.width" />
-
-`width()`
-
-Return the total number of qubits + clbits used by the circuit. This function formerly returned the number of qubits by the calculation return len(self.\_wires) - self.num\_clbits() but was changed by issue #2564 to return number of qubits + clbits with the new function DAGCircuit.num\_qubits replacing the former semantic of DAGCircuit.width().
-
-### wires
-
-<span id="qiskit.dagcircuit.DAGCircuit.wires" />
-
-`property wires`
-
-Return a list of the wires in order.
+  <Function id="qiskit.dagcircuit.DAGCircuit.wires" name="wires" signature="property wires">
+    Return a list of the wires in order.
+  </Function>
+</Class>
 

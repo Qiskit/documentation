@@ -8,306 +8,282 @@ python_api_name: qiskit.circuit.library.U2Gate
 
 # U2Gate
 
-<span id="qiskit.circuit.library.U2Gate" />
+<Class id="qiskit.circuit.library.U2Gate" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u2.py" signature="U2Gate(phi, lam, label=None)">
+  Single-qubit rotation about the X+Z axis.
 
-`U2Gate(phi, lam, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u2.py "view source code")
+  Implemented using one X90 pulse on IBM Quantum systems:
 
-Single-qubit rotation about the X+Z axis.
+  $$
+  U2(\phi, \lambda) = RZ(\phi+\pi/2).RX(\frac{\pi}{2}).RZ(\lambda-\pi/2)
+  $$
 
-Implemented using one X90 pulse on IBM Quantum systems:
+  **Circuit symbol:**
 
-$$
-U2(\phi, \lambda) = RZ(\phi+\pi/2).RX(\frac{\pi}{2}).RZ(\lambda-\pi/2)
-$$
+  ```python
+       ┌─────────┐
+  q_0: ┤ U2(φ,λ) ├
+       └─────────┘
+  ```
 
-**Circuit symbol:**
+  **Matrix Representation:**
 
-```python
-     ┌─────────┐
-q_0: ┤ U2(φ,λ) ├
-     └─────────┘
-```
+  $$
+  \begin{split}U2(\phi, \lambda) = \frac{1}{\sqrt{2}}
+      \begin{pmatrix}
+          1          & -e^{i\lambda} \\
+          e^{i\phi} & e^{i(\phi+\lambda)}
+      \end{pmatrix}\end{split}
+  $$
 
-**Matrix Representation:**
+  **Examples:**
 
-$$
-\begin{split}U2(\phi, \lambda) = \frac{1}{\sqrt{2}}
-    \begin{pmatrix}
-        1          & -e^{i\lambda} \\
-        e^{i\phi} & e^{i(\phi+\lambda)}
-    \end{pmatrix}\end{split}
-$$
+  $$
+  U2(0, \pi) = H
+  $$
 
-**Examples:**
+  <Admonition title="See also" type="note">
+    `U3Gate`: U3 is a generalization of U2 that covers all single-qubit rotations, using two X90 pulses.
+  </Admonition>
 
-$$
-U2(0, \pi) = H
-$$
+  Create new U2 gate.
 
-<Admonition title="See also" type="note">
-  `U3Gate`: U3 is a generalization of U2 that covers all single-qubit rotations, using two X90 pulses.
-</Admonition>
+  ## Attributes
 
-Create new U2 gate.
+  ### decompositions
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.U2Gate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### decompositions
+  ### definition
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.U2Gate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### definition
+  ### label
 
-Return definition in terms of other basic gates.
+  <Attribute id="qiskit.circuit.library.U2Gate.label" signature="str">
+    Return gate label
 
-### label
+    **Return type**
 
-<span id="qiskit.circuit.library.U2Gate.label" />
+    `str`
+  </Attribute>
 
-`str`
+  ### params
 
-Return gate label
+  <Attribute id="qiskit.circuit.library.U2Gate.params">
+    return instruction params.
+  </Attribute>
 
-**Return type**
+  ## Methods
 
-`str`
+  ### add\_decomposition
 
-### params
+  <Function id="qiskit.circuit.library.U2Gate.add_decomposition" signature="U2Gate.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-return instruction params.
+  ### assemble
 
-## Methods
+  <Function id="qiskit.circuit.library.U2Gate.assemble" signature="U2Gate.assemble()">
+    Assemble a QasmQobjInstruction
 
-### add\_decomposition
+    **Return type**
 
-<span id="qiskit.circuit.library.U2Gate.add_decomposition" />
+    [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  </Function>
 
-`U2Gate.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.circuit.library.U2Gate.broadcast_arguments" signature="U2Gate.broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-### assemble
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-<span id="qiskit.circuit.library.U2Gate.assemble" />
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-`U2Gate.assemble()`
+    The general broadcasting rules are:
 
-Assemble a QasmQobjInstruction
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-**Return type**
+    **Parameters**
 
-[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+    *   **qargs** (`List`) – List of quantum bit arguments.
+    *   **cargs** (`List`) – List of classical bit arguments.
 
-### broadcast\_arguments
+    **Return type**
 
-<span id="qiskit.circuit.library.U2Gate.broadcast_arguments" />
+    `Tuple`\[`List`, `List`]
 
-`U2Gate.broadcast_arguments(qargs, cargs)`
+    **Returns**
 
-Validation and handling of the arguments and its relationship.
+    A tuple with single arguments.
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+    **Raises**
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-The general broadcasting rules are:
+  ### c\_if
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+  <Function id="qiskit.circuit.library.U2Gate.c_if" signature="U2Gate.c_if(classical, val)">
+    Add classical condition on register classical and value val.
+  </Function>
 
-**Parameters**
+  ### control
 
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
+  <Function id="qiskit.circuit.library.U2Gate.control" signature="U2Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
-**Return type**
+    **Parameters**
 
-`Tuple`\[`List`, `List`]
+    *   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
+    *   **label** (`Optional`\[`str`]) – optional gate label
+    *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
 
-**Returns**
+    **Returns**
 
-A tuple with single arguments.
+    Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
 
-**Raises**
+    **Return type**
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    [qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
-### c\_if
+    **Raises**
 
-<span id="qiskit.circuit.library.U2Gate.c_if" />
+    **QiskitError** – unrecognized mode or invalid ctrl\_state
+  </Function>
 
-`U2Gate.c_if(classical, val)`
+  ### copy
 
-Add classical condition on register classical and value val.
+  <Function id="qiskit.circuit.library.U2Gate.copy" signature="U2Gate.copy(name=None)">
+    Copy of the instruction.
 
-### control
+    **Parameters**
 
-<span id="qiskit.circuit.library.U2Gate.control" />
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-`U2Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    **Returns**
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+    **a copy of the current instruction, with the name**
 
-**Parameters**
+    updated if it was provided
 
-*   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
-*   **label** (`Optional`\[`str`]) – optional gate label
-*   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
+    **Return type**
 
-**Returns**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
+  ### inverse
 
-**Return type**
+  <Function id="qiskit.circuit.library.U2Gate.inverse" signature="U2Gate.inverse()">
+    Return inverted U2 gate.
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+    $U2(\phi, \lambda)^{\dagger} =U2(-\lambda-\pi, -\phi+\pi)$)
+  </Function>
 
-**Raises**
+  ### is\_parameterized
 
-**QiskitError** – unrecognized mode or invalid ctrl\_state
+  <Function id="qiskit.circuit.library.U2Gate.is_parameterized" signature="U2Gate.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-### copy
+  ### mirror
 
-<span id="qiskit.circuit.library.U2Gate.copy" />
+  <Function id="qiskit.circuit.library.U2Gate.mirror" signature="U2Gate.mirror()">
+    For a composite instruction, reverse the order of sub-gates.
 
-`U2Gate.copy(name=None)`
+    This is done by recursively mirroring all sub-instructions. It does not invert any gate.
 
-Copy of the instruction.
+    **Returns**
 
-**Parameters**
+    a fresh gate with sub-gates reversed
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    **Return type**
 
-**Returns**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**a copy of the current instruction, with the name**
+  ### power
 
-updated if it was provided
+  <Function id="qiskit.circuit.library.U2Gate.power" signature="U2Gate.power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-**Return type**
+    **Parameters**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **exponent** (*float*) – Gate^exponent
 
-### inverse
+    **Returns**
 
-<span id="qiskit.circuit.library.U2Gate.inverse" />
+    To which to\_matrix is self.to\_matrix^exponent.
 
-`U2Gate.inverse()`
+    **Return type**
 
-Return inverted U2 gate.
+    [qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-$U2(\phi, \lambda)^{\dagger} =U2(-\lambda-\pi, -\phi+\pi)$)
+    **Raises**
 
-### is\_parameterized
+    **CircuitError** – If Gate is not unitary
+  </Function>
 
-<span id="qiskit.circuit.library.U2Gate.is_parameterized" />
+  ### qasm
 
-`U2Gate.is_parameterized()`
+  <Function id="qiskit.circuit.library.U2Gate.qasm" signature="U2Gate.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-Return True .IFF. instruction is parameterized else False
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-### mirror
+  ### repeat
 
-<span id="qiskit.circuit.library.U2Gate.mirror" />
+  <Function id="qiskit.circuit.library.U2Gate.repeat" signature="U2Gate.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-`U2Gate.mirror()`
+    **Parameters**
 
-For a composite instruction, reverse the order of sub-gates.
+    **n** (*int*) – Number of times to repeat the instruction
 
-This is done by recursively mirroring all sub-instructions. It does not invert any gate.
+    **Returns**
 
-**Returns**
+    Containing the definition.
 
-a fresh gate with sub-gates reversed
+    **Return type**
 
-**Return type**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Raises**
 
-### power
+    **CircuitError** – If n \< 1.
+  </Function>
 
-<span id="qiskit.circuit.library.U2Gate.power" />
+  ### to\_matrix
 
-`U2Gate.power(exponent)`
-
-Creates a unitary gate as gate^exponent.
-
-**Parameters**
-
-**exponent** (*float*) – Gate^exponent
-
-**Returns**
-
-To which to\_matrix is self.to\_matrix^exponent.
-
-**Return type**
-
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
-
-**Raises**
-
-**CircuitError** – If Gate is not unitary
-
-### qasm
-
-<span id="qiskit.circuit.library.U2Gate.qasm" />
-
-`U2Gate.qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.circuit.library.U2Gate.repeat" />
-
-`U2Gate.repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### to\_matrix
-
-<span id="qiskit.circuit.library.U2Gate.to_matrix" />
-
-`U2Gate.to_matrix()`
-
-Return a Numpy.array for the U2 gate.
+  <Function id="qiskit.circuit.library.U2Gate.to_matrix" signature="U2Gate.to_matrix()">
+    Return a Numpy.array for the U2 gate.
+  </Function>
+</Class>
 

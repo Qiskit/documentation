@@ -8,68 +8,66 @@ python_api_name: qiskit.chemistry.drivers.BaseDriver
 
 # BaseDriver
 
-<span id="qiskit.chemistry.drivers.BaseDriver" />
+<Class id="qiskit.chemistry.drivers.BaseDriver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/base_driver.py" signature="BaseDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)">
+  Bases: `abc.ABC`
 
-`BaseDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/base_driver.py "view source code")
+  Base class for Qiskit’s chemistry drivers.
 
-Bases: `abc.ABC`
+  **Parameters**
 
-Base class for Qiskit’s chemistry drivers.
+  *   **molecule** (`Optional`\[`Molecule`]) – molecule
+  *   **basis** (`str`) – basis set
+  *   **hf\_method** (`str`) – Hartree-Fock Method type
+  *   **supports\_molecule** (`bool`) – Indicates if driver supports molecule
 
-**Parameters**
+  **Raises**
 
-*   **molecule** (`Optional`\[`Molecule`]) – molecule
-*   **basis** (`str`) – basis set
-*   **hf\_method** (`str`) – Hartree-Fock Method type
-*   **supports\_molecule** (`bool`) – Indicates if driver supports molecule
+  [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Molecule passed but driver doesn’t support it.
 
-**Raises**
+  ## Attributes
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Molecule passed but driver doesn’t support it.
+  ### basis
 
-## Attributes
+  <Attribute id="qiskit.chemistry.drivers.BaseDriver.basis" name="basis">
+    return basis
 
-<span id="qiskit.chemistry.drivers.BaseDriver.basis" />
+    **Return type**
 
-### basis
+    `str`
+  </Attribute>
 
-return basis
+  ### hf\_method
 
-**Return type**
+  <Attribute id="qiskit.chemistry.drivers.BaseDriver.hf_method" name="hf_method">
+    return Hartree-Fock method
 
-`str`
+    **Return type**
 
-<span id="qiskit.chemistry.drivers.BaseDriver.hf_method" />
+    `str`
+  </Attribute>
 
-### hf\_method
+  ### molecule
 
-return Hartree-Fock method
+  <Attribute id="qiskit.chemistry.drivers.BaseDriver.molecule" name="molecule">
+    return molecule
 
-**Return type**
+    **Return type**
 
-`str`
+    `Optional`\[`Molecule`]
+  </Attribute>
 
-<span id="qiskit.chemistry.drivers.BaseDriver.molecule" />
+  ### supports\_molecule
 
-### molecule
+  <Attribute id="qiskit.chemistry.drivers.BaseDriver.supports_molecule" name="supports_molecule">
+    True for derived classes that support Molecule.
 
-return molecule
+    **Return type**
 
-**Return type**
+    `bool`
 
-`Optional`\[`Molecule`]
+    **Returns**
 
-<span id="qiskit.chemistry.drivers.BaseDriver.supports_molecule" />
-
-### supports\_molecule
-
-True for derived classes that support Molecule.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if Molecule is supported.
+    True if Molecule is supported.
+  </Attribute>
+</Class>
 

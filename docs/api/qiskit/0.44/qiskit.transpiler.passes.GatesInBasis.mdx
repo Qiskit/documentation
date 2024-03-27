@@ -8,54 +8,48 @@ python_api_name: qiskit.transpiler.passes.GatesInBasis
 
 # GatesInBasis
 
-<span id="qiskit.transpiler.passes.GatesInBasis" />
+<Class id="qiskit.transpiler.passes.GatesInBasis" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/gates_basis.py" signature="qiskit.transpiler.passes.GatesInBasis(*args, **kwargs)">
+  Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-`qiskit.transpiler.passes.GatesInBasis(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/gates_basis.py "view source code")
+  Check if all gates in a DAG are in a given set of gates
 
-Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+  Initialize the GatesInBasis pass.
 
-Check if all gates in a DAG are in a given set of gates
+  **Parameters**
 
-Initialize the GatesInBasis pass.
+  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The list of strings representing the set of basis gates.
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The target representing the backend. If specified this will be used instead of the `basis_gates` parameter
 
-**Parameters**
+  ## Attributes
 
-*   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The list of strings representing the set of basis gates.
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The target representing the backend. If specified this will be used instead of the `basis_gates` parameter
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.GatesInBasis.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.GatesInBasis.is_analysis_pass" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### is\_analysis\_pass
+  ### is\_transformation\_pass
 
-Check if the pass is an analysis pass.
+  <Attribute id="qiskit.transpiler.passes.GatesInBasis.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.GatesInBasis.is_transformation_pass" />
+  ## Methods
 
-### is\_transformation\_pass
+  ### name
 
-Check if the pass is a transformation pass.
+  <Function id="qiskit.transpiler.passes.GatesInBasis.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  ### run
 
-## Methods
-
-### name
-
-<span id="qiskit.transpiler.passes.GatesInBasis.name" />
-
-`name()`
-
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.GatesInBasis.run" />
-
-`run(dag)`
-
-Run the GatesInBasis pass on dag.
+  <Function id="qiskit.transpiler.passes.GatesInBasis.run" name="run" signature="run(dag)">
+    Run the GatesInBasis pass on dag.
+  </Function>
+</Class>
 

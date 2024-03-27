@@ -8,123 +8,119 @@ python_api_name: qiskit.algorithms.IterativeAmplitudeEstimationResult
 
 # IterativeAmplitudeEstimationResult
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult" />
+<Class id="qiskit.algorithms.IterativeAmplitudeEstimationResult" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/amplitude_estimators/iae.py" signature="qiskit.algorithms.IterativeAmplitudeEstimationResult">
+  Bases: [`AmplitudeEstimatorResult`](qiskit.algorithms.AmplitudeEstimatorResult "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult")
 
-`qiskit.algorithms.IterativeAmplitudeEstimationResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
+  The `IterativeAmplitudeEstimation` result object.
 
-Bases: [`AmplitudeEstimatorResult`](qiskit.algorithms.AmplitudeEstimatorResult "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult")
+  ## Attributes
 
-The `IterativeAmplitudeEstimation` result object.
+  ### alpha
 
-## Attributes
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.alpha" name="alpha">
+    Return the confidence level $\alpha$.
+  </Attribute>
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.alpha" />
+  ### circuit\_results
 
-### alpha
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.circuit_results" name="circuit_results">
+    Return the circuit results. Can be a statevector or counts dictionary.
+  </Attribute>
 
-Return the confidence level $\alpha$.
+  ### confidence\_interval
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.circuit_results" />
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.confidence_interval" name="confidence_interval">
+    Return the confidence interval for the amplitude (95% interval by default).
+  </Attribute>
 
-### circuit\_results
+  ### confidence\_interval\_processed
 
-Return the circuit results. Can be a statevector or counts dictionary.
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.confidence_interval_processed" name="confidence_interval_processed">
+    Return the post-processed confidence interval.
+  </Attribute>
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.confidence_interval" />
+  ### epsilon\_estimated
 
-### confidence\_interval
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.epsilon_estimated" name="epsilon_estimated">
+    Return the estimated half-width of the confidence interval.
+  </Attribute>
 
-Return the confidence interval for the amplitude (95% interval by default).
+  ### epsilon\_estimated\_processed
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.confidence_interval_processed" />
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.epsilon_estimated_processed" name="epsilon_estimated_processed">
+    Return the post-processed estimated half-width of the confidence interval.
+  </Attribute>
 
-### confidence\_interval\_processed
+  ### epsilon\_target
 
-Return the post-processed confidence interval.
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.epsilon_target" name="epsilon_target">
+    Return the target half-width of the confidence interval.
+  </Attribute>
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.epsilon_estimated" />
+  ### estimate\_intervals
 
-### epsilon\_estimated
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.estimate_intervals" name="estimate_intervals">
+    Return the confidence intervals for the estimate in each iteration.
+  </Attribute>
 
-Return the estimated half-width of the confidence interval.
+  ### estimation
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.epsilon_estimated_processed" />
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.estimation" name="estimation">
+    Return the estimation for the amplitude in $[0, 1]$.
+  </Attribute>
 
-### epsilon\_estimated\_processed
+  ### estimation\_processed
 
-Return the post-processed estimated half-width of the confidence interval.
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.estimation_processed" name="estimation_processed">
+    Return the estimation for the amplitude after the post-processing has been applied.
+  </Attribute>
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.epsilon_target" />
+  ### num\_oracle\_queries
 
-### epsilon\_target
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.num_oracle_queries" name="num_oracle_queries">
+    Return the number of Grover oracle queries.
+  </Attribute>
 
-Return the target half-width of the confidence interval.
+  ### post\_processing
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.estimate_intervals" />
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.post_processing" name="post_processing">
+    Return a handle to the post processing function.
+  </Attribute>
 
-### estimate\_intervals
+  ### powers
 
-Return the confidence intervals for the estimate in each iteration.
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.powers" name="powers">
+    Return the powers of the Grover operator in each iteration.
+  </Attribute>
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.estimation" />
+  ### ratios
 
-### estimation
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.ratios" name="ratios">
+    Return the ratios $K_{i+1}/K_{i}$ for each iteration $i$.
+  </Attribute>
 
-Return the estimation for the amplitude in $[0, 1]$.
+  ### shots
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.estimation_processed" />
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.shots" name="shots">
+    Return the number of shots used. Is 1 for statevector-based simulations.
+  </Attribute>
 
-### estimation\_processed
+  ### theta\_intervals
 
-Return the estimation for the amplitude after the post-processing has been applied.
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimationResult.theta_intervals" name="theta_intervals">
+    Return the confidence intervals for the angles in each iteration.
+  </Attribute>
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.num_oracle_queries" />
+  ## Methods
 
-### num\_oracle\_queries
+  ### combine
 
-Return the number of Grover oracle queries.
+  <Function id="qiskit.algorithms.IterativeAmplitudeEstimationResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.post_processing" />
+    **Raises**
 
-### post\_processing
-
-Return a handle to the post processing function.
-
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.powers" />
-
-### powers
-
-Return the powers of the Grover operator in each iteration.
-
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.ratios" />
-
-### ratios
-
-Return the ratios $K_{i+1}/K_{i}$ for each iteration $i$.
-
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.shots" />
-
-### shots
-
-Return the number of shots used. Is 1 for statevector-based simulations.
-
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.theta_intervals" />
-
-### theta\_intervals
-
-Return the confidence intervals for the angles in each iteration.
-
-## Methods
-
-### combine
-
-<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.combine" />
-
-`combine(result)`
-
-Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
-
-**Raises**
-
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Argument is None
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Argument is None
+  </Function>
+</Class>
 

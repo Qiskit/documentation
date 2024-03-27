@@ -23,161 +23,135 @@ Style sheets for pulse visualization.
 | [`SchedStyle`](#qiskit.visualization.pulse.qcstyle.SchedStyle "qiskit.visualization.pulse.qcstyle.SchedStyle")(\[figsize, fig\_unit\_h\_table, …])     | Style sheet for Qiskit-Pulse schedule drawer.                 |
 | [`SchedTableColors`](#qiskit.visualization.pulse.qcstyle.SchedTableColors "qiskit.visualization.pulse.qcstyle.SchedTableColors")(time, channel, event) | Create new instance of SchedTableColors(time, channel, event) |
 
-<span id="qiskit.visualization.pulse.qcstyle.ComplexColors" />
+<Class id="qiskit.visualization.pulse.qcstyle.ComplexColors" signature="ComplexColors(real, imaginary)">
+  Create new instance of ComplexColors(real, imaginary)
 
-`ComplexColors(real, imaginary)`
+  ### count
 
-Create new instance of ComplexColors(real, imaginary)
+  <Function id="qiskit.visualization.pulse.qcstyle.ComplexColors.count" name="count" signature="count(value, /)">
+    Return number of occurrences of value.
+  </Function>
 
-### count
+  ### imaginary
 
-<span id="qiskit.visualization.pulse.qcstyle.ComplexColors.count" />
+  <Function id="qiskit.visualization.pulse.qcstyle.ComplexColors.imaginary" name="imaginary" signature="property imaginary">
+    Alias for field number 1
+  </Function>
 
-`count(value, /)`
+  ### index
 
-Return number of occurrences of value.
+  <Function id="qiskit.visualization.pulse.qcstyle.ComplexColors.index" name="index" signature="index(value, start=0, stop=9223372036854775807, /)">
+    Return first index of value.
 
-### imaginary
+    Raises ValueError if the value is not present.
+  </Function>
 
-<span id="qiskit.visualization.pulse.qcstyle.ComplexColors.imaginary" />
+  ### real
 
-`property imaginary`
+  <Function id="qiskit.visualization.pulse.qcstyle.ComplexColors.real" name="real" signature="property real">
+    Alias for field number 0
+  </Function>
+</Class>
 
-Alias for field number 1
+<Class id="qiskit.visualization.pulse.qcstyle.PulseStyle" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/pulse/qcstyle.py" signature="PulseStyle(figsize=(7.0, 5.0), title_font_size=18, wave_color=('#ff0000', '#0000ff'), bg_color='#f2f3f4', num_points=1000, dpi=None)">
+  Style sheet for Qiskit-Pulse sample pulse drawer.
 
-### index
+  Create new style sheet.
 
-<span id="qiskit.visualization.pulse.qcstyle.ComplexColors.index" />
+  For any of the Optional fields, if that field is None then it will revert to its matplotlib.rcParams counterpart. See for usage on rcParams. Each argument that is optonal also describes it’s mapped rcParam key below.
 
-`index(value, start=0, stop=9223372036854775807, /)`
+  **Parameters**
 
-Return first index of value.
+  *   **figsize** (`Optional`\[`Tuple`\[`float`, `float`]]) – Size of the figure. If `None`, will default to the figure size of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['figure.figsize']`.
+  *   **title\_font\_size** (`Optional`\[`int`]) – Font size of schedule name in title. If `None`, will default to the title font size of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['figure.titlesize']`.
+  *   **wave\_color** ([`ComplexColors`](#qiskit.visualization.pulse.qcstyle.ComplexColors "qiskit.visualization.pulse.qcstyle.ComplexColors")) – Color code or name of colors for the real and imaginary parts of the waveform.
+  *   **bg\_color** (`str`) – Color code or name of color for pulse canvas background.
+  *   **num\_points** (`int`) – Number of points for interpolation.
+  *   **dpi** (`Optional`\[`int`]) – Resolution in the unit of dot per inch to save image. If `None`, will revert to the DPI setting of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['figure.dpi']`.
+</Class>
 
-Raises ValueError if the value is not present.
+<Class id="qiskit.visualization.pulse.qcstyle.SchedStyle" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/pulse/qcstyle.py" signature="SchedStyle(figsize=(10.0, 12.0), fig_unit_h_table=0.4, use_table=True, table_columns=2, table_font_size=10, axis_font_size=18, label_font_size=10, icon_font_size=18, title_font_size=25, label_ch_linestyle='--', label_ch_color='#222222', label_ch_alpha=0.3, d_ch_color=('#648fff', '#002999'), u_ch_color=('#ffb000', '#994A00'), m_ch_color=('#dc267f', '#760019'), s_ch_color='#7da781', s_ch_linestyle='-', table_color=('#e0e0e0', '#f6f6f6', '#f6f6f6'), bg_color='#f2f3f4', num_points=1000, dpi=150, remove_spacing=True, max_table_ratio=0.5, vertical_span=0.2, axis_formatter='%s')">
+  Style sheet for Qiskit-Pulse schedule drawer.
 
-### real
+  Create new style sheet.
 
-<span id="qiskit.visualization.pulse.qcstyle.ComplexColors.real" />
+  For any of the Optional fields, if that field is None then it will revert to its matplotlib.rcParams counterpart. See for usage on rcParams. Each argument that is optonal also describes it’s mapped rcParam key below.
 
-`property real`
+  **Parameters**
 
-Alias for field number 0
+  *   **figsize** (`Optional`\[`Tuple`\[`float`, `float`]]) – Size of the figure. If `None`, will default to the figure size of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['figure.figsize']`.
+  *   **fig\_unit\_h\_table** (`float`) – Height of row of event table. See Example.
+  *   **use\_table** (`bool`) – When set True use event table.
+  *   **table\_columns** (`int`) – Number of event table columns.
+  *   **table\_font\_size** (`int`) – Font size of event table.
+  *   **axis\_font\_size** (`int`) – Font size of channel aliases. If `None`, will revert to the axis label size of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['axes.titlesize']`.
+  *   **label\_font\_size** (`int`) – Font size of labels in canvas.
+  *   **icon\_font\_size** (`int`) – Size of symbols.
+  *   **title\_font\_size** (`Optional`\[`int`]) – Font size of schedule name in title. If `None`, will default to the title font size of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['figure.titlesize']`.
+  *   **label\_ch\_linestyle** (`str`) – Line style for channel pulse label line.
+  *   **label\_ch\_color** (`str`) – Color code or name of color for channel pulse label line.
+  *   **label\_ch\_alpha** (`float`) – Transparency for channel pulse label line from 0 to 1.
+  *   **d\_ch\_color** ([`ComplexColors`](#qiskit.visualization.pulse.qcstyle.ComplexColors "qiskit.visualization.pulse.qcstyle.ComplexColors")) – Color code or name of colors for real and imaginary part of waveform at d channels.
+  *   **u\_ch\_color** ([`ComplexColors`](#qiskit.visualization.pulse.qcstyle.ComplexColors "qiskit.visualization.pulse.qcstyle.ComplexColors")) – Color code or name of colors for real and imaginary part of waveform at u channels.
+  *   **m\_ch\_color** ([`ComplexColors`](#qiskit.visualization.pulse.qcstyle.ComplexColors "qiskit.visualization.pulse.qcstyle.ComplexColors")) – Color code or name of colors for real and imaginary part of waveform at m channels.
+  *   **s\_ch\_color** (`str`) – Color code or name of color for snapshot channel line.
+  *   **s\_ch\_linestyle** (`str`) – Line style for snapshot line.
+  *   **table\_color** ([`SchedTableColors`](#qiskit.visualization.pulse.qcstyle.SchedTableColors "qiskit.visualization.pulse.qcstyle.SchedTableColors")) – Color code or name of color for event table columns of time, channel, event information.
+  *   **bg\_color** (`str`) – Color code or name of color for canvas background.
+  *   **num\_points** (`int`) – Number of points for interpolation of each channel.
+  *   **dpi** (`Optional`\[`int`]) – Resolution in the unit of dot per inch to save image. If `None`, will revert to the DPI setting of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['figure.dpi']`.
+  *   **remove\_spacing** (`bool`) – Remove redundant spacing when the waveform has no negative values.
+  *   **max\_table\_ratio** (`float`) – Maximum portion of the plot the table can take up. Limited to range between 0 and 1.
+  *   **vertical\_span** (`float`) – Spacing on top and bottom of pulse canvas.
+  *   **axis\_formatter** (`str`) – Format of horizontal axis of the plot. This is convenient when you set `dt` option for the drawer. For example, formatter of `%.3e` gives you horizontal axis values in the scientific notation with 3 digits.
 
-<span id="qiskit.visualization.pulse.qcstyle.PulseStyle" />
+  **Example**
 
-`PulseStyle(figsize=(7.0, 5.0), title_font_size=18, wave_color=('#ff0000', '#0000ff'), bg_color='#f2f3f4', num_points=1000, dpi=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/pulse/qcstyle.py "view source code")
+  Height of the event table is decided by multiple parameters.:
 
-Style sheet for Qiskit-Pulse sample pulse drawer.
+  ```python
+  figsize = (10.0, 12.0)
+  fig_unit_h_table = 0.4
+  table_columns = 2
+  max_table_ratio = 0.5
+  ```
 
-Create new style sheet.
+  With this setup, events are shown in double-column style with each line height of 0.4 inch and the table cannot exceed 5 inch. Thus 12 lines are maximum and up to 24 events can be shown. If you want to show more events, increase figure height or reduce size of line height and table font size.
+</Class>
 
-For any of the Optional fields, if that field is None then it will revert to its matplotlib.rcParams counterpart. See for usage on rcParams. Each argument that is optonal also describes it’s mapped rcParam key below.
+<Class id="qiskit.visualization.pulse.qcstyle.SchedTableColors" signature="SchedTableColors(time, channel, event)">
+  Create new instance of SchedTableColors(time, channel, event)
 
-**Parameters**
+  ### channel
 
-*   **figsize** (`Optional`\[`Tuple`\[`float`, `float`]]) – Size of the figure. If `None`, will default to the figure size of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['figure.figsize']`.
-*   **title\_font\_size** (`Optional`\[`int`]) – Font size of schedule name in title. If `None`, will default to the title font size of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['figure.titlesize']`.
-*   **wave\_color** ([`ComplexColors`](#qiskit.visualization.pulse.qcstyle.ComplexColors "qiskit.visualization.pulse.qcstyle.ComplexColors")) – Color code or name of colors for the real and imaginary parts of the waveform.
-*   **bg\_color** (`str`) – Color code or name of color for pulse canvas background.
-*   **num\_points** (`int`) – Number of points for interpolation.
-*   **dpi** (`Optional`\[`int`]) – Resolution in the unit of dot per inch to save image. If `None`, will revert to the DPI setting of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['figure.dpi']`.
+  <Function id="qiskit.visualization.pulse.qcstyle.SchedTableColors.channel" name="channel" signature="property channel">
+    Alias for field number 1
+  </Function>
 
-<span id="qiskit.visualization.pulse.qcstyle.SchedStyle" />
+  ### count
 
-`SchedStyle(figsize=(10.0, 12.0), fig_unit_h_table=0.4, use_table=True, table_columns=2, table_font_size=10, axis_font_size=18, label_font_size=10, icon_font_size=18, title_font_size=25, label_ch_linestyle='--', label_ch_color='#222222', label_ch_alpha=0.3, d_ch_color=('#648fff', '#002999'), u_ch_color=('#ffb000', '#994A00'), m_ch_color=('#dc267f', '#760019'), s_ch_color='#7da781', s_ch_linestyle='-', table_color=('#e0e0e0', '#f6f6f6', '#f6f6f6'), bg_color='#f2f3f4', num_points=1000, dpi=150, remove_spacing=True, max_table_ratio=0.5, vertical_span=0.2, axis_formatter='%s')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/pulse/qcstyle.py "view source code")
+  <Function id="qiskit.visualization.pulse.qcstyle.SchedTableColors.count" name="count" signature="count(value, /)">
+    Return number of occurrences of value.
+  </Function>
 
-Style sheet for Qiskit-Pulse schedule drawer.
+  ### event
 
-Create new style sheet.
+  <Function id="qiskit.visualization.pulse.qcstyle.SchedTableColors.event" name="event" signature="property event">
+    Alias for field number 2
+  </Function>
 
-For any of the Optional fields, if that field is None then it will revert to its matplotlib.rcParams counterpart. See for usage on rcParams. Each argument that is optonal also describes it’s mapped rcParam key below.
+  ### index
 
-**Parameters**
+  <Function id="qiskit.visualization.pulse.qcstyle.SchedTableColors.index" name="index" signature="index(value, start=0, stop=9223372036854775807, /)">
+    Return first index of value.
 
-*   **figsize** (`Optional`\[`Tuple`\[`float`, `float`]]) – Size of the figure. If `None`, will default to the figure size of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['figure.figsize']`.
-*   **fig\_unit\_h\_table** (`float`) – Height of row of event table. See Example.
-*   **use\_table** (`bool`) – When set True use event table.
-*   **table\_columns** (`int`) – Number of event table columns.
-*   **table\_font\_size** (`int`) – Font size of event table.
-*   **axis\_font\_size** (`int`) – Font size of channel aliases. If `None`, will revert to the axis label size of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['axes.titlesize']`.
-*   **label\_font\_size** (`int`) – Font size of labels in canvas.
-*   **icon\_font\_size** (`int`) – Size of symbols.
-*   **title\_font\_size** (`Optional`\[`int`]) – Font size of schedule name in title. If `None`, will default to the title font size of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['figure.titlesize']`.
-*   **label\_ch\_linestyle** (`str`) – Line style for channel pulse label line.
-*   **label\_ch\_color** (`str`) – Color code or name of color for channel pulse label line.
-*   **label\_ch\_alpha** (`float`) – Transparency for channel pulse label line from 0 to 1.
-*   **d\_ch\_color** ([`ComplexColors`](#qiskit.visualization.pulse.qcstyle.ComplexColors "qiskit.visualization.pulse.qcstyle.ComplexColors")) – Color code or name of colors for real and imaginary part of waveform at d channels.
-*   **u\_ch\_color** ([`ComplexColors`](#qiskit.visualization.pulse.qcstyle.ComplexColors "qiskit.visualization.pulse.qcstyle.ComplexColors")) – Color code or name of colors for real and imaginary part of waveform at u channels.
-*   **m\_ch\_color** ([`ComplexColors`](#qiskit.visualization.pulse.qcstyle.ComplexColors "qiskit.visualization.pulse.qcstyle.ComplexColors")) – Color code or name of colors for real and imaginary part of waveform at m channels.
-*   **s\_ch\_color** (`str`) – Color code or name of color for snapshot channel line.
-*   **s\_ch\_linestyle** (`str`) – Line style for snapshot line.
-*   **table\_color** ([`SchedTableColors`](#qiskit.visualization.pulse.qcstyle.SchedTableColors "qiskit.visualization.pulse.qcstyle.SchedTableColors")) – Color code or name of color for event table columns of time, channel, event information.
-*   **bg\_color** (`str`) – Color code or name of color for canvas background.
-*   **num\_points** (`int`) – Number of points for interpolation of each channel.
-*   **dpi** (`Optional`\[`int`]) – Resolution in the unit of dot per inch to save image. If `None`, will revert to the DPI setting of the drawing backend. If the output is `matplotlib`, the default parameter is `rcParams['figure.dpi']`.
-*   **remove\_spacing** (`bool`) – Remove redundant spacing when the waveform has no negative values.
-*   **max\_table\_ratio** (`float`) – Maximum portion of the plot the table can take up. Limited to range between 0 and 1.
-*   **vertical\_span** (`float`) – Spacing on top and bottom of pulse canvas.
-*   **axis\_formatter** (`str`) – Format of horizontal axis of the plot. This is convenient when you set `dt` option for the drawer. For example, formatter of `%.3e` gives you horizontal axis values in the scientific notation with 3 digits.
+    Raises ValueError if the value is not present.
+  </Function>
 
-**Example**
+  ### time
 
-Height of the event table is decided by multiple parameters.:
-
-```python
-figsize = (10.0, 12.0)
-fig_unit_h_table = 0.4
-table_columns = 2
-max_table_ratio = 0.5
-```
-
-With this setup, events are shown in double-column style with each line height of 0.4 inch and the table cannot exceed 5 inch. Thus 12 lines are maximum and up to 24 events can be shown. If you want to show more events, increase figure height or reduce size of line height and table font size.
-
-<span id="qiskit.visualization.pulse.qcstyle.SchedTableColors" />
-
-`SchedTableColors(time, channel, event)`
-
-Create new instance of SchedTableColors(time, channel, event)
-
-### channel
-
-<span id="qiskit.visualization.pulse.qcstyle.SchedTableColors.channel" />
-
-`property channel`
-
-Alias for field number 1
-
-### count
-
-<span id="qiskit.visualization.pulse.qcstyle.SchedTableColors.count" />
-
-`count(value, /)`
-
-Return number of occurrences of value.
-
-### event
-
-<span id="qiskit.visualization.pulse.qcstyle.SchedTableColors.event" />
-
-`property event`
-
-Alias for field number 2
-
-### index
-
-<span id="qiskit.visualization.pulse.qcstyle.SchedTableColors.index" />
-
-`index(value, start=0, stop=9223372036854775807, /)`
-
-Return first index of value.
-
-Raises ValueError if the value is not present.
-
-### time
-
-<span id="qiskit.visualization.pulse.qcstyle.SchedTableColors.time" />
-
-`property time`
-
-Alias for field number 0
+  <Function id="qiskit.visualization.pulse.qcstyle.SchedTableColors.time" name="time" signature="property time">
+    Alias for field number 0
+  </Function>
+</Class>
 

@@ -8,59 +8,55 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolv
 
 # SamplingMinimumEigensolverResult
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult" />
+<Class id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/minimum_eigensolvers/sampling_mes.py" signature="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult">
+  Bases: `AlgorithmResult`
 
-`qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/minimum_eigensolvers/sampling_mes.py "view source code")
+  Sampling Minimum Eigensolver Result.
 
-Bases: `AlgorithmResult`
+  In contrast to the result of a `MinimumEigenSolver`, this result also contains the best measurement of the overall optimization and the samples of the final state.
 
-Sampling Minimum Eigensolver Result.
+  ## Attributes
 
-In contrast to the result of a `MinimumEigenSolver`, this result also contains the best measurement of the overall optimization and the samples of the final state.
+  ### aux\_operators\_evaluated
 
-## Attributes
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.aux_operators_evaluated" name="aux_operators_evaluated">
+    Return aux operator expectation values and metadata.
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.aux_operators_evaluated" />
+    These are formatted as (mean, metadata).
+  </Attribute>
 
-### aux\_operators\_evaluated
+  ### best\_measurement
 
-Return aux operator expectation values and metadata.
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.best_measurement" name="best_measurement">
+    Return the best measurement over the entire optimization.
 
-These are formatted as (mean, metadata).
+    Possesses keys: `state`, `bitstring`, `value`, `probability`.
+  </Attribute>
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.best_measurement" />
+  ### eigenstate
 
-### best\_measurement
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.eigenstate" name="eigenstate">
+    Return the quasi-distribution sampled from the final state.
 
-Return the best measurement over the entire optimization.
+    The ansatz is sampled when parameterized with the optimal parameters that where obtained computing the minimum eigenvalue. The keys represent a measured classical value and the value is a float for the quasi-probability of that result.
+  </Attribute>
 
-Possesses keys: `state`, `bitstring`, `value`, `probability`.
+  ### eigenvalue
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.eigenstate" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.eigenvalue" name="eigenvalue">
+    Return the approximation to the eigenvalue.
+  </Attribute>
 
-### eigenstate
+  ## Methods
 
-Return the quasi-distribution sampled from the final state.
+  ### combine
 
-The ansatz is sampled when parameterized with the optimal parameters that where obtained computing the minimum eigenvalue. The keys represent a measured classical value and the value is a float for the quasi-probability of that result.
+  <Function id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.eigenvalue" />
+    **Raises**
 
-### eigenvalue
-
-Return the approximation to the eigenvalue.
-
-## Methods
-
-### combine
-
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.combine" />
-
-`combine(result)`
-
-Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
-
-**Raises**
-
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Argument is None
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Argument is None
+  </Function>
+</Class>
 

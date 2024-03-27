@@ -8,154 +8,138 @@ python_api_name: qiskit.providers.ibmq.experiment.AnalysisResult
 
 # qiskit.providers.ibmq.experiment.AnalysisResult
 
-<span id="qiskit.providers.ibmq.experiment.AnalysisResult" />
+<Class id="qiskit.providers.ibmq.experiment.AnalysisResult" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/experiment/analysis_result.py" signature="AnalysisResult(experiment_uuid, device_components, result_type, fit=None, chisq=None, quality=<ResultQuality.UNKNOWN: 'No Information'>, tags=None, result_uuid=None, backend_name=None, verified=False)">
+  Class representing an analysis result for an experiment.
 
-`AnalysisResult(experiment_uuid, device_components, result_type, fit=None, chisq=None, quality=<ResultQuality.UNKNOWN: 'No Information'>, tags=None, result_uuid=None, backend_name=None, verified=False)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/experiment/analysis_result.py "view source code")
+  AnalysisResult constructor.
 
-Class representing an analysis result for an experiment.
+  **Parameters**
 
-AnalysisResult constructor.
+  *   **experiment\_uuid** (`str`) – Unique identifier of the experiment.
+  *   **device\_components** (`List`\[`str`]) – Device component types.
+  *   **result\_type** (`str`) – Result type.
+  *   **fit** (`Optional`\[`Dict`]) – Fit value.
+  *   **chisq** (`Optional`\[`float`]) – chi^2 decimal value of the fit.
+  *   **quality** (`Union`\[`ResultQuality`, `str`]) – Quality of the measurement value.
+  *   **tags** (`Optional`\[`List`\[`str`]]) – Tags for this result.
+  *   **result\_uuid** (`Optional`\[`str`]) – Unique identifier for the result.
+  *   **backend\_name** (`Optional`\[`str`]) – Name of the backend on which the experiment was run.
+  *   **verified** (`Optional`\[`bool`]) – Indicates whether this result has been verified..
 
-**Parameters**
+  **Raises**
 
-*   **experiment\_uuid** (`str`) – Unique identifier of the experiment.
-*   **device\_components** (`List`\[`str`]) – Device component types.
-*   **result\_type** (`str`) – Result type.
-*   **fit** (`Optional`\[`Dict`]) – Fit value.
-*   **chisq** (`Optional`\[`float`]) – chi^2 decimal value of the fit.
-*   **quality** (`Union`\[`ResultQuality`, `str`]) – Quality of the measurement value.
-*   **tags** (`Optional`\[`List`\[`str`]]) – Tags for this result.
-*   **result\_uuid** (`Optional`\[`str`]) – Unique identifier for the result.
-*   **backend\_name** (`Optional`\[`str`]) – Name of the backend on which the experiment was run.
-*   **verified** (`Optional`\[`bool`]) – Indicates whether this result has been verified..
+  **IBMQInputValueError** – If an input argument is invalid.
 
-**Raises**
+  ### \_\_init\_\_
 
-**IBMQInputValueError** – If an input argument is invalid.
+  <Function id="qiskit.providers.ibmq.experiment.AnalysisResult.__init__" name="__init__" signature="__init__(experiment_uuid, device_components, result_type, fit=None, chisq=None, quality=<ResultQuality.UNKNOWN: 'No Information'>, tags=None, result_uuid=None, backend_name=None, verified=False)">
+    AnalysisResult constructor.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.experiment.AnalysisResult.__init__" />
+    *   **experiment\_uuid** (`str`) – Unique identifier of the experiment.
+    *   **device\_components** (`List`\[`str`]) – Device component types.
+    *   **result\_type** (`str`) – Result type.
+    *   **fit** (`Optional`\[`Dict`]) – Fit value.
+    *   **chisq** (`Optional`\[`float`]) – chi^2 decimal value of the fit.
+    *   **quality** (`Union`\[`ResultQuality`, `str`]) – Quality of the measurement value.
+    *   **tags** (`Optional`\[`List`\[`str`]]) – Tags for this result.
+    *   **result\_uuid** (`Optional`\[`str`]) – Unique identifier for the result.
+    *   **backend\_name** (`Optional`\[`str`]) – Name of the backend on which the experiment was run.
+    *   **verified** (`Optional`\[`bool`]) – Indicates whether this result has been verified..
 
-`__init__(experiment_uuid, device_components, result_type, fit=None, chisq=None, quality=<ResultQuality.UNKNOWN: 'No Information'>, tags=None, result_uuid=None, backend_name=None, verified=False)`
+    **Raises**
 
-AnalysisResult constructor.
+    **IBMQInputValueError** – If an input argument is invalid.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **experiment\_uuid** (`str`) – Unique identifier of the experiment.
-*   **device\_components** (`List`\[`str`]) – Device component types.
-*   **result\_type** (`str`) – Result type.
-*   **fit** (`Optional`\[`Dict`]) – Fit value.
-*   **chisq** (`Optional`\[`float`]) – chi^2 decimal value of the fit.
-*   **quality** (`Union`\[`ResultQuality`, `str`]) – Quality of the measurement value.
-*   **tags** (`Optional`\[`List`\[`str`]]) – Tags for this result.
-*   **result\_uuid** (`Optional`\[`str`]) – Unique identifier for the result.
-*   **backend\_name** (`Optional`\[`str`]) – Name of the backend on which the experiment was run.
-*   **verified** (`Optional`\[`bool`]) – Indicates whether this result has been verified..
+  |                                                                                                                                                                                               |                                                           |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+  | [`__init__`](#qiskit.providers.ibmq.experiment.AnalysisResult.__init__ "qiskit.providers.ibmq.experiment.AnalysisResult.__init__")(experiment\_uuid, device\_components, …)                   | AnalysisResult constructor.                               |
+  | [`from_remote_data`](#qiskit.providers.ibmq.experiment.AnalysisResult.from_remote_data "qiskit.providers.ibmq.experiment.AnalysisResult.from_remote_data")(remote\_data)                      | Create an instance of this class from remote data.        |
+  | [`update_from_remote_data`](#qiskit.providers.ibmq.experiment.AnalysisResult.update_from_remote_data "qiskit.providers.ibmq.experiment.AnalysisResult.update_from_remote_data")(remote\_data) | Update the attributes of this instance using remote data. |
 
-**Raises**
+  ## Attributes
 
-**IBMQInputValueError** – If an input argument is invalid.
+  |                                                                                                                                                               |                                                            |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+  | [`creation_datetime`](#qiskit.providers.ibmq.experiment.AnalysisResult.creation_datetime "qiskit.providers.ibmq.experiment.AnalysisResult.creation_datetime") | Return the timestamp when the experiment was created.      |
+  | [`quality`](#qiskit.providers.ibmq.experiment.AnalysisResult.quality "qiskit.providers.ibmq.experiment.AnalysisResult.quality")                               | Return the analysis result quality.                        |
+  | [`updated_datetime`](#qiskit.providers.ibmq.experiment.AnalysisResult.updated_datetime "qiskit.providers.ibmq.experiment.AnalysisResult.updated_datetime")    | Return the timestamp when the experiment was last updated. |
+  | [`uuid`](#qiskit.providers.ibmq.experiment.AnalysisResult.uuid "qiskit.providers.ibmq.experiment.AnalysisResult.uuid")                                        | Return UUID of this analysis result.                       |
 
-## Methods
+  ### creation\_datetime
 
-|                                                                                                                                                                                               |                                                           |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [`__init__`](#qiskit.providers.ibmq.experiment.AnalysisResult.__init__ "qiskit.providers.ibmq.experiment.AnalysisResult.__init__")(experiment\_uuid, device\_components, …)                   | AnalysisResult constructor.                               |
-| [`from_remote_data`](#qiskit.providers.ibmq.experiment.AnalysisResult.from_remote_data "qiskit.providers.ibmq.experiment.AnalysisResult.from_remote_data")(remote\_data)                      | Create an instance of this class from remote data.        |
-| [`update_from_remote_data`](#qiskit.providers.ibmq.experiment.AnalysisResult.update_from_remote_data "qiskit.providers.ibmq.experiment.AnalysisResult.update_from_remote_data")(remote\_data) | Update the attributes of this instance using remote data. |
+  <Function id="qiskit.providers.ibmq.experiment.AnalysisResult.creation_datetime" name="creation_datetime" signature="property creation_datetime">
+    Return the timestamp when the experiment was created.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                                               |                                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`creation_datetime`](#qiskit.providers.ibmq.experiment.AnalysisResult.creation_datetime "qiskit.providers.ibmq.experiment.AnalysisResult.creation_datetime") | Return the timestamp when the experiment was created.      |
-| [`quality`](#qiskit.providers.ibmq.experiment.AnalysisResult.quality "qiskit.providers.ibmq.experiment.AnalysisResult.quality")                               | Return the analysis result quality.                        |
-| [`updated_datetime`](#qiskit.providers.ibmq.experiment.AnalysisResult.updated_datetime "qiskit.providers.ibmq.experiment.AnalysisResult.updated_datetime")    | Return the timestamp when the experiment was last updated. |
-| [`uuid`](#qiskit.providers.ibmq.experiment.AnalysisResult.uuid "qiskit.providers.ibmq.experiment.AnalysisResult.uuid")                                        | Return UUID of this analysis result.                       |
+    `datetime`
+  </Function>
 
-### creation\_datetime
+  ### from\_remote\_data
 
-<span id="qiskit.providers.ibmq.experiment.AnalysisResult.creation_datetime" />
+  <Function id="qiskit.providers.ibmq.experiment.AnalysisResult.from_remote_data" name="from_remote_data" signature="classmethod from_remote_data(remote_data)">
+    Create an instance of this class from remote data.
 
-`property creation_datetime`
+    **Parameters**
 
-Return the timestamp when the experiment was created.
+    **remote\_data** (`Dict`) – Remote data to use.
 
-**Return type**
+    **Return type**
 
-`datetime`
+    `AnalysisResult`
 
-### from\_remote\_data
+    **Returns**
 
-<span id="qiskit.providers.ibmq.experiment.AnalysisResult.from_remote_data" />
+    An instance of this class.
+  </Function>
 
-`classmethod from_remote_data(remote_data)`
+  ### quality
 
-Create an instance of this class from remote data.
+  <Function id="qiskit.providers.ibmq.experiment.AnalysisResult.quality" name="quality" signature="property quality">
+    Return the analysis result quality.
 
-**Parameters**
+    **Return type**
 
-**remote\_data** (`Dict`) – Remote data to use.
+    `ResultQuality`
+  </Function>
 
-**Return type**
+  ### update\_from\_remote\_data
 
-`AnalysisResult`
+  <Function id="qiskit.providers.ibmq.experiment.AnalysisResult.update_from_remote_data" name="update_from_remote_data" signature="update_from_remote_data(remote_data)">
+    Update the attributes of this instance using remote data.
 
-**Returns**
+    **Parameters**
 
-An instance of this class.
+    **remote\_data** (`Dict`) – Remote data used to update this instance.
 
-### quality
+    **Return type**
 
-<span id="qiskit.providers.ibmq.experiment.AnalysisResult.quality" />
+    `None`
+  </Function>
 
-`property quality`
+  ### updated\_datetime
 
-Return the analysis result quality.
+  <Function id="qiskit.providers.ibmq.experiment.AnalysisResult.updated_datetime" name="updated_datetime" signature="property updated_datetime">
+    Return the timestamp when the experiment was last updated.
 
-**Return type**
+    **Return type**
 
-`ResultQuality`
+    `datetime`
+  </Function>
 
-### update\_from\_remote\_data
+  ### uuid
 
-<span id="qiskit.providers.ibmq.experiment.AnalysisResult.update_from_remote_data" />
+  <Function id="qiskit.providers.ibmq.experiment.AnalysisResult.uuid" name="uuid" signature="property uuid">
+    Return UUID of this analysis result.
 
-`update_from_remote_data(remote_data)`
+    **Return type**
 
-Update the attributes of this instance using remote data.
-
-**Parameters**
-
-**remote\_data** (`Dict`) – Remote data used to update this instance.
-
-**Return type**
-
-`None`
-
-### updated\_datetime
-
-<span id="qiskit.providers.ibmq.experiment.AnalysisResult.updated_datetime" />
-
-`property updated_datetime`
-
-Return the timestamp when the experiment was last updated.
-
-**Return type**
-
-`datetime`
-
-### uuid
-
-<span id="qiskit.providers.ibmq.experiment.AnalysisResult.uuid" />
-
-`property uuid`
-
-Return UUID of this analysis result.
-
-**Return type**
-
-`str`
+    `str`
+  </Function>
+</Class>
 

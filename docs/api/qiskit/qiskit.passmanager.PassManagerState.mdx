@@ -8,33 +8,27 @@ python_api_name: qiskit.passmanager.PassManagerState
 
 # PassManagerState
 
-<span id="qiskit.passmanager.PassManagerState" />
+<Class id="qiskit.passmanager.PassManagerState" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/compilation_status.py" signature="qiskit.passmanager.PassManagerState(workflow_status, property_set)">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.passmanager.PassManagerState(workflow_status, property_set)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/compilation_status.py "view source code")
+  A portable container object that pass manager tasks communicate through generator.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  This object can contain every information about the running pass manager workflow, except for the IR object being optimized. The data structure consists of two elements; one for the status of the workflow itself, and another one for the additional information about the IR analyzed through pass executions. This container aims at just providing a robust interface for the `Task.execute()`, and no logic that modifies the container elements must be implemented.
 
-A portable container object that pass manager tasks communicate through generator.
+  This object is mutable, and might be mutated by pass executions.
 
-This object can contain every information about the running pass manager workflow, except for the IR object being optimized. The data structure consists of two elements; one for the status of the workflow itself, and another one for the additional information about the IR analyzed through pass executions. This container aims at just providing a robust interface for the `Task.execute()`, and no logic that modifies the container elements must be implemented.
+  ## Attributes
 
-This object is mutable, and might be mutated by pass executions.
+  ### workflow\_status
 
-## Attributes
+  <Attribute id="qiskit.passmanager.PassManagerState.workflow_status" name="workflow_status" attributeTypeHint="WorkflowStatus">
+    Status of the current compilation workflow.
+  </Attribute>
 
-<span id="qiskit.passmanager.PassManagerState.workflow_status" />
+  ### property\_set
 
-### workflow\_status
-
-`WorkflowStatus`
-
-Status of the current compilation workflow.
-
-<span id="qiskit.passmanager.PassManagerState.property_set" />
-
-### property\_set
-
-`PropertySet`
-
-Information about IR being optimized.
+  <Attribute id="qiskit.passmanager.PassManagerState.property_set" name="property_set" attributeTypeHint="PropertySet">
+    Information about IR being optimized.
+  </Attribute>
+</Class>
 

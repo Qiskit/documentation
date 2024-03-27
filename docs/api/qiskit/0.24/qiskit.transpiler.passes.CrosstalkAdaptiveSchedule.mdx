@@ -10,356 +10,292 @@ python_api_name: qiskit.transpiler.passes.CrosstalkAdaptiveSchedule
 
 # qiskit.transpiler.passes.CrosstalkAdaptiveSchedule
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule" />
+<Class id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/optimization/crosstalk_adaptive_schedule.py" signature="CrosstalkAdaptiveSchedule(*args, **kwargs)">
+  Crosstalk mitigation through adaptive instruction scheduling.
 
-`CrosstalkAdaptiveSchedule(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/optimization/crosstalk_adaptive_schedule.py "view source code")
+  CrosstalkAdaptiveSchedule initializer.
 
-Crosstalk mitigation through adaptive instruction scheduling.
+  **Parameters**
 
-CrosstalkAdaptiveSchedule initializer.
+  *   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – backend properties object
 
-**Parameters**
+  *   **crosstalk\_prop** (*dict*) –
 
-*   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – backend properties object
+      crosstalk properties object crosstalk\_prop\[g1]\[g2] specifies the conditional error rate of g1 when g1 and g2 are executed simultaneously. g1 should be a two-qubit tuple of the form (x,y) where x and y are physical qubit ids. g2 can be either two-qubit tuple (x,y) or single-qubit tuple (x). We currently ignore crosstalk between pairs of single-qubit gates. Gate pairs which are not specified are assumed to be crosstalk free.
 
-*   **crosstalk\_prop** (*dict*) –
+      Example:
 
-    crosstalk properties object crosstalk\_prop\[g1]\[g2] specifies the conditional error rate of g1 when g1 and g2 are executed simultaneously. g1 should be a two-qubit tuple of the form (x,y) where x and y are physical qubit ids. g2 can be either two-qubit tuple (x,y) or single-qubit tuple (x). We currently ignore crosstalk between pairs of single-qubit gates. Gate pairs which are not specified are assumed to be crosstalk free.
+      ```python
+      crosstalk_prop = {(0, 1) : {(2, 3) : 0.2, (2) : 0.15},
+                                  (4, 5) : {(2, 3) : 0.1},
+                                  (2, 3) : {(0, 1) : 0.05, (4, 5): 0.05}}
+      ```
 
-    Example:
+      The keys of the crosstalk\_prop are tuples for ordered tuples for CX gates e.g., (0, 1) corresponding to CX 0, 1 in the hardware. Each key has an associated value dict which specifies the conditional error rates with nearby gates e.g., `(0, 1) : {(2, 3) : 0.2, (2) : 0.15}` means that CNOT 0, 1 has an error rate of 0.2 when it is executed in parallel with CNOT 2,3 and an error rate of 0.15 when it is executed in parallel with a single qubit gate on qubit 2.
 
-    ```python
-    crosstalk_prop = {(0, 1) : {(2, 3) : 0.2, (2) : 0.15},
-                                (4, 5) : {(2, 3) : 0.1},
-                                (2, 3) : {(0, 1) : 0.05, (4, 5): 0.05}}
-    ```
+  *   **weight\_factor** (*float*) – weight of gate error/crosstalk terms in the objective $weight_factor*fidelities + (1-weight_factor)*decoherence errors$. Weight can be varied from 0 to 1, with 0 meaning that only decoherence errors are optimized and 1 meaning that only crosstalk errors are optimized. weight\_factor should be tuned per application to get the best results.
 
-    The keys of the crosstalk\_prop are tuples for ordered tuples for CX gates e.g., (0, 1) corresponding to CX 0, 1 in the hardware. Each key has an associated value dict which specifies the conditional error rates with nearby gates e.g., `(0, 1) : {(2, 3) : 0.2, (2) : 0.15}` means that CNOT 0, 1 has an error rate of 0.2 when it is executed in parallel with CNOT 2,3 and an error rate of 0.15 when it is executed in parallel with a single qubit gate on qubit 2.
+  *   **measured\_qubits** (*list*) – a list of qubits that will be measured in a particular circuit. This arg need not be specified for circuits which already include measure gates. The arg is useful when a subsequent module such as state\_tomography\_circuits inserts the measure gates. If CrosstalkAdaptiveSchedule is made aware of those measurements, it is included in the optimization.
 
-*   **weight\_factor** (*float*) – weight of gate error/crosstalk terms in the objective $weight_factor*fidelities + (1-weight_factor)*decoherence errors$. Weight can be varied from 0 to 1, with 0 meaning that only decoherence errors are optimized and 1 meaning that only crosstalk errors are optimized. weight\_factor should be tuned per application to get the best results.
+  **Raises**
 
-*   **measured\_qubits** (*list*) – a list of qubits that will be measured in a particular circuit. This arg need not be specified for circuits which already include measure gates. The arg is useful when a subsequent module such as state\_tomography\_circuits inserts the measure gates. If CrosstalkAdaptiveSchedule is made aware of those measurements, it is included in the optimization.
+  **ImportError** – if unable to import z3 solver
 
-**Raises**
+  ### \_\_init\_\_
 
-**ImportError** – if unable to import z3 solver
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.__init__" name="__init__" signature="__init__(backend_prop, crosstalk_prop, weight_factor=0.5, measured_qubits=None)">
+    CrosstalkAdaptiveSchedule initializer.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.__init__" />
+    *   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – backend properties object
 
-`__init__(backend_prop, crosstalk_prop, weight_factor=0.5, measured_qubits=None)`
+    *   **crosstalk\_prop** (*dict*) –
 
-CrosstalkAdaptiveSchedule initializer.
+        crosstalk properties object crosstalk\_prop\[g1]\[g2] specifies the conditional error rate of g1 when g1 and g2 are executed simultaneously. g1 should be a two-qubit tuple of the form (x,y) where x and y are physical qubit ids. g2 can be either two-qubit tuple (x,y) or single-qubit tuple (x). We currently ignore crosstalk between pairs of single-qubit gates. Gate pairs which are not specified are assumed to be crosstalk free.
 
-**Parameters**
+        Example:
 
-*   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – backend properties object
+        ```python
+        crosstalk_prop = {(0, 1) : {(2, 3) : 0.2, (2) : 0.15},
+                                    (4, 5) : {(2, 3) : 0.1},
+                                    (2, 3) : {(0, 1) : 0.05, (4, 5): 0.05}}
+        ```
 
-*   **crosstalk\_prop** (*dict*) –
+        The keys of the crosstalk\_prop are tuples for ordered tuples for CX gates e.g., (0, 1) corresponding to CX 0, 1 in the hardware. Each key has an associated value dict which specifies the conditional error rates with nearby gates e.g., `(0, 1) : {(2, 3) : 0.2, (2) : 0.15}` means that CNOT 0, 1 has an error rate of 0.2 when it is executed in parallel with CNOT 2,3 and an error rate of 0.15 when it is executed in parallel with a single qubit gate on qubit 2.
 
-    crosstalk properties object crosstalk\_prop\[g1]\[g2] specifies the conditional error rate of g1 when g1 and g2 are executed simultaneously. g1 should be a two-qubit tuple of the form (x,y) where x and y are physical qubit ids. g2 can be either two-qubit tuple (x,y) or single-qubit tuple (x). We currently ignore crosstalk between pairs of single-qubit gates. Gate pairs which are not specified are assumed to be crosstalk free.
+    *   **weight\_factor** (*float*) – weight of gate error/crosstalk terms in the objective $weight_factor*fidelities + (1-weight_factor)*decoherence errors$. Weight can be varied from 0 to 1, with 0 meaning that only decoherence errors are optimized and 1 meaning that only crosstalk errors are optimized. weight\_factor should be tuned per application to get the best results.
 
-    Example:
+    *   **measured\_qubits** (*list*) – a list of qubits that will be measured in a particular circuit. This arg need not be specified for circuits which already include measure gates. The arg is useful when a subsequent module such as state\_tomography\_circuits inserts the measure gates. If CrosstalkAdaptiveSchedule is made aware of those measurements, it is included in the optimization.
 
-    ```python
-    crosstalk_prop = {(0, 1) : {(2, 3) : 0.2, (2) : 0.15},
-                                (4, 5) : {(2, 3) : 0.1},
-                                (2, 3) : {(0, 1) : 0.05, (4, 5): 0.05}}
-    ```
+    **Raises**
 
-    The keys of the crosstalk\_prop are tuples for ordered tuples for CX gates e.g., (0, 1) corresponding to CX 0, 1 in the hardware. Each key has an associated value dict which specifies the conditional error rates with nearby gates e.g., `(0, 1) : {(2, 3) : 0.2, (2) : 0.15}` means that CNOT 0, 1 has an error rate of 0.2 when it is executed in parallel with CNOT 2,3 and an error rate of 0.15 when it is executed in parallel with a single qubit gate on qubit 2.
+    **ImportError** – if unable to import z3 solver
+  </Function>
 
-*   **weight\_factor** (*float*) – weight of gate error/crosstalk terms in the objective $weight_factor*fidelities + (1-weight_factor)*decoherence errors$. Weight can be varied from 0 to 1, with 0 meaning that only decoherence errors are optimized and 1 meaning that only crosstalk errors are optimized. weight\_factor should be tuned per application to get the best results.
+  ## Methods
 
-*   **measured\_qubits** (*list*) – a list of qubits that will be measured in a particular circuit. This arg need not be specified for circuits which already include measure gates. The arg is useful when a subsequent module such as state\_tomography\_circuits inserts the measure gates. If CrosstalkAdaptiveSchedule is made aware of those measurements, it is included in the optimization.
+  |                                                                                                                                                                                                                 |                                                                                                                                                                                |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.__init__ "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.__init__")(backend\_prop, crosstalk\_prop\[, …])                                  | CrosstalkAdaptiveSchedule initializer.                                                                                                                                         |
+  | [`assign_gate_id`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.assign_gate_id "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.assign_gate_id")(dag)                                                 | ID for each gate                                                                                                                                                               |
+  | [`basic_bounds`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.basic_bounds "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.basic_bounds")()                                                          | Basic variable bounds for optimization                                                                                                                                         |
+  | [`check_dag_dependency`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.check_dag_dependency "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.check_dag_dependency")(gate1, gate2)                      | gate2 is a DAG dependent of gate1 if it is a descendant of gate1                                                                                                               |
+  | [`check_xtalk_dependency`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.check_xtalk_dependency "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.check_xtalk_dependency")(t\_1, t\_2)                  | Check if two gates have a crosstalk dependency.                                                                                                                                |
+  | [`coherence_constraints`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.coherence_constraints "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.coherence_constraints")()                               | Set decoherence errors based on qubit lifetimes                                                                                                                                |
+  | [`create_updated_dag`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.create_updated_dag "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.create_updated_dag")(layers, barriers)                        | Given a set of layers and barries, construct a new dag                                                                                                                         |
+  | [`create_z3_vars`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.create_z3_vars "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.create_z3_vars")()                                                    | Setup the variables required for Z3 optimization                                                                                                                               |
+  | [`cx_tuple`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.cx_tuple "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.cx_tuple")(gate)                                                                  | Representation for two-qubit gate Note: current implementation assumes that the CX error rates and crosstalk behavior are independent of gate direction                        |
+  | [`enforce_schedule_on_dag`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.enforce_schedule_on_dag "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.enforce_schedule_on_dag")(input\_gate\_times)       | Z3 outputs start times for each gate.                                                                                                                                          |
+  | [`extract_crosstalk_relevant_sets`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_crosstalk_relevant_sets "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_crosstalk_relevant_sets")() | Extract the set of program gates which potentially have crosstalk noise                                                                                                        |
+  | [`extract_dag_overlap_sets`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_dag_overlap_sets "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_dag_overlap_sets")(dag)                   | Gate A, B are overlapping if A is neither a descendant nor an ancestor of B.                                                                                                   |
+  | [`extract_solution`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_solution "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_solution")()                                              | Extract gate start and finish times from Z3 solution                                                                                                                           |
+  | [`fidelity_constraints`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.fidelity_constraints "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.fidelity_constraints")()                                  | Set gate fidelity based on gate overlap conditions                                                                                                                             |
+  | [`filter_candidates`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.filter_candidates "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.filter_candidates")(candidates, layer, …)                       | For a gate G and layer L, L is a candidate layer for G if no gate in L has a DAG dependency with G, and if Z3 allows gates in L and G to overlap.                              |
+  | [`find_layer`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.find_layer "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.find_layer")(layers, triplet)                                                 | Find the appropriate layer for a gate                                                                                                                                          |
+  | [`gate_tuple`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.gate_tuple "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.gate_tuple")(gate)                                                            | Representation for gate                                                                                                                                                        |
+  | [`generate_barriers`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.generate_barriers "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.generate_barriers")(layers)                                     | For each gate g, see if a barrier is required to serialize it with some previously processed gate                                                                              |
+  | [`is_significant_xtalk`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_significant_xtalk "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_significant_xtalk")(gate1, gate2)                      | Given two conditional gate error rates check if there is high crosstalk by comparing with independent error rates.                                                             |
+  | [`name`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.name "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.name")()                                                                                  | Return the name of the pass.                                                                                                                                                   |
+  | [`objective_function`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.objective_function "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.objective_function")()                                        | Objective function is a weighted combination of gate errors and decoherence errors                                                                                             |
+  | [`parse_backend_properties`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.parse_backend_properties "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.parse_backend_properties")()                      | This function assumes that gate durations and coherence times are in seconds in backend.properties() This function converts gate durations and coherence times to nanoseconds. |
+  | [`powerset`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.powerset "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.powerset")(iterable)                                                              | Finds the set of all subsets of the given iterable This function is used to generate constraints for the Z3 optimization                                                       |
+  | [`r2f`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.r2f "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.r2f")(val)                                                                                  | Convert Z3 Real to Python float                                                                                                                                                |
+  | [`reset`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.reset "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.reset")()                                                                               | Reset variables                                                                                                                                                                |
+  | [`run`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.run "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.run")(dag)                                                                                  | Main scheduling function                                                                                                                                                       |
+  | [`scheduling_constraints`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.scheduling_constraints "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.scheduling_constraints")()                            | DAG scheduling constraints optimization Sets overlap indicator variables                                                                                                       |
+  | [`singleq_tuple`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.singleq_tuple "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.singleq_tuple")(gate)                                                   | Representation for single-qubit gate                                                                                                                                           |
+  | [`solve_optimization`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.solve_optimization "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.solve_optimization")()                                        | Setup and solve a Z3 optimization for finding the best schedule                                                                                                                |
 
-**Raises**
+  ## Attributes
 
-**ImportError** – if unable to import z3 solver
+  |                                                                                                                                                                                    |                                             |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+  | [`is_analysis_pass`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_analysis_pass "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
+  | [`is_transformation_pass`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_transformation_pass "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-## Methods
+  ### assign\_gate\_id
 
-|                                                                                                                                                                                                                 |                                                                                                                                                                                |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.__init__ "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.__init__")(backend\_prop, crosstalk\_prop\[, …])                                  | CrosstalkAdaptiveSchedule initializer.                                                                                                                                         |
-| [`assign_gate_id`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.assign_gate_id "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.assign_gate_id")(dag)                                                 | ID for each gate                                                                                                                                                               |
-| [`basic_bounds`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.basic_bounds "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.basic_bounds")()                                                          | Basic variable bounds for optimization                                                                                                                                         |
-| [`check_dag_dependency`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.check_dag_dependency "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.check_dag_dependency")(gate1, gate2)                      | gate2 is a DAG dependent of gate1 if it is a descendant of gate1                                                                                                               |
-| [`check_xtalk_dependency`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.check_xtalk_dependency "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.check_xtalk_dependency")(t\_1, t\_2)                  | Check if two gates have a crosstalk dependency.                                                                                                                                |
-| [`coherence_constraints`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.coherence_constraints "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.coherence_constraints")()                               | Set decoherence errors based on qubit lifetimes                                                                                                                                |
-| [`create_updated_dag`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.create_updated_dag "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.create_updated_dag")(layers, barriers)                        | Given a set of layers and barries, construct a new dag                                                                                                                         |
-| [`create_z3_vars`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.create_z3_vars "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.create_z3_vars")()                                                    | Setup the variables required for Z3 optimization                                                                                                                               |
-| [`cx_tuple`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.cx_tuple "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.cx_tuple")(gate)                                                                  | Representation for two-qubit gate Note: current implementation assumes that the CX error rates and crosstalk behavior are independent of gate direction                        |
-| [`enforce_schedule_on_dag`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.enforce_schedule_on_dag "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.enforce_schedule_on_dag")(input\_gate\_times)       | Z3 outputs start times for each gate.                                                                                                                                          |
-| [`extract_crosstalk_relevant_sets`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_crosstalk_relevant_sets "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_crosstalk_relevant_sets")() | Extract the set of program gates which potentially have crosstalk noise                                                                                                        |
-| [`extract_dag_overlap_sets`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_dag_overlap_sets "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_dag_overlap_sets")(dag)                   | Gate A, B are overlapping if A is neither a descendant nor an ancestor of B.                                                                                                   |
-| [`extract_solution`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_solution "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_solution")()                                              | Extract gate start and finish times from Z3 solution                                                                                                                           |
-| [`fidelity_constraints`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.fidelity_constraints "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.fidelity_constraints")()                                  | Set gate fidelity based on gate overlap conditions                                                                                                                             |
-| [`filter_candidates`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.filter_candidates "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.filter_candidates")(candidates, layer, …)                       | For a gate G and layer L, L is a candidate layer for G if no gate in L has a DAG dependency with G, and if Z3 allows gates in L and G to overlap.                              |
-| [`find_layer`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.find_layer "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.find_layer")(layers, triplet)                                                 | Find the appropriate layer for a gate                                                                                                                                          |
-| [`gate_tuple`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.gate_tuple "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.gate_tuple")(gate)                                                            | Representation for gate                                                                                                                                                        |
-| [`generate_barriers`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.generate_barriers "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.generate_barriers")(layers)                                     | For each gate g, see if a barrier is required to serialize it with some previously processed gate                                                                              |
-| [`is_significant_xtalk`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_significant_xtalk "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_significant_xtalk")(gate1, gate2)                      | Given two conditional gate error rates check if there is high crosstalk by comparing with independent error rates.                                                             |
-| [`name`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.name "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.name")()                                                                                  | Return the name of the pass.                                                                                                                                                   |
-| [`objective_function`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.objective_function "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.objective_function")()                                        | Objective function is a weighted combination of gate errors and decoherence errors                                                                                             |
-| [`parse_backend_properties`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.parse_backend_properties "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.parse_backend_properties")()                      | This function assumes that gate durations and coherence times are in seconds in backend.properties() This function converts gate durations and coherence times to nanoseconds. |
-| [`powerset`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.powerset "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.powerset")(iterable)                                                              | Finds the set of all subsets of the given iterable This function is used to generate constraints for the Z3 optimization                                                       |
-| [`r2f`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.r2f "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.r2f")(val)                                                                                  | Convert Z3 Real to Python float                                                                                                                                                |
-| [`reset`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.reset "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.reset")()                                                                               | Reset variables                                                                                                                                                                |
-| [`run`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.run "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.run")(dag)                                                                                  | Main scheduling function                                                                                                                                                       |
-| [`scheduling_constraints`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.scheduling_constraints "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.scheduling_constraints")()                            | DAG scheduling constraints optimization Sets overlap indicator variables                                                                                                       |
-| [`singleq_tuple`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.singleq_tuple "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.singleq_tuple")(gate)                                                   | Representation for single-qubit gate                                                                                                                                           |
-| [`solve_optimization`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.solve_optimization "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.solve_optimization")()                                        | Setup and solve a Z3 optimization for finding the best schedule                                                                                                                |
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.assign_gate_id" name="assign_gate_id" signature="assign_gate_id(dag)">
+    ID for each gate
+  </Function>
 
-## Attributes
+  ### basic\_bounds
 
-|                                                                                                                                                                                    |                                             |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| [`is_analysis_pass`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_analysis_pass "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
-| [`is_transformation_pass`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_transformation_pass "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_transformation_pass") | Check if the pass is a transformation pass. |
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.basic_bounds" name="basic_bounds" signature="basic_bounds()">
+    Basic variable bounds for optimization
+  </Function>
 
-### assign\_gate\_id
+  ### check\_dag\_dependency
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.assign_gate_id" />
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.check_dag_dependency" name="check_dag_dependency" signature="check_dag_dependency(gate1, gate2)">
+    gate2 is a DAG dependent of gate1 if it is a descendant of gate1
+  </Function>
 
-`assign_gate_id(dag)`
+  ### check\_xtalk\_dependency
 
-ID for each gate
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.check_xtalk_dependency" name="check_xtalk_dependency" signature="check_xtalk_dependency(t_1, t_2)">
+    Check if two gates have a crosstalk dependency. We do not consider crosstalk between pairs of single qubit gates.
+  </Function>
 
-### basic\_bounds
+  ### coherence\_constraints
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.basic_bounds" />
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.coherence_constraints" name="coherence_constraints" signature="coherence_constraints()">
+    Set decoherence errors based on qubit lifetimes
+  </Function>
 
-`basic_bounds()`
+  ### create\_updated\_dag
 
-Basic variable bounds for optimization
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.create_updated_dag" name="create_updated_dag" signature="create_updated_dag(layers, barriers)">
+    Given a set of layers and barries, construct a new dag
+  </Function>
 
-### check\_dag\_dependency
+  ### create\_z3\_vars
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.check_dag_dependency" />
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.create_z3_vars" name="create_z3_vars" signature="create_z3_vars()">
+    Setup the variables required for Z3 optimization
+  </Function>
 
-`check_dag_dependency(gate1, gate2)`
+  ### cx\_tuple
 
-gate2 is a DAG dependent of gate1 if it is a descendant of gate1
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.cx_tuple" name="cx_tuple" signature="cx_tuple(gate)">
+    Representation for two-qubit gate Note: current implementation assumes that the CX error rates and crosstalk behavior are independent of gate direction
+  </Function>
 
-### check\_xtalk\_dependency
+  ### enforce\_schedule\_on\_dag
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.check_xtalk_dependency" />
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.enforce_schedule_on_dag" name="enforce_schedule_on_dag" signature="enforce_schedule_on_dag(input_gate_times)">
+    Z3 outputs start times for each gate. Some gates need to be serialized to implement the Z3 schedule. This function inserts barriers to implement those serializations
+  </Function>
 
-`check_xtalk_dependency(t_1, t_2)`
+  ### extract\_crosstalk\_relevant\_sets
 
-Check if two gates have a crosstalk dependency. We do not consider crosstalk between pairs of single qubit gates.
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_crosstalk_relevant_sets" name="extract_crosstalk_relevant_sets" signature="extract_crosstalk_relevant_sets()">
+    Extract the set of program gates which potentially have crosstalk noise
+  </Function>
 
-### coherence\_constraints
+  ### extract\_dag\_overlap\_sets
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.coherence_constraints" />
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_dag_overlap_sets" name="extract_dag_overlap_sets" signature="extract_dag_overlap_sets(dag)">
+    Gate A, B are overlapping if A is neither a descendant nor an ancestor of B. Currenty overlaps (A,B) are considered when A is a 2q gate and B is either 2q or 1q gate.
+  </Function>
 
-`coherence_constraints()`
+  ### extract\_solution
 
-Set decoherence errors based on qubit lifetimes
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_solution" name="extract_solution" signature="extract_solution()">
+    Extract gate start and finish times from Z3 solution
+  </Function>
 
-### create\_updated\_dag
+  ### fidelity\_constraints
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.create_updated_dag" />
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.fidelity_constraints" name="fidelity_constraints" signature="fidelity_constraints()">
+    Set gate fidelity based on gate overlap conditions
+  </Function>
 
-`create_updated_dag(layers, barriers)`
+  ### filter\_candidates
 
-Given a set of layers and barries, construct a new dag
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.filter_candidates" name="filter_candidates" signature="filter_candidates(candidates, layer, layer_id, triplet)">
+    For a gate G and layer L, L is a candidate layer for G if no gate in L has a DAG dependency with G, and if Z3 allows gates in L and G to overlap.
+  </Function>
 
-### create\_z3\_vars
+  ### find\_layer
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.create_z3_vars" />
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.find_layer" name="find_layer" signature="find_layer(layers, triplet)">
+    Find the appropriate layer for a gate
+  </Function>
 
-`create_z3_vars()`
+  ### gate\_tuple
 
-Setup the variables required for Z3 optimization
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.gate_tuple" name="gate_tuple" signature="gate_tuple(gate)">
+    Representation for gate
+  </Function>
 
-### cx\_tuple
+  ### generate\_barriers
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.cx_tuple" />
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.generate_barriers" name="generate_barriers" signature="generate_barriers(layers)">
+    For each gate g, see if a barrier is required to serialize it with some previously processed gate
+  </Function>
 
-`cx_tuple(gate)`
+  ### is\_analysis\_pass
 
-Representation for two-qubit gate Note: current implementation assumes that the CX error rates and crosstalk behavior are independent of gate direction
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_analysis_pass" name="is_analysis_pass" signature="property is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-### enforce\_schedule\_on\_dag
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Function>
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.enforce_schedule_on_dag" />
+  ### is\_significant\_xtalk
 
-`enforce_schedule_on_dag(input_gate_times)`
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_significant_xtalk" name="is_significant_xtalk" signature="is_significant_xtalk(gate1, gate2)">
+    Given two conditional gate error rates check if there is high crosstalk by comparing with independent error rates.
+  </Function>
 
-Z3 outputs start times for each gate. Some gates need to be serialized to implement the Z3 schedule. This function inserts barriers to implement those serializations
+  ### is\_transformation\_pass
 
-### extract\_crosstalk\_relevant\_sets
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_transformation_pass" name="is_transformation_pass" signature="property is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_crosstalk_relevant_sets" />
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Function>
 
-`extract_crosstalk_relevant_sets()`
+  ### name
 
-Extract the set of program gates which potentially have crosstalk noise
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-### extract\_dag\_overlap\_sets
+  ### objective\_function
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_dag_overlap_sets" />
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.objective_function" name="objective_function" signature="objective_function()">
+    Objective function is a weighted combination of gate errors and decoherence errors
+  </Function>
 
-`extract_dag_overlap_sets(dag)`
+  ### parse\_backend\_properties
 
-Gate A, B are overlapping if A is neither a descendant nor an ancestor of B. Currenty overlaps (A,B) are considered when A is a 2q gate and B is either 2q or 1q gate.
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.parse_backend_properties" name="parse_backend_properties" signature="parse_backend_properties()">
+    This function assumes that gate durations and coherence times are in seconds in backend.properties() This function converts gate durations and coherence times to nanoseconds.
+  </Function>
 
-### extract\_solution
+  ### powerset
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.extract_solution" />
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.powerset" name="powerset" signature="powerset(iterable)">
+    Finds the set of all subsets of the given iterable This function is used to generate constraints for the Z3 optimization
+  </Function>
 
-`extract_solution()`
+  ### r2f
 
-Extract gate start and finish times from Z3 solution
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.r2f" name="r2f" signature="r2f(val)">
+    Convert Z3 Real to Python float
+  </Function>
 
-### fidelity\_constraints
+  ### reset
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.fidelity_constraints" />
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.reset" name="reset" signature="reset()">
+    Reset variables
+  </Function>
 
-`fidelity_constraints()`
+  ### run
 
-Set gate fidelity based on gate overlap conditions
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.run" name="run" signature="run(dag)">
+    Main scheduling function
+  </Function>
 
-### filter\_candidates
+  ### scheduling\_constraints
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.filter_candidates" />
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.scheduling_constraints" name="scheduling_constraints" signature="scheduling_constraints()">
+    DAG scheduling constraints optimization Sets overlap indicator variables
+  </Function>
 
-`filter_candidates(candidates, layer, layer_id, triplet)`
+  ### singleq\_tuple
 
-For a gate G and layer L, L is a candidate layer for G if no gate in L has a DAG dependency with G, and if Z3 allows gates in L and G to overlap.
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.singleq_tuple" name="singleq_tuple" signature="singleq_tuple(gate)">
+    Representation for single-qubit gate
+  </Function>
 
-### find\_layer
+  ### solve\_optimization
 
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.find_layer" />
-
-`find_layer(layers, triplet)`
-
-Find the appropriate layer for a gate
-
-### gate\_tuple
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.gate_tuple" />
-
-`gate_tuple(gate)`
-
-Representation for gate
-
-### generate\_barriers
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.generate_barriers" />
-
-`generate_barriers(layers)`
-
-For each gate g, see if a barrier is required to serialize it with some previously processed gate
-
-### is\_analysis\_pass
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_analysis_pass" />
-
-`property is_analysis_pass`
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-### is\_significant\_xtalk
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_significant_xtalk" />
-
-`is_significant_xtalk(gate1, gate2)`
-
-Given two conditional gate error rates check if there is high crosstalk by comparing with independent error rates.
-
-### is\_transformation\_pass
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_transformation_pass" />
-
-`property is_transformation_pass`
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
-
-### name
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.name" />
-
-`name()`
-
-Return the name of the pass.
-
-### objective\_function
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.objective_function" />
-
-`objective_function()`
-
-Objective function is a weighted combination of gate errors and decoherence errors
-
-### parse\_backend\_properties
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.parse_backend_properties" />
-
-`parse_backend_properties()`
-
-This function assumes that gate durations and coherence times are in seconds in backend.properties() This function converts gate durations and coherence times to nanoseconds.
-
-### powerset
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.powerset" />
-
-`powerset(iterable)`
-
-Finds the set of all subsets of the given iterable This function is used to generate constraints for the Z3 optimization
-
-### r2f
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.r2f" />
-
-`r2f(val)`
-
-Convert Z3 Real to Python float
-
-### reset
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.reset" />
-
-`reset()`
-
-Reset variables
-
-### run
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.run" />
-
-`run(dag)`
-
-Main scheduling function
-
-### scheduling\_constraints
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.scheduling_constraints" />
-
-`scheduling_constraints()`
-
-DAG scheduling constraints optimization Sets overlap indicator variables
-
-### singleq\_tuple
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.singleq_tuple" />
-
-`singleq_tuple(gate)`
-
-Representation for single-qubit gate
-
-### solve\_optimization
-
-<span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.solve_optimization" />
-
-`solve_optimization()`
-
-Setup and solve a Z3 optimization for finding the best schedule
+  <Function id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.solve_optimization" name="solve_optimization" signature="solve_optimization()">
+    Setup and solve a Z3 optimization for finding the best schedule
+  </Function>
+</Class>
 

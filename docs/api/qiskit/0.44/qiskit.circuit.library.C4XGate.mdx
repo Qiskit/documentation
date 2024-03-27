@@ -8,149 +8,143 @@ python_api_name: qiskit.circuit.library.C4XGate
 
 # C4XGate
 
-<span id="qiskit.circuit.library.C4XGate" />
+<Class id="qiskit.circuit.library.C4XGate" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/x.py" signature="qiskit.circuit.library.C4XGate(label=None, ctrl_state=None)">
+  Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
-`qiskit.circuit.library.C4XGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/x.py "view source code")
+  The 4-qubit controlled X gate.
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+  This implementation is based on Page 21, Lemma 7.5, of \[1], with the use of the relative phase version of c3x, the rc3x \[2].
 
-The 4-qubit controlled X gate.
+  **References**
 
-This implementation is based on Page 21, Lemma 7.5, of \[1], with the use of the relative phase version of c3x, the rc3x \[2].
+  \[1] Barenco et al., 1995. [https://arxiv.org/pdf/quant-ph/9503016.pdf](https://arxiv.org/pdf/quant-ph/9503016.pdf) \[2] Maslov, 2015. [https://arxiv.org/abs/1508.03273](https://arxiv.org/abs/1508.03273)
 
-**References**
+  Create a new 4-qubit controlled X gate.
 
-\[1] Barenco et al., 1995. [https://arxiv.org/pdf/quant-ph/9503016.pdf](https://arxiv.org/pdf/quant-ph/9503016.pdf) \[2] Maslov, 2015. [https://arxiv.org/abs/1508.03273](https://arxiv.org/abs/1508.03273)
+  ## Attributes
 
-Create a new 4-qubit controlled X gate.
+  ### condition\_bits
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.C4XGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.C4XGate.condition_bits" />
+  ### ctrl\_state
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.C4XGate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
 
-Get Clbits in condition.
+  ### decompositions
 
-<span id="qiskit.circuit.library.C4XGate.ctrl_state" />
+  <Attribute id="qiskit.circuit.library.C4XGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### ctrl\_state
+  ### definition
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.C4XGate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.C4XGate.decompositions" />
+  ### duration
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.C4XGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### label
 
-<span id="qiskit.circuit.library.C4XGate.definition" />
+  <Attribute id="qiskit.circuit.library.C4XGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-### definition
+  ### name
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  <Attribute id="qiskit.circuit.library.C4XGate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-<span id="qiskit.circuit.library.C4XGate.duration" />
+    > \<original\_name\_o\<ctrl\_state>
 
-### duration
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
 
-Get the duration.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.C4XGate.label" />
+  <Attribute id="qiskit.circuit.library.C4XGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### label
+  ### num\_ctrl\_qubits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.C4XGate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-<span id="qiskit.circuit.library.C4XGate.name" />
+    **Returns**
 
-### name
+    The number of control qubits for the gate.
 
-Get name of gate. If the gate has open controls the gate name will become:
+    **Return type**
 
-> \<original\_name\_o\<ctrl\_state>
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Attribute>
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.C4XGate.num_clbits" />
+  <Attribute id="qiskit.circuit.library.C4XGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-### num\_clbits
+  ### params
 
-Return the number of clbits.
+  <Attribute id="qiskit.circuit.library.C4XGate.params" name="params">
+    Get parameters from base\_gate.
 
-<span id="qiskit.circuit.library.C4XGate.num_ctrl_qubits" />
+    **Returns**
 
-### num\_ctrl\_qubits
+    List of gate parameters.
 
-Get number of control qubits.
+    **Return type**
 
-**Returns**
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
-The number of control qubits for the gate.
+    **Raises**
 
-**Return type**
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+  </Attribute>
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  ### unit
 
-<span id="qiskit.circuit.library.C4XGate.num_qubits" />
+  <Attribute id="qiskit.circuit.library.C4XGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-### num\_qubits
+  ## Methods
 
-Return the number of qubits.
+  ### control
 
-<span id="qiskit.circuit.library.C4XGate.params" />
+  <Function id="qiskit.circuit.library.C4XGate.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Controlled version of this gate.
 
-### params
+    **Parameters**
 
-Get parameters from base\_gate.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-**Returns**
+    **Returns**
 
-List of gate parameters.
+    controlled version of this gate.
 
-**Return type**
+    **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-**Raises**
+  ### inverse
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
-
-<span id="qiskit.circuit.library.C4XGate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### control
-
-<span id="qiskit.circuit.library.C4XGate.control" />
-
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
-
-Controlled version of this gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.C4XGate.inverse" />
-
-`inverse()`
-
-Invert this gate. The C4X is its own inverse.
+  <Function id="qiskit.circuit.library.C4XGate.inverse" name="inverse" signature="inverse()">
+    Invert this gate. The C4X is its own inverse.
+  </Function>
+</Class>
 

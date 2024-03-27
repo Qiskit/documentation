@@ -8,107 +8,95 @@ python_api_name: qiskit.algorithms.NumPyEigensolver
 
 # qiskit.algorithms.NumPyEigensolver
 
-<span id="qiskit.algorithms.NumPyEigensolver" />
+<Class id="qiskit.algorithms.NumPyEigensolver" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/eigen_solvers/numpy_eigen_solver.py" signature="NumPyEigensolver(k=1, filter_criterion=None)">
+  The NumPy Eigensolver algorithm.
 
-`NumPyEigensolver(k=1, filter_criterion=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/eigen_solvers/numpy_eigen_solver.py "view source code")
+  NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued square matrix of dimension $n \times n$, with $k \leq n$.
 
-The NumPy Eigensolver algorithm.
+  <Admonition title="Note" type="note">
+    Operators are automatically converted to SciPy’s `spmatrix` as needed and this conversion can be costly in terms of memory and performance as the operator size, mostly in terms of number of qubits it represents, gets larger.
+  </Admonition>
 
-NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued square matrix of dimension $n \times n$, with $k \leq n$.
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  Operators are automatically converted to SciPy’s `spmatrix` as needed and this conversion can be costly in terms of memory and performance as the operator size, mostly in terms of number of qubits it represents, gets larger.
-</Admonition>
+  *   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
+  *   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates, only feasible eigenstates are returned in the results. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to keep this value in the final returned result or not. If the number of elements that satisfies the criterion is smaller than k then the returned list has fewer elements and can even be empty.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
-*   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates, only feasible eigenstates are returned in the results. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to keep this value in the final returned result or not. If the number of elements that satisfies the criterion is smaller than k then the returned list has fewer elements and can even be empty.
+  <Function id="qiskit.algorithms.NumPyEigensolver.__init__" name="__init__" signature="__init__(k=1, filter_criterion=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
+    *   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates, only feasible eigenstates are returned in the results. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to keep this value in the final returned result or not. If the number of elements that satisfies the criterion is smaller than k then the returned list has fewer elements and can even be empty.
+  </Function>
 
-<span id="qiskit.algorithms.NumPyEigensolver.__init__" />
+  ## Methods
 
-`__init__(k=1, filter_criterion=None)`
+  |                                                                                                                                                                        |                                                                              |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.NumPyEigensolver.__init__ "qiskit.algorithms.NumPyEigensolver.__init__")(\[k, filter\_criterion])                                      | **type k**`int`                                                              |
+  | [`compute_eigenvalues`](#qiskit.algorithms.NumPyEigensolver.compute_eigenvalues "qiskit.algorithms.NumPyEigensolver.compute_eigenvalues")(operator\[, aux\_operators]) | Computes eigenvalues.                                                        |
+  | [`supports_aux_operators`](#qiskit.algorithms.NumPyEigensolver.supports_aux_operators "qiskit.algorithms.NumPyEigensolver.supports_aux_operators")()                   | Whether computing the expectation value of auxiliary operators is supported. |
 
-**Parameters**
+  ## Attributes
 
-*   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
-*   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates, only feasible eigenstates are returned in the results. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to keep this value in the final returned result or not. If the number of elements that satisfies the criterion is smaller than k then the returned list has fewer elements and can even be empty.
+  |                                                                                                                                  |                                             |
+  | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+  | [`filter_criterion`](#qiskit.algorithms.NumPyEigensolver.filter_criterion "qiskit.algorithms.NumPyEigensolver.filter_criterion") | returns the filter criterion if set         |
+  | [`k`](#qiskit.algorithms.NumPyEigensolver.k "qiskit.algorithms.NumPyEigensolver.k")                                              | returns k (number of eigenvalues requested) |
 
-## Methods
+  ### compute\_eigenvalues
 
-|                                                                                                                                                                        |                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.NumPyEigensolver.__init__ "qiskit.algorithms.NumPyEigensolver.__init__")(\[k, filter\_criterion])                                      | **type k**`int`                                                              |
-| [`compute_eigenvalues`](#qiskit.algorithms.NumPyEigensolver.compute_eigenvalues "qiskit.algorithms.NumPyEigensolver.compute_eigenvalues")(operator\[, aux\_operators]) | Computes eigenvalues.                                                        |
-| [`supports_aux_operators`](#qiskit.algorithms.NumPyEigensolver.supports_aux_operators "qiskit.algorithms.NumPyEigensolver.supports_aux_operators")()                   | Whether computing the expectation value of auxiliary operators is supported. |
+  <Function id="qiskit.algorithms.NumPyEigensolver.compute_eigenvalues" name="compute_eigenvalues" signature="compute_eigenvalues(operator, aux_operators=None)">
+    Computes eigenvalues. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                  |                                             |
-| -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| [`filter_criterion`](#qiskit.algorithms.NumPyEigensolver.filter_criterion "qiskit.algorithms.NumPyEigensolver.filter_criterion") | returns the filter criterion if set         |
-| [`k`](#qiskit.algorithms.NumPyEigensolver.k "qiskit.algorithms.NumPyEigensolver.k")                                              | returns k (number of eigenvalues requested) |
+    *   **operator** (`OperatorBase`) – Qubit operator of the Observable
+    *   **aux\_operators** (`Optional`\[`List`\[`Optional`\[`OperatorBase`]]]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
 
-### compute\_eigenvalues
+    **Return type**
 
-<span id="qiskit.algorithms.NumPyEigensolver.compute_eigenvalues" />
+    `EigensolverResult`
 
-`compute_eigenvalues(operator, aux_operators=None)`
+    **Returns**
 
-Computes eigenvalues. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
+    EigensolverResult
+  </Function>
 
-**Parameters**
+  ### filter\_criterion
 
-*   **operator** (`OperatorBase`) – Qubit operator of the Observable
-*   **aux\_operators** (`Optional`\[`List`\[`Optional`\[`OperatorBase`]]]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
+  <Function id="qiskit.algorithms.NumPyEigensolver.filter_criterion" name="filter_criterion" signature="property filter_criterion">
+    returns the filter criterion if set
 
-**Return type**
+    **Return type**
 
-`EigensolverResult`
+    `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
+  </Function>
 
-**Returns**
+  ### k
 
-EigensolverResult
+  <Function id="qiskit.algorithms.NumPyEigensolver.k" name="k" signature="property k">
+    returns k (number of eigenvalues requested)
 
-### filter\_criterion
+    **Return type**
 
-<span id="qiskit.algorithms.NumPyEigensolver.filter_criterion" />
+    `int`
+  </Function>
 
-`property filter_criterion`
+  ### supports\_aux\_operators
 
-returns the filter criterion if set
+  <Function id="qiskit.algorithms.NumPyEigensolver.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
+    `bool`
 
-### k
+    **Returns**
 
-<span id="qiskit.algorithms.NumPyEigensolver.k" />
-
-`property k`
-
-returns k (number of eigenvalues requested)
-
-**Return type**
-
-`int`
-
-### supports\_aux\_operators
-
-<span id="qiskit.algorithms.NumPyEigensolver.supports_aux_operators" />
-
-`classmethod supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
+    True if aux\_operator expectations can be evaluated, False otherwise
+  </Function>
+</Class>
 

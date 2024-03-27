@@ -8,259 +8,237 @@ python_api_name: qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
 # qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
-<span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator" />
+<Class id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/tensored_mitigator.py" signature="TensoredExpvalMeasMitigator(amats)">
+  1-qubit tensor product measurement error mitigator.
 
-`TensoredExpvalMeasMitigator(amats)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/tensored_mitigator.py "view source code")
+  This class can be used with the [`qiskit.ignis.mitigation.expectation_value()`](qiskit.ignis.mitigation.expectation_value "qiskit.ignis.mitigation.expectation_value") function to apply measurement error mitigation of local single-qubit measurement errors. Expectation values can also be computed directly using the [`expectation_value()`](qiskit.ignis.mitigation.expectation_value "qiskit.ignis.mitigation.expectation_value") method.
 
-1-qubit tensor product measurement error mitigator.
+  For measurement mitigation to be applied the mitigator should be calibrated using the [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") function and [`qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter") class with the `'tensored'` mitigation method.
 
-This class can be used with the [`qiskit.ignis.mitigation.expectation_value()`](qiskit.ignis.mitigation.expectation_value "qiskit.ignis.mitigation.expectation_value") function to apply measurement error mitigation of local single-qubit measurement errors. Expectation values can also be computed directly using the [`expectation_value()`](qiskit.ignis.mitigation.expectation_value "qiskit.ignis.mitigation.expectation_value") method.
+  Initialize a TensorMeasurementMitigator
 
-For measurement mitigation to be applied the mitigator should be calibrated using the [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") function and [`qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter") class with the `'tensored'` mitigation method.
+  **Parameters**
 
-Initialize a TensorMeasurementMitigator
+  **amats** (`List`\[`ndarray`]) – list of single-qubit readout error assignment matrices.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**amats** (`List`\[`ndarray`]) – list of single-qubit readout error assignment matrices.
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.__init__" name="__init__" signature="__init__(amats)">
+    Initialize a TensorMeasurementMitigator
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.__init__" />
+    **amats** (`List`\[`ndarray`]) – list of single-qubit readout error assignment matrices.
+  </Function>
 
-`__init__(amats)`
+  ## Methods
 
-Initialize a TensorMeasurementMitigator
+  |                                                                                                                                                                                                     |                                                                       |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.__init__ "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.__init__")(amats)                                                   | Initialize a TensorMeasurementMitigator                               |
+  | [`assignment_fidelity`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_fidelity "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_fidelity")(\[qubits])              | Return the measurement assignment fidelity on the specified qubits.   |
+  | [`assignment_matrix`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix")(\[qubits])                    | Return the measurement assignment matrix for specified qubits.        |
+  | [`expectation_value`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.expectation_value "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.expectation_value")(counts\[, diagonal, …])       | Compute the mitigated expectation value of a diagonal observable.     |
+  | [`mitigation_matrix`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_matrix")(\[qubits])                    | Return the measurement mitigation matrix for the specified qubits.    |
+  | [`mitigation_overhead`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_overhead "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_overhead")(\[qubits])              | Return the mitigation overhead for expectation value estimation.      |
+  | [`plot_assignment_matrix`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_assignment_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_assignment_matrix")(\[qubits, ax]) | Matrix plot of the readout error assignment matrix.                   |
+  | [`plot_mitigation_matrix`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_mitigation_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_mitigation_matrix")(\[qubits, ax]) | Matrix plot of the readout error mitigation matrix.                   |
+  | [`required_shots`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.required_shots "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.required_shots")(delta\[, qubits])                      | Return the number of shots required for expectation value estimation. |
+  | [`stddev_upper_bound`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.stddev_upper_bound "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.stddev_upper_bound")(\[shots, qubits])          | Return an upper bound on standard deviation of expval estimator.      |
 
-**Parameters**
+  ### assignment\_fidelity
 
-**amats** (`List`\[`ndarray`]) – list of single-qubit readout error assignment matrices.
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_fidelity" name="assignment_fidelity" signature="assignment_fidelity(qubits=None)">
+    Return the measurement assignment fidelity on the specified qubits.
 
-## Methods
+    The assignment fidelity on N-qubits is defined as $\sum_{x\in\{0, 1\}^n} P(x|x) / 2^n$, where $P(x|x) = \rangle x|A|x\langle$, and $A$ is the [`assignment_matrix()`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix").
 
-|                                                                                                                                                                                                     |                                                                       |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [`__init__`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.__init__ "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.__init__")(amats)                                                   | Initialize a TensorMeasurementMitigator                               |
-| [`assignment_fidelity`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_fidelity "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_fidelity")(\[qubits])              | Return the measurement assignment fidelity on the specified qubits.   |
-| [`assignment_matrix`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix")(\[qubits])                    | Return the measurement assignment matrix for specified qubits.        |
-| [`expectation_value`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.expectation_value "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.expectation_value")(counts\[, diagonal, …])       | Compute the mitigated expectation value of a diagonal observable.     |
-| [`mitigation_matrix`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_matrix")(\[qubits])                    | Return the measurement mitigation matrix for the specified qubits.    |
-| [`mitigation_overhead`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_overhead "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_overhead")(\[qubits])              | Return the mitigation overhead for expectation value estimation.      |
-| [`plot_assignment_matrix`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_assignment_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_assignment_matrix")(\[qubits, ax]) | Matrix plot of the readout error assignment matrix.                   |
-| [`plot_mitigation_matrix`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_mitigation_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_mitigation_matrix")(\[qubits, ax]) | Matrix plot of the readout error mitigation matrix.                   |
-| [`required_shots`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.required_shots "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.required_shots")(delta\[, qubits])                      | Return the number of shots required for expectation value estimation. |
-| [`stddev_upper_bound`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.stddev_upper_bound "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.stddev_upper_bound")(\[shots, qubits])          | Return an upper bound on standard deviation of expval estimator.      |
+    **Parameters**
 
-### assignment\_fidelity
+    **qubits** (`Optional`\[`List`\[`int`]]) – Optional, qubits being measured for operator expval.
 
-<span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_fidelity" />
+    **Returns**
 
-`assignment_fidelity(qubits=None)`
+    the assignment fidelity.
 
-Return the measurement assignment fidelity on the specified qubits.
+    **Return type**
 
-The assignment fidelity on N-qubits is defined as $\sum_{x\in\{0, 1\}^n} P(x|x) / 2^n$, where $P(x|x) = \rangle x|A|x\langle$, and $A$ is the [`assignment_matrix()`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix").
+    float
+  </Function>
 
-**Parameters**
+  ### assignment\_matrix
 
-**qubits** (`Optional`\[`List`\[`int`]]) – Optional, qubits being measured for operator expval.
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix" name="assignment_matrix" signature="assignment_matrix(qubits=None)">
+    Return the measurement assignment matrix for specified qubits.
 
-**Returns**
+    The assignment matrix is the stochastic matrix $A$ which assigns a noisy measurement probability distribution to an ideal input measurement distribution: $P(i|j) = \langle i | A | j \rangle$.
 
-the assignment fidelity.
+    **Parameters**
 
-**Return type**
+    **qubits** (`Optional`\[`List`\[`int`]]) – Optional, qubits being measured for operator expval.
 
-float
+    **Returns**
 
-### assignment\_matrix
+    the assignment matrix A.
 
-<span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix" />
+    **Return type**
 
-`assignment_matrix(qubits=None)`
+    np.ndarray
+  </Function>
 
-Return the measurement assignment matrix for specified qubits.
+  ### expectation\_value
 
-The assignment matrix is the stochastic matrix $A$ which assigns a noisy measurement probability distribution to an ideal input measurement distribution: $P(i|j) = \langle i | A | j \rangle$.
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.expectation_value" name="expectation_value" signature="expectation_value(counts, diagonal=None, qubits=None, clbits=None)">
+    Compute the mitigated expectation value of a diagonal observable.
 
-**Parameters**
+    This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
 
-**qubits** (`Optional`\[`List`\[`int`]]) – Optional, qubits being measured for operator expval.
+    **Parameters**
 
-**Returns**
+    *   **counts** (`Dict`) – counts object
+    *   **diagonal** (`Optional`\[`ndarray`]) – Optional, the vector of diagonal values for summing the expectation value. If `None` the the default value is $[1, -1]^\otimes n$.
+    *   **qubits** (`Optional`\[`List`\[`int`]]) – Optional, the measured physical qubits the count bitstrings correspond to. If None qubits are assumed to be $[0, ..., n-1]$.
+    *   **clbits** (`Optional`\[`List`\[`int`]]) – Optional, if not None marginalize counts to the specified bits.
 
-the assignment matrix A.
+    **Returns**
 
-**Return type**
+    the expectation value and standard deviation.
 
-np.ndarray
+    **Return type**
 
-### expectation\_value
+    (float, float)
 
-<span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.expectation_value" />
+    **Additional Information:**
 
-`expectation_value(counts, diagonal=None, qubits=None, clbits=None)`
+    The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Numpy array $[O(0), ..., O(2^n -1)]$. If no diagonal is specified the diagonal of the Pauli operator :math\`O = mbox\{diag}(Z^\{otimes n}) = \[1, -1]^\{otimes n}\` is used.
 
-Compute the mitigated expectation value of a diagonal observable.
+    The `clbits` kwarg is used to marginalize the input counts dictionary over the specified bit-values, and the `qubits` kwarg is used to specify which physical qubits these bit-values correspond to as `circuit.measure(qubits, clbits)`.
+  </Function>
 
-This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
+  ### mitigation\_matrix
 
-**Parameters**
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_matrix" name="mitigation_matrix" signature="mitigation_matrix(qubits=None)">
+    Return the measurement mitigation matrix for the specified qubits.
 
-*   **counts** (`Dict`) – counts object
-*   **diagonal** (`Optional`\[`ndarray`]) – Optional, the vector of diagonal values for summing the expectation value. If `None` the the default value is $[1, -1]^\otimes n$.
-*   **qubits** (`Optional`\[`List`\[`int`]]) – Optional, the measured physical qubits the count bitstrings correspond to. If None qubits are assumed to be $[0, ..., n-1]$.
-*   **clbits** (`Optional`\[`List`\[`int`]]) – Optional, if not None marginalize counts to the specified bits.
+    The mitigation matrix $A^{-1}$ is defined as the inverse of the [`assignment_matrix()`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix") $A$.
 
-**Returns**
+    **Parameters**
 
-the expectation value and standard deviation.
+    **qubits** (`Optional`\[`List`\[`int`]]) – Optional, qubits being measured for operator expval.
 
-**Return type**
+    **Returns**
 
-(float, float)
+    the measurement error mitigation matrix $A^{-1}$.
 
-**Additional Information:**
+    **Return type**
 
-The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Numpy array $[O(0), ..., O(2^n -1)]$. If no diagonal is specified the diagonal of the Pauli operator :math\`O = mbox\{diag}(Z^\{otimes n}) = \[1, -1]^\{otimes n}\` is used.
+    np.ndarray
+  </Function>
 
-The `clbits` kwarg is used to marginalize the input counts dictionary over the specified bit-values, and the `qubits` kwarg is used to specify which physical qubits these bit-values correspond to as `circuit.measure(qubits, clbits)`.
+  ### mitigation\_overhead
 
-### mitigation\_matrix
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_overhead" name="mitigation_overhead" signature="mitigation_overhead(qubits=None)">
+    Return the mitigation overhead for expectation value estimation.
 
-<span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_matrix" />
+    This is the multiplicative factor of extra shots required for estimating a mitigated expectation value with the same accuracy as an unmitigated expectation value.
 
-`mitigation_matrix(qubits=None)`
+    **Parameters**
 
-Return the measurement mitigation matrix for the specified qubits.
+    **qubits** (`Optional`\[`List`\[`int`]]) – Optional, qubits being measured for operator expval.
 
-The mitigation matrix $A^{-1}$ is defined as the inverse of the [`assignment_matrix()`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix") $A$.
+    **Returns**
 
-**Parameters**
+    the mitigation overhead factor.
 
-**qubits** (`Optional`\[`List`\[`int`]]) – Optional, qubits being measured for operator expval.
+    **Return type**
 
-**Returns**
+    int
+  </Function>
 
-the measurement error mitigation matrix $A^{-1}$.
+  ### plot\_assignment\_matrix
 
-**Return type**
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_assignment_matrix" name="plot_assignment_matrix" signature="plot_assignment_matrix(qubits=None, ax=None)">
+    Matrix plot of the readout error assignment matrix.
 
-np.ndarray
+    **Parameters**
 
-### mitigation\_overhead
+    *   **qubits** (*list(int)*) – Optional, qubits being measured for operator expval.
+    *   **ax** (*axes*) – Optional. Axes object to add plot to.
 
-<span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_overhead" />
+    **Returns**
 
-`mitigation_overhead(qubits=None)`
+    the figure axes object.
 
-Return the mitigation overhead for expectation value estimation.
+    **Return type**
 
-This is the multiplicative factor of extra shots required for estimating a mitigated expectation value with the same accuracy as an unmitigated expectation value.
+    plt.axes
 
-**Parameters**
+    **Raises**
 
-**qubits** (`Optional`\[`List`\[`int`]]) – Optional, qubits being measured for operator expval.
+    **ImportError** – if matplotlib is not installed.
+  </Function>
 
-**Returns**
+  ### plot\_mitigation\_matrix
 
-the mitigation overhead factor.
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_mitigation_matrix" name="plot_mitigation_matrix" signature="plot_mitigation_matrix(qubits=None, ax=None)">
+    Matrix plot of the readout error mitigation matrix.
 
-**Return type**
+    **Parameters**
 
-int
+    *   **qubits** (*list(int)*) – Optional, qubits being measured for operator expval.
+    *   **ax** (*plt.axes*) – Optional. Axes object to add plot to.
 
-### plot\_assignment\_matrix
+    **Returns**
 
-<span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_assignment_matrix" />
+    the figure axes object.
 
-`plot_assignment_matrix(qubits=None, ax=None)`
+    **Return type**
 
-Matrix plot of the readout error assignment matrix.
+    plt.axes
 
-**Parameters**
+    **Raises**
 
-*   **qubits** (*list(int)*) – Optional, qubits being measured for operator expval.
-*   **ax** (*axes*) – Optional. Axes object to add plot to.
+    **ImportError** – if matplotlib is not installed.
+  </Function>
 
-**Returns**
+  ### required\_shots
 
-the figure axes object.
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.required_shots" name="required_shots" signature="required_shots(delta, qubits=None)">
+    Return the number of shots required for expectation value estimation.
 
-**Return type**
+    This is the number of shots required so that $|\langle O \rangle_{est} - \langle O \rangle_{true}| < \delta$ with high probability (at least 2/3) and is given by $4\delta^2 \Gamma^2$ where $\Gamma^2$ is the [`mitigation_overhead()`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_overhead "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_overhead").
 
-plt.axes
+    **Parameters**
 
-**Raises**
+    *   **delta** (`float`) – Error tolerance for expectation value estimator.
+    *   **qubits** (`Optional`\[`List`\[`int`]]) – Optional, qubits being measured for operator expval.
 
-**ImportError** – if matplotlib is not installed.
+    **Returns**
 
-### plot\_mitigation\_matrix
+    the required shots.
 
-<span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_mitigation_matrix" />
+    **Return type**
 
-`plot_mitigation_matrix(qubits=None, ax=None)`
+    int
+  </Function>
 
-Matrix plot of the readout error mitigation matrix.
+  ### stddev\_upper\_bound
 
-**Parameters**
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.stddev_upper_bound" name="stddev_upper_bound" signature="stddev_upper_bound(shots=1, qubits=None)">
+    Return an upper bound on standard deviation of expval estimator.
 
-*   **qubits** (*list(int)*) – Optional, qubits being measured for operator expval.
-*   **ax** (*plt.axes*) – Optional. Axes object to add plot to.
+    **Parameters**
 
-**Returns**
+    *   **shots** (`int`) – Number of shots used for expectation value measurement.
+    *   **qubits** (`Optional`\[`List`\[`int`]]) – qubits being measured for operator expval.
 
-the figure axes object.
+    **Returns**
 
-**Return type**
+    the standard deviation upper bound.
 
-plt.axes
+    **Return type**
 
-**Raises**
-
-**ImportError** – if matplotlib is not installed.
-
-### required\_shots
-
-<span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.required_shots" />
-
-`required_shots(delta, qubits=None)`
-
-Return the number of shots required for expectation value estimation.
-
-This is the number of shots required so that $|\langle O \rangle_{est} - \langle O \rangle_{true}| < \delta$ with high probability (at least 2/3) and is given by $4\delta^2 \Gamma^2$ where $\Gamma^2$ is the [`mitigation_overhead()`](#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_overhead "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_overhead").
-
-**Parameters**
-
-*   **delta** (`float`) – Error tolerance for expectation value estimator.
-*   **qubits** (`Optional`\[`List`\[`int`]]) – Optional, qubits being measured for operator expval.
-
-**Returns**
-
-the required shots.
-
-**Return type**
-
-int
-
-### stddev\_upper\_bound
-
-<span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.stddev_upper_bound" />
-
-`stddev_upper_bound(shots=1, qubits=None)`
-
-Return an upper bound on standard deviation of expval estimator.
-
-**Parameters**
-
-*   **shots** (`int`) – Number of shots used for expectation value measurement.
-*   **qubits** (`Optional`\[`List`\[`int`]]) – qubits being measured for operator expval.
-
-**Returns**
-
-the standard deviation upper bound.
-
-**Return type**
-
-float
+    float
+  </Function>
+</Class>
 

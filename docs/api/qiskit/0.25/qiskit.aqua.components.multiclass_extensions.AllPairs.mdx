@@ -8,99 +8,87 @@ python_api_name: qiskit.aqua.components.multiclass_extensions.AllPairs
 
 # qiskit.aqua.components.multiclass\_extensions.AllPairs
 
-<span id="qiskit.aqua.components.multiclass_extensions.AllPairs" />
+<Class id="qiskit.aqua.components.multiclass_extensions.AllPairs" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/all_pairs.py" signature="AllPairs">
+  The All-Pairs multiclass extension.
 
-`AllPairs` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/all_pairs.py "view source code")
+  In the **all-pairs** reduction, one trains $k(k−1)/2$ binary classifiers for a $k$-way multiclass problem; each receives the samples of a pair of classes from the original training set, and must learn to distinguish these two classes. At prediction time, a **weighted voting scheme** is used: all $k(k−1)/2$ classifiers are applied to an unseen sample, and each class gets assigned the sum of all the scores obtained by the various classifiers. The combined classifier returns as a result the class getting the highest value.
 
-The All-Pairs multiclass extension.
+  ### \_\_init\_\_
 
-In the **all-pairs** reduction, one trains $k(k−1)/2$ binary classifiers for a $k$-way multiclass problem; each receives the samples of a pair of classes from the original training set, and must learn to distinguish these two classes. At prediction time, a **weighted voting scheme** is used: all $k(k−1)/2$ classifiers are applied to an unseen sample, and each class gets assigned the sum of all the scores obtained by the various classifiers. The combined classifier returns as a result the class getting the highest value.
+  <Function id="qiskit.aqua.components.multiclass_extensions.AllPairs.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.aqua.components.multiclass_extensions.AllPairs.__init__" />
+  |                                                                                                                                                                                          |                                                                                                                                                                                                                                         |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.components.multiclass_extensions.AllPairs.__init__ "qiskit.aqua.components.multiclass_extensions.AllPairs.__init__")()                                         | Initialize self.                                                                                                                                                                                                                        |
+  | [`predict`](#qiskit.aqua.components.multiclass_extensions.AllPairs.predict "qiskit.aqua.components.multiclass_extensions.AllPairs.predict")(x)                                           | Applying multiple estimators for prediction.                                                                                                                                                                                            |
+  | [`set_estimator`](#qiskit.aqua.components.multiclass_extensions.AllPairs.set_estimator "qiskit.aqua.components.multiclass_extensions.AllPairs.set_estimator")(estimator\_cls\[, params]) | Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator |
+  | [`test`](#qiskit.aqua.components.multiclass_extensions.AllPairs.test "qiskit.aqua.components.multiclass_extensions.AllPairs.test")(x, y)                                                 | Testing multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                  |
+  | [`train`](#qiskit.aqua.components.multiclass_extensions.AllPairs.train "qiskit.aqua.components.multiclass_extensions.AllPairs.train")(x, y)                                              | Training multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                 |
 
-`__init__()`
+  ### predict
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.aqua.components.multiclass_extensions.AllPairs.predict" name="predict" signature="predict(x)">
+    Applying multiple estimators for prediction.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                                          |                                                                                                                                                                                                                                         |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.components.multiclass_extensions.AllPairs.__init__ "qiskit.aqua.components.multiclass_extensions.AllPairs.__init__")()                                         | Initialize self.                                                                                                                                                                                                                        |
-| [`predict`](#qiskit.aqua.components.multiclass_extensions.AllPairs.predict "qiskit.aqua.components.multiclass_extensions.AllPairs.predict")(x)                                           | Applying multiple estimators for prediction.                                                                                                                                                                                            |
-| [`set_estimator`](#qiskit.aqua.components.multiclass_extensions.AllPairs.set_estimator "qiskit.aqua.components.multiclass_extensions.AllPairs.set_estimator")(estimator\_cls\[, params]) | Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator |
-| [`test`](#qiskit.aqua.components.multiclass_extensions.AllPairs.test "qiskit.aqua.components.multiclass_extensions.AllPairs.test")(x, y)                                                 | Testing multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                  |
-| [`train`](#qiskit.aqua.components.multiclass_extensions.AllPairs.train "qiskit.aqua.components.multiclass_extensions.AllPairs.train")(x, y)                                              | Training multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                 |
+    **x** (*numpy.ndarray*) – NxD array
 
-### predict
+    **Returns**
 
-<span id="qiskit.aqua.components.multiclass_extensions.AllPairs.predict" />
+    predicted labels, Nx1 array
 
-`predict(x)`
+    **Return type**
 
-Applying multiple estimators for prediction.
+    numpy.ndarray
+  </Function>
 
-**Parameters**
+  ### set\_estimator
 
-**x** (*numpy.ndarray*) – NxD array
+  <Function id="qiskit.aqua.components.multiclass_extensions.AllPairs.set_estimator" name="set_estimator" signature="set_estimator(estimator_cls, params=None)">
+    Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
 
-**Returns**
+    **Return type**
 
-predicted labels, Nx1 array
+    `None`
+  </Function>
 
-**Return type**
+  ### test
 
-numpy.ndarray
+  <Function id="qiskit.aqua.components.multiclass_extensions.AllPairs.test" name="test" signature="test(x, y)">
+    Testing multiple estimators each for distinguishing a pair of classes.
 
-### set\_estimator
+    **Parameters**
 
-<span id="qiskit.aqua.components.multiclass_extensions.AllPairs.set_estimator" />
+    *   **x** (*numpy.ndarray*) – input points
+    *   **y** (*numpy.ndarray*) – input labels
 
-`set_estimator(estimator_cls, params=None)`
+    **Returns**
 
-Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
+    accuracy
 
-**Return type**
+    **Return type**
 
-`None`
+    float
+  </Function>
 
-### test
+  ### train
 
-<span id="qiskit.aqua.components.multiclass_extensions.AllPairs.test" />
+  <Function id="qiskit.aqua.components.multiclass_extensions.AllPairs.train" name="train" signature="train(x, y)">
+    Training multiple estimators each for distinguishing a pair of classes.
 
-`test(x, y)`
+    **Parameters**
 
-Testing multiple estimators each for distinguishing a pair of classes.
+    *   **x** (*numpy.ndarray*) – input points
+    *   **y** (*numpy.ndarray*) – input labels
 
-**Parameters**
+    **Raises**
 
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
-
-**Returns**
-
-accuracy
-
-**Return type**
-
-float
-
-### train
-
-<span id="qiskit.aqua.components.multiclass_extensions.AllPairs.train" />
-
-`train(x, y)`
-
-Training multiple estimators each for distinguishing a pair of classes.
-
-**Parameters**
-
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
-
-**Raises**
-
-**ValueError** – can not be fit when only one class is present.
+    **ValueError** – can not be fit when only one class is present.
+  </Function>
+</Class>
 

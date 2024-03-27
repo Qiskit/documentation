@@ -8,50 +8,44 @@ python_api_name: qiskit.aqua.operators.expectations.ExpectationFactory
 
 # qiskit.aqua.operators.expectations.ExpectationFactory
 
-<span id="qiskit.aqua.operators.expectations.ExpectationFactory" />
+<Class id="qiskit.aqua.operators.expectations.ExpectationFactory" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/expectation_factory.py" signature="ExpectationFactory">
+  A factory class for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value.
 
-`ExpectationFactory` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/expectation_factory.py "view source code")
+  ### \_\_init\_\_
 
-A factory class for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value.
+  <Function id="qiskit.aqua.operators.expectations.ExpectationFactory.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.aqua.operators.expectations.ExpectationFactory.__init__" />
+  |                                                                                                                                                                              |                                                                                                                                                               |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.operators.expectations.ExpectationFactory.__init__ "qiskit.aqua.operators.expectations.ExpectationFactory.__init__")()                             | Initialize self.                                                                                                                                              |
+  | [`build`](#qiskit.aqua.operators.expectations.ExpectationFactory.build "qiskit.aqua.operators.expectations.ExpectationFactory.build")(operator\[, backend, include\_custom]) | A factory method for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value. |
 
-`__init__()`
+  ### build
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.aqua.operators.expectations.ExpectationFactory.build" name="build" signature="static build(operator, backend=None, include_custom=True)">
+    A factory method for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                              |                                                                                                                                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.expectations.ExpectationFactory.__init__ "qiskit.aqua.operators.expectations.ExpectationFactory.__init__")()                             | Initialize self.                                                                                                                                              |
-| [`build`](#qiskit.aqua.operators.expectations.ExpectationFactory.build "qiskit.aqua.operators.expectations.ExpectationFactory.build")(operator\[, backend, include\_custom]) | A factory method for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value. |
+    *   **operator** (`OperatorBase`) – The Operator whose expectation value will be taken.
+    *   **backend** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – The backend which will be used to sample the expectation value.
+    *   **include\_custom** (`bool`) – Whether the factory will include the (Aer) specific custom expectations if their behavior against the backend might not be as expected. For instance when using Aer qasm\_simulator with paulis the Aer snapshot can be used but the outcome lacks shot noise and hence does not intuitively behave overall as people might expect when choosing a qasm\_simulator. It is however fast as long as the more state vector like behavior is acceptable.
 
-### build
+    **Return type**
 
-<span id="qiskit.aqua.operators.expectations.ExpectationFactory.build" />
+    `ExpectationBase`
 
-`static build(operator, backend=None, include_custom=True)`
+    **Returns**
 
-A factory method for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value.
+    The expectation algorithm which best fits the Operator and backend.
 
-**Parameters**
+    **Raises**
 
-*   **operator** (`OperatorBase`) – The Operator whose expectation value will be taken.
-*   **backend** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – The backend which will be used to sample the expectation value.
-*   **include\_custom** (`bool`) – Whether the factory will include the (Aer) specific custom expectations if their behavior against the backend might not be as expected. For instance when using Aer qasm\_simulator with paulis the Aer snapshot can be used but the outcome lacks shot noise and hence does not intuitively behave overall as people might expect when choosing a qasm\_simulator. It is however fast as long as the more state vector like behavior is acceptable.
-
-**Return type**
-
-`ExpectationBase`
-
-**Returns**
-
-The expectation algorithm which best fits the Operator and backend.
-
-**Raises**
-
-**ValueError** – If operator is not of a composition for which we know the best Expectation method.
+    **ValueError** – If operator is not of a composition for which we know the best Expectation method.
+  </Function>
+</Class>
 

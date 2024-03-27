@@ -8,89 +8,79 @@ python_api_name: qiskit.aqua.operators.evolutions.Suzuki
 
 # qiskit.aqua.operators.evolutions.Suzuki
 
-<span id="qiskit.aqua.operators.evolutions.Suzuki" />
+<Class id="qiskit.aqua.operators.evolutions.Suzuki" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/trotterizations/suzuki.py" signature="Suzuki(reps=1, order=2)">
+  Suzuki Trotter expansion, composing the evolution circuits of each Operator in the sum together by a recursive “bookends” strategy, repeating the whole composed circuit `reps` times.
 
-`Suzuki(reps=1, order=2)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/trotterizations/suzuki.py "view source code")
+  Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf).
 
-Suzuki Trotter expansion, composing the evolution circuits of each Operator in the sum together by a recursive “bookends” strategy, repeating the whole composed circuit `reps` times.
+  **Parameters**
 
-Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf).
+  *   **reps** (`int`) – The number of times to repeat the expansion circuit.
+  *   **order** (`int`) – The order of the expansion to perform.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **reps** (`int`) – The number of times to repeat the expansion circuit.
-*   **order** (`int`) – The order of the expansion to perform.
+  <Function id="qiskit.aqua.operators.evolutions.Suzuki.__init__" name="__init__" signature="__init__(reps=1, order=2)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **reps** (`int`) – The number of times to repeat the expansion circuit.
+    *   **order** (`int`) – The order of the expansion to perform.
+  </Function>
 
-<span id="qiskit.aqua.operators.evolutions.Suzuki.__init__" />
+  ## Methods
 
-`__init__(reps=1, order=2)`
+  |                                                                                                                                    |                                                                                                                 |
+  | ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.operators.evolutions.Suzuki.__init__ "qiskit.aqua.operators.evolutions.Suzuki.__init__")(\[reps, order]) | **type reps**`int`                                                                                              |
+  | [`convert`](#qiskit.aqua.operators.evolutions.Suzuki.convert "qiskit.aqua.operators.evolutions.Suzuki.convert")(operator)          | Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`. |
 
-**Parameters**
+  ## Attributes
 
-*   **reps** (`int`) – The number of times to repeat the expansion circuit.
-*   **order** (`int`) – The order of the expansion to perform.
+  |                                                                                                           |                                                                                               |
+  | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+  | [`order`](#qiskit.aqua.operators.evolutions.Suzuki.order "qiskit.aqua.operators.evolutions.Suzuki.order") | returns order                                                                                 |
+  | [`reps`](#qiskit.aqua.operators.evolutions.Suzuki.reps "qiskit.aqua.operators.evolutions.Suzuki.reps")    | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
 
-## Methods
+  ### convert
 
-|                                                                                                                                    |                                                                                                                 |
-| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.evolutions.Suzuki.__init__ "qiskit.aqua.operators.evolutions.Suzuki.__init__")(\[reps, order]) | **type reps**`int`                                                                                              |
-| [`convert`](#qiskit.aqua.operators.evolutions.Suzuki.convert "qiskit.aqua.operators.evolutions.Suzuki.convert")(operator)          | Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`. |
+  <Function id="qiskit.aqua.operators.evolutions.Suzuki.convert" name="convert" signature="convert(operator)">
+    Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                           |                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| [`order`](#qiskit.aqua.operators.evolutions.Suzuki.order "qiskit.aqua.operators.evolutions.Suzuki.order") | returns order                                                                                 |
-| [`reps`](#qiskit.aqua.operators.evolutions.Suzuki.reps "qiskit.aqua.operators.evolutions.Suzuki.reps")    | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
+    **operator** (`OperatorBase`) – The `SummedOp` to evolve.
 
-### convert
+    **Return type**
 
-<span id="qiskit.aqua.operators.evolutions.Suzuki.convert" />
+    `OperatorBase`
 
-`convert(operator)`
+    **Returns**
 
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
+    The Operator approximating op\_sum’s evolution.
 
-**Parameters**
+    **Raises**
 
-**operator** (`OperatorBase`) – The `SummedOp` to evolve.
+    **TypeError** – A non-SummedOps Operator is passed into `convert`.
+  </Function>
 
-**Return type**
+  ### order
 
-`OperatorBase`
+  <Function id="qiskit.aqua.operators.evolutions.Suzuki.order" name="order" signature="property order">
+    returns order
 
-**Returns**
+    **Return type**
 
-The Operator approximating op\_sum’s evolution.
+    `int`
+  </Function>
 
-**Raises**
+  ### reps
 
-**TypeError** – A non-SummedOps Operator is passed into `convert`.
+  <Function id="qiskit.aqua.operators.evolutions.Suzuki.reps" name="reps" signature="property reps">
+    The number of repetitions to use in the Trotterization, improving the approximation accuracy.
 
-### order
+    **Return type**
 
-<span id="qiskit.aqua.operators.evolutions.Suzuki.order" />
-
-`property order`
-
-returns order
-
-**Return type**
-
-`int`
-
-### reps
-
-<span id="qiskit.aqua.operators.evolutions.Suzuki.reps" />
-
-`property reps`
-
-The number of repetitions to use in the Trotterization, improving the approximation accuracy.
-
-**Return type**
-
-`int`
+    `int`
+  </Function>
+</Class>
 

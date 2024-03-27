@@ -8,35 +8,31 @@ python_api_name: qiskit.algorithms.RealTimeEvolver
 
 # RealTimeEvolver
 
-<span id="qiskit.algorithms.RealTimeEvolver" />
+<Class id="qiskit.algorithms.RealTimeEvolver" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/time_evolvers/real_time_evolver.py" signature="qiskit.algorithms.RealTimeEvolver">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-`qiskit.algorithms.RealTimeEvolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/time_evolvers/real_time_evolver.py "view source code")
+  Interface for Quantum Real Time Evolution.
 
-Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  ## Methods
 
-Interface for Quantum Real Time Evolution.
+  ### evolve
 
-## Methods
+  <Function id="qiskit.algorithms.RealTimeEvolver.evolve" name="evolve" signature="abstract evolve(evolution_problem)">
+    Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 
-### evolve
+    Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
-<span id="qiskit.algorithms.RealTimeEvolver.evolve" />
+    **Parameters**
 
-`abstract evolve(evolution_problem)`
+    **evolution\_problem** ([*TimeEvolutionProblem*](qiskit.algorithms.TimeEvolutionProblem "qiskit.algorithms.time_evolvers.time_evolution_problem.TimeEvolutionProblem")) – The definition of the evolution problem.
 
-Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
+    **Returns**
 
-Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+    Evolution result which includes an evolved quantum state.
 
-**Parameters**
+    **Return type**
 
-**evolution\_problem** ([*TimeEvolutionProblem*](qiskit.algorithms.TimeEvolutionProblem "qiskit.algorithms.time_evolvers.time_evolution_problem.TimeEvolutionProblem")) – The definition of the evolution problem.
-
-**Returns**
-
-Evolution result which includes an evolved quantum state.
-
-**Return type**
-
-[*TimeEvolutionResult*](qiskit.algorithms.TimeEvolutionResult "qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult")
+    [*TimeEvolutionResult*](qiskit.algorithms.TimeEvolutionResult "qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult")
+  </Function>
+</Class>
 

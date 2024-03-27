@@ -8,37 +8,33 @@ python_api_name: qiskit.pulse.library.Constant
 
 # Constant
 
-<span id="qiskit.pulse.library.Constant" />
+<Class id="qiskit.pulse.library.Constant" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/library/symbolic_pulses.py" signature="Constant(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, qiskit.circuit.parameterexpression.ParameterExpression], name: Optional[str] = None, limit_amplitude: Optional[bool] = None)">
+  Bases: `object`
 
-`Constant(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, qiskit.circuit.parameterexpression.ParameterExpression], name: Optional[str] = None, limit_amplitude: Optional[bool] = None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/library/symbolic_pulses.py "view source code")
+  A simple constant pulse, with an amplitude value and a duration:
 
-Bases: `object`
+  $$
+  f(x) = amp    ,  0 <= x < duration
+  f(x) = 0      ,  elsewhere
+  $$
 
-A simple constant pulse, with an amplitude value and a duration:
+  Create new pulse instance.
 
-$$
-f(x) = amp    ,  0 <= x < duration
-f(x) = 0      ,  elsewhere
-$$
+  **Parameters**
 
-Create new pulse instance.
+  *   **duration** – Pulse length in terms of the sampling period dt.
+  *   **amp** – The amplitude of the constant square pulse.
+  *   **name** – Display name for this pulse envelope.
+  *   **limit\_amplitude** – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 
-**Parameters**
+  **Returns**
 
-*   **duration** – Pulse length in terms of the sampling period dt.
-*   **amp** – The amplitude of the constant square pulse.
-*   **name** – Display name for this pulse envelope.
-*   **limit\_amplitude** – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+  SymbolicPulse instance.
 
-**Returns**
+  ## Attributes
 
-SymbolicPulse instance.
+  ### alias
 
-## Attributes
-
-<span id="qiskit.pulse.library.Constant.alias" />
-
-### alias
-
-`= 'Constant'`
+  <Attribute id="qiskit.pulse.library.Constant.alias" name="alias" attributeValue="= 'Constant'" />
+</Class>
 

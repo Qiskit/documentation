@@ -8,121 +8,115 @@ python_api_name: qiskit.transpiler.passes.ConstrainedReschedule
 
 # ConstrainedReschedule
 
-<span id="qiskit.transpiler.passes.ConstrainedReschedule" />
+<Class id="qiskit.transpiler.passes.ConstrainedReschedule" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/scheduling/alignments/reschedule.py" signature="qiskit.transpiler.passes.ConstrainedReschedule(*args, **kwargs)">
+  Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-`qiskit.transpiler.passes.ConstrainedReschedule(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/scheduling/alignments/reschedule.py "view source code")
+  Rescheduler pass that updates node start times to conform to the hardware alignments.
 
-Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+  This pass shifts DAG node start times previously scheduled with one of the scheduling passes, e.g. [`ASAPScheduleAnalysis`](qiskit.transpiler.passes.ASAPScheduleAnalysis "qiskit.transpiler.passes.ASAPScheduleAnalysis") or [`ALAPScheduleAnalysis`](qiskit.transpiler.passes.ALAPScheduleAnalysis "qiskit.transpiler.passes.ALAPScheduleAnalysis"), so that every instruction start time satisfies alignment constraints.
 
-Rescheduler pass that updates node start times to conform to the hardware alignments.
+  **Examples**
 
-This pass shifts DAG node start times previously scheduled with one of the scheduling passes, e.g. [`ASAPScheduleAnalysis`](qiskit.transpiler.passes.ASAPScheduleAnalysis "qiskit.transpiler.passes.ASAPScheduleAnalysis") or [`ALAPScheduleAnalysis`](qiskit.transpiler.passes.ALAPScheduleAnalysis "qiskit.transpiler.passes.ALAPScheduleAnalysis"), so that every instruction start time satisfies alignment constraints.
+  We assume executing the following circuit on a backend with 16 dt of acquire alignment.
 
-**Examples**
+  ```python
+       ┌───┐┌────────────────┐┌─┐
+  q_0: ┤ X ├┤ Delay(100[dt]) ├┤M├
+       └───┘└────────────────┘└╥┘
+  c: 1/════════════════════════╩═
+                               0
+  ```
 
-We assume executing the following circuit on a backend with 16 dt of acquire alignment.
+  Note that delay of 100 dt induces a misalignment of 4 dt at the measurement. This pass appends an extra 12 dt time shift to the input circuit.
 
-```python
-     ┌───┐┌────────────────┐┌─┐
-q_0: ┤ X ├┤ Delay(100[dt]) ├┤M├
-     └───┘└────────────────┘└╥┘
-c: 1/════════════════════════╩═
-                             0
-```
+  ```python
+       ┌───┐┌────────────────┐┌─┐
+  q_0: ┤ X ├┤ Delay(112[dt]) ├┤M├
+       └───┘└────────────────┘└╥┘
+  c: 1/════════════════════════╩═
+                               0
+  ```
 
-Note that delay of 100 dt induces a misalignment of 4 dt at the measurement. This pass appends an extra 12 dt time shift to the input circuit.
+  **Notes**
 
-```python
-     ┌───┐┌────────────────┐┌─┐
-q_0: ┤ X ├┤ Delay(112[dt]) ├┤M├
-     └───┘└────────────────┘└╥┘
-c: 1/════════════════════════╩═
-                             0
-```
+  Your backend may execute circuits violating these alignment constraints. However, you may obtain erroneous measurement result because of the untracked phase originating in the instruction misalignment.
 
-**Notes**
+  Create new rescheduler pass.
 
-Your backend may execute circuits violating these alignment constraints. However, you may obtain erroneous measurement result because of the untracked phase originating in the instruction misalignment.
+  The alignment values depend on the control electronics of your quantum processor.
 
-Create new rescheduler pass.
+  **Parameters**
 
-The alignment values depend on the control electronics of your quantum processor.
+  *   **acquire\_alignment** – Integer number representing the minimum time resolution to trigger acquisition instruction in units of `dt`.
+  *   **pulse\_alignment** – Integer number representing the minimum time resolution to trigger gate instruction in units of `dt`.
 
-**Parameters**
+  ## Attributes
 
-*   **acquire\_alignment** – Integer number representing the minimum time resolution to trigger acquisition instruction in units of `dt`.
-*   **pulse\_alignment** – Integer number representing the minimum time resolution to trigger gate instruction in units of `dt`.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.ConstrainedReschedule.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.ConstrainedReschedule.is_analysis_pass" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### is\_analysis\_pass
+  ### is\_transformation\_pass
 
-Check if the pass is an analysis pass.
+  <Attribute id="qiskit.transpiler.passes.ConstrainedReschedule.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.ConstrainedReschedule.is_transformation_pass" />
+  ## Methods
 
-### is\_transformation\_pass
+  ### name
 
-Check if the pass is a transformation pass.
+  <Function id="qiskit.transpiler.passes.ConstrainedReschedule.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  ### run
 
-## Methods
+  <Function id="qiskit.transpiler.passes.ConstrainedReschedule.run" name="run" signature="run(dag)">
+    Run rescheduler.
 
-### name
+    This pass should perform rescheduling to satisfy:
 
-<span id="qiskit.transpiler.passes.ConstrainedReschedule.name" />
+    > *   All DAGOpNode nodes (except for compiler directives) are placed at start time satisfying hardware alignment constraints.
+    > *   The end time of a node does not overlap with the start time of successor nodes.
 
-`name()`
+    Assumptions:
 
-Return the name of the pass.
+    > *   Topological order and absolute time order of DAGOpNode are consistent.
+    > *   All bits in either qargs or cargs associated with node synchronously start.
+    > *   Start time of qargs and cargs may different due to I/O latency.
 
-### run
+    Based on the configurations above, the rescheduler pass takes the following strategy:
 
-<span id="qiskit.transpiler.passes.ConstrainedReschedule.run" />
+    1.  **The nodes are processed in the topological order, from the beginning of**
 
-`run(dag)`
+        the circuit (i.e. from left to right). For every node (including compiler directives), the function `_push_node_back` performs steps 2 and 3.
 
-Run rescheduler.
+    2.  **If the start time of the node violates the alignment constraint,**
 
-This pass should perform rescheduling to satisfy:
+        the start time is increased to satisfy the constraint.
 
-> *   All DAGOpNode nodes (except for compiler directives) are placed at start time satisfying hardware alignment constraints.
-> *   The end time of a node does not overlap with the start time of successor nodes.
+    3.  **Each immediate successor whose start\_time overlaps the node’s end\_time is**
 
-Assumptions:
+        pushed backwards (towards the end of the wire). Note that at this point the shifted successor does not need to satisfy the constraints, but this will be taken care of when that successor node itself is processed.
 
-> *   Topological order and absolute time order of DAGOpNode are consistent.
-> *   All bits in either qargs or cargs associated with node synchronously start.
-> *   Start time of qargs and cargs may different due to I/O latency.
+    4.  **After every node is processed, all misalignment constraints will be resolved,**
 
-Based on the configurations above, the rescheduler pass takes the following strategy:
+        and there will be no overlap between the nodes.
 
-1.  **The nodes are processed in the topological order, from the beginning of**
+    **Parameters**
 
-    the circuit (i.e. from left to right). For every node (including compiler directives), the function `_push_node_back` performs steps 2 and 3.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG circuit to be rescheduled with constraints.
 
-2.  **If the start time of the node violates the alignment constraint,**
+    **Raises**
 
-    the start time is increased to satisfy the constraint.
-
-3.  **Each immediate successor whose start\_time overlaps the node’s end\_time is**
-
-    pushed backwards (towards the end of the wire). Note that at this point the shifted successor does not need to satisfy the constraints, but this will be taken care of when that successor node itself is processed.
-
-4.  **After every node is processed, all misalignment constraints will be resolved,**
-
-    and there will be no overlap between the nodes.
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG circuit to be rescheduled with constraints.
-
-**Raises**
-
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If circuit is not scheduled.
+    [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If circuit is not scheduled.
+  </Function>
+</Class>
 

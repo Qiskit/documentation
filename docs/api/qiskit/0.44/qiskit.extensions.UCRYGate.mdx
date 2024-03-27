@@ -8,375 +8,343 @@ python_api_name: qiskit.extensions.UCRYGate
 
 # UCRYGate
 
-<span id="qiskit.extensions.UCRYGate" />
+<Class id="qiskit.extensions.UCRYGate" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/quantum_initializer/ucry.py" signature="qiskit.extensions.UCRYGate(angle_list)">
+  Bases: [`UCPauliRotGate`](qiskit.extensions.UCPauliRotGate "qiskit.extensions.quantum_initializer.uc_pauli_rot.UCPauliRotGate")
 
-`qiskit.extensions.UCRYGate(angle_list)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/quantum_initializer/ucry.py "view source code")
+  Uniformly controlled rotations (also called multiplexed rotations). The decomposition is based on ‘Synthesis of Quantum Logic Circuits’ by V. Shende et al. ([https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf))
 
-Bases: [`UCPauliRotGate`](qiskit.extensions.UCPauliRotGate "qiskit.extensions.quantum_initializer.uc_pauli_rot.UCPauliRotGate")
+  Create a new gate.
 
-Uniformly controlled rotations (also called multiplexed rotations). The decomposition is based on ‘Synthesis of Quantum Logic Circuits’ by V. Shende et al. ([https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf))
+  **Parameters**
 
-Create a new gate.
+  *   **name** – The Qobj name of the gate.
+  *   **num\_qubits** – The number of qubits the gate acts on.
+  *   **params** – A list of parameters.
+  *   **label** – An optional label for the gate.
 
-**Parameters**
+  ## Attributes
 
-*   **name** – The Qobj name of the gate.
-*   **num\_qubits** – The number of qubits the gate acts on.
-*   **params** – A list of parameters.
-*   **label** – An optional label for the gate.
+  ### condition\_bits
 
-## Attributes
+  <Attribute id="qiskit.extensions.UCRYGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.extensions.UCRYGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.extensions.UCRYGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-<span id="qiskit.extensions.UCRYGate.decompositions" />
+  <Attribute id="qiskit.extensions.UCRYGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### decompositions
+  ### duration
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.extensions.UCRYGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.extensions.UCRYGate.definition" />
+  ### label
 
-### definition
+  <Attribute id="qiskit.extensions.UCRYGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### name
 
-<span id="qiskit.extensions.UCRYGate.duration" />
+  <Attribute id="qiskit.extensions.UCRYGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-### duration
+  ### num\_clbits
 
-Get the duration.
+  <Attribute id="qiskit.extensions.UCRYGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.extensions.UCRYGate.label" />
+  ### num\_qubits
 
-### label
+  <Attribute id="qiskit.extensions.UCRYGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Return instruction label
+  ### params
 
-<span id="qiskit.extensions.UCRYGate.name" />
+  <Attribute id="qiskit.extensions.UCRYGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### name
+  ### unit
 
-Return the name.
+  <Attribute id="qiskit.extensions.UCRYGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.extensions.UCRYGate.num_clbits" />
+  ## Methods
 
-### num\_clbits
+  ### add\_decomposition
 
-Return the number of clbits.
+  <Function id="qiskit.extensions.UCRYGate.add_decomposition" name="add_decomposition" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-<span id="qiskit.extensions.UCRYGate.num_qubits" />
+  ### assemble
 
-### num\_qubits
+  <Function id="qiskit.extensions.UCRYGate.assemble" name="assemble" signature="assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-Return the number of qubits.
+  ### broadcast\_arguments
 
-<span id="qiskit.extensions.UCRYGate.params" />
+  <Function id="qiskit.extensions.UCRYGate.broadcast_arguments" name="broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-### params
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-return instruction params.
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-<span id="qiskit.extensions.UCRYGate.unit" />
+    The general broadcasting rules are:
 
-### unit
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-Get the time unit of duration.
+    **Parameters**
 
-## Methods
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of quantum bit arguments.
+    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of classical bit arguments.
 
-### add\_decomposition
+    **Returns**
 
-<span id="qiskit.extensions.UCRYGate.add_decomposition" />
+    A tuple with single arguments.
 
-`add_decomposition(decomposition)`
+    **Raises**
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-### assemble
+    **Return type**
 
-<span id="qiskit.extensions.UCRYGate.assemble" />
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
+  </Function>
 
-`assemble()`
+  ### c\_if
 
-Assemble a QasmQobjInstruction
+  <Function id="qiskit.extensions.UCRYGate.c_if" name="c_if" signature="c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-### broadcast\_arguments
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-<span id="qiskit.extensions.UCRYGate.broadcast_arguments" />
+  ### control
 
-`broadcast_arguments(qargs, cargs)`
+  <Function id="qiskit.extensions.UCRYGate.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
-Validation and handling of the arguments and its relationship.
+    **Parameters**
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of controls to add to gate (default: `1`)
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – optional gate label
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The control state in decimal or as a bitstring (e.g. `'111'`). If `None`, use `2**num_ctrl_qubits-1`.
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+    **Returns**
 
-The general broadcasting rules are:
+    Controlled version of gate. This default algorithm uses `num_ctrl_qubits-1` ancilla qubits so returns a gate of size `num_qubits + 2*num_ctrl_qubits - 1`.
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+    **Return type**
 
-**Parameters**
+    [qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of quantum bit arguments.
-*   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of classical bit arguments.
+    **Raises**
 
-**Returns**
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – unrecognized mode or invalid ctrl\_state
+  </Function>
 
-A tuple with single arguments.
+  ### copy
 
-**Raises**
+  <Function id="qiskit.extensions.UCRYGate.copy" name="copy" signature="copy(name=None)">
+    Copy of the instruction.
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Parameters**
 
-**Return type**
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name to be given to the copied circuit, if `None` then the name stays the same.
 
-[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
+    **Returns**
 
-### c\_if
+    a copy of the current instruction, with the name updated if it was provided
 
-<span id="qiskit.extensions.UCRYGate.c_if" />
+    **Return type**
 
-`c_if(classical, val)`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+  ### inverse
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  <Function id="qiskit.extensions.UCRYGate.inverse" name="inverse" signature="inverse()">
+    Invert this instruction.
 
-### control
+    If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
 
-<span id="qiskit.extensions.UCRYGate.control" />
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    **Returns**
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+    a fresh instruction for the inverse
 
-**Parameters**
+    **Return type**
 
-*   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of controls to add to gate (default: `1`)
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – optional gate label
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The control state in decimal or as a bitstring (e.g. `'111'`). If `None`, use `2**num_ctrl_qubits-1`.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**Returns**
+    **Raises**
 
-Controlled version of gate. This default algorithm uses `num_ctrl_qubits-1` ancilla qubits so returns a gate of size `num_qubits + 2*num_ctrl_qubits - 1`.
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
 
-**Return type**
+  ### is\_parameterized
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  <Function id="qiskit.extensions.UCRYGate.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-**Raises**
+  ### power
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – unrecognized mode or invalid ctrl\_state
+  <Function id="qiskit.extensions.UCRYGate.power" name="power" signature="power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-### copy
+    **Parameters**
 
-<span id="qiskit.extensions.UCRYGate.copy" />
+    **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Gate^exponent
 
-`copy(name=None)`
+    **Returns**
 
-Copy of the instruction.
+    To which to\_matrix is self.to\_matrix^exponent.
 
-**Parameters**
+    **Return type**
 
-**name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+    [qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-**Returns**
+    **Raises**
 
-a copy of the current instruction, with the name updated if it was provided
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If Gate is not unitary
+  </Function>
 
-**Return type**
+  ### qasm
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit.extensions.UCRYGate.qasm" name="qasm" signature="qasm()">
+    Return a default OpenQASM string for the instruction.
 
-### inverse
+    Derived instructions may override this to print in a different format (e.g. `measure q[0] -> c[0];`).
 
-<span id="qiskit.extensions.UCRYGate.inverse" />
+    <Admonition title="Deprecated since version 0.25.0" type="danger">
+      The method `qiskit.circuit.instruction.Instruction.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed no earlier than 3 months after the release date. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
+    </Admonition>
+  </Function>
 
-`inverse()`
+  ### repeat
 
-Invert this instruction.
+  <Function id="qiskit.extensions.UCRYGate.repeat" name="repeat" signature="repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+    **Parameters**
 
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of times to repeat the instruction
 
-**Returns**
+    **Returns**
 
-a fresh instruction for the inverse
+    Containing the definition.
 
-**Return type**
+    **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**Raises**
+    **Raises**
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+  </Function>
 
-### is\_parameterized
+  ### reverse\_ops
 
-<span id="qiskit.extensions.UCRYGate.is_parameterized" />
+  <Function id="qiskit.extensions.UCRYGate.reverse_ops" name="reverse_ops" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-`is_parameterized()`
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-Return True .IFF. instruction is parameterized else False
+    **Returns**
 
-### power
+    **a new instruction with**
 
-<span id="qiskit.extensions.UCRYGate.power" />
+    sub-instructions reversed.
 
-`power(exponent)`
+    **Return type**
 
-Creates a unitary gate as gate^exponent.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**Parameters**
+  ### soft\_compare
 
-**exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Gate^exponent
+  <Function id="qiskit.extensions.UCRYGate.soft_compare" name="soft_compare" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-**Returns**
+    **Parameters**
 
-To which to\_matrix is self.to\_matrix^exponent.
+    **other** (*instruction*) – other instruction.
 
-**Return type**
+    **Returns**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+    are self and other equal up to parameter expressions.
 
-**Raises**
+    **Return type**
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If Gate is not unitary
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-### qasm
+  ### to\_matrix
 
-<span id="qiskit.extensions.UCRYGate.qasm" />
+  <Function id="qiskit.extensions.UCRYGate.to_matrix" name="to_matrix" signature="to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
 
-`qasm()`
+    **Returns**
 
-Return a default OpenQASM string for the instruction.
+    if the Gate subclass has a matrix definition.
 
-Derived instructions may override this to print in a different format (e.g. `measure q[0] -> c[0];`).
+    **Return type**
 
-<Admonition title="Deprecated since version 0.25.0" type="danger">
-  The method `qiskit.circuit.instruction.Instruction.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed no earlier than 3 months after the release date. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
-</Admonition>
+    np.ndarray
 
-### repeat
+    **Raises**
 
-<span id="qiskit.extensions.UCRYGate.repeat" />
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+  </Function>
 
-`repeat(n)`
+  ### validate\_parameter
 
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
-
-### reverse\_ops
-
-<span id="qiskit.extensions.UCRYGate.reverse_ops" />
-
-`reverse_ops()`
-
-For a composite instruction, reverse the order of sub-instructions.
-
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-**a new instruction with**
-
-sub-instructions reversed.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### soft\_compare
-
-<span id="qiskit.extensions.UCRYGate.soft_compare" />
-
-`soft_compare(other)`
-
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
-
-**Parameters**
-
-**other** (*instruction*) – other instruction.
-
-**Returns**
-
-are self and other equal up to parameter expressions.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
-
-### to\_matrix
-
-<span id="qiskit.extensions.UCRYGate.to_matrix" />
-
-`to_matrix()`
-
-Return a Numpy.array for the gate unitary matrix.
-
-**Returns**
-
-if the Gate subclass has a matrix definition.
-
-**Return type**
-
-np.ndarray
-
-**Raises**
-
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
-
-### validate\_parameter
-
-<span id="qiskit.extensions.UCRYGate.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Gate parameters should be int, float, or ParameterExpression
+  <Function id="qiskit.extensions.UCRYGate.validate_parameter" name="validate_parameter" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
+</Class>
 

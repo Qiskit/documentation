@@ -8,69 +8,63 @@ python_api_name: qiskit.transpiler.passes.InverseCancellation
 
 # InverseCancellation
 
-<span id="qiskit.transpiler.passes.InverseCancellation" />
+<Class id="qiskit.transpiler.passes.InverseCancellation" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/inverse_cancellation.py" signature="qiskit.transpiler.passes.InverseCancellation(*args, **kwargs)">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-`qiskit.transpiler.passes.InverseCancellation(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/inverse_cancellation.py "view source code")
+  Cancel specific Gates which are inverses of each other when they occur back-to- back.
 
-Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+  Initialize InverseCancellation pass.
 
-Cancel specific Gates which are inverses of each other when they occur back-to- back.
+  **Parameters**
 
-Initialize InverseCancellation pass.
+  **gates\_to\_cancel** – list of gates to cancel
 
-**Parameters**
+  **Raises**
 
-**gates\_to\_cancel** – list of gates to cancel
+  [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – Initialization raises an error when the input is not a self-inverse gate or a two-tuple of inverse gates.
 
-**Raises**
+  ## Attributes
 
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – Initialization raises an error when the input is not a self-inverse gate or a two-tuple of inverse gates.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.InverseCancellation.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.InverseCancellation.is_analysis_pass" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### is\_analysis\_pass
+  ### is\_transformation\_pass
 
-Check if the pass is an analysis pass.
+  <Attribute id="qiskit.transpiler.passes.InverseCancellation.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.InverseCancellation.is_transformation_pass" />
+  ## Methods
 
-### is\_transformation\_pass
+  ### name
 
-Check if the pass is a transformation pass.
+  <Function id="qiskit.transpiler.passes.InverseCancellation.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  ### run
 
-## Methods
+  <Function id="qiskit.transpiler.passes.InverseCancellation.run" name="run" signature="run(dag)">
+    Run the InverseCancellation pass on dag.
 
-### name
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.InverseCancellation.name" />
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – the directed acyclic graph to run on.
 
-`name()`
+    **Returns**
 
-Return the name of the pass.
+    Transformed DAG.
 
-### run
+    **Return type**
 
-<span id="qiskit.transpiler.passes.InverseCancellation.run" />
-
-`run(dag)`
-
-Run the InverseCancellation pass on dag.
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – the directed acyclic graph to run on.
-
-**Returns**
-
-Transformed DAG.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  </Function>
+</Class>
 

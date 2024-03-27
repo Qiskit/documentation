@@ -8,65 +8,57 @@ python_api_name: qiskit.aqua.operators.expectations.MatrixExpectation
 
 # qiskit.aqua.operators.expectations.MatrixExpectation
 
-<span id="qiskit.aqua.operators.expectations.MatrixExpectation" />
+<Class id="qiskit.aqua.operators.expectations.MatrixExpectation" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/matrix_expectation.py" signature="MatrixExpectation">
+  An Expectation converter which converts Operator measurements to be matrix-based so they can be evaluated by matrix multiplication.
 
-`MatrixExpectation` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/matrix_expectation.py "view source code")
+  ### \_\_init\_\_
 
-An Expectation converter which converts Operator measurements to be matrix-based so they can be evaluated by matrix multiplication.
+  <Function id="qiskit.aqua.operators.expectations.MatrixExpectation.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.aqua.operators.expectations.MatrixExpectation.__init__" />
+  |                                                                                                                                                                               |                                                                                                                 |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.operators.expectations.MatrixExpectation.__init__ "qiskit.aqua.operators.expectations.MatrixExpectation.__init__")()                                | Initialize self.                                                                                                |
+  | [`compute_variance`](#qiskit.aqua.operators.expectations.MatrixExpectation.compute_variance "qiskit.aqua.operators.expectations.MatrixExpectation.compute_variance")(exp\_op) | Compute the variance of the expectation estimator.                                                              |
+  | [`convert`](#qiskit.aqua.operators.expectations.MatrixExpectation.convert "qiskit.aqua.operators.expectations.MatrixExpectation.convert")(operator)                           | Accept an Operator and return a new Operator with the Pauli measurements replaced by Matrix based measurements. |
 
-`__init__()`
+  ### compute\_variance
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.aqua.operators.expectations.MatrixExpectation.compute_variance" name="compute_variance" signature="compute_variance(exp_op)">
+    Compute the variance of the expectation estimator. Because this expectation works by matrix multiplication, the estimation is exact and the variance is always 0, but we need to return those values in a way which matches the Operator’s structure.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                               |                                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.expectations.MatrixExpectation.__init__ "qiskit.aqua.operators.expectations.MatrixExpectation.__init__")()                                | Initialize self.                                                                                                |
-| [`compute_variance`](#qiskit.aqua.operators.expectations.MatrixExpectation.compute_variance "qiskit.aqua.operators.expectations.MatrixExpectation.compute_variance")(exp\_op) | Compute the variance of the expectation estimator.                                                              |
-| [`convert`](#qiskit.aqua.operators.expectations.MatrixExpectation.convert "qiskit.aqua.operators.expectations.MatrixExpectation.convert")(operator)                           | Accept an Operator and return a new Operator with the Pauli measurements replaced by Matrix based measurements. |
+    **exp\_op** (`OperatorBase`) – The full expectation value Operator.
 
-### compute\_variance
+    **Return type**
 
-<span id="qiskit.aqua.operators.expectations.MatrixExpectation.compute_variance" />
+    `Union`\[`list`, `float`]
 
-`compute_variance(exp_op)`
+    **Returns**
 
-Compute the variance of the expectation estimator. Because this expectation works by matrix multiplication, the estimation is exact and the variance is always 0, but we need to return those values in a way which matches the Operator’s structure.
+    The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation, equal to 0.
+  </Function>
 
-**Parameters**
+  ### convert
 
-**exp\_op** (`OperatorBase`) – The full expectation value Operator.
+  <Function id="qiskit.aqua.operators.expectations.MatrixExpectation.convert" name="convert" signature="convert(operator)">
+    Accept an Operator and return a new Operator with the Pauli measurements replaced by Matrix based measurements.
 
-**Return type**
+    **Parameters**
 
-`Union`\[`list`, `float`]
+    **operator** (`OperatorBase`) – The operator to convert.
 
-**Returns**
+    **Return type**
 
-The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation, equal to 0.
+    `OperatorBase`
 
-### convert
+    **Returns**
 
-<span id="qiskit.aqua.operators.expectations.MatrixExpectation.convert" />
-
-`convert(operator)`
-
-Accept an Operator and return a new Operator with the Pauli measurements replaced by Matrix based measurements.
-
-**Parameters**
-
-**operator** (`OperatorBase`) – The operator to convert.
-
-**Return type**
-
-`OperatorBase`
-
-**Returns**
-
-The converted operator.
+    The converted operator.
+  </Function>
+</Class>
 

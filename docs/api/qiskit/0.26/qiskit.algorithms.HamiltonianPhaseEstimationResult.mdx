@@ -8,122 +8,110 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
 
 # qiskit.algorithms.HamiltonianPhaseEstimationResult
 
-<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult" />
+<Class id="qiskit.algorithms.HamiltonianPhaseEstimationResult" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation_result.py" signature="HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)">
+  Store and manipulate results from running HamiltonianPhaseEstimation.
 
-`HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation_result.py "view source code")
+  This API of this class is nearly the same as PhaseEstimatorResult, differing only in the presence of an additional keyword argument in the methods. If scaled is False, then the phases are not translated and scaled to recover the eigenvalues of the Hamiltonian. Instead phi in $[0, 1)$ is returned, as is the case when then unitary is not derived from a Hamiltonian.
 
-Store and manipulate results from running HamiltonianPhaseEstimation.
+  This class is meant to be instantiated via HamiltonianPhaseEstimation.estimate.
 
-This API of this class is nearly the same as PhaseEstimatorResult, differing only in the presence of an additional keyword argument in the methods. If scaled is False, then the phases are not translated and scaled to recover the eigenvalues of the Hamiltonian. Instead phi in $[0, 1)$ is returned, as is the case when then unitary is not derived from a Hamiltonian.
+  **Parameters**
 
-This class is meant to be instantiated via HamiltonianPhaseEstimation.estimate.
+  *   **phase\_estimation\_result** (`PhaseEstimationResult`) – The result object returned by PhaseEstimation.estimate.
+  *   **phase\_estimation\_scale** (`PhaseEstimationScale`) – object used to scale phases to obtain eigenvalues.
+  *   **id\_coefficient** (`float`) – The coefficient of the identity term in the Hamiltonian. Eigenvalues are computed without this term so that the coefficient must added to give correct eigenvalues. This is done automatically when retrieving eigenvalues.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **phase\_estimation\_result** (`PhaseEstimationResult`) – The result object returned by PhaseEstimation.estimate.
-*   **phase\_estimation\_scale** (`PhaseEstimationScale`) – object used to scale phases to obtain eigenvalues.
-*   **id\_coefficient** (`float`) – The coefficient of the identity term in the Hamiltonian. Eigenvalues are computed without this term so that the coefficient must added to give correct eigenvalues. This is done automatically when retrieving eigenvalues.
+  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.__init__" name="__init__" signature="__init__(phase_estimation_result, phase_estimation_scale, id_coefficient)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **phase\_estimation\_result** (`PhaseEstimationResult`) – The result object returned by PhaseEstimation.estimate.
+    *   **phase\_estimation\_scale** (`PhaseEstimationScale`) – object used to scale phases to obtain eigenvalues.
+    *   **id\_coefficient** (`float`) – The coefficient of the identity term in the Hamiltonian. Eigenvalues are computed without this term so that the coefficient must added to give correct eigenvalues. This is done automatically when retrieving eigenvalues.
+  </Function>
 
-<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.__init__" />
+  ## Methods
 
-`__init__(phase_estimation_result, phase_estimation_scale, id_coefficient)`
+  |                                                                                                                                                                                       |                                                                                                                                                           |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.HamiltonianPhaseEstimationResult.__init__ "qiskit.algorithms.HamiltonianPhaseEstimationResult.__init__")(phase\_estimation\_result, …)                | **type phase\_estimation\_result**`PhaseEstimationResult`                                                                                                 |
+  | [`combine`](#qiskit.algorithms.HamiltonianPhaseEstimationResult.combine "qiskit.algorithms.HamiltonianPhaseEstimationResult.combine")(result)                                         | Any property from the argument that exists in the receiver is updated.                                                                                    |
+  | [`filter_phases`](#qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases "qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases")(\[cutoff, scaled, as\_float]) | Filter phases as does PhaseEstimatorResult.filter\_phases, with the addition that phi is shifted and translated to return eigenvalues of the Hamiltonian. |
 
-**Parameters**
+  ## Attributes
 
-*   **phase\_estimation\_result** (`PhaseEstimationResult`) – The result object returned by PhaseEstimation.estimate.
-*   **phase\_estimation\_scale** (`PhaseEstimationScale`) – object used to scale phases to obtain eigenvalues.
-*   **id\_coefficient** (`float`) – The coefficient of the identity term in the Hamiltonian. Eigenvalues are computed without this term so that the coefficient must added to give correct eigenvalues. This is done automatically when retrieving eigenvalues.
+  |                                                                                                                                                                                    |                                                                        |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+  | [`most_likely_eigenvalue`](#qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_eigenvalue "qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_eigenvalue") | The most likely eigenvalue of the Hamiltonian.                         |
+  | [`most_likely_phase`](#qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_phase "qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_phase")                | The most likely phase of the unitary corresponding to the Hamiltonian. |
 
-## Methods
+  ### combine
 
-|                                                                                                                                                                                       |                                                                                                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.HamiltonianPhaseEstimationResult.__init__ "qiskit.algorithms.HamiltonianPhaseEstimationResult.__init__")(phase\_estimation\_result, …)                | **type phase\_estimation\_result**`PhaseEstimationResult`                                                                                                 |
-| [`combine`](#qiskit.algorithms.HamiltonianPhaseEstimationResult.combine "qiskit.algorithms.HamiltonianPhaseEstimationResult.combine")(result)                                         | Any property from the argument that exists in the receiver is updated.                                                                                    |
-| [`filter_phases`](#qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases "qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases")(\[cutoff, scaled, as\_float]) | Filter phases as does PhaseEstimatorResult.filter\_phases, with the addition that phi is shifted and translated to return eigenvalues of the Hamiltonian. |
+  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-## Attributes
+    **Raises**
 
-|                                                                                                                                                                                    |                                                                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`most_likely_eigenvalue`](#qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_eigenvalue "qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_eigenvalue") | The most likely eigenvalue of the Hamiltonian.                         |
-| [`most_likely_phase`](#qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_phase "qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_phase")                | The most likely phase of the unitary corresponding to the Hamiltonian. |
+    **TypeError** – Argument is None
 
-### combine
+    **Return type**
 
-<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.combine" />
+    `None`
+  </Function>
 
-`combine(result)`
+  ### filter\_phases
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases" name="filter_phases" signature="filter_phases(cutoff=0.0, scaled=True, as_float=True)">
+    Filter phases as does PhaseEstimatorResult.filter\_phases, with the addition that phi is shifted and translated to return eigenvalues of the Hamiltonian.
 
-**Raises**
+    **Parameters**
 
-**TypeError** – Argument is None
+    *   **cutoff** (`float`) – Minimum weight of number of counts required to keep a bit string. The default value is 0.0.
+    *   **scaled** (`bool`) – If False, return phi in $[0, 1)$ rather than the eigenvalues of the Hamiltonian.
+    *   **as\_float** (`bool`) – If True, returned keys are floats in $[0.0, 1.0)$. If False returned keys are bit strings.
 
-**Return type**
+    **Raises**
 
-`None`
+    **ValueError** – if as\_float is False and scaled is True.
 
-### filter\_phases
+    **Return type**
 
-<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases" />
+    `Dict`\[`Union`\[`str`, `float`], `float`]
 
-`filter_phases(cutoff=0.0, scaled=True, as_float=True)`
+    **Returns**
 
-Filter phases as does PhaseEstimatorResult.filter\_phases, with the addition that phi is shifted and translated to return eigenvalues of the Hamiltonian.
+    A dict of filtered phases.
+  </Function>
 
-**Parameters**
+  ### most\_likely\_eigenvalue
 
-*   **cutoff** (`float`) – Minimum weight of number of counts required to keep a bit string. The default value is 0.0.
-*   **scaled** (`bool`) – If False, return phi in $[0, 1)$ rather than the eigenvalues of the Hamiltonian.
-*   **as\_float** (`bool`) – If True, returned keys are floats in $[0.0, 1.0)$. If False returned keys are bit strings.
+  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_eigenvalue" name="most_likely_eigenvalue" signature="property most_likely_eigenvalue">
+    The most likely eigenvalue of the Hamiltonian.
 
-**Raises**
+    This method calls most\_likely\_phase and scales the result to obtain an eigenvalue.
 
-**ValueError** – if as\_float is False and scaled is True.
+    **Return type**
 
-**Return type**
+    `float`
 
-`Dict`\[`Union`\[`str`, `float`], `float`]
+    **Returns**
 
-**Returns**
+    The most likely eigenvalue of the Hamiltonian.
+  </Function>
 
-A dict of filtered phases.
+  ### most\_likely\_phase
 
-### most\_likely\_eigenvalue
+  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_phase" name="most_likely_phase" signature="property most_likely_phase">
+    The most likely phase of the unitary corresponding to the Hamiltonian.
 
-<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_eigenvalue" />
+    **Return type**
 
-`property most_likely_eigenvalue`
+    `float`
 
-The most likely eigenvalue of the Hamiltonian.
+    **Returns**
 
-This method calls most\_likely\_phase and scales the result to obtain an eigenvalue.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-The most likely eigenvalue of the Hamiltonian.
-
-### most\_likely\_phase
-
-<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_phase" />
-
-`property most_likely_phase`
-
-The most likely phase of the unitary corresponding to the Hamiltonian.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-The most likely phase.
+    The most likely phase.
+  </Function>
+</Class>
 

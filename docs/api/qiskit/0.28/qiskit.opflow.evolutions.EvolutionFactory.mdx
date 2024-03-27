@@ -8,48 +8,42 @@ python_api_name: qiskit.opflow.evolutions.EvolutionFactory
 
 # qiskit.opflow\.evolutions.EvolutionFactory
 
-<span id="qiskit.opflow.evolutions.EvolutionFactory" />
+<Class id="qiskit.opflow.evolutions.EvolutionFactory" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/evolutions/evolution_factory.py" signature="EvolutionFactory">
+  A factory class for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
 
-`EvolutionFactory` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/evolutions/evolution_factory.py "view source code")
+  ### \_\_init\_\_
 
-A factory class for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
+  <Function id="qiskit.opflow.evolutions.EvolutionFactory.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.opflow.evolutions.EvolutionFactory.__init__" />
+  |                                                                                                                            |                                                                                                                      |
+  | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.opflow.evolutions.EvolutionFactory.__init__ "qiskit.opflow.evolutions.EvolutionFactory.__init__")()   | Initialize self.                                                                                                     |
+  | [`build`](#qiskit.opflow.evolutions.EvolutionFactory.build "qiskit.opflow.evolutions.EvolutionFactory.build")(\[operator]) | A factory method for convenient automatic selection of an Evolution algorithm based on the Operator to be converted. |
 
-`__init__()`
+  ### build
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.opflow.evolutions.EvolutionFactory.build" name="build" signature="static build(operator=None)">
+    A factory method for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                            |                                                                                                                      |
-| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.opflow.evolutions.EvolutionFactory.__init__ "qiskit.opflow.evolutions.EvolutionFactory.__init__")()   | Initialize self.                                                                                                     |
-| [`build`](#qiskit.opflow.evolutions.EvolutionFactory.build "qiskit.opflow.evolutions.EvolutionFactory.build")(\[operator]) | A factory method for convenient automatic selection of an Evolution algorithm based on the Operator to be converted. |
+    **operator** (`Optional`\[`OperatorBase`]) – the Operator being evolved
 
-### build
+    **Returns**
 
-<span id="qiskit.opflow.evolutions.EvolutionFactory.build" />
+    the `EvolutionBase` best suited to evolve operator.
 
-`static build(operator=None)`
+    **Return type**
 
-A factory method for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
+    [EvolutionBase](qiskit.aqua.operators.evolutions.EvolutionBase "qiskit.aqua.operators.evolutions.EvolutionBase")
 
-**Parameters**
+    **Raises**
 
-**operator** (`Optional`\[`OperatorBase`]) – the Operator being evolved
-
-**Returns**
-
-the `EvolutionBase` best suited to evolve operator.
-
-**Return type**
-
-[EvolutionBase](qiskit.aqua.operators.evolutions.EvolutionBase "qiskit.aqua.operators.evolutions.EvolutionBase")
-
-**Raises**
-
-**ValueError** – If operator is not of a composition for which we know the best Evolution method.
+    **ValueError** – If operator is not of a composition for which we know the best Evolution method.
+  </Function>
+</Class>
 

@@ -8,212 +8,208 @@ python_api_name: qiskit.circuit.library.CUGate
 
 # CUGate
 
-<span id="qiskit.circuit.library.CUGate" />
+<Class id="qiskit.circuit.library.CUGate" github="https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u.py" signature="qiskit.circuit.library.CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)">
+  Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
-`qiskit.circuit.library.CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u.py "view source code")
+  Controlled-U gate (4-parameter two-qubit gate).
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+  This is a controlled version of the U gate (generic single qubit rotation), including a possible global phase $e^{i\gamma}$ of the U gate.
 
-Controlled-U gate (4-parameter two-qubit gate).
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cu()`](qiskit.circuit.QuantumCircuit#cu "qiskit.circuit.QuantumCircuit.cu") method.
 
-This is a controlled version of the U gate (generic single qubit rotation), including a possible global phase $e^{i\gamma}$ of the U gate.
-
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cu()`](qiskit.circuit.QuantumCircuit#cu "qiskit.circuit.QuantumCircuit.cu") method.
-
-**Circuit symbol:**
-
-```python
-q_0: ──────■──────
-     ┌─────┴──────┐
-q_1: ┤ U(ϴ,φ,λ,γ) ├
-     └────────────┘
-```
-
-**Matrix representation:**
-
-$$
-\newcommand{\rotationangle}{\frac{\theta}{2}}
-
-CU(\theta, \phi, \lambda, \gamma)\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| +
-    e^{i\gamma} U(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
-    \begin{pmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & e^{i\gamma}\cos(\rotationangle) &
-        0 & -e^{i(\gamma + \lambda)}\sin(\rotationangle) \\
-        0 & 0 & 1 & 0 \\
-        0 & e^{i(\gamma+\phi)}\sin(\rotationangle) &
-        0 & e^{i(\gamma+\phi+\lambda)}\cos(\rotationangle)
-    \end{pmatrix}
-$$
-
-<Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
+  **Circuit symbol:**
 
   ```python
-       ┌────────────┐
-  q_0: ┤ U(ϴ,φ,λ,γ) ├
-       └─────┬──────┘
-  q_1: ──────■───────
+  q_0: ──────■──────
+       ┌─────┴──────┐
+  q_1: ┤ U(ϴ,φ,λ,γ) ├
+       └────────────┘
   ```
+
+  **Matrix representation:**
 
   $$
   \newcommand{\rotationangle}{\frac{\theta}{2}}
-  CU(\theta, \phi, \lambda, \gamma)\ q_1, q_0 =
-  |0\rangle\langle 0| \otimes I +
-  e^{i\gamma}|1\rangle\langle 1| \otimes U(\theta,\phi,\lambda) =
-  \begin{pmatrix}
-  1 & 0 & 0 & 0 \\
-  0 & 1 & 0 & 0 \\
-  0 & 0 & e^{i\gamma} \cos(\rotationangle) & -e^{i(\gamma + \lambda)}\sin(\rotationangle) \\
-  0 & 0 &
-  e^{i(\gamma + \phi)}\sin(\rotationangle) & e^{i(\gamma + \phi+\lambda)}\cos(\rotationangle)
-  \end{pmatrix}
+
+  CU(\theta, \phi, \lambda, \gamma)\ q_0, q_1 =
+      I \otimes |0\rangle\langle 0| +
+      e^{i\gamma} U(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
+      \begin{pmatrix}
+          1 & 0 & 0 & 0 \\
+          0 & e^{i\gamma}\cos(\rotationangle) &
+          0 & -e^{i(\gamma + \lambda)}\sin(\rotationangle) \\
+          0 & 0 & 1 & 0 \\
+          0 & e^{i(\gamma+\phi)}\sin(\rotationangle) &
+          0 & e^{i(\gamma+\phi+\lambda)}\cos(\rotationangle)
+      \end{pmatrix}
   $$
-</Admonition>
 
-Create new CU gate.
+  <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
 
-## Attributes
+    ```python
+         ┌────────────┐
+    q_0: ┤ U(ϴ,φ,λ,γ) ├
+         └─────┬──────┘
+    q_1: ──────■───────
+    ```
 
-<span id="qiskit.circuit.library.CUGate.base_class" />
+    $$
+    \newcommand{\rotationangle}{\frac{\theta}{2}}
+    CU(\theta, \phi, \lambda, \gamma)\ q_1, q_0 =
+    |0\rangle\langle 0| \otimes I +
+    e^{i\gamma}|1\rangle\langle 1| \otimes U(\theta,\phi,\lambda) =
+    \begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & e^{i\gamma} \cos(\rotationangle) & -e^{i(\gamma + \lambda)}\sin(\rotationangle) \\
+    0 & 0 &
+    e^{i(\gamma + \phi)}\sin(\rotationangle) & e^{i(\gamma + \phi+\lambda)}\cos(\rotationangle)
+    \end{pmatrix}
+    $$
+  </Admonition>
 
-### base\_class
+  Create new CU gate.
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+  ## Attributes
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.CUGate.base_class "qiskit.circuit.library.CUGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+  ### base\_class
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  <Attribute id="qiskit.circuit.library.CUGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.CUGate.base_class "qiskit.circuit.library.CUGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-<span id="qiskit.circuit.library.CUGate.condition" />
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-### condition
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-The classical condition on the instruction.
+  ### condition
 
-<span id="qiskit.circuit.library.CUGate.condition_bits" />
+  <Attribute id="qiskit.circuit.library.CUGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-### condition\_bits
+  ### condition\_bits
 
-Get Clbits in condition.
+  <Attribute id="qiskit.circuit.library.CUGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CUGate.ctrl_state" />
+  ### ctrl\_state
 
-### ctrl\_state
+  <Attribute id="qiskit.circuit.library.CUGate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
 
-Return the control state of the gate as a decimal integer.
+  ### decompositions
 
-<span id="qiskit.circuit.library.CUGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.CUGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### decompositions
+  ### definition
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.CUGate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CUGate.definition" />
+  ### duration
 
-### definition
+  <Attribute id="qiskit.circuit.library.CUGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  ### label
 
-<span id="qiskit.circuit.library.CUGate.duration" />
+  <Attribute id="qiskit.circuit.library.CUGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-### duration
+  ### mutable
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.CUGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-<span id="qiskit.circuit.library.CUGate.label" />
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-### label
+  ### name
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.CUGate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-<span id="qiskit.circuit.library.CUGate.mutable" />
+    > \<original\_name\_o\<ctrl\_state>
 
-### mutable
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### num\_clbits
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.library.CUGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CUGate.name" />
+  ### num\_ctrl\_qubits
 
-### name
+  <Attribute id="qiskit.circuit.library.CUGate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-Get name of gate. If the gate has open controls the gate name will become:
+    **Returns**
 
-> \<original\_name\_o\<ctrl\_state>
+    The number of control qubits for the gate.
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+    **Return type**
 
-<span id="qiskit.circuit.library.CUGate.num_clbits" />
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Attribute>
 
-### num\_clbits
+  ### num\_qubits
 
-Return the number of clbits.
+  <Attribute id="qiskit.circuit.library.CUGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CUGate.num_ctrl_qubits" />
+  ### params
 
-### num\_ctrl\_qubits
+  <Attribute id="qiskit.circuit.library.CUGate.params" name="params" />
 
-Get number of control qubits.
+  ### unit
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.CUGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-The number of control qubits for the gate.
+  ## Methods
 
-**Return type**
+  ### inverse
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  <Function id="qiskit.circuit.library.CUGate.inverse" name="inverse" signature="inverse(annotated=False)">
+    Return inverted CU gate.
 
-<span id="qiskit.circuit.library.CUGate.num_qubits" />
+    $CU(\theta,\phi,\lambda,\gamma)^{\dagger} = CU(-\theta,-\phi,-\lambda,-\gamma))$
 
-### num\_qubits
+    **Parameters**
 
-Return the number of qubits.
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`CUGate`](#qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate") with inverse parameter values.
 
-<span id="qiskit.circuit.library.CUGate.params" />
+    **Returns**
 
-### params
+    inverse gate.
 
-<span id="qiskit.circuit.library.CUGate.unit" />
+    **Return type**
 
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### inverse
-
-<span id="qiskit.circuit.library.CUGate.inverse" />
-
-`inverse(annotated=False)`
-
-Return inverted CU gate.
-
-$CU(\theta,\phi,\lambda,\gamma)^{\dagger} = CU(-\theta,-\phi,-\lambda,-\gamma))$
-
-**Parameters**
-
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`CUGate`](#qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate") with inverse parameter values.
-
-**Returns**
-
-inverse gate.
-
-**Return type**
-
-[CUGate](#qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate")
+    [CUGate](#qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate")
+  </Function>
+</Class>
 

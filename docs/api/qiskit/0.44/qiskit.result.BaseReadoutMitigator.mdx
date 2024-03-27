@@ -8,62 +8,56 @@ python_api_name: qiskit.result.BaseReadoutMitigator
 
 # BaseReadoutMitigator
 
-<span id="qiskit.result.BaseReadoutMitigator" />
+<Class id="qiskit.result.BaseReadoutMitigator" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/result/mitigation/base_readout_mitigator.py" signature="qiskit.result.BaseReadoutMitigator">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-`qiskit.result.BaseReadoutMitigator` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/result/mitigation/base_readout_mitigator.py "view source code")
+  Base readout error mitigator class.
 
-Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  ## Methods
 
-Base readout error mitigator class.
+  ### expectation\_value
 
-## Methods
+  <Function id="qiskit.result.BaseReadoutMitigator.expectation_value" name="expectation_value" signature="abstract expectation_value(data, diagonal, qubits=None, clbits=None, shots=None)">
+    Calculate the expectation value of a diagonal Hermitian operator.
 
-### expectation\_value
+    **Parameters**
 
-<span id="qiskit.result.BaseReadoutMitigator.expectation_value" />
+    *   **data** ([*Counts*](qiskit.result.Counts "qiskit.result.counts.Counts")) – Counts object to be mitigated.
+    *   **diagonal** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – the diagonal operator. This may either be specified as a string containing I,Z,0,1 characters, or as a real valued 1D array\_like object supplying the full diagonal, or as a dictionary, or as Callable.
+    *   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – the physical qubits measured to obtain the counts clbits. If None these are assumed to be qubits \[0, …, N-1] for N-bit counts.
+    *   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, marginalize counts to just these bits.
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
 
-`abstract expectation_value(data, diagonal, qubits=None, clbits=None, shots=None)`
+    **Returns**
 
-Calculate the expectation value of a diagonal Hermitian operator.
+    The mean and an upper bound of the standard deviation of operator expectation value calculated from the current counts.
 
-**Parameters**
+    **Return type**
 
-*   **data** ([*Counts*](qiskit.result.Counts "qiskit.result.counts.Counts")) – Counts object to be mitigated.
-*   **diagonal** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – the diagonal operator. This may either be specified as a string containing I,Z,0,1 characters, or as a real valued 1D array\_like object supplying the full diagonal, or as a dictionary, or as Callable.
-*   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – the physical qubits measured to obtain the counts clbits. If None these are assumed to be qubits \[0, …, N-1] for N-bit counts.
-*   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, marginalize counts to just these bits.
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
+    [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+  </Function>
 
-**Returns**
+  ### quasi\_probabilities
 
-The mean and an upper bound of the standard deviation of operator expectation value calculated from the current counts.
+  <Function id="qiskit.result.BaseReadoutMitigator.quasi_probabilities" name="quasi_probabilities" signature="abstract quasi_probabilities(data, qubits=None, clbits=None, shots=None)">
+    Convert counts to a dictionary of quasi-probabilities
 
-**Return type**
+    **Parameters**
 
-[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+    *   **data** ([*Counts*](qiskit.result.Counts "qiskit.result.counts.Counts")) – Counts to be mitigated.
+    *   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – the physical qubits measured to obtain the counts clbits. If None these are assumed to be qubits \[0, …, N-1] for N-bit counts.
+    *   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, marginalize counts to just these bits.
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
 
-### quasi\_probabilities
+    **Returns**
 
-<span id="qiskit.result.BaseReadoutMitigator.quasi_probabilities" />
+    **A dictionary containing pairs of \[output, mean] where “output”**
 
-`abstract quasi_probabilities(data, qubits=None, clbits=None, shots=None)`
+    is the key in the dictionaries, which is the length-N bitstring of a measured standard basis state, and “mean” is the mean of non-zero quasi-probability estimates.
 
-Convert counts to a dictionary of quasi-probabilities
+    **Return type**
 
-**Parameters**
-
-*   **data** ([*Counts*](qiskit.result.Counts "qiskit.result.counts.Counts")) – Counts to be mitigated.
-*   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – the physical qubits measured to obtain the counts clbits. If None these are assumed to be qubits \[0, …, N-1] for N-bit counts.
-*   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, marginalize counts to just these bits.
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
-
-**Returns**
-
-**A dictionary containing pairs of \[output, mean] where “output”**
-
-is the key in the dictionaries, which is the length-N bitstring of a measured standard basis state, and “mean” is the mean of non-zero quasi-probability estimates.
-
-**Return type**
-
-[QuasiDistribution](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")
+    [QuasiDistribution](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")
+  </Function>
+</Class>
 

@@ -10,127 +10,101 @@ python_api_name: qiskit.aqua.operators.legacy.LegacyBaseOperator
 
 # qiskit.aqua.operators.legacy.LegacyBaseOperator
 
-<span id="qiskit.aqua.operators.legacy.LegacyBaseOperator" />
+<Class id="qiskit.aqua.operators.legacy.LegacyBaseOperator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/legacy/base_operator.py" signature="LegacyBaseOperator(basis=None, z2_symmetries=None, name=None)">
+  Operators relevant for quantum applications.
 
-`LegacyBaseOperator(basis=None, z2_symmetries=None, name=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/legacy/base_operator.py "view source code")
+  Constructor.
 
-Operators relevant for quantum applications.
+  ### \_\_init\_\_
 
-Constructor.
+  <Function id="qiskit.aqua.operators.legacy.LegacyBaseOperator.__init__" name="__init__" signature="abstract __init__(basis=None, z2_symmetries=None, name=None)">
+    Constructor.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.aqua.operators.legacy.LegacyBaseOperator.__init__" />
+  |                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                  |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.__init__ "qiskit.aqua.operators.legacy.LegacyBaseOperator.__init__")(\[basis, z2\_symmetries, name])                                                | Constructor.                                                                                                                                                                                                                                                                                                     |
+  | [`chop`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.chop "qiskit.aqua.operators.legacy.LegacyBaseOperator.chop")(threshold\[, copy])                                                                        |                                                                                                                                                                                                                                                                                                                  |
+  | [`construct_evaluation_circuit`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit "qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit")(wave\_function, …) | Build circuits to compute the expectation w\.r.t the wavefunction.                                                                                                                                                                                                                                               |
+  | [`evaluate_with_result`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.evaluate_with_result "qiskit.aqua.operators.legacy.LegacyBaseOperator.evaluate_with_result")(result, …)                                 | Consume the result from the quantum computer to build the expectation, will be only used along with the [`construct_evaluation_circuit()`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit "qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit") method. |
+  | [`evolve`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.evolve "qiskit.aqua.operators.legacy.LegacyBaseOperator.evolve")(state\_in, evo\_time, num\_time\_slices, …)                                          | Time evolution, exp^(-jt H).                                                                                                                                                                                                                                                                                     |
+  | [`is_empty`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.is_empty "qiskit.aqua.operators.legacy.LegacyBaseOperator.is_empty")()                                                                              | Check Operator is empty or not                                                                                                                                                                                                                                                                                   |
+  | [`print_details`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.print_details "qiskit.aqua.operators.legacy.LegacyBaseOperator.print_details")()                                                               | print details                                                                                                                                                                                                                                                                                                    |
+  | [`to_opflow`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.to_opflow "qiskit.aqua.operators.legacy.LegacyBaseOperator.to_opflow")()                                                                           | Convert to new Operator format.                                                                                                                                                                                                                                                                                  |
 
-`abstract __init__(basis=None, z2_symmetries=None, name=None)`
+  ## Attributes
 
-Constructor.
+  |                                                                                                                                                   |                                       |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+  | [`basis`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.basis "qiskit.aqua.operators.legacy.LegacyBaseOperator.basis")                         | returns basis                         |
+  | [`name`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.name "qiskit.aqua.operators.legacy.LegacyBaseOperator.name")                            | returns name                          |
+  | [`num_qubits`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.num_qubits "qiskit.aqua.operators.legacy.LegacyBaseOperator.num_qubits")          | Returns number of qubits for operator |
+  | [`z2_symmetries`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.z2_symmetries "qiskit.aqua.operators.legacy.LegacyBaseOperator.z2_symmetries") | returns z2 symmetries                 |
 
-## Methods
+  ### basis
 
-|                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                  |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.__init__ "qiskit.aqua.operators.legacy.LegacyBaseOperator.__init__")(\[basis, z2\_symmetries, name])                                                | Constructor.                                                                                                                                                                                                                                                                                                     |
-| [`chop`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.chop "qiskit.aqua.operators.legacy.LegacyBaseOperator.chop")(threshold\[, copy])                                                                        |                                                                                                                                                                                                                                                                                                                  |
-| [`construct_evaluation_circuit`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit "qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit")(wave\_function, …) | Build circuits to compute the expectation w\.r.t the wavefunction.                                                                                                                                                                                                                                               |
-| [`evaluate_with_result`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.evaluate_with_result "qiskit.aqua.operators.legacy.LegacyBaseOperator.evaluate_with_result")(result, …)                                 | Consume the result from the quantum computer to build the expectation, will be only used along with the [`construct_evaluation_circuit()`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit "qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit") method. |
-| [`evolve`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.evolve "qiskit.aqua.operators.legacy.LegacyBaseOperator.evolve")(state\_in, evo\_time, num\_time\_slices, …)                                          | Time evolution, exp^(-jt H).                                                                                                                                                                                                                                                                                     |
-| [`is_empty`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.is_empty "qiskit.aqua.operators.legacy.LegacyBaseOperator.is_empty")()                                                                              | Check Operator is empty or not                                                                                                                                                                                                                                                                                   |
-| [`print_details`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.print_details "qiskit.aqua.operators.legacy.LegacyBaseOperator.print_details")()                                                               | print details                                                                                                                                                                                                                                                                                                    |
-| [`to_opflow`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.to_opflow "qiskit.aqua.operators.legacy.LegacyBaseOperator.to_opflow")()                                                                           | Convert to new Operator format.                                                                                                                                                                                                                                                                                  |
+  <Function id="qiskit.aqua.operators.legacy.LegacyBaseOperator.basis" name="basis" signature="property basis">
+    returns basis
+  </Function>
 
-## Attributes
+  ### chop
 
-|                                                                                                                                                   |                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| [`basis`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.basis "qiskit.aqua.operators.legacy.LegacyBaseOperator.basis")                         | returns basis                         |
-| [`name`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.name "qiskit.aqua.operators.legacy.LegacyBaseOperator.name")                            | returns name                          |
-| [`num_qubits`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.num_qubits "qiskit.aqua.operators.legacy.LegacyBaseOperator.num_qubits")          | Returns number of qubits for operator |
-| [`z2_symmetries`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.z2_symmetries "qiskit.aqua.operators.legacy.LegacyBaseOperator.z2_symmetries") | returns z2 symmetries                 |
+  <Function id="qiskit.aqua.operators.legacy.LegacyBaseOperator.chop" name="chop" signature="abstract chop(threshold, copy=False)" />
 
-### basis
+  ### construct\_evaluation\_circuit
 
-<span id="qiskit.aqua.operators.legacy.LegacyBaseOperator.basis" />
+  <Function id="qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit" name="construct_evaluation_circuit" signature="abstract construct_evaluation_circuit(wave_function, statevector_mode, **kwargs)">
+    Build circuits to compute the expectation w\.r.t the wavefunction.
+  </Function>
 
-`property basis`
+  ### evaluate\_with\_result
 
-returns basis
+  <Function id="qiskit.aqua.operators.legacy.LegacyBaseOperator.evaluate_with_result" name="evaluate_with_result" signature="abstract evaluate_with_result(result, statevector_mode, **kwargs)">
+    Consume the result from the quantum computer to build the expectation, will be only used along with the [`construct_evaluation_circuit()`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit "qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit") method.
+  </Function>
 
-### chop
+  ### evolve
 
-<span id="qiskit.aqua.operators.legacy.LegacyBaseOperator.chop" />
+  <Function id="qiskit.aqua.operators.legacy.LegacyBaseOperator.evolve" name="evolve" signature="abstract evolve(state_in, evo_time, num_time_slices, expansion_mode, expansion_order, **kwargs)">
+    Time evolution, exp^(-jt H).
+  </Function>
 
-`abstract chop(threshold, copy=False)`
+  ### is\_empty
 
-### construct\_evaluation\_circuit
+  <Function id="qiskit.aqua.operators.legacy.LegacyBaseOperator.is_empty" name="is_empty" signature="abstract is_empty()">
+    Check Operator is empty or not
+  </Function>
 
-<span id="qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit" />
+  ### name
 
-`abstract construct_evaluation_circuit(wave_function, statevector_mode, **kwargs)`
+  <Function id="qiskit.aqua.operators.legacy.LegacyBaseOperator.name" name="name" signature="property name">
+    returns name
+  </Function>
 
-Build circuits to compute the expectation w\.r.t the wavefunction.
+  ### num\_qubits
 
-### evaluate\_with\_result
+  <Function id="qiskit.aqua.operators.legacy.LegacyBaseOperator.num_qubits" name="num_qubits" signature="abstract property num_qubits">
+    Returns number of qubits for operator
+  </Function>
 
-<span id="qiskit.aqua.operators.legacy.LegacyBaseOperator.evaluate_with_result" />
+  ### print\_details
 
-`abstract evaluate_with_result(result, statevector_mode, **kwargs)`
+  <Function id="qiskit.aqua.operators.legacy.LegacyBaseOperator.print_details" name="print_details" signature="abstract print_details()">
+    print details
+  </Function>
 
-Consume the result from the quantum computer to build the expectation, will be only used along with the [`construct_evaluation_circuit()`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit "qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit") method.
+  ### to\_opflow
 
-### evolve
+  <Function id="qiskit.aqua.operators.legacy.LegacyBaseOperator.to_opflow" name="to_opflow" signature="abstract to_opflow()">
+    Convert to new Operator format.
+  </Function>
 
-<span id="qiskit.aqua.operators.legacy.LegacyBaseOperator.evolve" />
+  ### z2\_symmetries
 
-`abstract evolve(state_in, evo_time, num_time_slices, expansion_mode, expansion_order, **kwargs)`
-
-Time evolution, exp^(-jt H).
-
-### is\_empty
-
-<span id="qiskit.aqua.operators.legacy.LegacyBaseOperator.is_empty" />
-
-`abstract is_empty()`
-
-Check Operator is empty or not
-
-### name
-
-<span id="qiskit.aqua.operators.legacy.LegacyBaseOperator.name" />
-
-`property name`
-
-returns name
-
-### num\_qubits
-
-<span id="qiskit.aqua.operators.legacy.LegacyBaseOperator.num_qubits" />
-
-`abstract property num_qubits`
-
-Returns number of qubits for operator
-
-### print\_details
-
-<span id="qiskit.aqua.operators.legacy.LegacyBaseOperator.print_details" />
-
-`abstract print_details()`
-
-print details
-
-### to\_opflow
-
-<span id="qiskit.aqua.operators.legacy.LegacyBaseOperator.to_opflow" />
-
-`abstract to_opflow()`
-
-Convert to new Operator format.
-
-### z2\_symmetries
-
-<span id="qiskit.aqua.operators.legacy.LegacyBaseOperator.z2_symmetries" />
-
-`property z2_symmetries`
-
-returns z2 symmetries
+  <Function id="qiskit.aqua.operators.legacy.LegacyBaseOperator.z2_symmetries" name="z2_symmetries" signature="property z2_symmetries">
+    returns z2 symmetries
+  </Function>
+</Class>
 

@@ -8,262 +8,218 @@ python_api_name: qiskit.chemistry.results.VibronicStructureResult
 
 # qiskit.chemistry.results.VibronicStructureResult
 
-<span id="qiskit.chemistry.results.VibronicStructureResult" />
+<Class id="qiskit.chemistry.results.VibronicStructureResult" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/vibronic_structure_result.py" signature="VibronicStructureResult(a_dict=None)">
+  The vibronic structure result.
 
-`VibronicStructureResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/vibronic_structure_result.py "view source code")
+  ### \_\_init\_\_
 
-The vibronic structure result.
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.__init__" name="__init__" signature="__init__(a_dict=None)">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.chemistry.results.VibronicStructureResult.__init__" />
+  |                                                                                                                                                    |                                                                                                                                                                                                                      |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.results.VibronicStructureResult.__init__ "qiskit.chemistry.results.VibronicStructureResult.__init__")(\[a\_dict])   | Initialize self.                                                                                                                                                                                                     |
+  | [`clear`](#qiskit.chemistry.results.VibronicStructureResult.clear "qiskit.chemistry.results.VibronicStructureResult.clear")()                      | **rtype**`None`                                                                                                                                                                                                      |
+  | [`combine`](#qiskit.chemistry.results.VibronicStructureResult.combine "qiskit.chemistry.results.VibronicStructureResult.combine")(result)          | Any property from the argument that exists in the receiver is updated.                                                                                                                                               |
+  | `copy`()                                                                                                                                           |                                                                                                                                                                                                                      |
+  | `fromkeys`(iterable\[, value])                                                                                                                     |                                                                                                                                                                                                                      |
+  | [`get`](#qiskit.chemistry.results.VibronicStructureResult.get "qiskit.chemistry.results.VibronicStructureResult.get")(k\[,d])                      |                                                                                                                                                                                                                      |
+  | [`items`](#qiskit.chemistry.results.VibronicStructureResult.items "qiskit.chemistry.results.VibronicStructureResult.items")()                      |                                                                                                                                                                                                                      |
+  | [`keys`](#qiskit.chemistry.results.VibronicStructureResult.keys "qiskit.chemistry.results.VibronicStructureResult.keys")()                         |                                                                                                                                                                                                                      |
+  | [`pop`](#qiskit.chemistry.results.VibronicStructureResult.pop "qiskit.chemistry.results.VibronicStructureResult.pop")(key\[, default])             | If key is not found, d is returned if given, otherwise KeyError is raised.                                                                                                                                           |
+  | [`popitem`](#qiskit.chemistry.results.VibronicStructureResult.popitem "qiskit.chemistry.results.VibronicStructureResult.popitem")()                | as a 2-tuple; but raise KeyError if D is empty.                                                                                                                                                                      |
+  | [`setdefault`](#qiskit.chemistry.results.VibronicStructureResult.setdefault "qiskit.chemistry.results.VibronicStructureResult.setdefault")(k\[,d]) |                                                                                                                                                                                                                      |
+  | [`update`](#qiskit.chemistry.results.VibronicStructureResult.update "qiskit.chemistry.results.VibronicStructureResult.update")(\*args, \*\*kwargs) | If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v |
+  | [`values`](#qiskit.chemistry.results.VibronicStructureResult.values "qiskit.chemistry.results.VibronicStructureResult.values")()                   |                                                                                                                                                                                                                      |
 
-`__init__(a_dict=None)`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |                                                                                                                                                                                                  |                                                         |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
+  | [`algorithm_result`](#qiskit.chemistry.results.VibronicStructureResult.algorithm_result "qiskit.chemistry.results.VibronicStructureResult.algorithm_result")                                     | Returns raw algorithm result                            |
+  | [`aux_operator_eigenvalues`](#qiskit.chemistry.results.VibronicStructureResult.aux_operator_eigenvalues "qiskit.chemistry.results.VibronicStructureResult.aux_operator_eigenvalues")             | return aux operator eigen values                        |
+  | [`computed_vibronic_energies`](#qiskit.chemistry.results.VibronicStructureResult.computed_vibronic_energies "qiskit.chemistry.results.VibronicStructureResult.computed_vibronic_energies")       | Returns computed electronic part of ground state energy |
+  | [`eigenenergies`](#qiskit.chemistry.results.VibronicStructureResult.eigenenergies "qiskit.chemistry.results.VibronicStructureResult.eigenenergies")                                              | returns eigen energies                                  |
+  | [`eigenstates`](#qiskit.chemistry.results.VibronicStructureResult.eigenstates "qiskit.chemistry.results.VibronicStructureResult.eigenstates")                                                    | returns eigen states                                    |
+  | [`formatted`](#qiskit.chemistry.results.VibronicStructureResult.formatted "qiskit.chemistry.results.VibronicStructureResult.formatted")                                                          | Formatted result as a list of strings                   |
+  | [`groundenergy`](#qiskit.chemistry.results.VibronicStructureResult.groundenergy "qiskit.chemistry.results.VibronicStructureResult.groundenergy")                                                 | returns ground energy                                   |
+  | [`groundstate`](#qiskit.chemistry.results.VibronicStructureResult.groundstate "qiskit.chemistry.results.VibronicStructureResult.groundstate")                                                    | returns ground state                                    |
+  | [`num_occupied_modals_per_mode`](#qiskit.chemistry.results.VibronicStructureResult.num_occupied_modals_per_mode "qiskit.chemistry.results.VibronicStructureResult.num_occupied_modals_per_mode") | Returns the number of occupied modal per mode           |
+  | [`raw_result`](#qiskit.chemistry.results.VibronicStructureResult.raw_result "qiskit.chemistry.results.VibronicStructureResult.raw_result")                                                       | Returns the raw algorithm result.                       |
 
-## Methods
+  ### algorithm\_result
 
-|                                                                                                                                                    |                                                                                                                                                                                                                      |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.results.VibronicStructureResult.__init__ "qiskit.chemistry.results.VibronicStructureResult.__init__")(\[a\_dict])   | Initialize self.                                                                                                                                                                                                     |
-| [`clear`](#qiskit.chemistry.results.VibronicStructureResult.clear "qiskit.chemistry.results.VibronicStructureResult.clear")()                      | **rtype**`None`                                                                                                                                                                                                      |
-| [`combine`](#qiskit.chemistry.results.VibronicStructureResult.combine "qiskit.chemistry.results.VibronicStructureResult.combine")(result)          | Any property from the argument that exists in the receiver is updated.                                                                                                                                               |
-| `copy`()                                                                                                                                           |                                                                                                                                                                                                                      |
-| `fromkeys`(iterable\[, value])                                                                                                                     |                                                                                                                                                                                                                      |
-| [`get`](#qiskit.chemistry.results.VibronicStructureResult.get "qiskit.chemistry.results.VibronicStructureResult.get")(k\[,d])                      |                                                                                                                                                                                                                      |
-| [`items`](#qiskit.chemistry.results.VibronicStructureResult.items "qiskit.chemistry.results.VibronicStructureResult.items")()                      |                                                                                                                                                                                                                      |
-| [`keys`](#qiskit.chemistry.results.VibronicStructureResult.keys "qiskit.chemistry.results.VibronicStructureResult.keys")()                         |                                                                                                                                                                                                                      |
-| [`pop`](#qiskit.chemistry.results.VibronicStructureResult.pop "qiskit.chemistry.results.VibronicStructureResult.pop")(key\[, default])             | If key is not found, d is returned if given, otherwise KeyError is raised.                                                                                                                                           |
-| [`popitem`](#qiskit.chemistry.results.VibronicStructureResult.popitem "qiskit.chemistry.results.VibronicStructureResult.popitem")()                | as a 2-tuple; but raise KeyError if D is empty.                                                                                                                                                                      |
-| [`setdefault`](#qiskit.chemistry.results.VibronicStructureResult.setdefault "qiskit.chemistry.results.VibronicStructureResult.setdefault")(k\[,d]) |                                                                                                                                                                                                                      |
-| [`update`](#qiskit.chemistry.results.VibronicStructureResult.update "qiskit.chemistry.results.VibronicStructureResult.update")(\*args, \*\*kwargs) | If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v |
-| [`values`](#qiskit.chemistry.results.VibronicStructureResult.values "qiskit.chemistry.results.VibronicStructureResult.values")()                   |                                                                                                                                                                                                                      |
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.algorithm_result" name="algorithm_result" signature="property algorithm_result">
+    Returns raw algorithm result
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                                                                                  |                                                         |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
-| [`algorithm_result`](#qiskit.chemistry.results.VibronicStructureResult.algorithm_result "qiskit.chemistry.results.VibronicStructureResult.algorithm_result")                                     | Returns raw algorithm result                            |
-| [`aux_operator_eigenvalues`](#qiskit.chemistry.results.VibronicStructureResult.aux_operator_eigenvalues "qiskit.chemistry.results.VibronicStructureResult.aux_operator_eigenvalues")             | return aux operator eigen values                        |
-| [`computed_vibronic_energies`](#qiskit.chemistry.results.VibronicStructureResult.computed_vibronic_energies "qiskit.chemistry.results.VibronicStructureResult.computed_vibronic_energies")       | Returns computed electronic part of ground state energy |
-| [`eigenenergies`](#qiskit.chemistry.results.VibronicStructureResult.eigenenergies "qiskit.chemistry.results.VibronicStructureResult.eigenenergies")                                              | returns eigen energies                                  |
-| [`eigenstates`](#qiskit.chemistry.results.VibronicStructureResult.eigenstates "qiskit.chemistry.results.VibronicStructureResult.eigenstates")                                                    | returns eigen states                                    |
-| [`formatted`](#qiskit.chemistry.results.VibronicStructureResult.formatted "qiskit.chemistry.results.VibronicStructureResult.formatted")                                                          | Formatted result as a list of strings                   |
-| [`groundenergy`](#qiskit.chemistry.results.VibronicStructureResult.groundenergy "qiskit.chemistry.results.VibronicStructureResult.groundenergy")                                                 | returns ground energy                                   |
-| [`groundstate`](#qiskit.chemistry.results.VibronicStructureResult.groundstate "qiskit.chemistry.results.VibronicStructureResult.groundstate")                                                    | returns ground state                                    |
-| [`num_occupied_modals_per_mode`](#qiskit.chemistry.results.VibronicStructureResult.num_occupied_modals_per_mode "qiskit.chemistry.results.VibronicStructureResult.num_occupied_modals_per_mode") | Returns the number of occupied modal per mode           |
-| [`raw_result`](#qiskit.chemistry.results.VibronicStructureResult.raw_result "qiskit.chemistry.results.VibronicStructureResult.raw_result")                                                       | Returns the raw algorithm result.                       |
+    `AlgorithmResult`
+  </Function>
 
-### algorithm\_result
+  ### aux\_operator\_eigenvalues
 
-<span id="qiskit.chemistry.results.VibronicStructureResult.algorithm_result" />
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.aux_operator_eigenvalues" name="aux_operator_eigenvalues" signature="property aux_operator_eigenvalues">
+    return aux operator eigen values
 
-`property algorithm_result`
+    **Return type**
 
-Returns raw algorithm result
+    `Optional`\[`List`\[`float`]]
+  </Function>
 
-**Return type**
+  ### clear
 
-`AlgorithmResult`
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.clear" name="clear" signature="clear()">
+    **Return type**
 
-### aux\_operator\_eigenvalues
+    `None`
+  </Function>
 
-<span id="qiskit.chemistry.results.VibronicStructureResult.aux_operator_eigenvalues" />
+  ### combine
 
-`property aux_operator_eigenvalues`
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-return aux operator eigen values
+    **Raises**
 
-**Return type**
+    **TypeError** – Argument is None
 
-`Optional`\[`List`\[`float`]]
+    **Return type**
 
-### clear
+    `None`
+  </Function>
 
-<span id="qiskit.chemistry.results.VibronicStructureResult.clear" />
+  ### computed\_vibronic\_energies
 
-`clear()`
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.computed_vibronic_energies" name="computed_vibronic_energies" signature="property computed_vibronic_energies">
+    Returns computed electronic part of ground state energy
 
-**Return type**
+    **Return type**
 
-`None`
+    `ndarray`
+  </Function>
 
-### combine
+  ### eigenenergies
 
-<span id="qiskit.chemistry.results.VibronicStructureResult.combine" />
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.eigenenergies" name="eigenenergies" signature="property eigenenergies">
+    returns eigen energies
 
-`combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    `Optional`\[`ndarray`]
+  </Function>
 
-**Raises**
+  ### eigenstates
 
-**TypeError** – Argument is None
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.eigenstates" name="eigenstates" signature="property eigenstates">
+    returns eigen states
 
-**Return type**
+    **Return type**
 
-`None`
+    `Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
+  </Function>
 
-### computed\_vibronic\_energies
+  ### formatted
 
-<span id="qiskit.chemistry.results.VibronicStructureResult.computed_vibronic_energies" />
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.formatted" name="formatted" signature="property formatted">
+    Formatted result as a list of strings
 
-`property computed_vibronic_energies`
+    **Return type**
 
-Returns computed electronic part of ground state energy
+    `List`\[`str`]
+  </Function>
 
-**Return type**
+  ### get
 
-`ndarray`
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.get" name="get" signature="get(k[, d]) → D[k] if k in D, else d. d defaults to None." />
 
-### eigenenergies
+  ### groundenergy
 
-<span id="qiskit.chemistry.results.VibronicStructureResult.eigenenergies" />
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.groundenergy" name="groundenergy" signature="property groundenergy">
+    returns ground energy
 
-`property eigenenergies`
+    **Return type**
 
-returns eigen energies
+    `Optional`\[`float`]
+  </Function>
 
-**Return type**
+  ### groundstate
 
-`Optional`\[`ndarray`]
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.groundstate" name="groundstate" signature="property groundstate">
+    returns ground state
 
-### eigenstates
+    **Return type**
 
-<span id="qiskit.chemistry.results.VibronicStructureResult.eigenstates" />
+    `Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
+  </Function>
 
-`property eigenstates`
+  ### items
 
-returns eigen states
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.items" name="items" signature="items() → a set-like object providing a view on D’s items" />
 
-**Return type**
+  ### keys
 
-`Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.keys" name="keys" signature="keys() → a set-like object providing a view on D’s keys" />
 
-### formatted
+  ### num\_occupied\_modals\_per\_mode
 
-<span id="qiskit.chemistry.results.VibronicStructureResult.formatted" />
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.num_occupied_modals_per_mode" name="num_occupied_modals_per_mode" signature="property num_occupied_modals_per_mode">
+    Returns the number of occupied modal per mode
 
-`property formatted`
+    **Return type**
 
-Formatted result as a list of strings
+    `Optional`\[`List`\[`float`]]
+  </Function>
 
-**Return type**
+  ### pop
 
-`List`\[`str`]
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.pop" name="pop" signature="pop(key, default=None)">
+    If key is not found, d is returned if given, otherwise KeyError is raised.
 
-### get
+    **Return type**
 
-<span id="qiskit.chemistry.results.VibronicStructureResult.get" />
+    `object`
+  </Function>
 
-`get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
+  ### popitem
 
-### groundenergy
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.popitem" name="popitem" signature="popitem()">
+    as a 2-tuple; but raise KeyError if D is empty.
 
-<span id="qiskit.chemistry.results.VibronicStructureResult.groundenergy" />
+    **Return type**
 
-`property groundenergy`
+    `Tuple`\[`object`, `object`]
+  </Function>
 
-returns ground energy
+  ### raw\_result
 
-**Return type**
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.raw_result" name="raw_result" signature="property raw_result">
+    Returns the raw algorithm result.
 
-`Optional`\[`float`]
+    **Return type**
 
-### groundstate
+    `Optional`\[`AlgorithmResult`]
+  </Function>
 
-<span id="qiskit.chemistry.results.VibronicStructureResult.groundstate" />
+  ### setdefault
 
-`property groundstate`
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.setdefault" name="setdefault" signature="setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D" />
 
-returns ground state
+  ### update
 
-**Return type**
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.update" name="update" signature="update(*args, **kwargs)">
+    If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
 
-`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
+    **Return type**
 
-### items
+    `None`
+  </Function>
 
-<span id="qiskit.chemistry.results.VibronicStructureResult.items" />
+  ### values
 
-`items() → a set-like object providing a view on D’s items`
-
-### keys
-
-<span id="qiskit.chemistry.results.VibronicStructureResult.keys" />
-
-`keys() → a set-like object providing a view on D’s keys`
-
-### num\_occupied\_modals\_per\_mode
-
-<span id="qiskit.chemistry.results.VibronicStructureResult.num_occupied_modals_per_mode" />
-
-`property num_occupied_modals_per_mode`
-
-Returns the number of occupied modal per mode
-
-**Return type**
-
-`Optional`\[`List`\[`float`]]
-
-### pop
-
-<span id="qiskit.chemistry.results.VibronicStructureResult.pop" />
-
-`pop(key, default=None)`
-
-If key is not found, d is returned if given, otherwise KeyError is raised.
-
-**Return type**
-
-`object`
-
-### popitem
-
-<span id="qiskit.chemistry.results.VibronicStructureResult.popitem" />
-
-`popitem()`
-
-as a 2-tuple; but raise KeyError if D is empty.
-
-**Return type**
-
-`Tuple`\[`object`, `object`]
-
-### raw\_result
-
-<span id="qiskit.chemistry.results.VibronicStructureResult.raw_result" />
-
-`property raw_result`
-
-Returns the raw algorithm result.
-
-**Return type**
-
-`Optional`\[`AlgorithmResult`]
-
-### setdefault
-
-<span id="qiskit.chemistry.results.VibronicStructureResult.setdefault" />
-
-`setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
-
-### update
-
-<span id="qiskit.chemistry.results.VibronicStructureResult.update" />
-
-`update(*args, **kwargs)`
-
-If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
-
-**Return type**
-
-`None`
-
-### values
-
-<span id="qiskit.chemistry.results.VibronicStructureResult.values" />
-
-`values() → an object providing a view on D’s values`
+  <Function id="qiskit.chemistry.results.VibronicStructureResult.values" name="values" signature="values() → an object providing a view on D’s values" />
+</Class>
 

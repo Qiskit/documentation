@@ -10,258 +10,210 @@ python_api_name: qiskit.aqua.components.uncertainty_models.MultivariateUniformDi
 
 # qiskit.aqua.components.uncertainty\_models.MultivariateUniformDistribution
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution" />
+<Class id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/uncertainty_models/multivariate_uniform_distribution.py" signature="MultivariateUniformDistribution(num_qubits, low=None, high=None)">
+  The Multivariate Uniform Distribution.
 
-`MultivariateUniformDistribution(num_qubits, low=None, high=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/uncertainty_models/multivariate_uniform_distribution.py "view source code")
+  Although this just results in a Hadamard gate on all involved qubits, the lower and upper bounds and the assignment of the qubits to the different dimensions is important if used in a particular application.
 
-The Multivariate Uniform Distribution.
+  **Parameters**
 
-Although this just results in a Hadamard gate on all involved qubits, the lower and upper bounds and the assignment of the qubits to the different dimensions is important if used in a particular application.
+  *   **num\_qubits** (`Union`\[`List`\[`int`], `ndarray`]) – List with the number of qubits per dimension
+  *   **low** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – List with the lower bounds per dimension, set to 0 for each dimension if None
+  *   **high** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – List with the upper bounds per dimension, set to 1 for each dimension if None
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **num\_qubits** (`Union`\[`List`\[`int`], `ndarray`]) – List with the number of qubits per dimension
-*   **low** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – List with the lower bounds per dimension, set to 0 for each dimension if None
-*   **high** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – List with the upper bounds per dimension, set to 1 for each dimension if None
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.__init__" name="__init__" signature="__init__(num_qubits, low=None, high=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **num\_qubits** (`Union`\[`List`\[`int`], `ndarray`]) – List with the number of qubits per dimension
+    *   **low** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – List with the lower bounds per dimension, set to 0 for each dimension if None
+    *   **high** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – List with the upper bounds per dimension, set to 1 for each dimension if None
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.__init__" />
+  ## Methods
 
-`__init__(num_qubits, low=None, high=None)`
+  |                                                                                                                                                                                                                                                                          |                                                                       |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.__init__ "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.__init__")(num\_qubits\[, low, high])                                                        | **type num\_qubits**`Union`\[`List`\[`int`], `ndarray`]               |
+  | [`build`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build")(qc, q\[, q\_ancillas, params])                                                             |                                                                       |
+  | [`build_controlled`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled")(qc, q, q\_control\[, …])                                  | Adds corresponding controlled sub-circuit to given circuit            |
+  | [`build_controlled_inverse`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_inverse "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_inverse")(qc, q, q\_control\[, …])          | Adds controlled inverse of corresponding sub-circuit to given circuit |
+  | [`build_controlled_inverse_power`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_inverse_power "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_inverse_power")(qc, q, …\[, …]) | Adds controlled, inverse, power of corresponding circuit.             |
+  | [`build_controlled_power`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_power "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_power")(qc, q, q\_control, power)               | Adds controlled power of corresponding circuit.                       |
+  | [`build_inverse`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_inverse "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_inverse")(qc, q\[, q\_ancillas])                                             | Adds inverse of corresponding sub-circuit to given circuit            |
+  | [`build_inverse_power`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_inverse_power "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_inverse_power")(qc, q, power\[, q\_ancillas])                    | Adds inverse power of corresponding circuit.                          |
+  | [`build_power`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_power "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_power")(qc, q, power\[, q\_ancillas])                                            | Adds power of corresponding circuit.                                  |
+  | [`get_num_qubits`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.get_num_qubits "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.get_num_qubits")()                                                               | returns number of qubits                                              |
+  | [`get_num_qubits_controlled`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.get_num_qubits_controlled "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.get_num_qubits_controlled")()                              | returns number of qubits controlled                                   |
+  | [`pdf_to_probabilities`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.pdf_to_probabilities "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.pdf_to_probabilities")(pdf, low, high, num\_values)                  | pdf to probabilities                                                  |
+  | [`required_ancillas`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.required_ancillas "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.required_ancillas")()                                                      | returns required ancillas                                             |
+  | [`required_ancillas_controlled`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.required_ancillas_controlled "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.required_ancillas_controlled")()                     | returns required ancillas controlled                                  |
 
-**Parameters**
+  ## Attributes
 
-*   **num\_qubits** (`Union`\[`List`\[`int`], `ndarray`]) – List with the number of qubits per dimension
-*   **low** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – List with the lower bounds per dimension, set to 0 for each dimension if None
-*   **high** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – List with the upper bounds per dimension, set to 1 for each dimension if None
+  |                                                                                                                                                                                                                            |                                     |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+  | [`dimension`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.dimension "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.dimension")                                  | returns dimensions                  |
+  | [`high`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.high "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.high")                                                 | returns high                        |
+  | [`low`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.low "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.low")                                                    | returns low                         |
+  | [`num_qubits`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_qubits "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_qubits")                               | returns num qubits                  |
+  | [`num_target_qubits`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_target_qubits "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_target_qubits")          | Returns the number of target qubits |
+  | [`num_values`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_values "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_values")                               | returns number of values            |
+  | [`probabilities`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.probabilities "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.probabilities")                      | returns probabilities               |
+  | [`probabilities_vector`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.probabilities_vector "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.probabilities_vector") | returns probabilities vector        |
+  | [`values`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.values "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.values")                                           | returns values                      |
 
-## Methods
+  ### build
 
-|                                                                                                                                                                                                                                                                          |                                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.__init__ "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.__init__")(num\_qubits\[, low, high])                                                        | **type num\_qubits**`Union`\[`List`\[`int`], `ndarray`]               |
-| [`build`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build")(qc, q\[, q\_ancillas, params])                                                             |                                                                       |
-| [`build_controlled`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled")(qc, q, q\_control\[, …])                                  | Adds corresponding controlled sub-circuit to given circuit            |
-| [`build_controlled_inverse`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_inverse "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_inverse")(qc, q, q\_control\[, …])          | Adds controlled inverse of corresponding sub-circuit to given circuit |
-| [`build_controlled_inverse_power`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_inverse_power "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_inverse_power")(qc, q, …\[, …]) | Adds controlled, inverse, power of corresponding circuit.             |
-| [`build_controlled_power`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_power "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_power")(qc, q, q\_control, power)               | Adds controlled power of corresponding circuit.                       |
-| [`build_inverse`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_inverse "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_inverse")(qc, q\[, q\_ancillas])                                             | Adds inverse of corresponding sub-circuit to given circuit            |
-| [`build_inverse_power`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_inverse_power "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_inverse_power")(qc, q, power\[, q\_ancillas])                    | Adds inverse power of corresponding circuit.                          |
-| [`build_power`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_power "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_power")(qc, q, power\[, q\_ancillas])                                            | Adds power of corresponding circuit.                                  |
-| [`get_num_qubits`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.get_num_qubits "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.get_num_qubits")()                                                               | returns number of qubits                                              |
-| [`get_num_qubits_controlled`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.get_num_qubits_controlled "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.get_num_qubits_controlled")()                              | returns number of qubits controlled                                   |
-| [`pdf_to_probabilities`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.pdf_to_probabilities "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.pdf_to_probabilities")(pdf, low, high, num\_values)                  | pdf to probabilities                                                  |
-| [`required_ancillas`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.required_ancillas "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.required_ancillas")()                                                      | returns required ancillas                                             |
-| [`required_ancillas_controlled`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.required_ancillas_controlled "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.required_ancillas_controlled")()                     | returns required ancillas controlled                                  |
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build" name="build" signature="build(qc, q, q_ancillas=None, params=None)" />
 
-## Attributes
+  ### build\_controlled
 
-|                                                                                                                                                                                                                            |                                     |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| [`dimension`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.dimension "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.dimension")                                  | returns dimensions                  |
-| [`high`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.high "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.high")                                                 | returns high                        |
-| [`low`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.low "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.low")                                                    | returns low                         |
-| [`num_qubits`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_qubits "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_qubits")                               | returns num qubits                  |
-| [`num_target_qubits`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_target_qubits "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_target_qubits")          | Returns the number of target qubits |
-| [`num_values`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_values "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_values")                               | returns number of values            |
-| [`probabilities`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.probabilities "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.probabilities")                      | returns probabilities               |
-| [`probabilities_vector`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.probabilities_vector "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.probabilities_vector") | returns probabilities vector        |
-| [`values`](#qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.values "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.values")                                           | returns values                      |
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled" name="build_controlled" signature="build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds corresponding controlled sub-circuit to given circuit
 
-### build
+    **Parameters**
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build" />
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-`build(qc, q, q_ancillas=None, params=None)`
+  ### build\_controlled\_inverse
 
-### build\_controlled
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_inverse" name="build_controlled_inverse" signature="build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled inverse of corresponding sub-circuit to given circuit
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled" />
+    **Parameters**
 
-`build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-Adds corresponding controlled sub-circuit to given circuit
+  ### build\_controlled\_inverse\_power
 
-**Parameters**
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_inverse_power" name="build_controlled_inverse_power" signature="build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  ### build\_controlled\_power
 
-### build\_controlled\_inverse
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_power" name="build_controlled_power" signature="build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_inverse" />
+  ### build\_inverse
 
-`build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_inverse" name="build_inverse" signature="build_inverse(qc, q, q_ancillas=None)">
+    Adds inverse of corresponding sub-circuit to given circuit
 
-Adds controlled inverse of corresponding sub-circuit to given circuit
+    **Parameters**
 
-**Parameters**
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  </Function>
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  ### build\_inverse\_power
 
-### build\_controlled\_inverse\_power
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_inverse_power" name="build_inverse_power" signature="build_inverse_power(qc, q, power, q_ancillas=None)">
+    Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_inverse_power" />
+  ### build\_power
 
-`build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_power" name="build_power" signature="build_power(qc, q, power, q_ancillas=None)">
+    Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ### dimension
 
-### build\_controlled\_power
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.dimension" name="dimension" signature="property dimension">
+    returns dimensions
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_controlled_power" />
+  ### get\_num\_qubits
 
-`build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.get_num_qubits" name="get_num_qubits" signature="get_num_qubits()">
+    returns number of qubits
+  </Function>
 
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ### get\_num\_qubits\_controlled
 
-### build\_inverse
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.get_num_qubits_controlled" name="get_num_qubits_controlled" signature="get_num_qubits_controlled()">
+    returns number of qubits controlled
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_inverse" />
+  ### high
 
-`build_inverse(qc, q, q_ancillas=None)`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.high" name="high" signature="property high">
+    returns high
+  </Function>
 
-Adds inverse of corresponding sub-circuit to given circuit
+  ### low
 
-**Parameters**
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.low" name="low" signature="property low">
+    returns low
+  </Function>
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  ### num\_qubits
 
-### build\_inverse\_power
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_qubits" name="num_qubits" signature="property num_qubits">
+    returns num qubits
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_inverse_power" />
+  ### num\_target\_qubits
 
-`build_inverse_power(qc, q, power, q_ancillas=None)`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_target_qubits" name="num_target_qubits" signature="property num_target_qubits">
+    Returns the number of target qubits
+  </Function>
 
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ### num\_values
 
-### build\_power
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_values" name="num_values" signature="property num_values">
+    returns number of values
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build_power" />
+  ### pdf\_to\_probabilities
 
-`build_power(qc, q, power, q_ancillas=None)`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.pdf_to_probabilities" name="pdf_to_probabilities" signature="static pdf_to_probabilities(pdf, low, high, num_values)">
+    pdf to probabilities
+  </Function>
 
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ### probabilities
 
-### dimension
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.probabilities" name="probabilities" signature="property probabilities">
+    returns probabilities
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.dimension" />
+  ### probabilities\_vector
 
-`property dimension`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.probabilities_vector" name="probabilities_vector" signature="property probabilities_vector">
+    returns probabilities vector
+  </Function>
 
-returns dimensions
+  ### required\_ancillas
 
-### get\_num\_qubits
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.required_ancillas" name="required_ancillas" signature="required_ancillas()">
+    returns required ancillas
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.get_num_qubits" />
+  ### required\_ancillas\_controlled
 
-`get_num_qubits()`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.required_ancillas_controlled" name="required_ancillas_controlled" signature="required_ancillas_controlled()">
+    returns required ancillas controlled
+  </Function>
 
-returns number of qubits
+  ### values
 
-### get\_num\_qubits\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.get_num_qubits_controlled" />
-
-`get_num_qubits_controlled()`
-
-returns number of qubits controlled
-
-### high
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.high" />
-
-`property high`
-
-returns high
-
-### low
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.low" />
-
-`property low`
-
-returns low
-
-### num\_qubits
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_qubits" />
-
-`property num_qubits`
-
-returns num qubits
-
-### num\_target\_qubits
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_target_qubits" />
-
-`property num_target_qubits`
-
-Returns the number of target qubits
-
-### num\_values
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.num_values" />
-
-`property num_values`
-
-returns number of values
-
-### pdf\_to\_probabilities
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.pdf_to_probabilities" />
-
-`static pdf_to_probabilities(pdf, low, high, num_values)`
-
-pdf to probabilities
-
-### probabilities
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.probabilities" />
-
-`property probabilities`
-
-returns probabilities
-
-### probabilities\_vector
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.probabilities_vector" />
-
-`property probabilities_vector`
-
-returns probabilities vector
-
-### required\_ancillas
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.required_ancillas" />
-
-`required_ancillas()`
-
-returns required ancillas
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.required_ancillas_controlled" />
-
-`required_ancillas_controlled()`
-
-returns required ancillas controlled
-
-### values
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.values" />
-
-`property values`
-
-returns values
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.values" name="values" signature="property values">
+    returns values
+  </Function>
+</Class>
 

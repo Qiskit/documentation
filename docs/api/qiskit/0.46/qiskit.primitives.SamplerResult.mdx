@@ -8,74 +8,66 @@ python_api_name: qiskit.primitives.SamplerResult
 
 # SamplerResult
 
-<span id="qiskit.primitives.SamplerResult" />
+<Class id="qiskit.primitives.SamplerResult" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/primitives/base/sampler_result.py" signature="qiskit.primitives.SamplerResult(quasi_dists, metadata)">
+  Bases: `_BasePrimitiveResult`
 
-`qiskit.primitives.SamplerResult(quasi_dists, metadata)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/primitives/base/sampler_result.py "view source code")
+  Result of Sampler.
 
-Bases: `_BasePrimitiveResult`
+  ```python
+  result = sampler.run(circuits, params).result()
+  ```
 
-Result of Sampler.
+  where the i-th elements of `result` correspond to the circuit given by `circuits[i]`, and the parameter values bounds by `params[i]`. For example, `results.quasi_dists[i]` gives the quasi-probabilities of bitstrings, and `result.metadata[i]` is a metadata dictionary for this circuit and parameters.
 
-```python
-result = sampler.run(circuits, params).result()
-```
+  **Parameters**
 
-where the i-th elements of `result` correspond to the circuit given by `circuits[i]`, and the parameter values bounds by `params[i]`. For example, `results.quasi_dists[i]` gives the quasi-probabilities of bitstrings, and `result.metadata[i]` is a metadata dictionary for this circuit and parameters.
+  *   **quasi\_dists** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")*]*) – List of the quasi-probabilities.
+  *   **metadata** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*]*) – List of the metadata.
 
-**Parameters**
+  ## Attributes
 
-*   **quasi\_dists** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")*]*) – List of the quasi-probabilities.
-*   **metadata** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*]*) – List of the metadata.
+  ### experiments
 
-## Attributes
+  <Attribute id="qiskit.primitives.SamplerResult.experiments" name="experiments">
+    Experiment data dicts in any inheriting result dataclass.
 
-<span id="qiskit.primitives.SamplerResult.experiments" />
+    <Admonition title="Deprecated since version 0.46.0" type="danger">
+      The property `qiskit.primitives.base.base_result._BasePrimitiveResult.experiments` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release.
+    </Admonition>
+  </Attribute>
 
-### experiments
+  ### num\_experiments
 
-Experiment data dicts in any inheriting result dataclass.
+  <Attribute id="qiskit.primitives.SamplerResult.num_experiments" name="num_experiments">
+    Number of experiments in any inheriting result dataclass.
 
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The property `qiskit.primitives.base.base_result._BasePrimitiveResult.experiments` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release.
-</Admonition>
+    <Admonition title="Deprecated since version 0.46.0" type="danger">
+      The property `qiskit.primitives.base.base_result._BasePrimitiveResult.num_experiments` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release.
+    </Admonition>
+  </Attribute>
 
-<span id="qiskit.primitives.SamplerResult.num_experiments" />
+  ### quasi\_dists
 
-### num\_experiments
+  <Attribute id="qiskit.primitives.SamplerResult.quasi_dists" name="quasi_dists" attributeTypeHint="list[qiskit.result.distributions.quasi.QuasiDistribution]" />
 
-Number of experiments in any inheriting result dataclass.
+  ### metadata
 
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The property `qiskit.primitives.base.base_result._BasePrimitiveResult.num_experiments` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release.
-</Admonition>
+  <Attribute id="qiskit.primitives.SamplerResult.metadata" name="metadata" attributeTypeHint="list[dict[str, Any]]" />
 
-<span id="qiskit.primitives.SamplerResult.quasi_dists" />
+  ## Methods
 
-### quasi\_dists
+  ### decompose
 
-`list[qiskit.result.distributions.quasi.QuasiDistribution]`
+  <Function id="qiskit.primitives.SamplerResult.decompose" name="decompose" signature="decompose()">
+    Generate single experiment result objects from self.
 
-<span id="qiskit.primitives.SamplerResult.metadata" />
+    <Admonition title="Deprecated since version 0.46.0" type="danger">
+      The method `qiskit.primitives.base.base_result._BasePrimitiveResult.decompose()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release.
+    </Admonition>
 
-### metadata
+    **Return type**
 
-`list[dict[str, Any]]`
-
-## Methods
-
-### decompose
-
-<span id="qiskit.primitives.SamplerResult.decompose" />
-
-`decompose()`
-
-Generate single experiment result objects from self.
-
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The method `qiskit.primitives.base.base_result._BasePrimitiveResult.decompose()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release.
-</Admonition>
-
-**Return type**
-
-[*Iterator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator "(in Python v3.12)")\[*\_BasePrimitiveResult*]
+    [*Iterator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator "(in Python v3.12)")\[*\_BasePrimitiveResult*]
+  </Function>
+</Class>
 

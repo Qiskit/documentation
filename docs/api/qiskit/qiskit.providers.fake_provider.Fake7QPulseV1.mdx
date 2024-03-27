@@ -8,188 +8,158 @@ python_api_name: qiskit.providers.fake_provider.Fake7QPulseV1
 
 # Fake7QPulseV1
 
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1" />
+<Class id="qiskit.providers.fake_provider.Fake7QPulseV1" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/fake_provider/backends_v1/fake_7q_pulse/fake_7q_pulse_v1.py" signature="qiskit.providers.fake_provider.Fake7QPulseV1">
+  Bases: [`FakePulseBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakePulseBackend "qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend")
 
-`qiskit.providers.fake_provider.Fake7QPulseV1` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/fake_provider/backends_v1/fake_7q_pulse/fake_7q_pulse_v1.py "view source code")
+  A fake **pulse** backend with the following characteristics:
 
-Bases: [`FakePulseBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakePulseBackend "qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend")
+  *   num\_qubits: 7
 
-A fake **pulse** backend with the following characteristics:
+  *   coupling\_map:
 
-*   num\_qubits: 7
+      > ```python
+      > 0 ↔ 1 ↔ 3 ↔ 5 ↔ 6
+      >     ↕       ↕
+      >     2       4
+      > ```
 
-*   coupling\_map:
+  *   basis\_gates: `["id", "rz", "sx", "x", "cx", "reset"]`
 
-    > ```python
-    > 0 ↔ 1 ↔ 3 ↔ 5 ↔ 6
-    >     ↕       ↕
-    >     2       4
-    > ```
+  *   **scheduled instructions:**
 
-*   basis\_gates: `["id", "rz", "sx", "x", "cx", "reset"]`
+      \# `{'u3', 'id', 'measure', 'u2', 'x', 'u1', 'sx', 'rz'}` for all individual qubits # `{'cx'}` for all edges # `{'measure'}` for (0, 1, 2, 3, 4, 5, 6)
 
-*   **scheduled instructions:**
+  FakeBackend initializer.
 
-    \# `{'u3', 'id', 'measure', 'u2', 'x', 'u1', 'sx', 'rz'}` for all individual qubits # `{'cx'}` for all edges # `{'measure'}` for (0, 1, 2, 3, 4, 5, 6)
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+  *   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
 
-**Parameters**
+  ## Attributes
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
+  ### backend\_name
 
-## Attributes
+  <Attribute id="qiskit.providers.fake_provider.Fake7QPulseV1.backend_name" name="backend_name" attributeValue="= 'fake_7q_pulse_v1'" />
 
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.backend_name" />
+  ### conf\_filename
 
-### backend\_name
+  <Attribute id="qiskit.providers.fake_provider.Fake7QPulseV1.conf_filename" name="conf_filename" attributeValue="= 'conf_nairobi.json'" />
 
-`= 'fake_7q_pulse_v1'`
+  ### defs\_filename
 
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.conf_filename" />
+  <Attribute id="qiskit.providers.fake_provider.Fake7QPulseV1.defs_filename" name="defs_filename" attributeValue="= 'defs_nairobi.json'" />
 
-### conf\_filename
+  ### dirname
 
-`= 'conf_nairobi.json'`
+  <Attribute id="qiskit.providers.fake_provider.Fake7QPulseV1.dirname" name="dirname" attributeValue="= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends_v1/fake_7q_pulse'" />
 
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.defs_filename" />
+  ### options
 
-### defs\_filename
+  <Attribute id="qiskit.providers.fake_provider.Fake7QPulseV1.options" name="options">
+    Return the options for the backend
 
-`= 'defs_nairobi.json'`
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.fake_provider.Fake7QPulseV1.run "qiskit.providers.fake_provider.Fake7QPulseV1.run") method.
+  </Attribute>
 
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.dirname" />
+  ### props\_filename
 
-### dirname
+  <Attribute id="qiskit.providers.fake_provider.Fake7QPulseV1.props_filename" name="props_filename" attributeValue="= 'props_nairobi.json'" />
 
-`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends_v1/fake_7q_pulse'`
+  ### version
 
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.options" />
+  <Attribute id="qiskit.providers.fake_provider.Fake7QPulseV1.version" name="version" attributeValue="= 1" />
 
-### options
+  ## Methods
 
-Return the options for the backend
+  ### configuration
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.fake_provider.Fake7QPulseV1.run "qiskit.providers.fake_provider.Fake7QPulseV1.run") method.
+  <Function id="qiskit.providers.fake_provider.Fake7QPulseV1.configuration" name="configuration" signature="configuration()">
+    Return the backend configuration.
 
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.props_filename" />
+    **Returns**
 
-### props\_filename
+    the configuration for the backend.
 
-`= 'props_nairobi.json'`
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.version" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-### version
+  ### defaults
 
-`= 1`
+  <Function id="qiskit.providers.fake_provider.Fake7QPulseV1.defaults" name="defaults" signature="defaults()">
+    Returns a snapshot of device defaults
+  </Function>
 
-## Methods
+  ### name
 
-### configuration
+  <Function id="qiskit.providers.fake_provider.Fake7QPulseV1.name" name="name" signature="name()">
+    Return the backend name.
 
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.configuration" />
+    **Returns**
 
-`configuration()`
+    the name of the backend.
 
-Return the backend configuration.
+    **Return type**
 
-**Returns**
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-the configuration for the backend.
+  ### properties
 
-**Return type**
+  <Function id="qiskit.providers.fake_provider.Fake7QPulseV1.properties" name="properties" signature="properties()">
+    Returns a snapshot of device properties
+  </Function>
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  ### provider
 
-### defaults
+  <Function id="qiskit.providers.fake_provider.Fake7QPulseV1.provider" name="provider" signature="provider()">
+    Return the backend Provider.
 
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.defaults" />
+    **Returns**
 
-`defaults()`
+    the Provider responsible for the backend.
 
-Returns a snapshot of device defaults
+    **Return type**
 
-### name
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.name" />
+  ### run
 
-`name()`
+  <Function id="qiskit.providers.fake_provider.Fake7QPulseV1.run" name="run" signature="run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-Return the backend name.
+  ### set\_options
 
-**Returns**
+  <Function id="qiskit.providers.fake_provider.Fake7QPulseV1.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-the name of the backend.
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-**Return type**
+    **Parameters**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    **fields** – The fields to update the options
 
-### properties
+    **Raises**
 
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.properties" />
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
+  </Function>
 
-`properties()`
+  ### status
 
-Returns a snapshot of device properties
+  <Function id="qiskit.providers.fake_provider.Fake7QPulseV1.status" name="status" signature="status()">
+    Return the backend status.
 
-### provider
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.provider" />
+    the status of the backend.
 
-`provider()`
+    **Return type**
 
-Return the backend Provider.
-
-**Returns**
-
-the Provider responsible for the backend.
-
-**Return type**
-
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
-
-### run
-
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.run" />
-
-`run(run_input, **kwargs)`
-
-Main job in simulator
-
-### set\_options
-
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit.providers.fake_provider.Fake7QPulseV1.status" />
-
-`status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
+</Class>
 

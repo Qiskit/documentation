@@ -8,59 +8,55 @@ python_api_name: qiskit.optimization.algorithms.ADMMParameters
 
 # qiskit.optimization.algorithms.ADMMParameters
 
-<span id="qiskit.optimization.algorithms.ADMMParameters" />
+<Class id="qiskit.optimization.algorithms.ADMMParameters" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/admm_optimizer.py" signature="ADMMParameters(rho_initial=10000, factor_c=100000, beta=1000, maxiter=10, tol=0.0001, max_time=inf, three_block=True, vary_rho=0, tau_incr=2, tau_decr=2, mu_res=10, mu_merit=1000, warm_start=False, max_iter=None)">
+  Defines a set of parameters for ADMM optimizer.
 
-`ADMMParameters(rho_initial=10000, factor_c=100000, beta=1000, maxiter=10, tol=0.0001, max_time=inf, three_block=True, vary_rho=0, tau_incr=2, tau_decr=2, mu_res=10, mu_merit=1000, warm_start=False, max_iter=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
+  Defines parameters for ADMM optimizer and their default values.
 
-Defines a set of parameters for ADMM optimizer.
+  **Parameters**
 
-Defines parameters for ADMM optimizer and their default values.
+  *   **rho\_initial** (`float`) – Initial value of rho parameter of ADMM.
+  *   **factor\_c** (`float`) – Penalizing factor for equality constraints, when mapping to QUBO.
+  *   **beta** (`float`) – Penalization for y decision variables.
+  *   **maxiter** (`int`) – Maximum number of iterations for ADMM.
+  *   **tol** (`float`) – Tolerance for the residual convergence.
+  *   **max\_time** (`float`) – Maximum running time (in seconds) for ADMM.
+  *   **three\_block** (`bool`) – Boolean flag to select the 3-block ADMM implementation.
+  *   **vary\_rho** (`int`) – Flag to select the rule to update rho. If set to 0, then rho increases by 10% at each iteration. If set to 1, then rho is modified according to primal and dual residuals.
+  *   **tau\_incr** (`float`) – Parameter used in the rho update (UPDATE\_RHO\_BY\_RESIDUALS). The update rule can be found in: Boyd, S., Parikh, N., Chu, E., Peleato, B., & Eckstein, J. (2011). Distributed optimization and statistical learning via the alternating direction method of multipliers. Foundations and Trends® in Machine learning, 3(1), 1-122.
+  *   **tau\_decr** (`float`) – Parameter used in the rho update (UPDATE\_RHO\_BY\_RESIDUALS).
+  *   **mu\_res** (`float`) – Parameter used in the rho update (UPDATE\_RHO\_BY\_RESIDUALS).
+  *   **mu\_merit** (`float`) – Penalization for constraint residual. Used to compute the merit values.
+  *   **warm\_start** (`bool`) – Start ADMM with pre-initialized values for binary and continuous variables by solving a relaxed (all variables are continuous) problem first. This option does not guarantee the solution will optimal or even feasible. The option should be used when tuning other options does not help and should be considered as a hint to the optimizer where to start its iterative process.
+  *   **max\_iter** (`Optional`\[`int`]) – Deprecated, use maxiter.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **rho\_initial** (`float`) – Initial value of rho parameter of ADMM.
-*   **factor\_c** (`float`) – Penalizing factor for equality constraints, when mapping to QUBO.
-*   **beta** (`float`) – Penalization for y decision variables.
-*   **maxiter** (`int`) – Maximum number of iterations for ADMM.
-*   **tol** (`float`) – Tolerance for the residual convergence.
-*   **max\_time** (`float`) – Maximum running time (in seconds) for ADMM.
-*   **three\_block** (`bool`) – Boolean flag to select the 3-block ADMM implementation.
-*   **vary\_rho** (`int`) – Flag to select the rule to update rho. If set to 0, then rho increases by 10% at each iteration. If set to 1, then rho is modified according to primal and dual residuals.
-*   **tau\_incr** (`float`) – Parameter used in the rho update (UPDATE\_RHO\_BY\_RESIDUALS). The update rule can be found in: Boyd, S., Parikh, N., Chu, E., Peleato, B., & Eckstein, J. (2011). Distributed optimization and statistical learning via the alternating direction method of multipliers. Foundations and Trends® in Machine learning, 3(1), 1-122.
-*   **tau\_decr** (`float`) – Parameter used in the rho update (UPDATE\_RHO\_BY\_RESIDUALS).
-*   **mu\_res** (`float`) – Parameter used in the rho update (UPDATE\_RHO\_BY\_RESIDUALS).
-*   **mu\_merit** (`float`) – Penalization for constraint residual. Used to compute the merit values.
-*   **warm\_start** (`bool`) – Start ADMM with pre-initialized values for binary and continuous variables by solving a relaxed (all variables are continuous) problem first. This option does not guarantee the solution will optimal or even feasible. The option should be used when tuning other options does not help and should be considered as a hint to the optimizer where to start its iterative process.
-*   **max\_iter** (`Optional`\[`int`]) – Deprecated, use maxiter.
+  <Function id="qiskit.optimization.algorithms.ADMMParameters.__init__" name="__init__" signature="__init__(rho_initial=10000, factor_c=100000, beta=1000, maxiter=10, tol=0.0001, max_time=inf, three_block=True, vary_rho=0, tau_incr=2, tau_decr=2, mu_res=10, mu_merit=1000, warm_start=False, max_iter=None)">
+    Defines parameters for ADMM optimizer and their default values.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.optimization.algorithms.ADMMParameters.__init__" />
+    *   **rho\_initial** (`float`) – Initial value of rho parameter of ADMM.
+    *   **factor\_c** (`float`) – Penalizing factor for equality constraints, when mapping to QUBO.
+    *   **beta** (`float`) – Penalization for y decision variables.
+    *   **maxiter** (`int`) – Maximum number of iterations for ADMM.
+    *   **tol** (`float`) – Tolerance for the residual convergence.
+    *   **max\_time** (`float`) – Maximum running time (in seconds) for ADMM.
+    *   **three\_block** (`bool`) – Boolean flag to select the 3-block ADMM implementation.
+    *   **vary\_rho** (`int`) – Flag to select the rule to update rho. If set to 0, then rho increases by 10% at each iteration. If set to 1, then rho is modified according to primal and dual residuals.
+    *   **tau\_incr** (`float`) – Parameter used in the rho update (UPDATE\_RHO\_BY\_RESIDUALS). The update rule can be found in: Boyd, S., Parikh, N., Chu, E., Peleato, B., & Eckstein, J. (2011). Distributed optimization and statistical learning via the alternating direction method of multipliers. Foundations and Trends® in Machine learning, 3(1), 1-122.
+    *   **tau\_decr** (`float`) – Parameter used in the rho update (UPDATE\_RHO\_BY\_RESIDUALS).
+    *   **mu\_res** (`float`) – Parameter used in the rho update (UPDATE\_RHO\_BY\_RESIDUALS).
+    *   **mu\_merit** (`float`) – Penalization for constraint residual. Used to compute the merit values.
+    *   **warm\_start** (`bool`) – Start ADMM with pre-initialized values for binary and continuous variables by solving a relaxed (all variables are continuous) problem first. This option does not guarantee the solution will optimal or even feasible. The option should be used when tuning other options does not help and should be considered as a hint to the optimizer where to start its iterative process.
+    *   **max\_iter** (`Optional`\[`int`]) – Deprecated, use maxiter.
+  </Function>
 
-`__init__(rho_initial=10000, factor_c=100000, beta=1000, maxiter=10, tol=0.0001, max_time=inf, three_block=True, vary_rho=0, tau_incr=2, tau_decr=2, mu_res=10, mu_merit=1000, warm_start=False, max_iter=None)`
+  ## Methods
 
-Defines parameters for ADMM optimizer and their default values.
-
-**Parameters**
-
-*   **rho\_initial** (`float`) – Initial value of rho parameter of ADMM.
-*   **factor\_c** (`float`) – Penalizing factor for equality constraints, when mapping to QUBO.
-*   **beta** (`float`) – Penalization for y decision variables.
-*   **maxiter** (`int`) – Maximum number of iterations for ADMM.
-*   **tol** (`float`) – Tolerance for the residual convergence.
-*   **max\_time** (`float`) – Maximum running time (in seconds) for ADMM.
-*   **three\_block** (`bool`) – Boolean flag to select the 3-block ADMM implementation.
-*   **vary\_rho** (`int`) – Flag to select the rule to update rho. If set to 0, then rho increases by 10% at each iteration. If set to 1, then rho is modified according to primal and dual residuals.
-*   **tau\_incr** (`float`) – Parameter used in the rho update (UPDATE\_RHO\_BY\_RESIDUALS). The update rule can be found in: Boyd, S., Parikh, N., Chu, E., Peleato, B., & Eckstein, J. (2011). Distributed optimization and statistical learning via the alternating direction method of multipliers. Foundations and Trends® in Machine learning, 3(1), 1-122.
-*   **tau\_decr** (`float`) – Parameter used in the rho update (UPDATE\_RHO\_BY\_RESIDUALS).
-*   **mu\_res** (`float`) – Parameter used in the rho update (UPDATE\_RHO\_BY\_RESIDUALS).
-*   **mu\_merit** (`float`) – Penalization for constraint residual. Used to compute the merit values.
-*   **warm\_start** (`bool`) – Start ADMM with pre-initialized values for binary and continuous variables by solving a relaxed (all variables are continuous) problem first. This option does not guarantee the solution will optimal or even feasible. The option should be used when tuning other options does not help and should be considered as a hint to the optimizer where to start its iterative process.
-*   **max\_iter** (`Optional`\[`int`]) – Deprecated, use maxiter.
-
-## Methods
-
-|                                                                                                                                                                     |                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [`__init__`](#qiskit.optimization.algorithms.ADMMParameters.__init__ "qiskit.optimization.algorithms.ADMMParameters.__init__")(\[rho\_initial, factor\_c, beta, …]) | Defines parameters for ADMM optimizer and their default values. |
+  |                                                                                                                                                                     |                                                                 |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+  | [`__init__`](#qiskit.optimization.algorithms.ADMMParameters.__init__ "qiskit.optimization.algorithms.ADMMParameters.__init__")(\[rho\_initial, factor\_c, beta, …]) | Defines parameters for ADMM optimizer and their default values. |
+</Class>
 

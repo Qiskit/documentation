@@ -10,135 +10,127 @@ python_api_name: qiskit.ignis.verification.GatesetTomographyFitter
 
 # qiskit.ignis.verification.GatesetTomographyFitter
 
-<span id="qiskit.ignis.verification.GatesetTomographyFitter" />
+<Class id="qiskit.ignis.verification.GatesetTomographyFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/fitters/gateset_fitter.py" signature="GatesetTomographyFitter(result, circuits, gateset_basis='default')">
+  Initialize gateset tomography fitter with experimental data.
 
-`GatesetTomographyFitter(result, circuits, gateset_basis='default')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/fitters/gateset_fitter.py "view source code")
+  **Parameters**
 
-Initialize gateset tomography fitter with experimental data.
+  *   **result** (`Result`) – a Qiskit Result object obtained from executing tomography circuits.
+  *   **circuits** (`List`) – a list of circuits or circuit names to extract count information from the result object.
+  *   **gateset\_basis** (`Union`\[`GateSetBasis`, `str`]) – (default: ‘default’) Representation of
+  *   **gates and SPAM circuits of the gateset** (*the*) –
 
-**Parameters**
+  **Additional information:**
 
-*   **result** (`Result`) – a Qiskit Result object obtained from executing tomography circuits.
-*   **circuits** (`List`) – a list of circuits or circuit names to extract count information from the result object.
-*   **gateset\_basis** (`Union`\[`GateSetBasis`, `str`]) – (default: ‘default’) Representation of
-*   **gates and SPAM circuits of the gateset** (*the*) –
+  The fitter attempts to output a GST result from the collected experimental data. The output will be a dictionary of the computed operators for the gates, as well as the measurment operator and initial state of the system.
 
-**Additional information:**
+  The input for the fitter consists of the experimental data collected by the backend, the circuits on which it operated and the gateset basis used when collecting the data.
 
-The fitter attempts to output a GST result from the collected experimental data. The output will be a dictionary of the computed operators for the gates, as well as the measurment operator and initial state of the system.
+  Example:
 
-The input for the fitter consists of the experimental data collected by the backend, the circuits on which it operated and the gateset basis used when collecting the data.
+  ```python
+  from qiskit.circuits.library.standard import *
+  from qiskit.ignis.verification.basis import default_gateset_basis
+  from qiskit.ignis.verification import gateset_tomography_circuits
+  from qiskit.ignis.verification import GateSetTomographyFitter
 
-Example:
+  gate = HGate()
+  basis = default_gateset_basis()
+  basis.add_gate(gate)
+  backend = ...
+  circuits = gateset_tomography_circuits(gateset_basis=basis)
+  qobj = assemble(circuits, shots=10000)
+  result = backend.run(qobj).result()
+  fitter = GatesetTomographyFitter(result, circuits, basis)
+  result_gates = fitter.fit()
+  result_gate = result_gates[gate.name]
+  ```
 
-```python
-from qiskit.circuits.library.standard import *
-from qiskit.ignis.verification.basis import default_gateset_basis
-from qiskit.ignis.verification import gateset_tomography_circuits
-from qiskit.ignis.verification import GateSetTomographyFitter
+  ### \_\_init\_\_
 
-gate = HGate()
-basis = default_gateset_basis()
-basis.add_gate(gate)
-backend = ...
-circuits = gateset_tomography_circuits(gateset_basis=basis)
-qobj = assemble(circuits, shots=10000)
-result = backend.run(qobj).result()
-fitter = GatesetTomographyFitter(result, circuits, basis)
-result_gates = fitter.fit()
-result_gate = result_gates[gate.name]
-```
+  <Function id="qiskit.ignis.verification.GatesetTomographyFitter.__init__" name="__init__" signature="__init__(result, circuits, gateset_basis='default')">
+    Initialize gateset tomography fitter with experimental data.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.ignis.verification.GatesetTomographyFitter.__init__" />
+    *   **result** (`Result`) – a Qiskit Result object obtained from executing tomography circuits.
+    *   **circuits** (`List`) – a list of circuits or circuit names to extract count information from the result object.
+    *   **gateset\_basis** (`Union`\[`GateSetBasis`, `str`]) – (default: ‘default’) Representation of
+    *   **gates and SPAM circuits of the gateset** (*the*) –
 
-`__init__(result, circuits, gateset_basis='default')`
+    **Additional information:**
 
-Initialize gateset tomography fitter with experimental data.
+    The fitter attempts to output a GST result from the collected experimental data. The output will be a dictionary of the computed operators for the gates, as well as the measurment operator and initial state of the system.
 
-**Parameters**
+    The input for the fitter consists of the experimental data collected by the backend, the circuits on which it operated and the gateset basis used when collecting the data.
 
-*   **result** (`Result`) – a Qiskit Result object obtained from executing tomography circuits.
-*   **circuits** (`List`) – a list of circuits or circuit names to extract count information from the result object.
-*   **gateset\_basis** (`Union`\[`GateSetBasis`, `str`]) – (default: ‘default’) Representation of
-*   **gates and SPAM circuits of the gateset** (*the*) –
+    Example:
 
-**Additional information:**
+    ```python
+    from qiskit.circuits.library.standard import *
+    from qiskit.ignis.verification.basis import default_gateset_basis
+    from qiskit.ignis.verification import gateset_tomography_circuits
+    from qiskit.ignis.verification import GateSetTomographyFitter
 
-The fitter attempts to output a GST result from the collected experimental data. The output will be a dictionary of the computed operators for the gates, as well as the measurment operator and initial state of the system.
+    gate = HGate()
+    basis = default_gateset_basis()
+    basis.add_gate(gate)
+    backend = ...
+    circuits = gateset_tomography_circuits(gateset_basis=basis)
+    qobj = assemble(circuits, shots=10000)
+    result = backend.run(qobj).result()
+    fitter = GatesetTomographyFitter(result, circuits, basis)
+    result_gates = fitter.fit()
+    result_gate = result_gates[gate.name]
+    ```
+  </Function>
 
-The input for the fitter consists of the experimental data collected by the backend, the circuits on which it operated and the gateset basis used when collecting the data.
+  ## Methods
 
-Example:
+  |                                                                                                                                                                             |                                                                      |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.ignis.verification.GatesetTomographyFitter.__init__ "qiskit.ignis.verification.GatesetTomographyFitter.__init__")(result, circuits\[, gateset\_basis]) | Initialize gateset tomography fitter with experimental data.         |
+  | [`fit`](#qiskit.ignis.verification.GatesetTomographyFitter.fit "qiskit.ignis.verification.GatesetTomographyFitter.fit")()                                                   | Reconstruct a gate set from measurement data using optimization.     |
+  | [`linear_inversion`](#qiskit.ignis.verification.GatesetTomographyFitter.linear_inversion "qiskit.ignis.verification.GatesetTomographyFitter.linear_inversion")()            | Reconstruct a gate set from measurement data using linear inversion. |
 
-```python
-from qiskit.circuits.library.standard import *
-from qiskit.ignis.verification.basis import default_gateset_basis
-from qiskit.ignis.verification import gateset_tomography_circuits
-from qiskit.ignis.verification import GateSetTomographyFitter
+  ### fit
 
-gate = HGate()
-basis = default_gateset_basis()
-basis.add_gate(gate)
-backend = ...
-circuits = gateset_tomography_circuits(gateset_basis=basis)
-qobj = assemble(circuits, shots=10000)
-result = backend.run(qobj).result()
-fitter = GatesetTomographyFitter(result, circuits, basis)
-result_gates = fitter.fit()
-result_gate = result_gates[gate.name]
-```
+  <Function id="qiskit.ignis.verification.GatesetTomographyFitter.fit" name="fit" signature="fit()">
+    Reconstruct a gate set from measurement data using optimization.
 
-## Methods
+    **Returns**
 
-|                                                                                                                                                                             |                                                                      |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| [`__init__`](#qiskit.ignis.verification.GatesetTomographyFitter.__init__ "qiskit.ignis.verification.GatesetTomographyFitter.__init__")(result, circuits\[, gateset\_basis]) | Initialize gateset tomography fitter with experimental data.         |
-| [`fit`](#qiskit.ignis.verification.GatesetTomographyFitter.fit "qiskit.ignis.verification.GatesetTomographyFitter.fit")()                                                   | Reconstruct a gate set from measurement data using optimization.     |
-| [`linear_inversion`](#qiskit.ignis.verification.GatesetTomographyFitter.linear_inversion "qiskit.ignis.verification.GatesetTomographyFitter.linear_inversion")()            | Reconstruct a gate set from measurement data using linear inversion. |
+    its approximation found using the optimization process.
 
-### fit
+    **Return type**
 
-<span id="qiskit.ignis.verification.GatesetTomographyFitter.fit" />
+    For each gate in the gateset
 
-`fit()`
+    **Additional Information:**
 
-Reconstruct a gate set from measurement data using optimization.
+    The gateset optimization process con/.sists of three phases: 1) Use linear inversion to obtain an initial approximation. 2) Use gauge optimization to ensure the linear inversion results are close enough to the expected optimization outcome to serve as a suitable starting point 3) Use MLE optimization to obtain the final outcome
+  </Function>
 
-**Returns**
+  ### linear\_inversion
 
-its approximation found using the optimization process.
+  <Function id="qiskit.ignis.verification.GatesetTomographyFitter.linear_inversion" name="linear_inversion" signature="linear_inversion()">
+    Reconstruct a gate set from measurement data using linear inversion.
 
-**Return type**
+    **Returns**
 
-For each gate in the gateset
+    its approximation found using the linear inversion process.
 
-**Additional Information:**
+    **Return type**
 
-The gateset optimization process con/.sists of three phases: 1) Use linear inversion to obtain an initial approximation. 2) Use gauge optimization to ensure the linear inversion results are close enough to the expected optimization outcome to serve as a suitable starting point 3) Use MLE optimization to obtain the final outcome
+    For each gate in the gateset
 
-### linear\_inversion
+    **Additional Information:**
 
-<span id="qiskit.ignis.verification.GatesetTomographyFitter.linear_inversion" />
+    Given a gate set (G1,…,Gm) and SPAM circuits (F1,…,Fn) constructed from those gates the data should contain the probabilities of the following types: p\_ijk = E\*F\_i\*G\_k\*F\_j\*rho p\_ij = E\*F\_i\*F\_j\*rho
 
-`linear_inversion()`
+    We have p\_ijk = self.probs\[(Fj, Gk, Fi)] since in self.probs (Fj, Gk, Fi) indicates first applying Fj, then Gk, then Fi.
 
-Reconstruct a gate set from measurement data using linear inversion.
-
-**Returns**
-
-its approximation found using the linear inversion process.
-
-**Return type**
-
-For each gate in the gateset
-
-**Additional Information:**
-
-Given a gate set (G1,…,Gm) and SPAM circuits (F1,…,Fn) constructed from those gates the data should contain the probabilities of the following types: p\_ijk = E\*F\_i\*G\_k\*F\_j\*rho p\_ij = E\*F\_i\*F\_j\*rho
-
-We have p\_ijk = self.probs\[(Fj, Gk, Fi)] since in self.probs (Fj, Gk, Fi) indicates first applying Fj, then Gk, then Fi.
-
-One constructs the Gram matrix g = (p\_ij)\_ij which can be described as a product g=AB where A = sum (i> \<E F\_i) and B=sum (F\_j rho>\<j) For each gate Gk one can also construct the matrix Mk=(pijk)\_ij which can be described as Mk=A\*Gk\*B Inverting g we obtain g^-1 = B^-1A^-1 and so g^1 \* Mk = B^-1 \* Gk \* B This gives us a matrix similiar to Gk’s representing matrix. However, it will not be the same as Gk, since the observable results cannot distinguish between (G1,…,Gm) and (B^-1\*G1\*B,…,B^-1\*Gm\*B) a further step of *Gauge optimization* is required on the results of the linear inversion stage. One can also use the linear inversion results as a starting point for a MLE optimization for finding a physical gateset, since unless the probabilities are accurate, the resulting gateset need not be physical.
+    One constructs the Gram matrix g = (p\_ij)\_ij which can be described as a product g=AB where A = sum (i> \<E F\_i) and B=sum (F\_j rho>\<j) For each gate Gk one can also construct the matrix Mk=(pijk)\_ij which can be described as Mk=A\*Gk\*B Inverting g we obtain g^-1 = B^-1A^-1 and so g^1 \* Mk = B^-1 \* Gk \* B This gives us a matrix similiar to Gk’s representing matrix. However, it will not be the same as Gk, since the observable results cannot distinguish between (G1,…,Gm) and (B^-1\*G1\*B,…,B^-1\*Gm\*B) a further step of *Gauge optimization* is required on the results of the linear inversion stage. One can also use the linear inversion results as a starting point for a MLE optimization for finding a physical gateset, since unless the probabilities are accurate, the resulting gateset need not be physical.
+  </Function>
+</Class>
 

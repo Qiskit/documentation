@@ -8,99 +8,85 @@ python_api_name: qiskit.algorithms.LinearSolverResult
 
 # qiskit.algorithms.LinearSolverResult
 
-<span id="qiskit.algorithms.LinearSolverResult" />
+<Class id="qiskit.algorithms.LinearSolverResult" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/linear_solvers/linear_solver.py" signature="LinearSolverResult">
+  A base class for linear systems results.
 
-`LinearSolverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/linear_solvers/linear_solver.py "view source code")
+  The linear systems algorithms return an object of the type `LinearSystemsResult` with the information about the solution obtained.
 
-A base class for linear systems results.
+  ### \_\_init\_\_
 
-The linear systems algorithms return an object of the type `LinearSystemsResult` with the information about the solution obtained.
+  <Function id="qiskit.algorithms.LinearSolverResult.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.algorithms.LinearSolverResult.__init__" />
+  |                                                                                                                   |                                                                        |
+  | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.LinearSolverResult.__init__ "qiskit.algorithms.LinearSolverResult.__init__")()    | Initialize self.                                                       |
+  | [`combine`](#qiskit.algorithms.LinearSolverResult.combine "qiskit.algorithms.LinearSolverResult.combine")(result) | Any property from the argument that exists in the receiver is updated. |
 
-`__init__()`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |                                                                                                                                   |                                                                                  |
+  | --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+  | [`circuit_results`](#qiskit.algorithms.LinearSolverResult.circuit_results "qiskit.algorithms.LinearSolverResult.circuit_results") | return the results from the circuits                                             |
+  | [`euclidean_norm`](#qiskit.algorithms.LinearSolverResult.euclidean_norm "qiskit.algorithms.LinearSolverResult.euclidean_norm")    | return the euclidean norm if the algorithm knows how to calculate it             |
+  | [`observable`](#qiskit.algorithms.LinearSolverResult.observable "qiskit.algorithms.LinearSolverResult.observable")                | return the (list of) calculated observable(s)                                    |
+  | [`state`](#qiskit.algorithms.LinearSolverResult.state "qiskit.algorithms.LinearSolverResult.state")                               | return either the circuit that prepares the solution or the solution as a vector |
 
-## Methods
+  ### circuit\_results
 
-|                                                                                                                   |                                                                        |
-| ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.LinearSolverResult.__init__ "qiskit.algorithms.LinearSolverResult.__init__")()    | Initialize self.                                                       |
-| [`combine`](#qiskit.algorithms.LinearSolverResult.combine "qiskit.algorithms.LinearSolverResult.combine")(result) | Any property from the argument that exists in the receiver is updated. |
+  <Function id="qiskit.algorithms.LinearSolverResult.circuit_results" name="circuit_results" signature="property circuit_results">
+    return the results from the circuits
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                   |                                                                                  |
-| --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [`circuit_results`](#qiskit.algorithms.LinearSolverResult.circuit_results "qiskit.algorithms.LinearSolverResult.circuit_results") | return the results from the circuits                                             |
-| [`euclidean_norm`](#qiskit.algorithms.LinearSolverResult.euclidean_norm "qiskit.algorithms.LinearSolverResult.euclidean_norm")    | return the euclidean norm if the algorithm knows how to calculate it             |
-| [`observable`](#qiskit.algorithms.LinearSolverResult.observable "qiskit.algorithms.LinearSolverResult.observable")                | return the (list of) calculated observable(s)                                    |
-| [`state`](#qiskit.algorithms.LinearSolverResult.state "qiskit.algorithms.LinearSolverResult.state")                               | return either the circuit that prepares the solution or the solution as a vector |
+    `Union`\[`List`\[`float`], `List`\[`Result`]]
+  </Function>
 
-### circuit\_results
+  ### combine
 
-<span id="qiskit.algorithms.LinearSolverResult.circuit_results" />
+  <Function id="qiskit.algorithms.LinearSolverResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-`property circuit_results`
+    **Raises**
 
-return the results from the circuits
+    **TypeError** – Argument is None
 
-**Return type**
+    **Return type**
 
-`Union`\[`List`\[`float`], `List`\[`Result`]]
+    `None`
+  </Function>
 
-### combine
+  ### euclidean\_norm
 
-<span id="qiskit.algorithms.LinearSolverResult.combine" />
+  <Function id="qiskit.algorithms.LinearSolverResult.euclidean_norm" name="euclidean_norm" signature="property euclidean_norm">
+    return the euclidean norm if the algorithm knows how to calculate it
 
-`combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    `float`
+  </Function>
 
-**Raises**
+  ### observable
 
-**TypeError** – Argument is None
+  <Function id="qiskit.algorithms.LinearSolverResult.observable" name="observable" signature="property observable">
+    return the (list of) calculated observable(s)
 
-**Return type**
+    **Return type**
 
-`None`
+    `Union`\[`float`, `List`\[`float`]]
+  </Function>
 
-### euclidean\_norm
+  ### state
 
-<span id="qiskit.algorithms.LinearSolverResult.euclidean_norm" />
+  <Function id="qiskit.algorithms.LinearSolverResult.state" name="state" signature="property state">
+    return either the circuit that prepares the solution or the solution as a vector
 
-`property euclidean_norm`
+    **Return type**
 
-return the euclidean norm if the algorithm knows how to calculate it
-
-**Return type**
-
-`float`
-
-### observable
-
-<span id="qiskit.algorithms.LinearSolverResult.observable" />
-
-`property observable`
-
-return the (list of) calculated observable(s)
-
-**Return type**
-
-`Union`\[`float`, `List`\[`float`]]
-
-### state
-
-<span id="qiskit.algorithms.LinearSolverResult.state" />
-
-`property state`
-
-return either the circuit that prepares the solution or the solution as a vector
-
-**Return type**
-
-`Union`\[`QuantumCircuit`, `ndarray`]
+    `Union`\[`QuantumCircuit`, `ndarray`]
+  </Function>
+</Class>
 

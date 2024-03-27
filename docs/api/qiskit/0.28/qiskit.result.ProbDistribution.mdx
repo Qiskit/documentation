@@ -8,192 +8,162 @@ python_api_name: qiskit.result.ProbDistribution
 
 # qiskit.result.ProbDistribution
 
-<span id="qiskit.result.ProbDistribution" />
+<Class id="qiskit.result.ProbDistribution" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/distributions/probability.py" signature="ProbDistribution(data, shots=None)">
+  A generic dict-like class for probability distributions.
 
-`ProbDistribution(data, shots=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/distributions/probability.py "view source code")
+  Builds a probability distribution object.
 
-A generic dict-like class for probability distributions.
+  **Parameters**
 
-Builds a probability distribution object.
+  *   **data** (*dict*) –
 
-**Parameters**
+      Input probability data. Where the keys represent a measured classical value and the value is a float for the probability of that result. The keys can be one of several formats:
 
-*   **data** (*dict*) –
+      > *   A hexadecimal string of the form `"0x4a"`
+      > *   A bit string e.g. `'0b1011'` or `"01011"`
+      > *   An integer
 
-    Input probability data. Where the keys represent a measured classical value and the value is a float for the probability of that result. The keys can be one of several formats:
+  *   **shots** (*int*) – Number of shots the distribution was derived from.
 
-    > *   A hexadecimal string of the form `"0x4a"`
-    > *   A bit string e.g. `'0b1011'` or `"01011"`
-    > *   An integer
+  **Raises**
 
-*   **shots** (*int*) – Number of shots the distribution was derived from.
+  *   **TypeError** – If the input keys are not a string or int
+  *   **ValueError** – If the string format of the keys is incorrect
 
-**Raises**
+  ### \_\_init\_\_
 
-*   **TypeError** – If the input keys are not a string or int
-*   **ValueError** – If the string format of the keys is incorrect
+  <Function id="qiskit.result.ProbDistribution.__init__" name="__init__" signature="__init__(data, shots=None)">
+    Builds a probability distribution object.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.result.ProbDistribution.__init__" />
+    *   **data** (*dict*) –
 
-`__init__(data, shots=None)`
+        Input probability data. Where the keys represent a measured classical value and the value is a float for the probability of that result. The keys can be one of several formats:
 
-Builds a probability distribution object.
+        > *   A hexadecimal string of the form `"0x4a"`
+        > *   A bit string e.g. `'0b1011'` or `"01011"`
+        > *   An integer
 
-**Parameters**
+    *   **shots** (*int*) – Number of shots the distribution was derived from.
 
-*   **data** (*dict*) –
+    **Raises**
 
-    Input probability data. Where the keys represent a measured classical value and the value is a float for the probability of that result. The keys can be one of several formats:
+    *   **TypeError** – If the input keys are not a string or int
+    *   **ValueError** – If the string format of the keys is incorrect
+  </Function>
 
-    > *   A hexadecimal string of the form `"0x4a"`
-    > *   A bit string e.g. `'0b1011'` or `"01011"`
-    > *   An integer
+  ## Methods
 
-*   **shots** (*int*) – Number of shots the distribution was derived from.
+  |                                                                                                                                                    |                                                                                                                                                                                                                               |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.result.ProbDistribution.__init__ "qiskit.result.ProbDistribution.__init__")(data\[, shots])                                   | Builds a probability distribution object.                                                                                                                                                                                     |
+  | [`binary_probabilities`](#qiskit.result.ProbDistribution.binary_probabilities "qiskit.result.ProbDistribution.binary_probabilities")(\[num\_bits]) | Build a probabilities dictionary with binary string keys                                                                                                                                                                      |
+  | [`clear`](#qiskit.result.ProbDistribution.clear "qiskit.result.ProbDistribution.clear")()                                                          |                                                                                                                                                                                                                               |
+  | [`copy`](#qiskit.result.ProbDistribution.copy "qiskit.result.ProbDistribution.copy")()                                                             |                                                                                                                                                                                                                               |
+  | [`fromkeys`](#qiskit.result.ProbDistribution.fromkeys "qiskit.result.ProbDistribution.fromkeys")(\[value])                                         | Create a new dictionary with keys from iterable and values set to value.                                                                                                                                                      |
+  | [`get`](#qiskit.result.ProbDistribution.get "qiskit.result.ProbDistribution.get")(key\[, default])                                                 | Return the value for key if key is in the dictionary, else default.                                                                                                                                                           |
+  | [`hex_probabilities`](#qiskit.result.ProbDistribution.hex_probabilities "qiskit.result.ProbDistribution.hex_probabilities")()                      | Build a probabilities dictionary with hexadecimal string keys                                                                                                                                                                 |
+  | [`items`](#qiskit.result.ProbDistribution.items "qiskit.result.ProbDistribution.items")()                                                          |                                                                                                                                                                                                                               |
+  | [`keys`](#qiskit.result.ProbDistribution.keys "qiskit.result.ProbDistribution.keys")()                                                             |                                                                                                                                                                                                                               |
+  | [`pop`](#qiskit.result.ProbDistribution.pop "qiskit.result.ProbDistribution.pop")(k\[,d])                                                          | If key is not found, d is returned if given, otherwise KeyError is raised                                                                                                                                                     |
+  | [`popitem`](#qiskit.result.ProbDistribution.popitem "qiskit.result.ProbDistribution.popitem")()                                                    | 2-tuple; but raise KeyError if D is empty.                                                                                                                                                                                    |
+  | [`setdefault`](#qiskit.result.ProbDistribution.setdefault "qiskit.result.ProbDistribution.setdefault")(key\[, default])                            | Insert key with a value of default if key is not in the dictionary.                                                                                                                                                           |
+  | [`update`](#qiskit.result.ProbDistribution.update "qiskit.result.ProbDistribution.update")(\[E, ]\*\*F)                                            | If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k] |
+  | [`values`](#qiskit.result.ProbDistribution.values "qiskit.result.ProbDistribution.values")()                                                       |                                                                                                                                                                                                                               |
 
-**Raises**
+  ### binary\_probabilities
 
-*   **TypeError** – If the input keys are not a string or int
-*   **ValueError** – If the string format of the keys is incorrect
+  <Function id="qiskit.result.ProbDistribution.binary_probabilities" name="binary_probabilities" signature="binary_probabilities(num_bits=None)">
+    Build a probabilities dictionary with binary string keys
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                    |                                                                                                                                                                                                                               |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.result.ProbDistribution.__init__ "qiskit.result.ProbDistribution.__init__")(data\[, shots])                                   | Builds a probability distribution object.                                                                                                                                                                                     |
-| [`binary_probabilities`](#qiskit.result.ProbDistribution.binary_probabilities "qiskit.result.ProbDistribution.binary_probabilities")(\[num\_bits]) | Build a probabilities dictionary with binary string keys                                                                                                                                                                      |
-| [`clear`](#qiskit.result.ProbDistribution.clear "qiskit.result.ProbDistribution.clear")()                                                          |                                                                                                                                                                                                                               |
-| [`copy`](#qiskit.result.ProbDistribution.copy "qiskit.result.ProbDistribution.copy")()                                                             |                                                                                                                                                                                                                               |
-| [`fromkeys`](#qiskit.result.ProbDistribution.fromkeys "qiskit.result.ProbDistribution.fromkeys")(\[value])                                         | Create a new dictionary with keys from iterable and values set to value.                                                                                                                                                      |
-| [`get`](#qiskit.result.ProbDistribution.get "qiskit.result.ProbDistribution.get")(key\[, default])                                                 | Return the value for key if key is in the dictionary, else default.                                                                                                                                                           |
-| [`hex_probabilities`](#qiskit.result.ProbDistribution.hex_probabilities "qiskit.result.ProbDistribution.hex_probabilities")()                      | Build a probabilities dictionary with hexadecimal string keys                                                                                                                                                                 |
-| [`items`](#qiskit.result.ProbDistribution.items "qiskit.result.ProbDistribution.items")()                                                          |                                                                                                                                                                                                                               |
-| [`keys`](#qiskit.result.ProbDistribution.keys "qiskit.result.ProbDistribution.keys")()                                                             |                                                                                                                                                                                                                               |
-| [`pop`](#qiskit.result.ProbDistribution.pop "qiskit.result.ProbDistribution.pop")(k\[,d])                                                          | If key is not found, d is returned if given, otherwise KeyError is raised                                                                                                                                                     |
-| [`popitem`](#qiskit.result.ProbDistribution.popitem "qiskit.result.ProbDistribution.popitem")()                                                    | 2-tuple; but raise KeyError if D is empty.                                                                                                                                                                                    |
-| [`setdefault`](#qiskit.result.ProbDistribution.setdefault "qiskit.result.ProbDistribution.setdefault")(key\[, default])                            | Insert key with a value of default if key is not in the dictionary.                                                                                                                                                           |
-| [`update`](#qiskit.result.ProbDistribution.update "qiskit.result.ProbDistribution.update")(\[E, ]\*\*F)                                            | If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k] |
-| [`values`](#qiskit.result.ProbDistribution.values "qiskit.result.ProbDistribution.values")()                                                       |                                                                                                                                                                                                                               |
+    **num\_bits** (*int*) – number of bits in the binary bitstrings (leading zeros will be padded). If None, the length will be derived from the largest key present.
 
-### binary\_probabilities
+    **Returns**
 
-<span id="qiskit.result.ProbDistribution.binary_probabilities" />
+    **A dictionary where the keys are binary strings in the format**
 
-`binary_probabilities(num_bits=None)`
+    `"0110"`
 
-Build a probabilities dictionary with binary string keys
+    **Return type**
 
-**Parameters**
+    dict
+  </Function>
 
-**num\_bits** (*int*) – number of bits in the binary bitstrings (leading zeros will be padded). If None, the length will be derived from the largest key present.
+  ### clear
 
-**Returns**
+  <Function id="qiskit.result.ProbDistribution.clear" name="clear" signature="clear() → None. Remove all items from D." />
 
-**A dictionary where the keys are binary strings in the format**
+  ### copy
 
-`"0110"`
+  <Function id="qiskit.result.ProbDistribution.copy" name="copy" signature="copy() → a shallow copy of D" />
 
-**Return type**
+  ### fromkeys
 
-dict
+  <Function id="qiskit.result.ProbDistribution.fromkeys" name="fromkeys" signature="fromkeys(value=None, /)">
+    Create a new dictionary with keys from iterable and values set to value.
+  </Function>
 
-### clear
+  ### get
 
-<span id="qiskit.result.ProbDistribution.clear" />
+  <Function id="qiskit.result.ProbDistribution.get" name="get" signature="get(key, default=None, /)">
+    Return the value for key if key is in the dictionary, else default.
+  </Function>
 
-`clear() → None. Remove all items from D.`
+  ### hex\_probabilities
 
-### copy
+  <Function id="qiskit.result.ProbDistribution.hex_probabilities" name="hex_probabilities" signature="hex_probabilities()">
+    Build a probabilities dictionary with hexadecimal string keys
 
-<span id="qiskit.result.ProbDistribution.copy" />
+    **Returns**
 
-`copy() → a shallow copy of D`
+    **A dictionary where the keys are hexadecimal strings in the**
 
-### fromkeys
+    format `"0x1a"`
 
-<span id="qiskit.result.ProbDistribution.fromkeys" />
+    **Return type**
 
-`fromkeys(value=None, /)`
+    dict
+  </Function>
 
-Create a new dictionary with keys from iterable and values set to value.
+  ### items
 
-### get
+  <Function id="qiskit.result.ProbDistribution.items" name="items" signature="items() → a set-like object providing a view on D’s items" />
 
-<span id="qiskit.result.ProbDistribution.get" />
+  ### keys
 
-`get(key, default=None, /)`
+  <Function id="qiskit.result.ProbDistribution.keys" name="keys" signature="keys() → a set-like object providing a view on D’s keys" />
 
-Return the value for key if key is in the dictionary, else default.
+  ### pop
 
-### hex\_probabilities
+  <Function id="qiskit.result.ProbDistribution.pop" name="pop" signature="pop(k[, d]) → v, remove specified key and return the corresponding value.">
+    If key is not found, d is returned if given, otherwise KeyError is raised
+  </Function>
 
-<span id="qiskit.result.ProbDistribution.hex_probabilities" />
+  ### popitem
 
-`hex_probabilities()`
+  <Function id="qiskit.result.ProbDistribution.popitem" name="popitem" signature="popitem() → (k, v), remove and return some (key, value) pair as a">
+    2-tuple; but raise KeyError if D is empty.
+  </Function>
 
-Build a probabilities dictionary with hexadecimal string keys
+  ### setdefault
 
-**Returns**
+  <Function id="qiskit.result.ProbDistribution.setdefault" name="setdefault" signature="setdefault(key, default=None, /)">
+    Insert key with a value of default if key is not in the dictionary.
 
-**A dictionary where the keys are hexadecimal strings in the**
+    Return the value for key if key is in the dictionary, else default.
+  </Function>
 
-format `"0x1a"`
+  ### update
 
-**Return type**
+  <Function id="qiskit.result.ProbDistribution.update" name="update" signature="update([E, ]**F) → None. Update D from dict/iterable E and F.">
+    If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
+  </Function>
 
-dict
+  ### values
 
-### items
-
-<span id="qiskit.result.ProbDistribution.items" />
-
-`items() → a set-like object providing a view on D’s items`
-
-### keys
-
-<span id="qiskit.result.ProbDistribution.keys" />
-
-`keys() → a set-like object providing a view on D’s keys`
-
-### pop
-
-<span id="qiskit.result.ProbDistribution.pop" />
-
-`pop(k[, d]) → v, remove specified key and return the corresponding value.`
-
-If key is not found, d is returned if given, otherwise KeyError is raised
-
-### popitem
-
-<span id="qiskit.result.ProbDistribution.popitem" />
-
-`popitem() → (k, v), remove and return some (key, value) pair as a`
-
-2-tuple; but raise KeyError if D is empty.
-
-### setdefault
-
-<span id="qiskit.result.ProbDistribution.setdefault" />
-
-`setdefault(key, default=None, /)`
-
-Insert key with a value of default if key is not in the dictionary.
-
-Return the value for key if key is in the dictionary, else default.
-
-### update
-
-<span id="qiskit.result.ProbDistribution.update" />
-
-`update([E, ]**F) → None. Update D from dict/iterable E and F.`
-
-If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
-
-### values
-
-<span id="qiskit.result.ProbDistribution.values" />
-
-`values() → an object providing a view on D’s values`
+  <Function id="qiskit.result.ProbDistribution.values" name="values" signature="values() → an object providing a view on D’s values" />
+</Class>
 

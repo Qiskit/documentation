@@ -8,84 +8,80 @@ python_api_name: qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUni
 
 # DefaultUnitarySynthesis
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis" />
+<Class id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis" github="https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/unitary_synthesis.py" signature="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis">
+  Bases: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
 
-`qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
+  The default unitary synthesis plugin.
 
-Bases: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
+  ## Attributes
 
-The default unitary synthesis plugin.
+  ### max\_qubits
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.max_qubits" name="max_qubits" />
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.max_qubits" />
+  ### min\_qubits
 
-### max\_qubits
+  <Attribute id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.min_qubits" name="min_qubits" />
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.min_qubits" />
+  ### supported\_bases
 
-### min\_qubits
+  <Attribute id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supported_bases" name="supported_bases" />
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supported_bases" />
+  ### supports\_basis\_gates
 
-### supported\_bases
+  <Attribute id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_basis_gates" name="supports_basis_gates" />
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_basis_gates" />
+  ### supports\_coupling\_map
 
-### supports\_basis\_gates
+  <Attribute id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_coupling_map" name="supports_coupling_map" />
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_coupling_map" />
+  ### supports\_gate\_errors
 
-### supports\_coupling\_map
+  <Attribute id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_gate_errors" name="supports_gate_errors" />
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_gate_errors" />
+  ### supports\_gate\_errors\_by\_qubit
 
-### supports\_gate\_errors
+  <Attribute id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_gate_errors_by_qubit" name="supports_gate_errors_by_qubit" />
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_gate_errors_by_qubit" />
+  ### supports\_gate\_lengths
 
-### supports\_gate\_errors\_by\_qubit
+  <Attribute id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_gate_lengths" name="supports_gate_lengths" />
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_gate_lengths" />
+  ### supports\_gate\_lengths\_by\_qubit
 
-### supports\_gate\_lengths
+  <Attribute id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_gate_lengths_by_qubit" name="supports_gate_lengths_by_qubit" />
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_gate_lengths_by_qubit" />
+  ### supports\_natural\_direction
 
-### supports\_gate\_lengths\_by\_qubit
+  <Attribute id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_natural_direction" name="supports_natural_direction" />
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_natural_direction" />
+  ### supports\_pulse\_optimize
 
-### supports\_natural\_direction
+  <Attribute id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_pulse_optimize" name="supports_pulse_optimize" />
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_pulse_optimize" />
+  ### supports\_target
 
-### supports\_pulse\_optimize
+  <Attribute id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_target" name="supports_target" />
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.supports_target" />
+  ## Methods
 
-### supports\_target
+  ### run
 
-## Methods
+  <Function id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.run" name="run" signature="run(unitary, **options)">
+    Run synthesis for the given unitary matrix
 
-### run
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis.run" />
+    *   **unitary** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – The unitary matrix to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object
+    *   **options** – The optional kwargs that are passed based on the output the `support_*` methods on the class. Refer to the documentation for these methods on [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin") to see what the keys and values are.
 
-`run(unitary, **options)`
+    **Returns**
 
-Run synthesis for the given unitary matrix
+    The dag circuit representation of the unitary. Alternatively, you can return a tuple of the form `(dag, wires)` where `dag` is the dag circuit representation of the circuit representation of the unitary and `wires` is the mapping wires to use for [`qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag()`](qiskit.dagcircuit.DAGCircuit#substitute_node_with_dag "qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag"). If you return a tuple and `wires` is `None` this will behave just as if only a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") was returned. Additionally if this returns `None` no substitution will be made.
 
-**Parameters**
+    **Return type**
 
-*   **unitary** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – The unitary matrix to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object
-*   **options** – The optional kwargs that are passed based on the output the `support_*` methods on the class. Refer to the documentation for these methods on [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin") to see what the keys and values are.
-
-**Returns**
-
-The dag circuit representation of the unitary. Alternatively, you can return a tuple of the form `(dag, wires)` where `dag` is the dag circuit representation of the circuit representation of the unitary and `wires` is the mapping wires to use for [`qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag()`](qiskit.dagcircuit.DAGCircuit#substitute_node_with_dag "qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag"). If you return a tuple and `wires` is `None` this will behave just as if only a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") was returned. Additionally if this returns `None` no substitution will be made.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  </Function>
+</Class>
 

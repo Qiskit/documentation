@@ -10,613 +10,541 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
 # qiskit.quantum\_info.SparsePauliOp
 
-<span id="qiskit.quantum_info.SparsePauliOp" />
+<Class id="qiskit.quantum_info.SparsePauliOp" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py" signature="SparsePauliOp(data, coeffs=None)">
+  Sparse N-qubit operator in a Pauli basis representation.
 
-`SparsePauliOp(data, coeffs=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+  This is a sparse representation of an N-qubit matrix [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") in terms of N-qubit [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable") and complex coefficients.
 
-Sparse N-qubit operator in a Pauli basis representation.
+  It can be used for performing operator arithmetic for hundred of qubits if the number of non-zero Pauli basis terms is sufficiently small.
 
-This is a sparse representation of an N-qubit matrix [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") in terms of N-qubit [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable") and complex coefficients.
+  The Pauli basis components are stored as a [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable") object and can be accessed using the [`table`](#qiskit.quantum_info.SparsePauliOp.table "qiskit.quantum_info.SparsePauliOp.table") attribute. The coefficients are stored as a complex Numpy array vector and can be accessed using the [`coeffs`](#qiskit.quantum_info.SparsePauliOp.coeffs "qiskit.quantum_info.SparsePauliOp.coeffs") attribute.
 
-It can be used for performing operator arithmetic for hundred of qubits if the number of non-zero Pauli basis terms is sufficiently small.
+  Initialize an operator object.
 
-The Pauli basis components are stored as a [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable") object and can be accessed using the [`table`](#qiskit.quantum_info.SparsePauliOp.table "qiskit.quantum_info.SparsePauliOp.table") attribute. The coefficients are stored as a complex Numpy array vector and can be accessed using the [`coeffs`](#qiskit.quantum_info.SparsePauliOp.coeffs "qiskit.quantum_info.SparsePauliOp.coeffs") attribute.
+  **Parameters**
 
-Initialize an operator object.
+  *   **data** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – Pauli table of terms.
+  *   **coeffs** (*np.ndarray*) – complex coefficients for Pauli terms.
 
-**Parameters**
+  **Raises**
 
-*   **data** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – Pauli table of terms.
-*   **coeffs** (*np.ndarray*) – complex coefficients for Pauli terms.
+  **QiskitError** – If the input data or coeffs are invalid.
 
-**Raises**
+  ### \_\_init\_\_
 
-**QiskitError** – If the input data or coeffs are invalid.
+  <Function id="qiskit.quantum_info.SparsePauliOp.__init__" name="__init__" signature="__init__(data, coeffs=None)">
+    Initialize an operator object.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.quantum_info.SparsePauliOp.__init__" />
+    *   **data** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – Pauli table of terms.
+    *   **coeffs** (*np.ndarray*) – complex coefficients for Pauli terms.
 
-`__init__(data, coeffs=None)`
+    **Raises**
 
-Initialize an operator object.
+    **QiskitError** – If the input data or coeffs are invalid.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **data** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – Pauli table of terms.
-*   **coeffs** (*np.ndarray*) – complex coefficients for Pauli terms.
+  |                                                                                                                                           |                                                                            |
+  | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.quantum_info.SparsePauliOp.__init__ "qiskit.quantum_info.SparsePauliOp.__init__")(data\[, coeffs])                   | Initialize an operator object.                                             |
+  | [`add`](#qiskit.quantum_info.SparsePauliOp.add "qiskit.quantum_info.SparsePauliOp.add")(other)                                            | Return the linear operator self + other.                                   |
+  | [`adjoint`](#qiskit.quantum_info.SparsePauliOp.adjoint "qiskit.quantum_info.SparsePauliOp.adjoint")()                                     | Return the adjoint of the operator.                                        |
+  | [`compose`](#qiskit.quantum_info.SparsePauliOp.compose "qiskit.quantum_info.SparsePauliOp.compose")(other\[, qargs, front])               | Return the composition channel self∘other.                                 |
+  | [`conjugate`](#qiskit.quantum_info.SparsePauliOp.conjugate "qiskit.quantum_info.SparsePauliOp.conjugate")()                               | Return the conjugate of the operator.                                      |
+  | [`copy`](#qiskit.quantum_info.SparsePauliOp.copy "qiskit.quantum_info.SparsePauliOp.copy")()                                              | Make a deep copy of current operator.                                      |
+  | [`dot`](#qiskit.quantum_info.SparsePauliOp.dot "qiskit.quantum_info.SparsePauliOp.dot")(other\[, qargs])                                  | Return the composition channel self∘other.                                 |
+  | [`expand`](#qiskit.quantum_info.SparsePauliOp.expand "qiskit.quantum_info.SparsePauliOp.expand")(other)                                   | Return the tensor product operator other ⊗ self.                           |
+  | [`from_list`](#qiskit.quantum_info.SparsePauliOp.from_list "qiskit.quantum_info.SparsePauliOp.from_list")(obj)                            | Construct from a list \[(pauli\_str, coeffs)]                              |
+  | [`from_operator`](#qiskit.quantum_info.SparsePauliOp.from_operator "qiskit.quantum_info.SparsePauliOp.from_operator")(obj\[, atol, rtol]) | Construct from an Operator objector.                                       |
+  | [`input_dims`](#qiskit.quantum_info.SparsePauliOp.input_dims "qiskit.quantum_info.SparsePauliOp.input_dims")(\[qargs])                    | Return tuple of input dimension for specified subsystems.                  |
+  | [`is_unitary`](#qiskit.quantum_info.SparsePauliOp.is_unitary "qiskit.quantum_info.SparsePauliOp.is_unitary")(\[atol, rtol])               | Return True if operator is a unitary matrix.                               |
+  | [`label_iter`](#qiskit.quantum_info.SparsePauliOp.label_iter "qiskit.quantum_info.SparsePauliOp.label_iter")()                            | Return a label representation iterator.                                    |
+  | [`matrix_iter`](#qiskit.quantum_info.SparsePauliOp.matrix_iter "qiskit.quantum_info.SparsePauliOp.matrix_iter")(\[sparse])                | Return a matrix representation iterator.                                   |
+  | [`multiply`](#qiskit.quantum_info.SparsePauliOp.multiply "qiskit.quantum_info.SparsePauliOp.multiply")(other)                             | Return the linear operator other \* self.                                  |
+  | [`output_dims`](#qiskit.quantum_info.SparsePauliOp.output_dims "qiskit.quantum_info.SparsePauliOp.output_dims")(\[qargs])                 | Return tuple of output dimension for specified subsystems.                 |
+  | [`power`](#qiskit.quantum_info.SparsePauliOp.power "qiskit.quantum_info.SparsePauliOp.power")(n)                                          | Return the compose of a operator with itself n times.                      |
+  | [`reshape`](#qiskit.quantum_info.SparsePauliOp.reshape "qiskit.quantum_info.SparsePauliOp.reshape")(\[input\_dims, output\_dims])         | Return a shallow copy with reshaped input and output subsystem dimensions. |
+  | [`set_atol`](#qiskit.quantum_info.SparsePauliOp.set_atol "qiskit.quantum_info.SparsePauliOp.set_atol")(value)                             | Set the class default absolute tolerance parameter for float comparisons.  |
+  | [`set_rtol`](#qiskit.quantum_info.SparsePauliOp.set_rtol "qiskit.quantum_info.SparsePauliOp.set_rtol")(value)                             | Set the class default relative tolerance parameter for float comparisons.  |
+  | [`simplify`](#qiskit.quantum_info.SparsePauliOp.simplify "qiskit.quantum_info.SparsePauliOp.simplify")(\[atol, rtol])                     | Simplify PauliTable by combining duplicaties and removing zeros.           |
+  | [`subtract`](#qiskit.quantum_info.SparsePauliOp.subtract "qiskit.quantum_info.SparsePauliOp.subtract")(other)                             | Return the linear operator self - other.                                   |
+  | [`tensor`](#qiskit.quantum_info.SparsePauliOp.tensor "qiskit.quantum_info.SparsePauliOp.tensor")(other)                                   | Return the tensor product operator self ⊗ other.                           |
+  | [`to_list`](#qiskit.quantum_info.SparsePauliOp.to_list "qiskit.quantum_info.SparsePauliOp.to_list")(\[array])                             | Convert to a list Pauli string labels and coefficients.                    |
+  | [`to_matrix`](#qiskit.quantum_info.SparsePauliOp.to_matrix "qiskit.quantum_info.SparsePauliOp.to_matrix")(\[sparse])                      | Convert to a dense or sparse matrix.                                       |
+  | [`to_operator`](#qiskit.quantum_info.SparsePauliOp.to_operator "qiskit.quantum_info.SparsePauliOp.to_operator")()                         | Convert to a matrix Operator object                                        |
+  | [`transpose`](#qiskit.quantum_info.SparsePauliOp.transpose "qiskit.quantum_info.SparsePauliOp.transpose")()                               | Return the transpose of the operator.                                      |
 
-**Raises**
+  ## Attributes
 
-**QiskitError** – If the input data or coeffs are invalid.
+  |                                                                                                              |                                                                      |
+  | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
+  | [`atol`](#qiskit.quantum_info.SparsePauliOp.atol "qiskit.quantum_info.SparsePauliOp.atol")                   | The default absolute tolerance parameter for float comparisons.      |
+  | [`coeffs`](#qiskit.quantum_info.SparsePauliOp.coeffs "qiskit.quantum_info.SparsePauliOp.coeffs")             | Return the Pauli coefficients.                                       |
+  | [`dim`](#qiskit.quantum_info.SparsePauliOp.dim "qiskit.quantum_info.SparsePauliOp.dim")                      | Return tuple (input\_shape, output\_shape).                          |
+  | [`num_qubits`](#qiskit.quantum_info.SparsePauliOp.num_qubits "qiskit.quantum_info.SparsePauliOp.num_qubits") | Return the number of qubits if a N-qubit operator or None otherwise. |
+  | [`qargs`](#qiskit.quantum_info.SparsePauliOp.qargs "qiskit.quantum_info.SparsePauliOp.qargs")                | Return the qargs for the operator.                                   |
+  | [`rtol`](#qiskit.quantum_info.SparsePauliOp.rtol "qiskit.quantum_info.SparsePauliOp.rtol")                   | The relative tolerance parameter for float comparisons.              |
+  | [`size`](#qiskit.quantum_info.SparsePauliOp.size "qiskit.quantum_info.SparsePauliOp.size")                   | The number of Pauli of Pauli terms in the operator.                  |
+  | [`table`](#qiskit.quantum_info.SparsePauliOp.table "qiskit.quantum_info.SparsePauliOp.table")                | Return the the PauliTable.                                           |
 
-## Methods
+  ### add
 
-|                                                                                                                                           |                                                                            |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.quantum_info.SparsePauliOp.__init__ "qiskit.quantum_info.SparsePauliOp.__init__")(data\[, coeffs])                   | Initialize an operator object.                                             |
-| [`add`](#qiskit.quantum_info.SparsePauliOp.add "qiskit.quantum_info.SparsePauliOp.add")(other)                                            | Return the linear operator self + other.                                   |
-| [`adjoint`](#qiskit.quantum_info.SparsePauliOp.adjoint "qiskit.quantum_info.SparsePauliOp.adjoint")()                                     | Return the adjoint of the operator.                                        |
-| [`compose`](#qiskit.quantum_info.SparsePauliOp.compose "qiskit.quantum_info.SparsePauliOp.compose")(other\[, qargs, front])               | Return the composition channel self∘other.                                 |
-| [`conjugate`](#qiskit.quantum_info.SparsePauliOp.conjugate "qiskit.quantum_info.SparsePauliOp.conjugate")()                               | Return the conjugate of the operator.                                      |
-| [`copy`](#qiskit.quantum_info.SparsePauliOp.copy "qiskit.quantum_info.SparsePauliOp.copy")()                                              | Make a deep copy of current operator.                                      |
-| [`dot`](#qiskit.quantum_info.SparsePauliOp.dot "qiskit.quantum_info.SparsePauliOp.dot")(other\[, qargs])                                  | Return the composition channel self∘other.                                 |
-| [`expand`](#qiskit.quantum_info.SparsePauliOp.expand "qiskit.quantum_info.SparsePauliOp.expand")(other)                                   | Return the tensor product operator other ⊗ self.                           |
-| [`from_list`](#qiskit.quantum_info.SparsePauliOp.from_list "qiskit.quantum_info.SparsePauliOp.from_list")(obj)                            | Construct from a list \[(pauli\_str, coeffs)]                              |
-| [`from_operator`](#qiskit.quantum_info.SparsePauliOp.from_operator "qiskit.quantum_info.SparsePauliOp.from_operator")(obj\[, atol, rtol]) | Construct from an Operator objector.                                       |
-| [`input_dims`](#qiskit.quantum_info.SparsePauliOp.input_dims "qiskit.quantum_info.SparsePauliOp.input_dims")(\[qargs])                    | Return tuple of input dimension for specified subsystems.                  |
-| [`is_unitary`](#qiskit.quantum_info.SparsePauliOp.is_unitary "qiskit.quantum_info.SparsePauliOp.is_unitary")(\[atol, rtol])               | Return True if operator is a unitary matrix.                               |
-| [`label_iter`](#qiskit.quantum_info.SparsePauliOp.label_iter "qiskit.quantum_info.SparsePauliOp.label_iter")()                            | Return a label representation iterator.                                    |
-| [`matrix_iter`](#qiskit.quantum_info.SparsePauliOp.matrix_iter "qiskit.quantum_info.SparsePauliOp.matrix_iter")(\[sparse])                | Return a matrix representation iterator.                                   |
-| [`multiply`](#qiskit.quantum_info.SparsePauliOp.multiply "qiskit.quantum_info.SparsePauliOp.multiply")(other)                             | Return the linear operator other \* self.                                  |
-| [`output_dims`](#qiskit.quantum_info.SparsePauliOp.output_dims "qiskit.quantum_info.SparsePauliOp.output_dims")(\[qargs])                 | Return tuple of output dimension for specified subsystems.                 |
-| [`power`](#qiskit.quantum_info.SparsePauliOp.power "qiskit.quantum_info.SparsePauliOp.power")(n)                                          | Return the compose of a operator with itself n times.                      |
-| [`reshape`](#qiskit.quantum_info.SparsePauliOp.reshape "qiskit.quantum_info.SparsePauliOp.reshape")(\[input\_dims, output\_dims])         | Return a shallow copy with reshaped input and output subsystem dimensions. |
-| [`set_atol`](#qiskit.quantum_info.SparsePauliOp.set_atol "qiskit.quantum_info.SparsePauliOp.set_atol")(value)                             | Set the class default absolute tolerance parameter for float comparisons.  |
-| [`set_rtol`](#qiskit.quantum_info.SparsePauliOp.set_rtol "qiskit.quantum_info.SparsePauliOp.set_rtol")(value)                             | Set the class default relative tolerance parameter for float comparisons.  |
-| [`simplify`](#qiskit.quantum_info.SparsePauliOp.simplify "qiskit.quantum_info.SparsePauliOp.simplify")(\[atol, rtol])                     | Simplify PauliTable by combining duplicaties and removing zeros.           |
-| [`subtract`](#qiskit.quantum_info.SparsePauliOp.subtract "qiskit.quantum_info.SparsePauliOp.subtract")(other)                             | Return the linear operator self - other.                                   |
-| [`tensor`](#qiskit.quantum_info.SparsePauliOp.tensor "qiskit.quantum_info.SparsePauliOp.tensor")(other)                                   | Return the tensor product operator self ⊗ other.                           |
-| [`to_list`](#qiskit.quantum_info.SparsePauliOp.to_list "qiskit.quantum_info.SparsePauliOp.to_list")(\[array])                             | Convert to a list Pauli string labels and coefficients.                    |
-| [`to_matrix`](#qiskit.quantum_info.SparsePauliOp.to_matrix "qiskit.quantum_info.SparsePauliOp.to_matrix")(\[sparse])                      | Convert to a dense or sparse matrix.                                       |
-| [`to_operator`](#qiskit.quantum_info.SparsePauliOp.to_operator "qiskit.quantum_info.SparsePauliOp.to_operator")()                         | Convert to a matrix Operator object                                        |
-| [`transpose`](#qiskit.quantum_info.SparsePauliOp.transpose "qiskit.quantum_info.SparsePauliOp.transpose")()                               | Return the transpose of the operator.                                      |
+  <Function id="qiskit.quantum_info.SparsePauliOp.add" name="add" signature="add(other)">
+    Return the linear operator self + other.
 
-## Attributes
+    DEPRECATED: use `operator + other` instead.
 
-|                                                                                                              |                                                                      |
-| ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
-| [`atol`](#qiskit.quantum_info.SparsePauliOp.atol "qiskit.quantum_info.SparsePauliOp.atol")                   | The default absolute tolerance parameter for float comparisons.      |
-| [`coeffs`](#qiskit.quantum_info.SparsePauliOp.coeffs "qiskit.quantum_info.SparsePauliOp.coeffs")             | Return the Pauli coefficients.                                       |
-| [`dim`](#qiskit.quantum_info.SparsePauliOp.dim "qiskit.quantum_info.SparsePauliOp.dim")                      | Return tuple (input\_shape, output\_shape).                          |
-| [`num_qubits`](#qiskit.quantum_info.SparsePauliOp.num_qubits "qiskit.quantum_info.SparsePauliOp.num_qubits") | Return the number of qubits if a N-qubit operator or None otherwise. |
-| [`qargs`](#qiskit.quantum_info.SparsePauliOp.qargs "qiskit.quantum_info.SparsePauliOp.qargs")                | Return the qargs for the operator.                                   |
-| [`rtol`](#qiskit.quantum_info.SparsePauliOp.rtol "qiskit.quantum_info.SparsePauliOp.rtol")                   | The relative tolerance parameter for float comparisons.              |
-| [`size`](#qiskit.quantum_info.SparsePauliOp.size "qiskit.quantum_info.SparsePauliOp.size")                   | The number of Pauli of Pauli terms in the operator.                  |
-| [`table`](#qiskit.quantum_info.SparsePauliOp.table "qiskit.quantum_info.SparsePauliOp.table")                | Return the the PauliTable.                                           |
+    **Parameters**
 
-### add
+    **other** (*BaseOperator*) – an operator object.
 
-<span id="qiskit.quantum_info.SparsePauliOp.add" />
+    **Returns**
 
-`add(other)`
+    the operator self + other.
 
-Return the linear operator self + other.
+    **Return type**
 
-DEPRECATED: use `operator + other` instead.
+    BaseOperator
+  </Function>
 
-**Parameters**
+  ### adjoint
 
-**other** (*BaseOperator*) – an operator object.
+  <Function id="qiskit.quantum_info.SparsePauliOp.adjoint" name="adjoint" signature="adjoint()">
+    Return the adjoint of the operator.
+  </Function>
 
-**Returns**
+  ### atol
 
-the operator self + other.
+  <Function id="qiskit.quantum_info.SparsePauliOp.atol" name="atol" signature="property atol">
+    The default absolute tolerance parameter for float comparisons.
+  </Function>
 
-**Return type**
+  ### coeffs
 
-BaseOperator
+  <Function id="qiskit.quantum_info.SparsePauliOp.coeffs" name="coeffs" signature="property coeffs">
+    Return the Pauli coefficients.
+  </Function>
 
-### adjoint
+  ### compose
 
-<span id="qiskit.quantum_info.SparsePauliOp.adjoint" />
+  <Function id="qiskit.quantum_info.SparsePauliOp.compose" name="compose" signature="compose(other, qargs=None, front=False)">
+    Return the composition channel self∘other.
 
-`adjoint()`
+    **Parameters**
 
-Return the adjoint of the operator.
+    *   **other** ([*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – an operator object.
+    *   **qargs** (*list or None*) – a list of subsystem positions to compose other on.
+    *   **front** (*bool or None*) – If False compose in standard order other(self(input)) otherwise compose in reverse order self(other(input)) \[default: False]
 
-### atol
+    **Returns**
 
-<span id="qiskit.quantum_info.SparsePauliOp.atol" />
+    The composed operator.
 
-`property atol`
+    **Return type**
 
-The default absolute tolerance parameter for float comparisons.
+    [SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
 
-### coeffs
+    **Raises**
 
-<span id="qiskit.quantum_info.SparsePauliOp.coeffs" />
+    *   **QiskitError** – if other cannot be converted to an Operator or has
+    *   **incompatible dimensions.** –
+  </Function>
 
-`property coeffs`
+  ### conjugate
 
-Return the Pauli coefficients.
+  <Function id="qiskit.quantum_info.SparsePauliOp.conjugate" name="conjugate" signature="conjugate()">
+    Return the conjugate of the operator.
+  </Function>
 
-### compose
+  ### copy
 
-<span id="qiskit.quantum_info.SparsePauliOp.compose" />
+  <Function id="qiskit.quantum_info.SparsePauliOp.copy" name="copy" signature="copy()">
+    Make a deep copy of current operator.
+  </Function>
 
-`compose(other, qargs=None, front=False)`
+  ### dim
 
-Return the composition channel self∘other.
+  <Function id="qiskit.quantum_info.SparsePauliOp.dim" name="dim" signature="property dim">
+    Return tuple (input\_shape, output\_shape).
+  </Function>
 
-**Parameters**
+  ### dot
 
-*   **other** ([*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – an operator object.
-*   **qargs** (*list or None*) – a list of subsystem positions to compose other on.
-*   **front** (*bool or None*) – If False compose in standard order other(self(input)) otherwise compose in reverse order self(other(input)) \[default: False]
+  <Function id="qiskit.quantum_info.SparsePauliOp.dot" name="dot" signature="dot(other, qargs=None)">
+    Return the composition channel self∘other.
 
-**Returns**
+    **Parameters**
 
-The composed operator.
+    *   **other** ([*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – an operator object.
+    *   **qargs** (*list or None*) – a list of subsystem positions to compose other on.
 
-**Return type**
+    **Returns**
 
-[SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
+    The composed operator.
 
-**Raises**
+    **Return type**
 
-*   **QiskitError** – if other cannot be converted to an Operator or has
-*   **incompatible dimensions.** –
+    [SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
 
-### conjugate
+    **Raises**
 
-<span id="qiskit.quantum_info.SparsePauliOp.conjugate" />
+    *   **QiskitError** – if other cannot be converted to an Operator or has
+    *   **incompatible dimensions.** –
+  </Function>
 
-`conjugate()`
+  ### expand
 
-Return the conjugate of the operator.
+  <Function id="qiskit.quantum_info.SparsePauliOp.expand" name="expand" signature="expand(other)">
+    Return the tensor product operator other ⊗ self.
 
-### copy
+    **Parameters**
 
-<span id="qiskit.quantum_info.SparsePauliOp.copy" />
+    **other** ([*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – an operator object.
 
-`copy()`
+    **Returns**
 
-Make a deep copy of current operator.
+    the tensor product operator other ⊗ self.
 
-### dim
+    **Return type**
 
-<span id="qiskit.quantum_info.SparsePauliOp.dim" />
+    [SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
 
-`property dim`
+    **Raises**
 
-Return tuple (input\_shape, output\_shape).
+    **QiskitError** – if other cannot be converted to a SparsePauliOp operator.
+  </Function>
 
-### dot
+  ### from\_list
 
-<span id="qiskit.quantum_info.SparsePauliOp.dot" />
+  <Function id="qiskit.quantum_info.SparsePauliOp.from_list" name="from_list" signature="static from_list(obj)">
+    Construct from a list \[(pauli\_str, coeffs)]
+  </Function>
 
-`dot(other, qargs=None)`
+  ### from\_operator
 
-Return the composition channel self∘other.
+  <Function id="qiskit.quantum_info.SparsePauliOp.from_operator" name="from_operator" signature="static from_operator(obj, atol=None, rtol=None)">
+    Construct from an Operator objector.
 
-**Parameters**
+    Note that the cost of this contruction is exponential as it involves taking inner products with every element of the N-qubit Pauli basis.
 
-*   **other** ([*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – an operator object.
-*   **qargs** (*list or None*) – a list of subsystem positions to compose other on.
+    **Parameters**
 
-**Returns**
+    *   **obj** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an N-qubit operator.
+    *   **atol** (*float*) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
+    *   **rtol** (*float*) – Optinoal. relative tolerance for checking if coefficients are zero (Default: 1e-5).
 
-The composed operator.
+    **Returns**
 
-**Return type**
+    the SparsePauliOp representation of the operator.
 
-[SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
+    **Return type**
 
-**Raises**
+    [SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
 
-*   **QiskitError** – if other cannot be converted to an Operator or has
-*   **incompatible dimensions.** –
+    **Raises**
 
-### expand
+    **QiskitError** – if the input operator is not an N-qubit operator.
+  </Function>
 
-<span id="qiskit.quantum_info.SparsePauliOp.expand" />
+  ### input\_dims
 
-`expand(other)`
+  <Function id="qiskit.quantum_info.SparsePauliOp.input_dims" name="input_dims" signature="input_dims(qargs=None)">
+    Return tuple of input dimension for specified subsystems.
+  </Function>
 
-Return the tensor product operator other ⊗ self.
+  ### is\_unitary
 
-**Parameters**
+  <Function id="qiskit.quantum_info.SparsePauliOp.is_unitary" name="is_unitary" signature="is_unitary(atol=None, rtol=None)">
+    Return True if operator is a unitary matrix.
 
-**other** ([*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – an operator object.
+    **Parameters**
 
-**Returns**
+    *   **atol** (*float*) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
+    *   **rtol** (*float*) – Optinoal. relative tolerance for checking if coefficients are zero (Default: 1e-5).
 
-the tensor product operator other ⊗ self.
+    **Returns**
 
-**Return type**
+    True if the operator is unitary, False otherwise.
 
-[SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
+    **Return type**
 
-**Raises**
+    bool
+  </Function>
 
-**QiskitError** – if other cannot be converted to a SparsePauliOp operator.
+  ### label\_iter
 
-### from\_list
+  <Function id="qiskit.quantum_info.SparsePauliOp.label_iter" name="label_iter" signature="label_iter()">
+    Return a label representation iterator.
 
-<span id="qiskit.quantum_info.SparsePauliOp.from_list" />
+    This is a lazy iterator that converts each term in the SparsePauliOp into a tuple (label, coeff). To convert the entire table to labels use the `to_labels()` method.
 
-`static from_list(obj)`
+    **Returns**
 
-Construct from a list \[(pauli\_str, coeffs)]
+    label iterator object for the PauliTable.
 
-### from\_operator
+    **Return type**
 
-<span id="qiskit.quantum_info.SparsePauliOp.from_operator" />
+    LabelIterator
+  </Function>
 
-`static from_operator(obj, atol=None, rtol=None)`
+  ### matrix\_iter
 
-Construct from an Operator objector.
+  <Function id="qiskit.quantum_info.SparsePauliOp.matrix_iter" name="matrix_iter" signature="matrix_iter(sparse=False)">
+    Return a matrix representation iterator.
 
-Note that the cost of this contruction is exponential as it involves taking inner products with every element of the N-qubit Pauli basis.
+    This is a lazy iterator that converts each term in the SparsePauliOp into a matrix as it is used. To convert to a single matrix use the [`to_matrix()`](#qiskit.quantum_info.SparsePauliOp.to_matrix "qiskit.quantum_info.SparsePauliOp.to_matrix") method.
 
-**Parameters**
+    **Parameters**
 
-*   **obj** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an N-qubit operator.
-*   **atol** (*float*) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
-*   **rtol** (*float*) – Optinoal. relative tolerance for checking if coefficients are zero (Default: 1e-5).
+    **sparse** (*bool*) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
 
-**Returns**
+    **Returns**
 
-the SparsePauliOp representation of the operator.
+    matrix iterator object for the PauliTable.
 
-**Return type**
+    **Return type**
 
-[SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
+    MatrixIterator
+  </Function>
 
-**Raises**
+  ### multiply
 
-**QiskitError** – if the input operator is not an N-qubit operator.
+  <Function id="qiskit.quantum_info.SparsePauliOp.multiply" name="multiply" signature="multiply(other)">
+    Return the linear operator other \* self.
 
-### input\_dims
+    DEPRECATED: use `other * operator` instead.
 
-<span id="qiskit.quantum_info.SparsePauliOp.input_dims" />
+    **Parameters**
 
-`input_dims(qargs=None)`
+    **other** (*complex*) – a complex number.
 
-Return tuple of input dimension for specified subsystems.
+    **Returns**
 
-### is\_unitary
+    the linear operator other \* self.
 
-<span id="qiskit.quantum_info.SparsePauliOp.is_unitary" />
+    **Return type**
 
-`is_unitary(atol=None, rtol=None)`
+    BaseOperator
 
-Return True if operator is a unitary matrix.
+    **Raises**
 
-**Parameters**
+    **NotImplementedError** – if subclass does not support multiplication.
+  </Function>
 
-*   **atol** (*float*) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
-*   **rtol** (*float*) – Optinoal. relative tolerance for checking if coefficients are zero (Default: 1e-5).
+  ### num\_qubits
 
-**Returns**
+  <Function id="qiskit.quantum_info.SparsePauliOp.num_qubits" name="num_qubits" signature="property num_qubits">
+    Return the number of qubits if a N-qubit operator or None otherwise.
+  </Function>
 
-True if the operator is unitary, False otherwise.
+  ### output\_dims
 
-**Return type**
+  <Function id="qiskit.quantum_info.SparsePauliOp.output_dims" name="output_dims" signature="output_dims(qargs=None)">
+    Return tuple of output dimension for specified subsystems.
+  </Function>
 
-bool
+  ### power
 
-### label\_iter
+  <Function id="qiskit.quantum_info.SparsePauliOp.power" name="power" signature="power(n)">
+    Return the compose of a operator with itself n times.
 
-<span id="qiskit.quantum_info.SparsePauliOp.label_iter" />
+    **Parameters**
 
-`label_iter()`
+    **n** (*int*) – the number of times to compose with self (n>0).
 
-Return a label representation iterator.
+    **Returns**
 
-This is a lazy iterator that converts each term in the SparsePauliOp into a tuple (label, coeff). To convert the entire table to labels use the `to_labels()` method.
+    the n-times composed operator.
 
-**Returns**
+    **Return type**
 
-label iterator object for the PauliTable.
+    BaseOperator
 
-**Return type**
+    **Raises**
 
-LabelIterator
+    **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
+  </Function>
 
-### matrix\_iter
+  ### qargs
 
-<span id="qiskit.quantum_info.SparsePauliOp.matrix_iter" />
+  <Function id="qiskit.quantum_info.SparsePauliOp.qargs" name="qargs" signature="property qargs">
+    Return the qargs for the operator.
+  </Function>
 
-`matrix_iter(sparse=False)`
+  ### reshape
 
-Return a matrix representation iterator.
+  <Function id="qiskit.quantum_info.SparsePauliOp.reshape" name="reshape" signature="reshape(input_dims=None, output_dims=None)">
+    Return a shallow copy with reshaped input and output subsystem dimensions.
 
-This is a lazy iterator that converts each term in the SparsePauliOp into a matrix as it is used. To convert to a single matrix use the [`to_matrix()`](#qiskit.quantum_info.SparsePauliOp.to_matrix "qiskit.quantum_info.SparsePauliOp.to_matrix") method.
+    **Arg:**
 
-**Parameters**
+    **input\_dims (None or tuple): new subsystem input dimensions.**
 
-**sparse** (*bool*) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
+    If None the original input dims will be preserved \[Default: None].
 
-**Returns**
+    **output\_dims (None or tuple): new subsystem output dimensions.**
 
-matrix iterator object for the PauliTable.
+    If None the original output dims will be preserved \[Default: None].
 
-**Return type**
+    **Returns**
 
-MatrixIterator
+    returns self with reshaped input and output dimensions.
 
-### multiply
+    **Return type**
 
-<span id="qiskit.quantum_info.SparsePauliOp.multiply" />
+    BaseOperator
 
-`multiply(other)`
+    **Raises**
 
-Return the linear operator other \* self.
+    **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  </Function>
 
-DEPRECATED: use `other * operator` instead.
+  ### rtol
 
-**Parameters**
+  <Function id="qiskit.quantum_info.SparsePauliOp.rtol" name="rtol" signature="property rtol">
+    The relative tolerance parameter for float comparisons.
+  </Function>
 
-**other** (*complex*) – a complex number.
+  ### set\_atol
 
-**Returns**
+  <Function id="qiskit.quantum_info.SparsePauliOp.set_atol" name="set_atol" signature="classmethod set_atol(value)">
+    Set the class default absolute tolerance parameter for float comparisons.
 
-the linear operator other \* self.
+    DEPRECATED: use operator.atol = value instead
+  </Function>
 
-**Return type**
+  ### set\_rtol
 
-BaseOperator
+  <Function id="qiskit.quantum_info.SparsePauliOp.set_rtol" name="set_rtol" signature="classmethod set_rtol(value)">
+    Set the class default relative tolerance parameter for float comparisons.
 
-**Raises**
+    DEPRECATED: use operator.rtol = value instead
+  </Function>
 
-**NotImplementedError** – if subclass does not support multiplication.
+  ### simplify
 
-### num\_qubits
+  <Function id="qiskit.quantum_info.SparsePauliOp.simplify" name="simplify" signature="simplify(atol=None, rtol=None)">
+    Simplify PauliTable by combining duplicaties and removing zeros.
 
-<span id="qiskit.quantum_info.SparsePauliOp.num_qubits" />
+    **Parameters**
 
-`property num_qubits`
+    *   **atol** (*float*) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
+    *   **rtol** (*float*) – Optinoal. relative tolerance for checking if coefficients are zero (Default: 1e-5).
 
-Return the number of qubits if a N-qubit operator or None otherwise.
+    **Returns**
 
-### output\_dims
+    the simplified SparsePauliOp operator.
 
-<span id="qiskit.quantum_info.SparsePauliOp.output_dims" />
+    **Return type**
 
-`output_dims(qargs=None)`
+    [SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
+  </Function>
 
-Return tuple of output dimension for specified subsystems.
+  ### size
 
-### power
+  <Function id="qiskit.quantum_info.SparsePauliOp.size" name="size" signature="property size">
+    The number of Pauli of Pauli terms in the operator.
+  </Function>
 
-<span id="qiskit.quantum_info.SparsePauliOp.power" />
+  ### subtract
 
-`power(n)`
+  <Function id="qiskit.quantum_info.SparsePauliOp.subtract" name="subtract" signature="subtract(other)">
+    Return the linear operator self - other.
 
-Return the compose of a operator with itself n times.
+    DEPRECATED: use `operator - other` instead.
 
-**Parameters**
+    **Parameters**
 
-**n** (*int*) – the number of times to compose with self (n>0).
+    **other** (*BaseOperator*) – an operator object.
 
-**Returns**
+    **Returns**
 
-the n-times composed operator.
+    the operator self - other.
 
-**Return type**
+    **Return type**
 
-BaseOperator
+    BaseOperator
+  </Function>
 
-**Raises**
+  ### table
 
-**QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
+  <Function id="qiskit.quantum_info.SparsePauliOp.table" name="table" signature="property table">
+    Return the the PauliTable.
+  </Function>
 
-### qargs
+  ### tensor
 
-<span id="qiskit.quantum_info.SparsePauliOp.qargs" />
+  <Function id="qiskit.quantum_info.SparsePauliOp.tensor" name="tensor" signature="tensor(other)">
+    Return the tensor product operator self ⊗ other.
 
-`property qargs`
+    **Parameters**
 
-Return the qargs for the operator.
+    **other** ([*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – a operator subclass object.
 
-### reshape
+    **Returns**
 
-<span id="qiskit.quantum_info.SparsePauliOp.reshape" />
+    the tensor product operator self ⊗ other.
 
-`reshape(input_dims=None, output_dims=None)`
+    **Return type**
 
-Return a shallow copy with reshaped input and output subsystem dimensions.
+    [SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
 
-**Arg:**
+    **Raises**
 
-**input\_dims (None or tuple): new subsystem input dimensions.**
+    **QiskitError** – if other cannot be converted to a SparsePauliOp operator.
+  </Function>
 
-If None the original input dims will be preserved \[Default: None].
+  ### to\_list
 
-**output\_dims (None or tuple): new subsystem output dimensions.**
+  <Function id="qiskit.quantum_info.SparsePauliOp.to_list" name="to_list" signature="to_list(array=False)">
+    Convert to a list Pauli string labels and coefficients.
 
-If None the original output dims will be preserved \[Default: None].
+    For operators with a lot of terms converting using the `array=True` kwarg will be more efficient since it allocates memory for the full Numpy array of labels in advance.
 
-**Returns**
+    **Parameters**
 
-returns self with reshaped input and output dimensions.
+    **array** (*bool*) – return a Numpy array if True, otherwise return a list (Default: False).
 
-**Return type**
+    **Returns**
 
-BaseOperator
+    List of pairs (label, coeff) for rows of the PauliTable.
 
-**Raises**
+    **Return type**
 
-**QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+    list or array
+  </Function>
 
-### rtol
+  ### to\_matrix
 
-<span id="qiskit.quantum_info.SparsePauliOp.rtol" />
+  <Function id="qiskit.quantum_info.SparsePauliOp.to_matrix" name="to_matrix" signature="to_matrix(sparse=False)">
+    Convert to a dense or sparse matrix.
 
-`property rtol`
+    **Parameters**
 
-The relative tolerance parameter for float comparisons.
+    **sparse** (*bool*) – if True return a sparse CSR matrix, otherwise return dense Numpy array (Default: False).
 
-### set\_atol
+    **Returns**
 
-<span id="qiskit.quantum_info.SparsePauliOp.set_atol" />
+    A dense matrix if sparse=False. csr\_matrix: A sparse matrix in CSR format if sparse=True.
 
-`classmethod set_atol(value)`
+    **Return type**
 
-Set the class default absolute tolerance parameter for float comparisons.
+    array
+  </Function>
 
-DEPRECATED: use operator.atol = value instead
+  ### to\_operator
 
-### set\_rtol
+  <Function id="qiskit.quantum_info.SparsePauliOp.to_operator" name="to_operator" signature="to_operator()">
+    Convert to a matrix Operator object
+  </Function>
 
-<span id="qiskit.quantum_info.SparsePauliOp.set_rtol" />
+  ### transpose
 
-`classmethod set_rtol(value)`
-
-Set the class default relative tolerance parameter for float comparisons.
-
-DEPRECATED: use operator.rtol = value instead
-
-### simplify
-
-<span id="qiskit.quantum_info.SparsePauliOp.simplify" />
-
-`simplify(atol=None, rtol=None)`
-
-Simplify PauliTable by combining duplicaties and removing zeros.
-
-**Parameters**
-
-*   **atol** (*float*) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
-*   **rtol** (*float*) – Optinoal. relative tolerance for checking if coefficients are zero (Default: 1e-5).
-
-**Returns**
-
-the simplified SparsePauliOp operator.
-
-**Return type**
-
-[SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
-
-### size
-
-<span id="qiskit.quantum_info.SparsePauliOp.size" />
-
-`property size`
-
-The number of Pauli of Pauli terms in the operator.
-
-### subtract
-
-<span id="qiskit.quantum_info.SparsePauliOp.subtract" />
-
-`subtract(other)`
-
-Return the linear operator self - other.
-
-DEPRECATED: use `operator - other` instead.
-
-**Parameters**
-
-**other** (*BaseOperator*) – an operator object.
-
-**Returns**
-
-the operator self - other.
-
-**Return type**
-
-BaseOperator
-
-### table
-
-<span id="qiskit.quantum_info.SparsePauliOp.table" />
-
-`property table`
-
-Return the the PauliTable.
-
-### tensor
-
-<span id="qiskit.quantum_info.SparsePauliOp.tensor" />
-
-`tensor(other)`
-
-Return the tensor product operator self ⊗ other.
-
-**Parameters**
-
-**other** ([*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – a operator subclass object.
-
-**Returns**
-
-the tensor product operator self ⊗ other.
-
-**Return type**
-
-[SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
-
-**Raises**
-
-**QiskitError** – if other cannot be converted to a SparsePauliOp operator.
-
-### to\_list
-
-<span id="qiskit.quantum_info.SparsePauliOp.to_list" />
-
-`to_list(array=False)`
-
-Convert to a list Pauli string labels and coefficients.
-
-For operators with a lot of terms converting using the `array=True` kwarg will be more efficient since it allocates memory for the full Numpy array of labels in advance.
-
-**Parameters**
-
-**array** (*bool*) – return a Numpy array if True, otherwise return a list (Default: False).
-
-**Returns**
-
-List of pairs (label, coeff) for rows of the PauliTable.
-
-**Return type**
-
-list or array
-
-### to\_matrix
-
-<span id="qiskit.quantum_info.SparsePauliOp.to_matrix" />
-
-`to_matrix(sparse=False)`
-
-Convert to a dense or sparse matrix.
-
-**Parameters**
-
-**sparse** (*bool*) – if True return a sparse CSR matrix, otherwise return dense Numpy array (Default: False).
-
-**Returns**
-
-A dense matrix if sparse=False. csr\_matrix: A sparse matrix in CSR format if sparse=True.
-
-**Return type**
-
-array
-
-### to\_operator
-
-<span id="qiskit.quantum_info.SparsePauliOp.to_operator" />
-
-`to_operator()`
-
-Convert to a matrix Operator object
-
-### transpose
-
-<span id="qiskit.quantum_info.SparsePauliOp.transpose" />
-
-`transpose()`
-
-Return the transpose of the operator.
+  <Function id="qiskit.quantum_info.SparsePauliOp.transpose" name="transpose" signature="transpose()">
+    Return the transpose of the operator.
+  </Function>
+</Class>
 

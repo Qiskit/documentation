@@ -8,142 +8,122 @@ python_api_name: qiskit.providers.fake_provider.FakeOpenPulse2Q
 
 # FakeOpenPulse2Q
 
-<span id="qiskit.providers.fake_provider.FakeOpenPulse2Q" />
+<Class id="qiskit.providers.fake_provider.FakeOpenPulse2Q" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/fake_openpulse_2q.py" signature="qiskit.providers.fake_provider.FakeOpenPulse2Q">
+  Bases: [`FakeBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.fake_backend.FakeBackend")
 
-`qiskit.providers.fake_provider.FakeOpenPulse2Q` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/fake_openpulse_2q.py "view source code")
+  A fake 2 qubit backend for pulse test.
 
-Bases: [`FakeBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.fake_backend.FakeBackend")
+  FakeBackend initializer.
 
-A fake 2 qubit backend for pulse test.
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+  *   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
 
-**Parameters**
+  ## Attributes
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
+  ### options
 
-## Attributes
+  <Attribute id="qiskit.providers.fake_provider.FakeOpenPulse2Q.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit.providers.fake_provider.FakeOpenPulse2Q.options" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.fake_provider.FakeOpenPulse2Q.run "qiskit.providers.fake_provider.FakeOpenPulse2Q.run") method.
+  </Attribute>
 
-### options
+  ### version
 
-Return the options for the backend
+  <Attribute id="qiskit.providers.fake_provider.FakeOpenPulse2Q.version" name="version" attributeValue="= 1" />
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.fake_provider.FakeOpenPulse2Q.run "qiskit.providers.fake_provider.FakeOpenPulse2Q.run") method.
+  ## Methods
 
-<span id="qiskit.providers.fake_provider.FakeOpenPulse2Q.version" />
+  ### configuration
 
-### version
+  <Function id="qiskit.providers.fake_provider.FakeOpenPulse2Q.configuration" name="configuration" signature="configuration()">
+    Return the backend configuration.
 
-`= 1`
+    **Returns**
 
-## Methods
+    the configuration for the backend.
 
-### configuration
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeOpenPulse2Q.configuration" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-`configuration()`
+  ### defaults
 
-Return the backend configuration.
+  <Function id="qiskit.providers.fake_provider.FakeOpenPulse2Q.defaults" name="defaults" signature="defaults()">
+    Return the default pulse-related settings provided by the backend (such as gate to Schedule mappings).
+  </Function>
 
-**Returns**
+  ### name
 
-the configuration for the backend.
+  <Function id="qiskit.providers.fake_provider.FakeOpenPulse2Q.name" name="name" signature="name()">
+    Return the backend name.
 
-**Return type**
+    **Returns**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    the name of the backend.
 
-### defaults
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeOpenPulse2Q.defaults" />
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-`defaults()`
+  ### properties
 
-Return the default pulse-related settings provided by the backend (such as gate to Schedule mappings).
+  <Function id="qiskit.providers.fake_provider.FakeOpenPulse2Q.properties" name="properties" signature="properties()">
+    Return the measured characteristics of the backend.
+  </Function>
 
-### name
+  ### provider
 
-<span id="qiskit.providers.fake_provider.FakeOpenPulse2Q.name" />
+  <Function id="qiskit.providers.fake_provider.FakeOpenPulse2Q.provider" name="provider" signature="provider()">
+    Return the backend Provider.
 
-`name()`
+    **Returns**
 
-Return the backend name.
+    the Provider responsible for the backend.
 
-**Returns**
+    **Return type**
 
-the name of the backend.
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-**Return type**
+  ### run
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  <Function id="qiskit.providers.fake_provider.FakeOpenPulse2Q.run" name="run" signature="run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-### properties
+  ### set\_options
 
-<span id="qiskit.providers.fake_provider.FakeOpenPulse2Q.properties" />
+  <Function id="qiskit.providers.fake_provider.FakeOpenPulse2Q.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-`properties()`
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-Return the measured characteristics of the backend.
+    **Parameters**
 
-### provider
+    **fields** – The fields to update the options
 
-<span id="qiskit.providers.fake_provider.FakeOpenPulse2Q.provider" />
+    **Raises**
 
-`provider()`
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
+  </Function>
 
-Return the backend Provider.
+  ### status
 
-**Returns**
+  <Function id="qiskit.providers.fake_provider.FakeOpenPulse2Q.status" name="status" signature="status()">
+    Return the backend status.
 
-the Provider responsible for the backend.
+    **Returns**
 
-**Return type**
+    the status of the backend.
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    **Return type**
 
-### run
-
-<span id="qiskit.providers.fake_provider.FakeOpenPulse2Q.run" />
-
-`run(run_input, **kwargs)`
-
-Main job in simulator
-
-### set\_options
-
-<span id="qiskit.providers.fake_provider.FakeOpenPulse2Q.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit.providers.fake_provider.FakeOpenPulse2Q.status" />
-
-`status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
+</Class>
 

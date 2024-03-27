@@ -8,132 +8,120 @@ python_api_name: qiskit.transpiler.passes.AlignMeasures
 
 # qiskit.transpiler.passes.AlignMeasures
 
-<span id="qiskit.transpiler.passes.AlignMeasures" />
+<Class id="qiskit.transpiler.passes.AlignMeasures" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/instruction_alignment.py" signature="AlignMeasures(alignment=1)">
+  Measurement alignment.
 
-`AlignMeasures(alignment=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/instruction_alignment.py "view source code")
+  This is a control electronics aware optimization pass.
 
-Measurement alignment.
+  In many quantum computing architectures gates (instructions) are implemented with shaped analog stimulus signals. These signals are digitally stored in the waveform memory of the control electronics and converted into analog voltage signals by electronic components called digital to analog converters (DAC).
 
-This is a control electronics aware optimization pass.
+  In a typical hardware implementation of superconducting quantum processors, a single qubit instruction is implemented by a microwave signal with the duration of around several tens of ns with a per-sample time resolution of \~0.1-10ns, as reported by `backend.configuration().dt`. In such systems requiring higher DAC bandwidth, control electronics often defines a pulse granularity, in other words a data chunk, to allow the DAC to perform the signal conversion in parallel to gain the bandwidth.
 
-In many quantum computing architectures gates (instructions) are implemented with shaped analog stimulus signals. These signals are digitally stored in the waveform memory of the control electronics and converted into analog voltage signals by electronic components called digital to analog converters (DAC).
+  Measurement alignment is required if a backend only allows triggering `measure` instructions at a certain multiple value of this pulse granularity. This value is usually provided by `backend.configuration().timing_constraints`.
 
-In a typical hardware implementation of superconducting quantum processors, a single qubit instruction is implemented by a microwave signal with the duration of around several tens of ns with a per-sample time resolution of \~0.1-10ns, as reported by `backend.configuration().dt`. In such systems requiring higher DAC bandwidth, control electronics often defines a pulse granularity, in other words a data chunk, to allow the DAC to perform the signal conversion in parallel to gain the bandwidth.
+  In Qiskit SDK, the duration of delay can take arbitrary value in units of `dt`, thus circuits involving delays may violate the above alignment constraint (i.e. misalignment). This pass shifts measurement instructions to a new time position to fix the misalignment, by inserting extra delay right before the measure instructions. The input of this pass should be scheduled [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"), thus one should select one of the scheduling passes ([`ALAPSchedule`](qiskit.transpiler.passes.ALAPSchedule "qiskit.transpiler.passes.ALAPSchedule") or `ASAPSchedule`) before calling this.
 
-Measurement alignment is required if a backend only allows triggering `measure` instructions at a certain multiple value of this pulse granularity. This value is usually provided by `backend.configuration().timing_constraints`.
+  **Examples**
 
-In Qiskit SDK, the duration of delay can take arbitrary value in units of `dt`, thus circuits involving delays may violate the above alignment constraint (i.e. misalignment). This pass shifts measurement instructions to a new time position to fix the misalignment, by inserting extra delay right before the measure instructions. The input of this pass should be scheduled [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"), thus one should select one of the scheduling passes ([`ALAPSchedule`](qiskit.transpiler.passes.ALAPSchedule "qiskit.transpiler.passes.ALAPSchedule") or `ASAPSchedule`) before calling this.
+  We assume executing the following circuit on a backend with `alignment=16`.
 
-**Examples**
+  ```python
+       ┌───┐┌────────────────┐┌─┐
+  q_0: ┤ X ├┤ Delay(100[dt]) ├┤M├
+       └───┘└────────────────┘└╥┘
+  c: 1/════════════════════════╩═
+                               0
+  ```
 
-We assume executing the following circuit on a backend with `alignment=16`.
+  Note that delay of 100 dt induces a misalignment of 4 dt at the measurement. This pass appends an extra 12 dt time shift to the input circuit.
 
-```python
-     ┌───┐┌────────────────┐┌─┐
-q_0: ┤ X ├┤ Delay(100[dt]) ├┤M├
-     └───┘└────────────────┘└╥┘
-c: 1/════════════════════════╩═
-                             0
-```
+  ```python
+       ┌───┐┌────────────────┐┌─┐
+  q_0: ┤ X ├┤ Delay(112[dt]) ├┤M├
+       └───┘└────────────────┘└╥┘
+  c: 1/════════════════════════╩═
+                               0
+  ```
 
-Note that delay of 100 dt induces a misalignment of 4 dt at the measurement. This pass appends an extra 12 dt time shift to the input circuit.
+  This pass always inserts a positive delay before measurements rather than reducing other delays.
 
-```python
-     ┌───┐┌────────────────┐┌─┐
-q_0: ┤ X ├┤ Delay(112[dt]) ├┤M├
-     └───┘└────────────────┘└╥┘
-c: 1/════════════════════════╩═
-                             0
-```
+  **Notes**
 
-This pass always inserts a positive delay before measurements rather than reducing other delays.
+  The Backend may allow users to execute circuits violating the alignment constraint. However, it may return meaningless measurement data mainly due to the phase error.
 
-**Notes**
+  Create new pass.
 
-The Backend may allow users to execute circuits violating the alignment constraint. However, it may return meaningless measurement data mainly due to the phase error.
+  **Parameters**
 
-Create new pass.
+  **alignment** (`int`) – Integer number representing the minimum time resolution to trigger measure instruction in units of `dt`. This value depends on the control electronics of your quantum processor.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**alignment** (`int`) – Integer number representing the minimum time resolution to trigger measure instruction in units of `dt`. This value depends on the control electronics of your quantum processor.
+  <Function id="qiskit.transpiler.passes.AlignMeasures.__init__" name="__init__" signature="__init__(alignment=1)">
+    Create new pass.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.AlignMeasures.__init__" />
+    **alignment** (`int`) – Integer number representing the minimum time resolution to trigger measure instruction in units of `dt`. This value depends on the control electronics of your quantum processor.
+  </Function>
 
-`__init__(alignment=1)`
+  ## Methods
 
-Create new pass.
+  |                                                                                                                                |                                            |
+  | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
+  | [`__init__`](#qiskit.transpiler.passes.AlignMeasures.__init__ "qiskit.transpiler.passes.AlignMeasures.__init__")(\[alignment]) | Create new pass.                           |
+  | [`name`](#qiskit.transpiler.passes.AlignMeasures.name "qiskit.transpiler.passes.AlignMeasures.name")()                         | Return the name of the pass.               |
+  | [`run`](#qiskit.transpiler.passes.AlignMeasures.run "qiskit.transpiler.passes.AlignMeasures.run")(dag)                         | Run the measurement alignment pass on dag. |
 
-**Parameters**
+  ## Attributes
 
-**alignment** (`int`) – Integer number representing the minimum time resolution to trigger measure instruction in units of `dt`. This value depends on the control electronics of your quantum processor.
+  |                                                                                                                                                            |                                             |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+  | [`is_analysis_pass`](#qiskit.transpiler.passes.AlignMeasures.is_analysis_pass "qiskit.transpiler.passes.AlignMeasures.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
+  | [`is_transformation_pass`](#qiskit.transpiler.passes.AlignMeasures.is_transformation_pass "qiskit.transpiler.passes.AlignMeasures.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-## Methods
+  ### is\_analysis\_pass
 
-|                                                                                                                                |                                            |
-| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
-| [`__init__`](#qiskit.transpiler.passes.AlignMeasures.__init__ "qiskit.transpiler.passes.AlignMeasures.__init__")(\[alignment]) | Create new pass.                           |
-| [`name`](#qiskit.transpiler.passes.AlignMeasures.name "qiskit.transpiler.passes.AlignMeasures.name")()                         | Return the name of the pass.               |
-| [`run`](#qiskit.transpiler.passes.AlignMeasures.run "qiskit.transpiler.passes.AlignMeasures.run")(dag)                         | Run the measurement alignment pass on dag. |
+  <Function id="qiskit.transpiler.passes.AlignMeasures.is_analysis_pass" name="is_analysis_pass" signature="property is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-## Attributes
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Function>
 
-|                                                                                                                                                            |                                             |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| [`is_analysis_pass`](#qiskit.transpiler.passes.AlignMeasures.is_analysis_pass "qiskit.transpiler.passes.AlignMeasures.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
-| [`is_transformation_pass`](#qiskit.transpiler.passes.AlignMeasures.is_transformation_pass "qiskit.transpiler.passes.AlignMeasures.is_transformation_pass") | Check if the pass is a transformation pass. |
+  ### is\_transformation\_pass
 
-### is\_analysis\_pass
+  <Function id="qiskit.transpiler.passes.AlignMeasures.is_transformation_pass" name="is_transformation_pass" signature="property is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-<span id="qiskit.transpiler.passes.AlignMeasures.is_analysis_pass" />
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Function>
 
-`property is_analysis_pass`
+  ### name
 
-Check if the pass is an analysis pass.
+  <Function id="qiskit.transpiler.passes.AlignMeasures.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  ### run
 
-### is\_transformation\_pass
+  <Function id="qiskit.transpiler.passes.AlignMeasures.run" name="run" signature="run(dag)">
+    Run the measurement alignment pass on dag.
 
-<span id="qiskit.transpiler.passes.AlignMeasures.is_transformation_pass" />
+    **Parameters**
 
-`property is_transformation_pass`
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to be checked.
 
-Check if the pass is a transformation pass.
+    **Returns**
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    DAG with consistent timing and op nodes annotated with duration.
 
-### name
+    **Return type**
 
-<span id="qiskit.transpiler.passes.AlignMeasures.name" />
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-`name()`
+    **Raises**
 
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.AlignMeasures.run" />
-
-`run(dag)`
-
-Run the measurement alignment pass on dag.
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to be checked.
-
-**Returns**
-
-DAG with consistent timing and op nodes annotated with duration.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-**Raises**
-
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If circuit is not scheduled.
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If circuit is not scheduled.
+  </Function>
+</Class>
 

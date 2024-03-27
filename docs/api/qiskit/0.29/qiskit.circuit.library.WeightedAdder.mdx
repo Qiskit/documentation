@@ -8,256 +8,246 @@ python_api_name: qiskit.circuit.library.WeightedAdder
 
 # WeightedAdder
 
-<span id="qiskit.circuit.library.WeightedAdder" />
+<Class id="qiskit.circuit.library.WeightedAdder" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/weighted_adder.py" signature="WeightedAdder(num_state_qubits=None, weights=None, name='adder')">
+  Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 
-`WeightedAdder(num_state_qubits=None, weights=None, name='adder')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/weighted_adder.py "view source code")
+  A circuit to compute the weighted sum of qubit registers.
 
-Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
+  Given $n$ qubit basis states $q_0, \ldots, q_{n-1} \in \{0, 1\}$ and non-negative integer weights $\lambda_0, \ldots, \lambda_{n-1}$, this circuit performs the operation
 
-A circuit to compute the weighted sum of qubit registers.
+  $$
+  |q_0 \ldots q_{n-1}\rangle |0\rangle_s
+  \mapsto |q_0 \ldots q_{n-1}\rangle |\sum_{j=0}^{n-1} \lambda_j q_j\rangle_s
+  $$
 
-Given $n$ qubit basis states $q_0, \ldots, q_{n-1} \in \{0, 1\}$ and non-negative integer weights $\lambda_0, \ldots, \lambda_{n-1}$, this circuit performs the operation
+  where $s$ is the number of sum qubits required. This can be computed as
 
-$$
-|q_0 \ldots q_{n-1}\rangle |0\rangle_s
-\mapsto |q_0 \ldots q_{n-1}\rangle |\sum_{j=0}^{n-1} \lambda_j q_j\rangle_s
-$$
+  $$
+  s = 1 + \left\lfloor \log_2\left( \sum_{j=0}^{n-1} \lambda_j \right) \right\rfloor
+  $$
 
-where $s$ is the number of sum qubits required. This can be computed as
+  or $s = 1$ if the sum of the weights is 0 (then the expression in the logarithm is invalid).
 
-$$
-s = 1 + \left\lfloor \log_2\left( \sum_{j=0}^{n-1} \lambda_j \right) \right\rfloor
-$$
+  For qubits in a circuit diagram, the first weight applies to the upper-most qubit. For an example where the state of 4 qubits is added into a sum register, the circuit can be schematically drawn as
 
-or $s = 1$ if the sum of the weights is 0 (then the expression in the logarithm is invalid).
+  ```python
+             ┌────────┐
+    state_0: ┤0       ├ | state_0 * weights[0]
+             │        │ |
+    state_1: ┤1       ├ | + state_1 * weights[1]
+             │        │ |
+    state_2: ┤2       ├ | + state_2 * weights[2]
+             │        │ |
+    state_3: ┤3       ├ | + state_3 * weights[3]
+             │        │
+      sum_0: ┤4       ├ |
+             │  Adder │ |
+      sum_1: ┤5       ├ | = sum_0 * 2^0 + sum_1 * 2^1 + sum_2 * 2^2
+             │        │ |
+      sum_2: ┤6       ├ |
+             │        │
+    carry_0: ┤7       ├
+             │        │
+    carry_1: ┤8       ├
+             │        │
+  control_0: ┤9       ├
+             └────────┘
+  ```
 
-For qubits in a circuit diagram, the first weight applies to the upper-most qubit. For an example where the state of 4 qubits is added into a sum register, the circuit can be schematically drawn as
+  Computes the weighted sum controlled by state qubits.
 
-```python
-           ┌────────┐
-  state_0: ┤0       ├ | state_0 * weights[0]
-           │        │ |
-  state_1: ┤1       ├ | + state_1 * weights[1]
-           │        │ |
-  state_2: ┤2       ├ | + state_2 * weights[2]
-           │        │ |
-  state_3: ┤3       ├ | + state_3 * weights[3]
-           │        │
-    sum_0: ┤4       ├ |
-           │  Adder │ |
-    sum_1: ┤5       ├ | = sum_0 * 2^0 + sum_1 * 2^1 + sum_2 * 2^2
-           │        │ |
-    sum_2: ┤6       ├ |
-           │        │
-  carry_0: ┤7       ├
-           │        │
-  carry_1: ┤8       ├
-           │        │
-control_0: ┤9       ├
-           └────────┘
-```
+  **Parameters**
 
-Computes the weighted sum controlled by state qubits.
+  *   **num\_state\_qubits** (`Optional`\[`int`]) – The number of state qubits.
+  *   **weights** (`Optional`\[`List`\[`int`]]) – List of weights, one for each state qubit. If none are provided they default to 1 for every qubit.
+  *   **name** (`str`) – The name of the circuit.
 
-**Parameters**
+  ## Attributes
 
-*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of state qubits.
-*   **weights** (`Optional`\[`List`\[`int`]]) – List of weights, one for each state qubit. If none are provided they default to 1 for every qubit.
-*   **name** (`str`) – The name of the circuit.
+  ### ancillas
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.WeightedAdder.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.WeightedAdder.ancillas" />
+  ### calibrations
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.WeightedAdder.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **The custom pulse definition of a given gate is of the form**
 
-<span id="qiskit.circuit.library.WeightedAdder.calibrations" />
+    \{‘gate\_name’: \{(qubits, params): schedule}}
+  </Attribute>
 
-### calibrations
+  ### clbits
 
-Return calibration dictionary.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-**The custom pulse definition of a given gate is of the form**
+  ### data
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+  <Attribute id="qiskit.circuit.library.WeightedAdder.data" name="data" />
 
-<span id="qiskit.circuit.library.WeightedAdder.clbits" />
+  ### extension\_lib
 
-### clbits
+  <Attribute id="qiskit.circuit.library.WeightedAdder.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-Returns a list of classical bits in the order that the registers were added.
+  ### global\_phase
 
-<span id="qiskit.circuit.library.WeightedAdder.data" />
+  <Attribute id="qiskit.circuit.library.WeightedAdder.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
+  </Attribute>
 
-### data
+  ### header
 
-<span id="qiskit.circuit.library.WeightedAdder.extension_lib" />
+  <Attribute id="qiskit.circuit.library.WeightedAdder.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-### extension\_lib
+  ### instances
 
-`= 'include "qelib1.inc";'`
+  <Attribute id="qiskit.circuit.library.WeightedAdder.instances" name="instances" attributeValue="= 16" />
 
-<span id="qiskit.circuit.library.WeightedAdder.global_phase" />
+  ### metadata
 
-### global\_phase
+  <Attribute id="qiskit.circuit.library.WeightedAdder.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-Return the global phase of the circuit in radians.
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-<span id="qiskit.circuit.library.WeightedAdder.header" />
+  ### num\_ancilla\_qubits
 
-### header
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_ancilla_qubits" name="num_ancilla_qubits">
+    Deprecated. Use num\_ancillas instead.
 
-`= 'OPENQASM 2.0;'`
+    **Return type**
 
-<span id="qiskit.circuit.library.WeightedAdder.instances" />
+    `int`
+  </Attribute>
 
-### instances
+  ### num\_ancillas
 
-`= 16`
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.WeightedAdder.metadata" />
+  ### num\_carry\_qubits
 
-### metadata
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_carry_qubits" name="num_carry_qubits">
+    The number of carry qubits required to compute the sum.
 
-The user provided metadata associated with the circuit
+    Note that this is not necessarily equal to the number of ancilla qubits, these can be queried using `num_ancilla_qubits`.
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    **Return type**
 
-<span id="qiskit.circuit.library.WeightedAdder.num_ancilla_qubits" />
+    `int`
 
-### num\_ancilla\_qubits
+    **Returns**
 
-Deprecated. Use num\_ancillas instead.
+    The number of carry qubits required to compute the sum.
+  </Attribute>
 
-**Return type**
+  ### num\_clbits
 
-`int`
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.WeightedAdder.num_ancillas" />
+  ### num\_control\_qubits
 
-### num\_ancillas
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_control_qubits" name="num_control_qubits">
+    The number of additional control qubits required.
 
-Return the number of ancilla qubits.
+    Note that the total number of ancilla qubits can be obtained by calling the method `num_ancilla_qubits`.
 
-<span id="qiskit.circuit.library.WeightedAdder.num_carry_qubits" />
+    **Return type**
 
-### num\_carry\_qubits
+    `int`
 
-The number of carry qubits required to compute the sum.
+    **Returns**
 
-Note that this is not necessarily equal to the number of ancilla qubits, these can be queried using `num_ancilla_qubits`.
+    The number of additional control qubits required (0 or 1).
+  </Attribute>
 
-**Return type**
+  ### num\_parameters
 
-`int`
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_parameters" name="num_parameters">
+    **Return type**
 
-**Returns**
+    `int`
+  </Attribute>
 
-The number of carry qubits required to compute the sum.
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.WeightedAdder.num_clbits" />
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-### num\_clbits
+  ### num\_state\_qubits
 
-Return number of classical bits.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_state_qubits" name="num_state_qubits">
+    The number of qubits to be summed.
 
-<span id="qiskit.circuit.library.WeightedAdder.num_control_qubits" />
+    **Return type**
 
-### num\_control\_qubits
+    `int`
 
-The number of additional control qubits required.
+    **Returns**
 
-Note that the total number of ancilla qubits can be obtained by calling the method `num_ancilla_qubits`.
+    The number of state qubits.
+  </Attribute>
 
-**Return type**
+  ### num\_sum\_qubits
 
-`int`
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_sum_qubits" name="num_sum_qubits">
+    The number of sum qubits in the circuit.
 
-**Returns**
+    **Return type**
 
-The number of additional control qubits required (0 or 1).
+    `int`
 
-<span id="qiskit.circuit.library.WeightedAdder.num_parameters" />
+    **Returns**
 
-### num\_parameters
+    The number of qubits needed to represent the weighted sum of the qubits.
+  </Attribute>
 
-**Return type**
+  ### parameters
 
-`int`
+  <Attribute id="qiskit.circuit.library.WeightedAdder.parameters" name="parameters">
+    **Return type**
 
-<span id="qiskit.circuit.library.WeightedAdder.num_qubits" />
+    `ParameterView`
+  </Attribute>
 
-### num\_qubits
+  ### prefix
 
-Return number of qubits.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-<span id="qiskit.circuit.library.WeightedAdder.num_state_qubits" />
+  ### qregs
 
-### num\_state\_qubits
+  <Attribute id="qiskit.circuit.library.WeightedAdder.qregs" name="qregs">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-The number of qubits to be summed.
+  ### qubits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.WeightedAdder.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
 
-`int`
+  ### weights
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.WeightedAdder.weights" name="weights">
+    The weights for the qubit states.
 
-The number of state qubits.
+    **Return type**
 
-<span id="qiskit.circuit.library.WeightedAdder.num_sum_qubits" />
+    `List`\[`int`]
 
-### num\_sum\_qubits
+    **Returns**
 
-The number of sum qubits in the circuit.
-
-**Return type**
-
-`int`
-
-**Returns**
-
-The number of qubits needed to represent the weighted sum of the qubits.
-
-<span id="qiskit.circuit.library.WeightedAdder.parameters" />
-
-### parameters
-
-**Return type**
-
-`ParameterView`
-
-<span id="qiskit.circuit.library.WeightedAdder.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.WeightedAdder.qregs" />
-
-### qregs
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.WeightedAdder.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-<span id="qiskit.circuit.library.WeightedAdder.weights" />
-
-### weights
-
-The weights for the qubit states.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-The weight for the qubit states.
+    The weight for the qubit states.
+  </Attribute>
+</Class>
 

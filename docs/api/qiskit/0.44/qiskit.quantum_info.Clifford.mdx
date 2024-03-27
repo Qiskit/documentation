@@ -8,642 +8,592 @@ python_api_name: qiskit.quantum_info.Clifford
 
 # Clifford
 
-<span id="qiskit.quantum_info.Clifford" />
+<Class id="qiskit.quantum_info.Clifford" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/clifford.py" signature="qiskit.quantum_info.Clifford(data, validate=True, copy=True)">
+  Bases: `BaseOperator`, `AdjointMixin`, [`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")
 
-`qiskit.quantum_info.Clifford(data, validate=True, copy=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+  An N-qubit unitary operator from the Clifford group.
 
-Bases: `BaseOperator`, `AdjointMixin`, [`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")
+  **Representation**
 
-An N-qubit unitary operator from the Clifford group.
+  An *N*-qubit Clifford operator is stored as a length *2N × (2N+1)* boolean tableau using the convention from reference \[1].
 
-**Representation**
+  *   Rows 0 to *N-1* are the *destabilizer* group generators
+  *   Rows *N* to *2N-1* are the *stabilizer* group generators.
 
-An *N*-qubit Clifford operator is stored as a length *2N × (2N+1)* boolean tableau using the convention from reference \[1].
+  The internal boolean tableau for the Clifford can be accessed using the `tableau` attribute. The destabilizer or stabilizer rows can each be accessed as a length-N Stabilizer table using [`destab`](#qiskit.quantum_info.Clifford.destab "qiskit.quantum_info.Clifford.destab") and [`stab`](#qiskit.quantum_info.Clifford.stab "qiskit.quantum_info.Clifford.stab") attributes.
 
-*   Rows 0 to *N-1* are the *destabilizer* group generators
-*   Rows *N* to *2N-1* are the *stabilizer* group generators.
+  A more easily human readable representation of the Clifford operator can be obtained by calling the [`to_dict()`](#qiskit.quantum_info.Clifford.to_dict "qiskit.quantum_info.Clifford.to_dict") method. This representation is also used if a Clifford object is printed as in the following example
 
-The internal boolean tableau for the Clifford can be accessed using the `tableau` attribute. The destabilizer or stabilizer rows can each be accessed as a length-N Stabilizer table using [`destab`](#qiskit.quantum_info.Clifford.destab "qiskit.quantum_info.Clifford.destab") and [`stab`](#qiskit.quantum_info.Clifford.stab "qiskit.quantum_info.Clifford.stab") attributes.
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit.quantum_info import Clifford
 
-A more easily human readable representation of the Clifford operator can be obtained by calling the [`to_dict()`](#qiskit.quantum_info.Clifford.to_dict "qiskit.quantum_info.Clifford.to_dict") method. This representation is also used if a Clifford object is printed as in the following example
+  # Bell state generation circuit
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0, 1)
+  cliff = Clifford(qc)
 
-```python
-from qiskit import QuantumCircuit
-from qiskit.quantum_info import Clifford
+  # Print the Clifford
+  print(cliff)
 
-# Bell state generation circuit
-qc = QuantumCircuit(2)
-qc.h(0)
-qc.cx(0, 1)
-cliff = Clifford(qc)
+  # Print the Clifford destabilizer rows
+  print(cliff.to_labels(mode="D"))
 
-# Print the Clifford
-print(cliff)
+  # Print the Clifford stabilizer rows
+  print(cliff.to_labels(mode="S"))
+  ```
 
-# Print the Clifford destabilizer rows
-print(cliff.to_labels(mode="D"))
+  ```python
+  Clifford: Stabilizer = ['+XX', '+ZZ'], Destabilizer = ['+IZ', '+XI']
+  ['+IZ', '+XI']
+  ['+XX', '+ZZ']
+  ```
 
-# Print the Clifford stabilizer rows
-print(cliff.to_labels(mode="S"))
-```
+  **Circuit Conversion**
 
-```python
-Clifford: Stabilizer = ['+XX', '+ZZ'], Destabilizer = ['+IZ', '+XI']
-['+IZ', '+XI']
-['+XX', '+ZZ']
-```
+  Clifford operators can be initialized from circuits containing *only* the following Clifford gates: [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate"), [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate"), [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate"), [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate"), [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate"), [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate"), [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate"), [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate"), [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate"), [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"), [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate"), `DXGate`, [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate"), [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate"), [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate"). They can be converted back into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), or [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") object using the [`to_circuit()`](#qiskit.quantum_info.Clifford.to_circuit "qiskit.quantum_info.Clifford.to_circuit") or [`to_instruction()`](#qiskit.quantum_info.Clifford.to_instruction "qiskit.quantum_info.Clifford.to_instruction") methods respectively. Note that this decomposition is not necessarily optimal in terms of number of gates.
 
-**Circuit Conversion**
+  <Admonition title="Note" type="note">
+    A minimally generating set of gates for Clifford circuits is the [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate") and [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate") gate and *either* the [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate") or [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate") two-qubit gate.
+  </Admonition>
 
-Clifford operators can be initialized from circuits containing *only* the following Clifford gates: [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate"), [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate"), [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate"), [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate"), [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate"), [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate"), [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate"), [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate"), [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate"), [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"), [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate"), `DXGate`, [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate"), [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate"), [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate"). They can be converted back into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), or [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") object using the [`to_circuit()`](#qiskit.quantum_info.Clifford.to_circuit "qiskit.quantum_info.Clifford.to_circuit") or [`to_instruction()`](#qiskit.quantum_info.Clifford.to_instruction "qiskit.quantum_info.Clifford.to_instruction") methods respectively. Note that this decomposition is not necessarily optimal in terms of number of gates.
+  Clifford operators can also be converted to [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") objects using the [`to_operator()`](#qiskit.quantum_info.Clifford.to_operator "qiskit.quantum_info.Clifford.to_operator") method. This is done via decomposing to a circuit, and then simulating the circuit as a unitary operator.
 
-<Admonition title="Note" type="note">
-  A minimally generating set of gates for Clifford circuits is the [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate") and [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate") gate and *either* the [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate") or [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate") two-qubit gate.
-</Admonition>
+  **References**
 
-Clifford operators can also be converted to [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") objects using the [`to_operator()`](#qiskit.quantum_info.Clifford.to_operator "qiskit.quantum_info.Clifford.to_operator") method. This is done via decomposing to a circuit, and then simulating the circuit as a unitary operator.
+  1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 
-**References**
+  Initialize an operator object.
 
-1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
+  ## Attributes
 
-Initialize an operator object.
+  ### destab
 
-## Attributes
+  <Attribute id="qiskit.quantum_info.Clifford.destab" name="destab">
+    The destabilizer array for the symplectic representation.
+  </Attribute>
 
-<span id="qiskit.quantum_info.Clifford.destab" />
+  ### destab\_phase
 
-### destab
+  <Attribute id="qiskit.quantum_info.Clifford.destab_phase" name="destab_phase">
+    Return phase of destabilizer with boolean representation.
+  </Attribute>
 
-The destabilizer array for the symplectic representation.
+  ### destab\_x
 
-<span id="qiskit.quantum_info.Clifford.destab_phase" />
+  <Attribute id="qiskit.quantum_info.Clifford.destab_x" name="destab_x">
+    The destabilizer x array for the symplectic representation.
+  </Attribute>
 
-### destab\_phase
+  ### destab\_z
 
-Return phase of destabilizer with boolean representation.
+  <Attribute id="qiskit.quantum_info.Clifford.destab_z" name="destab_z">
+    The destabilizer z array for the symplectic representation.
+  </Attribute>
 
-<span id="qiskit.quantum_info.Clifford.destab_x" />
+  ### destabilizer
 
-### destab\_x
+  <Attribute id="qiskit.quantum_info.Clifford.destabilizer" name="destabilizer">
+    Return the destabilizer block of the StabilizerTable.
 
-The destabilizer x array for the symplectic representation.
+    <Admonition title="Deprecated since version 0.24.0" type="danger">
+      The property `qiskit.quantum_info.operators.symplectic.clifford.Clifford.destabilizer` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Use Clifford.destab properties instead.
+    </Admonition>
+  </Attribute>
 
-<span id="qiskit.quantum_info.Clifford.destab_z" />
+  ### dim
 
-### destab\_z
+  <Attribute id="qiskit.quantum_info.Clifford.dim" name="dim">
+    Return tuple (input\_shape, output\_shape).
+  </Attribute>
 
-The destabilizer z array for the symplectic representation.
+  ### name
 
-<span id="qiskit.quantum_info.Clifford.destabilizer" />
+  <Attribute id="qiskit.quantum_info.Clifford.name" name="name">
+    Unique string identifier for operation type.
+  </Attribute>
 
-### destabilizer
+  ### num\_clbits
 
-Return the destabilizer block of the StabilizerTable.
+  <Attribute id="qiskit.quantum_info.Clifford.num_clbits" name="num_clbits">
+    Number of classical bits.
+  </Attribute>
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The property `qiskit.quantum_info.operators.symplectic.clifford.Clifford.destabilizer` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Use Clifford.destab properties instead.
-</Admonition>
+  ### num\_qubits
 
-<span id="qiskit.quantum_info.Clifford.dim" />
+  <Attribute id="qiskit.quantum_info.Clifford.num_qubits" name="num_qubits">
+    Return the number of qubits if a N-qubit operator or None otherwise.
+  </Attribute>
 
-### dim
+  ### phase
 
-Return tuple (input\_shape, output\_shape).
+  <Attribute id="qiskit.quantum_info.Clifford.phase" name="phase">
+    Return phase with boolean representation.
+  </Attribute>
 
-<span id="qiskit.quantum_info.Clifford.name" />
+  ### qargs
 
-### name
+  <Attribute id="qiskit.quantum_info.Clifford.qargs" name="qargs">
+    Return the qargs for the operator.
+  </Attribute>
 
-Unique string identifier for operation type.
+  ### stab
 
-<span id="qiskit.quantum_info.Clifford.num_clbits" />
+  <Attribute id="qiskit.quantum_info.Clifford.stab" name="stab">
+    The stabilizer array for the symplectic representation.
+  </Attribute>
 
-### num\_clbits
+  ### stab\_phase
 
-Number of classical bits.
+  <Attribute id="qiskit.quantum_info.Clifford.stab_phase" name="stab_phase">
+    Return phase of stabilizer with boolean representation.
+  </Attribute>
 
-<span id="qiskit.quantum_info.Clifford.num_qubits" />
+  ### stab\_x
 
-### num\_qubits
+  <Attribute id="qiskit.quantum_info.Clifford.stab_x" name="stab_x">
+    The stabilizer x array for the symplectic representation.
+  </Attribute>
 
-Return the number of qubits if a N-qubit operator or None otherwise.
+  ### stab\_z
 
-<span id="qiskit.quantum_info.Clifford.phase" />
+  <Attribute id="qiskit.quantum_info.Clifford.stab_z" name="stab_z">
+    The stabilizer array for the symplectic representation.
+  </Attribute>
 
-### phase
+  ### stabilizer
 
-Return phase with boolean representation.
+  <Attribute id="qiskit.quantum_info.Clifford.stabilizer" name="stabilizer">
+    Return the stabilizer block of the StabilizerTable.
 
-<span id="qiskit.quantum_info.Clifford.qargs" />
+    <Admonition title="Deprecated since version 0.24.0" type="danger">
+      The property `qiskit.quantum_info.operators.symplectic.clifford.Clifford.stabilizer` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Use Clifford.stab properties instead.
+    </Admonition>
+  </Attribute>
 
-### qargs
+  ### symplectic\_matrix
 
-Return the qargs for the operator.
+  <Attribute id="qiskit.quantum_info.Clifford.symplectic_matrix" name="symplectic_matrix">
+    Return boolean symplectic matrix.
+  </Attribute>
 
-<span id="qiskit.quantum_info.Clifford.stab" />
+  ### table
 
-### stab
+  <Attribute id="qiskit.quantum_info.Clifford.table" name="table">
+    Return StabilizerTable
 
-The stabilizer array for the symplectic representation.
+    <Admonition title="Deprecated since version 0.24.0" type="danger">
+      The property `qiskit.quantum_info.operators.symplectic.clifford.Clifford.table` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Use Clifford.stab and Clifford.destab properties instead.
+    </Admonition>
+  </Attribute>
 
-<span id="qiskit.quantum_info.Clifford.stab_phase" />
+  ### x
 
-### stab\_phase
+  <Attribute id="qiskit.quantum_info.Clifford.x" name="x">
+    The x array for the symplectic representation.
+  </Attribute>
 
-Return phase of stabilizer with boolean representation.
+  ### z
 
-<span id="qiskit.quantum_info.Clifford.stab_x" />
+  <Attribute id="qiskit.quantum_info.Clifford.z" name="z">
+    The z array for the symplectic representation.
+  </Attribute>
 
-### stab\_x
+  ## Methods
 
-The stabilizer x array for the symplectic representation.
+  ### adjoint
 
-<span id="qiskit.quantum_info.Clifford.stab_z" />
+  <Function id="qiskit.quantum_info.Clifford.adjoint" name="adjoint" signature="adjoint()">
+    Return the adjoint of the Operator.
+  </Function>
 
-### stab\_z
+  ### compose
 
-The stabilizer array for the symplectic representation.
+  <Function id="qiskit.quantum_info.Clifford.compose" name="compose" signature="compose(other, qargs=None, front=False)">
+    Return the operator composition with another Clifford.
 
-<span id="qiskit.quantum_info.Clifford.stabilizer" />
+    **Parameters**
 
-### stabilizer
+    *   **other** ([*Clifford*](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a Clifford object.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
-Return the stabilizer block of the StabilizerTable.
+    **Returns**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The property `qiskit.quantum_info.operators.symplectic.clifford.Clifford.stabilizer` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Use Clifford.stab properties instead.
-</Admonition>
+    The composed Clifford.
 
-<span id="qiskit.quantum_info.Clifford.symplectic_matrix" />
+    **Return type**
 
-### symplectic\_matrix
+    [Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
 
-Return boolean symplectic matrix.
+    **Raises**
 
-<span id="qiskit.quantum_info.Clifford.table" />
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
-### table
+    <Admonition title="Note" type="note">
+      Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](#qiskit.quantum_info.Clifford.dot "qiskit.quantum_info.Clifford.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
 
-Return StabilizerTable
+      Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.Clifford.dot "qiskit.quantum_info.Clifford.dot") method `A.dot(B) == A.compose(B, front=True)`.
+    </Admonition>
+  </Function>
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The property `qiskit.quantum_info.operators.symplectic.clifford.Clifford.table` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Use Clifford.stab and Clifford.destab properties instead.
-</Admonition>
+  ### conjugate
 
-<span id="qiskit.quantum_info.Clifford.x" />
+  <Function id="qiskit.quantum_info.Clifford.conjugate" name="conjugate" signature="conjugate()">
+    Return the conjugate of the Clifford.
+  </Function>
 
-### x
+  ### copy
 
-The x array for the symplectic representation.
+  <Function id="qiskit.quantum_info.Clifford.copy" name="copy" signature="copy()">
+    Make a deep copy of current operator.
+  </Function>
 
-<span id="qiskit.quantum_info.Clifford.z" />
+  ### dot
 
-### z
+  <Function id="qiskit.quantum_info.Clifford.dot" name="dot" signature="dot(other, qargs=None)">
+    Return the right multiplied operator self \* other.
 
-The z array for the symplectic representation.
+    **Parameters**
 
-## Methods
+    *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
 
-### adjoint
+    **Returns**
 
-<span id="qiskit.quantum_info.Clifford.adjoint" />
+    The right matrix multiplied Operator.
 
-`adjoint()`
+    **Return type**
 
-Return the adjoint of the Operator.
+    [Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-### compose
+    <Admonition title="Note" type="note">
+      The dot product can be obtained using the `@` binary operator. Hence `a.dot(b)` is equivalent to `a @ b`.
+    </Admonition>
+  </Function>
 
-<span id="qiskit.quantum_info.Clifford.compose" />
+  ### expand
 
-`compose(other, qargs=None, front=False)`
+  <Function id="qiskit.quantum_info.Clifford.expand" name="expand" signature="expand(other)">
+    Return the reverse-order tensor product with another Clifford.
 
-Return the operator composition with another Clifford.
+    **Parameters**
 
-**Parameters**
+    **other** ([*Clifford*](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a Clifford object.
 
-*   **other** ([*Clifford*](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a Clifford object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+    **Returns**
 
-**Returns**
+    **the tensor product $b \otimes a$, where $a$**
 
-The composed Clifford.
+    is the current Clifford, and $b$ is the other Clifford.
 
-**Return type**
+    **Return type**
 
-[Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
+    [Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
+  </Function>
 
-**Raises**
+  ### from\_circuit
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
+  <Function id="qiskit.quantum_info.Clifford.from_circuit" name="from_circuit" signature="static from_circuit(circuit)">
+    Initialize from a QuantumCircuit or Instruction.
 
-<Admonition title="Note" type="note">
-  Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](#qiskit.quantum_info.Clifford.dot "qiskit.quantum_info.Clifford.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
+    **Parameters**
 
-  Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.Clifford.dot "qiskit.quantum_info.Clifford.dot") method `A.dot(B) == A.compose(B, front=True)`.
-</Admonition>
+    **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – instruction to initialize.
 
-### conjugate
+    **Returns**
 
-<span id="qiskit.quantum_info.Clifford.conjugate" />
+    the Clifford object for the instruction.
 
-`conjugate()`
+    **Return type**
 
-Return the conjugate of the Clifford.
+    [Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
 
-### copy
+    **Raises**
 
-<span id="qiskit.quantum_info.Clifford.copy" />
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input instruction is non-Clifford or contains classical register instruction.
+  </Function>
 
-`copy()`
+  ### from\_dict
 
-Make a deep copy of current operator.
+  <Function id="qiskit.quantum_info.Clifford.from_dict" name="from_dict" signature="classmethod from_dict(obj)">
+    Load a Clifford from a dictionary
+  </Function>
 
-### dot
+  ### from\_label
 
-<span id="qiskit.quantum_info.Clifford.dot" />
+  <Function id="qiskit.quantum_info.Clifford.from_label" name="from_label" signature="static from_label(label)">
+    Return a tensor product of single-qubit Clifford gates.
 
-`dot(other, qargs=None)`
+    **Parameters**
 
-Return the right multiplied operator self \* other.
+    **label** (*string*) – single-qubit operator string.
 
-**Parameters**
+    **Returns**
 
-*   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    The N-qubit Clifford operator.
 
-**Returns**
+    **Return type**
 
-The right matrix multiplied Operator.
+    [Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
 
-**Return type**
+    **Raises**
 
-[Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the label contains invalid characters.
 
-<Admonition title="Note" type="note">
-  The dot product can be obtained using the `@` binary operator. Hence `a.dot(b)` is equivalent to `a @ b`.
-</Admonition>
+    **Additional Information:**
 
-### expand
+    The labels correspond to the single-qubit Cliffords are
 
-<span id="qiskit.quantum_info.Clifford.expand" />
+    *   *   Label
+        *   Stabilizer
+        *   Destabilizer
+    *   *   `"I"`
+        *   +Z
+        *   +X
+    *   *   `"X"`
+        *   -Z
+        *   +X
+    *   *   `"Y"`
+        *   -Z
+        *   -X
+    *   *   `"Z"`
+        *   +Z
+        *   -X
+    *   *   `"H"`
+        *   +X
+        *   +Z
+    *   *   `"S"`
+        *   +Z
+        *   +Y
+  </Function>
 
-`expand(other)`
+  ### from\_matrix
 
-Return the reverse-order tensor product with another Clifford.
+  <Function id="qiskit.quantum_info.Clifford.from_matrix" name="from_matrix" signature="classmethod from_matrix(matrix)">
+    Create a Clifford from a unitary matrix.
 
-**Parameters**
+    Note that this function takes exponentially long time w\.r.t. the number of qubits.
 
-**other** ([*Clifford*](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a Clifford object.
+    **Parameters**
 
-**Returns**
+    **matrix** (*np.array*) – A unitary matrix representing a Clifford to be converted.
 
-**the tensor product $b \otimes a$, where $a$**
+    **Returns**
 
-is the current Clifford, and $b$ is the other Clifford.
+    the Clifford object for the unitary matrix.
 
-**Return type**
+    **Return type**
 
-[Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
+    [Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
 
-### from\_circuit
+    **Raises**
 
-<span id="qiskit.quantum_info.Clifford.from_circuit" />
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input is not a Clifford matrix.
+  </Function>
 
-`static from_circuit(circuit)`
+  ### from\_operator
 
-Initialize from a QuantumCircuit or Instruction.
+  <Function id="qiskit.quantum_info.Clifford.from_operator" name="from_operator" signature="classmethod from_operator(operator)">
+    Create a Clifford from a operator.
 
-**Parameters**
+    Note that this function takes exponentially long time w\.r.t. the number of qubits.
 
-**circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – instruction to initialize.
+    **Parameters**
 
-**Returns**
+    **operator** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – An operator representing a Clifford to be converted.
 
-the Clifford object for the instruction.
+    **Returns**
 
-**Return type**
+    the Clifford object for the operator.
 
-[Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
+    **Return type**
 
-**Raises**
+    [Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input instruction is non-Clifford or contains classical register instruction.
+    **Raises**
 
-### from\_dict
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input is not a Clifford operator.
+  </Function>
 
-<span id="qiskit.quantum_info.Clifford.from_dict" />
+  ### input\_dims
 
-`classmethod from_dict(obj)`
+  <Function id="qiskit.quantum_info.Clifford.input_dims" name="input_dims" signature="input_dims(qargs=None)">
+    Return tuple of input dimension for specified subsystems.
+  </Function>
 
-Load a Clifford from a dictionary
+  ### is\_unitary
 
-### from\_label
+  <Function id="qiskit.quantum_info.Clifford.is_unitary" name="is_unitary" signature="is_unitary()">
+    Return True if the Clifford table is valid.
+  </Function>
 
-<span id="qiskit.quantum_info.Clifford.from_label" />
+  ### output\_dims
 
-`static from_label(label)`
+  <Function id="qiskit.quantum_info.Clifford.output_dims" name="output_dims" signature="output_dims(qargs=None)">
+    Return tuple of output dimension for specified subsystems.
+  </Function>
 
-Return a tensor product of single-qubit Clifford gates.
+  ### power
 
-**Parameters**
+  <Function id="qiskit.quantum_info.Clifford.power" name="power" signature="power(n)">
+    Return the compose of a operator with itself n times.
 
-**label** (*string*) – single-qubit operator string.
+    **Parameters**
 
-**Returns**
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of times to compose with self (n>0).
 
-The N-qubit Clifford operator.
+    **Returns**
 
-**Return type**
+    the n-times composed operator.
 
-[Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
+    **Return type**
 
-**Raises**
+    [Pauli](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the label contains invalid characters.
+    **Raises**
 
-**Additional Information:**
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
+  </Function>
 
-The labels correspond to the single-qubit Cliffords are
+  ### reshape
 
-*   *   Label
-    *   Stabilizer
-    *   Destabilizer
-*   *   `"I"`
-    *   +Z
-    *   +X
-*   *   `"X"`
-    *   -Z
-    *   +X
-*   *   `"Y"`
-    *   -Z
-    *   -X
-*   *   `"Z"`
-    *   +Z
-    *   -X
-*   *   `"H"`
-    *   +X
-    *   +Z
-*   *   `"S"`
-    *   +Z
-    *   +Y
+  <Function id="qiskit.quantum_info.Clifford.reshape" name="reshape" signature="reshape(input_dims=None, output_dims=None, num_qubits=None)">
+    Return a shallow copy with reshaped input and output subsystem dimensions.
 
-### from\_matrix
+    **Parameters**
 
-<span id="qiskit.quantum_info.Clifford.from_matrix" />
+    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
 
-`classmethod from_matrix(matrix)`
+    **Returns**
 
-Create a Clifford from a unitary matrix.
+    returns self with reshaped input and output dimensions.
 
-Note that this function takes exponentially long time w\.r.t. the number of qubits.
+    **Return type**
 
-**Parameters**
+    BaseOperator
 
-**matrix** (*np.array*) – A unitary matrix representing a Clifford to be converted.
+    **Raises**
 
-**Returns**
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  </Function>
 
-the Clifford object for the unitary matrix.
+  ### tensor
 
-**Return type**
+  <Function id="qiskit.quantum_info.Clifford.tensor" name="tensor" signature="tensor(other)">
+    Return the tensor product with another Clifford.
 
-[Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
+    **Parameters**
 
-**Raises**
+    **other** ([*Clifford*](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a Clifford object.
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input is not a Clifford matrix.
+    **Returns**
 
-### from\_operator
+    **the tensor product $a \otimes b$, where $a$**
 
-<span id="qiskit.quantum_info.Clifford.from_operator" />
+    is the current Clifford, and $b$ is the other Clifford.
 
-`classmethod from_operator(operator)`
+    **Return type**
 
-Create a Clifford from a operator.
+    [Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
 
-Note that this function takes exponentially long time w\.r.t. the number of qubits.
+    <Admonition title="Note" type="note">
+      The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
+    </Admonition>
+  </Function>
 
-**Parameters**
+  ### to\_circuit
 
-**operator** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – An operator representing a Clifford to be converted.
+  <Function id="qiskit.quantum_info.Clifford.to_circuit" name="to_circuit" signature="to_circuit()">
+    Return a QuantumCircuit implementing the Clifford.
 
-**Returns**
+    For N \<= 3 qubits this is based on optimal CX cost decomposition from reference \[1]. For N > 3 qubits this is done using the general non-optimal compilation routine from reference \[2].
 
-the Clifford object for the operator.
+    **Returns**
 
-**Return type**
+    a circuit implementation of the Clifford.
 
-[Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
+    **Return type**
 
-**Raises**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input is not a Clifford operator.
+    **References**
 
-### input\_dims
+    1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+    2.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
+  </Function>
 
-<span id="qiskit.quantum_info.Clifford.input_dims" />
+  ### to\_dict
 
-`input_dims(qargs=None)`
+  <Function id="qiskit.quantum_info.Clifford.to_dict" name="to_dict" signature="to_dict()">
+    Return dictionary representation of Clifford object.
+  </Function>
 
-Return tuple of input dimension for specified subsystems.
+  ### to\_instruction
 
-### is\_unitary
+  <Function id="qiskit.quantum_info.Clifford.to_instruction" name="to_instruction" signature="to_instruction()">
+    Return a Gate instruction implementing the Clifford.
+  </Function>
 
-<span id="qiskit.quantum_info.Clifford.is_unitary" />
+  ### to\_labels
 
-`is_unitary()`
+  <Function id="qiskit.quantum_info.Clifford.to_labels" name="to_labels" signature="to_labels(array=False, mode='B')">
+    Convert a Clifford to a list Pauli (de)stabilizer string labels.
 
-Return True if the Clifford table is valid.
+    For large Clifford converting using the `array=True` kwarg will be more efficient since it allocates memory for the full Numpy array of labels in advance.
 
-### output\_dims
+    | Label  | Phase | Symplectic | Matrix                                           | Pauli |
+    | ------ | ----- | ---------- | ------------------------------------------------ | ----- |
+    | `"+I"` | 0     | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$   | $I$   |
+    | `"-I"` | 1     | $[0, 0]$   | $\begin{bmatrix} -1 & 0 \\ 0 & -1 \end{bmatrix}$ | $-I$  |
+    | `"X"`  | 0     | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$   | $X$   |
+    | `"-X"` | 1     | $[1, 0]$   | $\begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$ | $-X$  |
+    | `"Y"`  | 0     | $[1, 1]$   | $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$  | $iY$  |
+    | `"-Y"` | 1     | $[1, 1]$   | $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$  | $-iY$ |
+    | `"Z"`  | 0     | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$  | $Z$   |
+    | `"-Z"` | 1     | $[0, 1]$   | $\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$  | $-Z$  |
 
-<span id="qiskit.quantum_info.Clifford.output_dims" />
+    **Parameters**
 
-`output_dims(qargs=None)`
+    *   **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – return a Numpy array if True, otherwise return a list (Default: False).
+    *   **mode** (*Literal\["S", "D", "B"]*) – return both stabilizer and destabilizer if “B”, return only stabilizer if “S” and return only destabilizer if “D”.
 
-Return tuple of output dimension for specified subsystems.
+    **Returns**
 
-### power
+    The rows of the StabilizerTable in label form.
 
-<span id="qiskit.quantum_info.Clifford.power" />
+    **Return type**
 
-`power(n)`
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") or array
 
-Return the compose of a operator with itself n times.
+    **Raises**
 
-**Parameters**
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if stabilizer and destabilizer are both False.
+  </Function>
 
-**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of times to compose with self (n>0).
+  ### to\_matrix
 
-**Returns**
+  <Function id="qiskit.quantum_info.Clifford.to_matrix" name="to_matrix" signature="to_matrix()">
+    Convert operator to Numpy matrix.
+  </Function>
 
-the n-times composed operator.
+  ### to\_operator
 
-**Return type**
+  <Function id="qiskit.quantum_info.Clifford.to_operator" name="to_operator" signature="to_operator()">
+    Convert to an Operator object.
 
-[Pauli](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+    **Return type**
 
-**Raises**
+    [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator")
+  </Function>
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
+  ### transpose
 
-### reshape
-
-<span id="qiskit.quantum_info.Clifford.reshape" />
-
-`reshape(input_dims=None, output_dims=None, num_qubits=None)`
-
-Return a shallow copy with reshaped input and output subsystem dimensions.
-
-**Parameters**
-
-*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
-
-**Returns**
-
-returns self with reshaped input and output dimensions.
-
-**Return type**
-
-BaseOperator
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
-
-### tensor
-
-<span id="qiskit.quantum_info.Clifford.tensor" />
-
-`tensor(other)`
-
-Return the tensor product with another Clifford.
-
-**Parameters**
-
-**other** ([*Clifford*](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a Clifford object.
-
-**Returns**
-
-**the tensor product $a \otimes b$, where $a$**
-
-is the current Clifford, and $b$ is the other Clifford.
-
-**Return type**
-
-[Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
-
-<Admonition title="Note" type="note">
-  The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
-</Admonition>
-
-### to\_circuit
-
-<span id="qiskit.quantum_info.Clifford.to_circuit" />
-
-`to_circuit()`
-
-Return a QuantumCircuit implementing the Clifford.
-
-For N \<= 3 qubits this is based on optimal CX cost decomposition from reference \[1]. For N > 3 qubits this is done using the general non-optimal compilation routine from reference \[2].
-
-**Returns**
-
-a circuit implementation of the Clifford.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**References**
-
-1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
-2.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
-
-### to\_dict
-
-<span id="qiskit.quantum_info.Clifford.to_dict" />
-
-`to_dict()`
-
-Return dictionary representation of Clifford object.
-
-### to\_instruction
-
-<span id="qiskit.quantum_info.Clifford.to_instruction" />
-
-`to_instruction()`
-
-Return a Gate instruction implementing the Clifford.
-
-### to\_labels
-
-<span id="qiskit.quantum_info.Clifford.to_labels" />
-
-`to_labels(array=False, mode='B')`
-
-Convert a Clifford to a list Pauli (de)stabilizer string labels.
-
-For large Clifford converting using the `array=True` kwarg will be more efficient since it allocates memory for the full Numpy array of labels in advance.
-
-| Label  | Phase | Symplectic | Matrix                                           | Pauli |
-| ------ | ----- | ---------- | ------------------------------------------------ | ----- |
-| `"+I"` | 0     | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$   | $I$   |
-| `"-I"` | 1     | $[0, 0]$   | $\begin{bmatrix} -1 & 0 \\ 0 & -1 \end{bmatrix}$ | $-I$  |
-| `"X"`  | 0     | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$   | $X$   |
-| `"-X"` | 1     | $[1, 0]$   | $\begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$ | $-X$  |
-| `"Y"`  | 0     | $[1, 1]$   | $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$  | $iY$  |
-| `"-Y"` | 1     | $[1, 1]$   | $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$  | $-iY$ |
-| `"Z"`  | 0     | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$  | $Z$   |
-| `"-Z"` | 1     | $[0, 1]$   | $\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$  | $-Z$  |
-
-**Parameters**
-
-*   **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – return a Numpy array if True, otherwise return a list (Default: False).
-*   **mode** (*Literal\["S", "D", "B"]*) – return both stabilizer and destabilizer if “B”, return only stabilizer if “S” and return only destabilizer if “D”.
-
-**Returns**
-
-The rows of the StabilizerTable in label form.
-
-**Return type**
-
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") or array
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if stabilizer and destabilizer are both False.
-
-### to\_matrix
-
-<span id="qiskit.quantum_info.Clifford.to_matrix" />
-
-`to_matrix()`
-
-Convert operator to Numpy matrix.
-
-### to\_operator
-
-<span id="qiskit.quantum_info.Clifford.to_operator" />
-
-`to_operator()`
-
-Convert to an Operator object.
-
-**Return type**
-
-[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator")
-
-### transpose
-
-<span id="qiskit.quantum_info.Clifford.transpose" />
-
-`transpose()`
-
-Return the transpose of the Clifford.
+  <Function id="qiskit.quantum_info.Clifford.transpose" name="transpose" signature="transpose()">
+    Return the transpose of the Clifford.
+  </Function>
+</Class>
 

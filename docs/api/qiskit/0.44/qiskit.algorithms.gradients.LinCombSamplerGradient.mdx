@@ -8,77 +8,69 @@ python_api_name: qiskit.algorithms.gradients.LinCombSamplerGradient
 
 # LinCombSamplerGradient
 
-<span id="qiskit.algorithms.gradients.LinCombSamplerGradient" />
+<Class id="qiskit.algorithms.gradients.LinCombSamplerGradient" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/lin_comb/lin_comb_sampler_gradient.py" signature="qiskit.algorithms.gradients.LinCombSamplerGradient(sampler, options=None)">
+  Bases: [`BaseSamplerGradient`](qiskit.algorithms.gradients.BaseSamplerGradient "qiskit.algorithms.gradients.base.base_sampler_gradient.BaseSamplerGradient")
 
-`qiskit.algorithms.gradients.LinCombSamplerGradient(sampler, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/lin_comb/lin_comb_sampler_gradient.py "view source code")
+  Compute the gradients of the sampling probability. This method employs a linear combination of unitaries \[1].
 
-Bases: [`BaseSamplerGradient`](qiskit.algorithms.gradients.BaseSamplerGradient "qiskit.algorithms.gradients.base.base_sampler_gradient.BaseSamplerGradient")
+  **Reference:** \[1] Schuld et al., Evaluating analytic gradients on quantum hardware, 2018 [arXiv:1811.11184](https://arxiv.org/pdf/1811.11184.pdf)
 
-Compute the gradients of the sampling probability. This method employs a linear combination of unitaries \[1].
+  **Parameters**
 
-**Reference:** \[1] Schuld et al., Evaluating analytic gradients on quantum hardware, 2018 [arXiv:1811.11184](https://arxiv.org/pdf/1811.11184.pdf)
+  *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")) – The sampler used to compute the gradients.
+  *   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
 
-**Parameters**
+  ## Attributes
 
-*   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")) – The sampler used to compute the gradients.
-*   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+  ### SUPPORTED\_GATES
 
-## Attributes
+  <Attribute id="qiskit.algorithms.gradients.LinCombSamplerGradient.SUPPORTED_GATES" name="SUPPORTED_GATES" attributeValue="= ['rx', 'ry', 'rz', 'rzx', 'rzz', 'ryy', 'rxx', 'cx', 'cy', 'cz', 'ccx', 'swap', 'iswap', 'h', 't', 's', 'sdg', 'x', 'y', 'z']" />
 
-<span id="qiskit.algorithms.gradients.LinCombSamplerGradient.SUPPORTED_GATES" />
+  ### options
 
-### SUPPORTED\_GATES
+  <Attribute id="qiskit.algorithms.gradients.LinCombSamplerGradient.options" name="options">
+    Return the union of sampler options setting and gradient default options, where, if the same field is set in both, the gradient’s default options override the primitive’s default setting.
 
-`= ['rx', 'ry', 'rz', 'rzx', 'rzz', 'ryy', 'rxx', 'cx', 'cy', 'cz', 'ccx', 'swap', 'iswap', 'h', 't', 's', 'sdg', 'x', 'y', 'z']`
+    **Returns**
 
-<span id="qiskit.algorithms.gradients.LinCombSamplerGradient.options" />
+    The gradient default + sampler options.
+  </Attribute>
 
-### options
+  ## Methods
 
-Return the union of sampler options setting and gradient default options, where, if the same field is set in both, the gradient’s default options override the primitive’s default setting.
+  ### run
 
-**Returns**
+  <Function id="qiskit.algorithms.gradients.LinCombSamplerGradient.run" name="run" signature="run(circuits, parameter_values, parameters=None, **options)">
+    Run the job of the sampler gradient on the given circuits.
 
-The gradient default + sampler options.
+    **Parameters**
 
-## Methods
+    *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the gradients.
+    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – The list of parameter values to be bound to the circuit.
+    *   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated. None in the sequence means that the gradients of all parameters in the corresponding circuit are calculated.
+    *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
 
-### run
+    **Returns**
 
-<span id="qiskit.algorithms.gradients.LinCombSamplerGradient.run" />
+    The job object of the gradients of the sampling probability. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`. The j-th quasi-probability distribution in the i-th result corresponds to the gradients of the sampling probability for the j-th parameter in `circuits[i]`.
 
-`run(circuits, parameter_values, parameters=None, **options)`
+    **Raises**
 
-Run the job of the sampler gradient on the given circuits.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid arguments are given.
 
-**Parameters**
+    **Return type**
 
-*   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the gradients.
-*   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – The list of parameter values to be bound to the circuit.
-*   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated. None in the sequence means that the gradients of all parameters in the corresponding circuit are calculated.
-*   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+    [AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
+  </Function>
 
-**Returns**
+  ### update\_default\_options
 
-The job object of the gradients of the sampling probability. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`. The j-th quasi-probability distribution in the i-th result corresponds to the gradients of the sampling probability for the j-th parameter in `circuits[i]`.
+  <Function id="qiskit.algorithms.gradients.LinCombSamplerGradient.update_default_options" name="update_default_options" signature="update_default_options(**options)">
+    Update the gradient’s default options setting.
 
-**Raises**
+    **Parameters**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid arguments are given.
-
-**Return type**
-
-[AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
-
-### update\_default\_options
-
-<span id="qiskit.algorithms.gradients.LinCombSamplerGradient.update_default_options" />
-
-`update_default_options(**options)`
-
-Update the gradient’s default options setting.
-
-**Parameters**
-
-**\*\*options** – The fields to update the default options.
+    **\*\*options** – The fields to update the default options.
+  </Function>
+</Class>
 

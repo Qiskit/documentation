@@ -22,64 +22,58 @@ Convert stable set instances into Pauli list. We read instances in the Gset form
 
 ### get\_graph\_solution
 
-<span id="qiskit.optimization.applications.ising.stable_set.get_graph_solution" />
+<Function id="qiskit.optimization.applications.ising.stable_set.get_graph_solution" name="get_graph_solution" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/stable_set.py" signature="get_graph_solution(x)">
+  Get graph solution from binary string.
 
-`get_graph_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/stable_set.py "view source code")
+  **Parameters**
 
-Get graph solution from binary string.
+  **x** (*numpy.ndarray*) – binary string as numpy array.
 
-**Parameters**
+  **Returns**
 
-**x** (*numpy.ndarray*) – binary string as numpy array.
+  graph solution as binary numpy array.
 
-**Returns**
+  **Return type**
 
-graph solution as binary numpy array.
-
-**Return type**
-
-numpy.ndarray
+  numpy.ndarray
+</Function>
 
 ### get\_operator
 
-<span id="qiskit.optimization.applications.ising.stable_set.get_operator" />
+<Function id="qiskit.optimization.applications.ising.stable_set.get_operator" name="get_operator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/stable_set.py" signature="get_operator(w)">
+  Generate Hamiltonian for the maximum stable set in a graph.
 
-`get_operator(w)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/stable_set.py "view source code")
+  **Parameters**
 
-Generate Hamiltonian for the maximum stable set in a graph.
+  **w** (*numpy.ndarray*) – adjacency matrix.
 
-**Parameters**
+  **Returns**
 
-**w** (*numpy.ndarray*) – adjacency matrix.
+  operator for the Hamiltonian and a constant shift for the obj function.
 
-**Returns**
+  **Return type**
 
-operator for the Hamiltonian and a constant shift for the obj function.
-
-**Return type**
-
-tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+  tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+</Function>
 
 ### stable\_set\_value
 
-<span id="qiskit.optimization.applications.ising.stable_set.stable_set_value" />
+<Function id="qiskit.optimization.applications.ising.stable_set.stable_set_value" name="stable_set_value" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/stable_set.py" signature="stable_set_value(x, w)">
+  Compute the value of a stable set, and its feasibility.
 
-`stable_set_value(x, w)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/stable_set.py "view source code")
+  **Parameters**
 
-Compute the value of a stable set, and its feasibility.
+  *   **x** (*numpy.ndarray*) – binary string in original format – not graph solution!.
+  *   **w** (*numpy.ndarray*) – adjacency matrix.
 
-**Parameters**
+  **Returns**
 
-*   **x** (*numpy.ndarray*) – binary string in original format – not graph solution!.
-*   **w** (*numpy.ndarray*) – adjacency matrix.
+  **size of the stable set, and Boolean indicating**
 
-**Returns**
+  feasibility.
 
-**size of the stable set, and Boolean indicating**
+  **Return type**
 
-feasibility.
-
-**Return type**
-
-tuple(float, bool)
+  tuple(float, bool)
+</Function>
 

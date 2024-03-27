@@ -8,38 +8,34 @@ python_api_name: qiskit.dagcircuit.DAGNode
 
 # DAGNode
 
-<span id="qiskit.dagcircuit.DAGNode" />
+<Class id="qiskit.dagcircuit.DAGNode" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/dagcircuit/dagnode.py" signature="qiskit.dagcircuit.DAGNode(nid=-1)">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.dagcircuit.DAGNode(nid=-1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/dagcircuit/dagnode.py "view source code")
+  Parent class for DAGOpNode, DAGInNode, and DAGOutNode.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  Create a node
 
-Parent class for DAGOpNode, DAGInNode, and DAGOutNode.
+  ## Methods
 
-Create a node
+  ### semantic\_eq
 
-## Methods
+  <Function id="qiskit.dagcircuit.DAGNode.semantic_eq" name="semantic_eq" signature="static semantic_eq(node1, node2, bit_indices1, bit_indices2)">
+    Check if DAG nodes are considered equivalent, e.g., as a node\_match for [`rustworkx.is_isomorphic_node_match()`](https://www.rustworkx.org/apiref/rustworkx.is_isomorphic_node_match.html#rustworkx.is_isomorphic_node_match "(in rustworkx v0.14)").
 
-### semantic\_eq
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGNode.semantic_eq" />
+    *   **node1** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – A node to compare.
+    *   **node2** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – The other node to compare.
+    *   **bit\_indices1** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Dictionary mapping Bit instances to their index within the circuit containing node1
+    *   **bit\_indices2** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Dictionary mapping Bit instances to their index within the circuit containing node2
 
-`static semantic_eq(node1, node2, bit_indices1, bit_indices2)`
+    **Returns**
 
-Check if DAG nodes are considered equivalent, e.g., as a node\_match for [`rustworkx.is_isomorphic_node_match()`](https://www.rustworkx.org/apiref/rustworkx.is_isomorphic_node_match.html#rustworkx.is_isomorphic_node_match "(in rustworkx v0.14)").
+    If node1 == node2
 
-**Parameters**
+    **Return type**
 
-*   **node1** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – A node to compare.
-*   **node2** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – The other node to compare.
-*   **bit\_indices1** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Dictionary mapping Bit instances to their index within the circuit containing node1
-*   **bit\_indices2** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Dictionary mapping Bit instances to their index within the circuit containing node2
-
-**Returns**
-
-If node1 == node2
-
-**Return type**
-
-[Bool](circuit_classical#qiskit.circuit.classical.types.Bool "qiskit.circuit.classical.types.Bool")
+    [Bool](circuit_classical#qiskit.circuit.classical.types.Bool "qiskit.circuit.classical.types.Bool")
+  </Function>
+</Class>
 

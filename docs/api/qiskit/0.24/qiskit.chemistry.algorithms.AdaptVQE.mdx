@@ -10,129 +10,115 @@ python_api_name: qiskit.chemistry.algorithms.AdaptVQE
 
 # qiskit.chemistry.algorithms.AdaptVQE
 
-<span id="qiskit.chemistry.algorithms.AdaptVQE" />
+<Class id="qiskit.chemistry.algorithms.AdaptVQE" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/ground_state_solvers/adapt_vqe.py" signature="AdaptVQE(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)">
+  A ground state calculation employing the AdaptVQE algorithm.
 
-`AdaptVQE(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/ground_state_solvers/adapt_vqe.py "view source code")
+  **Parameters**
 
-A ground state calculation employing the AdaptVQE algorithm.
+  *   **transformation** (`FermionicTransformation`) – a fermionic driver to operator transformation strategy.
+  *   **solver** (`MinimumEigensolverFactory`) – a factory for the VQE solver employing a UCCSD variational form.
+  *   **threshold** (`float`) – the energy convergence threshold. It has a minimum value of 1e-15.
+  *   **delta** (`float`) – the finite difference step size for the gradient computation. It has a minimum value of 1e-5.
+  *   **max\_iterations** (`Optional`\[`int`]) – the maximum number of iterations of the AdaptVQE algorithm.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **transformation** (`FermionicTransformation`) – a fermionic driver to operator transformation strategy.
-*   **solver** (`MinimumEigensolverFactory`) – a factory for the VQE solver employing a UCCSD variational form.
-*   **threshold** (`float`) – the energy convergence threshold. It has a minimum value of 1e-15.
-*   **delta** (`float`) – the finite difference step size for the gradient computation. It has a minimum value of 1e-5.
-*   **max\_iterations** (`Optional`\[`int`]) – the maximum number of iterations of the AdaptVQE algorithm.
+  <Function id="qiskit.chemistry.algorithms.AdaptVQE.__init__" name="__init__" signature="__init__(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **transformation** (`FermionicTransformation`) – a fermionic driver to operator transformation strategy.
+    *   **solver** (`MinimumEigensolverFactory`) – a factory for the VQE solver employing a UCCSD variational form.
+    *   **threshold** (`float`) – the energy convergence threshold. It has a minimum value of 1e-15.
+    *   **delta** (`float`) – the finite difference step size for the gradient computation. It has a minimum value of 1e-5.
+    *   **max\_iterations** (`Optional`\[`int`]) – the maximum number of iterations of the AdaptVQE algorithm.
+  </Function>
 
-<span id="qiskit.chemistry.algorithms.AdaptVQE.__init__" />
+  ## Methods
 
-`__init__(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)`
+  |                                                                                                                                                              |                                                                               |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.algorithms.AdaptVQE.__init__ "qiskit.chemistry.algorithms.AdaptVQE.__init__")(transformation, solver\[, …])                   | **type transformation**`FermionicTransformation`                              |
+  | [`evaluate_operators`](#qiskit.chemistry.algorithms.AdaptVQE.evaluate_operators "qiskit.chemistry.algorithms.AdaptVQE.evaluate_operators")(state, operators) | Evaluates additional operators at the given state.                            |
+  | [`returns_groundstate`](#qiskit.chemistry.algorithms.AdaptVQE.returns_groundstate "qiskit.chemistry.algorithms.AdaptVQE.returns_groundstate")()              | Whether the eigensolver returns the ground state or only ground state energy. |
+  | [`solve`](#qiskit.chemistry.algorithms.AdaptVQE.solve "qiskit.chemistry.algorithms.AdaptVQE.solve")(driver\[, aux\_operators])                               | Computes the ground state.                                                    |
 
-**Parameters**
+  ## Attributes
 
-*   **transformation** (`FermionicTransformation`) – a fermionic driver to operator transformation strategy.
-*   **solver** (`MinimumEigensolverFactory`) – a factory for the VQE solver employing a UCCSD variational form.
-*   **threshold** (`float`) – the energy convergence threshold. It has a minimum value of 1e-15.
-*   **delta** (`float`) – the finite difference step size for the gradient computation. It has a minimum value of 1e-5.
-*   **max\_iterations** (`Optional`\[`int`]) – the maximum number of iterations of the AdaptVQE algorithm.
+  |                                                                                                                                |                                                                               |
+  | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+  | [`solver`](#qiskit.chemistry.algorithms.AdaptVQE.solver "qiskit.chemistry.algorithms.AdaptVQE.solver")                         | Returns the minimum eigensolver or factory.                                   |
+  | [`transformation`](#qiskit.chemistry.algorithms.AdaptVQE.transformation "qiskit.chemistry.algorithms.AdaptVQE.transformation") | Returns the transformation used to obtain a qubit operator from the molecule. |
 
-## Methods
+  ### evaluate\_operators
 
-|                                                                                                                                                              |                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.algorithms.AdaptVQE.__init__ "qiskit.chemistry.algorithms.AdaptVQE.__init__")(transformation, solver\[, …])                   | **type transformation**`FermionicTransformation`                              |
-| [`evaluate_operators`](#qiskit.chemistry.algorithms.AdaptVQE.evaluate_operators "qiskit.chemistry.algorithms.AdaptVQE.evaluate_operators")(state, operators) | Evaluates additional operators at the given state.                            |
-| [`returns_groundstate`](#qiskit.chemistry.algorithms.AdaptVQE.returns_groundstate "qiskit.chemistry.algorithms.AdaptVQE.returns_groundstate")()              | Whether the eigensolver returns the ground state or only ground state energy. |
-| [`solve`](#qiskit.chemistry.algorithms.AdaptVQE.solve "qiskit.chemistry.algorithms.AdaptVQE.solve")(driver\[, aux\_operators])                               | Computes the ground state.                                                    |
+  <Function id="qiskit.chemistry.algorithms.AdaptVQE.evaluate_operators" name="evaluate_operators" signature="evaluate_operators(state, operators)">
+    Evaluates additional operators at the given state.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                |                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| [`solver`](#qiskit.chemistry.algorithms.AdaptVQE.solver "qiskit.chemistry.algorithms.AdaptVQE.solver")                         | Returns the minimum eigensolver or factory.                                   |
-| [`transformation`](#qiskit.chemistry.algorithms.AdaptVQE.transformation "qiskit.chemistry.algorithms.AdaptVQE.transformation") | Returns the transformation used to obtain a qubit operator from the molecule. |
+    *   **state** (`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]) – any kind of input that can be used to specify a state. See also `StateFn` for more details.
+    *   **operators** (`Union`\[`WeightedPauliOperator`, `OperatorBase`, `list`, `dict`]) – either a single, list or dictionary of `WeightedPauliOperator``s or any kind of operator implementing the ``OperatorBase`.
 
-### evaluate\_operators
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.AdaptVQE.evaluate_operators" />
+    `Union`\[`float`, `List`\[`float`], `Dict`\[`str`, `List`\[`float`]]]
 
-`evaluate_operators(state, operators)`
+    **Returns**
 
-Evaluates additional operators at the given state.
+    The expectation value of the given operator(s). The return type will be identical to the format of the provided operators.
+  </Function>
 
-**Parameters**
+  ### returns\_groundstate
 
-*   **state** (`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]) – any kind of input that can be used to specify a state. See also `StateFn` for more details.
-*   **operators** (`Union`\[`WeightedPauliOperator`, `OperatorBase`, `list`, `dict`]) – either a single, list or dictionary of `WeightedPauliOperator``s or any kind of operator implementing the ``OperatorBase`.
+  <Function id="qiskit.chemistry.algorithms.AdaptVQE.returns_groundstate" name="returns_groundstate" signature="returns_groundstate()">
+    Whether the eigensolver returns the ground state or only ground state energy.
 
-**Return type**
+    **Return type**
 
-`Union`\[`float`, `List`\[`float`], `Dict`\[`str`, `List`\[`float`]]]
+    `bool`
+  </Function>
 
-**Returns**
+  ### solve
 
-The expectation value of the given operator(s). The return type will be identical to the format of the provided operators.
+  <Function id="qiskit.chemistry.algorithms.AdaptVQE.solve" name="solve" signature="solve(driver, aux_operators=None)">
+    Computes the ground state.
 
-### returns\_groundstate
+    **Parameters**
 
-<span id="qiskit.chemistry.algorithms.AdaptVQE.returns_groundstate" />
+    *   **driver** (`BaseDriver`) – a chemistry driver.
+    *   **aux\_operators** (`Union`\[`List`\[`FermionicOperator`], `List`\[`BosonicOperator`], `None`]) – Additional auxiliary `FermionicOperator` instances to evaluate at the ground state.
 
-`returns_groundstate()`
+    **Raises**
 
-Whether the eigensolver returns the ground state or only ground state energy.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if a solver other than VQE or a variational form other than UCCSD is provided or if the algorithm finishes due to an unforeseen reason.
 
-**Return type**
+    **Return type**
 
-`bool`
+    `Union`\[`ElectronicStructureResult`, `VibronicStructureResult`]
 
-### solve
+    **Returns**
 
-<span id="qiskit.chemistry.algorithms.AdaptVQE.solve" />
+    An AdaptVQEResult which is an ElectronicStructureResult but also includes runtime information about the AdaptVQE algorithm like the number of iterations, finishing criterion, and the final maximum gradient.
+  </Function>
 
-`solve(driver, aux_operators=None)`
+  ### solver
 
-Computes the ground state.
+  <Function id="qiskit.chemistry.algorithms.AdaptVQE.solver" name="solver" signature="property solver">
+    Returns the minimum eigensolver or factory.
 
-**Parameters**
+    **Return type**
 
-*   **driver** (`BaseDriver`) – a chemistry driver.
-*   **aux\_operators** (`Union`\[`List`\[`FermionicOperator`], `List`\[`BosonicOperator`], `None`]) – Additional auxiliary `FermionicOperator` instances to evaluate at the ground state.
+    `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
+  </Function>
 
-**Raises**
+  ### transformation
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if a solver other than VQE or a variational form other than UCCSD is provided or if the algorithm finishes due to an unforeseen reason.
+  <Function id="qiskit.chemistry.algorithms.AdaptVQE.transformation" name="transformation" signature="property transformation">
+    Returns the transformation used to obtain a qubit operator from the molecule.
 
-**Return type**
+    **Return type**
 
-`Union`\[`ElectronicStructureResult`, `VibronicStructureResult`]
-
-**Returns**
-
-An AdaptVQEResult which is an ElectronicStructureResult but also includes runtime information about the AdaptVQE algorithm like the number of iterations, finishing criterion, and the final maximum gradient.
-
-### solver
-
-<span id="qiskit.chemistry.algorithms.AdaptVQE.solver" />
-
-`property solver`
-
-Returns the minimum eigensolver or factory.
-
-**Return type**
-
-`Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
-
-### transformation
-
-<span id="qiskit.chemistry.algorithms.AdaptVQE.transformation" />
-
-`property transformation`
-
-Returns the transformation used to obtain a qubit operator from the molecule.
-
-**Return type**
-
-`Transformation`
+    `Transformation`
+  </Function>
+</Class>
 

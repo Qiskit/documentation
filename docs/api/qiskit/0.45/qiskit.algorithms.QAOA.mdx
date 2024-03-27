@@ -8,245 +8,231 @@ python_api_name: qiskit.algorithms.QAOA
 
 # QAOA
 
-<span id="qiskit.algorithms.QAOA" />
+<Class id="qiskit.algorithms.QAOA" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigen_solvers/qaoa.py" signature="qiskit.algorithms.QAOA(optimizer=None, reps=1, initial_state=None, mixer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)">
+  Bases: [`VQE`](qiskit.algorithms.VQE "qiskit.algorithms.minimum_eigen_solvers.vqe.VQE")
 
-`qiskit.algorithms.QAOA(optimizer=None, reps=1, initial_state=None, mixer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigen_solvers/qaoa.py "view source code")
+  Deprecated: Quantum Approximate Optimization Algorithm.
 
-Bases: [`VQE`](qiskit.algorithms.VQE "qiskit.algorithms.minimum_eigen_solvers.vqe.VQE")
+  The QAOA class has been superseded by the [`qiskit.algorithms.minimum_eigensolvers.QAOA`](qiskit.algorithms.minimum_eigensolvers.QAOA "qiskit.algorithms.minimum_eigensolvers.QAOA") class. This class will be deprecated in a future release and subsequently removed after that.
 
-Deprecated: Quantum Approximate Optimization Algorithm.
+  [QAOA](https://arxiv.org/abs/1411.4028) is a well-known algorithm for finding approximate solutions to combinatorial-optimization problems.
 
-The QAOA class has been superseded by the [`qiskit.algorithms.minimum_eigensolvers.QAOA`](qiskit.algorithms.minimum_eigensolvers.QAOA "qiskit.algorithms.minimum_eigensolvers.QAOA") class. This class will be deprecated in a future release and subsequently removed after that.
+  The QAOA implementation directly extends [`VQE`](qiskit.algorithms.VQE "qiskit.algorithms.VQE") and inherits VQE’s optimization structure. However, unlike VQE, which can be configured with arbitrary ansatzes, QAOA uses its own fine-tuned ansatz, which comprises $p$ parameterized global $x$ rotations and $p$ different parameterizations of the problem hamiltonian. QAOA is thus principally configured by the single integer parameter, *p*, which dictates the depth of the ansatz, and thus affects the approximation quality.
 
-[QAOA](https://arxiv.org/abs/1411.4028) is a well-known algorithm for finding approximate solutions to combinatorial-optimization problems.
+  An optional array of $2p$ parameter values, as the *initial\_point*, may be provided as the starting **beta** and **gamma** parameters (as identically named in the original [QAOA paper](https://arxiv.org/abs/1411.4028)) for the QAOA ansatz.
 
-The QAOA implementation directly extends [`VQE`](qiskit.algorithms.VQE "qiskit.algorithms.VQE") and inherits VQE’s optimization structure. However, unlike VQE, which can be configured with arbitrary ansatzes, QAOA uses its own fine-tuned ansatz, which comprises $p$ parameterized global $x$ rotations and $p$ different parameterizations of the problem hamiltonian. QAOA is thus principally configured by the single integer parameter, *p*, which dictates the depth of the ansatz, and thus affects the approximation quality.
+  An operator or a parameterized quantum circuit may optionally also be provided as a custom mixer Hamiltonian. This allows, as discussed in [this paper](https://doi.org/10.1103/PhysRevApplied.5.034007) for quantum annealing, and in [this paper](https://arxiv.org/abs/1709.03489) for QAOA, to run constrained optimization problems where the mixer constrains the evolution to a feasible subspace of the full Hilbert space.
 
-An optional array of $2p$ parameter values, as the *initial\_point*, may be provided as the starting **beta** and **gamma** parameters (as identically named in the original [QAOA paper](https://arxiv.org/abs/1411.4028)) for the QAOA ansatz.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.algorithms.minimum_eigen_solvers.qaoa.QAOA` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the class `qiskit.algorithms.minimum_eigensolvers.QAOA`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  </Admonition>
 
-An operator or a parameterized quantum circuit may optionally also be provided as a custom mixer Hamiltonian. This allows, as discussed in [this paper](https://doi.org/10.1103/PhysRevApplied.5.034007) for quantum annealing, and in [this paper](https://arxiv.org/abs/1709.03489) for QAOA, to run constrained optimization problems where the mixer constrains the evolution to a feasible subspace of the full Hilbert space.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.algorithms.minimum_eigen_solvers.qaoa.QAOA` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the class `qiskit.algorithms.minimum_eigensolvers.QAOA`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+  *   **optimizer** ([*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") *| None*) – A classical optimizer, see also [`VQE`](qiskit.algorithms.VQE "qiskit.algorithms.VQE") for more details on the possible types.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the integer parameter $p$ as specified in [https://arxiv.org/abs/1411.4028](https://arxiv.org/abs/1411.4028), Has a minimum valid value of 1.
+  *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – An optional initial state to prepend the QAOA circuit with
+  *   **mixer** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – the mixer Hamiltonian to evolve with or a custom quantum circuit. Allows support of optimizations in constrained subspaces as per [https://arxiv.org/abs/1709.03489](https://arxiv.org/abs/1709.03489) as well as warm-starting the optimization as introduced in [http://arxiv.org/abs/2009.10095](http://arxiv.org/abs/2009.10095).
+  *   **initial\_point** (*np.ndarray | None*) – An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then it will simply compute a random one.
+  *   **gradient** ([*GradientBase*](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.GradientBase")  *| Callable\[\[np.ndarray |*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*],* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*] | None*) – An optional gradient operator respectively a gradient function used for optimization.
+  *   **expectation** ([*ExpectationBase*](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase") *| None*) – The Expectation converter for taking the average value of the Observable over the ansatz state function. When None (the default) an [`ExpectationFactory`](qiskit.opflow.expectations.ExpectationFactory "qiskit.opflow.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to True (defaults to False).
+  *   **include\_custom** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When expectation parameter here is None setting this to True will allow the factory to include the custom Aer pauli expectation.
+  *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Max number of evaluations performed simultaneously. Signals the given optimizer that more than one set of parameters can be supplied so that potentially the expectation values can be computed in parallel. Typically this is possible when a finite difference gradient is used by the optimizer such that multiple points to compute the gradient can be passed and if computed in parallel improve overall execution time. Ignored if a gradient operator or function is given.
+  *   **callback** (*Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, np.ndarray,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*], None] | None*) – a callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer for its current set of parameters as it works towards the minimum. These are: the evaluation count, the optimizer parameters for the ansatz, the evaluated mean and the evaluated standard deviation.
+  *   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Quantum Instance or Backend
 
-**Parameters**
+  ## Attributes
 
-*   **optimizer** ([*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") *| None*) – A classical optimizer, see also [`VQE`](qiskit.algorithms.VQE "qiskit.algorithms.VQE") for more details on the possible types.
-*   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the integer parameter $p$ as specified in [https://arxiv.org/abs/1411.4028](https://arxiv.org/abs/1411.4028), Has a minimum valid value of 1.
-*   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – An optional initial state to prepend the QAOA circuit with
-*   **mixer** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – the mixer Hamiltonian to evolve with or a custom quantum circuit. Allows support of optimizations in constrained subspaces as per [https://arxiv.org/abs/1709.03489](https://arxiv.org/abs/1709.03489) as well as warm-starting the optimization as introduced in [http://arxiv.org/abs/2009.10095](http://arxiv.org/abs/2009.10095).
-*   **initial\_point** (*np.ndarray | None*) – An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then it will simply compute a random one.
-*   **gradient** ([*GradientBase*](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.GradientBase")  *| Callable\[\[np.ndarray |*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*],* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*] | None*) – An optional gradient operator respectively a gradient function used for optimization.
-*   **expectation** ([*ExpectationBase*](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase") *| None*) – The Expectation converter for taking the average value of the Observable over the ansatz state function. When None (the default) an [`ExpectationFactory`](qiskit.opflow.expectations.ExpectationFactory "qiskit.opflow.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to True (defaults to False).
-*   **include\_custom** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When expectation parameter here is None setting this to True will allow the factory to include the custom Aer pauli expectation.
-*   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Max number of evaluations performed simultaneously. Signals the given optimizer that more than one set of parameters can be supplied so that potentially the expectation values can be computed in parallel. Typically this is possible when a finite difference gradient is used by the optimizer such that multiple points to compute the gradient can be passed and if computed in parallel improve overall execution time. Ignored if a gradient operator or function is given.
-*   **callback** (*Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, np.ndarray,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*], None] | None*) – a callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer for its current set of parameters as it works towards the minimum. These are: the evaluation count, the optimizer parameters for the ansatz, the evaluated mean and the evaluated standard deviation.
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Quantum Instance or Backend
+  ### ansatz
 
-## Attributes
+  <Attribute id="qiskit.algorithms.QAOA.ansatz" name="ansatz">
+    Returns the ansatz.
+  </Attribute>
 
-<span id="qiskit.algorithms.QAOA.ansatz" />
+  ### callback
 
-### ansatz
+  <Attribute id="qiskit.algorithms.QAOA.callback" name="callback">
+    Returns callback
+  </Attribute>
 
-Returns the ansatz.
+  ### expectation
 
-<span id="qiskit.algorithms.QAOA.callback" />
+  <Attribute id="qiskit.algorithms.QAOA.expectation" name="expectation">
+    The expectation value algorithm used to construct the expectation measurement from the observable.
+  </Attribute>
 
-### callback
+  ### gradient
 
-Returns callback
+  <Attribute id="qiskit.algorithms.QAOA.gradient" name="gradient">
+    Returns the gradient.
+  </Attribute>
 
-<span id="qiskit.algorithms.QAOA.expectation" />
+  ### include\_custom
 
-### expectation
+  <Attribute id="qiskit.algorithms.QAOA.include_custom" name="include_custom">
+    Returns include\_custom
+  </Attribute>
 
-The expectation value algorithm used to construct the expectation measurement from the observable.
+  ### initial\_point
 
-<span id="qiskit.algorithms.QAOA.gradient" />
+  <Attribute id="qiskit.algorithms.QAOA.initial_point" name="initial_point">
+    Returns initial point
+  </Attribute>
 
-### gradient
+  ### initial\_state
 
-Returns the gradient.
+  <Attribute id="qiskit.algorithms.QAOA.initial_state" name="initial_state">
+    Returns: Returns the initial state.
+  </Attribute>
 
-<span id="qiskit.algorithms.QAOA.include_custom" />
+  ### max\_evals\_grouped
 
-### include\_custom
+  <Attribute id="qiskit.algorithms.QAOA.max_evals_grouped" name="max_evals_grouped">
+    Returns max\_evals\_grouped
+  </Attribute>
 
-Returns include\_custom
+  ### mixer
 
-<span id="qiskit.algorithms.QAOA.initial_point" />
+  <Attribute id="qiskit.algorithms.QAOA.mixer" name="mixer">
+    Returns: Returns the mixer.
+  </Attribute>
 
-### initial\_point
+  ### optimizer
 
-Returns initial point
+  <Attribute id="qiskit.algorithms.QAOA.optimizer" name="optimizer">
+    Returns optimizer
+  </Attribute>
 
-<span id="qiskit.algorithms.QAOA.initial_state" />
+  ### quantum\_instance
 
-### initial\_state
+  <Attribute id="qiskit.algorithms.QAOA.quantum_instance" name="quantum_instance">
+    Returns quantum instance.
+  </Attribute>
 
-Returns: Returns the initial state.
+  ### setting
 
-<span id="qiskit.algorithms.QAOA.max_evals_grouped" />
+  <Attribute id="qiskit.algorithms.QAOA.setting" name="setting">
+    Prepare the setting of VQE as a string.
+  </Attribute>
 
-### max\_evals\_grouped
+  ## Methods
 
-Returns max\_evals\_grouped
+  ### compute\_minimum\_eigenvalue
 
-<span id="qiskit.algorithms.QAOA.mixer" />
+  <Function id="qiskit.algorithms.QAOA.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="compute_minimum_eigenvalue(operator, aux_operators=None)">
+    Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
-### mixer
+    **Parameters**
 
-Returns: Returns the mixer.
+    *   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – Qubit operator of the Observable
+    *   **aux\_operators** (*ListOrDict\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")*] | None*) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
 
-<span id="qiskit.algorithms.QAOA.optimizer" />
+    **Returns**
 
-### optimizer
+    MinimumEigensolverResult
 
-Returns optimizer
+    **Return type**
 
-<span id="qiskit.algorithms.QAOA.quantum_instance" />
+    [MinimumEigensolverResult](qiskit.algorithms.MinimumEigensolverResult "qiskit.algorithms.MinimumEigensolverResult")
+  </Function>
 
-### quantum\_instance
+  ### construct\_circuit
 
-Returns quantum instance.
+  <Function id="qiskit.algorithms.QAOA.construct_circuit" name="construct_circuit" signature="construct_circuit(parameter, operator)">
+    Return the circuits used to compute the expectation value.
 
-<span id="qiskit.algorithms.QAOA.setting" />
+    **Parameters**
 
-### setting
+    *   **parameter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | np.ndarray*) – Parameters for the ansatz circuit.
+    *   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – Qubit operator of the Observable
 
-Prepare the setting of VQE as a string.
+    **Returns**
 
-## Methods
+    A list of the circuits used to compute the expectation value.
 
-### compute\_minimum\_eigenvalue
+    **Return type**
 
-<span id="qiskit.algorithms.QAOA.compute_minimum_eigenvalue" />
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+  </Function>
 
-`compute_minimum_eigenvalue(operator, aux_operators=None)`
+  ### construct\_expectation
 
-Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
+  <Function id="qiskit.algorithms.QAOA.construct_expectation" name="construct_expectation" signature="construct_expectation(parameter, operator, return_expectation=False)">
+    Generate the ansatz circuit and expectation value measurement, and return their runnable composition.
 
-**Parameters**
+    **Parameters**
 
-*   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – Qubit operator of the Observable
-*   **aux\_operators** (*ListOrDict\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")*] | None*) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
+    *   **parameter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | np.ndarray*) – Parameters for the ansatz circuit.
+    *   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – Qubit operator of the Observable
+    *   **return\_expectation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, return the `ExpectationBase` expectation converter used in the construction of the expectation value. Useful e.g. to compute the standard deviation of the expectation value.
 
-**Returns**
+    **Returns**
 
-MinimumEigensolverResult
+    The Operator equalling the measurement of the ansatz `StateFn` by the Observable’s expectation `StateFn`, and, optionally, the expectation converter.
 
-**Return type**
+    **Raises**
 
-[MinimumEigensolverResult](qiskit.algorithms.MinimumEigensolverResult "qiskit.algorithms.MinimumEigensolverResult")
+    *   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If no operator has been provided.
+    *   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If no expectation is passed and None could be inferred via the ExpectationFactory.
 
-### construct\_circuit
+    **Return type**
 
-<span id="qiskit.algorithms.QAOA.construct_circuit" />
+    [OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase") | [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase"), [ExpectationBase](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase")]
+  </Function>
 
-`construct_circuit(parameter, operator)`
+  ### get\_energy\_evaluation
 
-Return the circuits used to compute the expectation value.
+  <Function id="qiskit.algorithms.QAOA.get_energy_evaluation" name="get_energy_evaluation" signature="get_energy_evaluation(operator, return_expectation=False)">
+    Returns a function handle to evaluates the energy at given parameters for the ansatz.
 
-**Parameters**
+    This is the objective function to be passed to the optimizer that is used for evaluation.
 
-*   **parameter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | np.ndarray*) – Parameters for the ansatz circuit.
-*   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – Qubit operator of the Observable
+    **Parameters**
 
-**Returns**
+    *   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – The operator whose energy to evaluate.
+    *   **return\_expectation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, return the `ExpectationBase` expectation converter used in the construction of the expectation value. Useful e.g. to evaluate other operators with the same expectation value converter.
 
-A list of the circuits used to compute the expectation value.
+    **Returns**
 
-**Return type**
+    Energy of the hamiltonian of each parameter, and, optionally, the expectation converter.
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+    **Raises**
 
-### construct\_expectation
+    [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError "(in Python v3.12)") – If the circuit is not parameterized (i.e. has 0 free parameters).
 
-<span id="qiskit.algorithms.QAOA.construct_expectation" />
+    **Return type**
 
-`construct_expectation(parameter, operator, return_expectation=False)`
+    Callable\[\[np.ndarray], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]] | [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[Callable\[\[np.ndarray], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]], [ExpectationBase](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase")]
+  </Function>
 
-Generate the ansatz circuit and expectation value measurement, and return their runnable composition.
+  ### print\_settings
 
-**Parameters**
+  <Function id="qiskit.algorithms.QAOA.print_settings" name="print_settings" signature="print_settings()">
+    Preparing the setting of VQE into a string.
 
-*   **parameter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | np.ndarray*) – Parameters for the ansatz circuit.
-*   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – Qubit operator of the Observable
-*   **return\_expectation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, return the `ExpectationBase` expectation converter used in the construction of the expectation value. Useful e.g. to compute the standard deviation of the expectation value.
+    **Returns**
 
-**Returns**
+    the formatted setting of VQE
 
-The Operator equalling the measurement of the ansatz `StateFn` by the Observable’s expectation `StateFn`, and, optionally, the expectation converter.
+    **Return type**
 
-**Raises**
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-*   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If no operator has been provided.
-*   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If no expectation is passed and None could be inferred via the ExpectationFactory.
+  ### supports\_aux\_operators
 
-**Return type**
+  <Function id="qiskit.algorithms.QAOA.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-[OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase") | [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase"), [ExpectationBase](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase")]
+    If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
 
-### get\_energy\_evaluation
+    **Returns**
 
-<span id="qiskit.algorithms.QAOA.get_energy_evaluation" />
+    True if aux\_operator expectations can be evaluated, False otherwise
 
-`get_energy_evaluation(operator, return_expectation=False)`
+    **Return type**
 
-Returns a function handle to evaluates the energy at given parameters for the ansatz.
-
-This is the objective function to be passed to the optimizer that is used for evaluation.
-
-**Parameters**
-
-*   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – The operator whose energy to evaluate.
-*   **return\_expectation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, return the `ExpectationBase` expectation converter used in the construction of the expectation value. Useful e.g. to evaluate other operators with the same expectation value converter.
-
-**Returns**
-
-Energy of the hamiltonian of each parameter, and, optionally, the expectation converter.
-
-**Raises**
-
-[**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError "(in Python v3.12)") – If the circuit is not parameterized (i.e. has 0 free parameters).
-
-**Return type**
-
-Callable\[\[np.ndarray], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]] | [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[Callable\[\[np.ndarray], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]], [ExpectationBase](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase")]
-
-### print\_settings
-
-<span id="qiskit.algorithms.QAOA.print_settings" />
-
-`print_settings()`
-
-Preparing the setting of VQE into a string.
-
-**Returns**
-
-the formatted setting of VQE
-
-**Return type**
-
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
-
-### supports\_aux\_operators
-
-<span id="qiskit.algorithms.QAOA.supports_aux_operators" />
-
-`classmethod supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
-
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
+</Class>
 

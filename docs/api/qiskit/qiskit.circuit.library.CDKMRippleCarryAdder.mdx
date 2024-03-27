@@ -8,261 +8,255 @@ python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
 
 # CDKMRippleCarryAdder
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder" />
+<Class id="qiskit.circuit.library.CDKMRippleCarryAdder" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/adders/cdkm_ripple_carry_adder.py" signature="qiskit.circuit.library.CDKMRippleCarryAdder(num_state_qubits, kind='full', name='CDKMRippleCarryAdder')">
+  Bases: `Adder`
 
-`qiskit.circuit.library.CDKMRippleCarryAdder(num_state_qubits, kind='full', name='CDKMRippleCarryAdder')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/adders/cdkm_ripple_carry_adder.py "view source code")
+  A ripple-carry circuit to perform in-place addition on two qubit registers.
 
-Bases: `Adder`
+  As an example, a ripple-carry adder circuit that performs addition on two 3-qubit sized registers with a carry-in bit (`kind="full"`) is as follows:
 
-A ripple-carry circuit to perform in-place addition on two qubit registers.
+  ```python
+          ┌──────┐                                     ┌──────┐
+   cin_0: ┤2     ├─────────────────────────────────────┤2     ├
+          │      │┌──────┐                     ┌──────┐│      │
+     a_0: ┤0     ├┤2     ├─────────────────────┤2     ├┤0     ├
+          │      ││      │┌──────┐     ┌──────┐│      ││      │
+     a_1: ┤  MAJ ├┤0     ├┤2     ├─────┤2     ├┤0     ├┤  UMA ├
+          │      ││      ││      │     │      ││      ││      │
+     a_2: ┤      ├┤  MAJ ├┤0     ├──■──┤0     ├┤  UMA ├┤      ├
+          │      ││      ││      │  │  │      ││      ││      │
+     b_0: ┤1     ├┤      ├┤  MAJ ├──┼──┤  UMA ├┤      ├┤1     ├
+          └──────┘│      ││      │  │  │      ││      │└──────┘
+     b_1: ────────┤1     ├┤      ├──┼──┤      ├┤1     ├────────
+                  └──────┘│      │  │  │      │└──────┘
+     b_2: ────────────────┤1     ├──┼──┤1     ├────────────────
+                          └──────┘┌─┴─┐└──────┘
+  cout_0: ────────────────────────┤ X ├────────────────────────
+                                  └───┘
+  ```
 
-As an example, a ripple-carry adder circuit that performs addition on two 3-qubit sized registers with a carry-in bit (`kind="full"`) is as follows:
+  Here *MAJ* and *UMA* gates correspond to the gates introduced in \[1]. Note that in this implementation the input register qubits are ordered as all qubits from the first input register, followed by all qubits from the second input register.
 
-```python
-        ┌──────┐                                     ┌──────┐
- cin_0: ┤2     ├─────────────────────────────────────┤2     ├
-        │      │┌──────┐                     ┌──────┐│      │
-   a_0: ┤0     ├┤2     ├─────────────────────┤2     ├┤0     ├
-        │      ││      │┌──────┐     ┌──────┐│      ││      │
-   a_1: ┤  MAJ ├┤0     ├┤2     ├─────┤2     ├┤0     ├┤  UMA ├
-        │      ││      ││      │     │      ││      ││      │
-   a_2: ┤      ├┤  MAJ ├┤0     ├──■──┤0     ├┤  UMA ├┤      ├
-        │      ││      ││      │  │  │      ││      ││      │
-   b_0: ┤1     ├┤      ├┤  MAJ ├──┼──┤  UMA ├┤      ├┤1     ├
-        └──────┘│      ││      │  │  │      ││      │└──────┘
-   b_1: ────────┤1     ├┤      ├──┼──┤      ├┤1     ├────────
-                └──────┘│      │  │  │      │└──────┘
-   b_2: ────────────────┤1     ├──┼──┤1     ├────────────────
-                        └──────┘┌─┴─┐└──────┘
-cout_0: ────────────────────────┤ X ├────────────────────────
-                                └───┘
-```
+  Two different kinds of adders are supported. By setting the `kind` argument, you can also choose a half-adder, which doesn’t have a carry-in, and a fixed-sized-adder, which has neither carry-in nor carry-out, and thus acts on fixed register sizes. Unlike the full-adder, these circuits need one additional helper qubit.
 
-Here *MAJ* and *UMA* gates correspond to the gates introduced in \[1]. Note that in this implementation the input register qubits are ordered as all qubits from the first input register, followed by all qubits from the second input register.
+  The circuit diagram for the fixed-point adder (`kind="fixed"`) on 3-qubit sized inputs is
 
-Two different kinds of adders are supported. By setting the `kind` argument, you can also choose a half-adder, which doesn’t have a carry-in, and a fixed-sized-adder, which has neither carry-in nor carry-out, and thus acts on fixed register sizes. Unlike the full-adder, these circuits need one additional helper qubit.
+  ```python
+          ┌──────┐┌──────┐                ┌──────┐┌──────┐
+     a_0: ┤0     ├┤2     ├────────────────┤2     ├┤0     ├
+          │      ││      │┌──────┐┌──────┐│      ││      │
+     a_1: ┤      ├┤0     ├┤2     ├┤2     ├┤0     ├┤      ├
+          │      ││      ││      ││      ││      ││      │
+     a_2: ┤      ├┤  MAJ ├┤0     ├┤0     ├┤  UMA ├┤      ├
+          │      ││      ││      ││      ││      ││      │
+     b_0: ┤1 MAJ ├┤      ├┤  MAJ ├┤  UMA ├┤      ├┤1 UMA ├
+          │      ││      ││      ││      ││      ││      │
+     b_1: ┤      ├┤1     ├┤      ├┤      ├┤1     ├┤      ├
+          │      │└──────┘│      ││      │└──────┘│      │
+     b_2: ┤      ├────────┤1     ├┤1     ├────────┤      ├
+          │      │        └──────┘└──────┘        │      │
+  help_0: ┤2     ├────────────────────────────────┤2     ├
+          └──────┘                                └──────┘
+  ```
 
-The circuit diagram for the fixed-point adder (`kind="fixed"`) on 3-qubit sized inputs is
+  It has one less qubit than the full-adder since it doesn’t have the carry-out, but uses a helper qubit instead of the carry-in, so it only has one less qubit, not two.
 
-```python
-        ┌──────┐┌──────┐                ┌──────┐┌──────┐
-   a_0: ┤0     ├┤2     ├────────────────┤2     ├┤0     ├
-        │      ││      │┌──────┐┌──────┐│      ││      │
-   a_1: ┤      ├┤0     ├┤2     ├┤2     ├┤0     ├┤      ├
-        │      ││      ││      ││      ││      ││      │
-   a_2: ┤      ├┤  MAJ ├┤0     ├┤0     ├┤  UMA ├┤      ├
-        │      ││      ││      ││      ││      ││      │
-   b_0: ┤1 MAJ ├┤      ├┤  MAJ ├┤  UMA ├┤      ├┤1 UMA ├
-        │      ││      ││      ││      ││      ││      │
-   b_1: ┤      ├┤1     ├┤      ├┤      ├┤1     ├┤      ├
-        │      │└──────┘│      ││      │└──────┘│      │
-   b_2: ┤      ├────────┤1     ├┤1     ├────────┤      ├
-        │      │        └──────┘└──────┘        │      │
-help_0: ┤2     ├────────────────────────────────┤2     ├
-        └──────┘                                └──────┘
-```
+  **References:**
 
-It has one less qubit than the full-adder since it doesn’t have the carry-out, but uses a helper qubit instead of the carry-in, so it only has one less qubit, not two.
+  \[1] Cuccaro et al., A new quantum ripple-carry addition circuit, 2004. [arXiv:quant-ph/0410184](https://arxiv.org/pdf/quant-ph/0410184.pdf)
 
-**References:**
+  \[2] Vedral et al., Quantum Networks for Elementary Arithmetic Operations, 1995. [arXiv:quant-ph/9511018](https://arxiv.org/pdf/quant-ph/9511018.pdf)
 
-\[1] Cuccaro et al., A new quantum ripple-carry addition circuit, 2004. [arXiv:quant-ph/0410184](https://arxiv.org/pdf/quant-ph/0410184.pdf)
+  **Parameters**
 
-\[2] Vedral et al., Quantum Networks for Elementary Arithmetic Operations, 1995. [arXiv:quant-ph/9511018](https://arxiv.org/pdf/quant-ph/9511018.pdf)
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits in either input register for state $|a\rangle$ or $|b\rangle$. The two input registers must have the same number of qubits.
+  *   **kind** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The kind of adder, can be `'full'` for a full adder, `'half'` for a half adder, or `'fixed'` for a fixed-sized adder. A full adder includes both carry-in and carry-out, a half only carry-out, and a fixed-sized adder neither carry-in nor carry-out.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
 
-**Parameters**
+  **Raises**
 
-*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits in either input register for state $|a\rangle$ or $|b\rangle$. The two input registers must have the same number of qubits.
-*   **kind** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The kind of adder, can be `'full'` for a full adder, `'half'` for a half adder, or `'fixed'` for a fixed-sized adder. A full adder includes both carry-in and carry-out, a half only carry-out, and a fixed-sized adder neither carry-in nor carry-out.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `num_state_qubits` is lower than 1.
 
-**Raises**
+  ## Attributes
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `num_state_qubits` is lower than 1.
+  ### ancillas
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.ancillas" />
+  ### calibrations
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.calibrations" />
+  ### clbits
 
-### calibrations
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-Return calibration dictionary.
+  ### data
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.data" name="data">
+    Return the circuit data (instructions and context).
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.clbits" />
+    **Returns**
 
-### clbits
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
-Returns a list of classical bits in the order that the registers were added.
+    **Return type**
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.data" />
+    QuantumCircuitData
+  </Attribute>
 
-### data
+  ### global\_phase
 
-Return the circuit data (instructions and context).
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.global_phase" name="global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
 
-**Returns**
+  ### instances
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.instances" name="instances" attributeValue="= 166" />
 
-**Return type**
+  ### layout
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.layout" name="layout">
+    Return any associated layout information about the circuit
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.global_phase" />
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
-### global\_phase
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
 
-Return the global phase of the current circuit scope in radians.
+  ### metadata
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.instances" />
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.metadata" name="metadata">
+    The user provided metadata associated with the circuit.
 
-### instances
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-`= 166`
+  ### num\_ancillas
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.layout" />
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-### layout
+  ### num\_clbits
 
-Return any associated layout information about the circuit
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+  ### num\_parameters
 
-There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_parameters" name="num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.metadata" />
+  ### num\_qubits
 
-### metadata
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-The user provided metadata associated with the circuit.
+  ### num\_state\_qubits
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_state_qubits" name="num_state_qubits">
+    The number of state qubits, i.e. the number of bits in each input register.
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.num_ancillas" />
+    **Returns**
 
-### num\_ancillas
+    The number of state qubits.
+  </Attribute>
 
-Return the number of ancilla qubits.
+  ### op\_start\_times
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.num_clbits" />
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-### num\_clbits
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-Return number of classical bits.
+    **Returns**
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.num_parameters" />
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-### num\_parameters
+    **Raises**
 
-The number of parameter objects in the circuit.
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.num_qubits" />
+  ### parameters
 
-### num\_qubits
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.parameters" name="parameters">
+    The parameters defined in the circuit.
 
-Return number of qubits.
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.num_state_qubits" />
+    **Examples**
 
-### num\_state\_qubits
+    The snippet below shows that insertion order of parameters does not matter.
 
-The number of state qubits, i.e. the number of bits in each input register.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
 
-**Returns**
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
-The number of state qubits.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.op_start_times" />
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
-### op\_start\_times
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
 
-Return a list of operation start times.
+    **Returns**
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
-**Returns**
+  ### prefix
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-**Raises**
+  ### qubits
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
-
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.parameters" />
-
-### parameters
-
-The parameters defined in the circuit.
-
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
-
-**Examples**
-
-The snippet below shows that insertion order of parameters does not matter.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
->>> circuit = QuantumCircuit(1)
->>> circuit.rx(b, 0)
->>> circuit.rz(elephant, 0)
->>> circuit.ry(a, 0)
->>> circuit.parameters  # sorted alphabetically!
-ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
-```
-
-Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
->>> circuit = QuantumCircuit(1)
->>> circuit.u(*angles, 0)
->>> circuit.draw()
-   ┌─────────────────────────────┐
-q: ┤ U(angle_1,angle_2,angle_10) ├
-   └─────────────────────────────┘
->>> circuit.parameters
-ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
-```
-
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
->>> x = ParameterVector("x", 12)
->>> circuit = QuantumCircuit(1)
->>> for x_i in x:
-...     circuit.rx(x_i, 0)
->>> circuit.parameters
-ParameterView([
-    ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
-    ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
-    ..., ParameterVectorElement(x[11])
-])
-```
-
-**Returns**
-
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
-
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+</Class>
 

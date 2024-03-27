@@ -8,79 +8,71 @@ python_api_name: qiskit.transpiler.passes.ASAPScheduleAnalysis
 
 # ASAPScheduleAnalysis
 
-<span id="qiskit.transpiler.passes.ASAPScheduleAnalysis" />
+<Class id="qiskit.transpiler.passes.ASAPScheduleAnalysis" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/scheduling/scheduling/asap.py" signature="qiskit.transpiler.passes.ASAPScheduleAnalysis(*args, **kwargs)">
+  Bases: `BaseScheduler`
 
-`qiskit.transpiler.passes.ASAPScheduleAnalysis(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/scheduling/scheduling/asap.py "view source code")
+  ASAP Scheduling pass, which schedules the start time of instructions as early as possible..
 
-Bases: `BaseScheduler`
+  See the [Scheduling Stage](transpiler#scheduling-stage) section in the [`qiskit.transpiler`](transpiler#module-qiskit.transpiler "qiskit.transpiler") module documentation for the detailed behavior of the control flow operation, i.e. `c_if`.
 
-ASAP Scheduling pass, which schedules the start time of instructions as early as possible..
+  Scheduler initializer.
 
-See the [Scheduling Stage](transpiler#scheduling-stage) section in the [`qiskit.transpiler`](transpiler#module-qiskit.transpiler "qiskit.transpiler") module documentation for the detailed behavior of the control flow operation, i.e. `c_if`.
+  **Parameters**
 
-Scheduler initializer.
+  *   **durations** – Durations of instructions to be used in scheduling
+  *   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `durations` and this are specified then this argument will take precedence and `durations` will be ignored.
 
-**Parameters**
+  ## Attributes
 
-*   **durations** – Durations of instructions to be used in scheduling
-*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `durations` and this are specified then this argument will take precedence and `durations` will be ignored.
+  ### CONDITIONAL\_SUPPORTED
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.ASAPScheduleAnalysis.CONDITIONAL_SUPPORTED" name="CONDITIONAL_SUPPORTED" attributeValue="= (<class 'qiskit.circuit.gate.Gate'>, <class 'qiskit.circuit.delay.Delay'>)" />
 
-<span id="qiskit.transpiler.passes.ASAPScheduleAnalysis.CONDITIONAL_SUPPORTED" />
+  ### is\_analysis\_pass
 
-### CONDITIONAL\_SUPPORTED
+  <Attribute id="qiskit.transpiler.passes.ASAPScheduleAnalysis.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-`= (, )`
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.ASAPScheduleAnalysis.is_analysis_pass" />
+  ### is\_transformation\_pass
 
-### is\_analysis\_pass
+  <Attribute id="qiskit.transpiler.passes.ASAPScheduleAnalysis.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-Check if the pass is an analysis pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  ## Methods
 
-<span id="qiskit.transpiler.passes.ASAPScheduleAnalysis.is_transformation_pass" />
+  ### name
 
-### is\_transformation\_pass
+  <Function id="qiskit.transpiler.passes.ASAPScheduleAnalysis.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-Check if the pass is a transformation pass.
+  ### run
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  <Function id="qiskit.transpiler.passes.ASAPScheduleAnalysis.run" name="run" signature="run(dag)">
+    Run the ASAPSchedule pass on dag.
 
-## Methods
+    **Parameters**
 
-### name
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to schedule.
 
-<span id="qiskit.transpiler.passes.ASAPScheduleAnalysis.name" />
+    **Returns**
 
-`name()`
+    A scheduled DAG.
 
-Return the name of the pass.
+    **Return type**
 
-### run
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-<span id="qiskit.transpiler.passes.ASAPScheduleAnalysis.run" />
+    **Raises**
 
-`run(dag)`
-
-Run the ASAPSchedule pass on dag.
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to schedule.
-
-**Returns**
-
-A scheduled DAG.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-**Raises**
-
-*   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the circuit is not mapped on physical qubits.
-*   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if conditional bit is added to non-supported instruction.
+    *   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the circuit is not mapped on physical qubits.
+    *   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if conditional bit is added to non-supported instruction.
+  </Function>
+</Class>
 

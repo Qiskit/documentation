@@ -10,562 +10,502 @@ python_api_name: qiskit.aqua.operators.state_fns.CVaRMeasurement
 
 # qiskit.aqua.operators.state\_fns.CVaRMeasurement
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement" />
+<Class id="qiskit.aqua.operators.state_fns.CVaRMeasurement" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/state_fns/cvar_measurement.py" signature="CVaRMeasurement(primitive=None, alpha=1.0, coeff=1.0)">
+  **A specialized measurement class to compute CVaR expectation values.**
 
-`CVaRMeasurement(primitive=None, alpha=1.0, coeff=1.0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/state_fns/cvar_measurement.py "view source code")
+  See [https://arxiv.org/pdf/1907.04769.pdf](https://arxiv.org/pdf/1907.04769.pdf) for further details.
 
-**A specialized measurement class to compute CVaR expectation values.**
+  Used in `CVaRExpectation`, see there for more details.
 
-See [https://arxiv.org/pdf/1907.04769.pdf](https://arxiv.org/pdf/1907.04769.pdf) for further details.
+  **Parameters**
 
-Used in `CVaRExpectation`, see there for more details.
+  *   **primitive** (`Optional`\[`OperatorBase`]) – The `OperatorBase` which defines the diagonal operator measurement.
+  *   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – A coefficient by which to multiply the state function
+  *   **alpha** (`float`) – A real-valued parameter between 0 and 1 which specifies the fraction of observed samples to include when computing the objective value. alpha = 1 corresponds to a standard observable expectation value. alpha = 0 corresponds to only using the single sample with the lowest energy. alpha = 0.5 corresponds to ranking each observation by lowest energy and using the best
 
-**Parameters**
+  **Raises**
 
-*   **primitive** (`Optional`\[`OperatorBase`]) – The `OperatorBase` which defines the diagonal operator measurement.
-*   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – A coefficient by which to multiply the state function
-*   **alpha** (`float`) – A real-valued parameter between 0 and 1 which specifies the fraction of observed samples to include when computing the objective value. alpha = 1 corresponds to a standard observable expectation value. alpha = 0 corresponds to only using the single sample with the lowest energy. alpha = 0.5 corresponds to ranking each observation by lowest energy and using the best
+  *   **ValueError** – TODO remove that this raises an error
+  *   **ValueError** – If alpha is not in \[0, 1].
+  *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If the primitive is not diagonal.
 
-**Raises**
+  ### \_\_init\_\_
 
-*   **ValueError** – TODO remove that this raises an error
-*   **ValueError** – If alpha is not in \[0, 1].
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If the primitive is not diagonal.
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.__init__" name="__init__" signature="__init__(primitive=None, alpha=1.0, coeff=1.0)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **primitive** (`Optional`\[`OperatorBase`]) – The `OperatorBase` which defines the diagonal operator measurement.
+    *   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – A coefficient by which to multiply the state function
+    *   **alpha** (`float`) – A real-valued parameter between 0 and 1 which specifies the fraction of observed samples to include when computing the objective value. alpha = 1 corresponds to a standard observable expectation value. alpha = 0 corresponds to only using the single sample with the lowest energy. alpha = 0.5 corresponds to ranking each observation by lowest energy and using the best
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.__init__" />
+    **Raises**
 
-`__init__(primitive=None, alpha=1.0, coeff=1.0)`
+    *   **ValueError** – TODO remove that this raises an error
+    *   **ValueError** – If alpha is not in \[0, 1].
+    *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If the primitive is not diagonal.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **primitive** (`Optional`\[`OperatorBase`]) – The `OperatorBase` which defines the diagonal operator measurement.
-*   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – A coefficient by which to multiply the state function
-*   **alpha** (`float`) – A real-valued parameter between 0 and 1 which specifies the fraction of observed samples to include when computing the objective value. alpha = 1 corresponds to a standard observable expectation value. alpha = 0 corresponds to only using the single sample with the lowest energy. alpha = 0.5 corresponds to ranking each observation by lowest energy and using the best
+  |                                                                                                                                                                            |                                                                                                                                                                               |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.__init__ "qiskit.aqua.operators.state_fns.CVaRMeasurement.__init__")(\[primitive, alpha, coeff])             | **type primitive**`Optional`\[`OperatorBase`]                                                                                                                                 |
+  | [`add`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.add "qiskit.aqua.operators.state_fns.CVaRMeasurement.add")(other)                                                 | Return Operator addition of self and other, overloaded by `+`.                                                                                                                |
+  | [`adjoint`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.adjoint "qiskit.aqua.operators.state_fns.CVaRMeasurement.adjoint")()                                          | The adjoint of a CVaRMeasurement is not defined.                                                                                                                              |
+  | [`assign_parameters`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.assign_parameters "qiskit.aqua.operators.state_fns.CVaRMeasurement.assign_parameters")(param\_dict) | Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another.                                  |
+  | [`bind_parameters`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.bind_parameters "qiskit.aqua.operators.state_fns.CVaRMeasurement.bind_parameters")(param\_dict)       | Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).                             |
+  | [`compose`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.compose "qiskit.aqua.operators.state_fns.CVaRMeasurement.compose")(other\[, permutation, front])              | Composition (Linear algebra-style: A\@B(x) = A(B(x))) is not well defined for states in the binary function model, but is well defined for measurements.                      |
+  | [`equals`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.equals "qiskit.aqua.operators.state_fns.CVaRMeasurement.equals")(other)                                        | Evaluate Equality between Operators, overloaded by `==`.                                                                                                                      |
+  | [`eval`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.eval "qiskit.aqua.operators.state_fns.CVaRMeasurement.eval")(\[front])                                           | Evaluate the Operator’s underlying function, either on a binary string or another Operator.                                                                                   |
+  | [`mul`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.mul "qiskit.aqua.operators.state_fns.CVaRMeasurement.mul")(scalar)                                                | Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`). |
+  | [`neg`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.neg "qiskit.aqua.operators.state_fns.CVaRMeasurement.neg")()                                                      | Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.                                                                                      |
+  | [`permute`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.permute "qiskit.aqua.operators.state_fns.CVaRMeasurement.permute")(permutation)                               | Permute the qubits of the state function.                                                                                                                                     |
+  | [`power`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.power "qiskit.aqua.operators.state_fns.CVaRMeasurement.power")(exponent)                                        | Compose with Self Multiple Times, undefined for StateFns.                                                                                                                     |
+  | [`primitive_strings`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive_strings "qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive_strings")()            | Return a set of strings describing the primitives contained in the Operator.                                                                                                  |
+  | [`reduce`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.reduce "qiskit.aqua.operators.state_fns.CVaRMeasurement.reduce")()                                             | Try collapsing the Operator structure, usually after some type of conversion, e.g.                                                                                            |
+  | [`sample`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.sample "qiskit.aqua.operators.state_fns.CVaRMeasurement.sample")(\[shots, massive, reverse\_endianness])       | Sample the state function as a normalized probability distribution.                                                                                                           |
+  | [`tensor`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.tensor "qiskit.aqua.operators.state_fns.CVaRMeasurement.tensor")(other)                                        | Return tensor product between self and other, overloaded by `^`.                                                                                                              |
+  | [`tensorpower`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.tensorpower "qiskit.aqua.operators.state_fns.CVaRMeasurement.tensorpower")(other)                         | Return tensor product with self multiple times, overloaded by `^`.                                                                                                            |
+  | [`to_circuit_op`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.to_circuit_op "qiskit.aqua.operators.state_fns.CVaRMeasurement.to_circuit_op")()                        | Not defined.                                                                                                                                                                  |
+  | [`to_density_matrix`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.to_density_matrix "qiskit.aqua.operators.state_fns.CVaRMeasurement.to_density_matrix")(\[massive])  | Not defined.                                                                                                                                                                  |
+  | [`to_legacy_op`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.to_legacy_op "qiskit.aqua.operators.state_fns.CVaRMeasurement.to_legacy_op")(\[massive])                 | Attempt to return the Legacy Operator representation of the Operator.                                                                                                         |
+  | [`to_matrix`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.to_matrix "qiskit.aqua.operators.state_fns.CVaRMeasurement.to_matrix")(\[massive])                          | Not defined.                                                                                                                                                                  |
+  | [`to_matrix_op`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.to_matrix_op "qiskit.aqua.operators.state_fns.CVaRMeasurement.to_matrix_op")(\[massive])                 | Not defined.                                                                                                                                                                  |
+  | [`traverse`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.traverse "qiskit.aqua.operators.state_fns.CVaRMeasurement.traverse")(convert\_fn\[, coeff])                  | Apply the convert\_fn to the internal primitive if the primitive is an Operator (as in the case of `OperatorStateFn`).                                                        |
 
-**Raises**
+  ## Attributes
 
-*   **ValueError** – TODO remove that this raises an error
-*   **ValueError** – If alpha is not in \[0, 1].
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If the primitive is not diagonal.
+  |                                                                                                                                                      |                                                                            |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+  | `INDENTATION`                                                                                                                                        |                                                                            |
+  | [`alpha`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.alpha "qiskit.aqua.operators.state_fns.CVaRMeasurement.alpha")                            | A real-valued parameter between 0 and 1 which specifies the                |
+  | [`coeff`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.coeff "qiskit.aqua.operators.state_fns.CVaRMeasurement.coeff")                            | A coefficient by which the state function is multiplied.                   |
+  | [`is_measurement`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.is_measurement "qiskit.aqua.operators.state_fns.CVaRMeasurement.is_measurement") | Whether the StateFn object is a measurement Operator.                      |
+  | [`num_qubits`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.num_qubits "qiskit.aqua.operators.state_fns.CVaRMeasurement.num_qubits")             | The number of qubits over which the Operator is defined.                   |
+  | [`parameters`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.parameters "qiskit.aqua.operators.state_fns.CVaRMeasurement.parameters")             | Return a set of Parameter objects contained in the Operator.               |
+  | [`primitive`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive "qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive")                | The primitive which defines the behavior of the underlying State function. |
 
-## Methods
+  ### add
 
-|                                                                                                                                                                            |                                                                                                                                                                               |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.__init__ "qiskit.aqua.operators.state_fns.CVaRMeasurement.__init__")(\[primitive, alpha, coeff])             | **type primitive**`Optional`\[`OperatorBase`]                                                                                                                                 |
-| [`add`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.add "qiskit.aqua.operators.state_fns.CVaRMeasurement.add")(other)                                                 | Return Operator addition of self and other, overloaded by `+`.                                                                                                                |
-| [`adjoint`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.adjoint "qiskit.aqua.operators.state_fns.CVaRMeasurement.adjoint")()                                          | The adjoint of a CVaRMeasurement is not defined.                                                                                                                              |
-| [`assign_parameters`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.assign_parameters "qiskit.aqua.operators.state_fns.CVaRMeasurement.assign_parameters")(param\_dict) | Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another.                                  |
-| [`bind_parameters`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.bind_parameters "qiskit.aqua.operators.state_fns.CVaRMeasurement.bind_parameters")(param\_dict)       | Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).                             |
-| [`compose`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.compose "qiskit.aqua.operators.state_fns.CVaRMeasurement.compose")(other\[, permutation, front])              | Composition (Linear algebra-style: A\@B(x) = A(B(x))) is not well defined for states in the binary function model, but is well defined for measurements.                      |
-| [`equals`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.equals "qiskit.aqua.operators.state_fns.CVaRMeasurement.equals")(other)                                        | Evaluate Equality between Operators, overloaded by `==`.                                                                                                                      |
-| [`eval`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.eval "qiskit.aqua.operators.state_fns.CVaRMeasurement.eval")(\[front])                                           | Evaluate the Operator’s underlying function, either on a binary string or another Operator.                                                                                   |
-| [`mul`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.mul "qiskit.aqua.operators.state_fns.CVaRMeasurement.mul")(scalar)                                                | Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`). |
-| [`neg`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.neg "qiskit.aqua.operators.state_fns.CVaRMeasurement.neg")()                                                      | Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.                                                                                      |
-| [`permute`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.permute "qiskit.aqua.operators.state_fns.CVaRMeasurement.permute")(permutation)                               | Permute the qubits of the state function.                                                                                                                                     |
-| [`power`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.power "qiskit.aqua.operators.state_fns.CVaRMeasurement.power")(exponent)                                        | Compose with Self Multiple Times, undefined for StateFns.                                                                                                                     |
-| [`primitive_strings`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive_strings "qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive_strings")()            | Return a set of strings describing the primitives contained in the Operator.                                                                                                  |
-| [`reduce`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.reduce "qiskit.aqua.operators.state_fns.CVaRMeasurement.reduce")()                                             | Try collapsing the Operator structure, usually after some type of conversion, e.g.                                                                                            |
-| [`sample`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.sample "qiskit.aqua.operators.state_fns.CVaRMeasurement.sample")(\[shots, massive, reverse\_endianness])       | Sample the state function as a normalized probability distribution.                                                                                                           |
-| [`tensor`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.tensor "qiskit.aqua.operators.state_fns.CVaRMeasurement.tensor")(other)                                        | Return tensor product between self and other, overloaded by `^`.                                                                                                              |
-| [`tensorpower`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.tensorpower "qiskit.aqua.operators.state_fns.CVaRMeasurement.tensorpower")(other)                         | Return tensor product with self multiple times, overloaded by `^`.                                                                                                            |
-| [`to_circuit_op`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.to_circuit_op "qiskit.aqua.operators.state_fns.CVaRMeasurement.to_circuit_op")()                        | Not defined.                                                                                                                                                                  |
-| [`to_density_matrix`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.to_density_matrix "qiskit.aqua.operators.state_fns.CVaRMeasurement.to_density_matrix")(\[massive])  | Not defined.                                                                                                                                                                  |
-| [`to_legacy_op`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.to_legacy_op "qiskit.aqua.operators.state_fns.CVaRMeasurement.to_legacy_op")(\[massive])                 | Attempt to return the Legacy Operator representation of the Operator.                                                                                                         |
-| [`to_matrix`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.to_matrix "qiskit.aqua.operators.state_fns.CVaRMeasurement.to_matrix")(\[massive])                          | Not defined.                                                                                                                                                                  |
-| [`to_matrix_op`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.to_matrix_op "qiskit.aqua.operators.state_fns.CVaRMeasurement.to_matrix_op")(\[massive])                 | Not defined.                                                                                                                                                                  |
-| [`traverse`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.traverse "qiskit.aqua.operators.state_fns.CVaRMeasurement.traverse")(convert\_fn\[, coeff])                  | Apply the convert\_fn to the internal primitive if the primitive is an Operator (as in the case of `OperatorStateFn`).                                                        |
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.add" name="add" signature="add(other)">
+    Return Operator addition of self and other, overloaded by `+`.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                                      |                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `INDENTATION`                                                                                                                                        |                                                                            |
-| [`alpha`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.alpha "qiskit.aqua.operators.state_fns.CVaRMeasurement.alpha")                            | A real-valued parameter between 0 and 1 which specifies the                |
-| [`coeff`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.coeff "qiskit.aqua.operators.state_fns.CVaRMeasurement.coeff")                            | A coefficient by which the state function is multiplied.                   |
-| [`is_measurement`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.is_measurement "qiskit.aqua.operators.state_fns.CVaRMeasurement.is_measurement") | Whether the StateFn object is a measurement Operator.                      |
-| [`num_qubits`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.num_qubits "qiskit.aqua.operators.state_fns.CVaRMeasurement.num_qubits")             | The number of qubits over which the Operator is defined.                   |
-| [`parameters`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.parameters "qiskit.aqua.operators.state_fns.CVaRMeasurement.parameters")             | Return a set of Parameter objects contained in the Operator.               |
-| [`primitive`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive "qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive")                | The primitive which defines the behavior of the underlying State function. |
+    **other** (`OperatorBase`) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
 
-### add
+    **Return type**
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.add" />
+    `OperatorBase`
 
-`add(other)`
+    **Returns**
 
-Return Operator addition of self and other, overloaded by `+`.
+    An `OperatorBase` equivalent to the sum of self and other.
+  </Function>
 
-**Parameters**
+  ### adjoint
 
-**other** (`OperatorBase`) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.adjoint" name="adjoint" signature="adjoint()">
+    The adjoint of a CVaRMeasurement is not defined.
 
-**Return type**
+    **Return type**
 
-`OperatorBase`
+    `OperatorBase`
 
-**Returns**
+    **Returns**
 
-An `OperatorBase` equivalent to the sum of self and other.
+    Does not return anything, raises an error.
 
-### adjoint
+    **Raises**
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.adjoint" />
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – The adjoint of a CVaRMeasurement is not defined.
+  </Function>
 
-`adjoint()`
+  ### alpha
 
-The adjoint of a CVaRMeasurement is not defined.
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.alpha" name="alpha" signature="property alpha">
+    **A real-valued parameter between 0 and 1 which specifies the**
 
-**Return type**
+    fraction of observed samples to include when computing the objective value. alpha = 1 corresponds to a standard observable expectation value. alpha = 0 corresponds to only using the single sample with the lowest energy. alpha = 0.5 corresponds to ranking each observation by lowest energy and using the best half.
 
-`OperatorBase`
+    **Return type**
 
-**Returns**
+    `float`
 
-Does not return anything, raises an error.
+    **Returns**
 
-**Raises**
+    The parameter alpha which was given at initialization
+  </Function>
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – The adjoint of a CVaRMeasurement is not defined.
+  ### assign\_parameters
 
-### alpha
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.assign_parameters" name="assign_parameters" signature="assign_parameters(param_dict)">
+    Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.alpha" />
+    **Parameters**
 
-`property alpha`
+    **param\_dict** (`dict`) – The dictionary of `Parameters` to replace, and values or lists of values by which to replace them.
 
-**A real-valued parameter between 0 and 1 which specifies the**
+    **Return type**
 
-fraction of observed samples to include when computing the objective value. alpha = 1 corresponds to a standard observable expectation value. alpha = 0 corresponds to only using the single sample with the lowest energy. alpha = 0.5 corresponds to ranking each observation by lowest energy and using the best half.
+    `OperatorBase`
 
-**Return type**
+    **Returns**
 
-`float`
+    The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
+  </Function>
 
-**Returns**
+  ### bind\_parameters
 
-The parameter alpha which was given at initialization
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.bind_parameters" name="bind_parameters" signature="bind_parameters(param_dict)">
+    Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).
 
-### assign\_parameters
+    **Return type**
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.assign_parameters" />
+    `OperatorBase`
+  </Function>
 
-`assign_parameters(param_dict)`
+  ### coeff
 
-Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.coeff" name="coeff" signature="property coeff">
+    A coefficient by which the state function is multiplied.
 
-**Parameters**
+    **Return type**
 
-**param\_dict** (`dict`) – The dictionary of `Parameters` to replace, and values or lists of values by which to replace them.
+    `Union`\[`int`, `float`, `complex`, `ParameterExpression`]
+  </Function>
 
-**Return type**
+  ### compose
 
-`OperatorBase`
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.compose" name="compose" signature="compose(other, permutation=None, front=False)">
+    Composition (Linear algebra-style: A\@B(x) = A(B(x))) is not well defined for states in the binary function model, but is well defined for measurements.
 
-**Returns**
+    **Parameters**
 
-The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
+    *   **other** (`OperatorBase`) – The Operator to compose with self.
+    *   **permutation** (`Optional`\[`List`\[`int`]]) – `List[int]` which defines permutation on other operator.
+    *   **front** (`bool`) – If front==True, return `other.compose(self)`.
 
-### bind\_parameters
+    **Return type**
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.bind_parameters" />
+    `OperatorBase`
 
-`bind_parameters(param_dict)`
+    **Returns**
 
-Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).
+    An Operator equivalent to the function composition of self and other.
 
-**Return type**
+    **Raises**
 
-`OperatorBase`
+    **ValueError** – If self is not a measurement, it cannot be composed from the right.
+  </Function>
 
-### coeff
+  ### equals
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.coeff" />
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.equals" name="equals" signature="equals(other)">
+    Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
-`property coeff`
+    **Parameters**
 
-A coefficient by which the state function is multiplied.
+    **other** (`OperatorBase`) – The `OperatorBase` to compare to self.
 
-**Return type**
+    **Return type**
 
-`Union`\[`int`, `float`, `complex`, `ParameterExpression`]
+    `bool`
 
-### compose
+    **Returns**
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.compose" />
+    A bool equal to the equality of self and other.
+  </Function>
 
-`compose(other, permutation=None, front=False)`
+  ### eval
 
-Composition (Linear algebra-style: A\@B(x) = A(B(x))) is not well defined for states in the binary function model, but is well defined for measurements.
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.eval" name="eval" signature="eval(front=None)">
+    Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
-**Parameters**
+    If `front` is None, the matrix-representation of the operator is returned.
 
-*   **other** (`OperatorBase`) – The Operator to compose with self.
-*   **permutation** (`Optional`\[`List`\[`int`]]) – `List[int]` which defines permutation on other operator.
-*   **front** (`bool`) – If front==True, return `other.compose(self)`.
+    **Parameters**
 
-**Return type**
+    **front** (`Union`\[`str`, `dict`, `ndarray`, `OperatorBase`, `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function, or None.
 
-`OperatorBase`
+    **Return type**
 
-**Returns**
+    `Union`\[`OperatorBase`, `float`, `complex`]
 
-An Operator equivalent to the function composition of self and other.
+    **Returns**
 
-**Raises**
+    The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
+  </Function>
 
-**ValueError** – If self is not a measurement, it cannot be composed from the right.
+  ### is\_measurement
 
-### equals
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.is_measurement" name="is_measurement" signature="property is_measurement">
+    Whether the StateFn object is a measurement Operator.
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.equals" />
+    **Return type**
 
-`equals(other)`
+    `bool`
+  </Function>
 
-Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
+  ### mul
 
-**Parameters**
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.mul" name="mul" signature="mul(scalar)">
+    Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
 
-**other** (`OperatorBase`) – The `OperatorBase` to compare to self.
+    **Parameters**
 
-**Return type**
+    **scalar** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
 
-`bool`
+    **Return type**
 
-**Returns**
+    `OperatorBase`
 
-A bool equal to the equality of self and other.
+    **Returns**
 
-### eval
+    An `OperatorBase` equivalent to product of self and scalar.
+  </Function>
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.eval" />
+  ### neg
 
-`eval(front=None)`
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.neg" name="neg" signature="neg()">
+    Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.
 
-Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
+    **Return type**
 
-If `front` is None, the matrix-representation of the operator is returned.
+    `OperatorBase`
 
-**Parameters**
+    **Returns**
 
-**front** (`Union`\[`str`, `dict`, `ndarray`, `OperatorBase`, `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function, or None.
+    An `OperatorBase` equivalent to the negation of self.
+  </Function>
 
-**Return type**
+  ### num\_qubits
 
-`Union`\[`OperatorBase`, `float`, `complex`]
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.num_qubits" name="num_qubits" signature="property num_qubits">
+    The number of qubits over which the Operator is defined. If `op.num_qubits == 5`, then `op.eval('1' * 5)` will be valid, but `op.eval('11')` will not.
 
-**Returns**
+    **Return type**
 
-The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
+    `int`
 
-### is\_measurement
+    **Returns**
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.is_measurement" />
+    The number of qubits accepted by the Operator’s underlying function.
+  </Function>
 
-`property is_measurement`
+  ### parameters
 
-Whether the StateFn object is a measurement Operator.
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.parameters" name="parameters" signature="property parameters">
+    Return a set of Parameter objects contained in the Operator.
+  </Function>
 
-**Return type**
+  ### permute
 
-`bool`
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.permute" name="permute" signature="permute(permutation)">
+    Permute the qubits of the state function.
 
-### mul
+    **Parameters**
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.mul" />
+    **permutation** (`List`\[`int`]) – A list defining where each qubit should be permuted. The qubit at index j of the circuit should be permuted to position permutation\[j].
 
-`mul(scalar)`
+    **Return type**
 
-Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
+    `OperatorStateFn`
 
-**Parameters**
+    **Returns**
 
-**scalar** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
+    A new StateFn containing the permuted primitive.
+  </Function>
 
-**Return type**
+  ### power
 
-`OperatorBase`
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.power" name="power" signature="power(exponent)">
+    Compose with Self Multiple Times, undefined for StateFns.
 
-**Returns**
+    **Parameters**
 
-An `OperatorBase` equivalent to product of self and scalar.
+    **exponent** (`int`) – The number of times to compose self with self.
 
-### neg
+    **Raises**
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.neg" />
+    **ValueError** – This function is not defined for StateFns.
 
-`neg()`
+    **Return type**
 
-Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.
+    `OperatorBase`
+  </Function>
 
-**Return type**
+  ### primitive
 
-`OperatorBase`
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive" name="primitive" signature="property primitive">
+    The primitive which defines the behavior of the underlying State function.
+  </Function>
 
-**Returns**
+  ### primitive\_strings
 
-An `OperatorBase` equivalent to the negation of self.
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive_strings" name="primitive_strings" signature="primitive_strings()">
+    Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
-### num\_qubits
+    **Return type**
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.num_qubits" />
+    `Set`\[`str`]
 
-`property num_qubits`
+    **Returns**
 
-The number of qubits over which the Operator is defined. If `op.num_qubits == 5`, then `op.eval('1' * 5)` will be valid, but `op.eval('11')` will not.
+    A set of strings describing the primitives contained within the Operator.
+  </Function>
 
-**Return type**
+  ### reduce
 
-`int`
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.reduce" name="reduce" signature="reduce()">
+    Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
-**Returns**
+    **Return type**
 
-The number of qubits accepted by the Operator’s underlying function.
+    `OperatorBase`
 
-### parameters
+    **Returns**
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.parameters" />
+    The reduced `OperatorBase`.
+  </Function>
 
-`property parameters`
+  ### sample
 
-Return a set of Parameter objects contained in the Operator.
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.sample" name="sample" signature="sample(shots=1024, massive=False, reverse_endianness=False)">
+    Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
 
-### permute
+    **Parameters**
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.permute" />
+    *   **shots** (`int`) – The number of samples to take to approximate the State function.
+    *   **massive** (`bool`) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
+    *   **reverse\_endianness** (`bool`) – Whether to reverse the endianness of the bitstrings in the return dict to match Terra’s big-endianness.
 
-`permute(permutation)`
+    **Return type**
 
-Permute the qubits of the state function.
+    `dict`
 
-**Parameters**
+    **Returns**
 
-**permutation** (`List`\[`int`]) – A list defining where each qubit should be permuted. The qubit at index j of the circuit should be permuted to position permutation\[j].
+    A dict containing pairs sampled strings from the State function and sampling frequency divided by shots.
+  </Function>
 
-**Return type**
+  ### tensor
 
-`OperatorStateFn`
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.tensor" name="tensor" signature="tensor(other)">
+    Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, Plus.tensor(Zero) produces a |+⟩ on qubit 0 and a |0⟩ on qubit 1, or |+⟩⨂|0⟩, but would produce a QuantumCircuit like
 
-**Returns**
+    > |0⟩– |+⟩–
 
-A new StateFn containing the permuted primitive.
+    Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
 
-### power
+    **Parameters**
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.power" />
+    **other** (`OperatorBase`) – The `OperatorBase` to tensor product with self.
 
-`power(exponent)`
+    **Return type**
 
-Compose with Self Multiple Times, undefined for StateFns.
+    `OperatorBase`
 
-**Parameters**
+    **Returns**
 
-**exponent** (`int`) – The number of times to compose self with self.
+    An `OperatorBase` equivalent to the tensor product of self and other.
+  </Function>
 
-**Raises**
+  ### tensorpower
 
-**ValueError** – This function is not defined for StateFns.
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.tensorpower" name="tensorpower" signature="tensorpower(other)">
+    Return tensor product with self multiple times, overloaded by `^`.
 
-**Return type**
+    **Parameters**
 
-`OperatorBase`
+    **other** (`int`) – The int number of times to tensor product self with itself via `tensorpower`.
 
-### primitive
+    **Return type**
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive" />
+    `Union`\[`OperatorBase`, `int`]
 
-`property primitive`
+    **Returns**
 
-The primitive which defines the behavior of the underlying State function.
+    An `OperatorBase` equivalent to the tensorpower of self by other.
+  </Function>
 
-### primitive\_strings
+  ### to\_circuit\_op
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive_strings" />
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.to_circuit_op" name="to_circuit_op" signature="to_circuit_op()">
+    Not defined.
 
-`primitive_strings()`
+    **Return type**
 
-Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
+    `OperatorBase`
+  </Function>
 
-**Return type**
+  ### to\_density\_matrix
 
-`Set`\[`str`]
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.to_density_matrix" name="to_density_matrix" signature="to_density_matrix(massive=False)">
+    Not defined.
 
-**Returns**
+    **Return type**
 
-A set of strings describing the primitives contained within the Operator.
+    `ndarray`
+  </Function>
 
-### reduce
+  ### to\_legacy\_op
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.reduce" />
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.to_legacy_op" name="to_legacy_op" signature="to_legacy_op(massive=False)">
+    Attempt to return the Legacy Operator representation of the Operator. If self is a `SummedOp` of `PauliOps`, will attempt to convert to `WeightedPauliOperator`, and otherwise will simply convert to `MatrixOp` and then to `MatrixOperator`. The Legacy Operators cannot represent `StateFns` or proper `ListOps` (meaning not one of the `ListOp` subclasses), so an error will be thrown if this method is called on such an Operator. Also, Legacy Operators cannot represent unbound Parameter coeffs, so an error will be thrown if any are present in self.
 
-`reduce()`
+    Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
-Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
+    **Return type**
 
-**Return type**
+    `LegacyBaseOperator`
 
-`OperatorBase`
+    **Returns**
 
-**Returns**
+    The `LegacyBaseOperator` representing this Operator.
 
-The reduced `OperatorBase`.
+    **Raises**
 
-### sample
+    **TypeError** – self is an Operator which cannot be represented by a `LegacyBaseOperator`, such as `StateFn`, proper (non-subclass) `ListOp`, or an Operator with an unbound coeff Parameter.
+  </Function>
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.sample" />
+  ### to\_matrix
 
-`sample(shots=1024, massive=False, reverse_endianness=False)`
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.to_matrix" name="to_matrix" signature="to_matrix(massive=False)">
+    Not defined.
 
-Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
+    **Return type**
 
-**Parameters**
+    `ndarray`
+  </Function>
 
-*   **shots** (`int`) – The number of samples to take to approximate the State function.
-*   **massive** (`bool`) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
-*   **reverse\_endianness** (`bool`) – Whether to reverse the endianness of the bitstrings in the return dict to match Terra’s big-endianness.
+  ### to\_matrix\_op
 
-**Return type**
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.to_matrix_op" name="to_matrix_op" signature="to_matrix_op(massive=False)">
+    Not defined.
 
-`dict`
+    **Return type**
 
-**Returns**
+    `OperatorBase`
+  </Function>
 
-A dict containing pairs sampled strings from the State function and sampling frequency divided by shots.
+  ### traverse
 
-### tensor
+  <Function id="qiskit.aqua.operators.state_fns.CVaRMeasurement.traverse" name="traverse" signature="traverse(convert_fn, coeff=None)">
+    Apply the convert\_fn to the internal primitive if the primitive is an Operator (as in the case of `OperatorStateFn`). Otherwise do nothing. Used by converters.
 
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.tensor" />
+    **Parameters**
 
-`tensor(other)`
+    *   **convert\_fn** (`Callable`) – The function to apply to the internal OperatorBase.
+    *   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`, `None`]) – A coefficient to multiply by after applying convert\_fn. If it is None, self.coeff is used instead.
 
-Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, Plus.tensor(Zero) produces a |+⟩ on qubit 0 and a |0⟩ on qubit 1, or |+⟩⨂|0⟩, but would produce a QuantumCircuit like
+    **Return type**
 
-> |0⟩– |+⟩–
+    `OperatorBase`
 
-Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
+    **Returns**
 
-**Parameters**
-
-**other** (`OperatorBase`) – The `OperatorBase` to tensor product with self.
-
-**Return type**
-
-`OperatorBase`
-
-**Returns**
-
-An `OperatorBase` equivalent to the tensor product of self and other.
-
-### tensorpower
-
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.tensorpower" />
-
-`tensorpower(other)`
-
-Return tensor product with self multiple times, overloaded by `^`.
-
-**Parameters**
-
-**other** (`int`) – The int number of times to tensor product self with itself via `tensorpower`.
-
-**Return type**
-
-`Union`\[`OperatorBase`, `int`]
-
-**Returns**
-
-An `OperatorBase` equivalent to the tensorpower of self by other.
-
-### to\_circuit\_op
-
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.to_circuit_op" />
-
-`to_circuit_op()`
-
-Not defined.
-
-**Return type**
-
-`OperatorBase`
-
-### to\_density\_matrix
-
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.to_density_matrix" />
-
-`to_density_matrix(massive=False)`
-
-Not defined.
-
-**Return type**
-
-`ndarray`
-
-### to\_legacy\_op
-
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.to_legacy_op" />
-
-`to_legacy_op(massive=False)`
-
-Attempt to return the Legacy Operator representation of the Operator. If self is a `SummedOp` of `PauliOps`, will attempt to convert to `WeightedPauliOperator`, and otherwise will simply convert to `MatrixOp` and then to `MatrixOperator`. The Legacy Operators cannot represent `StateFns` or proper `ListOps` (meaning not one of the `ListOp` subclasses), so an error will be thrown if this method is called on such an Operator. Also, Legacy Operators cannot represent unbound Parameter coeffs, so an error will be thrown if any are present in self.
-
-Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
-
-**Return type**
-
-`LegacyBaseOperator`
-
-**Returns**
-
-The `LegacyBaseOperator` representing this Operator.
-
-**Raises**
-
-**TypeError** – self is an Operator which cannot be represented by a `LegacyBaseOperator`, such as `StateFn`, proper (non-subclass) `ListOp`, or an Operator with an unbound coeff Parameter.
-
-### to\_matrix
-
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.to_matrix" />
-
-`to_matrix(massive=False)`
-
-Not defined.
-
-**Return type**
-
-`ndarray`
-
-### to\_matrix\_op
-
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.to_matrix_op" />
-
-`to_matrix_op(massive=False)`
-
-Not defined.
-
-**Return type**
-
-`OperatorBase`
-
-### traverse
-
-<span id="qiskit.aqua.operators.state_fns.CVaRMeasurement.traverse" />
-
-`traverse(convert_fn, coeff=None)`
-
-Apply the convert\_fn to the internal primitive if the primitive is an Operator (as in the case of `OperatorStateFn`). Otherwise do nothing. Used by converters.
-
-**Parameters**
-
-*   **convert\_fn** (`Callable`) – The function to apply to the internal OperatorBase.
-*   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`, `None`]) – A coefficient to multiply by after applying convert\_fn. If it is None, self.coeff is used instead.
-
-**Return type**
-
-`OperatorBase`
-
-**Returns**
-
-The converted StateFn.
+    The converted StateFn.
+  </Function>
+</Class>
 

@@ -8,100 +8,88 @@ python_api_name: qiskit.chemistry.algorithms.NumPyEigensolverFactory
 
 # qiskit.chemistry.algorithms.NumPyEigensolverFactory
 
-<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory" />
+<Class id="qiskit.chemistry.algorithms.NumPyEigensolverFactory" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/numpy_eigensolver_factory.py" signature="NumPyEigensolverFactory(filter_criterion=None, k=100, use_default_filter_criterion=False)">
+  A factory to construct a NumPyEigensolver.
 
-`NumPyEigensolverFactory(filter_criterion=None, k=100, use_default_filter_criterion=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/numpy_eigensolver_factory.py "view source code")
+  **Parameters**
 
-A factory to construct a NumPyEigensolver.
+  *   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
+  *   **use\_default\_filter\_criterion** (`bool`) – Whether to use default filter criteria or not
+  *   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
+  *   **use\_default\_filter\_criterion** – whether to use the transformation’s default filter criterion if `filter_criterion` is `None`.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
-*   **use\_default\_filter\_criterion** (`bool`) – Whether to use default filter criteria or not
-*   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
-*   **use\_default\_filter\_criterion** – whether to use the transformation’s default filter criterion if `filter_criterion` is `None`.
+  <Function id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.__init__" name="__init__" signature="__init__(filter_criterion=None, k=100, use_default_filter_criterion=False)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
+    *   **use\_default\_filter\_criterion** (`bool`) – Whether to use default filter criteria or not
+    *   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
+    *   **use\_default\_filter\_criterion** – whether to use the transformation’s default filter criterion if `filter_criterion` is `None`.
+  </Function>
 
-<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.__init__" />
+  ## Methods
 
-`__init__(filter_criterion=None, k=100, use_default_filter_criterion=False)`
+  |                                                                                                                                                                        |                                                                                                                                    |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.algorithms.NumPyEigensolverFactory.__init__ "qiskit.chemistry.algorithms.NumPyEigensolverFactory.__init__")(\[filter\_criterion, k, …]) | **type filter\_criterion**`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]] |
+  | [`get_solver`](#qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver "qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver")(transformation)       | Returns a NumPyEigensolver with the desired filter                                                                                 |
 
-**Parameters**
+  ## Attributes
 
-*   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
-*   **use\_default\_filter\_criterion** (`bool`) – Whether to use default filter criteria or not
-*   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
-*   **use\_default\_filter\_criterion** – whether to use the transformation’s default filter criterion if `filter_criterion` is `None`.
+  |                                                                                                                                                                                                        |                                                     |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
+  | [`filter_criterion`](#qiskit.chemistry.algorithms.NumPyEigensolverFactory.filter_criterion "qiskit.chemistry.algorithms.NumPyEigensolverFactory.filter_criterion")                                     | returns filter criterion                            |
+  | [`k`](#qiskit.chemistry.algorithms.NumPyEigensolverFactory.k "qiskit.chemistry.algorithms.NumPyEigensolverFactory.k")                                                                                  | returns k (number of eigenvalues requested)         |
+  | [`use_default_filter_criterion`](#qiskit.chemistry.algorithms.NumPyEigensolverFactory.use_default_filter_criterion "qiskit.chemistry.algorithms.NumPyEigensolverFactory.use_default_filter_criterion") | returns whether to use the default filter criterion |
 
-## Methods
+  ### filter\_criterion
 
-|                                                                                                                                                                        |                                                                                                                                    |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.algorithms.NumPyEigensolverFactory.__init__ "qiskit.chemistry.algorithms.NumPyEigensolverFactory.__init__")(\[filter\_criterion, k, …]) | **type filter\_criterion**`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]] |
-| [`get_solver`](#qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver "qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver")(transformation)       | Returns a NumPyEigensolver with the desired filter                                                                                 |
+  <Function id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.filter_criterion" name="filter_criterion" signature="property filter_criterion">
+    returns filter criterion
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                                                                                        |                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
-| [`filter_criterion`](#qiskit.chemistry.algorithms.NumPyEigensolverFactory.filter_criterion "qiskit.chemistry.algorithms.NumPyEigensolverFactory.filter_criterion")                                     | returns filter criterion                            |
-| [`k`](#qiskit.chemistry.algorithms.NumPyEigensolverFactory.k "qiskit.chemistry.algorithms.NumPyEigensolverFactory.k")                                                                                  | returns k (number of eigenvalues requested)         |
-| [`use_default_filter_criterion`](#qiskit.chemistry.algorithms.NumPyEigensolverFactory.use_default_filter_criterion "qiskit.chemistry.algorithms.NumPyEigensolverFactory.use_default_filter_criterion") | returns whether to use the default filter criterion |
+    `Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]
+  </Function>
 
-### filter\_criterion
+  ### get\_solver
 
-<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.filter_criterion" />
+  <Function id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver" name="get_solver" signature="get_solver(transformation)">
+    Returns a NumPyEigensolver with the desired filter
 
-`property filter_criterion`
+    **Parameters**
 
-returns filter criterion
+    **transformation** (`Transformation`) – a fermionic/bosonic qubit operator transformation.
 
-**Return type**
+    **Return type**
 
-`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]
+    `Eigensolver`
 
-### get\_solver
+    **Returns**
 
-<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver" />
+    A NumPyEigensolver suitable to compute the ground state of the molecule transformed by `transformation`.
+  </Function>
 
-`get_solver(transformation)`
+  ### k
 
-Returns a NumPyEigensolver with the desired filter
+  <Function id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.k" name="k" signature="property k">
+    returns k (number of eigenvalues requested)
 
-**Parameters**
+    **Return type**
 
-**transformation** (`Transformation`) – a fermionic/bosonic qubit operator transformation.
+    `int`
+  </Function>
 
-**Return type**
+  ### use\_default\_filter\_criterion
 
-`Eigensolver`
+  <Function id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.use_default_filter_criterion" name="use_default_filter_criterion" signature="property use_default_filter_criterion">
+    returns whether to use the default filter criterion
 
-**Returns**
+    **Return type**
 
-A NumPyEigensolver suitable to compute the ground state of the molecule transformed by `transformation`.
-
-### k
-
-<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.k" />
-
-`property k`
-
-returns k (number of eigenvalues requested)
-
-**Return type**
-
-`int`
-
-### use\_default\_filter\_criterion
-
-<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.use_default_filter_criterion" />
-
-`property use_default_filter_criterion`
-
-returns whether to use the default filter criterion
-
-**Return type**
-
-`bool`
+    `bool`
+  </Function>
+</Class>
 

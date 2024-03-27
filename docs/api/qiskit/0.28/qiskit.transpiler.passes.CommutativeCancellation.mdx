@@ -8,100 +8,88 @@ python_api_name: qiskit.transpiler.passes.CommutativeCancellation
 
 # qiskit.transpiler.passes.CommutativeCancellation
 
-<span id="qiskit.transpiler.passes.CommutativeCancellation" />
+<Class id="qiskit.transpiler.passes.CommutativeCancellation" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/commutative_cancellation.py" signature="CommutativeCancellation(*args, **kwargs)">
+  Cancel the redundant (self-adjoint) gates through commutation relations.
 
-`CommutativeCancellation(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/commutative_cancellation.py "view source code")
+  Pass for cancelling self-inverse gates/rotations. The cancellation utilizes the commutation relations in the circuit. Gates considered include:
 
-Cancel the redundant (self-adjoint) gates through commutation relations.
+  ```python
+  H, X, Y, Z, CX, CY, CZ
+  ```
 
-Pass for cancelling self-inverse gates/rotations. The cancellation utilizes the commutation relations in the circuit. Gates considered include:
+  CommutativeCancellation initializer.
 
-```python
-H, X, Y, Z, CX, CY, CZ
-```
+  **Parameters**
 
-CommutativeCancellation initializer.
+  **basis\_gates** (*list\[str]*) – Basis gates to consider, e.g. `['u3', 'cx']`. For the effects of this pass, the basis is the set intersection between the `basis_gates` parameter and the gates in the dag.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**basis\_gates** (*list\[str]*) – Basis gates to consider, e.g. `['u3', 'cx']`. For the effects of this pass, the basis is the set intersection between the `basis_gates` parameter and the gates in the dag.
+  <Function id="qiskit.transpiler.passes.CommutativeCancellation.__init__" name="__init__" signature="__init__(basis_gates=None)">
+    CommutativeCancellation initializer.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.CommutativeCancellation.__init__" />
+    **basis\_gates** (*list\[str]*) – Basis gates to consider, e.g. `['u3', 'cx']`. For the effects of this pass, the basis is the set intersection between the `basis_gates` parameter and the gates in the dag.
+  </Function>
 
-`__init__(basis_gates=None)`
+  ## Methods
 
-CommutativeCancellation initializer.
+  |                                                                                                                                                       |                                              |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+  | [`__init__`](#qiskit.transpiler.passes.CommutativeCancellation.__init__ "qiskit.transpiler.passes.CommutativeCancellation.__init__")(\[basis\_gates]) | CommutativeCancellation initializer.         |
+  | [`name`](#qiskit.transpiler.passes.CommutativeCancellation.name "qiskit.transpiler.passes.CommutativeCancellation.name")()                            | Return the name of the pass.                 |
+  | [`run`](#qiskit.transpiler.passes.CommutativeCancellation.run "qiskit.transpiler.passes.CommutativeCancellation.run")(dag)                            | Run the CommutativeCancellation pass on dag. |
 
-**Parameters**
+  ## Attributes
 
-**basis\_gates** (*list\[str]*) – Basis gates to consider, e.g. `['u3', 'cx']`. For the effects of this pass, the basis is the set intersection between the `basis_gates` parameter and the gates in the dag.
+  |                                                                                                                                                                                |                                             |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
+  | [`is_analysis_pass`](#qiskit.transpiler.passes.CommutativeCancellation.is_analysis_pass "qiskit.transpiler.passes.CommutativeCancellation.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
+  | [`is_transformation_pass`](#qiskit.transpiler.passes.CommutativeCancellation.is_transformation_pass "qiskit.transpiler.passes.CommutativeCancellation.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-## Methods
+  ### is\_analysis\_pass
 
-|                                                                                                                                                       |                                              |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`__init__`](#qiskit.transpiler.passes.CommutativeCancellation.__init__ "qiskit.transpiler.passes.CommutativeCancellation.__init__")(\[basis\_gates]) | CommutativeCancellation initializer.         |
-| [`name`](#qiskit.transpiler.passes.CommutativeCancellation.name "qiskit.transpiler.passes.CommutativeCancellation.name")()                            | Return the name of the pass.                 |
-| [`run`](#qiskit.transpiler.passes.CommutativeCancellation.run "qiskit.transpiler.passes.CommutativeCancellation.run")(dag)                            | Run the CommutativeCancellation pass on dag. |
+  <Function id="qiskit.transpiler.passes.CommutativeCancellation.is_analysis_pass" name="is_analysis_pass" signature="property is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-## Attributes
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Function>
 
-|                                                                                                                                                                                |                                             |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
-| [`is_analysis_pass`](#qiskit.transpiler.passes.CommutativeCancellation.is_analysis_pass "qiskit.transpiler.passes.CommutativeCancellation.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
-| [`is_transformation_pass`](#qiskit.transpiler.passes.CommutativeCancellation.is_transformation_pass "qiskit.transpiler.passes.CommutativeCancellation.is_transformation_pass") | Check if the pass is a transformation pass. |
+  ### is\_transformation\_pass
 
-### is\_analysis\_pass
+  <Function id="qiskit.transpiler.passes.CommutativeCancellation.is_transformation_pass" name="is_transformation_pass" signature="property is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-<span id="qiskit.transpiler.passes.CommutativeCancellation.is_analysis_pass" />
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Function>
 
-`property is_analysis_pass`
+  ### name
 
-Check if the pass is an analysis pass.
+  <Function id="qiskit.transpiler.passes.CommutativeCancellation.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  ### run
 
-### is\_transformation\_pass
+  <Function id="qiskit.transpiler.passes.CommutativeCancellation.run" name="run" signature="run(dag)">
+    Run the CommutativeCancellation pass on dag.
 
-<span id="qiskit.transpiler.passes.CommutativeCancellation.is_transformation_pass" />
+    **Parameters**
 
-`property is_transformation_pass`
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the DAG to be optimized.
 
-Check if the pass is a transformation pass.
+    **Returns**
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    the optimized DAG.
 
-### name
+    **Return type**
 
-<span id="qiskit.transpiler.passes.CommutativeCancellation.name" />
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-`name()`
+    **Raises**
 
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.CommutativeCancellation.run" />
-
-`run(dag)`
-
-Run the CommutativeCancellation pass on dag.
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the DAG to be optimized.
-
-**Returns**
-
-the optimized DAG.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-**Raises**
-
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – when the 1-qubit rotation gates are not found
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – when the 1-qubit rotation gates are not found
+  </Function>
+</Class>
 

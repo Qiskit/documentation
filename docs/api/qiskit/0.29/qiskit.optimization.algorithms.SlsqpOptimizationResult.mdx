@@ -8,180 +8,178 @@ python_api_name: qiskit.optimization.algorithms.SlsqpOptimizationResult
 
 # SlsqpOptimizationResult
 
-<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult" />
+<Class id="qiskit.optimization.algorithms.SlsqpOptimizationResult" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/slsqp_optimizer.py" signature="SlsqpOptimizationResult(x, fval, variables, status, fx=None, its=None, imode=None, smode=None)">
+  Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationResult`
 
-`SlsqpOptimizationResult(x, fval, variables, status, fx=None, its=None, imode=None, smode=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
+  SLSQP optimization result, defines additional properties that may be returned by the optimizer.
 
-Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationResult`
+  Constructs a result object with properties specific to SLSQP.
 
-SLSQP optimization result, defines additional properties that may be returned by the optimizer.
+  **Parameters**
 
-Constructs a result object with properties specific to SLSQP.
+  *   **x** (`Union`\[`List`\[`float`], `ndarray`]) – The solution of the problem
+  *   **fval** (`float`) – The value of the objective function of the solution
+  *   **variables** (`List`\[`Variable`]) – A list of variables defined in the problem
+  *   **fx** (`Optional`\[`ndarray`]) – The value of the objective function being optimized, may be different from `fval`
+  *   **its** (`Optional`\[`int`]) – The number of iterations.
+  *   **imode** (`Optional`\[`int`]) – The exit mode from the optimizer (see the documentation of `scipy.optimize.fmin_slsqp`).
+  *   **smode** (`Optional`\[`str`]) – Message describing the exit mode from the optimizer.
+  *   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
 
-**Parameters**
+  ## Attributes
 
-*   **x** (`Union`\[`List`\[`float`], `ndarray`]) – The solution of the problem
-*   **fval** (`float`) – The value of the objective function of the solution
-*   **variables** (`List`\[`Variable`]) – A list of variables defined in the problem
-*   **fx** (`Optional`\[`ndarray`]) – The value of the objective function being optimized, may be different from `fval`
-*   **its** (`Optional`\[`int`]) – The number of iterations.
-*   **imode** (`Optional`\[`int`]) – The exit mode from the optimizer (see the documentation of `scipy.optimize.fmin_slsqp`).
-*   **smode** (`Optional`\[`str`]) – Message describing the exit mode from the optimizer.
-*   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
+  ### fval
 
-## Attributes
+  <Attribute id="qiskit.optimization.algorithms.SlsqpOptimizationResult.fval" name="fval">
+    Returns the optimal function value.
 
-<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.fval" />
+    **Return type**
 
-### fval
+    `float`
 
-Returns the optimal function value.
+    **Returns**
 
-**Return type**
+    The function value corresponding to the optimal value found in the optimization.
+  </Attribute>
 
-`float`
+  ### fx
 
-**Returns**
+  <Attribute id="qiskit.optimization.algorithms.SlsqpOptimizationResult.fx" name="fx">
+    Returns the final value of the objective function being actually optimized.
 
-The function value corresponding to the optimal value found in the optimization.
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.fx" />
+    `Optional`\[`ndarray`]
+  </Attribute>
 
-### fx
+  ### imode
 
-Returns the final value of the objective function being actually optimized.
+  <Attribute id="qiskit.optimization.algorithms.SlsqpOptimizationResult.imode" name="imode">
+    Returns the exit mode from the optimizer.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`ndarray`]
+    `Optional`\[`int`]
+  </Attribute>
 
-<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.imode" />
+  ### its
 
-### imode
+  <Attribute id="qiskit.optimization.algorithms.SlsqpOptimizationResult.its" name="its">
+    Returns the number of iterations
 
-Returns the exit mode from the optimizer.
+    **Return type**
 
-**Return type**
+    `Optional`\[`int`]
+  </Attribute>
 
-`Optional`\[`int`]
+  ### raw\_results
 
-<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.its" />
+  <Attribute id="qiskit.optimization.algorithms.SlsqpOptimizationResult.raw_results" name="raw_results">
+    Return the original results object from the optimization algorithm.
 
-### its
+    Currently a dump for any leftovers.
 
-Returns the number of iterations
+    **Return type**
 
-**Return type**
+    `Any`
 
-`Optional`\[`int`]
+    **Returns**
 
-<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.raw_results" />
+    Additional result information of the optimization algorithm.
+  </Attribute>
 
-### raw\_results
+  ### samples
 
-Return the original results object from the optimization algorithm.
+  <Attribute id="qiskit.optimization.algorithms.SlsqpOptimizationResult.samples" name="samples">
+    Returns the list of solution samples
 
-Currently a dump for any leftovers.
+    **Return type**
 
-**Return type**
+    `List`\[`SolutionSample`]
 
-`Any`
+    **Returns**
 
-**Returns**
+    The list of solution samples.
+  </Attribute>
 
-Additional result information of the optimization algorithm.
+  ### smode
 
-<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.samples" />
+  <Attribute id="qiskit.optimization.algorithms.SlsqpOptimizationResult.smode" name="smode">
+    Returns message describing the exit mode from the optimizer.
 
-### samples
+    **Return type**
 
-Returns the list of solution samples
+    `Optional`\[`str`]
+  </Attribute>
 
-**Return type**
+  ### status
 
-`List`\[`SolutionSample`]
+  <Attribute id="qiskit.optimization.algorithms.SlsqpOptimizationResult.status" name="status">
+    Returns the termination status of the optimization algorithm.
 
-**Returns**
+    **Return type**
 
-The list of solution samples.
+    `OptimizationResultStatus`
 
-<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.smode" />
+    **Returns**
 
-### smode
+    The termination status of the algorithm.
+  </Attribute>
 
-Returns message describing the exit mode from the optimizer.
+  ### variable\_names
 
-**Return type**
+  <Attribute id="qiskit.optimization.algorithms.SlsqpOptimizationResult.variable_names" name="variable_names">
+    Returns the list of variable names of the optimization problem.
 
-`Optional`\[`str`]
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.status" />
+    `List`\[`str`]
 
-### status
+    **Returns**
 
-Returns the termination status of the optimization algorithm.
+    The list of variable names of the optimization problem.
+  </Attribute>
 
-**Return type**
+  ### variables
 
-`OptimizationResultStatus`
+  <Attribute id="qiskit.optimization.algorithms.SlsqpOptimizationResult.variables" name="variables">
+    Returns the list of variables of the optimization problem.
 
-**Returns**
+    **Return type**
 
-The termination status of the algorithm.
+    `List`\[`Variable`]
 
-<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.variable_names" />
+    **Returns**
 
-### variable\_names
+    The list of variables.
+  </Attribute>
 
-Returns the list of variable names of the optimization problem.
+  ### variables\_dict
 
-**Return type**
+  <Attribute id="qiskit.optimization.algorithms.SlsqpOptimizationResult.variables_dict" name="variables_dict">
+    Returns the optimal value as a dictionary of the variable name and corresponding value.
 
-`List`\[`str`]
+    **Return type**
 
-**Returns**
+    `Dict`\[`str`, `float`]
 
-The list of variable names of the optimization problem.
+    **Returns**
 
-<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.variables" />
+    The optimal value as a dictionary of the variable name and corresponding value.
+  </Attribute>
 
-### variables
+  ### x
 
-Returns the list of variables of the optimization problem.
+  <Attribute id="qiskit.optimization.algorithms.SlsqpOptimizationResult.x" name="x">
+    Returns the optimal value found in the optimization or None in case of FAILURE.
 
-**Return type**
+    **Return type**
 
-`List`\[`Variable`]
+    `Optional`\[`ndarray`]
 
-**Returns**
+    **Returns**
 
-The list of variables.
-
-<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.variables_dict" />
-
-### variables\_dict
-
-Returns the optimal value as a dictionary of the variable name and corresponding value.
-
-**Return type**
-
-`Dict`\[`str`, `float`]
-
-**Returns**
-
-The optimal value as a dictionary of the variable name and corresponding value.
-
-<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.x" />
-
-### x
-
-Returns the optimal value found in the optimization or None in case of FAILURE.
-
-**Return type**
-
-`Optional`\[`ndarray`]
-
-**Returns**
-
-The optimal value found in the optimization.
+    The optimal value found in the optimization.
+  </Attribute>
+</Class>
 

@@ -8,55 +8,49 @@ python_api_name: qiskit.transpiler.passes.FixedPoint
 
 # FixedPoint
 
-<span id="qiskit.transpiler.passes.FixedPoint" />
+<Class id="qiskit.transpiler.passes.FixedPoint" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/fixed_point.py" signature="qiskit.transpiler.passes.FixedPoint(*args, **kwargs)">
+  Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-`qiskit.transpiler.passes.FixedPoint(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/fixed_point.py "view source code")
+  Check if a property reached a fixed point.
 
-Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+  A dummy analysis pass that checks if a property reached a fixed point. The results is saved in `property_set['<property>_fixed_point']` as a boolean.
 
-Check if a property reached a fixed point.
+  FixedPoint initializer.
 
-A dummy analysis pass that checks if a property reached a fixed point. The results is saved in `property_set['<property>_fixed_point']` as a boolean.
+  **Parameters**
 
-FixedPoint initializer.
+  **property\_to\_check** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The property to check if a fixed point was reached.
 
-**Parameters**
+  ## Attributes
 
-**property\_to\_check** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The property to check if a fixed point was reached.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.FixedPoint.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.FixedPoint.is_analysis_pass" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### is\_analysis\_pass
+  ### is\_transformation\_pass
 
-Check if the pass is an analysis pass.
+  <Attribute id="qiskit.transpiler.passes.FixedPoint.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.FixedPoint.is_transformation_pass" />
+  ## Methods
 
-### is\_transformation\_pass
+  ### name
 
-Check if the pass is a transformation pass.
+  <Function id="qiskit.transpiler.passes.FixedPoint.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  ### run
 
-## Methods
-
-### name
-
-<span id="qiskit.transpiler.passes.FixedPoint.name" />
-
-`name()`
-
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.FixedPoint.run" />
-
-`run(dag)`
-
-Run the FixedPoint pass on dag.
+  <Function id="qiskit.transpiler.passes.FixedPoint.run" name="run" signature="run(dag)">
+    Run the FixedPoint pass on dag.
+  </Function>
+</Class>
 

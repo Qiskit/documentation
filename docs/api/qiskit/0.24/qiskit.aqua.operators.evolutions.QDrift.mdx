@@ -10,72 +10,64 @@ python_api_name: qiskit.aqua.operators.evolutions.QDrift
 
 # qiskit.aqua.operators.evolutions.QDrift
 
-<span id="qiskit.aqua.operators.evolutions.QDrift" />
+<Class id="qiskit.aqua.operators.evolutions.QDrift" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/evolutions/trotterizations/qdrift.py" signature="QDrift(reps=1)">
+  The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight. Based on the work of Earl Campbell in [https://arxiv.org/abs/1811.08017](https://arxiv.org/abs/1811.08017).
 
-`QDrift(reps=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/evolutions/trotterizations/qdrift.py "view source code")
+  **Parameters**
 
-The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight. Based on the work of Earl Campbell in [https://arxiv.org/abs/1811.08017](https://arxiv.org/abs/1811.08017).
+  **reps** (`int`) – The number of times to repeat the Trotterization circuit.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**reps** (`int`) – The number of times to repeat the Trotterization circuit.
+  <Function id="qiskit.aqua.operators.evolutions.QDrift.__init__" name="__init__" signature="__init__(reps=1)">
+    **Parameters**
 
-### \_\_init\_\_
+    **reps** (`int`) – The number of times to repeat the Trotterization circuit.
+  </Function>
 
-<span id="qiskit.aqua.operators.evolutions.QDrift.__init__" />
+  ## Methods
 
-`__init__(reps=1)`
+  |                                                                                                                             |                                                                                                                 |
+  | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.operators.evolutions.QDrift.__init__ "qiskit.aqua.operators.evolutions.QDrift.__init__")(\[reps]) | **type reps**`int`                                                                                              |
+  | [`convert`](#qiskit.aqua.operators.evolutions.QDrift.convert "qiskit.aqua.operators.evolutions.QDrift.convert")(operator)   | Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`. |
 
-**Parameters**
+  ## Attributes
 
-**reps** (`int`) – The number of times to repeat the Trotterization circuit.
+  |                                                                                                        |                                                                                               |
+  | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+  | [`reps`](#qiskit.aqua.operators.evolutions.QDrift.reps "qiskit.aqua.operators.evolutions.QDrift.reps") | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
 
-## Methods
+  ### convert
 
-|                                                                                                                             |                                                                                                                 |
-| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.evolutions.QDrift.__init__ "qiskit.aqua.operators.evolutions.QDrift.__init__")(\[reps]) | **type reps**`int`                                                                                              |
-| [`convert`](#qiskit.aqua.operators.evolutions.QDrift.convert "qiskit.aqua.operators.evolutions.QDrift.convert")(operator)   | Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`. |
+  <Function id="qiskit.aqua.operators.evolutions.QDrift.convert" name="convert" signature="convert(operator)">
+    Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                        |                                                                                               |
-| ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
-| [`reps`](#qiskit.aqua.operators.evolutions.QDrift.reps "qiskit.aqua.operators.evolutions.QDrift.reps") | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
+    **operator** (`OperatorBase`) – The `SummedOp` to evolve.
 
-### convert
+    **Return type**
 
-<span id="qiskit.aqua.operators.evolutions.QDrift.convert" />
+    `OperatorBase`
 
-`convert(operator)`
+    **Returns**
 
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
+    The Operator approximating op\_sum’s evolution.
 
-**Parameters**
+    **Raises**
 
-**operator** (`OperatorBase`) – The `SummedOp` to evolve.
+    **TypeError** – A non-SummedOps Operator is passed into `convert`.
+  </Function>
 
-**Return type**
+  ### reps
 
-`OperatorBase`
+  <Function id="qiskit.aqua.operators.evolutions.QDrift.reps" name="reps" signature="property reps">
+    The number of repetitions to use in the Trotterization, improving the approximation accuracy.
 
-**Returns**
+    **Return type**
 
-The Operator approximating op\_sum’s evolution.
-
-**Raises**
-
-**TypeError** – A non-SummedOps Operator is passed into `convert`.
-
-### reps
-
-<span id="qiskit.aqua.operators.evolutions.QDrift.reps" />
-
-`property reps`
-
-The number of repetitions to use in the Trotterization, improving the approximation accuracy.
-
-**Return type**
-
-`int`
+    `int`
+  </Function>
+</Class>
 

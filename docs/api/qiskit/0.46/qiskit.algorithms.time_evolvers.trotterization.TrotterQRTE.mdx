@@ -8,102 +8,96 @@ python_api_name: qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE
 
 # TrotterQRTE
 
-<span id="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE" />
+<Class id="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/time_evolvers/trotterization/trotter_qrte.py" signature="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE(product_formula=None, estimator=None, num_timesteps=1)">
+  Bases: [`RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver")
 
-`qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE(product_formula=None, estimator=None, num_timesteps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/time_evolvers/trotterization/trotter_qrte.py "view source code")
+  Quantum Real Time Evolution using Trotterization. Type of Trotterization is defined by a `ProductFormula` provided.
 
-Bases: [`RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver")
+  **Examples**
 
-Quantum Real Time Evolution using Trotterization. Type of Trotterization is defined by a `ProductFormula` provided.
+  ```python
+  from qiskit.opflow import PauliSumOp
+  from qiskit.quantum_info import Pauli, SparsePauliOp
+  from qiskit import QuantumCircuit
+  from qiskit.algorithms import TimeEvolutionProblem
+  from qiskit.algorithms.time_evolvers import TrotterQRTE
+  from qiskit.primitives import Estimator
 
-**Examples**
+  operator = PauliSumOp(SparsePauliOp([Pauli("X"), Pauli("Z")]))
+  initial_state = QuantumCircuit(1)
+  time = 1
+  evolution_problem = TimeEvolutionProblem(operator, time, initial_state)
+  # LieTrotter with 1 rep
+  estimator = Estimator()
+  trotter_qrte = TrotterQRTE(estimator=estimator)
+  evolved_state = trotter_qrte.evolve(evolution_problem).evolved_state
+  ```
 
-```python
-from qiskit.opflow import PauliSumOp
-from qiskit.quantum_info import Pauli, SparsePauliOp
-from qiskit import QuantumCircuit
-from qiskit.algorithms import TimeEvolutionProblem
-from qiskit.algorithms.time_evolvers import TrotterQRTE
-from qiskit.primitives import Estimator
+  **Parameters**
 
-operator = PauliSumOp(SparsePauliOp([Pauli("X"), Pauli("Z")]))
-initial_state = QuantumCircuit(1)
-time = 1
-evolution_problem = TimeEvolutionProblem(operator, time, initial_state)
-# LieTrotter with 1 rep
-estimator = Estimator()
-trotter_qrte = TrotterQRTE(estimator=estimator)
-evolved_state = trotter_qrte.evolve(evolution_problem).evolved_state
-```
+  *   **product\_formula** ([*ProductFormula*](qiskit.synthesis.ProductFormula "qiskit.synthesis.ProductFormula") *| None*) – A Lie-Trotter-Suzuki product formula. If `None` provided, the Lie-Trotter first order product formula with a single repetition is used. `reps` should be 1 to obtain a number of time-steps equal to `num_timesteps` and an evaluation of [`TimeEvolutionProblem.aux_operators`](qiskit.algorithms.TimeEvolutionProblem#aux_operators "qiskit.algorithms.TimeEvolutionProblem.aux_operators") at every time-step. If `reps` is larger than 1, the true number of time-steps will be `num_timesteps * reps`.
+  *   **num\_timesteps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of time-steps the full evolution time is devided into (repetitions of `product_formula`)
+  *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") *| None*) – An estimator primitive used for calculating expectation values of `TimeEvolutionProblem.aux_operators`.
 
-**Parameters**
+  ## Attributes
 
-*   **product\_formula** ([*ProductFormula*](qiskit.synthesis.ProductFormula "qiskit.synthesis.ProductFormula") *| None*) – A Lie-Trotter-Suzuki product formula. If `None` provided, the Lie-Trotter first order product formula with a single repetition is used. `reps` should be 1 to obtain a number of time-steps equal to `num_timesteps` and an evaluation of [`TimeEvolutionProblem.aux_operators`](qiskit.algorithms.TimeEvolutionProblem#aux_operators "qiskit.algorithms.TimeEvolutionProblem.aux_operators") at every time-step. If `reps` is larger than 1, the true number of time-steps will be `num_timesteps * reps`.
-*   **num\_timesteps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of time-steps the full evolution time is devided into (repetitions of `product_formula`)
-*   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") *| None*) – An estimator primitive used for calculating expectation values of `TimeEvolutionProblem.aux_operators`.
+  ### estimator
 
-## Attributes
+  <Attribute id="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE.estimator" name="estimator">
+    Returns an estimator.
+  </Attribute>
 
-<span id="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE.estimator" />
+  ### num\_timesteps
 
-### estimator
+  <Attribute id="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE.num_timesteps" name="num_timesteps">
+    Returns the number of timesteps.
+  </Attribute>
 
-Returns an estimator.
+  ### product\_formula
 
-<span id="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE.num_timesteps" />
+  <Attribute id="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE.product_formula" name="product_formula">
+    Returns a product formula.
+  </Attribute>
 
-### num\_timesteps
+  ## Methods
 
-Returns the number of timesteps.
+  ### evolve
 
-<span id="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE.product_formula" />
+  <Function id="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE.evolve" name="evolve" signature="evolve(evolution_problem)">
+    Evolves a quantum state for a given time using the Trotterization method based on a product formula provided. The result is provided in the form of a quantum circuit. If auxiliary operators are included in the `evolution_problem`, they are evaluated on the `init_state` and on the evolved state at every step (`num_timesteps` times) using an estimator primitive provided.
 
-### product\_formula
+    **Parameters**
 
-Returns a product formula.
+    **evolution\_problem** ([*TimeEvolutionProblem*](qiskit.algorithms.TimeEvolutionProblem "qiskit.algorithms.time_evolvers.time_evolution_problem.TimeEvolutionProblem")) – Instance defining evolution problem. For the included Hamiltonian, `Pauli` or `PauliSumOp` are supported by TrotterQRTE.
 
-## Methods
+    **Returns**
 
-### evolve
+    Evolution result that includes an evolved state as a quantum circuit and, optionally, auxiliary operators evaluated for a resulting state on an estimator primitive.
 
-<span id="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE.evolve" />
+    **Raises**
 
-`evolve(evolution_problem)`
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `t_param` is not set to `None` in the `TimeEvolutionProblem` (feature not currently supported).
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `aux_operators` provided in the time evolution problem but no estimator provided to the algorithm.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the `initial_state` is not provided in the `TimeEvolutionProblem`.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If an unsupported Hamiltonian type is provided.
 
-Evolves a quantum state for a given time using the Trotterization method based on a product formula provided. The result is provided in the form of a quantum circuit. If auxiliary operators are included in the `evolution_problem`, they are evaluated on the `init_state` and on the evolved state at every step (`num_timesteps` times) using an estimator primitive provided.
+    **Return type**
 
-**Parameters**
+    [*TimeEvolutionResult*](qiskit.algorithms.TimeEvolutionResult "qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult")
+  </Function>
 
-**evolution\_problem** ([*TimeEvolutionProblem*](qiskit.algorithms.TimeEvolutionProblem "qiskit.algorithms.time_evolvers.time_evolution_problem.TimeEvolutionProblem")) – Instance defining evolution problem. For the included Hamiltonian, `Pauli` or `PauliSumOp` are supported by TrotterQRTE.
+  ### supports\_aux\_operators
 
-**Returns**
+  <Function id="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-Evolution result that includes an evolved state as a quantum circuit and, optionally, auxiliary operators evaluated for a resulting state on an estimator primitive.
+    **Returns**
 
-**Raises**
+    `True` if `aux_operators` expectations in the `TimeEvolutionProblem` can be evaluated, `False` otherwise.
 
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `t_param` is not set to `None` in the `TimeEvolutionProblem` (feature not currently supported).
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `aux_operators` provided in the time evolution problem but no estimator provided to the algorithm.
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the `initial_state` is not provided in the `TimeEvolutionProblem`.
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If an unsupported Hamiltonian type is provided.
+    **Return type**
 
-**Return type**
-
-[*TimeEvolutionResult*](qiskit.algorithms.TimeEvolutionResult "qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult")
-
-### supports\_aux\_operators
-
-<span id="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE.supports_aux_operators" />
-
-`classmethod supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-**Returns**
-
-`True` if `aux_operators` expectations in the `TimeEvolutionProblem` can be evaluated, `False` otherwise.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
+</Class>
 

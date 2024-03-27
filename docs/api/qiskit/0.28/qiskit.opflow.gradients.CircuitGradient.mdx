@@ -8,53 +8,47 @@ python_api_name: qiskit.opflow.gradients.CircuitGradient
 
 # qiskit.opflow\.gradients.CircuitGradient
 
-<span id="qiskit.opflow.gradients.CircuitGradient" />
+<Class id="qiskit.opflow.gradients.CircuitGradient" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/gradients/circuit_gradients/circuit_gradient.py" signature="CircuitGradient">
+  Circuit to gradient operator converter.
 
-`CircuitGradient` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/gradients/circuit_gradients/circuit_gradient.py "view source code")
+  Converter for changing parameterized circuits into operators whose evaluation yields the gradient with respect to the circuit parameters.
 
-Circuit to gradient operator converter.
+  This is distinct from DerivativeBase converters which take gradients of composite operators and handle things like differentiating combo\_fn’s and enforcing product rules when operator coefficients are parameterized.
 
-Converter for changing parameterized circuits into operators whose evaluation yields the gradient with respect to the circuit parameters.
+  CircuitGradient - uses quantum techniques to get derivatives of circuits DerivativeBase - uses classical techniques to differentiate operator flow data structures
 
-This is distinct from DerivativeBase converters which take gradients of composite operators and handle things like differentiating combo\_fn’s and enforcing product rules when operator coefficients are parameterized.
+  ### \_\_init\_\_
 
-CircuitGradient - uses quantum techniques to get derivatives of circuits DerivativeBase - uses classical techniques to differentiate operator flow data structures
+  <Function id="qiskit.opflow.gradients.CircuitGradient.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.opflow.gradients.CircuitGradient.__init__" />
+  |                                                                                                                                      |                                 |
+  | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
+  | [`__init__`](#qiskit.opflow.gradients.CircuitGradient.__init__ "qiskit.opflow.gradients.CircuitGradient.__init__")()                 | Initialize self.                |
+  | [`convert`](#qiskit.opflow.gradients.CircuitGradient.convert "qiskit.opflow.gradients.CircuitGradient.convert")(operator\[, params]) | **type operator**`OperatorBase` |
 
-`__init__()`
+  ### convert
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.opflow.gradients.CircuitGradient.convert" name="convert" signature="abstract convert(operator, params=None)">
+    **Parameters**
 
-## Methods
+    *   **operator** (`OperatorBase`) – The operator we are taking the gradient of
+    *   **params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`], `Tuple`\[`ParameterExpression`, `ParameterExpression`], `List`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`]], `None`]) – The parameters we are taking the gradient wrt: ω If a ParameterExpression, ParameterVector or List\[ParameterExpression] is given, then the 1st order derivative of the operator is calculated. If a Tuple\[ParameterExpression, ParameterExpression] or List\[Tuple\[ParameterExpression, ParameterExpression]] is given, then the 2nd order derivative of the operator is calculated.
 
-|                                                                                                                                      |                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
-| [`__init__`](#qiskit.opflow.gradients.CircuitGradient.__init__ "qiskit.opflow.gradients.CircuitGradient.__init__")()                 | Initialize self.                |
-| [`convert`](#qiskit.opflow.gradients.CircuitGradient.convert "qiskit.opflow.gradients.CircuitGradient.convert")(operator\[, params]) | **type operator**`OperatorBase` |
+    **Return type**
 
-### convert
+    `OperatorBase`
 
-<span id="qiskit.opflow.gradients.CircuitGradient.convert" />
+    **Returns**
 
-`abstract convert(operator, params=None)`
+    An operator whose evaluation yields the Gradient.
 
-**Parameters**
+    **Raises**
 
-*   **operator** (`OperatorBase`) – The operator we are taking the gradient of
-*   **params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`], `Tuple`\[`ParameterExpression`, `ParameterExpression`], `List`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`]], `None`]) – The parameters we are taking the gradient wrt: ω If a ParameterExpression, ParameterVector or List\[ParameterExpression] is given, then the 1st order derivative of the operator is calculated. If a Tuple\[ParameterExpression, ParameterExpression] or List\[Tuple\[ParameterExpression, ParameterExpression]] is given, then the 2nd order derivative of the operator is calculated.
-
-**Return type**
-
-`OperatorBase`
-
-**Returns**
-
-An operator whose evaluation yields the Gradient.
-
-**Raises**
-
-**ValueError** – If `params` contains a parameter not present in `operator`.
+    **ValueError** – If `params` contains a parameter not present in `operator`.
+  </Function>
+</Class>
 

@@ -8,115 +8,105 @@ python_api_name: qiskit.transpiler.passes.TemplateOptimization
 
 # TemplateOptimization
 
-<span id="qiskit.transpiler.passes.TemplateOptimization" />
+<Class id="qiskit.transpiler.passes.TemplateOptimization" github="https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/template_optimization.py" signature="qiskit.transpiler.passes.TemplateOptimization(*args, **kwargs)">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-`qiskit.transpiler.passes.TemplateOptimization(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/template_optimization.py "view source code")
+  Class for the template optimization pass.
 
-Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+  **Parameters**
 
-Class for the template optimization pass.
+  *   **template\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*()]*) – list of the different template circuit to apply.
+  *   **heuristics\_backward\_param** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – \[length, survivor] Those are the parameters for applying heuristics on the backward part of the algorithm. This part of the algorithm creates a tree of matching scenario. This tree grows exponentially. The heuristics evaluate which scenarios have the longest match and keep only those. The length is the interval in the tree for cutting it and survivor is the number of scenarios that are kept. We advise to use l=3 and s=1 to have serious time advantage. We remind that the heuristics implies losing a part of the maximal matches. Check reference for more details.
+  *   **heuristics\_qubits\_param** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – \[length] The heuristics for the qubit choice make guesses from the dag dependency of the circuit in order to limit the number of qubit configurations to explore. The length is the number of successors or not predecessors that will be explored in the dag dependency of the circuit, each qubits of the nodes are added to the set of authorized qubits. We advise to use length=1. Check reference for more details.
+  *   **user\_cost\_dict** (*Dict\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – quantum cost dictionary passed to TemplateSubstitution to configure its behavior. This will override any default values if None is not given. The key is the name of the gate and the value its quantum cost.
 
-**Parameters**
+  ## Attributes
 
-*   **template\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*()]*) – list of the different template circuit to apply.
-*   **heuristics\_backward\_param** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – \[length, survivor] Those are the parameters for applying heuristics on the backward part of the algorithm. This part of the algorithm creates a tree of matching scenario. This tree grows exponentially. The heuristics evaluate which scenarios have the longest match and keep only those. The length is the interval in the tree for cutting it and survivor is the number of scenarios that are kept. We advise to use l=3 and s=1 to have serious time advantage. We remind that the heuristics implies losing a part of the maximal matches. Check reference for more details.
-*   **heuristics\_qubits\_param** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – \[length] The heuristics for the qubit choice make guesses from the dag dependency of the circuit in order to limit the number of qubit configurations to explore. The length is the number of successors or not predecessors that will be explored in the dag dependency of the circuit, each qubits of the nodes are added to the set of authorized qubits. We advise to use length=1. Check reference for more details.
-*   **user\_cost\_dict** (*Dict\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – quantum cost dictionary passed to TemplateSubstitution to configure its behavior. This will override any default values if None is not given. The key is the name of the gate and the value its quantum cost.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.TemplateOptimization.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.TemplateOptimization.is_analysis_pass" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### is\_analysis\_pass
+  ### is\_transformation\_pass
 
-Check if the pass is an analysis pass.
+  <Attribute id="qiskit.transpiler.passes.TemplateOptimization.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.TemplateOptimization.is_transformation_pass" />
+  ## Methods
 
-### is\_transformation\_pass
+  ### execute
 
-Check if the pass is a transformation pass.
+  <Function id="qiskit.transpiler.passes.TemplateOptimization.execute" name="execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    **Parameters**
 
-## Methods
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
 
-### execute
+    **Returns**
 
-<span id="qiskit.transpiler.passes.TemplateOptimization.execute" />
+    Optimized Qiskit IR and state of the workflow.
 
-`execute(passmanager_ir, state, callback=None)`
+    **Return type**
 
-Execute optimization task for input Qiskit IR.
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
 
-**Parameters**
+  ### name
 
-*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+  <Function id="qiskit.transpiler.passes.TemplateOptimization.name" name="name" signature="name()">
+    Name of the pass.
 
-**Returns**
+    **Return type**
 
-Optimized Qiskit IR and state of the workflow.
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-**Return type**
+  ### run
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  <Function id="qiskit.transpiler.passes.TemplateOptimization.run" name="run" signature="run(dag)">
+    **Parameters**
 
-### name
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG circuit.
 
-<span id="qiskit.transpiler.passes.TemplateOptimization.name" />
+    **Returns**
 
-`name()`
+    optimized DAG circuit.
 
-Name of the pass.
+    **Return type**
 
-**Return type**
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    **Raises**
 
-### run
+    [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If the template has not the right form or if the output circuit acts differently as the input circuit.
+  </Function>
 
-<span id="qiskit.transpiler.passes.TemplateOptimization.run" />
+  ### update\_status
 
-`run(dag)`
+  <Function id="qiskit.transpiler.passes.TemplateOptimization.update_status" name="update_status" signature="update_status(state, run_state)">
+    Update workflow status.
 
-**Parameters**
+    **Parameters**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG circuit.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
 
-**Returns**
+    **Returns**
 
-optimized DAG circuit.
+    Updated pass manager state.
 
-**Return type**
+    **Return type**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-**Raises**
-
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If the template has not the right form or if the output circuit acts differently as the input circuit.
-
-### update\_status
-
-<span id="qiskit.transpiler.passes.TemplateOptimization.update_status" />
-
-`update_status(state, run_state)`
-
-Update workflow status.
-
-**Parameters**
-
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
-*   **run\_state** (*RunState*) – Completion status of current task.
-
-**Returns**
-
-Updated pass manager state.
-
-**Return type**
-
-[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
 

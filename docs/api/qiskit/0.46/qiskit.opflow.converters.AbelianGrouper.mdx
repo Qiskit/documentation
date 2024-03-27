@@ -8,67 +8,61 @@ python_api_name: qiskit.opflow.converters.AbelianGrouper
 
 # AbelianGrouper
 
-<span id="qiskit.opflow.converters.AbelianGrouper" />
+<Class id="qiskit.opflow.converters.AbelianGrouper" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/converters/abelian_grouper.py" signature="qiskit.opflow.converters.AbelianGrouper(traverse=True)">
+  Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
-`qiskit.opflow.converters.AbelianGrouper(traverse=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/converters/abelian_grouper.py "view source code")
+  Deprecated: The AbelianGrouper converts SummedOps into a sum of Abelian sums.
 
-Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
+  Meaning, it will traverse the Operator, and when it finds a SummedOp, it will evaluate which of the summed sub-Operators commute with one another. It will then convert each of the groups of commuting Operators into their own SummedOps, and return the sum-of-commuting-SummedOps. This is particularly useful for cases where mutually commuting groups can be handled similarly, as in the case of Pauli Expectations, where commuting Paulis have the same diagonalizing circuit rotation, or Pauli Evolutions, where commuting Paulis can be diagonalized together.
 
-Deprecated: The AbelianGrouper converts SummedOps into a sum of Abelian sums.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.converters.abelian_grouper.AbelianGrouper` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Meaning, it will traverse the Operator, and when it finds a SummedOp, it will evaluate which of the summed sub-Operators commute with one another. It will then convert each of the groups of commuting Operators into their own SummedOps, and return the sum-of-commuting-SummedOps. This is particularly useful for cases where mutually commuting groups can be handled similarly, as in the case of Pauli Expectations, where commuting Paulis have the same diagonalizing circuit rotation, or Pauli Evolutions, where commuting Paulis can be diagonalized together.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.converters.abelian_grouper.AbelianGrouper` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  **traverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to convert only the Operator passed to `convert`, or traverse down that Operator.
 
-**Parameters**
+  ## Methods
 
-**traverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to convert only the Operator passed to `convert`, or traverse down that Operator.
+  ### convert
 
-## Methods
+  <Function id="qiskit.opflow.converters.AbelianGrouper.convert" name="convert" signature="convert(operator)">
+    Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators.
 
-### convert
+    **Parameters**
 
-<span id="qiskit.opflow.converters.AbelianGrouper.convert" />
+    **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator to attempt to convert.
 
-`convert(operator)`
+    **Returns**
 
-Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators.
+    The converted Operator.
 
-**Parameters**
+    **Return type**
 
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator to attempt to convert.
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-**Returns**
+  ### group\_subops
 
-The converted Operator.
+  <Function id="qiskit.opflow.converters.AbelianGrouper.group_subops" name="group_subops" signature="classmethod group_subops(list_op)">
+    Given a ListOp, attempt to group into Abelian ListOps of the same type.
 
-**Return type**
+    **Parameters**
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **list\_op** ([*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")  *|*[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")) – The Operator to group into Abelian groups
 
-### group\_subops
+    **Returns**
 
-<span id="qiskit.opflow.converters.AbelianGrouper.group_subops" />
+    The grouped Operator.
 
-`classmethod group_subops(list_op)`
+    **Raises**
 
-Given a ListOp, attempt to group into Abelian ListOps of the same type.
+    [**OpflowError**](opflow#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If any of list\_op’s sub-ops is not `PauliOp`.
 
-**Parameters**
+    **Return type**
 
-**list\_op** ([*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")  *|*[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")) – The Operator to group into Abelian groups
-
-**Returns**
-
-The grouped Operator.
-
-**Raises**
-
-[**OpflowError**](opflow#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If any of list\_op’s sub-ops is not `PauliOp`.
-
-**Return type**
-
-[*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+    [*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+  </Function>
+</Class>
 

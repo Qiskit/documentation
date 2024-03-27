@@ -8,320 +8,290 @@ python_api_name: qiskit.providers.aer.PulseSimulator
 
 # qiskit.providers.aer.PulseSimulator
 
-<span id="qiskit.providers.aer.PulseSimulator" />
+<Class id="qiskit.providers.aer.PulseSimulator" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/backends/pulse_simulator.py" signature="PulseSimulator(configuration=None, properties=None, defaults=None, provider=None, **backend_options)">
+  Pulse schedule simulator backend.
 
-`PulseSimulator(configuration=None, properties=None, defaults=None, provider=None, **backend_options)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/backends/pulse_simulator.py "view source code")
+  The `PulseSimulator` simulates continuous time Hamiltonian dynamics of a quantum system, with controls specified by pulse `Schedule` objects, and the model of the physical system specified by [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") objects. Results are returned in the same format as when jobs are submitted to actual devices.
 
-Pulse schedule simulator backend.
+  **Examples**
 
-The `PulseSimulator` simulates continuous time Hamiltonian dynamics of a quantum system, with controls specified by pulse `Schedule` objects, and the model of the physical system specified by [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") objects. Results are returned in the same format as when jobs are submitted to actual devices.
+  The minimal information a `PulseSimulator` needs to simulate is a [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel"), which can be supplied either by setting the backend option before calling `run`, e.g.:
 
-**Examples**
+  ```python
+  backend_sim = qiskit.providers.aer.PulseSimulator()
 
-The minimal information a `PulseSimulator` needs to simulate is a [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel"), which can be supplied either by setting the backend option before calling `run`, e.g.:
+  # Set the pulse system model for the simulator
+  backend_sim.set_options(system_model=system_model)
 
-```python
-backend_sim = qiskit.providers.aer.PulseSimulator()
+  # Assemble schedules using PulseSimulator as the backend
+  pulse_qobj = assemble(schedules, backend=backend_sim)
 
-# Set the pulse system model for the simulator
-backend_sim.set_options(system_model=system_model)
+  # Run simulation
+  results = backend_sim.run(pulse_qobj)
+  ```
 
-# Assemble schedules using PulseSimulator as the backend
-pulse_qobj = assemble(schedules, backend=backend_sim)
+  or by supplying the system model at runtime, e.g.:
 
-# Run simulation
-results = backend_sim.run(pulse_qobj)
-```
+  ```python
+  backend_sim = qiskit.providers.aer.PulseSimulator()
 
-or by supplying the system model at runtime, e.g.:
+  # Assemble schedules using PulseSimulator as the backend
+  pulse_qobj = assemble(schedules, backend=backend_sim)
 
-```python
-backend_sim = qiskit.providers.aer.PulseSimulator()
+  # Run simulation on a PulseSystemModel object
+  results = backend_sim.run(pulse_qobj, system_model=system_model)
+  ```
 
-# Assemble schedules using PulseSimulator as the backend
-pulse_qobj = assemble(schedules, backend=backend_sim)
+  Alternatively, an instance of the `PulseSimulator` may be further configured to contain more information present in a real backend. The simplest way to do this is to instantiate the `PulseSimulator` from a real backend:
 
-# Run simulation on a PulseSystemModel object
-results = backend_sim.run(pulse_qobj, system_model=system_model)
-```
+  ```python
+  armonk_sim = qiskit.providers.aer.PulseSimulator.from_backend(FakeArmonk())
+  pulse_qobj = assemble(schedules, backend=armonk_sim)
+  armonk_sim.run(pulse_qobj)
+  ```
 
-Alternatively, an instance of the `PulseSimulator` may be further configured to contain more information present in a real backend. The simplest way to do this is to instantiate the `PulseSimulator` from a real backend:
+  In the above example, the `PulseSimulator` copies all configuration and default data from `FakeArmonk()`, and as such has the same affect as `FakeArmonk()` when passed as an argument to `assemble`. Furthermore it constructs a [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") from the model details in the supplied backend, which is then used in simulation.
 
-```python
-armonk_sim = qiskit.providers.aer.PulseSimulator.from_backend(FakeArmonk())
-pulse_qobj = assemble(schedules, backend=armonk_sim)
-armonk_sim.run(pulse_qobj)
-```
+  **Supported PulseQobj parameters**
 
-In the above example, the `PulseSimulator` copies all configuration and default data from `FakeArmonk()`, and as such has the same affect as `FakeArmonk()` when passed as an argument to `assemble`. Furthermore it constructs a [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") from the model details in the supplied backend, which is then used in simulation.
+  *   `qubit_lo_freq`: Local oscillator frequencies for each `DriveChannel`. Defaults to either the value given in the [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel"), or is calculated directly from the Hamiltonian.
+  *   `meas_level`: Type of desired measurement output, in `[1, 2]`. `1` gives complex numbers (IQ values), and `2` gives discriminated states `|0>` and `|1>`. Defaults to `2`.
+  *   `meas_return`: Measurement type, `'single'` or `'avg'`. Defaults to `'avg'`.
+  *   `shots`: Number of shots per experiment. Defaults to `1024`.
 
-**Supported PulseQobj parameters**
+  **Simulation details**
 
-*   `qubit_lo_freq`: Local oscillator frequencies for each `DriveChannel`. Defaults to either the value given in the [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel"), or is calculated directly from the Hamiltonian.
-*   `meas_level`: Type of desired measurement output, in `[1, 2]`. `1` gives complex numbers (IQ values), and `2` gives discriminated states `|0>` and `|1>`. Defaults to `2`.
-*   `meas_return`: Measurement type, `'single'` or `'avg'`. Defaults to `'avg'`.
-*   `shots`: Number of shots per experiment. Defaults to `1024`.
+  The simulator uses the `zvode` differential equation solver method through `scipy`. Simulation is performed in the rotating frame of the diagonal of the drift Hamiltonian contained in the [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel"). Measurements are performed in the dressed basis of the drift Hamiltonian.
 
-**Simulation details**
+  **Other options**
 
-The simulator uses the `zvode` differential equation solver method through `scipy`. Simulation is performed in the rotating frame of the diagonal of the drift Hamiltonian contained in the [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel"). Measurements are performed in the dressed basis of the drift Hamiltonian.
+  Additional valid keyword arguments for `run()`:
 
-**Other options**
+  *   `'solver_options'`: A `dict` for solver options. Accepted keys are `'atol'`, `'rtol'`, `'nsteps'`, `'max_step'`, `'num_cpus'`, `'norm_tol'`, and `'norm_steps'`.
 
-Additional valid keyword arguments for `run()`:
+  Aer class for backends.
 
-*   `'solver_options'`: A `dict` for solver options. Accepted keys are `'atol'`, `'rtol'`, `'nsteps'`, `'max_step'`, `'num_cpus'`, `'norm_tol'`, and `'norm_steps'`.
+  This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
 
-Aer class for backends.
+  **Parameters**
 
-This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
+  *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
+  *   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
+  *   **available\_methods** (*list or None*) – Optional, the available simulation methods if backend supports multiple methods.
+  *   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
+  *   **backend\_options** (*dict or None*) – Optional set custom backend options.
 
-**Parameters**
+  **Raises**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
-*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
-*   **available\_methods** (*list or None*) – Optional, the available simulation methods if backend supports multiple methods.
-*   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
-*   **backend\_options** (*dict or None*) – Optional set custom backend options.
+  [**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
 
-**Raises**
+  ### \_\_init\_\_
 
-[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
+  <Function id="qiskit.providers.aer.PulseSimulator.__init__" name="__init__" signature="__init__(configuration=None, properties=None, defaults=None, provider=None, **backend_options)">
+    Aer class for backends.
 
-### \_\_init\_\_
+    This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
 
-<span id="qiskit.providers.aer.PulseSimulator.__init__" />
+    **Parameters**
 
-`__init__(configuration=None, properties=None, defaults=None, provider=None, **backend_options)`
+    *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
+    *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
+    *   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
+    *   **available\_methods** (*list or None*) – Optional, the available simulation methods if backend supports multiple methods.
+    *   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
+    *   **backend\_options** (*dict or None*) – Optional set custom backend options.
 
-Aer class for backends.
+    **Raises**
 
-This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
+    [**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
-*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
-*   **available\_methods** (*list or None*) – Optional, the available simulation methods if backend supports multiple methods.
-*   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
-*   **backend\_options** (*dict or None*) – Optional set custom backend options.
+  |                                                                                                                                              |                                                  |
+  | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+  | [`__init__`](#qiskit.providers.aer.PulseSimulator.__init__ "qiskit.providers.aer.PulseSimulator.__init__")(\[configuration, properties, …])  | Aer class for backends.                          |
+  | [`available_methods`](#qiskit.providers.aer.PulseSimulator.available_methods "qiskit.providers.aer.PulseSimulator.available_methods")()      | Return the available simulation methods.         |
+  | [`clear_options`](#qiskit.providers.aer.PulseSimulator.clear_options "qiskit.providers.aer.PulseSimulator.clear_options")()                  | Reset the simulator options to default values.   |
+  | [`configuration`](#qiskit.providers.aer.PulseSimulator.configuration "qiskit.providers.aer.PulseSimulator.configuration")()                  | Return the simulator backend configuration.      |
+  | [`defaults`](#qiskit.providers.aer.PulseSimulator.defaults "qiskit.providers.aer.PulseSimulator.defaults")()                                 | Return the simulator backend pulse defaults.     |
+  | [`from_backend`](#qiskit.providers.aer.PulseSimulator.from_backend "qiskit.providers.aer.PulseSimulator.from_backend")(backend, \*\*options) | Initialize simulator from backend.               |
+  | [`name`](#qiskit.providers.aer.PulseSimulator.name "qiskit.providers.aer.PulseSimulator.name")()                                             | Return the backend name.                         |
+  | [`properties`](#qiskit.providers.aer.PulseSimulator.properties "qiskit.providers.aer.PulseSimulator.properties")()                           | Return the simulator backend properties if set.  |
+  | [`provider`](#qiskit.providers.aer.PulseSimulator.provider "qiskit.providers.aer.PulseSimulator.provider")()                                 | Return the backend Provider.                     |
+  | [`run`](#qiskit.providers.aer.PulseSimulator.run "qiskit.providers.aer.PulseSimulator.run")(schedules, \*args\[, backend\_options, …])       | Run a qobj on the backend.                       |
+  | [`set_option`](#qiskit.providers.aer.PulseSimulator.set_option "qiskit.providers.aer.PulseSimulator.set_option")(key, value)                 | Set pulse simulation options and update backend. |
+  | [`set_options`](#qiskit.providers.aer.PulseSimulator.set_options "qiskit.providers.aer.PulseSimulator.set_options")(\*\*fields)              | Set the options fields for the backend           |
+  | [`status`](#qiskit.providers.aer.PulseSimulator.status "qiskit.providers.aer.PulseSimulator.status")()                                       | Return backend status.                           |
 
-**Raises**
+  ## Attributes
 
-[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
+  |                                                                                                         |                                    |
+  | ------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+  | [`options`](#qiskit.providers.aer.PulseSimulator.options "qiskit.providers.aer.PulseSimulator.options") | Return the options for the backend |
+  | `version`                                                                                               |                                    |
 
-## Methods
+  ### available\_methods
 
-|                                                                                                                                              |                                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| [`__init__`](#qiskit.providers.aer.PulseSimulator.__init__ "qiskit.providers.aer.PulseSimulator.__init__")(\[configuration, properties, …])  | Aer class for backends.                          |
-| [`available_methods`](#qiskit.providers.aer.PulseSimulator.available_methods "qiskit.providers.aer.PulseSimulator.available_methods")()      | Return the available simulation methods.         |
-| [`clear_options`](#qiskit.providers.aer.PulseSimulator.clear_options "qiskit.providers.aer.PulseSimulator.clear_options")()                  | Reset the simulator options to default values.   |
-| [`configuration`](#qiskit.providers.aer.PulseSimulator.configuration "qiskit.providers.aer.PulseSimulator.configuration")()                  | Return the simulator backend configuration.      |
-| [`defaults`](#qiskit.providers.aer.PulseSimulator.defaults "qiskit.providers.aer.PulseSimulator.defaults")()                                 | Return the simulator backend pulse defaults.     |
-| [`from_backend`](#qiskit.providers.aer.PulseSimulator.from_backend "qiskit.providers.aer.PulseSimulator.from_backend")(backend, \*\*options) | Initialize simulator from backend.               |
-| [`name`](#qiskit.providers.aer.PulseSimulator.name "qiskit.providers.aer.PulseSimulator.name")()                                             | Return the backend name.                         |
-| [`properties`](#qiskit.providers.aer.PulseSimulator.properties "qiskit.providers.aer.PulseSimulator.properties")()                           | Return the simulator backend properties if set.  |
-| [`provider`](#qiskit.providers.aer.PulseSimulator.provider "qiskit.providers.aer.PulseSimulator.provider")()                                 | Return the backend Provider.                     |
-| [`run`](#qiskit.providers.aer.PulseSimulator.run "qiskit.providers.aer.PulseSimulator.run")(schedules, \*args\[, backend\_options, …])       | Run a qobj on the backend.                       |
-| [`set_option`](#qiskit.providers.aer.PulseSimulator.set_option "qiskit.providers.aer.PulseSimulator.set_option")(key, value)                 | Set pulse simulation options and update backend. |
-| [`set_options`](#qiskit.providers.aer.PulseSimulator.set_options "qiskit.providers.aer.PulseSimulator.set_options")(\*\*fields)              | Set the options fields for the backend           |
-| [`status`](#qiskit.providers.aer.PulseSimulator.status "qiskit.providers.aer.PulseSimulator.status")()                                       | Return backend status.                           |
+  <Function id="qiskit.providers.aer.PulseSimulator.available_methods" name="available_methods" signature="available_methods()">
+    Return the available simulation methods.
+  </Function>
 
-## Attributes
+  ### clear\_options
 
-|                                                                                                         |                                    |
-| ------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| [`options`](#qiskit.providers.aer.PulseSimulator.options "qiskit.providers.aer.PulseSimulator.options") | Return the options for the backend |
-| `version`                                                                                               |                                    |
+  <Function id="qiskit.providers.aer.PulseSimulator.clear_options" name="clear_options" signature="clear_options()">
+    Reset the simulator options to default values.
+  </Function>
 
-### available\_methods
+  ### configuration
 
-<span id="qiskit.providers.aer.PulseSimulator.available_methods" />
+  <Function id="qiskit.providers.aer.PulseSimulator.configuration" name="configuration" signature="configuration()">
+    Return the simulator backend configuration.
 
-`available_methods()`
+    **Returns**
 
-Return the available simulation methods.
+    the configuration for the backend.
 
-### clear\_options
+    **Return type**
 
-<span id="qiskit.providers.aer.PulseSimulator.clear_options" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-`clear_options()`
+  ### defaults
 
-Reset the simulator options to default values.
+  <Function id="qiskit.providers.aer.PulseSimulator.defaults" name="defaults" signature="defaults()">
+    Return the simulator backend pulse defaults.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.aer.PulseSimulator.configuration" />
+    **The backend pulse defaults or `None` if the**
 
-`configuration()`
+    backend does not support pulse.
 
-Return the simulator backend configuration.
+    **Return type**
 
-**Returns**
+    [PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+  </Function>
 
-the configuration for the backend.
+  ### from\_backend
 
-**Return type**
+  <Function id="qiskit.providers.aer.PulseSimulator.from_backend" name="from_backend" signature="classmethod from_backend(backend, **options)">
+    Initialize simulator from backend.
+  </Function>
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  ### name
 
-### defaults
+  <Function id="qiskit.providers.aer.PulseSimulator.name" name="name" signature="name()">
+    Return the backend name.
 
-<span id="qiskit.providers.aer.PulseSimulator.defaults" />
+    **Returns**
 
-`defaults()`
+    the name of the backend.
 
-Return the simulator backend pulse defaults.
+    **Return type**
 
-**Returns**
+    str
+  </Function>
 
-**The backend pulse defaults or `None` if the**
+  ### options
 
-backend does not support pulse.
+  <Function id="qiskit.providers.aer.PulseSimulator.options" name="options" signature="property options">
+    Return the options for the backend
 
-**Return type**
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.aer.PulseSimulator.run "qiskit.providers.aer.PulseSimulator.run") method.
+  </Function>
 
-[PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+  ### properties
 
-### from\_backend
+  <Function id="qiskit.providers.aer.PulseSimulator.properties" name="properties" signature="properties()">
+    Return the simulator backend properties if set.
 
-<span id="qiskit.providers.aer.PulseSimulator.from_backend" />
+    **Returns**
 
-`classmethod from_backend(backend, **options)`
+    **The backend properties or `None` if the**
 
-Initialize simulator from backend.
+    backend does not have properties set.
 
-### name
+    **Return type**
 
-<span id="qiskit.providers.aer.PulseSimulator.name" />
+    [BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+  </Function>
 
-`name()`
+  ### provider
 
-Return the backend name.
+  <Function id="qiskit.providers.aer.PulseSimulator.provider" name="provider" signature="provider()">
+    Return the backend Provider.
 
-**Returns**
+    **Returns**
 
-the name of the backend.
+    the Provider responsible for the backend.
 
-**Return type**
+    **Return type**
 
-str
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-### options
+  ### run
 
-<span id="qiskit.providers.aer.PulseSimulator.options" />
+  <Function id="qiskit.providers.aer.PulseSimulator.run" name="run" signature="run(schedules, *args, backend_options=None, validate=True, **run_options)">
+    Run a qobj on the backend.
 
-`property options`
+    **Parameters**
 
-Return the options for the backend
+    *   **schedules** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or list*) – The pulse [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") (or list of `Schedule` objects) to be executed.
+    *   **backend\_options** (*dict or None*) – DEPRECATED dictionary of backend options for the execution (default: None).
+    *   **validate** (*bool*) – validate the Qobj before running (default: True).
+    *   **run\_options** (*kwargs*) – additional run time backend options.
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.aer.PulseSimulator.run "qiskit.providers.aer.PulseSimulator.run") method.
+    **Returns**
 
-### properties
+    The simulation job.
 
-<span id="qiskit.providers.aer.PulseSimulator.properties" />
+    **Return type**
 
-`properties()`
+    [AerJob](qiskit.providers.aer.AerJob "qiskit.providers.aer.AerJob")
 
-Return the simulator backend properties if set.
+    **Additional Information:**
 
-**Returns**
+    *   kwarg options specified in `run_options` will override options of the same kwarg specified in the simulator options, the `backend_options` and the `Qobj.config`.
+    *   The entries in the `backend_options` will be combined with the `Qobj.config` dictionary with the values of entries in `backend_options` taking precedence. This kwarg is deprecated and direct kwarg’s should be used for options to pass them to `run_options`.
+  </Function>
 
-**The backend properties or `None` if the**
+  ### set\_option
 
-backend does not have properties set.
+  <Function id="qiskit.providers.aer.PulseSimulator.set_option" name="set_option" signature="set_option(key, value)">
+    Set pulse simulation options and update backend.
+  </Function>
 
-**Return type**
+  ### set\_options
 
-[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+  <Function id="qiskit.providers.aer.PulseSimulator.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-### provider
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-<span id="qiskit.providers.aer.PulseSimulator.provider" />
+    **Parameters**
 
-`provider()`
+    **fields** – The fields to update the options
 
-Return the backend Provider.
+    **Raises**
 
-**Returns**
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-the Provider responsible for the backend.
+  ### status
 
-**Return type**
+  <Function id="qiskit.providers.aer.PulseSimulator.status" name="status" signature="status()">
+    Return backend status.
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    **Returns**
 
-### run
+    the status of the backend.
 
-<span id="qiskit.providers.aer.PulseSimulator.run" />
+    **Return type**
 
-`run(schedules, *args, backend_options=None, validate=True, **run_options)`
-
-Run a qobj on the backend.
-
-**Parameters**
-
-*   **schedules** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or list*) – The pulse [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") (or list of `Schedule` objects) to be executed.
-*   **backend\_options** (*dict or None*) – DEPRECATED dictionary of backend options for the execution (default: None).
-*   **validate** (*bool*) – validate the Qobj before running (default: True).
-*   **run\_options** (*kwargs*) – additional run time backend options.
-
-**Returns**
-
-The simulation job.
-
-**Return type**
-
-[AerJob](qiskit.providers.aer.AerJob "qiskit.providers.aer.AerJob")
-
-**Additional Information:**
-
-*   kwarg options specified in `run_options` will override options of the same kwarg specified in the simulator options, the `backend_options` and the `Qobj.config`.
-*   The entries in the `backend_options` will be combined with the `Qobj.config` dictionary with the values of entries in `backend_options` taking precedence. This kwarg is deprecated and direct kwarg’s should be used for options to pass them to `run_options`.
-
-### set\_option
-
-<span id="qiskit.providers.aer.PulseSimulator.set_option" />
-
-`set_option(key, value)`
-
-Set pulse simulation options and update backend.
-
-### set\_options
-
-<span id="qiskit.providers.aer.PulseSimulator.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit.providers.aer.PulseSimulator.status" />
-
-`status()`
-
-Return backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
+</Class>
 

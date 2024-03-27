@@ -8,458 +8,448 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
 # RealAmplitudes
 
-<span id="qiskit.circuit.library.RealAmplitudes" />
-
-`RealAmplitudes(num_qubits=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/real_amplitudes.py "view source code")
-
-Bases: [`qiskit.circuit.library.n_local.two_local.TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
-
-The real-amplitudes 2-local circuit.
-
-The `RealAmplitudes` circuit is a heuristic trial wave function used as Ansatz in chemistry applications or classification circuits in machine learning. The circuit consists of of alternating layers of $Y$ rotations and $CX$ entanglements. The entanglement pattern can be user-defined or selected from a predefined set. It is called `RealAmplitudes` since the prepared quantum states will only have real amplitudes, the complex part is always 0.
-
-For example a `RealAmplitudes` circuit with 2 repetitions on 3 qubits with `'reverse_linear'` entanglement is
-
-```python
-┌──────────┐ ░            ░ ┌──────────┐ ░            ░ ┌──────────┐
-┤ Ry(θ[0]) ├─░────────■───░─┤ Ry(θ[3]) ├─░────────■───░─┤ Ry(θ[6]) ├
-├──────────┤ ░      ┌─┴─┐ ░ ├──────────┤ ░      ┌─┴─┐ ░ ├──────────┤
-┤ Ry(θ[1]) ├─░───■──┤ X ├─░─┤ Ry(θ[4]) ├─░───■──┤ X ├─░─┤ Ry(θ[7]) ├
-├──────────┤ ░ ┌─┴─┐└───┘ ░ ├──────────┤ ░ ┌─┴─┐└───┘ ░ ├──────────┤
-┤ Ry(θ[2]) ├─░─┤ X ├──────░─┤ Ry(θ[5]) ├─░─┤ X ├──────░─┤ Ry(θ[8]) ├
-└──────────┘ ░ └───┘      ░ └──────────┘ ░ └───┘      ░ └──────────┘
-```
-
-The entanglement can be set using the `entanglement` keyword as string or a list of index-pairs. See the documentation of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") and `NLocal` for more detail. Additional options that can be set include the number of repetitions, skipping rotation gates on qubits that are not entangled, leaving out the final rotation layer and inserting barriers in between the rotation and entanglement layers.
-
-If some qubits are not entangled with other qubits it makes sense to not apply rotation gates on these qubits, since a sequence of $Y$ rotations can be reduced to a single $Y$ rotation with summed rotation angles.
-
-**Examples**
-
-```python
->>> ansatz = RealAmplitudes(3, reps=2)  # create the circuit on 3 qubits
->>> print(ansatz)
-     ┌──────────┐                 ┌──────────┐                 ┌──────────┐
-q_0: ┤ Ry(θ[0]) ├──────────■──────┤ Ry(θ[3]) ├──────────■──────┤ Ry(θ[6]) ├
-     ├──────────┤        ┌─┴─┐    ├──────────┤        ┌─┴─┐    ├──────────┤
-q_1: ┤ Ry(θ[1]) ├──■─────┤ X ├────┤ Ry(θ[4]) ├──■─────┤ X ├────┤ Ry(θ[7]) ├
-     ├──────────┤┌─┴─┐┌──┴───┴───┐└──────────┘┌─┴─┐┌──┴───┴───┐└──────────┘
-q_2: ┤ Ry(θ[2]) ├┤ X ├┤ Ry(θ[5]) ├────────────┤ X ├┤ Ry(θ[8]) ├────────────
-     └──────────┘└───┘└──────────┘            └───┘└──────────┘
-```
-
-```python
->>> ansatz = RealAmplitudes(3, entanglement='full', reps=2)  # it is the same unitary as above
->>> print(ansatz)
-     ┌──────────┐          ┌──────────┐                      ┌──────────┐
-q_0: ┤ RY(θ[0]) ├──■────■──┤ RY(θ[3]) ├──────────────■────■──┤ RY(θ[6]) ├────────────
-     ├──────────┤┌─┴─┐  │  └──────────┘┌──────────┐┌─┴─┐  │  └──────────┘┌──────────┐
-q_1: ┤ RY(θ[1]) ├┤ X ├──┼───────■──────┤ RY(θ[4]) ├┤ X ├──┼───────■──────┤ RY(θ[7]) ├
-     ├──────────┤└───┘┌─┴─┐   ┌─┴─┐    ├──────────┤└───┘┌─┴─┐   ┌─┴─┐    ├──────────┤
-q_2: ┤ RY(θ[2]) ├─────┤ X ├───┤ X ├────┤ RY(θ[5]) ├─────┤ X ├───┤ X ├────┤ RY(θ[8]) ├
-     └──────────┘     └───┘   └───┘    └──────────┘     └───┘   └───┘    └──────────┘
-```
+<Class id="qiskit.circuit.library.RealAmplitudes" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/real_amplitudes.py" signature="RealAmplitudes(num_qubits=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes')">
+  Bases: [`qiskit.circuit.library.n_local.two_local.TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
+
+  The real-amplitudes 2-local circuit.
+
+  The `RealAmplitudes` circuit is a heuristic trial wave function used as Ansatz in chemistry applications or classification circuits in machine learning. The circuit consists of of alternating layers of $Y$ rotations and $CX$ entanglements. The entanglement pattern can be user-defined or selected from a predefined set. It is called `RealAmplitudes` since the prepared quantum states will only have real amplitudes, the complex part is always 0.
+
+  For example a `RealAmplitudes` circuit with 2 repetitions on 3 qubits with `'reverse_linear'` entanglement is
+
+  ```python
+  ┌──────────┐ ░            ░ ┌──────────┐ ░            ░ ┌──────────┐
+  ┤ Ry(θ[0]) ├─░────────■───░─┤ Ry(θ[3]) ├─░────────■───░─┤ Ry(θ[6]) ├
+  ├──────────┤ ░      ┌─┴─┐ ░ ├──────────┤ ░      ┌─┴─┐ ░ ├──────────┤
+  ┤ Ry(θ[1]) ├─░───■──┤ X ├─░─┤ Ry(θ[4]) ├─░───■──┤ X ├─░─┤ Ry(θ[7]) ├
+  ├──────────┤ ░ ┌─┴─┐└───┘ ░ ├──────────┤ ░ ┌─┴─┐└───┘ ░ ├──────────┤
+  ┤ Ry(θ[2]) ├─░─┤ X ├──────░─┤ Ry(θ[5]) ├─░─┤ X ├──────░─┤ Ry(θ[8]) ├
+  └──────────┘ ░ └───┘      ░ └──────────┘ ░ └───┘      ░ └──────────┘
+  ```
+
+  The entanglement can be set using the `entanglement` keyword as string or a list of index-pairs. See the documentation of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") and `NLocal` for more detail. Additional options that can be set include the number of repetitions, skipping rotation gates on qubits that are not entangled, leaving out the final rotation layer and inserting barriers in between the rotation and entanglement layers.
+
+  If some qubits are not entangled with other qubits it makes sense to not apply rotation gates on these qubits, since a sequence of $Y$ rotations can be reduced to a single $Y$ rotation with summed rotation angles.
+
+  **Examples**
+
+  ```python
+  >>> ansatz = RealAmplitudes(3, reps=2)  # create the circuit on 3 qubits
+  >>> print(ansatz)
+       ┌──────────┐                 ┌──────────┐                 ┌──────────┐
+  q_0: ┤ Ry(θ[0]) ├──────────■──────┤ Ry(θ[3]) ├──────────■──────┤ Ry(θ[6]) ├
+       ├──────────┤        ┌─┴─┐    ├──────────┤        ┌─┴─┐    ├──────────┤
+  q_1: ┤ Ry(θ[1]) ├──■─────┤ X ├────┤ Ry(θ[4]) ├──■─────┤ X ├────┤ Ry(θ[7]) ├
+       ├──────────┤┌─┴─┐┌──┴───┴───┐└──────────┘┌─┴─┐┌──┴───┴───┐└──────────┘
+  q_2: ┤ Ry(θ[2]) ├┤ X ├┤ Ry(θ[5]) ├────────────┤ X ├┤ Ry(θ[8]) ├────────────
+       └──────────┘└───┘└──────────┘            └───┘└──────────┘
+  ```
+
+  ```python
+  >>> ansatz = RealAmplitudes(3, entanglement='full', reps=2)  # it is the same unitary as above
+  >>> print(ansatz)
+       ┌──────────┐          ┌──────────┐                      ┌──────────┐
+  q_0: ┤ RY(θ[0]) ├──■────■──┤ RY(θ[3]) ├──────────────■────■──┤ RY(θ[6]) ├────────────
+       ├──────────┤┌─┴─┐  │  └──────────┘┌──────────┐┌─┴─┐  │  └──────────┘┌──────────┐
+  q_1: ┤ RY(θ[1]) ├┤ X ├──┼───────■──────┤ RY(θ[4]) ├┤ X ├──┼───────■──────┤ RY(θ[7]) ├
+       ├──────────┤└───┘┌─┴─┐   ┌─┴─┐    ├──────────┤└───┘┌─┴─┐   ┌─┴─┐    ├──────────┤
+  q_2: ┤ RY(θ[2]) ├─────┤ X ├───┤ X ├────┤ RY(θ[5]) ├─────┤ X ├───┤ X ├────┤ RY(θ[8]) ├
+       └──────────┘     └───┘   └───┘    └──────────┘     └───┘   └───┘    └──────────┘
+  ```
+
+  ```python
+  >>> ansatz = RealAmplitudes(3, entanglement='linear', reps=2, insert_barriers=True)
+  >>> qc = QuantumCircuit(3)  # create a circuit and append the RY variational form
+  >>> qc.compose(ansatz, inplace=True)
+  >>> qc.draw()
+       ┌──────────┐ ░            ░ ┌──────────┐ ░            ░ ┌──────────┐
+  q_0: ┤ RY(θ[0]) ├─░───■────────░─┤ RY(θ[3]) ├─░───■────────░─┤ RY(θ[6]) ├
+       ├──────────┤ ░ ┌─┴─┐      ░ ├──────────┤ ░ ┌─┴─┐      ░ ├──────────┤
+  q_1: ┤ RY(θ[1]) ├─░─┤ X ├──■───░─┤ RY(θ[4]) ├─░─┤ X ├──■───░─┤ RY(θ[7]) ├
+       ├──────────┤ ░ └───┘┌─┴─┐ ░ ├──────────┤ ░ └───┘┌─┴─┐ ░ ├──────────┤
+  q_2: ┤ RY(θ[2]) ├─░──────┤ X ├─░─┤ RY(θ[5]) ├─░──────┤ X ├─░─┤ RY(θ[8]) ├
+       └──────────┘ ░      └───┘ ░ └──────────┘ ░      └───┘ ░ └──────────┘
+  ```
+
+  ```python
+  >>> ansatz = RealAmplitudes(4, reps=1, entanglement='circular', insert_barriers=True)
+  >>> print(ansatz)
+       ┌──────────┐ ░ ┌───┐                ░ ┌──────────┐
+  q_0: ┤ RY(θ[0]) ├─░─┤ X ├──■─────────────░─┤ RY(θ[4]) ├
+       ├──────────┤ ░ └─┬─┘┌─┴─┐           ░ ├──────────┤
+  q_1: ┤ RY(θ[1]) ├─░───┼──┤ X ├──■────────░─┤ RY(θ[5]) ├
+       ├──────────┤ ░   │  └───┘┌─┴─┐      ░ ├──────────┤
+  q_2: ┤ RY(θ[2]) ├─░───┼───────┤ X ├──■───░─┤ RY(θ[6]) ├
+       ├──────────┤ ░   │       └───┘┌─┴─┐ ░ ├──────────┤
+  q_3: ┤ RY(θ[3]) ├─░───■────────────┤ X ├─░─┤ RY(θ[7]) ├
+       └──────────┘ ░                └───┘ ░ └──────────┘
+  ```
 
-```python
->>> ansatz = RealAmplitudes(3, entanglement='linear', reps=2, insert_barriers=True)
->>> qc = QuantumCircuit(3)  # create a circuit and append the RY variational form
->>> qc.compose(ansatz, inplace=True)
->>> qc.draw()
-     ┌──────────┐ ░            ░ ┌──────────┐ ░            ░ ┌──────────┐
-q_0: ┤ RY(θ[0]) ├─░───■────────░─┤ RY(θ[3]) ├─░───■────────░─┤ RY(θ[6]) ├
-     ├──────────┤ ░ ┌─┴─┐      ░ ├──────────┤ ░ ┌─┴─┐      ░ ├──────────┤
-q_1: ┤ RY(θ[1]) ├─░─┤ X ├──■───░─┤ RY(θ[4]) ├─░─┤ X ├──■───░─┤ RY(θ[7]) ├
-     ├──────────┤ ░ └───┘┌─┴─┐ ░ ├──────────┤ ░ └───┘┌─┴─┐ ░ ├──────────┤
-q_2: ┤ RY(θ[2]) ├─░──────┤ X ├─░─┤ RY(θ[5]) ├─░──────┤ X ├─░─┤ RY(θ[8]) ├
-     └──────────┘ ░      └───┘ ░ └──────────┘ ░      └───┘ ░ └──────────┘
-```
+  ```python
+  >>> ansatz = RealAmplitudes(4, reps=2, entanglement=[[0,3], [0,2]],
+  ... skip_unentangled_qubits=True)
+  >>> print(ansatz)
+       ┌──────────┐                 ┌──────────┐                 ┌──────────┐
+  q_0: ┤ RY(θ[0]) ├──■───────■──────┤ RY(θ[3]) ├──■───────■──────┤ RY(θ[6]) ├
+       └──────────┘  │       │      └──────────┘  │       │      └──────────┘
+  q_1: ──────────────┼───────┼────────────────────┼───────┼──────────────────
+       ┌──────────┐  │     ┌─┴─┐    ┌──────────┐  │     ┌─┴─┐    ┌──────────┐
+  q_2: ┤ RY(θ[1]) ├──┼─────┤ X ├────┤ RY(θ[4]) ├──┼─────┤ X ├────┤ RY(θ[7]) ├
+       ├──────────┤┌─┴─┐┌──┴───┴───┐└──────────┘┌─┴─┐┌──┴───┴───┐└──────────┘
+  q_3: ┤ RY(θ[2]) ├┤ X ├┤ RY(θ[5]) ├────────────┤ X ├┤ RY(θ[8]) ├────────────
+       └──────────┘└───┘└──────────┘            └───┘└──────────┘
+  ```
 
-```python
->>> ansatz = RealAmplitudes(4, reps=1, entanglement='circular', insert_barriers=True)
->>> print(ansatz)
-     ┌──────────┐ ░ ┌───┐                ░ ┌──────────┐
-q_0: ┤ RY(θ[0]) ├─░─┤ X ├──■─────────────░─┤ RY(θ[4]) ├
-     ├──────────┤ ░ └─┬─┘┌─┴─┐           ░ ├──────────┤
-q_1: ┤ RY(θ[1]) ├─░───┼──┤ X ├──■────────░─┤ RY(θ[5]) ├
-     ├──────────┤ ░   │  └───┘┌─┴─┐      ░ ├──────────┤
-q_2: ┤ RY(θ[2]) ├─░───┼───────┤ X ├──■───░─┤ RY(θ[6]) ├
-     ├──────────┤ ░   │       └───┘┌─┴─┐ ░ ├──────────┤
-q_3: ┤ RY(θ[3]) ├─░───■────────────┤ X ├─░─┤ RY(θ[7]) ├
-     └──────────┘ ░                └───┘ ░ └──────────┘
-```
+  Create a new RealAmplitudes 2-local circuit.
 
-```python
->>> ansatz = RealAmplitudes(4, reps=2, entanglement=[[0,3], [0,2]],
-... skip_unentangled_qubits=True)
->>> print(ansatz)
-     ┌──────────┐                 ┌──────────┐                 ┌──────────┐
-q_0: ┤ RY(θ[0]) ├──■───────■──────┤ RY(θ[3]) ├──■───────■──────┤ RY(θ[6]) ├
-     └──────────┘  │       │      └──────────┘  │       │      └──────────┘
-q_1: ──────────────┼───────┼────────────────────┼───────┼──────────────────
-     ┌──────────┐  │     ┌─┴─┐    ┌──────────┐  │     ┌─┴─┐    ┌──────────┐
-q_2: ┤ RY(θ[1]) ├──┼─────┤ X ├────┤ RY(θ[4]) ├──┼─────┤ X ├────┤ RY(θ[7]) ├
-     ├──────────┤┌─┴─┐┌──┴───┴───┐└──────────┘┌─┴─┐┌──┴───┴───┐└──────────┘
-q_3: ┤ RY(θ[2]) ├┤ X ├┤ RY(θ[5]) ├────────────┤ X ├┤ RY(θ[8]) ├────────────
-     └──────────┘└───┘└──────────┘            └───┘└──────────┘
-```
+  **Parameters**
 
-Create a new RealAmplitudes 2-local circuit.
+  *   **num\_qubits** (`Optional`\[`int`]) – The number of qubits of the RealAmplitudes circuit.
+  *   **reps** (`int`) – Specifies how often the structure of a rotation layer followed by an entanglement layer is repeated.
+  *   **entanglement** (`Union`\[`str`, `List`\[`List`\[`int`]], `Callable`\[\[`int`], `List`\[`int`]]]) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ ‘reverse\_linear, ‘circular’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. Default to ‘reverse\_linear’ entanglement. Note that ‘reverse\_linear’ entanglement provides the same unitary as ‘full’ with fewer entangling gates. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
+  *   **initial\_state** (`Optional`\[`Any`]) – A QuantumCircuit object to prepend to the circuit.
+  *   **skip\_unentangled\_qubits** (`bool`) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
+  *   **skip\_unentangled\_qubits** – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
+  *   **skip\_final\_rotation\_layer** (`bool`) – If False, a rotation layer is added at the end of the ansatz. If True, no rotation layer is added.
+  *   **parameter\_prefix** (`str`) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
+  *   **insert\_barriers** (`bool`) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
 
-**Parameters**
+  ## Attributes
 
-*   **num\_qubits** (`Optional`\[`int`]) – The number of qubits of the RealAmplitudes circuit.
-*   **reps** (`int`) – Specifies how often the structure of a rotation layer followed by an entanglement layer is repeated.
-*   **entanglement** (`Union`\[`str`, `List`\[`List`\[`int`]], `Callable`\[\[`int`], `List`\[`int`]]]) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ ‘reverse\_linear, ‘circular’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. Default to ‘reverse\_linear’ entanglement. Note that ‘reverse\_linear’ entanglement provides the same unitary as ‘full’ with fewer entangling gates. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
-*   **initial\_state** (`Optional`\[`Any`]) – A QuantumCircuit object to prepend to the circuit.
-*   **skip\_unentangled\_qubits** (`bool`) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
-*   **skip\_unentangled\_qubits** – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
-*   **skip\_final\_rotation\_layer** (`bool`) – If False, a rotation layer is added at the end of the ansatz. If True, no rotation layer is added.
-*   **parameter\_prefix** (`str`) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
-*   **insert\_barriers** (`bool`) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
+  ### ancillas
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-<span id="qiskit.circuit.library.RealAmplitudes.ancillas" />
+    **Return type**
 
-### ancillas
+    `List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  </Attribute>
 
-Returns a list of ancilla bits in the order that the registers were added.
+  ### calibrations
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
 
-<span id="qiskit.circuit.library.RealAmplitudes.calibrations" />
+    **Return type**
 
-### calibrations
+    `dict`
+  </Attribute>
 
-Return calibration dictionary.
+  ### clbits
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-**Return type**
+    **Return type**
 
-`dict`
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-<span id="qiskit.circuit.library.RealAmplitudes.clbits" />
+  ### data
 
-### clbits
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.data" name="data" />
 
-Returns a list of classical bits in the order that the registers were added.
+  ### entanglement
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.entanglement" name="entanglement">
+    Get the entanglement strategy.
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+    **Return type**
 
-<span id="qiskit.circuit.library.RealAmplitudes.data" />
+    `Union`\[`str`, `List`\[`str`], `List`\[`List`\[`str`]], `List`\[`int`], `List`\[`List`\[`int`]], `List`\[`List`\[`List`\[`int`]]], `List`\[`List`\[`List`\[`List`\[`int`]]]], `Callable`\[\[`int`], `str`], `Callable`\[\[`int`], `List`\[`List`\[`int`]]]]
 
-### data
+    **Returns**
 
-<span id="qiskit.circuit.library.RealAmplitudes.entanglement" />
+    The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
+  </Attribute>
 
-### entanglement
+  ### entanglement\_blocks
 
-Get the entanglement strategy.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.entanglement_blocks" name="entanglement_blocks">
+    The blocks in the entanglement layers.
 
-**Return type**
+    **Return type**
 
-`Union`\[`str`, `List`\[`str`], `List`\[`List`\[`str`]], `List`\[`int`], `List`\[`List`\[`int`]], `List`\[`List`\[`List`\[`int`]]], `List`\[`List`\[`List`\[`List`\[`int`]]]], `Callable`\[\[`int`], `str`], `Callable`\[\[`int`], `List`\[`List`\[`int`]]]]
+    `List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
 
-**Returns**
+    **Returns**
 
-The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
+    The blocks in the entanglement layers.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RealAmplitudes.entanglement_blocks" />
+  ### extension\_lib
 
-### entanglement\_blocks
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-The blocks in the entanglement layers.
+  ### global\_phase
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+    **Return type**
 
-**Returns**
+    `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  </Attribute>
 
-The blocks in the entanglement layers.
+  ### header
 
-<span id="qiskit.circuit.library.RealAmplitudes.extension_lib" />
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-### extension\_lib
+  ### initial\_state
 
-`= 'include "qelib1.inc";'`
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.initial_state" name="initial_state">
+    Return the initial state that is added in front of the n-local circuit.
 
-<span id="qiskit.circuit.library.RealAmplitudes.global_phase" />
+    **Return type**
 
-### global\_phase
+    [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
-Return the global phase of the circuit in radians.
+    **Returns**
 
-**Return type**
+    The initial state.
+  </Attribute>
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  ### insert\_barriers
 
-<span id="qiskit.circuit.library.RealAmplitudes.header" />
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.insert_barriers" name="insert_barriers">
+    If barriers are inserted in between the layers or not.
 
-### header
+    **Return type**
 
-`= 'OPENQASM 2.0;'`
+    `bool`
 
-<span id="qiskit.circuit.library.RealAmplitudes.initial_state" />
+    **Returns**
 
-### initial\_state
+    `True`, if barriers are inserted in between the layers, `False` if not.
+  </Attribute>
 
-Return the initial state that is added in front of the n-local circuit.
+  ### instances
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.instances" name="instances" attributeValue="= 2480" />
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  ### metadata
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-The initial state.
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-<span id="qiskit.circuit.library.RealAmplitudes.insert_barriers" />
+    **Return type**
 
-### insert\_barriers
+    `dict`
+  </Attribute>
 
-If barriers are inserted in between the layers or not.
+  ### num\_ancillas
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-`bool`
+    **Return type**
 
-**Returns**
+    `int`
+  </Attribute>
 
-`True`, if barriers are inserted in between the layers, `False` if not.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.RealAmplitudes.instances" />
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-### instances
+    **Return type**
 
-`= 2480`
+    `int`
+  </Attribute>
 
-<span id="qiskit.circuit.library.RealAmplitudes.metadata" />
+  ### num\_layers
 
-### metadata
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_layers" name="num_layers">
+    Return the number of layers in the n-local circuit.
 
-The user provided metadata associated with the circuit
+    **Return type**
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    `int`
 
-**Return type**
+    **Returns**
 
-`dict`
+    The number of layers in the circuit.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RealAmplitudes.num_ancillas" />
+  ### num\_parameters
 
-### num\_ancillas
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_parameters" name="num_parameters">
+    **Return type**
 
-Return the number of ancilla qubits.
+    `int`
+  </Attribute>
 
-**Return type**
+  ### num\_parameters\_settable
 
-`int`
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_parameters_settable" name="num_parameters_settable">
+    The number of total parameters that can be set to distinct values.
 
-<span id="qiskit.circuit.library.RealAmplitudes.num_clbits" />
+    This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
 
-### num\_clbits
+    **Return type**
 
-Return number of classical bits.
+    `int`
 
-**Return type**
+    **Returns**
 
-`int`
+    The number of parameters originally available in the circuit.
 
-<span id="qiskit.circuit.library.RealAmplitudes.num_layers" />
+    <Admonition title="Note" type="note">
+      This quantity does not require the circuit to be built yet.
+    </Admonition>
+  </Attribute>
 
-### num\_layers
+  ### num\_qubits
 
-Return the number of layers in the n-local circuit.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_qubits" name="num_qubits">
+    Returns the number of qubits in this circuit.
 
-**Return type**
+    **Return type**
 
-`int`
+    `int`
 
-**Returns**
+    **Returns**
 
-The number of layers in the circuit.
+    The number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RealAmplitudes.num_parameters" />
+  ### op\_start\_times
 
-### num\_parameters
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-**Return type**
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-`int`
+    **Return type**
 
-<span id="qiskit.circuit.library.RealAmplitudes.num_parameters_settable" />
+    `List`\[`int`]
 
-### num\_parameters\_settable
+    **Returns**
 
-The number of total parameters that can be set to distinct values.
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
+    **Raises**
 
-**Return type**
+    **AttributeError** – When circuit is not scheduled.
+  </Attribute>
 
-`int`
+  ### ordered\_parameters
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.ordered_parameters" name="ordered_parameters">
+    The parameters used in the underlying circuit.
 
-The number of parameters originally available in the circuit.
+    This includes float values and duplicates.
 
-<Admonition title="Note" type="note">
-  This quantity does not require the circuit to be built yet.
-</Admonition>
+    **Examples**
 
-<span id="qiskit.circuit.library.RealAmplitudes.num_qubits" />
+    ```python
+    >>> # prepare circuit ...
+    >>> print(nlocal)
+         ┌───────┐┌──────────┐┌──────────┐┌──────────┐
+    q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
+         └───────┘└──────────┘└──────────┘└──────────┘
+    >>> nlocal.parameters
+    {Parameter(θ[1]), Parameter(θ[3])}
+    >>> nlocal.ordered_parameters
+    [1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
+    ```
 
-### num\_qubits
+    **Return type**
 
-Returns the number of qubits in this circuit.
+    `List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
 
-**Return type**
+    **Returns**
 
-`int`
+    The parameters objects used in the circuit.
+  </Attribute>
 
-**Returns**
+  ### parameter\_bounds
 
-The number of qubits.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.parameter_bounds" name="parameter_bounds">
+    Return the parameter bounds.
 
-<span id="qiskit.circuit.library.RealAmplitudes.op_start_times" />
+    **Return type**
 
-### op\_start\_times
+    `List`\[`Tuple`\[`float`, `float`]]
 
-Return a list of operation start times.
+    **Returns**
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    The parameter bounds.
+  </Attribute>
 
-**Return type**
+  ### parameters
 
-`List`\[`int`]
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.parameters" name="parameters">
+    **Return type**
 
-**Returns**
+    `ParameterView`
+  </Attribute>
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+  ### preferred\_init\_points
 
-**Raises**
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.preferred_init_points" name="preferred_init_points">
+    The initial points for the parameters. Can be stored as initial guess in optimization.
 
-**AttributeError** – When circuit is not scheduled.
+    **Return type**
 
-<span id="qiskit.circuit.library.RealAmplitudes.ordered_parameters" />
+    `Optional`\[`List`\[`float`]]
 
-### ordered\_parameters
+    **Returns**
 
-The parameters used in the underlying circuit.
+    The initial values for the parameters, or None, if none have been set.
+  </Attribute>
 
-This includes float values and duplicates.
+  ### prefix
 
-**Examples**
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-```python
->>> # prepare circuit ...
->>> print(nlocal)
-     ┌───────┐┌──────────┐┌──────────┐┌──────────┐
-q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
-     └───────┘└──────────┘└──────────┘└──────────┘
->>> nlocal.parameters
-{Parameter(θ[1]), Parameter(θ[3])}
->>> nlocal.ordered_parameters
-[1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
-```
+  ### qregs
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.qregs" name="qregs">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-`List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+  ### qubits
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-The parameters objects used in the circuit.
+    **Return type**
 
-<span id="qiskit.circuit.library.RealAmplitudes.parameter_bounds" />
+    `List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+  </Attribute>
 
-### parameter\_bounds
+  ### reps
 
-Return the parameter bounds.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.reps" name="reps">
+    The number of times rotation and entanglement block are repeated.
 
-**Return type**
+    **Return type**
 
-`List`\[`Tuple`\[`float`, `float`]]
+    `int`
 
-**Returns**
+    **Returns**
 
-The parameter bounds.
+    The number of repetitions.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RealAmplitudes.parameters" />
+  ### rotation\_blocks
 
-### parameters
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.rotation_blocks" name="rotation_blocks">
+    The blocks in the rotation layers.
 
-**Return type**
+    **Return type**
 
-`ParameterView`
+    `List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
 
-<span id="qiskit.circuit.library.RealAmplitudes.preferred_init_points" />
+    **Returns**
 
-### preferred\_init\_points
-
-The initial points for the parameters. Can be stored as initial guess in optimization.
-
-**Return type**
-
-`Optional`\[`List`\[`float`]]
-
-**Returns**
-
-The initial values for the parameters, or None, if none have been set.
-
-<span id="qiskit.circuit.library.RealAmplitudes.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.RealAmplitudes.qregs" />
-
-### qregs
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.RealAmplitudes.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
-
-<span id="qiskit.circuit.library.RealAmplitudes.reps" />
-
-### reps
-
-The number of times rotation and entanglement block are repeated.
-
-**Return type**
-
-`int`
-
-**Returns**
-
-The number of repetitions.
-
-<span id="qiskit.circuit.library.RealAmplitudes.rotation_blocks" />
-
-### rotation\_blocks
-
-The blocks in the rotation layers.
-
-**Return type**
-
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
-
-**Returns**
-
-The blocks in the rotation layers.
+    The blocks in the rotation layers.
+  </Attribute>
+</Class>
 

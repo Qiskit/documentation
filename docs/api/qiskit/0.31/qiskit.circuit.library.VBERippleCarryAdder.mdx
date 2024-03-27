@@ -8,175 +8,165 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
 
 # VBERippleCarryAdder
 
-<span id="qiskit.circuit.library.VBERippleCarryAdder" />
+<Class id="qiskit.circuit.library.VBERippleCarryAdder" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/adders/vbe_ripple_carry_adder.py" signature="VBERippleCarryAdder(num_state_qubits, kind='full', name='VBERippleCarryAdder')">
+  Bases: `qiskit.circuit.library.arithmetic.adders.adder.Adder`
 
-`VBERippleCarryAdder(num_state_qubits, kind='full', name='VBERippleCarryAdder')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/adders/vbe_ripple_carry_adder.py "view source code")
+  The VBE ripple carry adder \[1].
 
-Bases: `qiskit.circuit.library.arithmetic.adders.adder.Adder`
+  This circuit performs inplace addition of two equally-sized quantum registers. As an example, a classical adder circuit that performs full addition (i.e. including a carry-in bit) on two 2-qubit sized registers is as follows:
 
-The VBE ripple carry adder \[1].
+  ```python
+            ┌────────┐                       ┌───────────┐┌──────┐
+     cin_0: ┤0       ├───────────────────────┤0          ├┤0     ├
+            │        │                       │           ││      │
+       a_0: ┤1       ├───────────────────────┤1          ├┤1     ├
+            │        │┌────────┐     ┌──────┐│           ││  Sum │
+       a_1: ┤        ├┤1       ├──■──┤1     ├┤           ├┤      ├
+            │        ││        │  │  │      ││           ││      │
+       b_0: ┤2 Carry ├┤        ├──┼──┤      ├┤2 Carry_dg ├┤2     ├
+            │        ││        │┌─┴─┐│      ││           │└──────┘
+       b_1: ┤        ├┤2 Carry ├┤ X ├┤2 Sum ├┤           ├────────
+            │        ││        │└───┘│      ││           │
+    cout_0: ┤        ├┤3       ├─────┤      ├┤           ├────────
+            │        ││        │     │      ││           │
+  helper_0: ┤3       ├┤0       ├─────┤0     ├┤3          ├────────
+            └────────┘└────────┘     └──────┘└───────────┘
+  ```
 
-This circuit performs inplace addition of two equally-sized quantum registers. As an example, a classical adder circuit that performs full addition (i.e. including a carry-in bit) on two 2-qubit sized registers is as follows:
+  Here *Carry* and *Sum* gates correspond to the gates introduced in \[1]. *Carry\_dg* correspond to the inverse of the *Carry* gate. Note that in this implementation the input register qubits are ordered as all qubits from the first input register, followed by all qubits from the second input register. This is different ordering as compared to Figure 2 in \[1], which leads to a different drawing of the circuit.
 
-```python
-          ┌────────┐                       ┌───────────┐┌──────┐
-   cin_0: ┤0       ├───────────────────────┤0          ├┤0     ├
-          │        │                       │           ││      │
-     a_0: ┤1       ├───────────────────────┤1          ├┤1     ├
-          │        │┌────────┐     ┌──────┐│           ││  Sum │
-     a_1: ┤        ├┤1       ├──■──┤1     ├┤           ├┤      ├
-          │        ││        │  │  │      ││           ││      │
-     b_0: ┤2 Carry ├┤        ├──┼──┤      ├┤2 Carry_dg ├┤2     ├
-          │        ││        │┌─┴─┐│      ││           │└──────┘
-     b_1: ┤        ├┤2 Carry ├┤ X ├┤2 Sum ├┤           ├────────
-          │        ││        │└───┘│      ││           │
-  cout_0: ┤        ├┤3       ├─────┤      ├┤           ├────────
-          │        ││        │     │      ││           │
-helper_0: ┤3       ├┤0       ├─────┤0     ├┤3          ├────────
-          └────────┘└────────┘     └──────┘└───────────┘
-```
+  **References:**
 
-Here *Carry* and *Sum* gates correspond to the gates introduced in \[1]. *Carry\_dg* correspond to the inverse of the *Carry* gate. Note that in this implementation the input register qubits are ordered as all qubits from the first input register, followed by all qubits from the second input register. This is different ordering as compared to Figure 2 in \[1], which leads to a different drawing of the circuit.
+  \[1] Vedral et al., Quantum Networks for Elementary Arithmetic Operations, 1995. [arXiv:quant-ph/9511018](https://arxiv.org/pdf/quant-ph/9511018.pdf)
 
-**References:**
+  **Parameters**
 
-\[1] Vedral et al., Quantum Networks for Elementary Arithmetic Operations, 1995. [arXiv:quant-ph/9511018](https://arxiv.org/pdf/quant-ph/9511018.pdf)
+  *   **num\_state\_qubits** (`int`) – The size of the register.
+  *   **kind** (`str`) – The kind of adder, can be `'full'` for a full adder, `'half'` for a half adder, or `'fixed'` for a fixed-sized adder. A full adder includes both carry-in and carry-out, a half only carry-out, and a fixed-sized adder neither carry-in nor carry-out.
+  *   **name** (`str`) – The name of the circuit.
 
-**Parameters**
+  **Raises**
 
-*   **num\_state\_qubits** (`int`) – The size of the register.
-*   **kind** (`str`) – The kind of adder, can be `'full'` for a full adder, `'half'` for a half adder, or `'fixed'` for a fixed-sized adder. A full adder includes both carry-in and carry-out, a half only carry-out, and a fixed-sized adder neither carry-in nor carry-out.
-*   **name** (`str`) – The name of the circuit.
+  **ValueError** – If `num_state_qubits` is lower than 1.
 
-**Raises**
+  ## Attributes
 
-**ValueError** – If `num_state_qubits` is lower than 1.
+  ### ancillas
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.VBERippleCarryAdder.ancillas" />
+  ### calibrations
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **The custom pulse definition of a given gate is of the form**
 
-<span id="qiskit.circuit.library.VBERippleCarryAdder.calibrations" />
+    \{‘gate\_name’: \{(qubits, params): schedule}}
+  </Attribute>
 
-### calibrations
+  ### clbits
 
-Return calibration dictionary.
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-**The custom pulse definition of a given gate is of the form**
+  ### data
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.data" name="data">
+    Return the circuit data (instructions and context).
 
-<span id="qiskit.circuit.library.VBERippleCarryAdder.clbits" />
+    **Returns**
 
-### clbits
+    a list-like object containing the tuples for the circuit’s data.
 
-Returns a list of classical bits in the order that the registers were added.
+    Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
-<span id="qiskit.circuit.library.VBERippleCarryAdder.data" />
+    **Return type**
 
-### data
+    QuantumCircuitData
+  </Attribute>
 
-Return the circuit data (instructions and context).
+  ### extension\_lib
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-a list-like object containing the tuples for the circuit’s data.
+  ### global\_phase
 
-Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
+  </Attribute>
 
-**Return type**
+  ### header
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-<span id="qiskit.circuit.library.VBERippleCarryAdder.extension_lib" />
+  ### instances
 
-### extension\_lib
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.instances" name="instances" attributeValue="= 16" />
 
-`= 'include "qelib1.inc";'`
+  ### metadata
 
-<span id="qiskit.circuit.library.VBERippleCarryAdder.global_phase" />
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-### global\_phase
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-Return the global phase of the circuit in radians.
+  ### num\_ancillas
 
-<span id="qiskit.circuit.library.VBERippleCarryAdder.header" />
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-### header
+  ### num\_clbits
 
-`= 'OPENQASM 2.0;'`
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.VBERippleCarryAdder.instances" />
+  ### num\_parameters
 
-### instances
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_parameters" name="num_parameters">
+    Convenience function to get the number of parameter objects in the circuit.
+  </Attribute>
 
-`= 16`
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.VBERippleCarryAdder.metadata" />
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-### metadata
+  ### num\_state\_qubits
 
-The user provided metadata associated with the circuit
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_state_qubits" name="num_state_qubits">
+    The number of state qubits, i.e. the number of bits in each input register.
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    **Return type**
 
-<span id="qiskit.circuit.library.VBERippleCarryAdder.num_ancillas" />
+    `int`
 
-### num\_ancillas
+    **Returns**
 
-Return the number of ancilla qubits.
+    The number of state qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.VBERippleCarryAdder.num_clbits" />
+  ### parameters
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.parameters" name="parameters">
+    Convenience function to get the parameters defined in the parameter table.
+  </Attribute>
 
-Return number of classical bits.
+  ### prefix
 
-<span id="qiskit.circuit.library.VBERippleCarryAdder.num_parameters" />
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-### num\_parameters
+  ### qubits
 
-Convenience function to get the number of parameter objects in the circuit.
-
-<span id="qiskit.circuit.library.VBERippleCarryAdder.num_qubits" />
-
-### num\_qubits
-
-Return number of qubits.
-
-<span id="qiskit.circuit.library.VBERippleCarryAdder.num_state_qubits" />
-
-### num\_state\_qubits
-
-The number of state qubits, i.e. the number of bits in each input register.
-
-**Return type**
-
-`int`
-
-**Returns**
-
-The number of state qubits.
-
-<span id="qiskit.circuit.library.VBERippleCarryAdder.parameters" />
-
-### parameters
-
-Convenience function to get the parameters defined in the parameter table.
-
-<span id="qiskit.circuit.library.VBERippleCarryAdder.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.VBERippleCarryAdder.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+</Class>
 
