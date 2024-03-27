@@ -57,7 +57,6 @@ jobs:
           cache-to: type=inline
       - name: Determine Code Engine app status
         id: ce_command_choice
-        shell: bash
         run: |
           if ibmcloud ce app list -q | grep "${{ steps.set-up-cloud.outputs.app_name }}" ; then
             echo "command=update" >> $GITHUB_OUTPUT
@@ -66,7 +65,6 @@ jobs:
           fi
       - name: Create a new preview application in Code Engine
         id: ce_app_creation
-        shell: bash
         run: |
           ibmcloud ce app ${{ steps.ce_command_choice.outputs.command }} \
             --name "${{ steps.set-up-cloud.outputs.app_name }}" \
