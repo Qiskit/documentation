@@ -8,33 +8,31 @@ python_api_name: qiskit.algorithms.optimizers.Minimizer
 
 # Minimizer
 
-<span id="qiskit.algorithms.optimizers.Minimizer" />
+<Class id="qiskit.algorithms.optimizers.Minimizer" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/optimizer.py" signature="Minimizer(*args, **kwargs)">
+  Bases: `Protocol`
 
-`Minimizer(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/optimizer.py "view source code")
+  Callable Protocol for minimizer.
 
-Bases: `Protocol`
+  This interface is based on [SciPy’s optimize module](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html).
 
-Callable Protocol for minimizer.
-
-This interface is based on [SciPy’s optimize module](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html).
-
-> This protocol defines a callable taking the following parameters:
->
-> > **fun**
-> >
-> > The objective function to minimize (for example the energy in the case of the VQE).
-> >
-> > **x0**
-> >
-> > The initial point for the optimization.
-> >
-> > **jac**
-> >
-> > The gradient of the objective function.
-> >
-> > **bounds**
-> >
-> > Parameters bounds for the optimization. Note that these might not be supported by all optimizers.
->
-> and which returns a minimization result object (either SciPy’s or Qiskit’s).
+  > This protocol defines a callable taking the following parameters:
+  >
+  > > **fun**
+  > >
+  > > The objective function to minimize (for example the energy in the case of the VQE).
+  > >
+  > > **x0**
+  > >
+  > > The initial point for the optimization.
+  > >
+  > > **jac**
+  > >
+  > > The gradient of the objective function.
+  > >
+  > > **bounds**
+  > >
+  > > Parameters bounds for the optimization. Note that these might not be supported by all optimizers.
+  >
+  > and which returns a minimization result object (either SciPy’s or Qiskit’s).
+</Class>
 
