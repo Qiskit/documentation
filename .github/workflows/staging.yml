@@ -25,11 +25,9 @@ on:
 jobs:
   deploy:
     if: github.repository_owner == 'Qiskit'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/deploy-code-engine
-        with:
-          env_name: Preview
-          ibmcloud_account: ${{ secrets.IBMCLOUD_ACCOUNT }}
-          ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
+    uses: ./.github/workflows/deploy-code-engine.yml
+    with:
+      env_name: Staging
+    secrets:
+      ibmcloud_account: ${{ secrets.IBMCLOUD_ACCOUNT }}
+      ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
