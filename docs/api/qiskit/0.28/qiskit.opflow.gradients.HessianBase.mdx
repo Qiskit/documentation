@@ -8,132 +8,120 @@ python_api_name: qiskit.opflow.gradients.HessianBase
 
 # qiskit.opflow\.gradients.HessianBase
 
-<span id="qiskit.opflow.gradients.HessianBase" />
+<Class id="qiskit.opflow.gradients.HessianBase" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/gradients/hessian_base.py" signature="HessianBase(hess_method='param_shift', **kwargs)">
+  Base class for the Hessian of an expected value.
 
-`HessianBase(hess_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/gradients/hessian_base.py "view source code")
+  **Parameters**
 
-Base class for the Hessian of an expected value.
+  *   **hess\_method** (`Union`\[`str`, `CircuitGradient`]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
+  *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
 
-**Parameters**
+  **Raises**
 
-*   **hess\_method** (`Union`\[`str`, `CircuitGradient`]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
-*   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
+  **ValueError** – If method != `fin_diff` and `epsilon` is not None.
 
-**Raises**
+  ### \_\_init\_\_
 
-**ValueError** – If method != `fin_diff` and `epsilon` is not None.
+  <Function id="qiskit.opflow.gradients.HessianBase.__init__" name="__init__" signature="__init__(hess_method='param_shift', **kwargs)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **hess\_method** (`Union`\[`str`, `CircuitGradient`]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
+    *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
 
-<span id="qiskit.opflow.gradients.HessianBase.__init__" />
+    **Raises**
 
-`__init__(hess_method='param_shift', **kwargs)`
+    **ValueError** – If method != `fin_diff` and `epsilon` is not None.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **hess\_method** (`Union`\[`str`, `CircuitGradient`]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
-*   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
+  |                                                                                                                                                                                   |                                                                                                            |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.opflow.gradients.HessianBase.__init__ "qiskit.opflow.gradients.HessianBase.__init__")(\[hess\_method])                                                       | **type hess\_method**`Union`\[`str`, `CircuitGradient`]                                                    |
+  | [`convert`](#qiskit.opflow.gradients.HessianBase.convert "qiskit.opflow.gradients.HessianBase.convert")(operator\[, params])                                                      | **type operator**`OperatorBase`                                                                            |
+  | [`gradient_wrapper`](#qiskit.opflow.gradients.HessianBase.gradient_wrapper "qiskit.opflow.gradients.HessianBase.gradient_wrapper")(operator, bind\_params\[, …])                  | Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. |
+  | [`parameter_expression_grad`](#qiskit.opflow.gradients.HessianBase.parameter_expression_grad "qiskit.opflow.gradients.HessianBase.parameter_expression_grad")(param\_expr, param) | Get the derivative of a parameter expression w\.r.t.                                                       |
 
-**Raises**
+  ## Attributes
 
-**ValueError** – If method != `fin_diff` and `epsilon` is not None.
+  |                                                                                                                     |                            |
+  | ------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+  | [`hess_method`](#qiskit.opflow.gradients.HessianBase.hess_method "qiskit.opflow.gradients.HessianBase.hess_method") | Returns `CircuitGradient`. |
 
-## Methods
+  ### convert
 
-|                                                                                                                                                                                   |                                                                                                            |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.opflow.gradients.HessianBase.__init__ "qiskit.opflow.gradients.HessianBase.__init__")(\[hess\_method])                                                       | **type hess\_method**`Union`\[`str`, `CircuitGradient`]                                                    |
-| [`convert`](#qiskit.opflow.gradients.HessianBase.convert "qiskit.opflow.gradients.HessianBase.convert")(operator\[, params])                                                      | **type operator**`OperatorBase`                                                                            |
-| [`gradient_wrapper`](#qiskit.opflow.gradients.HessianBase.gradient_wrapper "qiskit.opflow.gradients.HessianBase.gradient_wrapper")(operator, bind\_params\[, …])                  | Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. |
-| [`parameter_expression_grad`](#qiskit.opflow.gradients.HessianBase.parameter_expression_grad "qiskit.opflow.gradients.HessianBase.parameter_expression_grad")(param\_expr, param) | Get the derivative of a parameter expression w\.r.t.                                                       |
+  <Function id="qiskit.opflow.gradients.HessianBase.convert" name="convert" signature="abstract convert(operator, params=None)">
+    **Parameters**
 
-## Attributes
+    *   **operator** (`OperatorBase`) – The operator we are taking the gradient, Hessian or QFI of
+    *   **params** (`Union`\[`ParameterVector`, `ParameterExpression`, `List`\[`ParameterExpression`], `None`]) – The parameters we are taking the gradient, Hessian or QFI with respect to.
 
-|                                                                                                                     |                            |
-| ------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| [`hess_method`](#qiskit.opflow.gradients.HessianBase.hess_method "qiskit.opflow.gradients.HessianBase.hess_method") | Returns `CircuitGradient`. |
+    **Return type**
 
-### convert
+    `OperatorBase`
 
-<span id="qiskit.opflow.gradients.HessianBase.convert" />
+    **Returns**
 
-`abstract convert(operator, params=None)`
+    An operator whose evaluation yields the gradient, Hessian or QFI.
 
-**Parameters**
+    **Raises**
 
-*   **operator** (`OperatorBase`) – The operator we are taking the gradient, Hessian or QFI of
-*   **params** (`Union`\[`ParameterVector`, `ParameterExpression`, `List`\[`ParameterExpression`], `None`]) – The parameters we are taking the gradient, Hessian or QFI with respect to.
+    **ValueError** – If `params` contains a parameter not present in `operator`.
+  </Function>
 
-**Return type**
+  ### gradient\_wrapper
 
-`OperatorBase`
+  <Function id="qiskit.opflow.gradients.HessianBase.gradient_wrapper" name="gradient_wrapper" signature="gradient_wrapper(operator, bind_params, grad_params=None, backend=None, expectation=None)">
+    Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. This callable can be used as gradient function for optimizers.
 
-**Returns**
+    **Parameters**
 
-An operator whose evaluation yields the gradient, Hessian or QFI.
+    *   **operator** (`OperatorBase`) – The operator for which we want to get the gradient, Hessian or QFI.
+    *   **bind\_params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`]]) – The operator parameters to which the parameter values are assigned.
+    *   **grad\_params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`], `Tuple`\[`ParameterExpression`, `ParameterExpression`], `List`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`]], `None`]) – The parameters with respect to which we are taking the gradient, Hessian or QFI. If grad\_params = None, then grad\_params = bind\_params
+    *   **backend** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – The quantum backend or QuantumInstance to use to evaluate the gradient, Hessian or QFI.
+    *   **expectation** (`Optional`\[`ExpectationBase`]) – The expectation converter to be used. If none is set then PauliExpectation() is used.
 
-**Raises**
+    **Return type**
 
-**ValueError** – If `params` contains a parameter not present in `operator`.
+    `Callable`\[\[`Iterable`], `ndarray`]
 
-### gradient\_wrapper
+    **Returns**
 
-<span id="qiskit.opflow.gradients.HessianBase.gradient_wrapper" />
+    Function to compute a gradient, Hessian or QFI. The function takes an iterable as argument which holds the parameter values.
+  </Function>
 
-`gradient_wrapper(operator, bind_params, grad_params=None, backend=None, expectation=None)`
+  ### hess\_method
 
-Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. This callable can be used as gradient function for optimizers.
+  <Function id="qiskit.opflow.gradients.HessianBase.hess_method" name="hess_method" signature="property hess_method">
+    Returns `CircuitGradient`.
 
-**Parameters**
+    **Return type**
 
-*   **operator** (`OperatorBase`) – The operator for which we want to get the gradient, Hessian or QFI.
-*   **bind\_params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`]]) – The operator parameters to which the parameter values are assigned.
-*   **grad\_params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`], `Tuple`\[`ParameterExpression`, `ParameterExpression`], `List`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`]], `None`]) – The parameters with respect to which we are taking the gradient, Hessian or QFI. If grad\_params = None, then grad\_params = bind\_params
-*   **backend** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – The quantum backend or QuantumInstance to use to evaluate the gradient, Hessian or QFI.
-*   **expectation** (`Optional`\[`ExpectationBase`]) – The expectation converter to be used. If none is set then PauliExpectation() is used.
+    `CircuitGradient`
 
-**Return type**
+    **Returns**
 
-`Callable`\[\[`Iterable`], `ndarray`]
+    `CircuitGradient`.
+  </Function>
 
-**Returns**
+  ### parameter\_expression\_grad
 
-Function to compute a gradient, Hessian or QFI. The function takes an iterable as argument which holds the parameter values.
+  <Function id="qiskit.opflow.gradients.HessianBase.parameter_expression_grad" name="parameter_expression_grad" signature="static parameter_expression_grad(param_expr, param)">
+    Get the derivative of a parameter expression w\.r.t. the given parameter.
 
-### hess\_method
+    **Parameters**
 
-<span id="qiskit.opflow.gradients.HessianBase.hess_method" />
+    *   **param\_expr** (`ParameterExpression`) – The Parameter Expression for which we compute the derivative
+    *   **param** (`ParameterExpression`) – Parameter w\.r.t. which we want to take the derivative
 
-`property hess_method`
+    **Return type**
 
-Returns `CircuitGradient`.
+    `Union`\[`ParameterExpression`, `float`]
 
-**Return type**
+    **Returns**
 
-`CircuitGradient`
-
-**Returns**
-
-`CircuitGradient`.
-
-### parameter\_expression\_grad
-
-<span id="qiskit.opflow.gradients.HessianBase.parameter_expression_grad" />
-
-`static parameter_expression_grad(param_expr, param)`
-
-Get the derivative of a parameter expression w\.r.t. the given parameter.
-
-**Parameters**
-
-*   **param\_expr** (`ParameterExpression`) – The Parameter Expression for which we compute the derivative
-*   **param** (`ParameterExpression`) – Parameter w\.r.t. which we want to take the derivative
-
-**Return type**
-
-`Union`\[`ParameterExpression`, `float`]
-
-**Returns**
-
-ParameterExpression representing the gradient of param\_expr w\.r.t. param
+    ParameterExpression representing the gradient of param\_expr w\.r.t. param
+  </Function>
+</Class>
 
