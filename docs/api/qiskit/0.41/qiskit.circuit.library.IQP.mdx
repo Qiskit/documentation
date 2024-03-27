@@ -8,266 +8,256 @@ python_api_name: qiskit.circuit.library.IQP
 
 # IQP
 
-<span id="qiskit.circuit.library.IQP" />
+<Class id="qiskit.circuit.library.IQP" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/iqp.py" signature="IQP(interactions)">
+  Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
-`IQP(interactions)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/iqp.py "view source code")
+  Instantaneous quantum polynomial (IQP) circuit.
 
-Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  The circuit consists of a column of Hadamard gates, a column of powers of T gates, a sequence of powers of CS gates (up to $\frac{n^2-n}{2}$ of them), and a final column of Hadamard gates, as introduced in \[1].
 
-Instantaneous quantum polynomial (IQP) circuit.
+  The circuit is parameterized by an n x n interactions matrix. The powers of each T gate are given by the diagonal elements of the interactions matrix. The powers of the CS gates are given by the upper triangle of the interactions matrix.
 
-The circuit consists of a column of Hadamard gates, a column of powers of T gates, a sequence of powers of CS gates (up to $\frac{n^2-n}{2}$ of them), and a final column of Hadamard gates, as introduced in \[1].
+  **Reference Circuit:**
 
-The circuit is parameterized by an n x n interactions matrix. The powers of each T gate are given by the diagonal elements of the interactions matrix. The powers of the CS gates are given by the upper triangle of the interactions matrix.
+  ![../\_images/qiskit-circuit-library-IQP-1.png](/images/api/qiskit/0.41/qiskit-circuit-library-IQP-1.png)
 
-**Reference Circuit:**
+  **Expanded Circuit:**
 
-![../\_images/qiskit-circuit-library-IQP-1.png](/images/api/qiskit/0.41/qiskit-circuit-library-IQP-1.png)
+  > ![../\_images/qiskit-circuit-library-IQP-2.png](/images/api/qiskit/0.41/qiskit-circuit-library-IQP-2.png)
 
-**Expanded Circuit:**
+  **References:**
 
-> ![../\_images/qiskit-circuit-library-IQP-2.png](/images/api/qiskit/0.41/qiskit-circuit-library-IQP-2.png)
+  \[1] M. J. Bremner et al. Average-case complexity versus approximate simulation of commuting quantum computations, Phys. Rev. Lett. 117, 080501 (2016). [arXiv:1504.07999](https://arxiv.org/abs/1504.07999)
 
-**References:**
+  Create IQP circuit.
 
-\[1] M. J. Bremner et al. Average-case complexity versus approximate simulation of commuting quantum computations, Phys. Rev. Lett. 117, 080501 (2016). [arXiv:1504.07999](https://arxiv.org/abs/1504.07999)
+  **Parameters**
 
-Create IQP circuit.
+  **interactions** (`Union`\[`List`, `array`]) – input n-by-n symmetric matrix.
 
-**Parameters**
+  **Raises**
 
-**interactions** (`Union`\[`List`, `array`]) – input n-by-n symmetric matrix.
+  **CircuitError** – if the inputs is not as symmetric matrix.
 
-**Raises**
+  ## Attributes
 
-**CircuitError** – if the inputs is not as symmetric matrix.
+  ### ancillas
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.IQP.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-<span id="qiskit.circuit.library.IQP.ancillas" />
+    **Return type**
 
-### ancillas
+    `List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  </Attribute>
 
-Returns a list of ancilla bits in the order that the registers were added.
+  ### calibrations
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.IQP.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
 
-<span id="qiskit.circuit.library.IQP.calibrations" />
+    **Return type**
 
-### calibrations
+    `dict`
+  </Attribute>
 
-Return calibration dictionary.
+  ### clbits
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  <Attribute id="qiskit.circuit.library.IQP.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-**Return type**
+    **Return type**
 
-`dict`
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-<span id="qiskit.circuit.library.IQP.clbits" />
+  ### data
 
-### clbits
+  <Attribute id="qiskit.circuit.library.IQP.data" name="data">
+    Return the circuit data (instructions and context).
 
-Returns a list of classical bits in the order that the registers were added.
+    **Returns**
 
-**Return type**
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+    **Return type**
 
-<span id="qiskit.circuit.library.IQP.data" />
+    QuantumCircuitData
+  </Attribute>
 
-### data
+  ### extension\_lib
 
-Return the circuit data (instructions and context).
+  <Attribute id="qiskit.circuit.library.IQP.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-**Returns**
+  ### global\_phase
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+  <Attribute id="qiskit.circuit.library.IQP.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-**Return type**
+    **Return type**
 
-QuantumCircuitData
+    `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  </Attribute>
 
-<span id="qiskit.circuit.library.IQP.extension_lib" />
+  ### header
 
-### extension\_lib
+  <Attribute id="qiskit.circuit.library.IQP.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-`= 'include "qelib1.inc";'`
+  ### instances
 
-<span id="qiskit.circuit.library.IQP.global_phase" />
+  <Attribute id="qiskit.circuit.library.IQP.instances" name="instances" attributeValue="= 2087" />
 
-### global\_phase
+  ### metadata
 
-Return the global phase of the circuit in radians.
+  <Attribute id="qiskit.circuit.library.IQP.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-**Return type**
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+    **Return type**
 
-<span id="qiskit.circuit.library.IQP.header" />
+    `dict`
+  </Attribute>
 
-### header
+  ### num\_ancillas
 
-`= 'OPENQASM 2.0;'`
+  <Attribute id="qiskit.circuit.library.IQP.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-<span id="qiskit.circuit.library.IQP.instances" />
+    **Return type**
 
-### instances
+    `int`
+  </Attribute>
 
-`= 2087`
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.IQP.metadata" />
+  <Attribute id="qiskit.circuit.library.IQP.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-### metadata
+    **Return type**
 
-The user provided metadata associated with the circuit
+    `int`
+  </Attribute>
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  ### num\_parameters
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.IQP.num_parameters" name="num_parameters">
+    The number of parameter objects in the circuit.
 
-`dict`
+    **Return type**
 
-<span id="qiskit.circuit.library.IQP.num_ancillas" />
+    `int`
+  </Attribute>
 
-### num\_ancillas
+  ### num\_qubits
 
-Return the number of ancilla qubits.
+  <Attribute id="qiskit.circuit.library.IQP.num_qubits" name="num_qubits">
+    Return number of qubits.
 
-**Return type**
+    **Return type**
 
-`int`
+    `int`
+  </Attribute>
 
-<span id="qiskit.circuit.library.IQP.num_clbits" />
+  ### op\_start\_times
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.IQP.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-Return number of classical bits.
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-**Return type**
+    **Return type**
 
-`int`
+    `List`\[`int`]
 
-<span id="qiskit.circuit.library.IQP.num_parameters" />
+    **Returns**
 
-### num\_parameters
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-The number of parameter objects in the circuit.
+    **Raises**
 
-**Return type**
+    **AttributeError** – When circuit is not scheduled.
+  </Attribute>
 
-`int`
+  ### parameters
 
-<span id="qiskit.circuit.library.IQP.num_qubits" />
+  <Attribute id="qiskit.circuit.library.IQP.parameters" name="parameters">
+    The parameters defined in the circuit.
 
-### num\_qubits
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-Return number of qubits.
+    **Examples**
 
-**Return type**
+    The snippet below shows that insertion order of parameters does not matter.
 
-`int`
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
 
-<span id="qiskit.circuit.library.IQP.op_start_times" />
+    Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
-### op\_start\_times
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
 
-Return a list of operation start times.
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    ```python
+    ```
 
-**Return type**
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
 
-`List`\[`int`]
+    **Return type**
 
-**Returns**
+    `ParameterView`
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    **Returns**
 
-**Raises**
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
-**AttributeError** – When circuit is not scheduled.
+  ### prefix
 
-<span id="qiskit.circuit.library.IQP.parameters" />
+  <Attribute id="qiskit.circuit.library.IQP.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-### parameters
+  ### qubits
 
-The parameters defined in the circuit.
+  <Attribute id="qiskit.circuit.library.IQP.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+    **Return type**
 
-**Examples**
-
-The snippet below shows that insertion order of parameters does not matter.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
->>> circuit = QuantumCircuit(1)
->>> circuit.rx(b, 0)
->>> circuit.rz(elephant, 0)
->>> circuit.ry(a, 0)
->>> circuit.parameters  # sorted alphabetically!
-ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
-```
-
-Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
->>> circuit = QuantumCircuit(1)
->>> circuit.u(*angles, 0)
->>> circuit.draw()
-   ┌─────────────────────────────┐
-q: ┤ U(angle_1,angle_2,angle_10) ├
-   └─────────────────────────────┘
->>> circuit.parameters
-ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
-```
-
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
->>> x = ParameterVector("x", 12)
->>> circuit = QuantumCircuit(1)
->>> for x_i in x:
-...     circuit.rx(x_i, 0)
->>> circuit.parameters
-ParameterView([
-    ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
-    ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
-    ..., ParameterVectorElement(x[11])
-])
-```
-
-**Return type**
-
-`ParameterView`
-
-**Returns**
-
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
-
-<span id="qiskit.circuit.library.IQP.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.IQP.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+    `List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+  </Attribute>
+</Class>
 
