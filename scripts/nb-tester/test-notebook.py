@@ -105,6 +105,8 @@ def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
     for cell_index, cell in enumerate(notebook.cells):
         if not hasattr(cell, "outputs"):
             continue
+        if "ignore-warnings" in cell.metadata.get("tags", []):
+            continue
         for output in cell.outputs:
             if hasattr(output, "name") and output.name == "stderr":
                 notebook_warnings.append(
@@ -150,6 +152,7 @@ def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.Note
         # If submitting jobs, we want to wait forever (-1 means no timeout)
         timeout=-1 if submit_jobs else 100,
         kernel_name="python3",
+        extra_arguments=["--InlineBackend.figure_format='svg'"]
     )
 
     processor.preprocess(nb)

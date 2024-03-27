@@ -97,9 +97,10 @@ jobs:
             --image "${{ env.DOCKER_IMAGE_TAG }}" \
             --registry-secret "ibm-container-registry" \
             --port 3000 \
-            --cpu 0.25 \
-            --memory 0.5G \
-            --min 1
+            --cpu 0.5 \
+            --memory 1G \
+            --min 1 \
+            --max 2
           echo "preview_url=$(\
             ibmcloud ce app get --name "${{ env.APP_NAME }}" --output url
           )" >> $GITHUB_OUTPUT
