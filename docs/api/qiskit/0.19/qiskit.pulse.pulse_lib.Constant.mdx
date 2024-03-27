@@ -8,124 +8,108 @@ python_api_name: qiskit.pulse.pulse_lib.Constant
 
 # Constant
 
-<span id="qiskit.pulse.pulse_lib.Constant" />
+<Class id="qiskit.pulse.pulse_lib.Constant" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py" signature="Constant(duration, amp, name=None)">
+  A simple constant pulse, with an amplitude value and a duration:
 
-`Constant(duration, amp, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
+  $$
+  f(x) = amp    ,  0 <= x < duration
+  f(x) = 0      ,  elsewhere
+  $$
 
-A simple constant pulse, with an amplitude value and a duration:
+  Initialize the constant-valued pulse.
 
-$$
-f(x) = amp    ,  0 <= x < duration
-f(x) = 0      ,  elsewhere
-$$
+  **Parameters**
 
-Initialize the constant-valued pulse.
+  *   **duration** (`int`) – Pulse length in terms of the the sampling period dt.
+  *   **amp** (`complex`) – The amplitude of the constant square pulse.
+  *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 
-**Parameters**
+  ## Attributes
 
-*   **duration** (`int`) – Pulse length in terms of the the sampling period dt.
-*   **amp** (`complex`) – The amplitude of the constant square pulse.
-*   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
+  ### amp
 
-## Attributes
+  <Attribute id="qiskit.pulse.pulse_lib.Constant.amp" signature="complex">
+    The constant value amplitude.
 
-### amp
+    **Return type**
 
-<span id="qiskit.pulse.pulse_lib.Constant.amp" />
+    `complex`
+  </Attribute>
 
-`complex`
+  ### id
 
-The constant value amplitude.
+  <Attribute id="qiskit.pulse.pulse_lib.Constant.id" signature="int">
+    Unique identifier for this pulse.
 
-**Return type**
+    **Return type**
 
-`complex`
+    `int`
+  </Attribute>
 
-### id
+  ### parameters
 
-<span id="qiskit.pulse.pulse_lib.Constant.id" />
+  <Attribute id="qiskit.pulse.pulse_lib.Constant.parameters" signature="Dict[str, Any]">
+    Return a dictionary containing the pulse’s parameters.
 
-`int`
+    **Return type**
 
-Unique identifier for this pulse.
+    `Dict`\[`str`, `Any`]
+  </Attribute>
 
-**Return type**
+  ## Methods
 
-`int`
+  ### \_\_call\_\_
 
-### parameters
+  <Function id="qiskit.pulse.pulse_lib.Constant.__call__" signature="Constant.__call__(channel)">
+    Call self as a function.
+  </Function>
 
-<span id="qiskit.pulse.pulse_lib.Constant.parameters" />
+  ### draw
 
-`Dict[str, Any]`
+  <Function id="qiskit.pulse.pulse_lib.Constant.draw" signature="Constant.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)">
+    Plot the pulse.
 
-Return a dictionary containing the pulse’s parameters.
+    **Parameters**
 
-**Return type**
+    *   **dt** (`float`) – Time interval of samples.
+    *   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
+    *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
+    *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
+    *   **scale** (`float`) – Relative visual scaling of waveform amplitudes
+    *   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
+    *   **scaling** (`Optional`\[`float`]) – Deprecated, see scale
 
-`Dict`\[`str`, `Any`]
+    **Returns**
 
-## Methods
+    A matplotlib figure object of the pulse envelope
 
-### \_\_call\_\_
+    **Return type**
 
-<span id="qiskit.pulse.pulse_lib.Constant.__call__" />
+    matplotlib.figure
+  </Function>
 
-`Constant.__call__(channel)`
+  ### get\_sample\_pulse
 
-Call self as a function.
+  <Function id="qiskit.pulse.pulse_lib.Constant.get_sample_pulse" signature="Constant.get_sample_pulse()">
+    Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
-### draw
+    **Return type**
 
-<span id="qiskit.pulse.pulse_lib.Constant.draw" />
+    [`SamplePulse`](qiskit.pulse.pulse_lib.SamplePulse "qiskit.pulse.pulse_lib.sample_pulse.SamplePulse")
+  </Function>
 
-`Constant.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)`
+  ### validate\_parameters
 
-Plot the pulse.
+  <Function id="qiskit.pulse.pulse_lib.Constant.validate_parameters" signature="Constant.validate_parameters()">
+    Validate parameters.
 
-**Parameters**
+    **Raises**
 
-*   **dt** (`float`) – Time interval of samples.
-*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
-*   **filename** (`Optional`\[`str`]) – Name required to save pulse image
-*   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
-*   **scale** (`float`) – Relative visual scaling of waveform amplitudes
-*   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
-*   **scaling** (`Optional`\[`float`]) – Deprecated, see scale
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
 
-**Returns**
+    **Return type**
 
-A matplotlib figure object of the pulse envelope
-
-**Return type**
-
-matplotlib.figure
-
-### get\_sample\_pulse
-
-<span id="qiskit.pulse.pulse_lib.Constant.get_sample_pulse" />
-
-`Constant.get_sample_pulse()`
-
-Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
-
-**Return type**
-
-[`SamplePulse`](qiskit.pulse.pulse_lib.SamplePulse "qiskit.pulse.pulse_lib.sample_pulse.SamplePulse")
-
-### validate\_parameters
-
-<span id="qiskit.pulse.pulse_lib.Constant.validate_parameters" />
-
-`Constant.validate_parameters()`
-
-Validate parameters.
-
-**Raises**
-
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

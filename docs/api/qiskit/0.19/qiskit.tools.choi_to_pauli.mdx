@@ -8,32 +8,30 @@ python_api_name: qiskit.tools.choi_to_pauli
 
 # choi\_to\_pauli
 
-<span id="qiskit.tools.choi_to_pauli" />
+<Function id="qiskit.tools.choi_to_pauli" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py" signature="choi_to_pauli(choi, order=1)">
+  Convert a Choi-matrix to a Pauli-basis superoperator.
 
-`choi_to_pauli(choi, order=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+  Note that this function assumes that the Choi-matrix is defined in the standard column-stacking convention and is normalized to have trace 1. For a channel E this is defined as: $choi = (I \otimes E)(bell_state)$.
 
-Convert a Choi-matrix to a Pauli-basis superoperator.
+  The resulting ‘rauli’ R acts on input states as
 
-Note that this function assumes that the Choi-matrix is defined in the standard column-stacking convention and is normalized to have trace 1. For a channel E this is defined as: $choi = (I \otimes E)(bell_state)$.
+  $$
+  |{\rho_{out}}_p\rangle = R \cdot |{\rho_{in}}_p\rangle.
+  $$
 
-The resulting ‘rauli’ R acts on input states as
+  where $|{\rho}\rangle =$ `vectorize(rho, method='pauli')` for order=1 and $|{\rho}\rangle =$ `vectorize(rho, method='pauli_weights')` for order=0.
 
-$$
-|{\rho_{out}}_p\rangle = R \cdot |{\rho_{in}}_p\rangle.
-$$
+  **Parameters**
 
-where $|{\rho}\rangle =$ `vectorize(rho, method='pauli')` for order=1 and $|{\rho}\rangle =$ `vectorize(rho, method='pauli_weights')` for order=0.
+  *   **choi** (*matrix*) – the input Choi-matrix.
+  *   **order** (*int*) – ordering of the Pauli group vector. `order=1` (default) is standard lexicographic ordering (e.g. `[II, IX, IY, IZ, XI, XX, XY,...]`) `order=0` is ordered by weights (e.g. `[II, IX, IY, IZ, XI, XY, XZ, XX, XY,...]`)
 
-**Parameters**
+  **Returns**
 
-*   **choi** (*matrix*) – the input Choi-matrix.
-*   **order** (*int*) – ordering of the Pauli group vector. `order=1` (default) is standard lexicographic ordering (e.g. `[II, IX, IY, IZ, XI, XX, XY,...]`) `order=0` is ordered by weights (e.g. `[II, IX, IY, IZ, XI, XY, XZ, XX, XY,...]`)
+  A superoperator in the Pauli basis.
 
-**Returns**
+  **Return type**
 
-A superoperator in the Pauli basis.
-
-**Return type**
-
-np.array
+  np.array
+</Function>
 

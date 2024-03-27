@@ -8,360 +8,336 @@ python_api_name: qiskit.circuit.library.RZXGate
 
 # RZXGate
 
-<span id="qiskit.circuit.library.RZXGate" />
+<Class id="qiskit.circuit.library.RZXGate" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rzx.py" signature="RZXGate(theta)">
+  A parameteric 2-qubit $Z \otimes X$ interaction (rotation about ZX).
 
-`RZXGate(theta)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rzx.py "view source code")
+  This gate is maximally entangling at $\theta = \pi/2$.
 
-A parameteric 2-qubit $Z \otimes X$ interaction (rotation about ZX).
+  The cross-resonance gate (CR) for superconducting qubits implements a ZX interaction (however other terms are also present in an experiment).
 
-This gate is maximally entangling at $\theta = \pi/2$.
-
-The cross-resonance gate (CR) for superconducting qubits implements a ZX interaction (however other terms are also present in an experiment).
-
-**Circuit Symbol:**
-
-```python
-     ┌─────────┐
-q_0: ┤0        ├
-     │  Rzx(θ) │
-q_1: ┤1        ├
-     └─────────┘
-```
-
-**Matrix Representation:**
-
-$$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZX}(\theta)\ q_0, q_1 = exp(-i \frac{\theta}{2} X{\otimes}Z) =
-    \begin{pmatrix}
-        \cos(\th)   & 0          & -i\sin(\th)  & 0          \\
-        0           & \cos(\th)  & 0            & i\sin(\th) \\
-        -i\sin(\th) & 0          & \cos(\th)    & 0          \\
-        0           & i\sin(\th) & 0            & \cos(\th)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
-$$
-
-<Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in the $X \otimes Z$ tensor order. Instead, if we apply it on (q\_1, q\_0), the matrix will be $Z \otimes X$:
+  **Circuit Symbol:**
 
   ```python
        ┌─────────┐
-  q_0: ┤1        ├
+  q_0: ┤0        ├
        │  Rzx(θ) │
-  q_1: ┤0        ├
+  q_1: ┤1        ├
        └─────────┘
   ```
 
+  **Matrix Representation:**
+
   $$
-   \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZX}(\theta)\ q_1, q_0 = exp(-i \frac{\theta}{2} Z{\otimes}X) =
+   \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZX}(\theta)\ q_0, q_1 = exp(-i \frac{\theta}{2} X{\otimes}Z) =
       \begin{pmatrix}
-          \cos(\th)   & -i\sin(\th) & 0           & 0          \\
-          -i\sin(\th) & \cos(\th)   & 0           & 0          \\
-          0           & 0           & \cos(\th)   & i\sin(\th) \\
-          0           & 0           & i\sin(\th)  & \cos(\th)
+          \cos(\th)   & 0          & -i\sin(\th)  & 0          \\
+          0           & \cos(\th)  & 0            & i\sin(\th) \\
+          -i\sin(\th) & 0          & \cos(\th)    & 0          \\
+          0           & i\sin(\th) & 0            & \cos(\th)
       \end{pmatrix}\end{split}\end{aligned}\end{align} 
   $$
 
-  This is a direct sum of RX rotations, so this gate is equivalent to a uniformly controlled (multiplexed) RX gate:
+  <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in the $X \otimes Z$ tensor order. Instead, if we apply it on (q\_1, q\_0), the matrix will be $Z \otimes X$:
+
+    ```python
+         ┌─────────┐
+    q_0: ┤1        ├
+         │  Rzx(θ) │
+    q_1: ┤0        ├
+         └─────────┘
+    ```
+
+    $$
+     \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZX}(\theta)\ q_1, q_0 = exp(-i \frac{\theta}{2} Z{\otimes}X) =
+        \begin{pmatrix}
+            \cos(\th)   & -i\sin(\th) & 0           & 0          \\
+            -i\sin(\th) & \cos(\th)   & 0           & 0          \\
+            0           & 0           & \cos(\th)   & i\sin(\th) \\
+            0           & 0           & i\sin(\th)  & \cos(\th)
+        \end{pmatrix}\end{split}\end{aligned}\end{align} 
+    $$
 
-  $$
-  \begin{split}R_{ZX}(\theta)\ q_1, q_0 =
-      \begin{pmatrix}
-          RX(\theta) & 0 \\
-          0 & RX(-\theta)
-      \end{pmatrix}\end{split}
-  $$
-</Admonition>
+    This is a direct sum of RX rotations, so this gate is equivalent to a uniformly controlled (multiplexed) RX gate:
 
-**Examples:**
+    $$
+    \begin{split}R_{ZX}(\theta)\ q_1, q_0 =
+        \begin{pmatrix}
+            RX(\theta) & 0 \\
+            0 & RX(-\theta)
+        \end{pmatrix}\end{split}
+    $$
+  </Admonition>
+
+  **Examples:**
+
+  > $$
+  > R_{ZX}(\theta = 0) = I
+  > $$
+  >
+  > $$
+  > R_{ZX}(\theta = 2\pi) = -I
+  > $$
+  >
+  > $$
+  > R_{ZX}(\theta = \pi) = -i Z \otimes X
+  > $$
+  >
+  > $$
+  > \begin{split}RZX(\theta = \frac{\pi}{2}) = \frac{1}{\sqrt{2}}
+  >                         \begin{pmatrix}
+  >                             1  & 0 & -i & 0 \\
+  >                             0  & 1 & 0  & i \\
+  >                             -i & 0 & 1  & 0 \\
+  >                             0  & i & 0  & 1
+  >                         \end{pmatrix}\end{split}
+  > $$
+
+  Create new RZX gate.
+
+  ## Attributes
 
-> $$
-> R_{ZX}(\theta = 0) = I
-> $$
->
-> $$
-> R_{ZX}(\theta = 2\pi) = -I
-> $$
->
-> $$
-> R_{ZX}(\theta = \pi) = -i Z \otimes X
-> $$
->
-> $$
-> \begin{split}RZX(\theta = \frac{\pi}{2}) = \frac{1}{\sqrt{2}}
->                         \begin{pmatrix}
->                             1  & 0 & -i & 0 \\
->                             0  & 1 & 0  & i \\
->                             -i & 0 & 1  & 0 \\
->                             0  & i & 0  & 1
->                         \end{pmatrix}\end{split}
-> $$
+  ### decompositions
 
-Create new RZX gate.
+  <Attribute id="qiskit.circuit.library.RZXGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-## Attributes
+  ### definition
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.RZXGate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### label
 
-### definition
+  <Attribute id="qiskit.circuit.library.RZXGate.label" signature="str">
+    Return gate label
 
-Return definition in terms of other basic gates.
+    **Return type**
 
-### label
+    `str`
+  </Attribute>
 
-<span id="qiskit.circuit.library.RZXGate.label" />
+  ### params
 
-`str`
+  <Attribute id="qiskit.circuit.library.RZXGate.params">
+    return instruction params.
+  </Attribute>
 
-Return gate label
+  ## Methods
 
-**Return type**
+  ### add\_decomposition
 
-`str`
+  <Function id="qiskit.circuit.library.RZXGate.add_decomposition" signature="RZXGate.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### params
+  ### assemble
 
-return instruction params.
+  <Function id="qiskit.circuit.library.RZXGate.assemble" signature="RZXGate.assemble()">
+    Assemble a QasmQobjInstruction
 
-## Methods
+    **Return type**
 
-### add\_decomposition
+    [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  </Function>
 
-<span id="qiskit.circuit.library.RZXGate.add_decomposition" />
+  ### broadcast\_arguments
 
-`RZXGate.add_decomposition(decomposition)`
+  <Function id="qiskit.circuit.library.RZXGate.broadcast_arguments" signature="RZXGate.broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-### assemble
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-<span id="qiskit.circuit.library.RZXGate.assemble" />
+    The general broadcasting rules are:
 
-`RZXGate.assemble()`
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-Assemble a QasmQobjInstruction
+    **Parameters**
 
-**Return type**
+    *   **qargs** (`List`) – List of quantum bit arguments.
+    *   **cargs** (`List`) – List of classical bit arguments.
 
-[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+    **Return type**
 
-### broadcast\_arguments
+    `Tuple`\[`List`, `List`]
 
-<span id="qiskit.circuit.library.RZXGate.broadcast_arguments" />
+    **Returns**
 
-`RZXGate.broadcast_arguments(qargs, cargs)`
+    A tuple with single arguments.
 
-Validation and handling of the arguments and its relationship.
+    **Raises**
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+  ### c\_if
 
-The general broadcasting rules are:
+  <Function id="qiskit.circuit.library.RZXGate.c_if" signature="RZXGate.c_if(classical, val)">
+    Add classical condition on register classical and value val.
+  </Function>
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+  ### control
 
-**Parameters**
+  <Function id="qiskit.circuit.library.RZXGate.control" signature="RZXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
+    **Parameters**
 
-**Return type**
+    *   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
+    *   **label** (`Optional`\[`str`]) – optional gate label
+    *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
 
-`Tuple`\[`List`, `List`]
+    **Returns**
 
-**Returns**
+    Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
 
-A tuple with single arguments.
+    **Return type**
 
-**Raises**
+    [qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Raises**
 
-### c\_if
+    **QiskitError** – unrecognized mode or invalid ctrl\_state
+  </Function>
 
-<span id="qiskit.circuit.library.RZXGate.c_if" />
+  ### copy
 
-`RZXGate.c_if(classical, val)`
+  <Function id="qiskit.circuit.library.RZXGate.copy" signature="RZXGate.copy(name=None)">
+    Copy of the instruction.
 
-Add classical condition on register classical and value val.
+    **Parameters**
 
-### control
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-<span id="qiskit.circuit.library.RZXGate.control" />
+    **Returns**
 
-`RZXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    **a copy of the current instruction, with the name**
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+    updated if it was provided
 
-**Parameters**
+    **Return type**
 
-*   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
-*   **label** (`Optional`\[`str`]) – optional gate label
-*   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**Returns**
+  ### inverse
 
-Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
+  <Function id="qiskit.circuit.library.RZXGate.inverse" signature="RZXGate.inverse()">
+    Return inverse RZX gate (i.e. with the negative rotation angle).
+  </Function>
 
-**Return type**
+  ### is\_parameterized
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  <Function id="qiskit.circuit.library.RZXGate.is_parameterized" signature="RZXGate.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-**Raises**
+  ### mirror
 
-**QiskitError** – unrecognized mode or invalid ctrl\_state
+  <Function id="qiskit.circuit.library.RZXGate.mirror" signature="RZXGate.mirror()">
+    For a composite instruction, reverse the order of sub-gates.
 
-### copy
+    This is done by recursively mirroring all sub-instructions. It does not invert any gate.
 
-<span id="qiskit.circuit.library.RZXGate.copy" />
+    **Returns**
 
-`RZXGate.copy(name=None)`
+    a fresh gate with sub-gates reversed
 
-Copy of the instruction.
+    **Return type**
 
-**Parameters**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+  ### power
 
-**Returns**
+  <Function id="qiskit.circuit.library.RZXGate.power" signature="RZXGate.power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-**a copy of the current instruction, with the name**
+    **Parameters**
 
-updated if it was provided
+    **exponent** (*float*) – Gate^exponent
 
-**Return type**
+    **Returns**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    To which to\_matrix is self.to\_matrix^exponent.
 
-### inverse
+    **Return type**
 
-<span id="qiskit.circuit.library.RZXGate.inverse" />
+    [qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-`RZXGate.inverse()`
+    **Raises**
 
-Return inverse RZX gate (i.e. with the negative rotation angle).
+    **CircuitError** – If Gate is not unitary
+  </Function>
 
-### is\_parameterized
+  ### qasm
 
-<span id="qiskit.circuit.library.RZXGate.is_parameterized" />
+  <Function id="qiskit.circuit.library.RZXGate.qasm" signature="RZXGate.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-`RZXGate.is_parameterized()`
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-Return True .IFF. instruction is parameterized else False
+  ### repeat
 
-### mirror
+  <Function id="qiskit.circuit.library.RZXGate.repeat" signature="RZXGate.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-<span id="qiskit.circuit.library.RZXGate.mirror" />
+    **Parameters**
 
-`RZXGate.mirror()`
+    **n** (*int*) – Number of times to repeat the instruction
 
-For a composite instruction, reverse the order of sub-gates.
+    **Returns**
 
-This is done by recursively mirroring all sub-instructions. It does not invert any gate.
+    Containing the definition.
 
-**Returns**
+    **Return type**
 
-a fresh gate with sub-gates reversed
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**Return type**
+    **Raises**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **CircuitError** – If n \< 1.
+  </Function>
 
-### power
+  ### to\_matrix
 
-<span id="qiskit.circuit.library.RZXGate.power" />
+  <Function id="qiskit.circuit.library.RZXGate.to_matrix" signature="RZXGate.to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
 
-`RZXGate.power(exponent)`
+    **Raises**
 
-Creates a unitary gate as gate^exponent.
+    **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
 
-**Parameters**
+    **Return type**
 
-**exponent** (*float*) – Gate^exponent
-
-**Returns**
-
-To which to\_matrix is self.to\_matrix^exponent.
-
-**Return type**
-
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
-
-**Raises**
-
-**CircuitError** – If Gate is not unitary
-
-### qasm
-
-<span id="qiskit.circuit.library.RZXGate.qasm" />
-
-`RZXGate.qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.circuit.library.RZXGate.repeat" />
-
-`RZXGate.repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### to\_matrix
-
-<span id="qiskit.circuit.library.RZXGate.to_matrix" />
-
-`RZXGate.to_matrix()`
-
-Return a Numpy.array for the gate unitary matrix.
-
-**Raises**
-
-**CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
-
-**Return type**
-
-`ndarray`
+    `ndarray`
+  </Function>
+</Class>
 

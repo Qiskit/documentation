@@ -8,323 +8,293 @@ python_api_name: qiskit.circuit.library.CZGate
 
 # CZGate
 
-<span id="qiskit.circuit.library.CZGate" />
+<Class id="qiskit.circuit.library.CZGate" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/z.py" signature="CZGate(label=None, ctrl_state=None)">
+  Controlled-Z gate.
 
-`CZGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/z.py "view source code")
+  This is a Clifford and symmetric gate.
 
-Controlled-Z gate.
+  **Circuit symbol:**
 
-This is a Clifford and symmetric gate.
+  ```python
+  q_0: ─■─
+        │
+  q_1: ─■─
+  ```
 
-**Circuit symbol:**
+  **Matrix representation:**
 
-```python
-q_0: ─■─
-      │
-q_1: ─■─
-```
+  $$
+  \begin{split}CZ\ q_1, q_0 =
+      |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes Z =
+      \begin{pmatrix}
+          1 & 0 & 0 & 0 \\
+          0 & 1 & 0 & 0 \\
+          0 & 0 & 1 & 0 \\
+          0 & 0 & 0 & -1
+      \end{pmatrix}\end{split}
+  $$
 
-**Matrix representation:**
+  In the computational basis, this gate flips the phase of the target qubit if the control qubit is in the $|1\rangle$ state.
 
-$$
-\begin{split}CZ\ q_1, q_0 =
-    |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes Z =
-    \begin{pmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & 1 & 0 & 0 \\
-        0 & 0 & 1 & 0 \\
-        0 & 0 & 0 & -1
-    \end{pmatrix}\end{split}
-$$
+  Create new CZ gate.
 
-In the computational basis, this gate flips the phase of the target qubit if the control qubit is in the $|1\rangle$ state.
+  ## Attributes
 
-Create new CZ gate.
+  ### ctrl\_state
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.CZGate.ctrl_state" signature="int">
+    Return the control state of the gate as a decimal integer.
 
-### ctrl\_state
+    **Return type**
 
-<span id="qiskit.circuit.library.CZGate.ctrl_state" />
+    `int`
+  </Attribute>
 
-`int`
+  ### decompositions
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.CZGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-**Return type**
+  ### definition
 
-`int`
+  <Attribute id="qiskit.circuit.library.CZGate.definition" signature="List">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
 
-### decompositions
+    **Return type**
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+    `List`
+  </Attribute>
 
-### definition
+  ### label
 
-<span id="qiskit.circuit.library.CZGate.definition" />
+  <Attribute id="qiskit.circuit.library.CZGate.label" signature="str">
+    Return gate label
 
-`List`
+    **Return type**
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+    `str`
+  </Attribute>
 
-**Return type**
+  ### params
 
-`List`
+  <Attribute id="qiskit.circuit.library.CZGate.params">
+    return instruction params.
+  </Attribute>
 
-### label
+  ## Methods
 
-<span id="qiskit.circuit.library.CZGate.label" />
+  ### add\_decomposition
 
-`str`
+  <Function id="qiskit.circuit.library.CZGate.add_decomposition" signature="CZGate.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-Return gate label
+  ### assemble
 
-**Return type**
+  <Function id="qiskit.circuit.library.CZGate.assemble" signature="CZGate.assemble()">
+    Assemble a QasmQobjInstruction
 
-`str`
+    **Return type**
 
-### params
+    [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  </Function>
 
-return instruction params.
+  ### broadcast\_arguments
 
-## Methods
+  <Function id="qiskit.circuit.library.CZGate.broadcast_arguments" signature="CZGate.broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-### add\_decomposition
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-<span id="qiskit.circuit.library.CZGate.add_decomposition" />
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-`CZGate.add_decomposition(decomposition)`
+    The general broadcasting rules are:
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.circuit.library.CZGate.assemble" />
+    *   **qargs** (`List`) – List of quantum bit arguments.
+    *   **cargs** (`List`) – List of classical bit arguments.
 
-`CZGate.assemble()`
+    **Return type**
 
-Assemble a QasmQobjInstruction
+    `Tuple`\[`List`, `List`]
 
-**Return type**
+    **Returns**
 
-[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+    A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.circuit.library.CZGate.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`CZGate.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation and handling of the arguments and its relationship.
+  <Function id="qiskit.circuit.library.CZGate.c_if" signature="CZGate.c_if(classical, val)">
+    Add classical condition on register classical and value val.
+  </Function>
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+  ### control
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+  <Function id="qiskit.circuit.library.CZGate.control" signature="CZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
-The general broadcasting rules are:
+    **Parameters**
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+    *   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
+    *   **label** (`Optional`\[`str`]) – optional gate label
+    *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
 
-**Parameters**
+    **Returns**
 
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
+    Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
 
-**Return type**
+    **Return type**
 
-`Tuple`\[`List`, `List`]
+    [qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
-**Returns**
+    **Raises**
 
-A tuple with single arguments.
+    **QiskitError** – unrecognized mode or invalid ctrl\_state
+  </Function>
 
-**Raises**
+  ### copy
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  <Function id="qiskit.circuit.library.CZGate.copy" signature="CZGate.copy(name=None)">
+    Copy of the instruction.
 
-### c\_if
+    **Parameters**
 
-<span id="qiskit.circuit.library.CZGate.c_if" />
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-`CZGate.c_if(classical, val)`
+    **Returns**
 
-Add classical condition on register classical and value val.
+    **a copy of the current instruction, with the name**
 
-### control
+    updated if it was provided
 
-<span id="qiskit.circuit.library.CZGate.control" />
+    **Return type**
 
-`CZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+  ### inverse
 
-**Parameters**
+  <Function id="qiskit.circuit.library.CZGate.inverse" signature="CZGate.inverse()">
+    Return inverted CZ gate (itself).
+  </Function>
 
-*   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
-*   **label** (`Optional`\[`str`]) – optional gate label
-*   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
+  ### is\_parameterized
 
-**Returns**
+  <Function id="qiskit.circuit.library.CZGate.is_parameterized" signature="CZGate.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
+  ### mirror
 
-**Return type**
+  <Function id="qiskit.circuit.library.CZGate.mirror" signature="CZGate.mirror()">
+    For a composite instruction, reverse the order of sub-gates.
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+    This is done by recursively mirroring all sub-instructions. It does not invert any gate.
 
-**Raises**
+    **Returns**
 
-**QiskitError** – unrecognized mode or invalid ctrl\_state
+    a fresh gate with sub-gates reversed
 
-### copy
+    **Return type**
 
-<span id="qiskit.circuit.library.CZGate.copy" />
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-`CZGate.copy(name=None)`
+  ### power
 
-Copy of the instruction.
+  <Function id="qiskit.circuit.library.CZGate.power" signature="CZGate.power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-**Parameters**
+    **Parameters**
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    **exponent** (*float*) – Gate^exponent
 
-**Returns**
+    **Returns**
 
-**a copy of the current instruction, with the name**
+    To which to\_matrix is self.to\_matrix^exponent.
 
-updated if it was provided
+    **Return type**
 
-**Return type**
+    [qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Raises**
 
-### inverse
+    **CircuitError** – If Gate is not unitary
+  </Function>
 
-<span id="qiskit.circuit.library.CZGate.inverse" />
+  ### qasm
 
-`CZGate.inverse()`
+  <Function id="qiskit.circuit.library.CZGate.qasm" signature="CZGate.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-Return inverted CZ gate (itself).
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-### is\_parameterized
+  ### repeat
 
-<span id="qiskit.circuit.library.CZGate.is_parameterized" />
+  <Function id="qiskit.circuit.library.CZGate.repeat" signature="CZGate.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-`CZGate.is_parameterized()`
+    **Parameters**
 
-Return True .IFF. instruction is parameterized else False
+    **n** (*int*) – Number of times to repeat the instruction
 
-### mirror
+    **Returns**
 
-<span id="qiskit.circuit.library.CZGate.mirror" />
+    Containing the definition.
 
-`CZGate.mirror()`
+    **Return type**
 
-For a composite instruction, reverse the order of sub-gates.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-This is done by recursively mirroring all sub-instructions. It does not invert any gate.
+    **Raises**
 
-**Returns**
+    **CircuitError** – If n \< 1.
+  </Function>
 
-a fresh gate with sub-gates reversed
+  ### to\_matrix
 
-**Return type**
+  <Function id="qiskit.circuit.library.CZGate.to_matrix" signature="CZGate.to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Raises**
 
-### power
+    **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
 
-<span id="qiskit.circuit.library.CZGate.power" />
+    **Return type**
 
-`CZGate.power(exponent)`
-
-Creates a unitary gate as gate^exponent.
-
-**Parameters**
-
-**exponent** (*float*) – Gate^exponent
-
-**Returns**
-
-To which to\_matrix is self.to\_matrix^exponent.
-
-**Return type**
-
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
-
-**Raises**
-
-**CircuitError** – If Gate is not unitary
-
-### qasm
-
-<span id="qiskit.circuit.library.CZGate.qasm" />
-
-`CZGate.qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.circuit.library.CZGate.repeat" />
-
-`CZGate.repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### to\_matrix
-
-<span id="qiskit.circuit.library.CZGate.to_matrix" />
-
-`CZGate.to_matrix()`
-
-Return a Numpy.array for the gate unitary matrix.
-
-**Raises**
-
-**CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
-
-**Return type**
-
-`ndarray`
+    `ndarray`
+  </Function>
+</Class>
 

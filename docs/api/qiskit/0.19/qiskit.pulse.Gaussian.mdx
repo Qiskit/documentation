@@ -8,136 +8,118 @@ python_api_name: qiskit.pulse.Gaussian
 
 # Gaussian
 
-<span id="qiskit.pulse.Gaussian" />
+<Class id="qiskit.pulse.Gaussian" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py" signature="Gaussian(duration, amp, sigma, name=None)">
+  A truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):
 
-`Gaussian(duration, amp, sigma, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
+  $$
+  f(x) = amp * exp( -(1/2) * (x - duration/2)^2 / sigma^2) )  ,  0 <= x < duration
+  $$
 
-A truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):
+  Initialize the gaussian pulse.
 
-$$
-f(x) = amp * exp( -(1/2) * (x - duration/2)^2 / sigma^2) )  ,  0 <= x < duration
-$$
+  **Parameters**
 
-Initialize the gaussian pulse.
+  *   **duration** (`int`) – Pulse length in terms of the the sampling period dt.
+  *   **amp** (`complex`) – The amplitude of the Gaussian envelope.
+  *   **sigma** (`float`) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
+  *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 
-**Parameters**
+  ## Attributes
 
-*   **duration** (`int`) – Pulse length in terms of the the sampling period dt.
-*   **amp** (`complex`) – The amplitude of the Gaussian envelope.
-*   **sigma** (`float`) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
-*   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
+  ### amp
 
-## Attributes
+  <Attribute id="qiskit.pulse.Gaussian.amp" signature="complex">
+    The Gaussian amplitude.
 
-### amp
+    **Return type**
 
-<span id="qiskit.pulse.Gaussian.amp" />
+    `complex`
+  </Attribute>
 
-`complex`
+  ### id
 
-The Gaussian amplitude.
+  <Attribute id="qiskit.pulse.Gaussian.id" signature="int">
+    Unique identifier for this pulse.
 
-**Return type**
+    **Return type**
 
-`complex`
+    `int`
+  </Attribute>
 
-### id
+  ### parameters
 
-<span id="qiskit.pulse.Gaussian.id" />
+  <Attribute id="qiskit.pulse.Gaussian.parameters" signature="Dict[str, Any]">
+    Return a dictionary containing the pulse’s parameters.
 
-`int`
+    **Return type**
 
-Unique identifier for this pulse.
+    `Dict`\[`str`, `Any`]
+  </Attribute>
 
-**Return type**
+  ### sigma
 
-`int`
+  <Attribute id="qiskit.pulse.Gaussian.sigma" signature="float">
+    The Gaussian standard deviation of the pulse width.
 
-### parameters
+    **Return type**
 
-<span id="qiskit.pulse.Gaussian.parameters" />
+    `float`
+  </Attribute>
 
-`Dict[str, Any]`
+  ## Methods
 
-Return a dictionary containing the pulse’s parameters.
+  ### \_\_call\_\_
 
-**Return type**
+  <Function id="qiskit.pulse.Gaussian.__call__" signature="Gaussian.__call__(channel)">
+    Call self as a function.
+  </Function>
 
-`Dict`\[`str`, `Any`]
+  ### draw
 
-### sigma
+  <Function id="qiskit.pulse.Gaussian.draw" signature="Gaussian.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)">
+    Plot the pulse.
 
-<span id="qiskit.pulse.Gaussian.sigma" />
+    **Parameters**
 
-`float`
+    *   **dt** (`float`) – Time interval of samples.
+    *   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
+    *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
+    *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
+    *   **scale** (`float`) – Relative visual scaling of waveform amplitudes
+    *   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
+    *   **scaling** (`Optional`\[`float`]) – Deprecated, see scale
 
-The Gaussian standard deviation of the pulse width.
+    **Returns**
 
-**Return type**
+    A matplotlib figure object of the pulse envelope
 
-`float`
+    **Return type**
 
-## Methods
+    matplotlib.figure
+  </Function>
 
-### \_\_call\_\_
+  ### get\_sample\_pulse
 
-<span id="qiskit.pulse.Gaussian.__call__" />
+  <Function id="qiskit.pulse.Gaussian.get_sample_pulse" signature="Gaussian.get_sample_pulse()">
+    Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
-`Gaussian.__call__(channel)`
+    **Return type**
 
-Call self as a function.
+    [`SamplePulse`](qiskit.pulse.pulse_lib.SamplePulse "qiskit.pulse.pulse_lib.sample_pulse.SamplePulse")
+  </Function>
 
-### draw
+  ### validate\_parameters
 
-<span id="qiskit.pulse.Gaussian.draw" />
+  <Function id="qiskit.pulse.Gaussian.validate_parameters" signature="Gaussian.validate_parameters()">
+    Validate parameters.
 
-`Gaussian.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)`
+    **Raises**
 
-Plot the pulse.
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
 
-**Parameters**
+    **Return type**
 
-*   **dt** (`float`) – Time interval of samples.
-*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
-*   **filename** (`Optional`\[`str`]) – Name required to save pulse image
-*   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
-*   **scale** (`float`) – Relative visual scaling of waveform amplitudes
-*   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
-*   **scaling** (`Optional`\[`float`]) – Deprecated, see scale
-
-**Returns**
-
-A matplotlib figure object of the pulse envelope
-
-**Return type**
-
-matplotlib.figure
-
-### get\_sample\_pulse
-
-<span id="qiskit.pulse.Gaussian.get_sample_pulse" />
-
-`Gaussian.get_sample_pulse()`
-
-Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
-
-**Return type**
-
-[`SamplePulse`](qiskit.pulse.pulse_lib.SamplePulse "qiskit.pulse.pulse_lib.sample_pulse.SamplePulse")
-
-### validate\_parameters
-
-<span id="qiskit.pulse.Gaussian.validate_parameters" />
-
-`Gaussian.validate_parameters()`
-
-Validate parameters.
-
-**Raises**
-
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

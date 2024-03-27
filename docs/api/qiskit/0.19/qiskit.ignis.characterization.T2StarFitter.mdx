@@ -8,270 +8,238 @@ python_api_name: qiskit.ignis.characterization.T2StarFitter
 
 # T2StarFitter
 
-<span id="qiskit.ignis.characterization.T2StarFitter" />
+<Class id="qiskit.ignis.characterization.T2StarFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/coherence/fitters.py" signature="T2StarFitter(backend_result, xdata, qubits, fit_p0, fit_bounds, time_unit='micro-seconds')">
+  Estimate T2\*, based on experiments outcomes.
 
-`T2StarFitter(backend_result, xdata, qubits, fit_p0, fit_bounds, time_unit='micro-seconds')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/coherence/fitters.py "view source code")
+  The experiments were created by t2star\_circuits, and executed on the device.
 
-Estimate T2\*, based on experiments outcomes.
+  The probabilities of measuring 0 is assumed to be of the form
 
-The experiments were created by t2star\_circuits, and executed on the device.
+  $$
+  f(t) = A\mathrm{e}^{-t / T_2^*}\cos(2\pi ft + \phi) + B
+  $$
 
-The probabilities of measuring 0 is assumed to be of the form
+  for unknown parameters $A, B, f, \phi, T_2^*$.
 
-$$
-f(t) = A\mathrm{e}^{-t / T_2^*}\cos(2\pi ft + \phi) + B
-$$
+  **Parameters**
 
-for unknown parameters $A, B, f, \phi, T_2^*$.
+  *   **backend\_result** ([`Result`](qiskit.result.Result "qiskit.result.result.Result")) – result of execution of t2star\_circuits on the backend.
+  *   **xdata** (`Union`\[`List`\[`float`], `array`]) – delay times of the T2\* circuits.
+  *   **qubits** (`List`\[`int`]) – indices of the qubits whose T2:sup:\* ‘s are to be measured.
+  *   **fit\_p0** (`List`\[`float`]) – initial values to the fit parameters, where the order is $(A, T_2^*, f, \phi, B)$.
+  *   **fit\_bounds** (`Tuple`\[`List`\[`float`], `List`\[`float`]]) – bounds on the parameters to fit. The first tuple is the lower bounds, in the order $(A, T_2^*, f, \phi, B)$. The second tuple is the upper bounds.
+  *   **time\_unit** (`str`) – unit of delay times in xdata.
 
-**Parameters**
+  ## Attributes
 
-*   **backend\_result** ([`Result`](qiskit.result.Result "qiskit.result.result.Result")) – result of execution of t2star\_circuits on the backend.
-*   **xdata** (`Union`\[`List`\[`float`], `array`]) – delay times of the T2\* circuits.
-*   **qubits** (`List`\[`int`]) – indices of the qubits whose T2:sup:\* ‘s are to be measured.
-*   **fit\_p0** (`List`\[`float`]) – initial values to the fit parameters, where the order is $(A, T_2^*, f, \phi, B)$.
-*   **fit\_bounds** (`Tuple`\[`List`\[`float`], `List`\[`float`]]) – bounds on the parameters to fit. The first tuple is the lower bounds, in the order $(A, T_2^*, f, \phi, B)$. The second tuple is the upper bounds.
-*   **time\_unit** (`str`) – unit of delay times in xdata.
+  ### backend\_result
 
-## Attributes
+  <Attribute id="qiskit.ignis.characterization.T2StarFitter.backend_result" signature="Union[qiskit.result.result.Result, List[qiskit.result.result.Result]]">
+    Return the execution results
 
-### backend\_result
+    **Return type**
 
-<span id="qiskit.ignis.characterization.T2StarFitter.backend_result" />
+    `Union`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result"), `List`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]]
+  </Attribute>
 
-`Union[qiskit.result.result.Result, List[qiskit.result.result.Result]]`
+  ### description
 
-Return the execution results
+  <Attribute id="qiskit.ignis.characterization.T2StarFitter.description" signature="str">
+    Return the fitter’s purpose, e.g. ‘T1’
 
-**Return type**
+    **Return type**
 
-`Union`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result"), `List`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]]
+    `str`
+  </Attribute>
 
-### description
+  ### fit\_fun
 
-<span id="qiskit.ignis.characterization.T2StarFitter.description" />
+  <Attribute id="qiskit.ignis.characterization.T2StarFitter.fit_fun" signature="Callable">
+    Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 
-`str`
+    **Return type**
 
-Return the fitter’s purpose, e.g. ‘T1’
+    `Callable`
+  </Attribute>
 
-**Return type**
+  ### measured\_qubits
 
-`str`
+  <Attribute id="qiskit.ignis.characterization.T2StarFitter.measured_qubits" signature="List[int]">
+    Return the indices of the qubits to be characterized
 
-### fit\_fun
+    **Return type**
 
-<span id="qiskit.ignis.characterization.T2StarFitter.fit_fun" />
+    `List`\[`int`]
+  </Attribute>
 
-`Callable`
+  ### params
 
-Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
+  <Attribute id="qiskit.ignis.characterization.T2StarFitter.params" signature="List[float]">
+    Return the fit function parameters that were calculated by curve\_fit
 
-**Return type**
+    **Return type**
 
-`Callable`
+    `List`\[`float`]
+  </Attribute>
 
-### measured\_qubits
+  ### params\_err
 
-<span id="qiskit.ignis.characterization.T2StarFitter.measured_qubits" />
+  <Attribute id="qiskit.ignis.characterization.T2StarFitter.params_err" signature="List[float]">
+    Return the error of the fit function parameters
 
-`List[int]`
+    **Return type**
 
-Return the indices of the qubits to be characterized
+    `List`\[`float`]
+  </Attribute>
 
-**Return type**
+  ### series
 
-`List`\[`int`]
+  <Attribute id="qiskit.ignis.characterization.T2StarFitter.series" signature="Optional[List[str]]">
+    Return the list of series for the data
 
-### params
+    **Return type**
 
-<span id="qiskit.ignis.characterization.T2StarFitter.params" />
+    `Optional`\[`List`\[`str`]]
+  </Attribute>
 
-`List[float]`
+  ### xdata
 
-Return the fit function parameters that were calculated by curve\_fit
+  <Attribute id="qiskit.ignis.characterization.T2StarFitter.xdata" signature="Union[List[float], numpy.array]">
+    Return the data points on the x-axis, the independenet parameter which is fit against
 
-**Return type**
+    **Return type**
 
-`List`\[`float`]
+    `Union`\[`List`\[`float`], `array`]
+  </Attribute>
 
-### params\_err
+  ### ydata
 
-<span id="qiskit.ignis.characterization.T2StarFitter.params_err" />
+  <Attribute id="qiskit.ignis.characterization.T2StarFitter.ydata" signature="List[Dict]">
+    Return the data points on the y-axis
 
-`List[float]`
+    The data points are returning in the form of a list of dictionaries:
 
-Return the error of the fit function parameters
+    > *   #### ydata\[i]\[‘mean’] is a list, where item
+    >
+    >     no. j is the probability of success of qubit i for a circuit that lasts xdata\[j].
+    >
+    > *   #### ydata\[i]\[‘std’] is a list, where ydata\[‘std’]\[j] is the
+    >
+    >     standard deviation of the success of qubit i.
 
-**Return type**
+    **Return type**
 
-`List`\[`float`]
+    `List`\[`Dict`]
+  </Attribute>
 
-### series
+  ## Methods
 
-<span id="qiskit.ignis.characterization.T2StarFitter.series" />
+  ### add\_data
 
-`Optional[List[str]]`
+  <Function id="qiskit.ignis.characterization.T2StarFitter.add_data" signature="T2StarFitter.add_data(results, recalc=True, refit=True)">
+    Add new execution results to previous execution results
 
-Return the list of series for the data
+    **Parameters**
 
-**Return type**
+    *   **results** (`Union`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result"), `List`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]]) – new execution results
+    *   **recalc** (`bool`) – whether tp recalculate the data
+    *   **refit** (`bool`) – whether to refit the data
+  </Function>
 
-`Optional`\[`List`\[`str`]]
+  ### fit\_data
 
-### xdata
+  <Function id="qiskit.ignis.characterization.T2StarFitter.fit_data" signature="T2StarFitter.fit_data(qid=- 1, p0=None, bounds=None, series=None)">
+    Fit the curve.
 
-<span id="qiskit.ignis.characterization.T2StarFitter.xdata" />
+    Compute self.\_params and self.\_params\_err
 
-`Union[List[float], numpy.array]`
+    **Parameters**
 
-Return the data points on the x-axis, the independenet parameter which is fit against
+    *   **qid** (`int`) – qubit for fitting. If -1 fit for all the qubits
+    *   **p0** (`Optional`\[`List`\[`float`]]) – initial guess, equivalent to p0 in scipy.optimize
+    *   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
+    *   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
+  </Function>
 
-**Return type**
+  ### guess\_params
 
-`Union`\[`List`\[`float`], `array`]
+  <Function id="qiskit.ignis.characterization.T2StarFitter.guess_params" signature="T2StarFitter.guess_params(qind=0)">
+    Guess fit parameters for oscillation data
 
-### ydata
+    **Parameters**
 
-<span id="qiskit.ignis.characterization.T2StarFitter.ydata" />
+    **qind** (`int`) – qubit index to guess fit parameters for
 
-`List[Dict]`
+    **Return type**
 
-Return the data points on the y-axis
+    `List`\[`float`]
 
-The data points are returning in the form of a list of dictionaries:
+    **Returns**
 
-> *   #### ydata\[i]\[‘mean’] is a list, where item
->
->     no. j is the probability of success of qubit i for a circuit that lasts xdata\[j].
->
-> *   #### ydata\[i]\[‘std’] is a list, where ydata\[‘std’]\[j] is the
->
->     standard deviation of the success of qubit i.
+    Fit guessed parameters
+  </Function>
 
-**Return type**
+  ### plot
 
-`List`\[`Dict`]
+  <Function id="qiskit.ignis.characterization.T2StarFitter.plot" signature="T2StarFitter.plot(qind, series='0', ax=None, show_plot=False)">
+    Plot coherence data.
 
-## Methods
+    **Parameters**
 
-### add\_data
+    *   **qind** – qubit index to plot
+    *   **series** – which series to plot (if list then plot multiple)
+    *   **ax** – plot axes
+    *   **show\_plot** – whether to call plt.show()
 
-<span id="qiskit.ignis.characterization.T2StarFitter.add_data" />
+    **Returns**
 
-`T2StarFitter.add_data(results, recalc=True, refit=True)`
+    The axes object
 
-Add new execution results to previous execution results
+    **Return type**
 
-**Parameters**
+    Axes
 
-*   **results** (`Union`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result"), `List`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]]) – new execution results
-*   **recalc** (`bool`) – whether tp recalculate the data
-*   **refit** (`bool`) – whether to refit the data
+    **Raises**
 
-### fit\_data
+    **ImportError** – if matplotlib is not installed
+  </Function>
 
-<span id="qiskit.ignis.characterization.T2StarFitter.fit_data" />
+  ### time
 
-`T2StarFitter.fit_data(qid=- 1, p0=None, bounds=None, series=None)`
+  <Function id="qiskit.ignis.characterization.T2StarFitter.time" signature="T2StarFitter.time(qid=- 1, series='0')">
+    Return the characteristic time for the given qubit and series
 
-Fit the curve.
+    **Parameters**
 
-Compute self.\_params and self.\_params\_err
+    *   **qid** (`int`) – the qubit index (or all qubits if -1)
+    *   **series** (`str`) – the series to get
 
-**Parameters**
+    **Return type**
 
-*   **qid** (`int`) – qubit for fitting. If -1 fit for all the qubits
-*   **p0** (`Optional`\[`List`\[`float`]]) – initial guess, equivalent to p0 in scipy.optimize
-*   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
-*   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
+    `Union`\[`float`, `List`\[`float`]]
 
-### guess\_params
+    **Returns**
 
-<span id="qiskit.ignis.characterization.T2StarFitter.guess_params" />
+    The characteristic time of the qubit, or all qubits
+  </Function>
 
-`T2StarFitter.guess_params(qind=0)`
+  ### time\_err
 
-Guess fit parameters for oscillation data
+  <Function id="qiskit.ignis.characterization.T2StarFitter.time_err" signature="T2StarFitter.time_err(qid=- 1, series='0')">
+    Return the error of characteristic time for the given qubit and series
 
-**Parameters**
+    **Parameters**
 
-**qind** (`int`) – qubit index to guess fit parameters for
+    *   **qid** (`int`) – the qubit index (or all qubits if -1)
+    *   **series** (`str`) – the series to get
 
-**Return type**
+    **Return type**
 
-`List`\[`float`]
+    `Union`\[`float`, `List`\[`float`]]
 
-**Returns**
+    **Returns**
 
-Fit guessed parameters
-
-### plot
-
-<span id="qiskit.ignis.characterization.T2StarFitter.plot" />
-
-`T2StarFitter.plot(qind, series='0', ax=None, show_plot=False)`
-
-Plot coherence data.
-
-**Parameters**
-
-*   **qind** – qubit index to plot
-*   **series** – which series to plot (if list then plot multiple)
-*   **ax** – plot axes
-*   **show\_plot** – whether to call plt.show()
-
-**Returns**
-
-The axes object
-
-**Return type**
-
-Axes
-
-**Raises**
-
-**ImportError** – if matplotlib is not installed
-
-### time
-
-<span id="qiskit.ignis.characterization.T2StarFitter.time" />
-
-`T2StarFitter.time(qid=- 1, series='0')`
-
-Return the characteristic time for the given qubit and series
-
-**Parameters**
-
-*   **qid** (`int`) – the qubit index (or all qubits if -1)
-*   **series** (`str`) – the series to get
-
-**Return type**
-
-`Union`\[`float`, `List`\[`float`]]
-
-**Returns**
-
-The characteristic time of the qubit, or all qubits
-
-### time\_err
-
-<span id="qiskit.ignis.characterization.T2StarFitter.time_err" />
-
-`T2StarFitter.time_err(qid=- 1, series='0')`
-
-Return the error of characteristic time for the given qubit and series
-
-**Parameters**
-
-*   **qid** (`int`) – the qubit index (or all qubits if -1)
-*   **series** (`str`) – the series to get
-
-**Return type**
-
-`Union`\[`float`, `List`\[`float`]]
-
-**Returns**
-
-The error of the characteristic time of the qubit, or all qubits
+    The error of the characteristic time of the qubit, or all qubits
+  </Function>
+</Class>
 

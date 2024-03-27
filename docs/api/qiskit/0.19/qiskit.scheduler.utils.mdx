@@ -20,72 +20,66 @@ Scheduling utility functions.
 
 ### format\_meas\_map
 
-<span id="qiskit.scheduler.utils.format_meas_map" />
+<Function id="qiskit.scheduler.utils.format_meas_map" name="format_meas_map" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/utils.py" signature="format_meas_map(meas_map)">
+  Return a mapping from qubit label to measurement group given the nested list meas\_map returned by a backend configuration. (Qubits can not always be measured independently.) Sorts the measurement group for consistency.
 
-`format_meas_map(meas_map)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/utils.py "view source code")
+  **Parameters**
 
-Return a mapping from qubit label to measurement group given the nested list meas\_map returned by a backend configuration. (Qubits can not always be measured independently.) Sorts the measurement group for consistency.
+  **meas\_map** (`List`\[`List`\[`int`]]) – Groups of qubits that get measured together, for example: \[\[0, 1], \[2, 3, 4]]
 
-**Parameters**
+  **Return type**
 
-**meas\_map** (`List`\[`List`\[`int`]]) – Groups of qubits that get measured together, for example: \[\[0, 1], \[2, 3, 4]]
+  `Dict`\[`int`, `List`\[`int`]]
 
-**Return type**
+  **Returns**
 
-`Dict`\[`int`, `List`\[`int`]]
-
-**Returns**
-
-Measure map in map format
+  Measure map in map format
+</Function>
 
 ### measure
 
-<span id="qiskit.scheduler.utils.measure" />
+<Function id="qiskit.scheduler.utils.measure" name="measure" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/utils.py" signature="measure(qubits, backend=None, inst_map=None, meas_map=None, qubit_mem_slots=None, measure_name='measure')">
+  Return a schedule which measures the requested qubits according to the given instruction mapping and measure map, or by using the defaults provided by the backend.
 
-`measure(qubits, backend=None, inst_map=None, meas_map=None, qubit_mem_slots=None, measure_name='measure')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/utils.py "view source code")
+  By default, the measurement results for each qubit are trivially mapped to the qubit index. This behavior is overridden by qubit\_mem\_slots. For instance, to measure qubit 0 into MemorySlot(1), qubit\_mem\_slots can be provided as \{0: 1}.
 
-Return a schedule which measures the requested qubits according to the given instruction mapping and measure map, or by using the defaults provided by the backend.
+  **Parameters**
 
-By default, the measurement results for each qubit are trivially mapped to the qubit index. This behavior is overridden by qubit\_mem\_slots. For instance, to measure qubit 0 into MemorySlot(1), qubit\_mem\_slots can be provided as \{0: 1}.
+  *   **qubits** (`List`\[`int`]) – List of qubits to be measured.
+  *   **backend** ([*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")) – A backend instance, which contains hardware-specific data required for scheduling.
+  *   **inst\_map** (`Optional`\[[`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")]) – Mapping of circuit operations to pulse schedules. If None, defaults to the `instruction_schedule_map` of `backend`.
+  *   **meas\_map** (`Union`\[`List`\[`List`\[`int`]], `Dict`\[`int`, `List`\[`int`]], `None`]) – List of sets of qubits that must be measured together. If None, defaults to the `meas_map` of `backend`.
+  *   **qubit\_mem\_slots** (`Optional`\[`Dict`\[`int`, `int`]]) – Mapping of measured qubit index to classical bit index.
+  *   **measure\_name** (`str`) – Name of the measurement schedule.
 
-**Parameters**
+  **Return type**
 
-*   **qubits** (`List`\[`int`]) – List of qubits to be measured.
-*   **backend** ([*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")) – A backend instance, which contains hardware-specific data required for scheduling.
-*   **inst\_map** (`Optional`\[[`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")]) – Mapping of circuit operations to pulse schedules. If None, defaults to the `instruction_schedule_map` of `backend`.
-*   **meas\_map** (`Union`\[`List`\[`List`\[`int`]], `Dict`\[`int`, `List`\[`int`]], `None`]) – List of sets of qubits that must be measured together. If None, defaults to the `meas_map` of `backend`.
-*   **qubit\_mem\_slots** (`Optional`\[`Dict`\[`int`, `int`]]) – Mapping of measured qubit index to classical bit index.
-*   **measure\_name** (`str`) – Name of the measurement schedule.
+  [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 
-**Return type**
+  **Returns**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+  A measurement schedule corresponding to the inputs provided.
 
-**Returns**
+  **Raises**
 
-A measurement schedule corresponding to the inputs provided.
-
-**Raises**
-
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If both `inst_map` or `meas_map`, and `backend` is None.
+  [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If both `inst_map` or `meas_map`, and `backend` is None.
+</Function>
 
 ### measure\_all
 
-<span id="qiskit.scheduler.utils.measure_all" />
+<Function id="qiskit.scheduler.utils.measure_all" name="measure_all" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/utils.py" signature="measure_all(backend)">
+  Return a Schedule which measures all qubits of the given backend.
 
-`measure_all(backend)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/utils.py "view source code")
+  **Parameters**
 
-Return a Schedule which measures all qubits of the given backend.
+  **backend** ([*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")) – A backend instance, which contains hardware-specific data required for scheduling.
 
-**Parameters**
+  **Return type**
 
-**backend** ([*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")) – A backend instance, which contains hardware-specific data required for scheduling.
+  [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 
-**Return type**
+  **Returns**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
-
-**Returns**
-
-A schedule corresponding to the inputs provided.
+  A schedule corresponding to the inputs provided.
+</Function>
 
