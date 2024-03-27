@@ -195,6 +195,7 @@ def cancel_trailing_jobs(start_time: datetime) -> bool:
 
     def _is_not_finished(job):
         # Force runtime to update job status
+        # Workaround for Qiskit/qiskit-ibm-runtime#1547
         job.status()
         return not job.in_final_state()
 
