@@ -57,7 +57,7 @@ result = backend.run(expectation_circuits)
 **Primitives model:** Access real systems and remote simulators through the `qiskit-ibm-runtime` **primitives** (`Sampler` and `Estimator`). Use **Local testing mode** to run local simulations on Qiskit Runtime fake backends or Aer simulators. The following examples assume you have defined circuits `isa_circuits` and observables `isa_observables`.
 
 <Tabs>
-  <TabItem value="hw" label="Quantum systems">
+  <TabItem value="hw" label="Run on quantum systems">
 ``` python
 from qiskit_ibm_runtime import EstimatorV2 as Estimator, QiskitRuntimeService
 
@@ -76,7 +76,7 @@ result = job.result()
 ```
   </TabItem>
 
-  <TabItem value="local" label="Local testing mode">
+  <TabItem value="local" label="Run in local testing mode">
 ``` python
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
 from qiskit_ibm_runtime.fake_provider import FakeManilaV2
@@ -97,12 +97,13 @@ result = job.result()
   </TabItem>
 </Tabs>
 
+
+### End-to-end example
+
 If your code previously calculated expectation values using
 `backend.run()`, you most likely used the `qiskit.opflow` module to
 handle operators and state functions. To support this scenario, the
 following migration example shows how to replace the (`qiskit.opflow` & `backend.run()`) workflow with an Estimator-based workflow.
-
-### End-to-end example
 
 #### 1. Problem definition
 
@@ -111,7 +112,7 @@ with respect to a certain operator. In this example, we are using the H2
 molecule and an arbitrary circuit as the quantum state:
 
 <Tabs>
-  <TabItem value="PrimV2" label="Runtimee Estimator">
+  <TabItem value="PrimV2" label="Runtime Estimator">
 For Qiskit Runtime, circuits and parameters must obey the Instruction Set Architecture (ISA) of a particular backend.
 
 ``` python
@@ -187,11 +188,7 @@ opflow_op = PauliSumOp(op)
 opflow_state = CircuitStateFn(state)
 ```
 
-This step is not necessary when using the primitives.
-
-<Admonition type="note">
-    For instructions to migrate from `qiskit.opflow`, see the [Opflow migration guide](./qiskit-opflow-module).
-</Admonition>
+This step is not necessary when using the primitives. For instructions to migrate from `qiskit.opflow`, see the [Opflow migration guide](./qiskit-opflow-module).
 
 #### 2. Calculate expectation values
 
@@ -257,8 +254,7 @@ expectation:  -1.065734058826613
 #### 3. Local execution 
 
 This section describes how to use Qiskit Runtime to test an
-algorithm locally. Let's assume that we want to solve
-the problem defined above with a local state vector simulation.
+algorithm locally. These examples solve the problem defined above with a local simulation.
 
 <Tabs>
   <TabItem value="updated" label="Qiskit Runtime Local testing mode">
@@ -332,6 +328,9 @@ state = QuantumCircuit(2)
 state.x(0)
 state.x(1)
 ```
+
+For information about running noisy simulations with the Runtime primitives, see [Noisy simulators in Qiskit Runtime](../../verify/using-ibm-quantum-simulators)  and [Local testing mode](../../verify/local-testing-mode).
+
   </TabItem>
   <TabItem value="legacy-aer" label="Qiskit Aer simulator">
 ``` python
@@ -402,7 +401,6 @@ expectation:  [-1.06365335]
 </Tabs>
 
 
-For more information about running noisy simulations with the **Runtime primitives**, see the [Noisy simulators in Qiskit Runtime](../../verify/using-ibm-quantum-simulators) topic.
 
 <span id="sampler-algorithm"></span>
 ## Use Sampler to design an algorithm 
@@ -419,11 +417,9 @@ probability distributions from measurement counts.
 
 Both `Sampler` and `backend.run()` take in circuits as inputs. The main
 difference is the format of the output: `backend.run()` outputs
-**counts**, while `Sampler` processes those counts and outputs the
-**quasi-probability distribution** associated with them.
+**counts**, while `Sampler` processes those counts and outputs the **per-shot measurements** (in the form of bitstrings) associated with them.
 
-<Admonition type="note">
-    **Backend.run() model:** In this model, you used the `qiskit-ibmq-provider` (now migrated to `qiskit-ibm-provider`) module to access real systems and remote simulators. To run **local** simulations, you could import a specific simulator from `qiskit-aer`. All of them followed the `backend.run()` interface.
+**Backend.run() model:** In this model, you used the `qiskit-ibmq-provider` (now migrated to `qiskit-ibm-provider`) module to access real systems and remote simulators. To run **local** simulations, you could import a specific simulator from `qiskit-aer`. All of them followed the `backend.run()` interface.
 
     <details>
     <summary><a>Code example with `qiskit-ibmq-provider` and `backend.run()`</a></summary>
@@ -456,60 +452,69 @@ difference is the format of the output: `backend.run()` outputs
     ```
     </details>
 
-    **Primitives model:** Access real systems and remote simulators through the `qiskit-ibm-runtime` Sampler and Estimator *primitives*. To run **local** simulations, import specific local primitives from `qiskit_aer.primitives` and `qiskit.primitives`. All of them follow the `BaseSampler` and `BaseEstimator` interfaces, but **only the Runtime primitives offer access to the Runtime service, sessions, and built-in error mitigation**.
+    **Primitives model:** Access real systems and remote simulators through the `qiskit-ibm-runtime` Sampler and Estimator *primitives*. Use **local testing mode** to run local simulations by using Qiskit Runtime fake backends or Aer simulators.
 
     <details>
     <summary><a>Code example for Runtime Sampler</a></summary>
 
     ``` python
-    from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+    from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
     # Define service
     service = QiskitRuntimeService()
 
     # Get backend
-    backend = service.backend("ibmq_qasm_simulator") # Use a cloud simulator
+    backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
     # Define Sampler
-    # (see tutorials more more info on sessions)
-    sampler = Sampler(session=backend)
+    sampler = Sampler(backend=backend)
 
-    # Run Quasi-Probability calculation
-    result = sampler.run(circuits).result()
+    # Run calculation
+    job = sampler.run([(isa_circuit,)])
+    result = job.result()
     ```
     </details>
 
-    <details>
-    <summary><a>Code example for Aer Sampler</a></summary>
-
-    ``` python
-    from qiskit_aer import Sampler
-
-    # Get local simulator Sampler
-    sampler = Sampler()
-
-    # Run Quasi-Probability calculation
-    result = sampler.run(circuits).result()
-    ```
-    </details>
-
-</Admonition>
-
-
-Next, we will show an end-to-end example of sampling a circuit: first,
-with `backend.run()`, then by using the `Sampler`.
 
 ## End-to-end example
 
+The following example shows an end-to-end example of sampling a circuit by using `backend.run()` and `Sampler`.
+
 ### 1. Problem definition
 
-We want to find the probability (or quasi-probability) distribution
+We want to find the probability distribution
 associated with a quantum state:
 
 <Admonition type="attention">
-    Important: If you want to use the `Sampler` primitive, the circuit **must contain measurements**.
+    Important: When using the `Sampler` primitive, the circuit **must contain measurements**.
 </Admonition>
 
+<Tabs>
+  <TabItem value="PrimV2" label="Runtime Sampler">
+  For Qiskit Runtime, circuits must obey the ISA of a particular backend.
+``` python
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+ 
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+from qiskit import QuantumCircuit
+
+circuit = QuantumCircuit(4)
+circuit.h(range(2))
+circuit.cx(0,1)
+circuit.measure_all() # measurement!
+
+# Convert to ISA circuits
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+
+```
+  </TabItem>
+
+  <TabItem value="PrimV1" label="backend.run">
 ``` python
 from qiskit import QuantumCircuit
 
@@ -518,11 +523,37 @@ circuit.h(range(2))
 circuit.cx(0,1)
 circuit.measure_all() # measurement!
 ```
+  </TabItem>
+</Tabs>
 
-### 2. Calculate probability distribution on a real device or cloud simulator
+### 2. Calculate counts probability distribution on a real device or local simulator
 
-#### 2.a. Legacy: Use backend.run()
+<Tabs>
+  <TabItem value="runtime" label="Runtime Sampler">
+While the user-side syntax of the `Sampler` is very similar to
+`backend.run()`, notice that the workflow is now simplified, as the
+quasi-probability distribution is returned **directly** (no need to
+perform post-processing), together with some key metadata.
 
+``` python
+from qiskit_ibm_runtime import SamplerV2 as Sampler
+
+sampler = Sampler(backend=backend)
+
+job = sampler.run([(isa_circuit,)])
+result = job.result()
+# Get results for the first (and only) PUB
+pub_result = result[0]
+
+# Get counts from the classical register "meas". 
+print(f" >> Counts for the meas output register: {pub_result.data.meas.get_counts()}")
+```
+
+ >> Counts for the meas output register: {'0001': 210, '0010': 305, '0000': 282, '0011': 201, '0101': 2, '1010': 6, '0110': 5, '0100': 6, '1000': 3, '0111': 1, '1001': 2, '1011': 1}
+
+  </TabItem>
+
+  <TabItem value="legacy" label="backend.run()">
 The required steps to reach our goal with `backend.run()` are:
 
 1.  Run circuits
@@ -585,58 +616,12 @@ counts:  {'0000': 255, '0001': 258, '0010': 243, '0011': 268}
 quasi_dists:  {'0000': 0.2490234375, '0001': 0.251953125, '0010': 0.2373046875, '0011': 0.26171875}
 ```
 
-#### 2.b. Updated: Use the Sampler runtime primitive
-
-While the user-side syntax of the `Sampler` is very similar to
-`backend.run()`, notice that the workflow is now simplified, as the
-quasi-probability distribution is returned **directly** (no need to
-perform post-processing), together with some key metadata.
-
-<Admonition type="note">
-    Replace `ibmq_qasm_simulator` with your device name to see the complete workflow for a real device.
-</Admonition>
-
-``` python
-from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
-
-service = QiskitRuntimeService(channel="ibm_quantum")
-backend = service.backend("ibmq_qasm_simulator")
-
-sampler = Sampler(session=backend)
-
-result = sampler.run(circuit, shots=1024).result()
-quasi_dists = result.quasi_dists
-```
-
-``` python
->>> print("result: ", result)
->>> print("quasi_dists: ", quasi_dists)
-result:  SamplerResult(quasi_dists=[{0: 0.2802734375, 1: 0.2509765625, 2: 0.232421875, 3: 0.236328125}],
-metadata=[{'header_metadata': {}, 'shots': 1024, 'readout_mitigation_overhead': 1.0,
-'readout_mitigation_time': 0.03801989182829857}])
-quasi_dists:  [{0: 0.2802734375, 1: 0.2509765625, 2: 0.232421875, 3: 0.236328125}]
-```
-
-<Admonition type="attention">
-    Be careful with the output format. With `Sampler`, the states are no longer represented by bit strings, for example, `"11"`, but by integers, for example, `3`. To convert the `Sampler` output to bit strings, you can use the `QuasiDistribution.binary_probabilities()` method, as shown below.
-</Admonition>
+  </TabItem>
+</Tabs>
 
 
-``` python
->>> # convert the output to bit strings
->>> binary_quasi_dist = quasi_dists[0].binary_probabilities()
->>> print("binary_quasi_dist: ", binary_quasi_dist)
-binary_quasi_dist:  {'0000': 0.2802734375, '0001': 0.2509765625, '0010': 0.232421875, '0011': 0.236328125}
-```
 
-The `Sampler` Runtime primitive offers several features and tuning
-options that do not have a legacy alternative to migrate from, but can
-help improve your performance and results. For more information, refer
-to the following:
 
--   [Error mitigation tutorial](https://learning.quantum.ibm.com/tutorial/error-suppression-and-error-mitigation-with-qiskit-runtime)
--   [Setting execution options topic](../../run/advanced-runtime-options)
--   [How to run a session topic](../../run/run-jobs-in-session)
 
 ### 3. Other execution alternatives (non-Runtime)
 
