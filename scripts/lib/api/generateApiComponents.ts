@@ -10,16 +10,20 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { CheerioAPI, Cheerio } from "cheerio";
+import { CheerioAPI, Cheerio, Element } from "cheerio";
 import { unified } from "unified";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 
-import { APOSTROPHE_HEX_CODE } from "../stringUtils";
+import { ApiType } from "./Metadata";
+import {
+  getLastPartFromFullIdentifier,
+  APOSTROPHE_HEX_CODE,
+} from "../stringUtils";
 
 export type ComponentProps = {
-  id: string;
+  id?: string;
   name?: string;
   attributeTypeHint?: string;
   attributeValue?: string;
@@ -27,6 +31,225 @@ export type ComponentProps = {
   rawSignature?: string;
   extraRawSignatures?: string[];
 };
+
+const APITYPE_TO_TAG: Record<string, string> = {
+  class: "class",
+  exception: "class",
+  attribute: "attribute",
+  property: "attribute",
+  function: "function",
+  method: "function",
+};
+
+export async function processMdxComponent(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  signatures: Cheerio<Element>[],
+  $dl: Cheerio<any>,
+  priorApiType: ApiType | undefined,
+  apiType: ApiType,
+  id: string,
+): Promise<[string, string]> {
+  const tagName = APITYPE_TO_TAG[apiType];
+
+  const $firstSignature = signatures.shift()!;
+  const componentProps = prepareProps(
+    $,
+    $main,
+    $firstSignature,
+    $dl,
+    priorApiType,
+    apiType,
+    id,
+  );
+
+  const extraProps = signatures.flatMap(
+    ($overloadedSignature) =>
+      prepareProps($, $main, $overloadedSignature, $dl, apiType, apiType, id) ??
+      [],
+  );
+  addExtraSignatures(componentProps, extraProps);
+
+  return [await createOpeningTag(tagName, componentProps), `</${tagName}>`];
+}
+
+// ------------------------------------------------------------------
+// Prepare props for MDX components
+// ------------------------------------------------------------------
+
+function prepareProps(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  $child: Cheerio<Element>,
+  $dl: Cheerio<any>,
+  priorApiType: ApiType | undefined,
+  apiType: ApiType,
+  id: string,
+): ComponentProps {
+  const preparePropsPerApiType: Record<string, () => ComponentProps> = {
+    class: () => prepareClassProps($child, githubSourceLink, id),
+    property: () =>
+      preparePropertyProps($child, $dl, priorApiType, githubSourceLink, id),
+    method: () =>
+      prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id),
+    attribute: () =>
+      prepareAttributeProps($, $child, $dl, priorApiType, githubSourceLink, id),
+    function: () =>
+      prepareFunctionOrExceptionProps($, $child, $dl, id, githubSourceLink),
+    exception: () =>
+      prepareFunctionOrExceptionProps($, $child, $dl, id, githubSourceLink),
+  };
+
+  const githubSourceLink = prepareGitHubLink($child, apiType === "method");
+  findByText($, $main, "em.property", apiType).remove();
+
+  if (!(apiType in preparePropsPerApiType)) {
+    throw new Error(`Unhandled Python type: ${apiType}`);
+  }
+
+  return preparePropsPerApiType[apiType]();
+}
+
+function prepareClassProps(
+  $child: Cheerio<any>,
+  githubSourceLink: string | undefined,
+  id: string,
+): ComponentProps {
+  return {
+    id,
+    rawSignature: $child.html()!,
+    githubSourceLink,
+  };
+}
+
+function preparePropertyProps(
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  priorApiType: string | undefined,
+  githubSourceLink: string | undefined,
+  id: string,
+): ComponentProps {
+  if (!priorApiType && id) {
+    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+  }
+
+  const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
+  if (rawSignature.trim().length === 0) {
+    return { id };
+  }
+
+  return {
+    id,
+    rawSignature,
+    githubSourceLink,
+  };
+}
+
+function prepareMethodProps(
+  $: CheerioAPI,
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  priorApiType: string | undefined,
+  githubSourceLink: string | undefined,
+  id: string,
+): ComponentProps {
+  const props = {
+    id,
+    rawSignature: $child.html()!,
+    githubSourceLink,
+  };
+  if (id && !priorApiType) {
+    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+    return props;
+  } else if ($child.attr("id")) {
+    $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
+  }
+
+  return {
+    ...props,
+    name: getLastPartFromFullIdentifier(id),
+  };
+}
+
+function prepareAttributeProps(
+  $: CheerioAPI,
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  priorApiType: string | undefined,
+  githubSourceLink: string | undefined,
+  id: string,
+): ComponentProps {
+  if (!priorApiType && id) {
+    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+
+    const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
+    if (rawSignature.trim().length === 0) {
+      return { id };
+    }
+
+    return {
+      id,
+      rawSignature,
+      githubSourceLink,
+    };
+  }
+
+  // Else, the attribute is embedded on the class
+  const text = $child.text();
+
+  // Index of the default value of the attribute
+  let equalIndex = text.indexOf("=");
+  if (equalIndex == -1) {
+    equalIndex = text.length;
+  }
+  // Index of the attribute's type. The type should be
+  // found before the default value
+  let colonIndex = text.slice(0, equalIndex).indexOf(":");
+  if (colonIndex == -1) {
+    colonIndex = text.length;
+  }
+
+  $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
+  // The attributes have the following shape: name [: type] [= value]
+  const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
+  const attributeTypeHint = text
+    .slice(Math.min(colonIndex + 1, equalIndex), equalIndex)
+    .trim();
+  const attributeValue = text.slice(equalIndex, text.length).trim();
+
+  return {
+    id,
+    name,
+    attributeTypeHint,
+    attributeValue,
+  };
+}
+
+function prepareFunctionOrExceptionProps(
+  $: CheerioAPI,
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  id: string,
+  githubSourceLink: string | undefined,
+): ComponentProps {
+  const props = {
+    id,
+    rawSignature: $child.html()!,
+    githubSourceLink,
+  };
+
+  const pageHeading = $dl.siblings("h1").text();
+  if (id.endsWith(pageHeading) && pageHeading != "") {
+    // Page is already dedicated to apiType; no heading needed
+    return props;
+  }
+  $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
+
+  return {
+    ...props,
+    name: id.split(".").slice(-1)[0],
+  };
+}
 
 // ------------------------------------------------------------------
 // Generate MDX components
@@ -52,11 +275,7 @@ export async function createOpeningTag(
   const signature = await htmlSignatureToMd(props.rawSignature!);
   const extraSignatures: string[] = [];
   for (const sig of props.extraRawSignatures ?? []) {
-    extraSignatures.push(
-      `${APOSTROPHE_HEX_CODE}${await htmlSignatureToMd(
-        sig!,
-      )}${APOSTROPHE_HEX_CODE}`,
-    );
+    extraSignatures.push(`"${await htmlSignatureToMd(sig!)}"`);
   }
 
   return `<${tagName} 
@@ -139,6 +358,7 @@ export async function htmlSignatureToMd(
   return String(file)
     .replaceAll("\n", "")
     .replaceAll("'", APOSTROPHE_HEX_CODE)
+    .replaceAll('"', '\\"')
     .replace(/^`/, "")
     .replace(/`$/, "");
 }

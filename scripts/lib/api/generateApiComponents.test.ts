@@ -102,7 +102,7 @@ describe("createOpeningTag()", () => {
     attributeValue='undefined'
     github='undefined'
     signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
-    extraSignatures='[${APOSTROPHE_HEX_CODE}Estimator.run(circuits, observables, parameter_values=None, **kwargs)${APOSTROPHE_HEX_CODE}, ${APOSTROPHE_HEX_CODE}Estimator.run(circuits, observables, parameter_values=None, **kwargs)${APOSTROPHE_HEX_CODE}]'
+    extraSignatures='["Estimator.run(circuits, observables, parameter_values=None, **kwargs)", "Estimator.run(circuits, observables, parameter_values=None, **kwargs)"]'
     >
   `);
   });

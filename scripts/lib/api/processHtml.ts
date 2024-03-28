@@ -10,12 +10,11 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { CheerioAPI, Cheerio, load } from "cheerio";
+import { CheerioAPI, Cheerio, load, Element } from "cheerio";
 
 import { Image } from "./HtmlToMdResult";
 import { Metadata, ApiType } from "./Metadata";
-import { getLastPartFromFullIdentifier } from "../stringUtils";
-import { findByText, prepareGitHubLink } from "./generateApiComponents";
+import { processMdxComponent } from "./generateApiComponents";
 
 export type ProcessedHtml = {
   html: string;
@@ -24,13 +23,13 @@ export type ProcessedHtml = {
   isReleaseNotes: boolean;
 };
 
-export function processHtml(options: {
+export async function processHtml(options: {
   html: string;
   fileName: string;
   imageDestination: string;
   determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
-}): ProcessedHtml {
+}): Promise<ProcessedHtml> {
   const {
     html,
     fileName,
@@ -61,7 +60,7 @@ export function processHtml(options: {
   preserveMathBlockWhitespace($, $main);
 
   const meta: Metadata = {};
-  processMembersAndSetMeta($, $main, meta);
+  await processMembersAndSetMeta($, $main, meta);
   maybeSetModuleMetadata($, $main, meta);
   if (meta.apiType === "module") {
     updateModuleHeadings($, $main, meta);
@@ -260,11 +259,11 @@ export function removeColonSpans($main: Cheerio<any>): void {
   $main.find(".colon").remove();
 }
 
-export function processMembersAndSetMeta(
+export async function processMembersAndSetMeta(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
-): void {
+): Promise<void> {
   let continueMapMembers = true;
   while (continueMapMembers) {
     // members can be recursive, so we need to pick elements one by one
@@ -283,173 +282,41 @@ export function processMembersAndSetMeta(
     const id = $dl.find("dt").attr("id") || "";
     const apiType = getApiType($dl);
 
-    const replacement = $dl
-      .children()
-      .toArray()
-      .map((child) => {
-        const $child = $(child);
-        if (child.name !== "dt" || !apiType) {
-          return `<div>${$child.html()}</div>`;
-        }
-
-        const priorApiType = meta.apiType;
-        if (!priorApiType) {
-          meta.apiType = apiType;
-          meta.apiName = id;
-        }
-
-        return processMember($, $main, $child, $dl, priorApiType, apiType, id);
-      })
-      .join("\n");
-
-    $dl.replaceWith(`<div>${replacement}</div>`);
-  }
-}
-
-function processMember(
-  $: CheerioAPI,
-  $main: Cheerio<any>,
-  $child: Cheerio<any>,
-  $dl: Cheerio<any>,
-  priorApiType: string | undefined,
-  apiType: string,
-  id: string,
-) {
-  const githubUrl = prepareGitHubLink($child, apiType === "method");
-  const githubSourceLink = githubUrl
-    ? ` <a href="${githubUrl}" title="view source code">GitHub</a>`
-    : "";
-
-  findByText($, $main, "em.property", apiType).remove();
-
-  if (apiType == "class") {
-    return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${githubSourceLink}</p>`;
-  }
-
-  if (apiType == "property") {
-    return processProperty($child, $dl, priorApiType, id, githubSourceLink);
-  }
-
-  if (apiType == "method") {
-    return processMethod($, $child, $dl, priorApiType, id, githubSourceLink);
-  }
-
-  if (apiType == "attribute") {
-    return processAttribute($child, $dl, priorApiType, id, githubSourceLink);
-  }
-
-  if (apiType === "function" || apiType === "exception") {
-    return processFunctionOrException($child, $dl, id, githubSourceLink);
-  }
-
-  throw new Error(`Unhandled Python type: ${apiType}`);
-}
-
-function processProperty(
-  $child: Cheerio<any>,
-  $dl: Cheerio<any>,
-  priorApiType: string | undefined,
-  id: string,
-  githubSourceLink: string,
-) {
-  if (!priorApiType && id) {
-    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-  }
-
-  const signature = $child.find("em").text()?.replace(/^:\s+/, "");
-  if (signature.trim().length === 0) return;
-  return `<span class="target" id='${id}'/><p><code>${signature}</code>${githubSourceLink}</p>`;
-}
-
-function processMethod(
-  $: CheerioAPI,
-  $child: Cheerio<any>,
-  $dl: Cheerio<any>,
-  priorApiType: string | undefined,
-  id: string,
-  githubSourceLink: string,
-) {
-  if (id) {
+    const priorApiType = meta.apiType;
     if (!priorApiType) {
-      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-    } else if (!$child.attr("id")) {
-      // Overload methods have more than one <dt> tag, but only the first one
-      // contains an id.
-      return `<p><code>${$child.html()}</code>${githubSourceLink}</p>`;
+      meta.apiType = apiType;
+      meta.apiName = id;
+    }
+
+    const bodyElements: string[] = [];
+    const signatures: Cheerio<Element>[] = [];
+
+    for (const child of $dl.children().toArray()) {
+      const $child = $(child);
+      if (child.name !== "dt" || !apiType) {
+        bodyElements.push(`<div>${$child.html()}</div>`);
+        continue;
+      }
+      signatures.push($child);
+    }
+
+    if (signatures.length == 0) {
+      $dl.replaceWith(`<div>${bodyElements.join("\n")}</div>`);
     } else {
-      // Inline methods
-      $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
+      const [openTag, closeTag] = await processMdxComponent(
+        $,
+        $main,
+        signatures,
+        $dl,
+        priorApiType,
+        apiType!,
+        id,
+      );
+      $dl.replaceWith(
+        `<div>${openTag}\n${bodyElements.join("\n")}\n${closeTag}</div>`,
+      );
     }
   }
-
-  return `<span class="target" id='${id}'/><p><code>${$child.html()}</code>${githubSourceLink}</p>`;
-}
-
-function processAttribute(
-  $child: Cheerio<any>,
-  $dl: Cheerio<any>,
-  priorApiType: string | undefined,
-  id: string,
-  githubSourceLink: string,
-) {
-  if (!priorApiType) {
-    if (id) {
-      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-    }
-
-    const signature = $child.find("em").text()?.replace(/^:\s+/, "");
-    if (signature.trim().length === 0) return;
-    return `<span class="target" id='${id}'/><p><code>${signature}</code>${githubSourceLink}</p>`;
-  }
-
-  // Else, the attribute is embedded on the class
-  const text = $child.text();
-
-  // Index of the default value of the attribute
-  let equalIndex = text.indexOf("=");
-  if (equalIndex == -1) {
-    equalIndex = text.length;
-  }
-  // Index of the attribute's type. The type should be
-  // found before the default value
-  let colonIndex = text.slice(0, equalIndex).indexOf(":");
-  if (colonIndex == -1) {
-    colonIndex = text.length;
-  }
-
-  // The attributes have the following shape: name [: type] [= value]
-  const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
-  const type = text
-    .slice(Math.min(colonIndex + 1, equalIndex), equalIndex)
-    .trim();
-  const value = text.slice(equalIndex, text.length).trim();
-
-  const output = [`<span class="target" id='${id}'/><h3>${name}</h3>`];
-  if (type) {
-    output.push(`<p><code>${type}</code></p>`);
-  }
-  if (value) {
-    output.push(`<p><code>${value}</code></p>`);
-  }
-  return output.join("\n");
-}
-
-function processFunctionOrException(
-  $child: Cheerio<any>,
-  $dl: Cheerio<any>,
-  id: string,
-  githubSourceLink: string,
-) {
-  const descriptionHtml = `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${githubSourceLink}</p>`;
-
-  const pageHeading = $dl.siblings("h1").text();
-  if (id.endsWith(pageHeading) && pageHeading != "") {
-    // Page is already dedicated to apiType; no heading needed
-    return descriptionHtml;
-  }
-
-  const apiName = id.split(".").slice(-1)[0];
-  return `<h3>${apiName}</h3>${descriptionHtml}`;
 }
 
 export function maybeSetModuleMetadata(

@@ -18,6 +18,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkStringify from "remark-stringify";
 import { Content, Root } from "mdast";
+import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
 
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
@@ -62,17 +63,30 @@ export async function mergeClassMembers(
           .use(remarkGfm)
           .use(remarkMath)
           .use(() => {
-            return async (tree: Root) => {
-              for (const node of tree.children) {
+            return async (root: Root) => {
+              // The attribute and method's section can be found under the class component
+              const mdxClassElement = root.children
+                .filter(
+                  (node): node is MdxJsxFlowElement =>
+                    node.type == "mdxJsxFlowElement" && node.name == "Class",
+                )
+                .shift();
+
+              for (const node of mdxClassElement?.children ?? []) {
                 await replaceMembersAfterTitle(
-                  tree,
+                  mdxClassElement!,
                   node,
                   "Attributes",
                   attributesAndProps,
                 );
-                await replaceMembersAfterTitle(tree, node, "Methods", methods);
                 await replaceMembersAfterTitle(
-                  tree,
+                  mdxClassElement!,
+                  node,
+                  "Methods",
+                  methods,
+                );
+                await replaceMembersAfterTitle(
+                  mdxClassElement!,
                   node,
                   "Methods Defined Here",
                   methods,
@@ -94,7 +108,7 @@ export async function mergeClassMembers(
 }
 
 async function replaceMembersAfterTitle(
-  tree: Root,
+  tree: MdxJsxFlowElement,
   node: Content,
   title: string,
   members: HtmlToMdResultWithUrl[],

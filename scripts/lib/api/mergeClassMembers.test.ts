@@ -19,17 +19,19 @@ describe("mergeClassMembers", () => {
   test("merge class members", async () => {
     const results: HtmlToMdResultWithUrl[] = [
       {
-        markdown: `## Attributes
+        markdown: `<Class id='qiskit_ibm_runtime.RuntimeOptions'>
+  ## Attributes
 
-|                                                                                                                                                                                                         |                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| [\`RuntimeOptions.backend\`](qiskit_ibm_runtime.RuntimeOptions.backend#qiskit_ibm_runtime.RuntimeOptions.backend "qiskit_ibm_runtime.RuntimeOptions.backend")                                             |                 |
+  |                                                                                                                                                                                                         |                 |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+  | [\`RuntimeOptions.backend\`](qiskit_ibm_runtime.RuntimeOptions.backend#qiskit_ibm_runtime.RuntimeOptions.backend "qiskit_ibm_runtime.RuntimeOptions.backend")                                             |                 |
 
-## Methods
+  ## Methods
 
-|                                                                                                                                                                          |                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
-| [\`RuntimeOptions.validate\`](qiskit_ibm_runtime.RuntimeOptions.validate#qiskit_ibm_runtime.RuntimeOptions.validate "qiskit_ibm_runtime.RuntimeOptions.validate")(channel) | Validate options. |`,
+  |                                                                                                                                                                          |                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
+  | [\`RuntimeOptions.validate\`](qiskit_ibm_runtime.RuntimeOptions.validate#qiskit_ibm_runtime.RuntimeOptions.validate "qiskit_ibm_runtime.RuntimeOptions.validate")(channel) | Validate options. |
+</Class>`,
         meta: {
           apiType: "class",
           apiName: "RuntimeOptions",
@@ -40,8 +42,7 @@ describe("mergeClassMembers", () => {
       },
       {
         markdown: `# RuntimeOptions.backend
-
-\`Optional[str] = None\`
+<Attribute id='qiskit_ibm_runtime.RuntimeOptions.backend' signature='Optional[str] = None' />
 `,
         meta: {
           apiType: "attribute",
@@ -54,7 +55,7 @@ describe("mergeClassMembers", () => {
       {
         markdown: `# RuntimeOptions.circuits
 
-\`Optional[str] = None\`
+        <Attribute id='qiskit_ibm_runtime.RuntimeOptions.circuits' signature='Optional[str] = None' />
 `,
         meta: {
           apiType: "property",
@@ -68,21 +69,21 @@ describe("mergeClassMembers", () => {
         markdown: `
 # RuntimeOptions.validate
 
-\`RuntimeOptions.validate(channel)\`
+<Function id='qiskit_ibm_runtime.RuntimeOptions.validate' signature='RuntimeOptions.validate(channel)'>
+  Validate options.
 
-Validate options.
+  *   Parameters:
 
-*   Parameters:
+      **channel** (\`str\`) – channel type.
 
-    **channel** (\`str\`) – channel type.
+  *   Raises:
 
-*   Raises:
+      **IBMInputValueError** – If one or more option is invalid.
 
-    **IBMInputValueError** – If one or more option is invalid.
+  *   Return type:
 
-*   Return type:
-
-    \`None\`
+      \`None\`
+</Function>
           `,
         meta: {
           apiType: "method",
@@ -96,35 +97,37 @@ Validate options.
     const merged = await mergeClassMembers(results);
     expect(merged.find((item) => item.meta.apiType === "class")?.markdown)
       .toMatchInlineSnapshot(`
-        "## Attributes
+        "<Class id="qiskit_ibm_runtime.RuntimeOptions">
+          ## Attributes
 
-        ### RuntimeOptions.backend
+          ### RuntimeOptions.backend
 
-        \`Optional[str] = None\`
+          <Attribute id="qiskit_ibm_runtime.RuntimeOptions.backend" signature="Optional[str] = None" />
 
-        ### RuntimeOptions.circuits
+          ### RuntimeOptions.circuits
 
-        \`Optional[str] = None\`
+          <Attribute id="qiskit_ibm_runtime.RuntimeOptions.circuits" signature="Optional[str] = None" />
 
-        ## Methods
+          ## Methods
 
-        ### RuntimeOptions.validate
+          ### RuntimeOptions.validate
 
-        \`RuntimeOptions.validate(channel)\`
+          <Function id="qiskit_ibm_runtime.RuntimeOptions.validate" signature="RuntimeOptions.validate(channel)">
+            Validate options.
 
-        Validate options.
+            *   Parameters:
 
-        *   Parameters:
+                **channel** (\`str\`) – channel type.
 
-            **channel** (\`str\`) – channel type.
+            *   Raises:
 
-        *   Raises:
+                **IBMInputValueError** – If one or more option is invalid.
 
-            **IBMInputValueError** – If one or more option is invalid.
+            *   Return type:
 
-        *   Return type:
-
-            \`None\`
+                \`None\`
+          </Function>
+        </Class>
         "
       `);
     expect(merged.length).toEqual(1);
