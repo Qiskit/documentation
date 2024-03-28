@@ -317,16 +317,11 @@ function buildApiComponent(h: H, node: any): any {
   const hastTree = {
     type: "mdxJsxFlowElement",
     name: componentName,
-    attributes: [
-      {
-        type: "mdxJsxAttribute",
-        name: "id",
-        value: node.properties.id,
-      },
-    ],
+    attributes: [],
     children: all(h, node),
   };
 
+  maybeAddAttribute(hastTree, "id", node.properties.id);
   maybeAddAttribute(hastTree, "name", node.properties.name);
   maybeAddAttribute(
     hastTree,

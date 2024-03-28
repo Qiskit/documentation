@@ -23,7 +23,7 @@ import {
 } from "../stringUtils";
 
 export type ComponentProps = {
-  id: string;
+  id?: string;
   name?: string;
   attributeTypeHint?: string;
   attributeValue?: string;
@@ -129,7 +129,7 @@ function preparePropertyProps(
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
-  if (!priorApiType) {
+  if (!priorApiType && id) {
     $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
   }
 
@@ -179,7 +179,7 @@ function prepareAttributeProps(
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
-  if (!priorApiType) {
+  if (!priorApiType && id) {
     $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
 
     const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
