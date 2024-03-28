@@ -32,6 +32,7 @@ NOTEBOOKS_EXCLUDE = [
 ]
 NOTEBOOKS_THAT_SUBMIT_JOBS = [
     "docs/start/hello-world.ipynb",
+    "docs/analyze/saving-and-retrieving.ipynb",
 ]
 
 
