@@ -385,7 +385,7 @@ for execution on present day noisy quantum systems.</p>
     ).toMatchInlineSnapshot(`
     "In addition to the public abstract methods, subclasses should also implement the following private methods:
 
-    <Function id="" signature="classmethod _default_options()">
+    <Function signature="classmethod _default_options()">
       Return the default options
 
       This method will return a [\`qiskit.providers.Options\`](qiskit.providers.Options#qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
