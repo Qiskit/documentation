@@ -72,7 +72,7 @@ theta_values = [np.pi/2, np.pi/2, np.pi/2]
 ```
 
 <Tabs>
-  <TabItem value="updated" label="Updated">
+  <TabItem value="updated" label="Primitives">
 The primitives take in parametrized circuits directly, together
 with the parameter values, and the parameter assignment operation can be
 performed more efficiently on the server side of the primitive.  The input is in the form of primitive unified blocs (PUBs).  Each PUB is a tuple that contains a circuit and the data broadcasted to it.  For further details, see [Introduction to primitives.](../../run/primitives#interface-changes)
@@ -101,7 +101,7 @@ print(f" >> Counts for the c output register: {pub_result.data.c.get_counts()}")
 ```
   </TabItem>
 
-  <TabItem value="legacy" label="Legacy">
+  <TabItem value="legacy" label="backend.run">
 The parameter values had to be bound to their respective
 circuit parameters prior to calling `backend.run()`.
 

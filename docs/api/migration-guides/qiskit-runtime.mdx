@@ -37,88 +37,49 @@ Different packages expose different "flavors" of the primitive interfaces, for e
 The **only primitives that provide access to the Qiskit Runtime service** are those imported from `qiskit_ibm_runtime` (Qiskit Runtime Primitives).
 </Admonition>
 
+## Basic steps to migrate to primitives
+
+### Step 1 - Determine which primitive to use
+
 When migrating, the key to writing an equivalent algorithm using
 primitives is to first identify what is the minimal unit of information
 your algorithm is based on:
 
--   If it uses an **expectation value**, you will need an `Estimator`.
--   If it uses a **probability distribution** (from sampling the device), you will need a `Sampler`.
+-   If it uses an **expectation value** of a certain observable with respect to a
+quantum state (a real number), you will need an `Estimator`. 
 
-After determining which primitive to use, identify where the algorithm
-accesses the system. Look for the call to `backend.run()`. Next, you
-will replace this call with the respective primitive call, as shown in
-the following examples.
+   An expectation value of an observable could be the target quantity in scenarios where knowing a quantum state is not relevant. This often occurs in optimization problems or chemistry applications. For example, when trying to discover the extremal energy of a system.
+-   If it uses a **probability distribution** from sampling the device (a list of quasi-probabilities), you will need a `Sampler`. 
 
-This guide is for algorithm developers who need to refactor algorithms to use primitives instead of `backend.run()`. See examples here:
+   A probability distribution is often of interest in optimization problems that return a classical bit string, encoding a certain solution to a problem at hand. In these cases, you might be interested in finding a bit string that corresponds to a ket value with the largest probability of being measured from a quantum state, for example.
 
-    -   [Update code that performs circuit sampling](qiskit-runtime-examples#sampler-algorithm)
-    -   [Update code that calculates expectation values](qiskit-runtime-examples#estimator-algorithm)
+### Step 2 - Change imports as necessary
 
-The following topics are use cases with code migration examples:
+Follow the steps in the appropriate topic to change your import options and other setup information:
 
--   [Update parameter values while running](qiskit-runtime-setup#parm-circ)
--   [Algorithm tuning options (shots, transpilation, error mitigation)](../../run/advanced-runtime-options)
+- [Migrate from `qiskit-ibm-provider`.](qiskit-runtime-from-ibm-provider)
+- [Migrate from `qiskit-ibmq-provider`.](qiskit-runtime-from-ibmq-provider)
 
-## FAQs
+### Step 3 - Replace the call to `backend.run` with a call to `qiskit_ibm_runtime`.
 
-Users might have the following questions when planning to migrate their
-code to Qiskit Runtime:
+See these topics:
 
-<details>
-<summary>How do the Qiskit Runtime primitives differ from backend.run?</summary>
+-  [Update code that performs circuit sampling](qiskit-runtime-examples#sampler-algorithm)
+-  [Update code that calculates expectation values](qiskit-runtime-examples#estimator-algorithm)
+-  [Common use cases (basic, parameterized, and dynamic circuits)](qiskit-runtime-use-case)
 
-Qiskit Runtime is designed to streamline algorithm and application construction by removing the need for users to understand technical hardware and low-level software details. Advanced processing techniques for error suppression and mitigation are automatically applied, giving users high-fidelity results without the burden of having to code these routines themselves. The inclusion of different execution modes within Qiskit Runtime allows users to run iterative algorithm circuits back to back (sessions), or batch collections of circuits without having to re-queue each job (batch mode). This results in more efficient quantum processor utilization and reduces the total amount of time users spend running complex computations. 
 
-</details>
+### Step 3a - replace any `backend.run` options with `qiskit_ibm_runtime`.  
 
-<details>
-<summary>Which channel should I use?</summary>
+See the following topics:
 
-After deciding to use Qiskit Runtime primitives, the user must determine
-whether to access Qiskit Runtime through IBM Cloud or IBM Quantum
-Platform. Some information that might help you decide includes:
+-  [Migrate `backend.run` options to primitive options.](qiskit-runtime-options)
+-  [Algorithm tuning options (shots, transpilation, and error mitigation)](../../run/advanced-runtime-options)
 
-- The available plans:
-   - Qiskit Runtime is available in both the Open (free access) or Premium (contract-based paid access) plan on IBM Quantum Platform. See [IBM Quantum access plans](https://www.ibm.com/quantum/access-plans) for details.
-   - Qiskit Runtime is accessible through the Lite (free access) or Standard (pay-as-you-go access) plan in IBM Cloud. See [Qiskit Runtime plans](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-plans) on IBM Cloud for details.
-
-</details>
-
-<details>
-<summary>How do I set up my channel?</summary>
-
-After deciding which channel to use to interact with Qiskit Runtime, you
-can get set up on either platform by following the steps in [Install and set up.](../../start/install)
-
-</details>
-
-<details>
-<summary>Which primitive should I use?</summary>
-
-When choosing which primitive to use, you first need to understand
-whether the algorithm uses a **quasi-probability distribution** sampled
-from a quantum state (a list of quasi-probabilities), or an
-**expectation value** of a certain observable with respect to a
-quantum state (a real number).
-
-A probability distribution is often of interest in optimization problems
-that return a classical bit string, encoding a certain solution to a
-problem at hand. In these cases, you might be interested in finding a
-bit string that corresponds to a ket value with the largest probability
-of being measured from a quantum state, for example.
-
-An expectation value of an observable could be the target quantity in
-scenarios where knowing a quantum state is not relevant. This often
-occurs in optimization problems or chemistry applications. For example,
-when trying to discover the extremal energy of a system.
-
-</details>
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Start by [migrating your setup.](qiskit-runtime-setup)
-    - Review some [migration examples.](qiskit-runtime-examples)
     - [Get started with Estimator.](../../run/primitives-get-started#start-estimator)
     - [Get started with Sampler.](../../run/primitives-get-started#start-sampler)
     - Explore [sessions.](../../run/sessions)
