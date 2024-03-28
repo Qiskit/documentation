@@ -10,7 +10,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-name: Docker image deployment process in IBM Cloud Code Engine
+name: Deploy to IBM Cloud Code Engine
 
 on:
   workflow_call:
@@ -27,18 +27,19 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Set PREVIEW_TAG
-        run: |
-          if "${{ inputs.env_name == 'Preview' }}" ; then
-            echo "PREVIEW_TAG=pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-          else
-            echo "PREVIEW_TAG=`node -p "'${{ inputs.env_name }}'.toLowerCase()"`" >> $GITHUB_ENV
-          fi
-      - name: Set APP_NAME and DOCKER_IMAGE_TAG
-        run: |
-          echo "APP_NAME=qiskit-docs-preview-${{ env.PREVIEW_TAG }}" >> $GITHUB_ENV
-          echo "DOCKER_IMAGE_TAG=icr.io/community-digital/qiskit-docs-preview:${{ env.PREVIEW_TAG }}" >> $GITHUB_ENV
       - uses: actions/checkout@v4
+      - uses: ./.github/actions/set-up-ibm-cloud
+        id: set-up-cloud
+        with:
+          env_name: ${{ inputs.env_name }}
+          ibmcloud_account: ${{ secrets.ibmcloud_account }}
+          ibmcloud_api_key: ${{ secrets.ibmcloud_api_key }}
+      - name: Log-in into IBM Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: icr.io
+          username: iamapikey
+          password: ${{ secrets.ibmcloud_api_key }}
       - name: GH deployment status (start)
         id: gh_deployment
         uses: bobheadxi/deployments@v1
@@ -47,42 +48,17 @@ jobs:
           token: ${{ github.token }}
           env: ${{ inputs.env_name }}
           ref: ${{ github.event.pull_request.head.ref }}
-      - name: Setup IBM Cloud CLI
-        run: |
-          curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
-          ibmcloud --version
-          ibmcloud config --check-version=false
-          ibmcloud plugin install -f code-engine
-          ibmcloud plugin install -f container-registry
-      - name: Authenticate with IBM Cloud CLI
-        run: |
-          ibmcloud login -g "Quantum Community" -r "us-south" -c "${{ secrets.ibmcloud_account }}" --apikey "${{ secrets.ibmcloud_api_key }}"
-      - name: Remove previous Docker image (if exists)
-        run: |
-          ibmcloud cr region-set global
-          if ibmcloud cr image-list | grep "qiskit-docs-preview" | grep "${{ env.PREVIEW_TAG }}" ; then
-            ibmcloud cr image-rm "${{ env.DOCKER_IMAGE_TAG }}"
-          else
-            echo "no image to remove"
-          fi
-      - name: Log-in into IBM Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: icr.io
-          username: iamapikey
-          password: ${{ secrets.ibmcloud_api_key }}
       - name: Build and push to IBM registry
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ env.DOCKER_IMAGE_TAG }}
-          cache-from: type=registry,ref=${{ env.DOCKER_IMAGE_TAG }}
+          tags: ${{ steps.set-up-cloud.outputs.docker_image_tag }}
+          cache-from: type=registry,ref=${{ steps.set-up-cloud.outputs.docker_image_tag }}
           cache-to: type=inline
-      - name: Determine Code Engine project and app status
+      - name: Determine Code Engine app status
         id: ce_command_choice
         run: |
-          ibmcloud ce project select -n "qiskit-docs-preview"
-          if ibmcloud ce app list -q | grep "${{ env.APP_NAME }}" ; then
+          if ibmcloud ce app list -q | grep "${{ steps.set-up-cloud.outputs.app_name }}" ; then
             echo "command=update" >> $GITHUB_OUTPUT
           else
             echo "command=create" >> $GITHUB_OUTPUT
@@ -91,8 +67,8 @@ jobs:
         id: ce_app_creation
         run: |
           ibmcloud ce app ${{ steps.ce_command_choice.outputs.command }} \
-            --name "${{ env.APP_NAME }}" \
-            --image "${{ env.DOCKER_IMAGE_TAG }}" \
+            --name "${{ steps.set-up-cloud.outputs.app_name }}" \
+            --image "${{ steps.set-up-cloud.outputs.docker_image_tag }}" \
             --registry-secret "ibm-container-registry" \
             --port 3000 \
             --cpu 0.5 \
@@ -100,7 +76,7 @@ jobs:
             --min 1 \
             --max 2
           echo "preview_url=$(\
-            ibmcloud ce app get --name "${{ env.APP_NAME }}" --output url
+            ibmcloud ce app get --name "${{ steps.set-up-cloud.outputs.app_name }}" --output url
           )" >> $GITHUB_OUTPUT
       - name: GH deployment status (finish)
         uses: bobheadxi/deployments@v1
