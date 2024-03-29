@@ -404,55 +404,55 @@ difference is the format of the output: `backend.run()` outputs
 
 <Tabs>
   <TabItem value="provider" label="qiskit-ibmq-provider">
-``` python
-from qiskit import IBMQ
+    ``` python
+    from qiskit import IBMQ
 
-# Select provider
-provider = IBMQ.load_account()
+    # Select provider
+    provider = IBMQ.load_account()
 
-# Get backend
-backend = provider.get_backend("ibmq_qasm_simulator") # Use the cloud simulator
+    # Get backend
+    backend = provider.get_backend("ibmq_qasm_simulator") # Use the cloud simulator
 
-# Run
-result = backend.run(circuits)
-```
+    # Run
+    result = backend.run(circuits)
+    ```
+    
+    </TabItem>
 
-  </TabItem>
+<TabItem value="aer" label="qiskit-aer">
+    ``` python
+    from qiskit_aer import AerSimulator # former import: from qiskit import Aer
 
-  <TabItem value="aer" label="qiskit-aer">
-``` python
-from qiskit_aer import AerSimulator # former import: from qiskit import Aer
+    # Get local simulator backend
+    backend = AerSimulator()
 
-# Get local simulator backend
-backend = AerSimulator()
-
-# Run
-result = backend.run(circuits)
-```
-  </TabItem>
+    # Run
+    result = backend.run(circuits)
+    ```
+    </TabItem>
 </Tabs>
 
-**Primitives model:** Access real systems and remote simulators through the `qiskit-ibm-runtime` Sampler and Estimator *primitives*. Use **local testing mode** to run local simulations by using Qiskit Runtime fake backends or Aer simulators.
+    **Primitives model:** Access real systems and remote simulators through the `qiskit-ibm-runtime` Sampler and Estimator *primitives*. Use **local testing mode** to run local simulations by using Qiskit Runtime fake backends or Aer simulators.
 
-<Tabs>
-  <TabItem value="hw" label="Run on quantum systems">
-``` python
-from qiskit_ibm_runtime import SamplerV2 as Sampler, QiskitRuntimeService
+    <Tabs>
+    <TabItem value="hw" label="Run on quantum systems">
+    ``` python
+    from qiskit_ibm_runtime import SamplerV2 as Sampler, QiskitRuntimeService
 
-# Define the service.  This allows you to access IBM Quantum systems.
-service = QiskitRuntimeService()
+    # Define the service.  This allows you to access IBM Quantum systems.
+    service = QiskitRuntimeService()
 
-# Get a backend
-backend = service.least_busy(operational=True, simulator=False)
+    # Get a backend
+    backend = service.least_busy(operational=True, simulator=False)
 
-# Define Sampler
-sampler = Sampler(backend=backend)
+    # Define Sampler
+    sampler = Sampler(backend=backend)
 
-# Run calculation
-job = sampler.run([(isa_circuit,)])
-result = job.result()
-```
-  </TabItem>
+    # Run calculation
+    job = sampler.run([(isa_circuit,)])
+    result = job.result()
+    ```
+    </TabItem>
 
   <TabItem value="local" label="Run in local testing mode">
 ``` python
@@ -491,7 +491,7 @@ When using the `Sampler` primitive, the circuit **must contain measurements**.
 
 <Tabs>
   <TabItem value="PrimV2" label="Runtime Sampler">
-``` python
+  ``` python
 from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
  
 service = QiskitRuntimeService()
@@ -535,6 +535,11 @@ circuit.measure_all() # measurement!
 
 <Tabs>
   <TabItem value="runtime" label="Runtime Sampler">
+    While the user-side syntax of the `Sampler` is very similar to
+`backend.run()`, notice that the workflow is now simplified, as the
+quasi-probability distribution is returned **directly** (no need to
+perform post-processing), together with some key metadata.
+
 ``` python
 sampler = Sampler(backend=backend)
 
@@ -610,7 +615,7 @@ counts:  {'0000': 255, '0001': 258, '0010': 243, '0011': 268}
 
 
 ## Next steps
-The Qiskit Runtime primitives offer a series of features and tuning
+The Runtime primitives offer a series of features and tuning
 options, some of which do not have a legacy alternative to migrate from, but can
 help improve your performance and results. For more information, refer
 to the following:
