@@ -23,10 +23,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
-          cache: "pip"
 
       - name: Get all changed files
         id: all-changed-files
@@ -47,35 +43,11 @@ jobs:
             docs/transpile/transpiler-stages.ipynb
             docs/transpile/custom-backend.ipynb
 
-      - name: Install Linux dependencies
-        if: steps.linux-changed-files.outputs.any_changed == 'true'
-        run: |
-          sudo apt-get update
-          sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils graphviz
-
-      - name: Install Python packages
-        # This is to save our account in the next step. Note that the
-        # package will be re-installed during the "Run tox" step.
-        run: pip install qiskit-ibm-runtime tox
-
-      - name: Save IBM Quantum account
-        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
-        shell: python
-        run: |
-          # This saves the result for qiskit-ibm-provider too
-          from qiskit_ibm_runtime import QiskitRuntimeService
-          QiskitRuntimeService.save_account(
-              channel="ibm_quantum",
-              instance="ibm-q/open/main",
-              token="${{ secrets.IBM_QUANTUM_TEST_TOKEN }}",
-              set_as_default=True
-          )
-
-      - name: Cache tox environment
-        uses: actions/cache@v3
+      - name: Setup environment
+        uses: ./.github/actions/set-up-notebook-testing
         with:
-          path: ".tox"
-          key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
+          install-linux-deps: ${{ steps.linux-changed-files.outputs.any_changed }}
+          ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
 
       - name: Check lint
         shell: python
