@@ -1,0 +1,70 @@
+# This code is a Qiskit project.
+#
+# (C) Copyright IBM 2024.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
+name: IBM Cloud set up
+description: Set up IBM Cloud and Code Engine
+inputs:
+  env_name:
+    required: true
+  ibmcloud_account:
+    required: true
+  ibmcloud_api_key:
+    required: true
+
+outputs:
+  app_name:
+    value: ${{ steps.deploy_tags.outputs.app_name }}
+  docker_image_tag:
+    value: ${{ steps.deploy_tags.outputs.docker_image_tag }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Determine preview tag
+      shell: bash
+      id: preview_tag
+      run: |
+        if "${{ inputs.env_name == 'Preview' }}" ; then
+          echo "result=pr-${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+        else
+          echo "result=`node -p "'${{ inputs.env_name }}'.toLowerCase()"`" >> $GITHUB_OUTPUT
+        fi
+    - name: Determine app name and Docker image tag
+      shell: bash
+      id: deploy_tags
+      run: |
+        echo "app_name=qiskit-docs-preview-${{ steps.preview_tag.outputs.result }}" >> $GITHUB_OUTPUT
+        echo "docker_image_tag=icr.io/community-digital/qiskit-docs-preview:${{ steps.preview_tag.outputs.result }}" >> $GITHUB_OUTPUT
+    - name: Setup IBM Cloud CLI
+      shell: bash
+      run: |
+        curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+        ibmcloud --version
+        ibmcloud config --check-version=false
+        ibmcloud plugin install -f code-engine
+        ibmcloud plugin install -f container-registry
+    - name: Authenticate with IBM Cloud CLI
+      shell: bash
+      run: |
+        ibmcloud login -g "Quantum Community" -r "us-south" -c "${{ inputs.ibmcloud_account }}" --apikey "${{ inputs.ibmcloud_api_key }}"
+    - name: Remove previous Docker image (if exists)
+      shell: bash
+      run: |
+        ibmcloud cr region-set global
+        if ibmcloud cr image-list | grep "qiskit-docs-preview" | grep "${{ steps.preview_tag.outputs.result }}" ; then
+          ibmcloud cr image-rm "${{ steps.deploy_tags.outputs.docker_image_tag }}"
+        else
+          echo "no image to remove"
+        fi
+    - name: Select Code Engine project
+      shell: bash
+      run: ibmcloud ce project select -n "qiskit-docs-preview"
