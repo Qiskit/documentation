@@ -1,9 +1,9 @@
 ---
-title: Migrate from qiskit_ibm_provider to qiskit_ibm_runtime
+title: Migrate from qiskit_ibm_provider
 description: How to migrate `backend.run()` from Qiskit IBM Provider to Qiskit IBM Runtime
 ---
 
-# Migrate from `qiskit_ibmq_provider` to `qiskit_ibm_runtime`
+# Migrate from `qiskit_ibmq_provider`
 
 This topic describes how to migrate code from the legacy IBMQ provider
 `qiskit-ibmq-provider` package to use Qiskit Runtime
@@ -13,12 +13,11 @@ This topic describes how to migrate code from the legacy IBMQ provider
 
 The classes related to Qiskit Runtime that were included in
 `qiskit-ibmq-provider` are now part of `qiskit-ibm-runtime`. Previously, the
-provider used to populate the `qiskit.providers.ibmq.runtime` namespace
+provider populated the `qiskit.providers.ibmq.runtime` namespace
 with objects for Qiskit Runtime. These now live in the
 `qiskit_ibm_runtime` module.
 
-The module from which the classes are imported has changed. The
-following table contains example access patterns in
+The following table contains example access patterns in
 `qiskit.providers.ibmq.runtime` and their new form in
 `qiskit_ibm_runtime`:
 
@@ -145,7 +144,7 @@ provider = IBMQ.get_provider(project="my_project", group="my_group", hub="my_hub
   </TabItem>
 </Tabs>
 
-## Get the system 
+## Get accepts system 
 
 Use the updated code to specify a backend.
 
@@ -163,7 +162,7 @@ If you don't know what backend you want to use, you can instead use code such as
 from qiskit_ibm_runtime import QiskitRuntimeService
 
 service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=num_qubits)
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=<num_qubits>)
 ```
   </TabItem>
 

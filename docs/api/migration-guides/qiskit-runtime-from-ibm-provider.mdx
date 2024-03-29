@@ -4,12 +4,14 @@ description: Migrate from backend.run in qiskit-ibm-provider to using Qiskit Run
 
 ---
 
-# Migrate from `qiskit_ibm_provider` to `qiskit_ibm_runtime`
+# Migrate from `qiskit_ibm_provider`
 
-This topic describes how to migrate code that implemented `IBMBackend.run()`
-using `qiskit_ibm_provider` to use `qiskit_ibm_runtime` instead.
+This topic shows how to migrate code that implemented `IBMBackend.run()`
+by using `qiskit_ibm_provider` to use `qiskit_ibm_runtime`.
 
 ## Example: Basic execution
+
+Change the import and run statements, instantiate the primitive, and make sure the input is modified to adhere to the backend's instruction set architecture (ISA).
 
 <Tabs>
   <TabItem value="updated" label="Qiskit Runtime">
@@ -60,7 +62,7 @@ print(job.result())
 </Tabs>
 
 
-## Example: Execute `backend.run()` within a session
+## Example: Use sessions
 
 <Tabs>
   <TabItem value="Updated" label="Runtime primitives">
