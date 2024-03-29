@@ -14,7 +14,7 @@ To migrate programs that run dynamic circuits, change the `backend.run(dynamic_c
 
 <Tabs>
   <TabItem value="primitives" label="Runtime">
-```python  
+    ```python  
 job = sampler.run([dynamic_circ])
 
 pub_result = job.result()[0]
@@ -23,7 +23,7 @@ print(f">>> Hardware counts: {pub_result.data.meas.get_counts()}")
   </TabItem>
 
   <TabItem value="backend" label="backend.run">
-```python  
+    ```python  
 job = backend.run(dynamic_circ, dynamic=True)
 job.job_id()
 
