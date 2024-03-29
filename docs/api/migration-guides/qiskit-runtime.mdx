@@ -21,20 +21,6 @@ The `qiskit-ibm-runtime` package provides cloud access to the IBM Quantum&trade;
 
 The Qiskit Runtime primitives implement the reference Sampler V2 and Estimator V2 interfaces found in `qiskit.primitives`, and enable capabilities not available with the legacy `backend.run()` interface. These capabilities include application of advanced processing techniques for error suppression and mitigation in Estimator, the ability to efficiently sweep between arrays of parameter value sets or observables in both Sampler and Estimator, and access to the new local testing mode. Additionally, Qiskit Runtime lets users run iterative algorithm circuits back to back (session mode) or in collections of circuits without having to re-queue each job (batch mode). This results in more efficient quantum processor use and reduces the time spent running complex computations. 
 
-<Admonition type="note">
-Different packages expose different "flavors" of the primitive interfaces, for example: 
-
--   The primitives in `qiskit` can perform local state vector
-    simulations - useful for quickly prototyping algorithms.
--   The primitives in `qiskit_aer` give access to the local Aer
-    simulators for tasks such as noisy simulation.
--   The primitives in `qiskit_ibm_runtime` provide access to cloud
-    simulators and real hardware through the Qiskit Runtime service.
-    They include exclusive features such as built-in circuit
-    optimization and error mitigation support.
-    
-The **only primitives that provide access to the Qiskit Runtime service** are those imported from `qiskit_ibm_runtime` (Qiskit Runtime Primitives).
-</Admonition>
 
 ## Basic steps to migrate to primitives
 
@@ -72,8 +58,8 @@ See these topics:
 
 See the following topics:
 
--  [Migrate `backend.run` options to primitive options.](qiskit-runtime-options)
--  [Algorithm tuning options (shots, transpilation, and error mitigation)](../../run/advanced-runtime-options)
+- [Migrate `backend.run` options to primitive options.](qiskit-runtime-options)
+- [Common use cases - Options section](qiskit-runtime-options#migrate-options)
 
 
 ## Next steps
