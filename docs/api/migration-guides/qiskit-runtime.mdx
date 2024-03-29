@@ -10,10 +10,11 @@ in_page_toc_max_heading_level: 2
 # Migrate to using Qiskit Runtime primitives
 
 This guide describes key patterns of behavior and use cases with code
-examples to help you migrate code from the legacy `backend.run()` interface (`qiskit-ibmq-provider` package) to use the Qiskit Runtime primitives interface (`qiskit-ibm-runtime` package). 
+examples to help you migrate code from the legacy `backend.run()` interface (`qiskit-ibmq-provider` package) to use the Qiskit Runtime primitives interface (`qiskit-ibm-runtime` package).  
 
-<Admonition type="note">
-Because both `backend.run()` and the "version 1" primitives are being deprecated, this guide uses only the V2 primitives. 
+<Admonition type="note" title="Notes">
+- Because `backend.run()` only returned counts, the direct replacement is Qiskit Runtime `SamplerV2`.  However, if you used manual processing with `backend.run()` to return an expectation value, you can now use Qiskit Runtime `EstimatorV2` instead.
+- Because both `backend.run()` and the "version 1" primitives are being deprecated, this guide uses only the V2 primitives. 
 </Admonition>
 
 ## Overview

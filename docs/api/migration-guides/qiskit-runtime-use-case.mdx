@@ -4,13 +4,65 @@ description: Common use cases when migrating from backend.run to Qiskit Runtime 
 ---
 
 # Common use cases
-
+This topic describes how to migrate programs with the most commonly used types of circuits.  For a full example, see [End-to-end examples.](qiskit-runtime-examples)
 
 ## Basic circuits
+The only changes when running basic circuits are how you run the job and retrieve results.  
+
+<Tabs>
+  <TabItem value="Updated" label="Runtime primitives">
+```python
+from qiskit_ibm_runtime import SamplerV2 as Sampler
+
+job = sampler.run([(isa_circuit,)])
+result = job.result()
+# Get results for the first (and only) PUB
+pub_result = result[0]
+
+```
+  </TabItem>
+
+  <TabItem value="Legacy" label="backend.run">
+``` python
+from qiskit import IBMQ
+
+# Define provider and backend
+provider = IBMQ.load_account()
+
+job = backend.run(circuit)
+result = job.result()
+```
+  </TabItem>
+</Tabs>
+
+## Circuits with options
+
+All options that were available with `backend.run` are available in the Qiskit Runtime primitives, but they are specified differently.  For more information, see [Migrate `backend.run` options to primitive options](qiskit-runtime-options) and [Advanced Qiskit Runtime options.](../._createMdxContent./run/advanced-runtime-options)
+
+<Tabs>
+  <TabItem value="Updated" label="Runtime primitives">
+
+```python
+from qiskit_ibm_runtime import SamplerV2 as Sampler
+
+sampler.options.default_shots = 1024
+```
+
+  </TabItem>
+
+  <TabItem value="Legacy" label="backend.run">
+```python
+from qiskit import IBMQ
+
+backend.run(circuit, shots=1024)
+```
+  </TabItem>
+</Tabs>
+
 
 ## Dynamic circuits
 
-To migrate programs that run dynamic circuits, change the `backend.run(dynamic_circ)` to `sampler.run([dynamic_circ])`.
+To migrate programs that run dynamic circuits, change the run call.
 
 <Tabs>
   <TabItem value="primitives" label="Runtime">
@@ -33,8 +85,10 @@ hardware_counts
   </TabItem>
 </Tabs>
 
+For more information about dynamic circuits, see the [Classical feedforward and control flow](../../build/classical-feedforward-and-control-flow) topic, or try the [Repeat until success](https://learning.quantum.ibm.com/tutorial/repeat-until-success) tutorial.
+
 <span id="parm-circ"></span>
-## Parameterized circuits with primitives
+## Parameterized circuits
 
 Parametrized circuits are a commonly used tool for quantum algorithm
 design. Because `backend.run()` did not accept parametrized
@@ -74,7 +128,17 @@ qc.measure(0, 0)
 qc.draw()
 ```
 
-V2 primitives support only circuits that adhere to the Instruction Set Architecture (ISA) of a particular backend, so we must transform our circuits. 
+
+Assign the following parameter values to the circuit:
+
+``` python
+import numpy as np
+theta_values = [np.pi/2, np.pi/2, np.pi/2]
+```
+
+<Tabs>
+  <TabItem value="updated" label="Runtime primitives">
+Qiskit Runtime V2 primitives support only circuits that adhere to the Instruction Set Architecture (ISA) of a particular backend, so we must transform our circuits. 
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -87,15 +151,6 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(qc)
 ```
 
-We want to assign the following parameter values to the circuit:
-
-``` python
-import numpy as np
-theta_values = [np.pi/2, np.pi/2, np.pi/2]
-```
-
-<Tabs>
-  <TabItem value="updated" label="Primitives">
 The primitives take in parametrized circuits directly, together
 with the parameter values, and the parameter assignment operation can be
 performed more efficiently on the server side of the primitive.  The input is in the form of primitive unified blocs (PUBs).  Each PUB is a tuple that contains a circuit and the data broadcasted to it.  For further details, see [Introduction to primitives.](../../run/primitives#interface-changes)
