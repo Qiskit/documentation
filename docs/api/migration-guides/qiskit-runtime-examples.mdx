@@ -498,6 +498,11 @@ from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 
+# To use Fake backends with local testing mode, import it and use it as the backend instead
+
+# from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+# backend = FakeManilaV2()
+
 from qiskit import QuantumCircuit
 
 circuit = QuantumCircuit(4)
@@ -547,8 +552,10 @@ pub_result = result[0]
 
 # Get counts from the classical register "meas". 
 print(f" >> Counts for the meas output register: {pub_result.data.meas.get_counts()}")
- >> Counts for the meas output register: {'0001': 210, '0010': 305, '0000': 282, '0011': 201, '0101': 2, '1010': 6, '0110': 5, '0100': 6, '1000': 3, '0111': 1, '1001': 2, '1011': 1}
+
 ```
+>> Counts for the meas output register: {'0001': 210, '0010': 305, '0000': 282, '0011': 201, '0101': 2, '1010': 6, '0110': 5, '0100': 6, '1000': 3, '0111': 1, '1001': 2, '1011': 1} 
+  
   </TabItem>
 
   <TabItem value="legacy" label="backend.run()">
@@ -609,145 +616,6 @@ counts:  {'0000': 255, '0001': 258, '0010': 243, '0011': 268}
   </TabItem>
 </Tabs>
 
-
-
-
-
-### 3. Other execution alternatives (non-Runtime)
-
-The following migration paths use non-Runtime primitives to use local
-simulation to test an algorithm. Let's assume that we want to use a
-local state vector simulation to solve the problem defined above.
-
-#### 3.a. Legacy: Use the Qiskit Aer simulator
-
-``` python
-from qiskit_aer import AerSimulator
-
-# Define the statevector simulator
-simulator = AerSimulator(method="statevector")
-
-# Run and get counts
-result = simulator.run(circuit, shots=1024).result()
-```
-
-``` python
->>> print("result: ", result)
-result:  Result(backend_name='aer_simulator_statevector', backend_version='0.11.2',
-qobj_id='e51e51bc-96d8-4e10-aa4e-15ee6264f4a0', job_id='c603daa7-2c03-488c-8c75-8c6ea0381bbc',
-success=True, results=[ExperimentResult(shots=1024, success=True, meas_level=2,
-data=ExperimentResultData(counts={'0x2': 236, '0x0': 276, '0x3': 262, '0x1': 250}),
-header=QobjExperimentHeader(clbit_labels=[['meas', 0], ['meas', 1], ['meas', 2], ['meas', 3]],
-creg_sizes=[['meas', 4]], global_phase=0.0, memory_slots=4, metadata={}, n_qubits=4, name='circuit-930',
-qreg_sizes=[['q', 4]], qubit_labels=[['q', 0], ['q', 1], ['q', 2], ['q', 3]]), status=DONE,
-seed_simulator=3531074553, metadata={'parallel_state_update': 16, 'parallel_shots': 1,
-'sample_measure_time': 0.000405246, 'noise': 'ideal', 'batched_shots_optimization': False,
-'remapped_qubits': False, 'device': 'CPU', 'active_input_qubits': [0, 1, 2, 3], 'measure_sampling': True,
-'num_clbits': 4, 'input_qubit_map': [[3, 3], [2, 2], [1, 1], [0, 0]], 'num_qubits': 4, 'method': 'statevector',
-'fusion': {'applied': False, 'max_fused_qubits': 5, 'threshold': 14, 'enabled': True}}, time_taken=0.001981756)],
-date=2023-02-27T12:38:18.580995, status=COMPLETED, header=QobjHeader(backend_name='aer_simulator_statevector',
-backend_version='0.11.2'), metadata={'mpi_rank': 0, 'num_mpi_processes': 1, 'num_processes_per_experiments': 1,
-'time_taken': 0.002216379, 'max_gpu_memory_mb': 0, 'time_taken_execute': 0.002005713, 'max_memory_mb': 65536,
-'time_taken_load_qobj': 0.000200642, 'parallel_experiments': 1, 'omp_enabled': True},
-time_taken=0.0025920867919921875)
-```
-
-Now let's get the probability distribution from the output:
-
-``` python
-counts = result.get_counts(circuit)
-quasi_dists = {}
-for key,count in counts.items():
-    quasi_dists[key] = count/1024
-```
-
-``` python
->>> print("counts: ", counts)
->>> print("quasi_dists: ", quasi_dists)
-counts:  {'0010': 236, '0000': 276, '0011': 262, '0001': 250}
-quasi_dists:  {'0010': 0.23046875, '0000': 0.26953125, '0011': 0.255859375, '0001': 0.244140625}
-```
-
-#### 3.b. Updated: Use the Reference Sampler or Aer Sampler primitive
-
-The reference `Sampler` lets you perform an exact or a shot-based noisy
-simulation based on the `Statevector` class in the `qiskit.quantum_info`
-module.
-
-``` python
-from qiskit.primitives import Sampler
-
-sampler = Sampler()
-
-result = sampler.run(circuit).result()
-quasi_dists = result.quasi_dists
-```
-
-``` python
->>> print("result: ", result)
->>> print("quasi_dists: ", quasi_dists)
-result:  SamplerResult(quasi_dists=[{0: 0.249999999999, 1: 0.249999999999,
-2: 0.249999999999, 3: 0.249999999999}], metadata=[{}])
-quasi_dists:  [{0: 0.249999999999, 1: 0.249999999999, 2: 0.249999999999,
-3: 0.249999999999}]
-```
-
-If shots are specified, this primitive outputs a shot-based simulation
-(no longer exact):
-
-``` python
-from qiskit.primitives import Sampler
-
-sampler = Sampler()
-
-result = sampler.run(circuit, shots=1024).result()
-quasi_dists = result.quasi_dists
-```
-
-``` python
->>> print("result: ", result)
->>> print("quasi_dists: ", quasi_dists)
-result:  SamplerResult(quasi_dists=[{0: 0.2490234375, 1: 0.2578125,
-2: 0.2431640625, 3: 0.25}], metadata=[{'shots': 1024}])
-quasi_dists:  [{0: 0.2490234375, 1: 0.2578125, 2: 0.2431640625, 3: 0.25}]
-```
-
-You can still access the Aer simulator through its dedicated `Sampler`.
-This can be handy for performing simulations with noise models. In this
-example, the simulation method has been updated to match the result from
-3.a.
-
-``` python
-from qiskit_aer.primitives import Sampler as AerSampler # import change!
-
-sampler = AerSampler(run_options= {"method": "statevector"})
-
-result = sampler.run(circuit, shots=1024).result()
-quasi_dists = result.quasi_dists
-```
-
-``` python
->>> print("result: ", result)
->>> print("quasi_dists: ", quasi_dists)
-result:  SamplerResult(quasi_dists=[{1: 0.2802734375, 2: 0.2412109375, 0: 0.2392578125,
-3: 0.2392578125}], metadata=[{'shots': 1024, 'simulator_metadata':
-{'parallel_state_update': 16, 'parallel_shots': 1, 'sample_measure_time': 0.000409608,
-'noise': 'ideal', 'batched_shots_optimization': False, 'remapped_qubits': False,
-'device': 'CPU', 'active_input_qubits': [0, 1, 2, 3], 'measure_sampling': True,
-'num_clbits': 4, 'input_qubit_map': [[3, 3], [2, 2], [1, 1], [0, 0]], 'num_qubits': 4,
-'method': 'statevector', 'fusion': {'applied': False, 'max_fused_qubits': 5,
-'threshold': 14, 'enabled': True}}}])
-quasi_dists:  [{1: 0.2802734375, 2: 0.2412109375, 0: 0.2392578125, 3: 0.2392578125}]
-```
-
-``` python
->>> # Convert the output to bit strings
->>> binary_quasi_dist = quasi_dists[0].binary_probabilities()
->>> print("binary_quasi_dist: ", binary_quasi_dist)
-binary_quasi_dist:  {'0001': 0.2802734375, '0010': 0.2412109375, '0000': 0.2392578125, '0011': 0.2392578125}
-```
-
-For more information, see [Noisy simulators in Qiskit Runtime](../../verify/using-ibm-quantum-simulators).
 
 ## Next steps
 The Runtime primitives offer a series of features and tuning

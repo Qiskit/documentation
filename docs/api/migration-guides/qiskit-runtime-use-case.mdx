@@ -10,6 +10,29 @@ description: Common use cases when migrating from backend.run to Qiskit Runtime 
 
 ## Dynamic circuits
 
+To migrate programs that run dynamic circuits, change the `backend.run(dynamic_circ)` to `sampler.run([dynamic_circ])`.
+
+<Tabs>
+  <TabItem value="primitives" label="Runtime">
+```python  
+job = sampler.run([dynamic_circ])
+
+pub_result = job.result()[0]
+print(f">>> Hardware counts: {pub_result.data.meas.get_counts()}")
+```
+  </TabItem>
+
+  <TabItem value="backend" label="backend.run">
+```python  
+job = backend.run(dynamic_circ, dynamic=True)
+job.job_id()
+
+hardware_counts = job.result().get_counts()
+hardware_counts
+```
+  </TabItem>
+</Tabs>
+
 <span id="parm-circ"></span>
 ## Parameterized circuits with primitives
 
