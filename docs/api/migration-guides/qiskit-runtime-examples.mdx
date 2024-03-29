@@ -526,7 +526,7 @@ circuit.measure_all() # measurement!
   </TabItem>
 </Tabs>
 
-### 2. Calculate counts on a real device or local simulator
+### 2. Get counts from the result
 
 <Tabs>
   <TabItem value="runtime" label="Runtime Sampler">
@@ -547,10 +547,8 @@ pub_result = result[0]
 
 # Get counts from the classical register "meas". 
 print(f" >> Counts for the meas output register: {pub_result.data.meas.get_counts()}")
-```
-
  >> Counts for the meas output register: {'0001': 210, '0010': 305, '0000': 282, '0011': 201, '0101': 2, '1010': 6, '0110': 5, '0100': 6, '1000': 3, '0111': 1, '1001': 2, '1011': 1}
-
+```
   </TabItem>
 
   <TabItem value="legacy" label="backend.run()">
@@ -558,7 +556,6 @@ The required steps to reach our goal with `backend.run()` are:
 
 1.  Run circuits
 2.  Get counts from the result object
-3.  Use the counts and shots to calculate the probability distribution
 
 First, we run the circuit in a cloud simulator and output the result
 object:
@@ -604,16 +601,9 @@ Now we get the probability distribution from the output:
 
 ``` python
 counts = result.get_counts(circuit)
-quasi_dists = {}
-for key,count in counts.items():
-    quasi_dists[key] = count/1024
-```
 
-``` python
 >>> print("counts: ", counts)
->>> print("quasi_dists: ", quasi_dists)
 counts:  {'0000': 255, '0001': 258, '0010': 243, '0011': 268}
-quasi_dists:  {'0000': 0.2490234375, '0001': 0.251953125, '0010': 0.2373046875, '0011': 0.26171875}
 ```
 
   </TabItem>
