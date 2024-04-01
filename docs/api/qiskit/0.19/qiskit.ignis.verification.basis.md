@@ -1,3 +1,0 @@
-# basis
-
-Quantum tomography basis

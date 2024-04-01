@@ -11,7 +11,7 @@ from yaspin.spinners import Spinners
 
 
 class Lesson:
-    def __init__(self, lesson_path, lesson_url):
+    def __init__(self, lesson_path: str, lesson_url: str):
         self.path = Path(lesson_path)
         self.name = self.path.parts[-1]
         self.url = lesson_url
@@ -165,17 +165,26 @@ class API:
 
         # 6. Return URLs
         log("Getting URLs...")
+
         response = requests.get(
             f"{self.url}/items/{lesson.url}", headers=self.auth_header
         )
         response.raise_for_status()
         lesson_slug = response.json()["data"]["slug"]
 
-        log("Getting URLs...")
-        response = requests.get(
-            f"{self.url}/items/courses/{response.json()['data']['course']}",
-            headers=self.auth_header,
-        )
-        response.raise_for_status()
-        course_slug = response.json()["data"]["slug"]
-        return f"{self.website_url}/course/{course_slug}/{lesson_slug}"
+        if lesson.url.startswith("tutorial"):
+            # Tutorials don't belong to a course so are under
+            # `tutorial/<lesson-name>`
+            parent_path = "tutorial"
+        else:
+            # Other pages do belong to a course and have URL
+            # `course/<course-name>/<lesson-name>`.
+            # Do a request to get the course name.
+            log("Getting parent course...")
+            response = requests.get(
+                f"{self.url}/items/courses/{response.json()['data']['course']}",
+                headers=self.auth_header,
+            )
+            response.raise_for_status()
+            parent_path = "course/" + response.json()["data"]["slug"]
+        return f"{self.website_url}/{parent_path}/{lesson_slug}"

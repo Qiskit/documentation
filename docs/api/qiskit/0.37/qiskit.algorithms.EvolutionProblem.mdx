@@ -1,0 +1,64 @@
+---
+title: EvolutionProblem
+description: API reference for qiskit.algorithms.EvolutionProblem
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.EvolutionProblem
+---
+
+# EvolutionProblem
+
+<span id="qiskit.algorithms.EvolutionProblem" />
+
+`EvolutionProblem(hamiltonian, time, initial_state, aux_operators=None, truncation_threshold=1e-12, t_param=None, hamiltonian_value_dict=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/evolvers/evolution_problem.py "view source code")
+
+Bases: `object`
+
+Evolution problem class.
+
+This class is the input to time evolution algorithms and must contain information on the total evolution time, a quantum state to be evolved and under which Hamiltonian the state is evolved.
+
+**Parameters**
+
+*   **hamiltonian** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Hamiltonian under which to evolve the system.
+*   **time** (`float`) – Total time of evolution.
+*   **initial\_state** (`Union`\[[`StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – Quantum state to be evolved.
+*   **aux\_operators** (`Union`\[`List`\[`Optional`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]], `Dict`\[`str`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")], `None`]) – Optional list of auxiliary operators to be evaluated with the evolved `initial_state` and their expectation values returned.
+*   **truncation\_threshold** (`float`) – Defines a threshold under which values can be assumed to be 0. Used when `aux_operators` is provided.
+*   **t\_param** (`Optional`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]) – Time parameter in case of a time-dependent Hamiltonian. This free parameter must be within the `hamiltonian`.
+*   **hamiltonian\_value\_dict** (`Optional`\[`Dict`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter"), `complex`]]) – If the Hamiltonian contains free parameters, this dictionary maps all these parameters to values.
+
+**Raises**
+
+**ValueError** – If non-positive time of evolution is provided.
+
+## Methods
+
+### validate\_params
+
+<span id="qiskit.algorithms.EvolutionProblem.validate_params" />
+
+`EvolutionProblem.validate_params()`
+
+Checks if all parameters present in the Hamiltonian are also present in the dictionary that maps them to values.
+
+**Raises**
+
+**ValueError** – If Hamiltonian parameters cannot be bound with data provided.
+
+**Return type**
+
+`None`
+
+## Attributes
+
+<span id="qiskit.algorithms.EvolutionProblem.time" />
+
+### time
+
+Returns time.
+
+**Return type**
+
+`float`
+

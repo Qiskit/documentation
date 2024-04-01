@@ -62,14 +62,25 @@ test("parseAnchors()", () => {
   ##### Header 2
 
   ## \`code-header\`
+
+  <Function id="mdx.component.testId" name="testId" signature="testId">
+    Convert to dictionary.
+
+    **Return type**
+
+    \`Dict\`
+  </Function>
   `);
-  expect(result).toEqual([
-    "#my-top-level-heading",
-    "#header-2",
-    "#code-header",
-    "#this-is-a-hardcoded-anchor",
-    "#another_span",
-  ]);
+  expect(result).toEqual(
+    new Set([
+      "#my-top-level-heading",
+      "#header-2",
+      "#code-header",
+      "#this-is-a-hardcoded-anchor",
+      "#another_span",
+      "#mdx.component.testId",
+    ]),
+  );
 });
 
 test("parseLinks()", async () => {
@@ -81,11 +92,9 @@ test("parseLinks()", async () => {
 
     <a href="./explicit-anchor">Explicit anchor</a>
     `;
-  const result = await parseLinks(markdown);
-  expect(result).toEqual([
-    "https://ibm.com",
-    "./relative",
-    "/images/my_image.png",
-    "./explicit-anchor",
-  ]);
+  const [internalLinks, externalLinks] = await parseLinks(markdown);
+  expect(internalLinks).toEqual(
+    new Set(["./relative", "/images/my_image.png", "./explicit-anchor"]),
+  );
+  expect(externalLinks).toEqual(new Set(["https://ibm.com"]));
 });

@@ -30,8 +30,10 @@ jobs:
         run: npm run check:metadata
       - name: Spellcheck
         run: npm run check:spelling
-      - name: Link checker
-        run: npm run check:links
+      - name: Internal link checker
+        run: npm run check:internal-links
+      - name: Check orphaned pages
+        run: npm run check:orphan-pages
       - name: Formatting
         run: npm run check:fmt
       - name: Typecheck
@@ -39,9 +41,19 @@ jobs:
       - name: Infrastructure tests
         run: npm test
 
+      - name: Get all changed docs files
+        id: changed-docs-files
+        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
+        with:
+          files: docs/**/*.{md,mdx,ipynb}
+          separator: "\n"
       - name: Start local Docker preview
+        if: steps.changed-docs-files.outputs.any_changed == 'true'
         run: |
           ./start &
           sleep 20
       - name: Check that pages render
-        run: npm run check-pages-render
+        if: steps.changed-docs-files.outputs.any_changed == 'true'
+        run: |
+          echo "${{ steps.changed-docs-files.outputs.all_changed_files }}" > changed.txt
+          npm run check:pages-render -- --from-file changed.txt

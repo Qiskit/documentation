@@ -1,0 +1,236 @@
+---
+title: UnitarySimulatorPy
+description: API reference for qiskit.providers.basicaer.UnitarySimulatorPy
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.basicaer.UnitarySimulatorPy
+---
+
+# UnitarySimulatorPy
+
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy" />
+
+`UnitarySimulatorPy(configuration=None, provider=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basicaer/unitary_simulator.py "view source code")
+
+Python implementation of a unitary simulator.
+
+Base class for backends.
+
+This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
+
+**Parameters**
+
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
+
+**Raises**
+
+**QiskitError** – if an error occurred when instantiating the backend.
+
+## Attributes
+
+### DEFAULT\_CONFIGURATION
+
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.DEFAULT_CONFIGURATION" />
+
+`= {'backend_name': 'unitary_simulator', 'backend_version': '1.0.0', 'basis_gates': ['u1', 'u2', 'u3', 'cx', 'id', 'unitary'], 'conditional': False, 'coupling_map': None, 'description': 'A python simulator for unitary matrix corresponding to a circuit', 'gates': [{'name': 'u1', 'parameters': ['lambda'], 'qasm_def': 'gate u1(lambda) q { U(0,0,lambda) q; }'}, {'name': 'u2', 'parameters': ['phi', 'lambda'], 'qasm_def': 'gate u2(phi,lambda) q { U(pi/2,phi,lambda) q; }'}, {'name': 'u3', 'parameters': ['theta', 'phi', 'lambda'], 'qasm_def': 'gate u3(theta,phi,lambda) q { U(theta,phi,lambda) q; }'}, {'name': 'cx', 'parameters': ['c', 't'], 'qasm_def': 'gate cx c,t { CX c,t; }'}, {'name': 'id', 'parameters': ['a'], 'qasm_def': 'gate id a { U(0,0,0) a; }'}, {'name': 'unitary', 'parameters': ['matrix'], 'qasm_def': 'unitary(matrix) q1, q2,...'}], 'local': True, 'max_shots': 65536, 'memory': False, 'n_qubits': 16, 'open_pulse': False, 'simulator': True, 'url': 'https://github.com/Qiskit/qiskit-terra'}`
+
+### DEFAULT\_OPTIONS
+
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.DEFAULT_OPTIONS" />
+
+`= {'chop_threshold': 1e-15, 'initial_unitary': None}`
+
+### MAX\_QUBITS\_MEMORY
+
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.MAX_QUBITS_MEMORY" />
+
+`= 16`
+
+## Methods
+
+### configuration
+
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.configuration" />
+
+`UnitarySimulatorPy.configuration()`
+
+Return the backend configuration.
+
+**Returns**
+
+the configuration for the backend.
+
+**Return type**
+
+[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+
+### name
+
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.name" />
+
+`UnitarySimulatorPy.name()`
+
+Return the backend name.
+
+**Returns**
+
+the name of the backend.
+
+**Return type**
+
+str
+
+### properties
+
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.properties" />
+
+`UnitarySimulatorPy.properties()`
+
+Return the backend properties.
+
+**Returns**
+
+the configuration for the backend. If the backend does not support properties, it returns `None`.
+
+**Return type**
+
+[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+
+### provider
+
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.provider" />
+
+`UnitarySimulatorPy.provider()`
+
+Return the backend Provider.
+
+**Returns**
+
+the Provider responsible for the backend.
+
+**Return type**
+
+[BaseProvider](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
+
+### run
+
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.run" />
+
+`UnitarySimulatorPy.run(qobj, backend_options=None)`
+
+Run qobj asynchronously.
+
+**Parameters**
+
+*   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
+*   **backend\_options** (*dict*) – backend options
+
+**Returns**
+
+derived from BaseJob
+
+**Return type**
+
+[BasicAerJob](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
+
+Additional Information:
+
+```python
+backend_options: Is a dict of options for the backend. It may contain
+    * "initial_unitary": matrix_like
+    * "chop_threshold": double
+
+The "initial_unitary" option specifies a custom initial unitary
+matrix for the simulator to be used instead of the identity
+matrix. This size of this matrix must be correct for the number
+of qubits inall experiments in the qobj.
+
+The "chop_threshold" option specifies a truncation value for
+setting small values to zero in the output unitary. The default
+value is 1e-15.
+
+Example::
+
+    backend_options = {
+        "initial_unitary": np.array([[1, 0, 0, 0],
+                                     [0, 0, 0, 1],
+                                     [0, 0, 1, 0],
+                                     [0, 1, 0, 0]])
+        "chop_threshold": 1e-15
+    }
+```
+
+### run\_experiment
+
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.run_experiment" />
+
+`UnitarySimulatorPy.run_experiment(experiment)`
+
+Run an experiment (circuit) and return a single experiment result.
+
+**Parameters**
+
+**experiment** (*QobjExperiment*) – experiment from qobj experiments list
+
+**Returns**
+
+A result dictionary which looks something like:
+
+```python
+{
+"name": name of this experiment (obtained from qobj.experiment header)
+"seed": random seed used for simulation
+"shots": number of shots used in the simulation
+"data":
+    {
+    "unitary": [[[0.0, 0.0], [1.0, 0.0]],
+                [[1.0, 0.0], [0.0, 0.0]]]
+    },
+"status": status string for the simulation
+"success": boolean
+"time taken": simulation time of this single experiment
+}
+```
+
+**Return type**
+
+dict
+
+**Raises**
+
+*   [**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if the number of qubits in the circuit is greater than 24.
+*   **Note that the practical qubit limit is much lower than 24.** –
+
+### status
+
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.status" />
+
+`UnitarySimulatorPy.status()`
+
+Return the backend status.
+
+**Returns**
+
+the status of the backend.
+
+**Return type**
+
+[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+
+### version
+
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.version" />
+
+`UnitarySimulatorPy.version()`
+
+Return the backend version.
+
+**Returns**
+
+the X.X.X version of the backend.
+
+**Return type**
+
+str
+

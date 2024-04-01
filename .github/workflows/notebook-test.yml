@@ -23,10 +23,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
-          cache: "pip"
 
       - name: Get all changed files
         id: all-changed-files
@@ -42,39 +38,37 @@ jobs:
           # Add your notebook to this list if it needs latex or graphviz to run
           files: |
             docs/build/circuit-visualization.ipynb
+            docs/transpile/common-parameters.ipynb
+            docs/transpile/representing_quantum_computers.ipynb
             docs/transpile/transpiler-stages.ipynb
+            docs/transpile/custom-backend.ipynb
 
-      - name: Install Linux dependencies
-        if: steps.linux-changed-files.outputs.any_changed == 'true'
-        run: |
-          sudo apt-get update
-          sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils graphviz
+      - name: Setup environment
+        uses: ./.github/actions/set-up-notebook-testing
+        with:
+          install-linux-deps: ${{ steps.linux-changed-files.outputs.any_changed }}
+          ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
 
-      - name: Install Python packages
-        # This is to save our account in the next step. Note that the
-        # package will be re-installed during the "Run tox" step.
-        run: pip install qiskit-ibm-runtime tox
-
-      - name: Save IBM Quantum account
-        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+      - name: Check lint
         shell: python
         run: |
-          # This saves the result for qiskit-ibm-provider too
-          from qiskit_ibm_runtime import QiskitRuntimeService
-          QiskitRuntimeService.save_account(
-              channel="ibm_quantum",
-              instance="ibm-q/open/main",
-              token="${{ secrets.IBM_QUANTUM_TEST_TOKEN }}",
-              set_as_default=True
-          )
+          import subprocess, sys
+          files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
+          args = ["tox", "-e", "lint", "--"] + files.split("\n")
+          try:
+            subprocess.run(args, check=True)
+          except:
+            print(
+              "To fix, install `tox` and run `tox -e fix` or download the fixed "
+              "notebook from this run by clicking \"Summary\" on the upper-left "
+              "of this page, and downloading the \"Executed notebooks\" artifact."
+              "\n\n"
+              "For more information, see https://github.com/Qiskit/documentation/blob/main/README.md#lint-notebooks"
+            )
+            sys.exit(1)
 
-      - name: Cache tox environment
-        uses: actions/cache@v3
-        with:
-          path: ".tox"
-          key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
-
-      - name: Run tox
+      - name: Execute notebooks
+        if: "!cancelled()"
         shell: python
         run: |
           import subprocess
@@ -83,6 +77,7 @@ jobs:
           subprocess.run(args, check=True)
 
       - name: Upload executed notebooks
+        if: "!cancelled()"
         uses: actions/upload-artifact@v4
         with:
           name: Executed notebooks

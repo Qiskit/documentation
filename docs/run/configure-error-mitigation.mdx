@@ -1,6 +1,6 @@
 ---
 title: Configure error mitigation
-description: Configure error mitigation with Qiskit Runtime
+description: How to configure error mitigation with Qiskit Runtime.
 ---
 
 # Configure error mitigation for Qiskit Runtime
@@ -14,6 +14,8 @@ by using the generated model.
 The error mitigation techniques built in to primitives are advanced
 resilience options. To specify these options, use the `resilience_level`
 option when submitting your job.
+
+<admonition type="note">Sampler V2 does not support specifying resilience levels. However, you can turn on or off individual error mitigation / suppression methods. See the [Custom error settings](#advanced-options) section for details.</admonition>
 
 The resilience level specifies how much resilience to build against
 errors. Higher levels generate more accurate results, at the expense of
@@ -38,17 +40,44 @@ apply vary based whether you are sampling a distribution or generating
 expectation values.
 </Admonition>
 
-<Admonition type="note" title="Important:">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations, consequently transpilation options referring to those tasks will no longer have any effect. Users may still request that the Primitives do no optimization of input circuits via `options.transpilation.skip_transpilation`.
+<Admonition type="caution" title="Important">
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+
+*Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
+
+``` python
+service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
+```
+
 </Admonition>
 
+<span id="resilience-table"></span>
+
+<Tabs>
+  <TabItem value="PrimV2" label="V2 primitives">
+    In V2, Estimator supports the following resilience levels.  Sampler does not support resilience levels. 
+
+| Resilience Level | Definition                                                                                            | Technique                                                                 |
+|------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| 0                | No mitigation                                                                                         | None                                                                      |
+| 1 [Default]      | Minimal mitigation costs: Mitigate error associated with readout errors                               | Twirled Readout Error eXtinction  (TREX) measurement twirling             |
+| 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Level 1 + Zero Noise Extrapolation (ZNE) and gate twirling 
+
+  </TabItem>
+
+  <TabItem value="PrimV1" label="V1 primitives">
+    Resilience levels in V1 primitives: 
 
 | Resilience Level | Definition                                                                                            | Estimator                                                                 | Sampler                                |
 |------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------|
 | 0                | No mitigation                                                                                         | None                                                                      | None                                   |
 | 1 [Default]      | Minimal mitigation costs: Mitigate error associated with readout errors                               | Twirled Readout Error eXtinction  (TREX)                                  | Matrix-free Measurement Mitigation (M3)|
 | 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Zero Noise Extrapolation (ZNE)                                            | -                                      |
-| 3                | Heavy mitigation with layer sampling. Theoretically expected to deliver zero-bias estimators.         | Probabilistic Error Cancellation (PEC)                                     | -                                      |
+| 3                | Heavy mitigation with layer sampling. Theoretically expected to deliver zero-bias estimators.         | Probabilistic Error Cancellation (PEC)                                    | -                                      |
+
+  </TabItem>
+</Tabs>
+
 
 
 <Admonition type="info" title="Attention">
@@ -61,7 +90,7 @@ applied at each resilience level.
 </Admonition>
 
 <Admonition type="note">
-  If using an IBM Cloud&reg; Qiskit&reg; Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
+  If using an IBM Cloud&reg; Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
   
   Setting `optimization_level` or `resilience_level` equal to 0 will result in an
   execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
@@ -69,7 +98,84 @@ applied at each resilience level.
   runtime warning. For more information visit the [Q-CTRL documentation](https://docs.q-ctrl.com/q-ctrl-embedded).
 </Admonition>
 
-## Configure the Estimator with resilience levels
+## Configure Estimator V2 with resilience levels
+
+You can use resilience levels to specify error mitigation techniques, or you can set custom techniques individually as described in [Custom error settings with Estimator V2.](#advanced-options) You cannot specify resilience levels in Sampler V2. However, you can set custom techniques individually.
+
+<details>
+<summary>Resilience Level 0</summary>
+
+No error mitigation is applied to the user program.
+
+
+</details>
+
+
+<details>
+<summary>Resilience Level 1</summary>
+
+Level 1 applies **readout error mitigation** and **measurement twirling** by applying a model-free technique known
+as Twirled Readout Error eXtinction (TREX). It reduces measurement error
+by diagonalizing the noise channel associated with measurement by
+randomly flipping qubits through X gates immediately before measurement. A
+rescaling term from the diagonal noise channel is learned by
+benchmarking random circuits initialized in the zero state. This allows
+the service to remove bias from expectation values that result from
+readout noise. This approach is described further in [Model-free
+readout-error mitigation for quantum expectation
+values](https://arxiv.org/abs/2012.09738).
+
+</details>
+
+
+<details>
+<summary>Resilience Level 2</summary>
+
+Level 2 applies the **error mitigation techniques included in level 1** and also applies **gate twirling** and uses the **Zero Noise Extrapolation method (ZNE)**.  ZNE computes an
+expectation value of the observable for different noise factors
+(amplification stage) and then uses the measured expectation values to
+infer the ideal expectation value at the zero-noise limit (extrapolation
+stage). This approach tends to reduce errors in expectation values, but
+is not guaranteed to produce an unbiased result.
+
+
+![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value. ](/images/optimize/resilience-2.png "Illustration of the ZNE method")
+
+The overhead of this method scales with the number of noise factors. The
+default settings sample the expectation value at three noise factors,
+leading to a roughly 3x overhead when employing this resilience level.
+
+In Level 2, the TREX method randomly flips qubits through X gates immediately before measurement,
+and flips the corresponding measured bit if an X gate was applied. This approach is described further in [Model-free
+readout-error mitigation for quantum expectation
+values](https://arxiv.org/abs/2012.09738).
+
+</details>
+
+### Example
+
+The `Estimator` interface lets users seamlessly work with the variety of
+error mitigation methods to reduce error in expectation values of
+observables. The following code uses Zero Noise Extrapolation by simply
+setting `resilience_level 2`.
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+# Setting options during primitive initialization
+estimator = Estimator(backend, options={"resilience_level": 2})
+```
+
+<Admonition type="info" title="Note">
+
+As you increase the resilience level, you will be able to use additional methods to improve the accuracy of your result. However, because the methods become more advanced with each level, they require additional sampling overhead (time) to generate more accurate expectation values. Note that higher resilience levels do not guarantee better quality. Higher levels only mean greater overhead. Each method has its strengths and weaknesses. For example, TREX (Twirled Readout Error eXtinction) is good for shallow circuits because of its readout error mitigation, whereas ZNE (Zero Noise Extrapolation) is good for deeper circuits. PEC can mitigate arbitrary errors but may not work in practice because of its large overhead.
+</Admonition>
+
+## Configure Estimator (V1) with resilience levels
 
 
 <details>
@@ -111,7 +217,7 @@ stage). This approach tends to reduce errors in expectation values, but
 is not guaranteed to produce an unbiased result.
 
 
-![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value. ](/images/optimize/resiliance-2.png "Illustration of the ZNE method")
+![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value. ](/images/optimize/resilience-2.png "Illustration of the ZNE method")
 
 The overhead of this method scales with the number of noise factors. The
 default settings sample the expectation value at three noise factors,
@@ -212,12 +318,12 @@ problems.
 
 </details>
 
-## Example
+### Example
 
 The Estimator interface lets users seamlessly work with the variety of
 error mitigation methods to reduce error in expectation values of
 observables. The following code uses Zero Noise Extrapolation by simply
-setting `resilience_level 2`.
+setting `resilience_level=2`.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
@@ -225,12 +331,10 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
 service = QiskitRuntimeService()
 options = Options()
 options.resilience_level = 2
-options.optimization_level = 3
-backend = service.backend("ibmq_qasm_simulator")
+options.optimization_level = 1
+backend = service.least_busy(operational=True, simulator=False)
 
 estimator = Estimator(options=options, backend=backend)
-job = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1])
-psi1_H1 = job.result()
 ```
 
 <Admonition type="info" title="Note">
@@ -238,9 +342,11 @@ psi1_H1 = job.result()
 As you increase the resilience level, you will be able to use additional methods to improve the accuracy of your result. However, because the methods become more advanced with each level, they require additional sampling overhead (time) to generate more accurate expectation values. Note that higher resilience levels do not guarantee better quality. Higher levels only mean greater overhead. Each method has its strengths and weaknesses. For example, TREX (Twirled Readout Error eXtinction) is good for shallow circuits because of its readout error mitigation, whereas ZNE (Zero Noise Extrapolation) is good for deeper circuits. PEC can mitigate arbitrary errors but may not work in practice because of its large overhead.
 </Admonition>
 
-## Configure Sampler with resilience levels
+## Configure Sampler (V1) with resilience levels
 
-The Sampler default resilience setting (level 1) enables readout error
+<admonition type="note">Sampler V2 does not support specifying resilience levels. However, you can turn on or off individual error mitigation / suppression methods. See [Custom error settings](#advanced-error) for details.</admonition>
+
+The Sampler V1 default resilience setting (level 1) enables readout error
 mitigation to allow users to generate mitigated quasi-probability
 distributions.
 
@@ -265,13 +371,58 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
 service = QiskitRuntimeService()
 options = Options()
 options.resilience_level = 1
-options.optimization_level = 3
-backend = service.backend("ibmq_qasm_simulator")
+options.optimization_level = 1
+backend = service.least_busy(operational=True, simulator=False)
 
 sampler = Sampler(backend, options=options)
 ```
 
-## Advanced resilience options
+<span id="advanced-error"></span>
+## Custom error settings
+
+With Estimator V2, you can turn on and off individual error mitigation and suppression methods, including dynamical decoupling, gate and measurement twirling, measurement error mitigation, and ZNE.
+
+<span id="advanced-options"></span>
+## Custom error settings (V2 primitives)
+With the V2 primitives, you can turn on and off individual error mitigation and suppression methods. See the [API reference](/api/qiskit-ibm-runtime/options) for the list of available options.
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="Estimator V2">
+    ```python 
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+estimator = Estimator(backend)
+options = estimator.options
+# Turn on gate twirling.
+options.twirling.enable_gates = True
+# Turn on measurement error mitigation.
+options.resilience.measure_mitigation = True
+
+print(f">>> gate twirling is turned on: {estimator.options.twirling.enable_gates}")
+print(f">>> measurement error mitigation is turned on: {estimator.options.resilience.measure_mitigation}")
+```
+  </TabItem>
+
+  <TabItem value="Sampler V2" label="Sampler V2">
+```python 
+from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
+
+# Estimator and Sampler now have different options
+options = sampler.options
+
+options.dynamical_decoupling.enable = True
+
+print(f">>> dynamical decoupling is turned on: {sampler.options.dynamical_decoupling.enable}")
+```
+  </TabItem>
+</Tabs>
+
+
+## Advanced resilience options (V1 primitives)
 
 You can tune advanced options to configure your resilience strategy
 further. These methods can be used alongside resilience levels where you
@@ -290,8 +441,8 @@ add options to tune other resilience levels that include PEC.
 |                                                                                         | `CxAmplifier`                   | Amplifies noise of all CNOT gates by performing local gate folding.                                                              |
 |                                                                                         | `LocalFoldingAmplifier`         | Amplifies noise of all gates by performing local gate folding.                                                                   |
 |                                                                                         | `GlobalFoldingAmplifier`        | Amplifies noise of the input circuit by performing global folding of the entire input circuit.                                   |
-| `options.resilience.noise_factors(Optional[Sequence[float]])`                             | (1, 3, 5)[Default]              | Noise amplification factors, where [1] represents the baseline noise. They all need to be greater than or equal to the baseline. |
-| `options.resilience.extrapolator(Optional\[str\])`                                       | `LinearExtrapolator`\[Default\] | Polynomial extrapolation of degree one.                                                                                          |
+| `options.resilience.noise_factors(Optional[Sequence[float]])`                           | (1, 3, 5)[Default]              | Noise amplification factors, where [1] represents the baseline noise. They all need to be greater than or equal to the baseline. |
+| `options.resilience.extrapolator(Optional\[str\])`                                      | `LinearExtrapolator`\[Default\] | Polynomial extrapolation of degree one.                                                                                          |
 |                                                                                         | `Quadratic Extrapolator`        | Polynomial extrapolation of degree two and lower.                                                                                |
 |                                                                                         | `Cubic Extrapolator`            | Polynomial extrapolation of degree three and lower.                                                                              |
 |                                                                                         | `Quartic Extrapolator`          | Polynomial extrapolation of degree four and lower.                                                                               |

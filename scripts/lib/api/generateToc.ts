@@ -10,13 +10,13 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { isEmpty, keyBy, keys, orderBy } from "lodash";
+import { Dictionary, isEmpty, keyBy, keys, orderBy } from "lodash";
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
-import { Metadata } from "./Metadata";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { Pkg } from "./Pkg";
 
-type TocEntry = {
+export type TocEntry = {
   title: string;
   url?: string;
   children?: TocEntry[];
@@ -35,11 +35,30 @@ function nestModule(id: string): boolean {
   return id.split(".").length > 2;
 }
 
-export function generateToc(
-  pkg: Pkg,
-  results: Array<{ meta: Metadata; url: string }>,
-): Toc {
-  const releaseNotesUrl = `/api/${pkg.name}/release-notes`;
+export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
+  const [modules, items] = getModulesAndItems(results);
+  const tocModules = generateTocModules(modules);
+  const tocModulesByTitle = keyBy(tocModules, (toc) => toc.title);
+  const tocModuleTitles = keys(tocModulesByTitle);
+
+  addItemsToModules(items, tocModulesByTitle, tocModuleTitles);
+  const nestedTocModules = getNestedTocModulesSorted(
+    tocModules,
+    tocModulesByTitle,
+    tocModuleTitles,
+  );
+  generateOverviewPage(tocModules);
+
+  return {
+    title: pkg.title,
+    children: [...nestedTocModules, generateReleaseNotesEntries(pkg)],
+    collapsed: true,
+  };
+}
+
+function getModulesAndItems(
+  results: HtmlToMdResultWithUrl[],
+): [HtmlToMdResultWithUrl[], HtmlToMdResultWithUrl[]] {
   const resultsWithName = results.filter(
     (result) => !isEmpty(result.meta.apiName),
   );
@@ -54,76 +73,87 @@ export function generateToc(
       result.meta.apiType === "exception",
   );
 
-  const tocChildren: Toc["children"] = [];
+  return [modules, items];
+}
 
-  if (modules.length > 0) {
-    const tocModules = modules.map(
-      (module): TocEntry => ({
-        title: module.meta.apiName!,
-        // Remove the final /index from the url
-        url: module.url.replace(/\/index$/, ""),
-      }),
+function generateTocModules(modules: HtmlToMdResultWithUrl[]): TocEntry[] {
+  return modules.map(
+    (module): TocEntry => ({
+      title: module.meta.apiName!,
+      // Remove the final /index from the url
+      url: module.url.replace(/\/index$/, ""),
+    }),
+  );
+}
+
+function addItemsToModules(
+  items: HtmlToMdResultWithUrl[],
+  tocModulesByTitle: Dictionary<TocEntry>,
+  tocModuleTitles: string[],
+) {
+  for (const item of items) {
+    if (!item.meta.apiName) continue;
+    const itemModuleTitle = findClosestParentModules(
+      item.meta.apiName,
+      tocModuleTitles,
     );
-    const tocModulesByTitle = keyBy(tocModules, (toc) => toc.title);
-    const tocModuleTitles = keys(tocModulesByTitle);
 
-    // Add items to modules
-    for (const item of items) {
-      if (!item.meta.apiName) continue;
-      const itemModuleTitle = findClosestParentModules(
-        item.meta.apiName,
-        tocModuleTitles,
-      );
-      const itemModule = itemModuleTitle
-        ? tocModulesByTitle[itemModuleTitle]
-        : undefined;
-      if (itemModule) {
-        if (!itemModule.children) itemModule.children = [];
-        const itemTocEntry: TocEntry = {
-          title: getLastPartFromFullIdentifier(item.meta.apiName!),
-          url: item.url,
-        };
-        itemModule.children.push(itemTocEntry);
-      }
+    if (itemModuleTitle) {
+      const itemModule = tocModulesByTitle[itemModuleTitle];
+      if (!itemModule.children) itemModule.children = [];
+      const itemTocEntry: TocEntry = {
+        title: getLastPartFromFullIdentifier(item.meta.apiName!),
+        url: item.url,
+      };
+      itemModule.children.push(itemTocEntry);
+    }
+  }
+}
+
+function getNestedTocModulesSorted(
+  tocModules: TocEntry[],
+  tocModulesByTitle: Dictionary<TocEntry>,
+  tocModuleTitles: string[],
+): TocEntry[] {
+  const nestedTocModules: TocEntry[] = [];
+
+  for (const tocModule of tocModules) {
+    if (!nestModule(tocModule.title)) {
+      nestedTocModules.push(tocModule);
+      continue;
     }
 
-    // Nest modules
-    const nestedTocModules: TocEntry[] = [];
-    for (const tocModule of tocModules) {
-      if (!nestModule(tocModule.title)) {
-        nestedTocModules.push(tocModule);
-        continue;
-      }
+    const parentModuleTitle = findClosestParentModules(
+      tocModule.title,
+      tocModuleTitles,
+    );
 
-      const parentModuleTitle = findClosestParentModules(
-        tocModule.title,
-        tocModuleTitles,
-      );
-      const parentModule = parentModuleTitle
-        ? tocModulesByTitle[parentModuleTitle]
-        : undefined;
-      if (parentModule) {
-        if (!parentModule.children) parentModule.children = [];
-        parentModule.children.push(tocModule);
-      } else {
-        nestedTocModules.push(tocModule);
-      }
+    if (parentModuleTitle) {
+      const parentModule = tocModulesByTitle[parentModuleTitle];
+      if (!parentModule.children) parentModule.children = [];
+      parentModule.children.push(tocModule);
+    } else {
+      nestedTocModules.push(tocModule);
     }
-
-    // Sort children and create overview page
-    for (const tocModule of tocModules) {
-      if (tocModule.children && tocModule.children.length > 0) {
-        tocModule.children = [
-          { title: "Overview", url: tocModule.url },
-          ...orderEntriesByChildrenAndTitle(tocModule.children),
-        ];
-        delete tocModule.url;
-      }
-    }
-
-    tocChildren.push(...orderEntriesByTitle(nestedTocModules));
   }
 
+  return orderEntriesByTitle(nestedTocModules);
+}
+
+function generateOverviewPage(tocModules: TocEntry[]): void {
+  for (const tocModule of tocModules) {
+    if (tocModule.children && tocModule.children.length > 0) {
+      tocModule.children = [
+        { title: "Overview", url: tocModule.url },
+        ...orderEntriesByChildrenAndTitle(tocModule.children),
+      ];
+      delete tocModule.url;
+    }
+  }
+}
+
+function generateReleaseNotesEntries(pkg: Pkg) {
+  const releaseNotesUrl = `/api/${pkg.name}/release-notes`;
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
   };
@@ -132,13 +162,8 @@ export function generateToc(
   } else {
     releaseNotesEntry.url = releaseNotesUrl;
   }
-  tocChildren.push(releaseNotesEntry);
 
-  return {
-    title: pkg.title,
-    children: tocChildren,
-    collapsed: true,
-  };
+  return releaseNotesEntry;
 }
 
 function findClosestParentModules(

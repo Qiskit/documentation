@@ -1,0 +1,40 @@
+---
+title: synth_cnotdihedral_general
+description: API reference for qiskit.synthesis.synth_cnotdihedral_general
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.synthesis.synth_cnotdihedral_general
+---
+
+<span id="qiskit-synthesis-synth-cnotdihedral-general" />
+
+# qiskit.synthesis.synth\_cnotdihedral\_general
+
+<span id="qiskit.synthesis.synth_cnotdihedral_general" />
+
+`synth_cnotdihedral_general(elem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_general.py "view source code")
+
+Decompose a CNOTDihedral element into a QuantumCircuit.
+
+Decompose a general CNOTDihedral elements. The number of CNOT gates is not necessarily optimal. For a decomposition of a 1-qubit or 2-qubit element, call synth\_cnotdihedral\_two\_qubits.
+
+**Parameters**
+
+**elem** ([*CNOTDihedral*](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")) – a CNOTDihedral element.
+
+**Returns**
+
+a circuit implementation of the CNOTDihedral element.
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+**Raises**
+
+**QiskitError** – if the element could not be decomposed into a circuit.
+
+## Reference:
+
+1.  Andrew W. Cross, Easwar Magesan, Lev S. Bishop, John A. Smolin and Jay M. Gambetta, *Scalable randomised benchmarking of non-Clifford gates*, npj Quantum Inf 2, 16012 (2016).
+

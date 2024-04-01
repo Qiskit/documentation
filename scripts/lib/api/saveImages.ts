@@ -21,9 +21,10 @@ import { pathExists, rmFilesInFolder } from "../fs";
 export async function saveImages(
   images: Image[],
   originalImagesFolderPath: string,
+  publicBaseFolder: string,
   pkg: Pkg,
 ) {
-  const destFolder = pkg.outputDir("public/images");
+  const destFolder = pkg.outputDir(`${publicBaseFolder}/images`);
   if (!(await pathExists(destFolder))) {
     await mkdirp(destFolder);
   } else if (pkg.isDev()) {
@@ -35,13 +36,13 @@ export async function saveImages(
   await pMap(images, async (img) => {
     // The release notes images are only saved in the current version to
     // avoid having duplicate files.
-    if (img.fileName.includes("release_notes") && pkg.isHistorical()) {
+    if (pkg.isHistorical() && img.fileName.includes("release_notes")) {
       return;
     }
 
     await copyFile(
       `${originalImagesFolderPath}/${img.fileName}`,
-      `public/${img.dest}`,
+      `${publicBaseFolder}/${img.dest}`,
     );
   });
 }

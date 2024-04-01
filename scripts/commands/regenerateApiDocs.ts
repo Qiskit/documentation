@@ -24,6 +24,7 @@ interface Arguments {
   [x: string]: unknown;
   package?: string;
   currentApisOnly: boolean;
+  skipDownload: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -40,6 +41,11 @@ const readArgs = (): Arguments => {
       type: "boolean",
       default: false,
       description: "Regenerate only the current API docs?",
+    })
+    .option("skip-download", {
+      type: "boolean",
+      default: false,
+      description: "Don't redownload docs from Box",
     })
     .parseSync();
 };
@@ -62,6 +68,7 @@ zxMain(async () => {
 
     const result = await processVersions(
       pkgName,
+      args.skipDownload,
       historicalVersions,
       currentVersion,
       maybeDevVersion,
@@ -83,6 +90,7 @@ git cherry-pick or git rebase -i so each PR only has the commits it wants to tar
 
 async function processVersions(
   pkgName: string,
+  skipDownload: boolean,
   historicalVersions: string[],
   currentVersion: string,
   maybeDevVersion: string | undefined,
@@ -91,14 +99,21 @@ async function processVersions(
 
   for (const historicalVersion of historicalVersions) {
     results.push(
-      await regenerateVersion(pkgName, historicalVersion, "historical"),
+      await regenerateVersion(
+        pkgName,
+        historicalVersion,
+        skipDownload,
+        "historical",
+      ),
     );
   }
 
-  results.push(await regenerateVersion(pkgName, currentVersion));
+  results.push(await regenerateVersion(pkgName, currentVersion, skipDownload));
 
   if (maybeDevVersion) {
-    results.push(await regenerateVersion(pkgName, maybeDevVersion, "dev"));
+    results.push(
+      await regenerateVersion(pkgName, maybeDevVersion, skipDownload, "dev"),
+    );
   }
 
   return results;
@@ -107,15 +122,19 @@ async function processVersions(
 async function regenerateVersion(
   pkgName: string,
   version: string,
+  skipDownload: boolean,
   typeArgument?: "historical" | "dev",
 ): Promise<string> {
-  try {
-    if (typeArgument) {
-      await $`npm run gen-api -- -p ${pkgName} -v ${version} --${typeArgument}`;
-    } else {
-      await $`npm run gen-api -- -p ${pkgName} -v ${version}`;
-    }
+  const command = ["npm", "run", "gen-api", "--", "-p", pkgName, "-v", version];
+  if (typeArgument) {
+    command.push(`--${typeArgument}`);
+  }
+  if (skipDownload) {
+    command.push("--skip-download");
+  }
 
+  try {
+    await $`${command}`;
     if ((await gitStatus()) !== "") {
       await gitCommit(`Regenerate ${pkgName} ${version}`);
       return `✅ ${pkgName} ${version} regenerated correctly`;

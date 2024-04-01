@@ -1,0 +1,93 @@
+---
+title: assemble
+description: API reference for qiskit.compiler.assemble
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.compiler.assemble
+---
+
+# qiskit.compiler.assemble
+
+<span id="qiskit.compiler.assemble" />
+
+`assemble(experiments, backend=None, qobj_id=None, qobj_header=None, shots=None, memory=False, max_credits=None, seed_simulator=None, qubit_lo_freq=None, meas_lo_freq=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=MeasLevel.CLASSIFIED, meas_return=MeasReturnType.AVERAGE, meas_map=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, parametric_pulses=None, init_qubits=True, **run_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/compiler/assembler.py "view source code")
+
+Assemble a list of circuits or pulse schedules into a `Qobj`.
+
+This function serializes the payloads, which could be either circuits or schedules, to create `Qobj` “experiments”. It further annotates the experiment payload with header and configurations.
+
+NOTE: Backend.options is not used within assemble. The required values (previously given by backend.set\_options) should be manually extracted from options and supplied directly when calling.
+
+**Parameters**
+
+*   **experiments** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")], [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `List`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")], [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock"), `List`\[[`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]]) – Circuit(s) or pulse schedule(s) to execute
+
+*   **backend** (`Optional`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")]) – If set, some runtime options are automatically grabbed from `backend.configuration()` and `backend.defaults()`. If any other option is explicitly set (e.g., `rep_time`), it will override the backend’s. If any other options is set in the run\_config, it will also override the backend’s.
+
+*   **qobj\_id** (`Optional`\[`str`]) – String identifier to annotate the `Qobj`
+
+*   **qobj\_header** (`Union`\[[`QobjHeader`](qiskit.qobj.QobjHeader "qiskit.qobj.common.QobjHeader"), `Dict`, `None`]) – User input that will be inserted in `Qobj` header, and will also be copied to the corresponding Result header. Headers do not affect the run.
+
+*   **shots** (`Optional`\[`int`]) – Number of repetitions of each circuit, for sampling. Default: 1024 or `max_shots` from the backend configuration, whichever is smaller
+
+*   **memory** (`Optional`\[`bool`]) – If `True`, per-shot measurement bitstrings are returned as well (provided the backend supports it). For OpenPulse jobs, only measurement level 2 supports this option.
+
+*   **max\_credits** (`Optional`\[`int`]) – DEPRECATED This parameter is deprecated as of Qiskit Terra 0.20.0, and will be removed in a future release. This parameter has no effect on modern IBM Quantum systems, and no alternative is necessary.
+
+*   **seed\_simulator** (`Optional`\[`int`]) – Random seed to control sampling, for when backend is a simulator
+
+*   **qubit\_lo\_freq** (`Optional`\[`List`\[`float`]]) – List of job level qubit drive LO frequencies in Hz. Overridden by `schedule_los` if specified. Must have length `n_qubits.`
+
+*   **meas\_lo\_freq** (`Optional`\[`List`\[`float`]]) – List of measurement LO frequencies in Hz. Overridden by `schedule_los` if specified. Must have length `n_qubits.`
+
+*   **qubit\_lo\_range** (`Optional`\[`List`\[`float`]]) – List of job level drive LO ranges each of form `[range_min, range_max]` in Hz. Used to validate `qubit_lo_freq`. Must have length `n_qubits.`
+
+*   **meas\_lo\_range** (`Optional`\[`List`\[`float`]]) – List of job level measurement LO ranges each of form `[range_min, range_max]` in Hz. Used to validate `meas_lo_freq`. Must have length `n_qubits.`
+
+*   **schedule\_los** (`Union`\[`List`\[`Union`\[`Dict`\[`PulseChannel`, `float`], `LoConfig`]], `Dict`\[`PulseChannel`, `float`], `LoConfig`, `None`]) – Experiment level (ie circuit or schedule) LO frequency configurations for qubit drive and measurement channels. These values override the job level values from `default_qubit_los` and `default_meas_los`. Frequencies are in Hz. Settable for qasm and pulse jobs.
+
+*   **meas\_level** (`Union`\[`int`, `MeasLevel`]) – Set the appropriate level of the measurement output for pulse experiments.
+
+*   **meas\_return** (`Union`\[`str`, `MeasReturnType`]) –
+
+    Level of measurement data for the backend to return.
+
+    **For `meas_level` 0 and 1:**
+
+    *   `single` returns information from every shot.
+    *   `avg` returns average measurement output (averaged over number of shots).
+
+*   **meas\_map** (`Optional`\[`List`\[`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]]]) – List of lists, containing qubits that must be measured together.
+
+*   **memory\_slot\_size** (`int`) – Size of each memory slot if the output is Level 0.
+
+*   **rep\_time** (*int*) – Time per program execution in seconds. Must be from the list provided by the backend (`backend.configuration().rep_times`). Defaults to the first entry.
+
+*   **rep\_delay** (*float*) – Delay between programs in seconds. Only supported on certain backends (if `backend.configuration().dynamic_reprate_enabled=True`). If supported, `rep_delay` will be used instead of `rep_time` and must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is given by `backend.configuration().default_rep_delay`.
+
+*   **parameter\_binds** (`Optional`\[`List`\[`Dict`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter"), `float`]]]) – List of Parameter bindings over which the set of experiments will be executed. Each list element (bind) should be of the form \{Parameter1: value1, Parameter2: value2, …}. All binds will be executed across all experiments; e.g., if parameter\_binds is a length-n list, and there are m experiments, a total of m x n experiments will be run (one for each experiment/bind pair).
+
+*   **parametric\_pulses** (`Optional`\[`List`\[`str`]]) –
+
+    A list of pulse shapes which are supported internally on the backend. Example:
+
+    ```python
+    ['gaussian', 'constant']
+    ```
+
+*   **init\_qubits** (`bool`) – Whether to reset the qubits to the ground state for each shot. Default: `True`.
+
+*   **\*\*run\_config** – Extra arguments used to configure the run (e.g., for Aer configurable backends). Refer to the backend documentation for details on these arguments.
+
+**Return type**
+
+[`Qobj`](qiskit.qobj.Qobj "qiskit.qobj.Qobj")
+
+**Returns**
+
+A `Qobj` that can be run on a backend. Depending on the type of input, this will be either a `QasmQobj` or a `PulseQobj`.
+
+**Raises**
+
+**QiskitError** – if the input cannot be interpreted as either circuits or schedules
+

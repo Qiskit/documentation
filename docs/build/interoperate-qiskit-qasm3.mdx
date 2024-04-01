@@ -1,12 +1,12 @@
 ---
-title: OpenQASM 3 and Qiskit
-description: Convert code between OpenQASM 3 and Qiskit
+title: OpenQASM 3 and the Qiskit SDK
+description: How to convert code between OpenQASM 3 and the Qiskit SDK.
 
 ---
 
-# OpenQASM 3 and Qiskit
+# OpenQASM 3 and the Qiskit SDK
 
-Qiskit&reg; provides some tools for converting between OpenQASM representations of quantum programs, and the QuantumCircuit class. Note these tools are still in an exploratory phase of development and will continue to evolve as Qiskit’s support for dynamic circuit capabilities expressed by OpenQASM 3 increases.
+The Qiskit SDK provides some tools for converting between OpenQASM representations of quantum programs, and the QuantumCircuit class. Note these tools are still in an exploratory phase of development and will continue to evolve as Qiskit’s support for dynamic circuit capabilities expressed by OpenQASM 3 increases.
 
 <Admonition type="note">
 This function is still in the exploratory phase.  Therefore, it is likely that the syntax and capabilities will evolve.
@@ -80,9 +80,9 @@ program = """
     out = measure q;
 """
 circuit = qiskit.qasm3.loads(program)
-circuit.draw("mpl", style="iqp")
+circuit.draw("mpl")
 ```
-![output](/images/build/interoperate-qiskit-qasm3/qasm3circ.png)
+![output](/images/build/interoperate-qiskit-qasm3/qasm3circ-qiskit-1.0.png)
 
 ## Export to OpenQASM 3
 

@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { includes, isEmpty, orderBy, reject } from "lodash";
+import { includes, isEmpty, orderBy } from "lodash";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkMdx from "remark-mdx";
@@ -23,30 +23,25 @@ import { visit } from "unist-util-visit";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { remarkStringifyOptions } from "./commonParserConfig";
 
-export async function mergeClassMembers<T extends HtmlToMdResultWithUrl>(
-  results: T[],
-): Promise<T[]> {
+export async function mergeClassMembers(
+  results: HtmlToMdResultWithUrl[],
+): Promise<HtmlToMdResultWithUrl[]> {
   const resultsWithName = results.filter(
     (result) => !isEmpty(result.meta.apiName),
   );
   const classes = resultsWithName.filter(
     (result) => result.meta.apiType === "class",
   );
+  const mergedMemberUrls = new Set();
 
   for (const clazz of classes) {
-    const members = orderBy(
-      resultsWithName.filter((result) => {
-        if (
-          !includes(
-            ["method", "property", "attribute", "function"],
-            result.meta.apiType,
-          )
-        )
-          return false;
-        return result.meta.apiName?.startsWith(`${clazz.meta.apiName}.`);
-      }),
-      (result) => result.meta.apiName,
+    const unsortedMembers = resultsWithName.filter(
+      (result) =>
+        includes(["method", "property", "attribute"], result.meta.apiType) &&
+        result.meta.apiName?.startsWith(`${clazz.meta.apiName}.`),
     );
+    unsortedMembers.forEach((result) => mergedMemberUrls.add(result.url));
+    const members = orderBy(unsortedMembers, (result) => result.meta.apiName);
 
     const attributesAndProps = members.filter(
       (member) =>
@@ -57,6 +52,7 @@ export async function mergeClassMembers<T extends HtmlToMdResultWithUrl>(
       (member) => member.meta.apiType === "method",
     );
 
+    clazz.images.push(...members.map((member) => member.images).flat());
     try {
       // inject members markdown
       clazz.markdown = (
@@ -66,7 +62,7 @@ export async function mergeClassMembers<T extends HtmlToMdResultWithUrl>(
           .use(remarkGfm)
           .use(remarkMath)
           .use(() => {
-            return async (tree) => {
+            return async (tree: Root) => {
               for (const node of tree.children) {
                 await replaceMembersAfterTitle(
                   tree,
@@ -94,12 +90,7 @@ export async function mergeClassMembers<T extends HtmlToMdResultWithUrl>(
     }
   }
 
-  // remove merged results
-  const finalResults = reject(results, (result) =>
-    includes(["method", "attribute", "property"], result.meta.apiType),
-  );
-
-  return finalResults;
+  return results.filter((result) => !mergedMemberUrls.has(result.url));
 }
 
 async function replaceMembersAfterTitle(
@@ -136,21 +127,18 @@ async function parseMarkdownIncreasingHeading(
   md: string,
   depthIncrease: number,
 ): Promise<Root> {
-  const root = await unified()
+  const pipeline = unified()
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkMath)
-    .use(remarkMdx)
-    .parse(md);
-  const changedTree = await unified()
-    .use(remarkMath)
-    .use(remarkGfm)
     .use(remarkMdx)
     .use(() => (root) => {
       visit(root, "heading", (node: any) => {
         node.depth = node.depth + depthIncrease;
       });
-    })
-    .run(root);
-  return changedTree as Root;
+    });
+
+  const root = pipeline.parse(md);
+  const changedTree = pipeline.run(root);
+  return changedTree;
 }

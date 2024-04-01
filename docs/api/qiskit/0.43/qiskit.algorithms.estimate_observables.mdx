@@ -1,0 +1,38 @@
+---
+title: estimate_observables
+description: API reference for qiskit.algorithms.estimate_observables
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.algorithms.estimate_observables
+---
+
+<span id="qiskit-algorithms-estimate-observables" />
+
+# qiskit.algorithms.estimate\_observables
+
+<span id="qiskit.algorithms.estimate_observables" />
+
+`estimate_observables(estimator, quantum_state, observables, parameter_values=None, threshold=1e-12)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/observables_evaluator.py "view source code")
+
+Accepts a sequence of operators and calculates their expectation values - means and metadata. They are calculated with respect to a quantum state provided. A user can optionally provide a threshold value which filters mean values falling below the threshold.
+
+**Parameters**
+
+*   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – An estimator primitive used for calculations.
+*   **quantum\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A (parameterized) quantum circuit preparing a quantum state that expectation values are computed against.
+*   **observables** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*]*) – A list or a dictionary of operators whose expectation values are to be calculated.
+*   **parameter\_values** (*Sequence\[float] | None*) – Optional list of parameters values to evaluate the quantum circuit on.
+*   **threshold** (*float*) – A threshold value that defines which mean values should be neglected (helpful for ignoring numerical instabilities close to 0).
+
+**Returns**
+
+A list or a dictionary of tuples (mean, metadata).
+
+**Raises**
+
+[**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a primitive job is not successful.
+
+**Return type**
+
+ListOrDict\[tuple\[complex, dict\[str, Any]]]
+

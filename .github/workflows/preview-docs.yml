@@ -30,11 +30,9 @@ jobs:
     if: |
       (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize') &&
       github.event.pull_request.head.repo.full_name == github.repository
-    uses: Qiskit/gh-actions/.github/workflows/code-engine-preview.yml@main
+    uses: ./.github/workflows/deploy-code-engine.yml
     with:
-      code_engine_project: qiskit-docs-preview
-      docker_image_name: qiskit-docs-preview
-      docker_image_port: "3000"
+      env_name: Preview
     secrets:
       ibmcloud_account: ${{ secrets.IBMCLOUD_ACCOUNT }}
       ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
@@ -43,10 +41,20 @@ jobs:
     if: |
       github.event.action == 'closed' &&
       github.event.pull_request.head.repo.full_name == github.repository
-    uses: Qiskit/gh-actions/.github/workflows/code-engine-cleanup.yml@main
-    with:
-      code_engine_project: qiskit-docs-preview
-      docker_image_name: qiskit-docs-preview
-    secrets:
-      ibmcloud_account: ${{ secrets.IBMCLOUD_ACCOUNT }}
-      ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/set-up-ibm-cloud
+        id: set-up-cloud
+        with:
+          env_name: Preview
+          ibmcloud_account: ${{ secrets.IBMCLOUD_ACCOUNT }}
+          ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
+      - name: Remove Code Engine preview application
+        run: |
+          ibmcloud ce project select -n qiskit-docs-preview
+          ibmcloud ce application delete \
+            --name "${{ steps.set-up-cloud.outputs.app_name }}" \
+            --wait \
+            --ignore-not-found \
+            --force

@@ -13,17 +13,17 @@
 name: API checks
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 0 * * 0,2,4" # Every Sunday, Tuesday, and Thursday at midnight UTC
-
   pull_request:
     paths:
       - "docs/api/qiskit/**/*"
       - "docs/api/qiskit-ibm-provider/**/*"
       - "docs/api/qiskit-ibm-runtime/**/*"
+      - "public/api/**/*"
+      - "scripts/checkInternalLinks.ts"
+      - "scripts/lib/links/ignores.ts"
 
 jobs:
-  link-checker:
+  api-checks:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'Qiskit'
     steps:
@@ -34,35 +34,17 @@ jobs:
           node-version: 18
       - name: Install Node.js dependencies
         run: npm ci
-      - name: Check links
+      - name: Check internal links
         run: >
-          npm run check:links --
+          npm run check:internal-links --
           --qiskit-release-notes
           --current-apis
           --dev-apis
           --historical-apis
           --skip-broken-historical
-          --external
-
-  pages-render:
-    runs-on: ubuntu-latest
-    if: github.repository_owner == 'Qiskit'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Install Node.js dependencies
-        run: npm ci
-      - name: Start local Docker preview
-        run: |
-          ./start &
-          sleep 20
-      - name: Check API pages render
+      - name: Check for orphan pages
         run: >
-          npm run check-pages-render --
-          --qiskit-release-notes
+          npm run check:orphan-pages --
           --current-apis
           --dev-apis
           --historical-apis

@@ -1,0 +1,36 @@
+---
+title: schedule
+description: API reference for qiskit.compiler.schedule
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.compiler.schedule
+---
+
+# schedule
+
+<span id="qiskit.compiler.schedule" />
+
+`schedule(circuits, backend=None, inst_map=None, meas_map=None, method=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/compiler/schedule.py "view source code")
+
+Schedule a circuit to a pulse `Schedule`, using the backend, according to any specified methods. Supported methods are documented in [`qiskit.scheduler.schedule_circuit`](qiskit.scheduler.schedule_circuit "qiskit.scheduler.schedule_circuit").
+
+**Parameters**
+
+*   **circuits** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – The quantum circuit or circuits to translate
+*   **backend** (`Optional`\[[`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")]) – A backend instance, which contains hardware-specific data required for scheduling
+*   **inst\_map** (`Optional`\[[`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")]) – Mapping of circuit operations to pulse schedules. If `None`, defaults to the `backend`’s `instruction_schedule_map`
+*   **meas\_map** (`Optional`\[`List`\[`List`\[`int`]]]) – List of sets of qubits that must be measured together. If `None`, defaults to the `backend`’s `meas_map`
+*   **method** (`Union`\[`str`, `List`\[`str`], `None`]) – Optionally specify a particular scheduling method
+
+**Return type**
+
+`Union`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `List`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]
+
+**Returns**
+
+A pulse `Schedule` that implements the input circuit
+
+**Raises**
+
+**QiskitError** – If `inst_map` and `meas_map` are not passed and `backend` is not passed
+

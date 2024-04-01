@@ -27,9 +27,11 @@ import { getRoot } from "../fs";
 
 export type ParsedFile = {
   /** Anchors that the file defines. These can be linked to from other files. */
-  anchors: string[];
-  /** Links that this file has to other places. These need to be validated. */
-  links: string[];
+  anchors: Set<string>;
+  /** Internal links that this file has to other places. */
+  internalLinks: Set<string>;
+  /** External links that this file has to other places. */
+  externalLinks: Set<string>;
 };
 
 interface JupyterCell {
@@ -45,16 +47,28 @@ export function markdownFromNotebook(rawContent: string): string {
     .join("\n");
 }
 
-export function parseAnchors(markdown: string): string[] {
+export function parseAnchors(markdown: string): Set<string> {
   // Anchors generated from markdown titles.
   const mdAnchors = markdownLinkExtractor(markdown).anchors;
   // Anchors from HTML id tags.
-  const idAnchors = markdown.match(/(?<=id=")(.*)(?=")/gm) || [];
-  return [...mdAnchors, ...idAnchors.map((id) => `#${id}`)];
+  const idAnchors = markdown.match(/(?<=id=")(.+?)(?=")/gm) || [];
+  return new Set([...mdAnchors, ...idAnchors.map((id) => `#${id}`)]);
 }
 
-export async function parseLinks(markdown: string): Promise<string[]> {
-  const result: string[] = [];
+export async function parseLinks(
+  markdown: string,
+): Promise<[Set<string>, Set<string>]> {
+  const internalLinks = new Set<string>();
+  const externalLinks = new Set<string>();
+
+  const addLink = (link: string): void => {
+    if (link.startsWith("http")) {
+      externalLinks.add(link);
+    } else {
+      internalLinks.add(link);
+    }
+  };
+
   await unified()
     .use(rehypeParse)
     .use(remarkGfm)
@@ -62,19 +76,19 @@ export async function parseLinks(markdown: string): Promise<string[]> {
     .use(() => (tree: Root) => {
       visit(tree, "text", (TreeNode) => {
         markdownLinkExtractor(String(TreeNode.value)).links.forEach((url) =>
-          result.push(url),
+          addLink(url),
         );
       });
-      visit(tree, "link", (TreeNode) => result.push(TreeNode.url));
-      visit(tree, "image", (TreeNode) => result.push(TreeNode.url));
+      visit(tree, "link", (TreeNode) => addLink(TreeNode.url));
+      visit(tree, "image", (TreeNode) => addLink(TreeNode.url));
     })
     .use(remarkStringify)
     .process(markdown);
 
-  return result;
+  return [internalLinks, externalLinks];
 }
 
-async function parseObjectsInv(filePath: string): Promise<ParsedFile> {
+async function parseObjectsInv(filePath: string): Promise<Set<string>> {
   const absoluteFilePath = path.join(
     getRoot(),
     removeSuffix(filePath, "objects.inv"),
@@ -82,17 +96,22 @@ async function parseObjectsInv(filePath: string): Promise<ParsedFile> {
   const objinv = await ObjectsInv.fromFile(absoluteFilePath);
   // All URIs are relative to the objects.inv file
   const dirname = removePrefix(path.dirname(filePath), "public");
-  const links = objinv.entries.map((entry) => path.join(dirname, entry.uri));
-  return { links, anchors: [] };
+  return new Set(objinv.entries.map((entry) => path.join(dirname, entry.uri)));
 }
 
 export async function parseFile(filePath: string): Promise<ParsedFile> {
   if (filePath.endsWith(".inv")) {
-    return await parseObjectsInv(filePath);
+    const links = await parseObjectsInv(filePath);
+    return {
+      internalLinks: links,
+      externalLinks: new Set(),
+      anchors: new Set(),
+    };
   }
+
   const source = await readFile(filePath, { encoding: "utf8" });
   const markdown =
     path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
-  const links = await parseLinks(markdown);
-  return { anchors: parseAnchors(markdown), links };
+  const [internalLinks, externalLinks] = await parseLinks(markdown);
+  return { anchors: parseAnchors(markdown), internalLinks, externalLinks };
 }
