@@ -231,6 +231,9 @@ print(f">>> {result}")
 print(f"  > Quasi-probability distribution: {result.quasi_dists[0]}")
 print(f"  > Metadata: {result.metadata[0]}")
 ```
+  </TabItem>
+</Tabs>
+
 <span id="backend"></span>
 ## Get started with the backend primitives
 
@@ -240,25 +243,25 @@ There are some providers that implement primitives natively (see [the Qiskit Eco
 
 ### Example: BackendEstimator
 
-  ```python
-  from qiskit.primitives import BackendEstimator
-  from <some_qiskit_provider> import QiskitProvider
+```python
+from qiskit.primitives import BackendEstimator
+from <some_qiskit_provider> import QiskitProvider
 
-  provider = QiskitProvider()
-  backend = provider.get_backend('backend_name')
-  estimator = BackendEstimator(backend)
-  ```
+provider = QiskitProvider()
+backend = provider.get_backend('backend_name')
+estimator = BackendEstimator(backend)
+```
 
 ### Example: BackendSampler
 
-  ```python
-  from qiskit.primitives import BackendSampler
-  from <some_qiskit_provider> import QiskitProvider
+```python
+from qiskit.primitives import BackendSampler
+from <some_qiskit_provider> import QiskitProvider
 
-  provider = QiskitProvider()
-  backend = provider.get_backend('backend_name')
-  sampler = BackendSampler(backend)
-  ```
+provider = QiskitProvider()
+backend = provider.get_backend('backend_name')
+sampler = BackendSampler(backend)
+```
 
 ## Next steps
 
