@@ -8,182 +8,126 @@ python_api_name: qiskit_ibm_runtime.options.EstimatorOptions
 
 # EstimatorOptions
 
-<span id="qiskit_ibm_runtime.options.EstimatorOptions" />
+<Class id="qiskit_ibm_runtime.options.EstimatorOptions" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/options/estimator_options.py#L35-L125" signature="EstimatorOptions(*args, **kwargs)">
+  Options for V2 Estimator.
 
-`EstimatorOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/options/estimator_options.py#L35-L125 "view source code")
+  **Parameters**
 
-Options for V2 Estimator.
+  *   **default\_precision** – The default precision to use for any PUB or `run()` call that does not specify one. Each estimator pub can specify its own precision. If the `run()` method is given a precision, then that value is used for all PUBs in the `run()` call that do not specify their own. Default: 0.015625 (1 / sqrt(4096).
 
-**Parameters**
+  *   **default\_shots** –
 
-*   **default\_precision** – The default precision to use for any PUB or `run()` call that does not specify one. Each estimator pub can specify its own precision. If the `run()` method is given a precision, then that value is used for all PUBs in the `run()` call that do not specify their own. Default: 0.015625 (1 / sqrt(4096).
+      The total number of shots to use per circuit per configuration.
 
-*   **default\_shots** –
+        <Admonition title="Note" type="note">
+          If set, this value overrides [`default_precision`](#qiskit_ibm_runtime.options.EstimatorOptions.default_precision "qiskit_ibm_runtime.options.EstimatorOptions.default_precision").
+        </Admonition>
 
-    The total number of shots to use per circuit per configuration.
+      A configuration is a combination of a specific parameter value binding set and a physical measurement basis. A physical measurement basis groups together some collection of qubit-wise commuting observables for some specific circuit/parameter value set to create a single measurement with basis rotations that is inserted into hardware executions.
 
-    <Admonition title="Note" type="note">
-      If set, this value overrides [`default_precision`](#qiskit_ibm_runtime.options.EstimatorOptions.default_precision "qiskit_ibm_runtime.options.EstimatorOptions.default_precision").
-    </Admonition>
+      If twirling is enabled, the value of this option will be divided over circuit, randomizations, with a smaller number of shots per randomization. See the [`twirling`](#qiskit_ibm_runtime.options.EstimatorOptions.twirling "qiskit_ibm_runtime.options.EstimatorOptions.twirling") options.
 
-    A configuration is a combination of a specific parameter value binding set and a physical measurement basis. A physical measurement basis groups together some collection of qubit-wise commuting observables for some specific circuit/parameter value set to create a single measurement with basis rotations that is inserted into hardware executions.
+      Default: `None`.
 
-    If twirling is enabled, the value of this option will be divided over circuit, randomizations, with a smaller number of shots per randomization. See the [`twirling`](#qiskit_ibm_runtime.options.EstimatorOptions.twirling "qiskit_ibm_runtime.options.EstimatorOptions.twirling") options.
+  *   **optimization\_level** –
 
-    Default: `None`.
+      How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer processing times.
 
-*   **optimization\_level** –
+      *   0: no optimization
+      *   1: light optimization
 
-    How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer processing times.
+      Refer to the [Configure runtime compilation for Qiskit Runtime](/run/configure-runtime-compilation). for more information about the optimization levels.
 
-    *   0: no optimization
-    *   1: light optimization
+      Default: 1.
 
-    Refer to the [Configure runtime compilation for Qiskit Runtime](/run/configure-runtime-compilation). for more information about the optimization levels.
+  *   **resilience\_level** –
 
-    Default: 1.
+      How much resilience to build against errors. Higher levels generate more accurate results, at the expense of longer processing times.
 
-*   **resilience\_level** –
+      *   0: No mitigation.
+      *   1: Minimal mitigation costs. Mitigate error associated with readout errors.
+      *   2: Medium mitigation costs. Typically reduces bias in estimators but is not guaranteed to be zero bias.
 
-    How much resilience to build against errors. Higher levels generate more accurate results, at the expense of longer processing times.
+      Refer to the [Configure error mitigation for Qiskit Runtime](/run/configure-error-mitigation). for more information about the error mitigation methods used at each level.
 
-    *   0: No mitigation.
-    *   1: Minimal mitigation costs. Mitigate error associated with readout errors.
-    *   2: Medium mitigation costs. Typically reduces bias in estimators but is not guaranteed to be zero bias.
+      Default: 1.
 
-    Refer to the [Configure error mitigation for Qiskit Runtime](/run/configure-error-mitigation). for more information about the error mitigation methods used at each level.
+  *   **seed\_estimator** – Seed used to control sampling.
 
-    Default: 1.
+  *   **dynamical\_decoupling** – Suboptions for dynamical decoupling. See [`DynamicalDecouplingOptions`](qiskit_ibm_runtime.options.DynamicalDecouplingOptions "qiskit_ibm_runtime.options.DynamicalDecouplingOptions") for all available options.
 
-*   **seed\_estimator** – Seed used to control sampling.
+  *   **resilience** – Advanced resilience options to fine tune the resilience strategy. See [`ResilienceOptionsV2`](qiskit_ibm_runtime.options.ResilienceOptionsV2 "qiskit_ibm_runtime.options.ResilienceOptionsV2") for all available options.
 
-*   **dynamical\_decoupling** – Suboptions for dynamical decoupling. See [`DynamicalDecouplingOptions`](qiskit_ibm_runtime.options.DynamicalDecouplingOptions "qiskit_ibm_runtime.options.DynamicalDecouplingOptions") for all available options.
+  *   **execution** – Execution time options. See [`ExecutionOptionsV2`](qiskit_ibm_runtime.options.ExecutionOptionsV2 "qiskit_ibm_runtime.options.ExecutionOptionsV2") for all available options.
 
-*   **resilience** – Advanced resilience options to fine tune the resilience strategy. See [`ResilienceOptionsV2`](qiskit_ibm_runtime.options.ResilienceOptionsV2 "qiskit_ibm_runtime.options.ResilienceOptionsV2") for all available options.
+  *   **twirling** – Pauli twirling options. See [`TwirlingOptions`](qiskit_ibm_runtime.options.TwirlingOptions "qiskit_ibm_runtime.options.TwirlingOptions") for all available options.
 
-*   **execution** – Execution time options. See [`ExecutionOptionsV2`](qiskit_ibm_runtime.options.ExecutionOptionsV2 "qiskit_ibm_runtime.options.ExecutionOptionsV2") for all available options.
+  *   **experimental** – Experimental options.
 
-*   **twirling** – Pauli twirling options. See [`TwirlingOptions`](qiskit_ibm_runtime.options.TwirlingOptions "qiskit_ibm_runtime.options.TwirlingOptions") for all available options.
+  ## Attributes
 
-*   **experimental** – Experimental options.
+  ### default\_precision
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.options.EstimatorOptions.default_precision" name="default_precision" attributeTypeHint="UnsetType | float" attributeValue="= Unset" />
 
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.default_precision" />
+  ### default\_shots
 
-### default\_precision
+  <Attribute id="qiskit_ibm_runtime.options.EstimatorOptions.default_shots" name="default_shots" attributeTypeHint="UnsetType | int | None" attributeValue="= Unset" />
 
-`UnsetType | float`
+  ### dynamical\_decoupling
 
-`= Unset`
+  <Attribute id="qiskit_ibm_runtime.options.EstimatorOptions.dynamical_decoupling" name="dynamical_decoupling" attributeTypeHint="DynamicalDecouplingOptions | Dict" attributeValue="= FieldInfo(annotation=Union[DynamicalDecouplingOptions, Dict], required=False, default_factory=DynamicalDecouplingOptions)" />
 
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.default_shots" />
+  ### environment
 
-### default\_shots
+  <Attribute id="qiskit_ibm_runtime.options.EstimatorOptions.environment" name="environment" attributeTypeHint="EnvironmentOptions | Dict" attributeValue="= FieldInfo(annotation=Union[EnvironmentOptions, Dict], required=False, default_factory=EnvironmentOptions)" />
 
-`UnsetType | int | None`
+  ### execution
 
-`= Unset`
+  <Attribute id="qiskit_ibm_runtime.options.EstimatorOptions.execution" name="execution" attributeTypeHint="ExecutionOptionsV2 | Dict" attributeValue="= FieldInfo(annotation=Union[ExecutionOptionsV2, Dict], required=False, default_factory=ExecutionOptionsV2)" />
 
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.dynamical_decoupling" />
+  ### experimental
 
-### dynamical\_decoupling
+  <Attribute id="qiskit_ibm_runtime.options.EstimatorOptions.experimental" name="experimental" attributeTypeHint="UnsetType | dict" attributeValue="= Unset" />
 
-`DynamicalDecouplingOptions | Dict`
+  ### max\_execution\_time
 
-`= FieldInfo(annotation=Union[DynamicalDecouplingOptions, Dict], required=False, default_factory=DynamicalDecouplingOptions)`
+  <Attribute id="qiskit_ibm_runtime.options.EstimatorOptions.max_execution_time" name="max_execution_time" attributeTypeHint="UnsetType | int" attributeValue="= Unset" />
 
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.environment" />
+  ### optimization\_level
 
-### environment
+  <Attribute id="qiskit_ibm_runtime.options.EstimatorOptions.optimization_level" name="optimization_level" attributeTypeHint="UnsetType | int" attributeValue="= Unset" />
 
-`EnvironmentOptions | Dict`
+  ### resilience
 
-`= FieldInfo(annotation=Union[EnvironmentOptions, Dict], required=False, default_factory=EnvironmentOptions)`
+  <Attribute id="qiskit_ibm_runtime.options.EstimatorOptions.resilience" name="resilience" attributeTypeHint="ResilienceOptionsV2 | Dict" attributeValue="= FieldInfo(annotation=Union[ResilienceOptionsV2, Dict], required=False, default_factory=ResilienceOptionsV2)" />
 
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.execution" />
+  ### resilience\_level
 
-### execution
+  <Attribute id="qiskit_ibm_runtime.options.EstimatorOptions.resilience_level" name="resilience_level" attributeTypeHint="UnsetType | int" attributeValue="= Unset" />
 
-`ExecutionOptionsV2 | Dict`
+  ### seed\_estimator
 
-`= FieldInfo(annotation=Union[ExecutionOptionsV2, Dict], required=False, default_factory=ExecutionOptionsV2)`
+  <Attribute id="qiskit_ibm_runtime.options.EstimatorOptions.seed_estimator" name="seed_estimator" attributeTypeHint="UnsetType | int" attributeValue="= Unset" />
 
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.experimental" />
+  ### simulator
 
-### experimental
+  <Attribute id="qiskit_ibm_runtime.options.EstimatorOptions.simulator" name="simulator" attributeTypeHint="SimulatorOptions | Dict" attributeValue="= FieldInfo(annotation=Union[SimulatorOptions, Dict], required=False, default_factory=SimulatorOptions)" />
 
-`UnsetType | dict`
+  ### twirling
 
-`= Unset`
+  <Attribute id="qiskit_ibm_runtime.options.EstimatorOptions.twirling" name="twirling" attributeTypeHint="TwirlingOptions | Dict" attributeValue="= FieldInfo(annotation=Union[TwirlingOptions, Dict], required=False, default_factory=TwirlingOptions)" />
 
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.max_execution_time" />
+  ## Methods
 
-### max\_execution\_time
+  ### update
 
-`UnsetType | int`
+  <Function id="qiskit_ibm_runtime.options.EstimatorOptions.update" name="update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/options/options.py#L106-L111" signature="update(**kwargs)">
+    Update the options.
 
-`= Unset`
+    **Return type**
 
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.optimization_level" />
-
-### optimization\_level
-
-`UnsetType | int`
-
-`= Unset`
-
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.resilience" />
-
-### resilience
-
-`ResilienceOptionsV2 | Dict`
-
-`= FieldInfo(annotation=Union[ResilienceOptionsV2, Dict], required=False, default_factory=ResilienceOptionsV2)`
-
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.resilience_level" />
-
-### resilience\_level
-
-`UnsetType | int`
-
-`= Unset`
-
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.seed_estimator" />
-
-### seed\_estimator
-
-`UnsetType | int`
-
-`= Unset`
-
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.simulator" />
-
-### simulator
-
-`SimulatorOptions | Dict`
-
-`= FieldInfo(annotation=Union[SimulatorOptions, Dict], required=False, default_factory=SimulatorOptions)`
-
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.twirling" />
-
-### twirling
-
-`TwirlingOptions | Dict`
-
-`= FieldInfo(annotation=Union[TwirlingOptions, Dict], required=False, default_factory=TwirlingOptions)`
-
-## Methods
-
-### update
-
-<span id="qiskit_ibm_runtime.options.EstimatorOptions.update" />
-
-`update(**kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/options/options.py#L106-L111 "view source code")
-
-Update the options.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 
