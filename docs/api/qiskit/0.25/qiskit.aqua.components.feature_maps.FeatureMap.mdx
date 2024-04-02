@@ -8,98 +8,82 @@ python_api_name: qiskit.aqua.components.feature_maps.FeatureMap
 
 # qiskit.aqua.components.feature\_maps.FeatureMap
 
-<span id="qiskit.aqua.components.feature_maps.FeatureMap" />
+<Class id="qiskit.aqua.components.feature_maps.FeatureMap" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/feature_maps/feature_map.py" signature="FeatureMap">
+  Base class for FeatureMap.
 
-`FeatureMap` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/feature_maps/feature_map.py "view source code")
+  This method should initialize the module and use an exception if a component of the module is not available.
 
-Base class for FeatureMap.
+  ### \_\_init\_\_
 
-This method should initialize the module and use an exception if a component of the module is not available.
+  <Function id="qiskit.aqua.components.feature_maps.FeatureMap.__init__" name="__init__" signature="abstract __init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.aqua.components.feature_maps.FeatureMap.__init__" />
+  |                                                                                                                                                                                                         |                                                       |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.components.feature_maps.FeatureMap.__init__ "qiskit.aqua.components.feature_maps.FeatureMap.__init__")()                                                                      | Initialize self.                                      |
+  | [`construct_circuit`](#qiskit.aqua.components.feature_maps.FeatureMap.construct_circuit "qiskit.aqua.components.feature_maps.FeatureMap.construct_circuit")(x\[, qr, inverse])                          | Construct the variational form, given its parameters. |
+  | [`get_entangler_map`](#qiskit.aqua.components.feature_maps.FeatureMap.get_entangler_map "qiskit.aqua.components.feature_maps.FeatureMap.get_entangler_map")(map\_type, num\_qubits)                     | get entangle map                                      |
+  | [`validate_entangler_map`](#qiskit.aqua.components.feature_maps.FeatureMap.validate_entangler_map "qiskit.aqua.components.feature_maps.FeatureMap.validate_entangler_map")(entangler\_map, num\_qubits) | validate entangler map                                |
 
-`abstract __init__()`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |                                                                                                                                                                                                 |                                                                    |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+  | [`feature_dimension`](#qiskit.aqua.components.feature_maps.FeatureMap.feature_dimension "qiskit.aqua.components.feature_maps.FeatureMap.feature_dimension")                                     | returns feature dimension                                          |
+  | [`num_qubits`](#qiskit.aqua.components.feature_maps.FeatureMap.num_qubits "qiskit.aqua.components.feature_maps.FeatureMap.num_qubits")                                                          | returns number of qubits                                           |
+  | [`support_parameterized_circuit`](#qiskit.aqua.components.feature_maps.FeatureMap.support_parameterized_circuit "qiskit.aqua.components.feature_maps.FeatureMap.support_parameterized_circuit") | returns whether or not the sub-class support parameterized circuit |
 
-## Methods
+  ### construct\_circuit
 
-|                                                                                                                                                                                                         |                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.components.feature_maps.FeatureMap.__init__ "qiskit.aqua.components.feature_maps.FeatureMap.__init__")()                                                                      | Initialize self.                                      |
-| [`construct_circuit`](#qiskit.aqua.components.feature_maps.FeatureMap.construct_circuit "qiskit.aqua.components.feature_maps.FeatureMap.construct_circuit")(x\[, qr, inverse])                          | Construct the variational form, given its parameters. |
-| [`get_entangler_map`](#qiskit.aqua.components.feature_maps.FeatureMap.get_entangler_map "qiskit.aqua.components.feature_maps.FeatureMap.get_entangler_map")(map\_type, num\_qubits)                     | get entangle map                                      |
-| [`validate_entangler_map`](#qiskit.aqua.components.feature_maps.FeatureMap.validate_entangler_map "qiskit.aqua.components.feature_maps.FeatureMap.validate_entangler_map")(entangler\_map, num\_qubits) | validate entangler map                                |
+  <Function id="qiskit.aqua.components.feature_maps.FeatureMap.construct_circuit" name="construct_circuit" signature="abstract construct_circuit(x, qr=None, inverse=False)">
+    Construct the variational form, given its parameters.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                                                                                 |                                                                    |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [`feature_dimension`](#qiskit.aqua.components.feature_maps.FeatureMap.feature_dimension "qiskit.aqua.components.feature_maps.FeatureMap.feature_dimension")                                     | returns feature dimension                                          |
-| [`num_qubits`](#qiskit.aqua.components.feature_maps.FeatureMap.num_qubits "qiskit.aqua.components.feature_maps.FeatureMap.num_qubits")                                                          | returns number of qubits                                           |
-| [`support_parameterized_circuit`](#qiskit.aqua.components.feature_maps.FeatureMap.support_parameterized_circuit "qiskit.aqua.components.feature_maps.FeatureMap.support_parameterized_circuit") | returns whether or not the sub-class support parameterized circuit |
+    *   **x** (*numpy.ndarray\[float]*) – 1-D array, data
+    *   **qr** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the QuantumRegister object for the circuit, if None, generate new registers with name q.
+    *   **inverse** (*bool*) – whether or not inverse the circuit
 
-### construct\_circuit
+    **Returns**
 
-<span id="qiskit.aqua.components.feature_maps.FeatureMap.construct_circuit" />
+    a quantum circuit.
 
-`abstract construct_circuit(x, qr=None, inverse=False)`
+    **Return type**
 
-Construct the variational form, given its parameters.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-**Parameters**
+  ### feature\_dimension
 
-*   **x** (*numpy.ndarray\[float]*) – 1-D array, data
-*   **qr** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the QuantumRegister object for the circuit, if None, generate new registers with name q.
-*   **inverse** (*bool*) – whether or not inverse the circuit
+  <Function id="qiskit.aqua.components.feature_maps.FeatureMap.feature_dimension" name="feature_dimension" signature="property feature_dimension">
+    returns feature dimension
+  </Function>
 
-**Returns**
+  ### get\_entangler\_map
 
-a quantum circuit.
+  <Function id="qiskit.aqua.components.feature_maps.FeatureMap.get_entangler_map" name="get_entangler_map" signature="static get_entangler_map(map_type, num_qubits)">
+    get entangle map
+  </Function>
 
-**Return type**
+  ### num\_qubits
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.aqua.components.feature_maps.FeatureMap.num_qubits" name="num_qubits" signature="property num_qubits">
+    returns number of qubits
+  </Function>
 
-### feature\_dimension
+  ### support\_parameterized\_circuit
 
-<span id="qiskit.aqua.components.feature_maps.FeatureMap.feature_dimension" />
+  <Function id="qiskit.aqua.components.feature_maps.FeatureMap.support_parameterized_circuit" name="support_parameterized_circuit" signature="property support_parameterized_circuit">
+    returns whether or not the sub-class support parameterized circuit
+  </Function>
 
-`property feature_dimension`
+  ### validate\_entangler\_map
 
-returns feature dimension
-
-### get\_entangler\_map
-
-<span id="qiskit.aqua.components.feature_maps.FeatureMap.get_entangler_map" />
-
-`static get_entangler_map(map_type, num_qubits)`
-
-get entangle map
-
-### num\_qubits
-
-<span id="qiskit.aqua.components.feature_maps.FeatureMap.num_qubits" />
-
-`property num_qubits`
-
-returns number of qubits
-
-### support\_parameterized\_circuit
-
-<span id="qiskit.aqua.components.feature_maps.FeatureMap.support_parameterized_circuit" />
-
-`property support_parameterized_circuit`
-
-returns whether or not the sub-class support parameterized circuit
-
-### validate\_entangler\_map
-
-<span id="qiskit.aqua.components.feature_maps.FeatureMap.validate_entangler_map" />
-
-`static validate_entangler_map(entangler_map, num_qubits)`
-
-validate entangler map
+  <Function id="qiskit.aqua.components.feature_maps.FeatureMap.validate_entangler_map" name="validate_entangler_map" signature="static validate_entangler_map(entangler_map, num_qubits)">
+    validate entangler map
+  </Function>
+</Class>
 

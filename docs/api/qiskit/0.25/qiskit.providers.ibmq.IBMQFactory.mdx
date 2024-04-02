@@ -8,284 +8,260 @@ python_api_name: qiskit.providers.ibmq.IBMQFactory
 
 # qiskit.providers.ibmq.IBMQFactory
 
-<span id="qiskit.providers.ibmq.IBMQFactory" />
+<Class id="qiskit.providers.ibmq.IBMQFactory" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/ibmqfactory.py" signature="IBMQFactory">
+  Factory and account manager for IBM Quantum Experience.
 
-`IBMQFactory` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/ibmqfactory.py "view source code")
+  IBMQFactory constructor.
 
-Factory and account manager for IBM Quantum Experience.
+  ### \_\_init\_\_
 
-IBMQFactory constructor.
+  <Function id="qiskit.providers.ibmq.IBMQFactory.__init__" name="__init__" signature="__init__()">
+    IBMQFactory constructor.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.providers.ibmq.IBMQFactory.__init__" />
+  |                                                                                                                                                              |                                                                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.providers.ibmq.IBMQFactory.__init__ "qiskit.providers.ibmq.IBMQFactory.__init__")()                                                     | IBMQFactory constructor.                                                          |
+  | [`active_account`](#qiskit.providers.ibmq.IBMQFactory.active_account "qiskit.providers.ibmq.IBMQFactory.active_account")()                                   | Return the IBM Quantum Experience account currently in use for the session.       |
+  | [`delete_account`](#qiskit.providers.ibmq.IBMQFactory.delete_account "qiskit.providers.ibmq.IBMQFactory.delete_account")()                                   | Delete the saved account from disk.                                               |
+  | [`disable_account`](#qiskit.providers.ibmq.IBMQFactory.disable_account "qiskit.providers.ibmq.IBMQFactory.disable_account")()                                | Disable the account currently in use for the session.                             |
+  | [`enable_account`](#qiskit.providers.ibmq.IBMQFactory.enable_account "qiskit.providers.ibmq.IBMQFactory.enable_account")(token\[, url, hub, group, project]) | Authenticate against IBM Quantum Experience for use during the session.           |
+  | [`get_provider`](#qiskit.providers.ibmq.IBMQFactory.get_provider "qiskit.providers.ibmq.IBMQFactory.get_provider")(\[hub, group, project])                   | Return a provider for a single hub/group/project combination.                     |
+  | [`load_account`](#qiskit.providers.ibmq.IBMQFactory.load_account "qiskit.providers.ibmq.IBMQFactory.load_account")()                                         | Authenticate against IBM Quantum Experience from stored credentials.              |
+  | [`providers`](#qiskit.providers.ibmq.IBMQFactory.providers "qiskit.providers.ibmq.IBMQFactory.providers")(\[hub, group, project])                            | Return a list of providers, subject to optional filtering.                        |
+  | [`save_account`](#qiskit.providers.ibmq.IBMQFactory.save_account "qiskit.providers.ibmq.IBMQFactory.save_account")(token\[, url, hub, group, …])             | Save the account to disk for future use.                                          |
+  | [`stored_account`](#qiskit.providers.ibmq.IBMQFactory.stored_account "qiskit.providers.ibmq.IBMQFactory.stored_account")()                                   | List the account stored on disk.                                                  |
+  | [`update_account`](#qiskit.providers.ibmq.IBMQFactory.update_account "qiskit.providers.ibmq.IBMQFactory.update_account")(\[force])                           | Interactive helper for migrating stored credentials to IBM Quantum Experience v2. |
 
-`__init__()`
+  ### active\_account
 
-IBMQFactory constructor.
+  <Function id="qiskit.providers.ibmq.IBMQFactory.active_account" name="active_account" signature="active_account()">
+    Return the IBM Quantum Experience account currently in use for the session.
 
-## Methods
+    **Return type**
 
-|                                                                                                                                                              |                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.providers.ibmq.IBMQFactory.__init__ "qiskit.providers.ibmq.IBMQFactory.__init__")()                                                     | IBMQFactory constructor.                                                          |
-| [`active_account`](#qiskit.providers.ibmq.IBMQFactory.active_account "qiskit.providers.ibmq.IBMQFactory.active_account")()                                   | Return the IBM Quantum Experience account currently in use for the session.       |
-| [`delete_account`](#qiskit.providers.ibmq.IBMQFactory.delete_account "qiskit.providers.ibmq.IBMQFactory.delete_account")()                                   | Delete the saved account from disk.                                               |
-| [`disable_account`](#qiskit.providers.ibmq.IBMQFactory.disable_account "qiskit.providers.ibmq.IBMQFactory.disable_account")()                                | Disable the account currently in use for the session.                             |
-| [`enable_account`](#qiskit.providers.ibmq.IBMQFactory.enable_account "qiskit.providers.ibmq.IBMQFactory.enable_account")(token\[, url, hub, group, project]) | Authenticate against IBM Quantum Experience for use during the session.           |
-| [`get_provider`](#qiskit.providers.ibmq.IBMQFactory.get_provider "qiskit.providers.ibmq.IBMQFactory.get_provider")(\[hub, group, project])                   | Return a provider for a single hub/group/project combination.                     |
-| [`load_account`](#qiskit.providers.ibmq.IBMQFactory.load_account "qiskit.providers.ibmq.IBMQFactory.load_account")()                                         | Authenticate against IBM Quantum Experience from stored credentials.              |
-| [`providers`](#qiskit.providers.ibmq.IBMQFactory.providers "qiskit.providers.ibmq.IBMQFactory.providers")(\[hub, group, project])                            | Return a list of providers, subject to optional filtering.                        |
-| [`save_account`](#qiskit.providers.ibmq.IBMQFactory.save_account "qiskit.providers.ibmq.IBMQFactory.save_account")(token\[, url, hub, group, …])             | Save the account to disk for future use.                                          |
-| [`stored_account`](#qiskit.providers.ibmq.IBMQFactory.stored_account "qiskit.providers.ibmq.IBMQFactory.stored_account")()                                   | List the account stored on disk.                                                  |
-| [`update_account`](#qiskit.providers.ibmq.IBMQFactory.update_account "qiskit.providers.ibmq.IBMQFactory.update_account")(\[force])                           | Interactive helper for migrating stored credentials to IBM Quantum Experience v2. |
+    `Optional`\[`Dict`\[`str`, `str`]]
 
-### active\_account
+    **Returns**
 
-<span id="qiskit.providers.ibmq.IBMQFactory.active_account" />
+    Information about the account currently in the session.
+  </Function>
 
-`active_account()`
+  ### delete\_account
 
-Return the IBM Quantum Experience account currently in use for the session.
+  <Function id="qiskit.providers.ibmq.IBMQFactory.delete_account" name="delete_account" signature="static delete_account()">
+    Delete the saved account from disk.
 
-**Return type**
+    **Raises**
 
-`Optional`\[`Dict`\[`str`, `str`]]
+    *   [**IBMQAccountCredentialsNotFound**](qiskit.providers.ibmq.IBMQAccountCredentialsNotFound "qiskit.providers.ibmq.IBMQAccountCredentialsNotFound") – If no valid IBM Quantum Experience credentials can be found on disk.
+    *   [**IBMQAccountMultipleCredentialsFound**](qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound "qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound") – If multiple IBM Quantum Experience credentials are found on disk.
+    *   [**IBMQAccountCredentialsInvalidUrl**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl") – If invalid IBM Quantum Experience credentials are found on disk.
 
-**Returns**
+    **Return type**
 
-Information about the account currently in the session.
+    `None`
+  </Function>
 
-### delete\_account
+  ### disable\_account
 
-<span id="qiskit.providers.ibmq.IBMQFactory.delete_account" />
+  <Function id="qiskit.providers.ibmq.IBMQFactory.disable_account" name="disable_account" signature="disable_account()">
+    Disable the account currently in use for the session.
 
-`static delete_account()`
+    **Raises**
 
-Delete the saved account from disk.
+    [**IBMQAccountCredentialsNotFound**](qiskit.providers.ibmq.IBMQAccountCredentialsNotFound "qiskit.providers.ibmq.IBMQAccountCredentialsNotFound") – If no account is in use for the session.
 
-**Raises**
+    **Return type**
 
-*   [**IBMQAccountCredentialsNotFound**](qiskit.providers.ibmq.IBMQAccountCredentialsNotFound "qiskit.providers.ibmq.IBMQAccountCredentialsNotFound") – If no valid IBM Quantum Experience credentials can be found on disk.
-*   [**IBMQAccountMultipleCredentialsFound**](qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound "qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound") – If multiple IBM Quantum Experience credentials are found on disk.
-*   [**IBMQAccountCredentialsInvalidUrl**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl") – If invalid IBM Quantum Experience credentials are found on disk.
+    `None`
+  </Function>
 
-**Return type**
+  ### enable\_account
 
-`None`
+  <Function id="qiskit.providers.ibmq.IBMQFactory.enable_account" name="enable_account" signature="enable_account(token, url='https://auth.quantum-computing.ibm.com/api', hub=None, group=None, project=None, **kwargs)">
+    Authenticate against IBM Quantum Experience for use during the session.
 
-### disable\_account
+    <Admonition title="Note" type="note">
+      With version 0.4 of this `qiskit-ibmq-provider` package, use of the legacy Quantum Experience and Qconsole (also known as the IBM Quantum Experience v1) credentials is no longer supported.
+    </Admonition>
 
-<span id="qiskit.providers.ibmq.IBMQFactory.disable_account" />
+    **Parameters**
 
-`disable_account()`
+    *   **token** (`str`) – IBM Quantum Experience token.
 
-Disable the account currently in use for the session.
+    *   **url** (`str`) – URL for the IBM Quantum Experience authentication server.
 
-**Raises**
+    *   **hub** (`Optional`\[`str`]) – Name of the hub to use.
 
-[**IBMQAccountCredentialsNotFound**](qiskit.providers.ibmq.IBMQAccountCredentialsNotFound "qiskit.providers.ibmq.IBMQAccountCredentialsNotFound") – If no account is in use for the session.
+    *   **group** (`Optional`\[`str`]) – Name of the group to use.
 
-**Return type**
+    *   **project** (`Optional`\[`str`]) – Name of the project to use.
 
-`None`
+    *   **\*\*kwargs** –
 
-### enable\_account
+        Additional settings for the connection:
 
-<span id="qiskit.providers.ibmq.IBMQFactory.enable_account" />
+        *   proxies (dict): proxy configuration.
+        *   verify (bool): verify the server’s TLS certificate.
 
-`enable_account(token, url='https://auth.quantum-computing.ibm.com/api', hub=None, group=None, project=None, **kwargs)`
+    **Return type**
 
-Authenticate against IBM Quantum Experience for use during the session.
+    `Optional`\[`AccountProvider`]
 
-<Admonition title="Note" type="note">
-  With version 0.4 of this `qiskit-ibmq-provider` package, use of the legacy Quantum Experience and Qconsole (also known as the IBM Quantum Experience v1) credentials is no longer supported.
-</Admonition>
+    **Returns**
 
-**Parameters**
+    If hub, group, and project are specified, the corresponding provider is returned. Otherwise the provider for the open access project is returned.
 
-*   **token** (`str`) – IBM Quantum Experience token.
+    **Raises**
 
-*   **url** (`str`) – URL for the IBM Quantum Experience authentication server.
+    *   [**IBMQAccountError**](qiskit.providers.ibmq.IBMQAccountError "qiskit.providers.ibmq.IBMQAccountError") – If an IBM Quantum Experience account is already in use for the session.
+    *   [**IBMQAccountCredentialsInvalidUrl**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl") – If the URL specified is not a valid IBM Quantum Experience authentication URL.
+    *   [**IBMQProviderError**](qiskit.providers.ibmq.IBMQProviderError "qiskit.providers.ibmq.IBMQProviderError") – If no provider matches the specified criteria, or more than one provider matches the specified criteria.
+  </Function>
 
-*   **hub** (`Optional`\[`str`]) – Name of the hub to use.
+  ### get\_provider
 
-*   **group** (`Optional`\[`str`]) – Name of the group to use.
+  <Function id="qiskit.providers.ibmq.IBMQFactory.get_provider" name="get_provider" signature="get_provider(hub=None, group=None, project=None)">
+    Return a provider for a single hub/group/project combination.
 
-*   **project** (`Optional`\[`str`]) – Name of the project to use.
+    **Parameters**
 
-*   **\*\*kwargs** –
+    *   **hub** (`Optional`\[`str`]) – Name of the hub.
+    *   **group** (`Optional`\[`str`]) – Name of the group.
+    *   **project** (`Optional`\[`str`]) – Name of the project.
 
-    Additional settings for the connection:
+    **Return type**
 
-    *   proxies (dict): proxy configuration.
-    *   verify (bool): verify the server’s TLS certificate.
+    `AccountProvider`
 
-**Return type**
+    **Returns**
 
-`Optional`\[`AccountProvider`]
+    A provider that matches the specified criteria.
 
-**Returns**
+    **Raises**
 
-If hub, group, and project are specified, the corresponding provider is returned. Otherwise the provider for the open access project is returned.
+    [**IBMQProviderError**](qiskit.providers.ibmq.IBMQProviderError "qiskit.providers.ibmq.IBMQProviderError") – If no provider matches the specified criteria, or more than one provider matches the specified criteria.
+  </Function>
 
-**Raises**
+  ### load\_account
 
-*   [**IBMQAccountError**](qiskit.providers.ibmq.IBMQAccountError "qiskit.providers.ibmq.IBMQAccountError") – If an IBM Quantum Experience account is already in use for the session.
-*   [**IBMQAccountCredentialsInvalidUrl**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl") – If the URL specified is not a valid IBM Quantum Experience authentication URL.
-*   [**IBMQProviderError**](qiskit.providers.ibmq.IBMQProviderError "qiskit.providers.ibmq.IBMQProviderError") – If no provider matches the specified criteria, or more than one provider matches the specified criteria.
+  <Function id="qiskit.providers.ibmq.IBMQFactory.load_account" name="load_account" signature="load_account()">
+    Authenticate against IBM Quantum Experience from stored credentials.
 
-### get\_provider
+    **Return type**
 
-<span id="qiskit.providers.ibmq.IBMQFactory.get_provider" />
+    `Optional`\[`AccountProvider`]
 
-`get_provider(hub=None, group=None, project=None)`
+    **Returns**
 
-Return a provider for a single hub/group/project combination.
+    If the configuration file specifies a default provider, it is returned. Otherwise the provider for the open access project is returned.
 
-**Parameters**
+    **Raises**
 
-*   **hub** (`Optional`\[`str`]) – Name of the hub.
-*   **group** (`Optional`\[`str`]) – Name of the group.
-*   **project** (`Optional`\[`str`]) – Name of the project.
+    *   [**IBMQAccountCredentialsInvalidFormat**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidFormat "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidFormat") – If the default provider stored on disk could not be parsed.
+    *   [**IBMQAccountCredentialsNotFound**](qiskit.providers.ibmq.IBMQAccountCredentialsNotFound "qiskit.providers.ibmq.IBMQAccountCredentialsNotFound") – If no IBM Quantum Experience credentials can be found.
+    *   [**IBMQAccountMultipleCredentialsFound**](qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound "qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound") – If multiple IBM Quantum Experience credentials are found.
+    *   [**IBMQAccountCredentialsInvalidUrl**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl") – If invalid IBM Quantum Experience credentials are found.
+    *   [**IBMQProviderError**](qiskit.providers.ibmq.IBMQProviderError "qiskit.providers.ibmq.IBMQProviderError") – If the default provider stored on disk could not be found.
+  </Function>
 
-**Return type**
+  ### providers
 
-`AccountProvider`
+  <Function id="qiskit.providers.ibmq.IBMQFactory.providers" name="providers" signature="providers(hub=None, group=None, project=None)">
+    Return a list of providers, subject to optional filtering.
 
-**Returns**
+    **Parameters**
 
-A provider that matches the specified criteria.
+    *   **hub** (`Optional`\[`str`]) – Name of the hub.
+    *   **group** (`Optional`\[`str`]) – Name of the group.
+    *   **project** (`Optional`\[`str`]) – Name of the project.
 
-**Raises**
+    **Return type**
 
-[**IBMQProviderError**](qiskit.providers.ibmq.IBMQProviderError "qiskit.providers.ibmq.IBMQProviderError") – If no provider matches the specified criteria, or more than one provider matches the specified criteria.
+    `List`\[`AccountProvider`]
 
-### load\_account
+    **Returns**
 
-<span id="qiskit.providers.ibmq.IBMQFactory.load_account" />
+    A list of providers that match the specified criteria.
+  </Function>
 
-`load_account()`
+  ### save\_account
 
-Authenticate against IBM Quantum Experience from stored credentials.
+  <Function id="qiskit.providers.ibmq.IBMQFactory.save_account" name="save_account" signature="static save_account(token, url='https://auth.quantum-computing.ibm.com/api', hub=None, group=None, project=None, overwrite=False, **kwargs)">
+    Save the account to disk for future use.
 
-**Return type**
+    <Admonition title="Note" type="note">
+      If storing a default provider to disk, all three parameters hub, group, project must be specified.
+    </Admonition>
 
-`Optional`\[`AccountProvider`]
+    **Parameters**
 
-**Returns**
+    *   **token** (`str`) – IBM Quantum Experience token.
 
-If the configuration file specifies a default provider, it is returned. Otherwise the provider for the open access project is returned.
+    *   **url** (`str`) – URL for the IBM Quantum Experience authentication server.
 
-**Raises**
+    *   **hub** (`Optional`\[`str`]) – Name of the hub for the default provider to store on disk.
 
-*   [**IBMQAccountCredentialsInvalidFormat**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidFormat "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidFormat") – If the default provider stored on disk could not be parsed.
-*   [**IBMQAccountCredentialsNotFound**](qiskit.providers.ibmq.IBMQAccountCredentialsNotFound "qiskit.providers.ibmq.IBMQAccountCredentialsNotFound") – If no IBM Quantum Experience credentials can be found.
-*   [**IBMQAccountMultipleCredentialsFound**](qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound "qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound") – If multiple IBM Quantum Experience credentials are found.
-*   [**IBMQAccountCredentialsInvalidUrl**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl") – If invalid IBM Quantum Experience credentials are found.
-*   [**IBMQProviderError**](qiskit.providers.ibmq.IBMQProviderError "qiskit.providers.ibmq.IBMQProviderError") – If the default provider stored on disk could not be found.
+    *   **group** (`Optional`\[`str`]) – Name of the group for the default provider to store on disk.
 
-### providers
+    *   **project** (`Optional`\[`str`]) – Name of the project for the default provider to store on disk.
 
-<span id="qiskit.providers.ibmq.IBMQFactory.providers" />
+    *   **overwrite** (`bool`) – Overwrite existing credentials.
 
-`providers(hub=None, group=None, project=None)`
+    *   **\*\*kwargs** –
 
-Return a list of providers, subject to optional filtering.
+        *   proxies (dict): Proxy configuration for the server.
+        *   verify (bool): If False, ignores SSL certificates errors
 
-**Parameters**
+    **Raises**
 
-*   **hub** (`Optional`\[`str`]) – Name of the hub.
-*   **group** (`Optional`\[`str`]) – Name of the group.
-*   **project** (`Optional`\[`str`]) – Name of the project.
+    *   [**IBMQAccountCredentialsInvalidUrl**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl") – If the url is not a valid IBM Quantum Experience authentication URL.
+    *   [**IBMQAccountCredentialsInvalidToken**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidToken "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidToken") – If the token is not a valid IBM Quantum Experience token.
+    *   **IBMQAccountValueError** – If only one or two parameters from hub, group, project are specified.
 
-**Return type**
+    **Return type**
 
-`List`\[`AccountProvider`]
+    `None`
+  </Function>
 
-**Returns**
+  ### stored\_account
 
-A list of providers that match the specified criteria.
+  <Function id="qiskit.providers.ibmq.IBMQFactory.stored_account" name="stored_account" signature="static stored_account()">
+    List the account stored on disk.
 
-### save\_account
+    **Return type**
 
-<span id="qiskit.providers.ibmq.IBMQFactory.save_account" />
+    `Dict`\[`str`, `str`]
 
-`static save_account(token, url='https://auth.quantum-computing.ibm.com/api', hub=None, group=None, project=None, overwrite=False, **kwargs)`
+    **Returns**
 
-Save the account to disk for future use.
+    A dictionary with information about the account stored on disk.
 
-<Admonition title="Note" type="note">
-  If storing a default provider to disk, all three parameters hub, group, project must be specified.
-</Admonition>
+    **Raises**
 
-**Parameters**
+    *   [**IBMQAccountMultipleCredentialsFound**](qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound "qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound") – If multiple IBM Quantum Experience credentials are found on disk.
+    *   [**IBMQAccountCredentialsInvalidUrl**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl") – If invalid IBM Quantum Experience credentials are found on disk.
+  </Function>
 
-*   **token** (`str`) – IBM Quantum Experience token.
+  ### update\_account
 
-*   **url** (`str`) – URL for the IBM Quantum Experience authentication server.
+  <Function id="qiskit.providers.ibmq.IBMQFactory.update_account" name="update_account" signature="static update_account(force=False)">
+    Interactive helper for migrating stored credentials to IBM Quantum Experience v2.
 
-*   **hub** (`Optional`\[`str`]) – Name of the hub for the default provider to store on disk.
+    **Parameters**
 
-*   **group** (`Optional`\[`str`]) – Name of the group for the default provider to store on disk.
+    **force** (`bool`) – If `True`, disable interactive prompts and perform the changes.
 
-*   **project** (`Optional`\[`str`]) – Name of the project for the default provider to store on disk.
+    **Return type**
 
-*   **overwrite** (`bool`) – Overwrite existing credentials.
+    `Optional`\[`Credentials`]
 
-*   **\*\*kwargs** –
+    **Returns**
 
-    *   proxies (dict): Proxy configuration for the server.
-    *   verify (bool): If False, ignores SSL certificates errors
-
-**Raises**
-
-*   [**IBMQAccountCredentialsInvalidUrl**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl") – If the url is not a valid IBM Quantum Experience authentication URL.
-*   [**IBMQAccountCredentialsInvalidToken**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidToken "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidToken") – If the token is not a valid IBM Quantum Experience token.
-*   **IBMQAccountValueError** – If only one or two parameters from hub, group, project are specified.
-
-**Return type**
-
-`None`
-
-### stored\_account
-
-<span id="qiskit.providers.ibmq.IBMQFactory.stored_account" />
-
-`static stored_account()`
-
-List the account stored on disk.
-
-**Return type**
-
-`Dict`\[`str`, `str`]
-
-**Returns**
-
-A dictionary with information about the account stored on disk.
-
-**Raises**
-
-*   [**IBMQAccountMultipleCredentialsFound**](qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound "qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound") – If multiple IBM Quantum Experience credentials are found on disk.
-*   [**IBMQAccountCredentialsInvalidUrl**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl") – If invalid IBM Quantum Experience credentials are found on disk.
-
-### update\_account
-
-<span id="qiskit.providers.ibmq.IBMQFactory.update_account" />
-
-`static update_account(force=False)`
-
-Interactive helper for migrating stored credentials to IBM Quantum Experience v2.
-
-**Parameters**
-
-**force** (`bool`) – If `True`, disable interactive prompts and perform the changes.
-
-**Return type**
-
-`Optional`\[`Credentials`]
-
-**Returns**
-
-The credentials for IBM Quantum Experience v2 if updating is successful or `None` otherwise.
+    The credentials for IBM Quantum Experience v2 if updating is successful or `None` otherwise.
+  </Function>
+</Class>
 

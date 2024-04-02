@@ -8,369 +8,337 @@ python_api_name: qiskit.providers.aer.noise.NoiseModel
 
 # qiskit.providers.aer.noise.NoiseModel
 
-<span id="qiskit.providers.aer.noise.NoiseModel" />
+<Class id="qiskit.providers.aer.noise.NoiseModel" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/noise/noise_model.py" signature="NoiseModel(basis_gates=None)">
+  Noise model class for Qiskit Aer simulators.
 
-`NoiseModel(basis_gates=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/noise/noise_model.py "view source code")
+  This class is used to represent noise model for the [`QasmSimulator`](qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator"). It can be used to construct custom noise models for simulator, or to automatically generate a basic device noise model for an IBMQ backend. See the [`noise`](aer_noise#module-qiskit.providers.aer.noise "qiskit.providers.aer.noise") module documentation for additional information.
 
-Noise model class for Qiskit Aer simulators.
+  **Example: Basic device noise model**
 
-This class is used to represent noise model for the [`QasmSimulator`](qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator"). It can be used to construct custom noise models for simulator, or to automatically generate a basic device noise model for an IBMQ backend. See the [`noise`](aer_noise#module-qiskit.providers.aer.noise "qiskit.providers.aer.noise") module documentation for additional information.
+  An approximate [`NoiseModel`](#qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel") can be generated automatically from the properties of real device backends from the IBMQ provider using the [`from_backend()`](#qiskit.providers.aer.noise.NoiseModel.from_backend "qiskit.providers.aer.noise.NoiseModel.from_backend") method.
 
-**Example: Basic device noise model**
+  ```python
+  from qiskit import IBMQ, Aer
+  from qiskit.providers.aer.noise import NoiseModel
 
-An approximate [`NoiseModel`](#qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel") can be generated automatically from the properties of real device backends from the IBMQ provider using the [`from_backend()`](#qiskit.providers.aer.noise.NoiseModel.from_backend "qiskit.providers.aer.noise.NoiseModel.from_backend") method.
+  provider = IBMQ.load_account()
+  backend = provider.get_backend('ibmq_vigo')
+  noise_model = NoiseModel.from_backend(backend)
+  print(noise_model)
+  ```
 
-```python
-from qiskit import IBMQ, Aer
-from qiskit.providers.aer.noise import NoiseModel
+  **Example: Custom noise model**
 
-provider = IBMQ.load_account()
-backend = provider.get_backend('ibmq_vigo')
-noise_model = NoiseModel.from_backend(backend)
-print(noise_model)
-```
+  Custom noise models can be used by adding [`QuantumError`](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError") to circuit gate, reset or measure instructions, and [`ReadoutError`](qiskit.providers.aer.noise.ReadoutError "qiskit.providers.aer.noise.ReadoutError") to measure instructions.
 
-**Example: Custom noise model**
+  ```python
+  import qiskit.providers.aer.noise as noise
 
-Custom noise models can be used by adding [`QuantumError`](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError") to circuit gate, reset or measure instructions, and [`ReadoutError`](qiskit.providers.aer.noise.ReadoutError "qiskit.providers.aer.noise.ReadoutError") to measure instructions.
+  # Error probabilities
+  prob_1 = 0.001  # 1-qubit gate
+  prob_2 = 0.01   # 2-qubit gate
 
-```python
-import qiskit.providers.aer.noise as noise
+  # Depolarizing quantum errors
+  error_1 = noise.depolarizing_error(prob_1, 1)
+  error_2 = noise.depolarizing_error(prob_2, 2)
 
-# Error probabilities
-prob_1 = 0.001  # 1-qubit gate
-prob_2 = 0.01   # 2-qubit gate
+  # Add errors to noise model
+  noise_model = noise.NoiseModel()
+  noise_model.add_all_qubit_quantum_error(error_1, ['u1', 'u2', 'u3'])
+  noise_model.add_all_qubit_quantum_error(error_2, ['cx'])
+  print(noise_model)
+  ```
 
-# Depolarizing quantum errors
-error_1 = noise.depolarizing_error(prob_1, 1)
-error_2 = noise.depolarizing_error(prob_2, 2)
+  Initialize an empty noise model.
 
-# Add errors to noise model
-noise_model = noise.NoiseModel()
-noise_model.add_all_qubit_quantum_error(error_1, ['u1', 'u2', 'u3'])
-noise_model.add_all_qubit_quantum_error(error_2, ['cx'])
-print(noise_model)
-```
+  **Parameters**
 
-Initialize an empty noise model.
+  **basis\_gates** (*list\[str] or None*) – Specify an initial basis\_gates for the noise model. If None a default value of \[‘id’, ‘u3’, ‘cx’] is used (Default: None).
 
-**Parameters**
+  Additional Information: Errors added to the noise model will have their instruction appended to the noise model basis\_gates if the instruction is in the [`QasmSimulator`](qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator") basis\_gates. If the instruction is not in the [`QasmSimulator`](qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator") basis\_gates it is assumed to be a label for a standard gate, and that gate should be added to the NoiseModel basis\_gates either using the init method, or the [`add_basis_gates()`](#qiskit.providers.aer.noise.NoiseModel.add_basis_gates "qiskit.providers.aer.noise.NoiseModel.add_basis_gates") method.
 
-**basis\_gates** (*list\[str] or None*) – Specify an initial basis\_gates for the noise model. If None a default value of \[‘id’, ‘u3’, ‘cx’] is used (Default: None).
+  ### \_\_init\_\_
 
-Additional Information: Errors added to the noise model will have their instruction appended to the noise model basis\_gates if the instruction is in the [`QasmSimulator`](qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator") basis\_gates. If the instruction is not in the [`QasmSimulator`](qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator") basis\_gates it is assumed to be a label for a standard gate, and that gate should be added to the NoiseModel basis\_gates either using the init method, or the [`add_basis_gates()`](#qiskit.providers.aer.noise.NoiseModel.add_basis_gates "qiskit.providers.aer.noise.NoiseModel.add_basis_gates") method.
+  <Function id="qiskit.providers.aer.noise.NoiseModel.__init__" name="__init__" signature="__init__(basis_gates=None)">
+    Initialize an empty noise model.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.providers.aer.noise.NoiseModel.__init__" />
+    **basis\_gates** (*list\[str] or None*) – Specify an initial basis\_gates for the noise model. If None a default value of \[‘id’, ‘u3’, ‘cx’] is used (Default: None).
 
-`__init__(basis_gates=None)`
+    Additional Information: Errors added to the noise model will have their instruction appended to the noise model basis\_gates if the instruction is in the [`QasmSimulator`](qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator") basis\_gates. If the instruction is not in the [`QasmSimulator`](qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator") basis\_gates it is assumed to be a label for a standard gate, and that gate should be added to the NoiseModel basis\_gates either using the init method, or the [`add_basis_gates()`](#qiskit.providers.aer.noise.NoiseModel.add_basis_gates "qiskit.providers.aer.noise.NoiseModel.add_basis_gates") method.
+  </Function>
 
-Initialize an empty noise model.
+  ## Methods
 
-**Parameters**
+  |                                                                                                                                                                                              |                                                                      |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.providers.aer.noise.NoiseModel.__init__ "qiskit.providers.aer.noise.NoiseModel.__init__")(\[basis\_gates])                                                              | Initialize an empty noise model.                                     |
+  | [`add_all_qubit_quantum_error`](#qiskit.providers.aer.noise.NoiseModel.add_all_qubit_quantum_error "qiskit.providers.aer.noise.NoiseModel.add_all_qubit_quantum_error")(error, instructions) | Add a quantum error to the noise model that applies to all qubits.   |
+  | [`add_all_qubit_readout_error`](#qiskit.providers.aer.noise.NoiseModel.add_all_qubit_readout_error "qiskit.providers.aer.noise.NoiseModel.add_all_qubit_readout_error")(error\[, warnings])  | Add a single-qubit readout error that applies measure on all qubits. |
+  | [`add_basis_gates`](#qiskit.providers.aer.noise.NoiseModel.add_basis_gates "qiskit.providers.aer.noise.NoiseModel.add_basis_gates")(instructions\[, warnings])                               | Add additional gates to the noise model basis\_gates.                |
+  | [`add_nonlocal_quantum_error`](#qiskit.providers.aer.noise.NoiseModel.add_nonlocal_quantum_error "qiskit.providers.aer.noise.NoiseModel.add_nonlocal_quantum_error")(error, …\[, …])         | Add a non-local quantum error to the noise model.                    |
+  | [`add_quantum_error`](#qiskit.providers.aer.noise.NoiseModel.add_quantum_error "qiskit.providers.aer.noise.NoiseModel.add_quantum_error")(error, instructions, qubits)                       | Add a quantum error to the noise model.                              |
+  | [`add_readout_error`](#qiskit.providers.aer.noise.NoiseModel.add_readout_error "qiskit.providers.aer.noise.NoiseModel.add_readout_error")(error, qubits\[, warnings])                        | Add a readout error to the noise model.                              |
+  | [`from_backend`](#qiskit.providers.aer.noise.NoiseModel.from_backend "qiskit.providers.aer.noise.NoiseModel.from_backend")(backend\[, gate\_error, …])                                       | Return a noise model derived from a devices backend properties.      |
+  | [`from_dict`](#qiskit.providers.aer.noise.NoiseModel.from_dict "qiskit.providers.aer.noise.NoiseModel.from_dict")(noise\_dict)                                                               | Load NoiseModel from a dictionary.                                   |
+  | [`is_ideal`](#qiskit.providers.aer.noise.NoiseModel.is_ideal "qiskit.providers.aer.noise.NoiseModel.is_ideal")()                                                                             | Return True if the noise model has no noise terms.                   |
+  | [`reset`](#qiskit.providers.aer.noise.NoiseModel.reset "qiskit.providers.aer.noise.NoiseModel.reset")()                                                                                      | Reset the noise model.                                               |
+  | [`to_dict`](#qiskit.providers.aer.noise.NoiseModel.to_dict "qiskit.providers.aer.noise.NoiseModel.to_dict")(\[serializable])                                                                 | Return the noise model as a dictionary.                              |
 
-**basis\_gates** (*list\[str] or None*) – Specify an initial basis\_gates for the noise model. If None a default value of \[‘id’, ‘u3’, ‘cx’] is used (Default: None).
+  ## Attributes
 
-Additional Information: Errors added to the noise model will have their instruction appended to the noise model basis\_gates if the instruction is in the [`QasmSimulator`](qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator") basis\_gates. If the instruction is not in the [`QasmSimulator`](qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator") basis\_gates it is assumed to be a label for a standard gate, and that gate should be added to the NoiseModel basis\_gates either using the init method, or the [`add_basis_gates()`](#qiskit.providers.aer.noise.NoiseModel.add_basis_gates "qiskit.providers.aer.noise.NoiseModel.add_basis_gates") method.
+  |                                                                                                                                              |                                                            |
+  | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+  | [`basis_gates`](#qiskit.providers.aer.noise.NoiseModel.basis_gates "qiskit.providers.aer.noise.NoiseModel.basis_gates")                      | Return basis\_gates for compiling to the noise model.      |
+  | [`noise_instructions`](#qiskit.providers.aer.noise.NoiseModel.noise_instructions "qiskit.providers.aer.noise.NoiseModel.noise_instructions") | Return the set of noisy instructions for this noise model. |
+  | [`noise_qubits`](#qiskit.providers.aer.noise.NoiseModel.noise_qubits "qiskit.providers.aer.noise.NoiseModel.noise_qubits")                   | Return the set of noisy qubits for this noise model.       |
 
-## Methods
+  ### add\_all\_qubit\_quantum\_error
 
-|                                                                                                                                                                                              |                                                                      |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| [`__init__`](#qiskit.providers.aer.noise.NoiseModel.__init__ "qiskit.providers.aer.noise.NoiseModel.__init__")(\[basis\_gates])                                                              | Initialize an empty noise model.                                     |
-| [`add_all_qubit_quantum_error`](#qiskit.providers.aer.noise.NoiseModel.add_all_qubit_quantum_error "qiskit.providers.aer.noise.NoiseModel.add_all_qubit_quantum_error")(error, instructions) | Add a quantum error to the noise model that applies to all qubits.   |
-| [`add_all_qubit_readout_error`](#qiskit.providers.aer.noise.NoiseModel.add_all_qubit_readout_error "qiskit.providers.aer.noise.NoiseModel.add_all_qubit_readout_error")(error\[, warnings])  | Add a single-qubit readout error that applies measure on all qubits. |
-| [`add_basis_gates`](#qiskit.providers.aer.noise.NoiseModel.add_basis_gates "qiskit.providers.aer.noise.NoiseModel.add_basis_gates")(instructions\[, warnings])                               | Add additional gates to the noise model basis\_gates.                |
-| [`add_nonlocal_quantum_error`](#qiskit.providers.aer.noise.NoiseModel.add_nonlocal_quantum_error "qiskit.providers.aer.noise.NoiseModel.add_nonlocal_quantum_error")(error, …\[, …])         | Add a non-local quantum error to the noise model.                    |
-| [`add_quantum_error`](#qiskit.providers.aer.noise.NoiseModel.add_quantum_error "qiskit.providers.aer.noise.NoiseModel.add_quantum_error")(error, instructions, qubits)                       | Add a quantum error to the noise model.                              |
-| [`add_readout_error`](#qiskit.providers.aer.noise.NoiseModel.add_readout_error "qiskit.providers.aer.noise.NoiseModel.add_readout_error")(error, qubits\[, warnings])                        | Add a readout error to the noise model.                              |
-| [`from_backend`](#qiskit.providers.aer.noise.NoiseModel.from_backend "qiskit.providers.aer.noise.NoiseModel.from_backend")(backend\[, gate\_error, …])                                       | Return a noise model derived from a devices backend properties.      |
-| [`from_dict`](#qiskit.providers.aer.noise.NoiseModel.from_dict "qiskit.providers.aer.noise.NoiseModel.from_dict")(noise\_dict)                                                               | Load NoiseModel from a dictionary.                                   |
-| [`is_ideal`](#qiskit.providers.aer.noise.NoiseModel.is_ideal "qiskit.providers.aer.noise.NoiseModel.is_ideal")()                                                                             | Return True if the noise model has no noise terms.                   |
-| [`reset`](#qiskit.providers.aer.noise.NoiseModel.reset "qiskit.providers.aer.noise.NoiseModel.reset")()                                                                                      | Reset the noise model.                                               |
-| [`to_dict`](#qiskit.providers.aer.noise.NoiseModel.to_dict "qiskit.providers.aer.noise.NoiseModel.to_dict")(\[serializable])                                                                 | Return the noise model as a dictionary.                              |
+  <Function id="qiskit.providers.aer.noise.NoiseModel.add_all_qubit_quantum_error" name="add_all_qubit_quantum_error" signature="add_all_qubit_quantum_error(error, instructions, warnings=True)">
+    Add a quantum error to the noise model that applies to all qubits.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                              |                                                            |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`basis_gates`](#qiskit.providers.aer.noise.NoiseModel.basis_gates "qiskit.providers.aer.noise.NoiseModel.basis_gates")                      | Return basis\_gates for compiling to the noise model.      |
-| [`noise_instructions`](#qiskit.providers.aer.noise.NoiseModel.noise_instructions "qiskit.providers.aer.noise.NoiseModel.noise_instructions") | Return the set of noisy instructions for this noise model. |
-| [`noise_qubits`](#qiskit.providers.aer.noise.NoiseModel.noise_qubits "qiskit.providers.aer.noise.NoiseModel.noise_qubits")                   | Return the set of noisy qubits for this noise model.       |
+    *   **error** ([*QuantumError*](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – the quantum error object.
+    *   \*\*(****str**** or ****list****\[****str****] \*\***or** (*instructions*) – Instruction or list\[Instruction]): the instructions error applies to.
+    *   **warnings** (*bool*) – Display warning if appending to an instruction that already has an error (Default: True).
 
-### add\_all\_qubit\_quantum\_error
+    **Raises**
 
-<span id="qiskit.providers.aer.noise.NoiseModel.add_all_qubit_quantum_error" />
+    **NoiseError** – if the input parameters are invalid.
 
-`add_all_qubit_quantum_error(error, instructions, warnings=True)`
+    **Additional Information:**
 
-Add a quantum error to the noise model that applies to all qubits.
+    If the error object is ideal it will not be added to the model.
+  </Function>
 
-**Parameters**
+  ### add\_all\_qubit\_readout\_error
 
-*   **error** ([*QuantumError*](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – the quantum error object.
-*   \*\*(****str**** or ****list****\[****str****] \*\***or** (*instructions*) – Instruction or list\[Instruction]): the instructions error applies to.
-*   **warnings** (*bool*) – Display warning if appending to an instruction that already has an error (Default: True).
+  <Function id="qiskit.providers.aer.noise.NoiseModel.add_all_qubit_readout_error" name="add_all_qubit_readout_error" signature="add_all_qubit_readout_error(error, warnings=True)">
+    Add a single-qubit readout error that applies measure on all qubits.
 
-**Raises**
+    **Parameters**
 
-**NoiseError** – if the input parameters are invalid.
+    *   **error** ([*ReadoutError*](qiskit.providers.aer.noise.ReadoutError "qiskit.providers.aer.noise.ReadoutError")) – the quantum error object.
+    *   **warnings** (*bool*) – Display warning if appending to an instruction that already has an error (Default: True)
 
-**Additional Information:**
+    **Raises**
 
-If the error object is ideal it will not be added to the model.
+    **NoiseError** – if the input parameters are invalid.
 
-### add\_all\_qubit\_readout\_error
+    **Additional Information:**
 
-<span id="qiskit.providers.aer.noise.NoiseModel.add_all_qubit_readout_error" />
+    If the error object is ideal it will not be added to the model.
+  </Function>
 
-`add_all_qubit_readout_error(error, warnings=True)`
+  ### add\_basis\_gates
 
-Add a single-qubit readout error that applies measure on all qubits.
+  <Function id="qiskit.providers.aer.noise.NoiseModel.add_basis_gates" name="add_basis_gates" signature="add_basis_gates(instructions, warnings=True)">
+    Add additional gates to the noise model basis\_gates.
 
-**Parameters**
+    This should be used to add any gates that are identified by a custom gate label in the noise model.
 
-*   **error** ([*ReadoutError*](qiskit.providers.aer.noise.ReadoutError "qiskit.providers.aer.noise.ReadoutError")) – the quantum error object.
-*   **warnings** (*bool*) – Display warning if appending to an instruction that already has an error (Default: True)
+    **Parameters**
 
-**Raises**
+    *   \*\*(****list****\[****str****] \*\***or** (*instructions*) – list\[Instruction]): the instructions error applies to.
+    *   **warnings** (*bool*) – display warning if instruction is not in QasmSimulator basis\_gates (Default: True).
+  </Function>
 
-**NoiseError** – if the input parameters are invalid.
+  ### add\_nonlocal\_quantum\_error
 
-**Additional Information:**
+  <Function id="qiskit.providers.aer.noise.NoiseModel.add_nonlocal_quantum_error" name="add_nonlocal_quantum_error" signature="add_nonlocal_quantum_error(error, instructions, qubits, noise_qubits, warnings=True)">
+    Add a non-local quantum error to the noise model.
 
-If the error object is ideal it will not be added to the model.
+    **Parameters**
 
-### add\_basis\_gates
+    *   **error** ([*QuantumError*](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – the quantum error object.
+    *   \*\*(****str**** or ****list****\[****str****] \*\***or** (*instructions*) – Instruction or list\[Instruction]): the instructions error applies to.
+    *   **qubits** (*list\[int]*) – qubits instruction error applies to.
+    *   **noise\_qubits** (*list\[int]*) – Specify the exact qubits the error should be applied to if different to the instruction qubits.
+    *   **warnings** (*bool*) – Display warning if appending to an instruction that already has an error (Default: True).
 
-<span id="qiskit.providers.aer.noise.NoiseModel.add_basis_gates" />
+    **Raises**
 
-`add_basis_gates(instructions, warnings=True)`
+    **NoiseError** – if the input parameters are invalid.
 
-Add additional gates to the noise model basis\_gates.
+    **Additional Information:**
 
-This should be used to add any gates that are identified by a custom gate label in the noise model.
+    If the error object is ideal it will not be added to the model.
+  </Function>
 
-**Parameters**
+  ### add\_quantum\_error
 
-*   \*\*(****list****\[****str****] \*\***or** (*instructions*) – list\[Instruction]): the instructions error applies to.
-*   **warnings** (*bool*) – display warning if instruction is not in QasmSimulator basis\_gates (Default: True).
+  <Function id="qiskit.providers.aer.noise.NoiseModel.add_quantum_error" name="add_quantum_error" signature="add_quantum_error(error, instructions, qubits, warnings=True)">
+    Add a quantum error to the noise model.
 
-### add\_nonlocal\_quantum\_error
+    **Parameters**
 
-<span id="qiskit.providers.aer.noise.NoiseModel.add_nonlocal_quantum_error" />
+    *   **error** ([*QuantumError*](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – the quantum error object.
+    *   \*\*(****str**** or ****list****\[****str****] \*\***or** (*instructions*) – Instruction or list\[Instruction]): the instructions error applies to.
+    *   **qubits** (*list\[int]*) – qubits instruction error applies to.
+    *   **warnings** (*bool*) – Display warning if appending to an instruction that already has an error (Default: True).
 
-`add_nonlocal_quantum_error(error, instructions, qubits, noise_qubits, warnings=True)`
+    **Raises**
 
-Add a non-local quantum error to the noise model.
+    **NoiseError** – if the input parameters are invalid.
 
-**Parameters**
+    **Additional Information:**
 
-*   **error** ([*QuantumError*](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – the quantum error object.
-*   \*\*(****str**** or ****list****\[****str****] \*\***or** (*instructions*) – Instruction or list\[Instruction]): the instructions error applies to.
-*   **qubits** (*list\[int]*) – qubits instruction error applies to.
-*   **noise\_qubits** (*list\[int]*) – Specify the exact qubits the error should be applied to if different to the instruction qubits.
-*   **warnings** (*bool*) – Display warning if appending to an instruction that already has an error (Default: True).
+    If the error object is ideal it will not be added to the model.
+  </Function>
 
-**Raises**
+  ### add\_readout\_error
 
-**NoiseError** – if the input parameters are invalid.
+  <Function id="qiskit.providers.aer.noise.NoiseModel.add_readout_error" name="add_readout_error" signature="add_readout_error(error, qubits, warnings=True)">
+    Add a readout error to the noise model.
 
-**Additional Information:**
+    **Parameters**
 
-If the error object is ideal it will not be added to the model.
+    *   **error** ([*ReadoutError*](qiskit.providers.aer.noise.ReadoutError "qiskit.providers.aer.noise.ReadoutError")) – the quantum error object.
+    *   **qubits** (*list\[int]*) – qubits instruction error applies to.
+    *   **warnings** (*bool*) – Display warning if appending to an instruction that already has an error \[Default: True]
 
-### add\_quantum\_error
+    **Raises**
 
-<span id="qiskit.providers.aer.noise.NoiseModel.add_quantum_error" />
+    **NoiseError** – if the input parameters are invalid.
 
-`add_quantum_error(error, instructions, qubits, warnings=True)`
+    **Additional Information:**
 
-Add a quantum error to the noise model.
+    If the error object is ideal it will not be added to the model.
+  </Function>
 
-**Parameters**
+  ### basis\_gates
 
-*   **error** ([*QuantumError*](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – the quantum error object.
-*   \*\*(****str**** or ****list****\[****str****] \*\***or** (*instructions*) – Instruction or list\[Instruction]): the instructions error applies to.
-*   **qubits** (*list\[int]*) – qubits instruction error applies to.
-*   **warnings** (*bool*) – Display warning if appending to an instruction that already has an error (Default: True).
+  <Function id="qiskit.providers.aer.noise.NoiseModel.basis_gates" name="basis_gates" signature="property basis_gates">
+    Return basis\_gates for compiling to the noise model.
+  </Function>
 
-**Raises**
+  ### from\_backend
 
-**NoiseError** – if the input parameters are invalid.
+  <Function id="qiskit.providers.aer.noise.NoiseModel.from_backend" name="from_backend" signature="classmethod from_backend(backend, gate_error=True, readout_error=True, thermal_relaxation=True, temperature=0, gate_lengths=None, gate_length_units='ns', standard_gates=True, warnings=True)">
+    Return a noise model derived from a devices backend properties.
 
-**Additional Information:**
+    This function generates a noise model based on:
 
-If the error object is ideal it will not be added to the model.
+    *   1 and 2 qubit gate errors consisting of a [`depolarizing_error()`](qiskit.providers.aer.noise.depolarizing_error "qiskit.providers.aer.noise.depolarizing_error") followed by a [`thermal_relaxation_error()`](qiskit.providers.aer.noise.thermal_relaxation_error "qiskit.providers.aer.noise.thermal_relaxation_error").
+    *   Single qubit [`ReadoutError`](qiskit.providers.aer.noise.ReadoutError "qiskit.providers.aer.noise.ReadoutError") on all measurements.
 
-### add\_readout\_error
+    The Error error parameters are tuned for each individual qubit based on the $T_1$, $T_2$, frequency and readout error parameters for each qubit, and the gate error and gate time parameters for each gate obtained from the device backend properties.
 
-<span id="qiskit.providers.aer.noise.NoiseModel.add_readout_error" />
+    **Additional Information**
 
-`add_readout_error(error, qubits, warnings=True)`
+    The noise model includes the following errors:
 
-Add a readout error to the noise model.
+    *   If `readout_error=True` include single qubit readout errors on measurements.
 
-**Parameters**
+    *   If `gate_error=True` and `thermal_relaxation=True` include:
 
-*   **error** ([*ReadoutError*](qiskit.providers.aer.noise.ReadoutError "qiskit.providers.aer.noise.ReadoutError")) – the quantum error object.
-*   **qubits** (*list\[int]*) – qubits instruction error applies to.
-*   **warnings** (*bool*) – Display warning if appending to an instruction that already has an error \[Default: True]
+        > *   Single-qubit gate errors consisting of a [`depolarizing_error()`](qiskit.providers.aer.noise.depolarizing_error "qiskit.providers.aer.noise.depolarizing_error") followed by a [`thermal_relaxation_error()`](qiskit.providers.aer.noise.thermal_relaxation_error "qiskit.providers.aer.noise.thermal_relaxation_error") for the qubit the gate acts on.
+        > *   Two-qubit gate errors consisting of a 2-qubit [`depolarizing_error()`](qiskit.providers.aer.noise.depolarizing_error "qiskit.providers.aer.noise.depolarizing_error") followed by single qubit [`thermal_relaxation_error()`](qiskit.providers.aer.noise.thermal_relaxation_error "qiskit.providers.aer.noise.thermal_relaxation_error") on each qubit participating in the gate.
 
-**Raises**
+    *   If `gate_error=True` is `True` and `thermal_relaxation=False`:
 
-**NoiseError** – if the input parameters are invalid.
+        > *   An N-qubit [`depolarizing_error()`](qiskit.providers.aer.noise.depolarizing_error "qiskit.providers.aer.noise.depolarizing_error") on each N-qubit gate.
 
-**Additional Information:**
+    *   If `gate_error=False` and `thermal_relaxation=True` include single-qubit `thermal_relaxation_errors()` on each qubits participating in a multi-qubit gate.
 
-If the error object is ideal it will not be added to the model.
+    For best practice in simulating a backend make sure that the circuit is compiled using the set of basis gates in the noise module by setting `basis_gates=noise_model.basis_gates` and using the device coupling map with `coupling_map=backend.configuration().coupling_map`
 
-### basis\_gates
+    **Specifying custom gate times**
 
-<span id="qiskit.providers.aer.noise.NoiseModel.basis_gates" />
+    The `gate_lengths` kwarg can be used to specify custom gate times to add gate errors using the $T_1$ and $T_2$ values from the backend properties. This should be passed as a list of tuples `gate_lengths=[(name, value), ...]` where `name` is the gate name string, and `value` is the gate time in nanoseconds.
 
-`property basis_gates`
+    If a custom gate is specified that already exists in the backend properties, the `gate_lengths` value will override the gate time value from the backend properties. If non-default values are used gate\_lengths should be a list
 
-Return basis\_gates for compiling to the noise model.
+    **Parameters**
 
-### from\_backend
+    *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")  *or*[*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – backend properties.
+    *   **gate\_error** (*bool*) – Include depolarizing gate errors (Default: True).
+    *   **readout\_error** (*Bool*) – Include readout errors in model (Default: True).
+    *   **thermal\_relaxation** (*Bool*) – Include thermal relaxation errors (Default: True).
+    *   **temperature** (*double*) – qubit temperature in milli-Kelvin (mK) for thermal relaxation errors (Default: 0).
+    *   **gate\_lengths** (*list*) – Custom gate times for thermal relaxation errors. Used to extend or override the gate times in the backend properties (Default: None))
+    *   **gate\_length\_units** (*str*) – Time units for gate length values in gate\_lengths. Can be ‘ns’, ‘ms’, ‘us’, or ‘s’ (Default: ‘ns’).
+    *   **standard\_gates** (*bool*) – If true return errors as standard qobj gates. If false return as unitary qobj instructions (Default: True)
+    *   **warnings** (*bool*) – Display warnings (Default: True).
 
-<span id="qiskit.providers.aer.noise.NoiseModel.from_backend" />
+    **Returns**
 
-`classmethod from_backend(backend, gate_error=True, readout_error=True, thermal_relaxation=True, temperature=0, gate_lengths=None, gate_length_units='ns', standard_gates=True, warnings=True)`
+    An approximate noise model for the device backend.
 
-Return a noise model derived from a devices backend properties.
+    **Return type**
 
-This function generates a noise model based on:
+    [NoiseModel](#qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")
 
-*   1 and 2 qubit gate errors consisting of a [`depolarizing_error()`](qiskit.providers.aer.noise.depolarizing_error "qiskit.providers.aer.noise.depolarizing_error") followed by a [`thermal_relaxation_error()`](qiskit.providers.aer.noise.thermal_relaxation_error "qiskit.providers.aer.noise.thermal_relaxation_error").
-*   Single qubit [`ReadoutError`](qiskit.providers.aer.noise.ReadoutError "qiskit.providers.aer.noise.ReadoutError") on all measurements.
+    **Raises**
 
-The Error error parameters are tuned for each individual qubit based on the $T_1$, $T_2$, frequency and readout error parameters for each qubit, and the gate error and gate time parameters for each gate obtained from the device backend properties.
+    **NoiseError** – If the input backend is not valid.
+  </Function>
 
-**Additional Information**
+  ### from\_dict
 
-The noise model includes the following errors:
+  <Function id="qiskit.providers.aer.noise.NoiseModel.from_dict" name="from_dict" signature="static from_dict(noise_dict)">
+    Load NoiseModel from a dictionary.
 
-*   If `readout_error=True` include single qubit readout errors on measurements.
+    **Parameters**
 
-*   If `gate_error=True` and `thermal_relaxation=True` include:
+    **noise\_dict** (*dict*) – A serialized noise model.
 
-    > *   Single-qubit gate errors consisting of a [`depolarizing_error()`](qiskit.providers.aer.noise.depolarizing_error "qiskit.providers.aer.noise.depolarizing_error") followed by a [`thermal_relaxation_error()`](qiskit.providers.aer.noise.thermal_relaxation_error "qiskit.providers.aer.noise.thermal_relaxation_error") for the qubit the gate acts on.
-    > *   Two-qubit gate errors consisting of a 2-qubit [`depolarizing_error()`](qiskit.providers.aer.noise.depolarizing_error "qiskit.providers.aer.noise.depolarizing_error") followed by single qubit [`thermal_relaxation_error()`](qiskit.providers.aer.noise.thermal_relaxation_error "qiskit.providers.aer.noise.thermal_relaxation_error") on each qubit participating in the gate.
+    **Returns**
 
-*   If `gate_error=True` is `True` and `thermal_relaxation=False`:
+    the noise model.
 
-    > *   An N-qubit [`depolarizing_error()`](qiskit.providers.aer.noise.depolarizing_error "qiskit.providers.aer.noise.depolarizing_error") on each N-qubit gate.
+    **Return type**
 
-*   If `gate_error=False` and `thermal_relaxation=True` include single-qubit `thermal_relaxation_errors()` on each qubits participating in a multi-qubit gate.
+    [NoiseModel](#qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")
 
-For best practice in simulating a backend make sure that the circuit is compiled using the set of basis gates in the noise module by setting `basis_gates=noise_model.basis_gates` and using the device coupling map with `coupling_map=backend.configuration().coupling_map`
+    **Raises**
 
-**Specifying custom gate times**
+    **NoiseError** – if dict cannot be converted to NoiseModel.
+  </Function>
 
-The `gate_lengths` kwarg can be used to specify custom gate times to add gate errors using the $T_1$ and $T_2$ values from the backend properties. This should be passed as a list of tuples `gate_lengths=[(name, value), ...]` where `name` is the gate name string, and `value` is the gate time in nanoseconds.
+  ### is\_ideal
 
-If a custom gate is specified that already exists in the backend properties, the `gate_lengths` value will override the gate time value from the backend properties. If non-default values are used gate\_lengths should be a list
+  <Function id="qiskit.providers.aer.noise.NoiseModel.is_ideal" name="is_ideal" signature="is_ideal()">
+    Return True if the noise model has no noise terms.
+  </Function>
 
-**Parameters**
+  ### noise\_instructions
 
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")  *or*[*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – backend properties.
-*   **gate\_error** (*bool*) – Include depolarizing gate errors (Default: True).
-*   **readout\_error** (*Bool*) – Include readout errors in model (Default: True).
-*   **thermal\_relaxation** (*Bool*) – Include thermal relaxation errors (Default: True).
-*   **temperature** (*double*) – qubit temperature in milli-Kelvin (mK) for thermal relaxation errors (Default: 0).
-*   **gate\_lengths** (*list*) – Custom gate times for thermal relaxation errors. Used to extend or override the gate times in the backend properties (Default: None))
-*   **gate\_length\_units** (*str*) – Time units for gate length values in gate\_lengths. Can be ‘ns’, ‘ms’, ‘us’, or ‘s’ (Default: ‘ns’).
-*   **standard\_gates** (*bool*) – If true return errors as standard qobj gates. If false return as unitary qobj instructions (Default: True)
-*   **warnings** (*bool*) – Display warnings (Default: True).
+  <Function id="qiskit.providers.aer.noise.NoiseModel.noise_instructions" name="noise_instructions" signature="property noise_instructions">
+    Return the set of noisy instructions for this noise model.
+  </Function>
 
-**Returns**
+  ### noise\_qubits
 
-An approximate noise model for the device backend.
+  <Function id="qiskit.providers.aer.noise.NoiseModel.noise_qubits" name="noise_qubits" signature="property noise_qubits">
+    Return the set of noisy qubits for this noise model.
+  </Function>
 
-**Return type**
+  ### reset
 
-[NoiseModel](#qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")
+  <Function id="qiskit.providers.aer.noise.NoiseModel.reset" name="reset" signature="reset()">
+    Reset the noise model.
+  </Function>
 
-**Raises**
+  ### to\_dict
 
-**NoiseError** – If the input backend is not valid.
+  <Function id="qiskit.providers.aer.noise.NoiseModel.to_dict" name="to_dict" signature="to_dict(serializable=False)">
+    Return the noise model as a dictionary.
 
-### from\_dict
+    **Parameters**
 
-<span id="qiskit.providers.aer.noise.NoiseModel.from_dict" />
+    **serializable** (*bool*) – if True, return a dict containing only types that can be serializable by the stdlib json module.
 
-`static from_dict(noise_dict)`
+    **Returns**
 
-Load NoiseModel from a dictionary.
+    a dictionary for a noise model.
 
-**Parameters**
+    **Return type**
 
-**noise\_dict** (*dict*) – A serialized noise model.
-
-**Returns**
-
-the noise model.
-
-**Return type**
-
-[NoiseModel](#qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")
-
-**Raises**
-
-**NoiseError** – if dict cannot be converted to NoiseModel.
-
-### is\_ideal
-
-<span id="qiskit.providers.aer.noise.NoiseModel.is_ideal" />
-
-`is_ideal()`
-
-Return True if the noise model has no noise terms.
-
-### noise\_instructions
-
-<span id="qiskit.providers.aer.noise.NoiseModel.noise_instructions" />
-
-`property noise_instructions`
-
-Return the set of noisy instructions for this noise model.
-
-### noise\_qubits
-
-<span id="qiskit.providers.aer.noise.NoiseModel.noise_qubits" />
-
-`property noise_qubits`
-
-Return the set of noisy qubits for this noise model.
-
-### reset
-
-<span id="qiskit.providers.aer.noise.NoiseModel.reset" />
-
-`reset()`
-
-Reset the noise model.
-
-### to\_dict
-
-<span id="qiskit.providers.aer.noise.NoiseModel.to_dict" />
-
-`to_dict(serializable=False)`
-
-Return the noise model as a dictionary.
-
-**Parameters**
-
-**serializable** (*bool*) – if True, return a dict containing only types that can be serializable by the stdlib json module.
-
-**Returns**
-
-a dictionary for a noise model.
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 
