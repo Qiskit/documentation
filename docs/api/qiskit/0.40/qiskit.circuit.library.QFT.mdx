@@ -8,296 +8,282 @@ python_api_name: qiskit.circuit.library.QFT
 
 # QFT
 
-<span id="qiskit.circuit.library.QFT" />
+<Class id="qiskit.circuit.library.QFT" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/basis_change/qft.py" signature="QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)">
+  Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 
-`QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/basis_change/qft.py "view source code")
+  Quantum Fourier Transform Circuit.
 
-Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
+  The Quantum Fourier Transform (QFT) on $n$ qubits is the operation
 
-Quantum Fourier Transform Circuit.
+  $$
+  |j\rangle \mapsto \frac{1}{2^{n/2}} \sum_{k=0}^{2^n - 1} e^{2\pi ijk / 2^n} |k\rangle
+  $$
 
-The Quantum Fourier Transform (QFT) on $n$ qubits is the operation
+  The circuit that implements this transformation can be implemented using Hadamard gates on each qubit, a series of controlled-U1 (or Z, depending on the phase) gates and a layer of Swap gates. The layer of Swap gates can in principle be dropped if the QFT appears at the end of the circuit, since then the re-ordering can be done classically. They can be turned off using the `do_swaps` attribute.
 
-$$
-|j\rangle \mapsto \frac{1}{2^{n/2}} \sum_{k=0}^{2^n - 1} e^{2\pi ijk / 2^n} |k\rangle
-$$
+  For 4 qubits, the circuit that implements this transformation is:
 
-The circuit that implements this transformation can be implemented using Hadamard gates on each qubit, a series of controlled-U1 (or Z, depending on the phase) gates and a layer of Swap gates. The layer of Swap gates can in principle be dropped if the QFT appears at the end of the circuit, since then the re-ordering can be done classically. They can be turned off using the `do_swaps` attribute.
+  ([Source code](qiskit-circuit-library-QFT-1.py), [png](qiskit-circuit-library-QFT-1.png), [hires.png](qiskit-circuit-library-QFT-1.hires.png), [pdf](qiskit-circuit-library-QFT-1.pdf))
 
-For 4 qubits, the circuit that implements this transformation is:
+  ![../\_images/qiskit-circuit-library-QFT-1.png](/images/api/qiskit/0.40/qiskit-circuit-library-QFT-1.png)
 
-([Source code](qiskit-circuit-library-QFT-1.py), [png](qiskit-circuit-library-QFT-1.png), [hires.png](qiskit-circuit-library-QFT-1.hires.png), [pdf](qiskit-circuit-library-QFT-1.pdf))
+  The inverse QFT can be obtained by calling the `inverse` method on this class. The respective circuit diagram is:
 
-![../\_images/qiskit-circuit-library-QFT-1.png](/images/api/qiskit/0.40/qiskit-circuit-library-QFT-1.png)
+  ([Source code](qiskit-circuit-library-QFT-2.py), [png](qiskit-circuit-library-QFT-2.png), [hires.png](qiskit-circuit-library-QFT-2.hires.png), [pdf](qiskit-circuit-library-QFT-2.pdf))
 
-The inverse QFT can be obtained by calling the `inverse` method on this class. The respective circuit diagram is:
+  ![../\_images/qiskit-circuit-library-QFT-2.png](/images/api/qiskit/0.40/qiskit-circuit-library-QFT-2.png)
 
-([Source code](qiskit-circuit-library-QFT-2.py), [png](qiskit-circuit-library-QFT-2.png), [hires.png](qiskit-circuit-library-QFT-2.hires.png), [pdf](qiskit-circuit-library-QFT-2.pdf))
+  One method to reduce circuit depth is to implement the QFT approximately by ignoring controlled-phase rotations where the angle is beneath a threshold. This is discussed in more detail in [https://arxiv.org/abs/quant-ph/9601018](https://arxiv.org/abs/quant-ph/9601018) or [https://arxiv.org/abs/quant-ph/0403071](https://arxiv.org/abs/quant-ph/0403071).
 
-![../\_images/qiskit-circuit-library-QFT-2.png](/images/api/qiskit/0.40/qiskit-circuit-library-QFT-2.png)
+  Here, this can be adjusted using the `approximation_degree` attribute: the smallest `approximation_degree` rotation angles are dropped from the QFT. For instance, a QFT on 5 qubits with approximation degree 2 yields (the barriers are dropped in this example):
 
-One method to reduce circuit depth is to implement the QFT approximately by ignoring controlled-phase rotations where the angle is beneath a threshold. This is discussed in more detail in [https://arxiv.org/abs/quant-ph/9601018](https://arxiv.org/abs/quant-ph/9601018) or [https://arxiv.org/abs/quant-ph/0403071](https://arxiv.org/abs/quant-ph/0403071).
+  ([Source code](qiskit-circuit-library-QFT-3.py), [png](qiskit-circuit-library-QFT-3.png), [hires.png](qiskit-circuit-library-QFT-3.hires.png), [pdf](qiskit-circuit-library-QFT-3.pdf))
 
-Here, this can be adjusted using the `approximation_degree` attribute: the smallest `approximation_degree` rotation angles are dropped from the QFT. For instance, a QFT on 5 qubits with approximation degree 2 yields (the barriers are dropped in this example):
+  ![../\_images/qiskit-circuit-library-QFT-3.png](/images/api/qiskit/0.40/qiskit-circuit-library-QFT-3.png)
 
-([Source code](qiskit-circuit-library-QFT-3.py), [png](qiskit-circuit-library-QFT-3.png), [hires.png](qiskit-circuit-library-QFT-3.hires.png), [pdf](qiskit-circuit-library-QFT-3.pdf))
+  Construct a new QFT circuit.
 
-![../\_images/qiskit-circuit-library-QFT-3.png](/images/api/qiskit/0.40/qiskit-circuit-library-QFT-3.png)
+  **Parameters**
 
-Construct a new QFT circuit.
+  *   **num\_qubits** (`Optional`\[`int`]) – The number of qubits on which the QFT acts.
+  *   **approximation\_degree** (`int`) – The degree of approximation (0 for no approximation).
+  *   **do\_swaps** (`bool`) – Whether to include the final swaps in the QFT.
+  *   **inverse** (`bool`) – If True, the inverse Fourier transform is constructed.
+  *   **insert\_barriers** (`bool`) – If True, barriers are inserted as visualization improvement.
+  *   **name** (`Optional`\[`str`]) – The name of the circuit.
 
-**Parameters**
+  ## Methods Defined Here
 
-*   **num\_qubits** (`Optional`\[`int`]) – The number of qubits on which the QFT acts.
-*   **approximation\_degree** (`int`) – The degree of approximation (0 for no approximation).
-*   **do\_swaps** (`bool`) – Whether to include the final swaps in the QFT.
-*   **inverse** (`bool`) – If True, the inverse Fourier transform is constructed.
-*   **insert\_barriers** (`bool`) – If True, barriers are inserted as visualization improvement.
-*   **name** (`Optional`\[`str`]) – The name of the circuit.
+  ### inverse
 
-## Methods Defined Here
+  <Function id="qiskit.circuit.library.QFT.inverse" name="inverse" signature="QFT.inverse()">
+    Invert this circuit.
 
-### inverse
+    **Return type**
 
-<span id="qiskit.circuit.library.QFT.inverse" />
+    [`QFT`](qiskit.circuit.library.QFT "qiskit.circuit.library.basis_change.qft.QFT")
 
-`QFT.inverse()`
+    **Returns**
 
-Invert this circuit.
+    The inverted circuit.
+  </Function>
 
-**Return type**
+  ### is\_inverse
 
-[`QFT`](qiskit.circuit.library.QFT "qiskit.circuit.library.basis_change.qft.QFT")
+  <Function id="qiskit.circuit.library.QFT.is_inverse" name="is_inverse" signature="QFT.is_inverse()">
+    Whether the inverse Fourier transform is implemented.
 
-**Returns**
+    **Return type**
 
-The inverted circuit.
+    `bool`
 
-### is\_inverse
+    **Returns**
 
-<span id="qiskit.circuit.library.QFT.is_inverse" />
+    True, if the inverse Fourier transform is implemented, False otherwise.
+  </Function>
 
-`QFT.is_inverse()`
+  ## Attributes
 
-Whether the inverse Fourier transform is implemented.
+  ### ancillas
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.QFT.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-`bool`
+    **Return type**
 
-**Returns**
+    `List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  </Attribute>
 
-True, if the inverse Fourier transform is implemented, False otherwise.
+  ### approximation\_degree
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.QFT.approximation_degree" name="approximation_degree">
+    The approximation degree of the QFT.
 
-<span id="qiskit.circuit.library.QFT.ancillas" />
+    **Return type**
 
-### ancillas
+    `int`
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **Returns**
 
-**Return type**
+    The currently set approximation degree.
+  </Attribute>
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  ### calibrations
 
-<span id="qiskit.circuit.library.QFT.approximation_degree" />
+  <Attribute id="qiskit.circuit.library.QFT.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-### approximation\_degree
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
 
-The approximation degree of the QFT.
+    **Return type**
 
-**Return type**
+    `dict`
+  </Attribute>
 
-`int`
+  ### clbits
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.QFT.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-The currently set approximation degree.
+    **Return type**
 
-<span id="qiskit.circuit.library.QFT.calibrations" />
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-### calibrations
+  ### data
 
-Return calibration dictionary.
+  <Attribute id="qiskit.circuit.library.QFT.data" name="data" />
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  ### do\_swaps
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.QFT.do_swaps" name="do_swaps">
+    Whether the final swaps of the QFT are applied or not.
 
-`dict`
+    **Return type**
 
-<span id="qiskit.circuit.library.QFT.clbits" />
+    `bool`
 
-### clbits
+    **Returns**
 
-Returns a list of classical bits in the order that the registers were added.
+    True, if the final swaps are applied, False if not.
+  </Attribute>
 
-**Return type**
+  ### extension\_lib
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  <Attribute id="qiskit.circuit.library.QFT.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-<span id="qiskit.circuit.library.QFT.data" />
+  ### global\_phase
 
-### data
+  <Attribute id="qiskit.circuit.library.QFT.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-<span id="qiskit.circuit.library.QFT.do_swaps" />
+    **Return type**
 
-### do\_swaps
+    `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  </Attribute>
 
-Whether the final swaps of the QFT are applied or not.
+  ### header
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.QFT.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-`bool`
+  ### insert\_barriers
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.QFT.insert_barriers" name="insert_barriers">
+    Whether barriers are inserted for better visualization or not.
 
-True, if the final swaps are applied, False if not.
+    **Return type**
 
-<span id="qiskit.circuit.library.QFT.extension_lib" />
+    `bool`
 
-### extension\_lib
+    **Returns**
 
-`= 'include "qelib1.inc";'`
+    True, if barriers are inserted, False if not.
+  </Attribute>
 
-<span id="qiskit.circuit.library.QFT.global_phase" />
+  ### instances
 
-### global\_phase
+  <Attribute id="qiskit.circuit.library.QFT.instances" name="instances" attributeValue="= 2445" />
 
-Return the global phase of the circuit in radians.
+  ### metadata
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.QFT.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-<span id="qiskit.circuit.library.QFT.header" />
+    **Return type**
 
-### header
+    `dict`
+  </Attribute>
 
-`= 'OPENQASM 2.0;'`
+  ### num\_ancillas
 
-<span id="qiskit.circuit.library.QFT.insert_barriers" />
+  <Attribute id="qiskit.circuit.library.QFT.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-### insert\_barriers
+    **Return type**
 
-Whether barriers are inserted for better visualization or not.
+    `int`
+  </Attribute>
 
-**Return type**
+  ### num\_clbits
 
-`bool`
+  <Attribute id="qiskit.circuit.library.QFT.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-**Returns**
+    **Return type**
 
-True, if barriers are inserted, False if not.
+    `int`
+  </Attribute>
 
-<span id="qiskit.circuit.library.QFT.instances" />
+  ### num\_parameters
 
-### instances
+  <Attribute id="qiskit.circuit.library.QFT.num_parameters" name="num_parameters">
+    **Return type**
 
-`= 2445`
+    `int`
+  </Attribute>
 
-<span id="qiskit.circuit.library.QFT.metadata" />
+  ### num\_qubits
 
-### metadata
+  <Attribute id="qiskit.circuit.library.QFT.num_qubits" name="num_qubits">
+    The number of qubits in the QFT circuit.
 
-The user provided metadata associated with the circuit
+    **Return type**
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    `int`
 
-**Return type**
+    **Returns**
 
-`dict`
+    The number of qubits in the circuit.
+  </Attribute>
 
-<span id="qiskit.circuit.library.QFT.num_ancillas" />
+  ### op\_start\_times
 
-### num\_ancillas
+  <Attribute id="qiskit.circuit.library.QFT.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-Return the number of ancilla qubits.
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-**Return type**
+    **Return type**
 
-`int`
+    `List`\[`int`]
 
-<span id="qiskit.circuit.library.QFT.num_clbits" />
+    **Returns**
 
-### num\_clbits
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-Return number of classical bits.
+    **Raises**
 
-**Return type**
+    **AttributeError** – When circuit is not scheduled.
+  </Attribute>
 
-`int`
+  ### parameters
 
-<span id="qiskit.circuit.library.QFT.num_parameters" />
+  <Attribute id="qiskit.circuit.library.QFT.parameters" name="parameters">
+    **Return type**
 
-### num\_parameters
+    `ParameterView`
+  </Attribute>
 
-**Return type**
+  ### prefix
 
-`int`
+  <Attribute id="qiskit.circuit.library.QFT.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-<span id="qiskit.circuit.library.QFT.num_qubits" />
+  ### qregs
 
-### num\_qubits
+  <Attribute id="qiskit.circuit.library.QFT.qregs" name="qregs">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-The number of qubits in the QFT circuit.
+  ### qubits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.QFT.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-`int`
+    **Return type**
 
-**Returns**
-
-The number of qubits in the circuit.
-
-<span id="qiskit.circuit.library.QFT.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
-<span id="qiskit.circuit.library.QFT.parameters" />
-
-### parameters
-
-**Return type**
-
-`ParameterView`
-
-<span id="qiskit.circuit.library.QFT.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.QFT.qregs" />
-
-### qregs
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.QFT.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+    `List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+  </Attribute>
+</Class>
 
