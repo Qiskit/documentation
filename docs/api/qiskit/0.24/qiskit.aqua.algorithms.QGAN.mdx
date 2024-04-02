@@ -10,277 +10,241 @@ python_api_name: qiskit.aqua.algorithms.QGAN
 
 # qiskit.aqua.algorithms.QGAN
 
-<span id="qiskit.aqua.algorithms.QGAN" />
+<Class id="qiskit.aqua.algorithms.QGAN" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/distribution_learners/qgan.py" signature="QGAN(data, bounds=None, num_qubits=None, batch_size=500, num_epochs=3000, seed=7, discriminator=None, generator=None, tol_rel_ent=None, snapshot_dir=None, quantum_instance=None)">
+  The Quantum Generative Adversarial Network algorithm.
 
-`QGAN(data, bounds=None, num_qubits=None, batch_size=500, num_epochs=3000, seed=7, discriminator=None, generator=None, tol_rel_ent=None, snapshot_dir=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/distribution_learners/qgan.py "view source code")
+  The qGAN \[1] is a hybrid quantum-classical algorithm used for generative modeling tasks.
 
-The Quantum Generative Adversarial Network algorithm.
+  This adaptive algorithm uses the interplay of a generative [`GenerativeNetwork`](qiskit.aqua.components.neural_networks.GenerativeNetwork "qiskit.aqua.components.neural_networks.GenerativeNetwork") and a discriminative [`DiscriminativeNetwork`](qiskit.aqua.components.neural_networks.DiscriminativeNetwork "qiskit.aqua.components.neural_networks.DiscriminativeNetwork") network to learn the probability distribution underlying given training data.
 
-The qGAN \[1] is a hybrid quantum-classical algorithm used for generative modeling tasks.
+  These networks are trained in alternating optimization steps, where the discriminator tries to differentiate between training data samples and data samples from the generator and the generator aims at generating samples which the discriminator classifies as training data samples. Eventually, the quantum generator learns the training data’s underlying probability distribution. The trained quantum generator loads a quantum state which is a model of the target distribution.
 
-This adaptive algorithm uses the interplay of a generative [`GenerativeNetwork`](qiskit.aqua.components.neural_networks.GenerativeNetwork "qiskit.aqua.components.neural_networks.GenerativeNetwork") and a discriminative [`DiscriminativeNetwork`](qiskit.aqua.components.neural_networks.DiscriminativeNetwork "qiskit.aqua.components.neural_networks.DiscriminativeNetwork") network to learn the probability distribution underlying given training data.
+  **References:**
 
-These networks are trained in alternating optimization steps, where the discriminator tries to differentiate between training data samples and data samples from the generator and the generator aims at generating samples which the discriminator classifies as training data samples. Eventually, the quantum generator learns the training data’s underlying probability distribution. The trained quantum generator loads a quantum state which is a model of the target distribution.
+  **\[1] Zoufal et al.,**
 
-**References:**
+  [Quantum Generative Adversarial Networks for learning and loading random distributions](https://www.nature.com/articles/s41534-019-0223-2)
 
-**\[1] Zoufal et al.,**
+  **Parameters**
 
-[Quantum Generative Adversarial Networks for learning and loading random distributions](https://www.nature.com/articles/s41534-019-0223-2)
+  *   **data** (`ndarray`) – Training data of dimension k
+  *   **bounds** (`Optional`\[`ndarray`]) – k min/max data values \[\[min\_0,max\_0],…,\[min\_k-1,max\_k-1]] if univariate data: \[min\_0,max\_0]
+  *   **num\_qubits** (`Optional`\[`ndarray`]) – k numbers of qubits to determine representation resolution, i.e. n qubits enable the representation of 2\*\*n values \[num\_qubits\_0,…, num\_qubits\_k-1]
+  *   **batch\_size** (`int`) – Batch size, has a min. value of 1.
+  *   **num\_epochs** (`int`) – Number of training epochs
+  *   **seed** (`int`) – Random number seed
+  *   **discriminator** (`Optional`\[`DiscriminativeNetwork`]) – Discriminates between real and fake data samples
+  *   **generator** (`Optional`\[`GenerativeNetwork`]) – Generates ‘fake’ data samples
+  *   **tol\_rel\_ent** (`Optional`\[`float`]) – Set tolerance level for relative entropy. If the training achieves relative entropy equal or lower than tolerance it finishes.
+  *   **snapshot\_dir** (`Optional`\[`str`]) – Directory in to which to store cvs file with parameters, if None (default) then no cvs file is created.
+  *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
 
-**Parameters**
+  **Raises**
 
-*   **data** (`ndarray`) – Training data of dimension k
-*   **bounds** (`Optional`\[`ndarray`]) – k min/max data values \[\[min\_0,max\_0],…,\[min\_k-1,max\_k-1]] if univariate data: \[min\_0,max\_0]
-*   **num\_qubits** (`Optional`\[`ndarray`]) – k numbers of qubits to determine representation resolution, i.e. n qubits enable the representation of 2\*\*n values \[num\_qubits\_0,…, num\_qubits\_k-1]
-*   **batch\_size** (`int`) – Batch size, has a min. value of 1.
-*   **num\_epochs** (`int`) – Number of training epochs
-*   **seed** (`int`) – Random number seed
-*   **discriminator** (`Optional`\[`DiscriminativeNetwork`]) – Discriminates between real and fake data samples
-*   **generator** (`Optional`\[`GenerativeNetwork`]) – Generates ‘fake’ data samples
-*   **tol\_rel\_ent** (`Optional`\[`float`]) – Set tolerance level for relative entropy. If the training achieves relative entropy equal or lower than tolerance it finishes.
-*   **snapshot\_dir** (`Optional`\[`str`]) – Directory in to which to store cvs file with parameters, if None (default) then no cvs file is created.
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
+  [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
 
-**Raises**
+  ### \_\_init\_\_
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
+  <Function id="qiskit.aqua.algorithms.QGAN.__init__" name="__init__" signature="__init__(data, bounds=None, num_qubits=None, batch_size=500, num_epochs=3000, seed=7, discriminator=None, generator=None, tol_rel_ent=None, snapshot_dir=None, quantum_instance=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **data** (`ndarray`) – Training data of dimension k
+    *   **bounds** (`Optional`\[`ndarray`]) – k min/max data values \[\[min\_0,max\_0],…,\[min\_k-1,max\_k-1]] if univariate data: \[min\_0,max\_0]
+    *   **num\_qubits** (`Optional`\[`ndarray`]) – k numbers of qubits to determine representation resolution, i.e. n qubits enable the representation of 2\*\*n values \[num\_qubits\_0,…, num\_qubits\_k-1]
+    *   **batch\_size** (`int`) – Batch size, has a min. value of 1.
+    *   **num\_epochs** (`int`) – Number of training epochs
+    *   **seed** (`int`) – Random number seed
+    *   **discriminator** (`Optional`\[`DiscriminativeNetwork`]) – Discriminates between real and fake data samples
+    *   **generator** (`Optional`\[`GenerativeNetwork`]) – Generates ‘fake’ data samples
+    *   **tol\_rel\_ent** (`Optional`\[`float`]) – Set tolerance level for relative entropy. If the training achieves relative entropy equal or lower than tolerance it finishes.
+    *   **snapshot\_dir** (`Optional`\[`str`]) – Directory in to which to store cvs file with parameters, if None (default) then no cvs file is created.
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
 
-<span id="qiskit.aqua.algorithms.QGAN.__init__" />
+    **Raises**
 
-`__init__(data, bounds=None, num_qubits=None, batch_size=500, num_epochs=3000, seed=7, discriminator=None, generator=None, tol_rel_ent=None, snapshot_dir=None, quantum_instance=None)`
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **data** (`ndarray`) – Training data of dimension k
-*   **bounds** (`Optional`\[`ndarray`]) – k min/max data values \[\[min\_0,max\_0],…,\[min\_k-1,max\_k-1]] if univariate data: \[min\_0,max\_0]
-*   **num\_qubits** (`Optional`\[`ndarray`]) – k numbers of qubits to determine representation resolution, i.e. n qubits enable the representation of 2\*\*n values \[num\_qubits\_0,…, num\_qubits\_k-1]
-*   **batch\_size** (`int`) – Batch size, has a min. value of 1.
-*   **num\_epochs** (`int`) – Number of training epochs
-*   **seed** (`int`) – Random number seed
-*   **discriminator** (`Optional`\[`DiscriminativeNetwork`]) – Discriminates between real and fake data samples
-*   **generator** (`Optional`\[`GenerativeNetwork`]) – Generates ‘fake’ data samples
-*   **tol\_rel\_ent** (`Optional`\[`float`]) – Set tolerance level for relative entropy. If the training achieves relative entropy equal or lower than tolerance it finishes.
-*   **snapshot\_dir** (`Optional`\[`str`]) – Directory in to which to store cvs file with parameters, if None (default) then no cvs file is created.
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
+  |                                                                                                                                         |                                                              |
+  | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+  | [`__init__`](#qiskit.aqua.algorithms.QGAN.__init__ "qiskit.aqua.algorithms.QGAN.__init__")(data\[, bounds, num\_qubits, …])             | **type data**`ndarray`                                       |
+  | [`get_rel_entr`](#qiskit.aqua.algorithms.QGAN.get_rel_entr "qiskit.aqua.algorithms.QGAN.get_rel_entr")()                                | Get relative entropy between target and trained distribution |
+  | [`run`](#qiskit.aqua.algorithms.QGAN.run "qiskit.aqua.algorithms.QGAN.run")(\[quantum\_instance])                                       | Execute the algorithm with selected backend.                 |
+  | [`set_backend`](#qiskit.aqua.algorithms.QGAN.set_backend "qiskit.aqua.algorithms.QGAN.set_backend")(backend, \*\*kwargs)                | Sets backend with configuration.                             |
+  | [`set_discriminator`](#qiskit.aqua.algorithms.QGAN.set_discriminator "qiskit.aqua.algorithms.QGAN.set_discriminator")(\[discriminator]) | Initialize discriminator.                                    |
+  | [`set_generator`](#qiskit.aqua.algorithms.QGAN.set_generator "qiskit.aqua.algorithms.QGAN.set_generator")(\[generator\_circuit, …])     | Initialize generator.                                        |
+  | [`train`](#qiskit.aqua.algorithms.QGAN.train "qiskit.aqua.algorithms.QGAN.train")()                                                     | Train the qGAN                                               |
 
-**Raises**
+  ## Attributes
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
+  |                                                                                                                    |                                                                  |
+  | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+  | [`backend`](#qiskit.aqua.algorithms.QGAN.backend "qiskit.aqua.algorithms.QGAN.backend")                            | Returns backend.                                                 |
+  | [`d_loss`](#qiskit.aqua.algorithms.QGAN.d_loss "qiskit.aqua.algorithms.QGAN.d_loss")                               | Returns discriminator loss                                       |
+  | [`discriminator`](#qiskit.aqua.algorithms.QGAN.discriminator "qiskit.aqua.algorithms.QGAN.discriminator")          | Returns discriminator                                            |
+  | [`g_loss`](#qiskit.aqua.algorithms.QGAN.g_loss "qiskit.aqua.algorithms.QGAN.g_loss")                               | Returns generator loss                                           |
+  | [`generator`](#qiskit.aqua.algorithms.QGAN.generator "qiskit.aqua.algorithms.QGAN.generator")                      | Returns generator                                                |
+  | [`quantum_instance`](#qiskit.aqua.algorithms.QGAN.quantum_instance "qiskit.aqua.algorithms.QGAN.quantum_instance") | Returns quantum instance.                                        |
+  | [`random`](#qiskit.aqua.algorithms.QGAN.random "qiskit.aqua.algorithms.QGAN.random")                               | Return a numpy random.                                           |
+  | [`rel_entr`](#qiskit.aqua.algorithms.QGAN.rel_entr "qiskit.aqua.algorithms.QGAN.rel_entr")                         | Returns relative entropy between target and trained distribution |
+  | [`seed`](#qiskit.aqua.algorithms.QGAN.seed "qiskit.aqua.algorithms.QGAN.seed")                                     | Returns random seed                                              |
+  | [`tol_rel_ent`](#qiskit.aqua.algorithms.QGAN.tol_rel_ent "qiskit.aqua.algorithms.QGAN.tol_rel_ent")                | Returns tolerance for relative entropy                           |
 
-## Methods
+  ### backend
 
-|                                                                                                                                         |                                                              |
-| --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`__init__`](#qiskit.aqua.algorithms.QGAN.__init__ "qiskit.aqua.algorithms.QGAN.__init__")(data\[, bounds, num\_qubits, …])             | **type data**`ndarray`                                       |
-| [`get_rel_entr`](#qiskit.aqua.algorithms.QGAN.get_rel_entr "qiskit.aqua.algorithms.QGAN.get_rel_entr")()                                | Get relative entropy between target and trained distribution |
-| [`run`](#qiskit.aqua.algorithms.QGAN.run "qiskit.aqua.algorithms.QGAN.run")(\[quantum\_instance])                                       | Execute the algorithm with selected backend.                 |
-| [`set_backend`](#qiskit.aqua.algorithms.QGAN.set_backend "qiskit.aqua.algorithms.QGAN.set_backend")(backend, \*\*kwargs)                | Sets backend with configuration.                             |
-| [`set_discriminator`](#qiskit.aqua.algorithms.QGAN.set_discriminator "qiskit.aqua.algorithms.QGAN.set_discriminator")(\[discriminator]) | Initialize discriminator.                                    |
-| [`set_generator`](#qiskit.aqua.algorithms.QGAN.set_generator "qiskit.aqua.algorithms.QGAN.set_generator")(\[generator\_circuit, …])     | Initialize generator.                                        |
-| [`train`](#qiskit.aqua.algorithms.QGAN.train "qiskit.aqua.algorithms.QGAN.train")()                                                     | Train the qGAN                                               |
+  <Function id="qiskit.aqua.algorithms.QGAN.backend" name="backend" signature="property backend">
+    Returns backend.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                    |                                                                  |
-| ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
-| [`backend`](#qiskit.aqua.algorithms.QGAN.backend "qiskit.aqua.algorithms.QGAN.backend")                            | Returns backend.                                                 |
-| [`d_loss`](#qiskit.aqua.algorithms.QGAN.d_loss "qiskit.aqua.algorithms.QGAN.d_loss")                               | Returns discriminator loss                                       |
-| [`discriminator`](#qiskit.aqua.algorithms.QGAN.discriminator "qiskit.aqua.algorithms.QGAN.discriminator")          | Returns discriminator                                            |
-| [`g_loss`](#qiskit.aqua.algorithms.QGAN.g_loss "qiskit.aqua.algorithms.QGAN.g_loss")                               | Returns generator loss                                           |
-| [`generator`](#qiskit.aqua.algorithms.QGAN.generator "qiskit.aqua.algorithms.QGAN.generator")                      | Returns generator                                                |
-| [`quantum_instance`](#qiskit.aqua.algorithms.QGAN.quantum_instance "qiskit.aqua.algorithms.QGAN.quantum_instance") | Returns quantum instance.                                        |
-| [`random`](#qiskit.aqua.algorithms.QGAN.random "qiskit.aqua.algorithms.QGAN.random")                               | Return a numpy random.                                           |
-| [`rel_entr`](#qiskit.aqua.algorithms.QGAN.rel_entr "qiskit.aqua.algorithms.QGAN.rel_entr")                         | Returns relative entropy between target and trained distribution |
-| [`seed`](#qiskit.aqua.algorithms.QGAN.seed "qiskit.aqua.algorithms.QGAN.seed")                                     | Returns random seed                                              |
-| [`tol_rel_ent`](#qiskit.aqua.algorithms.QGAN.tol_rel_ent "qiskit.aqua.algorithms.QGAN.tol_rel_ent")                | Returns tolerance for relative entropy                           |
+    `Union`\[`Backend`, `BaseBackend`]
+  </Function>
 
-### backend
+  ### d\_loss
 
-<span id="qiskit.aqua.algorithms.QGAN.backend" />
+  <Function id="qiskit.aqua.algorithms.QGAN.d_loss" name="d_loss" signature="property d_loss">
+    Returns discriminator loss
 
-`property backend`
+    **Return type**
 
-Returns backend.
+    `List`\[`float`]
+  </Function>
 
-**Return type**
+  ### discriminator
 
-`Union`\[`Backend`, `BaseBackend`]
+  <Function id="qiskit.aqua.algorithms.QGAN.discriminator" name="discriminator" signature="property discriminator">
+    Returns discriminator
+  </Function>
 
-### d\_loss
+  ### g\_loss
 
-<span id="qiskit.aqua.algorithms.QGAN.d_loss" />
+  <Function id="qiskit.aqua.algorithms.QGAN.g_loss" name="g_loss" signature="property g_loss">
+    Returns generator loss
 
-`property d_loss`
+    **Return type**
 
-Returns discriminator loss
+    `List`\[`float`]
+  </Function>
 
-**Return type**
+  ### generator
 
-`List`\[`float`]
+  <Function id="qiskit.aqua.algorithms.QGAN.generator" name="generator" signature="property generator">
+    Returns generator
+  </Function>
 
-### discriminator
+  ### get\_rel\_entr
 
-<span id="qiskit.aqua.algorithms.QGAN.discriminator" />
+  <Function id="qiskit.aqua.algorithms.QGAN.get_rel_entr" name="get_rel_entr" signature="get_rel_entr()">
+    Get relative entropy between target and trained distribution
 
-`property discriminator`
+    **Return type**
 
-Returns discriminator
+    `float`
+  </Function>
 
-### g\_loss
+  ### quantum\_instance
 
-<span id="qiskit.aqua.algorithms.QGAN.g_loss" />
+  <Function id="qiskit.aqua.algorithms.QGAN.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+    Returns quantum instance.
 
-`property g_loss`
+    **Return type**
 
-Returns generator loss
+    `Optional`\[`QuantumInstance`]
+  </Function>
 
-**Return type**
+  ### random
 
-`List`\[`float`]
+  <Function id="qiskit.aqua.algorithms.QGAN.random" name="random" signature="property random">
+    Return a numpy random.
+  </Function>
 
-### generator
+  ### rel\_entr
 
-<span id="qiskit.aqua.algorithms.QGAN.generator" />
+  <Function id="qiskit.aqua.algorithms.QGAN.rel_entr" name="rel_entr" signature="property rel_entr">
+    Returns relative entropy between target and trained distribution
 
-`property generator`
+    **Return type**
 
-Returns generator
+    `List`\[`float`]
+  </Function>
 
-### get\_rel\_entr
+  ### run
 
-<span id="qiskit.aqua.algorithms.QGAN.get_rel_entr" />
+  <Function id="qiskit.aqua.algorithms.QGAN.run" name="run" signature="run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-`get_rel_entr()`
+    **Parameters**
 
-Get relative entropy between target and trained distribution
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-**Return type**
+    **Returns**
 
-`float`
+    results of an algorithm.
 
-### quantum\_instance
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.QGAN.quantum_instance" />
+    dict
 
-`property quantum_instance`
+    **Raises**
 
-Returns quantum instance.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-**Return type**
+  ### seed
 
-`Optional`\[`QuantumInstance`]
+  <Function id="qiskit.aqua.algorithms.QGAN.seed" name="seed" signature="property seed">
+    Returns random seed
+  </Function>
 
-### random
+  ### set\_backend
 
-<span id="qiskit.aqua.algorithms.QGAN.random" />
+  <Function id="qiskit.aqua.algorithms.QGAN.set_backend" name="set_backend" signature="set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-`property random`
+    **Return type**
 
-Return a numpy random.
+    `None`
+  </Function>
 
-### rel\_entr
+  ### set\_discriminator
 
-<span id="qiskit.aqua.algorithms.QGAN.rel_entr" />
+  <Function id="qiskit.aqua.algorithms.QGAN.set_discriminator" name="set_discriminator" signature="set_discriminator(discriminator=None)">
+    Initialize discriminator.
 
-`property rel_entr`
+    **Parameters**
 
-Returns relative entropy between target and trained distribution
+    **discriminator** (*Discriminator*) – discriminator
+  </Function>
 
-**Return type**
+  ### set\_generator
 
-`List`\[`float`]
+  <Function id="qiskit.aqua.algorithms.QGAN.set_generator" name="set_generator" signature="set_generator(generator_circuit=None, generator_init_params=None, generator_optimizer=None)">
+    Initialize generator.
 
-### run
+    **Parameters**
 
-<span id="qiskit.aqua.algorithms.QGAN.run" />
+    *   **generator\_circuit** (`Union`\[`UnivariateVariationalDistribution`, `MultivariateVariationalDistribution`, `QuantumCircuit`, `None`]) – parameterized quantum circuit which sets the structure of the quantum generator
+    *   **generator\_init\_params** (`Optional`\[`ndarray`]) – initial parameters for the generator circuit
+    *   **generator\_optimizer** (`Optional`\[`Optimizer`]) – optimizer to be used for the training of the generator
+  </Function>
 
-`run(quantum_instance=None, **kwargs)`
+  ### tol\_rel\_ent
 
-Execute the algorithm with selected backend.
+  <Function id="qiskit.aqua.algorithms.QGAN.tol_rel_ent" name="tol_rel_ent" signature="property tol_rel_ent">
+    Returns tolerance for relative entropy
+  </Function>
 
-**Parameters**
+  ### train
 
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
+  <Function id="qiskit.aqua.algorithms.QGAN.train" name="train" signature="train()">
+    Train the qGAN
 
-**Returns**
+    **Raises**
 
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### seed
-
-<span id="qiskit.aqua.algorithms.QGAN.seed" />
-
-`property seed`
-
-Returns random seed
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.QGAN.set_backend" />
-
-`set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
-
-### set\_discriminator
-
-<span id="qiskit.aqua.algorithms.QGAN.set_discriminator" />
-
-`set_discriminator(discriminator=None)`
-
-Initialize discriminator.
-
-**Parameters**
-
-**discriminator** (*Discriminator*) – discriminator
-
-### set\_generator
-
-<span id="qiskit.aqua.algorithms.QGAN.set_generator" />
-
-`set_generator(generator_circuit=None, generator_init_params=None, generator_optimizer=None)`
-
-Initialize generator.
-
-**Parameters**
-
-*   **generator\_circuit** (`Union`\[`UnivariateVariationalDistribution`, `MultivariateVariationalDistribution`, `QuantumCircuit`, `None`]) – parameterized quantum circuit which sets the structure of the quantum generator
-*   **generator\_init\_params** (`Optional`\[`ndarray`]) – initial parameters for the generator circuit
-*   **generator\_optimizer** (`Optional`\[`Optimizer`]) – optimizer to be used for the training of the generator
-
-### tol\_rel\_ent
-
-<span id="qiskit.aqua.algorithms.QGAN.tol_rel_ent" />
-
-`property tol_rel_ent`
-
-Returns tolerance for relative entropy
-
-### train
-
-<span id="qiskit.aqua.algorithms.QGAN.train" />
-
-`train()`
-
-Train the qGAN
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Batch size bigger than the number of items in the truncated data set
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Batch size bigger than the number of items in the truncated data set
+  </Function>
+</Class>
 

@@ -10,29 +10,27 @@ python_api_name: qiskit.aqua.utils.validate_entangler_map
 
 # qiskit.aqua.utils.validate\_entangler\_map
 
-<span id="qiskit.aqua.utils.validate_entangler_map" />
+<Function id="qiskit.aqua.utils.validate_entangler_map" name="validate_entangler_map" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/entangler_map.py" signature="validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)">
+  Validate a user supplied entangler map and converts entries to ints.
 
-`validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/entangler_map.py "view source code")
+  **Parameters**
 
-Validate a user supplied entangler map and converts entries to ints.
+  *   **entangler\_map** (*list\[list]*) – An entangler map, keys are source qubit index (int), value is array of target qubit index(es) (int)
+  *   **num\_qubits** (*int*) – Number of qubits
+  *   **allow\_double\_entanglement** (*bool*) – If we allow in two qubits can be entangled each other
 
-**Parameters**
+  **Returns**
 
-*   **entangler\_map** (*list\[list]*) – An entangler map, keys are source qubit index (int), value is array of target qubit index(es) (int)
-*   **num\_qubits** (*int*) – Number of qubits
-*   **allow\_double\_entanglement** (*bool*) – If we allow in two qubits can be entangled each other
+  Validated/converted map
 
-**Returns**
+  **Return type**
 
-Validated/converted map
+  list
 
-**Return type**
+  **Raises**
 
-list
-
-**Raises**
-
-*   **TypeError** – entangler map is not list type or list of list
-*   **ValueError** – the index of entangler map is out of range
-*   **ValueError** – the qubits are cross-entangled.
+  *   **TypeError** – entangler map is not list type or list of list
+  *   **ValueError** – the index of entangler map is out of range
+  *   **ValueError** – the qubits are cross-entangled.
+</Function>
 

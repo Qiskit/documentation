@@ -10,28 +10,26 @@ python_api_name: qiskit.ignis.verification.lookuptable_decoding
 
 # qiskit.ignis.verification.lookuptable\_decoding
 
-<span id="qiskit.ignis.verification.lookuptable_decoding" />
+<Function id="qiskit.ignis.verification.lookuptable_decoding" name="lookuptable_decoding" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/topological_codes/fitters.py" signature="lookuptable_decoding(training_results, real_results)">
+  Calculates the logical error probability using postselection decoding. This postselects all results with trivial syndrome.
 
-`lookuptable_decoding(training_results, real_results)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
+  **Parameters**
 
-Calculates the logical error probability using postselection decoding. This postselects all results with trivial syndrome.
+  *   **training\_results** (*dict*) – A results dictionary, as produced by the `process_results` method of a code.
+  *   **real\_results** (*dict*) – A results dictionary, as produced by the `process_results` method of a code.
 
-**Parameters**
+  **Returns**
 
-*   **training\_results** (*dict*) – A results dictionary, as produced by the `process_results` method of a code.
-*   **real\_results** (*dict*) – A results dictionary, as produced by the `process_results` method of a code.
+  **Dictionary of logical error probabilities for**
 
-**Returns**
+  each of the encoded logical states whose results were given in the input.
 
-**Dictionary of logical error probabilities for**
+  **Return type**
 
-each of the encoded logical states whose results were given in the input.
+  dict
 
-**Return type**
+  ## Additional information:
 
-dict
-
-## Additional information:
-
-Given a two dictionaries of results, as produced by a code object, thelogical error probability is calculated for lookup table decoding. This is done using training\_results as a guide to which syndrome is most probable for each logical value, and the probability is calculated for the results in real\_results.
+  Given a two dictionaries of results, as produced by a code object, thelogical error probability is calculated for lookup table decoding. This is done using training\_results as a guide to which syndrome is most probable for each logical value, and the probability is calculated for the results in real\_results.
+</Function>
 

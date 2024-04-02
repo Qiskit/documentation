@@ -10,161 +10,147 @@ python_api_name: qiskit.aqua.operators.gradients.Hessian
 
 # qiskit.aqua.operators.gradients.Hessian
 
-<span id="qiskit.aqua.operators.gradients.Hessian" />
+<Class id="qiskit.aqua.operators.gradients.Hessian" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/hessian.py" signature="Hessian(hess_method='param_shift', **kwargs)">
+  Compute the Hessian of an expected value.
 
-`Hessian(hess_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/hessian.py "view source code")
+  **Parameters**
 
-Compute the Hessian of an expected value.
+  *   **hess\_method** (`Union`\[`str`, `CircuitGradient`]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
+  *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
 
-**Parameters**
+  **Raises**
 
-*   **hess\_method** (`Union`\[`str`, `CircuitGradient`]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
-*   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
+  **ValueError** – If method != `fin_diff` and `epsilon` is not None.
 
-**Raises**
+  ### \_\_init\_\_
 
-**ValueError** – If method != `fin_diff` and `epsilon` is not None.
+  <Function id="qiskit.aqua.operators.gradients.Hessian.__init__" name="__init__" signature="__init__(hess_method='param_shift', **kwargs)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **hess\_method** (`Union`\[`str`, `CircuitGradient`]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
+    *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
 
-<span id="qiskit.aqua.operators.gradients.Hessian.__init__" />
+    **Raises**
 
-`__init__(hess_method='param_shift', **kwargs)`
+    **ValueError** – If method != `fin_diff` and `epsilon` is not None.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **hess\_method** (`Union`\[`str`, `CircuitGradient`]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
-*   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
+  |                                                                                                                                                                                           |                                                                                                            |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.operators.gradients.Hessian.__init__ "qiskit.aqua.operators.gradients.Hessian.__init__")(\[hess\_method])                                                       | **type hess\_method**`Union`\[`str`, `CircuitGradient`]                                                    |
+  | [`convert`](#qiskit.aqua.operators.gradients.Hessian.convert "qiskit.aqua.operators.gradients.Hessian.convert")(operator\[, params])                                                      | **type operator**`OperatorBase`                                                                            |
+  | [`get_hessian`](#qiskit.aqua.operators.gradients.Hessian.get_hessian "qiskit.aqua.operators.gradients.Hessian.get_hessian")(operator\[, params])                                          | Get the Hessian for the given operator w\.r.t.                                                             |
+  | [`gradient_wrapper`](#qiskit.aqua.operators.gradients.Hessian.gradient_wrapper "qiskit.aqua.operators.gradients.Hessian.gradient_wrapper")(operator, bind\_params\[, …])                  | Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. |
+  | [`parameter_expression_grad`](#qiskit.aqua.operators.gradients.Hessian.parameter_expression_grad "qiskit.aqua.operators.gradients.Hessian.parameter_expression_grad")(param\_expr, param) | Get the derivative of a parameter expression w\.r.t.                                                       |
 
-**Raises**
+  ## Attributes
 
-**ValueError** – If method != `fin_diff` and `epsilon` is not None.
+  |                                                                                                                             |                            |
+  | --------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+  | [`hess_method`](#qiskit.aqua.operators.gradients.Hessian.hess_method "qiskit.aqua.operators.gradients.Hessian.hess_method") | Returns `CircuitGradient`. |
 
-## Methods
+  ### convert
 
-|                                                                                                                                                                                           |                                                                                                            |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.gradients.Hessian.__init__ "qiskit.aqua.operators.gradients.Hessian.__init__")(\[hess\_method])                                                       | **type hess\_method**`Union`\[`str`, `CircuitGradient`]                                                    |
-| [`convert`](#qiskit.aqua.operators.gradients.Hessian.convert "qiskit.aqua.operators.gradients.Hessian.convert")(operator\[, params])                                                      | **type operator**`OperatorBase`                                                                            |
-| [`get_hessian`](#qiskit.aqua.operators.gradients.Hessian.get_hessian "qiskit.aqua.operators.gradients.Hessian.get_hessian")(operator\[, params])                                          | Get the Hessian for the given operator w\.r.t.                                                             |
-| [`gradient_wrapper`](#qiskit.aqua.operators.gradients.Hessian.gradient_wrapper "qiskit.aqua.operators.gradients.Hessian.gradient_wrapper")(operator, bind\_params\[, …])                  | Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. |
-| [`parameter_expression_grad`](#qiskit.aqua.operators.gradients.Hessian.parameter_expression_grad "qiskit.aqua.operators.gradients.Hessian.parameter_expression_grad")(param\_expr, param) | Get the derivative of a parameter expression w\.r.t.                                                       |
+  <Function id="qiskit.aqua.operators.gradients.Hessian.convert" name="convert" signature="convert(operator, params=None)">
+    **Parameters**
 
-## Attributes
+    *   **operator** (`OperatorBase`) – The operator for which we compute the Hessian
+    *   **params** (`Union`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`], `List`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`]], `List`\[`ParameterExpression`], `ParameterVector`, `None`]) – The parameters we are computing the Hessian with respect to Either give directly the tuples/list of tuples for which the second order derivative is to be computed or give a list of parameters to build the full Hessian for those parameters.
 
-|                                                                                                                             |                            |
-| --------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| [`hess_method`](#qiskit.aqua.operators.gradients.Hessian.hess_method "qiskit.aqua.operators.gradients.Hessian.hess_method") | Returns `CircuitGradient`. |
+    **Returns**
 
-### convert
+    An operator whose evaluation yields the Hessian
 
-<span id="qiskit.aqua.operators.gradients.Hessian.convert" />
+    **Return type**
 
-`convert(operator, params=None)`
+    [OperatorBase](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase")
 
-**Parameters**
+    **Raises**
 
-*   **operator** (`OperatorBase`) – The operator for which we compute the Hessian
-*   **params** (`Union`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`], `List`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`]], `List`\[`ParameterExpression`], `ParameterVector`, `None`]) – The parameters we are computing the Hessian with respect to Either give directly the tuples/list of tuples for which the second order derivative is to be computed or give a list of parameters to build the full Hessian for those parameters.
+    **ValueError** – If params is not set.
+  </Function>
 
-**Returns**
+  ### get\_hessian
 
-An operator whose evaluation yields the Hessian
+  <Function id="qiskit.aqua.operators.gradients.Hessian.get_hessian" name="get_hessian" signature="get_hessian(operator, params=None)">
+    Get the Hessian for the given operator w\.r.t. the given parameters
 
-**Return type**
+    **Parameters**
 
-[OperatorBase](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase")
+    *   **operator** (`OperatorBase`) – Operator w\.r.t. which we take the Hessian.
+    *   **params** (`Union`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`], `List`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`]], `None`]) – Parameters w\.r.t. which we compute the Hessian.
 
-**Raises**
+    **Return type**
 
-**ValueError** – If params is not set.
+    `OperatorBase`
 
-### get\_hessian
+    **Returns**
 
-<span id="qiskit.aqua.operators.gradients.Hessian.get_hessian" />
+    Operator which represents the gradient w\.r.t. the given params.
 
-`get_hessian(operator, params=None)`
+    **Raises**
 
-Get the Hessian for the given operator w\.r.t. the given parameters
+    *   **ValueError** – If `params` contains a parameter not present in `operator`.
+    *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If the coefficient of the operator could not be reduced to 1. AquaError: If the differentiation of a combo\_fn requires JAX but the package is not installed.
+    *   **TypeError** – If the operator does not include a StateFn given by a quantum circuit
+    *   **TypeError** – If the parameters were given in an unsupported format.
+    *   **Exception** – Unintended code is reached
+  </Function>
 
-**Parameters**
+  ### gradient\_wrapper
 
-*   **operator** (`OperatorBase`) – Operator w\.r.t. which we take the Hessian.
-*   **params** (`Union`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`], `List`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`]], `None`]) – Parameters w\.r.t. which we compute the Hessian.
+  <Function id="qiskit.aqua.operators.gradients.Hessian.gradient_wrapper" name="gradient_wrapper" signature="gradient_wrapper(operator, bind_params, grad_params=None, backend=None)">
+    Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. This callable can be used as gradient function for optimizers.
 
-**Return type**
+    **Parameters**
 
-`OperatorBase`
+    *   **operator** (`OperatorBase`) – The operator for which we want to get the gradient, Hessian or QFI.
+    *   **bind\_params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`]]) – The operator parameters to which the parameter values are assigned.
+    *   **grad\_params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`], `Tuple`\[`ParameterExpression`, `ParameterExpression`], `List`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`]], `None`]) – The parameters with respect to which we are taking the gradient, Hessian or QFI. If grad\_params = None, then grad\_params = bind\_params
+    *   **backend** (`Union`\[`BaseBackend`, `QuantumInstance`, `None`]) – The quantum backend or QuantumInstance to use to evaluate the gradient, Hessian or QFI.
 
-**Returns**
+    **Returns**
 
-Operator which represents the gradient w\.r.t. the given params.
+    Function to compute a gradient, Hessian or QFI. The function takes an iterable as argument which holds the parameter values.
 
-**Raises**
+    **Return type**
 
-*   **ValueError** – If `params` contains a parameter not present in `operator`.
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If the coefficient of the operator could not be reduced to 1. AquaError: If the differentiation of a combo\_fn requires JAX but the package is not installed.
-*   **TypeError** – If the operator does not include a StateFn given by a quantum circuit
-*   **TypeError** – If the parameters were given in an unsupported format.
-*   **Exception** – Unintended code is reached
+    callable(param\_values)
+  </Function>
 
-### gradient\_wrapper
+  ### hess\_method
 
-<span id="qiskit.aqua.operators.gradients.Hessian.gradient_wrapper" />
+  <Function id="qiskit.aqua.operators.gradients.Hessian.hess_method" name="hess_method" signature="property hess_method">
+    Returns `CircuitGradient`.
 
-`gradient_wrapper(operator, bind_params, grad_params=None, backend=None)`
+    **Return type**
 
-Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. This callable can be used as gradient function for optimizers.
+    `CircuitGradient`
 
-**Parameters**
+    **Returns**
 
-*   **operator** (`OperatorBase`) – The operator for which we want to get the gradient, Hessian or QFI.
-*   **bind\_params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`]]) – The operator parameters to which the parameter values are assigned.
-*   **grad\_params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`], `Tuple`\[`ParameterExpression`, `ParameterExpression`], `List`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`]], `None`]) – The parameters with respect to which we are taking the gradient, Hessian or QFI. If grad\_params = None, then grad\_params = bind\_params
-*   **backend** (`Union`\[`BaseBackend`, `QuantumInstance`, `None`]) – The quantum backend or QuantumInstance to use to evaluate the gradient, Hessian or QFI.
+    `CircuitGradient`.
+  </Function>
 
-**Returns**
+  ### parameter\_expression\_grad
 
-Function to compute a gradient, Hessian or QFI. The function takes an iterable as argument which holds the parameter values.
+  <Function id="qiskit.aqua.operators.gradients.Hessian.parameter_expression_grad" name="parameter_expression_grad" signature="static parameter_expression_grad(param_expr, param)">
+    Get the derivative of a parameter expression w\.r.t. the given parameter.
 
-**Return type**
+    **Parameters**
 
-callable(param\_values)
+    *   **param\_expr** (`ParameterExpression`) – The Parameter Expression for which we compute the derivative
+    *   **param** (`ParameterExpression`) – Parameter w\.r.t. which we want to take the derivative
 
-### hess\_method
+    **Return type**
 
-<span id="qiskit.aqua.operators.gradients.Hessian.hess_method" />
+    `Union`\[`ParameterExpression`, `float`]
 
-`property hess_method`
+    **Returns**
 
-Returns `CircuitGradient`.
-
-**Return type**
-
-`CircuitGradient`
-
-**Returns**
-
-`CircuitGradient`.
-
-### parameter\_expression\_grad
-
-<span id="qiskit.aqua.operators.gradients.Hessian.parameter_expression_grad" />
-
-`static parameter_expression_grad(param_expr, param)`
-
-Get the derivative of a parameter expression w\.r.t. the given parameter.
-
-**Parameters**
-
-*   **param\_expr** (`ParameterExpression`) – The Parameter Expression for which we compute the derivative
-*   **param** (`ParameterExpression`) – Parameter w\.r.t. which we want to take the derivative
-
-**Return type**
-
-`Union`\[`ParameterExpression`, `float`]
-
-**Returns**
-
-ParameterExpression representing the gradient of param\_expr w\.r.t. param
+    ParameterExpression representing the gradient of param\_expr w\.r.t. param
+  </Function>
+</Class>
 

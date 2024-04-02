@@ -10,283 +10,249 @@ python_api_name: qiskit.ignis.characterization.RabiFitter
 
 # qiskit.ignis.characterization.RabiFitter
 
-<span id="qiskit.ignis.characterization.RabiFitter" />
+<Class id="qiskit.ignis.characterization.RabiFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/calibrations/fitters.py" signature="RabiFitter(backend_result, xdata, qubits, fit_p0, fit_bounds=None)">
+  Rabi Experiment fitter
 
-`RabiFitter(backend_result, xdata, qubits, fit_p0, fit_bounds=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
+  See BaseCalibrationFitter \_\_init\_\_
 
-Rabi Experiment fitter
+  fit\_po is \[amp, freq, phase, offset]
 
-See BaseCalibrationFitter \_\_init\_\_
+  ### \_\_init\_\_
 
-fit\_po is \[amp, freq, phase, offset]
+  <Function id="qiskit.ignis.characterization.RabiFitter.__init__" name="__init__" signature="__init__(backend_result, xdata, qubits, fit_p0, fit_bounds=None)">
+    See BaseCalibrationFitter \_\_init\_\_
 
-### \_\_init\_\_
+    fit\_po is \[amp, freq, phase, offset]
+  </Function>
 
-<span id="qiskit.ignis.characterization.RabiFitter.__init__" />
+  ## Methods
 
-`__init__(backend_result, xdata, qubits, fit_p0, fit_bounds=None)`
+  |                                                                                                                                                               |                                                         |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+  | [`__init__`](#qiskit.ignis.characterization.RabiFitter.__init__ "qiskit.ignis.characterization.RabiFitter.__init__")(backend\_result, xdata, qubits, fit\_p0) | See BaseCalibrationFitter \_\_init\_\_                  |
+  | [`add_data`](#qiskit.ignis.characterization.RabiFitter.add_data "qiskit.ignis.characterization.RabiFitter.add_data")(results\[, recalc, refit])               | Add new execution results to previous execution results |
+  | [`fit_data`](#qiskit.ignis.characterization.RabiFitter.fit_data "qiskit.ignis.characterization.RabiFitter.fit_data")(\[qid, p0, bounds, series])              | Fit the curve.                                          |
+  | [`guess_params`](#qiskit.ignis.characterization.RabiFitter.guess_params "qiskit.ignis.characterization.RabiFitter.guess_params")(\[qind])                     | Guess fit parameters for rabi oscillation data          |
+  | [`pi2_amplitude`](#qiskit.ignis.characterization.RabiFitter.pi2_amplitude "qiskit.ignis.characterization.RabiFitter.pi2_amplitude")(\[qind])                  | Return the pi/2 amplitude from the fit                  |
+  | [`pi_amplitude`](#qiskit.ignis.characterization.RabiFitter.pi_amplitude "qiskit.ignis.characterization.RabiFitter.pi_amplitude")(\[qind])                     | Return the pi amplitude from the fit                    |
+  | [`plot`](#qiskit.ignis.characterization.RabiFitter.plot "qiskit.ignis.characterization.RabiFitter.plot")(qind\[, series, ax, show\_plot])                     | Plot the data and fit                                   |
 
-See BaseCalibrationFitter \_\_init\_\_
+  ## Attributes
 
-fit\_po is \[amp, freq, phase, offset]
+  |                                                                                                                                           |                                                                                       |
+  | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+  | [`backend_result`](#qiskit.ignis.characterization.RabiFitter.backend_result "qiskit.ignis.characterization.RabiFitter.backend_result")    | Return the execution results                                                          |
+  | [`description`](#qiskit.ignis.characterization.RabiFitter.description "qiskit.ignis.characterization.RabiFitter.description")             | Return the fitter’s purpose, e.g.                                                     |
+  | [`fit_fun`](#qiskit.ignis.characterization.RabiFitter.fit_fun "qiskit.ignis.characterization.RabiFitter.fit_fun")                         | Return the function used in the fit, e.g.                                             |
+  | [`measured_qubits`](#qiskit.ignis.characterization.RabiFitter.measured_qubits "qiskit.ignis.characterization.RabiFitter.measured_qubits") | Return the indices of the qubits to be characterized                                  |
+  | [`params`](#qiskit.ignis.characterization.RabiFitter.params "qiskit.ignis.characterization.RabiFitter.params")                            | Return the fit function parameters that were calculated by curve\_fit                 |
+  | [`params_err`](#qiskit.ignis.characterization.RabiFitter.params_err "qiskit.ignis.characterization.RabiFitter.params_err")                | Return the error of the fit function parameters                                       |
+  | [`series`](#qiskit.ignis.characterization.RabiFitter.series "qiskit.ignis.characterization.RabiFitter.series")                            | Return the list of series for the data                                                |
+  | [`xdata`](#qiskit.ignis.characterization.RabiFitter.xdata "qiskit.ignis.characterization.RabiFitter.xdata")                               | Return the data points on the x-axis, the independenet parameter which is fit against |
+  | [`ydata`](#qiskit.ignis.characterization.RabiFitter.ydata "qiskit.ignis.characterization.RabiFitter.ydata")                               | Return the data points on the y-axis                                                  |
 
-## Methods
+  ### add\_data
 
-|                                                                                                                                                               |                                                         |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| [`__init__`](#qiskit.ignis.characterization.RabiFitter.__init__ "qiskit.ignis.characterization.RabiFitter.__init__")(backend\_result, xdata, qubits, fit\_p0) | See BaseCalibrationFitter \_\_init\_\_                  |
-| [`add_data`](#qiskit.ignis.characterization.RabiFitter.add_data "qiskit.ignis.characterization.RabiFitter.add_data")(results\[, recalc, refit])               | Add new execution results to previous execution results |
-| [`fit_data`](#qiskit.ignis.characterization.RabiFitter.fit_data "qiskit.ignis.characterization.RabiFitter.fit_data")(\[qid, p0, bounds, series])              | Fit the curve.                                          |
-| [`guess_params`](#qiskit.ignis.characterization.RabiFitter.guess_params "qiskit.ignis.characterization.RabiFitter.guess_params")(\[qind])                     | Guess fit parameters for rabi oscillation data          |
-| [`pi2_amplitude`](#qiskit.ignis.characterization.RabiFitter.pi2_amplitude "qiskit.ignis.characterization.RabiFitter.pi2_amplitude")(\[qind])                  | Return the pi/2 amplitude from the fit                  |
-| [`pi_amplitude`](#qiskit.ignis.characterization.RabiFitter.pi_amplitude "qiskit.ignis.characterization.RabiFitter.pi_amplitude")(\[qind])                     | Return the pi amplitude from the fit                    |
-| [`plot`](#qiskit.ignis.characterization.RabiFitter.plot "qiskit.ignis.characterization.RabiFitter.plot")(qind\[, series, ax, show\_plot])                     | Plot the data and fit                                   |
+  <Function id="qiskit.ignis.characterization.RabiFitter.add_data" name="add_data" signature="add_data(results, recalc=True, refit=True)">
+    Add new execution results to previous execution results
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                           |                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [`backend_result`](#qiskit.ignis.characterization.RabiFitter.backend_result "qiskit.ignis.characterization.RabiFitter.backend_result")    | Return the execution results                                                          |
-| [`description`](#qiskit.ignis.characterization.RabiFitter.description "qiskit.ignis.characterization.RabiFitter.description")             | Return the fitter’s purpose, e.g.                                                     |
-| [`fit_fun`](#qiskit.ignis.characterization.RabiFitter.fit_fun "qiskit.ignis.characterization.RabiFitter.fit_fun")                         | Return the function used in the fit, e.g.                                             |
-| [`measured_qubits`](#qiskit.ignis.characterization.RabiFitter.measured_qubits "qiskit.ignis.characterization.RabiFitter.measured_qubits") | Return the indices of the qubits to be characterized                                  |
-| [`params`](#qiskit.ignis.characterization.RabiFitter.params "qiskit.ignis.characterization.RabiFitter.params")                            | Return the fit function parameters that were calculated by curve\_fit                 |
-| [`params_err`](#qiskit.ignis.characterization.RabiFitter.params_err "qiskit.ignis.characterization.RabiFitter.params_err")                | Return the error of the fit function parameters                                       |
-| [`series`](#qiskit.ignis.characterization.RabiFitter.series "qiskit.ignis.characterization.RabiFitter.series")                            | Return the list of series for the data                                                |
-| [`xdata`](#qiskit.ignis.characterization.RabiFitter.xdata "qiskit.ignis.characterization.RabiFitter.xdata")                               | Return the data points on the x-axis, the independenet parameter which is fit against |
-| [`ydata`](#qiskit.ignis.characterization.RabiFitter.ydata "qiskit.ignis.characterization.RabiFitter.ydata")                               | Return the data points on the y-axis                                                  |
+    *   **results** (`Union`\[`Result`, `List`\[`Result`]]) – new execution results
+    *   **recalc** (`bool`) – whether tp recalculate the data
+    *   **refit** (`bool`) – whether to refit the data
+  </Function>
 
-### add\_data
+  ### backend\_result
 
-<span id="qiskit.ignis.characterization.RabiFitter.add_data" />
+  <Function id="qiskit.ignis.characterization.RabiFitter.backend_result" name="backend_result" signature="property backend_result">
+    Return the execution results
 
-`add_data(results, recalc=True, refit=True)`
+    **Return type**
 
-Add new execution results to previous execution results
+    `Union`\[`Result`, `List`\[`Result`]]
+  </Function>
 
-**Parameters**
+  ### description
 
-*   **results** (`Union`\[`Result`, `List`\[`Result`]]) – new execution results
-*   **recalc** (`bool`) – whether tp recalculate the data
-*   **refit** (`bool`) – whether to refit the data
+  <Function id="qiskit.ignis.characterization.RabiFitter.description" name="description" signature="property description">
+    Return the fitter’s purpose, e.g. ‘T1’
 
-### backend\_result
+    **Return type**
 
-<span id="qiskit.ignis.characterization.RabiFitter.backend_result" />
+    `str`
+  </Function>
 
-`property backend_result`
+  ### fit\_data
 
-Return the execution results
+  <Function id="qiskit.ignis.characterization.RabiFitter.fit_data" name="fit_data" signature="fit_data(qid=- 1, p0=None, bounds=None, series=None)">
+    Fit the curve.
 
-**Return type**
+    Compute self.\_params and self.\_params\_err
 
-`Union`\[`Result`, `List`\[`Result`]]
+    **Parameters**
 
-### description
+    *   **qid** (`int`) – qubit for fitting. If -1 fit for all the qubits
+    *   **p0** (`Optional`\[`List`\[`float`]]) – initial guess, equivalent to p0 in scipy.optimize
+    *   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
+    *   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
+  </Function>
 
-<span id="qiskit.ignis.characterization.RabiFitter.description" />
+  ### fit\_fun
 
-`property description`
+  <Function id="qiskit.ignis.characterization.RabiFitter.fit_fun" name="fit_fun" signature="property fit_fun">
+    Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 
-Return the fitter’s purpose, e.g. ‘T1’
+    **Return type**
 
-**Return type**
+    `Callable`
+  </Function>
 
-`str`
+  ### guess\_params
 
-### fit\_data
+  <Function id="qiskit.ignis.characterization.RabiFitter.guess_params" name="guess_params" signature="guess_params(qind=0)">
+    Guess fit parameters for rabi oscillation data
 
-<span id="qiskit.ignis.characterization.RabiFitter.fit_data" />
+    **Parameters**
 
-`fit_data(qid=- 1, p0=None, bounds=None, series=None)`
+    **qind** (*int*) – qubit index to guess fit parameters for
 
-Fit the curve.
+    **Returns**
 
-Compute self.\_params and self.\_params\_err
+    **List of fit guess parameters**
 
-**Parameters**
+    \[amp, freq, phase, offset]
 
-*   **qid** (`int`) – qubit for fitting. If -1 fit for all the qubits
-*   **p0** (`Optional`\[`List`\[`float`]]) – initial guess, equivalent to p0 in scipy.optimize
-*   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
-*   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
+    **Return type**
 
-### fit\_fun
+    list
+  </Function>
 
-<span id="qiskit.ignis.characterization.RabiFitter.fit_fun" />
+  ### measured\_qubits
 
-`property fit_fun`
+  <Function id="qiskit.ignis.characterization.RabiFitter.measured_qubits" name="measured_qubits" signature="property measured_qubits">
+    Return the indices of the qubits to be characterized
 
-Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
+    **Return type**
 
-**Return type**
+    `List`\[`int`]
+  </Function>
 
-`Callable`
+  ### params
 
-### guess\_params
+  <Function id="qiskit.ignis.characterization.RabiFitter.params" name="params" signature="property params">
+    Return the fit function parameters that were calculated by curve\_fit
 
-<span id="qiskit.ignis.characterization.RabiFitter.guess_params" />
+    **Return type**
 
-`guess_params(qind=0)`
+    `List`\[`float`]
+  </Function>
 
-Guess fit parameters for rabi oscillation data
+  ### params\_err
 
-**Parameters**
+  <Function id="qiskit.ignis.characterization.RabiFitter.params_err" name="params_err" signature="property params_err">
+    Return the error of the fit function parameters
 
-**qind** (*int*) – qubit index to guess fit parameters for
+    **Return type**
 
-**Returns**
+    `List`\[`float`]
+  </Function>
 
-**List of fit guess parameters**
+  ### pi2\_amplitude
 
-\[amp, freq, phase, offset]
+  <Function id="qiskit.ignis.characterization.RabiFitter.pi2_amplitude" name="pi2_amplitude" signature="pi2_amplitude(qind=- 1)">
+    Return the pi/2 amplitude from the fit
 
-**Return type**
+    **Parameters**
 
-list
+    **qind** (*int*) – qubit index
 
-### measured\_qubits
+    **Returns**
 
-<span id="qiskit.ignis.characterization.RabiFitter.measured_qubits" />
+    $\frac{\pi}{2}$ amp
 
-`property measured_qubits`
+    **Return type**
 
-Return the indices of the qubits to be characterized
+    float
+  </Function>
 
-**Return type**
+  ### pi\_amplitude
 
-`List`\[`int`]
+  <Function id="qiskit.ignis.characterization.RabiFitter.pi_amplitude" name="pi_amplitude" signature="pi_amplitude(qind=- 1)">
+    Return the pi amplitude from the fit
 
-### params
+    **Parameters**
 
-<span id="qiskit.ignis.characterization.RabiFitter.params" />
+    **qind** (*int*) – qubit index
 
-`property params`
+    **Returns**
 
-Return the fit function parameters that were calculated by curve\_fit
+    $\pi$ amp
 
-**Return type**
+    **Return type**
 
-`List`\[`float`]
+    float
+  </Function>
 
-### params\_err
+  ### plot
 
-<span id="qiskit.ignis.characterization.RabiFitter.params_err" />
+  <Function id="qiskit.ignis.characterization.RabiFitter.plot" name="plot" signature="plot(qind, series='0', ax=None, show_plot=False)">
+    Plot the data and fit
 
-`property params_err`
+    **Parameters**
 
-Return the error of the fit function parameters
+    *   **qind** (*int*) – qubit index
+    *   **series** (*str*) – data series to plot (for rabi data always ‘0’)
+    *   **ax** (*Axes*) – matploblib axes (if none created)
+    *   **show\_plot** (*bool*) – do plot.show
 
-**Return type**
+    **Returns**
 
-`List`\[`float`]
+    Plot axes
 
-### pi2\_amplitude
+    **Return type**
 
-<span id="qiskit.ignis.characterization.RabiFitter.pi2_amplitude" />
+    Axes
+  </Function>
 
-`pi2_amplitude(qind=- 1)`
+  ### series
 
-Return the pi/2 amplitude from the fit
+  <Function id="qiskit.ignis.characterization.RabiFitter.series" name="series" signature="property series">
+    Return the list of series for the data
 
-**Parameters**
+    **Return type**
 
-**qind** (*int*) – qubit index
+    `Optional`\[`List`\[`str`]]
+  </Function>
 
-**Returns**
+  ### xdata
 
-$\frac{\pi}{2}$ amp
+  <Function id="qiskit.ignis.characterization.RabiFitter.xdata" name="xdata" signature="property xdata">
+    Return the data points on the x-axis, the independenet parameter which is fit against
 
-**Return type**
+    **Return type**
 
-float
+    `Union`\[`List`\[`float`], `array`]
+  </Function>
 
-### pi\_amplitude
+  ### ydata
 
-<span id="qiskit.ignis.characterization.RabiFitter.pi_amplitude" />
+  <Function id="qiskit.ignis.characterization.RabiFitter.ydata" name="ydata" signature="property ydata">
+    Return the data points on the y-axis
 
-`pi_amplitude(qind=- 1)`
+    The data points are returning in the form of a list of dictionaries:
 
-Return the pi amplitude from the fit
+    > *   **ydata\[i]\[‘mean’] is a list, where item**
+    >
+    >     no. j is the probability of success of qubit i for a circuit that lasts xdata\[j].
+    >
+    > *   **ydata\[i]\[‘std’] is a list, where ydata\[‘std’]\[j] is the**
+    >
+    >     standard deviation of the success of qubit i.
 
-**Parameters**
+    **Return type**
 
-**qind** (*int*) – qubit index
-
-**Returns**
-
-$\pi$ amp
-
-**Return type**
-
-float
-
-### plot
-
-<span id="qiskit.ignis.characterization.RabiFitter.plot" />
-
-`plot(qind, series='0', ax=None, show_plot=False)`
-
-Plot the data and fit
-
-**Parameters**
-
-*   **qind** (*int*) – qubit index
-*   **series** (*str*) – data series to plot (for rabi data always ‘0’)
-*   **ax** (*Axes*) – matploblib axes (if none created)
-*   **show\_plot** (*bool*) – do plot.show
-
-**Returns**
-
-Plot axes
-
-**Return type**
-
-Axes
-
-### series
-
-<span id="qiskit.ignis.characterization.RabiFitter.series" />
-
-`property series`
-
-Return the list of series for the data
-
-**Return type**
-
-`Optional`\[`List`\[`str`]]
-
-### xdata
-
-<span id="qiskit.ignis.characterization.RabiFitter.xdata" />
-
-`property xdata`
-
-Return the data points on the x-axis, the independenet parameter which is fit against
-
-**Return type**
-
-`Union`\[`List`\[`float`], `array`]
-
-### ydata
-
-<span id="qiskit.ignis.characterization.RabiFitter.ydata" />
-
-`property ydata`
-
-Return the data points on the y-axis
-
-The data points are returning in the form of a list of dictionaries:
-
-> *   **ydata\[i]\[‘mean’] is a list, where item**
->
->     no. j is the probability of success of qubit i for a circuit that lasts xdata\[j].
->
-> *   **ydata\[i]\[‘std’] is a list, where ydata\[‘std’]\[j] is the**
->
->     standard deviation of the success of qubit i.
-
-**Return type**
-
-`List`\[`Dict`]
+    `List`\[`Dict`]
+  </Function>
+</Class>
 
