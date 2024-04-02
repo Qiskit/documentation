@@ -8,431 +8,391 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
 # StabilizerState
 
-<span id="qiskit.quantum_info.StabilizerState" />
+<Class id="qiskit.quantum_info.StabilizerState" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/quantum_info/states/stabilizerstate.py" signature="qiskit.quantum_info.StabilizerState(data, validate=True)">
+  Bases: `QuantumState`
 
-`qiskit.quantum_info.StabilizerState(data, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+  StabilizerState class. Stabilizer simulator using the convention from reference \[1]. Based on the internal class [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford").
 
-Bases: `QuantumState`
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit.quantum_info import StabilizerState, Pauli
 
-StabilizerState class. Stabilizer simulator using the convention from reference \[1]. Based on the internal class [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford").
+  # Bell state generation circuit
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0, 1)
+  stab = StabilizerState(qc)
 
-```python
-from qiskit import QuantumCircuit
-from qiskit.quantum_info import StabilizerState, Pauli
+  # Print the StabilizerState
+  print(stab)
 
-# Bell state generation circuit
-qc = QuantumCircuit(2)
-qc.h(0)
-qc.cx(0, 1)
-stab = StabilizerState(qc)
+  # Calculate the StabilizerState measurement probabilities dictionary
+  print (stab.probabilities_dict())
 
-# Print the StabilizerState
-print(stab)
+  # Calculate expectation value of the StabilizerState
+  print (stab.expectation_value(Pauli('ZZ')))
+  ```
 
-# Calculate the StabilizerState measurement probabilities dictionary
-print (stab.probabilities_dict())
+  ```python
+  StabilizerState(StabilizerTable: ['+XX', '+ZZ'])
+  {'00': 0.5, '11': 0.5}
+  1
+  ```
 
-# Calculate expectation value of the StabilizerState
-print (stab.expectation_value(Pauli('ZZ')))
-```
+  **References**
 
-```python
-StabilizerState(StabilizerTable: ['+XX', '+ZZ'])
-{'00': 0.5, '11': 0.5}
-1
-```
+  1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 
-**References**
+  Initialize a StabilizerState object.
 
-1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
+  **Parameters**
 
-Initialize a StabilizerState object.
+  *   **or** (*data (*[*StabilizerState*](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")  *or*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – qiskit.circuit.Instruction): Data from which the stabilizer state can be constructed.
+  *   **validate** (*boolean*) – validate that the stabilizer state data is a valid Clifford.
 
-**Parameters**
+  ## Attributes
 
-*   **or** (*data (*[*StabilizerState*](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")  *or*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – qiskit.circuit.Instruction): Data from which the stabilizer state can be constructed.
-*   **validate** (*boolean*) – validate that the stabilizer state data is a valid Clifford.
+  ### clifford
 
-## Attributes
+  <Attribute id="qiskit.quantum_info.StabilizerState.clifford" name="clifford">
+    Return StabilizerState Clifford data
+  </Attribute>
 
-<span id="qiskit.quantum_info.StabilizerState.clifford" />
+  ### dim
 
-### clifford
+  <Attribute id="qiskit.quantum_info.StabilizerState.dim" name="dim">
+    Return total state dimension.
+  </Attribute>
 
-Return StabilizerState Clifford data
+  ### num\_qubits
 
-<span id="qiskit.quantum_info.StabilizerState.dim" />
+  <Attribute id="qiskit.quantum_info.StabilizerState.num_qubits" name="num_qubits">
+    Return the number of qubits if a N-qubit state or None otherwise.
+  </Attribute>
 
-### dim
+  ## Methods
 
-Return total state dimension.
+  ### conjugate
 
-<span id="qiskit.quantum_info.StabilizerState.num_qubits" />
+  <Function id="qiskit.quantum_info.StabilizerState.conjugate" name="conjugate" signature="conjugate()">
+    Return the conjugate of the operator.
+  </Function>
 
-### num\_qubits
+  ### copy
 
-Return the number of qubits if a N-qubit state or None otherwise.
+  <Function id="qiskit.quantum_info.StabilizerState.copy" name="copy" signature="copy()">
+    Make a copy of current operator.
+  </Function>
 
-## Methods
+  ### dims
 
-### conjugate
+  <Function id="qiskit.quantum_info.StabilizerState.dims" name="dims" signature="dims(qargs=None)">
+    Return tuple of input dimension for specified subsystems.
+  </Function>
 
-<span id="qiskit.quantum_info.StabilizerState.conjugate" />
+  ### equiv
 
-`conjugate()`
+  <Function id="qiskit.quantum_info.StabilizerState.equiv" name="equiv" signature="equiv(other)">
+    Return True if the two generating sets generate the same stabilizer group.
 
-Return the conjugate of the operator.
+    **Parameters**
 
-### copy
+    **other** ([*StabilizerState*](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")) – another StabilizerState.
 
-<span id="qiskit.quantum_info.StabilizerState.copy" />
+    **Returns**
 
-`copy()`
+    True if other has a generating set that generates the same StabilizerState.
 
-Make a copy of current operator.
+    **Return type**
 
-### dims
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-<span id="qiskit.quantum_info.StabilizerState.dims" />
+  ### evolve
 
-`dims(qargs=None)`
+  <Function id="qiskit.quantum_info.StabilizerState.evolve" name="evolve" signature="evolve(other, qargs=None)">
+    Evolve a stabilizer state by a Clifford operator.
 
-Return tuple of input dimension for specified subsystems.
+    **Parameters**
 
-### equiv
+    *   **other** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The Clifford operator to evolve by.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – a list of stabilizer subsystem positions to apply the operator on.
 
-<span id="qiskit.quantum_info.StabilizerState.equiv" />
+    **Returns**
 
-`equiv(other)`
+    the output stabilizer state.
 
-Return True if the two generating sets generate the same stabilizer group.
+    **Return type**
 
-**Parameters**
+    [StabilizerState](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")
 
-**other** ([*StabilizerState*](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")) – another StabilizerState.
+    **Raises**
 
-**Returns**
+    *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other is not a StabilizerState.
+    *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the operator dimension does not match the specified StabilizerState subsystem dimensions.
+  </Function>
 
-True if other has a generating set that generates the same StabilizerState.
+  ### expand
 
-**Return type**
+  <Function id="qiskit.quantum_info.StabilizerState.expand" name="expand" signature="expand(other)">
+    Return the tensor product stabilizer state other ⊗ self.
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    **Parameters**
 
-### evolve
+    **other** ([*StabilizerState*](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")) – a stabilizer state object.
 
-<span id="qiskit.quantum_info.StabilizerState.evolve" />
+    **Returns**
 
-`evolve(other, qargs=None)`
+    the tensor product operator other ⊗ self.
 
-Evolve a stabilizer state by a Clifford operator.
+    **Return type**
 
-**Parameters**
+    [StabilizerState](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")
 
-*   **other** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The Clifford operator to evolve by.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – a list of stabilizer subsystem positions to apply the operator on.
+    **Raises**
 
-**Returns**
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other is not a StabilizerState.
+  </Function>
 
-the output stabilizer state.
+  ### expectation\_value
 
-**Return type**
+  <Function id="qiskit.quantum_info.StabilizerState.expectation_value" name="expectation_value" signature="expectation_value(oper, qargs=None)">
+    Compute the expectation value of a Pauli operator.
 
-[StabilizerState](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")
+    **Parameters**
 
-**Raises**
+    *   **oper** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – a Pauli operator to evaluate expval.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to apply the operator on.
 
-*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other is not a StabilizerState.
-*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the operator dimension does not match the specified StabilizerState subsystem dimensions.
+    **Returns**
 
-### expand
+    the expectation value (only 0 or 1 or -1 or i or -i).
 
-<span id="qiskit.quantum_info.StabilizerState.expand" />
+    **Return type**
 
-`expand(other)`
+    [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")
 
-Return the tensor product stabilizer state other ⊗ self.
+    **Raises**
 
-**Parameters**
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if oper is not a Pauli operator.
+  </Function>
 
-**other** ([*StabilizerState*](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")) – a stabilizer state object.
+  ### is\_valid
 
-**Returns**
+  <Function id="qiskit.quantum_info.StabilizerState.is_valid" name="is_valid" signature="is_valid(atol=None, rtol=None)">
+    Return True if a valid StabilizerState.
+  </Function>
 
-the tensor product operator other ⊗ self.
+  ### measure
 
-**Return type**
+  <Function id="qiskit.quantum_info.StabilizerState.measure" name="measure" signature="measure(qargs=None)">
+    Measure subsystems and return outcome and post-measure state.
 
-[StabilizerState](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")
+    Note that this function uses the QuantumStates internal random number generator for sampling the measurement outcome. The RNG seed can be set using the [`seed()`](#qiskit.quantum_info.StabilizerState.seed "qiskit.quantum_info.StabilizerState.seed") method.
 
-**Raises**
+    **Parameters**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other is not a StabilizerState.
+    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
-### expectation\_value
+    **Returns**
 
-<span id="qiskit.quantum_info.StabilizerState.expectation_value" />
+    **the pair `(outcome, state)` where `outcome` is the**
 
-`expectation_value(oper, qargs=None)`
+    measurement outcome string label, and `state` is the collapsed post-measurement stabilizer state for the corresponding outcome.
 
-Compute the expectation value of a Pauli operator.
+    **Return type**
 
-**Parameters**
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")
+  </Function>
 
-*   **oper** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – a Pauli operator to evaluate expval.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to apply the operator on.
+  ### probabilities
 
-**Returns**
+  <Function id="qiskit.quantum_info.StabilizerState.probabilities" name="probabilities" signature="probabilities(qargs=None, decimals=None)">
+    Return the subsystem measurement probability vector.
 
-the expectation value (only 0 or 1 or -1 or i or -i).
+    Measurement probabilities are with respect to measurement in the computation (diagonal) basis.
 
-**Return type**
+    **Parameters**
 
-[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
-**Raises**
+    **Returns**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if oper is not a Pauli operator.
+    The Numpy vector array of probabilities.
 
-### is\_valid
+    **Return type**
 
-<span id="qiskit.quantum_info.StabilizerState.is_valid" />
+    np.array
+  </Function>
 
-`is_valid(atol=None, rtol=None)`
+  ### probabilities\_dict
 
-Return True if a valid StabilizerState.
+  <Function id="qiskit.quantum_info.StabilizerState.probabilities_dict" name="probabilities_dict" signature="probabilities_dict(qargs=None, decimals=None)">
+    Return the subsystem measurement probability dictionary.
 
-### measure
+    Measurement probabilities are with respect to measurement in the computation (diagonal) basis.
 
-<span id="qiskit.quantum_info.StabilizerState.measure" />
+    This dictionary representation uses a Ket-like notation where the dictionary keys are qudit strings for the subsystem basis vectors. If any subsystem has a dimension greater than 10 comma delimiters are inserted between integers so that subsystems can be distinguished.
 
-`measure(qargs=None)`
+    **Parameters**
 
-Measure subsystems and return outcome and post-measure state.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
-Note that this function uses the QuantumStates internal random number generator for sampling the measurement outcome. The RNG seed can be set using the [`seed()`](#qiskit.quantum_info.StabilizerState.seed "qiskit.quantum_info.StabilizerState.seed") method.
+    **Returns**
 
-**Parameters**
+    The measurement probabilities in dict (ket) form.
 
-**qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+    **Return type**
 
-**Returns**
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
+  </Function>
 
-**the pair `(outcome, state)` where `outcome` is the**
+  ### purity
 
-measurement outcome string label, and `state` is the collapsed post-measurement stabilizer state for the corresponding outcome.
+  <Function id="qiskit.quantum_info.StabilizerState.purity" name="purity" signature="purity()">
+    Return the purity of the quantum state, which equals to 1, since it is always a pure state.
 
-**Return type**
+    **Returns**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")
+    the purity (should equal 1).
 
-### probabilities
+    **Return type**
 
-<span id="qiskit.quantum_info.StabilizerState.probabilities" />
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
-`probabilities(qargs=None, decimals=None)`
+    **Raises**
 
-Return the subsystem measurement probability vector.
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input is not a StabilizerState.
+  </Function>
 
-Measurement probabilities are with respect to measurement in the computation (diagonal) basis.
+  ### reset
 
-**Parameters**
+  <Function id="qiskit.quantum_info.StabilizerState.reset" name="reset" signature="reset(qargs=None)">
+    Reset state or subsystems to the 0-state.
 
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
-*   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+    **Parameters**
 
-**Returns**
+    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – subsystems to reset, if None all subsystems will be reset to their 0-state (Default: None).
 
-The Numpy vector array of probabilities.
+    **Returns**
 
-**Return type**
+    the reset state.
 
-np.array
+    **Return type**
 
-### probabilities\_dict
+    [StabilizerState](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")
 
-<span id="qiskit.quantum_info.StabilizerState.probabilities_dict" />
+    **Additional Information:**
 
-`probabilities_dict(qargs=None, decimals=None)`
+    If all subsystems are reset this will return the ground state on all subsystems. If only some subsystems are reset this function will perform a measurement on those subsystems and evolve the subsystems so that the collapsed post-measurement states are rotated to the 0-state. The RNG seed for this sampling can be set using the [`seed()`](#qiskit.quantum_info.StabilizerState.seed "qiskit.quantum_info.StabilizerState.seed") method.
+  </Function>
 
-Return the subsystem measurement probability dictionary.
+  ### sample\_counts
 
-Measurement probabilities are with respect to measurement in the computation (diagonal) basis.
+  <Function id="qiskit.quantum_info.StabilizerState.sample_counts" name="sample_counts" signature="sample_counts(shots, qargs=None)">
+    Sample a dict of qubit measurement outcomes in the computational basis.
 
-This dictionary representation uses a Ket-like notation where the dictionary keys are qudit strings for the subsystem basis vectors. If any subsystem has a dimension greater than 10 comma delimiters are inserted between integers so that subsystems can be distinguished.
+    **Parameters**
 
-**Parameters**
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of samples to generate.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
-*   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+    **Returns**
 
-**Returns**
+    sampled counts dictionary.
 
-The measurement probabilities in dict (ket) form.
+    **Return type**
 
-**Return type**
+    [Counts](qiskit.result.Counts "qiskit.result.Counts")
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
+    Additional Information:
 
-### purity
+    > This function *samples* measurement outcomes using the measure [`probabilities()`](#qiskit.quantum_info.StabilizerState.probabilities "qiskit.quantum_info.StabilizerState.probabilities") for the current state and qargs. It does not actually implement the measurement so the current state is not modified.
+    >
+    > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.StabilizerState.seed "qiskit.quantum_info.StabilizerState.seed") method.
+  </Function>
 
-<span id="qiskit.quantum_info.StabilizerState.purity" />
+  ### sample\_memory
 
-`purity()`
+  <Function id="qiskit.quantum_info.StabilizerState.sample_memory" name="sample_memory" signature="sample_memory(shots, qargs=None)">
+    Sample a list of qubit measurement outcomes in the computational basis.
 
-Return the purity of the quantum state, which equals to 1, since it is always a pure state.
+    **Parameters**
 
-**Returns**
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of samples to generate.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
-the purity (should equal 1).
+    **Returns**
 
-**Return type**
+    list of sampled counts if the order sampled.
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+    **Return type**
 
-**Raises**
+    np.array
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input is not a StabilizerState.
+    Additional Information:
 
-### reset
+    > This function implements the measurement [`measure()`](#qiskit.quantum_info.StabilizerState.measure "qiskit.quantum_info.StabilizerState.measure") method.
+    >
+    > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.StabilizerState.seed "qiskit.quantum_info.StabilizerState.seed") method.
+  </Function>
 
-<span id="qiskit.quantum_info.StabilizerState.reset" />
+  ### seed
 
-`reset(qargs=None)`
+  <Function id="qiskit.quantum_info.StabilizerState.seed" name="seed" signature="seed(value=None)">
+    Set the seed for the quantum state RNG.
+  </Function>
 
-Reset state or subsystems to the 0-state.
+  ### tensor
 
-**Parameters**
+  <Function id="qiskit.quantum_info.StabilizerState.tensor" name="tensor" signature="tensor(other)">
+    Return the tensor product stabilizer state self ⊗ other.
 
-**qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – subsystems to reset, if None all subsystems will be reset to their 0-state (Default: None).
+    **Parameters**
 
-**Returns**
+    **other** ([*StabilizerState*](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")) – a stabilizer state object.
 
-the reset state.
+    **Returns**
 
-**Return type**
+    the tensor product operator self ⊗ other.
 
-[StabilizerState](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")
+    **Return type**
 
-**Additional Information:**
+    [StabilizerState](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")
 
-If all subsystems are reset this will return the ground state on all subsystems. If only some subsystems are reset this function will perform a measurement on those subsystems and evolve the subsystems so that the collapsed post-measurement states are rotated to the 0-state. The RNG seed for this sampling can be set using the [`seed()`](#qiskit.quantum_info.StabilizerState.seed "qiskit.quantum_info.StabilizerState.seed") method.
+    **Raises**
 
-### sample\_counts
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other is not a StabilizerState.
+  </Function>
 
-<span id="qiskit.quantum_info.StabilizerState.sample_counts" />
+  ### to\_operator
 
-`sample_counts(shots, qargs=None)`
+  <Function id="qiskit.quantum_info.StabilizerState.to_operator" name="to_operator" signature="to_operator()">
+    Convert state to matrix operator class
 
-Sample a dict of qubit measurement outcomes in the computational basis.
+    **Return type**
 
-**Parameters**
+    [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator")
+  </Function>
 
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of samples to generate.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+  ### trace
 
-**Returns**
+  <Function id="qiskit.quantum_info.StabilizerState.trace" name="trace" signature="trace()">
+    Return the trace of the stabilizer state as a density matrix, which equals to 1, since it is always a pure state.
 
-sampled counts dictionary.
+    **Returns**
 
-**Return type**
+    the trace (should equal 1).
 
-[Counts](qiskit.result.Counts "qiskit.result.Counts")
+    **Return type**
 
-Additional Information:
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
-> This function *samples* measurement outcomes using the measure [`probabilities()`](#qiskit.quantum_info.StabilizerState.probabilities "qiskit.quantum_info.StabilizerState.probabilities") for the current state and qargs. It does not actually implement the measurement so the current state is not modified.
->
-> The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.StabilizerState.seed "qiskit.quantum_info.StabilizerState.seed") method.
+    **Raises**
 
-### sample\_memory
-
-<span id="qiskit.quantum_info.StabilizerState.sample_memory" />
-
-`sample_memory(shots, qargs=None)`
-
-Sample a list of qubit measurement outcomes in the computational basis.
-
-**Parameters**
-
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of samples to generate.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
-
-**Returns**
-
-list of sampled counts if the order sampled.
-
-**Return type**
-
-np.array
-
-Additional Information:
-
-> This function implements the measurement [`measure()`](#qiskit.quantum_info.StabilizerState.measure "qiskit.quantum_info.StabilizerState.measure") method.
->
-> The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.StabilizerState.seed "qiskit.quantum_info.StabilizerState.seed") method.
-
-### seed
-
-<span id="qiskit.quantum_info.StabilizerState.seed" />
-
-`seed(value=None)`
-
-Set the seed for the quantum state RNG.
-
-### tensor
-
-<span id="qiskit.quantum_info.StabilizerState.tensor" />
-
-`tensor(other)`
-
-Return the tensor product stabilizer state self ⊗ other.
-
-**Parameters**
-
-**other** ([*StabilizerState*](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")) – a stabilizer state object.
-
-**Returns**
-
-the tensor product operator self ⊗ other.
-
-**Return type**
-
-[StabilizerState](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other is not a StabilizerState.
-
-### to\_operator
-
-<span id="qiskit.quantum_info.StabilizerState.to_operator" />
-
-`to_operator()`
-
-Convert state to matrix operator class
-
-**Return type**
-
-[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator")
-
-### trace
-
-<span id="qiskit.quantum_info.StabilizerState.trace" />
-
-`trace()`
-
-Return the trace of the stabilizer state as a density matrix, which equals to 1, since it is always a pure state.
-
-**Returns**
-
-the trace (should equal 1).
-
-**Return type**
-
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input is not a StabilizerState.
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input is not a StabilizerState.
+  </Function>
+</Class>
 

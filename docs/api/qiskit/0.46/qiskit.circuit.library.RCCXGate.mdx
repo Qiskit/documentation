@@ -8,116 +8,114 @@ python_api_name: qiskit.circuit.library.RCCXGate
 
 # RCCXGate
 
-<span id="qiskit.circuit.library.RCCXGate" />
+<Class id="qiskit.circuit.library.RCCXGate" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/x.py" signature="qiskit.circuit.library.RCCXGate(*args, _force_mutable=False, **kwargs)">
+  Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
-`qiskit.circuit.library.RCCXGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/x.py "view source code")
+  The simplified Toffoli gate, also referred to as Margolus gate.
 
-Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
+  The simplified Toffoli gate implements the Toffoli gate up to relative phases. This implementation requires three CX gates which is the minimal amount possible, as shown in [https://arxiv.org/abs/quant-ph/0312225](https://arxiv.org/abs/quant-ph/0312225). Note, that the simplified Toffoli is not equivalent to the Toffoli. But can be used in places where the Toffoli gate is uncomputed again.
 
-The simplified Toffoli gate, also referred to as Margolus gate.
+  This concrete implementation is from [https://arxiv.org/abs/1508.03273](https://arxiv.org/abs/1508.03273), the dashed box of Fig. 3.
 
-The simplified Toffoli gate implements the Toffoli gate up to relative phases. This implementation requires three CX gates which is the minimal amount possible, as shown in [https://arxiv.org/abs/quant-ph/0312225](https://arxiv.org/abs/quant-ph/0312225). Note, that the simplified Toffoli is not equivalent to the Toffoli. But can be used in places where the Toffoli gate is uncomputed again.
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rccx()`](qiskit.circuit.QuantumCircuit#rccx "qiskit.circuit.QuantumCircuit.rccx") method.
 
-This concrete implementation is from [https://arxiv.org/abs/1508.03273](https://arxiv.org/abs/1508.03273), the dashed box of Fig. 3.
+  Create a new simplified CCX gate.
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rccx()`](qiskit.circuit.QuantumCircuit#rccx "qiskit.circuit.QuantumCircuit.rccx") method.
+  ## Attributes
 
-Create a new simplified CCX gate.
+  ### base\_class
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.RCCXGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-<span id="qiskit.circuit.library.RCCXGate.base_class" />
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.RCCXGate.base_class "qiskit.circuit.library.RCCXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-### base\_class
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.RCCXGate.base_class "qiskit.circuit.library.RCCXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### condition
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.library.RCCXGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition\_bits
 
-<span id="qiskit.circuit.library.RCCXGate.condition" />
+  <Attribute id="qiskit.circuit.library.RCCXGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### condition
+  ### decompositions
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.RCCXGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RCCXGate.condition_bits" />
+  ### definition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.RCCXGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get Clbits in condition.
+  ### duration
 
-<span id="qiskit.circuit.library.RCCXGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.RCCXGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.RCCXGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.library.RCCXGate.definition" />
+  ### mutable
 
-### definition
+  <Attribute id="qiskit.circuit.library.RCCXGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-Return definition in terms of other basic gates.
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RCCXGate.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.circuit.library.RCCXGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-Get the duration.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.RCCXGate.label" />
+  <Attribute id="qiskit.circuit.library.RCCXGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### label
+  ### num\_qubits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.RCCXGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RCCXGate.mutable" />
+  ### params
 
-### mutable
+  <Attribute id="qiskit.circuit.library.RCCXGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### unit
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
-
-<span id="qiskit.circuit.library.RCCXGate.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.RCCXGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.RCCXGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.RCCXGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.RCCXGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.RCCXGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 
