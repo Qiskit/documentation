@@ -8,152 +8,144 @@ python_api_name: qiskit.primitives.BackendSampler
 
 # BackendSampler
 
-<span id="qiskit.primitives.BackendSampler" />
+<Class id="qiskit.primitives.BackendSampler" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/primitives/backend_sampler.py" signature="BackendSampler(backend, options=None, bound_pass_manager=None, skip_transpilation=False)">
+  Bases: [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.base.base_sampler.BaseSampler")\[`PrimitiveJob`\[[`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.base.sampler_result.SamplerResult")]]
 
-`BackendSampler(backend, options=None, bound_pass_manager=None, skip_transpilation=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/primitives/backend_sampler.py "view source code")
+  A [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") implementation that provides an interface for leveraging the sampler interface from any backend.
 
-Bases: [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.base.base_sampler.BaseSampler")\[`PrimitiveJob`\[[`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.base.sampler_result.SamplerResult")]]
+  This class provides a sampler interface from any backend and doesn’t do any measurement mitigation, it just computes the probability distribution from the counts. It facilitates using backends that do not provide a native [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") implementation in places that work with [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler"), such as algorithms in [`qiskit.algorithms`](algorithms#module-qiskit.algorithms "qiskit.algorithms") including [`SamplingVQE`](qiskit.algorithms.minimum_eigensolvers.SamplingVQE "qiskit.algorithms.minimum_eigensolvers.SamplingVQE"). However, if you’re using a provider that has a native implementation of [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
 
-A [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") implementation that provides an interface for leveraging the sampler interface from any backend.
+  Initialize a new BackendSampler
 
-This class provides a sampler interface from any backend and doesn’t do any measurement mitigation, it just computes the probability distribution from the counts. It facilitates using backends that do not provide a native [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") implementation in places that work with [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler"), such as algorithms in [`qiskit.algorithms`](algorithms#module-qiskit.algorithms "qiskit.algorithms") including [`SamplingVQE`](qiskit.algorithms.minimum_eigensolvers.SamplingVQE "qiskit.algorithms.minimum_eigensolvers.SamplingVQE"). However, if you’re using a provider that has a native implementation of [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
+  **Parameters**
 
-Initialize a new BackendSampler
+  *   **backend** – Required: the backend to run the sampler primitive on
+  *   **options** – Default options.
+  *   **bound\_pass\_manager** – An optional pass manager to run after parameter binding.
+  *   **skip\_transpilation** – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this objected is called.
 
-**Parameters**
+  **Raises**
 
-*   **backend** – Required: the backend to run the sampler primitive on
-*   **options** – Default options.
-*   **bound\_pass\_manager** – An optional pass manager to run after parameter binding.
-*   **skip\_transpilation** – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this objected is called.
+  **ValueError** – If backend is not provided
 
-**Raises**
+  ## Methods
 
-**ValueError** – If backend is not provided
+  <span id="qiskit-primitives-backendsampler-run" />
 
-## Methods
+  ### run
 
-<span id="qiskit-primitives-backendsampler-run" />
+  <Function id="qiskit.primitives.BackendSampler.run" name="run" signature="BackendSampler.run(circuits, parameter_values=None, **run_options)">
+    Run the job of the sampling of bitstrings.
 
-### run
+    **Parameters**
 
-<span id="qiskit.primitives.BackendSampler.run" />
+    *   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – One of more circuit objects.
+    *   **parameter\_values** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Parameters to be bound to the circuit.
+    *   **run\_options** – Backend runtime options used for circuit execution.
 
-`BackendSampler.run(circuits, parameter_values=None, **run_options)`
+    **Returns**
 
-Run the job of the sampling of bitstrings.
+    The job object of the result of the sampler. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`.
 
-**Parameters**
+    **Raises**
 
-*   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – One of more circuit objects.
-*   **parameter\_values** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Parameters to be bound to the circuit.
-*   **run\_options** – Backend runtime options used for circuit execution.
+    **ValueError** – Invalid arguments are given.
 
-**Returns**
+    **Return type**
 
-The job object of the result of the sampler. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`.
+    T
+  </Function>
 
-**Raises**
+  <span id="qiskit-primitives-backendsampler-set-options" />
 
-**ValueError** – Invalid arguments are given.
+  ### set\_options
 
-**Return type**
+  <Function id="qiskit.primitives.BackendSampler.set_options" name="set_options" signature="BackendSampler.set_options(**fields)">
+    Set options values for the estimator.
 
-T
+    **Parameters**
 
-<span id="qiskit-primitives-backendsampler-set-options" />
+    **\*\*fields** – The fields to update the options
+  </Function>
 
-### set\_options
+  <span id="qiskit-primitives-backendsampler-set-transpile-options" />
 
-<span id="qiskit.primitives.BackendSampler.set_options" />
+  ### set\_transpile\_options
 
-`BackendSampler.set_options(**fields)`
+  <Function id="qiskit.primitives.BackendSampler.set_transpile_options" name="set_transpile_options" signature="BackendSampler.set_transpile_options(**fields)">
+    Set the transpiler options for transpiler. :param \*\*fields: The fields to update the options.
 
-Set options values for the estimator.
+    **Returns**
 
-**Parameters**
+    self.
 
-**\*\*fields** – The fields to update the options
+    **Raises**
 
-<span id="qiskit-primitives-backendsampler-set-transpile-options" />
+    **QiskitError** – if the instance has been closed.
+  </Function>
 
-### set\_transpile\_options
+  ## Attributes
 
-<span id="qiskit.primitives.BackendSampler.set_transpile_options" />
+  ### backend
 
-`BackendSampler.set_transpile_options(**fields)`
+  <Attribute id="qiskit.primitives.BackendSampler.backend" name="backend">
+    Returns: The backend which this sampler object based on
+  </Attribute>
 
-Set the transpiler options for transpiler. :param \*\*fields: The fields to update the options.
+  ### circuits
 
-**Returns**
+  <Attribute id="qiskit.primitives.BackendSampler.circuits" name="circuits">
+    Quantum circuits to be sampled.
 
-self.
+    **Returns**
 
-**Raises**
+    The quantum circuits to be sampled.
+  </Attribute>
 
-**QiskitError** – if the instance has been closed.
+  ### options
 
-## Attributes
+  <Attribute id="qiskit.primitives.BackendSampler.options" name="options">
+    Return options values for the estimator.
 
-<span id="qiskit.primitives.BackendSampler.backend" />
+    **Returns**
 
-### backend
+    options
+  </Attribute>
 
-Returns: The backend which this sampler object based on
+  ### parameters
 
-<span id="qiskit.primitives.BackendSampler.circuits" />
+  <Attribute id="qiskit.primitives.BackendSampler.parameters" name="parameters">
+    Parameters of quantum circuits.
 
-### circuits
+    **Returns**
 
-Quantum circuits to be sampled.
+    List of the parameters in each quantum circuit.
+  </Attribute>
 
-**Returns**
+  ### preprocessed\_circuits
 
-The quantum circuits to be sampled.
+  <Attribute id="qiskit.primitives.BackendSampler.preprocessed_circuits" name="preprocessed_circuits">
+    Preprocessed quantum circuits produced by preprocessing :returns: List of the transpiled quantum circuit
 
-<span id="qiskit.primitives.BackendSampler.options" />
+    **Raises**
 
-### options
+    **QiskitError** – if the instance has been closed.
+  </Attribute>
 
-Return options values for the estimator.
+  ### transpile\_options
 
-**Returns**
+  <Attribute id="qiskit.primitives.BackendSampler.transpile_options" name="transpile_options">
+    Return the transpiler options for transpiling the circuits.
+  </Attribute>
 
-options
+  ### transpiled\_circuits
 
-<span id="qiskit.primitives.BackendSampler.parameters" />
+  <Attribute id="qiskit.primitives.BackendSampler.transpiled_circuits" name="transpiled_circuits">
+    Transpiled quantum circuits. :returns: List of the transpiled quantum circuit
 
-### parameters
+    **Raises**
 
-Parameters of quantum circuits.
-
-**Returns**
-
-List of the parameters in each quantum circuit.
-
-<span id="qiskit.primitives.BackendSampler.preprocessed_circuits" />
-
-### preprocessed\_circuits
-
-Preprocessed quantum circuits produced by preprocessing :returns: List of the transpiled quantum circuit
-
-**Raises**
-
-**QiskitError** – if the instance has been closed.
-
-<span id="qiskit.primitives.BackendSampler.transpile_options" />
-
-### transpile\_options
-
-Return the transpiler options for transpiling the circuits.
-
-<span id="qiskit.primitives.BackendSampler.transpiled_circuits" />
-
-### transpiled\_circuits
-
-Transpiled quantum circuits. :returns: List of the transpiled quantum circuit
-
-**Raises**
-
-**QiskitError** – if the instance has been closed.
+    **QiskitError** – if the instance has been closed.
+  </Attribute>
+</Class>
 

@@ -8,182 +8,156 @@ python_api_name: qiskit.providers.fake_provider.FakeAlmaden
 
 # FakeAlmaden
 
-<span id="qiskit.providers.fake_provider.FakeAlmaden" />
+<Class id="qiskit.providers.fake_provider.FakeAlmaden" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/almaden/fake_almaden.py" signature="FakeAlmaden">
+  Bases: `FakeQasmBackend`
 
-`FakeAlmaden` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/almaden/fake_almaden.py "view source code")
+  A fake Almaden backend.
 
-Bases: `FakeQasmBackend`
+  ```python
+  00 ↔ 01 ↔ 02 ↔ 03 ↔ 04
+        ↕         ↕
+  05 ↔ 06 ↔ 07 ↔ 08 ↔ 09
+   ↕         ↕         ↕
+  10 ↔ 11 ↔ 12 ↔ 13 ↔ 14
+        ↕         ↕
+  15 ↔ 16 ↔ 17 ↔ 18 ↔ 19
+  ```
 
-A fake Almaden backend.
+  FakeBackend initializer.
 
-```python
-00 ↔ 01 ↔ 02 ↔ 03 ↔ 04
-      ↕         ↕
-05 ↔ 06 ↔ 07 ↔ 08 ↔ 09
- ↕         ↕         ↕
-10 ↔ 11 ↔ 12 ↔ 13 ↔ 14
-      ↕         ↕
-15 ↔ 16 ↔ 17 ↔ 18 ↔ 19
-```
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+  *   **time\_alive** (*int*) – time to wait before returning result
 
-**Parameters**
+  ## Methods
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **time\_alive** (*int*) – time to wait before returning result
+  <span id="qiskit-providers-fake-provider-fakealmaden-configuration" />
 
-## Methods
+  ### configuration
 
-<span id="qiskit-providers-fake-provider-fakealmaden-configuration" />
+  <Function id="qiskit.providers.fake_provider.FakeAlmaden.configuration" name="configuration" signature="FakeAlmaden.configuration()">
+    Return the backend configuration.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeAlmaden.configuration" />
+    the configuration for the backend.
 
-`FakeAlmaden.configuration()`
+    **Return type**
 
-Return the backend configuration.
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-**Returns**
+  <span id="qiskit-providers-fake-provider-fakealmaden-name" />
 
-the configuration for the backend.
+  ### name
 
-**Return type**
+  <Function id="qiskit.providers.fake_provider.FakeAlmaden.name" name="name" signature="FakeAlmaden.name()">
+    Return the backend name.
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    **Returns**
 
-<span id="qiskit-providers-fake-provider-fakealmaden-name" />
+    the name of the backend.
 
-### name
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeAlmaden.name" />
+    str
+  </Function>
 
-`FakeAlmaden.name()`
+  <span id="qiskit-providers-fake-provider-fakealmaden-properties" />
 
-Return the backend name.
+  ### properties
 
-**Returns**
+  <Function id="qiskit.providers.fake_provider.FakeAlmaden.properties" name="properties" signature="FakeAlmaden.properties()">
+    Returns a snapshot of device properties
+  </Function>
 
-the name of the backend.
+  <span id="qiskit-providers-fake-provider-fakealmaden-provider" />
 
-**Return type**
+  ### provider
 
-str
+  <Function id="qiskit.providers.fake_provider.FakeAlmaden.provider" name="provider" signature="FakeAlmaden.provider()">
+    Return the backend Provider.
 
-<span id="qiskit-providers-fake-provider-fakealmaden-properties" />
+    **Returns**
 
-### properties
+    the Provider responsible for the backend.
 
-<span id="qiskit.providers.fake_provider.FakeAlmaden.properties" />
+    **Return type**
 
-`FakeAlmaden.properties()`
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-Returns a snapshot of device properties
+  <span id="qiskit-providers-fake-provider-fakealmaden-run" />
 
-<span id="qiskit-providers-fake-provider-fakealmaden-provider" />
+  ### run
 
-### provider
+  <Function id="qiskit.providers.fake_provider.FakeAlmaden.run" name="run" signature="FakeAlmaden.run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-<span id="qiskit.providers.fake_provider.FakeAlmaden.provider" />
+  <span id="qiskit-providers-fake-provider-fakealmaden-set-options" />
 
-`FakeAlmaden.provider()`
+  ### set\_options
 
-Return the backend Provider.
+  <Function id="qiskit.providers.fake_provider.FakeAlmaden.set_options" name="set_options" signature="FakeAlmaden.set_options(**fields)">
+    Set the options fields for the backend
 
-**Returns**
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-the Provider responsible for the backend.
+    **Parameters**
 
-**Return type**
+    **fields** – The fields to update the options
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    **Raises**
 
-<span id="qiskit-providers-fake-provider-fakealmaden-run" />
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-### run
+  <span id="qiskit-providers-fake-provider-fakealmaden-status" />
 
-<span id="qiskit.providers.fake_provider.FakeAlmaden.run" />
+  ### status
 
-`FakeAlmaden.run(run_input, **kwargs)`
+  <Function id="qiskit.providers.fake_provider.FakeAlmaden.status" name="status" signature="FakeAlmaden.status()">
+    Return the backend status.
 
-Main job in simulator
+    **Returns**
 
-<span id="qiskit-providers-fake-provider-fakealmaden-set-options" />
+    the status of the backend.
 
-### set\_options
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeAlmaden.set_options" />
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-`FakeAlmaden.set_options(**fields)`
+  ## Attributes
 
-Set the options fields for the backend
+  ### backend\_name
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+  <Attribute id="qiskit.providers.fake_provider.FakeAlmaden.backend_name" name="backend_name" attributeValue="= 'fake_almaden'" />
 
-**Parameters**
+  ### conf\_filename
 
-**fields** – The fields to update the options
+  <Attribute id="qiskit.providers.fake_provider.FakeAlmaden.conf_filename" name="conf_filename" attributeValue="= 'conf_almaden.json'" />
 
-**Raises**
+  ### dirname
 
-**AttributeError** – If the field passed in is not part of the options
+  <Attribute id="qiskit.providers.fake_provider.FakeAlmaden.dirname" name="dirname" attributeValue="= '/home/computertreker/git/qiskit/qiskit/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends/almaden'" />
 
-<span id="qiskit-providers-fake-provider-fakealmaden-status" />
+  ### options
 
-### status
+  <Attribute id="qiskit.providers.fake_provider.FakeAlmaden.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit.providers.fake_provider.FakeAlmaden.status" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeAlmaden#run "qiskit.providers.fake_provider.FakeAlmaden.run") method.
+  </Attribute>
 
-`FakeAlmaden.status()`
+  ### props\_filename
 
-Return the backend status.
+  <Attribute id="qiskit.providers.fake_provider.FakeAlmaden.props_filename" name="props_filename" attributeValue="= 'props_almaden.json'" />
 
-**Returns**
+  ### version
 
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.fake_provider.FakeAlmaden.backend_name" />
-
-### backend\_name
-
-`= 'fake_almaden'`
-
-<span id="qiskit.providers.fake_provider.FakeAlmaden.conf_filename" />
-
-### conf\_filename
-
-`= 'conf_almaden.json'`
-
-<span id="qiskit.providers.fake_provider.FakeAlmaden.dirname" />
-
-### dirname
-
-`= '/home/computertreker/git/qiskit/qiskit/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends/almaden'`
-
-<span id="qiskit.providers.fake_provider.FakeAlmaden.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeAlmaden#run "qiskit.providers.fake_provider.FakeAlmaden.run") method.
-
-<span id="qiskit.providers.fake_provider.FakeAlmaden.props_filename" />
-
-### props\_filename
-
-`= 'props_almaden.json'`
-
-<span id="qiskit.providers.fake_provider.FakeAlmaden.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.fake_provider.FakeAlmaden.version" name="version" attributeValue="= 1" />
+</Class>
 

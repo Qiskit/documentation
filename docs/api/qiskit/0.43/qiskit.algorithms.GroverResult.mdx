@@ -8,81 +8,77 @@ python_api_name: qiskit.algorithms.GroverResult
 
 # GroverResult
 
-<span id="qiskit.algorithms.GroverResult" />
+<Class id="qiskit.algorithms.GroverResult" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/grover.py" signature="GroverResult">
+  Bases: `AmplitudeAmplifierResult`
 
-`GroverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+  Grover Result.
 
-Bases: `AmplitudeAmplifierResult`
+  ## Methods
 
-Grover Result.
+  <span id="qiskit-algorithms-groverresult-combine" />
 
-## Methods
+  ### combine
 
-<span id="qiskit-algorithms-groverresult-combine" />
+  <Function id="qiskit.algorithms.GroverResult.combine" name="combine" signature="GroverResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
 
-### combine
+    **Raises**
 
-<span id="qiskit.algorithms.GroverResult.combine" />
+    **TypeError** – Argument is None
+  </Function>
 
-`GroverResult.combine(result)`
+  ## Attributes
 
-Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
+  ### assignment
 
-**Raises**
+  <Attribute id="qiskit.algorithms.GroverResult.assignment" name="assignment">
+    The post-processed value of the most likely bitstring.
 
-**TypeError** – Argument is None
+    **Returns**
 
-## Attributes
+    The output of the `post_processing` function of the respective `AmplificationProblem`, where the input is the `top_measurement`. The type is the same as the return type of the post-processing function.
+  </Attribute>
 
-<span id="qiskit.algorithms.GroverResult.assignment" />
+  ### circuit\_results
 
-### assignment
+  <Attribute id="qiskit.algorithms.GroverResult.circuit_results" name="circuit_results">
+    Return the circuit results. Can be a statevector or counts dictionary.
+  </Attribute>
 
-The post-processed value of the most likely bitstring.
+  ### iterations
 
-**Returns**
+  <Attribute id="qiskit.algorithms.GroverResult.iterations" name="iterations">
+    All the powers of the Grover operator that have been tried.
 
-The output of the `post_processing` function of the respective `AmplificationProblem`, where the input is the `top_measurement`. The type is the same as the return type of the post-processing function.
+    **Returns**
 
-<span id="qiskit.algorithms.GroverResult.circuit_results" />
+    The powers of the Grover operator tested.
+  </Attribute>
 
-### circuit\_results
+  ### max\_probability
 
-Return the circuit results. Can be a statevector or counts dictionary.
+  <Attribute id="qiskit.algorithms.GroverResult.max_probability" name="max_probability">
+    Return the maximum sampling probability.
+  </Attribute>
 
-<span id="qiskit.algorithms.GroverResult.iterations" />
+  ### oracle\_evaluation
 
-### iterations
+  <Attribute id="qiskit.algorithms.GroverResult.oracle_evaluation" name="oracle_evaluation">
+    Whether the classical oracle evaluation of the top measurement was True or False.
 
-All the powers of the Grover operator that have been tried.
+    **Returns**
 
-**Returns**
+    The classical oracle evaluation of the top measurement.
+  </Attribute>
 
-The powers of the Grover operator tested.
+  ### top\_measurement
 
-<span id="qiskit.algorithms.GroverResult.max_probability" />
+  <Attribute id="qiskit.algorithms.GroverResult.top_measurement" name="top_measurement">
+    The most frequently measured output as bitstring.
 
-### max\_probability
+    **Returns**
 
-Return the maximum sampling probability.
-
-<span id="qiskit.algorithms.GroverResult.oracle_evaluation" />
-
-### oracle\_evaluation
-
-Whether the classical oracle evaluation of the top measurement was True or False.
-
-**Returns**
-
-The classical oracle evaluation of the top measurement.
-
-<span id="qiskit.algorithms.GroverResult.top_measurement" />
-
-### top\_measurement
-
-The most frequently measured output as bitstring.
-
-**Returns**
-
-The most frequently measured output state.
+    The most frequently measured output state.
+  </Attribute>
+</Class>
 

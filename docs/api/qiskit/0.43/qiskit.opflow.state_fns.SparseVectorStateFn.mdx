@@ -8,296 +8,268 @@ python_api_name: qiskit.opflow.state_fns.SparseVectorStateFn
 
 # SparseVectorStateFn
 
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn" />
+<Class id="qiskit.opflow.state_fns.SparseVectorStateFn" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/state_fns/sparse_vector_state_fn.py" signature="SparseVectorStateFn(*args, **kwargs)">
+  Bases: [`StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")
 
-`SparseVectorStateFn(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+  Deprecated: A class for sparse state functions and measurements in vector representation.
 
-Bases: [`StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")
+  This class uses `scipy.sparse.spmatrix` for the internal representation.
 
-Deprecated: A class for sparse state functions and measurements in vector representation.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.state_fns.sparse_vector_state_fn.SparseVectorStateFn` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-This class uses `scipy.sparse.spmatrix` for the internal representation.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.state_fns.sparse_vector_state_fn.SparseVectorStateFn` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  *   **primitive** – The underlying sparse vector.
+  *   **coeff** – A coefficient multiplying the state function.
+  *   **is\_measurement** – Whether the StateFn is a measurement operator
 
-**Parameters**
+  **Raises**
 
-*   **primitive** – The underlying sparse vector.
-*   **coeff** – A coefficient multiplying the state function.
-*   **is\_measurement** – Whether the StateFn is a measurement operator
+  *   **ValueError** – If the primitive is not a column vector.
+  *   **ValueError** – If the number of elements in the primitive is not a power of 2.
 
-**Raises**
+  ## Methods Defined Here
 
-*   **ValueError** – If the primitive is not a column vector.
-*   **ValueError** – If the number of elements in the primitive is not a power of 2.
+  <span id="qiskit-opflow-state-fns-sparsevectorstatefn-add" />
 
-## Methods Defined Here
+  ### add
 
-<span id="qiskit-opflow-state-fns-sparsevectorstatefn-add" />
+  <Function id="qiskit.opflow.state_fns.SparseVectorStateFn.add" name="add" signature="SparseVectorStateFn.add(other)">
+    Return Operator addition of self and other, overloaded by `+`.
 
-### add
+    **Parameters**
 
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.add" />
+    **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
 
-`SparseVectorStateFn.add(other)`
+    **Returns**
 
-Return Operator addition of self and other, overloaded by `+`.
+    An `OperatorBase` equivalent to the sum of self and other.
 
-**Parameters**
+    **Return type**
 
-**other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-**Returns**
+  <span id="qiskit-opflow-state-fns-sparsevectorstatefn-adjoint" />
 
-An `OperatorBase` equivalent to the sum of self and other.
+  ### adjoint
 
-**Return type**
+  <Function id="qiskit.opflow.state_fns.SparseVectorStateFn.adjoint" name="adjoint" signature="SparseVectorStateFn.adjoint()">
+    Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **Returns**
 
-<span id="qiskit-opflow-state-fns-sparsevectorstatefn-adjoint" />
+    An `OperatorBase` equivalent to the adjoint of self.
 
-### adjoint
+    **Return type**
 
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.adjoint" />
+    [*SparseVectorStateFn*](qiskit.opflow.state_fns.SparseVectorStateFn "qiskit.opflow.state_fns.sparse_vector_state_fn.SparseVectorStateFn")
+  </Function>
 
-`SparseVectorStateFn.adjoint()`
+  <span id="qiskit-opflow-state-fns-sparsevectorstatefn-equals" />
 
-Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
+  ### equals
 
-**Returns**
+  <Function id="qiskit.opflow.state_fns.SparseVectorStateFn.equals" name="equals" signature="SparseVectorStateFn.equals(other)">
+    Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
-An `OperatorBase` equivalent to the adjoint of self.
+    **Parameters**
 
-**Return type**
+    **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to compare to self.
 
-[*SparseVectorStateFn*](qiskit.opflow.state_fns.SparseVectorStateFn "qiskit.opflow.state_fns.sparse_vector_state_fn.SparseVectorStateFn")
+    **Returns**
 
-<span id="qiskit-opflow-state-fns-sparsevectorstatefn-equals" />
+    A bool equal to the equality of self and other.
 
-### equals
+    **Return type**
 
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.equals" />
+    bool
+  </Function>
 
-`SparseVectorStateFn.equals(other)`
+  <span id="qiskit-opflow-state-fns-sparsevectorstatefn-eval" />
 
-Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
+  ### eval
 
-**Parameters**
+  <Function id="qiskit.opflow.state_fns.SparseVectorStateFn.eval" name="eval" signature="SparseVectorStateFn.eval(front=None)">
+    Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
-**other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to compare to self.
+    If `front` is None, the matrix-representation of the operator is returned.
 
-**Returns**
+    **Parameters**
 
-A bool equal to the equality of self and other.
+    **front** (*str | Dict\[str, complex] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")  *|*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector") *| None*) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function, or None.
 
-**Return type**
+    **Returns**
 
-bool
+    The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
 
-<span id="qiskit-opflow-state-fns-sparsevectorstatefn-eval" />
+    **Return type**
 
-### eval
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") | complex
+  </Function>
 
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.eval" />
+  <span id="qiskit-opflow-state-fns-sparsevectorstatefn-primitive-strings" />
 
-`SparseVectorStateFn.eval(front=None)`
+  ### primitive\_strings
 
-Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
+  <Function id="qiskit.opflow.state_fns.SparseVectorStateFn.primitive_strings" name="primitive_strings" signature="SparseVectorStateFn.primitive_strings()">
+    Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
-If `front` is None, the matrix-representation of the operator is returned.
+    **Returns**
 
-**Parameters**
+    A set of strings describing the primitives contained within the Operator.
 
-**front** (*str | Dict\[str, complex] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")  *|*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector") *| None*) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function, or None.
+    **Return type**
 
-**Returns**
+    *Set*\[str]
+  </Function>
 
-The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
+  <span id="qiskit-opflow-state-fns-sparsevectorstatefn-sample" />
 
-**Return type**
+  ### sample
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") | complex
+  <Function id="qiskit.opflow.state_fns.SparseVectorStateFn.sample" name="sample" signature="SparseVectorStateFn.sample(shots=1024, massive=False, reverse_endianness=False)">
+    Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
 
-<span id="qiskit-opflow-state-fns-sparsevectorstatefn-primitive-strings" />
+    **Parameters**
 
-### primitive\_strings
+    *   **shots** (*int*) – The number of samples to take to approximate the State function.
+    *   **massive** (*bool*) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
+    *   **reverse\_endianness** (*bool*) – Whether to reverse the endianness of the bitstrings in the return dict to match Terra’s big-endianness.
 
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.primitive_strings" />
+    **Returns**
 
-`SparseVectorStateFn.primitive_strings()`
+    A dict containing pairs sampled strings from the State function and sampling frequency divided by shots.
 
-Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
+    **Return type**
 
-**Returns**
+    dict
+  </Function>
 
-A set of strings describing the primitives contained within the Operator.
+  <span id="qiskit-opflow-state-fns-sparsevectorstatefn-to-circuit-op" />
 
-**Return type**
+  ### to\_circuit\_op
 
-*Set*\[str]
+  <Function id="qiskit.opflow.state_fns.SparseVectorStateFn.to_circuit_op" name="to_circuit_op" signature="SparseVectorStateFn.to_circuit_op()">
+    Convert this state function to a `CircuitStateFn`.
 
-<span id="qiskit-opflow-state-fns-sparsevectorstatefn-sample" />
+    **Return type**
 
-### sample
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.sample" />
+  <span id="qiskit-opflow-state-fns-sparsevectorstatefn-to-dict-fn" />
 
-`SparseVectorStateFn.sample(shots=1024, massive=False, reverse_endianness=False)`
+  ### to\_dict\_fn
 
-Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
+  <Function id="qiskit.opflow.state_fns.SparseVectorStateFn.to_dict_fn" name="to_dict_fn" signature="SparseVectorStateFn.to_dict_fn()">
+    Convert this state function to a `DictStateFn`.
 
-**Parameters**
+    **Returns**
 
-*   **shots** (*int*) – The number of samples to take to approximate the State function.
-*   **massive** (*bool*) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
-*   **reverse\_endianness** (*bool*) – Whether to reverse the endianness of the bitstrings in the return dict to match Terra’s big-endianness.
+    A new DictStateFn equivalent to `self`.
 
-**Returns**
+    **Return type**
 
-A dict containing pairs sampled strings from the State function and sampling frequency divided by shots.
+    [*StateFn*](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")
+  </Function>
 
-**Return type**
+  <span id="qiskit-opflow-state-fns-sparsevectorstatefn-to-matrix" />
 
-dict
+  ### to\_matrix
 
-<span id="qiskit-opflow-state-fns-sparsevectorstatefn-to-circuit-op" />
+  <Function id="qiskit.opflow.state_fns.SparseVectorStateFn.to_matrix" name="to_matrix" signature="SparseVectorStateFn.to_matrix(massive=False)">
+    Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
-### to\_circuit\_op
+    **Returns**
 
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.to_circuit_op" />
+    The NumPy `ndarray` equivalent to this Operator.
 
-`SparseVectorStateFn.to_circuit_op()`
+    **Return type**
 
-Convert this state function to a `CircuitStateFn`.
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
+  </Function>
 
-**Return type**
+  <span id="qiskit-opflow-state-fns-sparsevectorstatefn-to-matrix-op" />
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  ### to\_matrix\_op
 
-<span id="qiskit-opflow-state-fns-sparsevectorstatefn-to-dict-fn" />
+  <Function id="qiskit.opflow.state_fns.SparseVectorStateFn.to_matrix_op" name="to_matrix_op" signature="SparseVectorStateFn.to_matrix_op(massive=False)">
+    Return a `VectorStateFn` for this `StateFn`.
 
-### to\_dict\_fn
+    **Parameters**
 
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.to_dict_fn" />
+    **massive** (*bool*) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
 
-`SparseVectorStateFn.to_dict_fn()`
+    **Returns**
 
-Convert this state function to a `DictStateFn`.
+    A VectorStateFn equivalent to self.
 
-**Returns**
+    **Return type**
 
-A new DictStateFn equivalent to `self`.
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-**Return type**
+  <span id="qiskit-opflow-state-fns-sparsevectorstatefn-to-spmatrix" />
 
-[*StateFn*](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")
+  ### to\_spmatrix
 
-<span id="qiskit-opflow-state-fns-sparsevectorstatefn-to-matrix" />
+  <Function id="qiskit.opflow.state_fns.SparseVectorStateFn.to_spmatrix" name="to_spmatrix" signature="SparseVectorStateFn.to_spmatrix()">
+    Return SciPy sparse matrix representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings.
 
-### to\_matrix
+    **Returns**
 
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.to_matrix" />
+    The SciPy `spmatrix` equivalent to this Operator.
 
-`SparseVectorStateFn.to_matrix(massive=False)`
+    **Return type**
 
-Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-**Returns**
+  ## Attributes
 
-The NumPy `ndarray` equivalent to this Operator.
+  ### INDENTATION
 
-**Return type**
+  <Attribute id="qiskit.opflow.state_fns.SparseVectorStateFn.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
 
-[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
+  ### coeff
 
-<span id="qiskit-opflow-state-fns-sparsevectorstatefn-to-matrix-op" />
+  <Attribute id="qiskit.opflow.state_fns.SparseVectorStateFn.coeff" name="coeff">
+    A coefficient by which the state function is multiplied.
+  </Attribute>
 
-### to\_matrix\_op
+  ### instance\_id
 
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.to_matrix_op" />
+  <Attribute id="qiskit.opflow.state_fns.SparseVectorStateFn.instance_id" name="instance_id">
+    Return the unique instance id.
+  </Attribute>
 
-`SparseVectorStateFn.to_matrix_op(massive=False)`
+  ### is\_measurement
 
-Return a `VectorStateFn` for this `StateFn`.
+  <Attribute id="qiskit.opflow.state_fns.SparseVectorStateFn.is_measurement" name="is_measurement">
+    Whether the StateFn object is a measurement Operator.
+  </Attribute>
 
-**Parameters**
+  ### num\_qubits
 
-**massive** (*bool*) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
+  <Attribute id="qiskit.opflow.state_fns.SparseVectorStateFn.num_qubits" name="num_qubits" />
 
-**Returns**
+  ### parameters
 
-A VectorStateFn equivalent to self.
+  <Attribute id="qiskit.opflow.state_fns.SparseVectorStateFn.parameters" name="parameters" />
 
-**Return type**
+  ### primitive
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  <Attribute id="qiskit.opflow.state_fns.SparseVectorStateFn.primitive" name="primitive" attributeTypeHint="spmatrix">
+    The primitive which defines the behavior of the underlying State function.
+  </Attribute>
 
-<span id="qiskit-opflow-state-fns-sparsevectorstatefn-to-spmatrix" />
+  ### settings
 
-### to\_spmatrix
-
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.to_spmatrix" />
-
-`SparseVectorStateFn.to_spmatrix()`
-
-Return SciPy sparse matrix representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings.
-
-**Returns**
-
-The SciPy `spmatrix` equivalent to this Operator.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
-
-## Attributes
-
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.INDENTATION" />
-
-### INDENTATION
-
-`= '  '`
-
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.coeff" />
-
-### coeff
-
-A coefficient by which the state function is multiplied.
-
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.instance_id" />
-
-### instance\_id
-
-Return the unique instance id.
-
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.is_measurement" />
-
-### is\_measurement
-
-Whether the StateFn object is a measurement Operator.
-
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.num_qubits" />
-
-### num\_qubits
-
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.parameters" />
-
-### parameters
-
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.primitive" />
-
-### primitive
-
-`spmatrix`
-
-The primitive which defines the behavior of the underlying State function.
-
-<span id="qiskit.opflow.state_fns.SparseVectorStateFn.settings" />
-
-### settings
-
-Return settings.
+  <Attribute id="qiskit.opflow.state_fns.SparseVectorStateFn.settings" name="settings">
+    Return settings.
+  </Attribute>
+</Class>
 

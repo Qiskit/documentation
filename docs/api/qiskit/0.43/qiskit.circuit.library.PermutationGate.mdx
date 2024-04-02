@@ -8,119 +8,113 @@ python_api_name: qiskit.circuit.library.PermutationGate
 
 # PermutationGate
 
-<span id="qiskit.circuit.library.PermutationGate" />
+<Class id="qiskit.circuit.library.PermutationGate" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/permutation.py" signature="PermutationGate(pattern)">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`PermutationGate(pattern)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
+  A gate that permutes qubits.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  Return a permutation gate.
 
-A gate that permutes qubits.
+  **Parameters**
 
-Return a permutation gate.
+  **pattern** (*list\[int]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation, that is `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to the position `1`, etc.
 
-**Parameters**
+  **Raises**
 
-**pattern** (*list\[int]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation, that is `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to the position `1`, etc.
+  **CircuitError** – if permutation pattern is malformed.
 
-**Raises**
+  **Reference Circuit:**
 
-**CircuitError** – if permutation pattern is malformed.
+  ![../\_images/qiskit-circuit-library-PermutationGate-1.png](/images/api/qiskit/0.43/qiskit-circuit-library-PermutationGate-1.png)
 
-**Reference Circuit:**
+  **Expanded Circuit:**
 
-![../\_images/qiskit-circuit-library-PermutationGate-1.png](/images/api/qiskit/0.43/qiskit-circuit-library-PermutationGate-1.png)
+  ![../\_images/qiskit-circuit-library-PermutationGate-2.png](/images/api/qiskit/0.43/qiskit-circuit-library-PermutationGate-2.png)
 
-**Expanded Circuit:**
+  ## Methods Defined Here
 
-![../\_images/qiskit-circuit-library-PermutationGate-2.png](/images/api/qiskit/0.43/qiskit-circuit-library-PermutationGate-2.png)
+  <span id="qiskit-circuit-library-permutationgate-inverse" />
 
-## Methods Defined Here
+  ### inverse
 
-<span id="qiskit-circuit-library-permutationgate-inverse" />
+  <Function id="qiskit.circuit.library.PermutationGate.inverse" name="inverse" signature="PermutationGate.inverse()">
+    Returns the inverse of the permutation.
+  </Function>
 
-### inverse
+  <span id="qiskit-circuit-library-permutationgate-validate-parameter" />
 
-<span id="qiskit.circuit.library.PermutationGate.inverse" />
+  ### validate\_parameter
 
-`PermutationGate.inverse()`
+  <Function id="qiskit.circuit.library.PermutationGate.validate_parameter" name="validate_parameter" signature="PermutationGate.validate_parameter(parameter)">
+    Parameter validation.
+  </Function>
 
-Returns the inverse of the permutation.
+  ## Attributes
 
-<span id="qiskit-circuit-library-permutationgate-validate-parameter" />
+  ### condition\_bits
 
-### validate\_parameter
+  <Attribute id="qiskit.circuit.library.PermutationGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PermutationGate.validate_parameter" />
+  ### decompositions
 
-`PermutationGate.validate_parameter(parameter)`
+  <Attribute id="qiskit.circuit.library.PermutationGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Parameter validation.
+  ### definition
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.PermutationGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PermutationGate.condition_bits" />
+  ### duration
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.PermutationGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Get Clbits in condition.
+  ### label
 
-<span id="qiskit.circuit.library.PermutationGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.PermutationGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-### decompositions
+  ### name
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.PermutationGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PermutationGate.definition" />
+  ### num\_clbits
 
-### definition
+  <Attribute id="qiskit.circuit.library.PermutationGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.PermutationGate.duration" />
+  <Attribute id="qiskit.circuit.library.PermutationGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-### duration
+  ### params
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.PermutationGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PermutationGate.label" />
+  ### pattern
 
-### label
+  <Attribute id="qiskit.circuit.library.PermutationGate.pattern" name="pattern">
+    Returns the permutation pattern defining this permutation.
+  </Attribute>
 
-Return instruction label
+  ### unit
 
-<span id="qiskit.circuit.library.PermutationGate.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.PermutationGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.PermutationGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.PermutationGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.PermutationGate.pattern" />
-
-### pattern
-
-Returns the permutation pattern defining this permutation.
-
-<span id="qiskit.circuit.library.PermutationGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.PermutationGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

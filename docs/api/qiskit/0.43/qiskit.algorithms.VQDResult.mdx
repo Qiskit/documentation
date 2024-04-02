@@ -8,103 +8,99 @@ python_api_name: qiskit.algorithms.VQDResult
 
 # VQDResult
 
-<span id="qiskit.algorithms.VQDResult" />
+<Class id="qiskit.algorithms.VQDResult" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/eigen_solvers/vqd.py" signature="VQDResult">
+  Bases: `VariationalResult`, [`EigensolverResult`](qiskit.algorithms.EigensolverResult "qiskit.algorithms.eigen_solvers.eigen_solver.EigensolverResult")
 
-`VQDResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/eigen_solvers/vqd.py "view source code")
+  Deprecated: VQD Result.
 
-Bases: `VariationalResult`, [`EigensolverResult`](qiskit.algorithms.EigensolverResult "qiskit.algorithms.eigen_solvers.eigen_solver.EigensolverResult")
+  The VQDResult class has been superseded by the [`qiskit.algorithms.eigensolvers.VQDResult`](qiskit.algorithms.eigensolvers.VQDResult "qiskit.algorithms.eigensolvers.VQDResult") class. This class will be deprecated in a future release and subsequently removed after that.
 
-Deprecated: VQD Result.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.algorithms.eigen_solvers.vqd.VQDResult` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the class `qiskit.algorithms.eigensolvers.VQDResult`.See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  </Admonition>
 
-The VQDResult class has been superseded by the [`qiskit.algorithms.eigensolvers.VQDResult`](qiskit.algorithms.eigensolvers.VQDResult "qiskit.algorithms.eigensolvers.VQDResult") class. This class will be deprecated in a future release and subsequently removed after that.
+  ## Methods
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.algorithms.eigen_solvers.vqd.VQDResult` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the class `qiskit.algorithms.eigensolvers.VQDResult`.See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+  <span id="qiskit-algorithms-vqdresult-combine" />
 
-## Methods
+  ### combine
 
-<span id="qiskit-algorithms-vqdresult-combine" />
+  <Function id="qiskit.algorithms.VQDResult.combine" name="combine" signature="VQDResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
 
-### combine
+    **Raises**
 
-<span id="qiskit.algorithms.VQDResult.combine" />
+    **TypeError** – Argument is None
+  </Function>
 
-`VQDResult.combine(result)`
+  ## Attributes
 
-Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
+  ### aux\_operator\_eigenvalues
 
-**Raises**
+  <Attribute id="qiskit.algorithms.VQDResult.aux_operator_eigenvalues" name="aux_operator_eigenvalues">
+    Return aux operator expectation values.
 
-**TypeError** – Argument is None
+    These values are in fact tuples formatted as (mean, standard deviation).
+  </Attribute>
 
-## Attributes
+  ### cost\_function\_evals
 
-<span id="qiskit.algorithms.VQDResult.aux_operator_eigenvalues" />
+  <Attribute id="qiskit.algorithms.VQDResult.cost_function_evals" name="cost_function_evals">
+    Returns number of cost optimizer evaluations
+  </Attribute>
 
-### aux\_operator\_eigenvalues
+  ### eigenstates
 
-Return aux operator expectation values.
+  <Attribute id="qiskit.algorithms.VQDResult.eigenstates" name="eigenstates">
+    return eigen state
+  </Attribute>
 
-These values are in fact tuples formatted as (mean, standard deviation).
+  ### eigenvalues
 
-<span id="qiskit.algorithms.VQDResult.cost_function_evals" />
+  <Attribute id="qiskit.algorithms.VQDResult.eigenvalues" name="eigenvalues">
+    returns eigen values
+  </Attribute>
 
-### cost\_function\_evals
+  ### optimal\_circuit
 
-Returns number of cost optimizer evaluations
+  <Attribute id="qiskit.algorithms.VQDResult.optimal_circuit" name="optimal_circuit">
+    The optimal circuits. Along with the optimal parameters, these can be used to retrieve the minimum eigenstate.
+  </Attribute>
 
-<span id="qiskit.algorithms.VQDResult.eigenstates" />
+  ### optimal\_parameters
 
-### eigenstates
+  <Attribute id="qiskit.algorithms.VQDResult.optimal_parameters" name="optimal_parameters">
+    Returns the optimal parameters in a dictionary
+  </Attribute>
 
-return eigen state
+  ### optimal\_point
 
-<span id="qiskit.algorithms.VQDResult.eigenvalues" />
+  <Attribute id="qiskit.algorithms.VQDResult.optimal_point" name="optimal_point">
+    Returns optimal point
+  </Attribute>
 
-### eigenvalues
+  ### optimal\_value
 
-returns eigen values
+  <Attribute id="qiskit.algorithms.VQDResult.optimal_value" name="optimal_value">
+    Returns optimal value
+  </Attribute>
 
-<span id="qiskit.algorithms.VQDResult.optimal_circuit" />
+  ### optimizer\_evals
 
-### optimal\_circuit
+  <Attribute id="qiskit.algorithms.VQDResult.optimizer_evals" name="optimizer_evals">
+    Returns number of optimizer evaluations
+  </Attribute>
 
-The optimal circuits. Along with the optimal parameters, these can be used to retrieve the minimum eigenstate.
+  ### optimizer\_result
 
-<span id="qiskit.algorithms.VQDResult.optimal_parameters" />
+  <Attribute id="qiskit.algorithms.VQDResult.optimizer_result" name="optimizer_result">
+    Returns the optimizer result
+  </Attribute>
 
-### optimal\_parameters
+  ### optimizer\_time
 
-Returns the optimal parameters in a dictionary
-
-<span id="qiskit.algorithms.VQDResult.optimal_point" />
-
-### optimal\_point
-
-Returns optimal point
-
-<span id="qiskit.algorithms.VQDResult.optimal_value" />
-
-### optimal\_value
-
-Returns optimal value
-
-<span id="qiskit.algorithms.VQDResult.optimizer_evals" />
-
-### optimizer\_evals
-
-Returns number of optimizer evaluations
-
-<span id="qiskit.algorithms.VQDResult.optimizer_result" />
-
-### optimizer\_result
-
-Returns the optimizer result
-
-<span id="qiskit.algorithms.VQDResult.optimizer_time" />
-
-### optimizer\_time
-
-Returns time taken for optimization
+  <Attribute id="qiskit.algorithms.VQDResult.optimizer_time" name="optimizer_time">
+    Returns time taken for optimization
+  </Attribute>
+</Class>
 

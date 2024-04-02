@@ -8,404 +8,362 @@ python_api_name: qiskit.quantum_info.Chi
 
 # Chi
 
-<span id="qiskit.quantum_info.Chi" />
+<Class id="qiskit.quantum_info.Chi" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/channel/chi.py" signature="Chi(data, input_dims=None, output_dims=None)">
+  Bases: `QuantumChannel`
 
-`Chi(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/channel/chi.py "view source code")
+  Pauli basis Chi-matrix representation of a quantum channel.
 
-Bases: `QuantumChannel`
+  The Chi-matrix representation of an $n$-qubit quantum channel $\mathcal{E}$ is a matrix $\chi$ such that the evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ is given by
 
-Pauli basis Chi-matrix representation of a quantum channel.
+  $$
+  \mathcal{E}(ρ) = \sum_{i, j} \chi_{i,j} P_i ρ P_j
+  $$
 
-The Chi-matrix representation of an $n$-qubit quantum channel $\mathcal{E}$ is a matrix $\chi$ such that the evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ is given by
+  where $[P_0, P_1, ..., P_{4^{n}-1}]$ is the $n$-qubit Pauli basis in lexicographic order. It is related to the [`Choi`](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi") representation by a change of basis of the Choi-matrix into the Pauli basis.
 
-$$
-\mathcal{E}(ρ) = \sum_{i, j} \chi_{i,j} P_i ρ P_j
-$$
+  See reference \[1] for further details.
 
-where $[P_0, P_1, ..., P_{4^{n}-1}]$ is the $n$-qubit Pauli basis in lexicographic order. It is related to the [`Choi`](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi") representation by a change of basis of the Choi-matrix into the Pauli basis.
+  **References**
 
-See reference \[1] for further details.
+  1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
 
-**References**
+  Initialize a quantum channel Chi-matrix operator.
 
-1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
+  **Parameters**
 
-Initialize a quantum channel Chi-matrix operator.
+  *   **or** (*data (*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Instruction or BaseOperator or matrix): data to initialize superoperator.
+  *   **input\_dims** (*tuple*) – the input subsystem dimensions. \[Default: None]
+  *   **output\_dims** (*tuple*) – the output subsystem dimensions. \[Default: None]
 
-**Parameters**
+  **Raises**
 
-*   **or** (*data (*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Instruction or BaseOperator or matrix): data to initialize superoperator.
-*   **input\_dims** (*tuple*) – the input subsystem dimensions. \[Default: None]
-*   **output\_dims** (*tuple*) – the output subsystem dimensions. \[Default: None]
+  **QiskitError** – if input data is not an N-qubit channel or cannot be initialized as a Chi-matrix.
 
-**Raises**
+  **Additional Information:**
 
-**QiskitError** – if input data is not an N-qubit channel or cannot be initialized as a Chi-matrix.
+  If the input or output dimensions are None, they will be automatically determined from the input data. The Chi matrix representation is only valid for N-qubit channels.
 
-**Additional Information:**
+  ## Methods
 
-If the input or output dimensions are None, they will be automatically determined from the input data. The Chi matrix representation is only valid for N-qubit channels.
+  <span id="qiskit-quantum-info-chi-adjoint" />
 
-## Methods
+  ### adjoint
 
-<span id="qiskit-quantum-info-chi-adjoint" />
+  <Function id="qiskit.quantum_info.Chi.adjoint" name="adjoint" signature="Chi.adjoint()">
+    Return the adjoint quantum channel.
 
-### adjoint
+    <Admonition title="Note" type="note">
+      This is equivalent to the matrix Hermitian conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the adjoint channel $\mathcal{{E}}^\dagger$ is $S_{\mathcal{E}^\dagger} = S_{\mathcal{E}}^\dagger$.
+    </Admonition>
+  </Function>
 
-<span id="qiskit.quantum_info.Chi.adjoint" />
+  <span id="qiskit-quantum-info-chi-compose" />
 
-`Chi.adjoint()`
+  ### compose
 
-Return the adjoint quantum channel.
+  <Function id="qiskit.quantum_info.Chi.compose" name="compose" signature="Chi.compose(other, qargs=None, front=False)">
+    Return the operator composition with another Chi.
 
-<Admonition title="Note" type="note">
-  This is equivalent to the matrix Hermitian conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the adjoint channel $\mathcal{{E}}^\dagger$ is $S_{\mathcal{E}^\dagger} = S_{\mathcal{E}}^\dagger$.
-</Admonition>
+    **Parameters**
 
-<span id="qiskit-quantum-info-chi-compose" />
+    *   **other** ([*Chi*](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")) – a Chi object.
+    *   **qargs** (*list or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **front** (*bool*) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
-### compose
+    **Returns**
 
-<span id="qiskit.quantum_info.Chi.compose" />
+    The composed Chi.
 
-`Chi.compose(other, qargs=None, front=False)`
+    **Return type**
 
-Return the operator composition with another Chi.
+    [Chi](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")
 
-**Parameters**
+    **Raises**
 
-*   **other** ([*Chi*](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")) – a Chi object.
-*   **qargs** (*list or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
-*   **front** (*bool*) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+    **QiskitError** – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
-**Returns**
+    <Admonition title="Note" type="note">
+      Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](qiskit.quantum_info.Chi#dot "qiskit.quantum_info.Chi.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
 
-The composed Chi.
+      Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](qiskit.quantum_info.Chi#dot "qiskit.quantum_info.Chi.dot") method `A.dot(B) == A.compose(B, front=True)`.
+    </Admonition>
+  </Function>
 
-**Return type**
+  <span id="qiskit-quantum-info-chi-conjugate" />
 
-[Chi](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")
+  ### conjugate
 
-**Raises**
+  <Function id="qiskit.quantum_info.Chi.conjugate" name="conjugate" signature="Chi.conjugate()">
+    Return the conjugate quantum channel.
 
-**QiskitError** – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
+    <Admonition title="Note" type="note">
+      This is equivalent to the matrix complex conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the conjugate channel $\overline{{\mathcal{{E}}}}$ is $S_{\overline{\mathcal{E}^\dagger}} = \overline{S_{\mathcal{E}}}$.
+    </Admonition>
+  </Function>
 
-<Admonition title="Note" type="note">
-  Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](qiskit.quantum_info.Chi#dot "qiskit.quantum_info.Chi.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
+  <span id="qiskit-quantum-info-chi-copy" />
 
-  Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](qiskit.quantum_info.Chi#dot "qiskit.quantum_info.Chi.dot") method `A.dot(B) == A.compose(B, front=True)`.
-</Admonition>
+  ### copy
 
-<span id="qiskit-quantum-info-chi-conjugate" />
+  <Function id="qiskit.quantum_info.Chi.copy" name="copy" signature="Chi.copy()">
+    Make a deep copy of current operator.
+  </Function>
 
-### conjugate
+  <span id="qiskit-quantum-info-chi-dot" />
 
-<span id="qiskit.quantum_info.Chi.conjugate" />
+  ### dot
 
-`Chi.conjugate()`
+  <Function id="qiskit.quantum_info.Chi.dot" name="dot" signature="Chi.dot(other, qargs=None)">
+    Return the right multiplied operator self \* other.
 
-Return the conjugate quantum channel.
+    **Parameters**
 
-<Admonition title="Note" type="note">
-  This is equivalent to the matrix complex conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the conjugate channel $\overline{{\mathcal{{E}}}}$ is $S_{\overline{\mathcal{E}^\dagger}} = \overline{S_{\mathcal{E}}}$.
-</Admonition>
+    *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
+    *   **qargs** (*list or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
 
-<span id="qiskit-quantum-info-chi-copy" />
+    **Returns**
 
-### copy
+    The right matrix multiplied Operator.
 
-<span id="qiskit.quantum_info.Chi.copy" />
+    **Return type**
 
-`Chi.copy()`
+    [Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-Make a deep copy of current operator.
+    <Admonition title="Note" type="note">
+      The dot product can be obtained using the `@` binary operator. Hence `a.dot(b)` is equivalent to `a @ b`.
+    </Admonition>
+  </Function>
 
-<span id="qiskit-quantum-info-chi-dot" />
+  <span id="qiskit-quantum-info-chi-expand" />
 
-### dot
+  ### expand
 
-<span id="qiskit.quantum_info.Chi.dot" />
+  <Function id="qiskit.quantum_info.Chi.expand" name="expand" signature="Chi.expand(other)">
+    Return the reverse-order tensor product with another Chi.
 
-`Chi.dot(other, qargs=None)`
+    **Parameters**
 
-Return the right multiplied operator self \* other.
+    **other** ([*Chi*](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")) – a Chi object.
 
-**Parameters**
+    **Returns**
 
-*   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-*   **qargs** (*list or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    **the tensor product $b \otimes a$, where $a$**
 
-**Returns**
+    is the current Chi, and $b$ is the other Chi.
 
-The right matrix multiplied Operator.
+    **Return type**
 
-**Return type**
+    [Chi](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")
+  </Function>
 
-[Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+  <span id="qiskit-quantum-info-chi-input-dims" />
 
-<Admonition title="Note" type="note">
-  The dot product can be obtained using the `@` binary operator. Hence `a.dot(b)` is equivalent to `a @ b`.
-</Admonition>
+  ### input\_dims
 
-<span id="qiskit-quantum-info-chi-expand" />
+  <Function id="qiskit.quantum_info.Chi.input_dims" name="input_dims" signature="Chi.input_dims(qargs=None)">
+    Return tuple of input dimension for specified subsystems.
+  </Function>
 
-### expand
+  <span id="qiskit-quantum-info-chi-is-cp" />
 
-<span id="qiskit.quantum_info.Chi.expand" />
+  ### is\_cp
 
-`Chi.expand(other)`
+  <Function id="qiskit.quantum_info.Chi.is_cp" name="is_cp" signature="Chi.is_cp(atol=None, rtol=None)">
+    Test if Choi-matrix is completely-positive (CP)
+  </Function>
 
-Return the reverse-order tensor product with another Chi.
+  <span id="qiskit-quantum-info-chi-is-cptp" />
 
-**Parameters**
+  ### is\_cptp
 
-**other** ([*Chi*](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")) – a Chi object.
+  <Function id="qiskit.quantum_info.Chi.is_cptp" name="is_cptp" signature="Chi.is_cptp(atol=None, rtol=None)">
+    Return True if completely-positive trace-preserving (CPTP).
+  </Function>
 
-**Returns**
+  <span id="qiskit-quantum-info-chi-is-tp" />
 
-**the tensor product $b \otimes a$, where $a$**
+  ### is\_tp
 
-is the current Chi, and $b$ is the other Chi.
+  <Function id="qiskit.quantum_info.Chi.is_tp" name="is_tp" signature="Chi.is_tp(atol=None, rtol=None)">
+    Test if a channel is trace-preserving (TP)
+  </Function>
 
-**Return type**
+  <span id="qiskit-quantum-info-chi-is-unitary" />
 
-[Chi](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")
+  ### is\_unitary
 
-<span id="qiskit-quantum-info-chi-input-dims" />
+  <Function id="qiskit.quantum_info.Chi.is_unitary" name="is_unitary" signature="Chi.is_unitary(atol=None, rtol=None)">
+    Return True if QuantumChannel is a unitary channel.
+  </Function>
 
-### input\_dims
+  <span id="qiskit-quantum-info-chi-output-dims" />
 
-<span id="qiskit.quantum_info.Chi.input_dims" />
+  ### output\_dims
 
-`Chi.input_dims(qargs=None)`
+  <Function id="qiskit.quantum_info.Chi.output_dims" name="output_dims" signature="Chi.output_dims(qargs=None)">
+    Return tuple of output dimension for specified subsystems.
+  </Function>
 
-Return tuple of input dimension for specified subsystems.
+  <span id="qiskit-quantum-info-chi-power" />
 
-<span id="qiskit-quantum-info-chi-is-cp" />
+  ### power
 
-### is\_cp
+  <Function id="qiskit.quantum_info.Chi.power" name="power" signature="Chi.power(n)">
+    Return the power of the quantum channel.
 
-<span id="qiskit.quantum_info.Chi.is_cp" />
+    **Parameters**
 
-`Chi.is_cp(atol=None, rtol=None)`
+    **n** (*float*) – the power exponent.
 
-Test if Choi-matrix is completely-positive (CP)
+    **Returns**
 
-<span id="qiskit-quantum-info-chi-is-cptp" />
+    the channel $\mathcal{{E}} ^n$.
 
-### is\_cptp
+    **Return type**
 
-<span id="qiskit.quantum_info.Chi.is_cptp" />
+    [SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
 
-`Chi.is_cptp(atol=None, rtol=None)`
+    **Raises**
 
-Return True if completely-positive trace-preserving (CPTP).
+    **QiskitError** – if the input and output dimensions of the SuperOp are not equal.
 
-<span id="qiskit-quantum-info-chi-is-tp" />
+    <Admonition title="Note" type="note">
+      For non-positive or non-integer exponents the power is defined as the matrix power of the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{{E}}$, the SuperOp of the powered channel $\mathcal{{E}}^\n$ is $S_{{\mathcal{{E}}^n}} = S_{{\mathcal{{E}}}}^n$.
+    </Admonition>
+  </Function>
 
-### is\_tp
+  <span id="qiskit-quantum-info-chi-reshape" />
 
-<span id="qiskit.quantum_info.Chi.is_tp" />
+  ### reshape
 
-`Chi.is_tp(atol=None, rtol=None)`
+  <Function id="qiskit.quantum_info.Chi.reshape" name="reshape" signature="Chi.reshape(input_dims=None, output_dims=None, num_qubits=None)">
+    Return a shallow copy with reshaped input and output subsystem dimensions.
 
-Test if a channel is trace-preserving (TP)
+    **Parameters**
 
-<span id="qiskit-quantum-info-chi-is-unitary" />
+    *   **input\_dims** (*None or tuple*) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+    *   **output\_dims** (*None or tuple*) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+    *   **num\_qubits** (*None or int*) – reshape to an N-qubit operator \[Default: None].
 
-### is\_unitary
+    **Returns**
 
-<span id="qiskit.quantum_info.Chi.is_unitary" />
+    returns self with reshaped input and output dimensions.
 
-`Chi.is_unitary(atol=None, rtol=None)`
+    **Return type**
 
-Return True if QuantumChannel is a unitary channel.
+    BaseOperator
 
-<span id="qiskit-quantum-info-chi-output-dims" />
+    **Raises**
 
-### output\_dims
+    **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  </Function>
 
-<span id="qiskit.quantum_info.Chi.output_dims" />
+  <span id="qiskit-quantum-info-chi-tensor" />
 
-`Chi.output_dims(qargs=None)`
+  ### tensor
 
-Return tuple of output dimension for specified subsystems.
+  <Function id="qiskit.quantum_info.Chi.tensor" name="tensor" signature="Chi.tensor(other)">
+    Return the tensor product with another Chi.
 
-<span id="qiskit-quantum-info-chi-power" />
+    **Parameters**
 
-### power
+    **other** ([*Chi*](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")) – a Chi object.
 
-<span id="qiskit.quantum_info.Chi.power" />
+    **Returns**
 
-`Chi.power(n)`
+    **the tensor product $a \otimes b$, where $a$**
 
-Return the power of the quantum channel.
+    is the current Chi, and $b$ is the other Chi.
 
-**Parameters**
+    **Return type**
 
-**n** (*float*) – the power exponent.
+    [Chi](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")
 
-**Returns**
+    <Admonition title="Note" type="note">
+      The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
+    </Admonition>
+  </Function>
 
-the channel $\mathcal{{E}} ^n$.
+  <span id="qiskit-quantum-info-chi-to-instruction" />
 
-**Return type**
+  ### to\_instruction
 
-[SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
+  <Function id="qiskit.quantum_info.Chi.to_instruction" name="to_instruction" signature="Chi.to_instruction()">
+    Convert to a Kraus or UnitaryGate circuit instruction.
 
-**Raises**
+    If the channel is unitary it will be added as a unitary gate, otherwise it will be added as a kraus simulator instruction.
 
-**QiskitError** – if the input and output dimensions of the SuperOp are not equal.
+    **Returns**
 
-<Admonition title="Note" type="note">
-  For non-positive or non-integer exponents the power is defined as the matrix power of the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{{E}}$, the SuperOp of the powered channel $\mathcal{{E}}^\n$ is $S_{{\mathcal{{E}}^n}} = S_{{\mathcal{{E}}}}^n$.
-</Admonition>
+    A kraus instruction for the channel.
 
-<span id="qiskit-quantum-info-chi-reshape" />
+    **Return type**
 
-### reshape
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="qiskit.quantum_info.Chi.reshape" />
+    **Raises**
 
-`Chi.reshape(input_dims=None, output_dims=None, num_qubits=None)`
+    **QiskitError** – if input data is not an N-qubit CPTP quantum channel.
+  </Function>
 
-Return a shallow copy with reshaped input and output subsystem dimensions.
+  <span id="qiskit-quantum-info-chi-to-operator" />
 
-**Parameters**
+  ### to\_operator
 
-*   **input\_dims** (*None or tuple*) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-*   **output\_dims** (*None or tuple*) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-*   **num\_qubits** (*None or int*) – reshape to an N-qubit operator \[Default: None].
+  <Function id="qiskit.quantum_info.Chi.to_operator" name="to_operator" signature="Chi.to_operator()">
+    Try to convert channel to a unitary representation Operator.
+  </Function>
 
-**Returns**
+  <span id="qiskit-quantum-info-chi-transpose" />
 
-returns self with reshaped input and output dimensions.
+  ### transpose
 
-**Return type**
+  <Function id="qiskit.quantum_info.Chi.transpose" name="transpose" signature="Chi.transpose()">
+    Return the transpose quantum channel.
 
-BaseOperator
+    <Admonition title="Note" type="note">
+      This is equivalent to the matrix transpose in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation, ie. for a channel $\mathcal{E}$, the SuperOp of the transpose channel $\mathcal{{E}}^T$ is $S_{mathcal{E}^T} = S_{\mathcal{E}}^T$.
+    </Admonition>
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  ### atol
 
-<span id="qiskit-quantum-info-chi-tensor" />
+  <Attribute id="qiskit.quantum_info.Chi.atol" name="atol" attributeValue="= 1e-08" />
 
-### tensor
+  ### data
 
-<span id="qiskit.quantum_info.Chi.tensor" />
+  <Attribute id="qiskit.quantum_info.Chi.data" name="data">
+    Return data.
+  </Attribute>
 
-`Chi.tensor(other)`
+  ### dim
 
-Return the tensor product with another Chi.
+  <Attribute id="qiskit.quantum_info.Chi.dim" name="dim">
+    Return tuple (input\_shape, output\_shape).
+  </Attribute>
 
-**Parameters**
+  ### num\_qubits
 
-**other** ([*Chi*](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")) – a Chi object.
+  <Attribute id="qiskit.quantum_info.Chi.num_qubits" name="num_qubits">
+    Return the number of qubits if a N-qubit operator or None otherwise.
+  </Attribute>
 
-**Returns**
+  ### qargs
 
-**the tensor product $a \otimes b$, where $a$**
+  <Attribute id="qiskit.quantum_info.Chi.qargs" name="qargs">
+    Return the qargs for the operator.
+  </Attribute>
 
-is the current Chi, and $b$ is the other Chi.
+  ### rtol
 
-**Return type**
+  <Attribute id="qiskit.quantum_info.Chi.rtol" name="rtol" attributeValue="= 1e-05" />
 
-[Chi](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")
+  ### settings
 
-<Admonition title="Note" type="note">
-  The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
-</Admonition>
-
-<span id="qiskit-quantum-info-chi-to-instruction" />
-
-### to\_instruction
-
-<span id="qiskit.quantum_info.Chi.to_instruction" />
-
-`Chi.to_instruction()`
-
-Convert to a Kraus or UnitaryGate circuit instruction.
-
-If the channel is unitary it will be added as a unitary gate, otherwise it will be added as a kraus simulator instruction.
-
-**Returns**
-
-A kraus instruction for the channel.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**QiskitError** – if input data is not an N-qubit CPTP quantum channel.
-
-<span id="qiskit-quantum-info-chi-to-operator" />
-
-### to\_operator
-
-<span id="qiskit.quantum_info.Chi.to_operator" />
-
-`Chi.to_operator()`
-
-Try to convert channel to a unitary representation Operator.
-
-<span id="qiskit-quantum-info-chi-transpose" />
-
-### transpose
-
-<span id="qiskit.quantum_info.Chi.transpose" />
-
-`Chi.transpose()`
-
-Return the transpose quantum channel.
-
-<Admonition title="Note" type="note">
-  This is equivalent to the matrix transpose in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation, ie. for a channel $\mathcal{E}$, the SuperOp of the transpose channel $\mathcal{{E}}^T$ is $S_{mathcal{E}^T} = S_{\mathcal{E}}^T$.
-</Admonition>
-
-## Attributes
-
-<span id="qiskit.quantum_info.Chi.atol" />
-
-### atol
-
-`= 1e-08`
-
-<span id="qiskit.quantum_info.Chi.data" />
-
-### data
-
-Return data.
-
-<span id="qiskit.quantum_info.Chi.dim" />
-
-### dim
-
-Return tuple (input\_shape, output\_shape).
-
-<span id="qiskit.quantum_info.Chi.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits if a N-qubit operator or None otherwise.
-
-<span id="qiskit.quantum_info.Chi.qargs" />
-
-### qargs
-
-Return the qargs for the operator.
-
-<span id="qiskit.quantum_info.Chi.rtol" />
-
-### rtol
-
-`= 1e-05`
-
-<span id="qiskit.quantum_info.Chi.settings" />
-
-### settings
-
-Return settings.
+  <Attribute id="qiskit.quantum_info.Chi.settings" name="settings">
+    Return settings.
+  </Attribute>
+</Class>
 

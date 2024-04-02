@@ -8,266 +8,248 @@ python_api_name: qiskit.pulse.instructions.Play
 
 # Play
 
-<span id="qiskit.pulse.instructions.Play" />
+<Class id="qiskit.pulse.instructions.Play" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/instructions/play.py" signature="Play(pulse, channel, name=None)">
+  Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 
-`Play(pulse, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/instructions/play.py "view source code")
+  This instruction is responsible for applying a pulse on a channel.
 
-Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
+  The pulse specifies the exact time dynamics of the output signal envelope for a limited time. The output is modulated by a phase and frequency which are controlled by separate instructions. The pulse duration must be fixed, and is implicitly given in terms of the cycle time, dt, of the backend.
 
-This instruction is responsible for applying a pulse on a channel.
+  Create a new pulse instruction.
 
-The pulse specifies the exact time dynamics of the output signal envelope for a limited time. The output is modulated by a phase and frequency which are controlled by separate instructions. The pulse duration must be fixed, and is implicitly given in terms of the cycle time, dt, of the backend.
+  **Parameters**
 
-Create a new pulse instruction.
+  *   **pulse** (*Pulse*) – A pulse waveform description, such as [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
+  *   **channel** (*PulseChannel*) – The channel to which the pulse is applied.
+  *   **name** (*str | None*) – Name of the instruction for display purposes. Defaults to `pulse.name`.
 
-**Parameters**
+  ## Methods
 
-*   **pulse** (*Pulse*) – A pulse waveform description, such as [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
-*   **channel** (*PulseChannel*) – The channel to which the pulse is applied.
-*   **name** (*str | None*) – Name of the instruction for display purposes. Defaults to `pulse.name`.
+  <span id="qiskit-pulse-instructions-play-append" />
 
-## Methods
+  ### append
 
-<span id="qiskit-pulse-instructions-play-append" />
+  <Function id="qiskit.pulse.instructions.Play.append" name="append" signature="Play.append(schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
-### append
+    **Parameters**
 
-<span id="qiskit.pulse.instructions.Play.append" />
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
+    *   **name** (*str | None*) – Name of the new schedule. Defaults to name of self
 
-`Play.append(schedule, name=None)`
+    **Returns**
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+    A new schedule with `schedule` a this instruction at t=0.
 
-**Parameters**
+    **Return type**
 
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
-*   **name** (*str | None*) – Name of the new schedule. Defaults to name of self
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-**Returns**
+  <span id="qiskit-pulse-instructions-play-ch-duration" />
 
-A new schedule with `schedule` a this instruction at t=0.
+  ### ch\_duration
 
-**Return type**
+  <Function id="qiskit.pulse.instructions.Play.ch_duration" name="ch_duration" signature="Play.ch_duration(*channels)">
+    Return duration of the supplied channels in this Instruction.
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+    **Parameters**
 
-<span id="qiskit-pulse-instructions-play-ch-duration" />
+    **\*channels** (*List\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
 
-### ch\_duration
+    **Return type**
 
-<span id="qiskit.pulse.instructions.Play.ch_duration" />
+    int
+  </Function>
 
-`Play.ch_duration(*channels)`
+  <span id="qiskit-pulse-instructions-play-ch-start-time" />
 
-Return duration of the supplied channels in this Instruction.
+  ### ch\_start\_time
 
-**Parameters**
+  <Function id="qiskit.pulse.instructions.Play.ch_start_time" name="ch_start_time" signature="Play.ch_start_time(*channels)">
+    Return minimum start time for supplied channels.
 
-**\*channels** (*List\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
+    **Parameters**
 
-**Return type**
+    **\*channels** (*List\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
 
-int
+    **Return type**
 
-<span id="qiskit-pulse-instructions-play-ch-start-time" />
+    int
+  </Function>
 
-### ch\_start\_time
+  <span id="qiskit-pulse-instructions-play-ch-stop-time" />
 
-<span id="qiskit.pulse.instructions.Play.ch_start_time" />
+  ### ch\_stop\_time
 
-`Play.ch_start_time(*channels)`
+  <Function id="qiskit.pulse.instructions.Play.ch_stop_time" name="ch_stop_time" signature="Play.ch_stop_time(*channels)">
+    Return maximum start time for supplied channels.
 
-Return minimum start time for supplied channels.
+    **Parameters**
 
-**Parameters**
+    **\*channels** (*List\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
 
-**\*channels** (*List\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
+    **Return type**
 
-**Return type**
+    int
+  </Function>
 
-int
+  <span id="qiskit-pulse-instructions-play-draw" />
 
-<span id="qiskit-pulse-instructions-play-ch-stop-time" />
+  ### draw
 
-### ch\_stop\_time
+  <Function id="qiskit.pulse.instructions.Play.draw" name="draw" signature="Play.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)">
+    Plot the instruction.
 
-<span id="qiskit.pulse.instructions.Play.ch_stop_time" />
+    <Admonition title="Deprecated since version 0.23.0" type="danger">
+      The method `qiskit.pulse.instructions.instruction.Instruction.draw()` is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. No direct alternative is being provided to drawing individual pulses. But, instructions can be visualized as part of a complete schedule using `qiskit.visualization.pulse_drawer`.
+    </Admonition>
 
-`Play.ch_stop_time(*channels)`
+    **Parameters**
 
-Return maximum start time for supplied channels.
+    *   **dt** (*float*) – Time interval of samples
+    *   **style** (*Optional\[SchedStyle]*) – A style sheet to configure plot appearance
+    *   **filename** (*str | None*) – Name required to save pulse image
+    *   **interp\_method** (*Callable | None*) – A function for interpolation
+    *   **scale** (*float*) – Relative visual scaling of waveform amplitudes
+    *   **plot\_all** (*bool*) – Plot empty channels
+    *   **plot\_range** (*Tuple\[float] | None*) – A tuple of time range to plot
+    *   **interactive** (*bool*) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
+    *   **table** (*bool*) – Draw event table for supported instructions
+    *   **label** (*bool*) – Label individual instructions
+    *   **framechange** (*bool*) – Add framechange indicators
+    *   **channels** (*List\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A list of channel names to plot
 
-**Parameters**
+    **Returns**
 
-**\*channels** (*List\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
+    A matplotlib figure object of the pulse schedule
 
-**Return type**
+    **Return type**
 
-int
+    matplotlib.figure
+  </Function>
 
-<span id="qiskit-pulse-instructions-play-draw" />
+  <span id="qiskit-pulse-instructions-play-insert" />
 
-### draw
+  ### insert
 
-<span id="qiskit.pulse.instructions.Play.draw" />
+  <Function id="qiskit.pulse.instructions.Play.insert" name="insert" signature="Play.insert(start_time, schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
-`Play.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
+    **Parameters**
 
-Plot the instruction.
+    *   **start\_time** (*int*) – Time to insert the schedule schedule
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
+    *   **name** (*str | None*) – Name of the new schedule. Defaults to name of self
 
-<Admonition title="Deprecated since version 0.23.0" type="danger">
-  The method `qiskit.pulse.instructions.instruction.Instruction.draw()` is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. No direct alternative is being provided to drawing individual pulses. But, instructions can be visualized as part of a complete schedule using `qiskit.visualization.pulse_drawer`.
-</Admonition>
+    **Returns**
 
-**Parameters**
+    A new schedule with `schedule` inserted with this instruction at t=0.
 
-*   **dt** (*float*) – Time interval of samples
-*   **style** (*Optional\[SchedStyle]*) – A style sheet to configure plot appearance
-*   **filename** (*str | None*) – Name required to save pulse image
-*   **interp\_method** (*Callable | None*) – A function for interpolation
-*   **scale** (*float*) – Relative visual scaling of waveform amplitudes
-*   **plot\_all** (*bool*) – Plot empty channels
-*   **plot\_range** (*Tuple\[float] | None*) – A tuple of time range to plot
-*   **interactive** (*bool*) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
-*   **table** (*bool*) – Draw event table for supported instructions
-*   **label** (*bool*) – Label individual instructions
-*   **framechange** (*bool*) – Add framechange indicators
-*   **channels** (*List\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A list of channel names to plot
+    **Return type**
 
-**Returns**
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-A matplotlib figure object of the pulse schedule
+  <span id="qiskit-pulse-instructions-play-is-parameterized" />
 
-**Return type**
+  ### is\_parameterized
 
-matplotlib.figure
+  <Function id="qiskit.pulse.instructions.Play.is_parameterized" name="is_parameterized" signature="Play.is_parameterized()">
+    Return True iff the instruction is parameterized.
 
-<span id="qiskit-pulse-instructions-play-insert" />
+    **Return type**
 
-### insert
+    bool
+  </Function>
 
-<span id="qiskit.pulse.instructions.Play.insert" />
+  <span id="qiskit-pulse-instructions-play-shift" />
 
-`Play.insert(start_time, schedule, name=None)`
+  ### shift
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
+  <Function id="qiskit.pulse.instructions.Play.shift" name="shift" signature="Play.shift(time, name=None)">
+    Return a new schedule shifted forward by time.
 
-**Parameters**
+    **Parameters**
 
-*   **start\_time** (*int*) – Time to insert the schedule schedule
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
-*   **name** (*str | None*) – Name of the new schedule. Defaults to name of self
+    *   **time** (*int*) – Time to shift by
+    *   **name** (*str | None*) – Name of the new schedule. Defaults to name of self
 
-**Returns**
+    **Returns**
 
-A new schedule with `schedule` inserted with this instruction at t=0.
+    The shifted schedule.
 
-**Return type**
+    **Return type**
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-<span id="qiskit-pulse-instructions-play-is-parameterized" />
+  ## Attributes
 
-### is\_parameterized
+  ### channel
 
-<span id="qiskit.pulse.instructions.Play.is_parameterized" />
+  <Attribute id="qiskit.pulse.instructions.Play.channel" name="channel">
+    Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+  </Attribute>
 
-`Play.is_parameterized()`
+  ### channels
 
-Return True iff the instruction is parameterized.
+  <Attribute id="qiskit.pulse.instructions.Play.channels" name="channels">
+    Returns the channels that this schedule uses.
+  </Attribute>
 
-**Return type**
+  ### duration
 
-bool
+  <Attribute id="qiskit.pulse.instructions.Play.duration" name="duration">
+    Duration of this instruction.
+  </Attribute>
 
-<span id="qiskit-pulse-instructions-play-shift" />
+  ### id
 
-### shift
+  <Attribute id="qiskit.pulse.instructions.Play.id" name="id">
+    Unique identifier for this instruction.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.Play.shift" />
+  ### instructions
 
-`Play.shift(time, name=None)`
+  <Attribute id="qiskit.pulse.instructions.Play.instructions" name="instructions">
+    Iterable for getting instructions from Schedule tree.
+  </Attribute>
 
-Return a new schedule shifted forward by time.
+  ### name
 
-**Parameters**
+  <Attribute id="qiskit.pulse.instructions.Play.name" name="name">
+    Name of this instruction.
+  </Attribute>
 
-*   **time** (*int*) – Time to shift by
-*   **name** (*str | None*) – Name of the new schedule. Defaults to name of self
+  ### operands
 
-**Returns**
+  <Attribute id="qiskit.pulse.instructions.Play.operands" name="operands">
+    Return instruction operands.
+  </Attribute>
 
-The shifted schedule.
+  ### parameters
 
-**Return type**
+  <Attribute id="qiskit.pulse.instructions.Play.parameters" name="parameters">
+    Parameters which determine the instruction behavior.
+  </Attribute>
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  ### pulse
 
-## Attributes
+  <Attribute id="qiskit.pulse.instructions.Play.pulse" name="pulse">
+    A description of the samples that will be played.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.Play.channel" />
+  ### start\_time
 
-### channel
+  <Attribute id="qiskit.pulse.instructions.Play.start_time" name="start_time">
+    Relative begin time of this instruction.
+  </Attribute>
 
-Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+  ### stop\_time
 
-<span id="qiskit.pulse.instructions.Play.channels" />
-
-### channels
-
-Returns the channels that this schedule uses.
-
-<span id="qiskit.pulse.instructions.Play.duration" />
-
-### duration
-
-Duration of this instruction.
-
-<span id="qiskit.pulse.instructions.Play.id" />
-
-### id
-
-Unique identifier for this instruction.
-
-<span id="qiskit.pulse.instructions.Play.instructions" />
-
-### instructions
-
-Iterable for getting instructions from Schedule tree.
-
-<span id="qiskit.pulse.instructions.Play.name" />
-
-### name
-
-Name of this instruction.
-
-<span id="qiskit.pulse.instructions.Play.operands" />
-
-### operands
-
-Return instruction operands.
-
-<span id="qiskit.pulse.instructions.Play.parameters" />
-
-### parameters
-
-Parameters which determine the instruction behavior.
-
-<span id="qiskit.pulse.instructions.Play.pulse" />
-
-### pulse
-
-A description of the samples that will be played.
-
-<span id="qiskit.pulse.instructions.Play.start_time" />
-
-### start\_time
-
-Relative begin time of this instruction.
-
-<span id="qiskit.pulse.instructions.Play.stop_time" />
-
-### stop\_time
-
-Relative end time of this instruction.
+  <Attribute id="qiskit.pulse.instructions.Play.stop_time" name="stop_time">
+    Relative end time of this instruction.
+  </Attribute>
+</Class>
 

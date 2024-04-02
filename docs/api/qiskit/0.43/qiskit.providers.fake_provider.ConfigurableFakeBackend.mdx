@@ -8,169 +8,149 @@ python_api_name: qiskit.providers.fake_provider.ConfigurableFakeBackend
 
 # ConfigurableFakeBackend
 
-<span id="qiskit.providers.fake_provider.ConfigurableFakeBackend" />
+<Class id="qiskit.providers.fake_provider.ConfigurableFakeBackend" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/utils/configurable_backend.py" signature="ConfigurableFakeBackend(name, n_qubits, version=None, coupling_map=None, basis_gates=None, qubit_t1=None, qubit_t2=None, qubit_frequency=None, qubit_readout_error=None, single_qubit_gates=None, dt=None, std=None, seed=None)">
+  Bases: `FakeBackend`
 
-`ConfigurableFakeBackend(name, n_qubits, version=None, coupling_map=None, basis_gates=None, qubit_t1=None, qubit_t2=None, qubit_frequency=None, qubit_readout_error=None, single_qubit_gates=None, dt=None, std=None, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/utils/configurable_backend.py "view source code")
+  Configurable backend.
 
-Bases: `FakeBackend`
+  Creates backend based on provided configuration.
 
-Configurable backend.
+  **Parameters**
 
-Creates backend based on provided configuration.
+  *   **name** (*str*) – Name of the backend.
+  *   **n\_qubits** (*int*) – Number of qubits in the backend.
+  *   **version** (*str | None*) – Version of the fake backend.
+  *   **coupling\_map** (*List\[List\[int]] | None*) – Coupling map.
+  *   **basis\_gates** (*List\[str] | None*) – Basis gates of the backend.
+  *   **qubit\_t1** (*float | List\[float] | None*) – Longitudinal coherence times.
+  *   **qubit\_t2** (*float | List\[float] | None*) – Transverse coherence times.
+  *   **qubit\_frequency** (*float | List\[float] | None*) – Frequency of qubits.
+  *   **qubit\_readout\_error** (*float | List\[float] | None*) – Readout error of qubits.
+  *   **single\_qubit\_gates** (*List\[str] | None*) – List of single qubit gates for backend properties.
+  *   **dt** (*float | None*) – Discretization of the input time sequences.
+  *   **std** (*float | None*) – Standard deviation of the generated distributions.
+  *   **seed** (*int | None*) – Random seed.
 
-**Parameters**
+  ## Methods
 
-*   **name** (*str*) – Name of the backend.
-*   **n\_qubits** (*int*) – Number of qubits in the backend.
-*   **version** (*str | None*) – Version of the fake backend.
-*   **coupling\_map** (*List\[List\[int]] | None*) – Coupling map.
-*   **basis\_gates** (*List\[str] | None*) – Basis gates of the backend.
-*   **qubit\_t1** (*float | List\[float] | None*) – Longitudinal coherence times.
-*   **qubit\_t2** (*float | List\[float] | None*) – Transverse coherence times.
-*   **qubit\_frequency** (*float | List\[float] | None*) – Frequency of qubits.
-*   **qubit\_readout\_error** (*float | List\[float] | None*) – Readout error of qubits.
-*   **single\_qubit\_gates** (*List\[str] | None*) – List of single qubit gates for backend properties.
-*   **dt** (*float | None*) – Discretization of the input time sequences.
-*   **std** (*float | None*) – Standard deviation of the generated distributions.
-*   **seed** (*int | None*) – Random seed.
+  <span id="qiskit-providers-fake-provider-configurablefakebackend-configuration" />
 
-## Methods
+  ### configuration
 
-<span id="qiskit-providers-fake-provider-configurablefakebackend-configuration" />
+  <Function id="qiskit.providers.fake_provider.ConfigurableFakeBackend.configuration" name="configuration" signature="ConfigurableFakeBackend.configuration()">
+    Return the backend configuration.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.configuration" />
+    the configuration for the backend.
 
-`ConfigurableFakeBackend.configuration()`
+    **Return type**
 
-Return the backend configuration.
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-**Returns**
+  <span id="qiskit-providers-fake-provider-configurablefakebackend-defaults" />
 
-the configuration for the backend.
+  ### defaults
 
-**Return type**
+  <Function id="qiskit.providers.fake_provider.ConfigurableFakeBackend.defaults" name="defaults" signature="ConfigurableFakeBackend.defaults()">
+    Return backend defaults.
+  </Function>
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  <span id="qiskit-providers-fake-provider-configurablefakebackend-name" />
 
-<span id="qiskit-providers-fake-provider-configurablefakebackend-defaults" />
+  ### name
 
-### defaults
+  <Function id="qiskit.providers.fake_provider.ConfigurableFakeBackend.name" name="name" signature="ConfigurableFakeBackend.name()">
+    Return the backend name.
 
-<span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.defaults" />
+    **Returns**
 
-`ConfigurableFakeBackend.defaults()`
+    the name of the backend.
 
-Return backend defaults.
+    **Return type**
 
-<span id="qiskit-providers-fake-provider-configurablefakebackend-name" />
+    str
+  </Function>
 
-### name
+  <span id="qiskit-providers-fake-provider-configurablefakebackend-properties" />
 
-<span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.name" />
+  ### properties
 
-`ConfigurableFakeBackend.name()`
+  <Function id="qiskit.providers.fake_provider.ConfigurableFakeBackend.properties" name="properties" signature="ConfigurableFakeBackend.properties()">
+    Return backend properties
+  </Function>
 
-Return the backend name.
+  <span id="qiskit-providers-fake-provider-configurablefakebackend-provider" />
 
-**Returns**
+  ### provider
 
-the name of the backend.
+  <Function id="qiskit.providers.fake_provider.ConfigurableFakeBackend.provider" name="provider" signature="ConfigurableFakeBackend.provider()">
+    Return the backend Provider.
 
-**Return type**
+    **Returns**
 
-str
+    the Provider responsible for the backend.
 
-<span id="qiskit-providers-fake-provider-configurablefakebackend-properties" />
+    **Return type**
 
-### properties
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-<span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.properties" />
+  <span id="qiskit-providers-fake-provider-configurablefakebackend-run" />
 
-`ConfigurableFakeBackend.properties()`
+  ### run
 
-Return backend properties
+  <Function id="qiskit.providers.fake_provider.ConfigurableFakeBackend.run" name="run" signature="ConfigurableFakeBackend.run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-<span id="qiskit-providers-fake-provider-configurablefakebackend-provider" />
+  <span id="qiskit-providers-fake-provider-configurablefakebackend-set-options" />
 
-### provider
+  ### set\_options
 
-<span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.provider" />
+  <Function id="qiskit.providers.fake_provider.ConfigurableFakeBackend.set_options" name="set_options" signature="ConfigurableFakeBackend.set_options(**fields)">
+    Set the options fields for the backend
 
-`ConfigurableFakeBackend.provider()`
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-Return the backend Provider.
+    **Parameters**
 
-**Returns**
+    **fields** – The fields to update the options
 
-the Provider responsible for the backend.
+    **Raises**
 
-**Return type**
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  <span id="qiskit-providers-fake-provider-configurablefakebackend-status" />
 
-<span id="qiskit-providers-fake-provider-configurablefakebackend-run" />
+  ### status
 
-### run
+  <Function id="qiskit.providers.fake_provider.ConfigurableFakeBackend.status" name="status" signature="ConfigurableFakeBackend.status()">
+    Return the backend status.
 
-<span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.run" />
+    **Returns**
 
-`ConfigurableFakeBackend.run(run_input, **kwargs)`
+    the status of the backend.
 
-Main job in simulator
+    **Return type**
 
-<span id="qiskit-providers-fake-provider-configurablefakebackend-set-options" />
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-### set\_options
+  ## Attributes
 
-<span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.set_options" />
+  ### options
 
-`ConfigurableFakeBackend.set_options(**fields)`
+  <Attribute id="qiskit.providers.fake_provider.ConfigurableFakeBackend.options" name="options">
+    Return the options for the backend
 
-Set the options fields for the backend
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.ConfigurableFakeBackend#run "qiskit.providers.fake_provider.ConfigurableFakeBackend.run") method.
+  </Attribute>
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+  ### version
 
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
-
-<span id="qiskit-providers-fake-provider-configurablefakebackend-status" />
-
-### status
-
-<span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.status" />
-
-`ConfigurableFakeBackend.status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.ConfigurableFakeBackend#run "qiskit.providers.fake_provider.ConfigurableFakeBackend.run") method.
-
-<span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.fake_provider.ConfigurableFakeBackend.version" name="version" attributeValue="= 1" />
+</Class>
 

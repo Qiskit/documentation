@@ -8,257 +8,225 @@ python_api_name: qiskit.circuit.ParameterExpression
 
 # ParameterExpression
 
-<span id="qiskit.circuit.ParameterExpression" />
+<Class id="qiskit.circuit.ParameterExpression" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py" signature="ParameterExpression(symbol_map, expr)">
+  Bases: `object`
 
-`ParameterExpression(symbol_map, expr)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+  ParameterExpression class to enable creating expressions of Parameters.
 
-Bases: `object`
+  Create a new [`ParameterExpression`](#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression").
 
-ParameterExpression class to enable creating expressions of Parameters.
+  Not intended to be called directly, but to be instantiated via operations on other [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") or [`ParameterExpression`](#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects.
 
-Create a new [`ParameterExpression`](#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression").
+  **Parameters**
 
-Not intended to be called directly, but to be instantiated via operations on other [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") or [`ParameterExpression`](#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects.
+  *   **symbol\_map** (*Dict\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*, \[*[*ParameterExpression*](#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*, float, or int]]*) – Mapping of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances to the `sympy.Symbol` serving as their placeholder in expr.
+  *   **expr** (*sympy.Expr*) – Expression of `sympy.Symbol` s.
 
-**Parameters**
+  ## Methods
 
-*   **symbol\_map** (*Dict\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*, \[*[*ParameterExpression*](#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*, float, or int]]*) – Mapping of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances to the `sympy.Symbol` serving as their placeholder in expr.
-*   **expr** (*sympy.Expr*) – Expression of `sympy.Symbol` s.
+  <span id="qiskit-circuit-parameterexpression-arccos" />
 
-## Methods
+  ### arccos
 
-<span id="qiskit-circuit-parameterexpression-arccos" />
+  <Function id="qiskit.circuit.ParameterExpression.arccos" name="arccos" signature="ParameterExpression.arccos()">
+    Arccos of a ParameterExpression
+  </Function>
 
-### arccos
+  <span id="qiskit-circuit-parameterexpression-arcsin" />
 
-<span id="qiskit.circuit.ParameterExpression.arccos" />
+  ### arcsin
 
-`ParameterExpression.arccos()`
+  <Function id="qiskit.circuit.ParameterExpression.arcsin" name="arcsin" signature="ParameterExpression.arcsin()">
+    Arcsin of a ParameterExpression
+  </Function>
 
-Arccos of a ParameterExpression
+  <span id="qiskit-circuit-parameterexpression-arctan" />
 
-<span id="qiskit-circuit-parameterexpression-arcsin" />
+  ### arctan
 
-### arcsin
+  <Function id="qiskit.circuit.ParameterExpression.arctan" name="arctan" signature="ParameterExpression.arctan()">
+    Arctan of a ParameterExpression
+  </Function>
 
-<span id="qiskit.circuit.ParameterExpression.arcsin" />
+  <span id="qiskit-circuit-parameterexpression-assign" />
 
-`ParameterExpression.arcsin()`
+  ### assign
 
-Arcsin of a ParameterExpression
+  <Function id="qiskit.circuit.ParameterExpression.assign" name="assign" signature="ParameterExpression.assign(parameter, value)">
+    Assign one parameter to a value, which can either be numeric or another parameter expression.
 
-<span id="qiskit-circuit-parameterexpression-arctan" />
+    **Parameters**
 
-### arctan
+    *   **parameter** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) – A parameter in this expression whose value will be updated.
+    *   **value** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| float*) – The new value to bind to.
 
-<span id="qiskit.circuit.ParameterExpression.arctan" />
+    **Returns**
 
-`ParameterExpression.arctan()`
+    A new expression parameterized by any parameters which were not bound by assignment.
 
-Arctan of a ParameterExpression
+    **Return type**
 
-<span id="qiskit-circuit-parameterexpression-assign" />
+    [ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+  </Function>
 
-### assign
+  <span id="qiskit-circuit-parameterexpression-bind" />
 
-<span id="qiskit.circuit.ParameterExpression.assign" />
+  ### bind
 
-`ParameterExpression.assign(parameter, value)`
+  <Function id="qiskit.circuit.ParameterExpression.bind" name="bind" signature="ParameterExpression.bind(parameter_values, allow_unknown_parameters=False)">
+    Binds the provided set of parameters to their corresponding values.
 
-Assign one parameter to a value, which can either be numeric or another parameter expression.
+    **Parameters**
 
-**Parameters**
+    *   **parameter\_values** (*dict*) – Mapping of Parameter instances to the numeric value to which they will be bound.
+    *   **allow\_unknown\_parameters** (*bool*) – If `False`, raises an error if `parameter_values` contains Parameters in the keys outside those present in the expression. If `True`, any such parameters are simply ignored.
 
-*   **parameter** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) – A parameter in this expression whose value will be updated.
-*   **value** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| float*) – The new value to bind to.
+    **Raises**
 
-**Returns**
+    *   **CircuitError** –
 
-A new expression parameterized by any parameters which were not bound by assignment.
+        *   If parameter\_values contains Parameters outside those in self. - If a non-numeric value is passed in parameter\_values.
 
-**Return type**
+    *   **ZeroDivisionError** –
 
-[ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+        *   If binding the provided values requires division by zero.
 
-<span id="qiskit-circuit-parameterexpression-bind" />
+    **Returns**
 
-### bind
+    A new expression parameterized by any parameters which were not bound by parameter\_values.
 
-<span id="qiskit.circuit.ParameterExpression.bind" />
+    **Return type**
 
-`ParameterExpression.bind(parameter_values, allow_unknown_parameters=False)`
+    [ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+  </Function>
 
-Binds the provided set of parameters to their corresponding values.
+  <span id="qiskit-circuit-parameterexpression-conjugate" />
 
-**Parameters**
+  ### conjugate
 
-*   **parameter\_values** (*dict*) – Mapping of Parameter instances to the numeric value to which they will be bound.
-*   **allow\_unknown\_parameters** (*bool*) – If `False`, raises an error if `parameter_values` contains Parameters in the keys outside those present in the expression. If `True`, any such parameters are simply ignored.
+  <Function id="qiskit.circuit.ParameterExpression.conjugate" name="conjugate" signature="ParameterExpression.conjugate()">
+    Return the conjugate.
 
-**Raises**
+    **Return type**
 
-*   **CircuitError** –
+    [ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+  </Function>
 
-    *   If parameter\_values contains Parameters outside those in self. - If a non-numeric value is passed in parameter\_values.
+  <span id="qiskit-circuit-parameterexpression-cos" />
 
-*   **ZeroDivisionError** –
+  ### cos
 
-    *   If binding the provided values requires division by zero.
+  <Function id="qiskit.circuit.ParameterExpression.cos" name="cos" signature="ParameterExpression.cos()">
+    Cosine of a ParameterExpression
+  </Function>
 
-**Returns**
+  <span id="qiskit-circuit-parameterexpression-exp" />
 
-A new expression parameterized by any parameters which were not bound by parameter\_values.
+  ### exp
 
-**Return type**
+  <Function id="qiskit.circuit.ParameterExpression.exp" name="exp" signature="ParameterExpression.exp()">
+    Exponential of a ParameterExpression
+  </Function>
 
-[ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+  <span id="qiskit-circuit-parameterexpression-gradient" />
 
-<span id="qiskit-circuit-parameterexpression-conjugate" />
+  ### gradient
 
-### conjugate
+  <Function id="qiskit.circuit.ParameterExpression.gradient" name="gradient" signature="ParameterExpression.gradient(param)">
+    Get the derivative of a parameter expression w\.r.t. a specified parameter expression.
 
-<span id="qiskit.circuit.ParameterExpression.conjugate" />
+    **Parameters**
 
-`ParameterExpression.conjugate()`
+    **param** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) – Parameter w\.r.t. which we want to take the derivative
 
-Return the conjugate.
+    **Returns**
 
-**Return type**
+    ParameterExpression representing the gradient of param\_expr w\.r.t. param or complex or float number
 
-[ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+    **Return type**
 
-<span id="qiskit-circuit-parameterexpression-cos" />
+    [ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") | complex
+  </Function>
 
-### cos
+  <span id="qiskit-circuit-parameterexpression-is-real" />
 
-<span id="qiskit.circuit.ParameterExpression.cos" />
+  ### is\_real
 
-`ParameterExpression.cos()`
+  <Function id="qiskit.circuit.ParameterExpression.is_real" name="is_real" signature="ParameterExpression.is_real()">
+    Return whether the expression is real
+  </Function>
 
-Cosine of a ParameterExpression
+  <span id="qiskit-circuit-parameterexpression-log" />
 
-<span id="qiskit-circuit-parameterexpression-exp" />
+  ### log
 
-### exp
+  <Function id="qiskit.circuit.ParameterExpression.log" name="log" signature="ParameterExpression.log()">
+    Logarithm of a ParameterExpression
+  </Function>
 
-<span id="qiskit.circuit.ParameterExpression.exp" />
+  <span id="qiskit-circuit-parameterexpression-sin" />
 
-`ParameterExpression.exp()`
+  ### sin
 
-Exponential of a ParameterExpression
+  <Function id="qiskit.circuit.ParameterExpression.sin" name="sin" signature="ParameterExpression.sin()">
+    Sine of a ParameterExpression
+  </Function>
 
-<span id="qiskit-circuit-parameterexpression-gradient" />
+  <span id="qiskit-circuit-parameterexpression-subs" />
 
-### gradient
+  ### subs
 
-<span id="qiskit.circuit.ParameterExpression.gradient" />
+  <Function id="qiskit.circuit.ParameterExpression.subs" name="subs" signature="ParameterExpression.subs(parameter_map, allow_unknown_parameters=False)">
+    Returns a new Expression with replacement Parameters.
 
-`ParameterExpression.gradient(param)`
+    **Parameters**
 
-Get the derivative of a parameter expression w\.r.t. a specified parameter expression.
+    *   **parameter\_map** (*dict*) – Mapping from Parameters in self to the ParameterExpression instances with which they should be replaced.
+    *   **allow\_unknown\_parameters** (*bool*) – If `False`, raises an error if `parameter_map` contains Parameters in the keys outside those present in the expression. If `True`, any such parameters are simply ignored.
 
-**Parameters**
+    **Raises**
 
-**param** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) – Parameter w\.r.t. which we want to take the derivative
+    **CircuitError** –
 
-**Returns**
+    *   If parameter\_map contains Parameters outside those in self. - If the replacement Parameters in parameter\_map would result in a name conflict in the generated expression.
 
-ParameterExpression representing the gradient of param\_expr w\.r.t. param or complex or float number
+    **Returns**
 
-**Return type**
+    A new expression with the specified parameters replaced.
 
-[ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") | complex
+    **Return type**
 
-<span id="qiskit-circuit-parameterexpression-is-real" />
+    [ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+  </Function>
 
-### is\_real
+  <span id="qiskit-circuit-parameterexpression-sympify" />
 
-<span id="qiskit.circuit.ParameterExpression.is_real" />
+  ### sympify
 
-`ParameterExpression.is_real()`
+  <Function id="qiskit.circuit.ParameterExpression.sympify" name="sympify" signature="ParameterExpression.sympify()">
+    Return symbolic expression as a raw Sympy or Symengine object.
 
-Return whether the expression is real
+    Symengine is used preferentially; if both are available, the result will always be a `symengine` object. Symengine is a separate library but has integration with Sympy.
 
-<span id="qiskit-circuit-parameterexpression-log" />
+    <Admonition title="Note" type="note">
+      This is for interoperability only. Qiskit will not accept or work with raw Sympy or Symegine expressions in its parameters, because they do not contain the tracking information used in circuit-parameter binding and assignment.
+    </Admonition>
+  </Function>
 
-### log
+  <span id="qiskit-circuit-parameterexpression-tan" />
 
-<span id="qiskit.circuit.ParameterExpression.log" />
+  ### tan
 
-`ParameterExpression.log()`
+  <Function id="qiskit.circuit.ParameterExpression.tan" name="tan" signature="ParameterExpression.tan()">
+    Tangent of a ParameterExpression
+  </Function>
 
-Logarithm of a ParameterExpression
+  ## Attributes
 
-<span id="qiskit-circuit-parameterexpression-sin" />
+  ### parameters
 
-### sin
-
-<span id="qiskit.circuit.ParameterExpression.sin" />
-
-`ParameterExpression.sin()`
-
-Sine of a ParameterExpression
-
-<span id="qiskit-circuit-parameterexpression-subs" />
-
-### subs
-
-<span id="qiskit.circuit.ParameterExpression.subs" />
-
-`ParameterExpression.subs(parameter_map, allow_unknown_parameters=False)`
-
-Returns a new Expression with replacement Parameters.
-
-**Parameters**
-
-*   **parameter\_map** (*dict*) – Mapping from Parameters in self to the ParameterExpression instances with which they should be replaced.
-*   **allow\_unknown\_parameters** (*bool*) – If `False`, raises an error if `parameter_map` contains Parameters in the keys outside those present in the expression. If `True`, any such parameters are simply ignored.
-
-**Raises**
-
-**CircuitError** –
-
-*   If parameter\_map contains Parameters outside those in self. - If the replacement Parameters in parameter\_map would result in a name conflict in the generated expression.
-
-**Returns**
-
-A new expression with the specified parameters replaced.
-
-**Return type**
-
-[ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
-
-<span id="qiskit-circuit-parameterexpression-sympify" />
-
-### sympify
-
-<span id="qiskit.circuit.ParameterExpression.sympify" />
-
-`ParameterExpression.sympify()`
-
-Return symbolic expression as a raw Sympy or Symengine object.
-
-Symengine is used preferentially; if both are available, the result will always be a `symengine` object. Symengine is a separate library but has integration with Sympy.
-
-<Admonition title="Note" type="note">
-  This is for interoperability only. Qiskit will not accept or work with raw Sympy or Symegine expressions in its parameters, because they do not contain the tracking information used in circuit-parameter binding and assignment.
-</Admonition>
-
-<span id="qiskit-circuit-parameterexpression-tan" />
-
-### tan
-
-<span id="qiskit.circuit.ParameterExpression.tan" />
-
-`ParameterExpression.tan()`
-
-Tangent of a ParameterExpression
-
-## Attributes
-
-<span id="qiskit.circuit.ParameterExpression.parameters" />
-
-### parameters
-
-Returns a set of the unbound Parameters in the expression.
+  <Attribute id="qiskit.circuit.ParameterExpression.parameters" name="parameters">
+    Returns a set of the unbound Parameters in the expression.
+  </Attribute>
+</Class>
 

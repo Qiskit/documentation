@@ -8,93 +8,87 @@ python_api_name: qiskit.primitives.BaseSampler
 
 # BaseSampler
 
-<span id="qiskit.primitives.BaseSampler" />
+<Class id="qiskit.primitives.BaseSampler" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/primitives/base/base_sampler.py" signature="BaseSampler(*, options=None)">
+  Bases: `BasePrimitive`, `Generic`\[`T`]
 
-`BaseSampler(*, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/primitives/base/base_sampler.py "view source code")
+  Sampler base class
 
-Bases: `BasePrimitive`, `Generic`\[`T`]
+  Base class of Sampler that calculates quasi-probabilities of bitstrings from quantum circuits.
 
-Sampler base class
+  **Parameters**
 
-Base class of Sampler that calculates quasi-probabilities of bitstrings from quantum circuits.
+  **options** – Default options.
 
-**Parameters**
+  ## Methods
 
-**options** – Default options.
+  <span id="qiskit-primitives-basesampler-run" />
 
-## Methods
+  ### run
 
-<span id="qiskit-primitives-basesampler-run" />
+  <Function id="qiskit.primitives.BaseSampler.run" name="run" signature="BaseSampler.run(circuits, parameter_values=None, **run_options)">
+    Run the job of the sampling of bitstrings.
 
-### run
+    **Parameters**
 
-<span id="qiskit.primitives.BaseSampler.run" />
+    *   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – One of more circuit objects.
+    *   **parameter\_values** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Parameters to be bound to the circuit.
+    *   **run\_options** – Backend runtime options used for circuit execution.
 
-`BaseSampler.run(circuits, parameter_values=None, **run_options)`
+    **Returns**
 
-Run the job of the sampling of bitstrings.
+    The job object of the result of the sampler. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`.
 
-**Parameters**
+    **Raises**
 
-*   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – One of more circuit objects.
-*   **parameter\_values** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Parameters to be bound to the circuit.
-*   **run\_options** – Backend runtime options used for circuit execution.
+    **ValueError** – Invalid arguments are given.
 
-**Returns**
+    **Return type**
 
-The job object of the result of the sampler. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`.
+    T
+  </Function>
 
-**Raises**
+  <span id="qiskit-primitives-basesampler-set-options" />
 
-**ValueError** – Invalid arguments are given.
+  ### set\_options
 
-**Return type**
+  <Function id="qiskit.primitives.BaseSampler.set_options" name="set_options" signature="BaseSampler.set_options(**fields)">
+    Set options values for the estimator.
 
-T
+    **Parameters**
 
-<span id="qiskit-primitives-basesampler-set-options" />
+    **\*\*fields** – The fields to update the options
+  </Function>
 
-### set\_options
+  ## Attributes
 
-<span id="qiskit.primitives.BaseSampler.set_options" />
+  ### circuits
 
-`BaseSampler.set_options(**fields)`
+  <Attribute id="qiskit.primitives.BaseSampler.circuits" name="circuits">
+    Quantum circuits to be sampled.
 
-Set options values for the estimator.
+    **Returns**
 
-**Parameters**
+    The quantum circuits to be sampled.
+  </Attribute>
 
-**\*\*fields** – The fields to update the options
+  ### options
 
-## Attributes
+  <Attribute id="qiskit.primitives.BaseSampler.options" name="options">
+    Return options values for the estimator.
 
-<span id="qiskit.primitives.BaseSampler.circuits" />
+    **Returns**
 
-### circuits
+    options
+  </Attribute>
 
-Quantum circuits to be sampled.
+  ### parameters
 
-**Returns**
+  <Attribute id="qiskit.primitives.BaseSampler.parameters" name="parameters">
+    Parameters of quantum circuits.
 
-The quantum circuits to be sampled.
+    **Returns**
 
-<span id="qiskit.primitives.BaseSampler.options" />
-
-### options
-
-Return options values for the estimator.
-
-**Returns**
-
-options
-
-<span id="qiskit.primitives.BaseSampler.parameters" />
-
-### parameters
-
-Parameters of quantum circuits.
-
-**Returns**
-
-List of the parameters in each quantum circuit.
+    List of the parameters in each quantum circuit.
+  </Attribute>
+</Class>
 
