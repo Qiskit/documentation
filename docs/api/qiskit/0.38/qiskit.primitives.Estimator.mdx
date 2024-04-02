@@ -8,65 +8,61 @@ python_api_name: qiskit.primitives.Estimator
 
 # Estimator
 
-<span id="qiskit.primitives.Estimator" />
+<Class id="qiskit.primitives.Estimator" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/primitives/estimator.py" signature="Estimator(circuits: Iterable[QuantumCircuit] | QuantumCircuit, observables: Iterable[SparsePauliOp] | SparsePauliOp, *args, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)">
+  Bases: [`qiskit.primitives.base_estimator.BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base_estimator.BaseEstimator")
 
-`Estimator(circuits: Iterable[QuantumCircuit] | QuantumCircuit, observables: Iterable[SparsePauliOp] | SparsePauliOp, *args, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/primitives/estimator.py "view source code")
+  Estimator class
 
-Bases: [`qiskit.primitives.base_estimator.BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base_estimator.BaseEstimator")
+  Creating an instance of an Estimator, or using one in a `with` context opens a session that holds resources until the instance is `close()` ed or the context is exited.
 
-Estimator class
+  **Parameters**
 
-Creating an instance of an Estimator, or using one in a `with` context opens a session that holds resources until the instance is `close()` ed or the context is exited.
+  *   **circuits** – Quantum circuits that represent quantum states.
+  *   **observables** – Observables.
+  *   **parameters** – Parameters of quantum circuits, specifying the order in which values will be bound. Defaults to `[circ.parameters for circ in circuits]` The indexing is such that `parameters[i, j]` is the j-th formal parameter of `circuits[i]`.
 
-**Parameters**
+  **Raises**
 
-*   **circuits** – Quantum circuits that represent quantum states.
-*   **observables** – Observables.
-*   **parameters** – Parameters of quantum circuits, specifying the order in which values will be bound. Defaults to `[circ.parameters for circ in circuits]` The indexing is such that `parameters[i, j]` is the j-th formal parameter of `circuits[i]`.
+  **QiskitError** – For mismatch of circuits and parameters list.
 
-**Raises**
+  ## Methods
 
-**QiskitError** – For mismatch of circuits and parameters list.
+  ### close
 
-## Methods
+  <Function id="qiskit.primitives.Estimator.close" name="close" signature="Estimator.close()">
+    Close the session and free resources
+  </Function>
 
-### close
+  ## Attributes
 
-<span id="qiskit.primitives.Estimator.close" />
+  ### circuits
 
-`Estimator.close()`
+  <Attribute id="qiskit.primitives.Estimator.circuits" name="circuits">
+    Quantum circuits that represents quantum states.
 
-Close the session and free resources
+    **Returns**
 
-## Attributes
+    The quantum circuits.
+  </Attribute>
 
-<span id="qiskit.primitives.Estimator.circuits" />
+  ### observables
 
-### circuits
+  <Attribute id="qiskit.primitives.Estimator.observables" name="observables">
+    Observables to be estimated.
 
-Quantum circuits that represents quantum states.
+    **Returns**
 
-**Returns**
+    The observables.
+  </Attribute>
 
-The quantum circuits.
+  ### parameters
 
-<span id="qiskit.primitives.Estimator.observables" />
+  <Attribute id="qiskit.primitives.Estimator.parameters" name="parameters">
+    Parameters of the quantum circuits.
 
-### observables
+    **Returns**
 
-Observables to be estimated.
-
-**Returns**
-
-The observables.
-
-<span id="qiskit.primitives.Estimator.parameters" />
-
-### parameters
-
-Parameters of the quantum circuits.
-
-**Returns**
-
-Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
+    Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
+  </Attribute>
+</Class>
 
