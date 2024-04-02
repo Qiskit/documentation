@@ -8,208 +8,192 @@ python_api_name: qiskit.algorithms.AmplitudeEstimation
 
 # qiskit.algorithms.AmplitudeEstimation
 
-<span id="qiskit.algorithms.AmplitudeEstimation" />
+<Class id="qiskit.algorithms.AmplitudeEstimation" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/ae.py" signature="AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)">
+  The Quantum Phase Estimation-based Amplitude Estimation algorithm.
 
-`AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
+  This class implements the original Quantum Amplitude Estimation (QAE) algorithm, introduced by \[1]. This canonical version uses quantum phase estimation along with a set of $m$ additional evaluation qubits to find an estimate $\tilde{a}$, that is restricted to the grid
 
-The Quantum Phase Estimation-based Amplitude Estimation algorithm.
+  $$
+  \tilde{a} \in \{\sin^2(\pi  y / 2^m) : y = 0, ..., 2^{m-1}\}
+  $$
 
-This class implements the original Quantum Amplitude Estimation (QAE) algorithm, introduced by \[1]. This canonical version uses quantum phase estimation along with a set of $m$ additional evaluation qubits to find an estimate $\tilde{a}$, that is restricted to the grid
+  More evaluation qubits produce a finer sampling grid, therefore the accuracy of the algorithm increases with $m$.
 
-$$
-\tilde{a} \in \{\sin^2(\pi  y / 2^m) : y = 0, ..., 2^{m-1}\}
-$$
+  Using a maximum likelihood post processing, this grid constraint can be circumvented. This improved estimator is implemented as well, see \[2] Appendix A for more detail.
 
-More evaluation qubits produce a finer sampling grid, therefore the accuracy of the algorithm increases with $m$.
+  **References**
 
-Using a maximum likelihood post processing, this grid constraint can be circumvented. This improved estimator is implemented as well, see \[2] Appendix A for more detail.
+  **\[1]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
 
-**References**
+  Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
 
-**\[1]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
+  **\[2]: Grinko, D., Gacon, J., Zoufal, C., & Woerner, S. (2019).**
 
-Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
+  Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs/1912.05559).
 
-**\[2]: Grinko, D., Gacon, J., Zoufal, C., & Woerner, S. (2019).**
+  **Parameters**
 
-Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs/1912.05559).
+  *   **num\_eval\_qubits** (`int`) – The number of evaluation qubits.
+  *   **phase\_estimation\_circuit** (`Optional`\[`QuantumCircuit`]) – The phase estimation circuit used to run the algorithm. Defaults to the standard phase estimation circuit from the circuit library, qiskit.circuit.library.PhaseEstimation when None.
+  *   **iqft** (`Optional`\[`QuantumCircuit`]) – The inverse quantum Fourier transform component, defaults to using a standard implementation from qiskit.circuit.library.QFT when None.
+  *   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – The backend (or QuantumInstance) to execute the circuits on.
 
-**Parameters**
+  **Raises**
 
-*   **num\_eval\_qubits** (`int`) – The number of evaluation qubits.
-*   **phase\_estimation\_circuit** (`Optional`\[`QuantumCircuit`]) – The phase estimation circuit used to run the algorithm. Defaults to the standard phase estimation circuit from the circuit library, qiskit.circuit.library.PhaseEstimation when None.
-*   **iqft** (`Optional`\[`QuantumCircuit`]) – The inverse quantum Fourier transform component, defaults to using a standard implementation from qiskit.circuit.library.QFT when None.
-*   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – The backend (or QuantumInstance) to execute the circuits on.
+  **ValueError** – If the number of evaluation qubits is smaller than 1.
 
-**Raises**
+  ### \_\_init\_\_
 
-**ValueError** – If the number of evaluation qubits is smaller than 1.
+  <Function id="qiskit.algorithms.AmplitudeEstimation.__init__" name="__init__" signature="__init__(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **num\_eval\_qubits** (`int`) – The number of evaluation qubits.
+    *   **phase\_estimation\_circuit** (`Optional`\[`QuantumCircuit`]) – The phase estimation circuit used to run the algorithm. Defaults to the standard phase estimation circuit from the circuit library, qiskit.circuit.library.PhaseEstimation when None.
+    *   **iqft** (`Optional`\[`QuantumCircuit`]) – The inverse quantum Fourier transform component, defaults to using a standard implementation from qiskit.circuit.library.QFT when None.
+    *   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – The backend (or QuantumInstance) to execute the circuits on.
 
-<span id="qiskit.algorithms.AmplitudeEstimation.__init__" />
+    **Raises**
 
-`__init__(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)`
+    **ValueError** – If the number of evaluation qubits is smaller than 1.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **num\_eval\_qubits** (`int`) – The number of evaluation qubits.
-*   **phase\_estimation\_circuit** (`Optional`\[`QuantumCircuit`]) – The phase estimation circuit used to run the algorithm. Defaults to the standard phase estimation circuit from the circuit library, qiskit.circuit.library.PhaseEstimation when None.
-*   **iqft** (`Optional`\[`QuantumCircuit`]) – The inverse quantum Fourier transform component, defaults to using a standard implementation from qiskit.circuit.library.QFT when None.
-*   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – The backend (or QuantumInstance) to execute the circuits on.
+  |                                                                                                                                                                                              |                                                                        |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.AmplitudeEstimation.__init__ "qiskit.algorithms.AmplitudeEstimation.__init__")(num\_eval\_qubits\[, …])                                                      | **type num\_eval\_qubits**`int`                                        |
+  | [`compute_confidence_interval`](#qiskit.algorithms.AmplitudeEstimation.compute_confidence_interval "qiskit.algorithms.AmplitudeEstimation.compute_confidence_interval")(result\[, alpha, …]) | Compute the (1 - alpha) confidence interval.                           |
+  | [`compute_mle`](#qiskit.algorithms.AmplitudeEstimation.compute_mle "qiskit.algorithms.AmplitudeEstimation.compute_mle")(result\[, apply\_post\_processing])                                  | Compute the Maximum Likelihood Estimator (MLE).                        |
+  | [`construct_circuit`](#qiskit.algorithms.AmplitudeEstimation.construct_circuit "qiskit.algorithms.AmplitudeEstimation.construct_circuit")(estimation\_problem\[, …])                         | Construct the Amplitude Estimation quantum circuit.                    |
+  | [`estimate`](#qiskit.algorithms.AmplitudeEstimation.estimate "qiskit.algorithms.AmplitudeEstimation.estimate")(estimation\_problem)                                                          | Run the amplitude estimation algorithm on provided estimation problem. |
+  | [`evaluate_measurements`](#qiskit.algorithms.AmplitudeEstimation.evaluate_measurements "qiskit.algorithms.AmplitudeEstimation.evaluate_measurements")(circuit\_results\[, …])                | Evaluate the results from the circuit simulation.                      |
 
-**Raises**
+  ## Attributes
 
-**ValueError** – If the number of evaluation qubits is smaller than 1.
+  |                                                                                                                                        |                           |
+  | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+  | [`quantum_instance`](#qiskit.algorithms.AmplitudeEstimation.quantum_instance "qiskit.algorithms.AmplitudeEstimation.quantum_instance") | Get the quantum instance. |
 
-## Methods
+  ### compute\_confidence\_interval
 
-|                                                                                                                                                                                              |                                                                        |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.AmplitudeEstimation.__init__ "qiskit.algorithms.AmplitudeEstimation.__init__")(num\_eval\_qubits\[, …])                                                      | **type num\_eval\_qubits**`int`                                        |
-| [`compute_confidence_interval`](#qiskit.algorithms.AmplitudeEstimation.compute_confidence_interval "qiskit.algorithms.AmplitudeEstimation.compute_confidence_interval")(result\[, alpha, …]) | Compute the (1 - alpha) confidence interval.                           |
-| [`compute_mle`](#qiskit.algorithms.AmplitudeEstimation.compute_mle "qiskit.algorithms.AmplitudeEstimation.compute_mle")(result\[, apply\_post\_processing])                                  | Compute the Maximum Likelihood Estimator (MLE).                        |
-| [`construct_circuit`](#qiskit.algorithms.AmplitudeEstimation.construct_circuit "qiskit.algorithms.AmplitudeEstimation.construct_circuit")(estimation\_problem\[, …])                         | Construct the Amplitude Estimation quantum circuit.                    |
-| [`estimate`](#qiskit.algorithms.AmplitudeEstimation.estimate "qiskit.algorithms.AmplitudeEstimation.estimate")(estimation\_problem)                                                          | Run the amplitude estimation algorithm on provided estimation problem. |
-| [`evaluate_measurements`](#qiskit.algorithms.AmplitudeEstimation.evaluate_measurements "qiskit.algorithms.AmplitudeEstimation.evaluate_measurements")(circuit\_results\[, …])                | Evaluate the results from the circuit simulation.                      |
+  <Function id="qiskit.algorithms.AmplitudeEstimation.compute_confidence_interval" name="compute_confidence_interval" signature="static compute_confidence_interval(result, alpha=0.05, kind='likelihood_ratio')">
+    Compute the (1 - alpha) confidence interval.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                        |                           |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| [`quantum_instance`](#qiskit.algorithms.AmplitudeEstimation.quantum_instance "qiskit.algorithms.AmplitudeEstimation.quantum_instance") | Get the quantum instance. |
+    *   **result** (`AmplitudeEstimationResult`) – An amplitude estimation result for which to compute the confidence interval.
+    *   **alpha** (`float`) – Confidence level: compute the (1 - alpha) confidence interval.
+    *   **kind** (`str`) – The method to compute the confidence interval, can be ‘fisher’, ‘observed\_fisher’ or ‘likelihood\_ratio’ (default)
 
-### compute\_confidence\_interval
+    **Return type**
 
-<span id="qiskit.algorithms.AmplitudeEstimation.compute_confidence_interval" />
+    `Tuple`\[`float`, `float`]
 
-`static compute_confidence_interval(result, alpha=0.05, kind='likelihood_ratio')`
+    **Returns**
 
-Compute the (1 - alpha) confidence interval.
+    The (1 - alpha) confidence interval of the specified kind.
 
-**Parameters**
+    **Raises**
 
-*   **result** (`AmplitudeEstimationResult`) – An amplitude estimation result for which to compute the confidence interval.
-*   **alpha** (`float`) – Confidence level: compute the (1 - alpha) confidence interval.
-*   **kind** (`str`) – The method to compute the confidence interval, can be ‘fisher’, ‘observed\_fisher’ or ‘likelihood\_ratio’ (default)
+    *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If ‘mle’ is not in self.\_ret.keys() (i.e. run was not called yet).
+    *   **NotImplementedError** – If the confidence interval method kind is not implemented.
+  </Function>
 
-**Return type**
+  ### compute\_mle
 
-`Tuple`\[`float`, `float`]
+  <Function id="qiskit.algorithms.AmplitudeEstimation.compute_mle" name="compute_mle" signature="static compute_mle(result, apply_post_processing=False)">
+    Compute the Maximum Likelihood Estimator (MLE).
 
-**Returns**
+    **Parameters**
 
-The (1 - alpha) confidence interval of the specified kind.
+    *   **result** (`AmplitudeEstimationResult`) – An amplitude estimation result object.
+    *   **apply\_post\_processing** (`bool`) – If True, apply the post processing to the MLE before returning it.
 
-**Raises**
+    **Return type**
 
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If ‘mle’ is not in self.\_ret.keys() (i.e. run was not called yet).
-*   **NotImplementedError** – If the confidence interval method kind is not implemented.
+    `float`
 
-### compute\_mle
+    **Returns**
 
-<span id="qiskit.algorithms.AmplitudeEstimation.compute_mle" />
+    The MLE for the provided result object.
+  </Function>
 
-`static compute_mle(result, apply_post_processing=False)`
+  ### construct\_circuit
 
-Compute the Maximum Likelihood Estimator (MLE).
+  <Function id="qiskit.algorithms.AmplitudeEstimation.construct_circuit" name="construct_circuit" signature="construct_circuit(estimation_problem, measurement=False)">
+    Construct the Amplitude Estimation quantum circuit.
 
-**Parameters**
+    **Parameters**
 
-*   **result** (`AmplitudeEstimationResult`) – An amplitude estimation result object.
-*   **apply\_post\_processing** (`bool`) – If True, apply the post processing to the MLE before returning it.
+    *   **estimation\_problem** (`EstimationProblem`) – The estimation problem for which to construct the QAE circuit.
+    *   **measurement** (`bool`) – Boolean flag to indicate if measurements should be included in the circuit.
 
-**Return type**
+    **Return type**
 
-`float`
+    `QuantumCircuit`
 
-**Returns**
+    **Returns**
 
-The MLE for the provided result object.
+    The QuantumCircuit object for the constructed circuit.
+  </Function>
 
-### construct\_circuit
+  ### estimate
 
-<span id="qiskit.algorithms.AmplitudeEstimation.construct_circuit" />
+  <Function id="qiskit.algorithms.AmplitudeEstimation.estimate" name="estimate" signature="estimate(estimation_problem)">
+    Run the amplitude estimation algorithm on provided estimation problem.
 
-`construct_circuit(estimation_problem, measurement=False)`
+    **Parameters**
 
-Construct the Amplitude Estimation quantum circuit.
+    **estimation\_problem** (`EstimationProblem`) – The estimation problem.
 
-**Parameters**
+    **Return type**
 
-*   **estimation\_problem** (`EstimationProblem`) – The estimation problem for which to construct the QAE circuit.
-*   **measurement** (`bool`) – Boolean flag to indicate if measurements should be included in the circuit.
+    `AmplitudeEstimationResult`
 
-**Return type**
+    **Returns**
 
-`QuantumCircuit`
+    An amplitude estimation results object.
 
-**Returns**
+    **Raises**
 
-The QuantumCircuit object for the constructed circuit.
+    **ValueError** – If state\_preparation or objective\_qubits are not set in the estimation\_problem.
+  </Function>
 
-### estimate
+  ### evaluate\_measurements
 
-<span id="qiskit.algorithms.AmplitudeEstimation.estimate" />
+  <Function id="qiskit.algorithms.AmplitudeEstimation.evaluate_measurements" name="evaluate_measurements" signature="evaluate_measurements(circuit_results, threshold=1e-06)">
+    Evaluate the results from the circuit simulation.
 
-`estimate(estimation_problem)`
+    Given the probabilities from statevector simulation of the QAE circuit, compute the probabilities that the measurements y/gridpoints a are the best estimate.
 
-Run the amplitude estimation algorithm on provided estimation problem.
+    **Parameters**
 
-**Parameters**
+    *   **circuit\_results** (`Union`\[`Dict`\[`str`, `int`], `ndarray`]) – The circuit result from the QAE circuit. Can be either a counts dict or a statevector.
+    *   **threshold** (`float`) – Measurements with probabilities below the threshold are discarded.
 
-**estimation\_problem** (`EstimationProblem`) – The estimation problem.
+    **Return type**
 
-**Return type**
+    `Tuple`\[`Dict`\[`int`, `float`], `Dict`\[`float`, `float`]]
 
-`AmplitudeEstimationResult`
+    **Returns**
 
-**Returns**
+    **Dictionaries containing the a gridpoints with respective probabilities and**
 
-An amplitude estimation results object.
+    y measurements with respective probabilities, in this order.
+  </Function>
 
-**Raises**
+  ### quantum\_instance
 
-**ValueError** – If state\_preparation or objective\_qubits are not set in the estimation\_problem.
+  <Function id="qiskit.algorithms.AmplitudeEstimation.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+    Get the quantum instance.
 
-### evaluate\_measurements
+    **Return type**
 
-<span id="qiskit.algorithms.AmplitudeEstimation.evaluate_measurements" />
+    `Optional`\[`QuantumInstance`]
 
-`evaluate_measurements(circuit_results, threshold=1e-06)`
+    **Returns**
 
-Evaluate the results from the circuit simulation.
-
-Given the probabilities from statevector simulation of the QAE circuit, compute the probabilities that the measurements y/gridpoints a are the best estimate.
-
-**Parameters**
-
-*   **circuit\_results** (`Union`\[`Dict`\[`str`, `int`], `ndarray`]) – The circuit result from the QAE circuit. Can be either a counts dict or a statevector.
-*   **threshold** (`float`) – Measurements with probabilities below the threshold are discarded.
-
-**Return type**
-
-`Tuple`\[`Dict`\[`int`, `float`], `Dict`\[`float`, `float`]]
-
-**Returns**
-
-**Dictionaries containing the a gridpoints with respective probabilities and**
-
-y measurements with respective probabilities, in this order.
-
-### quantum\_instance
-
-<span id="qiskit.algorithms.AmplitudeEstimation.quantum_instance" />
-
-`property quantum_instance`
-
-Get the quantum instance.
-
-**Return type**
-
-`Optional`\[`QuantumInstance`]
-
-**Returns**
-
-The quantum instance used to run this algorithm.
+    The quantum instance used to run this algorithm.
+  </Function>
+</Class>
 

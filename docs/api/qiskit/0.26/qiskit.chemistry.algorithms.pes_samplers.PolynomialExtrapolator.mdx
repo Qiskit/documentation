@@ -8,83 +8,75 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator
 
 # qiskit.chemistry.algorithms.pes\_samplers.PolynomialExtrapolator
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator" />
+<Class id="qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py" signature="PolynomialExtrapolator(degree=1)">
+  An extrapolator based on fitting each parameter to a polynomial function of a user-specified degree.
 
-`PolynomialExtrapolator(degree=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+  WARNING: Should only be used with window. Using no window includes points after the point being extrapolated in the data window.
 
-An extrapolator based on fitting each parameter to a polynomial function of a user-specified degree.
+  Constructor.
 
-WARNING: Should only be used with window. Using no window includes points after the point being extrapolated in the data window.
+  **Parameters**
 
-Constructor.
+  **degree** (`int`) – Degree of polynomial to use for fitting in extrapolation.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**degree** (`int`) – Degree of polynomial to use for fitting in extrapolation.
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.__init__" name="__init__" signature="__init__(degree=1)">
+    Constructor.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.__init__" />
+    **degree** (`int`) – Degree of polynomial to use for fitting in extrapolation.
+  </Function>
 
-`__init__(degree=1)`
+  ## Methods
 
-Constructor.
+  |                                                                                                                                                                                                  |                                                                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.__init__ "qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.__init__")(\[degree])                    | Constructor.                                                                      |
+  | [`extrapolate`](#qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.extrapolate")(points, param\_dict) | Extrapolate at specified point of interest given a set of variational parameters. |
+  | [`factory`](#qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.factory")(mode, \*\*kwargs)                | Factory method for constructing extrapolators.                                    |
 
-**Parameters**
+  ### extrapolate
 
-**degree** (`int`) – Degree of polynomial to use for fitting in extrapolation.
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.extrapolate" name="extrapolate" signature="extrapolate(points, param_dict)">
+    Extrapolate at specified point of interest given a set of variational parameters. Extrapolation is based on a polynomial function/spline fitting with a user-specified degree.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                                                  |                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.__init__ "qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.__init__")(\[degree])                    | Constructor.                                                                      |
-| [`extrapolate`](#qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.extrapolate")(points, param\_dict) | Extrapolate at specified point of interest given a set of variational parameters. |
-| [`factory`](#qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.factory")(mode, \*\*kwargs)                | Factory method for constructing extrapolators.                                    |
+    *   **points** (`List`\[`float`]) – List of point(s) to be used for extrapolation. Can represent some degree of freedom, ex, interatomic distance.
+    *   **param\_dict** (`Optional`\[`Dict`\[`float`, `List`\[`float`]]]) – Dictionary of variational parameters. Each key is the point and the value is a list of the variational parameters.
 
-### extrapolate
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.extrapolate" />
+    `Dict`\[`float`, `List`\[`float`]]
 
-`extrapolate(points, param_dict)`
+    **Returns**
 
-Extrapolate at specified point of interest given a set of variational parameters. Extrapolation is based on a polynomial function/spline fitting with a user-specified degree.
+    Dictionary of variational parameters for extrapolated point(s).
+  </Function>
 
-**Parameters**
+  ### factory
 
-*   **points** (`List`\[`float`]) – List of point(s) to be used for extrapolation. Can represent some degree of freedom, ex, interatomic distance.
-*   **param\_dict** (`Optional`\[`Dict`\[`float`, `List`\[`float`]]]) – Dictionary of variational parameters. Each key is the point and the value is a list of the variational parameters.
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.factory" name="factory" signature="static factory(mode, **kwargs)">
+    Factory method for constructing extrapolators.
 
-**Return type**
+    **Parameters**
 
-`Dict`\[`float`, `List`\[`float`]]
+    *   **mode** (`str`) – Extrapolator to instantiate. Can be one of: - ‘window’ - ‘poly’ - ‘diff\_model’ - ‘pca’ - ‘l1’
+    *   **kwargs** – arguments to be passed to the constructor of an extrapolator
 
-**Returns**
+    **Return type**
 
-Dictionary of variational parameters for extrapolated point(s).
+    `Extrapolator`
 
-### factory
+    **Returns**
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.factory" />
+    A newly created extrapolator instance.
 
-`static factory(mode, **kwargs)`
+    **Raises**
 
-Factory method for constructing extrapolators.
-
-**Parameters**
-
-*   **mode** (`str`) – Extrapolator to instantiate. Can be one of: - ‘window’ - ‘poly’ - ‘diff\_model’ - ‘pca’ - ‘l1’
-*   **kwargs** – arguments to be passed to the constructor of an extrapolator
-
-**Return type**
-
-`Extrapolator`
-
-**Returns**
-
-A newly created extrapolator instance.
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+  </Function>
+</Class>
 
