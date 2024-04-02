@@ -329,6 +329,11 @@ function buildApiComponent(h: H, node: any): any {
     node.properties.attributetypehint,
   );
   maybeAddAttribute(hastTree, "attributeValue", node.properties.attributevalue);
+  maybeAddExpressionAttribute(
+    hastTree,
+    "isDedicatedPage",
+    node.properties.isdedicatedpage,
+  );
   maybeAddAttribute(hastTree, "github", node.properties.github);
   maybeAddAttribute(hastTree, "signature", node.properties.signature);
   maybeAddExpressionAttribute(
@@ -341,7 +346,7 @@ function buildApiComponent(h: H, node: any): any {
 }
 
 function maybeAddAttribute(hastTree: any, name: string, value: string): void {
-  if (value.trim() && value != "undefined") {
+  if (value && value.trim() && value != "undefined") {
     hastTree.attributes.push({
       type: "mdxJsxAttribute",
       name,
@@ -355,7 +360,7 @@ function maybeAddExpressionAttribute(
   name: string,
   value: string,
 ): void {
-  if (value != "[]") {
+  if (value && value != "undefined" && value != "[]") {
     hastTree.attributes.push({
       type: "mdxJsxAttribute",
       name,

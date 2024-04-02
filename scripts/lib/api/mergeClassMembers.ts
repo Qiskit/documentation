@@ -18,7 +18,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkStringify from "remark-stringify";
 import { Content, Root } from "mdast";
-import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
+import { MdxJsxFlowElement, MdxJsxAttribute } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
 
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
@@ -149,6 +149,15 @@ async function parseMarkdownIncreasingHeading(
     .use(() => (root) => {
       visit(root, "heading", (node: any) => {
         node.depth = node.depth + depthIncrease;
+      });
+      visit(root, "mdxJsxFlowElement", (node: any) => {
+        // We are inlining functions and attributes and thus we need to remove
+        // the `isDedicatedPage` prop
+        if (node.name == "Attribute" || node.name == "Function") {
+          node.attributes = node.attributes.filter(
+            (attr: MdxJsxAttribute) => attr.name != "isDedicatedPage",
+          );
+        }
       });
     });
 

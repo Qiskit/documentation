@@ -30,6 +30,7 @@ export type ComponentProps = {
   githubSourceLink?: string;
   rawSignature?: string;
   extraRawSignatures?: string[];
+  isDedicatedPage?: boolean;
 };
 
 const APITYPE_TO_TAG: Record<string, string> = {
@@ -129,20 +130,23 @@ function preparePropertyProps(
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
-  if (!priorApiType && id) {
-    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-  }
-
   const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
-  if (rawSignature.trim().length === 0) {
-    return { id };
-  }
-
-  return {
+  const props = {
     id,
+    name: getLastPartFromFullIdentifier(id),
     rawSignature,
     githubSourceLink,
   };
+
+  if (!priorApiType && id) {
+    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+    return {
+      ...props,
+      isDedicatedPage: true,
+    };
+  }
+
+  return props;
 }
 
 function prepareMethodProps(
@@ -155,20 +159,23 @@ function prepareMethodProps(
 ): ComponentProps {
   const props = {
     id,
+    name: getLastPartFromFullIdentifier(id),
     rawSignature: $child.html()!,
     githubSourceLink,
   };
-  if (id && !priorApiType) {
-    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-    return props;
-  } else if ($child.attr("id")) {
-    $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
-  }
 
-  return {
-    ...props,
-    name: getLastPartFromFullIdentifier(id),
-  };
+  if (id) {
+    if (!priorApiType) {
+      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+      return {
+        ...props,
+        isDedicatedPage: true,
+      };
+    } else if ($child.attr("id")) {
+      $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
+    }
+  }
+  return props;
 }
 
 function prepareAttributeProps(
@@ -179,18 +186,16 @@ function prepareAttributeProps(
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
-  if (!priorApiType && id) {
-    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-
-    const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
-    if (rawSignature.trim().length === 0) {
-      return { id };
+  if (!priorApiType) {
+    if (id) {
+      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
     }
-
+    const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
     return {
       id,
       rawSignature,
       githubSourceLink,
+      isDedicatedPage: true,
     };
   }
 
@@ -234,6 +239,7 @@ function prepareFunctionOrExceptionProps(
 ): ComponentProps {
   const props = {
     id,
+    name: getLastPartFromFullIdentifier(id),
     rawSignature: $child.html()!,
     githubSourceLink,
   };
@@ -241,14 +247,14 @@ function prepareFunctionOrExceptionProps(
   const pageHeading = $dl.siblings("h1").text();
   if (id.endsWith(pageHeading) && pageHeading != "") {
     // Page is already dedicated to apiType; no heading needed
-    return props;
+    return {
+      ...props,
+      isDedicatedPage: true,
+    };
   }
   $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
 
-  return {
-    ...props,
-    name: id.split(".").slice(-1)[0],
-  };
+  return props;
 }
 
 // ------------------------------------------------------------------
@@ -283,6 +289,7 @@ export async function createOpeningTag(
     name='${props.name}'
     attributeTypeHint='${attributeTypeHint}'
     attributeValue='${attributeValue}'
+    isDedicatedPage='${props.isDedicatedPage}'
     github='${props.githubSourceLink}'
     signature='${signature}'
     extraSignatures='[${extraSignatures.join(", ")}]'
