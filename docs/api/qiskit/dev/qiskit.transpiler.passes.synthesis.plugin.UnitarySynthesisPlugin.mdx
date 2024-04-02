@@ -8,193 +8,189 @@ python_api_name: qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugi
 
 # UnitarySynthesisPlugin
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin" />
+<Class id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin" github="https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/plugin.py" signature="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-`qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
+  Abstract unitary synthesis plugin class
 
-Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  This abstract class defines the interface for unitary synthesis plugins.
 
-Abstract unitary synthesis plugin class
+  ## Attributes
 
-This abstract class defines the interface for unitary synthesis plugins.
+  ### max\_qubits
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.max_qubits" name="max_qubits">
+    Return the maximum number of qubits the unitary synthesis plugin supports.
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.max_qubits" />
+    If the size of the unitary to be synthesized exceeds this value the `default` plugin will be used. If there is no upper bound return `None` and all unitaries (`>= min_qubits` if it’s defined) will be passed to this plugin when it’s enabled.
+  </Attribute>
 
-### max\_qubits
+  ### min\_qubits
 
-Return the maximum number of qubits the unitary synthesis plugin supports.
+  <Attribute id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.min_qubits" name="min_qubits">
+    Return the minimum number of qubits the unitary synthesis plugin supports.
 
-If the size of the unitary to be synthesized exceeds this value the `default` plugin will be used. If there is no upper bound return `None` and all unitaries (`>= min_qubits` if it’s defined) will be passed to this plugin when it’s enabled.
+    If the size of the unitary to be synthesized is below this value the `default` plugin will be used. If there is no lower bound return `None` and all unitaries (`<= max_qubits` if it’s defined) will be passed to this plugin when it’s enabled.
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.min_qubits" />
+  ### supported\_bases
 
-### min\_qubits
+  <Attribute id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supported_bases" name="supported_bases">
+    Returns a dictionary of supported bases for synthesis
 
-Return the minimum number of qubits the unitary synthesis plugin supports.
+    This is expected to return a dictionary where the key is a string basis and the value is a list of gate names that the basis works in. If the synthesis method doesn’t support multiple bases this should return `None`. For example:
 
-If the size of the unitary to be synthesized is below this value the `default` plugin will be used. If there is no lower bound return `None` and all unitaries (`<= max_qubits` if it’s defined) will be passed to this plugin when it’s enabled.
+    ```python
+    {
+        "XZX": ["rz", "rx"],
+        "XYX": ["rx", "ry"],
+    }
+    ```
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supported_bases" />
+    If a dictionary is returned by this method the run kwargs will be passed a parameter `matched_basis` which contains a list of the basis strings (i.e. keys in the dictionary) which match the target basis gate set for the transpilation. If no entry in the dictionary matches the target basis gate set then the `matched_basis` kwarg will be set to an empty list, and a plugin can choose how to deal with the target basis gate set not matching the plugin’s capabilities.
+  </Attribute>
 
-### supported\_bases
+  ### supports\_basis\_gates
 
-Returns a dictionary of supported bases for synthesis
+  <Attribute id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_basis_gates" name="supports_basis_gates">
+    Return whether the plugin supports taking `basis_gates`
 
-This is expected to return a dictionary where the key is a string basis and the value is a list of gate names that the basis works in. If the synthesis method doesn’t support multiple bases this should return `None`. For example:
+    If this returns `True` the plugin’s `run()` method will be passed a `basis_gates` kwarg with a list of gate names the target backend supports. For example, `['sx', 'x', 'cx', 'id', 'rz']`.
+  </Attribute>
 
-```python
-{
-    "XZX": ["rz", "rx"],
-    "XYX": ["rx", "ry"],
-}
-```
+  ### supports\_coupling\_map
 
-If a dictionary is returned by this method the run kwargs will be passed a parameter `matched_basis` which contains a list of the basis strings (i.e. keys in the dictionary) which match the target basis gate set for the transpilation. If no entry in the dictionary matches the target basis gate set then the `matched_basis` kwarg will be set to an empty list, and a plugin can choose how to deal with the target basis gate set not matching the plugin’s capabilities.
+  <Attribute id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_coupling_map" name="supports_coupling_map">
+    Return whether the plugin supports taking `coupling_map`
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_basis_gates" />
+    If this returns `True` the plugin’s `run()` method will receive one kwarg `coupling_map`. The `coupling_map` kwarg will be set to a tuple with the first element being a [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object representing the qubit connectivity of the target backend, the second element will be a list of integers that represent the qubit indices in the coupling map that unitary is on. Note that if the target backend doesn’t have a coupling map set, the `coupling_map` kwarg’s value will be `(None, qubit_indices)`.
+  </Attribute>
 
-### supports\_basis\_gates
+  ### supports\_gate\_errors
 
-Return whether the plugin supports taking `basis_gates`
+  <Attribute id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_gate_errors" name="supports_gate_errors">
+    Return whether the plugin supports taking `gate_errors`
 
-If this returns `True` the plugin’s `run()` method will be passed a `basis_gates` kwarg with a list of gate names the target backend supports. For example, `['sx', 'x', 'cx', 'id', 'rz']`.
+    `gate_errors` will be a dictionary in the form of `{gate_name: {(qubit_1, qubit_2): error}}`. For example:
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_coupling_map" />
+    ```python
+    {
+    'sx': {(0,): 0.0006149355812506126, (1,): 0.0006149355812506126},
+    'cx': {(0, 1): 0.012012477900732316, (1, 0): 5.191111111111111e-07}
+    }
+    ```
 
-### supports\_coupling\_map
+    Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate errors on every gate for each qubit. The gate error rates reported in `gate_errors` are provided by the target device `Backend` object and the exact meaning might be different depending on the backend.
+  </Attribute>
 
-Return whether the plugin supports taking `coupling_map`
+  ### supports\_gate\_errors\_by\_qubit
 
-If this returns `True` the plugin’s `run()` method will receive one kwarg `coupling_map`. The `coupling_map` kwarg will be set to a tuple with the first element being a [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object representing the qubit connectivity of the target backend, the second element will be a list of integers that represent the qubit indices in the coupling map that unitary is on. Note that if the target backend doesn’t have a coupling map set, the `coupling_map` kwarg’s value will be `(None, qubit_indices)`.
+  <Attribute id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_gate_errors_by_qubit" name="supports_gate_errors_by_qubit">
+    Return whether the plugin supports taking `gate_errors_by_qubit`
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_gate_errors" />
+    This differs from `supports_gate_errors`/`gate_errors` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names).
 
-### supports\_gate\_errors
+    `gate_errors_by_qubit` will be a dictionary in the form of `{(qubits,): [Gate, error]}`. For example:
 
-Return whether the plugin supports taking `gate_errors`
+    ```python
+    {
+    (0,): [SXGate(): 0.0006149355812506126, RZGate(): 0.0],
+    (0, 1): [CXGate(): 0.012012477900732316]
+    }
+    ```
 
-`gate_errors` will be a dictionary in the form of `{gate_name: {(qubit_1, qubit_2): error}}`. For example:
+    Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate errors on every gate for each qubit. The gate error rates reported in `gate_errors` are provided by the target device `Backend` object and the exact meaning might be different depending on the backend.
 
-```python
-{
-'sx': {(0,): 0.0006149355812506126, (1,): 0.0006149355812506126},
-'cx': {(0, 1): 0.012012477900732316, (1, 0): 5.191111111111111e-07}
-}
-```
+    This defaults to False
+  </Attribute>
 
-Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate errors on every gate for each qubit. The gate error rates reported in `gate_errors` are provided by the target device `Backend` object and the exact meaning might be different depending on the backend.
+  ### supports\_gate\_lengths
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_gate_errors_by_qubit" />
+  <Attribute id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_gate_lengths" name="supports_gate_lengths">
+    Return whether the plugin supports taking `gate_lengths`
 
-### supports\_gate\_errors\_by\_qubit
+    `gate_lengths` will be a dictionary in the form of `{gate_name: {(qubit_1, qubit_2): length}}`. For example:
 
-Return whether the plugin supports taking `gate_errors_by_qubit`
+    ```python
+    {
+    'sx': {(0,): 0.0006149355812506126, (1,): 0.0006149355812506126},
+    'cx': {(0, 1): 0.012012477900732316, (1, 0): 5.191111111111111e-07}
+    }
+    ```
 
-This differs from `supports_gate_errors`/`gate_errors` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names).
+    where the `length` value is in units of seconds.
 
-`gate_errors_by_qubit` will be a dictionary in the form of `{(qubits,): [Gate, error]}`. For example:
+    Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate lengths on every gate for each qubit.
+  </Attribute>
 
-```python
-{
-(0,): [SXGate(): 0.0006149355812506126, RZGate(): 0.0],
-(0, 1): [CXGate(): 0.012012477900732316]
-}
-```
+  ### supports\_gate\_lengths\_by\_qubit
 
-Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate errors on every gate for each qubit. The gate error rates reported in `gate_errors` are provided by the target device `Backend` object and the exact meaning might be different depending on the backend.
+  <Attribute id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_gate_lengths_by_qubit" name="supports_gate_lengths_by_qubit">
+    Return whether the plugin supports taking `gate_lengths_by_qubit`
 
-This defaults to False
+    This differs from `supports_gate_lengths`/`gate_lengths` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names)
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_gate_lengths" />
+    `gate_lengths_by_qubit` will be a dictionary in the form of `{(qubits,): [Gate, length]}`. For example:
 
-### supports\_gate\_lengths
+    ```python
+    {
+    (0,): [SXGate(): 0.0006149355812506126, RZGate(): 0.0],
+    (0, 1): [CXGate(): 0.012012477900732316]
+    }
+    ```
 
-Return whether the plugin supports taking `gate_lengths`
+    where the `length` value is in units of seconds.
 
-`gate_lengths` will be a dictionary in the form of `{gate_name: {(qubit_1, qubit_2): length}}`. For example:
+    Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate lengths on every gate for each qubit.
 
-```python
-{
-'sx': {(0,): 0.0006149355812506126, (1,): 0.0006149355812506126},
-'cx': {(0, 1): 0.012012477900732316, (1, 0): 5.191111111111111e-07}
-}
-```
+    This defaults to False
+  </Attribute>
 
-where the `length` value is in units of seconds.
+  ### supports\_natural\_direction
 
-Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate lengths on every gate for each qubit.
+  <Attribute id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_natural_direction" name="supports_natural_direction">
+    Return whether the plugin supports a toggle for considering directionality of 2-qubit gates as `natural_direction`.
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_gate_lengths_by_qubit" />
+    Refer to the documentation for [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") for the possible values and meaning of these values.
+  </Attribute>
 
-### supports\_gate\_lengths\_by\_qubit
+  ### supports\_pulse\_optimize
 
-Return whether the plugin supports taking `gate_lengths_by_qubit`
+  <Attribute id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_pulse_optimize" name="supports_pulse_optimize">
+    Return whether the plugin supports a toggle to optimize pulses during synthesis as `pulse_optimize`.
 
-This differs from `supports_gate_lengths`/`gate_lengths` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names)
+    Refer to the documentation for [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") for the possible values and meaning of these values.
+  </Attribute>
 
-`gate_lengths_by_qubit` will be a dictionary in the form of `{(qubits,): [Gate, length]}`. For example:
+  ### supports\_target
 
-```python
-{
-(0,): [SXGate(): 0.0006149355812506126, RZGate(): 0.0],
-(0, 1): [CXGate(): 0.012012477900732316]
-}
-```
+  <Attribute id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_target" name="supports_target">
+    Whether the plugin supports taking `target` as an option
 
-where the `length` value is in units of seconds.
+    `target` will be a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the target device for the output of the synthesis pass.
 
-Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate lengths on every gate for each qubit.
+    By default this will be `False` since the plugin interface predates the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") class. If a plugin returns `True` for this attribute, it is expected that the plugin will use the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") instead of the values passed if any of `supports_gate_lengths`, `supports_gate_errors`, `supports_coupling_map`, and `supports_basis_gates` are set (although ideally all those parameters should contain duplicate information).
+  </Attribute>
 
-This defaults to False
+  ## Methods
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_natural_direction" />
+  ### run
 
-### supports\_natural\_direction
+  <Function id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.run" name="run" signature="abstract run(unitary, **options)">
+    Run synthesis for the given unitary matrix
 
-Return whether the plugin supports a toggle for considering directionality of 2-qubit gates as `natural_direction`.
+    **Parameters**
 
-Refer to the documentation for [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") for the possible values and meaning of these values.
+    *   **unitary** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – The unitary matrix to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object
+    *   **options** – The optional kwargs that are passed based on the output the `support_*` methods on the class. Refer to the documentation for these methods on [`UnitarySynthesisPlugin`](#qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin") to see what the keys and values are.
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_pulse_optimize" />
+    **Returns**
 
-### supports\_pulse\_optimize
+    The dag circuit representation of the unitary. Alternatively, you can return a tuple of the form `(dag, wires)` where `dag` is the dag circuit representation of the circuit representation of the unitary and `wires` is the mapping wires to use for [`qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag()`](qiskit.dagcircuit.DAGCircuit#substitute_node_with_dag "qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag"). If you return a tuple and `wires` is `None` this will behave just as if only a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") was returned. Additionally if this returns `None` no substitution will be made.
 
-Return whether the plugin supports a toggle to optimize pulses during synthesis as `pulse_optimize`.
+    **Return type**
 
-Refer to the documentation for [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") for the possible values and meaning of these values.
-
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.supports_target" />
-
-### supports\_target
-
-Whether the plugin supports taking `target` as an option
-
-`target` will be a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the target device for the output of the synthesis pass.
-
-By default this will be `False` since the plugin interface predates the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") class. If a plugin returns `True` for this attribute, it is expected that the plugin will use the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") instead of the values passed if any of `supports_gate_lengths`, `supports_gate_errors`, `supports_coupling_map`, and `supports_basis_gates` are set (although ideally all those parameters should contain duplicate information).
-
-## Methods
-
-### run
-
-<span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.run" />
-
-`abstract run(unitary, **options)`
-
-Run synthesis for the given unitary matrix
-
-**Parameters**
-
-*   **unitary** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – The unitary matrix to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object
-*   **options** – The optional kwargs that are passed based on the output the `support_*` methods on the class. Refer to the documentation for these methods on [`UnitarySynthesisPlugin`](#qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin") to see what the keys and values are.
-
-**Returns**
-
-The dag circuit representation of the unitary. Alternatively, you can return a tuple of the form `(dag, wires)` where `dag` is the dag circuit representation of the circuit representation of the unitary and `wires` is the mapping wires to use for [`qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag()`](qiskit.dagcircuit.DAGCircuit#substitute_node_with_dag "qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag"). If you return a tuple and `wires` is `None` this will behave just as if only a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") was returned. Additionally if this returns `None` no substitution will be made.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  </Function>
+</Class>
 
