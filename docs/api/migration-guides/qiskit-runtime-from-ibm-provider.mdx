@@ -16,9 +16,7 @@ Change the import and run statements, instantiate the primitive, and make sure t
 <Tabs>
   <TabItem value="updated" label="Qiskit Runtime">
 ```python
-import numpy as np
-from qiskit.circuit.library import IQP
-from qiskit.quantum_info import random_hermitian
+from qiskit import QuantumCircuit
 from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
  
 service = QiskitRuntimeService()
@@ -55,7 +53,7 @@ provider = IBMProvider()
 backend = provider.get_backend("ibmq_qasm_simulator")
 transpiled_circuit = transpile(circuit, backend=backend)
 job = backend.run(transpiled_circuit)
-print(job.result())
+print(f" > Counts: {job.result().get_counts()}")
 ```
   </TabItem>
 
@@ -67,10 +65,12 @@ print(job.result())
 <Tabs>
   <TabItem value="Updated" label="Runtime primitives">
 ```python
+from qiskit_ibm_runtime import Session
+
 with Session(service=service, backend=backend) as session: 
     sampler = Sampler(session=session) 
-    job = sampler.run([(isa_circuit)]) 
-    another_job = sampler.run([(another_isa_circuit)]) 
+    job = sampler.run([isa_circuit]) 
+    another_job = sampler.run([another_isa_circuit]) 
     result = job.result()
     another_result = another_job.result()
 ```
@@ -79,11 +79,10 @@ with Session(service=service, backend=backend) as session:
   <TabItem value="Legacy" label="backend.run">
 ```python
 with backend.open_session() as session:
-    job1 = backend.run(transpiled_circuit)
-    job2 = backend.run(transpiled_circuit)
-    print(job1.session_id)
-    print(job2.session_id)
-backend.cancel_session()
+    job = backend.run(transpiled_circuit)
+    another_job = backend.run(transpiled_circuit)
+    result = job.result()
+    another_result = another_job.result()
 ```
   </TabItem>
 </Tabs>

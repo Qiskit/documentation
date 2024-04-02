@@ -14,7 +14,7 @@ The only changes when running basic circuits are how you run the job and retriev
 ```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
-job = sampler.run([(isa_circuit,)])
+job = sampler.run([isa_circuit])
 result = job.result()
 # Get results for the first (and only) PUB
 pub_result = result[0]
@@ -36,7 +36,7 @@ result = job.result()
 </Tabs>
 
 <span id="migrate-options"></span>
-## Circuits with options
+## Specifying options
 
 All options that were available with `backend.run` are available in the Qiskit Runtime primitives, but they are specified differently.  For more information, see [Migrate options](qiskit-runtime-options) and [Advanced Qiskit Runtime options.](../../run/advanced-runtime-options)
 
@@ -46,6 +46,7 @@ All options that were available with `backend.run` are available in the Qiskit R
 ```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
+# You can use auto-complete to see and complete the options.
 sampler.options.default_shots = 1024
 ```
 
@@ -66,8 +67,11 @@ backend.run(circuit, shots=1024)
 To migrate programs that run dynamic circuits, change the run call.
 
 <Tabs>
-  <TabItem value="primitives" label="Runtime">
+  <TabItem value="primitives" label="Sampler">
     ```python  
+from qiskit_ibm_runtime import SamplerV2 as Sampler
+
+sampler = Sampler(backend)
 job = sampler.run([dynamic_circ])
 
 pub_result = job.result()[0]
@@ -172,7 +176,7 @@ efficiently. Moreover, only the updated parameters are transferred to
 the cloud, saving additional bandwidth.
 
 <Admonition type="note">
-You need the classical register name to get the results.  By default, it is named `meas`.  However, as shown in the previous image, the classical register name for this example is `c`.  You can also find the classical register name by running `<circuit_name>.cregs`. For example, `qc.cregs`.
+You need the classical register name to get the results.  By default, it is named `meas` when you use `measure_all()`.  However, as shown in the previous image, the classical register name for this example is `c`.  You can also find the classical register name by running `<circuit_name>.cregs`. For example, `qc.cregs`.
 </Admonition>
 
 ``` python
