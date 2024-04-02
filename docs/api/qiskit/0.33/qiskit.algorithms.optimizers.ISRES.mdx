@@ -8,252 +8,232 @@ python_api_name: qiskit.algorithms.optimizers.ISRES
 
 # ISRES
 
-<span id="qiskit.algorithms.optimizers.ISRES" />
+<Class id="qiskit.algorithms.optimizers.ISRES" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/optimizers/nlopts/isres.py" signature="ISRES(max_evals=1000)">
+  Bases: `qiskit.algorithms.optimizers.nlopts.nloptimizer.NLoptOptimizer`
 
-`ISRES(max_evals=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/optimizers/nlopts/isres.py "view source code")
+  Improved Stochastic Ranking Evolution Strategy optimizer.
 
-Bases: `qiskit.algorithms.optimizers.nlopts.nloptimizer.NLoptOptimizer`
+  Improved Stochastic Ranking Evolution Strategy (ISRES) is an algorithm for non-linearly constrained global optimization. It has heuristics to escape local optima, even though convergence to a global optima is not guaranteed. The evolution strategy is based on a combination of a mutation rule and differential variation. The fitness ranking is simply via the objective function for problems without nonlinear constraints. When nonlinear constraints are included, the [stochastic ranking proposed by Runarsson and Yao](https://notendur.hi.is/tpr/software/sres/Tec311r.pdf) is employed. This method supports arbitrary nonlinear inequality and equality constraints, in addition to the bound constraints.
 
-Improved Stochastic Ranking Evolution Strategy optimizer.
+  NLopt global optimizer, derivative-free. For further detail, please refer to [http://nlopt.readthedocs.io/en/latest/NLopt\_Algorithms/#isres-improved-stochastic-ranking-evolution-strategy](http://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/#isres-improved-stochastic-ranking-evolution-strategy)
 
-Improved Stochastic Ranking Evolution Strategy (ISRES) is an algorithm for non-linearly constrained global optimization. It has heuristics to escape local optima, even though convergence to a global optima is not guaranteed. The evolution strategy is based on a combination of a mutation rule and differential variation. The fitness ranking is simply via the objective function for problems without nonlinear constraints. When nonlinear constraints are included, the [stochastic ranking proposed by Runarsson and Yao](https://notendur.hi.is/tpr/software/sres/Tec311r.pdf) is employed. This method supports arbitrary nonlinear inequality and equality constraints, in addition to the bound constraints.
+  **Parameters**
 
-NLopt global optimizer, derivative-free. For further detail, please refer to [http://nlopt.readthedocs.io/en/latest/NLopt\_Algorithms/#isres-improved-stochastic-ranking-evolution-strategy](http://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/#isres-improved-stochastic-ranking-evolution-strategy)
+  **max\_evals** (`int`) – Maximum allowed number of function evaluations.
 
-**Parameters**
+  **Raises**
 
-**max\_evals** (`int`) – Maximum allowed number of function evaluations.
+  **MissingOptionalLibraryError** – NLopt library not installed.
 
-**Raises**
+  ## Methods
 
-**MissingOptionalLibraryError** – NLopt library not installed.
+  ### get\_nlopt\_optimizer
 
-## Methods
+  <Function id="qiskit.algorithms.optimizers.ISRES.get_nlopt_optimizer" name="get_nlopt_optimizer" signature="ISRES.get_nlopt_optimizer()">
+    Return NLopt optimizer type
 
-### get\_nlopt\_optimizer
+    **Return type**
 
-<span id="qiskit.algorithms.optimizers.ISRES.get_nlopt_optimizer" />
+    `NLoptOptimizerType`
+  </Function>
 
-`ISRES.get_nlopt_optimizer()`
+  ### get\_support\_level
 
-Return NLopt optimizer type
+  <Function id="qiskit.algorithms.optimizers.ISRES.get_support_level" name="get_support_level" signature="ISRES.get_support_level()">
+    return support level dictionary
+  </Function>
 
-**Return type**
+  ### gradient\_num\_diff
 
-`NLoptOptimizerType`
+  <Function id="qiskit.algorithms.optimizers.ISRES.gradient_num_diff" name="gradient_num_diff" signature="static ISRES.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-### get\_support\_level
+    **Parameters**
 
-<span id="qiskit.algorithms.optimizers.ISRES.get_support_level" />
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped
 
-`ISRES.get_support_level()`
+    **Returns**
 
-return support level dictionary
+    the gradient computed
 
-### gradient\_num\_diff
+    **Return type**
 
-<span id="qiskit.algorithms.optimizers.ISRES.gradient_num_diff" />
+    grad
+  </Function>
 
-`static ISRES.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
+  ### minimize
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+  <Function id="qiskit.algorithms.optimizers.ISRES.minimize" name="minimize" signature="ISRES.minimize(fun, x0, jac=None, bounds=None)">
+    Minimize the scalar function.
 
-**Parameters**
+    **Parameters**
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped
+    *   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
+    *   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
+    *   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
+    *   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
 
-**Returns**
+    **Return type**
 
-the gradient computed
+    `OptimizerResult`
 
-**Return type**
+    **Returns**
 
-grad
+    The result of the optimization, containing e.g. the result as attribute `x`.
+  </Function>
 
-### minimize
+  ### optimize
 
-<span id="qiskit.algorithms.optimizers.ISRES.minimize" />
+  <Function id="qiskit.algorithms.optimizers.ISRES.optimize" name="optimize" signature="ISRES.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)">
+    Perform optimization.
 
-`ISRES.minimize(fun, x0, jac=None, bounds=None)`
+    **Parameters**
 
-Minimize the scalar function.
+    *   **num\_vars** (*int*) – Number of parameters to be optimized.
+    *   **objective\_function** (*callable*) – A function that computes the objective function.
+    *   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+    *   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
+    *   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
 
-**Parameters**
+    **Returns**
 
-*   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
-*   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
-*   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
-*   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+    **point, value, nfev**
 
-**Return type**
+    point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
 
-`OptimizerResult`
+    **Raises**
 
-**Returns**
+    **ValueError** – invalid input
+  </Function>
 
-The result of the optimization, containing e.g. the result as attribute `x`.
+  ### print\_options
 
-### optimize
+  <Function id="qiskit.algorithms.optimizers.ISRES.print_options" name="print_options" signature="ISRES.print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.ISRES.optimize" />
+  ### set\_max\_evals\_grouped
 
-`ISRES.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
+  <Function id="qiskit.algorithms.optimizers.ISRES.set_max_evals_grouped" name="set_max_evals_grouped" signature="ISRES.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-Perform optimization.
+  ### set\_options
 
-**Parameters**
+  <Function id="qiskit.algorithms.optimizers.ISRES.set_options" name="set_options" signature="ISRES.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-*   **num\_vars** (*int*) – Number of parameters to be optimized.
-*   **objective\_function** (*callable*) – A function that computes the objective function.
-*   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
-*   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
-*   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-**Returns**
+    **Parameters**
 
-**point, value, nfev**
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
+  ### wrap\_function
 
-**Raises**
+  <Function id="qiskit.algorithms.optimizers.ISRES.wrap_function" name="wrap_function" signature="static ISRES.wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-**ValueError** – invalid input
+    **Parameters**
 
-### print\_options
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-<span id="qiskit.algorithms.optimizers.ISRES.print_options" />
+    **Returns**
 
-`ISRES.print_options()`
+    wrapper
 
-Print algorithm-specific options.
+    **Return type**
 
-### set\_max\_evals\_grouped
+    function\_wrapper
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.ISRES.set_max_evals_grouped" />
+  ## Attributes
 
-`ISRES.set_max_evals_grouped(limit)`
+  ### bounds\_support\_level
 
-Set max evals grouped
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-### set\_options
+  ### gradient\_support\_level
 
-<span id="qiskit.algorithms.optimizers.ISRES.set_options" />
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-`ISRES.set_options(**kwargs)`
+  ### initial\_point\_support\_level
 
-Sets or updates values in the options dictionary.
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
+  ### is\_bounds\_ignored
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-**kwargs** (*dict*) – options, given as name=value.
+  ### is\_bounds\_required
 
-### wrap\_function
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.ISRES.wrap_function" />
+  ### is\_bounds\_supported
 
-`static ISRES.wrap_function(function, args)`
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-Wrap the function to implicitly inject the args at the call of the function.
+  ### is\_gradient\_ignored
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
+  ### is\_gradient\_required
 
-**Returns**
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-wrapper
+  ### is\_gradient\_supported
 
-**Return type**
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-function\_wrapper
+  ### is\_initial\_point\_ignored
 
-## Attributes
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.ISRES.bounds_support_level" />
+  ### is\_initial\_point\_required
 
-### bounds\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-Returns bounds support level
+  ### is\_initial\_point\_supported
 
-<span id="qiskit.algorithms.optimizers.ISRES.gradient_support_level" />
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-### gradient\_support\_level
+  ### setting
 
-Returns gradient support level
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.setting" name="setting">
+    Return setting
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.ISRES.initial_point_support_level" />
+  ### settings
 
-### initial\_point\_support\_level
-
-Returns initial point support level
-
-<span id="qiskit.algorithms.optimizers.ISRES.is_bounds_ignored" />
-
-### is\_bounds\_ignored
-
-Returns is bounds ignored
-
-<span id="qiskit.algorithms.optimizers.ISRES.is_bounds_required" />
-
-### is\_bounds\_required
-
-Returns is bounds required
-
-<span id="qiskit.algorithms.optimizers.ISRES.is_bounds_supported" />
-
-### is\_bounds\_supported
-
-Returns is bounds supported
-
-<span id="qiskit.algorithms.optimizers.ISRES.is_gradient_ignored" />
-
-### is\_gradient\_ignored
-
-Returns is gradient ignored
-
-<span id="qiskit.algorithms.optimizers.ISRES.is_gradient_required" />
-
-### is\_gradient\_required
-
-Returns is gradient required
-
-<span id="qiskit.algorithms.optimizers.ISRES.is_gradient_supported" />
-
-### is\_gradient\_supported
-
-Returns is gradient supported
-
-<span id="qiskit.algorithms.optimizers.ISRES.is_initial_point_ignored" />
-
-### is\_initial\_point\_ignored
-
-Returns is initial point ignored
-
-<span id="qiskit.algorithms.optimizers.ISRES.is_initial_point_required" />
-
-### is\_initial\_point\_required
-
-Returns is initial point required
-
-<span id="qiskit.algorithms.optimizers.ISRES.is_initial_point_supported" />
-
-### is\_initial\_point\_supported
-
-Returns is initial point supported
-
-<span id="qiskit.algorithms.optimizers.ISRES.setting" />
-
-### setting
-
-Return setting
-
-<span id="qiskit.algorithms.optimizers.ISRES.settings" />
-
-### settings
+  <Attribute id="qiskit.algorithms.optimizers.ISRES.settings" name="settings" />
+</Class>
 
