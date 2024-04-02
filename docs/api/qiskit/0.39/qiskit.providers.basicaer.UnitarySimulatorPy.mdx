@@ -8,268 +8,240 @@ python_api_name: qiskit.providers.basicaer.UnitarySimulatorPy
 
 # UnitarySimulatorPy
 
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy" />
+<Class id="qiskit.providers.basicaer.UnitarySimulatorPy" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/basicaer/unitary_simulator.py" signature="UnitarySimulatorPy(configuration=None, provider=None, **fields)">
+  Bases: [`qiskit.providers.backend.BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1")
 
-`UnitarySimulatorPy(configuration=None, provider=None, **fields)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/basicaer/unitary_simulator.py "view source code")
+  Python implementation of a unitary simulator.
 
-Bases: [`qiskit.providers.backend.BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1")
+  Initialize a backend class
 
-Python implementation of a unitary simulator.
+  **Parameters**
 
-Initialize a backend class
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
+  *   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
+  *   **fields** – kwargs for the values to use to override the default options.
 
-**Parameters**
+  **Raises**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
-*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
-*   **fields** – kwargs for the values to use to override the default options.
+  **AttributeError** – if input field not a valid options
 
-**Raises**
+  In addition to the public abstract methods, subclasses should also implement the following private methods:
 
-**AttributeError** – if input field not a valid options
+  ### \_default\_options
 
-In addition to the public abstract methods, subclasses should also implement the following private methods:
+  <Function id="qiskit.providers.basicaer.UnitarySimulatorPy._default_options" name="_default_options" signature="classmethod _default_options()">
+    Return the default options
 
-### \_default\_options
+    This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
 
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy._default_options" />
+    **Returns**
 
-`classmethod _default_options()`
+    **A options object with**
 
-Return the default options
+    default values set
 
-This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
+    **Return type**
 
-**Returns**
+    [qiskit.providers.Options](qiskit.providers.Options "qiskit.providers.Options")
+  </Function>
 
-**A options object with**
+  ## Methods
 
-default values set
+  ### configuration
 
-**Return type**
+  <Function id="qiskit.providers.basicaer.UnitarySimulatorPy.configuration" name="configuration" signature="UnitarySimulatorPy.configuration()">
+    Return the backend configuration.
 
-[qiskit.providers.Options](qiskit.providers.Options "qiskit.providers.Options")
+    **Returns**
 
-## Methods
+    the configuration for the backend.
 
-### configuration
+    **Return type**
 
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy.configuration" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-`UnitarySimulatorPy.configuration()`
+  ### name
 
-Return the backend configuration.
+  <Function id="qiskit.providers.basicaer.UnitarySimulatorPy.name" name="name" signature="UnitarySimulatorPy.name()">
+    Return the backend name.
 
-**Returns**
+    **Returns**
 
-the configuration for the backend.
+    the name of the backend.
 
-**Return type**
+    **Return type**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    str
+  </Function>
 
-### name
+  ### properties
 
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy.name" />
+  <Function id="qiskit.providers.basicaer.UnitarySimulatorPy.properties" name="properties" signature="UnitarySimulatorPy.properties()">
+    Return the backend properties.
 
-`UnitarySimulatorPy.name()`
+    **Returns**
 
-Return the backend name.
+    the configuration for the backend. If the backend does not support properties, it returns `None`.
 
-**Returns**
+    **Return type**
 
-the name of the backend.
+    [BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+  </Function>
 
-**Return type**
+  ### provider
 
-str
+  <Function id="qiskit.providers.basicaer.UnitarySimulatorPy.provider" name="provider" signature="UnitarySimulatorPy.provider()">
+    Return the backend Provider.
 
-### properties
+    **Returns**
 
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy.properties" />
+    the Provider responsible for the backend.
 
-`UnitarySimulatorPy.properties()`
+    **Return type**
 
-Return the backend properties.
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-**Returns**
+  ### run
 
-the configuration for the backend. If the backend does not support properties, it returns `None`.
+  <Function id="qiskit.providers.basicaer.UnitarySimulatorPy.run" name="run" signature="UnitarySimulatorPy.run(qobj, **backend_options)">
+    Run qobj asynchronously.
 
-**Return type**
+    **Parameters**
 
-[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+    *   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
+    *   **backend\_options** (*dict*) – backend options
 
-### provider
+    **Returns**
 
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy.provider" />
+    derived from BaseJob
 
-`UnitarySimulatorPy.provider()`
+    **Return type**
 
-Return the backend Provider.
+    [BasicAerJob](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
 
-**Returns**
+    Additional Information:
 
-the Provider responsible for the backend.
+    ```python
+    backend_options: Is a dict of options for the backend. It may contain
+        * "initial_unitary": matrix_like
+        * "chop_threshold": double
 
-**Return type**
+    The "initial_unitary" option specifies a custom initial unitary
+    matrix for the simulator to be used instead of the identity
+    matrix. This size of this matrix must be correct for the number
+    of qubits inall experiments in the qobj.
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    The "chop_threshold" option specifies a truncation value for
+    setting small values to zero in the output unitary. The default
+    value is 1e-15.
 
-### run
+    Example::
 
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy.run" />
+        backend_options = {
+            "initial_unitary": np.array([[1, 0, 0, 0],
+                                         [0, 0, 0, 1],
+                                         [0, 0, 1, 0],
+                                         [0, 1, 0, 0]])
+            "chop_threshold": 1e-15
+        }
+    ```
+  </Function>
 
-`UnitarySimulatorPy.run(qobj, **backend_options)`
+  ### run\_experiment
 
-Run qobj asynchronously.
+  <Function id="qiskit.providers.basicaer.UnitarySimulatorPy.run_experiment" name="run_experiment" signature="UnitarySimulatorPy.run_experiment(experiment)">
+    Run an experiment (circuit) and return a single experiment result.
 
-**Parameters**
+    **Parameters**
 
-*   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
-*   **backend\_options** (*dict*) – backend options
+    **experiment** (*QobjExperiment*) – experiment from qobj experiments list
 
-**Returns**
+    **Returns**
 
-derived from BaseJob
+    A result dictionary which looks something like:
 
-**Return type**
-
-[BasicAerJob](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
-
-Additional Information:
-
-```python
-backend_options: Is a dict of options for the backend. It may contain
-    * "initial_unitary": matrix_like
-    * "chop_threshold": double
-
-The "initial_unitary" option specifies a custom initial unitary
-matrix for the simulator to be used instead of the identity
-matrix. This size of this matrix must be correct for the number
-of qubits inall experiments in the qobj.
-
-The "chop_threshold" option specifies a truncation value for
-setting small values to zero in the output unitary. The default
-value is 1e-15.
-
-Example::
-
-    backend_options = {
-        "initial_unitary": np.array([[1, 0, 0, 0],
-                                     [0, 0, 0, 1],
-                                     [0, 0, 1, 0],
-                                     [0, 1, 0, 0]])
-        "chop_threshold": 1e-15
-    }
-```
-
-### run\_experiment
-
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy.run_experiment" />
-
-`UnitarySimulatorPy.run_experiment(experiment)`
-
-Run an experiment (circuit) and return a single experiment result.
-
-**Parameters**
-
-**experiment** (*QobjExperiment*) – experiment from qobj experiments list
-
-**Returns**
-
-A result dictionary which looks something like:
-
-```python
-{
-"name": name of this experiment (obtained from qobj.experiment header)
-"seed": random seed used for simulation
-"shots": number of shots used in the simulation
-"data":
+    ```python
     {
-    "unitary": [[[0.0, 0.0], [1.0, 0.0]],
-                [[1.0, 0.0], [0.0, 0.0]]]
-    },
-"status": status string for the simulation
-"success": boolean
-"time taken": simulation time of this single experiment
-}
-```
+    "name": name of this experiment (obtained from qobj.experiment header)
+    "seed": random seed used for simulation
+    "shots": number of shots used in the simulation
+    "data":
+        {
+        "unitary": [[[0.0, 0.0], [1.0, 0.0]],
+                    [[1.0, 0.0], [0.0, 0.0]]]
+        },
+    "status": status string for the simulation
+    "success": boolean
+    "time taken": simulation time of this single experiment
+    }
+    ```
 
-**Return type**
+    **Return type**
 
-dict
+    dict
 
-**Raises**
+    **Raises**
 
-*   [**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if the number of qubits in the circuit is greater than 24.
-*   **Note that the practical qubit limit is much lower than 24.** –
+    *   [**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if the number of qubits in the circuit is greater than 24.
+    *   **Note that the practical qubit limit is much lower than 24.** –
+  </Function>
 
-### set\_options
+  ### set\_options
 
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy.set_options" />
+  <Function id="qiskit.providers.basicaer.UnitarySimulatorPy.set_options" name="set_options" signature="UnitarySimulatorPy.set_options(**fields)">
+    Set the options fields for the backend
 
-`UnitarySimulatorPy.set_options(**fields)`
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-Set the options fields for the backend
+    **Parameters**
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+    **fields** – The fields to update the options
 
-**Parameters**
+    **Raises**
 
-**fields** – The fields to update the options
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-**Raises**
+  ### status
 
-**AttributeError** – If the field passed in is not part of the options
+  <Function id="qiskit.providers.basicaer.UnitarySimulatorPy.status" name="status" signature="UnitarySimulatorPy.status()">
+    Return the backend status.
 
-### status
+    **Returns**
 
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy.status" />
+    the status of the backend.
 
-`UnitarySimulatorPy.status()`
+    **Return type**
 
-Return the backend status.
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-**Returns**
+  ## Attributes
 
-the status of the backend.
+  ### DEFAULT\_CONFIGURATION
 
-**Return type**
+  <Attribute id="qiskit.providers.basicaer.UnitarySimulatorPy.DEFAULT_CONFIGURATION" name="DEFAULT_CONFIGURATION" attributeValue="= {'backend_name': 'unitary_simulator', 'backend_version': '1.1.0', 'basis_gates': ['u1', 'u2', 'u3', 'rz', 'sx', 'x', 'cx', 'id', 'unitary'], 'conditional': False, 'coupling_map': None, 'description': 'A python simulator for unitary matrix corresponding to a circuit', 'gates': [{'name': 'u1', 'parameters': ['lambda'], 'qasm_def': 'gate u1(lambda) q { U(0,0,lambda) q; }'}, {'name': 'u2', 'parameters': ['phi', 'lambda'], 'qasm_def': 'gate u2(phi,lambda) q { U(pi/2,phi,lambda) q; }'}, {'name': 'u3', 'parameters': ['theta', 'phi', 'lambda'], 'qasm_def': 'gate u3(theta,phi,lambda) q { U(theta,phi,lambda) q; }'}, {'name': 'rz', 'parameters': ['phi'], 'qasm_def': 'gate rz(phi) q { U(0,0,phi) q; }'}, {'name': 'sx', 'parameters': [], 'qasm_def': 'gate sx(phi) q { U(pi/2,7*pi/2,pi/2) q; }'}, {'name': 'x', 'parameters': [], 'qasm_def': 'gate x q { U(pi,7*pi/2,pi/2) q; }'}, {'name': 'cx', 'parameters': [], 'qasm_def': 'gate cx c,t { CX c,t; }'}, {'name': 'id', 'parameters': [], 'qasm_def': 'gate id a { U(0,0,0) a; }'}, {'name': 'unitary', 'parameters': ['matrix'], 'qasm_def': 'unitary(matrix) q1, q2,...'}], 'local': True, 'max_shots': 0, 'memory': False, 'n_qubits': 14, 'open_pulse': False, 'simulator': True, 'url': 'https://github.com/Qiskit/qiskit-terra'}" />
 
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  ### DEFAULT\_OPTIONS
 
-## Attributes
+  <Attribute id="qiskit.providers.basicaer.UnitarySimulatorPy.DEFAULT_OPTIONS" name="DEFAULT_OPTIONS" attributeValue="= {'chop_threshold': 1e-15, 'initial_unitary': None}" />
 
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy.DEFAULT_CONFIGURATION" />
+  ### MAX\_QUBITS\_MEMORY
 
-### DEFAULT\_CONFIGURATION
+  <Attribute id="qiskit.providers.basicaer.UnitarySimulatorPy.MAX_QUBITS_MEMORY" name="MAX_QUBITS_MEMORY" attributeValue="= 14" />
 
-`= {'backend_name': 'unitary_simulator', 'backend_version': '1.1.0', 'basis_gates': ['u1', 'u2', 'u3', 'rz', 'sx', 'x', 'cx', 'id', 'unitary'], 'conditional': False, 'coupling_map': None, 'description': 'A python simulator for unitary matrix corresponding to a circuit', 'gates': [{'name': 'u1', 'parameters': ['lambda'], 'qasm_def': 'gate u1(lambda) q { U(0,0,lambda) q; }'}, {'name': 'u2', 'parameters': ['phi', 'lambda'], 'qasm_def': 'gate u2(phi,lambda) q { U(pi/2,phi,lambda) q; }'}, {'name': 'u3', 'parameters': ['theta', 'phi', 'lambda'], 'qasm_def': 'gate u3(theta,phi,lambda) q { U(theta,phi,lambda) q; }'}, {'name': 'rz', 'parameters': ['phi'], 'qasm_def': 'gate rz(phi) q { U(0,0,phi) q; }'}, {'name': 'sx', 'parameters': [], 'qasm_def': 'gate sx(phi) q { U(pi/2,7*pi/2,pi/2) q; }'}, {'name': 'x', 'parameters': [], 'qasm_def': 'gate x q { U(pi,7*pi/2,pi/2) q; }'}, {'name': 'cx', 'parameters': [], 'qasm_def': 'gate cx c,t { CX c,t; }'}, {'name': 'id', 'parameters': [], 'qasm_def': 'gate id a { U(0,0,0) a; }'}, {'name': 'unitary', 'parameters': ['matrix'], 'qasm_def': 'unitary(matrix) q1, q2,...'}], 'local': True, 'max_shots': 0, 'memory': False, 'n_qubits': 14, 'open_pulse': False, 'simulator': True, 'url': 'https://github.com/Qiskit/qiskit-terra'}`
+  ### options
 
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy.DEFAULT_OPTIONS" />
+  <Attribute id="qiskit.providers.basicaer.UnitarySimulatorPy.options" name="options">
+    Return the options for the backend
 
-### DEFAULT\_OPTIONS
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.basicaer.UnitarySimulatorPy#run "qiskit.providers.basicaer.UnitarySimulatorPy.run") method.
+  </Attribute>
 
-`= {'chop_threshold': 1e-15, 'initial_unitary': None}`
+  ### version
 
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy.MAX_QUBITS_MEMORY" />
-
-### MAX\_QUBITS\_MEMORY
-
-`= 14`
-
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.basicaer.UnitarySimulatorPy#run "qiskit.providers.basicaer.UnitarySimulatorPy.run") method.
-
-<span id="qiskit.providers.basicaer.UnitarySimulatorPy.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.basicaer.UnitarySimulatorPy.version" name="version" attributeValue="= 1" />
+</Class>
 

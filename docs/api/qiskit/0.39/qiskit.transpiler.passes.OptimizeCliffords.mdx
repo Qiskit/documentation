@@ -8,59 +8,53 @@ python_api_name: qiskit.transpiler.passes.OptimizeCliffords
 
 # OptimizeCliffords
 
-<span id="qiskit.transpiler.passes.OptimizeCliffords" />
+<Class id="qiskit.transpiler.passes.OptimizeCliffords" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/optimization/optimize_cliffords.py" signature="OptimizeCliffords(*args, **kwargs)">
+  Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-`OptimizeCliffords(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/optimization/optimize_cliffords.py "view source code")
+  Combine consecutive Cliffords over the same qubits. This serves as an example of extra capabilities enabled by storing Cliffords natively on the circuit.
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+  ## Methods
 
-Combine consecutive Cliffords over the same qubits. This serves as an example of extra capabilities enabled by storing Cliffords natively on the circuit.
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.OptimizeCliffords.name" name="name" signature="OptimizeCliffords.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.OptimizeCliffords.name" />
+  <Function id="qiskit.transpiler.passes.OptimizeCliffords.run" name="run" signature="OptimizeCliffords.run(dag)">
+    Run the OptimizeCliffords pass on dag.
 
-`OptimizeCliffords.name()`
+    **Parameters**
 
-Return the name of the pass.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the DAG to be optimized.
 
-### run
+    **Returns**
 
-<span id="qiskit.transpiler.passes.OptimizeCliffords.run" />
+    the optimized DAG.
 
-`OptimizeCliffords.run(dag)`
+    **Return type**
 
-Run the OptimizeCliffords pass on dag.
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  </Function>
 
-**Parameters**
+  ## Attributes
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the DAG to be optimized.
+  ### is\_analysis\_pass
 
-**Returns**
+  <Attribute id="qiskit.transpiler.passes.OptimizeCliffords.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-the optimized DAG.
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-**Return type**
+  ### is\_transformation\_pass
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  <Attribute id="qiskit.transpiler.passes.OptimizeCliffords.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-## Attributes
-
-<span id="qiskit.transpiler.passes.OptimizeCliffords.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.OptimizeCliffords.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

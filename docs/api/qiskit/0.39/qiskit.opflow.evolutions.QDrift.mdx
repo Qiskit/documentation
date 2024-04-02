@@ -8,53 +8,49 @@ python_api_name: qiskit.opflow.evolutions.QDrift
 
 # QDrift
 
-<span id="qiskit.opflow.evolutions.QDrift" />
+<Class id="qiskit.opflow.evolutions.QDrift" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/evolutions/trotterizations/qdrift.py" signature="QDrift(reps=1)">
+  Bases: [`qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase`](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
 
-`QDrift(reps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/evolutions/trotterizations/qdrift.py "view source code")
+  The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight. Based on the work of Earl Campbell in [https://arxiv.org/abs/1811.08017](https://arxiv.org/abs/1811.08017).
 
-Bases: [`qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase`](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
+  **Parameters**
 
-The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight. Based on the work of Earl Campbell in [https://arxiv.org/abs/1811.08017](https://arxiv.org/abs/1811.08017).
+  **reps** (`int`) – The number of times to repeat the Trotterization circuit.
 
-**Parameters**
+  ## Methods Defined Here
 
-**reps** (`int`) – The number of times to repeat the Trotterization circuit.
+  ### convert
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.evolutions.QDrift.convert" name="convert" signature="QDrift.convert(operator)">
+    Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 
-### convert
+    **Parameters**
 
-<span id="qiskit.opflow.evolutions.QDrift.convert" />
+    **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
 
-`QDrift.convert(operator)`
+    **Return type**
 
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
+    [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 
-**Parameters**
+    **Returns**
 
-**operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
+    The Operator approximating op\_sum’s evolution.
 
-**Return type**
+    **Raises**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **TypeError** – A non-SummedOps Operator is passed into `convert`.
+  </Function>
 
-**Returns**
+  ## Attributes
 
-The Operator approximating op\_sum’s evolution.
+  ### reps
 
-**Raises**
+  <Attribute id="qiskit.opflow.evolutions.QDrift.reps" name="reps">
+    The number of repetitions to use in the Trotterization, improving the approximation accuracy.
 
-**TypeError** – A non-SummedOps Operator is passed into `convert`.
+    **Return type**
 
-## Attributes
-
-<span id="qiskit.opflow.evolutions.QDrift.reps" />
-
-### reps
-
-The number of repetitions to use in the Trotterization, improving the approximation accuracy.
-
-**Return type**
-
-`int`
+    `int`
+  </Attribute>
+</Class>
 
