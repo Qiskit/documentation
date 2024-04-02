@@ -8,57 +8,51 @@ python_api_name: qiskit.transpiler.passes.CheckCXDirection
 
 # CheckCXDirection
 
-<span id="qiskit.transpiler.passes.CheckCXDirection" />
+<Class id="qiskit.transpiler.passes.CheckCXDirection" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/check_cx_direction.py" signature="qiskit.transpiler.passes.CheckCXDirection(*args, **kwargs)">
+  Bases: [`CheckGateDirection`](qiskit.transpiler.passes.CheckGateDirection "qiskit.transpiler.passes.utils.check_gate_direction.CheckGateDirection")
 
-`qiskit.transpiler.passes.CheckCXDirection(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/check_cx_direction.py "view source code")
+  Deprecated: use [`qiskit.transpiler.passes.CheckGateDirection`](qiskit.transpiler.passes.CheckGateDirection "qiskit.transpiler.passes.CheckGateDirection") pass instead.
 
-Bases: [`CheckGateDirection`](qiskit.transpiler.passes.CheckGateDirection "qiskit.transpiler.passes.utils.check_gate_direction.CheckGateDirection")
+  <Admonition title="Deprecated since version 0.21.0" type="danger">
+    The class `qiskit.transpiler.passes.utils.check_cx_direction.CheckCXDirection` is deprecated as of qiskit-terra 0.21.0. It will be removed no earlier than 3 months after the release date. Instead, use the more generic [`CheckGateDirection`](qiskit.transpiler.passes.CheckGateDirection "qiskit.transpiler.passes.CheckGateDirection") pass.
+  </Admonition>
 
-Deprecated: use [`qiskit.transpiler.passes.CheckGateDirection`](qiskit.transpiler.passes.CheckGateDirection "qiskit.transpiler.passes.CheckGateDirection") pass instead.
+  ## Attributes
 
-<Admonition title="Deprecated since version 0.21.0" type="danger">
-  The class `qiskit.transpiler.passes.utils.check_cx_direction.CheckCXDirection` is deprecated as of qiskit-terra 0.21.0. It will be removed no earlier than 3 months after the release date. Instead, use the more generic [`CheckGateDirection`](qiskit.transpiler.passes.CheckGateDirection "qiskit.transpiler.passes.CheckGateDirection") pass.
-</Admonition>
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.CheckCXDirection.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.CheckCXDirection.is_analysis_pass" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### is\_analysis\_pass
+  ### is\_transformation\_pass
 
-Check if the pass is an analysis pass.
+  <Attribute id="qiskit.transpiler.passes.CheckCXDirection.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.CheckCXDirection.is_transformation_pass" />
+  ## Methods
 
-### is\_transformation\_pass
+  ### name
 
-Check if the pass is a transformation pass.
+  <Function id="qiskit.transpiler.passes.CheckCXDirection.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  ### run
 
-## Methods
+  <Function id="qiskit.transpiler.passes.CheckCXDirection.run" name="run" signature="run(dag)">
+    Run the CheckGateDirection pass on dag.
 
-### name
+    If dag is mapped and the direction is correct the property is\_direction\_mapped is set to True (or to False otherwise).
 
-<span id="qiskit.transpiler.passes.CheckCXDirection.name" />
+    **Parameters**
 
-`name()`
-
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.CheckCXDirection.run" />
-
-`run(dag)`
-
-Run the CheckGateDirection pass on dag.
-
-If dag is mapped and the direction is correct the property is\_direction\_mapped is set to True (or to False otherwise).
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to check.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to check.
+  </Function>
+</Class>
 

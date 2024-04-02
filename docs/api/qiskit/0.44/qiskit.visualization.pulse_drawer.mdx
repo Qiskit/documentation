@@ -10,314 +10,312 @@ python_api_name: qiskit.visualization.pulse_drawer
 
 # qiskit.visualization.pulse\_drawer
 
-<span id="qiskit.visualization.pulse_drawer" />
+<Function id="qiskit.visualization.pulse_drawer" name="pulse_drawer" isDedicatedPage={true} signature="qiskit.visualization.pulse_drawer(program, style=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)">
+  Generate visualization data for pulse programs.
 
-`qiskit.visualization.pulse_drawer(program, style=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)`
+  **Parameters**
 
-Generate visualization data for pulse programs.
+  *   **program** ([*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")  *|*[*ParametricPulse*](qiskit.pulse.library.ParametricPulse "qiskit.pulse.library.parametric_pulses.ParametricPulse")  *|*[*SymbolicPulse*](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.symbolic_pulses.SymbolicPulse")  *|*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – Program to visualize. This program can be arbitrary Qiskit Pulse program, such as `Waveform`, `ParametricPulse`, `SymbolicPulse`, [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") and [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock").
 
-**Parameters**
+  *   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets. See also the stylesheet section for details of configuration keys.
 
-*   **program** ([*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")  *|*[*ParametricPulse*](qiskit.pulse.library.ParametricPulse "qiskit.pulse.library.parametric_pulses.ParametricPulse")  *|*[*SymbolicPulse*](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.symbolic_pulses.SymbolicPulse")  *|*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – Program to visualize. This program can be arbitrary Qiskit Pulse program, such as `Waveform`, `ParametricPulse`, `SymbolicPulse`, [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") and [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock").
+  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.backend.Backend") *| None*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
-*   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets. See also the stylesheet section for details of configuration keys.
+  *   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.backend.Backend") *| None*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+  *   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
 
-*   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
+  *   **disable\_channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A control property to show specific pulse channel. Pulse channel instances provided as a list is not shown in the output image.
 
-*   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
+  *   **show\_snapshot** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show snapshot instructions.
 
-*   **disable\_channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A control property to show specific pulse channel. Pulse channel instances provided as a list is not shown in the output image.
+  *   **show\_framechange** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show frame change instructions. The frame change represents instructions that modulate phase or frequency of pulse channels.
 
-*   **show\_snapshot** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show snapshot instructions.
+  *   **show\_waveform\_info** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
 
-*   **show\_framechange** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show frame change instructions. The frame change represents instructions that modulate phase or frequency of pulse channels.
+  *   **show\_barrier** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show barrier lines.
 
-*   **show\_waveform\_info** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
+  *   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) –
 
-*   **show\_barrier** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show barrier lines.
+      Name of plotter API to generate an output image. One of following APIs should be specified:
 
-*   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) –
+      ```python
+      mpl2d: Matplotlib API for 2D image generation.
+          Matplotlib API to generate 2D image. Charts are placed along y axis with
+          vertical offset. This API takes matplotlib.axes.Axes as `axis` input.
+      ```
 
-    Name of plotter API to generate an output image. One of following APIs should be specified:
+      axis and style kwargs may depend on the plotter.
 
-    ```python
-    mpl2d: Matplotlib API for 2D image generation.
-        Matplotlib API to generate 2D image. Charts are placed along y axis with
-        vertical offset. This API takes matplotlib.axes.Axes as `axis` input.
-    ```
+  *   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)") *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
 
-    axis and style kwargs may depend on the plotter.
+  **Returns**
 
-*   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)") *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
+  Visualization output data. The returned data type depends on the plotter. If matplotlib family is specified, this will be a matplotlib.pyplot.Figure data. The returned data is generated by the `get_image()` method of the specified plotter API.
 
-**Returns**
+  **Style Dict Details**
 
-Visualization output data. The returned data type depends on the plotter. If matplotlib family is specified, this will be a matplotlib.pyplot.Figure data. The returned data is generated by the `get_image()` method of the specified plotter API.
+  The stylesheet kwarg contains numerous options that define the style of the output pulse visualization. The stylesheet options can be classified into formatter, generator and layout. Those options available in the stylesheet are defined below:
 
-**Style Dict Details**
+  **Parameters**
 
-The stylesheet kwarg contains numerous options that define the style of the output pulse visualization. The stylesheet options can be classified into formatter, generator and layout. Those options available in the stylesheet are defined below:
+  *   **formatter.general.fig\_width** – Width of output image (default 13).
 
-**Parameters**
+  *   **formatter.general.fig\_chart\_height** – Height of output image per chart. The height of each chart is multiplied with this factor and the sum of all chart heights becomes the height of output image (default 1.5).
 
-*   **formatter.general.fig\_width** – Width of output image (default 13).
+  *   **formatter.general.vertical\_resolution** – Vertical resolution of the pulse envelope. The change of data points below this limit is ignored (default 1e-6).
 
-*   **formatter.general.fig\_chart\_height** – Height of output image per chart. The height of each chart is multiplied with this factor and the sum of all chart heights becomes the height of output image (default 1.5).
+  *   **formatter.general.max\_scale** – Maximum scaling factor of each chart. This factor is considered when chart auto-scaling is enabled (default 100).
 
-*   **formatter.general.vertical\_resolution** – Vertical resolution of the pulse envelope. The change of data points below this limit is ignored (default 1e-6).
+  *   **formatter.color.waveforms** –
 
-*   **formatter.general.max\_scale** – Maximum scaling factor of each chart. This factor is considered when chart auto-scaling is enabled (default 100).
+      A dictionary of the waveform colors to use for each element type in the output visualization. The default values are:
 
-*   **formatter.color.waveforms** –
+      ```python
+      {
+          'W': `['#648fff', '#002999']`,
+          'D': `['#648fff', '#002999']`,
+          'U': `['#ffb000', '#994A00']`,
+          'M': `['#dc267f', '#760019']`,
+          'A': `['#dc267f', '#760019']`
+      }
+      ```
 
-    A dictionary of the waveform colors to use for each element type in the output visualization. The default values are:
+  *   **formatter.color.baseline** – Color code of lines of zero line of each chart (default ‘#000000’).
 
-    ```python
-    {
-        'W': `['#648fff', '#002999']`,
-        'D': `['#648fff', '#002999']`,
-        'U': `['#ffb000', '#994A00']`,
-        'M': `['#dc267f', '#760019']`,
-        'A': `['#dc267f', '#760019']`
-    }
-    ```
+  *   **formatter.color.barrier** – Color code of lines of barrier (default ‘#222222’).
 
-*   **formatter.color.baseline** – Color code of lines of zero line of each chart (default ‘#000000’).
+  *   **formatter.color.background** – Color code of the face color of canvas (default ‘#f2f3f4’).
 
-*   **formatter.color.barrier** – Color code of lines of barrier (default ‘#222222’).
+  *   **formatter.color.fig\_title** – Color code of the figure title text (default ‘#000000’).
 
-*   **formatter.color.background** – Color code of the face color of canvas (default ‘#f2f3f4’).
+  *   **formatter.color.annotate** – Color code of annotation texts in the canvas (default ‘#222222’).
 
-*   **formatter.color.fig\_title** – Color code of the figure title text (default ‘#000000’).
+  *   **formatter.color.frame\_change** – Color code of the symbol for frame changes (default ‘#000000’).
 
-*   **formatter.color.annotate** – Color code of annotation texts in the canvas (default ‘#222222’).
+  *   **formatter.color.snapshot** – Color code of the symbol for snapshot (default ‘#000000’)
 
-*   **formatter.color.frame\_change** – Color code of the symbol for frame changes (default ‘#000000’).
+  *   **formatter.color.opaque\_shape** – Color code of the face and edge of opaque shape box (default \[‘#fffacd’, ‘#000000’])
 
-*   **formatter.color.snapshot** – Color code of the symbol for snapshot (default ‘#000000’)
+  *   **formatter.color.axis\_label** – Color code of axis labels (default ‘#000000’).
 
-*   **formatter.color.opaque\_shape** – Color code of the face and edge of opaque shape box (default \[‘#fffacd’, ‘#000000’])
+  *   **formatter.alpha.fill\_waveform** – Transparency of waveforms. A value in the range from 0 to 1. The value 0 gives completely transparent waveforms (default 0.3).
 
-*   **formatter.color.axis\_label** – Color code of axis labels (default ‘#000000’).
+  *   **formatter.alpha.baseline** – Transparency of base lines. A value in the range from 0 to 1. The value 0 gives completely transparent base lines (default 1.0).
 
-*   **formatter.alpha.fill\_waveform** – Transparency of waveforms. A value in the range from 0 to 1. The value 0 gives completely transparent waveforms (default 0.3).
+  *   **formatter.alpha.barrier** – Transparency of barrier lines. A value in the range from 0 to 1. The value 0 gives completely transparent barrier lines (default 0.7).
 
-*   **formatter.alpha.baseline** – Transparency of base lines. A value in the range from 0 to 1. The value 0 gives completely transparent base lines (default 1.0).
+  *   **formatter.alpha.opaque\_shape** – Transparency of opaque shape box. A value in the range from 0 to 1. The value 0 gives completely transparent barrier lines (default 0.7).
 
-*   **formatter.alpha.barrier** – Transparency of barrier lines. A value in the range from 0 to 1. The value 0 gives completely transparent barrier lines (default 0.7).
+  *   **formatter.layer.fill\_waveform** – Layer index of waveforms. Larger number comes in the front of the output image (default 2).
 
-*   **formatter.alpha.opaque\_shape** – Transparency of opaque shape box. A value in the range from 0 to 1. The value 0 gives completely transparent barrier lines (default 0.7).
+  *   **formatter.layer.baseline** – Layer index of baselines. Larger number comes in the front of the output image (default 1).
 
-*   **formatter.layer.fill\_waveform** – Layer index of waveforms. Larger number comes in the front of the output image (default 2).
+  *   **formatter.layer.barrier** – Layer index of barrier lines. Larger number comes in the front of the output image (default 1).
 
-*   **formatter.layer.baseline** – Layer index of baselines. Larger number comes in the front of the output image (default 1).
+  *   **formatter.layer.annotate** – Layer index of annotations. Larger number comes in the front of the output image (default 5).
 
-*   **formatter.layer.barrier** – Layer index of barrier lines. Larger number comes in the front of the output image (default 1).
+  *   **formatter.layer.axis\_label** – Layer index of axis labels. Larger number comes in the front of the output image (default 5).
 
-*   **formatter.layer.annotate** – Layer index of annotations. Larger number comes in the front of the output image (default 5).
+  *   **formatter.layer.frame\_change** – Layer index of frame change symbols. Larger number comes in the front of the output image (default 4).
 
-*   **formatter.layer.axis\_label** – Layer index of axis labels. Larger number comes in the front of the output image (default 5).
+  *   **formatter.layer.snapshot** – Layer index of snapshot symbols. Larger number comes in the front of the output image (default 3).
 
-*   **formatter.layer.frame\_change** – Layer index of frame change symbols. Larger number comes in the front of the output image (default 4).
+  *   **formatter.layer.fig\_title** – Layer index of the figure title. Larger number comes in the front of the output image (default 6).
 
-*   **formatter.layer.snapshot** – Layer index of snapshot symbols. Larger number comes in the front of the output image (default 3).
+  *   **formatter.margin.top** – Margin from the top boundary of the figure canvas to the surface of the first chart (default 0.5).
 
-*   **formatter.layer.fig\_title** – Layer index of the figure title. Larger number comes in the front of the output image (default 6).
+  *   **formatter.margin.bottom** – Margin from the bottom boundary of the figure canvas to the surface of the last chart (default 0.5).
 
-*   **formatter.margin.top** – Margin from the top boundary of the figure canvas to the surface of the first chart (default 0.5).
+  *   **formatter.margin.left\_percent** – Margin from the left boundary of the figure canvas to the zero point of the horizontal axis. The value is in units of percentage of the whole program duration. If the duration is 100 and the value of 0.5 is set, this keeps left margin of 5 (default 0.05).
 
-*   **formatter.margin.bottom** – Margin from the bottom boundary of the figure canvas to the surface of the last chart (default 0.5).
+  *   **formatter.margin.right\_percent** – Margin from the right boundary of the figure canvas to the left limit of the horizontal axis. The value is in units of percentage of the whole program duration. If the duration is 100 and the value of 0.5 is set, this keeps right margin of 5 (default 0.05).
 
-*   **formatter.margin.left\_percent** – Margin from the left boundary of the figure canvas to the zero point of the horizontal axis. The value is in units of percentage of the whole program duration. If the duration is 100 and the value of 0.5 is set, this keeps left margin of 5 (default 0.05).
+  *   **formatter.margin.between\_channel** – Vertical margin between charts (default 0.2).
 
-*   **formatter.margin.right\_percent** – Margin from the right boundary of the figure canvas to the left limit of the horizontal axis. The value is in units of percentage of the whole program duration. If the duration is 100 and the value of 0.5 is set, this keeps right margin of 5 (default 0.05).
+  *   **formatter.label\_offset.pulse\_name** – Offset of pulse name annotations from the chart baseline (default 0.3).
 
-*   **formatter.margin.between\_channel** – Vertical margin between charts (default 0.2).
+  *   **formatter.label\_offset.chart\_info** – Offset of chart info annotations from the chart baseline (default 0.3).
 
-*   **formatter.label\_offset.pulse\_name** – Offset of pulse name annotations from the chart baseline (default 0.3).
+  *   **formatter.label\_offset.frame\_change** – Offset of frame change annotations from the chart baseline (default 0.3).
 
-*   **formatter.label\_offset.chart\_info** – Offset of chart info annotations from the chart baseline (default 0.3).
+  *   **formatter.label\_offset.snapshot** – Offset of snapshot annotations from the chart baseline (default 0.3).
 
-*   **formatter.label\_offset.frame\_change** – Offset of frame change annotations from the chart baseline (default 0.3).
+  *   **formatter.text\_size.axis\_label** – Text size of axis labels (default 15).
 
-*   **formatter.label\_offset.snapshot** – Offset of snapshot annotations from the chart baseline (default 0.3).
+  *   **formatter.text\_size.annotate** – Text size of annotations (default 12).
 
-*   **formatter.text\_size.axis\_label** – Text size of axis labels (default 15).
+  *   **formatter.text\_size.frame\_change** – Text size of frame change symbols (default 20).
 
-*   **formatter.text\_size.annotate** – Text size of annotations (default 12).
+  *   **formatter.text\_size.snapshot** – Text size of snapshot symbols (default 20).
 
-*   **formatter.text\_size.frame\_change** – Text size of frame change symbols (default 20).
+  *   **formatter.text\_size.fig\_title** – Text size of the figure title (default 15).
 
-*   **formatter.text\_size.snapshot** – Text size of snapshot symbols (default 20).
+  *   **formatter.text\_size.axis\_break\_symbol** – Text size of axis break symbols (default 15).
 
-*   **formatter.text\_size.fig\_title** – Text size of the figure title (default 15).
+  *   **formatter.line\_width.fill\_waveform** – Line width of the fringe of filled waveforms (default 0).
 
-*   **formatter.text\_size.axis\_break\_symbol** – Text size of axis break symbols (default 15).
+  *   **formatter.line\_width.axis\_break** – Line width of axis breaks. The axis break line paints over other drawings with the background face color (default 6).
 
-*   **formatter.line\_width.fill\_waveform** – Line width of the fringe of filled waveforms (default 0).
+  *   **formatter.line\_width.baseline** – Line width of base lines (default 1)
 
-*   **formatter.line\_width.axis\_break** – Line width of axis breaks. The axis break line paints over other drawings with the background face color (default 6).
+  *   **formatter.line\_width.barrier** – Line width of barrier lines (default 1).
 
-*   **formatter.line\_width.baseline** – Line width of base lines (default 1)
+  *   **formatter.line\_width.opaque\_shape** – Line width of opaque shape box (default 1).
 
-*   **formatter.line\_width.barrier** – Line width of barrier lines (default 1).
+  *   **formatter.line\_style.fill\_waveform** – Line style of the fringe of filled waveforms. This conforms to the line style spec of matplotlib (default ‘-’).
 
-*   **formatter.line\_width.opaque\_shape** – Line width of opaque shape box (default 1).
+  *   **formatter.line\_style.baseline** – Line style of base lines. This conforms to the line style spec of matplotlib (default ‘-’).
 
-*   **formatter.line\_style.fill\_waveform** – Line style of the fringe of filled waveforms. This conforms to the line style spec of matplotlib (default ‘-’).
+  *   **formatter.line\_style.barrier** – Line style of barrier lines. This conforms to the line style spec of matplotlib (default ‘:’).
 
-*   **formatter.line\_style.baseline** – Line style of base lines. This conforms to the line style spec of matplotlib (default ‘-’).
+  *   **formatter.line\_style.opaque\_shape** – Line style of opaque shape box. This conforms to the line style spec of matplotlib (default ‘–’).
 
-*   **formatter.line\_style.barrier** – Line style of barrier lines. This conforms to the line style spec of matplotlib (default ‘:’).
+  *   **formatter.channel\_scaling.drive** – Default scaling value of drive channel waveforms (default 1.0).
 
-*   **formatter.line\_style.opaque\_shape** – Line style of opaque shape box. This conforms to the line style spec of matplotlib (default ‘–’).
+  *   **formatter.channel\_scaling.control** – Default scaling value of control channel waveforms (default 1.0).
 
-*   **formatter.channel\_scaling.drive** – Default scaling value of drive channel waveforms (default 1.0).
+  *   **formatter.channel\_scaling.measure** – Default scaling value of measure channel waveforms (default 1.0).
 
-*   **formatter.channel\_scaling.control** – Default scaling value of control channel waveforms (default 1.0).
+  *   **formatter.channel\_scaling.acquire** – Default scaling value of acquire channel waveforms (default 1.0).
 
-*   **formatter.channel\_scaling.measure** – Default scaling value of measure channel waveforms (default 1.0).
+  *   **formatter.channel\_scaling.pos\_spacing** – Minimum height of chart above the baseline. Chart top is determined based on the maximum height of waveforms associated with the chart. If the maximum height is below this value, this value is set as the chart top (default 0.1).
 
-*   **formatter.channel\_scaling.acquire** – Default scaling value of acquire channel waveforms (default 1.0).
+  *   **formatter.channel\_scaling.neg\_spacing** – Minimum height of chart below the baseline. Chart bottom is determined based on the minimum height of waveforms associated with the chart. If the minimum height is above this value, this value is set as the chart bottom (default -0.1).
 
-*   **formatter.channel\_scaling.pos\_spacing** – Minimum height of chart above the baseline. Chart top is determined based on the maximum height of waveforms associated with the chart. If the maximum height is below this value, this value is set as the chart top (default 0.1).
+  *   **formatter.box\_width.opaque\_shape** – Default box length of the waveform representation when the instruction is parameterized and duration is not bound or not defined. Value is units in dt (default: 150).
 
-*   **formatter.channel\_scaling.neg\_spacing** – Minimum height of chart below the baseline. Chart bottom is determined based on the minimum height of waveforms associated with the chart. If the minimum height is above this value, this value is set as the chart bottom (default -0.1).
+  *   **formatter.box\_height.opaque\_shape** – Default box height of the waveform representation when the instruction is parameterized (default: 0.4).
 
-*   **formatter.box\_width.opaque\_shape** – Default box length of the waveform representation when the instruction is parameterized and duration is not bound or not defined. Value is units in dt (default: 150).
+  *   **formatter.axis\_break.length** – Waveform or idle time duration that axis break is applied. Intervals longer than this value are truncated. The value is in units of data points (default 3000).
 
-*   **formatter.box\_height.opaque\_shape** – Default box height of the waveform representation when the instruction is parameterized (default: 0.4).
+  *   **formatter.axis\_break.max\_length** – Length of new waveform or idle time duration after axis break is applied. Longer intervals are truncated to this length (default 1000).
 
-*   **formatter.axis\_break.length** – Waveform or idle time duration that axis break is applied. Intervals longer than this value are truncated. The value is in units of data points (default 3000).
+  *   **formatter.control.fill\_waveform** – Set True to fill waveforms with face color (default True). When you disable this option, you should set finite line width to formatter.line\_width.fill\_waveform, otherwise nothing will appear in the graph.
 
-*   **formatter.axis\_break.max\_length** – Length of new waveform or idle time duration after axis break is applied. Longer intervals are truncated to this length (default 1000).
+  *   **formatter.control.apply\_phase\_modulation** – Set True to apply phase modulation to the waveforms (default True).
 
-*   **formatter.control.fill\_waveform** – Set True to fill waveforms with face color (default True). When you disable this option, you should set finite line width to formatter.line\_width.fill\_waveform, otherwise nothing will appear in the graph.
+  *   **formatter.control.show\_snapshot\_channel** – Set True to show snapshot instructions (default True).
 
-*   **formatter.control.apply\_phase\_modulation** – Set True to apply phase modulation to the waveforms (default True).
+  *   **formatter.control.show\_acquire\_channel** – Set True to show acquire channels (default True).
 
-*   **formatter.control.show\_snapshot\_channel** – Set True to show snapshot instructions (default True).
+  *   **formatter.control.show\_empty\_channel** – Set True to show charts without any waveforms (default True).
 
-*   **formatter.control.show\_acquire\_channel** – Set True to show acquire channels (default True).
+  *   **formatter.control.auto\_chart\_scaling** – Set True to apply auto-scaling to charts (default True).
 
-*   **formatter.control.show\_empty\_channel** – Set True to show charts without any waveforms (default True).
+  *   **formatter.control.axis\_break** – Set True to apply axis break for long intervals (default True).
 
-*   **formatter.control.auto\_chart\_scaling** – Set True to apply auto-scaling to charts (default True).
+  *   **formatter.unicode\_symbol.frame\_change** – Text that represents the symbol of frame change. This text is used when the plotter doesn’t support latex (default u’↺’).
 
-*   **formatter.control.axis\_break** – Set True to apply axis break for long intervals (default True).
+  *   **formatter.unicode\_symbol.snapshot** – Text that represents the symbol of snapshot. This text is used when the plotter doesn’t support latex (default u’↯’).
 
-*   **formatter.unicode\_symbol.frame\_change** – Text that represents the symbol of frame change. This text is used when the plotter doesn’t support latex (default u’↺’).
+  *   **formatter.unicode\_symbol.phase\_parameter** – Text that represents the symbol of parameterized phase value. This text is used when the plotter doesn’t support latex (default u’θ’).
 
-*   **formatter.unicode\_symbol.snapshot** – Text that represents the symbol of snapshot. This text is used when the plotter doesn’t support latex (default u’↯’).
+  *   **formatter.unicode\_symbol.freq\_parameter** – Text that represents the symbol of parameterized frequency value. This text is used when the plotter doesn’t support latex (default ‘f’).
 
-*   **formatter.unicode\_symbol.phase\_parameter** – Text that represents the symbol of parameterized phase value. This text is used when the plotter doesn’t support latex (default u’θ’).
+  *   **formatter.latex\_symbol.frame\_change** – Latex text that represents the symbol of frame change (default r’circlearrowleft’).
 
-*   **formatter.unicode\_symbol.freq\_parameter** – Text that represents the symbol of parameterized frequency value. This text is used when the plotter doesn’t support latex (default ‘f’).
+  *   **formatter.latex\_symbol.snapshot** – Latex text that represents the symbol of snapshot (default ‘’).
 
-*   **formatter.latex\_symbol.frame\_change** – Latex text that represents the symbol of frame change (default r’circlearrowleft’).
+  *   **formatter.latex\_symbol.phase\_parameter** – Latex text that represents the symbol of parameterized phase value (default r’ heta’).
 
-*   **formatter.latex\_symbol.snapshot** – Latex text that represents the symbol of snapshot (default ‘’).
+  *   **formatter.latex\_symbol.freq\_parameter** – Latex text that represents the symbol of parameterized frequency value (default ‘f’).
 
-*   **formatter.latex\_symbol.phase\_parameter** – Latex text that represents the symbol of parameterized phase value (default r’ heta’).
+  *   **generator.waveform** – List of callback functions that generates drawing for waveforms. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the pulse drawer. See `waveform` for more details. No default generator is set.
 
-*   **formatter.latex\_symbol.freq\_parameter** – Latex text that represents the symbol of parameterized frequency value (default ‘f’).
+  *   **generator.frame** – List of callback functions that generates drawing for frame changes. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the pulse drawer. See `frame` for more details. No default generator is set.
 
-*   **generator.waveform** – List of callback functions that generates drawing for waveforms. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the pulse drawer. See `waveform` for more details. No default generator is set.
+  *   **generator.chart** – List of callback functions that generates drawing for charts. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the pulse drawer. See `chart` for more details. No default generator is set.
 
-*   **generator.frame** – List of callback functions that generates drawing for frame changes. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the pulse drawer. See `frame` for more details. No default generator is set.
+  *   **generator.snapshot** – List of callback functions that generates drawing for snapshots. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the pulse drawer. See `snapshot` for more details. No default generator is set.
 
-*   **generator.chart** – List of callback functions that generates drawing for charts. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the pulse drawer. See `chart` for more details. No default generator is set.
+  *   **generator.barrier** – List of callback functions that generates drawing for barriers. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the pulse drawer. See `barrier` for more details. No default generator is set.
 
-*   **generator.snapshot** – List of callback functions that generates drawing for snapshots. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the pulse drawer. See `snapshot` for more details. No default generator is set.
+  *   **layout.chart\_channel\_map** – Callback function that determines the relationship between pulse channels and charts. See `layout` for more details. No default layout is set.
 
-*   **generator.barrier** – List of callback functions that generates drawing for barriers. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the pulse drawer. See `barrier` for more details. No default generator is set.
+  *   **layout.time\_axis\_map** – Callback function that determines the layout of horizontal axis labels. See `layout` for more details. No default layout is set.
 
-*   **layout.chart\_channel\_map** – Callback function that determines the relationship between pulse channels and charts. See `layout` for more details. No default layout is set.
+  *   **layout.figure\_title** – Callback function that generates a string for the figure title. See `layout` for more details. No default layout is set.
 
-*   **layout.time\_axis\_map** – Callback function that determines the layout of horizontal axis labels. See `layout` for more details. No default layout is set.
+  **Examples**
 
-*   **layout.figure\_title** – Callback function that generates a string for the figure title. See `layout` for more details. No default layout is set.
+  To visualize a pulse program, you can call this function with set of control arguments. Most of appearance of the output image can be controlled by the stylesheet.
 
-**Examples**
+  Drawing with the default stylesheet.
 
-To visualize a pulse program, you can call this function with set of control arguments. Most of appearance of the output image can be controlled by the stylesheet.
+  ```python
+  from qiskit import QuantumCircuit, transpile, schedule
+  from qiskit.visualization.pulse_v2 import draw
+  from qiskit.providers.fake_provider import FakeBoeblingen
 
-Drawing with the default stylesheet.
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.measure_all()
+  qc = transpile(qc, FakeBoeblingen(), layout_method='trivial')
+  sched = schedule(qc, FakeBoeblingen())
 
-```python
-from qiskit import QuantumCircuit, transpile, schedule
-from qiskit.visualization.pulse_v2 import draw
-from qiskit.providers.fake_provider import FakeBoeblingen
+  draw(sched, backend=FakeBoeblingen())
+  ```
 
-qc = QuantumCircuit(2)
-qc.h(0)
-qc.cx(0, 1)
-qc.measure_all()
-qc = transpile(qc, FakeBoeblingen(), layout_method='trivial')
-sched = schedule(qc, FakeBoeblingen())
+  ![../\_images/qiskit-visualization-pulse\_drawer-1.png](/images/api/qiskit/0.44/qiskit-visualization-pulse_drawer-1.png)
 
-draw(sched, backend=FakeBoeblingen())
-```
+  Drawing with the stylesheet suited for publication.
 
-![../\_images/qiskit-visualization-pulse\_drawer-1.png](/images/api/qiskit/0.44/qiskit-visualization-pulse_drawer-1.png)
+  ```python
+  from qiskit import QuantumCircuit, transpile, schedule
+  from qiskit.visualization.pulse_v2 import draw, IQXSimple
+  from qiskit.providers.fake_provider import FakeBoeblingen
 
-Drawing with the stylesheet suited for publication.
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.measure_all()
+  qc = transpile(qc, FakeBoeblingen(), layout_method='trivial')
+  sched = schedule(qc, FakeBoeblingen())
 
-```python
-from qiskit import QuantumCircuit, transpile, schedule
-from qiskit.visualization.pulse_v2 import draw, IQXSimple
-from qiskit.providers.fake_provider import FakeBoeblingen
+  draw(sched, style=IQXSimple(), backend=FakeBoeblingen())
+  ```
 
-qc = QuantumCircuit(2)
-qc.h(0)
-qc.cx(0, 1)
-qc.measure_all()
-qc = transpile(qc, FakeBoeblingen(), layout_method='trivial')
-sched = schedule(qc, FakeBoeblingen())
+  ![../\_images/qiskit-visualization-pulse\_drawer-2.png](/images/api/qiskit/0.44/qiskit-visualization-pulse_drawer-2.png)
 
-draw(sched, style=IQXSimple(), backend=FakeBoeblingen())
-```
+  Drawing with the stylesheet suited for program debugging.
 
-![../\_images/qiskit-visualization-pulse\_drawer-2.png](/images/api/qiskit/0.44/qiskit-visualization-pulse_drawer-2.png)
+  ```python
+  from qiskit import QuantumCircuit, transpile, schedule
+  from qiskit.visualization.pulse_v2 import draw, IQXDebugging
+  from qiskit.providers.fake_provider import FakeBoeblingen
 
-Drawing with the stylesheet suited for program debugging.
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.measure_all()
+  qc = transpile(qc, FakeBoeblingen(), layout_method='trivial')
+  sched = schedule(qc, FakeBoeblingen())
 
-```python
-from qiskit import QuantumCircuit, transpile, schedule
-from qiskit.visualization.pulse_v2 import draw, IQXDebugging
-from qiskit.providers.fake_provider import FakeBoeblingen
+  draw(sched, style=IQXDebugging(), backend=FakeBoeblingen())
+  ```
 
-qc = QuantumCircuit(2)
-qc.h(0)
-qc.cx(0, 1)
-qc.measure_all()
-qc = transpile(qc, FakeBoeblingen(), layout_method='trivial')
-sched = schedule(qc, FakeBoeblingen())
+  ![../\_images/qiskit-visualization-pulse\_drawer-3.png](/images/api/qiskit/0.44/qiskit-visualization-pulse_drawer-3.png)
 
-draw(sched, style=IQXDebugging(), backend=FakeBoeblingen())
-```
+  You can partially customize a preset stylesheet when initializing it.
 
-![../\_images/qiskit-visualization-pulse\_drawer-3.png](/images/api/qiskit/0.44/qiskit-visualization-pulse_drawer-3.png)
+  ```python
+  my_style = {
+      'formatter.channel_scaling.drive': 5,
+      'formatter.channel_scaling.control': 1,
+      'formatter.channel_scaling.measure': 5
+  }
+  style = IQXStandard(**my_style)
+  # draw
+  draw(sched, style=style, backend=FakeBoeblingen())
+  ```
 
-You can partially customize a preset stylesheet when initializing it.
+  In the same way as above, you can create custom generator or layout functions and update the existing stylesheet with custom functions. This feature enables you to customize most of the appearance of the output image without modifying the codebase.
 
-```python
-my_style = {
-    'formatter.channel_scaling.drive': 5,
-    'formatter.channel_scaling.control': 1,
-    'formatter.channel_scaling.measure': 5
-}
-style = IQXStandard(**my_style)
-# draw
-draw(sched, style=style, backend=FakeBoeblingen())
-```
+  **Raises**
 
-In the same way as above, you can create custom generator or layout functions and update the existing stylesheet with custom functions. This feature enables you to customize most of the appearance of the output image without modifying the codebase.
-
-**Raises**
-
-*   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – When required visualization package is not installed.
-*   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When invalid plotter API or invalid time range is specified.
+  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – When required visualization package is not installed.
+  *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When invalid plotter API or invalid time range is specified.
+</Function>
 

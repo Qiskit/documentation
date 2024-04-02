@@ -8,72 +8,66 @@ python_api_name: qiskit.transpiler.passes.SetLayout
 
 # SetLayout
 
-<span id="qiskit.transpiler.passes.SetLayout" />
+<Class id="qiskit.transpiler.passes.SetLayout" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/layout/set_layout.py" signature="qiskit.transpiler.passes.SetLayout(*args, **kwargs)">
+  Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-`qiskit.transpiler.passes.SetLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/layout/set_layout.py "view source code")
+  Set the `layout` property to the given layout.
 
-Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+  This pass associates a physical qubit (int) to each virtual qubit of the circuit (Qubit) in increasing order.
 
-Set the `layout` property to the given layout.
+  SetLayout initializer.
 
-This pass associates a physical qubit (int) to each virtual qubit of the circuit (Qubit) in increasing order.
+  **Parameters**
 
-SetLayout initializer.
+  **layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout") *or List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) –
 
-**Parameters**
+  the layout to set. It can be:
 
-**layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout") *or List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) –
+  *   a `Layout` instance: sets that layout.
+  *   a list of integers: takes the index in the list as the physical position in which the virtual qubit is going to be mapped.
 
-the layout to set. It can be:
+  ## Attributes
 
-*   a `Layout` instance: sets that layout.
-*   a list of integers: takes the index in the list as the physical position in which the virtual qubit is going to be mapped.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.SetLayout.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.SetLayout.is_analysis_pass" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### is\_analysis\_pass
+  ### is\_transformation\_pass
 
-Check if the pass is an analysis pass.
+  <Attribute id="qiskit.transpiler.passes.SetLayout.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.SetLayout.is_transformation_pass" />
+  ## Methods
 
-### is\_transformation\_pass
+  ### name
 
-Check if the pass is a transformation pass.
+  <Function id="qiskit.transpiler.passes.SetLayout.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  ### run
 
-## Methods
+  <Function id="qiskit.transpiler.passes.SetLayout.run" name="run" signature="run(dag)">
+    Run the SetLayout pass on `dag`.
 
-### name
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.SetLayout.name" />
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to map.
 
-`name()`
+    **Returns**
 
-Return the name of the pass.
+    the original DAG.
 
-### run
+    **Return type**
 
-<span id="qiskit.transpiler.passes.SetLayout.run" />
-
-`run(dag)`
-
-Run the SetLayout pass on `dag`.
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to map.
-
-**Returns**
-
-the original DAG.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  </Function>
+</Class>
 
