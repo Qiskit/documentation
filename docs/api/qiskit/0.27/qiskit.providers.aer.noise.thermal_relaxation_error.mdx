@@ -8,34 +8,32 @@ python_api_name: qiskit.providers.aer.noise.thermal_relaxation_error
 
 # qiskit.providers.aer.noise.thermal\_relaxation\_error
 
-<span id="qiskit.providers.aer.noise.thermal_relaxation_error" />
+<Function id="qiskit.providers.aer.noise.thermal_relaxation_error" name="thermal_relaxation_error" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/noise/errors/standard_errors.py" signature="thermal_relaxation_error(t1, t2, time, excited_state_population=0)">
+  Return a single-qubit thermal relaxation quantum error channel.
 
-`thermal_relaxation_error(t1, t2, time, excited_state_population=0)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/noise/errors/standard_errors.py "view source code")
+  **Parameters**
 
-Return a single-qubit thermal relaxation quantum error channel.
+  *   **t1** (*double*) – the $T_1$ relaxation time constant.
+  *   **t2** (*double*) – the $T_2$ relaxation time constant.
+  *   **time** (*double*) – the gate time for relaxation error.
+  *   **excited\_state\_population** (*double*) – the population of $|1\rangle$ state at equilibrium (default: 0).
 
-**Parameters**
+  **Returns**
 
-*   **t1** (*double*) – the $T_1$ relaxation time constant.
-*   **t2** (*double*) – the $T_2$ relaxation time constant.
-*   **time** (*double*) – the gate time for relaxation error.
-*   **excited\_state\_population** (*double*) – the population of $|1\rangle$ state at equilibrium (default: 0).
+  a quantum error object for a noise model.
 
-**Returns**
+  **Return type**
 
-a quantum error object for a noise model.
+  [QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
-**Return type**
+  **Raises**
 
-[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+  **NoiseError** – If noise parameters are invalid.
 
-**Raises**
+  ## Additional information:
 
-**NoiseError** – If noise parameters are invalid.
-
-## Additional information:
-
-*   For parameters to be valid $T_1$ and $T_2$ must satisfy $T_2 \le 2 T_1$.
-*   If $T_2 \le T_1$ the error can be expressed as a mixed reset and unitary error channel.
-*   If $T_1 < T_2 \le 2 T_1$ the error must be expressed as a general non-unitary Kraus error channel.
+  *   For parameters to be valid $T_1$ and $T_2$ must satisfy $T_2 \le 2 T_1$.
+  *   If $T_2 \le T_1$ the error can be expressed as a mixed reset and unitary error channel.
+  *   If $T_1 < T_2 \le 2 T_1$ the error must be expressed as a general non-unitary Kraus error channel.
+</Function>
 

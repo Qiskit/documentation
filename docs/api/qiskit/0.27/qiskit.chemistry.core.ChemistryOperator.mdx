@@ -8,83 +8,73 @@ python_api_name: qiskit.chemistry.core.ChemistryOperator
 
 # qiskit.chemistry.core.ChemistryOperator
 
-<span id="qiskit.chemistry.core.ChemistryOperator" />
+<Class id="qiskit.chemistry.core.ChemistryOperator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/chemistry_operator.py" signature="ChemistryOperator">
+  Base class for ChemistryOperator.
 
-`ChemistryOperator` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/chemistry_operator.py "view source code")
+  ### \_\_init\_\_
 
-Base class for ChemistryOperator.
+  <Function id="qiskit.chemistry.core.ChemistryOperator.__init__" name="__init__" signature="abstract __init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.chemistry.core.ChemistryOperator.__init__" />
+  |                                                                                                                                                                                  |                                                                                                                     |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.core.ChemistryOperator.__init__ "qiskit.chemistry.core.ChemistryOperator.__init__")()                                                             | Initialize self.                                                                                                    |
+  | [`process_algorithm_result`](#qiskit.chemistry.core.ChemistryOperator.process_algorithm_result "qiskit.chemistry.core.ChemistryOperator.process_algorithm_result")(algo\_result) | Takes the algorithm result and processes it as required, e.g.                                                       |
+  | [`run`](#qiskit.chemistry.core.ChemistryOperator.run "qiskit.chemistry.core.ChemistryOperator.run")(qmolecule)                                                                   | Convert the qmolecule, according to the ChemistryOperator, into an Operator that can be given to a QuantumAlgorithm |
 
-`abstract __init__()`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |                                                                                                                                   |                       |
+  | --------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+  | `INFO_NUM_ORBITALS`                                                                                                               |                       |
+  | `INFO_NUM_PARTICLES`                                                                                                              |                       |
+  | `INFO_TWO_QUBIT_REDUCTION`                                                                                                        |                       |
+  | `INFO_Z2SYMMETRIES`                                                                                                               |                       |
+  | [`molecule_info`](#qiskit.chemistry.core.ChemistryOperator.molecule_info "qiskit.chemistry.core.ChemistryOperator.molecule_info") | returns molecule info |
 
-## Methods
+  ### molecule\_info
 
-|                                                                                                                                                                                  |                                                                                                                     |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.core.ChemistryOperator.__init__ "qiskit.chemistry.core.ChemistryOperator.__init__")()                                                             | Initialize self.                                                                                                    |
-| [`process_algorithm_result`](#qiskit.chemistry.core.ChemistryOperator.process_algorithm_result "qiskit.chemistry.core.ChemistryOperator.process_algorithm_result")(algo\_result) | Takes the algorithm result and processes it as required, e.g.                                                       |
-| [`run`](#qiskit.chemistry.core.ChemistryOperator.run "qiskit.chemistry.core.ChemistryOperator.run")(qmolecule)                                                                   | Convert the qmolecule, according to the ChemistryOperator, into an Operator that can be given to a QuantumAlgorithm |
+  <Function id="qiskit.chemistry.core.ChemistryOperator.molecule_info" name="molecule_info" signature="property molecule_info">
+    returns molecule info
+  </Function>
 
-## Attributes
+  ### process\_algorithm\_result
 
-|                                                                                                                                   |                       |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| `INFO_NUM_ORBITALS`                                                                                                               |                       |
-| `INFO_NUM_PARTICLES`                                                                                                              |                       |
-| `INFO_TWO_QUBIT_REDUCTION`                                                                                                        |                       |
-| `INFO_Z2SYMMETRIES`                                                                                                               |                       |
-| [`molecule_info`](#qiskit.chemistry.core.ChemistryOperator.molecule_info "qiskit.chemistry.core.ChemistryOperator.molecule_info") | returns molecule info |
+  <Function id="qiskit.chemistry.core.ChemistryOperator.process_algorithm_result" name="process_algorithm_result" signature="process_algorithm_result(algo_result)">
+    Takes the algorithm result and processes it as required, e.g. by combination of any parts that were classically computed, for the final result.
 
-### molecule\_info
+    **Parameters**
 
-<span id="qiskit.chemistry.core.ChemistryOperator.molecule_info" />
+    **algo\_result** (`Union`\[`dict`, `MinimumEigensolverResult`, `EigensolverResult`]) – Result from algorithm
 
-`property molecule_info`
+    **Return type**
 
-returns molecule info
+    `Union`\[`Tuple`\[`List`\[`str`], `dict`], `MolecularGroundStateResult`, `MolecularExcitedStatesResult`]
 
-### process\_algorithm\_result
+    **Returns**
 
-<span id="qiskit.chemistry.core.ChemistryOperator.process_algorithm_result" />
+    Final chemistry result computed from the algorithm result
+  </Function>
 
-`process_algorithm_result(algo_result)`
+  ### run
 
-Takes the algorithm result and processes it as required, e.g. by combination of any parts that were classically computed, for the final result.
+  <Function id="qiskit.chemistry.core.ChemistryOperator.run" name="run" signature="abstract run(qmolecule)">
+    Convert the qmolecule, according to the ChemistryOperator, into an Operator that can be given to a QuantumAlgorithm
 
-**Parameters**
+    **Parameters**
 
-**algo\_result** (`Union`\[`dict`, `MinimumEigensolverResult`, `EigensolverResult`]) – Result from algorithm
+    **qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – from a chemistry driver
 
-**Return type**
+    **Returns**
 
-`Union`\[`Tuple`\[`List`\[`str`], `dict`], `MolecularGroundStateResult`, `MolecularExcitedStatesResult`]
+    (qubit\_op, aux\_ops)
 
-**Returns**
+    **Return type**
 
-Final chemistry result computed from the algorithm result
-
-### run
-
-<span id="qiskit.chemistry.core.ChemistryOperator.run" />
-
-`abstract run(qmolecule)`
-
-Convert the qmolecule, according to the ChemistryOperator, into an Operator that can be given to a QuantumAlgorithm
-
-**Parameters**
-
-**qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – from a chemistry driver
-
-**Returns**
-
-(qubit\_op, aux\_ops)
-
-**Return type**
-
-Tuple
+    Tuple
+  </Function>
+</Class>
 

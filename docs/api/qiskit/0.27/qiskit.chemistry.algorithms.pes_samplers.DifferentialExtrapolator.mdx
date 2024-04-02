@@ -8,84 +8,76 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolat
 
 # qiskit.chemistry.algorithms.pes\_samplers.DifferentialExtrapolator
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator" />
+<Class id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py" signature="DifferentialExtrapolator(degree=1, model=None)">
+  An extrapolator based on treating each param set as a point in space, and fitting a Hamiltonian which evolves each point to the next. The user specifies the type of regression model to perform fitting, and a degree which adds derivatives to the values in the point vector; serving as features for the regression model. WARNING: Should only be used with window. Using no window includes points after the point being extrapolated in the data window.
 
-`DifferentialExtrapolator(degree=1, model=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+  Constructor.
 
-An extrapolator based on treating each param set as a point in space, and fitting a Hamiltonian which evolves each point to the next. The user specifies the type of regression model to perform fitting, and a degree which adds derivatives to the values in the point vector; serving as features for the regression model. WARNING: Should only be used with window. Using no window includes points after the point being extrapolated in the data window.
+  **Parameters**
 
-Constructor.
+  *   **model** (`Union`\[`LinearRegression`, `Ridge`, `RidgeCV`, `SGDRegressor`, `None`]) – Regression model (from sklearn) to be used for fitting variational parameters. Currently supports the following models: LinearRegression(), Ridge(), RidgeCV(), and SGDRegressor().
+  *   **degree** (`int`) – Specifies (degree -1) derivatives to be added as ‘features’ in regression model.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **model** (`Union`\[`LinearRegression`, `Ridge`, `RidgeCV`, `SGDRegressor`, `None`]) – Regression model (from sklearn) to be used for fitting variational parameters. Currently supports the following models: LinearRegression(), Ridge(), RidgeCV(), and SGDRegressor().
-*   **degree** (`int`) – Specifies (degree -1) derivatives to be added as ‘features’ in regression model.
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.__init__" name="__init__" signature="__init__(degree=1, model=None)">
+    Constructor.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.__init__" />
+    *   **model** (`Union`\[`LinearRegression`, `Ridge`, `RidgeCV`, `SGDRegressor`, `None`]) – Regression model (from sklearn) to be used for fitting variational parameters. Currently supports the following models: LinearRegression(), Ridge(), RidgeCV(), and SGDRegressor().
+    *   **degree** (`int`) – Specifies (degree -1) derivatives to be added as ‘features’ in regression model.
+  </Function>
 
-`__init__(degree=1, model=None)`
+  ## Methods
 
-Constructor.
+  |                                                                                                                                                                                                      |                                                                                   |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.__init__ "qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.__init__")(\[degree, model])             | Constructor.                                                                      |
+  | [`extrapolate`](#qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.extrapolate")(points, param\_dict) | Extrapolate at specified point of interest given a set of variational parameters. |
+  | [`factory`](#qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.factory")(mode, \*\*kwargs)                | Factory method for constructing extrapolators.                                    |
 
-**Parameters**
+  ### extrapolate
 
-*   **model** (`Union`\[`LinearRegression`, `Ridge`, `RidgeCV`, `SGDRegressor`, `None`]) – Regression model (from sklearn) to be used for fitting variational parameters. Currently supports the following models: LinearRegression(), Ridge(), RidgeCV(), and SGDRegressor().
-*   **degree** (`int`) – Specifies (degree -1) derivatives to be added as ‘features’ in regression model.
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.extrapolate" name="extrapolate" signature="extrapolate(points, param_dict)">
+    Extrapolate at specified point of interest given a set of variational parameters. Each parameter list and list of numerical gradients is treated as a single point in vector space. The regression model tries to fit a Hamiltonian that describes the evolution from one parameter set (and its gradient features) at point r, to another parameter set at point, r + epsilon. The regression model is then used to predict the parameter set at the point of interest. Note that this extrapolation technique does not explicitly use the spacing of the points (step size) but rather infers it from the list of parameter values.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                                                      |                                                                                   |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.__init__ "qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.__init__")(\[degree, model])             | Constructor.                                                                      |
-| [`extrapolate`](#qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.extrapolate")(points, param\_dict) | Extrapolate at specified point of interest given a set of variational parameters. |
-| [`factory`](#qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.factory")(mode, \*\*kwargs)                | Factory method for constructing extrapolators.                                    |
+    *   **points** (`List`\[`float`]) – List of point(s) to be used for extrapolation. Can represent some degree of freedom, ex, interatomic distance.
+    *   **param\_dict** (`Optional`\[`Dict`\[`float`, `List`\[`float`]]]) – Dictionary of variational parameters. Each key is the point
+    *   **the value is a list of the variational parameters.** (*and*) –
 
-### extrapolate
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.extrapolate" />
+    `Dict`\[`float`, `List`\[`float`]]
 
-`extrapolate(points, param_dict)`
+    **Returns**
 
-Extrapolate at specified point of interest given a set of variational parameters. Each parameter list and list of numerical gradients is treated as a single point in vector space. The regression model tries to fit a Hamiltonian that describes the evolution from one parameter set (and its gradient features) at point r, to another parameter set at point, r + epsilon. The regression model is then used to predict the parameter set at the point of interest. Note that this extrapolation technique does not explicitly use the spacing of the points (step size) but rather infers it from the list of parameter values.
+    Dictionary of variational parameters for extrapolated point(s).
+  </Function>
 
-**Parameters**
+  ### factory
 
-*   **points** (`List`\[`float`]) – List of point(s) to be used for extrapolation. Can represent some degree of freedom, ex, interatomic distance.
-*   **param\_dict** (`Optional`\[`Dict`\[`float`, `List`\[`float`]]]) – Dictionary of variational parameters. Each key is the point
-*   **the value is a list of the variational parameters.** (*and*) –
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.factory" name="factory" signature="static factory(mode, **kwargs)">
+    Factory method for constructing extrapolators.
 
-**Return type**
+    **Parameters**
 
-`Dict`\[`float`, `List`\[`float`]]
+    *   **mode** (`str`) – Extrapolator to instantiate. Can be one of: - ‘window’ - ‘poly’ - ‘diff\_model’ - ‘pca’ - ‘l1’
+    *   **kwargs** – arguments to be passed to the constructor of an extrapolator
 
-**Returns**
+    **Return type**
 
-Dictionary of variational parameters for extrapolated point(s).
+    `Extrapolator`
 
-### factory
+    **Returns**
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.factory" />
+    A newly created extrapolator instance.
 
-`static factory(mode, **kwargs)`
+    **Raises**
 
-Factory method for constructing extrapolators.
-
-**Parameters**
-
-*   **mode** (`str`) – Extrapolator to instantiate. Can be one of: - ‘window’ - ‘poly’ - ‘diff\_model’ - ‘pca’ - ‘l1’
-*   **kwargs** – arguments to be passed to the constructor of an extrapolator
-
-**Return type**
-
-`Extrapolator`
-
-**Returns**
-
-A newly created extrapolator instance.
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+  </Function>
+</Class>
 

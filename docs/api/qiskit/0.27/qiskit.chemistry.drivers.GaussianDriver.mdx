@@ -8,125 +8,111 @@ python_api_name: qiskit.chemistry.drivers.GaussianDriver
 
 # qiskit.chemistry.drivers.GaussianDriver
 
-<span id="qiskit.chemistry.drivers.GaussianDriver" />
+<Class id="qiskit.chemistry.drivers.GaussianDriver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussiandriver.py" signature="GaussianDriver(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)">
+  Qiskit chemistry driver using the Gaussian™ 16 program.
 
-`GaussianDriver(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussiandriver.py "view source code")
+  See [http://gaussian.com/gaussian16/](http://gaussian.com/gaussian16/)
 
-Qiskit chemistry driver using the Gaussian™ 16 program.
+  This driver uses the Gaussian open-source Gaussian 16 interfacing code in order to access integrals and other electronic structure information as computed by G16 for the given molecule. The job control file, as provided here for the molecular configuration, is augmented for our needs here such as to have it output a MatrixElement file.
 
-See [http://gaussian.com/gaussian16/](http://gaussian.com/gaussian16/)
+  **Parameters**
 
-This driver uses the Gaussian open-source Gaussian 16 interfacing code in order to access integrals and other electronic structure information as computed by G16 for the given molecule. The job control file, as provided here for the molecular configuration, is augmented for our needs here such as to have it output a MatrixElement file.
+  *   **config** (`Union`\[`str`, `List`\[`str`]]) – A molecular configuration conforming to Gaussian™ 16 format.
+  *   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the config parameter is ignored and the Molecule instance, along with basis and hf\_method is used to build a basic config instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
+  *   **basis** (`str`) – Basis set
+  *   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
 
-**Parameters**
+  **Raises**
 
-*   **config** (`Union`\[`str`, `List`\[`str`]]) – A molecular configuration conforming to Gaussian™ 16 format.
-*   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the config parameter is ignored and the Molecule instance, along with basis and hf\_method is used to build a basic config instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
-*   **basis** (`str`) – Basis set
-*   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
+  [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
-**Raises**
+  ### \_\_init\_\_
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+  <Function id="qiskit.chemistry.drivers.GaussianDriver.__init__" name="__init__" signature="__init__(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **config** (`Union`\[`str`, `List`\[`str`]]) – A molecular configuration conforming to Gaussian™ 16 format.
+    *   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the config parameter is ignored and the Molecule instance, along with basis and hf\_method is used to build a basic config instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
+    *   **basis** (`str`) – Basis set
+    *   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
 
-<span id="qiskit.chemistry.drivers.GaussianDriver.__init__" />
+    **Raises**
 
-`__init__(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`
+    [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **config** (`Union`\[`str`, `List`\[`str`]]) – A molecular configuration conforming to Gaussian™ 16 format.
-*   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the config parameter is ignored and the Molecule instance, along with basis and hf\_method is used to build a basic config instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
-*   **basis** (`str`) – Basis set
-*   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
+  |                                                                                                                                                            |                                                |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.drivers.GaussianDriver.__init__ "qiskit.chemistry.drivers.GaussianDriver.__init__")(\[config, molecule, basis, hf\_method]) | **type config**`Union`\[`str`, `List`\[`str`]] |
+  | [`run`](#qiskit.chemistry.drivers.GaussianDriver.run "qiskit.chemistry.drivers.GaussianDriver.run")()                                                      | Runs driver to produce a QMolecule output.     |
 
-**Raises**
+  ## Attributes
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+  |                                                                                                                                               |                                                 |
+  | --------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+  | [`basis`](#qiskit.chemistry.drivers.GaussianDriver.basis "qiskit.chemistry.drivers.GaussianDriver.basis")                                     | return basis                                    |
+  | [`hf_method`](#qiskit.chemistry.drivers.GaussianDriver.hf_method "qiskit.chemistry.drivers.GaussianDriver.hf_method")                         | return Hartree-Fock method                      |
+  | [`molecule`](#qiskit.chemistry.drivers.GaussianDriver.molecule "qiskit.chemistry.drivers.GaussianDriver.molecule")                            | return molecule                                 |
+  | [`supports_molecule`](#qiskit.chemistry.drivers.GaussianDriver.supports_molecule "qiskit.chemistry.drivers.GaussianDriver.supports_molecule") | True for derived classes that support Molecule. |
 
-## Methods
+  ### basis
 
-|                                                                                                                                                            |                                                |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.drivers.GaussianDriver.__init__ "qiskit.chemistry.drivers.GaussianDriver.__init__")(\[config, molecule, basis, hf\_method]) | **type config**`Union`\[`str`, `List`\[`str`]] |
-| [`run`](#qiskit.chemistry.drivers.GaussianDriver.run "qiskit.chemistry.drivers.GaussianDriver.run")()                                                      | Runs driver to produce a QMolecule output.     |
+  <Function id="qiskit.chemistry.drivers.GaussianDriver.basis" name="basis" signature="property basis">
+    return basis
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                               |                                                 |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`basis`](#qiskit.chemistry.drivers.GaussianDriver.basis "qiskit.chemistry.drivers.GaussianDriver.basis")                                     | return basis                                    |
-| [`hf_method`](#qiskit.chemistry.drivers.GaussianDriver.hf_method "qiskit.chemistry.drivers.GaussianDriver.hf_method")                         | return Hartree-Fock method                      |
-| [`molecule`](#qiskit.chemistry.drivers.GaussianDriver.molecule "qiskit.chemistry.drivers.GaussianDriver.molecule")                            | return molecule                                 |
-| [`supports_molecule`](#qiskit.chemistry.drivers.GaussianDriver.supports_molecule "qiskit.chemistry.drivers.GaussianDriver.supports_molecule") | True for derived classes that support Molecule. |
+    `str`
+  </Function>
 
-### basis
+  ### hf\_method
 
-<span id="qiskit.chemistry.drivers.GaussianDriver.basis" />
+  <Function id="qiskit.chemistry.drivers.GaussianDriver.hf_method" name="hf_method" signature="property hf_method">
+    return Hartree-Fock method
 
-`property basis`
+    **Return type**
 
-return basis
+    `str`
+  </Function>
 
-**Return type**
+  ### molecule
 
-`str`
+  <Function id="qiskit.chemistry.drivers.GaussianDriver.molecule" name="molecule" signature="property molecule">
+    return molecule
 
-### hf\_method
+    **Return type**
 
-<span id="qiskit.chemistry.drivers.GaussianDriver.hf_method" />
+    `Optional`\[`Molecule`]
+  </Function>
 
-`property hf_method`
+  ### run
 
-return Hartree-Fock method
+  <Function id="qiskit.chemistry.drivers.GaussianDriver.run" name="run" signature="run()">
+    Runs driver to produce a QMolecule output.
 
-**Return type**
+    **Return type**
 
-`str`
+    `QMolecule`
 
-### molecule
+    **Returns**
 
-<span id="qiskit.chemistry.drivers.GaussianDriver.molecule" />
+    A QMolecule containing the molecular data.
+  </Function>
 
-`property molecule`
+  ### supports\_molecule
 
-return molecule
+  <Function id="qiskit.chemistry.drivers.GaussianDriver.supports_molecule" name="supports_molecule" signature="property supports_molecule">
+    True for derived classes that support Molecule.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`Molecule`]
+    `bool`
 
-### run
+    **Returns**
 
-<span id="qiskit.chemistry.drivers.GaussianDriver.run" />
-
-`run()`
-
-Runs driver to produce a QMolecule output.
-
-**Return type**
-
-`QMolecule`
-
-**Returns**
-
-A QMolecule containing the molecular data.
-
-### supports\_molecule
-
-<span id="qiskit.chemistry.drivers.GaussianDriver.supports_molecule" />
-
-`property supports_molecule`
-
-True for derived classes that support Molecule.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if Molecule is supported.
+    True if Molecule is supported.
+  </Function>
+</Class>
 
