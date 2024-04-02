@@ -8,175 +8,167 @@ python_api_name: qiskit.ignis.characterization.BaseGateFitter
 
 # BaseGateFitter
 
-<span id="qiskit.ignis.characterization.BaseGateFitter" />
+<Class id="qiskit.ignis.characterization.BaseGateFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/fitters.py" signature="BaseGateFitter(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0')">
+  Bases: `qiskit.ignis.characterization.fitters.BaseFitter`
 
-`BaseGateFitter(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/fitters.py "view source code")
+  Base class for fitters of gate errors
 
-Bases: `qiskit.ignis.characterization.fitters.BaseFitter`
+  See BaseFitter \_\_init\_\_
 
-Base class for fitters of gate errors
+  ## Methods
 
-See BaseFitter \_\_init\_\_
+  ### add\_data
 
-## Methods
+  <Function id="qiskit.ignis.characterization.BaseGateFitter.add_data" name="add_data" signature="BaseGateFitter.add_data(results, recalc=True, refit=True)">
+    Add new execution results to previous execution results
 
-### add\_data
+    **Parameters**
 
-<span id="qiskit.ignis.characterization.BaseGateFitter.add_data" />
+    *   **results** (`Union`\[`Result`, `List`\[`Result`]]) – new execution results
+    *   **recalc** (`bool`) – whether tp recalculate the data
+    *   **refit** (`bool`) – whether to refit the data
+  </Function>
 
-`BaseGateFitter.add_data(results, recalc=True, refit=True)`
+  ### fit\_data
 
-Add new execution results to previous execution results
+  <Function id="qiskit.ignis.characterization.BaseGateFitter.fit_data" name="fit_data" signature="BaseGateFitter.fit_data(qid=- 1, p0=None, bounds=None, series=None)">
+    Fit the curve.
 
-**Parameters**
+    Compute self.\_params and self.\_params\_err
 
-*   **results** (`Union`\[`Result`, `List`\[`Result`]]) – new execution results
-*   **recalc** (`bool`) – whether tp recalculate the data
-*   **refit** (`bool`) – whether to refit the data
+    **Parameters**
 
-### fit\_data
+    *   **qid** (`int`) – qubit for fitting. If -1 fit for all the qubits
+    *   **p0** (`Optional`\[`List`\[`float`]]) – initial guess, equivalent to p0 in scipy.optimize
+    *   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
+    *   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
+  </Function>
 
-<span id="qiskit.ignis.characterization.BaseGateFitter.fit_data" />
+  ### plot
 
-`BaseGateFitter.fit_data(qid=- 1, p0=None, bounds=None, series=None)`
+  <Function id="qiskit.ignis.characterization.BaseGateFitter.plot" name="plot" signature="BaseGateFitter.plot(qind, series='0', ax=None, show_plot=True)">
+    Plot err data.
 
-Fit the curve.
+    **Parameters**
 
-Compute self.\_params and self.\_params\_err
+    *   **qind** (*int*) – qubit index to plot
+    *   **series** (*str*) – the series to plot
+    *   **ax** (*Axes*) – plot axes
+    *   **show\_plot** (*bool*) – call plt.show()
 
-**Parameters**
+    **Returns**
 
-*   **qid** (`int`) – qubit for fitting. If -1 fit for all the qubits
-*   **p0** (`Optional`\[`List`\[`float`]]) – initial guess, equivalent to p0 in scipy.optimize
-*   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
-*   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
+    The axes object
 
-### plot
+    **Return type**
 
-<span id="qiskit.ignis.characterization.BaseGateFitter.plot" />
+    Axes
 
-`BaseGateFitter.plot(qind, series='0', ax=None, show_plot=True)`
+    **Raises**
 
-Plot err data.
+    **ImportError** – if matplotlib is not installed
+  </Function>
 
-**Parameters**
+  ## Attributes
 
-*   **qind** (*int*) – qubit index to plot
-*   **series** (*str*) – the series to plot
-*   **ax** (*Axes*) – plot axes
-*   **show\_plot** (*bool*) – call plt.show()
+  ### backend\_result
 
-**Returns**
+  <Attribute id="qiskit.ignis.characterization.BaseGateFitter.backend_result" name="backend_result">
+    Return the execution results
 
-The axes object
+    **Return type**
 
-**Return type**
+    `Union`\[`Result`, `List`\[`Result`]]
+  </Attribute>
 
-Axes
+  ### description
 
-**Raises**
+  <Attribute id="qiskit.ignis.characterization.BaseGateFitter.description" name="description">
+    Return the fitter’s purpose, e.g. ‘T1’
 
-**ImportError** – if matplotlib is not installed
+    **Return type**
 
-## Attributes
+    `str`
+  </Attribute>
 
-<span id="qiskit.ignis.characterization.BaseGateFitter.backend_result" />
+  ### fit\_fun
 
-### backend\_result
+  <Attribute id="qiskit.ignis.characterization.BaseGateFitter.fit_fun" name="fit_fun">
+    Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 
-Return the execution results
+    **Return type**
 
-**Return type**
+    `Callable`
+  </Attribute>
 
-`Union`\[`Result`, `List`\[`Result`]]
+  ### measured\_qubits
 
-<span id="qiskit.ignis.characterization.BaseGateFitter.description" />
+  <Attribute id="qiskit.ignis.characterization.BaseGateFitter.measured_qubits" name="measured_qubits">
+    Return the indices of the qubits to be characterized
 
-### description
+    **Return type**
 
-Return the fitter’s purpose, e.g. ‘T1’
+    `List`\[`int`]
+  </Attribute>
 
-**Return type**
+  ### params
 
-`str`
+  <Attribute id="qiskit.ignis.characterization.BaseGateFitter.params" name="params">
+    Return the fit function parameters that were calculated by curve\_fit
 
-<span id="qiskit.ignis.characterization.BaseGateFitter.fit_fun" />
+    **Return type**
 
-### fit\_fun
+    `List`\[`float`]
+  </Attribute>
 
-Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
+  ### params\_err
 
-**Return type**
+  <Attribute id="qiskit.ignis.characterization.BaseGateFitter.params_err" name="params_err">
+    Return the error of the fit function parameters
 
-`Callable`
+    **Return type**
 
-<span id="qiskit.ignis.characterization.BaseGateFitter.measured_qubits" />
+    `List`\[`float`]
+  </Attribute>
 
-### measured\_qubits
+  ### series
 
-Return the indices of the qubits to be characterized
+  <Attribute id="qiskit.ignis.characterization.BaseGateFitter.series" name="series">
+    Return the list of series for the data
 
-**Return type**
+    **Return type**
 
-`List`\[`int`]
+    `Optional`\[`List`\[`str`]]
+  </Attribute>
 
-<span id="qiskit.ignis.characterization.BaseGateFitter.params" />
+  ### xdata
 
-### params
+  <Attribute id="qiskit.ignis.characterization.BaseGateFitter.xdata" name="xdata">
+    Return the data points on the x-axis, the independenet parameter which is fit against
 
-Return the fit function parameters that were calculated by curve\_fit
+    **Return type**
 
-**Return type**
+    `Union`\[`List`\[`float`], `array`]
+  </Attribute>
 
-`List`\[`float`]
+  ### ydata
 
-<span id="qiskit.ignis.characterization.BaseGateFitter.params_err" />
+  <Attribute id="qiskit.ignis.characterization.BaseGateFitter.ydata" name="ydata">
+    Return the data points on the y-axis
 
-### params\_err
+    The data points are returning in the form of a list of dictionaries:
 
-Return the error of the fit function parameters
+    > *   **ydata\[i]\[‘mean’] is a list, where item**
+    >
+    >     no. j is the probability of success of qubit i for a circuit that lasts xdata\[j].
+    >
+    > *   **ydata\[i]\[‘std’] is a list, where ydata\[‘std’]\[j] is the**
+    >
+    >     standard deviation of the success of qubit i.
 
-**Return type**
+    **Return type**
 
-`List`\[`float`]
-
-<span id="qiskit.ignis.characterization.BaseGateFitter.series" />
-
-### series
-
-Return the list of series for the data
-
-**Return type**
-
-`Optional`\[`List`\[`str`]]
-
-<span id="qiskit.ignis.characterization.BaseGateFitter.xdata" />
-
-### xdata
-
-Return the data points on the x-axis, the independenet parameter which is fit against
-
-**Return type**
-
-`Union`\[`List`\[`float`], `array`]
-
-<span id="qiskit.ignis.characterization.BaseGateFitter.ydata" />
-
-### ydata
-
-Return the data points on the y-axis
-
-The data points are returning in the form of a list of dictionaries:
-
-> *   **ydata\[i]\[‘mean’] is a list, where item**
->
->     no. j is the probability of success of qubit i for a circuit that lasts xdata\[j].
->
-> *   **ydata\[i]\[‘std’] is a list, where ydata\[‘std’]\[j] is the**
->
->     standard deviation of the success of qubit i.
-
-**Return type**
-
-`List`\[`Dict`]
+    `List`\[`Dict`]
+  </Attribute>
+</Class>
 

@@ -8,37 +8,33 @@ python_api_name: qiskit.providers.ibmq.runtime.UserMessenger
 
 # UserMessenger
 
-<span id="qiskit.providers.ibmq.runtime.UserMessenger" />
+<Class id="qiskit.providers.ibmq.runtime.UserMessenger" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/runtime/program/user_messenger.py" signature="UserMessenger">
+  Bases: `object`
 
-`UserMessenger` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/runtime/program/user_messenger.py "view source code")
+  Base class for handling communication with program users.
 
-Bases: `object`
+  This class can be used when writing a new Qiskit Runtime program.
 
-Base class for handling communication with program users.
+  ## Methods
 
-This class can be used when writing a new Qiskit Runtime program.
+  ### publish
 
-## Methods
+  <Function id="qiskit.providers.ibmq.runtime.UserMessenger.publish" name="publish" signature="UserMessenger.publish(message, encoder=<class 'qiskit.providers.ibmq.runtime.utils.RuntimeEncoder'>, final=False)">
+    Publish message.
 
-### publish
+    You can use this method to publish messages, such as interim and final results, to the program user. The messages will be made immediately available to the user, but they may choose not to receive the messages.
 
-<span id="qiskit.providers.ibmq.runtime.UserMessenger.publish" />
+    The final parameter is used to indicate whether the message is the final result of the program. Final results may be processed differently from interim results.
 
-`UserMessenger.publish(message, encoder=<class 'qiskit.providers.ibmq.runtime.utils.RuntimeEncoder'>, final=False)`
+    **Parameters**
 
-Publish message.
+    *   **message** (`Any`) – Message to be published. Can be any type.
+    *   **encoder** (`Type`\[`JSONEncoder`]) – An optional JSON encoder for serializing
+    *   **final** (`bool`) – Whether the message being published is the final result.
 
-You can use this method to publish messages, such as interim and final results, to the program user. The messages will be made immediately available to the user, but they may choose not to receive the messages.
+    **Return type**
 
-The final parameter is used to indicate whether the message is the final result of the program. Final results may be processed differently from interim results.
-
-**Parameters**
-
-*   **message** (`Any`) – Message to be published. Can be any type.
-*   **encoder** (`Type`\[`JSONEncoder`]) – An optional JSON encoder for serializing
-*   **final** (`bool`) – Whether the message being published is the final result.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

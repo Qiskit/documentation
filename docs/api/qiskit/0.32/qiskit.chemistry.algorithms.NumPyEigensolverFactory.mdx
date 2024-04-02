@@ -8,72 +8,68 @@ python_api_name: qiskit.chemistry.algorithms.NumPyEigensolverFactory
 
 # NumPyEigensolverFactory
 
-<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory" />
+<Class id="qiskit.chemistry.algorithms.NumPyEigensolverFactory" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/numpy_eigensolver_factory.py" signature="NumPyEigensolverFactory(filter_criterion=None, k=100, use_default_filter_criterion=False)">
+  Bases: `qiskit.chemistry.algorithms.excited_states_solvers.eigensolver_factories.eigensolver_factory.EigensolverFactory`
 
-`NumPyEigensolverFactory(filter_criterion=None, k=100, use_default_filter_criterion=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/numpy_eigensolver_factory.py "view source code")
+  A factory to construct a NumPyEigensolver.
 
-Bases: `qiskit.chemistry.algorithms.excited_states_solvers.eigensolver_factories.eigensolver_factory.EigensolverFactory`
+  **Parameters**
 
-A factory to construct a NumPyEigensolver.
+  *   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
+  *   **use\_default\_filter\_criterion** (`bool`) – Whether to use default filter criteria or not
+  *   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
+  *   **use\_default\_filter\_criterion** – whether to use the transformation’s default filter criterion if `filter_criterion` is `None`.
 
-**Parameters**
+  ## Methods
 
-*   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
-*   **use\_default\_filter\_criterion** (`bool`) – Whether to use default filter criteria or not
-*   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
-*   **use\_default\_filter\_criterion** – whether to use the transformation’s default filter criterion if `filter_criterion` is `None`.
+  ### get\_solver
 
-## Methods
+  <Function id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver" name="get_solver" signature="NumPyEigensolverFactory.get_solver(transformation)">
+    Returns a NumPyEigensolver with the desired filter
 
-### get\_solver
+    **Parameters**
 
-<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver" />
+    **transformation** (`Transformation`) – a fermionic/bosonic qubit operator transformation.
 
-`NumPyEigensolverFactory.get_solver(transformation)`
+    **Return type**
 
-Returns a NumPyEigensolver with the desired filter
+    `Eigensolver`
 
-**Parameters**
+    **Returns**
 
-**transformation** (`Transformation`) – a fermionic/bosonic qubit operator transformation.
+    A NumPyEigensolver suitable to compute the ground state of the molecule transformed by `transformation`.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`Eigensolver`
+  ### filter\_criterion
 
-**Returns**
+  <Attribute id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.filter_criterion" name="filter_criterion">
+    returns filter criterion
 
-A NumPyEigensolver suitable to compute the ground state of the molecule transformed by `transformation`.
+    **Return type**
 
-## Attributes
+    `Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]
+  </Attribute>
 
-<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.filter_criterion" />
+  ### k
 
-### filter\_criterion
+  <Attribute id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.k" name="k">
+    returns k (number of eigenvalues requested)
 
-returns filter criterion
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]
+  ### use\_default\_filter\_criterion
 
-<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.k" />
+  <Attribute id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.use_default_filter_criterion" name="use_default_filter_criterion">
+    returns whether to use the default filter criterion
 
-### k
+    **Return type**
 
-returns k (number of eigenvalues requested)
-
-**Return type**
-
-`int`
-
-<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.use_default_filter_criterion" />
-
-### use\_default\_filter\_criterion
-
-returns whether to use the default filter criterion
-
-**Return type**
-
-`bool`
+    `bool`
+  </Attribute>
+</Class>
 
