@@ -8,23 +8,21 @@ python_api_name: qiskit.synthesis.synth_permutation_basic
 
 # qiskit.synthesis.synth\_permutation\_basic
 
-<span id="qiskit.synthesis.synth_permutation_basic" />
+<Function id="qiskit.synthesis.synth_permutation_basic" name="synth_permutation_basic" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/permutation/permutation_full.py" signature="synth_permutation_basic(pattern)">
+  Synthesize a permutation circuit for a fully-connected architecture using sorting.
 
-`synth_permutation_basic(pattern)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/permutation/permutation_full.py "view source code")
+  More precisely, if the input permutation is a cycle of length `m`, then this creates a quantum circuit with `m-1` SWAPs (and of depth `m-1`); if the input permutation consists of several disjoint cycles, then each cycle is essentially treated independently.
 
-Synthesize a permutation circuit for a fully-connected architecture using sorting.
+  **Parameters**
 
-More precisely, if the input permutation is a cycle of length `m`, then this creates a quantum circuit with `m-1` SWAPs (and of depth `m-1`); if the input permutation consists of several disjoint cycles, then each cycle is essentially treated independently.
+  **pattern** (*Union\[list\[int], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
 
-**Parameters**
+  **Returns**
 
-**pattern** (*Union\[list\[int], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
+  the synthesized quantum circuit.
 
-**Returns**
+  **Return type**
 
-the synthesized quantum circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+</Function>
 

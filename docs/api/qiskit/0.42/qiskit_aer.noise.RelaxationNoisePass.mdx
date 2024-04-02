@@ -8,69 +8,63 @@ python_api_name: qiskit_aer.noise.RelaxationNoisePass
 
 # RelaxationNoisePass
 
-<span id="qiskit_aer.noise.RelaxationNoisePass" />
+<Class id="qiskit_aer.noise.RelaxationNoisePass" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/passes/relaxation_noise_pass.py" signature="RelaxationNoisePass(t1s, t2s, dt=None, op_types=None, excited_state_populations=None)">
+  Bases: [`qiskit_aer.noise.passes.local_noise_pass.LocalNoisePass`](qiskit_aer.noise.LocalNoisePass "qiskit_aer.noise.passes.local_noise_pass.LocalNoisePass")
 
-`RelaxationNoisePass(t1s, t2s, dt=None, op_types=None, excited_state_populations=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/passes/relaxation_noise_pass.py "view source code")
+  Add duration dependent thermal relaxation noise after instructions.
 
-Bases: [`qiskit_aer.noise.passes.local_noise_pass.LocalNoisePass`](qiskit_aer.noise.LocalNoisePass "qiskit_aer.noise.passes.local_noise_pass.LocalNoisePass")
+  Initialize RelaxationNoisePass.
 
-Add duration dependent thermal relaxation noise after instructions.
+  **Parameters**
 
-Initialize RelaxationNoisePass.
+  *   **t1s** (`List`\[`float`]) – List of T1 times in seconds for each qubit.
+  *   **t2s** (`List`\[`float`]) – List of T2 times in seconds for each qubit.
+  *   **dt** (`Optional`\[`float`]) – Backend sample time (resolution) in seconds. This is required for converting dt-unit op durations to times in scheduled circuits.
+  *   **op\_types** (`Union`\[`type`, `Sequence`\[`type`], `None`]) – Optional, the operation types to add relaxation to. If None relaxation will be added to all operations.
+  *   **excited\_state\_populations** (`Optional`\[`List`\[`float`]]) – Optional, list of excited state populations for each qubit at thermal equilibrium. If not supplied or obtained from the backend this will be set to 0 for each qubit.
 
-**Parameters**
+  ## Methods
 
-*   **t1s** (`List`\[`float`]) – List of T1 times in seconds for each qubit.
-*   **t2s** (`List`\[`float`]) – List of T2 times in seconds for each qubit.
-*   **dt** (`Optional`\[`float`]) – Backend sample time (resolution) in seconds. This is required for converting dt-unit op durations to times in scheduled circuits.
-*   **op\_types** (`Union`\[`type`, `Sequence`\[`type`], `None`]) – Optional, the operation types to add relaxation to. If None relaxation will be added to all operations.
-*   **excited\_state\_populations** (`Optional`\[`List`\[`float`]]) – Optional, list of excited state populations for each qubit at thermal equilibrium. If not supplied or obtained from the backend this will be set to 0 for each qubit.
+  ### name
 
-## Methods
+  <Function id="qiskit_aer.noise.RelaxationNoisePass.name" name="name" signature="RelaxationNoisePass.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit_aer.noise.RelaxationNoisePass.name" />
+  <Function id="qiskit_aer.noise.RelaxationNoisePass.run" name="run" signature="RelaxationNoisePass.run(dag)">
+    Run the LocalNoisePass pass on dag. :type dag: [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit") :param dag: DAG to be changed.
 
-`RelaxationNoisePass.name()`
+    **Return type**
 
-Return the name of the pass.
+    [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
 
-### run
+    **Returns**
 
-<span id="qiskit_aer.noise.RelaxationNoisePass.run" />
+    A changed DAG.
 
-`RelaxationNoisePass.run(dag)`
+    **Raises**
 
-Run the LocalNoisePass pass on dag. :type dag: [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit") :param dag: DAG to be changed.
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if generated operation is not valid.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+  ### is\_analysis\_pass
 
-**Returns**
+  <Attribute id="qiskit_aer.noise.RelaxationNoisePass.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-A changed DAG.
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-**Raises**
+  ### is\_transformation\_pass
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if generated operation is not valid.
+  <Attribute id="qiskit_aer.noise.RelaxationNoisePass.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-## Attributes
-
-<span id="qiskit_aer.noise.RelaxationNoisePass.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit_aer.noise.RelaxationNoisePass.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

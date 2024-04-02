@@ -8,89 +8,83 @@ python_api_name: qiskit.opflow.gradients.Hessian
 
 # Hessian
 
-<span id="qiskit.opflow.gradients.Hessian" />
+<Class id="qiskit.opflow.gradients.Hessian" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/gradients/hessian.py" signature="Hessian(hess_method='param_shift', **kwargs)">
+  Bases: [`qiskit.opflow.gradients.hessian_base.HessianBase`](qiskit.opflow.gradients.HessianBase "qiskit.opflow.gradients.hessian_base.HessianBase")
 
-`Hessian(hess_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/gradients/hessian.py "view source code")
+  Compute the Hessian of an expected value.
 
-Bases: [`qiskit.opflow.gradients.hessian_base.HessianBase`](qiskit.opflow.gradients.HessianBase "qiskit.opflow.gradients.hessian_base.HessianBase")
+  **Parameters**
 
-Compute the Hessian of an expected value.
+  *   **hess\_method** (`Union`\[`str`, [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
+  *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
 
-**Parameters**
+  **Raises**
 
-*   **hess\_method** (`Union`\[`str`, [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
-*   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
+  **ValueError** – If method != `fin_diff` and `epsilon` is not None.
 
-**Raises**
+  ## Methods Defined Here
 
-**ValueError** – If method != `fin_diff` and `epsilon` is not None.
+  ### convert
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.gradients.Hessian.convert" name="convert" signature="Hessian.convert(operator, params=None)">
+    **Parameters**
 
-### convert
+    *   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator for which we compute the Hessian
+    *   **params** (`Union`\[`Tuple`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `List`\[`Tuple`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]], `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), `None`]) – The parameters we are computing the Hessian with respect to Either give directly the tuples/list of tuples for which the second order derivative is to be computed or give a list of parameters to build the full Hessian for those parameters. If not explicitly passed, the full Hessian is constructed. The parameters are then inferred from the operator and sorted by name.
 
-<span id="qiskit.opflow.gradients.Hessian.convert" />
+    **Returns**
 
-`Hessian.convert(operator, params=None)`
+    An operator whose evaluation yields the Hessian
 
-**Parameters**
+    **Return type**
 
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator for which we compute the Hessian
-*   **params** (`Union`\[`Tuple`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `List`\[`Tuple`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]], `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), `None`]) – The parameters we are computing the Hessian with respect to Either give directly the tuples/list of tuples for which the second order derivative is to be computed or give a list of parameters to build the full Hessian for those parameters. If not explicitly passed, the full Hessian is constructed. The parameters are then inferred from the operator and sorted by name.
+    [OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")
+  </Function>
 
-**Returns**
+  ### get\_hessian
 
-An operator whose evaluation yields the Hessian
+  <Function id="qiskit.opflow.gradients.Hessian.get_hessian" name="get_hessian" signature="Hessian.get_hessian(operator, params=None)">
+    Get the Hessian for the given operator w\.r.t. the given parameters
 
-**Return type**
+    **Parameters**
 
-[OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")
+    *   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Operator w\.r.t. which we take the Hessian.
+    *   **params** (`Union`\[`Tuple`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `List`\[`Tuple`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]], `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), `None`]) – Parameters w\.r.t. which we compute the Hessian. If not explicitly passed, the full Hessian is constructed. The parameters are then inferred from the operator and sorted by name.
 
-### get\_hessian
+    **Return type**
 
-<span id="qiskit.opflow.gradients.Hessian.get_hessian" />
+    [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 
-`Hessian.get_hessian(operator, params=None)`
+    **Returns**
 
-Get the Hessian for the given operator w\.r.t. the given parameters
+    Operator which represents the gradient w\.r.t. the given params.
 
-**Parameters**
+    **Raises**
 
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Operator w\.r.t. which we take the Hessian.
-*   **params** (`Union`\[`Tuple`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `List`\[`Tuple`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]], `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), `None`]) – Parameters w\.r.t. which we compute the Hessian. If not explicitly passed, the full Hessian is constructed. The parameters are then inferred from the operator and sorted by name.
+    *   **ValueError** – If `params` contains a parameter not present in `operator`.
+    *   **ValueError** – If `operator` is not parameterized.
+    *   [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the coefficient of the operator could not be reduced to 1.
+    *   [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the differentiation of a combo\_fn requires JAX but the package is not installed.
+    *   **TypeError** – If the operator does not include a StateFn given by a quantum circuit
+    *   **TypeError** – If the parameters were given in an unsupported format.
+    *   **Exception** – Unintended code is reached
+    *   **MissingOptionalLibraryError** – jax not installed
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  ### hess\_method
 
-**Returns**
+  <Attribute id="qiskit.opflow.gradients.Hessian.hess_method" name="hess_method">
+    Returns `CircuitGradient`.
 
-Operator which represents the gradient w\.r.t. the given params.
+    **Return type**
 
-**Raises**
+    [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")
 
-*   **ValueError** – If `params` contains a parameter not present in `operator`.
-*   **ValueError** – If `operator` is not parameterized.
-*   [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the coefficient of the operator could not be reduced to 1.
-*   [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the differentiation of a combo\_fn requires JAX but the package is not installed.
-*   **TypeError** – If the operator does not include a StateFn given by a quantum circuit
-*   **TypeError** – If the parameters were given in an unsupported format.
-*   **Exception** – Unintended code is reached
-*   **MissingOptionalLibraryError** – jax not installed
+    **Returns**
 
-## Attributes
-
-<span id="qiskit.opflow.gradients.Hessian.hess_method" />
-
-### hess\_method
-
-Returns `CircuitGradient`.
-
-**Return type**
-
-[`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")
-
-**Returns**
-
-`CircuitGradient`.
+    `CircuitGradient`.
+  </Attribute>
+</Class>
 

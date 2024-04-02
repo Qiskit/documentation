@@ -8,269 +8,251 @@ python_api_name: qiskit.pulse.instructions.RelativeBarrier
 
 # RelativeBarrier
 
-<span id="qiskit.pulse.instructions.RelativeBarrier" />
+<Class id="qiskit.pulse.instructions.RelativeBarrier" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/instructions/directives.py" signature="RelativeBarrier(*channels, name=None)">
+  Bases: `qiskit.pulse.instructions.directives.Directive`
 
-`RelativeBarrier(*channels, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/instructions/directives.py "view source code")
+  Pulse `RelativeBarrier` directive.
 
-Bases: `qiskit.pulse.instructions.directives.Directive`
+  Create a relative barrier directive.
 
-Pulse `RelativeBarrier` directive.
+  The barrier directive blocks instructions within the same schedule as the barrier on channels contained within this barrier from moving through the barrier in time.
 
-Create a relative barrier directive.
+  **Parameters**
 
-The barrier directive blocks instructions within the same schedule as the barrier on channels contained within this barrier from moving through the barrier in time.
+  *   **channels** ([`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – The channel that the barrier applies to.
+  *   **name** (`Optional`\[`str`]) – Name of the directive for display purposes.
 
-**Parameters**
+  ## Methods
 
-*   **channels** ([`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – The channel that the barrier applies to.
-*   **name** (`Optional`\[`str`]) – Name of the directive for display purposes.
+  ### append
 
-## Methods
+  <Function id="qiskit.pulse.instructions.RelativeBarrier.append" name="append" signature="RelativeBarrier.append(schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
-### append
+    **Parameters**
 
-<span id="qiskit.pulse.instructions.RelativeBarrier.append" />
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-`RelativeBarrier.append(schedule, name=None)`
+    **Returns**
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+    A new schedule with `schedule` a this instruction at t=0.
 
-**Parameters**
+    **Return type**
 
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-**Returns**
+  ### ch\_duration
 
-A new schedule with `schedule` a this instruction at t=0.
+  <Function id="qiskit.pulse.instructions.RelativeBarrier.ch_duration" name="ch_duration" signature="RelativeBarrier.ch_duration(*channels)">
+    Return duration of the supplied channels in this Instruction.
 
-**Return type**
+    **Parameters**
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+    **\*channels** – Supplied channels
 
-### ch\_duration
+    **Return type**
 
-<span id="qiskit.pulse.instructions.RelativeBarrier.ch_duration" />
+    `int`
+  </Function>
 
-`RelativeBarrier.ch_duration(*channels)`
+  ### ch\_start\_time
 
-Return duration of the supplied channels in this Instruction.
+  <Function id="qiskit.pulse.instructions.RelativeBarrier.ch_start_time" name="ch_start_time" signature="RelativeBarrier.ch_start_time(*channels)">
+    Return minimum start time for supplied channels.
 
-**Parameters**
+    **Parameters**
 
-**\*channels** – Supplied channels
+    **\*channels** – Supplied channels
 
-**Return type**
+    **Return type**
 
-`int`
+    `int`
+  </Function>
 
-### ch\_start\_time
+  ### ch\_stop\_time
 
-<span id="qiskit.pulse.instructions.RelativeBarrier.ch_start_time" />
+  <Function id="qiskit.pulse.instructions.RelativeBarrier.ch_stop_time" name="ch_stop_time" signature="RelativeBarrier.ch_stop_time(*channels)">
+    Return maximum start time for supplied channels.
 
-`RelativeBarrier.ch_start_time(*channels)`
+    **Parameters**
 
-Return minimum start time for supplied channels.
+    **\*channels** – Supplied channels
 
-**Parameters**
+    **Return type**
 
-**\*channels** – Supplied channels
+    `int`
+  </Function>
 
-**Return type**
+  ### draw
 
-`int`
+  <Function id="qiskit.pulse.instructions.RelativeBarrier.draw" name="draw" signature="RelativeBarrier.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)">
+    Plot the instruction.
 
-### ch\_stop\_time
+    **Parameters**
 
-<span id="qiskit.pulse.instructions.RelativeBarrier.ch_stop_time" />
+    *   **dt** (`float`) – Time interval of samples
+    *   **style** (*Optional\[SchedStyle]*) – A style sheet to configure plot appearance
+    *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
+    *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
+    *   **scale** (`float`) – Relative visual scaling of waveform amplitudes
+    *   **plot\_all** (`bool`) – Plot empty channels
+    *   **plot\_range** (`Optional`\[`Tuple`\[`float`]]) – A tuple of time range to plot
+    *   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
+    *   **table** (`bool`) – Draw event table for supported instructions
+    *   **label** (`bool`) – Label individual instructions
+    *   **framechange** (`bool`) – Add framechange indicators
+    *   **channels** (`Optional`\[`List`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
 
-`RelativeBarrier.ch_stop_time(*channels)`
+    **Returns**
 
-Return maximum start time for supplied channels.
+    A matplotlib figure object of the pulse schedule
 
-**Parameters**
+    **Return type**
 
-**\*channels** – Supplied channels
+    matplotlib.figure
+  </Function>
 
-**Return type**
+  ### insert
 
-`int`
+  <Function id="qiskit.pulse.instructions.RelativeBarrier.insert" name="insert" signature="RelativeBarrier.insert(start_time, schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
-### draw
+    **Parameters**
 
-<span id="qiskit.pulse.instructions.RelativeBarrier.draw" />
+    *   **start\_time** (`int`) – Time to insert the schedule schedule
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-`RelativeBarrier.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
+    **Returns**
 
-Plot the instruction.
+    A new schedule with `schedule` inserted with this instruction at t=0.
 
-**Parameters**
+    **Return type**
 
-*   **dt** (`float`) – Time interval of samples
-*   **style** (*Optional\[SchedStyle]*) – A style sheet to configure plot appearance
-*   **filename** (`Optional`\[`str`]) – Name required to save pulse image
-*   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
-*   **scale** (`float`) – Relative visual scaling of waveform amplitudes
-*   **plot\_all** (`bool`) – Plot empty channels
-*   **plot\_range** (`Optional`\[`Tuple`\[`float`]]) – A tuple of time range to plot
-*   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
-*   **table** (`bool`) – Draw event table for supported instructions
-*   **label** (`bool`) – Label individual instructions
-*   **framechange** (`bool`) – Add framechange indicators
-*   **channels** (`Optional`\[`List`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-**Returns**
+  ### is\_parameterized
 
-A matplotlib figure object of the pulse schedule
+  <Function id="qiskit.pulse.instructions.RelativeBarrier.is_parameterized" name="is_parameterized" signature="RelativeBarrier.is_parameterized()">
+    Return True iff the instruction is parameterized.
 
-**Return type**
+    **Return type**
 
-matplotlib.figure
+    `bool`
+  </Function>
 
-### insert
+  ### shift
 
-<span id="qiskit.pulse.instructions.RelativeBarrier.insert" />
+  <Function id="qiskit.pulse.instructions.RelativeBarrier.shift" name="shift" signature="RelativeBarrier.shift(time, name=None)">
+    Return a new schedule shifted forward by time.
 
-`RelativeBarrier.insert(start_time, schedule, name=None)`
+    **Parameters**
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
+    *   **time** (`int`) – Time to shift by
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-**Parameters**
+    **Returns**
 
-*   **start\_time** (`int`) – Time to insert the schedule schedule
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
+    The shifted schedule.
 
-**Returns**
+    **Return type**
 
-A new schedule with `schedule` inserted with this instruction at t=0.
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  ### channels
 
-### is\_parameterized
+  <Attribute id="qiskit.pulse.instructions.RelativeBarrier.channels" name="channels">
+    Returns the channels that this schedule uses.
 
-<span id="qiskit.pulse.instructions.RelativeBarrier.is_parameterized" />
+    **Return type**
 
-`RelativeBarrier.is_parameterized()`
+    `Tuple`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+  </Attribute>
 
-Return True iff the instruction is parameterized.
+  ### duration
 
-**Return type**
+  <Attribute id="qiskit.pulse.instructions.RelativeBarrier.duration" name="duration">
+    Duration of this instruction.
 
-`bool`
+    **Return type**
 
-### shift
+    `int`
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.RelativeBarrier.shift" />
+  ### id
 
-`RelativeBarrier.shift(time, name=None)`
+  <Attribute id="qiskit.pulse.instructions.RelativeBarrier.id" name="id">
+    Unique identifier for this instruction.
 
-Return a new schedule shifted forward by time.
+    **Return type**
 
-**Parameters**
+    `int`
+  </Attribute>
 
-*   **time** (`int`) – Time to shift by
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
+  ### instructions
 
-**Returns**
+  <Attribute id="qiskit.pulse.instructions.RelativeBarrier.instructions" name="instructions">
+    Iterable for getting instructions from Schedule tree.
 
-The shifted schedule.
+    **Return type**
 
-**Return type**
+    `Tuple`\[`Tuple`\[`int`, [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]
+  </Attribute>
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  ### name
 
-## Attributes
+  <Attribute id="qiskit.pulse.instructions.RelativeBarrier.name" name="name">
+    Name of this instruction.
 
-<span id="qiskit.pulse.instructions.RelativeBarrier.channels" />
+    **Return type**
 
-### channels
+    `str`
+  </Attribute>
 
-Returns the channels that this schedule uses.
+  ### operands
 
-**Return type**
+  <Attribute id="qiskit.pulse.instructions.RelativeBarrier.operands" name="operands">
+    Return instruction operands.
 
-`Tuple`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+    **Return type**
 
-<span id="qiskit.pulse.instructions.RelativeBarrier.duration" />
+    `Tuple`
+  </Attribute>
 
-### duration
+  ### parameters
 
-Duration of this instruction.
+  <Attribute id="qiskit.pulse.instructions.RelativeBarrier.parameters" name="parameters">
+    Parameters which determine the instruction behavior.
 
-**Return type**
+    **Return type**
 
-`int`
+    `Set`
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.RelativeBarrier.id" />
+  ### start\_time
 
-### id
+  <Attribute id="qiskit.pulse.instructions.RelativeBarrier.start_time" name="start_time">
+    Relative begin time of this instruction.
 
-Unique identifier for this instruction.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`int`
+  ### stop\_time
 
-<span id="qiskit.pulse.instructions.RelativeBarrier.instructions" />
+  <Attribute id="qiskit.pulse.instructions.RelativeBarrier.stop_time" name="stop_time">
+    Relative end time of this instruction.
 
-### instructions
+    **Return type**
 
-Iterable for getting instructions from Schedule tree.
-
-**Return type**
-
-`Tuple`\[`Tuple`\[`int`, [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]
-
-<span id="qiskit.pulse.instructions.RelativeBarrier.name" />
-
-### name
-
-Name of this instruction.
-
-**Return type**
-
-`str`
-
-<span id="qiskit.pulse.instructions.RelativeBarrier.operands" />
-
-### operands
-
-Return instruction operands.
-
-**Return type**
-
-`Tuple`
-
-<span id="qiskit.pulse.instructions.RelativeBarrier.parameters" />
-
-### parameters
-
-Parameters which determine the instruction behavior.
-
-**Return type**
-
-`Set`
-
-<span id="qiskit.pulse.instructions.RelativeBarrier.start_time" />
-
-### start\_time
-
-Relative begin time of this instruction.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.pulse.instructions.RelativeBarrier.stop_time" />
-
-### stop\_time
-
-Relative end time of this instruction.
-
-**Return type**
-
-`int`
+    `int`
+  </Attribute>
+</Class>
 
