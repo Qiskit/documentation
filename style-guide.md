@@ -1,4 +1,4 @@
-# Documentation guidelines
+# Technical documentation writing guidelines
 
 Technical documentation avoids conversational language because it must be translatable, accessible, and understood by a variety of audiences. Effective technical writing is direct, bland, and bossy! (And that's ok!)
 
