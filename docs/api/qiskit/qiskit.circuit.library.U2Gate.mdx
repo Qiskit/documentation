@@ -8,192 +8,188 @@ python_api_name: qiskit.circuit.library.U2Gate
 
 # U2Gate
 
-<span id="qiskit.circuit.library.U2Gate" />
+<Class id="qiskit.circuit.library.U2Gate" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/u2.py" signature="qiskit.circuit.library.U2Gate(phi, lam, label=None, *, duration=None, unit='dt')">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`qiskit.circuit.library.U2Gate(phi, lam, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/u2.py "view source code")
+  Single-qubit rotation about the X+Z axis.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  Implemented using one X90 pulse on IBM Quantum systems:
 
-Single-qubit rotation about the X+Z axis.
+  <Admonition title="Warning" type="caution">
+    This gate is deprecated. Instead, the following replacements should be used
 
-Implemented using one X90 pulse on IBM Quantum systems:
+    $$
+    U2(\phi, \lambda) = U\left(\frac{\pi}{2}, \phi, \lambda\right)
+    $$
 
-<Admonition title="Warning" type="caution">
-  This gate is deprecated. Instead, the following replacements should be used
+    ```python
+    circuit = QuantumCircuit(1)
+    circuit.u(pi/2, phi, lambda)
+    ```
+  </Admonition>
 
-  $$
-  U2(\phi, \lambda) = U\left(\frac{\pi}{2}, \phi, \lambda\right)
-  $$
+  **Circuit symbol:**
 
   ```python
-  circuit = QuantumCircuit(1)
-  circuit.u(pi/2, phi, lambda)
+       ┌─────────┐
+  q_0: ┤ U2(φ,λ) ├
+       └─────────┘
   ```
-</Admonition>
 
-**Circuit symbol:**
+  **Matrix Representation:**
 
-```python
-     ┌─────────┐
-q_0: ┤ U2(φ,λ) ├
-     └─────────┘
-```
+  $$
+  U2(\phi, \lambda) = \frac{1}{\sqrt{2}}
+      \begin{pmatrix}
+          1          & -e^{i\lambda} \\
+          e^{i\phi} & e^{i(\phi+\lambda)}
+      \end{pmatrix}
+  $$
 
-**Matrix Representation:**
+  **Examples:**
 
-$$
-U2(\phi, \lambda) = \frac{1}{\sqrt{2}}
-    \begin{pmatrix}
-        1          & -e^{i\lambda} \\
-        e^{i\phi} & e^{i(\phi+\lambda)}
-    \end{pmatrix}
-$$
+  $$
+  U2(\phi,\lambda) = e^{i \frac{\phi + \lambda}{2}}RZ(\phi)
+  RY\left(\frac{\pi}{2}\right) RZ(\lambda)
+  = e^{- i\frac{\pi}{4}} P\left(\frac{\pi}{2} + \phi\right)
+  \sqrt{X} P\left(\lambda- \frac{\pi}{2}\right)
+  $$
 
-**Examples:**
+  $$
+  U2(0, \pi) = H
+  $$
 
-$$
-U2(\phi,\lambda) = e^{i \frac{\phi + \lambda}{2}}RZ(\phi)
-RY\left(\frac{\pi}{2}\right) RZ(\lambda)
-= e^{- i\frac{\pi}{4}} P\left(\frac{\pi}{2} + \phi\right)
-\sqrt{X} P\left(\lambda- \frac{\pi}{2}\right)
-$$
+  $$
+  U2(0, 0) = RY(\pi/2)
+  $$
 
-$$
-U2(0, \pi) = H
-$$
+  $$
+  U2(-\pi/2, \pi/2) = RX(\pi/2)
+  $$
 
-$$
-U2(0, 0) = RY(\pi/2)
-$$
+  <Admonition title="See also" type="note">
+    `U3Gate`: U3 is a generalization of U2 that covers all single-qubit rotations, using two X90 pulses.
+  </Admonition>
 
-$$
-U2(-\pi/2, \pi/2) = RX(\pi/2)
-$$
+  Create new U2 gate.
 
-<Admonition title="See also" type="note">
-  `U3Gate`: U3 is a generalization of U2 that covers all single-qubit rotations, using two X90 pulses.
-</Admonition>
+  ## Attributes
 
-Create new U2 gate.
+  ### base\_class
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.U2Gate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-<span id="qiskit.circuit.library.U2Gate.base_class" />
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.U2Gate.base_class "qiskit.circuit.library.U2Gate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-### base\_class
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.U2Gate.base_class "qiskit.circuit.library.U2Gate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### condition
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.library.U2Gate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition\_bits
 
-<span id="qiskit.circuit.library.U2Gate.condition" />
+  <Attribute id="qiskit.circuit.library.U2Gate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### condition
+  ### decompositions
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.U2Gate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.U2Gate.condition_bits" />
+  ### definition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.U2Gate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get Clbits in condition.
+  ### duration
 
-<span id="qiskit.circuit.library.U2Gate.decompositions" />
+  <Attribute id="qiskit.circuit.library.U2Gate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.U2Gate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.library.U2Gate.definition" />
+  ### mutable
 
-### definition
+  <Attribute id="qiskit.circuit.library.U2Gate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-Return definition in terms of other basic gates.
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-<span id="qiskit.circuit.library.U2Gate.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.circuit.library.U2Gate.name" name="name">
+    Return the name.
+  </Attribute>
 
-Get the duration.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.U2Gate.label" />
+  <Attribute id="qiskit.circuit.library.U2Gate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### label
+  ### num\_qubits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.U2Gate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.U2Gate.mutable" />
+  ### params
 
-### mutable
+  <Attribute id="qiskit.circuit.library.U2Gate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### unit
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.library.U2Gate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.U2Gate.name" />
+  ## Methods
 
-### name
+  ### inverse
 
-Return the name.
+  <Function id="qiskit.circuit.library.U2Gate.inverse" name="inverse" signature="inverse(annotated=False)">
+    Return inverted U2 gate.
 
-<span id="qiskit.circuit.library.U2Gate.num_clbits" />
+    $U2(\phi, \lambda)^{\dagger} =U2(-\lambda-\pi, -\phi+\pi))$
 
-### num\_clbits
+    **Parameters**
 
-Return the number of clbits.
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`U2Gate`](#qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate") with inverse parameter values.
 
-<span id="qiskit.circuit.library.U2Gate.num_qubits" />
+    **Returns**
 
-### num\_qubits
+    inverse gate.
 
-Return the number of qubits.
+    **Return type**
 
-<span id="qiskit.circuit.library.U2Gate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.U2Gate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### inverse
-
-<span id="qiskit.circuit.library.U2Gate.inverse" />
-
-`inverse(annotated=False)`
-
-Return inverted U2 gate.
-
-$U2(\phi, \lambda)^{\dagger} =U2(-\lambda-\pi, -\phi+\pi))$
-
-**Parameters**
-
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`U2Gate`](#qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate") with inverse parameter values.
-
-**Returns**
-
-inverse gate.
-
-**Return type**
-
-[U2Gate](#qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate")
+    [U2Gate](#qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate")
+  </Function>
+</Class>
 

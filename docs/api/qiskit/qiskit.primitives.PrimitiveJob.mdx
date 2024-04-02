@@ -8,109 +8,91 @@ python_api_name: qiskit.primitives.PrimitiveJob
 
 # PrimitiveJob
 
-<span id="qiskit.primitives.PrimitiveJob" />
+<Class id="qiskit.primitives.PrimitiveJob" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/primitive_job.py" signature="qiskit.primitives.PrimitiveJob(function, *args, **kwargs)">
+  Bases: [`BasePrimitiveJob`](qiskit.primitives.BasePrimitiveJob "qiskit.primitives.base.base_primitive_job.BasePrimitiveJob")\[`ResultT`, [`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")]
 
-`qiskit.primitives.PrimitiveJob(function, *args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/primitive_job.py "view source code")
+  Primitive job class for the reference implementations of Primitives.
 
-Bases: [`BasePrimitiveJob`](qiskit.primitives.BasePrimitiveJob "qiskit.primitives.base.base_primitive_job.BasePrimitiveJob")\[`ResultT`, [`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")]
+  **Parameters**
 
-Primitive job class for the reference implementations of Primitives.
+  **function** – A callable function to execute the job.
 
-**Parameters**
+  ## Methods
 
-**function** – A callable function to execute the job.
+  ### cancel
 
-## Methods
+  <Function id="qiskit.primitives.PrimitiveJob.cancel" name="cancel" signature="cancel()">
+    Attempt to cancel the job.
+  </Function>
 
-### cancel
+  ### cancelled
 
-<span id="qiskit.primitives.PrimitiveJob.cancel" />
+  <Function id="qiskit.primitives.PrimitiveJob.cancelled" name="cancelled" signature="cancelled()">
+    Return whether the job has been cancelled.
 
-`cancel()`
+    **Return type**
 
-Attempt to cancel the job.
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-### cancelled
+  ### done
 
-<span id="qiskit.primitives.PrimitiveJob.cancelled" />
+  <Function id="qiskit.primitives.PrimitiveJob.done" name="done" signature="done()">
+    Return whether the job has successfully run.
 
-`cancelled()`
+    **Return type**
 
-Return whether the job has been cancelled.
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-**Return type**
+  ### in\_final\_state
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  <Function id="qiskit.primitives.PrimitiveJob.in_final_state" name="in_final_state" signature="in_final_state()">
+    Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
-### done
+    **Return type**
 
-<span id="qiskit.primitives.PrimitiveJob.done" />
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-`done()`
+  ### job\_id
 
-Return whether the job has successfully run.
+  <Function id="qiskit.primitives.PrimitiveJob.job_id" name="job_id" signature="job_id()">
+    Return a unique id identifying the job.
 
-**Return type**
+    **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-### in\_final\_state
+  ### result
 
-<span id="qiskit.primitives.PrimitiveJob.in_final_state" />
+  <Function id="qiskit.primitives.PrimitiveJob.result" name="result" signature="result()">
+    Return the results of the job.
 
-`in_final_state()`
+    **Return type**
 
-Return whether the job is in a final job state such as `DONE` or `ERROR`.
+    *ResultT*
+  </Function>
 
-**Return type**
+  ### running
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  <Function id="qiskit.primitives.PrimitiveJob.running" name="running" signature="running()">
+    Return whether the job is actively running.
 
-### job\_id
+    **Return type**
 
-<span id="qiskit.primitives.PrimitiveJob.job_id" />
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-`job_id()`
+  ### status
 
-Return a unique id identifying the job.
+  <Function id="qiskit.primitives.PrimitiveJob.status" name="status" signature="status()">
+    Return the status of the job.
 
-**Return type**
+    **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
-
-### result
-
-<span id="qiskit.primitives.PrimitiveJob.result" />
-
-`result()`
-
-Return the results of the job.
-
-**Return type**
-
-*ResultT*
-
-### running
-
-<span id="qiskit.primitives.PrimitiveJob.running" />
-
-`running()`
-
-Return whether the job is actively running.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
-
-### status
-
-<span id="qiskit.primitives.PrimitiveJob.status" />
-
-`status()`
-
-Return the status of the job.
-
-**Return type**
-
-[*JobStatus*](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")
+    [*JobStatus*](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")
+  </Function>
+</Class>
 
