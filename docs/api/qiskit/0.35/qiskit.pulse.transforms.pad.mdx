@@ -8,24 +8,22 @@ python_api_name: qiskit.pulse.transforms.pad
 
 # qiskit.pulse.transforms.pad
 
-<span id="qiskit.pulse.transforms.pad" />
+<Function id="qiskit.pulse.transforms.pad" name="pad" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/canonicalization.py" signature="pad(schedule, channels=None, until=None, inplace=False)">
+  Pad the input Schedule with `Delay``s on all unoccupied timeslots until ``schedule.duration` or `until` if not `None`.
 
-`pad(schedule, channels=None, until=None, inplace=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/canonicalization.py "view source code")
+  **Parameters**
 
-Pad the input Schedule with `Delay``s on all unoccupied timeslots until ``schedule.duration` or `until` if not `None`.
+  *   **schedule** (`Schedule`) – Schedule to pad.
+  *   **channels** (`Optional`\[`Iterable`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – Channels to pad. Defaults to all channels in `schedule` if not provided. If the supplied channel is not a member of `schedule` it will be added.
+  *   **until** (`Optional`\[`int`]) – Time to pad until. Defaults to `schedule.duration` if not provided.
+  *   **inplace** (`bool`) – Pad this schedule by mutating rather than returning a new schedule.
 
-**Parameters**
+  **Return type**
 
-*   **schedule** (`Schedule`) – Schedule to pad.
-*   **channels** (`Optional`\[`Iterable`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – Channels to pad. Defaults to all channels in `schedule` if not provided. If the supplied channel is not a member of `schedule` it will be added.
-*   **until** (`Optional`\[`int`]) – Time to pad until. Defaults to `schedule.duration` if not provided.
-*   **inplace** (`bool`) – Pad this schedule by mutating rather than returning a new schedule.
+  `Schedule`
 
-**Return type**
+  **Returns**
 
-`Schedule`
-
-**Returns**
-
-The padded schedule.
+  The padded schedule.
+</Function>
 

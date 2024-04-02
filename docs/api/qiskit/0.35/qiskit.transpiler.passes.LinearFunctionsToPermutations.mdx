@@ -8,55 +8,49 @@ python_api_name: qiskit.transpiler.passes.LinearFunctionsToPermutations
 
 # LinearFunctionsToPermutations
 
-<span id="qiskit.transpiler.passes.LinearFunctionsToPermutations" />
+<Class id="qiskit.transpiler.passes.LinearFunctionsToPermutations" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py" signature="LinearFunctionsToPermutations(*args, **kwargs)">
+  Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
-`LinearFunctionsToPermutations(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
+  Promotes linear functions to permutations when possible.
 
-Bases: `qiskit.transpiler.basepasses.TransformationPass`
+  ## Methods
 
-Promotes linear functions to permutations when possible.
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.LinearFunctionsToPermutations.name" name="name" signature="LinearFunctionsToPermutations.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.LinearFunctionsToPermutations.name" />
+  <Function id="qiskit.transpiler.passes.LinearFunctionsToPermutations.run" name="run" signature="LinearFunctionsToPermutations.run(dag)">
+    Run the LinearFunctionsToPermutations pass on dag. :type dag: `DAGCircuit` :param dag: input dag.
 
-`LinearFunctionsToPermutations.name()`
+    **Return type**
 
-Return the name of the pass.
+    `DAGCircuit`
 
-### run
+    **Returns**
 
-<span id="qiskit.transpiler.passes.LinearFunctionsToPermutations.run" />
+    Output dag with LinearFunctions synthesized.
+  </Function>
 
-`LinearFunctionsToPermutations.run(dag)`
+  ## Attributes
 
-Run the LinearFunctionsToPermutations pass on dag. :type dag: `DAGCircuit` :param dag: input dag.
+  ### is\_analysis\_pass
 
-**Return type**
+  <Attribute id="qiskit.transpiler.passes.LinearFunctionsToPermutations.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-`DAGCircuit`
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-**Returns**
+  ### is\_transformation\_pass
 
-Output dag with LinearFunctions synthesized.
+  <Attribute id="qiskit.transpiler.passes.LinearFunctionsToPermutations.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-## Attributes
-
-<span id="qiskit.transpiler.passes.LinearFunctionsToPermutations.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.LinearFunctionsToPermutations.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

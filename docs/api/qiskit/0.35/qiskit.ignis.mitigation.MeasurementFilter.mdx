@@ -8,78 +8,74 @@ python_api_name: qiskit.ignis.mitigation.MeasurementFilter
 
 # MeasurementFilter
 
-<span id="qiskit.ignis.mitigation.MeasurementFilter" />
+<Class id="qiskit.ignis.mitigation.MeasurementFilter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/measurement/filters.py" signature="MeasurementFilter(cal_matrix, state_labels)">
+  Bases: `object`
 
-`MeasurementFilter(cal_matrix, state_labels)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/measurement/filters.py "view source code")
+  Measurement error mitigation filter.
 
-Bases: `object`
+  Produced from a measurement calibration fitter and can be applied to data.
 
-Measurement error mitigation filter.
+  Initialize a measurement error mitigation filter using the cal\_matrix from a measurement calibration fitter.
 
-Produced from a measurement calibration fitter and can be applied to data.
+  **Parameters**
 
-Initialize a measurement error mitigation filter using the cal\_matrix from a measurement calibration fitter.
+  *   **cal\_matrix** (`matrix`) – the calibration matrix for applying the correction
+  *   **state\_labels** (`list`) – the states for the ordering of the cal matrix
 
-**Parameters**
+  ## Methods
 
-*   **cal\_matrix** (`matrix`) – the calibration matrix for applying the correction
-*   **state\_labels** (`list`) – the states for the ordering of the cal matrix
+  ### apply
 
-## Methods
+  <Function id="qiskit.ignis.mitigation.MeasurementFilter.apply" name="apply" signature="MeasurementFilter.apply(raw_data, method='least_squares')">
+    Apply the calibration matrix to results.
 
-### apply
+    **Parameters**
 
-<span id="qiskit.ignis.mitigation.MeasurementFilter.apply" />
+    *   **raw\_data** (*dict or list*) –
 
-`MeasurementFilter.apply(raw_data, method='least_squares')`
+        The data to be corrected. Can be in a number of forms:
 
-Apply the calibration matrix to results.
+        Form 1: a counts dictionary from results.get\_counts
 
-**Parameters**
+        Form 2: a list of counts of length==len(state\_labels)
 
-*   **raw\_data** (*dict or list*) –
+        Form 3: a list of counts of length==M\*len(state\_labels) where M is an integer (e.g. for use with the tomography data)
 
-    The data to be corrected. Can be in a number of forms:
+        Form 4: a qiskit Result
 
-    Form 1: a counts dictionary from results.get\_counts
+    *   **method** (*str*) –
 
-    Form 2: a list of counts of length==len(state\_labels)
+        fitting method. If None, then least\_squares is used.
 
-    Form 3: a list of counts of length==M\*len(state\_labels) where M is an integer (e.g. for use with the tomography data)
+        `pseudo_inverse`: direct inversion of the A matrix
 
-    Form 4: a qiskit Result
+        `least_squares`: constrained to have physical probabilities
 
-*   **method** (*str*) –
+    **Returns**
 
-    fitting method. If None, then least\_squares is used.
+    The corrected data in the same form as raw\_data
 
-    `pseudo_inverse`: direct inversion of the A matrix
+    **Return type**
 
-    `least_squares`: constrained to have physical probabilities
+    dict or list
 
-**Returns**
+    **Raises**
 
-The corrected data in the same form as raw\_data
+    **QiskitError** – if raw\_data is not an integer multiple of the number of calibrated states.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-dict or list
+  ### cal\_matrix
 
-**Raises**
+  <Attribute id="qiskit.ignis.mitigation.MeasurementFilter.cal_matrix" name="cal_matrix">
+    Return cal\_matrix.
+  </Attribute>
 
-**QiskitError** – if raw\_data is not an integer multiple of the number of calibrated states.
+  ### state\_labels
 
-## Attributes
-
-<span id="qiskit.ignis.mitigation.MeasurementFilter.cal_matrix" />
-
-### cal\_matrix
-
-Return cal\_matrix.
-
-<span id="qiskit.ignis.mitigation.MeasurementFilter.state_labels" />
-
-### state\_labels
-
-return the state label ordering of the cal matrix
+  <Attribute id="qiskit.ignis.mitigation.MeasurementFilter.state_labels" name="state_labels">
+    return the state label ordering of the cal matrix
+  </Attribute>
+</Class>
 
