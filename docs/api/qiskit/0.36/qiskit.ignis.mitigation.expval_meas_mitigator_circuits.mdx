@@ -8,96 +8,94 @@ python_api_name: qiskit.ignis.mitigation.expval_meas_mitigator_circuits
 
 # qiskit.ignis.mitigation.expval\_meas\_mitigator\_circuits
 
-<span id="qiskit.ignis.mitigation.expval_meas_mitigator_circuits" />
+<Function id="qiskit.ignis.mitigation.expval_meas_mitigator_circuits" name="expval_meas_mitigator_circuits" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/circuits.py" signature="expval_meas_mitigator_circuits(num_qubits, method='CTMP', labels=None)">
+  Generate measurement error mitigator circuits and metadata.
 
-`expval_meas_mitigator_circuits(num_qubits, method='CTMP', labels=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/circuits.py "view source code")
+  Use the [`ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter") class to fit the execution results to construct a calibrated expectation value measurement error mitigator.
 
-Generate measurement error mitigator circuits and metadata.
+  **Parameters**
 
-Use the [`ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter") class to fit the execution results to construct a calibrated expectation value measurement error mitigator.
+  *   **num\_qubits** (`int`) – the number of qubits to calibrate.
+  *   **method** (`Optional`\[`str`]) – the mitigation method `'complete'`, `'tensored'`, or `'CTMP'`.
+  *   **labels** (`Optional`\[`List`\[`str`]]) – Optional, custom labels to run for calibration. If None the method will determine the default label values.
 
-**Parameters**
+  **Returns**
 
-*   **num\_qubits** (`int`) – the number of qubits to calibrate.
-*   **method** (`Optional`\[`str`]) – the mitigation method `'complete'`, `'tensored'`, or `'CTMP'`.
-*   **labels** (`Optional`\[`List`\[`str`]]) – Optional, custom labels to run for calibration. If None the method will determine the default label values.
+  **(circuits, metadata) the measurement error characterization**
 
-**Returns**
+  circuits, and metadata for the fitter.
 
-**(circuits, metadata) the measurement error characterization**
+  **Return type**
 
-circuits, and metadata for the fitter.
+  tuple
 
-**Return type**
+  ## Mitigation Method:
 
-tuple
+  *   The `'complete'` method will generate all $2^n$ computational basis states measurement circuits and fitting will return a [`CompleteExpvalMeasMitigator`](qiskit.ignis.mitigation.CompleteExpvalMeasMitigator "qiskit.ignis.mitigation.CompleteExpvalMeasMitigator"). This method should only be used for small numbers of qubits.
+  *   The `'tensored'` method will generate two input state circuits of the all 0 and all 1 states on number of qubits unless custom labels are specified. Ftting will return a [`TensoredExpvalMeasMitigator`](qiskit.ignis.mitigation.TensoredExpvalMeasMitigator "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator"). This method assumes measurement errors are uncorrelated between qubits.
+  *   The `'CTMP'` method will generate input state circuits, unless custom labels are specified. The default input states must obey the following cirterion: for every pair of qubits, projection of the input states on the two qubits contains all four possible assignments to the qubits (00, 01, 10, 11). For n\<7, these would be the all 1 state and the $n$ states with a single qubit in the 1 state and all others in the 0 state (also the all 0 state, if n\<3). For n>=7, these would be the all 0 state, the all 1 state, and 2\*ceil(log2(n)) states resulting from the following procedure: For each qubits, write its index in binary form, horizontically. For example: with 8 qubits 0, 1, 2,…, 7, for qubit 7 we write: 1 1 1 And for all 8 qubits, we obtain ceil(log2(n))=3 lines: 00001111 00110011 01010101 One can see that the every column is the binary form of the column number. Then write again, the same lines, negated: 11110000 11001100 10101010 The all 0 and all 1 states guarantee that each pair of qubits has input states with projections 00 and 11. The other lines guarantee the projections 01 and 10 (since the qubits are different, when written in binary form, there must be a digit in which they differ). Fitting will return a [`CTMPExpvalMeasMitigator`](qiskit.ignis.mitigation.CTMPExpvalMeasMitigator "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator").
 
-## Mitigation Method:
+  **Example**
 
-*   The `'complete'` method will generate all $2^n$ computational basis states measurement circuits and fitting will return a [`CompleteExpvalMeasMitigator`](qiskit.ignis.mitigation.CompleteExpvalMeasMitigator "qiskit.ignis.mitigation.CompleteExpvalMeasMitigator"). This method should only be used for small numbers of qubits.
-*   The `'tensored'` method will generate two input state circuits of the all 0 and all 1 states on number of qubits unless custom labels are specified. Ftting will return a [`TensoredExpvalMeasMitigator`](qiskit.ignis.mitigation.TensoredExpvalMeasMitigator "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator"). This method assumes measurement errors are uncorrelated between qubits.
-*   The `'CTMP'` method will generate input state circuits, unless custom labels are specified. The default input states must obey the following cirterion: for every pair of qubits, projection of the input states on the two qubits contains all four possible assignments to the qubits (00, 01, 10, 11). For n\<7, these would be the all 1 state and the $n$ states with a single qubit in the 1 state and all others in the 0 state (also the all 0 state, if n\<3). For n>=7, these would be the all 0 state, the all 1 state, and 2\*ceil(log2(n)) states resulting from the following procedure: For each qubits, write its index in binary form, horizontically. For example: with 8 qubits 0, 1, 2,…, 7, for qubit 7 we write: 1 1 1 And for all 8 qubits, we obtain ceil(log2(n))=3 lines: 00001111 00110011 01010101 One can see that the every column is the binary form of the column number. Then write again, the same lines, negated: 11110000 11001100 10101010 The all 0 and all 1 states guarantee that each pair of qubits has input states with projections 00 and 11. The other lines guarantee the projections 01 and 10 (since the qubits are different, when written in binary form, there must be a digit in which they differ). Fitting will return a [`CTMPExpvalMeasMitigator`](qiskit.ignis.mitigation.CTMPExpvalMeasMitigator "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator").
+  The following example shows calibrating a 5-qubit expectation value measurement error mitigator using the `'tensored'` method.
 
-**Example**
+  ```python
+  from qiskit import execute
+  from qiskit.test.mock import FakeVigo
+  import qiskit.ignis.mitigation as mit
 
-The following example shows calibrating a 5-qubit expectation value measurement error mitigator using the `'tensored'` method.
+  backend = FakeVigo()
+  num_qubits = backend.configuration().num_qubits
 
-```python
-from qiskit import execute
-from qiskit.test.mock import FakeVigo
-import qiskit.ignis.mitigation as mit
+  # Generate calibration circuits
+  circuits, metadata = mit.expval_meas_mitigator_circuits(
+      num_qubits, method='tensored')
+  result = execute(circuits, backend, shots=8192).result()
 
-backend = FakeVigo()
-num_qubits = backend.configuration().num_qubits
+  # Fit mitigator
+  mitigator = mit.ExpvalMeasMitigatorFitter(result, metadata).fit()
 
-# Generate calibration circuits
-circuits, metadata = mit.expval_meas_mitigator_circuits(
-    num_qubits, method='tensored')
-result = execute(circuits, backend, shots=8192).result()
+  # Plot fitted N-qubit assignment matrix
+  mitigator.plot_assignment_matrix()
+  ```
 
-# Fit mitigator
-mitigator = mit.ExpvalMeasMitigatorFitter(result, metadata).fit()
+  ```python
+  <AxesSubplot:xlabel='Prepared State', ylabel='Measured State'>
+  ```
 
-# Plot fitted N-qubit assignment matrix
-mitigator.plot_assignment_matrix()
-```
+  ![../\_images/qiskit.ignis.mitigation.expval\_meas\_mitigator\_circuits\_0\_2.png](/images/api/qiskit/0.36/qiskit.ignis.mitigation.expval_meas_mitigator_circuits_0_2.png)
 
-```python
-<AxesSubplot:xlabel='Prepared State', ylabel='Measured State'>
-```
+  The following shows how to use the above mitigator to apply measurement error mitigation to expectation value computations
 
-![../\_images/qiskit.ignis.mitigation.expval\_meas\_mitigator\_circuits\_0\_2.png](/images/api/qiskit/0.36/qiskit.ignis.mitigation.expval_meas_mitigator_circuits_0_2.png)
+  ```python
+  from qiskit import QuantumCircuit
 
-The following shows how to use the above mitigator to apply measurement error mitigation to expectation value computations
+  # Test Circuit with expectation value -1.
+  qc = QuantumCircuit(num_qubits)
+  qc.x(range(num_qubits))
+  qc.measure_all()
 
-```python
-from qiskit import QuantumCircuit
+  # Execute
+  shots = 8192
+  seed_simulator = 1999
+  result = execute(qc, backend, shots=8192, seed_simulator=1999).result()
+  counts = result.get_counts(0)
 
-# Test Circuit with expectation value -1.
-qc = QuantumCircuit(num_qubits)
-qc.x(range(num_qubits))
-qc.measure_all()
+  # Expectation value of Z^N without mitigation
+  expval_nomit, error_nomit = mit.expectation_value(counts)
+  print('Expval (no mitigation): {:.2f} ± {:.2f}'.format(
+      expval_nomit, error_nomit))
 
-# Execute
-shots = 8192
-seed_simulator = 1999
-result = execute(qc, backend, shots=8192, seed_simulator=1999).result()
-counts = result.get_counts(0)
+  # Expectation value of Z^N with mitigation
+  expval_mit, error_mit = mit.expectation_value(counts,
+      meas_mitigator=mitigator)
+  print('Expval (with mitigation): {:.2f} ± {:.2f}'.format(
+      expval_mit, error_mit))
+  ```
 
-# Expectation value of Z^N without mitigation
-expval_nomit, error_nomit = mit.expectation_value(counts)
-print('Expval (no mitigation): {:.2f} ± {:.2f}'.format(
-    expval_nomit, error_nomit))
-
-# Expectation value of Z^N with mitigation
-expval_mit, error_mit = mit.expectation_value(counts,
-    meas_mitigator=mitigator)
-print('Expval (with mitigation): {:.2f} ± {:.2f}'.format(
-    expval_mit, error_mit))
-```
-
-```python
-Expval (no mitigation): -0.66 ± 0.01
-Expval (with mitigation): -1.01 ± 0.01
-```
+  ```python
+  Expval (no mitigation): -0.66 ± 0.01
+  Expval (with mitigation): -1.01 ± 0.01
+  ```
+</Function>
 

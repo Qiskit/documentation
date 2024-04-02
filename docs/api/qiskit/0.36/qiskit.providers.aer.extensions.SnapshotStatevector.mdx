@@ -8,281 +8,253 @@ python_api_name: qiskit.providers.aer.extensions.SnapshotStatevector
 
 # SnapshotStatevector
 
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector" />
+<Class id="qiskit.providers.aer.extensions.SnapshotStatevector" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/extensions/snapshot_statevector.py" signature="SnapshotStatevector(label, num_qubits=0)">
+  Bases: `qiskit.providers.aer.extensions.snapshot.Snapshot`
 
-`SnapshotStatevector(label, num_qubits=0)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/extensions/snapshot_statevector.py "view source code")
+  Snapshot instruction for statevector snapshot type
 
-Bases: `qiskit.providers.aer.extensions.snapshot.Snapshot`
+  Create a statevector state snapshot instruction.
 
-Snapshot instruction for statevector snapshot type
+  **Parameters**
 
-Create a statevector state snapshot instruction.
+  *   **label** (*str*) – the snapshot label.
+  *   **num\_qubits** (*int*) – the instruction barrier size \[Default: 0].
 
-**Parameters**
+  **Raises**
 
-*   **label** (*str*) – the snapshot label.
-*   **num\_qubits** (*int*) – the instruction barrier size \[Default: 0].
+  **ExtensionError** – if snapshot is invalid.
 
-**Raises**
+  **Additional Information:**
 
-**ExtensionError** – if snapshot is invalid.
+  This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
 
-**Additional Information:**
+  <Admonition title="Deprecated since version 0.9.0" type="danger">
+    This instruction has been deprecated and will be removed no earlier than 3 months from the 0.9.0 release date. It has been superseded by the [`qiskit.providers.aer.library.SaveStatevector`](qiskit.providers.aer.library.SaveStatevector "qiskit.providers.aer.library.SaveStatevector") instruction.
+  </Admonition>
 
-This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+  ## Methods
 
-<Admonition title="Deprecated since version 0.9.0" type="danger">
-  This instruction has been deprecated and will be removed no earlier than 3 months from the 0.9.0 release date. It has been superseded by the [`qiskit.providers.aer.library.SaveStatevector`](qiskit.providers.aer.library.SaveStatevector "qiskit.providers.aer.library.SaveStatevector") instruction.
-</Admonition>
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.providers.aer.extensions.SnapshotStatevector.add_decomposition" name="add_decomposition" signature="SnapshotStatevector.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.add_decomposition" />
+  <Function id="qiskit.providers.aer.extensions.SnapshotStatevector.assemble" name="assemble" signature="SnapshotStatevector.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-`SnapshotStatevector.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.providers.aer.extensions.SnapshotStatevector.broadcast_arguments" name="broadcast_arguments" signature="SnapshotStatevector.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`SnapshotStatevector.assemble()`
+    **Yields**
 
-Assemble a QasmQobjInstruction
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`SnapshotStatevector.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit.providers.aer.extensions.SnapshotStatevector.c_if" name="c_if" signature="SnapshotStatevector.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-**Parameters**
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  ### copy
 
-**Yields**
+  <Function id="qiskit.providers.aer.extensions.SnapshotStatevector.copy" name="copy" signature="SnapshotStatevector.copy(name=None)">
+    Copy of the instruction.
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **Parameters**
 
-**Raises**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Returns**
 
-### c\_if
+    **a copy of the current instruction, with the name**
 
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.c_if" />
+    updated if it was provided
 
-`SnapshotStatevector.c_if(classical, val)`
+    **Return type**
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  ### define\_snapshot\_register
 
-### copy
+  <Function id="qiskit.providers.aer.extensions.SnapshotStatevector.define_snapshot_register" name="define_snapshot_register" signature="static SnapshotStatevector.define_snapshot_register(circuit, label=None, qubits=None)">
+    Defines qubits to snapshot for all snapshot methods
+  </Function>
 
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.copy" />
+  ### inverse
 
-`SnapshotStatevector.copy(name=None)`
+  <Function id="qiskit.providers.aer.extensions.SnapshotStatevector.inverse" name="inverse" signature="SnapshotStatevector.inverse()">
+    Special case. Return self.
+  </Function>
 
-Copy of the instruction.
+  ### is\_parameterized
 
-**Parameters**
+  <Function id="qiskit.providers.aer.extensions.SnapshotStatevector.is_parameterized" name="is_parameterized" signature="SnapshotStatevector.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+  ### qasm
 
-**Returns**
+  <Function id="qiskit.providers.aer.extensions.SnapshotStatevector.qasm" name="qasm" signature="SnapshotStatevector.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-**a copy of the current instruction, with the name**
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-updated if it was provided
+  ### repeat
 
-**Return type**
+  <Function id="qiskit.providers.aer.extensions.SnapshotStatevector.repeat" name="repeat" signature="SnapshotStatevector.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Parameters**
 
-### define\_snapshot\_register
+    **n** (*int*) – Number of times to repeat the instruction
 
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.define_snapshot_register" />
+    **Returns**
 
-`static SnapshotStatevector.define_snapshot_register(circuit, label=None, qubits=None)`
+    Containing the definition.
 
-Defines qubits to snapshot for all snapshot methods
+    **Return type**
 
-### inverse
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.inverse" />
+    **Raises**
 
-`SnapshotStatevector.inverse()`
+    **CircuitError** – If n \< 1.
+  </Function>
 
-Special case. Return self.
+  ### reverse\_ops
 
-### is\_parameterized
+  <Function id="qiskit.providers.aer.extensions.SnapshotStatevector.reverse_ops" name="reverse_ops" signature="SnapshotStatevector.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.is_parameterized" />
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-`SnapshotStatevector.is_parameterized()`
+    **Returns**
 
-Return True .IFF. instruction is parameterized else False
+    **a new instruction with**
 
-### qasm
+    sub-instructions reversed.
 
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.qasm" />
+    **Return type**
 
-`SnapshotStatevector.qasm()`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Return a default OpenQASM string for the instruction.
+  ### soft\_compare
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  <Function id="qiskit.providers.aer.extensions.SnapshotStatevector.soft_compare" name="soft_compare" signature="SnapshotStatevector.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-### repeat
+    **Parameters**
 
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.repeat" />
+    **other** (*instruction*) – other instruction.
 
-`SnapshotStatevector.repeat(n)`
+    **Returns**
 
-Creates an instruction with gate repeated n amount of times.
+    are self and other equal up to parameter expressions.
 
-**Parameters**
+    **Return type**
 
-**n** (*int*) – Number of times to repeat the instruction
+    bool
+  </Function>
 
-**Returns**
+  ### validate\_parameter
 
-Containing the definition.
+  <Function id="qiskit.providers.aer.extensions.SnapshotStatevector.validate_parameter" name="validate_parameter" signature="SnapshotStatevector.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### condition\_bits
 
-**Raises**
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStatevector.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-**CircuitError** – If n \< 1.
+    **Return type**
 
-### reverse\_ops
+    `List`\[`Clbit`]
+  </Attribute>
 
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.reverse_ops" />
+  ### decompositions
 
-`SnapshotStatevector.reverse_ops()`
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStatevector.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### definition
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStatevector.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-**Returns**
+  ### duration
 
-**a new instruction with**
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStatevector.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-sub-instructions reversed.
+  ### label
 
-**Return type**
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStatevector.label" name="label">
+    Return snapshot label
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### name
 
-### soft\_compare
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStatevector.name" name="name">
+    Return the name.
+  </Attribute>
 
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.soft_compare" />
+  ### num\_clbits
 
-`SnapshotStatevector.soft_compare(other)`
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStatevector.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+  ### num\_qubits
 
-**Parameters**
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStatevector.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-**other** (*instruction*) – other instruction.
+  ### params
 
-**Returns**
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStatevector.params" name="params">
+    return instruction params.
+  </Attribute>
 
-are self and other equal up to parameter expressions.
+  ### snapshot\_type
 
-**Return type**
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStatevector.snapshot_type" name="snapshot_type">
+    Return snapshot type
+  </Attribute>
 
-bool
+  ### unit
 
-### validate\_parameter
-
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.validate_parameter" />
-
-`SnapshotStatevector.validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
-
-## Attributes
-
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.condition_bits" />
-
-### condition\_bits
-
-Get Clbits in condition.
-
-**Return type**
-
-`List`\[`Clbit`]
-
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.label" />
-
-### label
-
-Return snapshot label
-
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.snapshot_type" />
-
-### snapshot\_type
-
-Return snapshot type
-
-<span id="qiskit.providers.aer.extensions.SnapshotStatevector.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStatevector.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 
