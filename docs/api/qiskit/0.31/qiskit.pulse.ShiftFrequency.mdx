@@ -8,320 +8,298 @@ python_api_name: qiskit.pulse.ShiftFrequency
 
 # ShiftFrequency
 
-<span id="qiskit.pulse.ShiftFrequency" />
+<Class id="qiskit.pulse.ShiftFrequency" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/frequency.py" signature="ShiftFrequency(frequency, channel, name=None)">
+  Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
-`ShiftFrequency(frequency, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/frequency.py "view source code")
+  Shift the channel frequency away from the current frequency.
 
-Bases: `qiskit.pulse.instructions.instruction.Instruction`
+  Creates a new shift frequency instruction.
 
-Shift the channel frequency away from the current frequency.
+  **Parameters**
 
-Creates a new shift frequency instruction.
+  *   **frequency** (`Union`\[`float`, `ParameterExpression`]) – Frequency shift of the channel in Hz.
+  *   **channel** (`PulseChannel`) – The channel this instruction operates on.
+  *   **name** (`Optional`\[`str`]) – Name of this set channel frequency instruction.
 
-**Parameters**
+  ## Methods
 
-*   **frequency** (`Union`\[`float`, `ParameterExpression`]) – Frequency shift of the channel in Hz.
-*   **channel** (`PulseChannel`) – The channel this instruction operates on.
-*   **name** (`Optional`\[`str`]) – Name of this set channel frequency instruction.
+  ### append
 
-## Methods
+  <Function id="qiskit.pulse.ShiftFrequency.append" name="append" signature="ShiftFrequency.append(schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
-### append
+    **Parameters**
 
-<span id="qiskit.pulse.ShiftFrequency.append" />
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-`ShiftFrequency.append(schedule, name=None)`
+    **Returns**
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+    A new schedule with `schedule` a this instruction at t=0.
 
-**Parameters**
+    **Return type**
 
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-**Returns**
+  ### assign\_parameters
 
-A new schedule with `schedule` a this instruction at t=0.
+  <Function id="qiskit.pulse.ShiftFrequency.assign_parameters" name="assign_parameters" signature="ShiftFrequency.assign_parameters(value_dict)">
+    Modify and return self with parameters assigned according to the input.
 
-**Return type**
+    **Parameters**
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+    **value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
 
-### assign\_parameters
+    **Return type**
 
-<span id="qiskit.pulse.ShiftFrequency.assign_parameters" />
+    `Instruction`
 
-`ShiftFrequency.assign_parameters(value_dict)`
+    **Returns**
 
-Modify and return self with parameters assigned according to the input.
+    Self with updated parameters.
+  </Function>
 
-**Parameters**
+  ### ch\_duration
 
-**value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
+  <Function id="qiskit.pulse.ShiftFrequency.ch_duration" name="ch_duration" signature="ShiftFrequency.ch_duration(*channels)">
+    Return duration of the supplied channels in this Instruction.
 
-**Return type**
+    **Parameters**
 
-`Instruction`
+    **\*channels** – Supplied channels
 
-**Returns**
+    **Return type**
 
-Self with updated parameters.
+    `int`
+  </Function>
 
-### ch\_duration
+  ### ch\_start\_time
 
-<span id="qiskit.pulse.ShiftFrequency.ch_duration" />
+  <Function id="qiskit.pulse.ShiftFrequency.ch_start_time" name="ch_start_time" signature="ShiftFrequency.ch_start_time(*channels)">
+    Return minimum start time for supplied channels.
 
-`ShiftFrequency.ch_duration(*channels)`
+    **Parameters**
 
-Return duration of the supplied channels in this Instruction.
+    **\*channels** – Supplied channels
 
-**Parameters**
+    **Return type**
 
-**\*channels** – Supplied channels
+    `int`
+  </Function>
 
-**Return type**
+  ### ch\_stop\_time
 
-`int`
+  <Function id="qiskit.pulse.ShiftFrequency.ch_stop_time" name="ch_stop_time" signature="ShiftFrequency.ch_stop_time(*channels)">
+    Return maximum start time for supplied channels.
 
-### ch\_start\_time
+    **Parameters**
 
-<span id="qiskit.pulse.ShiftFrequency.ch_start_time" />
+    **\*channels** – Supplied channels
 
-`ShiftFrequency.ch_start_time(*channels)`
+    **Return type**
 
-Return minimum start time for supplied channels.
+    `int`
+  </Function>
 
-**Parameters**
+  ### draw
 
-**\*channels** – Supplied channels
+  <Function id="qiskit.pulse.ShiftFrequency.draw" name="draw" signature="ShiftFrequency.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)">
+    Plot the instruction.
 
-**Return type**
+    **Parameters**
 
-`int`
+    *   **dt** (`float`) – Time interval of samples
+    *   **style** (*Optional\[SchedStyle]*) – A style sheet to configure plot appearance
+    *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
+    *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
+    *   **scale** (`float`) – Relative visual scaling of waveform amplitudes
+    *   **plot\_all** (`bool`) – Plot empty channels
+    *   **plot\_range** (`Optional`\[`Tuple`\[`float`]]) – A tuple of time range to plot
+    *   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
+    *   **table** (`bool`) – Draw event table for supported instructions
+    *   **label** (`bool`) – Label individual instructions
+    *   **framechange** (`bool`) – Add framechange indicators
+    *   **channels** (`Optional`\[`List`\[`Channel`]]) – A list of channel names to plot
 
-### ch\_stop\_time
+    **Returns**
 
-<span id="qiskit.pulse.ShiftFrequency.ch_stop_time" />
+    A matplotlib figure object of the pulse schedule
 
-`ShiftFrequency.ch_stop_time(*channels)`
+    **Return type**
 
-Return maximum start time for supplied channels.
+    matplotlib.figure
+  </Function>
 
-**Parameters**
+  ### flatten
 
-**\*channels** – Supplied channels
+  <Function id="qiskit.pulse.ShiftFrequency.flatten" name="flatten" signature="ShiftFrequency.flatten()">
+    Return itself as already single instruction.
 
-**Return type**
+    **Return type**
 
-`int`
+    `Instruction`
+  </Function>
 
-### draw
+  ### insert
 
-<span id="qiskit.pulse.ShiftFrequency.draw" />
+  <Function id="qiskit.pulse.ShiftFrequency.insert" name="insert" signature="ShiftFrequency.insert(start_time, schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
-`ShiftFrequency.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
+    **Parameters**
 
-Plot the instruction.
+    *   **start\_time** (`int`) – Time to insert the schedule schedule
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-**Parameters**
+    **Returns**
 
-*   **dt** (`float`) – Time interval of samples
-*   **style** (*Optional\[SchedStyle]*) – A style sheet to configure plot appearance
-*   **filename** (`Optional`\[`str`]) – Name required to save pulse image
-*   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
-*   **scale** (`float`) – Relative visual scaling of waveform amplitudes
-*   **plot\_all** (`bool`) – Plot empty channels
-*   **plot\_range** (`Optional`\[`Tuple`\[`float`]]) – A tuple of time range to plot
-*   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
-*   **table** (`bool`) – Draw event table for supported instructions
-*   **label** (`bool`) – Label individual instructions
-*   **framechange** (`bool`) – Add framechange indicators
-*   **channels** (`Optional`\[`List`\[`Channel`]]) – A list of channel names to plot
+    A new schedule with `schedule` inserted with this instruction at t=0.
 
-**Returns**
+    **Return type**
 
-A matplotlib figure object of the pulse schedule
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-**Return type**
+  ### is\_parameterized
 
-matplotlib.figure
+  <Function id="qiskit.pulse.ShiftFrequency.is_parameterized" name="is_parameterized" signature="ShiftFrequency.is_parameterized()">
+    Return True iff the instruction is parameterized.
 
-### flatten
+    **Return type**
 
-<span id="qiskit.pulse.ShiftFrequency.flatten" />
+    `bool`
+  </Function>
 
-`ShiftFrequency.flatten()`
+  ### shift
 
-Return itself as already single instruction.
+  <Function id="qiskit.pulse.ShiftFrequency.shift" name="shift" signature="ShiftFrequency.shift(time, name=None)">
+    Return a new schedule shifted forward by time.
 
-**Return type**
+    **Parameters**
 
-`Instruction`
+    *   **time** (`int`) – Time to shift by
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-### insert
+    **Returns**
 
-<span id="qiskit.pulse.ShiftFrequency.insert" />
+    The shifted schedule.
 
-`ShiftFrequency.insert(start_time, schedule, name=None)`
+    **Return type**
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-**Parameters**
+  ## Attributes
 
-*   **start\_time** (`int`) – Time to insert the schedule schedule
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
+  ### channel
 
-**Returns**
+  <Attribute id="qiskit.pulse.ShiftFrequency.channel" name="channel">
+    Return the `Channel` that this instruction is scheduled on.
 
-A new schedule with `schedule` inserted with this instruction at t=0.
+    **Return type**
 
-**Return type**
+    `PulseChannel`
+  </Attribute>
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  ### channels
 
-### is\_parameterized
+  <Attribute id="qiskit.pulse.ShiftFrequency.channels" name="channels">
+    Returns the channels that this schedule uses.
 
-<span id="qiskit.pulse.ShiftFrequency.is_parameterized" />
+    **Return type**
 
-`ShiftFrequency.is_parameterized()`
+    `Tuple`\[`PulseChannel`]
+  </Attribute>
 
-Return True iff the instruction is parameterized.
+  ### duration
 
-**Return type**
+  <Attribute id="qiskit.pulse.ShiftFrequency.duration" name="duration">
+    Duration of this instruction.
 
-`bool`
+    **Return type**
 
-### shift
+    `int`
+  </Attribute>
 
-<span id="qiskit.pulse.ShiftFrequency.shift" />
+  ### frequency
 
-`ShiftFrequency.shift(time, name=None)`
+  <Attribute id="qiskit.pulse.ShiftFrequency.frequency" name="frequency">
+    Frequency shift from the set frequency.
 
-Return a new schedule shifted forward by time.
+    **Return type**
 
-**Parameters**
+    `Union`\[`float`, `ParameterExpression`]
+  </Attribute>
 
-*   **time** (`int`) – Time to shift by
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
+  ### id
 
-**Returns**
+  <Attribute id="qiskit.pulse.ShiftFrequency.id" name="id">
+    Unique identifier for this instruction.
 
-The shifted schedule.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  ### instructions
 
-## Attributes
+  <Attribute id="qiskit.pulse.ShiftFrequency.instructions" name="instructions">
+    Iterable for getting instructions from Schedule tree.
 
-<span id="qiskit.pulse.ShiftFrequency.channel" />
+    **Return type**
 
-### channel
+    `Tuple`\[`Tuple`\[`int`, `Instruction`]]
+  </Attribute>
 
-Return the `Channel` that this instruction is scheduled on.
+  ### name
 
-**Return type**
+  <Attribute id="qiskit.pulse.ShiftFrequency.name" name="name">
+    Name of this instruction.
 
-`PulseChannel`
+    **Return type**
 
-<span id="qiskit.pulse.ShiftFrequency.channels" />
+    `str`
+  </Attribute>
 
-### channels
+  ### operands
 
-Returns the channels that this schedule uses.
+  <Attribute id="qiskit.pulse.ShiftFrequency.operands" name="operands">
+    Return instruction operands.
 
-**Return type**
+    **Return type**
 
-`Tuple`\[`PulseChannel`]
+    `Tuple`
+  </Attribute>
 
-<span id="qiskit.pulse.ShiftFrequency.duration" />
+  ### parameters
 
-### duration
+  <Attribute id="qiskit.pulse.ShiftFrequency.parameters" name="parameters">
+    Parameters which determine the instruction behavior.
 
-Duration of this instruction.
+    **Return type**
 
-**Return type**
+    `Set`
+  </Attribute>
 
-`int`
+  ### start\_time
 
-<span id="qiskit.pulse.ShiftFrequency.frequency" />
+  <Attribute id="qiskit.pulse.ShiftFrequency.start_time" name="start_time">
+    Relative begin time of this instruction.
 
-### frequency
+    **Return type**
 
-Frequency shift from the set frequency.
+    `int`
+  </Attribute>
 
-**Return type**
+  ### stop\_time
 
-`Union`\[`float`, `ParameterExpression`]
+  <Attribute id="qiskit.pulse.ShiftFrequency.stop_time" name="stop_time">
+    Relative end time of this instruction.
 
-<span id="qiskit.pulse.ShiftFrequency.id" />
+    **Return type**
 
-### id
-
-Unique identifier for this instruction.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.pulse.ShiftFrequency.instructions" />
-
-### instructions
-
-Iterable for getting instructions from Schedule tree.
-
-**Return type**
-
-`Tuple`\[`Tuple`\[`int`, `Instruction`]]
-
-<span id="qiskit.pulse.ShiftFrequency.name" />
-
-### name
-
-Name of this instruction.
-
-**Return type**
-
-`str`
-
-<span id="qiskit.pulse.ShiftFrequency.operands" />
-
-### operands
-
-Return instruction operands.
-
-**Return type**
-
-`Tuple`
-
-<span id="qiskit.pulse.ShiftFrequency.parameters" />
-
-### parameters
-
-Parameters which determine the instruction behavior.
-
-**Return type**
-
-`Set`
-
-<span id="qiskit.pulse.ShiftFrequency.start_time" />
-
-### start\_time
-
-Relative begin time of this instruction.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.pulse.ShiftFrequency.stop_time" />
-
-### stop\_time
-
-Relative end time of this instruction.
-
-**Return type**
-
-`int`
+    `int`
+  </Attribute>
+</Class>
 

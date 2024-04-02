@@ -8,76 +8,70 @@ python_api_name: qiskit.aqua.algorithms.MinimumEigensolver
 
 # MinimumEigensolver
 
-<span id="qiskit.aqua.algorithms.MinimumEigensolver" />
+<Class id="qiskit.aqua.algorithms.MinimumEigensolver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/minimum_eigen_solver.py" signature="MinimumEigensolver">
+  Bases: `abc.ABC`
 
-`MinimumEigensolver` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/minimum_eigen_solver.py "view source code")
+  The Minimum Eigensolver Interface.
 
-Bases: `abc.ABC`
+  Algorithms that can compute a minimum eigenvalue for an operator may implement this interface to allow different algorithms to be used interchangeably.
 
-The Minimum Eigensolver Interface.
+  ## Methods
 
-Algorithms that can compute a minimum eigenvalue for an operator may implement this interface to allow different algorithms to be used interchangeably.
+  ### compute\_minimum\_eigenvalue
 
-## Methods
+  <Function id="qiskit.aqua.algorithms.MinimumEigensolver.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="abstract MinimumEigensolver.compute_minimum_eigenvalue(operator=None, aux_operators=None)">
+    Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
-### compute\_minimum\_eigenvalue
+    **Parameters**
 
-<span id="qiskit.aqua.algorithms.MinimumEigensolver.compute_minimum_eigenvalue" />
+    *   **operator** (`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]) – If not None replaces operator in algorithm
+    *   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – If not None replaces aux\_operators in algorithm
 
-`abstract MinimumEigensolver.compute_minimum_eigenvalue(operator=None, aux_operators=None)`
+    **Return type**
 
-Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
+    `MinimumEigensolverResult`
 
-**Parameters**
+    **Returns**
 
-*   **operator** (`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]) – If not None replaces operator in algorithm
-*   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – If not None replaces aux\_operators in algorithm
+    MinimumEigensolverResult
+  </Function>
 
-**Return type**
+  ### supports\_aux\_operators
 
-`MinimumEigensolverResult`
+  <Function id="qiskit.aqua.algorithms.MinimumEigensolver.supports_aux_operators" name="supports_aux_operators" signature="classmethod MinimumEigensolver.supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-**Returns**
+    If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
 
-MinimumEigensolverResult
+    **Return type**
 
-### supports\_aux\_operators
+    `bool`
 
-<span id="qiskit.aqua.algorithms.MinimumEigensolver.supports_aux_operators" />
+    **Returns**
 
-`classmethod MinimumEigensolver.supports_aux_operators()`
+    True if aux\_operator expectations can be evaluated, False otherwise
+  </Function>
 
-Whether computing the expectation value of auxiliary operators is supported.
+  ## Attributes
 
-If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
+  ### aux\_operators
 
-**Return type**
+  <Attribute id="qiskit.aqua.algorithms.MinimumEigensolver.aux_operators" name="aux_operators">
+    Returns the auxiliary operators.
 
-`bool`
+    **Return type**
 
-**Returns**
+    `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
+  </Attribute>
 
-True if aux\_operator expectations can be evaluated, False otherwise
+  ### operator
 
-## Attributes
+  <Attribute id="qiskit.aqua.algorithms.MinimumEigensolver.operator" name="operator">
+    Return the operator.
 
-<span id="qiskit.aqua.algorithms.MinimumEigensolver.aux_operators" />
+    **Return type**
 
-### aux\_operators
-
-Returns the auxiliary operators.
-
-**Return type**
-
-`Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
-
-<span id="qiskit.aqua.algorithms.MinimumEigensolver.operator" />
-
-### operator
-
-Return the operator.
-
-**Return type**
-
-`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]
+    `Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]
+  </Attribute>
+</Class>
 
