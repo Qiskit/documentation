@@ -8,96 +8,86 @@ python_api_name: qiskit.chemistry.transformations.Transformation
 
 # Transformation
 
-<span id="qiskit.chemistry.transformations.Transformation" />
+<Class id="qiskit.chemistry.transformations.Transformation" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/transformation.py" signature="Transformation">
+  Bases: `abc.ABC`
 
-`Transformation` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/transformation.py "view source code")
+  Base class for transformation to qubit operators for chemistry problems
 
-Bases: `abc.ABC`
+  ## Methods
 
-Base class for transformation to qubit operators for chemistry problems
+  ### build\_hopping\_operators
 
-## Methods
+  <Function id="qiskit.chemistry.transformations.Transformation.build_hopping_operators" name="build_hopping_operators" signature="abstract Transformation.build_hopping_operators(excitations='sd')">
+    Builds the product of raising and lowering operators (basic excitation operators)
 
-### build\_hopping\_operators
+    **Parameters**
 
-<span id="qiskit.chemistry.transformations.Transformation.build_hopping_operators" />
+    **excitations** (`Union`\[`str`, `List`\[`List`\[`int`]]]) – The excitations to be included in the eom pseudo-eigenvalue problem. If a string (‘s’, ‘d’ or ‘sd’) then all excitations of the given type will be used. Otherwise a list of custom excitations can directly be provided.
 
-`abstract Transformation.build_hopping_operators(excitations='sd')`
+    Returns:
 
-Builds the product of raising and lowering operators (basic excitation operators)
+    **Return type**
 
-**Parameters**
+    `Tuple`\[`Dict`\[`str`, `WeightedPauliOperator`], `Dict`\[`str`, `List`\[`bool`]], `Dict`\[`str`, `List`\[`Any`]]]
+  </Function>
 
-**excitations** (`Union`\[`str`, `List`\[`List`\[`int`]]]) – The excitations to be included in the eom pseudo-eigenvalue problem. If a string (‘s’, ‘d’ or ‘sd’) then all excitations of the given type will be used. Otherwise a list of custom excitations can directly be provided.
+  ### get\_default\_filter\_criterion
 
-Returns:
+  <Function id="qiskit.chemistry.transformations.Transformation.get_default_filter_criterion" name="get_default_filter_criterion" signature="Transformation.get_default_filter_criterion()">
+    Returns a default filter criterion method to filter the eigenvalues computed by the eigen solver. For more information see also aqua.algorithms.eigen\_solvers.NumPyEigensolver.filter\_criterion.
 
-**Return type**
+    **Return type**
 
-`Tuple`\[`Dict`\[`str`, `WeightedPauliOperator`], `Dict`\[`str`, `List`\[`bool`]], `Dict`\[`str`, `List`\[`Any`]]]
+    `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
+  </Function>
 
-### get\_default\_filter\_criterion
+  ### interpret
 
-<span id="qiskit.chemistry.transformations.Transformation.get_default_filter_criterion" />
+  <Function id="qiskit.chemistry.transformations.Transformation.interpret" name="interpret" signature="abstract Transformation.interpret(raw_result)">
+    Interprets an EigenstateResult in the context of this transformation.
 
-`Transformation.get_default_filter_criterion()`
+    **Parameters**
 
-Returns a default filter criterion method to filter the eigenvalues computed by the eigen solver. For more information see also aqua.algorithms.eigen\_solvers.NumPyEigensolver.filter\_criterion.
+    **raw\_result** (`Union`\[`EigenstateResult`, `EigensolverResult`, `MinimumEigensolverResult`]) – an eigenstate result object.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
+    `EigenstateResult`
 
-### interpret
+    **Returns**
 
-<span id="qiskit.chemistry.transformations.Transformation.interpret" />
+    An “interpreted” eigenstate result.
+  </Function>
 
-`abstract Transformation.interpret(raw_result)`
+  ### transform
 
-Interprets an EigenstateResult in the context of this transformation.
+  <Function id="qiskit.chemistry.transformations.Transformation.transform" name="transform" signature="abstract Transformation.transform(driver, aux_operators=None)">
+    Transformation from the `driver` to a qubit operator.
 
-**Parameters**
+    **Parameters**
 
-**raw\_result** (`Union`\[`EigenstateResult`, `EigensolverResult`, `MinimumEigensolverResult`]) – an eigenstate result object.
+    *   **driver** (`BaseDriver`) – A driver encoding the molecule information.
+    *   **aux\_operators** (`Union`\[`List`\[`FermionicOperator`], `List`\[`BosonicOperator`], `None`]) – Additional auxiliary operators to evaluate. Must be of type `FermionicOperator` if the qubit transformation is fermionic and of type `BosonicOperator` it is bosonic.
 
-**Return type**
+    **Return type**
 
-`EigenstateResult`
+    `Tuple`\[`OperatorBase`, `List`\[`OperatorBase`]]
 
-**Returns**
+    **Returns**
 
-An “interpreted” eigenstate result.
+    A qubit operator and a dictionary of auxiliary operators.
+  </Function>
 
-### transform
+  ## Attributes
 
-<span id="qiskit.chemistry.transformations.Transformation.transform" />
+  ### commutation\_rule
 
-`abstract Transformation.transform(driver, aux_operators=None)`
+  <Attribute id="qiskit.chemistry.transformations.Transformation.commutation_rule" name="commutation_rule">
+    Getter of the commutation rule
 
-Transformation from the `driver` to a qubit operator.
+    **Return type**
 
-**Parameters**
-
-*   **driver** (`BaseDriver`) – A driver encoding the molecule information.
-*   **aux\_operators** (`Union`\[`List`\[`FermionicOperator`], `List`\[`BosonicOperator`], `None`]) – Additional auxiliary operators to evaluate. Must be of type `FermionicOperator` if the qubit transformation is fermionic and of type `BosonicOperator` it is bosonic.
-
-**Return type**
-
-`Tuple`\[`OperatorBase`, `List`\[`OperatorBase`]]
-
-**Returns**
-
-A qubit operator and a dictionary of auxiliary operators.
-
-## Attributes
-
-<span id="qiskit.chemistry.transformations.Transformation.commutation_rule" />
-
-### commutation\_rule
-
-Getter of the commutation rule
-
-**Return type**
-
-`bool`
+    `bool`
+  </Attribute>
+</Class>
 

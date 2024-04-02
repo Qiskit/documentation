@@ -8,114 +8,102 @@ python_api_name: qiskit.aqua.components.neural_networks.GenerativeNetwork
 
 # GenerativeNetwork
 
-<span id="qiskit.aqua.components.neural_networks.GenerativeNetwork" />
+<Class id="qiskit.aqua.components.neural_networks.GenerativeNetwork" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/generative_network.py" signature="GenerativeNetwork">
+  Bases: `abc.ABC`
 
-`GenerativeNetwork` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/generative_network.py "view source code")
+  Base class for generative Quantum and Classical Neural Networks.
 
-Bases: `abc.ABC`
+  This method should initialize the module, but raise an exception if a required component of the module is not available.
 
-Base class for generative Quantum and Classical Neural Networks.
+  ## Methods
 
-This method should initialize the module, but raise an exception if a required component of the module is not available.
+  ### get\_output
 
-## Methods
+  <Function id="qiskit.aqua.components.neural_networks.GenerativeNetwork.get_output" name="get_output" signature="abstract GenerativeNetwork.get_output(quantum_instance, params, shots)">
+    Apply quantum/classical neural network to given input and get the respective output
 
-### get\_output
+    **Parameters**
 
-<span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.get_output" />
+    *   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Quantum Instance, used to run the generator circuit.
+    *   **params** (*numpy.ndarray*) – parameters which should be used to run the generator, if None use self.\_params
+    *   **shots** (*int*) – if not None use a number of shots that is different from the number set in quantum\_instance
 
-`abstract GenerativeNetwork.get_output(quantum_instance, params, shots)`
+    **Returns**
 
-Apply quantum/classical neural network to given input and get the respective output
+    Neural network output
 
-**Parameters**
+    **Raises**
 
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Quantum Instance, used to run the generator circuit.
-*   **params** (*numpy.ndarray*) – parameters which should be used to run the generator, if None use self.\_params
-*   **shots** (*int*) – if not None use a number of shots that is different from the number set in quantum\_instance
+    **NotImplementedError** – not implemented
+  </Function>
 
-**Returns**
+  ### loss
 
-Neural network output
+  <Function id="qiskit.aqua.components.neural_networks.GenerativeNetwork.loss" name="loss" signature="abstract GenerativeNetwork.loss()">
+    Loss function used for optimization
+  </Function>
 
-**Raises**
+  ### set\_discriminator
 
-**NotImplementedError** – not implemented
+  <Function id="qiskit.aqua.components.neural_networks.GenerativeNetwork.set_discriminator" name="set_discriminator" signature="abstract GenerativeNetwork.set_discriminator(discriminator)">
+    Set discriminator network.
 
-### loss
+    **Parameters**
 
-<span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.loss" />
+    **discriminator** (*Discriminator*) – Discriminator used to compute the loss function.
 
-`abstract GenerativeNetwork.loss()`
+    **Raises**
 
-Loss function used for optimization
+    **NotImplementedError** – not implemented
+  </Function>
 
-### set\_discriminator
+  ### set\_seed
 
-<span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.set_discriminator" />
+  <Function id="qiskit.aqua.components.neural_networks.GenerativeNetwork.set_seed" name="set_seed" signature="abstract GenerativeNetwork.set_seed(seed)">
+    Set seed.
 
-`abstract GenerativeNetwork.set_discriminator(discriminator)`
+    **Parameters**
 
-Set discriminator network.
+    **seed** (*int*) – seed
 
-**Parameters**
+    **Raises**
 
-**discriminator** (*Discriminator*) – Discriminator used to compute the loss function.
+    **NotImplementedError** – not implemented
+  </Function>
 
-**Raises**
+  ### train
 
-**NotImplementedError** – not implemented
+  <Function id="qiskit.aqua.components.neural_networks.GenerativeNetwork.train" name="train" signature="abstract GenerativeNetwork.train(quantum_instance=None, shots=None)">
+    Perform one training step w\.r.t to the generator’s parameters
 
-### set\_seed
+    **Parameters**
 
-<span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.set_seed" />
+    *   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – used to run generator network. Ignored for a classical network.
+    *   **shots** (*int*) – Number of shots for hardware or qasm execution. Ignored for classical network
 
-`abstract GenerativeNetwork.set_seed(seed)`
+    **Returns**
 
-Set seed.
+    generator loss and updated parameters.
 
-**Parameters**
+    **Return type**
 
-**seed** (*int*) – seed
+    dict
 
-**Raises**
+    **Raises**
 
-**NotImplementedError** – not implemented
+    **NotImplementedError** – not implemented
+  </Function>
 
-### train
+  ## Attributes
 
-<span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.train" />
+  ### parameter\_values
 
-`abstract GenerativeNetwork.train(quantum_instance=None, shots=None)`
+  <Attribute id="qiskit.aqua.components.neural_networks.GenerativeNetwork.parameter_values" name="parameter_values">
+    Get parameter values from the generator
 
-Perform one training step w\.r.t to the generator’s parameters
+    **Raises**
 
-**Parameters**
-
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – used to run generator network. Ignored for a classical network.
-*   **shots** (*int*) – Number of shots for hardware or qasm execution. Ignored for classical network
-
-**Returns**
-
-generator loss and updated parameters.
-
-**Return type**
-
-dict
-
-**Raises**
-
-**NotImplementedError** – not implemented
-
-## Attributes
-
-<span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.parameter_values" />
-
-### parameter\_values
-
-Get parameter values from the generator
-
-**Raises**
-
-**NotImplementedError** – not implemented
+    **NotImplementedError** – not implemented
+  </Attribute>
+</Class>
 

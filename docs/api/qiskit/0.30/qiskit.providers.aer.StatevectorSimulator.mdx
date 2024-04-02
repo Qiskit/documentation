@@ -8,277 +8,249 @@ python_api_name: qiskit.providers.aer.StatevectorSimulator
 
 # StatevectorSimulator
 
-<span id="qiskit.providers.aer.StatevectorSimulator" />
+<Class id="qiskit.providers.aer.StatevectorSimulator" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/backends/statevector_simulator.py" signature="StatevectorSimulator(configuration=None, properties=None, provider=None, **backend_options)">
+  Bases: `qiskit.providers.aer.backends.aerbackend.AerBackend`
 
-`StatevectorSimulator(configuration=None, properties=None, provider=None, **backend_options)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/backends/statevector_simulator.py "view source code")
+  Ideal quantum circuit statevector simulator
 
-Bases: `qiskit.providers.aer.backends.aerbackend.AerBackend`
+  **Configurable Options**
 
-Ideal quantum circuit statevector simulator
+  The StatevectorSimulator supports CPU and GPU simulation methods and additional configurable options. These may be set using the appropriate kwargs during initialization. They can also be set of updated using the [`set_options()`](qiskit.providers.aer.StatevectorSimulator#set_options "qiskit.providers.aer.StatevectorSimulator.set_options") method.
 
-**Configurable Options**
+  Run-time options may also be specified as kwargs using the [`run()`](qiskit.providers.aer.StatevectorSimulator#run "qiskit.providers.aer.StatevectorSimulator.run") method. These will not be stored in the backend and will only apply to that execution. They will also override any previously set options.
 
-The StatevectorSimulator supports CPU and GPU simulation methods and additional configurable options. These may be set using the appropriate kwargs during initialization. They can also be set of updated using the [`set_options()`](qiskit.providers.aer.StatevectorSimulator#set_options "qiskit.providers.aer.StatevectorSimulator.set_options") method.
+  For example, to configure a a single-precision simulator
 
-Run-time options may also be specified as kwargs using the [`run()`](qiskit.providers.aer.StatevectorSimulator#run "qiskit.providers.aer.StatevectorSimulator.run") method. These will not be stored in the backend and will only apply to that execution. They will also override any previously set options.
+  ```python
+  backend = StatevectorSimulator(precision='single')
+  ```
 
-For example, to configure a a single-precision simulator
+  **Backend Options**
 
-```python
-backend = StatevectorSimulator(precision='single')
-```
+  The following configurable backend options are supported
 
-**Backend Options**
+  *   `device` (str): Set the simulation device (Default: `"CPU"`). Use [`available_devices()`](qiskit.providers.aer.StatevectorSimulator#available_devices "qiskit.providers.aer.StatevectorSimulator.available_devices") to return a list of devices supported on the current system.
+  *   `method` (str): \[DEPRECATED] Set the simulation method supported methods are `"statevector"` for CPU simulation, and `"statevector_gpu"` for GPU simulation. This option has been deprecated, use the `device` option to set “CPU” or “GPU” simulation instead.
+  *   `precision` (str): Set the floating point precision for certain simulation methods to either `"single"` or `"double"` precision (default: `"double"`).
+  *   `executor` (futures.Executor): Set a custom executor for asynchronous running of simulation jobs (Default: None).
+  *   `max_job_size` (int or None): If the number of run circuits exceeds this value simulation will be run as a set of of sub-jobs on the executor. If `None` simulation of all circuits aer submitted to the executor as a single job (Default: None).
+  *   `zero_threshold` (double): Sets the threshold for truncating small values to zero in the result data (Default: 1e-10).
+  *   `validation_threshold` (double): Sets the threshold for checking if the initial statevector is valid (Default: 1e-8).
+  *   `max_parallel_threads` (int): Sets the maximum number of CPU cores used by OpenMP for parallelization. If set to 0 the maximum will be set to the number of CPU cores (Default: 0).
+  *   `max_parallel_experiments` (int): Sets the maximum number of qobj experiments that may be executed in parallel up to the max\_parallel\_threads value. If set to 1 parallel circuit execution will be disabled. If set to 0 the maximum will be automatically set to max\_parallel\_threads (Default: 1).
+  *   `max_memory_mb` (int): Sets the maximum size of memory to store a state vector. If a state vector needs more, an error is thrown. In general, a state vector of n-qubits uses 2^n complex values (16 Bytes). If set to 0, the maximum will be automatically set to the system memory size (Default: 0).
+  *   `statevector_parallel_threshold` (int): Sets the threshold that “n\_qubits” must be greater than to enable OpenMP parallelization for matrix multiplication during execution of an experiment. If parallel circuit or shot execution is enabled this will only use unallocated CPU cores up to max\_parallel\_threads. Note that setting this too low can reduce performance (Default: 14).
 
-The following configurable backend options are supported
+  These backend options apply in circuit optimization passes:
 
-*   `device` (str): Set the simulation device (Default: `"CPU"`). Use [`available_devices()`](qiskit.providers.aer.StatevectorSimulator#available_devices "qiskit.providers.aer.StatevectorSimulator.available_devices") to return a list of devices supported on the current system.
-*   `method` (str): \[DEPRECATED] Set the simulation method supported methods are `"statevector"` for CPU simulation, and `"statevector_gpu"` for GPU simulation. This option has been deprecated, use the `device` option to set “CPU” or “GPU” simulation instead.
-*   `precision` (str): Set the floating point precision for certain simulation methods to either `"single"` or `"double"` precision (default: `"double"`).
-*   `executor` (futures.Executor): Set a custom executor for asynchronous running of simulation jobs (Default: None).
-*   `max_job_size` (int or None): If the number of run circuits exceeds this value simulation will be run as a set of of sub-jobs on the executor. If `None` simulation of all circuits aer submitted to the executor as a single job (Default: None).
-*   `zero_threshold` (double): Sets the threshold for truncating small values to zero in the result data (Default: 1e-10).
-*   `validation_threshold` (double): Sets the threshold for checking if the initial statevector is valid (Default: 1e-8).
-*   `max_parallel_threads` (int): Sets the maximum number of CPU cores used by OpenMP for parallelization. If set to 0 the maximum will be set to the number of CPU cores (Default: 0).
-*   `max_parallel_experiments` (int): Sets the maximum number of qobj experiments that may be executed in parallel up to the max\_parallel\_threads value. If set to 1 parallel circuit execution will be disabled. If set to 0 the maximum will be automatically set to max\_parallel\_threads (Default: 1).
-*   `max_memory_mb` (int): Sets the maximum size of memory to store a state vector. If a state vector needs more, an error is thrown. In general, a state vector of n-qubits uses 2^n complex values (16 Bytes). If set to 0, the maximum will be automatically set to the system memory size (Default: 0).
-*   `statevector_parallel_threshold` (int): Sets the threshold that “n\_qubits” must be greater than to enable OpenMP parallelization for matrix multiplication during execution of an experiment. If parallel circuit or shot execution is enabled this will only use unallocated CPU cores up to max\_parallel\_threads. Note that setting this too low can reduce performance (Default: 14).
+  *   `fusion_enable` (bool): Enable fusion optimization in circuit optimization passes \[Default: True]
+  *   `fusion_verbose` (bool): Output gates generated in fusion optimization into metadata \[Default: False]
+  *   `fusion_max_qubit` (int): Maximum number of qubits for a operation generated in a fusion optimization \[Default: 5]
+  *   `fusion_threshold` (int): Threshold that number of qubits must be greater than or equal to enable fusion optimization \[Default: 14]
 
-These backend options apply in circuit optimization passes:
+  Aer class for backends.
 
-*   `fusion_enable` (bool): Enable fusion optimization in circuit optimization passes \[Default: True]
-*   `fusion_verbose` (bool): Output gates generated in fusion optimization into metadata \[Default: False]
-*   `fusion_max_qubit` (int): Maximum number of qubits for a operation generated in a fusion optimization \[Default: 5]
-*   `fusion_threshold` (int): Threshold that number of qubits must be greater than or equal to enable fusion optimization \[Default: 14]
+  This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
 
-Aer class for backends.
+  **Parameters**
 
-This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
+  *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
+  *   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
+  *   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
+  *   **backend\_options** (*dict or None*) – Optional set custom backend options.
 
-**Parameters**
+  **Raises**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
-*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
-*   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
-*   **backend\_options** (*dict or None*) – Optional set custom backend options.
+  [**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
 
-**Raises**
+  ## Methods
 
-[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
+  ### available\_devices
 
-## Methods
+  <Function id="qiskit.providers.aer.StatevectorSimulator.available_devices" name="available_devices" signature="StatevectorSimulator.available_devices()">
+    Return the available simulation methods.
+  </Function>
 
-### available\_devices
+  ### available\_methods
 
-<span id="qiskit.providers.aer.StatevectorSimulator.available_devices" />
+  <Function id="qiskit.providers.aer.StatevectorSimulator.available_methods" name="available_methods" signature="StatevectorSimulator.available_methods()">
+    Return the available simulation methods.
+  </Function>
 
-`StatevectorSimulator.available_devices()`
+  ### clear\_options
 
-Return the available simulation methods.
+  <Function id="qiskit.providers.aer.StatevectorSimulator.clear_options" name="clear_options" signature="StatevectorSimulator.clear_options()">
+    Reset the simulator options to default values.
+  </Function>
 
-### available\_methods
+  ### configuration
 
-<span id="qiskit.providers.aer.StatevectorSimulator.available_methods" />
+  <Function id="qiskit.providers.aer.StatevectorSimulator.configuration" name="configuration" signature="StatevectorSimulator.configuration()">
+    Return the simulator backend configuration.
 
-`StatevectorSimulator.available_methods()`
+    **Returns**
 
-Return the available simulation methods.
+    the configuration for the backend.
 
-### clear\_options
+    **Return type**
 
-<span id="qiskit.providers.aer.StatevectorSimulator.clear_options" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-`StatevectorSimulator.clear_options()`
+  ### defaults
 
-Reset the simulator options to default values.
+  <Function id="qiskit.providers.aer.StatevectorSimulator.defaults" name="defaults" signature="StatevectorSimulator.defaults()">
+    Return the simulator backend pulse defaults.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.aer.StatevectorSimulator.configuration" />
+    **The backend pulse defaults or `None` if the**
 
-`StatevectorSimulator.configuration()`
+    backend does not support pulse.
 
-Return the simulator backend configuration.
+    **Return type**
 
-**Returns**
+    [PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+  </Function>
 
-the configuration for the backend.
+  ### name
 
-**Return type**
+  <Function id="qiskit.providers.aer.StatevectorSimulator.name" name="name" signature="StatevectorSimulator.name()">
+    Return the backend name.
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    **Returns**
 
-### defaults
+    the name of the backend.
 
-<span id="qiskit.providers.aer.StatevectorSimulator.defaults" />
+    **Return type**
 
-`StatevectorSimulator.defaults()`
+    str
+  </Function>
 
-Return the simulator backend pulse defaults.
+  ### properties
 
-**Returns**
+  <Function id="qiskit.providers.aer.StatevectorSimulator.properties" name="properties" signature="StatevectorSimulator.properties()">
+    Return the simulator backend properties if set.
 
-**The backend pulse defaults or `None` if the**
+    **Returns**
 
-backend does not support pulse.
+    **The backend properties or `None` if the**
 
-**Return type**
+    backend does not have properties set.
 
-[PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+    **Return type**
 
-### name
+    [BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+  </Function>
 
-<span id="qiskit.providers.aer.StatevectorSimulator.name" />
+  ### provider
 
-`StatevectorSimulator.name()`
+  <Function id="qiskit.providers.aer.StatevectorSimulator.provider" name="provider" signature="StatevectorSimulator.provider()">
+    Return the backend Provider.
 
-Return the backend name.
+    **Returns**
 
-**Returns**
+    the Provider responsible for the backend.
 
-the name of the backend.
+    **Return type**
 
-**Return type**
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-str
+  ### run
 
-### properties
+  <Function id="qiskit.providers.aer.StatevectorSimulator.run" name="run" signature="StatevectorSimulator.run(circuits, validate=False, parameter_binds=None, **run_options)">
+    Run a qobj on the backend.
 
-<span id="qiskit.providers.aer.StatevectorSimulator.properties" />
+    **Parameters**
 
-`StatevectorSimulator.properties()`
+    *   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list*) – The QuantumCircuit (or list of QuantumCircuit objects) to run
+    *   **validate** (*bool*) – validate the Qobj before running (default: False).
+    *   **parameter\_binds** (*list*) – A list of parameter binding dictionaries. See additional information (default: None).
+    *   **run\_options** (*kwargs*) – additional run time backend options.
 
-Return the simulator backend properties if set.
+    **Returns**
 
-**Returns**
+    The simulation job.
 
-**The backend properties or `None` if the**
+    **Return type**
 
-backend does not have properties set.
+    [AerJob](qiskit.providers.aer.jobs.AerJob "qiskit.providers.aer.jobs.AerJob")
 
-**Return type**
+    **Raises**
 
-[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+    [**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – If `parameter_binds` is specified with a qobj input or has a length mismatch with the number of circuits.
 
-### provider
+    #### Additional Information:
 
-<span id="qiskit.providers.aer.StatevectorSimulator.provider" />
+    *   Each parameter binding dictionary is of the form:
 
-`StatevectorSimulator.provider()`
+        ```python
+        {
+            param_a: [val_1, val_2],
+            param_b: [val_3, val_1],
+        }
+        ```
 
-Return the backend Provider.
+        for all parameters in that circuit. The length of the value list must be the same for all parameters, and the number of parameter dictionaries in the list must match the length of `circuits` (if `circuits` is a single `QuantumCircuit` object it should a list of length 1).
 
-**Returns**
+    *   kwarg options specified in `run_options` will temporarily override any set options of the same name for the current run.
 
-the Provider responsible for the backend.
+    **Raises**
 
-**Return type**
+    **ValueError** – if run is not implemented
+  </Function>
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  ### set\_option
 
-### run
+  <Function id="qiskit.providers.aer.StatevectorSimulator.set_option" name="set_option" signature="StatevectorSimulator.set_option(key, value)">
+    Special handling for setting backend options.
 
-<span id="qiskit.providers.aer.StatevectorSimulator.run" />
+    This method should be extended by sub classes to update special option values.
 
-`StatevectorSimulator.run(circuits, validate=False, parameter_binds=None, **run_options)`
+    **Parameters**
 
-Run a qobj on the backend.
+    *   **key** (*str*) – key to update
+    *   **value** (*any*) – value to update.
 
-**Parameters**
+    **Raises**
 
-*   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list*) – The QuantumCircuit (or list of QuantumCircuit objects) to run
-*   **validate** (*bool*) – validate the Qobj before running (default: False).
-*   **parameter\_binds** (*list*) – A list of parameter binding dictionaries. See additional information (default: None).
-*   **run\_options** (*kwargs*) – additional run time backend options.
+    [**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if key is ‘method’ and val isn’t in available methods.
+  </Function>
 
-**Returns**
+  ### set\_options
 
-The simulation job.
+  <Function id="qiskit.providers.aer.StatevectorSimulator.set_options" name="set_options" signature="StatevectorSimulator.set_options(**fields)">
+    Set the simulator options
+  </Function>
 
-**Return type**
+  ### status
 
-[AerJob](qiskit.providers.aer.jobs.AerJob "qiskit.providers.aer.jobs.AerJob")
+  <Function id="qiskit.providers.aer.StatevectorSimulator.status" name="status" signature="StatevectorSimulator.status()">
+    Return backend status.
 
-**Raises**
+    **Returns**
 
-[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – If `parameter_binds` is specified with a qobj input or has a length mismatch with the number of circuits.
+    the status of the backend.
 
-#### Additional Information:
+    **Return type**
 
-*   Each parameter binding dictionary is of the form:
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-    ```python
-    {
-        param_a: [val_1, val_2],
-        param_b: [val_3, val_1],
-    }
-    ```
+  ## Attributes
 
-    for all parameters in that circuit. The length of the value list must be the same for all parameters, and the number of parameter dictionaries in the list must match the length of `circuits` (if `circuits` is a single `QuantumCircuit` object it should a list of length 1).
+  ### options
 
-*   kwarg options specified in `run_options` will temporarily override any set options of the same name for the current run.
+  <Attribute id="qiskit.providers.aer.StatevectorSimulator.options" name="options">
+    Return the options for the backend
 
-**Raises**
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.aer.StatevectorSimulator#run "qiskit.providers.aer.StatevectorSimulator.run") method.
+  </Attribute>
 
-**ValueError** – if run is not implemented
+  ### version
 
-### set\_option
-
-<span id="qiskit.providers.aer.StatevectorSimulator.set_option" />
-
-`StatevectorSimulator.set_option(key, value)`
-
-Special handling for setting backend options.
-
-This method should be extended by sub classes to update special option values.
-
-**Parameters**
-
-*   **key** (*str*) – key to update
-*   **value** (*any*) – value to update.
-
-**Raises**
-
-[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if key is ‘method’ and val isn’t in available methods.
-
-### set\_options
-
-<span id="qiskit.providers.aer.StatevectorSimulator.set_options" />
-
-`StatevectorSimulator.set_options(**fields)`
-
-Set the simulator options
-
-### status
-
-<span id="qiskit.providers.aer.StatevectorSimulator.status" />
-
-`StatevectorSimulator.status()`
-
-Return backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.aer.StatevectorSimulator.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.aer.StatevectorSimulator#run "qiskit.providers.aer.StatevectorSimulator.run") method.
-
-<span id="qiskit.providers.aer.StatevectorSimulator.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.aer.StatevectorSimulator.version" name="version" attributeValue="= 1" />
+</Class>
 

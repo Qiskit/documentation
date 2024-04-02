@@ -8,206 +8,178 @@ python_api_name: qiskit.aqua.components.uncertainty_models.GaussianConditionalIn
 
 # GaussianConditionalIndependenceModel
 
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel" />
+<Class id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/gaussian_conditional_independence_model.py" signature="GaussianConditionalIndependenceModel(n_normal, normal_max_value, p_zeros, rhos, i_normal=None, i_ps=None)">
+  Bases: `qiskit.aqua.components.uncertainty_models.multivariate_distribution.MultivariateDistribution`
 
-`GaussianConditionalIndependenceModel(n_normal, normal_max_value, p_zeros, rhos, i_normal=None, i_ps=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/gaussian_conditional_independence_model.py "view source code")
+  The Gaussian Conditional Independence Model for Credit Risk.
 
-Bases: `qiskit.aqua.components.uncertainty_models.multivariate_distribution.MultivariateDistribution`
+  Reference: [https://arxiv.org/abs/1412.1183](https://arxiv.org/abs/1412.1183)
 
-The Gaussian Conditional Independence Model for Credit Risk.
+  Dependency between individual risk variables and latent variable is approximated linearly.
 
-Reference: [https://arxiv.org/abs/1412.1183](https://arxiv.org/abs/1412.1183)
+  **Parameters**
 
-Dependency between individual risk variables and latent variable is approximated linearly.
+  *   **n\_normal** (`int`) – Number of qubits to represent the latent normal random variable Z
+  *   **normal\_max\_value** (`float`) – Min/max value to truncate the latent normal random variable Z
+  *   **p\_zeros** (`Union`\[`List`\[`float`], `ndarray`]) – Standard default probabilities for each asset
+  *   **rhos** (`Union`\[`List`\[`float`], `ndarray`]) – Sensitivities of default probability of assets with respect to latent variable Z
+  *   **i\_normal** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – Indices of qubits to represent normal variable
+  *   **i\_ps** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – Indices of qubits to represent asset defaults
 
-**Parameters**
+  ## Methods
 
-*   **n\_normal** (`int`) – Number of qubits to represent the latent normal random variable Z
-*   **normal\_max\_value** (`float`) – Min/max value to truncate the latent normal random variable Z
-*   **p\_zeros** (`Union`\[`List`\[`float`], `ndarray`]) – Standard default probabilities for each asset
-*   **rhos** (`Union`\[`List`\[`float`], `ndarray`]) – Sensitivities of default probability of assets with respect to latent variable Z
-*   **i\_normal** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – Indices of qubits to represent normal variable
-*   **i\_ps** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – Indices of qubits to represent asset defaults
+  ### build
 
-## Methods
+  <Function id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build" name="build" signature="GaussianConditionalIndependenceModel.build(qc, q, q_ancillas=None, params=None)" />
 
-### build
+  ### build\_controlled
 
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build" />
+  <Function id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_controlled" name="build_controlled" signature="GaussianConditionalIndependenceModel.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds corresponding controlled sub-circuit to given circuit
 
-`GaussianConditionalIndependenceModel.build(qc, q, q_ancillas=None, params=None)`
+    **Parameters**
 
-### build\_controlled
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_controlled" />
+  ### build\_controlled\_inverse
 
-`GaussianConditionalIndependenceModel.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_controlled_inverse" name="build_controlled_inverse" signature="GaussianConditionalIndependenceModel.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled inverse of corresponding sub-circuit to given circuit
 
-Adds corresponding controlled sub-circuit to given circuit
+    **Parameters**
 
-**Parameters**
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  ### build\_controlled\_inverse\_power
 
-### build\_controlled\_inverse
+  <Function id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_controlled_inverse_power" name="build_controlled_inverse_power" signature="GaussianConditionalIndependenceModel.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_controlled_inverse" />
+  ### build\_controlled\_power
 
-`GaussianConditionalIndependenceModel.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_controlled_power" name="build_controlled_power" signature="GaussianConditionalIndependenceModel.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-Adds controlled inverse of corresponding sub-circuit to given circuit
+  ### build\_inverse
 
-**Parameters**
+  <Function id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_inverse" name="build_inverse" signature="GaussianConditionalIndependenceModel.build_inverse(qc, q, q_ancillas=None)">
+    Adds inverse of corresponding sub-circuit to given circuit
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+    **Parameters**
 
-### build\_controlled\_inverse\_power
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_controlled_inverse_power" />
+  ### build\_inverse\_power
 
-`GaussianConditionalIndependenceModel.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_inverse_power" name="build_inverse_power" signature="GaussianConditionalIndependenceModel.build_inverse_power(qc, q, power, q_ancillas=None)">
+    Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ### build\_power
 
-### build\_controlled\_power
+  <Function id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_power" name="build_power" signature="GaussianConditionalIndependenceModel.build_power(qc, q, power, q_ancillas=None)">
+    Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_controlled_power" />
+  ### get\_num\_qubits
 
-`GaussianConditionalIndependenceModel.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.get_num_qubits" name="get_num_qubits" signature="GaussianConditionalIndependenceModel.get_num_qubits()">
+    returns number of qubits
+  </Function>
 
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ### get\_num\_qubits\_controlled
 
-### build\_inverse
+  <Function id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.get_num_qubits_controlled" name="get_num_qubits_controlled" signature="GaussianConditionalIndependenceModel.get_num_qubits_controlled()">
+    returns number of qubits controlled
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_inverse" />
+  ### pdf\_to\_probabilities
 
-`GaussianConditionalIndependenceModel.build_inverse(qc, q, q_ancillas=None)`
+  <Function id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.pdf_to_probabilities" name="pdf_to_probabilities" signature="static GaussianConditionalIndependenceModel.pdf_to_probabilities(pdf, low, high, num_values)">
+    pdf to probabilities
+  </Function>
 
-Adds inverse of corresponding sub-circuit to given circuit
+  ### required\_ancillas
 
-**Parameters**
+  <Function id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.required_ancillas" name="required_ancillas" signature="GaussianConditionalIndependenceModel.required_ancillas()">
+    returns required ancillas
+  </Function>
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  ### required\_ancillas\_controlled
 
-### build\_inverse\_power
+  <Function id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.required_ancillas_controlled" name="required_ancillas_controlled" signature="GaussianConditionalIndependenceModel.required_ancillas_controlled()">
+    returns required ancillas controlled
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_inverse_power" />
+  ## Attributes
 
-`GaussianConditionalIndependenceModel.build_inverse_power(qc, q, power, q_ancillas=None)`
+  ### dimension
 
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  <Attribute id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.dimension" name="dimension">
+    returns dimensions
+  </Attribute>
 
-### build\_power
+  ### high
 
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.build_power" />
+  <Attribute id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.high" name="high">
+    returns high
+  </Attribute>
 
-`GaussianConditionalIndependenceModel.build_power(qc, q, power, q_ancillas=None)`
+  ### low
 
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  <Attribute id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.low" name="low">
+    returns low
+  </Attribute>
 
-### get\_num\_qubits
+  ### num\_qubits
 
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.get_num_qubits" />
+  <Attribute id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.num_qubits" name="num_qubits">
+    returns num qubits
+  </Attribute>
 
-`GaussianConditionalIndependenceModel.get_num_qubits()`
+  ### num\_target\_qubits
 
-returns number of qubits
+  <Attribute id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.num_target_qubits" name="num_target_qubits">
+    Returns the number of target qubits
+  </Attribute>
 
-### get\_num\_qubits\_controlled
+  ### num\_values
 
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.get_num_qubits_controlled" />
+  <Attribute id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.num_values" name="num_values">
+    returns number of values
+  </Attribute>
 
-`GaussianConditionalIndependenceModel.get_num_qubits_controlled()`
+  ### probabilities
 
-returns number of qubits controlled
+  <Attribute id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.probabilities" name="probabilities">
+    returns probabilities
+  </Attribute>
 
-### pdf\_to\_probabilities
+  ### probabilities\_vector
 
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.pdf_to_probabilities" />
+  <Attribute id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.probabilities_vector" name="probabilities_vector">
+    returns probabilities vector
+  </Attribute>
 
-`static GaussianConditionalIndependenceModel.pdf_to_probabilities(pdf, low, high, num_values)`
+  ### values
 
-pdf to probabilities
-
-### required\_ancillas
-
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.required_ancillas" />
-
-`GaussianConditionalIndependenceModel.required_ancillas()`
-
-returns required ancillas
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.required_ancillas_controlled" />
-
-`GaussianConditionalIndependenceModel.required_ancillas_controlled()`
-
-returns required ancillas controlled
-
-## Attributes
-
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.dimension" />
-
-### dimension
-
-returns dimensions
-
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.high" />
-
-### high
-
-returns high
-
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.low" />
-
-### low
-
-returns low
-
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.num_qubits" />
-
-### num\_qubits
-
-returns num qubits
-
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.num_target_qubits" />
-
-### num\_target\_qubits
-
-Returns the number of target qubits
-
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.num_values" />
-
-### num\_values
-
-returns number of values
-
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.probabilities" />
-
-### probabilities
-
-returns probabilities
-
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.probabilities_vector" />
-
-### probabilities\_vector
-
-returns probabilities vector
-
-<span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.values" />
-
-### values
-
-returns values
+  <Attribute id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel.values" name="values">
+    returns values
+  </Attribute>
+</Class>
 

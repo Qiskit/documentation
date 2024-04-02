@@ -8,252 +8,224 @@ python_api_name: qiskit.providers.aer.library.SaveAmplitudes
 
 # SaveAmplitudes
 
-<span id="qiskit.providers.aer.library.SaveAmplitudes" />
+<Class id="qiskit.providers.aer.library.SaveAmplitudes" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/save_instructions/save_amplitudes.py" signature="SaveAmplitudes(num_qubits, params, label='amplitudes', pershot=False, conditional=False)">
+  Bases: `qiskit.providers.aer.library.save_instructions.save_data.SaveSingleData`
 
-`SaveAmplitudes(num_qubits, params, label='amplitudes', pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/save_instructions/save_amplitudes.py "view source code")
+  Save complex statevector amplitudes.
 
-Bases: `qiskit.providers.aer.library.save_instructions.save_data.SaveSingleData`
+  Instruction to save complex statevector amplitudes.
 
-Save complex statevector amplitudes.
+  **Parameters**
 
-Instruction to save complex statevector amplitudes.
+  *   **num\_qubits** (*int*) – the number of qubits for the snapshot type.
+  *   **params** (*list*) – list of entries to vale.
+  *   **label** (*str*) – the key for retrieving saved data from results.
+  *   **pershot** (*bool*) – if True save a list of amplitudes vectors for each shot of the simulation rather than the a single amplitude vector \[Default: False].
+  *   **conditional** (*bool*) – if True save the amplitudes vector conditional on the current classical register values \[Default: False].
 
-**Parameters**
+  **Raises**
 
-*   **num\_qubits** (*int*) – the number of qubits for the snapshot type.
-*   **params** (*list*) – list of entries to vale.
-*   **label** (*str*) – the key for retrieving saved data from results.
-*   **pershot** (*bool*) – if True save a list of amplitudes vectors for each shot of the simulation rather than the a single amplitude vector \[Default: False].
-*   **conditional** (*bool*) – if True save the amplitudes vector conditional on the current classical register values \[Default: False].
+  **ExtensionError** – if params is invalid for the specified number of qubits.
 
-**Raises**
+  ## Methods
 
-**ExtensionError** – if params is invalid for the specified number of qubits.
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.providers.aer.library.SaveAmplitudes.add_decomposition" name="add_decomposition" signature="SaveAmplitudes.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.providers.aer.library.SaveAmplitudes.add_decomposition" />
+  <Function id="qiskit.providers.aer.library.SaveAmplitudes.assemble" name="assemble" signature="SaveAmplitudes.assemble()">
+    Return the QasmQobjInstruction for the intructions.
+  </Function>
 
-`SaveAmplitudes.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.providers.aer.library.SaveAmplitudes.broadcast_arguments" name="broadcast_arguments" signature="SaveAmplitudes.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.providers.aer.library.SaveAmplitudes.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`SaveAmplitudes.assemble()`
+    **Yields**
 
-Return the QasmQobjInstruction for the intructions.
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.providers.aer.library.SaveAmplitudes.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`SaveAmplitudes.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit.providers.aer.library.SaveAmplitudes.c_if" name="c_if" signature="SaveAmplitudes.c_if(classical, val)">
+    Add classical condition on register or cbit classical and value val.
+  </Function>
 
-**Parameters**
+  ### copy
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  <Function id="qiskit.providers.aer.library.SaveAmplitudes.copy" name="copy" signature="SaveAmplitudes.copy(name=None)">
+    Copy of the instruction.
 
-**Yields**
+    **Parameters**
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**Raises**
+    **Returns**
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **a copy of the current instruction, with the name**
 
-### c\_if
+    updated if it was provided
 
-<span id="qiskit.providers.aer.library.SaveAmplitudes.c_if" />
+    **Return type**
 
-`SaveAmplitudes.c_if(classical, val)`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Add classical condition on register or cbit classical and value val.
+  ### inverse
 
-### copy
+  <Function id="qiskit.providers.aer.library.SaveAmplitudes.inverse" name="inverse" signature="SaveAmplitudes.inverse()">
+    Special case. Return self.
+  </Function>
 
-<span id="qiskit.providers.aer.library.SaveAmplitudes.copy" />
+  ### is\_parameterized
 
-`SaveAmplitudes.copy(name=None)`
+  <Function id="qiskit.providers.aer.library.SaveAmplitudes.is_parameterized" name="is_parameterized" signature="SaveAmplitudes.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-Copy of the instruction.
+  ### mirror
 
-**Parameters**
+  <Function id="qiskit.providers.aer.library.SaveAmplitudes.mirror" name="mirror" signature="SaveAmplitudes.mirror()">
+    DEPRECATED: use instruction.reverse\_ops().
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    **Returns**
 
-**Returns**
+    **a new instruction with sub-instructions**
 
-**a copy of the current instruction, with the name**
+    reversed.
 
-updated if it was provided
+    **Return type**
 
-**Return type**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### qasm
 
-### inverse
+  <Function id="qiskit.providers.aer.library.SaveAmplitudes.qasm" name="qasm" signature="SaveAmplitudes.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-<span id="qiskit.providers.aer.library.SaveAmplitudes.inverse" />
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-`SaveAmplitudes.inverse()`
+  ### repeat
 
-Special case. Return self.
+  <Function id="qiskit.providers.aer.library.SaveAmplitudes.repeat" name="repeat" signature="SaveAmplitudes.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-### is\_parameterized
+    **Parameters**
 
-<span id="qiskit.providers.aer.library.SaveAmplitudes.is_parameterized" />
+    **n** (*int*) – Number of times to repeat the instruction
 
-`SaveAmplitudes.is_parameterized()`
+    **Returns**
 
-Return True .IFF. instruction is parameterized else False
+    Containing the definition.
 
-### mirror
+    **Return type**
 
-<span id="qiskit.providers.aer.library.SaveAmplitudes.mirror" />
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-`SaveAmplitudes.mirror()`
+    **Raises**
 
-DEPRECATED: use instruction.reverse\_ops().
+    **CircuitError** – If n \< 1.
+  </Function>
 
-**Returns**
+  ### reverse\_ops
 
-**a new instruction with sub-instructions**
+  <Function id="qiskit.providers.aer.library.SaveAmplitudes.reverse_ops" name="reverse_ops" signature="SaveAmplitudes.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-reversed.
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-**Return type**
+    **Returns**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **a new instruction with**
 
-### qasm
+    sub-instructions reversed.
 
-<span id="qiskit.providers.aer.library.SaveAmplitudes.qasm" />
+    **Return type**
 
-`SaveAmplitudes.qasm()`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Return a default OpenQASM string for the instruction.
+  ### soft\_compare
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  <Function id="qiskit.providers.aer.library.SaveAmplitudes.soft_compare" name="soft_compare" signature="SaveAmplitudes.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-### repeat
+    **Parameters**
 
-<span id="qiskit.providers.aer.library.SaveAmplitudes.repeat" />
+    **other** (*instruction*) – other instruction.
 
-`SaveAmplitudes.repeat(n)`
+    **Returns**
 
-Creates an instruction with gate repeated n amount of times.
+    are self and other equal up to parameter expressions.
 
-**Parameters**
+    **Return type**
 
-**n** (*int*) – Number of times to repeat the instruction
+    bool
+  </Function>
 
-**Returns**
+  ### validate\_parameter
 
-Containing the definition.
+  <Function id="qiskit.providers.aer.library.SaveAmplitudes.validate_parameter" name="validate_parameter" signature="SaveAmplitudes.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### decompositions
 
-**Raises**
+  <Attribute id="qiskit.providers.aer.library.SaveAmplitudes.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-**CircuitError** – If n \< 1.
+  ### definition
 
-### reverse\_ops
+  <Attribute id="qiskit.providers.aer.library.SaveAmplitudes.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.providers.aer.library.SaveAmplitudes.reverse_ops" />
+  ### duration
 
-`SaveAmplitudes.reverse_ops()`
+  <Attribute id="qiskit.providers.aer.library.SaveAmplitudes.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### label
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Attribute id="qiskit.providers.aer.library.SaveAmplitudes.label" name="label">
+    Return instruction label
 
-**Returns**
+    **Return type**
 
-**a new instruction with**
+    `str`
+  </Attribute>
 
-sub-instructions reversed.
+  ### params
 
-**Return type**
+  <Attribute id="qiskit.providers.aer.library.SaveAmplitudes.params" name="params">
+    return instruction params.
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### unit
 
-### soft\_compare
-
-<span id="qiskit.providers.aer.library.SaveAmplitudes.soft_compare" />
-
-`SaveAmplitudes.soft_compare(other)`
-
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
-
-**Parameters**
-
-**other** (*instruction*) – other instruction.
-
-**Returns**
-
-are self and other equal up to parameter expressions.
-
-**Return type**
-
-bool
-
-### validate\_parameter
-
-<span id="qiskit.providers.aer.library.SaveAmplitudes.validate_parameter" />
-
-`SaveAmplitudes.validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
-
-## Attributes
-
-<span id="qiskit.providers.aer.library.SaveAmplitudes.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.providers.aer.library.SaveAmplitudes.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit.providers.aer.library.SaveAmplitudes.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit.providers.aer.library.SaveAmplitudes.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.providers.aer.library.SaveAmplitudes.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.providers.aer.library.SaveAmplitudes.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.providers.aer.library.SaveAmplitudes.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

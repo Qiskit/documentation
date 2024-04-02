@@ -8,33 +8,31 @@ python_api_name: qiskit.pulse.builder.num_qubits
 
 # qiskit.pulse.builder.num\_qubits
 
-<span id="qiskit.pulse.builder.num_qubits" />
+<Function id="qiskit.pulse.builder.num_qubits" name="num_qubits" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py" signature="num_qubits()">
+  Return number of qubits in the currently active backend.
 
-`num_qubits()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
+  Examples:
 
-Return number of qubits in the currently active backend.
+  ```python
+  from qiskit import pulse
+  from qiskit.test.mock import FakeOpenPulse2Q
 
-Examples:
+  backend = FakeOpenPulse2Q()
 
-```python
-from qiskit import pulse
-from qiskit.test.mock import FakeOpenPulse2Q
+  with pulse.build(backend):
+      print(pulse.num_qubits())
+  ```
 
-backend = FakeOpenPulse2Q()
+  ```python
+  2
+  ```
 
-with pulse.build(backend):
-    print(pulse.num_qubits())
-```
+  <Admonition title="Note" type="note">
+    Requires the active builder context to have a backend set.
+  </Admonition>
 
-```python
-2
-```
+  **Return type**
 
-<Admonition title="Note" type="note">
-  Requires the active builder context to have a backend set.
-</Admonition>
-
-**Return type**
-
-`int`
+  `int`
+</Function>
 

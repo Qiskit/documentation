@@ -8,143 +8,133 @@ python_api_name: qiskit.circuit.library.XOR
 
 # XOR
 
-<span id="qiskit.circuit.library.XOR" />
+<Class id="qiskit.circuit.library.XOR" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/boolean_logic/quantum_xor.py" signature="XOR(num_qubits, amount=None, seed=None)">
+  Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
-`XOR(num_qubits, amount=None, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/boolean_logic/quantum_xor.py "view source code")
+  An n\_qubit circuit for bitwise xor-ing the input with some integer `amount`.
 
-Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
+  The `amount` is xor-ed in bitstring form with the input.
 
-An n\_qubit circuit for bitwise xor-ing the input with some integer `amount`.
+  This circuit can also represent addition by `amount` over the finite field GF(2).
 
-The `amount` is xor-ed in bitstring form with the input.
+  Return a circuit implementing bitwise xor.
 
-This circuit can also represent addition by `amount` over the finite field GF(2).
+  **Parameters**
 
-Return a circuit implementing bitwise xor.
+  *   **num\_qubits** (`int`) – the width of circuit.
+  *   **amount** (`Optional`\[`int`]) – the xor amount in decimal form.
+  *   **seed** (`Optional`\[`int`]) – random seed in case a random xor is requested.
 
-**Parameters**
+  **Raises**
 
-*   **num\_qubits** (`int`) – the width of circuit.
-*   **amount** (`Optional`\[`int`]) – the xor amount in decimal form.
-*   **seed** (`Optional`\[`int`]) – random seed in case a random xor is requested.
+  **CircuitError** – if the xor bitstring exceeds available qubits.
 
-**Raises**
+  **Reference Circuit:**
 
-**CircuitError** – if the xor bitstring exceeds available qubits.
+  ## Attributes
 
-**Reference Circuit:**
+  ### ancillas
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.XOR.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.XOR.ancillas" />
+  ### calibrations
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.XOR.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **The custom pulse definition of a given gate is of the form**
 
-<span id="qiskit.circuit.library.XOR.calibrations" />
+    \{‘gate\_name’: \{(qubits, params): schedule}}
+  </Attribute>
 
-### calibrations
+  ### clbits
 
-Return calibration dictionary.
+  <Attribute id="qiskit.circuit.library.XOR.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-**The custom pulse definition of a given gate is of the form**
+  ### data
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+  <Attribute id="qiskit.circuit.library.XOR.data" name="data">
+    Return the circuit data (instructions and context).
 
-<span id="qiskit.circuit.library.XOR.clbits" />
+    **Returns**
 
-### clbits
+    a list-like object containing the tuples for the circuit’s data.
 
-Returns a list of classical bits in the order that the registers were added.
+    Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
-<span id="qiskit.circuit.library.XOR.data" />
+    **Return type**
 
-### data
+    QuantumCircuitData
+  </Attribute>
 
-Return the circuit data (instructions and context).
+  ### extension\_lib
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.XOR.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-a list-like object containing the tuples for the circuit’s data.
+  ### global\_phase
 
-Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
+  <Attribute id="qiskit.circuit.library.XOR.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
+  </Attribute>
 
-**Return type**
+  ### header
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.XOR.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-<span id="qiskit.circuit.library.XOR.extension_lib" />
+  ### instances
 
-### extension\_lib
+  <Attribute id="qiskit.circuit.library.XOR.instances" name="instances" attributeValue="= 16" />
 
-`= 'include "qelib1.inc";'`
+  ### metadata
 
-<span id="qiskit.circuit.library.XOR.global_phase" />
+  <Attribute id="qiskit.circuit.library.XOR.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-### global\_phase
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-Return the global phase of the circuit in radians.
+  ### num\_ancillas
 
-<span id="qiskit.circuit.library.XOR.header" />
+  <Attribute id="qiskit.circuit.library.XOR.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-### header
+  ### num\_clbits
 
-`= 'OPENQASM 2.0;'`
+  <Attribute id="qiskit.circuit.library.XOR.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.XOR.instances" />
+  ### num\_parameters
 
-### instances
+  <Attribute id="qiskit.circuit.library.XOR.num_parameters" name="num_parameters">
+    Convenience function to get the number of parameter objects in the circuit.
+  </Attribute>
 
-`= 16`
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.XOR.metadata" />
+  <Attribute id="qiskit.circuit.library.XOR.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-### metadata
+  ### parameters
 
-The user provided metadata associated with the circuit
+  <Attribute id="qiskit.circuit.library.XOR.parameters" name="parameters">
+    Convenience function to get the parameters defined in the parameter table.
+  </Attribute>
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  ### prefix
 
-<span id="qiskit.circuit.library.XOR.num_ancillas" />
+  <Attribute id="qiskit.circuit.library.XOR.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-### num\_ancillas
+  ### qubits
 
-Return the number of ancilla qubits.
-
-<span id="qiskit.circuit.library.XOR.num_clbits" />
-
-### num\_clbits
-
-Return number of classical bits.
-
-<span id="qiskit.circuit.library.XOR.num_parameters" />
-
-### num\_parameters
-
-Convenience function to get the number of parameter objects in the circuit.
-
-<span id="qiskit.circuit.library.XOR.num_qubits" />
-
-### num\_qubits
-
-Return number of qubits.
-
-<span id="qiskit.circuit.library.XOR.parameters" />
-
-### parameters
-
-Convenience function to get the parameters defined in the parameter table.
-
-<span id="qiskit.circuit.library.XOR.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.XOR.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.XOR.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+</Class>
 
