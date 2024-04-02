@@ -8,133 +8,123 @@ python_api_name: qiskit.optimization.problems.QuadraticExpression
 
 # QuadraticExpression
 
-<span id="qiskit.optimization.problems.QuadraticExpression" />
+<Class id="qiskit.optimization.problems.QuadraticExpression" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py" signature="QuadraticExpression(quadratic_program, coefficients)">
+  Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
 
-`QuadraticExpression(quadratic_program, coefficients)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
+  Representation of a quadratic expression by its coefficients.
 
-Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
+  Creates a new quadratic expression.
 
-Representation of a quadratic expression by its coefficients.
+  The quadratic expression can be defined via an array, a list, a sparse matrix, or a dictionary that uses variable names or indices as keys and stores the values internally as a dok\_matrix. We stores values in a compressed way, i.e., values at symmetric positions are summed up in the upper triangle. For example, \{(0, 1): 1, (1, 0): 2} -> \{(0, 1): 3}.
 
-Creates a new quadratic expression.
+  **Parameters**
 
-The quadratic expression can be defined via an array, a list, a sparse matrix, or a dictionary that uses variable names or indices as keys and stores the values internally as a dok\_matrix. We stores values in a compressed way, i.e., values at symmetric positions are summed up in the upper triangle. For example, \{(0, 1): 1, (1, 0): 2} -> \{(0, 1): 3}.
+  *   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
+  *   **coefficients** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`]]) – The (sparse) representation of the coefficients.
 
-**Parameters**
+  ## Methods
 
-*   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
-*   **coefficients** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`]]) – The (sparse) representation of the coefficients.
+  ### evaluate
 
-## Methods
+  <Function id="qiskit.optimization.problems.QuadraticExpression.evaluate" name="evaluate" signature="QuadraticExpression.evaluate(x)">
+    Evaluate the quadratic expression for given variables: x \* Q \* x.
 
-### evaluate
+    **Parameters**
 
-<span id="qiskit.optimization.problems.QuadraticExpression.evaluate" />
+    **x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
 
-`QuadraticExpression.evaluate(x)`
+    **Return type**
 
-Evaluate the quadratic expression for given variables: x \* Q \* x.
+    `float`
 
-**Parameters**
+    **Returns**
 
-**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
+    The value of the quadratic expression given the variable values.
+  </Function>
 
-**Return type**
+  ### evaluate\_gradient
 
-`float`
+  <Function id="qiskit.optimization.problems.QuadraticExpression.evaluate_gradient" name="evaluate_gradient" signature="QuadraticExpression.evaluate_gradient(x)">
+    Evaluate the gradient of the quadratic expression for given variables.
 
-**Returns**
+    **Parameters**
 
-The value of the quadratic expression given the variable values.
+    **x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
 
-### evaluate\_gradient
+    **Return type**
 
-<span id="qiskit.optimization.problems.QuadraticExpression.evaluate_gradient" />
+    `ndarray`
 
-`QuadraticExpression.evaluate_gradient(x)`
+    **Returns**
 
-Evaluate the gradient of the quadratic expression for given variables.
+    The value of the gradient quadratic expression given the variable values.
+  </Function>
 
-**Parameters**
+  ### to\_array
 
-**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
+  <Function id="qiskit.optimization.problems.QuadraticExpression.to_array" name="to_array" signature="QuadraticExpression.to_array(symmetric=False)">
+    Returns the coefficients of the quadratic expression as array.
 
-**Return type**
+    **Parameters**
 
-`ndarray`
+    **symmetric** (`bool`) – Determines whether the output is in a symmetric form or not.
 
-**Returns**
+    **Return type**
 
-The value of the gradient quadratic expression given the variable values.
+    `ndarray`
 
-### to\_array
+    **Returns**
 
-<span id="qiskit.optimization.problems.QuadraticExpression.to_array" />
+    An array with the coefficients corresponding to the quadratic expression.
+  </Function>
 
-`QuadraticExpression.to_array(symmetric=False)`
+  ### to\_dict
 
-Returns the coefficients of the quadratic expression as array.
+  <Function id="qiskit.optimization.problems.QuadraticExpression.to_dict" name="to_dict" signature="QuadraticExpression.to_dict(symmetric=False, use_name=False)">
+    Returns the coefficients of the quadratic expression as dictionary, either using tuples of variable names or indices as keys.
 
-**Parameters**
+    **Parameters**
 
-**symmetric** (`bool`) – Determines whether the output is in a symmetric form or not.
+    *   **symmetric** (`bool`) – Determines whether the output is in a symmetric form or not.
+    *   **use\_name** (`bool`) – Determines whether to use index or names to refer to variables.
 
-**Return type**
+    **Return type**
 
-`ndarray`
+    `Dict`\[`Union`\[`Tuple`\[`int`, `int`], `Tuple`\[`str`, `str`]], `float`]
 
-**Returns**
+    **Returns**
 
-An array with the coefficients corresponding to the quadratic expression.
+    An dictionary with the coefficients corresponding to the quadratic expression.
+  </Function>
 
-### to\_dict
+  ## Attributes
 
-<span id="qiskit.optimization.problems.QuadraticExpression.to_dict" />
+  ### coefficients
 
-`QuadraticExpression.to_dict(symmetric=False, use_name=False)`
+  <Attribute id="qiskit.optimization.problems.QuadraticExpression.coefficients" name="coefficients">
+    Returns the coefficients of the quadratic expression.
 
-Returns the coefficients of the quadratic expression as dictionary, either using tuples of variable names or indices as keys.
+    **Return type**
 
-**Parameters**
+    `dok_matrix`
 
-*   **symmetric** (`bool`) – Determines whether the output is in a symmetric form or not.
-*   **use\_name** (`bool`) – Determines whether to use index or names to refer to variables.
+    **Returns**
 
-**Return type**
+    The coefficients of the quadratic expression.
+  </Attribute>
 
-`Dict`\[`Union`\[`Tuple`\[`int`, `int`], `Tuple`\[`str`, `str`]], `float`]
+  ### quadratic\_program
 
-**Returns**
+  <Attribute id="qiskit.optimization.problems.QuadraticExpression.quadratic_program" name="quadratic_program">
+    Returns the parent QuadraticProgram.
 
-An dictionary with the coefficients corresponding to the quadratic expression.
+    **Return type**
 
-## Attributes
+    `Any`
 
-<span id="qiskit.optimization.problems.QuadraticExpression.coefficients" />
+    **Returns**
 
-### coefficients
-
-Returns the coefficients of the quadratic expression.
-
-**Return type**
-
-`dok_matrix`
-
-**Returns**
-
-The coefficients of the quadratic expression.
-
-<span id="qiskit.optimization.problems.QuadraticExpression.quadratic_program" />
-
-### quadratic\_program
-
-Returns the parent QuadraticProgram.
-
-**Return type**
-
-`Any`
-
-**Returns**
-
-The parent QuadraticProgram.
+    The parent QuadraticProgram.
+  </Attribute>
+</Class>
 

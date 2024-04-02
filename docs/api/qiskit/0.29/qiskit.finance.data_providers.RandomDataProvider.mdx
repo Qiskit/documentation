@@ -8,143 +8,127 @@ python_api_name: qiskit.finance.data_providers.RandomDataProvider
 
 # RandomDataProvider
 
-<span id="qiskit.finance.data_providers.RandomDataProvider" />
+<Class id="qiskit.finance.data_providers.RandomDataProvider" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/random_data_provider.py" signature="RandomDataProvider(tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), seed=None)">
+  Bases: `qiskit.finance.data_providers._base_data_provider.BaseDataProvider`
 
-`RandomDataProvider(tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/random_data_provider.py "view source code")
+  Pseudo-randomly generated mock stock-market data provider.
 
-Bases: `qiskit.finance.data_providers._base_data_provider.BaseDataProvider`
+  Initializer :type tickers: `Union`\[`str`, `List`\[`str`], `None`] :param tickers: tickers :type start: `datetime` :param start: first data point :type end: `datetime` :param end: last data point precedes this date :type seed: `Optional`\[`int`] :param seed: shall a seed be used?
 
-Pseudo-randomly generated mock stock-market data provider.
+  **Raises**
 
-Initializer :type tickers: `Union`\[`str`, `List`\[`str`], `None`] :param tickers: tickers :type start: `datetime` :param start: first data point :type end: `datetime` :param end: last data point precedes this date :type seed: `Optional`\[`int`] :param seed: shall a seed be used?
+  [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Pandas not installed
 
-**Raises**
+  ## Methods
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Pandas not installed
+  ### get\_coordinates
 
-## Methods
+  <Function id="qiskit.finance.data_providers.RandomDataProvider.get_coordinates" name="get_coordinates" signature="RandomDataProvider.get_coordinates()">
+    Returns random coordinates for visualisation purposes.
 
-### get\_coordinates
+    **Return type**
 
-<span id="qiskit.finance.data_providers.RandomDataProvider.get_coordinates" />
+    `Tuple`\[`ndarray`, `ndarray`]
+  </Function>
 
-`RandomDataProvider.get_coordinates()`
+  ### get\_covariance\_matrix
 
-Returns random coordinates for visualisation purposes.
+  <Function id="qiskit.finance.data_providers.RandomDataProvider.get_covariance_matrix" name="get_covariance_matrix" signature="RandomDataProvider.get_covariance_matrix()">
+    Returns the covariance matrix.
 
-**Return type**
+    **Return type**
 
-`Tuple`\[`ndarray`, `ndarray`]
+    `ndarray`
 
-### get\_covariance\_matrix
+    **Returns**
 
-<span id="qiskit.finance.data_providers.RandomDataProvider.get_covariance_matrix" />
+    an asset-to-asset covariance matrix.
 
-`RandomDataProvider.get_covariance_matrix()`
+    **Raises**
 
-Returns the covariance matrix.
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-**Return type**
+  ### get\_mean\_vector
 
-`ndarray`
+  <Function id="qiskit.finance.data_providers.RandomDataProvider.get_mean_vector" name="get_mean_vector" signature="RandomDataProvider.get_mean_vector()">
+    Returns a vector containing the mean value of each asset.
 
-**Returns**
+    **Return type**
 
-an asset-to-asset covariance matrix.
+    `ndarray`
 
-**Raises**
+    **Returns**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+    a per-asset mean vector.
 
-### get\_mean\_vector
+    **Raises**
 
-<span id="qiskit.finance.data_providers.RandomDataProvider.get_mean_vector" />
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-`RandomDataProvider.get_mean_vector()`
+  ### get\_period\_return\_covariance\_matrix
 
-Returns a vector containing the mean value of each asset.
+  <Function id="qiskit.finance.data_providers.RandomDataProvider.get_period_return_covariance_matrix" name="get_period_return_covariance_matrix" signature="RandomDataProvider.get_period_return_covariance_matrix()">
+    Returns a vector containing the mean value of each asset.
 
-**Return type**
+    **Return type**
 
-`ndarray`
+    `ndarray`
 
-**Returns**
+    **Returns**
 
-a per-asset mean vector.
+    a per-asset mean vector.
 
-**Raises**
+    **Raises**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-### get\_period\_return\_covariance\_matrix
+  ### get\_period\_return\_mean\_vector
 
-<span id="qiskit.finance.data_providers.RandomDataProvider.get_period_return_covariance_matrix" />
+  <Function id="qiskit.finance.data_providers.RandomDataProvider.get_period_return_mean_vector" name="get_period_return_mean_vector" signature="RandomDataProvider.get_period_return_mean_vector()">
+    Returns a vector containing the mean value of each asset.
 
-`RandomDataProvider.get_period_return_covariance_matrix()`
+    **Return type**
 
-Returns a vector containing the mean value of each asset.
+    `ndarray`
 
-**Return type**
+    **Returns**
 
-`ndarray`
+    a per-asset mean vector.
 
-**Returns**
+    **Raises**
 
-a per-asset mean vector.
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-**Raises**
+  ### get\_similarity\_matrix
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  <Function id="qiskit.finance.data_providers.RandomDataProvider.get_similarity_matrix" name="get_similarity_matrix" signature="RandomDataProvider.get_similarity_matrix()">
+    Returns time-series similarity matrix computed using dynamic time warping.
 
-### get\_period\_return\_mean\_vector
+    **Return type**
 
-<span id="qiskit.finance.data_providers.RandomDataProvider.get_period_return_mean_vector" />
+    `ndarray`
 
-`RandomDataProvider.get_period_return_mean_vector()`
+    **Returns**
 
-Returns a vector containing the mean value of each asset.
+    an asset-to-asset similarity matrix.
 
-**Return type**
+    **Raises**
 
-`ndarray`
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-**Returns**
+  ### run
 
-a per-asset mean vector.
+  <Function id="qiskit.finance.data_providers.RandomDataProvider.run" name="run" signature="RandomDataProvider.run()">
+    Generates data pseudo-randomly, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
 
-**Raises**
+    **Return type**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-### get\_similarity\_matrix
-
-<span id="qiskit.finance.data_providers.RandomDataProvider.get_similarity_matrix" />
-
-`RandomDataProvider.get_similarity_matrix()`
-
-Returns time-series similarity matrix computed using dynamic time warping.
-
-**Return type**
-
-`ndarray`
-
-**Returns**
-
-an asset-to-asset similarity matrix.
-
-**Raises**
-
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-### run
-
-<span id="qiskit.finance.data_providers.RandomDataProvider.run" />
-
-`RandomDataProvider.run()`
-
-Generates data pseudo-randomly, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 
