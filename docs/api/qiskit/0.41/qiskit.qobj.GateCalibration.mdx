@@ -8,58 +8,52 @@ python_api_name: qiskit.qobj.GateCalibration
 
 # GateCalibration
 
-<span id="qiskit.qobj.GateCalibration" />
+<Class id="qiskit.qobj.GateCalibration" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qobj/qasm_qobj.py" signature="GateCalibration(name, qubits, params, instructions)">
+  Bases: `object`
 
-`GateCalibration(name, qubits, params, instructions)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qobj/qasm_qobj.py "view source code")
+  Each calibration specifies a unique gate by name, qubits and params, and contains the Pulse instructions to implement it.
 
-Bases: `object`
+  Initialize a single gate calibration. Instructions may reference waveforms which should be made available in the pulse\_library.
 
-Each calibration specifies a unique gate by name, qubits and params, and contains the Pulse instructions to implement it.
+  **Parameters**
 
-Initialize a single gate calibration. Instructions may reference waveforms which should be made available in the pulse\_library.
+  *   **name** (*str*) – Gate name.
+  *   **qubits** (*list(int)*) – Qubits the gate applies to.
+  *   **params** (*list(complex)*) – Gate parameter values, if any.
+  *   **instructions** (*list(*[*PulseQobjInstruction*](qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction")*)*) – The gate implementation.
 
-**Parameters**
+  ## Methods
 
-*   **name** (*str*) – Gate name.
-*   **qubits** (*list(int)*) – Qubits the gate applies to.
-*   **params** (*list(complex)*) – Gate parameter values, if any.
-*   **instructions** (*list(*[*PulseQobjInstruction*](qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction")*)*) – The gate implementation.
+  ### from\_dict
 
-## Methods
+  <Function id="qiskit.qobj.GateCalibration.from_dict" name="from_dict" signature="classmethod GateCalibration.from_dict(data)">
+    Create a new GateCalibration object from a dictionary.
 
-### from\_dict
+    **Parameters**
 
-<span id="qiskit.qobj.GateCalibration.from_dict" />
+    **data** (*dict*) – A dictionary representing the GateCalibration to create. It will be in the same format as output by [`to_dict()`](qiskit.qobj.GateCalibration#to_dict "qiskit.qobj.GateCalibration.to_dict").
 
-`classmethod GateCalibration.from_dict(data)`
+    **Returns**
 
-Create a new GateCalibration object from a dictionary.
+    The GateCalibration from the input dictionary.
 
-**Parameters**
+    **Return type**
 
-**data** (*dict*) – A dictionary representing the GateCalibration to create. It will be in the same format as output by [`to_dict()`](qiskit.qobj.GateCalibration#to_dict "qiskit.qobj.GateCalibration.to_dict").
+    [GateCalibration](qiskit.qobj.GateCalibration "qiskit.qobj.GateCalibration")
+  </Function>
 
-**Returns**
+  ### to\_dict
 
-The GateCalibration from the input dictionary.
+  <Function id="qiskit.qobj.GateCalibration.to_dict" name="to_dict" signature="GateCalibration.to_dict()">
+    Return a dictionary format representation of the Gate Calibration.
 
-**Return type**
+    **Returns**
 
-[GateCalibration](qiskit.qobj.GateCalibration "qiskit.qobj.GateCalibration")
+    The dictionary form of the GateCalibration.
 
-### to\_dict
+    **Return type**
 
-<span id="qiskit.qobj.GateCalibration.to_dict" />
-
-`GateCalibration.to_dict()`
-
-Return a dictionary format representation of the Gate Calibration.
-
-**Returns**
-
-The dictionary form of the GateCalibration.
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 
