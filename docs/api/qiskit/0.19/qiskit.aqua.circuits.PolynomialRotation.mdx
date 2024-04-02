@@ -8,175 +8,151 @@ python_api_name: qiskit.aqua.circuits.PolynomialRotation
 
 # PolynomialRotation
 
-<span id="qiskit.aqua.circuits.PolynomialRotation" />
+<Class id="qiskit.aqua.circuits.PolynomialRotation" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/polynomial_rotation.py" signature="PolynomialRotation(px, num_state_qubits, basis='Y')">
+  *DEPRECATED.* Polynomial rotation.
 
-`PolynomialRotation(px, num_state_qubits, basis='Y')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/polynomial_rotation.py "view source code")
+  <Admonition title="Deprecated since version 0.7.0" type="danger">
+    Use Terra’s qiskit.circuit.library.PolynomialPauliRotations instead.
+  </Admonition>
 
-*DEPRECATED.* Polynomial rotation.
+  For a polynomial p(x), a basis state |i> and a target qubit |0> this operator acts as:
 
-<Admonition title="Deprecated since version 0.7.0" type="danger">
-  Use Terra’s qiskit.circuit.library.PolynomialPauliRotations instead.
-</Admonition>
+  |i>|0> –> |i>( cos(p(i))|0> + sin(p(i))|1> )
 
-For a polynomial p(x), a basis state |i> and a target qubit |0> this operator acts as:
+  Let n be the number of qubits representing the state, d the degree of p(x) and q\_i the qubits,
 
-|i>|0> –> |i>( cos(p(i))|0> + sin(p(i))|1> )
+  where q\_0 is the least significant qubit. Then for
 
-Let n be the number of qubits representing the state, d the degree of p(x) and q\_i the qubits,
+  x = sum\_\{i=0}^\{n-1} 2^\{i}\*q\_i,
 
-where q\_0 is the least significant qubit. Then for
+  we can write
 
-x = sum\_\{i=0}^\{n-1} 2^\{i}\*q\_i,
+  p(x) = sum\_\{j=0}^\{j=d} px\[j]\*(q\_0 + 2\*q\_1 + … + 2^\{n-1}\*q\_n-1)^\{j}.
 
-we can write
+  The expression above is used to obtain the list of controls and rotation angles for the circuit.
 
-p(x) = sum\_\{j=0}^\{j=d} px\[j]\*(q\_0 + 2\*q\_1 + … + 2^\{n-1}\*q\_n-1)^\{j}.
+  Prepare an approximation to a state with amplitudes specified by a polynomial.
 
-The expression above is used to obtain the list of controls and rotation angles for the circuit.
+  **Parameters**
 
-Prepare an approximation to a state with amplitudes specified by a polynomial.
+  *   **px** (*list*) – coefficients of the polynomial, px\[i] is the coefficient of x^i
+  *   **num\_state\_qubits** (*int*) – number of qubits representing the state
+  *   **basis** (*str*) – type of Pauli rotation (‘X’, ‘Y’, ‘Z’)
 
-**Parameters**
+  **Raises**
 
-*   **px** (*list*) – coefficients of the polynomial, px\[i] is the coefficient of x^i
-*   **num\_state\_qubits** (*int*) – number of qubits representing the state
-*   **basis** (*str*) – type of Pauli rotation (‘X’, ‘Y’, ‘Z’)
+  **ValueError** – invalid input
 
-**Raises**
+  ## Attributes
 
-**ValueError** – invalid input
+  ### num\_target\_qubits
 
-## Attributes
+  <Attribute id="qiskit.aqua.circuits.PolynomialRotation.num_target_qubits" name="num_target_qubits">
+    Returns the number of target qubits
+  </Attribute>
 
-### num\_target\_qubits
+  ## Methods
 
-Returns the number of target qubits
+  ### build
 
-## Methods
+  <Function id="qiskit.aqua.circuits.PolynomialRotation.build" name="build" signature="PolynomialRotation.build(qc, q, q_target, q_ancillas=None, reverse=0)">
+    Build the circuit.
 
-### build
+    **Parameters**
 
-<span id="qiskit.aqua.circuits.PolynomialRotation.build" />
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.num\_state\_qubits)
+    *   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – qubit to be rotated. The algorithm is successful when this qubit is in the |1> state
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **reverse** (*int*) – if 1, apply with reversed list of qubits (i.e. q\_n as q\_0, q\_n-1 as q\_1, etc).
+  </Function>
 
-`PolynomialRotation.build(qc, q, q_target, q_ancillas=None, reverse=0)`
+  ### build\_controlled
 
-Build the circuit.
+  <Function id="qiskit.aqua.circuits.PolynomialRotation.build_controlled" name="build_controlled" signature="PolynomialRotation.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds corresponding controlled sub-circuit to given circuit
 
-**Parameters**
+    **Parameters**
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.num\_state\_qubits)
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – qubit to be rotated. The algorithm is successful when this qubit is in the |1> state
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **reverse** (*int*) – if 1, apply with reversed list of qubits (i.e. q\_n as q\_0, q\_n-1 as q\_1, etc).
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-### build\_controlled
+  ### build\_controlled\_inverse
 
-<span id="qiskit.aqua.circuits.PolynomialRotation.build_controlled" />
+  <Function id="qiskit.aqua.circuits.PolynomialRotation.build_controlled_inverse" name="build_controlled_inverse" signature="PolynomialRotation.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled inverse of corresponding sub-circuit to given circuit
 
-`PolynomialRotation.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+    **Parameters**
 
-Adds corresponding controlled sub-circuit to given circuit
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-**Parameters**
+  ### build\_controlled\_inverse\_power
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  <Function id="qiskit.aqua.circuits.PolynomialRotation.build_controlled_inverse_power" name="build_controlled_inverse_power" signature="PolynomialRotation.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-### build\_controlled\_inverse
+  ### build\_controlled\_power
 
-<span id="qiskit.aqua.circuits.PolynomialRotation.build_controlled_inverse" />
+  <Function id="qiskit.aqua.circuits.PolynomialRotation.build_controlled_power" name="build_controlled_power" signature="PolynomialRotation.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-`PolynomialRotation.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+  ### build\_inverse
 
-Adds controlled inverse of corresponding sub-circuit to given circuit
+  <Function id="qiskit.aqua.circuits.PolynomialRotation.build_inverse" name="build_inverse" signature="PolynomialRotation.build_inverse(qc, q, q_ancillas=None)">
+    Adds inverse of corresponding sub-circuit to given circuit
 
-**Parameters**
+    **Parameters**
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  </Function>
 
-### build\_controlled\_inverse\_power
+  ### build\_inverse\_power
 
-<span id="qiskit.aqua.circuits.PolynomialRotation.build_controlled_inverse_power" />
+  <Function id="qiskit.aqua.circuits.PolynomialRotation.build_inverse_power" name="build_inverse_power" signature="PolynomialRotation.build_inverse_power(qc, q, power, q_ancillas=None)">
+    Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-`PolynomialRotation.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  ### build\_power
 
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  <Function id="qiskit.aqua.circuits.PolynomialRotation.build_power" name="build_power" signature="PolynomialRotation.build_power(qc, q, power, q_ancillas=None)">
+    Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-### build\_controlled\_power
+  ### get\_num\_qubits
 
-<span id="qiskit.aqua.circuits.PolynomialRotation.build_controlled_power" />
+  <Function id="qiskit.aqua.circuits.PolynomialRotation.get_num_qubits" name="get_num_qubits" signature="PolynomialRotation.get_num_qubits()">
+    returns number of qubits
+  </Function>
 
-`PolynomialRotation.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  ### get\_num\_qubits\_controlled
 
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  <Function id="qiskit.aqua.circuits.PolynomialRotation.get_num_qubits_controlled" name="get_num_qubits_controlled" signature="PolynomialRotation.get_num_qubits_controlled()">
+    returns number of qubits controlled
+  </Function>
 
-### build\_inverse
+  ### required\_ancillas
 
-<span id="qiskit.aqua.circuits.PolynomialRotation.build_inverse" />
+  <Function id="qiskit.aqua.circuits.PolynomialRotation.required_ancillas" name="required_ancillas" signature="PolynomialRotation.required_ancillas()">
+    returns required ancillas
+  </Function>
 
-`PolynomialRotation.build_inverse(qc, q, q_ancillas=None)`
+  ### required\_ancillas\_controlled
 
-Adds inverse of corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-
-### build\_inverse\_power
-
-<span id="qiskit.aqua.circuits.PolynomialRotation.build_inverse_power" />
-
-`PolynomialRotation.build_inverse_power(qc, q, power, q_ancillas=None)`
-
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_power
-
-<span id="qiskit.aqua.circuits.PolynomialRotation.build_power" />
-
-`PolynomialRotation.build_power(qc, q, power, q_ancillas=None)`
-
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### get\_num\_qubits
-
-<span id="qiskit.aqua.circuits.PolynomialRotation.get_num_qubits" />
-
-`PolynomialRotation.get_num_qubits()`
-
-returns number of qubits
-
-### get\_num\_qubits\_controlled
-
-<span id="qiskit.aqua.circuits.PolynomialRotation.get_num_qubits_controlled" />
-
-`PolynomialRotation.get_num_qubits_controlled()`
-
-returns number of qubits controlled
-
-### required\_ancillas
-
-<span id="qiskit.aqua.circuits.PolynomialRotation.required_ancillas" />
-
-`PolynomialRotation.required_ancillas()`
-
-returns required ancillas
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.aqua.circuits.PolynomialRotation.required_ancillas_controlled" />
-
-`PolynomialRotation.required_ancillas_controlled()`
-
-returns required ancillas controlled
+  <Function id="qiskit.aqua.circuits.PolynomialRotation.required_ancillas_controlled" name="required_ancillas_controlled" signature="PolynomialRotation.required_ancillas_controlled()">
+    returns required ancillas controlled
+  </Function>
+</Class>
 

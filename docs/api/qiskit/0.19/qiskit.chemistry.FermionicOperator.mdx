@@ -8,202 +8,190 @@ python_api_name: qiskit.chemistry.FermionicOperator
 
 # FermionicOperator
 
-<span id="qiskit.chemistry.FermionicOperator" />
+<Class id="qiskit.chemistry.FermionicOperator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/fermionic_operator.py" signature="FermionicOperator(h1, h2=None, ph_trans_shift=None)">
+  A set of functions to map fermionic Hamiltonians to qubit Hamiltonians.
 
-`FermionicOperator(h1, h2=None, ph_trans_shift=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/fermionic_operator.py "view source code")
+  References:
 
-A set of functions to map fermionic Hamiltonians to qubit Hamiltonians.
+  *   *E. Wigner and P. Jordan., Über das Paulische Äquivalenzverbot, Z. Phys., 47:631 (1928).*
+  *   *S. Bravyi and A. Kitaev. Fermionic quantum computation, Ann. of Phys., 298(1):210–226 (2002).*
+  *   *A. Tranter, S. Sofia, J. Seeley, M. Kaicher, J. McClean, R. Babbush, P. Coveney, F. Mintert, F. Wilhelm, and P. Love. The Bravyi–Kitaev transformation: Properties and applications. Int. Journal of Quantum Chemistry, 115(19):1431–1441 (2015).*
+  *   *S. Bravyi, J. M. Gambetta, A. Mezzacapo, and K. Temme, arXiv e-print arXiv:1701.08213 (2017).*
+  *   *K. Setia, J. D. Whitfield, arXiv:1712.00446 (2017)*
 
-References:
+  This class requires the integrals stored in the ‘*chemist*’ notation
 
-*   *E. Wigner and P. Jordan., Über das Paulische Äquivalenzverbot, Z. Phys., 47:631 (1928).*
-*   *S. Bravyi and A. Kitaev. Fermionic quantum computation, Ann. of Phys., 298(1):210–226 (2002).*
-*   *A. Tranter, S. Sofia, J. Seeley, M. Kaicher, J. McClean, R. Babbush, P. Coveney, F. Mintert, F. Wilhelm, and P. Love. The Bravyi–Kitaev transformation: Properties and applications. Int. Journal of Quantum Chemistry, 115(19):1431–1441 (2015).*
-*   *S. Bravyi, J. M. Gambetta, A. Mezzacapo, and K. Temme, arXiv e-print arXiv:1701.08213 (2017).*
-*   *K. Setia, J. D. Whitfield, arXiv:1712.00446 (2017)*
+  > h2(i,j,k,l) –> adag\_i adag\_k a\_l a\_j
 
-This class requires the integrals stored in the ‘*chemist*’ notation
+  and the integral values are used for the coefficients of the second-quantized Hamiltonian that is built. The integrals input here should be in block spin format and also have indexes reordered as follows ‘ijkl->ljik’
 
-> h2(i,j,k,l) –> adag\_i adag\_k a\_l a\_j
+  There is another popular notation, the ‘*physicist*’ notation
 
-and the integral values are used for the coefficients of the second-quantized Hamiltonian that is built. The integrals input here should be in block spin format and also have indexes reordered as follows ‘ijkl->ljik’
+  > h2(i,j,k,l) –> adag\_i adag\_j a\_k a\_l
 
-There is another popular notation, the ‘*physicist*’ notation
+  If you are using the ‘*physicist*’ notation, you need to convert it to the ‘*chemist*’ notation. E.g. h2=numpy.einsum(‘ikmj->ijkm’, h2)
 
-> h2(i,j,k,l) –> adag\_i adag\_j a\_k a\_l
+  The [`QMolecule`](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule") class has [`one_body_integrals`](qiskit.chemistry.QMolecule#one_body_integrals "qiskit.chemistry.QMolecule.one_body_integrals") and [`two_body_integrals`](qiskit.chemistry.QMolecule#two_body_integrals "qiskit.chemistry.QMolecule.two_body_integrals") properties that can be directly supplied to the h1 and h2 parameters here respectively.
 
-If you are using the ‘*physicist*’ notation, you need to convert it to the ‘*chemist*’ notation. E.g. h2=numpy.einsum(‘ikmj->ijkm’, h2)
+  **Parameters**
 
-The [`QMolecule`](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule") class has [`one_body_integrals`](qiskit.chemistry.QMolecule#one_body_integrals "qiskit.chemistry.QMolecule.one_body_integrals") and [`two_body_integrals`](qiskit.chemistry.QMolecule#two_body_integrals "qiskit.chemistry.QMolecule.two_body_integrals") properties that can be directly supplied to the h1 and h2 parameters here respectively.
+  *   **h1** (*numpy.ndarray*) – second-quantized fermionic one-body operator, a 2-D (NxN) tensor
+  *   **h2** (*numpy.ndarray*) – second-quantized fermionic two-body operator, a 4-D (NxNxNxN) tensor
+  *   **ph\_trans\_shift** (*float*) – energy shift caused by particle hole transformation
 
-**Parameters**
+  ## Attributes
 
-*   **h1** (*numpy.ndarray*) – second-quantized fermionic one-body operator, a 2-D (NxN) tensor
-*   **h2** (*numpy.ndarray*) – second-quantized fermionic two-body operator, a 4-D (NxNxNxN) tensor
-*   **ph\_trans\_shift** (*float*) – energy shift caused by particle hole transformation
+  ### h1
 
-## Attributes
+  <Attribute id="qiskit.chemistry.FermionicOperator.h1" name="h1">
+    Getter of one body integral tensor.
+  </Attribute>
 
-### h1
+  ### h2
 
-Getter of one body integral tensor.
+  <Attribute id="qiskit.chemistry.FermionicOperator.h2" name="h2">
+    Getter of two body integral tensor.
+  </Attribute>
 
-### h2
+  ### modes
 
-Getter of two body integral tensor.
+  <Attribute id="qiskit.chemistry.FermionicOperator.modes" name="modes">
+    Getter of modes.
+  </Attribute>
 
-### modes
+  ## Methods
 
-Getter of modes.
+  ### fermion\_mode\_elimination
 
-## Methods
+  <Function id="qiskit.chemistry.FermionicOperator.fermion_mode_elimination" name="fermion_mode_elimination" signature="FermionicOperator.fermion_mode_elimination(fermion_mode_array)">
+    Eliminate modes.
 
-### fermion\_mode\_elimination
+    Generate a new fermionic operator with the modes in fermion\_mode\_array deleted
 
-<span id="qiskit.chemistry.FermionicOperator.fermion_mode_elimination" />
+    **Parameters**
 
-`FermionicOperator.fermion_mode_elimination(fermion_mode_array)`
+    **fermion\_mode\_array** (*list*) – orbital index for elimination
 
-Eliminate modes.
+    **Returns**
 
-Generate a new fermionic operator with the modes in fermion\_mode\_array deleted
+    Fermionic Hamiltonian
 
-**Parameters**
+    **Return type**
 
-**fermion\_mode\_array** (*list*) – orbital index for elimination
+    [FermionicOperator](qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
+  </Function>
 
-**Returns**
+  ### fermion\_mode\_freezing
 
-Fermionic Hamiltonian
+  <Function id="qiskit.chemistry.FermionicOperator.fermion_mode_freezing" name="fermion_mode_freezing" signature="FermionicOperator.fermion_mode_freezing(fermion_mode_array)">
+    Freezing modes and extracting its energy.
 
-**Return type**
+    Generate a fermionic operator with the modes in fermion\_mode\_array deleted and provide the shifted energy after freezing.
 
-[FermionicOperator](qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
+    **Parameters**
 
-### fermion\_mode\_freezing
+    **fermion\_mode\_array** (*list*) – orbital index for freezing
 
-<span id="qiskit.chemistry.FermionicOperator.fermion_mode_freezing" />
+    **Returns**
 
-`FermionicOperator.fermion_mode_freezing(fermion_mode_array)`
+    Fermionic Hamiltonian and energy of frozen modes
 
-Freezing modes and extracting its energy.
+    **Return type**
 
-Generate a fermionic operator with the modes in fermion\_mode\_array deleted and provide the shifted energy after freezing.
+    tuple([FermionicOperator](qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator"), float)
+  </Function>
 
-**Parameters**
+  ### mapping
 
-**fermion\_mode\_array** (*list*) – orbital index for freezing
+  <Function id="qiskit.chemistry.FermionicOperator.mapping" name="mapping" signature="FermionicOperator.mapping(map_type, threshold=1e-08)">
+    Map fermionic operator to qubit operator.
 
-**Returns**
+    Using multiprocess to speedup the mapping, the improvement can be observed when h2 is a non-sparse matrix.
 
-Fermionic Hamiltonian and energy of frozen modes
+    **Parameters**
 
-**Return type**
+    *   **map\_type** (*str*) – case-insensitive mapping type. “jordan\_wigner”, “parity”, “bravyi\_kitaev”, “bksf”
+    *   **threshold** (*float*) – threshold for Pauli simplification
 
-tuple([FermionicOperator](qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator"), float)
+    **Returns**
 
-### mapping
+    create an Operator object in Paulis form.
 
-<span id="qiskit.chemistry.FermionicOperator.mapping" />
+    **Return type**
 
-`FermionicOperator.mapping(map_type, threshold=1e-08)`
+    [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
-Map fermionic operator to qubit operator.
+    **Raises**
 
-Using multiprocess to speedup the mapping, the improvement can be observed when h2 is a non-sparse matrix.
+    [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – if the map\_type can not be recognized.
+  </Function>
 
-**Parameters**
+  ### particle\_hole\_transformation
 
-*   **map\_type** (*str*) – case-insensitive mapping type. “jordan\_wigner”, “parity”, “bravyi\_kitaev”, “bksf”
-*   **threshold** (*float*) – threshold for Pauli simplification
+  <Function id="qiskit.chemistry.FermionicOperator.particle_hole_transformation" name="particle_hole_transformation" signature="FermionicOperator.particle_hole_transformation(num_particles)">
+    The ‘standard’ second quantized Hamiltonian can be transformed in the particle-hole (p/h) picture, which makes the expansion of the trail wavefunction from the HF reference state more natural. In fact, for both trail wavefunctions implemented in q-lib (‘heuristic’ hardware efficient and UCCSD) the p/h Hamiltonian improves the speed of convergence of the VQE algorithm for the calculation of the electronic ground state properties. For more information on the p/h formalism see: P. Barkoutsos, arXiv:1805.04340([https://arxiv.org/abs/1805.04340](https://arxiv.org/abs/1805.04340)).
 
-**Returns**
+    **Parameters**
 
-create an Operator object in Paulis form.
+    **num\_particles** (*list, int*) – number of particles, if it is a list, the first number is alpha and the second number is beta.
 
-**Return type**
+    **Returns**
 
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+    new\_fer\_op, energy\_shift
 
-**Raises**
+    **Return type**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – if the map\_type can not be recognized.
+    tuple
+  </Function>
 
-### particle\_hole\_transformation
+  ### total\_angular\_momentum
 
-<span id="qiskit.chemistry.FermionicOperator.particle_hole_transformation" />
+  <Function id="qiskit.chemistry.FermionicOperator.total_angular_momentum" name="total_angular_momentum" signature="FermionicOperator.total_angular_momentum()">
+    Total angular momentum.
 
-`FermionicOperator.particle_hole_transformation(num_particles)`
+    A data\_preprocess\_helper fermionic operator which can be used to evaluate the total angular momentum of the given eigenstate.
 
-The ‘standard’ second quantized Hamiltonian can be transformed in the particle-hole (p/h) picture, which makes the expansion of the trail wavefunction from the HF reference state more natural. In fact, for both trail wavefunctions implemented in q-lib (‘heuristic’ hardware efficient and UCCSD) the p/h Hamiltonian improves the speed of convergence of the VQE algorithm for the calculation of the electronic ground state properties. For more information on the p/h formalism see: P. Barkoutsos, arXiv:1805.04340([https://arxiv.org/abs/1805.04340](https://arxiv.org/abs/1805.04340)).
+    **Returns**
 
-**Parameters**
+    Fermionic Hamiltonian
 
-**num\_particles** (*list, int*) – number of particles, if it is a list, the first number is alpha and the second number is beta.
+    **Return type**
 
-**Returns**
+    [FermionicOperator](qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
+  </Function>
 
-new\_fer\_op, energy\_shift
+  ### total\_magnetization
 
-**Return type**
+  <Function id="qiskit.chemistry.FermionicOperator.total_magnetization" name="total_magnetization" signature="FermionicOperator.total_magnetization()">
+    A data\_preprocess\_helper fermionic operator which can be used to evaluate the magnetization of the given eigenstate.
 
-tuple
+    **Returns**
 
-### total\_angular\_momentum
+    Fermionic Hamiltonian
 
-<span id="qiskit.chemistry.FermionicOperator.total_angular_momentum" />
+    **Return type**
 
-`FermionicOperator.total_angular_momentum()`
+    [FermionicOperator](qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
+  </Function>
 
-Total angular momentum.
+  ### total\_particle\_number
 
-A data\_preprocess\_helper fermionic operator which can be used to evaluate the total angular momentum of the given eigenstate.
+  <Function id="qiskit.chemistry.FermionicOperator.total_particle_number" name="total_particle_number" signature="FermionicOperator.total_particle_number()">
+    A data\_preprocess\_helper fermionic operator which can be used to evaluate the number of particle of the given eigenstate.
 
-**Returns**
+    **Returns**
 
-Fermionic Hamiltonian
+    Fermionic Hamiltonian
 
-**Return type**
+    **Return type**
 
-[FermionicOperator](qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
+    [FermionicOperator](qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
+  </Function>
 
-### total\_magnetization
+  ### transform
 
-<span id="qiskit.chemistry.FermionicOperator.total_magnetization" />
-
-`FermionicOperator.total_magnetization()`
-
-A data\_preprocess\_helper fermionic operator which can be used to evaluate the magnetization of the given eigenstate.
-
-**Returns**
-
-Fermionic Hamiltonian
-
-**Return type**
-
-[FermionicOperator](qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
-
-### total\_particle\_number
-
-<span id="qiskit.chemistry.FermionicOperator.total_particle_number" />
-
-`FermionicOperator.total_particle_number()`
-
-A data\_preprocess\_helper fermionic operator which can be used to evaluate the number of particle of the given eigenstate.
-
-**Returns**
-
-Fermionic Hamiltonian
-
-**Return type**
-
-[FermionicOperator](qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
-
-### transform
-
-<span id="qiskit.chemistry.FermionicOperator.transform" />
-
-`FermionicOperator.transform(unitary_matrix)`
-
-Transform the one and two body term based on unitary\_matrix.
+  <Function id="qiskit.chemistry.FermionicOperator.transform" name="transform" signature="FermionicOperator.transform(unitary_matrix)">
+    Transform the one and two body term based on unitary\_matrix.
+  </Function>
+</Class>
 

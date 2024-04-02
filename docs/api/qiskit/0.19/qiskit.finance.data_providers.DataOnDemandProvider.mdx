@@ -8,142 +8,126 @@ python_api_name: qiskit.finance.data_providers.DataOnDemandProvider
 
 # DataOnDemandProvider
 
-<span id="qiskit.finance.data_providers.DataOnDemandProvider" />
+<Class id="qiskit.finance.data_providers.DataOnDemandProvider" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/data_on_demand_provider.py" signature="DataOnDemandProvider(token, tickers, stockmarket=StockMarket.NASDAQ, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), verify=None)">
+  NASDAQ Data on Demand data provider.
 
-`DataOnDemandProvider(token, tickers, stockmarket=StockMarket.NASDAQ, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), verify=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/data_on_demand_provider.py "view source code")
+  Please see: [https://github.com/Qiskit/qiskit-tutorials/blob/stable/0.14.x/qiskit/advanced/aqua/finance/data\_providers/time\_series.ipynb](https://github.com/Qiskit/qiskit-tutorials/blob/stable/0.14.x/qiskit/advanced/aqua/finance/data_providers/time_series.ipynb) for instructions on use, which involve obtaining a NASDAQ DOD access token.
 
-NASDAQ Data on Demand data provider.
+  **Parameters**
 
-Please see: [https://github.com/Qiskit/qiskit-tutorials/blob/stable/0.14.x/qiskit/advanced/aqua/finance/data\_providers/time\_series.ipynb](https://github.com/Qiskit/qiskit-tutorials/blob/stable/0.14.x/qiskit/advanced/aqua/finance/data_providers/time_series.ipynb) for instructions on use, which involve obtaining a NASDAQ DOD access token.
+  *   **token** (`str`) – quandl access token
+  *   **tickers** (`Union`\[`str`, `List`\[`str`]]) – tickers
+  *   **stockmarket** ([`StockMarket`](qiskit.finance.data_providers.StockMarket "qiskit.finance.data_providers._base_data_provider.StockMarket")) – NYSE or NASDAQ
+  *   **start** (*\<module 'datetime' from '/usr/lib/python3.7/datetime.py'>*) – first data point
+  *   **end** (*\<module 'datetime' from '/usr/lib/python3.7/datetime.py'>*) – last data point precedes this date
+  *   **verify** (`Union`\[`str`, `bool`, `None`]) – if verify is None, certify certificates will be used (default); if this is False, no certificates will be checked; if this is a string, it should be pointing to a certificate for the HTTPS connection to NASDAQ (dataondemand.nasdaq.com), either in the form of a CA\_BUNDLE file or a directory wherein to look.
 
-**Parameters**
+  **Raises**
 
-*   **token** (`str`) – quandl access token
-*   **tickers** (`Union`\[`str`, `List`\[`str`]]) – tickers
-*   **stockmarket** ([`StockMarket`](qiskit.finance.data_providers.StockMarket "qiskit.finance.data_providers._base_data_provider.StockMarket")) – NYSE or NASDAQ
-*   **start** (*\<module 'datetime' from '/usr/lib/python3.7/datetime.py'>*) – first data point
-*   **end** (*\<module 'datetime' from '/usr/lib/python3.7/datetime.py'>*) – last data point precedes this date
-*   **verify** (`Union`\[`str`, `bool`, `None`]) – if verify is None, certify certificates will be used (default); if this is False, no certificates will be checked; if this is a string, it should be pointing to a certificate for the HTTPS connection to NASDAQ (dataondemand.nasdaq.com), either in the form of a CA\_BUNDLE file or a directory wherein to look.
+  [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – invalid data
 
-**Raises**
+  ## Methods
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – invalid data
+  ### get\_coordinates
 
-## Methods
+  <Function id="qiskit.finance.data_providers.DataOnDemandProvider.get_coordinates" name="get_coordinates" signature="DataOnDemandProvider.get_coordinates()">
+    Returns random coordinates for visualisation purposes.
+  </Function>
 
-### get\_coordinates
+  ### get\_covariance\_matrix
 
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.get_coordinates" />
+  <Function id="qiskit.finance.data_providers.DataOnDemandProvider.get_covariance_matrix" name="get_covariance_matrix" signature="DataOnDemandProvider.get_covariance_matrix()">
+    Returns the covariance matrix.
 
-`DataOnDemandProvider.get_coordinates()`
+    **Returns**
 
-Returns random coordinates for visualisation purposes.
+    an asset-to-asset covariance matrix.
 
-### get\_covariance\_matrix
+    **Return type**
 
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.get_covariance_matrix" />
+    numpy.ndarray
 
-`DataOnDemandProvider.get_covariance_matrix()`
+    **Raises**
 
-Returns the covariance matrix.
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-**Returns**
+  ### get\_mean\_vector
 
-an asset-to-asset covariance matrix.
+  <Function id="qiskit.finance.data_providers.DataOnDemandProvider.get_mean_vector" name="get_mean_vector" signature="DataOnDemandProvider.get_mean_vector()">
+    Returns a vector containing the mean value of each asset.
 
-**Return type**
+    **Returns**
 
-numpy.ndarray
+    a per-asset mean vector.
 
-**Raises**
+    **Return type**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+    numpy.ndarray
 
-### get\_mean\_vector
+    **Raises**
 
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.get_mean_vector" />
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-`DataOnDemandProvider.get_mean_vector()`
+  ### get\_period\_return\_covariance\_matrix
 
-Returns a vector containing the mean value of each asset.
+  <Function id="qiskit.finance.data_providers.DataOnDemandProvider.get_period_return_covariance_matrix" name="get_period_return_covariance_matrix" signature="DataOnDemandProvider.get_period_return_covariance_matrix()">
+    Returns a vector containing the mean value of each asset.
 
-**Returns**
+    **Returns**
 
-a per-asset mean vector.
+    a per-asset mean vector.
 
-**Return type**
+    **Return type**
 
-numpy.ndarray
+    numpy.ndarray
 
-**Raises**
+    **Raises**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-### get\_period\_return\_covariance\_matrix
+  ### get\_period\_return\_mean\_vector
 
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.get_period_return_covariance_matrix" />
+  <Function id="qiskit.finance.data_providers.DataOnDemandProvider.get_period_return_mean_vector" name="get_period_return_mean_vector" signature="DataOnDemandProvider.get_period_return_mean_vector()">
+    Returns a vector containing the mean value of each asset.
 
-`DataOnDemandProvider.get_period_return_covariance_matrix()`
+    **Returns**
 
-Returns a vector containing the mean value of each asset.
+    a per-asset mean vector.
 
-**Returns**
+    **Return type**
 
-a per-asset mean vector.
+    numpy.ndarray
 
-**Return type**
+    **Raises**
 
-numpy.ndarray
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-**Raises**
+  ### get\_similarity\_matrix
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  <Function id="qiskit.finance.data_providers.DataOnDemandProvider.get_similarity_matrix" name="get_similarity_matrix" signature="DataOnDemandProvider.get_similarity_matrix()">
+    Returns time-series similarity matrix computed using dynamic time warping.
 
-### get\_period\_return\_mean\_vector
+    **Returns**
 
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.get_period_return_mean_vector" />
+    an asset-to-asset similarity matrix.
 
-`DataOnDemandProvider.get_period_return_mean_vector()`
+    **Return type**
 
-Returns a vector containing the mean value of each asset.
+    numpy.ndarray
 
-**Returns**
+    **Raises**
 
-a per-asset mean vector.
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-**Return type**
+  ### run
 
-numpy.ndarray
-
-**Raises**
-
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-### get\_similarity\_matrix
-
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.get_similarity_matrix" />
-
-`DataOnDemandProvider.get_similarity_matrix()`
-
-Returns time-series similarity matrix computed using dynamic time warping.
-
-**Returns**
-
-an asset-to-asset similarity matrix.
-
-**Return type**
-
-numpy.ndarray
-
-**Raises**
-
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-### run
-
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.run" />
-
-`DataOnDemandProvider.run()`
-
-Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
+  <Function id="qiskit.finance.data_providers.DataOnDemandProvider.run" name="run" signature="DataOnDemandProvider.run()">
+    Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
+  </Function>
+</Class>
 

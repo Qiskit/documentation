@@ -8,125 +8,111 @@ python_api_name: qiskit.optimization.problems.Variable
 
 # Variable
 
-<span id="qiskit.optimization.problems.Variable" />
+<Class id="qiskit.optimization.problems.Variable" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/variable.py" signature="Variable(quadratic_program, name, lowerbound=0, upperbound=1e+20, vartype=VarType.CONTINUOUS)">
+  Representation of a variable.
 
-`Variable(quadratic_program, name, lowerbound=0, upperbound=1e+20, vartype=VarType.CONTINUOUS)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/variable.py "view source code")
+  Creates a new Variable.
 
-Representation of a variable.
+  The variables is exposed by the top-level QuadraticProgram class in QuadraticProgram.variables. This constructor is not meant to be used externally.
 
-Creates a new Variable.
+  **Parameters**
 
-The variables is exposed by the top-level QuadraticProgram class in QuadraticProgram.variables. This constructor is not meant to be used externally.
+  *   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
+  *   **name** (`str`) – The variable name.
+  *   **lowerbound** (`Union`\[`float`, `int`]) – The variable lowerbound.
+  *   **upperbound** (`Union`\[`float`, `int`]) – The variable upperbound.
+  *   **vartype** (`VarType`) – The variable type.
 
-**Parameters**
+  **Raises**
 
-*   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
-*   **name** (`str`) – The variable name.
-*   **lowerbound** (`Union`\[`float`, `int`]) – The variable lowerbound.
-*   **upperbound** (`Union`\[`float`, `int`]) – The variable upperbound.
-*   **vartype** (`VarType`) – The variable type.
+  [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if lowerbound is greater than upperbound.
 
-**Raises**
+  ## Attributes
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if lowerbound is greater than upperbound.
+  ### lowerbound
 
-## Attributes
+  <Attribute id="qiskit.optimization.problems.Variable.lowerbound" name="lowerbound" signature="Union[float, int]">
+    Returns the lowerbound of the variable.
 
-### lowerbound
+    **Return type**
 
-<span id="qiskit.optimization.problems.Variable.lowerbound" />
+    `Union`\[`float`, `int`]
 
-`Union[float, int]`
+    **Returns**
 
-Returns the lowerbound of the variable.
+    The lower bound of the variable.
+  </Attribute>
 
-**Return type**
+  ### name
 
-`Union`\[`float`, `int`]
+  <Attribute id="qiskit.optimization.problems.Variable.name" name="name" signature="str">
+    Returns the name of the variable.
 
-**Returns**
+    **Return type**
 
-The lower bound of the variable.
+    `str`
 
-### name
+    **Returns**
 
-<span id="qiskit.optimization.problems.Variable.name" />
+    The name of the variable.
+  </Attribute>
 
-`str`
+  ### quadratic\_program
 
-Returns the name of the variable.
+  <Attribute id="qiskit.optimization.problems.Variable.quadratic_program" name="quadratic_program" signature="Any">
+    Returns the parent QuadraticProgram.
 
-**Return type**
+    **Return type**
 
-`str`
+    `Any`
 
-**Returns**
+    **Returns**
 
-The name of the variable.
+    The parent QuadraticProgram.
+  </Attribute>
 
-### quadratic\_program
+  ### upperbound
 
-<span id="qiskit.optimization.problems.Variable.quadratic_program" />
+  <Attribute id="qiskit.optimization.problems.Variable.upperbound" name="upperbound" signature="Union[float, int]">
+    Returns the upperbound of the variable.
 
-`Any`
+    **Return type**
 
-Returns the parent QuadraticProgram.
+    `Union`\[`float`, `int`]
 
-**Return type**
+    **Returns**
 
-`Any`
+    The upperbound of the variable.
+  </Attribute>
 
-**Returns**
+  ### vartype
 
-The parent QuadraticProgram.
+  <Attribute id="qiskit.optimization.problems.Variable.vartype" name="vartype" signature="qiskit.optimization.problems.variable.VarType">
+    Returns the type of the variable.
 
-### upperbound
+    **Return type**
 
-<span id="qiskit.optimization.problems.Variable.upperbound" />
+    `VarType`
 
-`Union[float, int]`
+    **Returns**
 
-Returns the upperbound of the variable.
+    The variable type.
+  </Attribute>
 
-**Return type**
+  ## Methods
 
-`Union`\[`float`, `int`]
+  ### as\_tuple
 
-**Returns**
+  <Function id="qiskit.optimization.problems.Variable.as_tuple" name="as_tuple" signature="Variable.as_tuple()">
+    Returns a tuple corresponding to this variable.
 
-The upperbound of the variable.
+    **Return type**
 
-### vartype
+    `Tuple`\[`str`, `Union`\[`float`, `int`], `Union`\[`float`, `int`], `VarType`]
 
-<span id="qiskit.optimization.problems.Variable.vartype" />
+    **Returns**
 
-`qiskit.optimization.problems.variable.VarType`
-
-Returns the type of the variable.
-
-**Return type**
-
-`VarType`
-
-**Returns**
-
-The variable type.
-
-## Methods
-
-### as\_tuple
-
-<span id="qiskit.optimization.problems.Variable.as_tuple" />
-
-`Variable.as_tuple()`
-
-Returns a tuple corresponding to this variable.
-
-**Return type**
-
-`Tuple`\[`str`, `Union`\[`float`, `int`], `Union`\[`float`, `int`], `VarType`]
-
-**Returns**
-
-A tuple corresponding to this variable consisting of name, lowerbound, upperbound and variable type.
+    A tuple corresponding to this variable consisting of name, lowerbound, upperbound and variable type.
+  </Function>
+</Class>
 

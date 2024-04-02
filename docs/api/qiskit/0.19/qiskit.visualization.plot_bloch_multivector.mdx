@@ -8,48 +8,46 @@ python_api_name: qiskit.visualization.plot_bloch_multivector
 
 # plot\_bloch\_multivector
 
-<span id="qiskit.visualization.plot_bloch_multivector" />
+<Function id="qiskit.visualization.plot_bloch_multivector" name="plot_bloch_multivector" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/state_visualization.py" signature="plot_bloch_multivector(rho, title='', figsize=None)">
+  Plot the Bloch sphere.
 
-`plot_bloch_multivector(rho, title='', figsize=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/state_visualization.py "view source code")
+  Plot a sphere, axes, the Bloch vector, and its projections onto each axis.
 
-Plot the Bloch sphere.
+  **Parameters**
 
-Plot a sphere, axes, the Bloch vector, and its projections onto each axis.
+  *   **rho** (*ndarray*) – Numpy array for state vector or density matrix.
+  *   **title** (*str*) – a string that represents the plot title
+  *   **figsize** (*tuple*) – Has no effect, here for compatibility only.
 
-**Parameters**
+  **Returns**
 
-*   **rho** (*ndarray*) – Numpy array for state vector or density matrix.
-*   **title** (*str*) – a string that represents the plot title
-*   **figsize** (*tuple*) – Has no effect, here for compatibility only.
+  A matplotlib figure instance.
 
-**Returns**
+  **Return type**
 
-A matplotlib figure instance.
+  matplotlib.Figure
 
-**Return type**
+  **Raises**
 
-matplotlib.Figure
+  **ImportError** – Requires matplotlib.
 
-**Raises**
+  **Example**
 
-**ImportError** – Requires matplotlib.
+  ```python
+  from qiskit import QuantumCircuit, BasicAer, execute
+  from qiskit.visualization import plot_bloch_multivector
+  %matplotlib inline
 
-**Example**
+  qc = QuantumCircuit(2, 2)
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.measure([0, 1], [0, 1])
 
-```python
-from qiskit import QuantumCircuit, BasicAer, execute
-from qiskit.visualization import plot_bloch_multivector
-%matplotlib inline
+  backend = BasicAer.get_backend('statevector_simulator')
+  job = execute(qc, backend).result()
+  plot_bloch_multivector(job.get_statevector(qc), title="New Bloch Multivector")
+  ```
 
-qc = QuantumCircuit(2, 2)
-qc.h(0)
-qc.cx(0, 1)
-qc.measure([0, 1], [0, 1])
-
-backend = BasicAer.get_backend('statevector_simulator')
-job = execute(qc, backend).result()
-plot_bloch_multivector(job.get_statevector(qc), title="New Bloch Multivector")
-```
-
-![../\_images/qiskit.visualization.plot\_bloch\_multivector\_0\_3.png](/images/api/qiskit/0.19/qiskit.visualization.plot_bloch_multivector_0_3.png) ![../\_images/qiskit.visualization.plot\_bloch\_multivector\_0\_4.png](/images/api/qiskit/0.19/qiskit.visualization.plot_bloch_multivector_0_4.png)
+  ![../\_images/qiskit.visualization.plot\_bloch\_multivector\_0\_3.png](/images/api/qiskit/0.19/qiskit.visualization.plot_bloch_multivector_0_3.png) ![../\_images/qiskit.visualization.plot\_bloch\_multivector\_0\_4.png](/images/api/qiskit/0.19/qiskit.visualization.plot_bloch_multivector_0_4.png)
+</Function>
 

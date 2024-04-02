@@ -8,38 +8,34 @@ python_api_name: qiskit.optimization.converters.QuadraticProgramToIsing
 
 # QuadraticProgramToIsing
 
-<span id="qiskit.optimization.converters.QuadraticProgramToIsing" />
+<Class id="qiskit.optimization.converters.QuadraticProgramToIsing" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/quadratic_program_to_ising.py" signature="QuadraticProgramToIsing">
+  Convert an optimization problem into a qubit operator.
 
-`QuadraticProgramToIsing` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/quadratic_program_to_ising.py "view source code")
+  Initialize the internal data structure.
 
-Convert an optimization problem into a qubit operator.
+  ## Methods
 
-Initialize the internal data structure.
+  ### encode
 
-## Methods
+  <Function id="qiskit.optimization.converters.QuadraticProgramToIsing.encode" name="encode" signature="QuadraticProgramToIsing.encode(op)">
+    Convert a problem into a qubit operator
 
-### encode
+    **Parameters**
 
-<span id="qiskit.optimization.converters.QuadraticProgramToIsing.encode" />
+    **op** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to be converted. Must be an unconstrained problem with binary variables only.
 
-`QuadraticProgramToIsing.encode(op)`
+    **Return type**
 
-Convert a problem into a qubit operator
+    `Tuple`\[[`WeightedPauliOperator`](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.weighted_pauli_operator.WeightedPauliOperator"), `float`]
 
-**Parameters**
+    **Returns**
 
-**op** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to be converted. Must be an unconstrained problem with binary variables only.
+    The qubit operator of the problem and the shift value.
 
-**Return type**
+    **Raises**
 
-`Tuple`\[[`WeightedPauliOperator`](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.weighted_pauli_operator.WeightedPauliOperator"), `float`]
-
-**Returns**
-
-The qubit operator of the problem and the shift value.
-
-**Raises**
-
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If a variable type is not binary.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If constraints exist in the problem.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If a variable type is not binary.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If constraints exist in the problem.
+  </Function>
+</Class>
 

@@ -8,188 +8,174 @@ python_api_name: qiskit.providers.aer.extensions.SnapshotProbabilities
 
 # SnapshotProbabilities
 
-<span id="qiskit.providers.aer.extensions.SnapshotProbabilities" />
+<Class id="qiskit.providers.aer.extensions.SnapshotProbabilities" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/extensions/snapshot_probabilities.py" signature="SnapshotProbabilities(label, num_qubits, variance=False)">
+  Snapshot instruction for all methods of Qasm simulator.
 
-`SnapshotProbabilities(label, num_qubits, variance=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/extensions/snapshot_probabilities.py "view source code")
+  Create a probability snapshot instruction.
 
-Snapshot instruction for all methods of Qasm simulator.
+  **Parameters**
 
-Create a probability snapshot instruction.
+  *   **label** (*str*) – the snapshot label.
+  *   **num\_qubits** (*int*) – the number of qubits to snapshot.
+  *   **variance** (*bool*) – compute variance of probabilities \[Default: False]
 
-**Parameters**
+  **Raises**
 
-*   **label** (*str*) – the snapshot label.
-*   **num\_qubits** (*int*) – the number of qubits to snapshot.
-*   **variance** (*bool*) – compute variance of probabilities \[Default: False]
+  **ExtensionError** – if snapshot is invalid.
 
-**Raises**
+  ## Attributes
 
-**ExtensionError** – if snapshot is invalid.
+  ### decompositions
 
-## Attributes
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotProbabilities.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### decompositions
+  ### definition
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotProbabilities.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### definition
+  ### label
 
-Return definition in terms of other basic gates.
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotProbabilities.label" name="label">
+    Return snapshot label
+  </Attribute>
 
-### label
+  ### params
 
-Return snapshot label
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotProbabilities.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### params
+  ### snapshot\_type
 
-return instruction params.
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotProbabilities.snapshot_type" name="snapshot_type">
+    Return snapshot type
+  </Attribute>
 
-### snapshot\_type
+  ## Methods
 
-Return snapshot type
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.providers.aer.extensions.SnapshotProbabilities.add_decomposition" name="add_decomposition" signature="SnapshotProbabilities.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.add_decomposition" />
+  <Function id="qiskit.providers.aer.extensions.SnapshotProbabilities.assemble" name="assemble" signature="SnapshotProbabilities.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-`SnapshotProbabilities.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.providers.aer.extensions.SnapshotProbabilities.broadcast_arguments" name="broadcast_arguments" signature="SnapshotProbabilities.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`SnapshotProbabilities.assemble()`
+    **Yields**
 
-Assemble a QasmQobjInstruction
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`SnapshotProbabilities.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit.providers.aer.extensions.SnapshotProbabilities.c_if" name="c_if" signature="SnapshotProbabilities.c_if(classical, val)">
+    Add classical condition on register classical and value val.
+  </Function>
 
-**Parameters**
+  ### copy
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  <Function id="qiskit.providers.aer.extensions.SnapshotProbabilities.copy" name="copy" signature="SnapshotProbabilities.copy(name=None)">
+    Copy of the instruction.
 
-**Yields**
+    **Parameters**
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**Raises**
+    **Returns**
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **a copy of the current instruction, with the name**
 
-### c\_if
+    updated if it was provided
 
-<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.c_if" />
+    **Return type**
 
-`SnapshotProbabilities.c_if(classical, val)`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Add classical condition on register classical and value val.
+  ### define\_snapshot\_register
 
-### copy
+  <Function id="qiskit.providers.aer.extensions.SnapshotProbabilities.define_snapshot_register" name="define_snapshot_register" signature="static SnapshotProbabilities.define_snapshot_register(circuit, label, qubits=None)">
+    Defines qubits to snapshot for all snapshot methods
+  </Function>
 
-<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.copy" />
+  ### inverse
 
-`SnapshotProbabilities.copy(name=None)`
+  <Function id="qiskit.providers.aer.extensions.SnapshotProbabilities.inverse" name="inverse" signature="SnapshotProbabilities.inverse()">
+    Special case. Return self.
+  </Function>
 
-Copy of the instruction.
+  ### is\_parameterized
 
-**Parameters**
+  <Function id="qiskit.providers.aer.extensions.SnapshotProbabilities.is_parameterized" name="is_parameterized" signature="SnapshotProbabilities.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+  ### mirror
 
-**Returns**
+  <Function id="qiskit.providers.aer.extensions.SnapshotProbabilities.mirror" name="mirror" signature="SnapshotProbabilities.mirror()">
+    For a composite instruction, reverse the order of sub-gates.
 
-**a copy of the current instruction, with the name**
+    This is done by recursively mirroring all sub-instructions. It does not invert any gate.
 
-updated if it was provided
+    **Returns**
 
-**Return type**
+    a fresh gate with sub-gates reversed
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Return type**
 
-### define\_snapshot\_register
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.define_snapshot_register" />
+  ### qasm
 
-`static SnapshotProbabilities.define_snapshot_register(circuit, label, qubits=None)`
+  <Function id="qiskit.providers.aer.extensions.SnapshotProbabilities.qasm" name="qasm" signature="SnapshotProbabilities.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-Defines qubits to snapshot for all snapshot methods
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-### inverse
+  ### repeat
 
-<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.inverse" />
+  <Function id="qiskit.providers.aer.extensions.SnapshotProbabilities.repeat" name="repeat" signature="SnapshotProbabilities.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-`SnapshotProbabilities.inverse()`
+    **Parameters**
 
-Special case. Return self.
+    **n** (*int*) – Number of times to repeat the instruction
 
-### is\_parameterized
+    **Returns**
 
-<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.is_parameterized" />
+    Containing the definition.
 
-`SnapshotProbabilities.is_parameterized()`
+    **Return type**
 
-Return True .IFF. instruction is parameterized else False
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-### mirror
+    **Raises**
 
-<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.mirror" />
-
-`SnapshotProbabilities.mirror()`
-
-For a composite instruction, reverse the order of sub-gates.
-
-This is done by recursively mirroring all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-a fresh gate with sub-gates reversed
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### qasm
-
-<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.qasm" />
-
-`SnapshotProbabilities.qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.repeat" />
-
-`SnapshotProbabilities.repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
+    **CircuitError** – If n \< 1.
+  </Function>
+</Class>
 

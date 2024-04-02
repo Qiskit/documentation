@@ -8,75 +8,69 @@ python_api_name: qiskit.optimization.converters.IntegerToBinary
 
 # IntegerToBinary
 
-<span id="qiskit.optimization.converters.IntegerToBinary" />
+<Class id="qiskit.optimization.converters.IntegerToBinary" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/integer_to_binary.py" signature="IntegerToBinary">
+  Convert a [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.QuadraticProgram") into new one by encoding integer with binary variables.
 
-`IntegerToBinary` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/integer_to_binary.py "view source code")
+  This bounded-coefficient encoding used in this converted is proposed in \[1], Eq. (5).
 
-Convert a [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.QuadraticProgram") into new one by encoding integer with binary variables.
+  **Examples**
 
-This bounded-coefficient encoding used in this converted is proposed in \[1], Eq. (5).
+  ```python
+  >>> from qiskit.optimization.problems import QuadraticProgram
+  >>> from qiskit.optimization.converters import IntegerToBinary
+  >>> problem = QuadraticProgram()
+  >>> var = problem.integer_var(name='x', lowerbound=0, upperbound=10)
+  >>> conv = IntegerToBinary()
+  >>> problem2 = conv.encode(problem)
+  ```
 
-**Examples**
+  **References**
 
-```python
->>> from qiskit.optimization.problems import QuadraticProgram
->>> from qiskit.optimization.converters import IntegerToBinary
->>> problem = QuadraticProgram()
->>> var = problem.integer_var(name='x', lowerbound=0, upperbound=10)
->>> conv = IntegerToBinary()
->>> problem2 = conv.encode(problem)
-```
+  **\[1]: Sahar Karimi, Pooya Ronagh (2017), Practical Integer-to-Binary Mapping for Quantum**
 
-**References**
+  Annealers. arxiv.org:1706.01945.
 
-**\[1]: Sahar Karimi, Pooya Ronagh (2017), Practical Integer-to-Binary Mapping for Quantum**
+  ## Methods
 
-Annealers. arxiv.org:1706.01945.
+  ### decode
 
-## Methods
+  <Function id="qiskit.optimization.converters.IntegerToBinary.decode" name="decode" signature="IntegerToBinary.decode(result)">
+    Convert the encoded problem (binary variables) back to the original (integer variables).
 
-### decode
+    **Parameters**
 
-<span id="qiskit.optimization.converters.IntegerToBinary.decode" />
+    **result** (`OptimizationResult`) – The result of the converted problem.
 
-`IntegerToBinary.decode(result)`
+    **Return type**
 
-Convert the encoded problem (binary variables) back to the original (integer variables).
+    `OptimizationResult`
 
-**Parameters**
+    **Returns**
 
-**result** (`OptimizationResult`) – The result of the converted problem.
+    The result of the original problem.
+  </Function>
 
-**Return type**
+  ### encode
 
-`OptimizationResult`
+  <Function id="qiskit.optimization.converters.IntegerToBinary.encode" name="encode" signature="IntegerToBinary.encode(op, name=None)">
+    Convert an integer problem into a new problem with binary variables.
 
-**Returns**
+    **Parameters**
 
-The result of the original problem.
+    *   **op** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved, that may contain integer variables.
+    *   **name** (`Optional`\[`str`]) – The name of the converted problem. If not provided, the name of the input problem is used.
 
-### encode
+    **Return type**
 
-<span id="qiskit.optimization.converters.IntegerToBinary.encode" />
+    [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")
 
-`IntegerToBinary.encode(op, name=None)`
+    **Returns**
 
-Convert an integer problem into a new problem with binary variables.
+    The converted problem, that contains no integer variables.
 
-**Parameters**
+    **Raises**
 
-*   **op** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved, that may contain integer variables.
-*   **name** (`Optional`\[`str`]) – The name of the converted problem. If not provided, the name of the input problem is used.
-
-**Return type**
-
-[`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")
-
-**Returns**
-
-The converted problem, that contains no integer variables.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if variable or constraint type is not supported.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if variable or constraint type is not supported.
+  </Function>
+</Class>
 

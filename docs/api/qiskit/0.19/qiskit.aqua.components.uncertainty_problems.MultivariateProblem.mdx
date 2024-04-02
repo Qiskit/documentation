@@ -8,159 +8,133 @@ python_api_name: qiskit.aqua.components.uncertainty_problems.MultivariateProblem
 
 # MultivariateProblem
 
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem" />
+<Class id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_problems/multivariate_problem.py" signature="MultivariateProblem(uncertainty_model, aggregation_function, univariate_objective, conditions=None)">
+  Multivariate Uncertainty Problem.
 
-`MultivariateProblem(uncertainty_model, aggregation_function, univariate_objective, conditions=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_problems/multivariate_problem.py "view source code")
+  Constructor.
 
-Multivariate Uncertainty Problem.
+  **Parameters**
 
-Constructor.
+  *   **uncertainty\_model** ([`MultivariateDistribution`](qiskit.aqua.components.uncertainty_models.MultivariateDistribution "qiskit.aqua.components.uncertainty_models.multivariate_distribution.MultivariateDistribution")) – multivariate uncertainty model
+  *   **aggregation\_function** ([`CircuitFactory`](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.circuit_factory.CircuitFactory")) – aggregation function that maps the multiple dimension to an aggregated value
+  *   **univariate\_objective** ([`UnivariatePiecewiseLinearObjective`](qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective "qiskit.aqua.components.uncertainty_problems.univariate_piecewise_linear_objective.UnivariatePiecewiseLinearObjective")) – objective function applied to the aggregated value
+  *   **conditions** (`Union`\[`List`\[`Tuple`\[`int`, [`CircuitFactory`](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.circuit_factory.CircuitFactory")]], `ndarray`, `None`]) – list of pairs (int, CircuitFactory) = target dimension of uncertainty model and condition to be satisfied to apply the aggregation
 
-**Parameters**
+  ## Attributes
 
-*   **uncertainty\_model** ([`MultivariateDistribution`](qiskit.aqua.components.uncertainty_models.MultivariateDistribution "qiskit.aqua.components.uncertainty_models.multivariate_distribution.MultivariateDistribution")) – multivariate uncertainty model
-*   **aggregation\_function** ([`CircuitFactory`](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.circuit_factory.CircuitFactory")) – aggregation function that maps the multiple dimension to an aggregated value
-*   **univariate\_objective** ([`UnivariatePiecewiseLinearObjective`](qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective "qiskit.aqua.components.uncertainty_problems.univariate_piecewise_linear_objective.UnivariatePiecewiseLinearObjective")) – objective function applied to the aggregated value
-*   **conditions** (`Union`\[`List`\[`Tuple`\[`int`, [`CircuitFactory`](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.circuit_factory.CircuitFactory")]], `ndarray`, `None`]) – list of pairs (int, CircuitFactory) = target dimension of uncertainty model and condition to be satisfied to apply the aggregation
+  ### num\_target\_qubits
 
-## Attributes
+  <Attribute id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.num_target_qubits" name="num_target_qubits">
+    Returns the number of target qubits
+  </Attribute>
 
-### num\_target\_qubits
+  ## Methods
 
-Returns the number of target qubits
+  ### build
 
-## Methods
+  <Function id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build" name="build" signature="MultivariateProblem.build(qc, q, q_ancillas=None, params=None)">
+    Adds corresponding sub-circuit to given circuit
 
-### build
+    **Parameters**
 
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build" />
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **params** (*list*) – parameters for circuit
+  </Function>
 
-`MultivariateProblem.build(qc, q, q_ancillas=None, params=None)`
+  ### build\_controlled
 
-Adds corresponding sub-circuit to given circuit
+  <Function id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_controlled" name="build_controlled" signature="MultivariateProblem.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds corresponding controlled sub-circuit to given circuit
 
-**Parameters**
+    **Parameters**
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **params** (*list*) – parameters for circuit
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-### build\_controlled
+  ### build\_controlled\_inverse
 
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_controlled" />
+  <Function id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_controlled_inverse" name="build_controlled_inverse" signature="MultivariateProblem.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled inverse of corresponding sub-circuit to given circuit
 
-`MultivariateProblem.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+    **Parameters**
 
-Adds corresponding controlled sub-circuit to given circuit
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-**Parameters**
+  ### build\_controlled\_inverse\_power
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  <Function id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_controlled_inverse_power" name="build_controlled_inverse_power" signature="MultivariateProblem.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-### build\_controlled\_inverse
+  ### build\_controlled\_power
 
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_controlled_inverse" />
+  <Function id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_controlled_power" name="build_controlled_power" signature="MultivariateProblem.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-`MultivariateProblem.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+  ### build\_inverse
 
-Adds controlled inverse of corresponding sub-circuit to given circuit
+  <Function id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_inverse" name="build_inverse" signature="MultivariateProblem.build_inverse(qc, q, q_ancillas=None)">
+    Adds inverse of corresponding sub-circuit to given circuit
 
-**Parameters**
+    **Parameters**
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  </Function>
 
-### build\_controlled\_inverse\_power
+  ### build\_inverse\_power
 
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_controlled_inverse_power" />
+  <Function id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_inverse_power" name="build_inverse_power" signature="MultivariateProblem.build_inverse_power(qc, q, power, q_ancillas=None)">
+    Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-`MultivariateProblem.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  ### build\_power
 
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  <Function id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_power" name="build_power" signature="MultivariateProblem.build_power(qc, q, power, q_ancillas=None)">
+    Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-### build\_controlled\_power
+  ### get\_num\_qubits
 
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_controlled_power" />
+  <Function id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.get_num_qubits" name="get_num_qubits" signature="MultivariateProblem.get_num_qubits()">
+    returns number of qubits
+  </Function>
 
-`MultivariateProblem.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  ### get\_num\_qubits\_controlled
 
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  <Function id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.get_num_qubits_controlled" name="get_num_qubits_controlled" signature="MultivariateProblem.get_num_qubits_controlled()">
+    returns number of qubits controlled
+  </Function>
 
-### build\_inverse
+  ### required\_ancillas
 
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_inverse" />
+  <Function id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.required_ancillas" name="required_ancillas" signature="MultivariateProblem.required_ancillas()">
+    returns required ancillas
+  </Function>
 
-`MultivariateProblem.build_inverse(qc, q, q_ancillas=None)`
+  ### required\_ancillas\_controlled
 
-Adds inverse of corresponding sub-circuit to given circuit
+  <Function id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.required_ancillas_controlled" name="required_ancillas_controlled" signature="MultivariateProblem.required_ancillas_controlled()">
+    returns required ancillas controlled
+  </Function>
 
-**Parameters**
+  ### value\_to\_estimation
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-
-### build\_inverse\_power
-
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_inverse_power" />
-
-`MultivariateProblem.build_inverse_power(qc, q, power, q_ancillas=None)`
-
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_power
-
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build_power" />
-
-`MultivariateProblem.build_power(qc, q, power, q_ancillas=None)`
-
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### get\_num\_qubits
-
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.get_num_qubits" />
-
-`MultivariateProblem.get_num_qubits()`
-
-returns number of qubits
-
-### get\_num\_qubits\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.get_num_qubits_controlled" />
-
-`MultivariateProblem.get_num_qubits_controlled()`
-
-returns number of qubits controlled
-
-### required\_ancillas
-
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.required_ancillas" />
-
-`MultivariateProblem.required_ancillas()`
-
-returns required ancillas
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.required_ancillas_controlled" />
-
-`MultivariateProblem.required_ancillas_controlled()`
-
-returns required ancillas controlled
-
-### value\_to\_estimation
-
-<span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.value_to_estimation" />
-
-`MultivariateProblem.value_to_estimation(value)`
-
-value to estimate
+  <Function id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.value_to_estimation" name="value_to_estimation" signature="MultivariateProblem.value_to_estimation(value)">
+    value to estimate
+  </Function>
+</Class>
 

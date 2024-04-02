@@ -8,31 +8,29 @@ python_api_name: qiskit.quantum_info.mutual_information
 
 # mutual\_information
 
-<span id="qiskit.quantum_info.mutual_information" />
+<Function id="qiskit.quantum_info.mutual_information" name="mutual_information" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/states/measures.py" signature="mutual_information(state, base=2)">
+  Calculate the mutual information of a bipartite state.
 
-`mutual_information(state, base=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/states/measures.py "view source code")
+  The mutual information $I$ is given by:
 
-Calculate the mutual information of a bipartite state.
+  where $\rho_A=Tr_B[\rho_{AB}], \rho_B=Tr_A[\rho_{AB}]$, are the reduced density matrices of the bipartite state $\rho_{AB}$.
 
-The mutual information $I$ is given by:
+  **Parameters**
 
-where $\rho_A=Tr_B[\rho_{AB}], \rho_B=Tr_A[\rho_{AB}]$, are the reduced density matrices of the bipartite state $\rho_{AB}$.
+  *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a bipartite state.
+  *   **base** (*int*) – the base of the logarithm \[Default: 2].
 
-**Parameters**
+  **Returns**
 
-*   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a bipartite state.
-*   **base** (*int*) – the base of the logarithm \[Default: 2].
+  The mutual information $I(\rho_{AB})$.
 
-**Returns**
+  **Return type**
 
-The mutual information $I(\rho_{AB})$.
+  float
 
-**Return type**
+  **Raises**
 
-float
-
-**Raises**
-
-*   **QiskitError** – if the input state is not a valid QuantumState.
-*   **QiskitError** – if input is not a bipartite QuantumState.
+  *   **QiskitError** – if the input state is not a valid QuantumState.
+  *   **QiskitError** – if input is not a bipartite QuantumState.
+</Function>
 

@@ -8,168 +8,148 @@ python_api_name: qiskit.aqua.circuits.FixedValueComparator
 
 # FixedValueComparator
 
-<span id="qiskit.aqua.circuits.FixedValueComparator" />
+<Class id="qiskit.aqua.circuits.FixedValueComparator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/fixed_value_comparator.py" signature="FixedValueComparator(num_state_qubits, value, geq=True, i_state=None, i_target=None)">
+  *DEPRECATED.* Fixed Value Comparator
 
-`FixedValueComparator(num_state_qubits, value, geq=True, i_state=None, i_target=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/fixed_value_comparator.py "view source code")
+  <Admonition title="Deprecated since version 0.7.0" type="danger">
+    Use Terra’s qiskit.circuit.library.IntegerComparator instead.
+  </Admonition>
 
-*DEPRECATED.* Fixed Value Comparator
+  Operator compares basis states |i>\_n against a classically given fixed value L and flips a target qubit if i >= L (or \< depending on parameters):
 
-<Admonition title="Deprecated since version 0.7.0" type="danger">
-  Use Terra’s qiskit.circuit.library.IntegerComparator instead.
-</Admonition>
+  > |i>\_n|0> –> |i>\_n|1> if i >= L else |i>|0>
 
-Operator compares basis states |i>\_n against a classically given fixed value L and flips a target qubit if i >= L (or \< depending on parameters):
+  Operator is based on two’s complement implementation of binary subtraction but only uses carry bits and no actual result bits. If the most significant carry bit (= results bit) is 1, the “>=” condition is True otherwise it is False.
 
-> |i>\_n|0> –> |i>\_n|1> if i >= L else |i>|0>
+  **Parameters**
 
-Operator is based on two’s complement implementation of binary subtraction but only uses carry bits and no actual result bits. If the most significant carry bit (= results bit) is 1, the “>=” condition is True otherwise it is False.
+  *   **num\_state\_qubits** (*int*) – number of state qubits, the target qubit comes on top of this
+  *   **value** (*int*) – fixed value to compare with
+  *   **geq** (*Optional(bool)*) – evaluate “>=” condition of “\<” condition
+  *   **i\_state** (*Optional(Union(list, numpy.ndarray))*) – indices of state qubits in given list of qubits / register, if None, i\_state = list(range(num\_state\_qubits)) is used
+  *   **i\_target** (*Optional(int)*) – index of target qubit in given list of qubits / register, if None, i\_target = num\_state\_qubits is used
 
-**Parameters**
+  ## Attributes
 
-*   **num\_state\_qubits** (*int*) – number of state qubits, the target qubit comes on top of this
-*   **value** (*int*) – fixed value to compare with
-*   **geq** (*Optional(bool)*) – evaluate “>=” condition of “\<” condition
-*   **i\_state** (*Optional(Union(list, numpy.ndarray))*) – indices of state qubits in given list of qubits / register, if None, i\_state = list(range(num\_state\_qubits)) is used
-*   **i\_target** (*Optional(int)*) – index of target qubit in given list of qubits / register, if None, i\_target = num\_state\_qubits is used
+  ### num\_state\_qubits
 
-## Attributes
+  <Attribute id="qiskit.aqua.circuits.FixedValueComparator.num_state_qubits" name="num_state_qubits">
+    returns num state qubits
+  </Attribute>
 
-### num\_state\_qubits
+  ### num\_target\_qubits
 
-returns num state qubits
+  <Attribute id="qiskit.aqua.circuits.FixedValueComparator.num_target_qubits" name="num_target_qubits">
+    Returns the number of target qubits
+  </Attribute>
 
-### num\_target\_qubits
+  ### value
 
-Returns the number of target qubits
+  <Attribute id="qiskit.aqua.circuits.FixedValueComparator.value" name="value">
+    returns value
+  </Attribute>
 
-### value
+  ## Methods
 
-returns value
+  ### build
 
-## Methods
+  <Function id="qiskit.aqua.circuits.FixedValueComparator.build" name="build" signature="FixedValueComparator.build(qc, q, q_ancillas=None, params=None)">
+    Adds corresponding sub-circuit to given circuit
 
-### build
+    **Parameters**
 
-<span id="qiskit.aqua.circuits.FixedValueComparator.build" />
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **params** (*list*) – parameters for circuit
+  </Function>
 
-`FixedValueComparator.build(qc, q, q_ancillas=None, params=None)`
+  ### build\_controlled
 
-Adds corresponding sub-circuit to given circuit
+  <Function id="qiskit.aqua.circuits.FixedValueComparator.build_controlled" name="build_controlled" signature="FixedValueComparator.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds corresponding controlled sub-circuit to given circuit
 
-**Parameters**
+    **Parameters**
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **params** (*list*) – parameters for circuit
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-### build\_controlled
+  ### build\_controlled\_inverse
 
-<span id="qiskit.aqua.circuits.FixedValueComparator.build_controlled" />
+  <Function id="qiskit.aqua.circuits.FixedValueComparator.build_controlled_inverse" name="build_controlled_inverse" signature="FixedValueComparator.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled inverse of corresponding sub-circuit to given circuit
 
-`FixedValueComparator.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+    **Parameters**
 
-Adds corresponding controlled sub-circuit to given circuit
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-**Parameters**
+  ### build\_controlled\_inverse\_power
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  <Function id="qiskit.aqua.circuits.FixedValueComparator.build_controlled_inverse_power" name="build_controlled_inverse_power" signature="FixedValueComparator.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-### build\_controlled\_inverse
+  ### build\_controlled\_power
 
-<span id="qiskit.aqua.circuits.FixedValueComparator.build_controlled_inverse" />
+  <Function id="qiskit.aqua.circuits.FixedValueComparator.build_controlled_power" name="build_controlled_power" signature="FixedValueComparator.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-`FixedValueComparator.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+  ### build\_inverse
 
-Adds controlled inverse of corresponding sub-circuit to given circuit
+  <Function id="qiskit.aqua.circuits.FixedValueComparator.build_inverse" name="build_inverse" signature="FixedValueComparator.build_inverse(qc, q, q_ancillas=None)">
+    Adds inverse of corresponding sub-circuit to given circuit
 
-**Parameters**
+    **Parameters**
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  </Function>
 
-### build\_controlled\_inverse\_power
+  ### build\_inverse\_power
 
-<span id="qiskit.aqua.circuits.FixedValueComparator.build_controlled_inverse_power" />
+  <Function id="qiskit.aqua.circuits.FixedValueComparator.build_inverse_power" name="build_inverse_power" signature="FixedValueComparator.build_inverse_power(qc, q, power, q_ancillas=None)">
+    Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-`FixedValueComparator.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  ### build\_power
 
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  <Function id="qiskit.aqua.circuits.FixedValueComparator.build_power" name="build_power" signature="FixedValueComparator.build_power(qc, q, power, q_ancillas=None)">
+    Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-### build\_controlled\_power
+  ### get\_num\_qubits
 
-<span id="qiskit.aqua.circuits.FixedValueComparator.build_controlled_power" />
+  <Function id="qiskit.aqua.circuits.FixedValueComparator.get_num_qubits" name="get_num_qubits" signature="FixedValueComparator.get_num_qubits()">
+    returns number of qubits
+  </Function>
 
-`FixedValueComparator.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  ### get\_num\_qubits\_controlled
 
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  <Function id="qiskit.aqua.circuits.FixedValueComparator.get_num_qubits_controlled" name="get_num_qubits_controlled" signature="FixedValueComparator.get_num_qubits_controlled()">
+    returns number of qubits controlled
+  </Function>
 
-### build\_inverse
+  ### required\_ancillas
 
-<span id="qiskit.aqua.circuits.FixedValueComparator.build_inverse" />
+  <Function id="qiskit.aqua.circuits.FixedValueComparator.required_ancillas" name="required_ancillas" signature="FixedValueComparator.required_ancillas()">
+    returns required ancillas
+  </Function>
 
-`FixedValueComparator.build_inverse(qc, q, q_ancillas=None)`
+  ### required\_ancillas\_controlled
 
-Adds inverse of corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-
-### build\_inverse\_power
-
-<span id="qiskit.aqua.circuits.FixedValueComparator.build_inverse_power" />
-
-`FixedValueComparator.build_inverse_power(qc, q, power, q_ancillas=None)`
-
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_power
-
-<span id="qiskit.aqua.circuits.FixedValueComparator.build_power" />
-
-`FixedValueComparator.build_power(qc, q, power, q_ancillas=None)`
-
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### get\_num\_qubits
-
-<span id="qiskit.aqua.circuits.FixedValueComparator.get_num_qubits" />
-
-`FixedValueComparator.get_num_qubits()`
-
-returns number of qubits
-
-### get\_num\_qubits\_controlled
-
-<span id="qiskit.aqua.circuits.FixedValueComparator.get_num_qubits_controlled" />
-
-`FixedValueComparator.get_num_qubits_controlled()`
-
-returns number of qubits controlled
-
-### required\_ancillas
-
-<span id="qiskit.aqua.circuits.FixedValueComparator.required_ancillas" />
-
-`FixedValueComparator.required_ancillas()`
-
-returns required ancillas
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.aqua.circuits.FixedValueComparator.required_ancillas_controlled" />
-
-`FixedValueComparator.required_ancillas_controlled()`
-
-returns required ancillas controlled
+  <Function id="qiskit.aqua.circuits.FixedValueComparator.required_ancillas_controlled" name="required_ancillas_controlled" signature="FixedValueComparator.required_ancillas_controlled()">
+    returns required ancillas controlled
+  </Function>
+</Class>
 

@@ -8,69 +8,61 @@ python_api_name: qiskit.providers.models.BackendStatus
 
 # BackendStatus
 
-<span id="qiskit.providers.models.BackendStatus" />
+<Class id="qiskit.providers.models.BackendStatus" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/backendstatus.py" signature="BackendStatus(backend_name, backend_version, operational, pending_jobs, status_msg)">
+  Class representing Backend Status.
 
-`BackendStatus(backend_name, backend_version, operational, pending_jobs, status_msg)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/backendstatus.py "view source code")
+  Initialize a BackendStatus object
 
-Class representing Backend Status.
+  **Parameters**
 
-Initialize a BackendStatus object
+  *   **backend\_name** (*str*) – The backend’s name
+  *   **backend\_version** (*str*) – The backend’s version of the form X.Y.Z
+  *   **operational** (*bool*) – True if the backend is operational
+  *   **pending\_jobs** (*int*) – The number of pending jobs on the backend
+  *   **status\_msg** (*str*) – The status msg for the backend
 
-**Parameters**
+  **Raises**
 
-*   **backend\_name** (*str*) – The backend’s name
-*   **backend\_version** (*str*) – The backend’s version of the form X.Y.Z
-*   **operational** (*bool*) – True if the backend is operational
-*   **pending\_jobs** (*int*) – The number of pending jobs on the backend
-*   **status\_msg** (*str*) – The status msg for the backend
+  **QiskitError** – If the backend version is in an invalid format
 
-**Raises**
+  ## Attributes
 
-**QiskitError** – If the backend version is in an invalid format
+  ### version\_regex
 
-## Attributes
+  <Attribute id="qiskit.providers.models.BackendStatus.version_regex" signature="= re.compile('[0-9]+.[0-9]+.[0-9]+$')" />
 
-### version\_regex
+  ## Methods
 
-<span id="qiskit.providers.models.BackendStatus.version_regex" />
+  ### from\_dict
 
-`= re.compile('[0-9]+.[0-9]+.[0-9]+$')`
+  <Function id="qiskit.providers.models.BackendStatus.from_dict" name="from_dict" signature="classmethod BackendStatus.from_dict(data)">
+    Create a new BackendStatus object from a dictionary.
 
-## Methods
+    **Parameters**
 
-### from\_dict
+    **data** (*dict*) – A dictionary representing the BaseBakend to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.BackendStatus#to_dict "qiskit.providers.models.BackendStatus.to_dict").
 
-<span id="qiskit.providers.models.BackendStatus.from_dict" />
+    **Returns**
 
-`classmethod BackendStatus.from_dict(data)`
+    The BackendStatus from the input dictionary.
 
-Create a new BackendStatus object from a dictionary.
+    **Return type**
 
-**Parameters**
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-**data** (*dict*) – A dictionary representing the BaseBakend to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.BackendStatus#to_dict "qiskit.providers.models.BackendStatus.to_dict").
+  ### to\_dict
 
-**Returns**
+  <Function id="qiskit.providers.models.BackendStatus.to_dict" name="to_dict" signature="BackendStatus.to_dict()">
+    Return a dictionary format representation of the BackendStatus.
 
-The BackendStatus from the input dictionary.
+    **Returns**
 
-**Return type**
+    The dictionary form of the QobjHeader.
 
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+    **Return type**
 
-### to\_dict
-
-<span id="qiskit.providers.models.BackendStatus.to_dict" />
-
-`BackendStatus.to_dict()`
-
-Return a dictionary format representation of the BackendStatus.
-
-**Returns**
-
-The dictionary form of the QobjHeader.
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 

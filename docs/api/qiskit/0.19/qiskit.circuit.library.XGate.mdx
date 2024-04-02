@@ -8,306 +8,282 @@ python_api_name: qiskit.circuit.library.XGate
 
 # XGate
 
-<span id="qiskit.circuit.library.XGate" />
+<Class id="qiskit.circuit.library.XGate" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py" signature="XGate(label=None)">
+  The single-qubit Pauli-X gate ($\sigma_x$).
 
-`XGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
-
-The single-qubit Pauli-X gate ($\sigma_x$).
-
-**Matrix Representation:**
-
-$$
-\begin{split}X = \begin{pmatrix}
-        0 & 1 \\
-        1 & 0
-    \end{pmatrix}\end{split}
-$$
-
-**Circuit symbol:**
-
-```python
-     ┌───┐
-q_0: ┤ X ├
-     └───┘
-```
-
-Equivalent to a $\pi$ radian rotation about the X axis.
-
-<Admonition title="Note" type="note">
-  A global phase difference exists between the definitions of $RX(\pi)$ and $X$.
+  **Matrix Representation:**
 
   $$
-  \begin{split}RX(\pi) = \begin{pmatrix}
-              0 & -i \\
-              -i & 0
-            \end{pmatrix}
-          = -i X\end{split}
+  \begin{split}X = \begin{pmatrix}
+          0 & 1 \\
+          1 & 0
+      \end{pmatrix}\end{split}
   $$
-</Admonition>
 
-The gate is equivalent to a classical bit flip.
+  **Circuit symbol:**
 
-$$
-\begin{split}|0\rangle \rightarrow |1\rangle \\
-|1\rangle \rightarrow |0\rangle\end{split}
-$$
+  ```python
+       ┌───┐
+  q_0: ┤ X ├
+       └───┘
+  ```
 
-Create new X gate.
+  Equivalent to a $\pi$ radian rotation about the X axis.
 
-## Attributes
+  <Admonition title="Note" type="note">
+    A global phase difference exists between the definitions of $RX(\pi)$ and $X$.
 
-### decompositions
+    $$
+    \begin{split}RX(\pi) = \begin{pmatrix}
+                0 & -i \\
+                -i & 0
+              \end{pmatrix}
+            = -i X\end{split}
+    $$
+  </Admonition>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  The gate is equivalent to a classical bit flip.
 
-### definition
+  $$
+  \begin{split}|0\rangle \rightarrow |1\rangle \\
+  |1\rangle \rightarrow |0\rangle\end{split}
+  $$
 
-Return definition in terms of other basic gates.
+  Create new X gate.
 
-### label
+  ## Attributes
 
-<span id="qiskit.circuit.library.XGate.label" />
+  ### decompositions
 
-`str`
+  <Attribute id="qiskit.circuit.library.XGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Return gate label
+  ### definition
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.XGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-`str`
+  ### label
 
-### params
+  <Attribute id="qiskit.circuit.library.XGate.label" name="label" signature="str">
+    Return gate label
 
-return instruction params.
+    **Return type**
 
-## Methods
+    `str`
+  </Attribute>
 
-### add\_decomposition
+  ### params
 
-<span id="qiskit.circuit.library.XGate.add_decomposition" />
+  <Attribute id="qiskit.circuit.library.XGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-`XGate.add_decomposition(decomposition)`
+  ## Methods
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  ### add\_decomposition
 
-### assemble
+  <Function id="qiskit.circuit.library.XGate.add_decomposition" name="add_decomposition" signature="XGate.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-<span id="qiskit.circuit.library.XGate.assemble" />
+  ### assemble
 
-`XGate.assemble()`
+  <Function id="qiskit.circuit.library.XGate.assemble" name="assemble" signature="XGate.assemble()">
+    Assemble a QasmQobjInstruction
 
-Assemble a QasmQobjInstruction
+    **Return type**
 
-**Return type**
+    [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  </Function>
 
-[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  ### broadcast\_arguments
 
-### broadcast\_arguments
+  <Function id="qiskit.circuit.library.XGate.broadcast_arguments" name="broadcast_arguments" signature="XGate.broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-<span id="qiskit.circuit.library.XGate.broadcast_arguments" />
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-`XGate.broadcast_arguments(qargs, cargs)`
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-Validation and handling of the arguments and its relationship.
+    The general broadcasting rules are:
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+    **Parameters**
 
-The general broadcasting rules are:
+    *   **qargs** (`List`) – List of quantum bit arguments.
+    *   **cargs** (`List`) – List of classical bit arguments.
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+    **Return type**
 
-**Parameters**
+    `Tuple`\[`List`, `List`]
 
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
+    **Returns**
 
-**Return type**
+    A tuple with single arguments.
 
-`Tuple`\[`List`, `List`]
+    **Raises**
 
-**Returns**
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-A tuple with single arguments.
+  ### c\_if
 
-**Raises**
+  <Function id="qiskit.circuit.library.XGate.c_if" name="c_if" signature="XGate.c_if(classical, val)">
+    Add classical condition on register classical and value val.
+  </Function>
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  ### control
 
-### c\_if
+  <Function id="qiskit.circuit.library.XGate.control" name="control" signature="XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a (mutli-)controlled-X gate.
 
-<span id="qiskit.circuit.library.XGate.c_if" />
+    One control returns a CX gate. Two controls returns a CCX gate.
 
-`XGate.c_if(classical, val)`
+    **Parameters**
 
-Add classical condition on register classical and value val.
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-### control
+    **Returns**
 
-<span id="qiskit.circuit.library.XGate.control" />
+    controlled version of this gate.
 
-`XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    **Return type**
 
-Return a (mutli-)controlled-X gate.
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-One control returns a CX gate. Two controls returns a CCX gate.
+  ### copy
 
-**Parameters**
+  <Function id="qiskit.circuit.library.XGate.copy" name="copy" signature="XGate.copy(name=None)">
+    Copy of the instruction.
 
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+    **Parameters**
 
-**Returns**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-controlled version of this gate.
+    **Returns**
 
-**Return type**
+    **a copy of the current instruction, with the name**
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+    updated if it was provided
 
-### copy
+    **Return type**
 
-<span id="qiskit.circuit.library.XGate.copy" />
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-`XGate.copy(name=None)`
+  ### inverse
 
-Copy of the instruction.
+  <Function id="qiskit.circuit.library.XGate.inverse" name="inverse" signature="XGate.inverse()">
+    Return inverted X gate (itself).
+  </Function>
 
-**Parameters**
+  ### is\_parameterized
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+  <Function id="qiskit.circuit.library.XGate.is_parameterized" name="is_parameterized" signature="XGate.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-**Returns**
+  ### mirror
 
-**a copy of the current instruction, with the name**
+  <Function id="qiskit.circuit.library.XGate.mirror" name="mirror" signature="XGate.mirror()">
+    For a composite instruction, reverse the order of sub-gates.
 
-updated if it was provided
+    This is done by recursively mirroring all sub-instructions. It does not invert any gate.
 
-**Return type**
+    **Returns**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    a fresh gate with sub-gates reversed
 
-### inverse
+    **Return type**
 
-<span id="qiskit.circuit.library.XGate.inverse" />
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-`XGate.inverse()`
+  ### power
 
-Return inverted X gate (itself).
+  <Function id="qiskit.circuit.library.XGate.power" name="power" signature="XGate.power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-### is\_parameterized
+    **Parameters**
 
-<span id="qiskit.circuit.library.XGate.is_parameterized" />
+    **exponent** (*float*) – Gate^exponent
 
-`XGate.is_parameterized()`
+    **Returns**
 
-Return True .IFF. instruction is parameterized else False
+    To which to\_matrix is self.to\_matrix^exponent.
 
-### mirror
+    **Return type**
 
-<span id="qiskit.circuit.library.XGate.mirror" />
+    [qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-`XGate.mirror()`
+    **Raises**
 
-For a composite instruction, reverse the order of sub-gates.
+    **CircuitError** – If Gate is not unitary
+  </Function>
 
-This is done by recursively mirroring all sub-instructions. It does not invert any gate.
+  ### qasm
 
-**Returns**
+  <Function id="qiskit.circuit.library.XGate.qasm" name="qasm" signature="XGate.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-a fresh gate with sub-gates reversed
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-**Return type**
+  ### repeat
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit.circuit.library.XGate.repeat" name="repeat" signature="XGate.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-### power
+    **Parameters**
 
-<span id="qiskit.circuit.library.XGate.power" />
+    **n** (*int*) – Number of times to repeat the instruction
 
-`XGate.power(exponent)`
+    **Returns**
 
-Creates a unitary gate as gate^exponent.
+    Containing the definition.
 
-**Parameters**
+    **Return type**
 
-**exponent** (*float*) – Gate^exponent
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**Returns**
+    **Raises**
 
-To which to\_matrix is self.to\_matrix^exponent.
+    **CircuitError** – If n \< 1.
+  </Function>
 
-**Return type**
+  ### to\_matrix
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
-
-**Raises**
-
-**CircuitError** – If Gate is not unitary
-
-### qasm
-
-<span id="qiskit.circuit.library.XGate.qasm" />
-
-`XGate.qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.circuit.library.XGate.repeat" />
-
-`XGate.repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### to\_matrix
-
-<span id="qiskit.circuit.library.XGate.to_matrix" />
-
-`XGate.to_matrix()`
-
-Return a numpy.array for the X gate.
+  <Function id="qiskit.circuit.library.XGate.to_matrix" name="to_matrix" signature="XGate.to_matrix()">
+    Return a numpy.array for the X gate.
+  </Function>
+</Class>
 

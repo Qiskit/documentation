@@ -8,48 +8,46 @@ python_api_name: qiskit.visualization.plot_state_hinton
 
 # plot\_state\_hinton
 
-<span id="qiskit.visualization.plot_state_hinton" />
+<Function id="qiskit.visualization.plot_state_hinton" name="plot_state_hinton" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/state_visualization.py" signature="plot_state_hinton(rho, title='', figsize=None, ax_real=None, ax_imag=None)">
+  Plot a hinton diagram for the quantum state.
 
-`plot_state_hinton(rho, title='', figsize=None, ax_real=None, ax_imag=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/state_visualization.py "view source code")
+  **Parameters**
 
-Plot a hinton diagram for the quantum state.
+  *   **rho** (*ndarray*) – Numpy array for state vector or density matrix.
+  *   **title** (*str*) – a string that represents the plot title
+  *   **figsize** (*tuple*) – Figure size in inches.
+  *   **ax\_real** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. If this is specified without an ax\_imag only the real component plot will be generated. Additionally, if specified there will be no returned Figure since it is redundant.
+  *   **ax\_imag** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. If this is specified without an ax\_imag only the real component plot will be generated. Additionally, if specified there will be no returned Figure since it is redundant.
 
-**Parameters**
+  **Returns**
 
-*   **rho** (*ndarray*) – Numpy array for state vector or density matrix.
-*   **title** (*str*) – a string that represents the plot title
-*   **figsize** (*tuple*) – Figure size in inches.
-*   **ax\_real** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. If this is specified without an ax\_imag only the real component plot will be generated. Additionally, if specified there will be no returned Figure since it is redundant.
-*   **ax\_imag** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. If this is specified without an ax\_imag only the real component plot will be generated. Additionally, if specified there will be no returned Figure since it is redundant.
+  The matplotlib.Figure of the visualization if neither ax\_real or ax\_imag is set.
 
-**Returns**
+  **Return type**
 
-The matplotlib.Figure of the visualization if neither ax\_real or ax\_imag is set.
+  matplotlib.Figure
 
-**Return type**
+  **Raises**
 
-matplotlib.Figure
+  **ImportError** – Requires matplotlib.
 
-**Raises**
+  **Example**
 
-**ImportError** – Requires matplotlib.
+  ```python
+  from qiskit import QuantumCircuit, BasicAer, execute
+  from qiskit.visualization import plot_state_hinton
+  %matplotlib inline
 
-**Example**
+  qc = QuantumCircuit(2, 2)
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.measure([0, 1], [0, 1])
 
-```python
-from qiskit import QuantumCircuit, BasicAer, execute
-from qiskit.visualization import plot_state_hinton
-%matplotlib inline
+  backend = BasicAer.get_backend('statevector_simulator')
+  job = execute(qc, backend).result()
+  plot_state_hinton(job.get_statevector(qc), title="New Hinton Plot")
+  ```
 
-qc = QuantumCircuit(2, 2)
-qc.h(0)
-qc.cx(0, 1)
-qc.measure([0, 1], [0, 1])
-
-backend = BasicAer.get_backend('statevector_simulator')
-job = execute(qc, backend).result()
-plot_state_hinton(job.get_statevector(qc), title="New Hinton Plot")
-```
-
-![../\_images/qiskit.visualization.plot\_state\_hinton\_0\_2.png](/images/api/qiskit/0.19/qiskit.visualization.plot_state_hinton_0_2.png) ![../\_images/qiskit.visualization.plot\_state\_hinton\_0\_3.png](/images/api/qiskit/0.19/qiskit.visualization.plot_state_hinton_0_3.png)
+  ![../\_images/qiskit.visualization.plot\_state\_hinton\_0\_2.png](/images/api/qiskit/0.19/qiskit.visualization.plot_state_hinton_0_2.png) ![../\_images/qiskit.visualization.plot\_state\_hinton\_0\_3.png](/images/api/qiskit/0.19/qiskit.visualization.plot_state_hinton_0_3.png)
+</Function>
 

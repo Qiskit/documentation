@@ -8,106 +8,94 @@ python_api_name: qiskit.optimization.problems.Constraint
 
 # Constraint
 
-<span id="qiskit.optimization.problems.Constraint" />
+<Class id="qiskit.optimization.problems.Constraint" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/constraint.py" signature="Constraint(quadratic_program, name, sense, rhs)">
+  Abstract Constraint Class.
 
-`Constraint(quadratic_program, name, sense, rhs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/constraint.py "view source code")
+  Initializes the constraint.
 
-Abstract Constraint Class.
+  **Parameters**
 
-Initializes the constraint.
+  *   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
+  *   **name** (`str`) – The name of the constraint.
+  *   **sense** (`ConstraintSense`) – The sense of the constraint.
+  *   **rhs** (`float`) – The right-hand-side of the constraint.
 
-**Parameters**
+  ## Attributes
 
-*   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
-*   **name** (`str`) – The name of the constraint.
-*   **sense** (`ConstraintSense`) – The sense of the constraint.
-*   **rhs** (`float`) – The right-hand-side of the constraint.
+  ### name
 
-## Attributes
+  <Attribute id="qiskit.optimization.problems.Constraint.name" name="name" signature="str">
+    Returns the name of the constraint.
 
-### name
+    **Return type**
 
-<span id="qiskit.optimization.problems.Constraint.name" />
+    `str`
 
-`str`
+    **Returns**
 
-Returns the name of the constraint.
+    The name of the constraint.
+  </Attribute>
 
-**Return type**
+  ### quadratic\_program
 
-`str`
+  <Attribute id="qiskit.optimization.problems.Constraint.quadratic_program" name="quadratic_program" signature="Any">
+    Returns the parent QuadraticProgram.
 
-**Returns**
+    **Return type**
 
-The name of the constraint.
+    `Any`
 
-### quadratic\_program
+    **Returns**
 
-<span id="qiskit.optimization.problems.Constraint.quadratic_program" />
+    The parent QuadraticProgram.
+  </Attribute>
 
-`Any`
+  ### rhs
 
-Returns the parent QuadraticProgram.
+  <Attribute id="qiskit.optimization.problems.Constraint.rhs" name="rhs" signature="float">
+    Returns the right-hand-side of the constraint.
 
-**Return type**
+    **Return type**
 
-`Any`
+    `float`
 
-**Returns**
+    **Returns**
 
-The parent QuadraticProgram.
+    The right-hand-side of the constraint.
+  </Attribute>
 
-### rhs
+  ### sense
 
-<span id="qiskit.optimization.problems.Constraint.rhs" />
+  <Attribute id="qiskit.optimization.problems.Constraint.sense" name="sense" signature="qiskit.optimization.problems.constraint.ConstraintSense">
+    Returns the sense of the constraint.
 
-`float`
+    **Return type**
 
-Returns the right-hand-side of the constraint.
+    `ConstraintSense`
 
-**Return type**
+    **Returns**
 
-`float`
+    The sense of the constraint.
+  </Attribute>
 
-**Returns**
+  ## Methods
 
-The right-hand-side of the constraint.
+  ### evaluate
 
-### sense
+  <Function id="qiskit.optimization.problems.Constraint.evaluate" name="evaluate" signature="abstract Constraint.evaluate(x)">
+    Evaluate left-hand-side of constraint for given values of variables.
 
-<span id="qiskit.optimization.problems.Constraint.sense" />
+    **Parameters**
 
-`qiskit.optimization.problems.constraint.ConstraintSense`
+    **x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values to be used for the variables.
 
-Returns the sense of the constraint.
+    **Return type**
 
-**Return type**
+    `float`
 
-`ConstraintSense`
+    **Returns**
 
-**Returns**
-
-The sense of the constraint.
-
-## Methods
-
-### evaluate
-
-<span id="qiskit.optimization.problems.Constraint.evaluate" />
-
-`abstract Constraint.evaluate(x)`
-
-Evaluate left-hand-side of constraint for given values of variables.
-
-**Parameters**
-
-**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values to be used for the variables.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-The left-hand-side of the constraint.
+    The left-hand-side of the constraint.
+  </Function>
+</Class>
 

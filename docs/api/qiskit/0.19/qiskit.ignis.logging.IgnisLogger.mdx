@@ -8,311 +8,251 @@ python_api_name: qiskit.ignis.logging.IgnisLogger
 
 # IgnisLogger
 
-<span id="qiskit.ignis.logging.IgnisLogger" />
+<Class id="qiskit.ignis.logging.IgnisLogger" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/logging/ignis_logging.py" signature="IgnisLogger(name, level=0)">
+  A logger class for Ignis
 
-`IgnisLogger(name, level=0)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/logging/ignis_logging.py "view source code")
+  IgnisLogger is a like any other `logging.Logger` object except it has an additional method, [`log_to_file()`](qiskit.ignis.logging.IgnisLogger#log_to_file "qiskit.ignis.logging.IgnisLogger.log_to_file"), used to log data in the form of key:value pairs to a log file. Logging configuration is performed via a configuration file and is handled by IgnisLogging.
 
-A logger class for Ignis
+  Refer to Python’s logging documentation for more details on how to use logging in Python
 
-IgnisLogger is a like any other `logging.Logger` object except it has an additional method, [`log_to_file()`](qiskit.ignis.logging.IgnisLogger#log_to_file "qiskit.ignis.logging.IgnisLogger.log_to_file"), used to log data in the form of key:value pairs to a log file. Logging configuration is performed via a configuration file and is handled by IgnisLogging.
+  Initialize the IgnisLogger object
 
-Refer to Python’s logging documentation for more details on how to use logging in Python
+  **Parameters**
 
-Initialize the IgnisLogger object
+  *   **name** (`str`) – name of the logger. Usually set to package name using \_\_name\_\_
+  *   **level** (*logging.NOTSET*) – Verbosity level (use logging package enums)
 
-**Parameters**
+  ## Attributes
 
-*   **name** (`str`) – name of the logger. Usually set to package name using \_\_name\_\_
-*   **level** (*logging.NOTSET*) – Verbosity level (use logging package enums)
+  ### manager
 
-## Attributes
+  <Attribute id="qiskit.ignis.logging.IgnisLogger.manager" signature="=" />
 
-### manager
+  ### root
 
-<span id="qiskit.ignis.logging.IgnisLogger.manager" />
+  <Attribute id="qiskit.ignis.logging.IgnisLogger.root" signature="=" />
 
-`=`
+  ## Methods
 
-### root
+  ### addFilter
 
-<span id="qiskit.ignis.logging.IgnisLogger.root" />
+  <Function id="qiskit.ignis.logging.IgnisLogger.addFilter" name="addFilter" signature="IgnisLogger.addFilter(filter)">
+    Add the specified filter to this handler.
+  </Function>
 
-`=`
+  ### addHandler
 
-## Methods
+  <Function id="qiskit.ignis.logging.IgnisLogger.addHandler" name="addHandler" signature="IgnisLogger.addHandler(hdlr)">
+    Add the specified handler to this logger.
+  </Function>
 
-### addFilter
+  ### callHandlers
 
-<span id="qiskit.ignis.logging.IgnisLogger.addFilter" />
+  <Function id="qiskit.ignis.logging.IgnisLogger.callHandlers" name="callHandlers" signature="IgnisLogger.callHandlers(record)">
+    Pass a record to all relevant handlers.
 
-`IgnisLogger.addFilter(filter)`
+    Loop through all handlers for this logger and its parents in the logger hierarchy. If no handler was found, output a one-off error message to sys.stderr. Stop searching up the hierarchy whenever a logger with the “propagate” attribute set to zero is found - that will be the last logger whose handlers are called.
+  </Function>
 
-Add the specified filter to this handler.
+  ### configure
 
-### addHandler
+  <Function id="qiskit.ignis.logging.IgnisLogger.configure" name="configure" signature="IgnisLogger.configure(sh, conf_file_exists)">
+    Internal configuration method of IgnisLogger. Should only be called by IgnisLogger
 
-<span id="qiskit.ignis.logging.IgnisLogger.addHandler" />
+    **Parameters**
 
-`IgnisLogger.addHandler(hdlr)`
+    *   **sh** (`StreamHandler`) – StreamHandler object
+    *   **conf\_file\_exists** (`bool`) – Whether or not a file config exists
+  </Function>
 
-Add the specified handler to this logger.
+  ### critical
 
-### callHandlers
+  <Function id="qiskit.ignis.logging.IgnisLogger.critical" name="critical" signature="IgnisLogger.critical(msg, *args, **kwargs)">
+    Log ‘msg % args’ with severity ‘CRITICAL’.
 
-<span id="qiskit.ignis.logging.IgnisLogger.callHandlers" />
+    To pass exception information, use the keyword argument exc\_info with a true value, e.g.
 
-`IgnisLogger.callHandlers(record)`
+    logger.critical(“Houston, we have a %s”, “major disaster”, exc\_info=1)
+  </Function>
 
-Pass a record to all relevant handlers.
+  ### debug
 
-Loop through all handlers for this logger and its parents in the logger hierarchy. If no handler was found, output a one-off error message to sys.stderr. Stop searching up the hierarchy whenever a logger with the “propagate” attribute set to zero is found - that will be the last logger whose handlers are called.
+  <Function id="qiskit.ignis.logging.IgnisLogger.debug" name="debug" signature="IgnisLogger.debug(msg, *args, **kwargs)">
+    Log ‘msg % args’ with severity ‘DEBUG’.
 
-### configure
+    To pass exception information, use the keyword argument exc\_info with a true value, e.g.
 
-<span id="qiskit.ignis.logging.IgnisLogger.configure" />
+    logger.debug(“Houston, we have a %s”, “thorny problem”, exc\_info=1)
+  </Function>
 
-`IgnisLogger.configure(sh, conf_file_exists)`
+  ### disable\_file\_logging
 
-Internal configuration method of IgnisLogger. Should only be called by IgnisLogger
+  <Function id="qiskit.ignis.logging.IgnisLogger.disable_file_logging" name="disable_file_logging" signature="IgnisLogger.disable_file_logging()">
+    Disable file logging for this logger object (note there is a single object for a given logger name
+  </Function>
 
-**Parameters**
+  ### enable\_file\_logging
 
-*   **sh** (`StreamHandler`) – StreamHandler object
-*   **conf\_file\_exists** (`bool`) – Whether or not a file config exists
+  <Function id="qiskit.ignis.logging.IgnisLogger.enable_file_logging" name="enable_file_logging" signature="IgnisLogger.enable_file_logging()">
+    Enable file logging for this logger object (note there is a single object for a given logger name
+  </Function>
 
-### critical
+  ### error
 
-<span id="qiskit.ignis.logging.IgnisLogger.critical" />
+  <Function id="qiskit.ignis.logging.IgnisLogger.error" name="error" signature="IgnisLogger.error(msg, *args, **kwargs)">
+    Log ‘msg % args’ with severity ‘ERROR’.
 
-`IgnisLogger.critical(msg, *args, **kwargs)`
+    To pass exception information, use the keyword argument exc\_info with a true value, e.g.
 
-Log ‘msg % args’ with severity ‘CRITICAL’.
+    logger.error(“Houston, we have a %s”, “major problem”, exc\_info=1)
+  </Function>
 
-To pass exception information, use the keyword argument exc\_info with a true value, e.g.
+  ### exception
 
-logger.critical(“Houston, we have a %s”, “major disaster”, exc\_info=1)
+  <Function id="qiskit.ignis.logging.IgnisLogger.exception" name="exception" signature="IgnisLogger.exception(msg, *args, exc_info=True, **kwargs)">
+    Convenience method for logging an ERROR with exception information.
+  </Function>
 
-### debug
+  ### fatal
 
-<span id="qiskit.ignis.logging.IgnisLogger.debug" />
+  <Function id="qiskit.ignis.logging.IgnisLogger.fatal" name="fatal" signature="IgnisLogger.fatal(msg, *args, **kwargs)">
+    Log ‘msg % args’ with severity ‘CRITICAL’.
 
-`IgnisLogger.debug(msg, *args, **kwargs)`
+    To pass exception information, use the keyword argument exc\_info with a true value, e.g.
 
-Log ‘msg % args’ with severity ‘DEBUG’.
+    logger.critical(“Houston, we have a %s”, “major disaster”, exc\_info=1)
+  </Function>
 
-To pass exception information, use the keyword argument exc\_info with a true value, e.g.
+  ### filter
 
-logger.debug(“Houston, we have a %s”, “thorny problem”, exc\_info=1)
+  <Function id="qiskit.ignis.logging.IgnisLogger.filter" name="filter" signature="IgnisLogger.filter(record)">
+    Determine if a record is loggable by consulting all the filters.
 
-### disable\_file\_logging
+    The default is to allow the record to be logged; any filter can veto this and the record is then dropped. Returns a zero value if a record is to be dropped, else non-zero.
 
-<span id="qiskit.ignis.logging.IgnisLogger.disable_file_logging" />
+    Changed in version 3.2: Allow filters to be just callables.
+  </Function>
 
-`IgnisLogger.disable_file_logging()`
+  ### findCaller
 
-Disable file logging for this logger object (note there is a single object for a given logger name
+  <Function id="qiskit.ignis.logging.IgnisLogger.findCaller" name="findCaller" signature="IgnisLogger.findCaller(stack_info=False)">
+    Find the stack frame of the caller so that we can note the source file name, line number and function name.
+  </Function>
 
-### enable\_file\_logging
+  ### getChild
 
-<span id="qiskit.ignis.logging.IgnisLogger.enable_file_logging" />
+  <Function id="qiskit.ignis.logging.IgnisLogger.getChild" name="getChild" signature="IgnisLogger.getChild(suffix)">
+    Get a logger which is a descendant to this one.
 
-`IgnisLogger.enable_file_logging()`
+    This is a convenience method, such that
 
-Enable file logging for this logger object (note there is a single object for a given logger name
+    logging.getLogger(‘abc’).getChild(‘def.ghi’)
 
-### error
+    is the same as
 
-<span id="qiskit.ignis.logging.IgnisLogger.error" />
+    logging.getLogger(‘abc.def.ghi’)
 
-`IgnisLogger.error(msg, *args, **kwargs)`
+    It’s useful, for example, when the parent logger is named using \_\_name\_\_ rather than a literal string.
+  </Function>
 
-Log ‘msg % args’ with severity ‘ERROR’.
+  ### getEffectiveLevel
 
-To pass exception information, use the keyword argument exc\_info with a true value, e.g.
+  <Function id="qiskit.ignis.logging.IgnisLogger.getEffectiveLevel" name="getEffectiveLevel" signature="IgnisLogger.getEffectiveLevel()">
+    Get the effective level for this logger.
 
-logger.error(“Houston, we have a %s”, “major problem”, exc\_info=1)
+    Loop through this logger and its parents in the logger hierarchy, looking for a non-zero logging level. Return the first one found.
+  </Function>
 
-### exception
+  ### handle
 
-<span id="qiskit.ignis.logging.IgnisLogger.exception" />
+  <Function id="qiskit.ignis.logging.IgnisLogger.handle" name="handle" signature="IgnisLogger.handle(record)">
+    Call the handlers for the specified record.
 
-`IgnisLogger.exception(msg, *args, exc_info=True, **kwargs)`
+    This method is used for unpickled records received from a socket, as well as those created locally. Logger-level filtering is applied.
+  </Function>
 
-Convenience method for logging an ERROR with exception information.
+  ### hasHandlers
 
-### fatal
+  <Function id="qiskit.ignis.logging.IgnisLogger.hasHandlers" name="hasHandlers" signature="IgnisLogger.hasHandlers()">
+    See if this logger has any handlers configured.
 
-<span id="qiskit.ignis.logging.IgnisLogger.fatal" />
+    Loop through all handlers for this logger and its parents in the logger hierarchy. Return True if a handler was found, else False. Stop searching up the hierarchy whenever a logger with the “propagate” attribute set to zero is found - that will be the last logger which is checked for the existence of handlers.
+  </Function>
 
-`IgnisLogger.fatal(msg, *args, **kwargs)`
+  ### info
 
-Log ‘msg % args’ with severity ‘CRITICAL’.
+  <Function id="qiskit.ignis.logging.IgnisLogger.info" name="info" signature="IgnisLogger.info(msg, *args, **kwargs)">
+    Log ‘msg % args’ with severity ‘INFO’.
 
-To pass exception information, use the keyword argument exc\_info with a true value, e.g.
+    To pass exception information, use the keyword argument exc\_info with a true value, e.g.
 
-logger.critical(“Houston, we have a %s”, “major disaster”, exc\_info=1)
+    logger.info(“Houston, we have a %s”, “interesting problem”, exc\_info=1)
+  </Function>
 
-### filter
+  ### isEnabledFor
 
-<span id="qiskit.ignis.logging.IgnisLogger.filter" />
+  <Function id="qiskit.ignis.logging.IgnisLogger.isEnabledFor" name="isEnabledFor" signature="IgnisLogger.isEnabledFor(level)">
+    Is this logger enabled for level ‘level’?
+  </Function>
 
-`IgnisLogger.filter(record)`
+  ### log
 
-Determine if a record is loggable by consulting all the filters.
+  <Function id="qiskit.ignis.logging.IgnisLogger.log" name="log" signature="IgnisLogger.log(level, msg, *args, **kwargs)">
+    Log ‘msg % args’ with the integer severity ‘level’.
 
-The default is to allow the record to be logged; any filter can veto this and the record is then dropped. Returns a zero value if a record is to be dropped, else non-zero.
+    To pass exception information, use the keyword argument exc\_info with a true value, e.g.
 
-Changed in version 3.2: Allow filters to be just callables.
+    logger.log(level, “We have a %s”, “mysterious problem”, exc\_info=1)
+  </Function>
 
-### findCaller
+  ### log\_to\_file
 
-<span id="qiskit.ignis.logging.IgnisLogger.findCaller" />
+  <Function id="qiskit.ignis.logging.IgnisLogger.log_to_file" name="log_to_file" signature="IgnisLogger.log_to_file(**kwargs)">
+    Log key:value pairs to a log file.
 
-`IgnisLogger.findCaller(stack_info=False)`
+    Note: Logger name in the log file is fixed (ignis\_logging)
 
-Find the stack frame of the caller so that we can note the source file name, line number and function name.
+    **Parameters**
 
-### getChild
+    **kwargs** – key/value pairs to be logged, e.g t1=0.02, qubits=\[1,2,4]
+  </Function>
 
-<span id="qiskit.ignis.logging.IgnisLogger.getChild" />
+  ### makeRecord
 
-`IgnisLogger.getChild(suffix)`
+  <Function id="qiskit.ignis.logging.IgnisLogger.makeRecord" name="makeRecord" signature="IgnisLogger.makeRecord(name, level, fn, lno, msg, args, exc_info, func=None, extra=None, sinfo=None)">
+    A factory method which can be overridden in subclasses to create specialized LogRecords.
+  </Function>
 
-Get a logger which is a descendant to this one.
+  ### removeFilter
 
-This is a convenience method, such that
+  <Function id="qiskit.ignis.logging.IgnisLogger.removeFilter" name="removeFilter" signature="IgnisLogger.removeFilter(filter)">
+    Remove the specified filter from this handler.
+  </Function>
 
-logging.getLogger(‘abc’).getChild(‘def.ghi’)
+  ### removeHandler
 
-is the same as
+  <Function id="qiskit.ignis.logging.IgnisLogger.removeHandler" name="removeHandler" signature="IgnisLogger.removeHandler(hdlr)">
+    Remove the specified handler from this logger.
+  </Function>
 
-logging.getLogger(‘abc.def.ghi’)
+  ### setLevel
 
-It’s useful, for example, when the parent logger is named using \_\_name\_\_ rather than a literal string.
+  <Function id="qiskit.ignis.logging.IgnisLogger.setLevel" name="setLevel" signature="IgnisLogger.setLevel(level)">
+    Set the logging level of this logger. level must be an int or a str.
+  </Function>
 
-### getEffectiveLevel
+  ### warn
 
-<span id="qiskit.ignis.logging.IgnisLogger.getEffectiveLevel" />
+  <Function id="qiskit.ignis.logging.IgnisLogger.warn" name="warn" signature="IgnisLogger.warn(msg, *args, **kwargs)" />
 
-`IgnisLogger.getEffectiveLevel()`
+  ### warning
 
-Get the effective level for this logger.
+  <Function id="qiskit.ignis.logging.IgnisLogger.warning" name="warning" signature="IgnisLogger.warning(msg, *args, **kwargs)">
+    Log ‘msg % args’ with severity ‘WARNING’.
 
-Loop through this logger and its parents in the logger hierarchy, looking for a non-zero logging level. Return the first one found.
+    To pass exception information, use the keyword argument exc\_info with a true value, e.g.
 
-### handle
-
-<span id="qiskit.ignis.logging.IgnisLogger.handle" />
-
-`IgnisLogger.handle(record)`
-
-Call the handlers for the specified record.
-
-This method is used for unpickled records received from a socket, as well as those created locally. Logger-level filtering is applied.
-
-### hasHandlers
-
-<span id="qiskit.ignis.logging.IgnisLogger.hasHandlers" />
-
-`IgnisLogger.hasHandlers()`
-
-See if this logger has any handlers configured.
-
-Loop through all handlers for this logger and its parents in the logger hierarchy. Return True if a handler was found, else False. Stop searching up the hierarchy whenever a logger with the “propagate” attribute set to zero is found - that will be the last logger which is checked for the existence of handlers.
-
-### info
-
-<span id="qiskit.ignis.logging.IgnisLogger.info" />
-
-`IgnisLogger.info(msg, *args, **kwargs)`
-
-Log ‘msg % args’ with severity ‘INFO’.
-
-To pass exception information, use the keyword argument exc\_info with a true value, e.g.
-
-logger.info(“Houston, we have a %s”, “interesting problem”, exc\_info=1)
-
-### isEnabledFor
-
-<span id="qiskit.ignis.logging.IgnisLogger.isEnabledFor" />
-
-`IgnisLogger.isEnabledFor(level)`
-
-Is this logger enabled for level ‘level’?
-
-### log
-
-<span id="qiskit.ignis.logging.IgnisLogger.log" />
-
-`IgnisLogger.log(level, msg, *args, **kwargs)`
-
-Log ‘msg % args’ with the integer severity ‘level’.
-
-To pass exception information, use the keyword argument exc\_info with a true value, e.g.
-
-logger.log(level, “We have a %s”, “mysterious problem”, exc\_info=1)
-
-### log\_to\_file
-
-<span id="qiskit.ignis.logging.IgnisLogger.log_to_file" />
-
-`IgnisLogger.log_to_file(**kwargs)`
-
-Log key:value pairs to a log file.
-
-Note: Logger name in the log file is fixed (ignis\_logging)
-
-**Parameters**
-
-**kwargs** – key/value pairs to be logged, e.g t1=0.02, qubits=\[1,2,4]
-
-### makeRecord
-
-<span id="qiskit.ignis.logging.IgnisLogger.makeRecord" />
-
-`IgnisLogger.makeRecord(name, level, fn, lno, msg, args, exc_info, func=None, extra=None, sinfo=None)`
-
-A factory method which can be overridden in subclasses to create specialized LogRecords.
-
-### removeFilter
-
-<span id="qiskit.ignis.logging.IgnisLogger.removeFilter" />
-
-`IgnisLogger.removeFilter(filter)`
-
-Remove the specified filter from this handler.
-
-### removeHandler
-
-<span id="qiskit.ignis.logging.IgnisLogger.removeHandler" />
-
-`IgnisLogger.removeHandler(hdlr)`
-
-Remove the specified handler from this logger.
-
-### setLevel
-
-<span id="qiskit.ignis.logging.IgnisLogger.setLevel" />
-
-`IgnisLogger.setLevel(level)`
-
-Set the logging level of this logger. level must be an int or a str.
-
-### warn
-
-<span id="qiskit.ignis.logging.IgnisLogger.warn" />
-
-`IgnisLogger.warn(msg, *args, **kwargs)`
-
-### warning
-
-<span id="qiskit.ignis.logging.IgnisLogger.warning" />
-
-`IgnisLogger.warning(msg, *args, **kwargs)`
-
-Log ‘msg % args’ with severity ‘WARNING’.
-
-To pass exception information, use the keyword argument exc\_info with a true value, e.g.
-
-logger.warning(“Houston, we have a %s”, “bit of a problem”, exc\_info=1)
+    logger.warning(“Houston, we have a %s”, “bit of a problem”, exc\_info=1)
+  </Function>
+</Class>
 

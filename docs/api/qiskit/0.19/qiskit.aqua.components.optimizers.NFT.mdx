@@ -8,194 +8,204 @@ python_api_name: qiskit.aqua.components.optimizers.NFT
 
 # NFT
 
-<span id="qiskit.aqua.components.optimizers.NFT" />
+<Class id="qiskit.aqua.components.optimizers.NFT" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nft.py" signature="NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32)">
+  Nakanishi-Fujii-Todo algorithm.
 
-`NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nft.py "view source code")
+  See [https://arxiv.org/abs/1903.12166](https://arxiv.org/abs/1903.12166)
 
-Nakanishi-Fujii-Todo algorithm.
+  Built out using scipy framework, for details, please refer to [https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html).
 
-See [https://arxiv.org/abs/1903.12166](https://arxiv.org/abs/1903.12166)
+  **Parameters**
 
-Built out using scipy framework, for details, please refer to [https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html).
+  *   **maxiter** (`Optional`\[`int`]) – Maximum number of iterations to perform.
+  *   **maxfev** (`int`) – Maximum number of function evaluations to perform.
+  *   **disp** (`bool`) – disp
+  *   **reset\_interval** (`int`) – The minimum estimates directly once in `reset_interval` times.
 
-**Parameters**
+  **Notes**
 
-*   **maxiter** (`Optional`\[`int`]) – Maximum number of iterations to perform.
-*   **maxfev** (`int`) – Maximum number of function evaluations to perform.
-*   **disp** (`bool`) – disp
-*   **reset\_interval** (`int`) – The minimum estimates directly once in `reset_interval` times.
+  In this optimization method, the optimization function have to satisfy three conditions written in [1](#id2).
 
-**Notes**
+  **References**
 
-In this optimization method, the optimization function have to satisfy three conditions written in [1](#id2).
+  **[1](#id1)**
 
-**References**
+  K. M. Nakanishi, K. Fujii, and S. Todo. 2019. Sequential minimal optimization for quantum-classical hybrid algorithms. arXiv preprint arXiv:1903.12166.
 
-**[1](#id1)**
+  ## Attributes
 
-K. M. Nakanishi, K. Fujii, and S. Todo. 2019. Sequential minimal optimization for quantum-classical hybrid algorithms. arXiv preprint arXiv:1903.12166.
+  ### bounds\_support\_level
 
-## Attributes
+  <Attribute id="qiskit.aqua.components.optimizers.NFT.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-### bounds\_support\_level
+  ### gradient\_support\_level
 
-Returns bounds support level
+  <Attribute id="qiskit.aqua.components.optimizers.NFT.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-### gradient\_support\_level
+  ### initial\_point\_support\_level
 
-Returns gradient support level
+  <Attribute id="qiskit.aqua.components.optimizers.NFT.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-### initial\_point\_support\_level
+  ### is\_bounds\_ignored
 
-Returns initial point support level
+  <Attribute id="qiskit.aqua.components.optimizers.NFT.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-### is\_bounds\_ignored
+  ### is\_bounds\_required
 
-Returns is bounds ignored
+  <Attribute id="qiskit.aqua.components.optimizers.NFT.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-### is\_bounds\_required
+  ### is\_bounds\_supported
 
-Returns is bounds required
+  <Attribute id="qiskit.aqua.components.optimizers.NFT.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-### is\_bounds\_supported
+  ### is\_gradient\_ignored
 
-Returns is bounds supported
+  <Attribute id="qiskit.aqua.components.optimizers.NFT.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-### is\_gradient\_ignored
+  ### is\_gradient\_required
 
-Returns is gradient ignored
+  <Attribute id="qiskit.aqua.components.optimizers.NFT.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-### is\_gradient\_required
+  ### is\_gradient\_supported
 
-Returns is gradient required
+  <Attribute id="qiskit.aqua.components.optimizers.NFT.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-### is\_gradient\_supported
+  ### is\_initial\_point\_ignored
 
-Returns is gradient supported
+  <Attribute id="qiskit.aqua.components.optimizers.NFT.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-### is\_initial\_point\_ignored
+  ### is\_initial\_point\_required
 
-Returns is initial point ignored
+  <Attribute id="qiskit.aqua.components.optimizers.NFT.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-### is\_initial\_point\_required
+  ### is\_initial\_point\_supported
 
-Returns is initial point required
+  <Attribute id="qiskit.aqua.components.optimizers.NFT.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-### is\_initial\_point\_supported
+  ### setting
 
-Returns is initial point supported
+  <Attribute id="qiskit.aqua.components.optimizers.NFT.setting" name="setting">
+    Return setting
+  </Attribute>
 
-### setting
+  ## Methods
 
-Return setting
+  ### get\_support\_level
 
-## Methods
+  <Function id="qiskit.aqua.components.optimizers.NFT.get_support_level" name="get_support_level" signature="NFT.get_support_level()">
+    return support level dictionary
+  </Function>
 
-### get\_support\_level
+  ### gradient\_num\_diff
 
-<span id="qiskit.aqua.components.optimizers.NFT.get_support_level" />
+  <Function id="qiskit.aqua.components.optimizers.NFT.gradient_num_diff" name="gradient_num_diff" signature="static NFT.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-`NFT.get_support_level()`
+    **Parameters**
 
-return support level dictionary
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped
 
-### gradient\_num\_diff
+    **Returns**
 
-<span id="qiskit.aqua.components.optimizers.NFT.gradient_num_diff" />
+    the gradient computed
 
-`static NFT.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
+    **Return type**
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+    grad
+  </Function>
 
-**Parameters**
+  ### optimize
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped
+  <Function id="qiskit.aqua.components.optimizers.NFT.optimize" name="optimize" signature="NFT.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)">
+    Perform optimization.
 
-**Returns**
+    **Parameters**
 
-the gradient computed
+    *   **num\_vars** (*int*) – Number of parameters to be optimized.
+    *   **objective\_function** (*callable*) – A function that computes the objective function.
+    *   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+    *   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
+    *   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
 
-**Return type**
+    **Returns**
 
-grad
+    **point, value, nfev**
 
-### optimize
+    point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
 
-<span id="qiskit.aqua.components.optimizers.NFT.optimize" />
+    **Raises**
 
-`NFT.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
+    **ValueError** – invalid input
+  </Function>
 
-Perform optimization.
+  ### print\_options
 
-**Parameters**
+  <Function id="qiskit.aqua.components.optimizers.NFT.print_options" name="print_options" signature="NFT.print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-*   **num\_vars** (*int*) – Number of parameters to be optimized.
-*   **objective\_function** (*callable*) – A function that computes the objective function.
-*   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
-*   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
-*   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
+  ### set\_max\_evals\_grouped
 
-**Returns**
+  <Function id="qiskit.aqua.components.optimizers.NFT.set_max_evals_grouped" name="set_max_evals_grouped" signature="NFT.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-**point, value, nfev**
+  ### set\_options
 
-point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
+  <Function id="qiskit.aqua.components.optimizers.NFT.set_options" name="set_options" signature="NFT.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-**Raises**
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-**ValueError** – invalid input
+    **Parameters**
 
-### print\_options
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-<span id="qiskit.aqua.components.optimizers.NFT.print_options" />
+  ### wrap\_function
 
-`NFT.print_options()`
+  <Function id="qiskit.aqua.components.optimizers.NFT.wrap_function" name="wrap_function" signature="static NFT.wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-Print algorithm-specific options.
+    **Parameters**
 
-### set\_max\_evals\_grouped
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-<span id="qiskit.aqua.components.optimizers.NFT.set_max_evals_grouped" />
+    **Returns**
 
-`NFT.set_max_evals_grouped(limit)`
+    wrapper
 
-Set max evals grouped
+    **Return type**
 
-### set\_options
-
-<span id="qiskit.aqua.components.optimizers.NFT.set_options" />
-
-`NFT.set_options(**kwargs)`
-
-Sets or updates values in the options dictionary.
-
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
-
-**Parameters**
-
-**kwargs** (*dict*) – options, given as name=value.
-
-### wrap\_function
-
-<span id="qiskit.aqua.components.optimizers.NFT.wrap_function" />
-
-`static NFT.wrap_function(function, args)`
-
-Wrap the function to implicitly inject the args at the call of the function.
-
-**Parameters**
-
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
-
-**Returns**
-
-wrapper
-
-**Return type**
-
-function\_wrapper
+    function\_wrapper
+  </Function>
+</Class>
 

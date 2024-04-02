@@ -8,135 +8,119 @@ python_api_name: qiskit.finance.data_providers.ExchangeDataProvider
 
 # ExchangeDataProvider
 
-<span id="qiskit.finance.data_providers.ExchangeDataProvider" />
+<Class id="qiskit.finance.data_providers.ExchangeDataProvider" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/exchange_data_provider.py" signature="ExchangeDataProvider(token, tickers, stockmarket=StockMarket.LONDON, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))">
+  Exchange data provider.
 
-`ExchangeDataProvider(token, tickers, stockmarket=StockMarket.LONDON, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/exchange_data_provider.py "view source code")
+  Please see: [https://github.com/Qiskit/qiskit-tutorials/blob/stable/0.14.x/qiskit/advanced/aqua/finance/data\_providers/time\_series.ipynb](https://github.com/Qiskit/qiskit-tutorials/blob/stable/0.14.x/qiskit/advanced/aqua/finance/data_providers/time_series.ipynb) for instructions on use, which involve obtaining a Quandl access token.
 
-Exchange data provider.
+  Initializer :type token: `str` :param token: quandl access token :type tickers: `Union`\[`str`, `List`\[`str`]] :param tickers: tickers :type stockmarket: [`StockMarket`](qiskit.finance.data_providers.StockMarket "qiskit.finance.data_providers._base_data_provider.StockMarket") :param stockmarket: LONDON, EURONEXT, or SINGAPORE :type start: \<module ‘datetime’ from ‘/usr/lib/python3.7/datetime.py’> :param start: first data point :type end: \<module ‘datetime’ from ‘/usr/lib/python3.7/datetime.py’> :param end: last data point precedes this date
 
-Please see: [https://github.com/Qiskit/qiskit-tutorials/blob/stable/0.14.x/qiskit/advanced/aqua/finance/data\_providers/time\_series.ipynb](https://github.com/Qiskit/qiskit-tutorials/blob/stable/0.14.x/qiskit/advanced/aqua/finance/data_providers/time_series.ipynb) for instructions on use, which involve obtaining a Quandl access token.
+  **Raises**
 
-Initializer :type token: `str` :param token: quandl access token :type tickers: `Union`\[`str`, `List`\[`str`]] :param tickers: tickers :type stockmarket: [`StockMarket`](qiskit.finance.data_providers.StockMarket "qiskit.finance.data_providers._base_data_provider.StockMarket") :param stockmarket: LONDON, EURONEXT, or SINGAPORE :type start: \<module ‘datetime’ from ‘/usr/lib/python3.7/datetime.py’> :param start: first data point :type end: \<module ‘datetime’ from ‘/usr/lib/python3.7/datetime.py’> :param end: last data point precedes this date
+  [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – provider doesn’t support stock market
 
-**Raises**
+  ## Methods
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – provider doesn’t support stock market
+  ### get\_coordinates
 
-## Methods
+  <Function id="qiskit.finance.data_providers.ExchangeDataProvider.get_coordinates" name="get_coordinates" signature="ExchangeDataProvider.get_coordinates()">
+    Returns random coordinates for visualisation purposes.
+  </Function>
 
-### get\_coordinates
+  ### get\_covariance\_matrix
 
-<span id="qiskit.finance.data_providers.ExchangeDataProvider.get_coordinates" />
+  <Function id="qiskit.finance.data_providers.ExchangeDataProvider.get_covariance_matrix" name="get_covariance_matrix" signature="ExchangeDataProvider.get_covariance_matrix()">
+    Returns the covariance matrix.
 
-`ExchangeDataProvider.get_coordinates()`
+    **Returns**
 
-Returns random coordinates for visualisation purposes.
+    an asset-to-asset covariance matrix.
 
-### get\_covariance\_matrix
+    **Return type**
 
-<span id="qiskit.finance.data_providers.ExchangeDataProvider.get_covariance_matrix" />
+    numpy.ndarray
 
-`ExchangeDataProvider.get_covariance_matrix()`
+    **Raises**
 
-Returns the covariance matrix.
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-**Returns**
+  ### get\_mean\_vector
 
-an asset-to-asset covariance matrix.
+  <Function id="qiskit.finance.data_providers.ExchangeDataProvider.get_mean_vector" name="get_mean_vector" signature="ExchangeDataProvider.get_mean_vector()">
+    Returns a vector containing the mean value of each asset.
 
-**Return type**
+    **Returns**
 
-numpy.ndarray
+    a per-asset mean vector.
 
-**Raises**
+    **Return type**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+    numpy.ndarray
 
-### get\_mean\_vector
+    **Raises**
 
-<span id="qiskit.finance.data_providers.ExchangeDataProvider.get_mean_vector" />
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-`ExchangeDataProvider.get_mean_vector()`
+  ### get\_period\_return\_covariance\_matrix
 
-Returns a vector containing the mean value of each asset.
+  <Function id="qiskit.finance.data_providers.ExchangeDataProvider.get_period_return_covariance_matrix" name="get_period_return_covariance_matrix" signature="ExchangeDataProvider.get_period_return_covariance_matrix()">
+    Returns a vector containing the mean value of each asset.
 
-**Returns**
+    **Returns**
 
-a per-asset mean vector.
+    a per-asset mean vector.
 
-**Return type**
+    **Return type**
 
-numpy.ndarray
+    numpy.ndarray
 
-**Raises**
+    **Raises**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-### get\_period\_return\_covariance\_matrix
+  ### get\_period\_return\_mean\_vector
 
-<span id="qiskit.finance.data_providers.ExchangeDataProvider.get_period_return_covariance_matrix" />
+  <Function id="qiskit.finance.data_providers.ExchangeDataProvider.get_period_return_mean_vector" name="get_period_return_mean_vector" signature="ExchangeDataProvider.get_period_return_mean_vector()">
+    Returns a vector containing the mean value of each asset.
 
-`ExchangeDataProvider.get_period_return_covariance_matrix()`
+    **Returns**
 
-Returns a vector containing the mean value of each asset.
+    a per-asset mean vector.
 
-**Returns**
+    **Return type**
 
-a per-asset mean vector.
+    numpy.ndarray
 
-**Return type**
+    **Raises**
 
-numpy.ndarray
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-**Raises**
+  ### get\_similarity\_matrix
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  <Function id="qiskit.finance.data_providers.ExchangeDataProvider.get_similarity_matrix" name="get_similarity_matrix" signature="ExchangeDataProvider.get_similarity_matrix()">
+    Returns time-series similarity matrix computed using dynamic time warping.
 
-### get\_period\_return\_mean\_vector
+    **Returns**
 
-<span id="qiskit.finance.data_providers.ExchangeDataProvider.get_period_return_mean_vector" />
+    an asset-to-asset similarity matrix.
 
-`ExchangeDataProvider.get_period_return_mean_vector()`
+    **Return type**
 
-Returns a vector containing the mean value of each asset.
+    numpy.ndarray
 
-**Returns**
+    **Raises**
 
-a per-asset mean vector.
+    [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+  </Function>
 
-**Return type**
+  ### run
 
-numpy.ndarray
-
-**Raises**
-
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-### get\_similarity\_matrix
-
-<span id="qiskit.finance.data_providers.ExchangeDataProvider.get_similarity_matrix" />
-
-`ExchangeDataProvider.get_similarity_matrix()`
-
-Returns time-series similarity matrix computed using dynamic time warping.
-
-**Returns**
-
-an asset-to-asset similarity matrix.
-
-**Return type**
-
-numpy.ndarray
-
-**Raises**
-
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-### run
-
-<span id="qiskit.finance.data_providers.ExchangeDataProvider.run" />
-
-`ExchangeDataProvider.run()`
-
-Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
+  <Function id="qiskit.finance.data_providers.ExchangeDataProvider.run" name="run" signature="ExchangeDataProvider.run()">
+    Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
+  </Function>
+</Class>
 

@@ -8,612 +8,574 @@ python_api_name: qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator
 
 # TPBGroupedWeightedPauliOperator
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator" />
+<Class id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/tpb_grouped_weighted_pauli_operator.py" signature="TPBGroupedWeightedPauliOperator(paulis, basis, z2_symmetries=None, atol=1e-12, name=None, grouping_func=None, kwargs=None)">
+  TPB Grouped Weighted Pauli Operator
 
-`TPBGroupedWeightedPauliOperator(paulis, basis, z2_symmetries=None, atol=1e-12, name=None, grouping_func=None, kwargs=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/tpb_grouped_weighted_pauli_operator.py "view source code")
+  **Parameters**
 
-TPB Grouped Weighted Pauli Operator
+  *   **paulis** (*list\[\[complex,* [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]]*) – the list of weighted Paulis, where a weighted pauli is composed of a length-2 list and the first item is the weight and the second item is the Pauli object.
+  *   **basis** (*list\[tuple(object, \[int])], optional*) – the grouping basis, each element is a tuple composed of the basis and the indices to paulis which are belonged to that group. e.g., if tpb basis is used, the object will be a pauli. By default, the group is equal to non-grouping, each pauli is its own basis.
+  *   **z2\_symmetries** ([*Z2Symmetries*](qiskit.aqua.operators.legacy.Z2Symmetries "qiskit.aqua.operators.legacy.Z2Symmetries")) – recording the z2 symmetries info
+  *   **atol** (*float, optional*) – the threshold used in truncating paulis
+  *   **name** (*str, optional*) – the name of operator.
+  *   **grouping\_func** (*Callable, optional*) – Function to group paulis
+  *   **kwargs** (*dict*) – Optional parameters for grouping function call
 
-**Parameters**
+  ## Attributes
 
-*   **paulis** (*list\[\[complex,* [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]]*) – the list of weighted Paulis, where a weighted pauli is composed of a length-2 list and the first item is the weight and the second item is the Pauli object.
-*   **basis** (*list\[tuple(object, \[int])], optional*) – the grouping basis, each element is a tuple composed of the basis and the indices to paulis which are belonged to that group. e.g., if tpb basis is used, the object will be a pauli. By default, the group is equal to non-grouping, each pauli is its own basis.
-*   **z2\_symmetries** ([*Z2Symmetries*](qiskit.aqua.operators.legacy.Z2Symmetries "qiskit.aqua.operators.legacy.Z2Symmetries")) – recording the z2 symmetries info
-*   **atol** (*float, optional*) – the threshold used in truncating paulis
-*   **name** (*str, optional*) – the name of operator.
-*   **grouping\_func** (*Callable, optional*) – Function to group paulis
-*   **kwargs** (*dict*) – Optional parameters for grouping function call
+  ### atol
 
-## Attributes
+  <Attribute id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.atol" name="atol">
+    get atol
+  </Attribute>
 
-### atol
+  ### basis
 
-get atol
+  <Attribute id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.basis" name="basis">
+    returns basis
+  </Attribute>
 
-### basis
+  ### grouping\_func
 
-returns basis
+  <Attribute id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.grouping_func" name="grouping_func">
+    returns grouping function
+  </Attribute>
 
-### grouping\_func
+  ### kwargs
 
-returns grouping function
+  <Attribute id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.kwargs" name="kwargs">
+    returns kwargs
+  </Attribute>
 
-### kwargs
+  ### name
 
-returns kwargs
+  <Attribute id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.name" name="name">
+    returns name
+  </Attribute>
 
-### name
+  ### num\_groups
 
-returns name
+  <Attribute id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.num_groups" name="num_groups">
+    returns number of groups
+  </Attribute>
 
-### num\_groups
+  ### num\_qubits
 
-returns number of groups
+  <Attribute id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.num_qubits" name="num_qubits">
+    Number of qubits required for the operator.
 
-### num\_qubits
+    **Returns**
 
-Number of qubits required for the operator.
+    number of qubits
 
-**Returns**
+    **Return type**
 
-number of qubits
+    int
+  </Attribute>
 
-**Return type**
+  ### paulis
 
-int
+  <Attribute id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.paulis" name="paulis">
+    get paulis
+  </Attribute>
 
-### paulis
+  ### z2\_symmetries
 
-get paulis
+  <Attribute id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.z2_symmetries" name="z2_symmetries">
+    returns z2 symmetries
+  </Attribute>
 
-### z2\_symmetries
+  ## Methods
 
-returns z2 symmetries
+  ### \_\_mul\_\_
 
-## Methods
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.__mul__" name="__mul__" signature="TPBGroupedWeightedPauliOperator.__mul__(other)">
+    Overload self \* other
+  </Function>
 
-### \_\_mul\_\_
+  ### add
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.__mul__" />
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.add" name="add" signature="TPBGroupedWeightedPauliOperator.add(other, copy=False)">
+    Perform self + other.
 
-`TPBGroupedWeightedPauliOperator.__mul__(other)`
+    **Parameters**
 
-Overload self \* other
+    *   **other** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – to-be-combined operator
+    *   **copy** (*bool*) – working on a copy or self, if False, the results are written back to self.
 
-### add
+    **Returns**
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.add" />
+    operator
 
-`TPBGroupedWeightedPauliOperator.add(other, copy=False)`
+    **Return type**
 
-Perform self + other.
+    [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+  </Function>
 
-**Parameters**
+  ### anticommute\_with
 
-*   **other** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – to-be-combined operator
-*   **copy** (*bool*) – working on a copy or self, if False, the results are written back to self.
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.anticommute_with" name="anticommute_with" signature="TPBGroupedWeightedPauliOperator.anticommute_with(other)">
+    Anti commutes with
+  </Function>
 
-**Returns**
+  ### chop
 
-operator
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.chop" name="chop" signature="TPBGroupedWeightedPauliOperator.chop(threshold=None, copy=False)">
+    Eliminate the real and imagine part of weight in each pauli by threshold. If pauli’s weight is less then threshold in both real and imaginary parts, the pauli is removed.
 
-**Return type**
+    <Admonition title="Note" type="note">
+      If weight is real-only, the imaginary part is skipped.
+    </Admonition>
 
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+    **Parameters**
 
-### anticommute\_with
+    *   **threshold** (*float*) – the threshold is used to remove the paulis
+    *   **copy** (*bool*) – chop on a copy or self
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.anticommute_with" />
+    **Returns**
 
-`TPBGroupedWeightedPauliOperator.anticommute_with(other)`
+    **if copy is True, the original operator is unchanged; otherwise,**
 
-Anti commutes with
+    the operator is mutated.
 
-### chop
+    **Return type**
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.chop" />
+    [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+  </Function>
 
-`TPBGroupedWeightedPauliOperator.chop(threshold=None, copy=False)`
+  ### commute\_with
 
-Eliminate the real and imagine part of weight in each pauli by threshold. If pauli’s weight is less then threshold in both real and imaginary parts, the pauli is removed.
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.commute_with" name="commute_with" signature="TPBGroupedWeightedPauliOperator.commute_with(other)">
+    Commutes with
+  </Function>
 
-<Admonition title="Note" type="note">
-  If weight is real-only, the imaginary part is skipped.
-</Admonition>
+  ### construct\_evaluation\_circuit
 
-**Parameters**
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.construct_evaluation_circuit" name="construct_evaluation_circuit" signature="TPBGroupedWeightedPauliOperator.construct_evaluation_circuit(wave_function, statevector_mode, qr=None, cr=None, use_simulator_snapshot_mode=False, circuit_name_prefix='')">
+    Construct the circuits for evaluation, which calculating the expectation \<psi|H|psi>.
 
-*   **threshold** (*float*) – the threshold is used to remove the paulis
-*   **copy** (*bool*) – chop on a copy or self
+    At statevector mode: to simplify the computation, we do not build the whole circuit for \<psi|H|psi>, instead of that we construct an individual circuit \<psi|, and a bundle circuit for H|psi>
 
-**Returns**
+    **Parameters**
 
-**if copy is True, the original operator is unchanged; otherwise,**
+    *   **wave\_function** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit.
+    *   **statevector\_mode** (*bool*) – indicate which type of simulator are going to use.
+    *   **qr** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, optional*) – the quantum register associated with the input\_circuit
+    *   **cr** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*, optional*) – the classical register associated with the input\_circuit
+    *   **use\_simulator\_snapshot\_mode** (*bool, optional*) – if aer\_provider is used, we can do faster evaluation for pauli mode on statevector simulation
+    *   **circuit\_name\_prefix** (*str, optional*) – a prefix of circuit name
 
-the operator is mutated.
+    **Returns**
 
-**Return type**
+    **a list of quantum circuits and each circuit with a unique name:**
 
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+    circuit\_name\_prefix + Pauli string
 
-### commute\_with
+    **Return type**
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.commute_with" />
+    list\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
 
-`TPBGroupedWeightedPauliOperator.commute_with(other)`
+    **Raises**
 
-Commutes with
+    *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+    *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if quantum register is not provided explicitly and cannot find quantum register with q as the name
+    *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – The provided qr is not in the wave\_function
+  </Function>
 
-### construct\_evaluation\_circuit
+  ### copy
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.construct_evaluation_circuit" />
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.copy" name="copy" signature="TPBGroupedWeightedPauliOperator.copy()">
+    Get a copy of self
+  </Function>
 
-`TPBGroupedWeightedPauliOperator.construct_evaluation_circuit(wave_function, statevector_mode, qr=None, cr=None, use_simulator_snapshot_mode=False, circuit_name_prefix='')`
+  ### evaluate\_with\_result
 
-Construct the circuits for evaluation, which calculating the expectation \<psi|H|psi>.
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.evaluate_with_result" name="evaluate_with_result" signature="TPBGroupedWeightedPauliOperator.evaluate_with_result(result, statevector_mode, use_simulator_snapshot_mode=False, circuit_name_prefix='')">
+    This method can be only used with the circuits generated by the [`construct_evaluation_circuit()`](qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator#construct_evaluation_circuit "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.construct_evaluation_circuit") method with the same circuit\_name\_prefix name since the circuit names are tied to some meanings.
 
-At statevector mode: to simplify the computation, we do not build the whole circuit for \<psi|H|psi>, instead of that we construct an individual circuit \<psi|, and a bundle circuit for H|psi>
+    Calculate the evaluated value with the measurement results.
 
-**Parameters**
+    **Parameters**
 
-*   **wave\_function** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit.
-*   **statevector\_mode** (*bool*) – indicate which type of simulator are going to use.
-*   **qr** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, optional*) – the quantum register associated with the input\_circuit
-*   **cr** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*, optional*) – the classical register associated with the input\_circuit
-*   **use\_simulator\_snapshot\_mode** (*bool, optional*) – if aer\_provider is used, we can do faster evaluation for pauli mode on statevector simulation
-*   **circuit\_name\_prefix** (*str, optional*) – a prefix of circuit name
+    *   **result** (*qiskit.Result*) – the result from the backend.
+    *   **statevector\_mode** (*bool*) – indicate which type of simulator are used.
+    *   **use\_simulator\_snapshot\_mode** (*bool*) – if aer\_provider is used, we can do faster evaluation for pauli mode on statevector simulation
+    *   **circuit\_name\_prefix** (*str*) – a prefix of circuit name
 
-**Returns**
+    **Returns**
 
-**a list of quantum circuits and each circuit with a unique name:**
+    the mean value float: the standard deviation
 
-circuit\_name\_prefix + Pauli string
+    **Return type**
 
-**Return type**
+    float
 
-list\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+    **Raises**
 
-**Raises**
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+  </Function>
 
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if quantum register is not provided explicitly and cannot find quantum register with q as the name
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – The provided qr is not in the wave\_function
+  ### evaluate\_with\_statevector
 
-### copy
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.evaluate_with_statevector" name="evaluate_with_statevector" signature="TPBGroupedWeightedPauliOperator.evaluate_with_statevector(quantum_state)">
+    **Parameters**
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.copy" />
+    **quantum\_state** (*numpy.ndarray*) – a quantum state.
 
-`TPBGroupedWeightedPauliOperator.copy()`
+    **Returns**
 
-Get a copy of self
+    the mean value float: the standard deviation
 
-### evaluate\_with\_result
+    **Return type**
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.evaluate_with_result" />
+    float
 
-`TPBGroupedWeightedPauliOperator.evaluate_with_result(result, statevector_mode, use_simulator_snapshot_mode=False, circuit_name_prefix='')`
+    **Raises**
 
-This method can be only used with the circuits generated by the [`construct_evaluation_circuit()`](qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator#construct_evaluation_circuit "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.construct_evaluation_circuit") method with the same circuit\_name\_prefix name since the circuit names are tied to some meanings.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+  </Function>
 
-Calculate the evaluated value with the measurement results.
+  ### evaluation\_instruction
 
-**Parameters**
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.evaluation_instruction" name="evaluation_instruction" signature="TPBGroupedWeightedPauliOperator.evaluation_instruction(statevector_mode, use_simulator_snapshot_mode=False)">
+    **Parameters**
 
-*   **result** (*qiskit.Result*) – the result from the backend.
-*   **statevector\_mode** (*bool*) – indicate which type of simulator are used.
-*   **use\_simulator\_snapshot\_mode** (*bool*) – if aer\_provider is used, we can do faster evaluation for pauli mode on statevector simulation
-*   **circuit\_name\_prefix** (*str*) – a prefix of circuit name
+    *   **statevector\_mode** (*bool*) – will it be run on statevector simulator or not
+    *   **use\_simulator\_snapshot\_mode** (*bool*) – will it use qiskit aer simulator operator mode
 
-**Returns**
+    **Returns**
 
-the mean value float: the standard deviation
+    Pauli-instruction pair.
 
-**Return type**
+    **Return type**
 
-float
+    dict
 
-**Raises**
+    **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+  </Function>
 
-### evaluate\_with\_statevector
+  ### evolve
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.evaluate_with_statevector" />
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.evolve" name="evolve" signature="TPBGroupedWeightedPauliOperator.evolve(state_in=None, evo_time=0, num_time_slices=1, quantum_registers=None, expansion_mode='trotter', expansion_order=1)">
+    Carry out the eoh evolution for the operator under supplied specifications.
 
-`TPBGroupedWeightedPauliOperator.evaluate_with_statevector(quantum_state)`
+    **Parameters**
 
-**Parameters**
+    *   **state\_in** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – a circuit describes the input state
+    *   **evo\_time** (*Union(complex, float,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*)*) – The evolution time
+    *   **num\_time\_slices** (*int*) – The number of time slices for the expansion
+    *   **quantum\_registers** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister to build the QuantumCircuit off of
+    *   **expansion\_mode** (*str*) – The mode under which the expansion is to be done. Currently support ‘trotter’, which follows the expansion as discussed in [http://science.sciencemag.org/content/273/5278/1073](http://science.sciencemag.org/content/273/5278/1073), and ‘suzuki’, which corresponds to the discussion in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf)
+    *   **expansion\_order** (*int*) – The order for suzuki expansion
 
-**quantum\_state** (*numpy.ndarray*) – a quantum state.
+    **Returns**
 
-**Returns**
+    The constructed circuit.
 
-the mean value float: the standard deviation
+    **Return type**
 
-**Return type**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-float
+    **Raises**
 
-**Raises**
+    *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – quantum\_registers must be in the provided state\_in circuit
+    *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if operator is empty
+  </Function>
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+  ### evolve\_instruction
 
-### evaluation\_instruction
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.evolve_instruction" name="evolve_instruction" signature="TPBGroupedWeightedPauliOperator.evolve_instruction(evo_time=0, num_time_slices=1, expansion_mode='trotter', expansion_order=1)">
+    Carry out the eoh evolution for the operator under supplied specifications.
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.evaluation_instruction" />
+    **Parameters**
 
-`TPBGroupedWeightedPauliOperator.evaluation_instruction(statevector_mode, use_simulator_snapshot_mode=False)`
+    *   **evo\_time** (*Union(complex, float,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*)*) – The evolution time
+    *   **num\_time\_slices** (*int*) – The number of time slices for the expansion
+    *   **expansion\_mode** (*str*) – The mode under which the expansion is to be done. Currently support ‘trotter’, which follows the expansion as discussed in [http://science.sciencemag.org/content/273/5278/1073](http://science.sciencemag.org/content/273/5278/1073), and ‘suzuki’, which corresponds to the discussion in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf)
+    *   **expansion\_order** (*int*) – The order for suzuki expansion
 
-**Parameters**
+    **Returns**
 
-*   **statevector\_mode** (*bool*) – will it be run on statevector simulator or not
-*   **use\_simulator\_snapshot\_mode** (*bool*) – will it use qiskit aer simulator operator mode
+    The constructed QuantumCircuit.
 
-**Returns**
+    **Return type**
 
-Pauli-instruction pair.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+    **Raises**
 
-dict
+    *   **ValueError** – Number of time slices should be a non-negative integer
+    *   **NotImplementedError** – expansion mode not supported
+    *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if operator is empty
+  </Function>
 
-**Raises**
+  ### from\_dict
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.from_dict" name="from_dict" signature="classmethod TPBGroupedWeightedPauliOperator.from_dict(dictionary, before_04=False)">
+    Load paulis from a dictionary to construct an Operator. The dictionary must comprise the key ‘paulis’ having a value which is an array of pauli dicts. Each dict in this array must be represented by label and coeff (real and imag) such as in the following example:
 
-### evolve
+    ```python
+    {'paulis':
+        [
+            {'label': 'IIII',
+             'coeff': {'real': -0.33562957575267038, 'imag': 0.0}},
+            {'label': 'ZIII',
+             'coeff': {'real': 0.28220597164664896, 'imag': 0.0}},
+             ...
+        ]
+     }
+    ```
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.evolve" />
+    **Parameters**
 
-`TPBGroupedWeightedPauliOperator.evolve(state_in=None, evo_time=0, num_time_slices=1, quantum_registers=None, expansion_mode='trotter', expansion_order=1)`
+    *   **dictionary** (*dict*) – dictionary, which contains a list of Paulis and coefficients.
+    *   **before\_04** (*bool*) – support the format before Aqua 0.4.
 
-Carry out the eoh evolution for the operator under supplied specifications.
+    **Returns**
 
-**Parameters**
+    the operator created from the input dictionary.
 
-*   **state\_in** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – a circuit describes the input state
-*   **evo\_time** (*Union(complex, float,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*)*) – The evolution time
-*   **num\_time\_slices** (*int*) – The number of time slices for the expansion
-*   **quantum\_registers** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister to build the QuantumCircuit off of
-*   **expansion\_mode** (*str*) – The mode under which the expansion is to be done. Currently support ‘trotter’, which follows the expansion as discussed in [http://science.sciencemag.org/content/273/5278/1073](http://science.sciencemag.org/content/273/5278/1073), and ‘suzuki’, which corresponds to the discussion in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf)
-*   **expansion\_order** (*int*) – The order for suzuki expansion
+    **Return type**
 
-**Returns**
+    [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
-The constructed circuit.
+    **Raises**
 
-**Return type**
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid dictionary
+  </Function>
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  ### from\_file
 
-**Raises**
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.from_file" name="from_file" signature="classmethod TPBGroupedWeightedPauliOperator.from_file(file_name, before_04=False)">
+    Load paulis in a file to construct an Operator.
 
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – quantum\_registers must be in the provided state\_in circuit
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if operator is empty
+    **Parameters**
 
-### evolve\_instruction
+    *   **file\_name** (*str*) – path to the file, which contains a list of Paulis and coefficients.
+    *   **before\_04** (*bool*) – support the format before Aqua 0.4.
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.evolve_instruction" />
+    **Returns**
 
-`TPBGroupedWeightedPauliOperator.evolve_instruction(evo_time=0, num_time_slices=1, expansion_mode='trotter', expansion_order=1)`
+    the loaded operator.
 
-Carry out the eoh evolution for the operator under supplied specifications.
+    **Return type**
 
-**Parameters**
+    [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+  </Function>
 
-*   **evo\_time** (*Union(complex, float,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*)*) – The evolution time
-*   **num\_time\_slices** (*int*) – The number of time slices for the expansion
-*   **expansion\_mode** (*str*) – The mode under which the expansion is to be done. Currently support ‘trotter’, which follows the expansion as discussed in [http://science.sciencemag.org/content/273/5278/1073](http://science.sciencemag.org/content/273/5278/1073), and ‘suzuki’, which corresponds to the discussion in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf)
-*   **expansion\_order** (*int*) – The order for suzuki expansion
+  ### from\_list
 
-**Returns**
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.from_list" name="from_list" signature="classmethod TPBGroupedWeightedPauliOperator.from_list(paulis, weights=None, name=None)">
+    Create a WeightedPauliOperator via a pair of list.
 
-The constructed QuantumCircuit.
+    **Parameters**
 
-**Return type**
+    *   **paulis** (*list\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – the list of Paulis
+    *   **weights** (*list\[complex], optional*) – the list of weights, if it is None, all weights are 1.
+    *   **name** (*str, optional*) – name of the operator.
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **Returns**
 
-**Raises**
+    operator
 
-*   **ValueError** – Number of time slices should be a non-negative integer
-*   **NotImplementedError** – expansion mode not supported
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if operator is empty
+    **Return type**
 
-### from\_dict
+    [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.from_dict" />
+    **Raises**
 
-`classmethod TPBGroupedWeightedPauliOperator.from_dict(dictionary, before_04=False)`
+    **ValueError** – The length of weights and paulis must be the same
+  </Function>
 
-Load paulis from a dictionary to construct an Operator. The dictionary must comprise the key ‘paulis’ having a value which is an array of pauli dicts. Each dict in this array must be represented by label and coeff (real and imag) such as in the following example:
+  ### is\_empty
 
-```python
-{'paulis':
-    [
-        {'label': 'IIII',
-         'coeff': {'real': -0.33562957575267038, 'imag': 0.0}},
-        {'label': 'ZIII',
-         'coeff': {'real': 0.28220597164664896, 'imag': 0.0}},
-         ...
-    ]
- }
-```
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.is_empty" name="is_empty" signature="TPBGroupedWeightedPauliOperator.is_empty()">
+    Check Operator is empty or not.
 
-**Parameters**
+    **Returns**
 
-*   **dictionary** (*dict*) – dictionary, which contains a list of Paulis and coefficients.
-*   **before\_04** (*bool*) – support the format before Aqua 0.4.
+    True if empty, False otherwise
 
-**Returns**
+    **Return type**
 
-the operator created from the input dictionary.
+    bool
+  </Function>
 
-**Return type**
+  ### multiply
 
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.multiply" name="multiply" signature="TPBGroupedWeightedPauliOperator.multiply(other)">
+    Perform self \* other.
 
-**Raises**
+    Note: Grouping of the new operator, will be as per self’s grouping.
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid dictionary
+    **Parameters**
 
-### from\_file
+    **other** ([*TPBGroupedWeightedPauliOperator*](qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator")) – an operator
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.from_file" />
+    **Returns**
 
-`classmethod TPBGroupedWeightedPauliOperator.from_file(file_name, before_04=False)`
+    the multiplied operator
 
-Load paulis in a file to construct an Operator.
+    **Return type**
 
-**Parameters**
+    [TPBGroupedWeightedPauliOperator](qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator")
+  </Function>
 
-*   **file\_name** (*str*) – path to the file, which contains a list of Paulis and coefficients.
-*   **before\_04** (*bool*) – support the format before Aqua 0.4.
+  ### print\_details
 
-**Returns**
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.print_details" name="print_details" signature="TPBGroupedWeightedPauliOperator.print_details()">
+    Print out the operator in details.
 
-the loaded operator.
+    **Returns**
 
-**Return type**
+    a formatted string describes the operator.
 
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+    **Return type**
 
-### from\_list
+    str
+  </Function>
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.from_list" />
+  ### reorder\_paulis
 
-`classmethod TPBGroupedWeightedPauliOperator.from_list(paulis, weights=None, name=None)`
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.reorder_paulis" name="reorder_paulis" signature="TPBGroupedWeightedPauliOperator.reorder_paulis()">
+    Reorder the paulis based on the basis and return the reordered paulis.
 
-Create a WeightedPauliOperator via a pair of list.
+    **Returns**
 
-**Parameters**
+    the ordered paulis based on the basis.
 
-*   **paulis** (*list\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – the list of Paulis
-*   **weights** (*list\[complex], optional*) – the list of weights, if it is None, all weights are 1.
-*   **name** (*str, optional*) – name of the operator.
+    **Return type**
 
-**Returns**
+    list\[list\[complex, paulis]]
+  </Function>
 
-operator
+  ### rounding
 
-**Return type**
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.rounding" name="rounding" signature="TPBGroupedWeightedPauliOperator.rounding(decimals, copy=False)">
+    Rounding the weight.
 
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+    **Parameters**
 
-**Raises**
+    *   **decimals** (*int*) – rounding the weight to the decimals.
+    *   **copy** (*bool*) – chop on a copy or self
 
-**ValueError** – The length of weights and paulis must be the same
+    **Returns**
 
-### is\_empty
+    operator
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.is_empty" />
+    **Return type**
 
-`TPBGroupedWeightedPauliOperator.is_empty()`
+    [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+  </Function>
 
-Check Operator is empty or not.
+  ### simplify
 
-**Returns**
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.simplify" name="simplify" signature="TPBGroupedWeightedPauliOperator.simplify(copy=False)">
+    Merge the paulis whose bases are identical and the pauli with zero coefficient would be removed.
 
-True if empty, False otherwise
+    <Admonition title="Note" type="note">
+      This behavior of this method is slightly changed, it will remove the paulis whose weights are zero.
+    </Admonition>
 
-**Return type**
+    **Parameters**
 
-bool
+    **copy** (*bool*) – simplify on a copy or self
 
-### multiply
+    **Returns**
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.multiply" />
+    the simplified operator
 
-`TPBGroupedWeightedPauliOperator.multiply(other)`
+    **Return type**
 
-Perform self \* other.
+    [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+  </Function>
 
-Note: Grouping of the new operator, will be as per self’s grouping.
+  ### sorted\_grouping
 
-**Parameters**
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.sorted_grouping" name="sorted_grouping" signature="classmethod TPBGroupedWeightedPauliOperator.sorted_grouping(weighted_pauli_operator, method='largest-degree')">
+    Largest-Degree First Coloring for grouping paulis.
 
-**other** ([*TPBGroupedWeightedPauliOperator*](qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator")) – an operator
+    **Parameters**
 
-**Returns**
+    *   **weighted\_pauli\_operator** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the to-be-grouped weighted pauli operator.
+    *   **method** (*str*) – only largest-degree is available now.
 
-the multiplied operator
+    **Returns**
 
-**Return type**
+    operator
 
-[TPBGroupedWeightedPauliOperator](qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator")
+    **Return type**
 
-### print\_details
+    [TPBGroupedWeightedPauliOperator](qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator")
+  </Function>
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.print_details" />
+  ### sub
 
-`TPBGroupedWeightedPauliOperator.print_details()`
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.sub" name="sub" signature="TPBGroupedWeightedPauliOperator.sub(other, copy=False)">
+    Perform self - other.
 
-Print out the operator in details.
+    **Parameters**
 
-**Returns**
+    *   **other** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – to-be-combined operator
+    *   **copy** (*bool*) – working on a copy or self, if False, the results are written back to self.
 
-a formatted string describes the operator.
+    **Returns**
 
-**Return type**
+    operator
 
-str
+    **Return type**
 
-### reorder\_paulis
+    [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+  </Function>
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.reorder_paulis" />
+  ### to\_dict
 
-`TPBGroupedWeightedPauliOperator.reorder_paulis()`
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.to_dict" name="to_dict" signature="TPBGroupedWeightedPauliOperator.to_dict()">
+    Save operator to a dict in pauli representation.
 
-Reorder the paulis based on the basis and return the reordered paulis.
+    **Returns**
 
-**Returns**
+    a dictionary contains an operator with pauli representation.
 
-the ordered paulis based on the basis.
+    **Return type**
 
-**Return type**
+    dict
+  </Function>
 
-list\[list\[complex, paulis]]
+  ### to\_file
 
-### rounding
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.to_file" name="to_file" signature="TPBGroupedWeightedPauliOperator.to_file(file_name)">
+    Save operator to a file in pauli representation.
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.rounding" />
+    **Parameters**
 
-`TPBGroupedWeightedPauliOperator.rounding(decimals, copy=False)`
+    **file\_name** (*str*) – path to the file
+  </Function>
 
-Rounding the weight.
+  ### to\_opflow
 
-**Parameters**
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.to_opflow" name="to_opflow" signature="TPBGroupedWeightedPauliOperator.to_opflow(reverse_endianness=False)">
+    to op flow
+  </Function>
 
-*   **decimals** (*int*) – rounding the weight to the decimals.
-*   **copy** (*bool*) – chop on a copy or self
+  ### unsorted\_grouping
 
-**Returns**
+  <Function id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.unsorted_grouping" name="unsorted_grouping" signature="classmethod TPBGroupedWeightedPauliOperator.unsorted_grouping(weighted_pauli_operator)">
+    Greedy and unsorted grouping paulis.
 
-operator
+    **Parameters**
 
-**Return type**
+    **weighted\_pauli\_operator** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the to-be-grouped weighted pauli operator.
 
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+    **Returns**
 
-### simplify
+    operator
 
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.simplify" />
+    **Return type**
 
-`TPBGroupedWeightedPauliOperator.simplify(copy=False)`
-
-Merge the paulis whose bases are identical and the pauli with zero coefficient would be removed.
-
-<Admonition title="Note" type="note">
-  This behavior of this method is slightly changed, it will remove the paulis whose weights are zero.
-</Admonition>
-
-**Parameters**
-
-**copy** (*bool*) – simplify on a copy or self
-
-**Returns**
-
-the simplified operator
-
-**Return type**
-
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
-
-### sorted\_grouping
-
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.sorted_grouping" />
-
-`classmethod TPBGroupedWeightedPauliOperator.sorted_grouping(weighted_pauli_operator, method='largest-degree')`
-
-Largest-Degree First Coloring for grouping paulis.
-
-**Parameters**
-
-*   **weighted\_pauli\_operator** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the to-be-grouped weighted pauli operator.
-*   **method** (*str*) – only largest-degree is available now.
-
-**Returns**
-
-operator
-
-**Return type**
-
-[TPBGroupedWeightedPauliOperator](qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator")
-
-### sub
-
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.sub" />
-
-`TPBGroupedWeightedPauliOperator.sub(other, copy=False)`
-
-Perform self - other.
-
-**Parameters**
-
-*   **other** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – to-be-combined operator
-*   **copy** (*bool*) – working on a copy or self, if False, the results are written back to self.
-
-**Returns**
-
-operator
-
-**Return type**
-
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
-
-### to\_dict
-
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.to_dict" />
-
-`TPBGroupedWeightedPauliOperator.to_dict()`
-
-Save operator to a dict in pauli representation.
-
-**Returns**
-
-a dictionary contains an operator with pauli representation.
-
-**Return type**
-
-dict
-
-### to\_file
-
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.to_file" />
-
-`TPBGroupedWeightedPauliOperator.to_file(file_name)`
-
-Save operator to a file in pauli representation.
-
-**Parameters**
-
-**file\_name** (*str*) – path to the file
-
-### to\_opflow
-
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.to_opflow" />
-
-`TPBGroupedWeightedPauliOperator.to_opflow(reverse_endianness=False)`
-
-to op flow
-
-### unsorted\_grouping
-
-<span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.unsorted_grouping" />
-
-`classmethod TPBGroupedWeightedPauliOperator.unsorted_grouping(weighted_pauli_operator)`
-
-Greedy and unsorted grouping paulis.
-
-**Parameters**
-
-**weighted\_pauli\_operator** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the to-be-grouped weighted pauli operator.
-
-**Returns**
-
-operator
-
-**Return type**
-
-[TPBGroupedWeightedPauliOperator](qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator")
+    [TPBGroupedWeightedPauliOperator](qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator")
+  </Function>
+</Class>
 

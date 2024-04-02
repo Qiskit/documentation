@@ -8,42 +8,40 @@ python_api_name: qiskit.quantum_info.diamond_norm
 
 # diamond\_norm
 
-<span id="qiskit.quantum_info.diamond_norm" />
+<Function id="qiskit.quantum_info.diamond_norm" name="diamond_norm" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/measures.py" signature="diamond_norm(choi, **kwargs)">
+  Return the diamond norm of the input quantum channel object.
 
-`diamond_norm(choi, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/measures.py "view source code")
+  This function computes the completely-bounded trace-norm (often referred to as the diamond-norm) of the input quantum channel object using the semidefinite-program from reference \[1].
 
-Return the diamond norm of the input quantum channel object.
+  **Parameters**
 
-This function computes the completely-bounded trace-norm (often referred to as the diamond-norm) of the input quantum channel object using the semidefinite-program from reference \[1].
+  *   **choi** ([*Choi*](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi") *or QuantumChannel*) – a quantum channel object or Choi-matrix array.
+  *   **kwargs** – optional arguments to pass to CVXPY solver.
 
-**Parameters**
+  **Returns**
 
-*   **choi** ([*Choi*](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi") *or QuantumChannel*) – a quantum channel object or Choi-matrix array.
-*   **kwargs** – optional arguments to pass to CVXPY solver.
+  **The completely-bounded trace norm**
 
-**Returns**
+  $\|\mathcal{E}\|_{\diamond}$.
 
-**The completely-bounded trace norm**
+  **Return type**
 
-$\|\mathcal{E}\|_{\diamond}$.
+  float
 
-**Return type**
+  **Raises**
 
-float
+  **QiskitError** – if CVXPY package cannot be found.
 
-**Raises**
+  ## Additional Information:
 
-**QiskitError** – if CVXPY package cannot be found.
+  The input to this function is typically *not* a CPTP quantum channel, but rather the *difference* between two quantum channels $\|\Delta\mathcal{E}\|_\diamond$ where $\Delta\mathcal{E} = \mathcal{E}_1 - \mathcal{E}_2$.
 
-## Additional Information:
+  ## Reference:
 
-The input to this function is typically *not* a CPTP quantum channel, but rather the *difference* between two quantum channels $\|\Delta\mathcal{E}\|_\diamond$ where $\Delta\mathcal{E} = \mathcal{E}_1 - \mathcal{E}_2$.
+  J. Watrous. “Simpler semidefinite programs for completely bounded norms”, arXiv:1207.5726 \[quant-ph] (2012).
 
-## Reference:
-
-J. Watrous. “Simpler semidefinite programs for completely bounded norms”, arXiv:1207.5726 \[quant-ph] (2012).
-
-<Admonition title="Note" type="note">
-  This function requires the optional CVXPY package to be installed. Any additional kwargs will be passed to the `cvxpy.solve` function. See the CVXPY documentation for information on available SDP solvers.
-</Admonition>
+  <Admonition title="Note" type="note">
+    This function requires the optional CVXPY package to be installed. Any additional kwargs will be passed to the `cvxpy.solve` function. See the CVXPY documentation for information on available SDP solvers.
+  </Admonition>
+</Function>
 

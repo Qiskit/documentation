@@ -8,274 +8,254 @@ python_api_name: qiskit.providers.models.PulseBackendConfiguration
 
 # PulseBackendConfiguration
 
-<span id="qiskit.providers.models.PulseBackendConfiguration" />
+<Class id="qiskit.providers.models.PulseBackendConfiguration" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/backendconfiguration.py" signature="PulseBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, n_uchannels, u_channel_lo, meas_levels, qubit_lo_range, meas_lo_range, dt, dtm, rep_times, meas_kernels, discriminators, hamiltonian=None, channel_bandwidth=None, acquisition_latency=None, conditional_latency=None, meas_map=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, channels=None, **kwargs)">
+  Static configuration state for an OpenPulse enabled backend. This contains information about the set up of the device which can be useful for building Pulse programs.
 
-`PulseBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, n_uchannels, u_channel_lo, meas_levels, qubit_lo_range, meas_lo_range, dt, dtm, rep_times, meas_kernels, discriminators, hamiltonian=None, channel_bandwidth=None, acquisition_latency=None, conditional_latency=None, meas_map=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, channels=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/backendconfiguration.py "view source code")
+  Initialize a backend configuration that contains all the extra configuration that is made available for OpenPulse backends.
 
-Static configuration state for an OpenPulse enabled backend. This contains information about the set up of the device which can be useful for building Pulse programs.
+  **Parameters**
 
-Initialize a backend configuration that contains all the extra configuration that is made available for OpenPulse backends.
+  *   **backend\_name** (`str`) – backend name.
+  *   **backend\_version** (`str`) – backend version in the form X.Y.Z.
+  *   **n\_qubits** (`int`) – number of qubits.
+  *   **basis\_gates** (`List`\[`str`]) – list of basis gates names on the backend.
+  *   **gates** ([`GateConfig`](qiskit.providers.models.GateConfig "qiskit.providers.models.backendconfiguration.GateConfig")) – list of basis gates on the backend.
+  *   **local** (`bool`) – backend is local or remote.
+  *   **simulator** (`bool`) – backend is a simulator.
+  *   **conditional** (`bool`) – backend supports conditional operations.
+  *   **open\_pulse** (`bool`) – backend supports open pulse.
+  *   **memory** (`bool`) – backend supports memory.
+  *   **max\_shots** (`int`) – maximum number of shots supported.
+  *   **coupling\_map** (*list*) – The coupling map for the device
+  *   **n\_uchannels** (`int`) – Number of u-channels.
+  *   **u\_channel\_lo** (`List`\[`List`\[[`UchannelLO`](qiskit.providers.models.UchannelLO "qiskit.providers.models.backendconfiguration.UchannelLO")]]) – U-channel relationship on device los.
+  *   **meas\_levels** (`List`\[`int`]) – Supported measurement levels.
+  *   **qubit\_lo\_range** (`List`\[`List`\[`float`]]) – Qubit lo ranges for each qubit with form (min, max) in GHz.
+  *   **meas\_lo\_range** (`List`\[`List`\[`float`]]) – Measurement lo ranges for each qubit with form (min, max) in GHz.
+  *   **dt** (`float`) – Qubit drive channel timestep in nanoseconds.
+  *   **dtm** (`float`) – Measurement drive channel timestep in nanoseconds.
+  *   **rep\_times** (`List`\[`float`]) – Supported repetition times for device in microseconds.
+  *   **meas\_kernels** (`List`\[`str`]) – Supported measurement kernels.
+  *   **discriminators** (`List`\[`str`]) – Supported discriminators.
+  *   **hamiltonian** (`Optional`\[`Dict`\[`str`, `str`]]) – An optional dictionary with fields characterizing the system hamiltonian.
+  *   **channel\_bandwidth** (*list*) – Bandwidth of all channels (qubit, measurement, and U)
+  *   **acquisition\_latency** (*list*) – Array of dimension n\_qubits x n\_registers. Latency (in units of dt) to write a measurement result from qubit n into register slot m.
+  *   **conditional\_latency** (*list*) – Array of dimension n\_channels \[d->u->m] x n\_registers. Latency (in units of dt) to do a conditional operation on channel n from register slot m
+  *   **meas\_map** (*list*) – Grouping of measurement which are multiplexed
+  *   **max\_experiments** (*int*) – The maximum number of experiments per job
+  *   **sample\_name** (*str*) – Sample name for the backend
+  *   **n\_registers** (*int*) – Number of register slots available for feedback (if conditional is True)
+  *   **register\_map** (*list*) – An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
+  *   **configurable** (*bool*) – True if the backend is configurable, if the backend is a simulator
+  *   **credits\_required** (*bool*) – True if backend requires credits to run a job.
+  *   **online\_date** (*datetime*) – The date that the device went online
+  *   **display\_name** (*str*) – Alternate name field for the backend
+  *   **description** (*str*) – A description for the backend
+  *   **tags** (*list*) – A list of string tags to describe the backend
+  *   **channels** (`Optional`\[`Dict`\[`str`, `Any`]]) – An optional dictionary containing information of each channel – their purpose, type, and qubits operated on.
+  *   **\*\*kwargs** – Optional fields.
 
-**Parameters**
+  ## Attributes
 
-*   **backend\_name** (`str`) – backend name.
-*   **backend\_version** (`str`) – backend version in the form X.Y.Z.
-*   **n\_qubits** (`int`) – number of qubits.
-*   **basis\_gates** (`List`\[`str`]) – list of basis gates names on the backend.
-*   **gates** ([`GateConfig`](qiskit.providers.models.GateConfig "qiskit.providers.models.backendconfiguration.GateConfig")) – list of basis gates on the backend.
-*   **local** (`bool`) – backend is local or remote.
-*   **simulator** (`bool`) – backend is a simulator.
-*   **conditional** (`bool`) – backend supports conditional operations.
-*   **open\_pulse** (`bool`) – backend supports open pulse.
-*   **memory** (`bool`) – backend supports memory.
-*   **max\_shots** (`int`) – maximum number of shots supported.
-*   **coupling\_map** (*list*) – The coupling map for the device
-*   **n\_uchannels** (`int`) – Number of u-channels.
-*   **u\_channel\_lo** (`List`\[`List`\[[`UchannelLO`](qiskit.providers.models.UchannelLO "qiskit.providers.models.backendconfiguration.UchannelLO")]]) – U-channel relationship on device los.
-*   **meas\_levels** (`List`\[`int`]) – Supported measurement levels.
-*   **qubit\_lo\_range** (`List`\[`List`\[`float`]]) – Qubit lo ranges for each qubit with form (min, max) in GHz.
-*   **meas\_lo\_range** (`List`\[`List`\[`float`]]) – Measurement lo ranges for each qubit with form (min, max) in GHz.
-*   **dt** (`float`) – Qubit drive channel timestep in nanoseconds.
-*   **dtm** (`float`) – Measurement drive channel timestep in nanoseconds.
-*   **rep\_times** (`List`\[`float`]) – Supported repetition times for device in microseconds.
-*   **meas\_kernels** (`List`\[`str`]) – Supported measurement kernels.
-*   **discriminators** (`List`\[`str`]) – Supported discriminators.
-*   **hamiltonian** (`Optional`\[`Dict`\[`str`, `str`]]) – An optional dictionary with fields characterizing the system hamiltonian.
-*   **channel\_bandwidth** (*list*) – Bandwidth of all channels (qubit, measurement, and U)
-*   **acquisition\_latency** (*list*) – Array of dimension n\_qubits x n\_registers. Latency (in units of dt) to write a measurement result from qubit n into register slot m.
-*   **conditional\_latency** (*list*) – Array of dimension n\_channels \[d->u->m] x n\_registers. Latency (in units of dt) to do a conditional operation on channel n from register slot m
-*   **meas\_map** (*list*) – Grouping of measurement which are multiplexed
-*   **max\_experiments** (*int*) – The maximum number of experiments per job
-*   **sample\_name** (*str*) – Sample name for the backend
-*   **n\_registers** (*int*) – Number of register slots available for feedback (if conditional is True)
-*   **register\_map** (*list*) – An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
-*   **configurable** (*bool*) – True if the backend is configurable, if the backend is a simulator
-*   **credits\_required** (*bool*) – True if backend requires credits to run a job.
-*   **online\_date** (*datetime*) – The date that the device went online
-*   **display\_name** (*str*) – Alternate name field for the backend
-*   **description** (*str*) – A description for the backend
-*   **tags** (*list*) – A list of string tags to describe the backend
-*   **channels** (`Optional`\[`Dict`\[`str`, `Any`]]) – An optional dictionary containing information of each channel – their purpose, type, and qubits operated on.
-*   **\*\*kwargs** – Optional fields.
+  ### num\_qubits
 
-## Attributes
+  <Attribute id="qiskit.providers.models.PulseBackendConfiguration.num_qubits" name="num_qubits">
+    Returns the number of qubits.
 
-### num\_qubits
+    In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
+  </Attribute>
 
-Returns the number of qubits.
+  ### sample\_rate
 
-In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
+  <Attribute id="qiskit.providers.models.PulseBackendConfiguration.sample_rate" name="sample_rate" signature="float">
+    Sample rate of the signal channels in Hz (1/dt).
 
-### sample\_rate
+    **Return type**
 
-<span id="qiskit.providers.models.PulseBackendConfiguration.sample_rate" />
+    `float`
+  </Attribute>
 
-`float`
+  ## Methods
 
-Sample rate of the signal channels in Hz (1/dt).
+  ### acquire
 
-**Return type**
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.acquire" name="acquire" signature="PulseBackendConfiguration.acquire(qubit)">
+    Return the acquisition channel for the given qubit.
 
-`float`
+    **Raises**
 
-## Methods
+    **BackendConfigurationError** – If the qubit is not a part of the system.
 
-### acquire
+    **Return type**
 
-<span id="qiskit.providers.models.PulseBackendConfiguration.acquire" />
+    [`AcquireChannel`](qiskit.pulse.channels#acquirechannel "qiskit.pulse.channels.AcquireChannel")
 
-`PulseBackendConfiguration.acquire(qubit)`
+    **Returns**
 
-Return the acquisition channel for the given qubit.
+    Qubit measurement acquisition line.
+  </Function>
 
-**Raises**
+  ### control
 
-**BackendConfigurationError** – If the qubit is not a part of the system.
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.control" name="control" signature="PulseBackendConfiguration.control(qubits=None, channel=None)">
+    Return the secondary drive channel for the given qubit – typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
 
-**Return type**
+    **Parameters**
 
-[`AcquireChannel`](qiskit.pulse.channels#acquirechannel "qiskit.pulse.channels.AcquireChannel")
+    *   **qubits** (`Optional`\[`Iterable`\[`int`]]) – Tuple or list of qubits of the form (control\_qubit, target\_qubit).
+    *   **channel** (`Optional`\[`int`]) – Deprecated.
 
-**Returns**
+    **Raises**
 
-Qubit measurement acquisition line.
+    **BackendConfigurationError** – If the `qubits` is not a part of the system or if the backend does not provide channels information in its configuration.
 
-### control
+    **Return type**
 
-<span id="qiskit.providers.models.PulseBackendConfiguration.control" />
+    `List`\[[`ControlChannel`](qiskit.pulse.channels#controlchannel "qiskit.pulse.channels.ControlChannel")]
 
-`PulseBackendConfiguration.control(qubits=None, channel=None)`
+    **Returns**
 
-Return the secondary drive channel for the given qubit – typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
+    List of control channels.
+  </Function>
 
-**Parameters**
+  ### describe
 
-*   **qubits** (`Optional`\[`Iterable`\[`int`]]) – Tuple or list of qubits of the form (control\_qubit, target\_qubit).
-*   **channel** (`Optional`\[`int`]) – Deprecated.
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.describe" name="describe" signature="PulseBackendConfiguration.describe(channel)">
+    Return a basic description of the channel dependency. Derived channels are given weights which describe how their frames are linked to other frames. For instance, the backend could be configured with this setting:
 
-**Raises**
+    ```python
+    u_channel_lo = [
+        [UchannelLO(q=0, scale=1. + 0.j)],
+        [UchannelLO(q=0, scale=-1. + 0.j), UchannelLO(q=1, scale=1. + 0.j)]
+    ]
+    ```
 
-**BackendConfigurationError** – If the `qubits` is not a part of the system or if the backend does not provide channels information in its configuration.
+    Then, this method can be used as follows:
 
-**Return type**
+    ```python
+    backend.configuration().describe(ControlChannel(1))
+    >>> {DriveChannel(0): -1, DriveChannel(1): 1}
+    ```
 
-`List`\[[`ControlChannel`](qiskit.pulse.channels#controlchannel "qiskit.pulse.channels.ControlChannel")]
+    **Parameters**
 
-**Returns**
+    **channel** ([`ControlChannel`](qiskit.pulse.channels#controlchannel "qiskit.pulse.channels.ControlChannel")) – The derived channel to describe.
 
-List of control channels.
+    **Raises**
 
-### describe
+    **BackendConfigurationError** – If channel is not a ControlChannel.
 
-<span id="qiskit.providers.models.PulseBackendConfiguration.describe" />
+    **Return type**
 
-`PulseBackendConfiguration.describe(channel)`
+    `Dict`\[[`DriveChannel`](qiskit.pulse.channels#drivechannel "qiskit.pulse.channels.DriveChannel"), `complex`]
 
-Return a basic description of the channel dependency. Derived channels are given weights which describe how their frames are linked to other frames. For instance, the backend could be configured with this setting:
+    **Returns**
 
-```python
-u_channel_lo = [
-    [UchannelLO(q=0, scale=1. + 0.j)],
-    [UchannelLO(q=0, scale=-1. + 0.j), UchannelLO(q=1, scale=1. + 0.j)]
-]
-```
+    Control channel derivations.
+  </Function>
 
-Then, this method can be used as follows:
+  ### drive
 
-```python
-backend.configuration().describe(ControlChannel(1))
->>> {DriveChannel(0): -1, DriveChannel(1): 1}
-```
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.drive" name="drive" signature="PulseBackendConfiguration.drive(qubit)">
+    Return the drive channel for the given qubit.
 
-**Parameters**
+    **Raises**
 
-**channel** ([`ControlChannel`](qiskit.pulse.channels#controlchannel "qiskit.pulse.channels.ControlChannel")) – The derived channel to describe.
+    **BackendConfigurationError** – If the qubit is not a part of the system.
 
-**Raises**
+    **Return type**
 
-**BackendConfigurationError** – If channel is not a ControlChannel.
+    [`DriveChannel`](qiskit.pulse.channels#drivechannel "qiskit.pulse.channels.DriveChannel")
 
-**Return type**
+    **Returns**
 
-`Dict`\[[`DriveChannel`](qiskit.pulse.channels#drivechannel "qiskit.pulse.channels.DriveChannel"), `complex`]
+    Qubit drive channel.
+  </Function>
 
-**Returns**
+  ### from\_dict
 
-Control channel derivations.
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.from_dict" name="from_dict" signature="classmethod PulseBackendConfiguration.from_dict(data)">
+    Create a new GateConfig object from a dictionary.
 
-### drive
+    **Parameters**
 
-<span id="qiskit.providers.models.PulseBackendConfiguration.drive" />
+    **data** (*dict*) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.PulseBackendConfiguration#to_dict "qiskit.providers.models.PulseBackendConfiguration.to_dict").
 
-`PulseBackendConfiguration.drive(qubit)`
+    **Returns**
 
-Return the drive channel for the given qubit.
+    The GateConfig from the input dictionary.
 
-**Raises**
+    **Return type**
 
-**BackendConfigurationError** – If the qubit is not a part of the system.
+    [GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
+  </Function>
 
-**Return type**
+  ### get\_channel\_qubits
 
-[`DriveChannel`](qiskit.pulse.channels#drivechannel "qiskit.pulse.channels.DriveChannel")
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.get_channel_qubits" name="get_channel_qubits" signature="PulseBackendConfiguration.get_channel_qubits(channel)">
+    Return a list of indices for qubits which are operated on directly by the given `channel`.
 
-**Returns**
+    **Raises**
 
-Qubit drive channel.
+    **BackendConfigurationError** – If `channel` is not a found or if the backend does not provide channels information in its configuration.
 
-### from\_dict
+    **Return type**
 
-<span id="qiskit.providers.models.PulseBackendConfiguration.from_dict" />
+    `List`\[`int`]
 
-`classmethod PulseBackendConfiguration.from_dict(data)`
+    **Returns**
 
-Create a new GateConfig object from a dictionary.
+    List of qubits operated on my the given `channel`.
+  </Function>
 
-**Parameters**
+  ### get\_qubit\_channels
 
-**data** (*dict*) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.PulseBackendConfiguration#to_dict "qiskit.providers.models.PulseBackendConfiguration.to_dict").
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.get_qubit_channels" name="get_qubit_channels" signature="PulseBackendConfiguration.get_qubit_channels(qubit)">
+    Return a list of channels which operate on the given `qubit`.
 
-**Returns**
+    **Raises**
 
-The GateConfig from the input dictionary.
+    **BackendConfigurationError** – If `qubit` is not a found or if the backend does not provide channels information in its configuration.
 
-**Return type**
+    **Return type**
 
-[GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
+    `List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
 
-### get\_channel\_qubits
+    **Returns**
 
-<span id="qiskit.providers.models.PulseBackendConfiguration.get_channel_qubits" />
+    List of `Channel`s operated on my the given `qubit`.
+  </Function>
 
-`PulseBackendConfiguration.get_channel_qubits(channel)`
+  ### measure
 
-Return a list of indices for qubits which are operated on directly by the given `channel`.
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.measure" name="measure" signature="PulseBackendConfiguration.measure(qubit)">
+    Return the measure stimulus channel for the given qubit.
 
-**Raises**
+    **Raises**
 
-**BackendConfigurationError** – If `channel` is not a found or if the backend does not provide channels information in its configuration.
+    **BackendConfigurationError** – If the qubit is not a part of the system.
 
-**Return type**
+    **Return type**
 
-`List`\[`int`]
+    [`MeasureChannel`](qiskit.pulse.channels#measurechannel "qiskit.pulse.channels.MeasureChannel")
 
-**Returns**
+    **Returns**
 
-List of qubits operated on my the given `channel`.
+    Qubit measurement stimulus line.
+  </Function>
 
-### get\_qubit\_channels
+  ### to\_dict
 
-<span id="qiskit.providers.models.PulseBackendConfiguration.get_qubit_channels" />
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.to_dict" name="to_dict" signature="PulseBackendConfiguration.to_dict()">
+    Return a dictionary format representation of the GateConfig.
 
-`PulseBackendConfiguration.get_qubit_channels(qubit)`
+    **Returns**
 
-Return a list of channels which operate on the given `qubit`.
+    The dictionary form of the GateConfig.
 
-**Raises**
+    **Return type**
 
-**BackendConfigurationError** – If `qubit` is not a found or if the backend does not provide channels information in its configuration.
-
-**Return type**
-
-`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
-
-**Returns**
-
-List of `Channel`s operated on my the given `qubit`.
-
-### measure
-
-<span id="qiskit.providers.models.PulseBackendConfiguration.measure" />
-
-`PulseBackendConfiguration.measure(qubit)`
-
-Return the measure stimulus channel for the given qubit.
-
-**Raises**
-
-**BackendConfigurationError** – If the qubit is not a part of the system.
-
-**Return type**
-
-[`MeasureChannel`](qiskit.pulse.channels#measurechannel "qiskit.pulse.channels.MeasureChannel")
-
-**Returns**
-
-Qubit measurement stimulus line.
-
-### to\_dict
-
-<span id="qiskit.providers.models.PulseBackendConfiguration.to_dict" />
-
-`PulseBackendConfiguration.to_dict()`
-
-Return a dictionary format representation of the GateConfig.
-
-**Returns**
-
-The dictionary form of the GateConfig.
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 
