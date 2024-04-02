@@ -6,21 +6,36 @@ In addition to “normal” grammar rules, IBM Quantum documentation follows [IB
 
 The following list highlights grammatical and stylistic situations we most often encounter while proofreading documentation.
 
+## Titles and headers
+
 - Titles and headers use "sentence case" (first letter of the first word is capitalized; the rest lower-case) as opposed to "camel case" (where each word is capitalized)
 - Avoid using -ing in titles/headers wherever possible; instead, use direct action-oriented language
+
+## Tense and voice
+
 - Avoid first-person (I, we, us); use second-person instead
 - Choose active voice over passive voice
 - Avoid future tense as well as future perfect tense (for example, ask yourself any time you use the word "will" if you really need it)
 - Do not use "may" - rather, use "can" or "might" depending on context
-- Use the serial (or Oxford) comma in a series of items ("I invited my parents, the hippo, and the giraffe" rather than "I invited my parents, the hippo and the giraffe")
-- When using bullet points or numbered lists, capitalize the first letter of the first word of each item. Also, use a period at the end of each item, or nothing at all (and be consistent within your document)
+
+## Punctuation and lists
+
+- When using bullet points or numbered lists, capitalize the first letter of the first word of each item
+- Use a period at the end of each item, or nothing at all (and be consistent within your document)
+
+## Style and specific word usage
+
+- Use American English spelling when there is a difference with British English
 - Simple words are clearest. For example, "use" rather than "utilize", or "run" rather than "execute"
+- Use the serial (or Oxford) comma in a series of items ("I invited my parents, the hippo, and the giraffe" rather than "I invited my parents, the hippo and the giraffe")
 - Avoid latin abbreviations i.e., e.g., vs., and etc. (spell them out or use alternative wording instead) - but if you must use them, follow i.e. and e.g. with a comma: i.e., e.g.,
-- Proper date formatting is DD Monthname YYYY (note no comma after the month)
+- Do not use "please"
 - The word "which" in most cases is preceded by a comma; the word "that" (in a similar context) is not preceded by a comma ("The ice cream sandwich, which had melted, was a sticky mess" or "The ice cream sandwich that had melted was a sticky mess")
 - Avoid using "above" and "below" when referring to software versions/fix levels; instead, use "earlier" and "later". Also avoid "above" and "below" to indicate the location of content within a page. Instead, use "preceding" or "previous" and "later"
-- Use American English spelling when there is a difference with British English
-- "and/or" is very hard to translate, so do not use
 - Avoid anthropomorphizing or stating that inanimate objects grant abilities to people, as in “the product lets you / allows you / enables you to…” or "the software understands/hopes/believes...". Whenever possible, use a direct, user-focused alternative such as “you can use the product to…” or “with this product, users can…”
-- Do not use "please"
+- Use DD Monthname YYYY to format dates (note no comma after the month)
+
+## Translation and accessibility concerns
+
+- "and/or" is very hard to translate, so do not use
 - Don't rely only on color to describe something. Instead, use at least one other way (thickness, pattern, and so forth) to distinguish an item
