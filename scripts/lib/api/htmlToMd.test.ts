@@ -731,7 +731,7 @@ for execution on present day noisy quantum systems.</p>
       "isReleaseNotes": false,
       "markdown": "# circuits
 
-    <Attribute id="qiskit_ibm_runtime.Estimator.circuits" signature="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]">
+    <Attribute id="qiskit_ibm_runtime.Estimator.circuits" name="circuits" isDedicatedPage={true} signature="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]">
       Quantum circuits that represents quantum states.
     </Attribute>
     ",
@@ -762,7 +762,7 @@ for execution on present day noisy quantum systems.</p>
       "isReleaseNotes": false,
       "markdown": "# run
 
-    <Function id="qiskit_ibm_runtime.Estimator.run" signature="Estimator.run(circuits, observables, parameter_values=None, **kwargs)">
+    <Function id="qiskit_ibm_runtime.Estimator.run" name="run" isDedicatedPage={true} signature="Estimator.run(circuits, observables, parameter_values=None, **kwargs)">
       Submit a request to the estimator primitive program.
     </Function>
     ",
@@ -793,7 +793,7 @@ for execution on present day noisy quantum systems.</p>
       "isReleaseNotes": false,
       "markdown": "# callback
 
-    <Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" signature="Optional[Callable] = None" />
+    <Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" isDedicatedPage={true} signature="Optional[Callable] = None" />
     ",
       "meta": {
         "apiName": "qiskit_ibm_runtime.options.EnvironmentOptions.callback",
@@ -841,7 +841,7 @@ By default this is sys.stdout.</p></li>
 
     # job\\_monitor
 
-    <Function id="qiskit_ibm_provider.job.job_monitor" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/job_monitor.py" signature="job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>)">
+    <Function id="qiskit_ibm_provider.job.job_monitor" name="job_monitor" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/job_monitor.py" signature="job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>)">
       Monitor the status of an \`IBMJob\` instance.
 
       **Parameters**
@@ -890,7 +890,7 @@ By default this is sys.stdout.</p></li>
 
     # IBMJobError
 
-    <Class id="qiskit_ibm_provider.job.IBMJobError" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/exceptions.py" signature="IBMJobError(*message)">
+    <Class id="qiskit_ibm_provider.job.IBMJobError" name="IBMJobError" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/exceptions.py" signature="IBMJobError(*message)">
       Base class for errors raised by the job modules.
 
       Set the error message.
