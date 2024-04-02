@@ -8,184 +8,154 @@ python_api_name: qiskit.providers.fake_provider.FakeParis
 
 # FakeParis
 
-<span id="qiskit.providers.fake_provider.FakeParis" />
+<Class id="qiskit.providers.fake_provider.FakeParis" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/paris/fake_paris.py" signature="FakeParis">
+  Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 
-`FakeParis` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/paris/fake_paris.py "view source code")
+  A fake Paris backend.
 
-Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
+  ```python
+                 06                  17
+                 ↕                    ↕
+  00 ↔ 01 ↔ 04 ↔ 07 ↔ 10 ↔ 12 ↔ 15 ↔ 18 ↔ 20 ↔ 23
+       ↕                   ↕                    ↕
+       02                  13                  24
+       ↕                   ↕                    ↕
+       03 ↔ 05 ↔ 08 ↔ 11 ↔ 14 ↔ 16 ↔ 19 ↔ 22 ↔ 25 ↔ 26
+                 ↕                    ↕
+                 09                  20
+  ```
 
-A fake Paris backend.
+  FakeBackend initializer.
 
-```python
-               06                  17
-               ↕                    ↕
-00 ↔ 01 ↔ 04 ↔ 07 ↔ 10 ↔ 12 ↔ 15 ↔ 18 ↔ 20 ↔ 23
-     ↕                   ↕                    ↕
-     02                  13                  24
-     ↕                   ↕                    ↕
-     03 ↔ 05 ↔ 08 ↔ 11 ↔ 14 ↔ 16 ↔ 19 ↔ 22 ↔ 25 ↔ 26
-               ↕                    ↕
-               09                  20
-```
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+  *   **time\_alive** (*int*) – time to wait before returning result
 
-**Parameters**
+  ## Methods
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **time\_alive** (*int*) – time to wait before returning result
+  ### configuration
 
-## Methods
+  <Function id="qiskit.providers.fake_provider.FakeParis.configuration" name="configuration" signature="FakeParis.configuration()">
+    Return the backend configuration.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeParis.configuration" />
+    the configuration for the backend.
 
-`FakeParis.configuration()`
+    **Return type**
 
-Return the backend configuration.
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-**Returns**
+  ### defaults
 
-the configuration for the backend.
+  <Function id="qiskit.providers.fake_provider.FakeParis.defaults" name="defaults" signature="FakeParis.defaults()">
+    Returns a snapshot of device defaults
+  </Function>
 
-**Return type**
+  ### name
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  <Function id="qiskit.providers.fake_provider.FakeParis.name" name="name" signature="FakeParis.name()">
+    Return the backend name.
 
-### defaults
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeParis.defaults" />
+    the name of the backend.
 
-`FakeParis.defaults()`
+    **Return type**
 
-Returns a snapshot of device defaults
+    str
+  </Function>
 
-### name
+  ### properties
 
-<span id="qiskit.providers.fake_provider.FakeParis.name" />
+  <Function id="qiskit.providers.fake_provider.FakeParis.properties" name="properties" signature="FakeParis.properties()">
+    Returns a snapshot of device properties
+  </Function>
 
-`FakeParis.name()`
+  ### provider
 
-Return the backend name.
+  <Function id="qiskit.providers.fake_provider.FakeParis.provider" name="provider" signature="FakeParis.provider()">
+    Return the backend Provider.
 
-**Returns**
+    **Returns**
 
-the name of the backend.
+    the Provider responsible for the backend.
 
-**Return type**
+    **Return type**
 
-str
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-### properties
+  ### run
 
-<span id="qiskit.providers.fake_provider.FakeParis.properties" />
+  <Function id="qiskit.providers.fake_provider.FakeParis.run" name="run" signature="FakeParis.run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-`FakeParis.properties()`
+  ### set\_options
 
-Returns a snapshot of device properties
+  <Function id="qiskit.providers.fake_provider.FakeParis.set_options" name="set_options" signature="FakeParis.set_options(**fields)">
+    Set the options fields for the backend
 
-### provider
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-<span id="qiskit.providers.fake_provider.FakeParis.provider" />
+    **Parameters**
 
-`FakeParis.provider()`
+    **fields** – The fields to update the options
 
-Return the backend Provider.
+    **Raises**
 
-**Returns**
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-the Provider responsible for the backend.
+  ### status
 
-**Return type**
+  <Function id="qiskit.providers.fake_provider.FakeParis.status" name="status" signature="FakeParis.status()">
+    Return the backend status.
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    **Returns**
 
-### run
+    the status of the backend.
 
-<span id="qiskit.providers.fake_provider.FakeParis.run" />
+    **Return type**
 
-`FakeParis.run(run_input, **kwargs)`
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-Main job in simulator
+  ## Attributes
 
-### set\_options
+  ### backend\_name
 
-<span id="qiskit.providers.fake_provider.FakeParis.set_options" />
+  <Attribute id="qiskit.providers.fake_provider.FakeParis.backend_name" name="backend_name" attributeValue="= 'fake_paris'" />
 
-`FakeParis.set_options(**fields)`
+  ### conf\_filename
 
-Set the options fields for the backend
+  <Attribute id="qiskit.providers.fake_provider.FakeParis.conf_filename" name="conf_filename" attributeValue="= 'conf_paris.json'" />
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+  ### defs\_filename
 
-**Parameters**
+  <Attribute id="qiskit.providers.fake_provider.FakeParis.defs_filename" name="defs_filename" attributeValue="= 'defs_paris.json'" />
 
-**fields** – The fields to update the options
+  ### dirname
 
-**Raises**
+  <Attribute id="qiskit.providers.fake_provider.FakeParis.dirname" name="dirname" attributeValue="= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends/paris'" />
 
-**AttributeError** – If the field passed in is not part of the options
+  ### options
 
-### status
+  <Attribute id="qiskit.providers.fake_provider.FakeParis.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit.providers.fake_provider.FakeParis.status" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeParis#run "qiskit.providers.fake_provider.FakeParis.run") method.
+  </Attribute>
 
-`FakeParis.status()`
+  ### props\_filename
 
-Return the backend status.
+  <Attribute id="qiskit.providers.fake_provider.FakeParis.props_filename" name="props_filename" attributeValue="= 'props_paris.json'" />
 
-**Returns**
+  ### version
 
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.fake_provider.FakeParis.backend_name" />
-
-### backend\_name
-
-`= 'fake_paris'`
-
-<span id="qiskit.providers.fake_provider.FakeParis.conf_filename" />
-
-### conf\_filename
-
-`= 'conf_paris.json'`
-
-<span id="qiskit.providers.fake_provider.FakeParis.defs_filename" />
-
-### defs\_filename
-
-`= 'defs_paris.json'`
-
-<span id="qiskit.providers.fake_provider.FakeParis.dirname" />
-
-### dirname
-
-`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends/paris'`
-
-<span id="qiskit.providers.fake_provider.FakeParis.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeParis#run "qiskit.providers.fake_provider.FakeParis.run") method.
-
-<span id="qiskit.providers.fake_provider.FakeParis.props_filename" />
-
-### props\_filename
-
-`= 'props_paris.json'`
-
-<span id="qiskit.providers.fake_provider.FakeParis.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.fake_provider.FakeParis.version" name="version" attributeValue="= 1" />
+</Class>
 
