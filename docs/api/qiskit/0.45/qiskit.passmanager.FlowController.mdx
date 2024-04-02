@@ -8,161 +8,145 @@ python_api_name: qiskit.passmanager.FlowController
 
 # FlowController
 
-<span id="qiskit.passmanager.FlowController" />
+<Class id="qiskit.passmanager.FlowController" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/passmanager/flow_controllers.py" signature="qiskit.passmanager.FlowController(options=None)">
+  Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")
 
-`qiskit.passmanager.FlowController(options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/passmanager/flow_controllers.py "view source code")
+  A legacy factory for other flow controllers.
 
-Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")
+  <Admonition title="Warning" type="caution">
+    This class is primarily for compatibility with legacy versions of Qiskit, and in general, you should prefer simply instantiating the controller you want, and adding it to the relevant [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") or other controller. Its use is deprecated.
+  </Admonition>
 
-A legacy factory for other flow controllers.
+  This allows syntactic sugar for writing pipelines. For example:
 
-<Admonition title="Warning" type="caution">
-  This class is primarily for compatibility with legacy versions of Qiskit, and in general, you should prefer simply instantiating the controller you want, and adding it to the relevant [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") or other controller. Its use is deprecated.
-</Admonition>
+  ```python
+  FlowController.add_flow_controller("my_condition", CustomController)
 
-This allows syntactic sugar for writing pipelines. For example:
+  controller = FlowController.controller_factory(
+      [PassA(), PassB()],
+      {"max_iteration": 1000},
+      condition=lambda prop_set: prop_set["x"] == 0,
+      do_while=lambda prop_set: prop_set["x"] < 100,
+      my_condition=lambda prop_set: prop_set["y"] = "abc",
+  )
+  ```
 
-```python
-FlowController.add_flow_controller("my_condition", CustomController)
+  This creates a nested flow controller that runs when the value `x` in the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") is zero and repeats the pipeline until the value becomes 100. In each innermost loop, the custom iteration condition provided by the `CustomController` is also evaluated.
 
-controller = FlowController.controller_factory(
-    [PassA(), PassB()],
-    {"max_iteration": 1000},
-    condition=lambda prop_set: prop_set["x"] == 0,
-    do_while=lambda prop_set: prop_set["x"] < 100,
-    my_condition=lambda prop_set: prop_set["y"] = "abc",
-)
-```
+  <Admonition title="Warning" type="caution">
+    [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.BaseController") must be directly subclassed to define a custom flow controller. This class provides a controller factory method, which consumes a class variable [`registered_controllers`](#qiskit.passmanager.FlowController.registered_controllers "qiskit.passmanager.FlowController.registered_controllers"). Subclassing FlowController may cause unexpected behavior in the factory method. Note that factory method implicitly determines the priority of the builtin controllers when multiple controllers are called together, and the behavior of generated controller is hardly debugged.
+  </Admonition>
 
-This creates a nested flow controller that runs when the value `x` in the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") is zero and repeats the pipeline until the value becomes 100. In each innermost loop, the custom iteration condition provided by the `CustomController` is also evaluated.
+  Create new flow controller.
 
-<Admonition title="Warning" type="caution">
-  [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.BaseController") must be directly subclassed to define a custom flow controller. This class provides a controller factory method, which consumes a class variable [`registered_controllers`](#qiskit.passmanager.FlowController.registered_controllers "qiskit.passmanager.FlowController.registered_controllers"). Subclassing FlowController may cause unexpected behavior in the factory method. Note that factory method implicitly determines the priority of the builtin controllers when multiple controllers are called together, and the behavior of generated controller is hardly debugged.
-</Admonition>
+  **Parameters**
 
-Create new flow controller.
+  **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any] | None*) – Option for this flow controller.
 
-**Parameters**
+  ## Attributes
 
-**options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any] | None*) – Option for this flow controller.
+  ### hierarchy
 
-## Attributes
+  <Attribute id="qiskit.passmanager.FlowController.hierarchy" name="hierarchy" attributeValue="= ['condition', 'do_while']" />
 
-<span id="qiskit.passmanager.FlowController.hierarchy" />
+  ### registered\_controllers
 
-### hierarchy
+  <Attribute id="qiskit.passmanager.FlowController.registered_controllers" name="registered_controllers" attributeValue="= {'condition': <class 'qiskit.passmanager.flow_controllers.ConditionalController'>, 'do_while': <class 'qiskit.passmanager.flow_controllers.DoWhileController'>}" />
 
-`= ['condition', 'do_while']`
+  ## Methods
 
-<span id="qiskit.passmanager.FlowController.registered_controllers" />
+  ### add\_flow\_controller
 
-### registered\_controllers
+  <Function id="qiskit.passmanager.FlowController.add_flow_controller" name="add_flow_controller" signature="classmethod add_flow_controller(name, controller)">
+    Adds a flow controller.
 
-`= {'condition': , 'do_while': }`
+    <Admonition title="Deprecated since version 0.45.0" type="danger">
+      The method `qiskit.passmanager.flow_controllers.FlowController.add_flow_controller()` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. Controller factory method is deprecated and managing the custom flow controllers with alias no longer helps building the task pipeline. Controllers must be explicitly instantiated and appended to the pipeline.
+    </Admonition>
 
-## Methods
+    **Parameters**
 
-### add\_flow\_controller
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Alias of controller class in the namespace.
+    *   **controller** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.12)")*\[*[*BaseController*](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")*]*) – Flow controller class.
+  </Function>
 
-<span id="qiskit.passmanager.FlowController.add_flow_controller" />
+  ### controller\_factory
 
-`classmethod add_flow_controller(name, controller)`
+  <Function id="qiskit.passmanager.FlowController.controller_factory" name="controller_factory" signature="classmethod controller_factory(passes, options, **controllers)">
+    Create a new flow controller with normalization.
 
-Adds a flow controller.
+    <Admonition title="Deprecated since version 0.45.0" type="danger">
+      The method `qiskit.passmanager.flow_controllers.FlowController.controller_factory()` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. Controller object must be explicitly instantiated. Building controller with keyword arguments may yield race condition when multiple keyword arguments are provided together, which is likely unsafe.
+    </Admonition>
 
-<Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.passmanager.flow_controllers.FlowController.add_flow_controller()` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. Controller factory method is deprecated and managing the custom flow controllers with alias no longer helps building the task pipeline. Controllers must be explicitly instantiated and appended to the pipeline.
-</Admonition>
+    **Parameters**
 
-**Parameters**
+    *   **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A list of optimization tasks.
+    *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Option for this flow controller.
+    *   **controllers** – Dictionary of controller callables keyed on flow controller alias.
 
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Alias of controller class in the namespace.
-*   **controller** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.12)")*\[*[*BaseController*](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")*]*) – Flow controller class.
+    **Returns**
 
-### controller\_factory
+    An instance of normalized flow controller.
+  </Function>
 
-<span id="qiskit.passmanager.FlowController.controller_factory" />
+  ### execute
 
-`classmethod controller_factory(passes, options, **controllers)`
+  <Function id="qiskit.passmanager.FlowController.execute" name="execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
 
-Create a new flow controller with normalization.
+    **Parameters**
 
-<Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.passmanager.flow_controllers.FlowController.controller_factory()` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. Controller object must be explicitly instantiated. Building controller with keyword arguments may yield race condition when multiple keyword arguments are provided together, which is likely unsafe.
-</Admonition>
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
 
-**Parameters**
+    **Returns**
 
-*   **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A list of optimization tasks.
-*   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Option for this flow controller.
-*   **controllers** – Dictionary of controller callables keyed on flow controller alias.
+    Optimized Qiskit IR and state of the workflow.
 
-**Returns**
+    **Return type**
 
-An instance of normalized flow controller.
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
 
-### execute
+  ### iter\_tasks
 
-<span id="qiskit.passmanager.FlowController.execute" />
+  <Function id="qiskit.passmanager.FlowController.iter_tasks" name="iter_tasks" signature="abstract iter_tasks(state)">
+    A custom logic to choose a next task to run.
 
-`execute(passmanager_ir, state, callback=None)`
+    Controller subclass can consume the state to build a proper task pipeline. The updated state after a task execution will be fed back in as the “return” value of any `yield` statements. This indicates the order of task execution is only determined at running time. This method is not allowed to mutate the given state object.
 
-Execute optimization task for input Qiskit IR.
+    **Parameters**
 
-**Parameters**
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – The state of the passmanager workflow at the beginning of this flow controller’s execution.
+    *   **state** – the state of pass manager after the execution of the last task that was yielded. The generator does not need to inspect this if it is irrelevant to its logic, nor update it.
 
-*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    **Yields**
 
-**Returns**
+    *Task* – Next task to run.
 
-Optimized Qiskit IR and state of the workflow.
+    **Return type**
 
-**Return type**
+    [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[*Task*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState"), None]
+  </Function>
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  ### remove\_flow\_controller
 
-### iter\_tasks
+  <Function id="qiskit.passmanager.FlowController.remove_flow_controller" name="remove_flow_controller" signature="classmethod remove_flow_controller(name)">
+    Removes a flow controller.
 
-<span id="qiskit.passmanager.FlowController.iter_tasks" />
+    <Admonition title="Deprecated since version 0.45.0" type="danger">
+      The method `qiskit.passmanager.flow_controllers.FlowController.remove_flow_controller()` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. Controller factory method is deprecated and managing the custom flow controllers with alias no longer helps building the task pipeline. Controllers must be explicitly instantiated and appended to the pipeline.
+    </Admonition>
 
-`abstract iter_tasks(state)`
+    **Parameters**
 
-A custom logic to choose a next task to run.
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Alias of the controller to remove.
 
-Controller subclass can consume the state to build a proper task pipeline. The updated state after a task execution will be fed back in as the “return” value of any `yield` statements. This indicates the order of task execution is only determined at running time. This method is not allowed to mutate the given state object.
+    **Raises**
 
-**Parameters**
-
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – The state of the passmanager workflow at the beginning of this flow controller’s execution.
-*   **state** – the state of pass manager after the execution of the last task that was yielded. The generator does not need to inspect this if it is irrelevant to its logic, nor update it.
-
-**Yields**
-
-*Task* – Next task to run.
-
-**Return type**
-
-[*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[*Task*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState"), None]
-
-### remove\_flow\_controller
-
-<span id="qiskit.passmanager.FlowController.remove_flow_controller" />
-
-`classmethod remove_flow_controller(name)`
-
-Removes a flow controller.
-
-<Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.passmanager.flow_controllers.FlowController.remove_flow_controller()` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. Controller factory method is deprecated and managing the custom flow controllers with alias no longer helps building the task pipeline. Controllers must be explicitly instantiated and appended to the pipeline.
-</Admonition>
-
-**Parameters**
-
-**name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Alias of the controller to remove.
-
-**Raises**
-
-[**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.12)") – If the controller to remove was not registered.
+    [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.12)") – If the controller to remove was not registered.
+  </Function>
+</Class>
 

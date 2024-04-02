@@ -8,166 +8,164 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
 # VQD
 
-<span id="qiskit.algorithms.eigensolvers.VQD" />
+<Class id="qiskit.algorithms.eigensolvers.VQD" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/eigensolvers/vqd.py" signature="qiskit.algorithms.eigensolvers.VQD(estimator, fidelity, ansatz, optimizer, *, k=2, betas=None, initial_point=None, callback=None)">
+  Bases: `VariationalAlgorithm`, [`Eigensolver`](qiskit.algorithms.eigensolvers.Eigensolver "qiskit.algorithms.eigensolvers.eigensolver.Eigensolver")
 
-`qiskit.algorithms.eigensolvers.VQD(estimator, fidelity, ansatz, optimizer, *, k=2, betas=None, initial_point=None, callback=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/eigensolvers/vqd.py "view source code")
+  The Variational Quantum Deflation algorithm. Implementation using primitives.
 
-Bases: `VariationalAlgorithm`, [`Eigensolver`](qiskit.algorithms.eigensolvers.Eigensolver "qiskit.algorithms.eigensolvers.eigensolver.Eigensolver")
+  [VQD](https://arxiv.org/abs/1805.08138) is a quantum algorithm that uses a variational technique to find the k eigenvalues of the Hamiltonian $H$ of a given system.
 
-The Variational Quantum Deflation algorithm. Implementation using primitives.
+  The algorithm computes excited state energies of generalised hamiltonians by optimising over a modified cost function where each succesive eigenvalue is calculated iteratively by introducing an overlap term with all the previously computed eigenstates that must be minimised, thus ensuring higher energy eigenstates are found.
 
-[VQD](https://arxiv.org/abs/1805.08138) is a quantum algorithm that uses a variational technique to find the k eigenvalues of the Hamiltonian $H$ of a given system.
+  An instance of VQD requires defining three algorithmic sub-components: an integer k denoting the number of eigenstates to calculate, a trial state (a.k.a. ansatz) which is a `QuantumCircuit`, and one instance (or list of) classical [`optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers"). The optimizer varies the circuit parameters The trial state $|\psi(\vec\theta)\rangle$ is varied by the optimizer, which modifies the set of ansatz parameters $\vec\theta$ such that the expectation value of the operator on the corresponding state approaches a minimum. The algorithm does this by iteratively refining each excited state to be orthogonal to all the previous excited states.
 
-The algorithm computes excited state energies of generalised hamiltonians by optimising over a modified cost function where each succesive eigenvalue is calculated iteratively by introducing an overlap term with all the previously computed eigenstates that must be minimised, thus ensuring higher energy eigenstates are found.
+  An optional array of parameter values, via the *initial\_point*, may be provided as the starting point for the search of the minimum eigenvalue. This feature is particularly useful when there are reasons to believe that the solution point is close to a particular point.
 
-An instance of VQD requires defining three algorithmic sub-components: an integer k denoting the number of eigenstates to calculate, a trial state (a.k.a. ansatz) which is a `QuantumCircuit`, and one instance (or list of) classical [`optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers"). The optimizer varies the circuit parameters The trial state $|\psi(\vec\theta)\rangle$ is varied by the optimizer, which modifies the set of ansatz parameters $\vec\theta$ such that the expectation value of the operator on the corresponding state approaches a minimum. The algorithm does this by iteratively refining each excited state to be orthogonal to all the previous excited states.
+  The length of the *initial\_point* list value must match the number of the parameters expected by the ansatz. If the *initial\_point* is left at the default of `None`, then VQD will look to the ansatz for a preferred value, based on its given initial state. If the ansatz returns `None`, then a random point will be generated within the parameter bounds set, as per above. It is also possible to give a list of initial points, one for every kth eigenvalue. If the ansatz provides `None` as the lower bound, then VQD will default it to $-2\pi$; similarly, if the ansatz returns `None` as the upper bound, the default value will be $2\pi$.
 
-An optional array of parameter values, via the *initial\_point*, may be provided as the starting point for the search of the minimum eigenvalue. This feature is particularly useful when there are reasons to believe that the solution point is close to a particular point.
+  The following attributes can be set via the initializer but can also be read and updated once the VQD object has been constructed.
 
-The length of the *initial\_point* list value must match the number of the parameters expected by the ansatz. If the *initial\_point* is left at the default of `None`, then VQD will look to the ansatz for a preferred value, based on its given initial state. If the ansatz returns `None`, then a random point will be generated within the parameter bounds set, as per above. It is also possible to give a list of initial points, one for every kth eigenvalue. If the ansatz provides `None` as the lower bound, then VQD will default it to $-2\pi$; similarly, if the ansatz returns `None` as the upper bound, the default value will be $2\pi$.
+  ### estimator
 
-The following attributes can be set via the initializer but can also be read and updated once the VQD object has been constructed.
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.estimator" name="estimator">
+    The primitive instance used to perform the expectation estimation as indicated in the VQD paper.
 
-<span id="qiskit.algorithms.eigensolvers.VQD.estimator" />
+    **Type**
 
-### estimator
+    [BaseEstimator](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")
+  </Attribute>
 
-The primitive instance used to perform the expectation estimation as indicated in the VQD paper.
+  ### fidelity
 
-**Type**
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.fidelity" name="fidelity">
+    The fidelity class instance used to compute the overlap estimation as indicated in the VQD paper.
 
-[BaseEstimator](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")
+    **Type**
 
-<span id="qiskit.algorithms.eigensolvers.VQD.fidelity" />
+    [BaseStateFidelity](qiskit.algorithms.state_fidelities.BaseStateFidelity "qiskit.algorithms.state_fidelities.BaseStateFidelity")
+  </Attribute>
 
-### fidelity
+  ### ansatz
 
-The fidelity class instance used to compute the overlap estimation as indicated in the VQD paper.
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.ansatz" name="ansatz">
+    A parameterized circuit used as ansatz for the wave function.
 
-**Type**
+    **Type**
 
-[BaseStateFidelity](qiskit.algorithms.state_fidelities.BaseStateFidelity "qiskit.algorithms.state_fidelities.BaseStateFidelity")
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Attribute>
 
-<span id="qiskit.algorithms.eigensolvers.VQD.ansatz" />
+  ### optimizer
 
-### ansatz
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.optimizer" name="optimizer">
+    A classical optimizer or a list of optimizers,
 
-A parameterized circuit used as ansatz for the wave function.
+    **Type**
 
-**Type**
+    [Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") | Sequence\[[Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")]
+  </Attribute>
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  ###
 
-<span id="qiskit.algorithms.eigensolvers.VQD.optimizer" />
+  <Attribute name="one for every k-th eigenvalue. Can either be a Qiskit optimizer or a callable">
+    that takes an array as input and returns a Qiskit or SciPy optimization result.
+  </Attribute>
 
-### optimizer
+  ### k
 
-A classical optimizer or a list of optimizers,
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.k" name="k">
+    the number of eigenvalues to return. Returns the lowest k eigenvalues.
 
-**Type**
+    **Type**
 
-[Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") | Sequence\[[Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")]
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Attribute>
 
-### one for every k-th eigenvalue. Can either be a Qiskit optimizer or a callable
+  ### betas
 
-that takes an array as input and returns a Qiskit or SciPy optimization result.
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.betas" name="betas">
+    Beta parameters in the VQD paper. Should have length k - 1, with k the number of excited states. These hyper-parameters balance the contribution of each overlap term to the cost function and have a default value computed as the mean square sum of the coefficients of the observable.
 
-<span id="qiskit.algorithms.eigensolvers.VQD.k" />
+    **Type**
 
-### k
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+  </Attribute>
 
-the number of eigenvalues to return. Returns the lowest k eigenvalues.
+  ###
 
-**Type**
+  <Attribute name="initial point">
+    An optional initial point (i.e. initial parameter values) or a list of initial points (one for every k-th eigenvalue) for the optimizer. If `None` then VQD will look to the ansatz for a preferred point and if not will simply compute a random one.
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    **Type**
 
-<span id="qiskit.algorithms.eigensolvers.VQD.betas" />
+    Sequence\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")] | Sequence\[Sequence\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]] | None
+  </Attribute>
 
-### betas
+  ### callback
 
-Beta parameters in the VQD paper. Should have length k - 1, with k the number of excited states. These hyper-parameters balance the contribution of each overlap term to the cost function and have a default value computed as the mean square sum of the coefficients of the observable.
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.callback" name="callback">
+    A callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer: the evaluation count, the optimizer parameters for the ansatz, the estimated value, the estimation metadata, and the current step.
 
-**Type**
+    **Type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+    Callable\[\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), np.ndarray, [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), Any]], None] | None
+  </Attribute>
 
-### initial point
+  **Parameters**
 
-An optional initial point (i.e. initial parameter values) or a list of initial points (one for every k-th eigenvalue) for the optimizer. If `None` then VQD will look to the ansatz for a preferred point and if not will simply compute a random one.
+  *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator primitive.
+  *   **fidelity** ([*BaseStateFidelity*](qiskit.algorithms.state_fidelities.BaseStateFidelity "qiskit.algorithms.state_fidelities.BaseStateFidelity")) – The fidelity class using primitives.
+  *   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A parameterized circuit used as ansatz for the wave function.
+  *   **optimizer** ([*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") *| Sequence\[*[*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer")*]*) – A classical optimizer or a list of optimizers, one for every k-th eigenvalue.
+  *   **callable** (*Can either be a Qiskit optimizer or a*) – that takes an array as input and returns a Qiskit or SciPy optimization result.
+  *   **k** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of eigenvalues to return. Returns the lowest k eigenvalues.
+  *   **betas** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – Beta parameters in the VQD paper. Should have length k - 1, with k the number of excited states. These hyperparameters balance the contribution of each overlap term to the cost function and have a default value computed as the mean square sum of the coefficients of the observable.
+  *   **initial\_point** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – An optional initial point (i.e. initial parameter values) or a list of initial points (one for every k-th eigenvalue) for the optimizer. If `None` then VQD will look to the ansatz for a preferred point and if not will simply compute a random one.
+  *   **callback** (*Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, np.ndarray,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any]], None] | None*) – A callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer: the evaluation count, the optimizer parameters for the ansatz, the estimated value, the estimation metadata, and the current step.
 
-**Type**
+  ## Attributes
 
-Sequence\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")] | Sequence\[Sequence\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]] | None
+  ### initial\_point
 
-<span id="qiskit.algorithms.eigensolvers.VQD.callback" />
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.initial_point" name="initial_point">
+    Returns initial point.
+  </Attribute>
 
-### callback
+  ## Methods
 
-A callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer: the evaluation count, the optimizer parameters for the ansatz, the estimated value, the estimation metadata, and the current step.
+  ### compute\_eigenvalues
 
-**Type**
+  <Function id="qiskit.algorithms.eigensolvers.VQD.compute_eigenvalues" name="compute_eigenvalues" signature="compute_eigenvalues(operator, aux_operators=None)">
+    Computes the minimum eigenvalue. The `operator` and `aux_operators` are supplied here. While an `operator` is required by algorithms, `aux_operators` are optional.
 
-Callable\[\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), np.ndarray, [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), Any]], None] | None
+    **Parameters**
 
-**Parameters**
+    *   **operator** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – Qubit operator of the observable.
+    *   **aux\_operators** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*] | None*) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance, in chemistry, these can be dipole operators and total particle count operators, so we can get values for these at the ground state.
 
-*   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator primitive.
-*   **fidelity** ([*BaseStateFidelity*](qiskit.algorithms.state_fidelities.BaseStateFidelity "qiskit.algorithms.state_fidelities.BaseStateFidelity")) – The fidelity class using primitives.
-*   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A parameterized circuit used as ansatz for the wave function.
-*   **optimizer** ([*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") *| Sequence\[*[*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer")*]*) – A classical optimizer or a list of optimizers, one for every k-th eigenvalue.
-*   **callable** (*Can either be a Qiskit optimizer or a*) – that takes an array as input and returns a Qiskit or SciPy optimization result.
-*   **k** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of eigenvalues to return. Returns the lowest k eigenvalues.
-*   **betas** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – Beta parameters in the VQD paper. Should have length k - 1, with k the number of excited states. These hyperparameters balance the contribution of each overlap term to the cost function and have a default value computed as the mean square sum of the coefficients of the observable.
-*   **initial\_point** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – An optional initial point (i.e. initial parameter values) or a list of initial points (one for every k-th eigenvalue) for the optimizer. If `None` then VQD will look to the ansatz for a preferred point and if not will simply compute a random one.
-*   **callback** (*Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, np.ndarray,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any]], None] | None*) – A callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer: the evaluation count, the optimizer parameters for the ansatz, the estimated value, the estimation metadata, and the current step.
+    **Returns**
 
-## Attributes
+    An eigensolver result.
 
-<span id="qiskit.algorithms.eigensolvers.VQD.initial_point" />
+    **Return type**
 
-### initial\_point
+    [VQDResult](qiskit.algorithms.eigensolvers.VQDResult "qiskit.algorithms.eigensolvers.VQDResult")
+  </Function>
 
-Returns initial point.
+  ### supports\_aux\_operators
 
-## Methods
+  <Function id="qiskit.algorithms.eigensolvers.VQD.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-### compute\_eigenvalues
+    If the eigensolver computes the eigenvalues of the main operator, then it can compute the expectation value of the `aux_operators` for that state. Otherwise they will be ignored.
 
-<span id="qiskit.algorithms.eigensolvers.VQD.compute_eigenvalues" />
+    **Returns**
 
-`compute_eigenvalues(operator, aux_operators=None)`
+    `True` if `aux_operator` expectations can be evaluated, `False` otherwise.
 
-Computes the minimum eigenvalue. The `operator` and `aux_operators` are supplied here. While an `operator` is required by algorithms, `aux_operators` are optional.
+    **Return type**
 
-**Parameters**
-
-*   **operator** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – Qubit operator of the observable.
-*   **aux\_operators** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*] | None*) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance, in chemistry, these can be dipole operators and total particle count operators, so we can get values for these at the ground state.
-
-**Returns**
-
-An eigensolver result.
-
-**Return type**
-
-[VQDResult](qiskit.algorithms.eigensolvers.VQDResult "qiskit.algorithms.eigensolvers.VQDResult")
-
-### supports\_aux\_operators
-
-<span id="qiskit.algorithms.eigensolvers.VQD.supports_aux_operators" />
-
-`classmethod supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-If the eigensolver computes the eigenvalues of the main operator, then it can compute the expectation value of the `aux_operators` for that state. Otherwise they will be ignored.
-
-**Returns**
-
-`True` if `aux_operator` expectations can be evaluated, `False` otherwise.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
+</Class>
 
