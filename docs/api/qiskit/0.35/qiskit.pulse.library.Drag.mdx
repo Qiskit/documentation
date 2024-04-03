@@ -15,12 +15,12 @@ python_api_name: qiskit.pulse.library.Drag
 
   It is designed to reduce the frequency spectrum of a normal gaussian pulse near the $|1\rangle\leftrightarrow|2\rangle$ transition, reducing the chance of leakage to the $|2\rangle$ state.
 
-  $$
-  \begin{split}g(x) &= \exp\Bigl(-\frac12 \frac{(x - \text{duration}/2)^2}{\text{sigma}^2}\Bigr)\\
-  f'(x) &= g(x) + 1j \times \text{beta} \times \frac{\mathrm d}{\mathrm{d}x} g(x)\\
-        &= g(x) + 1j \times \text{beta} \times                    \Bigl(-\frac{x - \text{duration}/2}{\text{sigma}^2}\Bigr)g(x)\\
-  f(x) &= \text{amp}\times\frac{f'(x)-f'(-1)}{1-f'(-1)}, \quad 0 \le x < \text{duration}\end{split}
-  $$
+$$
+\begin{split}g(x) &= \exp\Bigl(-\frac12 \frac{(x - \text{duration}/2)^2}{\text{sigma}^2}\Bigr)\\
+f'(x) &= g(x) + 1j \times \text{beta} \times \frac{\mathrm d}{\mathrm{d}x} g(x)\\
+&= g(x) + 1j \times \text{beta} \times                    \Bigl(-\frac{x - \text{duration}/2}{\text{sigma}^2}\Bigr)g(x)\\
+f(x) &= \text{amp}\times\frac{f'(x)-f'(-1)}{1-f'(-1)}, \quad 0 \le x < \text{duration}\end{split}
+$$
 
   where $g(x)$ is a standard unlifted gaussian waveform and $f'(x)$ is the DRAG waveform without lifting or amplitude scaling.
 
