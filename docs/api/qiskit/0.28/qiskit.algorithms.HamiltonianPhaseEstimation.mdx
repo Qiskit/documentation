@@ -13,15 +13,15 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimation
 
   This class is nearly the same as [`PhaseEstimation`](qiskit.algorithms.PhaseEstimation "qiskit.algorithms.PhaseEstimation"), differing only in that the input in that class is a unitary operator, whereas here the input is a Hermitian operator from which a unitary will be obtained by scaling and exponentiating. The scaling is performed in order to prevent the phases from wrapping around $2\pi$. The problem of estimating eigenvalues $\lambda_j$ of the Hermitian operator $H$ is solved by running a circuit representing
 
-  $$
-  \exp(i b H) |\psi\rangle = \sum_j \exp(i b \lambda_j) c_j |\lambda_j\rangle,
-  $$
+$$
+\exp(i b H) |\psi\rangle = \sum_j \exp(i b \lambda_j) c_j |\lambda_j\rangle,
+$$
 
   where the input state is
 
-  $$
-  |\psi\rangle = \sum_j c_j |\lambda_j\rangle,
-  $$
+$$
+|\psi\rangle = \sum_j c_j |\lambda_j\rangle,
+$$
 
   and $\lambda_j$ are the eigenvalues of $H$.
 
