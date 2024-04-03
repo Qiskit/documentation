@@ -18,7 +18,7 @@ The following list highlights grammatical and stylistic situations we most often
 - Avoid future tense as well as future perfect tense (for example, ask yourself any time you use the word "will" if you really need it)
 - Do not use "may" - rather, use "can" or "might" depending on context
 
-## Punctuation and lists
+## Lists
 
 - When using bullet points or numbered lists, capitalize the first letter of the first word of each item
 - Use a period at the end of each item, or nothing at all (and be consistent within your document)
