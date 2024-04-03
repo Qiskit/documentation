@@ -125,12 +125,16 @@ state = QuantumCircuit(2)
 state.x(0)
 state.x(1)
 
-# Define the backend
-from qiskit_ibm_runtime import QiskitRuntimeService
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False)
+# Define a local backend
+from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+backend = FakeManilaV2()
 
-# For Qiskit Runtime, circuits and parameters must obey the Instruction Set Architecture (ISA) of a particular backend.
+# Define a real backend
+# from qiskit_ibm_runtime import QiskitRuntimeService
+# service = QiskitRuntimeService()
+# backend = service.least_busy(operational=True, simulator=False)
+
+# Circuits and parameters must obey the Instruction Set Architecture (ISA) of a particular backend.
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
@@ -209,7 +213,7 @@ Note that the Estimator returns a list of values, as it can perform batched eval
 The legacy workflow required many steps to compute an expectation value:
 
 <Admonition type="note">
-    Replace `ibmq_qasm_simulator` with your device name to see the complete workflow for a real device.
+    Replace `ibmq_qasm_simulator` with your device name to run the complete workflow on a real device.
 </Admonition>
 
 ``` python
@@ -239,157 +243,6 @@ expectation:  -1.065734058826613
 ```
   </TabItem>
 </Tabs>
-
-
-#### 3. Local execution 
-
-These examples solve the problem defined above by using local simulation.
-
-<Tabs>
-  <TabItem value="updated" label="Qiskit Runtime Local testing mode">
-To use local testing mode, specify one of the fake backends from ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer simulator when instantiating a primitive or a session. 
-
-- **Fake backends**: The [fake backends](../qiskit-ibm-runtime/fake_provider)  in ``qiskit_ibm_runtime.fake_provider`` mimic the behaviors of IBM Quantum&trade; systems by using system snapshots. The system snapshots contain important information about the quantum system, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the system. The noise model from the snapshot is automatically applied during simulation. 
-- **Aer simulator**: Simulators from [Qiskit Aer](../../verify/simulate-with-qiskit-aer) provide higher-performance simulation that can handle larger circuits and [custom noise models](../../verify/building_noise_models). It also supports Clifford simulation mode, which can efficiently simulate Clifford circuits with a large number of qubits.
-
-The only part of the previous example that we need to change is the backend definition.  The rest of the code is identical.  However, some options and execution modes are ignored when using local testing mode and will generate warnings if included.  
-
-``` python
-from qiskit import QuantumCircuit
-from qiskit.quantum_info import SparsePauliOp
-
-# Step 1: Define operator
-op = SparsePauliOp.from_list(
-    [
-        ("II", -1.052373245772859),
-        ("IZ", 0.39793742484318045),
-        ("ZI", -0.39793742484318045),
-        ("ZZ", -0.01128010425623538),
-        ("XX", 0.18093119978423156),
-    ]
-)
-
-# Step 2: Define quantum state
-state = QuantumCircuit(2)
-state.x(0)
-state.x(1)
-
-# Define a local backend
-from qiskit_ibm_runtime.fake_provider import FakeManilaV2
-backend = FakeManilaV2()
-
-# You could use an Aer simulator instead by using the following code:
-# from qiskit_aer import AerSimulator
-# backend = AerSimulator()
-
-# We don't need these lines when running in local testing mode:
-# from qiskit_ibm_runtime import QiskitRuntimeService
-# service = QiskitRuntimeService()
-
-
-# Convert inputs to ISA
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-
-pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
-isa_state = pm.run(state)
-isa_observables = [operator.apply_layout(isa_state.layout) for operator in op]
-```
-  </TabItem>
-
-  <TabItem value="PrimV1" label="backend.run">
-``` python
-from qiskit import QuantumCircuit
-from qiskit.quantum_info import SparsePauliOp
-
-# Step 1: Define operator
-op = SparsePauliOp.from_list(
-    [
-        ("II", -1.052373245772859),
-        ("IZ", 0.39793742484318045),
-        ("ZI", -0.39793742484318045),
-        ("ZZ", -0.01128010425623538),
-        ("XX", 0.18093119978423156),
-    ]
-)
-
-# Step 2: Define quantum state
-state = QuantumCircuit(2)
-state.x(0)
-state.x(1)
-```
-
-For information about running noisy simulations with the Runtime primitives, see [Noisy simulators in Qiskit Runtime](../../verify/using-ibm-quantum-simulators)  and [Local testing mode](../../verify/local-testing-mode).
-
-  </TabItem>
-  <TabItem value="legacy-aer" label="Qiskit Aer simulator">
-``` python
-from qiskit.opflow import StateFn, PauliExpectation, CircuitSampler
-from qiskit_aer import AerSimulator
-
-# Define the state to sample
-measurable_expression = StateFn(opflow_op, is_measurement=True).compose(opflow_state)
-
-# Convert to expectation value calculation object
-expectation = PauliExpectation().convert(measurable_expression)
-
-# Define statevector simulator
-simulator = AerSimulator(method="statevector", shots=100)
-
-# Inject backend into circuit sampler
-circuit_sampler = CircuitSampler(simulator).convert(expectation)
-
-# Evaluate
-expectation_value = circuit_sampler.eval().real
-```
-
-``` python
->>> print("expectation: ", expectation_value)
-expectation:  -1.0636533500290943
-```  
-  </TabItem>
-
-  <TabItem value="legacy-primitive" label="Reference Estimator or Aer Estimator primitive">
-The reference `Estimator` lets you perform either an exact or a
-shot-based noisy simulation based on the `Statevector` class in the
-`qiskit.quantum_info` module.
-
-``` python
-from qiskit.primitives import Estimator
-
-estimator = Estimator()
-
-expectation_value = estimator.run(state, op).result().values
-
-# for shot-based simulation:
-expectation_value = estimator.run(state, op, shots=100).result().values
-```
-
-``` python
->>> print("expectation: ", expectation_value)
-expectation:  [-1.03134297]
-```
-
-You can still access the Aer Simulator through its dedicated
-`Estimator`. This can be handy for performing simulations with noise
-models. In this example, the simulation method has been updated to match
-the Qiskit Aer simulator example result.
-
-``` python
-from qiskit_aer.primitives import Estimator # import change
-
-estimator = Estimator(run_options= {"method": "statevector"})
-
-expectation_value = estimator.run(state, op, shots=100).result().values
-```
-
-``` python
->>> print("expectation: ", expectation_value)
-expectation:  [-1.06365335]
-```
-  </TabItem>
-</Tabs>
-
-
 
 <span id="sampler-algorithm"></span>
 ## Use Sampler to design an algorithm 
@@ -498,15 +351,16 @@ When using the `Sampler` primitive, the circuit **must contain measurements**.
 <Tabs>
   <TabItem value="PrimV2" label="Runtime Sampler">
   ``` python
-from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+from qiskit_ibm_runtime import SamplerV2 as Sampler
  
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False)
+# Define a local backend
+from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+backend = FakeManilaV2()
 
-# To use Fake backends with local testing mode, import it and use it as the backend instead
-
-# from qiskit_ibm_runtime.fake_provider import FakeManilaV2
-# backend = FakeManilaV2()
+# Define a real backend
+# from qiskit_ibm_runtime import QiskitRuntimeService
+# service = QiskitRuntimeService()
+# backend = service.least_busy(operational=True, simulator=False)
 
 from qiskit import QuantumCircuit
 
@@ -629,9 +483,10 @@ to the following:
 <Admonition type="tip" title="Recommendations">
 - [Common use cases](qiskit-runtime-use-case)
 - [Migrate `backend.run` options to primitive options](qiskit-runtime-options)
-- [Setting execution options topic](../../run/advanced-runtime-options)
+- [Setting execution options](../../run/advanced-runtime-options)
 - [Primitive execution options API reference](../qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)
-- [How to run a session topic](../../run/run-jobs-in-session)
-- [Qiskit Runtime local testing mode topic](../../verify/local-testing-mode)
+- [How to run a session](../../run/run-jobs-in-session)
+- [Qiskit Runtime local testing mode](../../verify/local-testing-mode)
+- [Noisy simulators in Qiskit Runtime](../../verify/using-ibm-quantum-simulators)
 </Admonition>
 
