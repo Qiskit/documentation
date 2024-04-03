@@ -21,9 +21,9 @@ python_api_name: qiskit.algorithms.Grover
 
   To carry out this search a so-called oracle is required, that flags a good element/state. The action of the oracle $\mathcal{S}_f$ is
 
-  $$
-  \mathcal{S}_f |x\rangle = (-1)^{f(x)} |x\rangle,
-  $$
+$$
+\mathcal{S}_f |x\rangle = (-1)^{f(x)} |x\rangle,
+$$
 
   i.e. it flips the phase of the state $|x\rangle$ if $x$ is a hit. The details of how $S_f$ works are unimportant to the algorithm; Grover’s search algorithm treats the oracle as a black box.
 
@@ -31,10 +31,10 @@ python_api_name: qiskit.algorithms.Grover
 
   With the given oracle, Grover’s Search constructs the Grover operator to amplify the amplitudes of the good states:
 
-  $$
-  \mathcal{Q} = H^{\otimes n} \mathcal{S}_0 H^{\otimes n} \mathcal{S}_f
-              = D \mathcal{S}_f,
-  $$
+$$
+\mathcal{Q} = H^{\otimes n} \mathcal{S}_0 H^{\otimes n} \mathcal{S}_f
+= D \mathcal{S}_f,
+$$
 
   where $\mathcal{S}_0$ flips the phase of the all-zero state and acts as identity on all other states. Sometimes the first three operands are summarized as diffusion operator, which implements a reflection over the equal superposition state.
 
@@ -42,9 +42,9 @@ python_api_name: qiskit.algorithms.Grover
 
   The generalization of Grover’s Search, Quantum Amplitude Amplification \[3], uses a modified version of $\mathcal{Q}$ where the diffusion operator does not reflect about the equal superposition state, but another state specified via an operator $\mathcal{A}$:
 
-  $$
-  \mathcal{Q} = \mathcal{A} \mathcal{S}_0 \mathcal{A}^\dagger \mathcal{S}_f.
-  $$
+$$
+\mathcal{Q} = \mathcal{A} \mathcal{S}_0 \mathcal{A}^\dagger \mathcal{S}_f.
+$$
 
   For more information, see the [`GroverOperator`](qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator") in the circuit library.
 
