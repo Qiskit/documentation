@@ -8,101 +8,69 @@ python_api_name: qiskit_ibm_runtime.RuntimeOptions
 
 # RuntimeOptions
 
-<span id="qiskit_ibm_runtime.RuntimeOptions" />
+<Class id="qiskit_ibm_runtime.RuntimeOptions" github="https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/runtime_options.py" signature="RuntimeOptions(backend=None, image=None, log_level=None, instance=None, job_tags=None, max_execution_time=None, session_time=None)">
+  Class for representing generic runtime execution options.
 
-`RuntimeOptions(backend=None, image=None, log_level=None, instance=None, job_tags=None, max_execution_time=None, session_time=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/runtime_options.py "view source code")
+  RuntimeOptions constructor.
 
-Class for representing generic runtime execution options.
+  **Parameters**
 
-RuntimeOptions constructor.
+  *   **backend** (`Optional`\[`str`]) – target backend to run on. This is required for `ibm_quantum` channel.
+  *   **image** (`Optional`\[`str`]) – the runtime image used to execute the program, specified in the form of `image_name:tag`. Not all accounts are authorized to select a different image.
+  *   **log\_level** (`Optional`\[`str`]) – logging level to set in the execution environment. The valid log levels are: `DEBUG`, `INFO`, `WARNING`, `ERROR`, and `CRITICAL`. The default level is `WARNING`.
+  *   **instance** (`Optional`\[`str`]) – The hub/group/project to use, in that format. This is only supported for `ibm_quantum` channel. If `None`, a hub/group/project that provides access to the target backend is randomly selected.
+  *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job. The tags can subsequently be used as a filter in the `jobs()` function call.
+  *   **max\_execution\_time** (`Optional`\[`int`]) – Maximum execution time in seconds, which is based on system execution time (not wall clock time). System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled. Simulator jobs continue to use wall clock time.
+  *   **session\_time** (`Optional`\[`int`]) – Length of session in seconds.
 
-**Parameters**
+  ## Attributes
 
-*   **backend** (`Optional`\[`str`]) – target backend to run on. This is required for `ibm_quantum` channel.
-*   **image** (`Optional`\[`str`]) – the runtime image used to execute the program, specified in the form of `image_name:tag`. Not all accounts are authorized to select a different image.
-*   **log\_level** (`Optional`\[`str`]) – logging level to set in the execution environment. The valid log levels are: `DEBUG`, `INFO`, `WARNING`, `ERROR`, and `CRITICAL`. The default level is `WARNING`.
-*   **instance** (`Optional`\[`str`]) – The hub/group/project to use, in that format. This is only supported for `ibm_quantum` channel. If `None`, a hub/group/project that provides access to the target backend is randomly selected.
-*   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job. The tags can subsequently be used as a filter in the `jobs()` function call.
-*   **max\_execution\_time** (`Optional`\[`int`]) – Maximum execution time in seconds, which is based on system execution time (not wall clock time). System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled. Simulator jobs continue to use wall clock time.
-*   **session\_time** (`Optional`\[`int`]) – Length of session in seconds.
+  ### backend
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.RuntimeOptions.backend" name="backend" attributeTypeHint="str | None" attributeValue="= None" />
 
-<span id="qiskit_ibm_runtime.RuntimeOptions.backend" />
+  ### image
 
-### backend
+  <Attribute id="qiskit_ibm_runtime.RuntimeOptions.image" name="image" attributeTypeHint="str | None" attributeValue="= None" />
 
-`str | None`
+  ### instance
 
-`= None`
+  <Attribute id="qiskit_ibm_runtime.RuntimeOptions.instance" name="instance" attributeTypeHint="str | None" attributeValue="= None" />
 
-<span id="qiskit_ibm_runtime.RuntimeOptions.image" />
+  ### job\_tags
 
-### image
+  <Attribute id="qiskit_ibm_runtime.RuntimeOptions.job_tags" name="job_tags" attributeTypeHint="List[str] | None" attributeValue="= None" />
 
-`str | None`
+  ### log\_level
 
-`= None`
+  <Attribute id="qiskit_ibm_runtime.RuntimeOptions.log_level" name="log_level" attributeTypeHint="str | None" attributeValue="= None" />
 
-<span id="qiskit_ibm_runtime.RuntimeOptions.instance" />
+  ### max\_execution\_time
 
-### instance
+  <Attribute id="qiskit_ibm_runtime.RuntimeOptions.max_execution_time" name="max_execution_time" attributeTypeHint="int | None" attributeValue="= None" />
 
-`str | None`
+  ### session\_time
 
-`= None`
+  <Attribute id="qiskit_ibm_runtime.RuntimeOptions.session_time" name="session_time" attributeTypeHint="int | None" attributeValue="= None" />
 
-<span id="qiskit_ibm_runtime.RuntimeOptions.job_tags" />
+  ## Methods
 
-### job\_tags
+  ### validate
 
-`List[str] | None`
+  <Function id="qiskit_ibm_runtime.RuntimeOptions.validate" name="validate" signature="validate(channel)">
+    Validate options.
 
-`= None`
+    **Parameters**
 
-<span id="qiskit_ibm_runtime.RuntimeOptions.log_level" />
+    **channel** (`str`) – channel type.
 
-### log\_level
+    **Raises**
 
-`str | None`
+    **IBMInputValueError** – If one or more option is invalid.
 
-`= None`
+    **Return type**
 
-<span id="qiskit_ibm_runtime.RuntimeOptions.max_execution_time" />
-
-### max\_execution\_time
-
-`int | None`
-
-`= None`
-
-<span id="qiskit_ibm_runtime.RuntimeOptions.session_time" />
-
-### session\_time
-
-`int | None`
-
-`= None`
-
-## Methods
-
-### validate
-
-<span id="qiskit_ibm_runtime.RuntimeOptions.validate" />
-
-`validate(channel)`
-
-Validate options.
-
-**Parameters**
-
-**channel** (`str`) – channel type.
-
-**Raises**
-
-**IBMInputValueError** – If one or more option is invalid.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

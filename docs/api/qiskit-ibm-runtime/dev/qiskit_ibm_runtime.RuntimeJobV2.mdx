@@ -8,467 +8,427 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
 # RuntimeJobV2
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2" />
+<Class id="qiskit_ibm_runtime.RuntimeJobV2" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L53-L331" signature="RuntimeJobV2(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None, version=None)">
+  Representation of a runtime V2 primitive exeuction.
 
-`RuntimeJobV2(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None, version=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L53-L331 "view source code")
+  RuntimeJob constructor.
 
-Representation of a runtime V2 primitive exeuction.
+  **Parameters**
 
-RuntimeJob constructor.
+  *   **backend** (`Backend`) – The backend instance used to run this job.
+  *   **api\_client** (`RuntimeClient`) – Object for connecting to the server.
+  *   **client\_params** (`ClientParameters`) – Parameters used for server connection.
+  *   **job\_id** (`str`) – Job ID.
+  *   **program\_id** (`str`) – ID of the program this job is for.
+  *   **params** (`Optional`\[`Dict`]) – Job parameters.
+  *   **creation\_date** (`Optional`\[`str`]) – Job creation date, in UTC.
+  *   **user\_callback** (`Optional`\[`Callable`]) – User callback function.
+  *   **result\_decoder** (`Union`\[`Type`\[`ResultDecoder`], `Sequence`\[`Type`\[`ResultDecoder`]], `None`]) – A `ResultDecoder` subclass used to decode job results.
+  *   **image** (`Optional`\[`str`]) – Runtime image used for this job: image\_name:tag.
+  *   **service** ([`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – Runtime service.
+  *   **session\_id** (`Optional`\[`str`]) – Job ID of the first job in a runtime session.
+  *   **tags** (`Optional`\[`List`]) – Tags assigned to the job.
+  *   **version** (`Optional`\[`int`]) – Primitive version.
 
-**Parameters**
+  ## Attributes
 
-*   **backend** (`Backend`) – The backend instance used to run this job.
-*   **api\_client** (`RuntimeClient`) – Object for connecting to the server.
-*   **client\_params** (`ClientParameters`) – Parameters used for server connection.
-*   **job\_id** (`str`) – Job ID.
-*   **program\_id** (`str`) – ID of the program this job is for.
-*   **params** (`Optional`\[`Dict`]) – Job parameters.
-*   **creation\_date** (`Optional`\[`str`]) – Job creation date, in UTC.
-*   **user\_callback** (`Optional`\[`Callable`]) – User callback function.
-*   **result\_decoder** (`Union`\[`Type`\[`ResultDecoder`], `Sequence`\[`Type`\[`ResultDecoder`]], `None`]) – A `ResultDecoder` subclass used to decode job results.
-*   **image** (`Optional`\[`str`]) – Runtime image used for this job: image\_name:tag.
-*   **service** ([`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – Runtime service.
-*   **session\_id** (`Optional`\[`str`]) – Job ID of the first job in a runtime session.
-*   **tags** (`Optional`\[`List`]) – Tags assigned to the job.
-*   **version** (`Optional`\[`int`]) – Primitive version.
+  ### creation\_date
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.RuntimeJobV2.creation_date" name="creation_date">
+    Job creation date in local time.
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.creation_date" />
+    **Return type**
 
-### creation\_date
+    `Optional`\[`datetime`]
 
-Job creation date in local time.
+    **Returns**
 
-**Return type**
+    The job creation date as a datetime object, in local time, or `None` if creation date is not available.
+  </Attribute>
 
-`Optional`\[`datetime`]
+  ### image
 
-**Returns**
+  <Attribute id="qiskit_ibm_runtime.RuntimeJobV2.image" name="image">
+    Return the runtime image used for the job.
 
-The job creation date as a datetime object, in local time, or `None` if creation date is not available.
+    **Returns**
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.image" />
+    image\_name:tag or “” if the default image is used.
 
-### image
+    **Return type**
 
-Return the runtime image used for the job.
+    Runtime image
+  </Attribute>
 
-**Returns**
+  ### inputs
 
-image\_name:tag or “” if the default image is used.
+  <Attribute id="qiskit_ibm_runtime.RuntimeJobV2.inputs" name="inputs">
+    Job input parameters.
 
-**Return type**
+    **Return type**
 
-Runtime image
+    `Dict`
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.inputs" />
+    **Returns**
 
-### inputs
+    Input parameters used in this job.
+  </Attribute>
 
-Job input parameters.
+  ### program\_id
 
-**Return type**
+  <Attribute id="qiskit_ibm_runtime.RuntimeJobV2.program_id" name="program_id">
+    Program ID.
 
-`Dict`
+    **Return type**
 
-**Returns**
+    `str`
 
-Input parameters used in this job.
+    **Returns**
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.program_id" />
+    ID of the program this job is for.
+  </Attribute>
 
-### program\_id
+  ### session\_id
 
-Program ID.
+  <Attribute id="qiskit_ibm_runtime.RuntimeJobV2.session_id" name="session_id">
+    Session ID.
 
-**Return type**
+    **Return type**
 
-`str`
+    `str`
 
-**Returns**
+    **Returns**
 
-ID of the program this job is for.
+    Session ID. None if the backend is a simulator.
+  </Attribute>
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.session_id" />
+  ### tags
 
-### session\_id
+  <Attribute id="qiskit_ibm_runtime.RuntimeJobV2.tags" name="tags">
+    Job tags.
 
-Session ID.
+    **Return type**
 
-**Return type**
+    `List`
 
-`str`
+    **Returns**
 
-**Returns**
+    Tags assigned to the job that can be used for filtering.
+  </Attribute>
 
-Session ID. None if the backend is a simulator.
+  ### usage\_estimation
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.tags" />
+  <Attribute id="qiskit_ibm_runtime.RuntimeJobV2.usage_estimation" name="usage_estimation">
+    Return the usage estimation infromation for this job.
 
-### tags
+    **Return type**
 
-Job tags.
+    `Dict`\[`str`, `Any`]
 
-**Return type**
+    **Returns**
 
-`List`
+    `quantum_seconds` which is the estimated system execution time of the job in seconds. Quantum time represents the time that the system is dedicated to processing your job.
+  </Attribute>
 
-**Returns**
+  ## Methods
 
-Tags assigned to the job that can be used for filtering.
+  ### backend
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.usage_estimation" />
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.backend" name="backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L267-L281" signature="backend(timeout=None)">
+    Return the backend where this job was executed. Retrieve data again if backend is None.
 
-### usage\_estimation
+    **Raises**
 
-Return the usage estimation infromation for this job.
+    **IBMRuntimeError** – If a network error occurred.
 
-**Return type**
+    **Return type**
 
-`Dict`\[`str`, `Any`]
+    `Optional`\[`Backend`]
+  </Function>
 
-**Returns**
+  ### cancel
 
-`quantum_seconds` which is the estimated system execution time of the job in seconds. Quantum time represents the time that the system is dedicated to processing your job.
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.cancel" name="cancel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L150-L164" signature="cancel()">
+    Cancel the job.
 
-## Methods
+    **Raises**
 
-### backend
+    *   **RuntimeInvalidStateError** – If the job is in a state that cannot be cancelled.
+    *   **IBMRuntimeError** – If unable to cancel job.
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.backend" />
+    **Return type**
 
-`backend(timeout=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L267-L281 "view source code")
+    `None`
+  </Function>
 
-Return the backend where this job was executed. Retrieve data again if backend is None.
+  ### cancel\_result\_streaming
 
-**Raises**
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.cancel_result_streaming" name="cancel_result_streaming" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L149-L153" signature="cancel_result_streaming()">
+    Cancel result streaming.
 
-**IBMRuntimeError** – If a network error occurred.
+    **Return type**
 
-**Return type**
+    `None`
+  </Function>
 
-`Optional`\[`Backend`]
+  ### cancelled
 
-### cancel
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.cancelled" name="cancelled" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L189-L191" signature="cancelled()">
+    Return whether the job has been cancelled.
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.cancel" />
+    **Return type**
 
-`cancel()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L150-L164 "view source code")
+    `bool`
+  </Function>
 
-Cancel the job.
+  ### done
 
-**Raises**
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.done" name="done" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L193-L195" signature="done()">
+    Return whether the job has successfully run.
 
-*   **RuntimeInvalidStateError** – If the job is in a state that cannot be cancelled.
-*   **IBMRuntimeError** – If unable to cancel job.
+    **Return type**
 
-**Return type**
+    `bool`
+  </Function>
 
-`None`
+  ### error\_message
 
-### cancel\_result\_streaming
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.error_message" name="error_message" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L212-L219" signature="error_message()">
+    Returns the reason if the job failed.
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.cancel_result_streaming" />
+    **Return type**
 
-`cancel_result_streaming()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L149-L153 "view source code")
+    `Optional`\[`str`]
 
-Cancel result streaming.
+    **Returns**
 
-**Return type**
+    Error message string or `None`.
+  </Function>
 
-`None`
+  ### errored
 
-### cancelled
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.errored" name="errored" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L197-L199" signature="errored()">
+    Return whether the job has failed.
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.cancelled" />
+    **Return type**
 
-`cancelled()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L189-L191 "view source code")
+    `bool`
+  </Function>
 
-Return whether the job has been cancelled.
+  ### in\_final\_state
 
-**Return type**
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.in_final_state" name="in_final_state" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L201-L203" signature="in_final_state()">
+    Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
-`bool`
+    **Return type**
 
-### done
+    `bool`
+  </Function>
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.done" />
+  ### interim\_results
 
-`done()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L193-L195 "view source code")
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.interim_results" name="interim_results" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L313-L331" signature="interim_results(decoder=None)">
+    Return the interim results of the job.
 
-Return whether the job has successfully run.
+    **Parameters**
 
-**Return type**
+    **decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A `ResultDecoder` subclass used to decode interim results.
 
-`bool`
+    **Return type**
 
-### error\_message
+    `Any`
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.error_message" />
+    **Returns**
 
-`error_message()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L212-L219 "view source code")
+    Runtime job interim results.
 
-Returns the reason if the job failed.
+    **Raises**
 
-**Return type**
+    **RuntimeJobFailureError** – If the job failed.
+  </Function>
 
-`Optional`\[`str`]
+  ### job\_id
 
-**Returns**
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.job_id" name="job_id" signature="job_id()">
+    Return a unique id identifying the job.
 
-Error message string or `None`.
+    **Return type**
 
-### errored
+    `str`
+  </Function>
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.errored" />
+  ### logs
 
-`errored()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L197-L199 "view source code")
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.logs" name="logs" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L209-L228" signature="logs()">
+    Return job logs.
 
-Return whether the job has failed.
+    <Admonition title="Note" type="note">
+      Job logs are only available after the job finishes.
+    </Admonition>
 
-**Return type**
+    **Return type**
 
-`bool`
+    `str`
 
-### in\_final\_state
+    **Returns**
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.in_final_state" />
+    Job logs, including standard output and error.
 
-`in_final_state()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L201-L203 "view source code")
+    **Raises**
 
-Return whether the job is in a final job state such as `DONE` or `ERROR`.
+    **IBMRuntimeError** – If a network error occurred.
+  </Function>
 
-**Return type**
+  ### metrics
 
-`bool`
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.metrics" name="metrics" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L155-L167" signature="metrics()">
+    Return job metrics.
 
-### interim\_results
+    **Return type**
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.interim_results" />
+    `Dict`\[`str`, `Any`]
 
-`interim_results(decoder=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L313-L331 "view source code")
+    **Returns**
 
-Return the interim results of the job.
+    Job metrics, which includes timestamp information.
 
-**Parameters**
+    **Raises**
 
-**decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A `ResultDecoder` subclass used to decode interim results.
+    **IBMRuntimeError** – If a network error occurred.
+  </Function>
 
-**Return type**
+  ### properties
 
-`Any`
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.properties" name="properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L198-L210" signature="properties(refresh=False)">
+    Return the backend properties for this job.
 
-**Returns**
+    **Parameters**
 
-Runtime job interim results.
+    **refresh** (`bool`) – If `True`, re-query the server for the backend properties. Otherwise, return a cached version.
 
-**Raises**
+    **Return type**
 
-**RuntimeJobFailureError** – If the job failed.
+    `Optional`\[`BackendProperties`]
 
-### job\_id
+    **Returns**
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.job_id" />
+    The backend properties used for this job, at the time the job was run, or `None` if properties are not available.
+  </Function>
 
-`job_id()`
+  ### result
 
-Return a unique id identifying the job.
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.result" name="result" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L113-L148" signature="result(timeout=None, decoder=None)">
+    Return the results of the job.
 
-**Return type**
+    **Parameters**
 
-`str`
+    *   **timeout** (`Optional`\[`float`]) – Number of seconds to wait for job.
+    *   **decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A `ResultDecoder` subclass used to decode job results.
 
-### logs
+    **Return type**
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.logs" />
+    `Any`
 
-`logs()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L209-L228 "view source code")
+    **Returns**
 
-Return job logs.
+    Runtime job result.
 
-<Admonition title="Note" type="note">
-  Job logs are only available after the job finishes.
-</Admonition>
+    **Raises**
 
-**Return type**
+    *   **RuntimeJobFailureError** – If the job failed.
+    *   **RuntimeJobMaxTimeoutError** – If the job does not complete within given timeout.
+    *   **RuntimeInvalidStateError** – If the job was cancelled, and attempting to retrieve result.
+  </Function>
 
-`str`
+  ### running
 
-**Returns**
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.running" name="running" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L205-L207" signature="running()">
+    Return whether the job is actively running.
 
-Job logs, including standard output and error.
+    **Return type**
 
-**Raises**
+    `bool`
+  </Function>
 
-**IBMRuntimeError** – If a network error occurred.
+  ### status
 
-### metrics
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.status" name="status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L166-L173" signature="status()">
+    Return the status of the job.
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.metrics" />
+    **Return type**
 
-`metrics()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L155-L167 "view source code")
+    `Literal`\[‘INITIALIZING’, ‘QUEUED’, ‘RUNNING’, ‘CANCELLED’, ‘DONE’, ‘ERROR’]
 
-Return job metrics.
+    **Returns**
 
-**Return type**
+    Status of this job.
+  </Function>
 
-`Dict`\[`str`, `Any`]
+  ### stream\_results
 
-**Returns**
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.stream_results" name="stream_results" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L283-L311" signature="stream_results(callback, decoder=None)">
+    Start streaming job results.
 
-Job metrics, which includes timestamp information.
+    **Parameters**
 
-**Raises**
+    *   **callback** (`Callable`) –
 
-**IBMRuntimeError** – If a network error occurred.
+        Callback function to be invoked for any interim results and final result. The callback function will receive 2 positional parameters:
 
-### properties
+        > 1.  Job ID
+        > 2.  Job result.
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.properties" />
+    *   **decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A `ResultDecoder` subclass used to decode job results.
 
-`properties(refresh=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L198-L210 "view source code")
+    **Raises**
 
-Return the backend properties for this job.
+    **RuntimeInvalidStateError** – If a callback function is already streaming results or if the job already finished.
 
-**Parameters**
+    **Return type**
 
-**refresh** (`bool`) – If `True`, re-query the server for the backend properties. Otherwise, return a cached version.
+    `None`
+  </Function>
 
-**Return type**
+  ### update\_tags
 
-`Optional`\[`BackendProperties`]
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.update_tags" name="update_tags" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L169-L196" signature="update_tags(new_tags)">
+    Update the tags associated with this job.
 
-**Returns**
+    **Parameters**
 
-The backend properties used for this job, at the time the job was run, or `None` if properties are not available.
+    **new\_tags** (`List`\[`str`]) – New tags to assign to the job.
 
-### result
+    **Return type**
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.result" />
+    `List`\[`str`]
 
-`result(timeout=None, decoder=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L113-L148 "view source code")
+    **Returns**
 
-Return the results of the job.
+    The new tags associated with this job.
 
-**Parameters**
+    **Raises**
 
-*   **timeout** (`Optional`\[`float`]) – Number of seconds to wait for job.
-*   **decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A `ResultDecoder` subclass used to decode job results.
+    **IBMApiError** – If an unexpected error occurred when communicating with the server or updating the job tags.
+  </Function>
 
-**Return type**
+  ### wait\_for\_final\_state
 
-`Any`
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.wait_for_final_state" name="wait_for_final_state" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L230-L265" signature="wait_for_final_state(timeout=None)">
+    Use the websocket server to wait for the final the state of a job.
 
-**Returns**
+    The server will remain open if the job is still running and the connection will be terminated once the job completes. Then update and return the status of the job.
 
-Runtime job result.
+    **Parameters**
 
-**Raises**
+    **timeout** (`Optional`\[`float`]) – Seconds to wait for the job. If `None`, wait indefinitely.
 
-*   **RuntimeJobFailureError** – If the job failed.
-*   **RuntimeJobMaxTimeoutError** – If the job does not complete within given timeout.
-*   **RuntimeInvalidStateError** – If the job was cancelled, and attempting to retrieve result.
+    **Raises**
 
-### running
+    **RuntimeJobTimeoutError** – If the job does not complete within given timeout.
 
-<span id="qiskit_ibm_runtime.RuntimeJobV2.running" />
+    **Return type**
 
-`running()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L205-L207 "view source code")
-
-Return whether the job is actively running.
-
-**Return type**
-
-`bool`
-
-### status
-
-<span id="qiskit_ibm_runtime.RuntimeJobV2.status" />
-
-`status()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L166-L173 "view source code")
-
-Return the status of the job.
-
-**Return type**
-
-`Literal`\[‘INITIALIZING’, ‘QUEUED’, ‘RUNNING’, ‘CANCELLED’, ‘DONE’, ‘ERROR’]
-
-**Returns**
-
-Status of this job.
-
-### stream\_results
-
-<span id="qiskit_ibm_runtime.RuntimeJobV2.stream_results" />
-
-`stream_results(callback, decoder=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L283-L311 "view source code")
-
-Start streaming job results.
-
-**Parameters**
-
-*   **callback** (`Callable`) –
-
-    Callback function to be invoked for any interim results and final result. The callback function will receive 2 positional parameters:
-
-    > 1.  Job ID
-    > 2.  Job result.
-
-*   **decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A `ResultDecoder` subclass used to decode job results.
-
-**Raises**
-
-**RuntimeInvalidStateError** – If a callback function is already streaming results or if the job already finished.
-
-**Return type**
-
-`None`
-
-### update\_tags
-
-<span id="qiskit_ibm_runtime.RuntimeJobV2.update_tags" />
-
-`update_tags(new_tags)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L169-L196 "view source code")
-
-Update the tags associated with this job.
-
-**Parameters**
-
-**new\_tags** (`List`\[`str`]) – New tags to assign to the job.
-
-**Return type**
-
-`List`\[`str`]
-
-**Returns**
-
-The new tags associated with this job.
-
-**Raises**
-
-**IBMApiError** – If an unexpected error occurred when communicating with the server or updating the job tags.
-
-### wait\_for\_final\_state
-
-<span id="qiskit_ibm_runtime.RuntimeJobV2.wait_for_final_state" />
-
-`wait_for_final_state(timeout=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L230-L265 "view source code")
-
-Use the websocket server to wait for the final the state of a job.
-
-The server will remain open if the job is still running and the connection will be terminated once the job completes. Then update and return the status of the job.
-
-**Parameters**
-
-**timeout** (`Optional`\[`float`]) – Seconds to wait for the job. If `None`, wait indefinitely.
-
-**Raises**
-
-**RuntimeJobTimeoutError** – If the job does not complete within given timeout.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 
