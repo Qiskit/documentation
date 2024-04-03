@@ -65,27 +65,30 @@ export async function mergeClassMembers(
           .use(() => {
             return async (root: Root) => {
               // The attribute and method's section can be found under the class component
-              const mdxClassElement = root.children
-                .find(
-                  (node): node is MdxJsxFlowElement =>
-                    node.type == "mdxJsxFlowElement" && node.name == "Class",
-                );
+              const mdxClassElement = root.children.find(
+                (node): node is MdxJsxFlowElement =>
+                  node.type == "mdxJsxFlowElement" && node.name == "Class",
+              );
 
-              for (const node of mdxClassElement?.children ?? []) {
+              if (!mdxClassElement) {
+                return;
+              }
+
+              for (const node of mdxClassElement.children) {
                 await replaceMembersAfterTitle(
-                  mdxClassElement!,
+                  mdxClassElement,
                   node,
                   "Attributes",
                   attributesAndProps,
                 );
                 await replaceMembersAfterTitle(
-                  mdxClassElement!,
+                  mdxClassElement,
                   node,
                   "Methods",
                   methods,
                 );
                 await replaceMembersAfterTitle(
-                  mdxClassElement!,
+                  mdxClassElement,
                   node,
                   "Methods Defined Here",
                   methods,
