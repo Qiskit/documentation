@@ -22,7 +22,7 @@ function removeMathBlocksIndentation(results: HtmlToMdResultWithUrl[]): void {
   for (const result of results) {
     // Captures all the lines in the math blocks, including the indentation
     // before the $$ characters
-    const mathBlockRegex = /^[^#\r\n](\s*)\$\$([\s\S]*?)\$\$/gm;
+    const mathBlockRegex = /^[^\S\r\n]( *)\$\$([\s\S]*?)\$\$/gm;
     const indentRegex = /^ +/gm;
     result.markdown = result.markdown.replace(mathBlockRegex, function (match) {
       return match.replace(indentRegex, "");

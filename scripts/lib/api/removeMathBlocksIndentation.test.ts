@@ -25,15 +25,15 @@ test("dedupeHtmlIds()", async () => {
   
     <Function id="qiskit.synthesis.TwoQubitBasisDecomposer.decomp0" name="decomp0" signature="static decomp0(target)">
       Decompose target $\sim U_d(x, y, z)$ with $0$ uses of the basis gate. Result $U_r$ has trace:
-  
+      
       $$
         \\Big\\vert\\text{Tr}(U_r\\cdot U_\\text{target}^{\\dag})\\Big\\vert =
         4\\Big\vert (\\cos(x)\\cos(y)\\cos(z)+ j \\sin(x)\\sin(y)\\sin(z)\\Big\\vert
       $$
-  
+      
       which is optimal for all targets and bases
     </Function>
-
+    
     <Function id="qiskit.synthesis.TwoQubitBasisDecomposer.num_basis_gates" name="num_basis_gates" signature="num_basis_gates(unitary)">
       Computes the number of basis gates needed in a decomposition of input unitary
     </Function>
@@ -58,15 +58,15 @@ test("dedupeHtmlIds()", async () => {
   
     <Function id="qiskit.synthesis.TwoQubitBasisDecomposer.decomp0" name="decomp0" signature="static decomp0(target)">
       Decompose target $\sim U_d(x, y, z)$ with $0$ uses of the basis gate. Result $U_r$ has trace:
-
+      
 $$
 \\Big\\vert\\text{Tr}(U_r\\cdot U_\\text{target}^{\\dag})\\Big\\vert =
 4\\Big\vert (\\cos(x)\\cos(y)\\cos(z)+ j \\sin(x)\\sin(y)\\sin(z)\\Big\\vert
 $$
-  
+      
       which is optimal for all targets and bases
     </Function>
-
+    
     <Function id="qiskit.synthesis.TwoQubitBasisDecomposer.num_basis_gates" name="num_basis_gates" signature="num_basis_gates(unitary)">
       Computes the number of basis gates needed in a decomposition of input unitary
     </Function>
