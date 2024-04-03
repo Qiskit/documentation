@@ -8,171 +8,163 @@ python_api_name: qiskit.circuit.library.MCXGate
 
 # MCXGate
 
-<span id="qiskit.circuit.library.MCXGate" />
+<Class id="qiskit.circuit.library.MCXGate" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py" signature="MCXGate(num_ctrl_qubits=None, label=None, ctrl_state=None)">
+  Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
-`MCXGate(num_ctrl_qubits=None, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+  The general, multi-controlled X gate.
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`mcx()`](qiskit.circuit.QuantumCircuit#mcx "qiskit.circuit.QuantumCircuit.mcx") method.
 
-The general, multi-controlled X gate.
+  Create new MCX gate.
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`mcx()`](qiskit.circuit.QuantumCircuit#mcx "qiskit.circuit.QuantumCircuit.mcx") method.
+  ## Methods Defined Here
 
-Create new MCX gate.
+  <span id="qiskit-circuit-library-mcxgate-control" />
 
-## Methods Defined Here
+  ### control
 
-<span id="qiskit-circuit-library-mcxgate-control" />
+  <Function id="qiskit.circuit.library.MCXGate.control" name="control" signature="MCXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a multi-controlled-X gate with more control lines.
 
-### control
+    **Parameters**
 
-<span id="qiskit.circuit.library.MCXGate.control" />
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-`MCXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    **Returns**
 
-Return a multi-controlled-X gate with more control lines.
+    controlled version of this gate.
 
-**Parameters**
+    **Return type**
 
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-**Returns**
+  <span id="qiskit-circuit-library-mcxgate-get-num-ancilla-qubits" />
 
-controlled version of this gate.
+  ### get\_num\_ancilla\_qubits
 
-**Return type**
+  <Function id="qiskit.circuit.library.MCXGate.get_num_ancilla_qubits" name="get_num_ancilla_qubits" signature="static MCXGate.get_num_ancilla_qubits(num_ctrl_qubits, mode='noancilla')">
+    Get the number of required ancilla qubits without instantiating the class.
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+    This staticmethod might be necessary to check the number of ancillas before creating the gate, or to use the number of ancillas in the initialization.
 
-<span id="qiskit-circuit-library-mcxgate-get-num-ancilla-qubits" />
+    **Return type**
 
-### get\_num\_ancilla\_qubits
+    int
+  </Function>
 
-<span id="qiskit.circuit.library.MCXGate.get_num_ancilla_qubits" />
+  <span id="qiskit-circuit-library-mcxgate-inverse" />
 
-`static MCXGate.get_num_ancilla_qubits(num_ctrl_qubits, mode='noancilla')`
+  ### inverse
 
-Get the number of required ancilla qubits without instantiating the class.
+  <Function id="qiskit.circuit.library.MCXGate.inverse" name="inverse" signature="MCXGate.inverse()">
+    Invert this gate. The MCX is its own inverse.
+  </Function>
 
-This staticmethod might be necessary to check the number of ancillas before creating the gate, or to use the number of ancillas in the initialization.
+  ## Attributes
 
-**Return type**
+  ### condition\_bits
 
-int
+  <Attribute id="qiskit.circuit.library.MCXGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit-circuit-library-mcxgate-inverse" />
+  ### ctrl\_state
 
-### inverse
+  <Attribute id="qiskit.circuit.library.MCXGate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCXGate.inverse" />
+  ### decompositions
 
-`MCXGate.inverse()`
+  <Attribute id="qiskit.circuit.library.MCXGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Invert this gate. The MCX is its own inverse.
+  ### definition
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.MCXGate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCXGate.condition_bits" />
+  ### duration
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.MCXGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Get Clbits in condition.
+  ### label
 
-<span id="qiskit.circuit.library.MCXGate.ctrl_state" />
+  <Attribute id="qiskit.circuit.library.MCXGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-### ctrl\_state
+  ### name
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.MCXGate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-<span id="qiskit.circuit.library.MCXGate.decompositions" />
+    > \<original\_name\_o\<ctrl\_state>
 
-### decompositions
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### num\_ancilla\_qubits
 
-<span id="qiskit.circuit.library.MCXGate.definition" />
+  <Attribute id="qiskit.circuit.library.MCXGate.num_ancilla_qubits" name="num_ancilla_qubits">
+    The number of ancilla qubits.
+  </Attribute>
 
-### definition
+  ### num\_clbits
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  <Attribute id="qiskit.circuit.library.MCXGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCXGate.duration" />
+  ### num\_ctrl\_qubits
 
-### duration
+  <Attribute id="qiskit.circuit.library.MCXGate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-Get the duration.
+    **Returns**
 
-<span id="qiskit.circuit.library.MCXGate.label" />
+    The number of control qubits for the gate.
 
-### label
+    **Return type**
 
-Return instruction label
+    int
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCXGate.name" />
+  ### num\_qubits
 
-### name
+  <Attribute id="qiskit.circuit.library.MCXGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Get name of gate. If the gate has open controls the gate name will become:
+  ### params
 
-> \<original\_name\_o\<ctrl\_state>
+  <Attribute id="qiskit.circuit.library.MCXGate.params" name="params">
+    Get parameters from base\_gate.
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+    **Returns**
 
-<span id="qiskit.circuit.library.MCXGate.num_ancilla_qubits" />
+    List of gate parameters.
 
-### num\_ancilla\_qubits
+    **Return type**
 
-The number of ancilla qubits.
+    list
 
-<span id="qiskit.circuit.library.MCXGate.num_clbits" />
+    **Raises**
 
-### num\_clbits
+    **CircuitError** – Controlled gate does not define a base gate
+  </Attribute>
 
-Return the number of clbits.
+  ### unit
 
-<span id="qiskit.circuit.library.MCXGate.num_ctrl_qubits" />
-
-### num\_ctrl\_qubits
-
-Get number of control qubits.
-
-**Returns**
-
-The number of control qubits for the gate.
-
-**Return type**
-
-int
-
-<span id="qiskit.circuit.library.MCXGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.MCXGate.params" />
-
-### params
-
-Get parameters from base\_gate.
-
-**Returns**
-
-List of gate parameters.
-
-**Return type**
-
-list
-
-**Raises**
-
-**CircuitError** – Controlled gate does not define a base gate
-
-<span id="qiskit.circuit.library.MCXGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.MCXGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

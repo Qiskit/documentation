@@ -10,48 +10,46 @@ python_api_name: qiskit.synthesis.synth_clifford_layers
 
 # qiskit.synthesis.synth\_clifford\_layers
 
-<span id="qiskit.synthesis.synth_clifford_layers" />
+<Function id="qiskit.synthesis.synth_clifford_layers" name="synth_clifford_layers" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/clifford/clifford_decompose_layers.py" signature="synth_clifford_layers(cliff, cx_synth_func=<function _default_cx_synth_func>, cz_synth_func=<function _default_cz_synth_func>, cx_cz_synth_func=None, cz_func_reverse_qubits=False, validate=False)">
+  Synthesis of a Clifford into layers, it provides a similar decomposition to the synthesis described in Lemma 8 of Bravyi and Maslov.
 
-`synth_clifford_layers(cliff, cx_synth_func=<function _default_cx_synth_func>, cz_synth_func=<function _default_cz_synth_func>, cx_cz_synth_func=None, cz_func_reverse_qubits=False, validate=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/clifford/clifford_decompose_layers.py "view source code")
+  For example, a 5-qubit Clifford circuit is decomposed into the following layers:
 
-Synthesis of a Clifford into layers, it provides a similar decomposition to the synthesis described in Lemma 8 of Bravyi and Maslov.
+  ```python
+       ┌─────┐┌─────┐┌────────┐┌─────┐┌─────┐┌─────┐┌─────┐┌────────┐
+  q_0: ┤0    ├┤0    ├┤0       ├┤0    ├┤0    ├┤0    ├┤0    ├┤0       ├
+       │     ││     ││        ││     ││     ││     ││     ││        │
+  q_1: ┤1    ├┤1    ├┤1       ├┤1    ├┤1    ├┤1    ├┤1    ├┤1       ├
+       │     ││     ││        ││     ││     ││     ││     ││        │
+  q_2: ┤2 S2 ├┤2 CZ ├┤2 CX_dg ├┤2 H2 ├┤2 S1 ├┤2 CZ ├┤2 H1 ├┤2 Pauli ├
+       │     ││     ││        ││     ││     ││     ││     ││        │
+  q_3: ┤3    ├┤3    ├┤3       ├┤3    ├┤3    ├┤3    ├┤3    ├┤3       ├
+       │     ││     ││        ││     ││     ││     ││     ││        │
+  q_4: ┤4    ├┤4    ├┤4       ├┤4    ├┤4    ├┤4    ├┤4    ├┤4       ├
+       └─────┘└─────┘└────────┘└─────┘└─────┘└─────┘└─────┘└────────┘
+  ```
 
-For example, a 5-qubit Clifford circuit is decomposed into the following layers:
+  This decomposition is for the default cz\_synth\_func and cx\_synth\_func functions, with other functions one may see slightly different decomposition.
 
-```python
-     ┌─────┐┌─────┐┌────────┐┌─────┐┌─────┐┌─────┐┌─────┐┌────────┐
-q_0: ┤0    ├┤0    ├┤0       ├┤0    ├┤0    ├┤0    ├┤0    ├┤0       ├
-     │     ││     ││        ││     ││     ││     ││     ││        │
-q_1: ┤1    ├┤1    ├┤1       ├┤1    ├┤1    ├┤1    ├┤1    ├┤1       ├
-     │     ││     ││        ││     ││     ││     ││     ││        │
-q_2: ┤2 S2 ├┤2 CZ ├┤2 CX_dg ├┤2 H2 ├┤2 S1 ├┤2 CZ ├┤2 H1 ├┤2 Pauli ├
-     │     ││     ││        ││     ││     ││     ││     ││        │
-q_3: ┤3    ├┤3    ├┤3       ├┤3    ├┤3    ├┤3    ├┤3    ├┤3       ├
-     │     ││     ││        ││     ││     ││     ││     ││        │
-q_4: ┤4    ├┤4    ├┤4       ├┤4    ├┤4    ├┤4    ├┤4    ├┤4       ├
-     └─────┘└─────┘└────────┘└─────┘└─────┘└─────┘└─────┘└────────┘
-```
+  **Parameters**
 
-This decomposition is for the default cz\_synth\_func and cx\_synth\_func functions, with other functions one may see slightly different decomposition.
+  *   **cliff** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
+  *   **cx\_synth\_func** (*Callable*) – a function to decompose the CX sub-circuit. It gets as input a boolean invertible matrix, and outputs a QuantumCircuit.
+  *   **cz\_synth\_func** (*Callable*) – a function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a QuantumCircuit.
+  *   **cx\_cz\_synth\_func** (*Callable*) – optional, a function to decompose both sub-circuits CZ and CX.
+  *   **validate** (*Boolean*) – if True, validates the synthesis process.
+  *   **cz\_func\_reverse\_qubits** (*Boolean*) – True only if cz\_synth\_func is synth\_cz\_depth\_line\_mr, since this function returns a circuit that reverts the order of qubits.
 
-**Parameters**
+  **Returns**
 
-*   **cliff** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
-*   **cx\_synth\_func** (*Callable*) – a function to decompose the CX sub-circuit. It gets as input a boolean invertible matrix, and outputs a QuantumCircuit.
-*   **cz\_synth\_func** (*Callable*) – a function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a QuantumCircuit.
-*   **cx\_cz\_synth\_func** (*Callable*) – optional, a function to decompose both sub-circuits CZ and CX.
-*   **validate** (*Boolean*) – if True, validates the synthesis process.
-*   **cz\_func\_reverse\_qubits** (*Boolean*) – True only if cz\_synth\_func is synth\_cz\_depth\_line\_mr, since this function returns a circuit that reverts the order of qubits.
+  a circuit implementation of the Clifford.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the Clifford.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  ## Reference:
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-## Reference:
-
-1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+  1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+</Function>
 

@@ -8,96 +8,90 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator
 
 # WindowExtrapolator
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator" />
+<Class id="qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py" signature="WindowExtrapolator(extrapolator=None, window=2)">
+  Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`
 
-`WindowExtrapolator(extrapolator=None, window=2)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+  An extrapolator which wraps another extrapolator, limiting the internal extrapolator’s ground truth parameter set to a fixed window size.
 
-Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`
+  Constructor.
 
-An extrapolator which wraps another extrapolator, limiting the internal extrapolator’s ground truth parameter set to a fixed window size.
+  **Parameters**
 
-Constructor.
+  *   **extrapolator** (`Union`\[`PolynomialExtrapolator`, `DifferentialExtrapolator`, `None`]) – ‘internal’ extrapolator that performs extrapolation on variational parameters based on data window
+  *   **window** (`int`) – Number of previous points to use for extrapolation. A value of zero indicates that all previous points will be used for bootstrapping.
 
-**Parameters**
+  ## Methods
 
-*   **extrapolator** (`Union`\[`PolynomialExtrapolator`, `DifferentialExtrapolator`, `None`]) – ‘internal’ extrapolator that performs extrapolation on variational parameters based on data window
-*   **window** (`int`) – Number of previous points to use for extrapolation. A value of zero indicates that all previous points will be used for bootstrapping.
+  ### extrapolate
 
-## Methods
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.extrapolate" name="extrapolate" signature="WindowExtrapolator.extrapolate(points, param_dict)">
+    Extrapolate at specified point of interest given a set of variational parameters. Based on the specified window, a subset of the data points will be used for extrapolation. A default window of 2 points is used, while a value of zero indicates that all previous points will be used for extrapolation. This method defines the data window before performing the internal extrapolation.
 
-### extrapolate
+    **Parameters**
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.extrapolate" />
+    *   **points** (`List`\[`float`]) – List of point(s) to be used for extrapolation. Can represent some degree of freedom, ex, interatomic distance.
+    *   **param\_dict** (`Optional`\[`Dict`\[`float`, `List`\[`float`]]]) – Dictionary of variational parameters. Each key is the point and the value is a list of the variational parameters.
 
-`WindowExtrapolator.extrapolate(points, param_dict)`
+    **Return type**
 
-Extrapolate at specified point of interest given a set of variational parameters. Based on the specified window, a subset of the data points will be used for extrapolation. A default window of 2 points is used, while a value of zero indicates that all previous points will be used for extrapolation. This method defines the data window before performing the internal extrapolation.
+    `Dict`\[`float`, `List`\[`float`]]
 
-**Parameters**
+    **Returns**
 
-*   **points** (`List`\[`float`]) – List of point(s) to be used for extrapolation. Can represent some degree of freedom, ex, interatomic distance.
-*   **param\_dict** (`Optional`\[`Dict`\[`float`, `List`\[`float`]]]) – Dictionary of variational parameters. Each key is the point and the value is a list of the variational parameters.
+    Dictionary of variational parameters for extrapolated point(s).
+  </Function>
 
-**Return type**
+  ### factory
 
-`Dict`\[`float`, `List`\[`float`]]
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.factory" name="factory" signature="static WindowExtrapolator.factory(mode, **kwargs)">
+    Factory method for constructing extrapolators.
 
-**Returns**
+    **Parameters**
 
-Dictionary of variational parameters for extrapolated point(s).
+    *   **mode** (`str`) – Extrapolator to instantiate. Can be one of: - ‘window’ - ‘poly’ - ‘diff\_model’ - ‘pca’ - ‘l1’
+    *   **kwargs** – arguments to be passed to the constructor of an extrapolator
 
-### factory
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.factory" />
+    `Extrapolator`
 
-`static WindowExtrapolator.factory(mode, **kwargs)`
+    **Returns**
 
-Factory method for constructing extrapolators.
+    A newly created extrapolator instance.
 
-**Parameters**
+    **Raises**
 
-*   **mode** (`str`) – Extrapolator to instantiate. Can be one of: - ‘window’ - ‘poly’ - ‘diff\_model’ - ‘pca’ - ‘l1’
-*   **kwargs** – arguments to be passed to the constructor of an extrapolator
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`Extrapolator`
+  ### extrapolator
 
-**Returns**
+  <Attribute id="qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.extrapolator" name="extrapolator">
+    Returns the internal extrapolator.
 
-A newly created extrapolator instance.
+    **Return type**
 
-**Raises**
+    `Extrapolator`
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+    **Returns**
 
-## Attributes
+    The internal extrapolator.
+  </Attribute>
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.extrapolator" />
+  ### window
 
-### extrapolator
+  <Attribute id="qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.window" name="window">
+    Returns the size of the window.
 
-Returns the internal extrapolator.
+    **Return type**
 
-**Return type**
+    `int`
 
-`Extrapolator`
+    **Returns**
 
-**Returns**
-
-The internal extrapolator.
-
-<span id="qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.window" />
-
-### window
-
-Returns the size of the window.
-
-**Return type**
-
-`int`
-
-**Returns**
-
-The size of the window.
+    The size of the window.
+  </Attribute>
+</Class>
 

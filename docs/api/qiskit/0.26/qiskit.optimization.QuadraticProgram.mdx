@@ -8,1049 +8,953 @@ python_api_name: qiskit.optimization.QuadraticProgram
 
 # qiskit.optimization.QuadraticProgram
 
-<span id="qiskit.optimization.QuadraticProgram" />
+<Class id="qiskit.optimization.QuadraticProgram" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py" signature="QuadraticProgram(name='')">
+  Quadratically Constrained Quadratic Program representation.
+
+  This representation supports inequality and equality constraints, as well as continuous, binary, and integer variables.
+
+  **Parameters**
+
+  **name** (`str`) – The name of the quadratic program.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.optimization.QuadraticProgram.__init__" name="__init__" signature="__init__(name='')">
+    **Parameters**
+
+    **name** (`str`) – The name of the quadratic program.
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                               |                                                                                                                     |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.optimization.QuadraticProgram.__init__ "qiskit.optimization.QuadraticProgram.__init__")(\[name])                                                         | **type name**`str`                                                                                                  |
+  | [`binary_var`](#qiskit.optimization.QuadraticProgram.binary_var "qiskit.optimization.QuadraticProgram.binary_var")(\[name])                                                   | Adds a binary variable to the quadratic program.                                                                    |
+  | [`binary_var_dict`](#qiskit.optimization.QuadraticProgram.binary_var_dict "qiskit.optimization.QuadraticProgram.binary_var_dict")(keys\[, name, key\_format])                 | Uses ‘var\_dict’ to construct a dictionary of binary variables                                                      |
+  | [`binary_var_list`](#qiskit.optimization.QuadraticProgram.binary_var_list "qiskit.optimization.QuadraticProgram.binary_var_list")(keys\[, name, key\_format])                 | Uses ‘var\_list’ to construct a list of binary variables                                                            |
+  | [`clear`](#qiskit.optimization.QuadraticProgram.clear "qiskit.optimization.QuadraticProgram.clear")()                                                                         | Clears the quadratic program, i.e., deletes all variables, constraints, the objective function as well as the name. |
+  | [`continuous_var`](#qiskit.optimization.QuadraticProgram.continuous_var "qiskit.optimization.QuadraticProgram.continuous_var")(\[lowerbound, upperbound, name])               | Adds a continuous variable to the quadratic program.                                                                |
+  | [`continuous_var_dict`](#qiskit.optimization.QuadraticProgram.continuous_var_dict "qiskit.optimization.QuadraticProgram.continuous_var_dict")(keys\[, lowerbound, …])         | Uses ‘var\_dict’ to construct a dictionary of continuous variables                                                  |
+  | [`continuous_var_list`](#qiskit.optimization.QuadraticProgram.continuous_var_list "qiskit.optimization.QuadraticProgram.continuous_var_list")(keys\[, lowerbound, …])         | Uses ‘var\_list’ to construct a list of continuous variables                                                        |
+  | [`export_as_lp_string`](#qiskit.optimization.QuadraticProgram.export_as_lp_string "qiskit.optimization.QuadraticProgram.export_as_lp_string")()                               | Returns the quadratic program as a string of LP format.                                                             |
+  | [`from_docplex`](#qiskit.optimization.QuadraticProgram.from_docplex "qiskit.optimization.QuadraticProgram.from_docplex")(model)                                               | Loads this quadratic program from a docplex model.                                                                  |
+  | [`from_ising`](#qiskit.optimization.QuadraticProgram.from_ising "qiskit.optimization.QuadraticProgram.from_ising")(qubit\_op\[, offset, linear])                              | Create a quadratic program from a qubit operator and a shift value.                                                 |
+  | [`get_feasibility_info`](#qiskit.optimization.QuadraticProgram.get_feasibility_info "qiskit.optimization.QuadraticProgram.get_feasibility_info")(x)                           | Returns whether a solution is feasible or not along with the violations.                                            |
+  | [`get_linear_constraint`](#qiskit.optimization.QuadraticProgram.get_linear_constraint "qiskit.optimization.QuadraticProgram.get_linear_constraint")(i)                        | Returns a linear constraint for a given name or index.                                                              |
+  | [`get_num_binary_vars`](#qiskit.optimization.QuadraticProgram.get_num_binary_vars "qiskit.optimization.QuadraticProgram.get_num_binary_vars")()                               | Returns the total number of binary variables.                                                                       |
+  | [`get_num_continuous_vars`](#qiskit.optimization.QuadraticProgram.get_num_continuous_vars "qiskit.optimization.QuadraticProgram.get_num_continuous_vars")()                   | Returns the total number of continuous variables.                                                                   |
+  | [`get_num_integer_vars`](#qiskit.optimization.QuadraticProgram.get_num_integer_vars "qiskit.optimization.QuadraticProgram.get_num_integer_vars")()                            | Returns the total number of integer variables.                                                                      |
+  | [`get_num_linear_constraints`](#qiskit.optimization.QuadraticProgram.get_num_linear_constraints "qiskit.optimization.QuadraticProgram.get_num_linear_constraints")()          | Returns the number of linear constraints.                                                                           |
+  | [`get_num_quadratic_constraints`](#qiskit.optimization.QuadraticProgram.get_num_quadratic_constraints "qiskit.optimization.QuadraticProgram.get_num_quadratic_constraints")() | Returns the number of quadratic constraints.                                                                        |
+  | [`get_num_vars`](#qiskit.optimization.QuadraticProgram.get_num_vars "qiskit.optimization.QuadraticProgram.get_num_vars")(\[vartype])                                          | Returns the total number of variables or the number of variables of the specified type.                             |
+  | [`get_quadratic_constraint`](#qiskit.optimization.QuadraticProgram.get_quadratic_constraint "qiskit.optimization.QuadraticProgram.get_quadratic_constraint")(i)               | Returns a quadratic constraint for a given name or index.                                                           |
+  | [`get_variable`](#qiskit.optimization.QuadraticProgram.get_variable "qiskit.optimization.QuadraticProgram.get_variable")(i)                                                   | Returns a variable for a given name or index.                                                                       |
+  | [`integer_var`](#qiskit.optimization.QuadraticProgram.integer_var "qiskit.optimization.QuadraticProgram.integer_var")(\[lowerbound, upperbound, name])                        | Adds an integer variable to the quadratic program.                                                                  |
+  | [`integer_var_dict`](#qiskit.optimization.QuadraticProgram.integer_var_dict "qiskit.optimization.QuadraticProgram.integer_var_dict")(keys\[, lowerbound, …])                  | Uses ‘var\_dict’ to construct a dictionary of integer variables                                                     |
+  | [`integer_var_list`](#qiskit.optimization.QuadraticProgram.integer_var_list "qiskit.optimization.QuadraticProgram.integer_var_list")(keys\[, lowerbound, …])                  | Uses ‘var\_list’ to construct a dictionary of integer variables                                                     |
+  | [`is_feasible`](#qiskit.optimization.QuadraticProgram.is_feasible "qiskit.optimization.QuadraticProgram.is_feasible")(x)                                                      | Returns whether a solution is feasible or not.                                                                      |
+  | [`linear_constraint`](#qiskit.optimization.QuadraticProgram.linear_constraint "qiskit.optimization.QuadraticProgram.linear_constraint")(\[linear, sense, rhs, name])          | Adds a linear equality constraint to the quadratic program of the form:                                             |
+  | [`maximize`](#qiskit.optimization.QuadraticProgram.maximize "qiskit.optimization.QuadraticProgram.maximize")(\[constant, linear, quadratic])                                  | Sets a quadratic objective to be maximized.                                                                         |
+  | [`minimize`](#qiskit.optimization.QuadraticProgram.minimize "qiskit.optimization.QuadraticProgram.minimize")(\[constant, linear, quadratic])                                  | Sets a quadratic objective to be minimized.                                                                         |
+  | [`pprint_as_string`](#qiskit.optimization.QuadraticProgram.pprint_as_string "qiskit.optimization.QuadraticProgram.pprint_as_string")()                                        | DEPRECATED Returns the quadratic program as a string in Docplex’s pretty print format.                              |
+  | [`prettyprint`](#qiskit.optimization.QuadraticProgram.prettyprint "qiskit.optimization.QuadraticProgram.prettyprint")(\[out])                                                 | DEPRECATED Pretty prints the quadratic program to a given output stream (None = default).                           |
+  | [`quadratic_constraint`](#qiskit.optimization.QuadraticProgram.quadratic_constraint "qiskit.optimization.QuadraticProgram.quadratic_constraint")(\[linear, quadratic, …])     | Adds a quadratic equality constraint to the quadratic program of the form:                                          |
+  | [`read_from_lp_file`](#qiskit.optimization.QuadraticProgram.read_from_lp_file "qiskit.optimization.QuadraticProgram.read_from_lp_file")(filename)                             | Loads the quadratic program from a LP file.                                                                         |
+  | [`remove_linear_constraint`](#qiskit.optimization.QuadraticProgram.remove_linear_constraint "qiskit.optimization.QuadraticProgram.remove_linear_constraint")(i)               | Remove a linear constraint                                                                                          |
+  | [`remove_quadratic_constraint`](#qiskit.optimization.QuadraticProgram.remove_quadratic_constraint "qiskit.optimization.QuadraticProgram.remove_quadratic_constraint")(i)      | Remove a quadratic constraint                                                                                       |
+  | [`substitute_variables`](#qiskit.optimization.QuadraticProgram.substitute_variables "qiskit.optimization.QuadraticProgram.substitute_variables")(\[constants, variables])     | Substitutes variables with constants or other variables.                                                            |
+  | [`to_docplex`](#qiskit.optimization.QuadraticProgram.to_docplex "qiskit.optimization.QuadraticProgram.to_docplex")()                                                          | Returns a docplex model corresponding to this quadratic program.                                                    |
+  | [`to_ising`](#qiskit.optimization.QuadraticProgram.to_ising "qiskit.optimization.QuadraticProgram.to_ising")()                                                                | Return the Ising Hamiltonian of this problem.                                                                       |
+  | [`write_to_lp_file`](#qiskit.optimization.QuadraticProgram.write_to_lp_file "qiskit.optimization.QuadraticProgram.write_to_lp_file")(filename)                                | Writes the quadratic program to an LP file.                                                                         |
 
-`QuadraticProgram(name='')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+  ## Attributes
 
-Quadratically Constrained Quadratic Program representation.
+  |                                                                                                                                                                       |                                                                                   |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+  | [`linear_constraints`](#qiskit.optimization.QuadraticProgram.linear_constraints "qiskit.optimization.QuadraticProgram.linear_constraints")                            | Returns the list of linear constraints of the quadratic program.                  |
+  | [`linear_constraints_index`](#qiskit.optimization.QuadraticProgram.linear_constraints_index "qiskit.optimization.QuadraticProgram.linear_constraints_index")          | Returns the dictionary that maps the name of a linear constraint to its index.    |
+  | [`name`](#qiskit.optimization.QuadraticProgram.name "qiskit.optimization.QuadraticProgram.name")                                                                      | Returns the name of the quadratic program.                                        |
+  | [`objective`](#qiskit.optimization.QuadraticProgram.objective "qiskit.optimization.QuadraticProgram.objective")                                                       | Returns the quadratic objective.                                                  |
+  | [`quadratic_constraints`](#qiskit.optimization.QuadraticProgram.quadratic_constraints "qiskit.optimization.QuadraticProgram.quadratic_constraints")                   | Returns the list of quadratic constraints of the quadratic program.               |
+  | [`quadratic_constraints_index`](#qiskit.optimization.QuadraticProgram.quadratic_constraints_index "qiskit.optimization.QuadraticProgram.quadratic_constraints_index") | Returns the dictionary that maps the name of a quadratic constraint to its index. |
+  | [`status`](#qiskit.optimization.QuadraticProgram.status "qiskit.optimization.QuadraticProgram.status")                                                                | Status of the quadratic program.                                                  |
+  | [`variables`](#qiskit.optimization.QuadraticProgram.variables "qiskit.optimization.QuadraticProgram.variables")                                                       | Returns the list of variables of the quadratic program.                           |
+  | [`variables_index`](#qiskit.optimization.QuadraticProgram.variables_index "qiskit.optimization.QuadraticProgram.variables_index")                                     | Returns the dictionary that maps the name of a variable to its index.             |
 
-This representation supports inequality and equality constraints, as well as continuous, binary, and integer variables.
+  ### Status
 
-**Parameters**
+  <Attribute id="qiskit.optimization.QuadraticProgram.Status" name="Status">
+    alias of `QuadraticProgramStatus`
+  </Attribute>
 
-**name** (`str`) – The name of the quadratic program.
+  ### binary\_var
 
-### \_\_init\_\_
+  <Function id="qiskit.optimization.QuadraticProgram.binary_var" name="binary_var" signature="binary_var(name=None)">
+    Adds a binary variable to the quadratic program.
 
-<span id="qiskit.optimization.QuadraticProgram.__init__" />
+    **Parameters**
 
-`__init__(name='')`
+    **name** (`Optional`\[`str`]) – The name of the variable.
 
-**Parameters**
+    **Return type**
 
-**name** (`str`) – The name of the quadratic program.
+    `Variable`
 
-## Methods
+    **Returns**
 
-|                                                                                                                                                                               |                                                                                                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.optimization.QuadraticProgram.__init__ "qiskit.optimization.QuadraticProgram.__init__")(\[name])                                                         | **type name**`str`                                                                                                  |
-| [`binary_var`](#qiskit.optimization.QuadraticProgram.binary_var "qiskit.optimization.QuadraticProgram.binary_var")(\[name])                                                   | Adds a binary variable to the quadratic program.                                                                    |
-| [`binary_var_dict`](#qiskit.optimization.QuadraticProgram.binary_var_dict "qiskit.optimization.QuadraticProgram.binary_var_dict")(keys\[, name, key\_format])                 | Uses ‘var\_dict’ to construct a dictionary of binary variables                                                      |
-| [`binary_var_list`](#qiskit.optimization.QuadraticProgram.binary_var_list "qiskit.optimization.QuadraticProgram.binary_var_list")(keys\[, name, key\_format])                 | Uses ‘var\_list’ to construct a list of binary variables                                                            |
-| [`clear`](#qiskit.optimization.QuadraticProgram.clear "qiskit.optimization.QuadraticProgram.clear")()                                                                         | Clears the quadratic program, i.e., deletes all variables, constraints, the objective function as well as the name. |
-| [`continuous_var`](#qiskit.optimization.QuadraticProgram.continuous_var "qiskit.optimization.QuadraticProgram.continuous_var")(\[lowerbound, upperbound, name])               | Adds a continuous variable to the quadratic program.                                                                |
-| [`continuous_var_dict`](#qiskit.optimization.QuadraticProgram.continuous_var_dict "qiskit.optimization.QuadraticProgram.continuous_var_dict")(keys\[, lowerbound, …])         | Uses ‘var\_dict’ to construct a dictionary of continuous variables                                                  |
-| [`continuous_var_list`](#qiskit.optimization.QuadraticProgram.continuous_var_list "qiskit.optimization.QuadraticProgram.continuous_var_list")(keys\[, lowerbound, …])         | Uses ‘var\_list’ to construct a list of continuous variables                                                        |
-| [`export_as_lp_string`](#qiskit.optimization.QuadraticProgram.export_as_lp_string "qiskit.optimization.QuadraticProgram.export_as_lp_string")()                               | Returns the quadratic program as a string of LP format.                                                             |
-| [`from_docplex`](#qiskit.optimization.QuadraticProgram.from_docplex "qiskit.optimization.QuadraticProgram.from_docplex")(model)                                               | Loads this quadratic program from a docplex model.                                                                  |
-| [`from_ising`](#qiskit.optimization.QuadraticProgram.from_ising "qiskit.optimization.QuadraticProgram.from_ising")(qubit\_op\[, offset, linear])                              | Create a quadratic program from a qubit operator and a shift value.                                                 |
-| [`get_feasibility_info`](#qiskit.optimization.QuadraticProgram.get_feasibility_info "qiskit.optimization.QuadraticProgram.get_feasibility_info")(x)                           | Returns whether a solution is feasible or not along with the violations.                                            |
-| [`get_linear_constraint`](#qiskit.optimization.QuadraticProgram.get_linear_constraint "qiskit.optimization.QuadraticProgram.get_linear_constraint")(i)                        | Returns a linear constraint for a given name or index.                                                              |
-| [`get_num_binary_vars`](#qiskit.optimization.QuadraticProgram.get_num_binary_vars "qiskit.optimization.QuadraticProgram.get_num_binary_vars")()                               | Returns the total number of binary variables.                                                                       |
-| [`get_num_continuous_vars`](#qiskit.optimization.QuadraticProgram.get_num_continuous_vars "qiskit.optimization.QuadraticProgram.get_num_continuous_vars")()                   | Returns the total number of continuous variables.                                                                   |
-| [`get_num_integer_vars`](#qiskit.optimization.QuadraticProgram.get_num_integer_vars "qiskit.optimization.QuadraticProgram.get_num_integer_vars")()                            | Returns the total number of integer variables.                                                                      |
-| [`get_num_linear_constraints`](#qiskit.optimization.QuadraticProgram.get_num_linear_constraints "qiskit.optimization.QuadraticProgram.get_num_linear_constraints")()          | Returns the number of linear constraints.                                                                           |
-| [`get_num_quadratic_constraints`](#qiskit.optimization.QuadraticProgram.get_num_quadratic_constraints "qiskit.optimization.QuadraticProgram.get_num_quadratic_constraints")() | Returns the number of quadratic constraints.                                                                        |
-| [`get_num_vars`](#qiskit.optimization.QuadraticProgram.get_num_vars "qiskit.optimization.QuadraticProgram.get_num_vars")(\[vartype])                                          | Returns the total number of variables or the number of variables of the specified type.                             |
-| [`get_quadratic_constraint`](#qiskit.optimization.QuadraticProgram.get_quadratic_constraint "qiskit.optimization.QuadraticProgram.get_quadratic_constraint")(i)               | Returns a quadratic constraint for a given name or index.                                                           |
-| [`get_variable`](#qiskit.optimization.QuadraticProgram.get_variable "qiskit.optimization.QuadraticProgram.get_variable")(i)                                                   | Returns a variable for a given name or index.                                                                       |
-| [`integer_var`](#qiskit.optimization.QuadraticProgram.integer_var "qiskit.optimization.QuadraticProgram.integer_var")(\[lowerbound, upperbound, name])                        | Adds an integer variable to the quadratic program.                                                                  |
-| [`integer_var_dict`](#qiskit.optimization.QuadraticProgram.integer_var_dict "qiskit.optimization.QuadraticProgram.integer_var_dict")(keys\[, lowerbound, …])                  | Uses ‘var\_dict’ to construct a dictionary of integer variables                                                     |
-| [`integer_var_list`](#qiskit.optimization.QuadraticProgram.integer_var_list "qiskit.optimization.QuadraticProgram.integer_var_list")(keys\[, lowerbound, …])                  | Uses ‘var\_list’ to construct a dictionary of integer variables                                                     |
-| [`is_feasible`](#qiskit.optimization.QuadraticProgram.is_feasible "qiskit.optimization.QuadraticProgram.is_feasible")(x)                                                      | Returns whether a solution is feasible or not.                                                                      |
-| [`linear_constraint`](#qiskit.optimization.QuadraticProgram.linear_constraint "qiskit.optimization.QuadraticProgram.linear_constraint")(\[linear, sense, rhs, name])          | Adds a linear equality constraint to the quadratic program of the form:                                             |
-| [`maximize`](#qiskit.optimization.QuadraticProgram.maximize "qiskit.optimization.QuadraticProgram.maximize")(\[constant, linear, quadratic])                                  | Sets a quadratic objective to be maximized.                                                                         |
-| [`minimize`](#qiskit.optimization.QuadraticProgram.minimize "qiskit.optimization.QuadraticProgram.minimize")(\[constant, linear, quadratic])                                  | Sets a quadratic objective to be minimized.                                                                         |
-| [`pprint_as_string`](#qiskit.optimization.QuadraticProgram.pprint_as_string "qiskit.optimization.QuadraticProgram.pprint_as_string")()                                        | DEPRECATED Returns the quadratic program as a string in Docplex’s pretty print format.                              |
-| [`prettyprint`](#qiskit.optimization.QuadraticProgram.prettyprint "qiskit.optimization.QuadraticProgram.prettyprint")(\[out])                                                 | DEPRECATED Pretty prints the quadratic program to a given output stream (None = default).                           |
-| [`quadratic_constraint`](#qiskit.optimization.QuadraticProgram.quadratic_constraint "qiskit.optimization.QuadraticProgram.quadratic_constraint")(\[linear, quadratic, …])     | Adds a quadratic equality constraint to the quadratic program of the form:                                          |
-| [`read_from_lp_file`](#qiskit.optimization.QuadraticProgram.read_from_lp_file "qiskit.optimization.QuadraticProgram.read_from_lp_file")(filename)                             | Loads the quadratic program from a LP file.                                                                         |
-| [`remove_linear_constraint`](#qiskit.optimization.QuadraticProgram.remove_linear_constraint "qiskit.optimization.QuadraticProgram.remove_linear_constraint")(i)               | Remove a linear constraint                                                                                          |
-| [`remove_quadratic_constraint`](#qiskit.optimization.QuadraticProgram.remove_quadratic_constraint "qiskit.optimization.QuadraticProgram.remove_quadratic_constraint")(i)      | Remove a quadratic constraint                                                                                       |
-| [`substitute_variables`](#qiskit.optimization.QuadraticProgram.substitute_variables "qiskit.optimization.QuadraticProgram.substitute_variables")(\[constants, variables])     | Substitutes variables with constants or other variables.                                                            |
-| [`to_docplex`](#qiskit.optimization.QuadraticProgram.to_docplex "qiskit.optimization.QuadraticProgram.to_docplex")()                                                          | Returns a docplex model corresponding to this quadratic program.                                                    |
-| [`to_ising`](#qiskit.optimization.QuadraticProgram.to_ising "qiskit.optimization.QuadraticProgram.to_ising")()                                                                | Return the Ising Hamiltonian of this problem.                                                                       |
-| [`write_to_lp_file`](#qiskit.optimization.QuadraticProgram.write_to_lp_file "qiskit.optimization.QuadraticProgram.write_to_lp_file")(filename)                                | Writes the quadratic program to an LP file.                                                                         |
+    The added variable.
 
-## Attributes
+    **Raises**
 
-|                                                                                                                                                                       |                                                                                   |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| [`linear_constraints`](#qiskit.optimization.QuadraticProgram.linear_constraints "qiskit.optimization.QuadraticProgram.linear_constraints")                            | Returns the list of linear constraints of the quadratic program.                  |
-| [`linear_constraints_index`](#qiskit.optimization.QuadraticProgram.linear_constraints_index "qiskit.optimization.QuadraticProgram.linear_constraints_index")          | Returns the dictionary that maps the name of a linear constraint to its index.    |
-| [`name`](#qiskit.optimization.QuadraticProgram.name "qiskit.optimization.QuadraticProgram.name")                                                                      | Returns the name of the quadratic program.                                        |
-| [`objective`](#qiskit.optimization.QuadraticProgram.objective "qiskit.optimization.QuadraticProgram.objective")                                                       | Returns the quadratic objective.                                                  |
-| [`quadratic_constraints`](#qiskit.optimization.QuadraticProgram.quadratic_constraints "qiskit.optimization.QuadraticProgram.quadratic_constraints")                   | Returns the list of quadratic constraints of the quadratic program.               |
-| [`quadratic_constraints_index`](#qiskit.optimization.QuadraticProgram.quadratic_constraints_index "qiskit.optimization.QuadraticProgram.quadratic_constraints_index") | Returns the dictionary that maps the name of a quadratic constraint to its index. |
-| [`status`](#qiskit.optimization.QuadraticProgram.status "qiskit.optimization.QuadraticProgram.status")                                                                | Status of the quadratic program.                                                  |
-| [`variables`](#qiskit.optimization.QuadraticProgram.variables "qiskit.optimization.QuadraticProgram.variables")                                                       | Returns the list of variables of the quadratic program.                           |
-| [`variables_index`](#qiskit.optimization.QuadraticProgram.variables_index "qiskit.optimization.QuadraticProgram.variables_index")                                     | Returns the dictionary that maps the name of a variable to its index.             |
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already occupied.
+  </Function>
 
-<span id="qiskit.optimization.QuadraticProgram.Status" />
+  ### binary\_var\_dict
 
-### Status
+  <Function id="qiskit.optimization.QuadraticProgram.binary_var_dict" name="binary_var_dict" signature="binary_var_dict(keys, name=None, key_format='{}')">
+    Uses ‘var\_dict’ to construct a dictionary of binary variables
 
-alias of `QuadraticProgramStatus`
+    **Parameters**
 
-### binary\_var
+    *   **name** (`Optional`\[`str`]) – The name(s) of the variable(s).
+    *   **key\_format** (`str`) – The format used to name/index the variable(s).
+    *   **keys** (`Union`\[`int`, `Sequence`]) – If keys: int, it is interpreted as the number of variables to construct. Otherwise, the elements of the sequence are converted to strings via ‘str’ and substituted into key\_format.
 
-<span id="qiskit.optimization.QuadraticProgram.binary_var" />
+    **Return type**
 
-`binary_var(name=None)`
+    `Dict`\[`str`, `Variable`]
 
-Adds a binary variable to the quadratic program.
+    **Returns**
 
-**Parameters**
+    A dictionary mapping the variable names to variable instances.
 
-**name** (`Optional`\[`str`]) – The name of the variable.
+    **Raises**
 
-**Return type**
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+  </Function>
 
-`Variable`
+  ### binary\_var\_list
 
-**Returns**
+  <Function id="qiskit.optimization.QuadraticProgram.binary_var_list" name="binary_var_list" signature="binary_var_list(keys, name=None, key_format='{}')">
+    Uses ‘var\_list’ to construct a list of binary variables
 
-The added variable.
+    **Parameters**
 
-**Raises**
+    *   **name** (`Optional`\[`str`]) – The name(s) of the variable(s).
+    *   **key\_format** (`str`) – The format used to name/index the variable(s).
+    *   **keys** (`Union`\[`int`, `Sequence`]) – If keys: int, it is interpreted as the number of variables to construct. Otherwise, the elements of the sequence are converted to strings via ‘str’ and substituted into key\_format.
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already occupied.
+    **Return type**
 
-### binary\_var\_dict
+    `List`\[`Variable`]
 
-<span id="qiskit.optimization.QuadraticProgram.binary_var_dict" />
+    **Returns**
 
-`binary_var_dict(keys, name=None, key_format='{}')`
+    A list of variable instances.
 
-Uses ‘var\_dict’ to construct a dictionary of binary variables
+    **Raises**
 
-**Parameters**
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+  </Function>
 
-*   **name** (`Optional`\[`str`]) – The name(s) of the variable(s).
-*   **key\_format** (`str`) – The format used to name/index the variable(s).
-*   **keys** (`Union`\[`int`, `Sequence`]) – If keys: int, it is interpreted as the number of variables to construct. Otherwise, the elements of the sequence are converted to strings via ‘str’ and substituted into key\_format.
+  ### clear
 
-**Return type**
+  <Function id="qiskit.optimization.QuadraticProgram.clear" name="clear" signature="clear()">
+    Clears the quadratic program, i.e., deletes all variables, constraints, the objective function as well as the name.
 
-`Dict`\[`str`, `Variable`]
+    **Return type**
 
-**Returns**
+    `None`
+  </Function>
 
-A dictionary mapping the variable names to variable instances.
+  ### continuous\_var
 
-**Raises**
+  <Function id="qiskit.optimization.QuadraticProgram.continuous_var" name="continuous_var" signature="continuous_var(lowerbound=0, upperbound=1e+20, name=None)">
+    Adds a continuous variable to the quadratic program.
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+    **Parameters**
 
-### binary\_var\_list
+    *   **lowerbound** (`Union`\[`float`, `int`]) – The lowerbound of the variable.
+    *   **upperbound** (`Union`\[`float`, `int`]) – The upperbound of the variable.
+    *   **name** (`Optional`\[`str`]) – The name of the variable.
 
-<span id="qiskit.optimization.QuadraticProgram.binary_var_list" />
+    **Return type**
 
-`binary_var_list(keys, name=None, key_format='{}')`
+    `Variable`
 
-Uses ‘var\_list’ to construct a list of binary variables
+    **Returns**
 
-**Parameters**
+    The added variable.
 
-*   **name** (`Optional`\[`str`]) – The name(s) of the variable(s).
-*   **key\_format** (`str`) – The format used to name/index the variable(s).
-*   **keys** (`Union`\[`int`, `Sequence`]) – If keys: int, it is interpreted as the number of variables to construct. Otherwise, the elements of the sequence are converted to strings via ‘str’ and substituted into key\_format.
+    **Raises**
 
-**Return type**
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already occupied.
+  </Function>
 
-`List`\[`Variable`]
+  ### continuous\_var\_dict
 
-**Returns**
+  <Function id="qiskit.optimization.QuadraticProgram.continuous_var_dict" name="continuous_var_dict" signature="continuous_var_dict(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')">
+    Uses ‘var\_dict’ to construct a dictionary of continuous variables
 
-A list of variable instances.
+    **Parameters**
 
-**Raises**
+    *   **lowerbound** (`Union`\[`float`, `int`]) – The lower bound of the variable(s).
+    *   **upperbound** (`Union`\[`float`, `int`]) – The upper bound of the variable(s).
+    *   **name** (`Optional`\[`str`]) – The name(s) of the variable(s).
+    *   **key\_format** (`str`) – The format used to name/index the variable(s).
+    *   **keys** (`Union`\[`int`, `Sequence`]) – If keys: int, it is interpreted as the number of variables to construct. Otherwise, the elements of the sequence are converted to strings via ‘str’ and substituted into key\_format.
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+    **Return type**
 
-### clear
+    `Dict`\[`str`, `Variable`]
 
-<span id="qiskit.optimization.QuadraticProgram.clear" />
+    **Returns**
 
-`clear()`
+    A dictionary mapping the variable names to variable instances.
 
-Clears the quadratic program, i.e., deletes all variables, constraints, the objective function as well as the name.
+    **Raises**
 
-**Return type**
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+  </Function>
 
-`None`
+  ### continuous\_var\_list
 
-### continuous\_var
+  <Function id="qiskit.optimization.QuadraticProgram.continuous_var_list" name="continuous_var_list" signature="continuous_var_list(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')">
+    Uses ‘var\_list’ to construct a list of continuous variables
 
-<span id="qiskit.optimization.QuadraticProgram.continuous_var" />
+    **Parameters**
 
-`continuous_var(lowerbound=0, upperbound=1e+20, name=None)`
+    *   **lowerbound** (`Union`\[`float`, `int`]) – The lower bound of the variable(s).
+    *   **upperbound** (`Union`\[`float`, `int`]) – The upper bound of the variable(s).
+    *   **name** (`Optional`\[`str`]) – The name(s) of the variable(s).
+    *   **key\_format** (`str`) – The format used to name/index the variable(s).
+    *   **keys** (`Union`\[`int`, `Sequence`]) – If keys: int, it is interpreted as the number of variables to construct. Otherwise, the elements of the sequence are converted to strings via ‘str’ and substituted into key\_format.
 
-Adds a continuous variable to the quadratic program.
+    **Return type**
 
-**Parameters**
+    `List`\[`Variable`]
 
-*   **lowerbound** (`Union`\[`float`, `int`]) – The lowerbound of the variable.
-*   **upperbound** (`Union`\[`float`, `int`]) – The upperbound of the variable.
-*   **name** (`Optional`\[`str`]) – The name of the variable.
+    **Returns**
 
-**Return type**
+    A list of variable instances.
 
-`Variable`
+    **Raises**
 
-**Returns**
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+  </Function>
 
-The added variable.
+  ### export\_as\_lp\_string
 
-**Raises**
+  <Function id="qiskit.optimization.QuadraticProgram.export_as_lp_string" name="export_as_lp_string" signature="export_as_lp_string()">
+    Returns the quadratic program as a string of LP format.
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already occupied.
+    **Return type**
 
-### continuous\_var\_dict
+    `str`
 
-<span id="qiskit.optimization.QuadraticProgram.continuous_var_dict" />
+    **Returns**
 
-`continuous_var_dict(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`
+    A string representing the quadratic program.
+  </Function>
 
-Uses ‘var\_dict’ to construct a dictionary of continuous variables
+  ### from\_docplex
 
-**Parameters**
+  <Function id="qiskit.optimization.QuadraticProgram.from_docplex" name="from_docplex" signature="from_docplex(model)">
+    Loads this quadratic program from a docplex model.
 
-*   **lowerbound** (`Union`\[`float`, `int`]) – The lower bound of the variable(s).
-*   **upperbound** (`Union`\[`float`, `int`]) – The upper bound of the variable(s).
-*   **name** (`Optional`\[`str`]) – The name(s) of the variable(s).
-*   **key\_format** (`str`) – The format used to name/index the variable(s).
-*   **keys** (`Union`\[`int`, `Sequence`]) – If keys: int, it is interpreted as the number of variables to construct. Otherwise, the elements of the sequence are converted to strings via ‘str’ and substituted into key\_format.
+    Note that this supports only basic functions of docplex as follows: - quadratic objective function - linear / quadratic constraints - binary / integer / continuous variables
 
-**Return type**
+    **Parameters**
 
-`Dict`\[`str`, `Variable`]
+    **model** (`Model`) – The docplex model to be loaded.
 
-**Returns**
+    **Raises**
 
-A dictionary mapping the variable names to variable instances.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the model contains unsupported elements.
 
-**Raises**
+    **Return type**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+    `None`
+  </Function>
 
-### continuous\_var\_list
+  ### from\_ising
 
-<span id="qiskit.optimization.QuadraticProgram.continuous_var_list" />
+  <Function id="qiskit.optimization.QuadraticProgram.from_ising" name="from_ising" signature="from_ising(qubit_op, offset=0.0, linear=False)">
+    Create a quadratic program from a qubit operator and a shift value.
 
-`continuous_var_list(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`
+    **Parameters**
 
-Uses ‘var\_list’ to construct a list of continuous variables
+    *   **qubit\_op** (`Union`\[`OperatorBase`, `WeightedPauliOperator`]) – The qubit operator of the problem.
+    *   **offset** (`float`) – The constant value in the Ising Hamiltonian.
+    *   **linear** (`bool`) – If linear is True, $x^2$ is treated as a linear term since $x^2 = x$ for $x \in \{0,1\}$. Else, $x^2$ is treat as a quadratic term. The default value is False.
 
-**Parameters**
+    **Raises**
 
-*   **lowerbound** (`Union`\[`float`, `int`]) – The lower bound of the variable(s).
-*   **upperbound** (`Union`\[`float`, `int`]) – The upper bound of the variable(s).
-*   **name** (`Optional`\[`str`]) – The name(s) of the variable(s).
-*   **key\_format** (`str`) – The format used to name/index the variable(s).
-*   **keys** (`Union`\[`int`, `Sequence`]) – If keys: int, it is interpreted as the number of variables to construct. Otherwise, the elements of the sequence are converted to strings via ‘str’ and substituted into key\_format.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If there are Pauli Xs in any Pauli term
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If there are more than 2 Pauli Zs in any Pauli term
+    *   **NotImplementedError** – If the input operator is a ListOp
 
-**Return type**
+    **Return type**
 
-`List`\[`Variable`]
+    `None`
+  </Function>
 
-**Returns**
+  ### get\_feasibility\_info
 
-A list of variable instances.
+  <Function id="qiskit.optimization.QuadraticProgram.get_feasibility_info" name="get_feasibility_info" signature="get_feasibility_info(x)">
+    Returns whether a solution is feasible or not along with the violations. :type x: `Union`\[`List`\[`float`], `ndarray`] :param x: a solution value, such as returned in an optimizer result.
 
-**Raises**
+    **Returns**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+    Whether the solution provided is feasible or not. List\[Variable]: List of variables which are violated. List\[Constraint]: List of constraints which are violated.
 
-### export\_as\_lp\_string
+    **Return type**
 
-<span id="qiskit.optimization.QuadraticProgram.export_as_lp_string" />
+    feasible
 
-`export_as_lp_string()`
+    **Raises**
 
-Returns the quadratic program as a string of LP format.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the input x is not same len as total vars
+  </Function>
 
-**Return type**
+  ### get\_linear\_constraint
 
-`str`
+  <Function id="qiskit.optimization.QuadraticProgram.get_linear_constraint" name="get_linear_constraint" signature="get_linear_constraint(i)">
+    Returns a linear constraint for a given name or index.
 
-**Returns**
+    **Parameters**
 
-A string representing the quadratic program.
+    **i** (`Union`\[`int`, `str`]) – the index or name of the constraint.
 
-### from\_docplex
+    **Return type**
 
-<span id="qiskit.optimization.QuadraticProgram.from_docplex" />
+    `LinearConstraint`
 
-`from_docplex(model)`
+    **Returns**
 
-Loads this quadratic program from a docplex model.
+    The corresponding constraint.
 
-Note that this supports only basic functions of docplex as follows: - quadratic objective function - linear / quadratic constraints - binary / integer / continuous variables
+    **Raises**
 
-**Parameters**
+    *   **IndexError** – if the index is out of the list size
+    *   **KeyError** – if the name does not exist
+  </Function>
 
-**model** (`Model`) – The docplex model to be loaded.
+  ### get\_num\_binary\_vars
 
-**Raises**
+  <Function id="qiskit.optimization.QuadraticProgram.get_num_binary_vars" name="get_num_binary_vars" signature="get_num_binary_vars()">
+    Returns the total number of binary variables.
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the model contains unsupported elements.
+    **Return type**
 
-**Return type**
+    `int`
 
-`None`
+    **Returns**
 
-### from\_ising
+    The total number of binary variables.
+  </Function>
 
-<span id="qiskit.optimization.QuadraticProgram.from_ising" />
+  ### get\_num\_continuous\_vars
 
-`from_ising(qubit_op, offset=0.0, linear=False)`
+  <Function id="qiskit.optimization.QuadraticProgram.get_num_continuous_vars" name="get_num_continuous_vars" signature="get_num_continuous_vars()">
+    Returns the total number of continuous variables.
 
-Create a quadratic program from a qubit operator and a shift value.
+    **Return type**
 
-**Parameters**
+    `int`
 
-*   **qubit\_op** (`Union`\[`OperatorBase`, `WeightedPauliOperator`]) – The qubit operator of the problem.
-*   **offset** (`float`) – The constant value in the Ising Hamiltonian.
-*   **linear** (`bool`) – If linear is True, $x^2$ is treated as a linear term since $x^2 = x$ for $x \in \{0,1\}$. Else, $x^2$ is treat as a quadratic term. The default value is False.
+    **Returns**
 
-**Raises**
+    The total number of continuous variables.
+  </Function>
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If there are Pauli Xs in any Pauli term
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If there are more than 2 Pauli Zs in any Pauli term
-*   **NotImplementedError** – If the input operator is a ListOp
+  ### get\_num\_integer\_vars
 
-**Return type**
+  <Function id="qiskit.optimization.QuadraticProgram.get_num_integer_vars" name="get_num_integer_vars" signature="get_num_integer_vars()">
+    Returns the total number of integer variables.
 
-`None`
+    **Return type**
 
-### get\_feasibility\_info
+    `int`
 
-<span id="qiskit.optimization.QuadraticProgram.get_feasibility_info" />
+    **Returns**
 
-`get_feasibility_info(x)`
+    The total number of integer variables.
+  </Function>
 
-Returns whether a solution is feasible or not along with the violations. :type x: `Union`\[`List`\[`float`], `ndarray`] :param x: a solution value, such as returned in an optimizer result.
+  ### get\_num\_linear\_constraints
 
-**Returns**
+  <Function id="qiskit.optimization.QuadraticProgram.get_num_linear_constraints" name="get_num_linear_constraints" signature="get_num_linear_constraints()">
+    Returns the number of linear constraints.
 
-Whether the solution provided is feasible or not. List\[Variable]: List of variables which are violated. List\[Constraint]: List of constraints which are violated.
+    **Return type**
 
-**Return type**
+    `int`
 
-feasible
+    **Returns**
 
-**Raises**
+    The number of linear constraints.
+  </Function>
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the input x is not same len as total vars
+  ### get\_num\_quadratic\_constraints
 
-### get\_linear\_constraint
+  <Function id="qiskit.optimization.QuadraticProgram.get_num_quadratic_constraints" name="get_num_quadratic_constraints" signature="get_num_quadratic_constraints()">
+    Returns the number of quadratic constraints.
 
-<span id="qiskit.optimization.QuadraticProgram.get_linear_constraint" />
+    **Return type**
 
-`get_linear_constraint(i)`
+    `int`
 
-Returns a linear constraint for a given name or index.
+    **Returns**
 
-**Parameters**
+    The number of quadratic constraints.
+  </Function>
 
-**i** (`Union`\[`int`, `str`]) – the index or name of the constraint.
+  ### get\_num\_vars
 
-**Return type**
+  <Function id="qiskit.optimization.QuadraticProgram.get_num_vars" name="get_num_vars" signature="get_num_vars(vartype=None)">
+    Returns the total number of variables or the number of variables of the specified type.
 
-`LinearConstraint`
+    **Parameters**
 
-**Returns**
+    **vartype** (`Optional`\[`VarType`]) – The type to be filtered on. All variables are counted if None.
 
-The corresponding constraint.
+    **Return type**
 
-**Raises**
+    `int`
 
-*   **IndexError** – if the index is out of the list size
-*   **KeyError** – if the name does not exist
+    **Returns**
 
-### get\_num\_binary\_vars
+    The total number of variables.
+  </Function>
 
-<span id="qiskit.optimization.QuadraticProgram.get_num_binary_vars" />
+  ### get\_quadratic\_constraint
 
-`get_num_binary_vars()`
+  <Function id="qiskit.optimization.QuadraticProgram.get_quadratic_constraint" name="get_quadratic_constraint" signature="get_quadratic_constraint(i)">
+    Returns a quadratic constraint for a given name or index.
 
-Returns the total number of binary variables.
+    **Parameters**
 
-**Return type**
+    **i** (`Union`\[`int`, `str`]) – the index or name of the constraint.
 
-`int`
+    **Return type**
 
-**Returns**
+    `QuadraticConstraint`
 
-The total number of binary variables.
+    **Returns**
 
-### get\_num\_continuous\_vars
+    The corresponding constraint.
 
-<span id="qiskit.optimization.QuadraticProgram.get_num_continuous_vars" />
+    **Raises**
 
-`get_num_continuous_vars()`
+    *   **IndexError** – if the index is out of the list size
+    *   **KeyError** – if the name does not exist
+  </Function>
 
-Returns the total number of continuous variables.
+  ### get\_variable
 
-**Return type**
+  <Function id="qiskit.optimization.QuadraticProgram.get_variable" name="get_variable" signature="get_variable(i)">
+    Returns a variable for a given name or index.
 
-`int`
+    **Parameters**
 
-**Returns**
+    **i** (`Union`\[`int`, `str`]) – the index or name of the variable.
 
-The total number of continuous variables.
+    **Return type**
 
-### get\_num\_integer\_vars
+    `Variable`
 
-<span id="qiskit.optimization.QuadraticProgram.get_num_integer_vars" />
+    **Returns**
 
-`get_num_integer_vars()`
+    The corresponding variable.
+  </Function>
 
-Returns the total number of integer variables.
+  ### integer\_var
 
-**Return type**
+  <Function id="qiskit.optimization.QuadraticProgram.integer_var" name="integer_var" signature="integer_var(lowerbound=0, upperbound=1e+20, name=None)">
+    Adds an integer variable to the quadratic program.
 
-`int`
+    **Parameters**
 
-**Returns**
+    *   **lowerbound** (`Union`\[`float`, `int`]) – The lowerbound of the variable.
+    *   **upperbound** (`Union`\[`float`, `int`]) – The upperbound of the variable.
+    *   **name** (`Optional`\[`str`]) – The name of the variable.
 
-The total number of integer variables.
+    **Return type**
 
-### get\_num\_linear\_constraints
+    `Variable`
 
-<span id="qiskit.optimization.QuadraticProgram.get_num_linear_constraints" />
+    **Returns**
 
-`get_num_linear_constraints()`
+    The added variable.
 
-Returns the number of linear constraints.
+    **Raises**
 
-**Return type**
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already occupied.
+  </Function>
 
-`int`
+  ### integer\_var\_dict
 
-**Returns**
+  <Function id="qiskit.optimization.QuadraticProgram.integer_var_dict" name="integer_var_dict" signature="integer_var_dict(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')">
+    Uses ‘var\_dict’ to construct a dictionary of integer variables
 
-The number of linear constraints.
+    **Parameters**
 
-### get\_num\_quadratic\_constraints
+    *   **lowerbound** (`Union`\[`float`, `int`]) – The lower bound of the variable(s).
+    *   **upperbound** (`Union`\[`float`, `int`]) – The upper bound of the variable(s).
+    *   **name** (`Optional`\[`str`]) – The name(s) of the variable(s).
+    *   **key\_format** (`str`) – The format used to name/index the variable(s).
+    *   **keys** (`Union`\[`int`, `Sequence`]) – If keys: int, it is interpreted as the number of variables to construct. Otherwise, the elements of the sequence are converted to strings via ‘str’ and substituted into key\_format.
 
-<span id="qiskit.optimization.QuadraticProgram.get_num_quadratic_constraints" />
+    **Return type**
 
-`get_num_quadratic_constraints()`
+    `Dict`\[`str`, `Variable`]
 
-Returns the number of quadratic constraints.
+    **Returns**
 
-**Return type**
+    A dictionary mapping the variable names to variable instances.
 
-`int`
+    **Raises**
 
-**Returns**
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+  </Function>
 
-The number of quadratic constraints.
+  ### integer\_var\_list
 
-### get\_num\_vars
+  <Function id="qiskit.optimization.QuadraticProgram.integer_var_list" name="integer_var_list" signature="integer_var_list(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')">
+    Uses ‘var\_list’ to construct a dictionary of integer variables
 
-<span id="qiskit.optimization.QuadraticProgram.get_num_vars" />
+    **Parameters**
 
-`get_num_vars(vartype=None)`
+    *   **lowerbound** (`Union`\[`float`, `int`]) – The lower bound of the variable(s).
+    *   **upperbound** (`Union`\[`float`, `int`]) – The upper bound of the variable(s).
+    *   **name** (`Optional`\[`str`]) – The name(s) of the variable(s).
+    *   **key\_format** (`str`) – The format used to name/index the variable(s).
+    *   **keys** (`Union`\[`int`, `Sequence`]) – If keys: int, it is interpreted as the number of variables to construct. Otherwise, the elements of the sequence are converted to strings via ‘str’ and substituted into key\_format.
 
-Returns the total number of variables or the number of variables of the specified type.
+    **Return type**
 
-**Parameters**
+    `List`\[`Variable`]
 
-**vartype** (`Optional`\[`VarType`]) – The type to be filtered on. All variables are counted if None.
+    **Returns**
 
-**Return type**
+    A list of variable instances.
 
-`int`
+    **Raises**
 
-**Returns**
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+  </Function>
 
-The total number of variables.
+  ### is\_feasible
 
-### get\_quadratic\_constraint
+  <Function id="qiskit.optimization.QuadraticProgram.is_feasible" name="is_feasible" signature="is_feasible(x)">
+    Returns whether a solution is feasible or not.
 
-<span id="qiskit.optimization.QuadraticProgram.get_quadratic_constraint" />
+    **Parameters**
 
-`get_quadratic_constraint(i)`
+    **x** (`Union`\[`List`\[`float`], `ndarray`]) – a solution value, such as returned in an optimizer result.
 
-Returns a quadratic constraint for a given name or index.
+    **Return type**
 
-**Parameters**
+    `bool`
 
-**i** (`Union`\[`int`, `str`]) – the index or name of the constraint.
+    **Returns**
 
-**Return type**
+    `True` if the solution provided is feasible otherwise `False`.
+  </Function>
 
-`QuadraticConstraint`
+  ### linear\_constraint
 
-**Returns**
+  <Function id="qiskit.optimization.QuadraticProgram.linear_constraint" name="linear_constraint" signature="linear_constraint(linear=None, sense='<=', rhs=0.0, name=None)">
+    **Adds a linear equality constraint to the quadratic program of the form:**
 
-The corresponding constraint.
+    linear \* x sense rhs.
 
-**Raises**
+    **Parameters**
 
-*   **IndexError** – if the index is out of the list size
-*   **KeyError** – if the name does not exist
+    *   **linear** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`], `None`]) – The linear coefficients of the left-hand-side of the constraint.
+    *   **sense** (`Union`\[`str`, `ConstraintSense`]) – The sense of the constraint, - ‘==’, ‘=’, ‘E’, and ‘EQ’ denote ‘equal to’. - ‘>=’, ‘>’, ‘G’, and ‘GE’ denote ‘greater-than-or-equal-to’. - ‘\<=’, ‘\<’, ‘L’, and ‘LE’ denote ‘less-than-or-equal-to’.
+    *   **rhs** (`float`) – The right hand side of the constraint.
+    *   **name** (`Optional`\[`str`]) – The name of the constraint.
 
-### get\_variable
+    **Return type**
 
-<span id="qiskit.optimization.QuadraticProgram.get_variable" />
+    `LinearConstraint`
 
-`get_variable(i)`
+    **Returns**
 
-Returns a variable for a given name or index.
+    The added constraint.
 
-**Parameters**
+    **Raises**
 
-**i** (`Union`\[`int`, `str`]) – the index or name of the variable.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the constraint name already exists or the sense is not valid.
+  </Function>
 
-**Return type**
+  ### linear\_constraints
 
-`Variable`
+  <Function id="qiskit.optimization.QuadraticProgram.linear_constraints" name="linear_constraints" signature="property linear_constraints">
+    Returns the list of linear constraints of the quadratic program.
 
-**Returns**
+    **Return type**
 
-The corresponding variable.
+    `List`\[`LinearConstraint`]
 
-### integer\_var
+    **Returns**
 
-<span id="qiskit.optimization.QuadraticProgram.integer_var" />
+    List of linear constraints.
+  </Function>
 
-`integer_var(lowerbound=0, upperbound=1e+20, name=None)`
+  ### linear\_constraints\_index
 
-Adds an integer variable to the quadratic program.
+  <Function id="qiskit.optimization.QuadraticProgram.linear_constraints_index" name="linear_constraints_index" signature="property linear_constraints_index">
+    Returns the dictionary that maps the name of a linear constraint to its index.
 
-**Parameters**
+    **Return type**
 
-*   **lowerbound** (`Union`\[`float`, `int`]) – The lowerbound of the variable.
-*   **upperbound** (`Union`\[`float`, `int`]) – The upperbound of the variable.
-*   **name** (`Optional`\[`str`]) – The name of the variable.
+    `Dict`\[`str`, `int`]
 
-**Return type**
+    **Returns**
 
-`Variable`
+    The linear constraint index dictionary.
+  </Function>
 
-**Returns**
+  ### maximize
 
-The added variable.
+  <Function id="qiskit.optimization.QuadraticProgram.maximize" name="maximize" signature="maximize(constant=0.0, linear=None, quadratic=None)">
+    Sets a quadratic objective to be maximized.
 
-**Raises**
+    **Parameters**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already occupied.
+    *   **constant** (`float`) – the constant offset of the objective.
+    *   **linear** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`], `None`]) – the coefficients of the linear part of the objective.
+    *   **quadratic** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`], `None`]) – the coefficients of the quadratic part of the objective.
 
-### integer\_var\_dict
+    **Return type**
 
-<span id="qiskit.optimization.QuadraticProgram.integer_var_dict" />
+    `None`
 
-`integer_var_dict(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`
+    **Returns**
 
-Uses ‘var\_dict’ to construct a dictionary of integer variables
+    The created quadratic objective.
+  </Function>
 
-**Parameters**
+  ### minimize
 
-*   **lowerbound** (`Union`\[`float`, `int`]) – The lower bound of the variable(s).
-*   **upperbound** (`Union`\[`float`, `int`]) – The upper bound of the variable(s).
-*   **name** (`Optional`\[`str`]) – The name(s) of the variable(s).
-*   **key\_format** (`str`) – The format used to name/index the variable(s).
-*   **keys** (`Union`\[`int`, `Sequence`]) – If keys: int, it is interpreted as the number of variables to construct. Otherwise, the elements of the sequence are converted to strings via ‘str’ and substituted into key\_format.
+  <Function id="qiskit.optimization.QuadraticProgram.minimize" name="minimize" signature="minimize(constant=0.0, linear=None, quadratic=None)">
+    Sets a quadratic objective to be minimized.
 
-**Return type**
+    **Parameters**
 
-`Dict`\[`str`, `Variable`]
+    *   **constant** (`float`) – the constant offset of the objective.
+    *   **linear** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`], `None`]) – the coefficients of the linear part of the objective.
+    *   **quadratic** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`], `None`]) – the coefficients of the quadratic part of the objective.
 
-**Returns**
+    **Return type**
 
-A dictionary mapping the variable names to variable instances.
+    `None`
 
-**Raises**
+    **Returns**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+    The created quadratic objective.
+  </Function>
 
-### integer\_var\_list
+  ### name
 
-<span id="qiskit.optimization.QuadraticProgram.integer_var_list" />
+  <Function id="qiskit.optimization.QuadraticProgram.name" name="name" signature="property name">
+    Returns the name of the quadratic program.
 
-`integer_var_list(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`
+    **Return type**
 
-Uses ‘var\_list’ to construct a dictionary of integer variables
+    `str`
 
-**Parameters**
+    **Returns**
 
-*   **lowerbound** (`Union`\[`float`, `int`]) – The lower bound of the variable(s).
-*   **upperbound** (`Union`\[`float`, `int`]) – The upper bound of the variable(s).
-*   **name** (`Optional`\[`str`]) – The name(s) of the variable(s).
-*   **key\_format** (`str`) – The format used to name/index the variable(s).
-*   **keys** (`Union`\[`int`, `Sequence`]) – If keys: int, it is interpreted as the number of variables to construct. Otherwise, the elements of the sequence are converted to strings via ‘str’ and substituted into key\_format.
+    The name of the quadratic program.
+  </Function>
 
-**Return type**
+  ### objective
 
-`List`\[`Variable`]
+  <Function id="qiskit.optimization.QuadraticProgram.objective" name="objective" signature="property objective">
+    Returns the quadratic objective.
 
-**Returns**
+    **Return type**
 
-A list of variable instances.
+    `QuadraticObjective`
 
-**Raises**
+    **Returns**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+    The quadratic objective.
+  </Function>
 
-### is\_feasible
+  ### pprint\_as\_string
 
-<span id="qiskit.optimization.QuadraticProgram.is_feasible" />
+  <Function id="qiskit.optimization.QuadraticProgram.pprint_as_string" name="pprint_as_string" signature="pprint_as_string()">
+    DEPRECATED Returns the quadratic program as a string in Docplex’s pretty print format. :rtype: `str` :returns: A string representing the quadratic program.
+  </Function>
 
-`is_feasible(x)`
+  ### prettyprint
 
-Returns whether a solution is feasible or not.
+  <Function id="qiskit.optimization.QuadraticProgram.prettyprint" name="prettyprint" signature="prettyprint(out=None)">
+    DEPRECATED Pretty prints the quadratic program to a given output stream (None = default).
 
-**Parameters**
+    **Parameters**
 
-**x** (`Union`\[`List`\[`float`], `ndarray`]) – a solution value, such as returned in an optimizer result.
+    **out** (`Optional`\[`str`]) – The output stream or file name to print to. if you specify a file name, the output file name is has ‘.mod’ as suffix.
 
-**Return type**
+    **Return type**
 
-`bool`
+    `None`
+  </Function>
 
-**Returns**
+  ### quadratic\_constraint
 
-`True` if the solution provided is feasible otherwise `False`.
+  <Function id="qiskit.optimization.QuadraticProgram.quadratic_constraint" name="quadratic_constraint" signature="quadratic_constraint(linear=None, quadratic=None, sense='<=', rhs=0.0, name=None)">
+    **Adds a quadratic equality constraint to the quadratic program of the form:**
 
-### linear\_constraint
+    x \* Q \* x \<= rhs.
 
-<span id="qiskit.optimization.QuadraticProgram.linear_constraint" />
+    **Parameters**
 
-`linear_constraint(linear=None, sense='<=', rhs=0.0, name=None)`
+    *   **linear** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`], `None`]) – The linear coefficients of the constraint.
+    *   **quadratic** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`], `None`]) – The quadratic coefficients of the constraint.
+    *   **sense** (`Union`\[`str`, `ConstraintSense`]) – The sense of the constraint, - ‘==’, ‘=’, ‘E’, and ‘EQ’ denote ‘equal to’. - ‘>=’, ‘>’, ‘G’, and ‘GE’ denote ‘greater-than-or-equal-to’. - ‘\<=’, ‘\<’, ‘L’, and ‘LE’ denote ‘less-than-or-equal-to’.
+    *   **rhs** (`float`) – The right hand side of the constraint.
+    *   **name** (`Optional`\[`str`]) – The name of the constraint.
 
-**Adds a linear equality constraint to the quadratic program of the form:**
+    **Return type**
 
-linear \* x sense rhs.
+    `QuadraticConstraint`
 
-**Parameters**
+    **Returns**
 
-*   **linear** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`], `None`]) – The linear coefficients of the left-hand-side of the constraint.
-*   **sense** (`Union`\[`str`, `ConstraintSense`]) – The sense of the constraint, - ‘==’, ‘=’, ‘E’, and ‘EQ’ denote ‘equal to’. - ‘>=’, ‘>’, ‘G’, and ‘GE’ denote ‘greater-than-or-equal-to’. - ‘\<=’, ‘\<’, ‘L’, and ‘LE’ denote ‘less-than-or-equal-to’.
-*   **rhs** (`float`) – The right hand side of the constraint.
-*   **name** (`Optional`\[`str`]) – The name of the constraint.
+    The added constraint.
 
-**Return type**
+    **Raises**
 
-`LinearConstraint`
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the constraint name already exists.
+  </Function>
 
-**Returns**
+  ### quadratic\_constraints
 
-The added constraint.
+  <Function id="qiskit.optimization.QuadraticProgram.quadratic_constraints" name="quadratic_constraints" signature="property quadratic_constraints">
+    Returns the list of quadratic constraints of the quadratic program.
 
-**Raises**
+    **Return type**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the constraint name already exists or the sense is not valid.
+    `List`\[`QuadraticConstraint`]
 
-### linear\_constraints
+    **Returns**
 
-<span id="qiskit.optimization.QuadraticProgram.linear_constraints" />
+    List of quadratic constraints.
+  </Function>
 
-`property linear_constraints`
+  ### quadratic\_constraints\_index
 
-Returns the list of linear constraints of the quadratic program.
+  <Function id="qiskit.optimization.QuadraticProgram.quadratic_constraints_index" name="quadratic_constraints_index" signature="property quadratic_constraints_index">
+    Returns the dictionary that maps the name of a quadratic constraint to its index.
 
-**Return type**
+    **Return type**
 
-`List`\[`LinearConstraint`]
+    `Dict`\[`str`, `int`]
 
-**Returns**
+    **Returns**
 
-List of linear constraints.
+    The quadratic constraint index dictionary.
+  </Function>
 
-### linear\_constraints\_index
+  ### read\_from\_lp\_file
 
-<span id="qiskit.optimization.QuadraticProgram.linear_constraints_index" />
+  <Function id="qiskit.optimization.QuadraticProgram.read_from_lp_file" name="read_from_lp_file" signature="read_from_lp_file(filename)">
+    Loads the quadratic program from a LP file.
 
-`property linear_constraints_index`
+    **Parameters**
 
-Returns the dictionary that maps the name of a linear constraint to its index.
+    **filename** (`str`) – The filename of the file to be loaded.
 
-**Return type**
+    **Raises**
 
-`Dict`\[`str`, `int`]
+    *   **FileNotFoundError** – If the file does not exist.
+    *   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If CPLEX is not installed.
 
-**Returns**
+    <Admonition title="Note" type="note">
+      This method requires CPLEX to be installed and present in `PYTHONPATH`.
+    </Admonition>
 
-The linear constraint index dictionary.
+    **Return type**
 
-### maximize
+    `None`
+  </Function>
 
-<span id="qiskit.optimization.QuadraticProgram.maximize" />
+  ### remove\_linear\_constraint
 
-`maximize(constant=0.0, linear=None, quadratic=None)`
+  <Function id="qiskit.optimization.QuadraticProgram.remove_linear_constraint" name="remove_linear_constraint" signature="remove_linear_constraint(i)">
+    Remove a linear constraint
 
-Sets a quadratic objective to be maximized.
+    **Parameters**
 
-**Parameters**
+    **i** (`Union`\[`str`, `int`]) – an index or a name of a linear constraint
 
-*   **constant** (`float`) – the constant offset of the objective.
-*   **linear** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`], `None`]) – the coefficients of the linear part of the objective.
-*   **quadratic** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`], `None`]) – the coefficients of the quadratic part of the objective.
+    **Raises**
 
-**Return type**
+    *   **KeyError** – if name does not exist
+    *   **IndexError** – if index is out of range
 
-`None`
+    **Return type**
 
-**Returns**
+    `None`
+  </Function>
 
-The created quadratic objective.
+  ### remove\_quadratic\_constraint
 
-### minimize
+  <Function id="qiskit.optimization.QuadraticProgram.remove_quadratic_constraint" name="remove_quadratic_constraint" signature="remove_quadratic_constraint(i)">
+    Remove a quadratic constraint
 
-<span id="qiskit.optimization.QuadraticProgram.minimize" />
+    **Parameters**
 
-`minimize(constant=0.0, linear=None, quadratic=None)`
+    **i** (`Union`\[`str`, `int`]) – an index or a name of a quadratic constraint
 
-Sets a quadratic objective to be minimized.
+    **Raises**
 
-**Parameters**
+    *   **KeyError** – if name does not exist
+    *   **IndexError** – if index is out of range
 
-*   **constant** (`float`) – the constant offset of the objective.
-*   **linear** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`], `None`]) – the coefficients of the linear part of the objective.
-*   **quadratic** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`], `None`]) – the coefficients of the quadratic part of the objective.
+    **Return type**
 
-**Return type**
+    `None`
+  </Function>
 
-`None`
+  ### status
 
-**Returns**
+  <Function id="qiskit.optimization.QuadraticProgram.status" name="status" signature="property status">
+    Status of the quadratic program. It can be infeasible due to variable substitution.
 
-The created quadratic objective.
+    **Return type**
 
-### name
+    `QuadraticProgramStatus`
 
-<span id="qiskit.optimization.QuadraticProgram.name" />
+    **Returns**
 
-`property name`
+    The status of the quadratic program
+  </Function>
 
-Returns the name of the quadratic program.
+  ### substitute\_variables
 
-**Return type**
+  <Function id="qiskit.optimization.QuadraticProgram.substitute_variables" name="substitute_variables" signature="substitute_variables(constants=None, variables=None)">
+    Substitutes variables with constants or other variables.
 
-`str`
+    **Parameters**
 
-**Returns**
+    *   **constants** (`Optional`\[`Dict`\[`Union`\[`int`, `str`], `float`]]) – replace variable by constant e.g., \{‘x’: 2} means ‘x’ is substituted with 2
+    *   **variables** (`Optional`\[`Dict`\[`Union`\[`str`, `int`], `Tuple`\[`Union`\[`str`, `int`], `float`]]]) – replace variables by weighted other variable need to copy everything using name reference to make sure that indices are matched correctly. The lower and upper bounds are updated accordingly. e.g., \{‘x’: (‘y’, 2)} means ‘x’ is substituted with ‘y’ \* 2
 
-The name of the quadratic program.
+    **Return type**
 
-### objective
+    `QuadraticProgram`
 
-<span id="qiskit.optimization.QuadraticProgram.objective" />
+    **Returns**
 
-`property objective`
+    An optimization problem by substituting variables with constants or other variables. If the substitution is valid, QuadraticProgram.status is still QuadraticProgram.Status.VALIAD. Otherwise, it gets QuadraticProgram.Status.INFEASIBLE.
 
-Returns the quadratic objective.
+    **Raises**
 
-**Return type**
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the substitution is invalid as follows. - Same variable is substituted multiple times. - Coefficient of variable substitution is zero.
+  </Function>
 
-`QuadraticObjective`
+  ### to\_docplex
 
-**Returns**
+  <Function id="qiskit.optimization.QuadraticProgram.to_docplex" name="to_docplex" signature="to_docplex()">
+    Returns a docplex model corresponding to this quadratic program.
 
-The quadratic objective.
+    **Return type**
 
-### pprint\_as\_string
+    `Model`
 
-<span id="qiskit.optimization.QuadraticProgram.pprint_as_string" />
+    **Returns**
 
-`pprint_as_string()`
+    The docplex model corresponding to this quadratic program.
 
-DEPRECATED Returns the quadratic program as a string in Docplex’s pretty print format. :rtype: `str` :returns: A string representing the quadratic program.
+    **Raises**
 
-### prettyprint
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if non-supported elements (should never happen).
+  </Function>
 
-<span id="qiskit.optimization.QuadraticProgram.prettyprint" />
+  ### to\_ising
 
-`prettyprint(out=None)`
+  <Function id="qiskit.optimization.QuadraticProgram.to_ising" name="to_ising" signature="to_ising()">
+    Return the Ising Hamiltonian of this problem.
 
-DEPRECATED Pretty prints the quadratic program to a given output stream (None = default).
+    **Returns**
 
-**Parameters**
+    The qubit operator for the problem offset: The constant value in the Ising Hamiltonian.
 
-**out** (`Optional`\[`str`]) – The output stream or file name to print to. if you specify a file name, the output file name is has ‘.mod’ as suffix.
+    **Return type**
 
-**Return type**
+    qubit\_op
 
-`None`
+    **Raises**
 
-### quadratic\_constraint
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If a variable type is not binary.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If constraints exist in the problem.
+  </Function>
 
-<span id="qiskit.optimization.QuadraticProgram.quadratic_constraint" />
+  ### variables
 
-`quadratic_constraint(linear=None, quadratic=None, sense='<=', rhs=0.0, name=None)`
+  <Function id="qiskit.optimization.QuadraticProgram.variables" name="variables" signature="property variables">
+    Returns the list of variables of the quadratic program.
 
-**Adds a quadratic equality constraint to the quadratic program of the form:**
+    **Return type**
 
-x \* Q \* x \<= rhs.
+    `List`\[`Variable`]
 
-**Parameters**
+    **Returns**
 
-*   **linear** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`], `None`]) – The linear coefficients of the constraint.
-*   **quadratic** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`], `None`]) – The quadratic coefficients of the constraint.
-*   **sense** (`Union`\[`str`, `ConstraintSense`]) – The sense of the constraint, - ‘==’, ‘=’, ‘E’, and ‘EQ’ denote ‘equal to’. - ‘>=’, ‘>’, ‘G’, and ‘GE’ denote ‘greater-than-or-equal-to’. - ‘\<=’, ‘\<’, ‘L’, and ‘LE’ denote ‘less-than-or-equal-to’.
-*   **rhs** (`float`) – The right hand side of the constraint.
-*   **name** (`Optional`\[`str`]) – The name of the constraint.
+    List of variables.
+  </Function>
 
-**Return type**
+  ### variables\_index
 
-`QuadraticConstraint`
+  <Function id="qiskit.optimization.QuadraticProgram.variables_index" name="variables_index" signature="property variables_index">
+    Returns the dictionary that maps the name of a variable to its index.
 
-**Returns**
+    **Return type**
 
-The added constraint.
+    `Dict`\[`str`, `int`]
 
-**Raises**
+    **Returns**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the constraint name already exists.
+    The variable index dictionary.
+  </Function>
 
-### quadratic\_constraints
+  ### write\_to\_lp\_file
 
-<span id="qiskit.optimization.QuadraticProgram.quadratic_constraints" />
+  <Function id="qiskit.optimization.QuadraticProgram.write_to_lp_file" name="write_to_lp_file" signature="write_to_lp_file(filename)">
+    Writes the quadratic program to an LP file.
 
-`property quadratic_constraints`
+    **Parameters**
 
-Returns the list of quadratic constraints of the quadratic program.
+    **filename** (`str`) – The filename of the file the model is written to. If filename is a directory, file name ‘my\_problem.lp’ is appended. If filename does not end with ‘.lp’, suffix ‘.lp’ is appended.
 
-**Return type**
+    **Raises**
 
-`List`\[`QuadraticConstraint`]
+    *   **OSError** – If this cannot open a file.
+    *   **DOcplexException** – If filename is an empty string
 
-**Returns**
+    **Return type**
 
-List of quadratic constraints.
-
-### quadratic\_constraints\_index
-
-<span id="qiskit.optimization.QuadraticProgram.quadratic_constraints_index" />
-
-`property quadratic_constraints_index`
-
-Returns the dictionary that maps the name of a quadratic constraint to its index.
-
-**Return type**
-
-`Dict`\[`str`, `int`]
-
-**Returns**
-
-The quadratic constraint index dictionary.
-
-### read\_from\_lp\_file
-
-<span id="qiskit.optimization.QuadraticProgram.read_from_lp_file" />
-
-`read_from_lp_file(filename)`
-
-Loads the quadratic program from a LP file.
-
-**Parameters**
-
-**filename** (`str`) – The filename of the file to be loaded.
-
-**Raises**
-
-*   **FileNotFoundError** – If the file does not exist.
-*   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If CPLEX is not installed.
-
-<Admonition title="Note" type="note">
-  This method requires CPLEX to be installed and present in `PYTHONPATH`.
-</Admonition>
-
-**Return type**
-
-`None`
-
-### remove\_linear\_constraint
-
-<span id="qiskit.optimization.QuadraticProgram.remove_linear_constraint" />
-
-`remove_linear_constraint(i)`
-
-Remove a linear constraint
-
-**Parameters**
-
-**i** (`Union`\[`str`, `int`]) – an index or a name of a linear constraint
-
-**Raises**
-
-*   **KeyError** – if name does not exist
-*   **IndexError** – if index is out of range
-
-**Return type**
-
-`None`
-
-### remove\_quadratic\_constraint
-
-<span id="qiskit.optimization.QuadraticProgram.remove_quadratic_constraint" />
-
-`remove_quadratic_constraint(i)`
-
-Remove a quadratic constraint
-
-**Parameters**
-
-**i** (`Union`\[`str`, `int`]) – an index or a name of a quadratic constraint
-
-**Raises**
-
-*   **KeyError** – if name does not exist
-*   **IndexError** – if index is out of range
-
-**Return type**
-
-`None`
-
-### status
-
-<span id="qiskit.optimization.QuadraticProgram.status" />
-
-`property status`
-
-Status of the quadratic program. It can be infeasible due to variable substitution.
-
-**Return type**
-
-`QuadraticProgramStatus`
-
-**Returns**
-
-The status of the quadratic program
-
-### substitute\_variables
-
-<span id="qiskit.optimization.QuadraticProgram.substitute_variables" />
-
-`substitute_variables(constants=None, variables=None)`
-
-Substitutes variables with constants or other variables.
-
-**Parameters**
-
-*   **constants** (`Optional`\[`Dict`\[`Union`\[`int`, `str`], `float`]]) – replace variable by constant e.g., \{‘x’: 2} means ‘x’ is substituted with 2
-*   **variables** (`Optional`\[`Dict`\[`Union`\[`str`, `int`], `Tuple`\[`Union`\[`str`, `int`], `float`]]]) – replace variables by weighted other variable need to copy everything using name reference to make sure that indices are matched correctly. The lower and upper bounds are updated accordingly. e.g., \{‘x’: (‘y’, 2)} means ‘x’ is substituted with ‘y’ \* 2
-
-**Return type**
-
-`QuadraticProgram`
-
-**Returns**
-
-An optimization problem by substituting variables with constants or other variables. If the substitution is valid, QuadraticProgram.status is still QuadraticProgram.Status.VALIAD. Otherwise, it gets QuadraticProgram.Status.INFEASIBLE.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the substitution is invalid as follows. - Same variable is substituted multiple times. - Coefficient of variable substitution is zero.
-
-### to\_docplex
-
-<span id="qiskit.optimization.QuadraticProgram.to_docplex" />
-
-`to_docplex()`
-
-Returns a docplex model corresponding to this quadratic program.
-
-**Return type**
-
-`Model`
-
-**Returns**
-
-The docplex model corresponding to this quadratic program.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if non-supported elements (should never happen).
-
-### to\_ising
-
-<span id="qiskit.optimization.QuadraticProgram.to_ising" />
-
-`to_ising()`
-
-Return the Ising Hamiltonian of this problem.
-
-**Returns**
-
-The qubit operator for the problem offset: The constant value in the Ising Hamiltonian.
-
-**Return type**
-
-qubit\_op
-
-**Raises**
-
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If a variable type is not binary.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If constraints exist in the problem.
-
-### variables
-
-<span id="qiskit.optimization.QuadraticProgram.variables" />
-
-`property variables`
-
-Returns the list of variables of the quadratic program.
-
-**Return type**
-
-`List`\[`Variable`]
-
-**Returns**
-
-List of variables.
-
-### variables\_index
-
-<span id="qiskit.optimization.QuadraticProgram.variables_index" />
-
-`property variables_index`
-
-Returns the dictionary that maps the name of a variable to its index.
-
-**Return type**
-
-`Dict`\[`str`, `int`]
-
-**Returns**
-
-The variable index dictionary.
-
-### write\_to\_lp\_file
-
-<span id="qiskit.optimization.QuadraticProgram.write_to_lp_file" />
-
-`write_to_lp_file(filename)`
-
-Writes the quadratic program to an LP file.
-
-**Parameters**
-
-**filename** (`str`) – The filename of the file the model is written to. If filename is a directory, file name ‘my\_problem.lp’ is appended. If filename does not end with ‘.lp’, suffix ‘.lp’ is appended.
-
-**Raises**
-
-*   **OSError** – If this cannot open a file.
-*   **DOcplexException** – If filename is an empty string
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

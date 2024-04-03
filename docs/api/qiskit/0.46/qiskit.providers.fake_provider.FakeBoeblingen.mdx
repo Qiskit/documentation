@@ -8,182 +8,152 @@ python_api_name: qiskit.providers.fake_provider.FakeBoeblingen
 
 # FakeBoeblingen
 
-<span id="qiskit.providers.fake_provider.FakeBoeblingen" />
+<Class id="qiskit.providers.fake_provider.FakeBoeblingen" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/fake_provider/backends/boeblingen/fake_boeblingen.py" signature="qiskit.providers.fake_provider.FakeBoeblingen">
+  Bases: [`FakePulseBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakePulseBackend "qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend")
 
-`qiskit.providers.fake_provider.FakeBoeblingen` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/fake_provider/backends/boeblingen/fake_boeblingen.py "view source code")
+  A fake Boeblingen backend.
 
-Bases: [`FakePulseBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakePulseBackend "qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend")
+  ```python
+  00 ↔ 01 ↔ 02 ↔ 03 ↔ 04
+        ↕         ↕
+  05 ↔ 06 ↔ 07 ↔ 08 ↔ 09
+   ↕         ↕         ↕
+  10 ↔ 11 ↔ 12 ↔ 13 ↔ 14
+        ↕         ↕
+  15 ↔ 16 ↔ 17 ↔ 18 ↔ 19
+  ```
 
-A fake Boeblingen backend.
+  FakeBackend initializer.
 
-```python
-00 ↔ 01 ↔ 02 ↔ 03 ↔ 04
-      ↕         ↕
-05 ↔ 06 ↔ 07 ↔ 08 ↔ 09
- ↕         ↕         ↕
-10 ↔ 11 ↔ 12 ↔ 13 ↔ 14
-      ↕         ↕
-15 ↔ 16 ↔ 17 ↔ 18 ↔ 19
-```
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+  *   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
 
-**Parameters**
+  ## Attributes
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
+  ### backend\_name
 
-## Attributes
+  <Attribute id="qiskit.providers.fake_provider.FakeBoeblingen.backend_name" name="backend_name" attributeValue="= 'fake_boeblingen'" />
 
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.backend_name" />
+  ### conf\_filename
 
-### backend\_name
+  <Attribute id="qiskit.providers.fake_provider.FakeBoeblingen.conf_filename" name="conf_filename" attributeValue="= 'conf_boeblingen.json'" />
 
-`= 'fake_boeblingen'`
+  ### defs\_filename
 
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.conf_filename" />
+  <Attribute id="qiskit.providers.fake_provider.FakeBoeblingen.defs_filename" name="defs_filename" attributeValue="= 'defs_boeblingen.json'" />
 
-### conf\_filename
+  ### dirname
 
-`= 'conf_boeblingen.json'`
+  <Attribute id="qiskit.providers.fake_provider.FakeBoeblingen.dirname" name="dirname" attributeValue="= '/home/runner/work/qiskit/qiskit/qiskit/providers/fake_provider/backends/boeblingen'" />
 
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.defs_filename" />
+  ### options
 
-### defs\_filename
+  <Attribute id="qiskit.providers.fake_provider.FakeBoeblingen.options" name="options">
+    Return the options for the backend
 
-`= 'defs_boeblingen.json'`
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.fake_provider.FakeBoeblingen.run "qiskit.providers.fake_provider.FakeBoeblingen.run") method.
+  </Attribute>
 
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.dirname" />
+  ### props\_filename
 
-### dirname
+  <Attribute id="qiskit.providers.fake_provider.FakeBoeblingen.props_filename" name="props_filename" attributeValue="= 'props_boeblingen.json'" />
 
-`= '/home/runner/work/qiskit/qiskit/qiskit/providers/fake_provider/backends/boeblingen'`
+  ### version
 
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.options" />
+  <Attribute id="qiskit.providers.fake_provider.FakeBoeblingen.version" name="version" attributeValue="= 1" />
 
-### options
+  ## Methods
 
-Return the options for the backend
+  ### configuration
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.fake_provider.FakeBoeblingen.run "qiskit.providers.fake_provider.FakeBoeblingen.run") method.
+  <Function id="qiskit.providers.fake_provider.FakeBoeblingen.configuration" name="configuration" signature="configuration()">
+    Return the backend configuration.
 
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.props_filename" />
+    **Returns**
 
-### props\_filename
+    the configuration for the backend.
 
-`= 'props_boeblingen.json'`
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.version" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-### version
+  ### defaults
 
-`= 1`
+  <Function id="qiskit.providers.fake_provider.FakeBoeblingen.defaults" name="defaults" signature="defaults()">
+    Returns a snapshot of device defaults
+  </Function>
 
-## Methods
+  ### name
 
-### configuration
+  <Function id="qiskit.providers.fake_provider.FakeBoeblingen.name" name="name" signature="name()">
+    Return the backend name.
 
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.configuration" />
+    **Returns**
 
-`configuration()`
+    the name of the backend.
 
-Return the backend configuration.
+    **Return type**
 
-**Returns**
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-the configuration for the backend.
+  ### properties
 
-**Return type**
+  <Function id="qiskit.providers.fake_provider.FakeBoeblingen.properties" name="properties" signature="properties()">
+    Returns a snapshot of device properties
+  </Function>
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  ### provider
 
-### defaults
+  <Function id="qiskit.providers.fake_provider.FakeBoeblingen.provider" name="provider" signature="provider()">
+    Return the backend Provider.
 
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.defaults" />
+    **Returns**
 
-`defaults()`
+    the Provider responsible for the backend.
 
-Returns a snapshot of device defaults
+    **Return type**
 
-### name
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.name" />
+  ### run
 
-`name()`
+  <Function id="qiskit.providers.fake_provider.FakeBoeblingen.run" name="run" signature="run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-Return the backend name.
+  ### set\_options
 
-**Returns**
+  <Function id="qiskit.providers.fake_provider.FakeBoeblingen.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-the name of the backend.
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-**Return type**
+    **Parameters**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    **fields** – The fields to update the options
 
-### properties
+    **Raises**
 
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.properties" />
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
+  </Function>
 
-`properties()`
+  ### status
 
-Returns a snapshot of device properties
+  <Function id="qiskit.providers.fake_provider.FakeBoeblingen.status" name="status" signature="status()">
+    Return the backend status.
 
-### provider
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.provider" />
+    the status of the backend.
 
-`provider()`
+    **Return type**
 
-Return the backend Provider.
-
-**Returns**
-
-the Provider responsible for the backend.
-
-**Return type**
-
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
-
-### run
-
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.run" />
-
-`run(run_input, **kwargs)`
-
-Main job in simulator
-
-### set\_options
-
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit.providers.fake_provider.FakeBoeblingen.status" />
-
-`status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
+</Class>
 

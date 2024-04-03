@@ -8,63 +8,49 @@ python_api_name: qiskit.algorithms.optimizers.OptimizerState
 
 # OptimizerState
 
-<span id="qiskit.algorithms.optimizers.OptimizerState" />
+<Class id="qiskit.algorithms.optimizers.OptimizerState" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/optimizers/steppable_optimizer.py" signature="qiskit.algorithms.optimizers.OptimizerState(x, fun, jac, nfev, njev, nit)">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.algorithms.optimizers.OptimizerState(x, fun, jac, nfev, njev, nit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+  Base class representing the state of the optimizer.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  This class stores the current state of the optimizer, given by the current point and (optionally) information like the function value, the gradient or the number of function evaluations. This dataclass can also store any other individual variables that change during the optimization.
 
-Base class representing the state of the optimizer.
+  ## Attributes
 
-This class stores the current state of the optimizer, given by the current point and (optionally) information like the function value, the gradient or the number of function evaluations. This dataclass can also store any other individual variables that change during the optimization.
+  ### x
 
-## Attributes
+  <Attribute id="qiskit.algorithms.optimizers.OptimizerState.x" name="x" attributeTypeHint="POINT">
+    Current optimization parameters.
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.OptimizerState.x" />
+  ### fun
 
-### x
+  <Attribute id="qiskit.algorithms.optimizers.OptimizerState.fun" name="fun" attributeTypeHint="Callable[[POINT], float] | None">
+    Function being optimized.
+  </Attribute>
 
-`POINT`
+  ### jac
 
-Current optimization parameters.
+  <Attribute id="qiskit.algorithms.optimizers.OptimizerState.jac" name="jac" attributeTypeHint="Callable[[POINT], POINT] | None">
+    Jacobian of the function being optimized.
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.OptimizerState.fun" />
+  ### nfev
 
-### fun
+  <Attribute id="qiskit.algorithms.optimizers.OptimizerState.nfev" name="nfev" attributeTypeHint="int | None">
+    Number of function evaluations so far in the optimization.
+  </Attribute>
 
-`Callable[[POINT], float] | None`
+  ### njev
 
-Function being optimized.
+  <Attribute id="qiskit.algorithms.optimizers.OptimizerState.njev" name="njev" attributeTypeHint="int | None">
+    Number of jacobian evaluations so far in the opimization.
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.OptimizerState.jac" />
+  ### nit
 
-### jac
-
-`Callable[[POINT], POINT] | None`
-
-Jacobian of the function being optimized.
-
-<span id="qiskit.algorithms.optimizers.OptimizerState.nfev" />
-
-### nfev
-
-`int | None`
-
-Number of function evaluations so far in the optimization.
-
-<span id="qiskit.algorithms.optimizers.OptimizerState.njev" />
-
-### njev
-
-`int | None`
-
-Number of jacobian evaluations so far in the opimization.
-
-<span id="qiskit.algorithms.optimizers.OptimizerState.nit" />
-
-### nit
-
-`int | None`
-
-Number of optimization steps performed so far in the optimization.
+  <Attribute id="qiskit.algorithms.optimizers.OptimizerState.nit" name="nit" attributeTypeHint="int | None">
+    Number of optimization steps performed so far in the optimization.
+  </Attribute>
+</Class>
 

@@ -8,214 +8,188 @@ python_api_name: qiskit.chemistry.algorithms.VQEAdapt
 
 # VQEAdapt
 
-<span id="qiskit.chemistry.algorithms.VQEAdapt" />
+<Class id="qiskit.chemistry.algorithms.VQEAdapt" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/algorithms/minimum_eigen_solvers/vqe_adapt.py" signature="VQEAdapt(operator, var_form_base, optimizer, initial_point=None, excitation_pool=None, threshold=1e-05, delta=1, max_evals_grouped=1, aux_operators=None, quantum_instance=None)">
+  The Adaptive VQE algorithm.
 
-`VQEAdapt(operator, var_form_base, optimizer, initial_point=None, excitation_pool=None, threshold=1e-05, delta=1, max_evals_grouped=1, aux_operators=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/algorithms/minimum_eigen_solvers/vqe_adapt.py "view source code")
+  See [https://arxiv.org/abs/1812.11173](https://arxiv.org/abs/1812.11173)
 
-The Adaptive VQE algorithm.
+  **Parameters**
 
-See [https://arxiv.org/abs/1812.11173](https://arxiv.org/abs/1812.11173)
+  *   **operator** ([`LegacyBaseOperator`](qiskit.aqua.operators.legacy.LegacyBaseOperator "qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator")) – Qubit operator
+  *   **var\_form\_base** ([`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.variational_form.VariationalForm")) – base parameterized variational form
+  *   **optimizer** ([`Optimizer`](qiskit.aqua.components.optimizers.Optimizer "qiskit.aqua.components.optimizers.optimizer.Optimizer")) – the classical optimizer algorithm
+  *   **initial\_point** (`Optional`\[`ndarray`]) – optimizer initial point
+  *   **excitation\_pool** (`Optional`\[`List`\[[`WeightedPauliOperator`](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.weighted_pauli_operator.WeightedPauliOperator")]]) – list of excitation operators
+  *   **threshold** (`float`) – absolute threshold value for gradients, has a min. value of 1e-15.
+  *   **delta** (`float`) – finite difference step size for gradient computation, has a min. value of 1e-5.
+  *   **max\_evals\_grouped** (`int`) – max number of evaluations performed simultaneously
+  *   **aux\_operators** (`Optional`\[`List`\[[`LegacyBaseOperator`](qiskit.aqua.operators.legacy.LegacyBaseOperator "qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator")]]) – Auxiliary operators to be evaluated at each eigenvalue
+  *   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – Quantum Instance or Backend
 
-**Parameters**
+  **Raises**
 
-*   **operator** ([`LegacyBaseOperator`](qiskit.aqua.operators.legacy.LegacyBaseOperator "qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator")) – Qubit operator
-*   **var\_form\_base** ([`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.variational_form.VariationalForm")) – base parameterized variational form
-*   **optimizer** ([`Optimizer`](qiskit.aqua.components.optimizers.Optimizer "qiskit.aqua.components.optimizers.optimizer.Optimizer")) – the classical optimizer algorithm
-*   **initial\_point** (`Optional`\[`ndarray`]) – optimizer initial point
-*   **excitation\_pool** (`Optional`\[`List`\[[`WeightedPauliOperator`](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.weighted_pauli_operator.WeightedPauliOperator")]]) – list of excitation operators
-*   **threshold** (`float`) – absolute threshold value for gradients, has a min. value of 1e-15.
-*   **delta** (`float`) – finite difference step size for gradient computation, has a min. value of 1e-5.
-*   **max\_evals\_grouped** (`int`) – max number of evaluations performed simultaneously
-*   **aux\_operators** (`Optional`\[`List`\[[`LegacyBaseOperator`](qiskit.aqua.operators.legacy.LegacyBaseOperator "qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator")]]) – Auxiliary operators to be evaluated at each eigenvalue
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – Quantum Instance or Backend
+  *   **ValueError** – if var\_form\_base is not an instance of UCCSD.
+  *   **See also** – qiskit/chemistry/components/variational\_forms/uccsd\_adapt.py
 
-**Raises**
+  ## Attributes
 
-*   **ValueError** – if var\_form\_base is not an instance of UCCSD.
-*   **See also** – qiskit/chemistry/components/variational\_forms/uccsd\_adapt.py
+  ### backend
 
-## Attributes
+  <Attribute id="qiskit.chemistry.algorithms.VQEAdapt.backend" name="backend" signature="qiskit.providers.basebackend.BaseBackend">
+    Returns backend.
 
-### backend
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.VQEAdapt.backend" />
+    [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
+  </Attribute>
 
-`qiskit.providers.basebackend.BaseBackend`
+  ### initial\_point
 
-Returns backend.
+  <Attribute id="qiskit.chemistry.algorithms.VQEAdapt.initial_point" name="initial_point" signature="Optional[numpy.ndarray]">
+    Returns initial point
 
-**Return type**
+    **Return type**
 
-[`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
+    `Optional`\[`ndarray`]
+  </Attribute>
 
-### initial\_point
+  ### optimal\_params
 
-<span id="qiskit.chemistry.algorithms.VQEAdapt.initial_point" />
+  <Attribute id="qiskit.chemistry.algorithms.VQEAdapt.optimal_params" name="optimal_params">
+    returns optimal parameters
+  </Attribute>
 
-`Optional[numpy.ndarray]`
+  ### optimizer
 
-Returns initial point
+  <Attribute id="qiskit.chemistry.algorithms.VQEAdapt.optimizer" name="optimizer" signature="Optional[qiskit.aqua.components.optimizers.optimizer.Optimizer]">
+    Returns optimizer
 
-**Return type**
+    **Return type**
 
-`Optional`\[`ndarray`]
+    `Optional`\[[`Optimizer`](qiskit.aqua.components.optimizers.Optimizer "qiskit.aqua.components.optimizers.optimizer.Optimizer")]
+  </Attribute>
 
-### optimal\_params
+  ### quantum\_instance
 
-returns optimal parameters
+  <Attribute id="qiskit.chemistry.algorithms.VQEAdapt.quantum_instance" name="quantum_instance" signature="Union[None, qiskit.aqua.quantum_instance.QuantumInstance]">
+    Returns quantum instance.
 
-### optimizer
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.VQEAdapt.optimizer" />
+    `Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
+  </Attribute>
 
-`Optional[qiskit.aqua.components.optimizers.optimizer.Optimizer]`
+  ### random
 
-Returns optimizer
+  <Attribute id="qiskit.chemistry.algorithms.VQEAdapt.random" name="random">
+    Return a numpy random.
+  </Attribute>
 
-**Return type**
+  ### var\_form
 
-`Optional`\[[`Optimizer`](qiskit.aqua.components.optimizers.Optimizer "qiskit.aqua.components.optimizers.optimizer.Optimizer")]
+  <Attribute id="qiskit.chemistry.algorithms.VQEAdapt.var_form" name="var_form" signature="Optional[Union[qiskit.circuit.quantumcircuit.QuantumCircuit, qiskit.aqua.components.variational_forms.variational_form.VariationalForm]]">
+    Returns variational form
 
-### quantum\_instance
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.VQEAdapt.quantum_instance" />
+    `Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.variational_form.VariationalForm"), `None`]
+  </Attribute>
 
-`Union[None, qiskit.aqua.quantum_instance.QuantumInstance]`
+  ## Methods
 
-Returns quantum instance.
+  ### cleanup\_parameterized\_circuits
 
-**Return type**
+  <Function id="qiskit.chemistry.algorithms.VQEAdapt.cleanup_parameterized_circuits" name="cleanup_parameterized_circuits" signature="VQEAdapt.cleanup_parameterized_circuits()">
+    set parameterized circuits to None
+  </Function>
 
-`Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
+  ### find\_minimum
 
-### random
+  <Function id="qiskit.chemistry.algorithms.VQEAdapt.find_minimum" name="find_minimum" signature="VQEAdapt.find_minimum(initial_point=None, var_form=None, cost_fn=None, optimizer=None, gradient_fn=None)">
+    Optimize to find the minimum cost value.
 
-Return a numpy random.
+    **Parameters**
 
-### var\_form
+    *   **initial\_point** (`Optional`\[`ndarray`]) – If not None will be used instead of any initial point supplied via constructor. If None and None was supplied to constructor then a random point will be used if the optimizer requires an initial point.
+    *   **var\_form** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.variational_form.VariationalForm"), `None`]) – If not None will be used instead of any variational form supplied via constructor.
+    *   **cost\_fn** (`Optional`\[`Callable`]) – If not None will be used instead of any cost\_fn supplied via constructor.
+    *   **optimizer** (`Optional`\[[`Optimizer`](qiskit.aqua.components.optimizers.Optimizer "qiskit.aqua.components.optimizers.optimizer.Optimizer")]) – If not None will be used instead of any optimizer supplied via constructor.
+    *   **gradient\_fn** (`Optional`\[`Callable`]) – Optional gradient function for optimizer
 
-<span id="qiskit.chemistry.algorithms.VQEAdapt.var_form" />
+    **Returns**
 
-`Optional[Union[qiskit.circuit.quantumcircuit.QuantumCircuit, qiskit.aqua.components.variational_forms.variational_form.VariationalForm]]`
+    Optimized variational parameters, and corresponding minimum cost value.
 
-Returns variational form
+    **Return type**
 
-**Return type**
+    dict
 
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.variational_form.VariationalForm"), `None`]
+    **Raises**
 
-## Methods
+    **ValueError** – invalid input
+  </Function>
 
-### cleanup\_parameterized\_circuits
+  ### get\_optimal\_circuit
 
-<span id="qiskit.chemistry.algorithms.VQEAdapt.cleanup_parameterized_circuits" />
+  <Function id="qiskit.chemistry.algorithms.VQEAdapt.get_optimal_circuit" name="get_optimal_circuit" signature="VQEAdapt.get_optimal_circuit()">
+    get optimal circuit
+  </Function>
 
-`VQEAdapt.cleanup_parameterized_circuits()`
+  ### get\_optimal\_cost
 
-set parameterized circuits to None
+  <Function id="qiskit.chemistry.algorithms.VQEAdapt.get_optimal_cost" name="get_optimal_cost" signature="VQEAdapt.get_optimal_cost()">
+    get optimal cost
+  </Function>
 
-### find\_minimum
+  ### get\_optimal\_vector
 
-<span id="qiskit.chemistry.algorithms.VQEAdapt.find_minimum" />
+  <Function id="qiskit.chemistry.algorithms.VQEAdapt.get_optimal_vector" name="get_optimal_vector" signature="VQEAdapt.get_optimal_vector()">
+    get optimal vector
+  </Function>
 
-`VQEAdapt.find_minimum(initial_point=None, var_form=None, cost_fn=None, optimizer=None, gradient_fn=None)`
+  ### get\_prob\_vector\_for\_params
 
-Optimize to find the minimum cost value.
+  <Function id="qiskit.chemistry.algorithms.VQEAdapt.get_prob_vector_for_params" name="get_prob_vector_for_params" signature="VQEAdapt.get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)">
+    Helper function to get probability vectors for a set of params
+  </Function>
 
-**Parameters**
+  ### get\_probabilities\_for\_counts
 
-*   **initial\_point** (`Optional`\[`ndarray`]) – If not None will be used instead of any initial point supplied via constructor. If None and None was supplied to constructor then a random point will be used if the optimizer requires an initial point.
-*   **var\_form** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.variational_form.VariationalForm"), `None`]) – If not None will be used instead of any variational form supplied via constructor.
-*   **cost\_fn** (`Optional`\[`Callable`]) – If not None will be used instead of any cost\_fn supplied via constructor.
-*   **optimizer** (`Optional`\[[`Optimizer`](qiskit.aqua.components.optimizers.Optimizer "qiskit.aqua.components.optimizers.optimizer.Optimizer")]) – If not None will be used instead of any optimizer supplied via constructor.
-*   **gradient\_fn** (`Optional`\[`Callable`]) – Optional gradient function for optimizer
+  <Function id="qiskit.chemistry.algorithms.VQEAdapt.get_probabilities_for_counts" name="get_probabilities_for_counts" signature="VQEAdapt.get_probabilities_for_counts(counts)">
+    get probabilities for counts
+  </Function>
 
-**Returns**
+  ### run
 
-Optimized variational parameters, and corresponding minimum cost value.
+  <Function id="qiskit.chemistry.algorithms.VQEAdapt.run" name="run" signature="VQEAdapt.run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-**Return type**
+    **Parameters**
 
-dict
+    *   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-**Raises**
+    **Returns**
 
-**ValueError** – invalid input
+    results of an algorithm.
 
-### get\_optimal\_circuit
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.VQEAdapt.get_optimal_circuit" />
+    dict
 
-`VQEAdapt.get_optimal_circuit()`
+    **Raises**
 
-get optimal circuit
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-### get\_optimal\_cost
+  ### set\_backend
 
-<span id="qiskit.chemistry.algorithms.VQEAdapt.get_optimal_cost" />
+  <Function id="qiskit.chemistry.algorithms.VQEAdapt.set_backend" name="set_backend" signature="VQEAdapt.set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-`VQEAdapt.get_optimal_cost()`
+    **Return type**
 
-get optimal cost
-
-### get\_optimal\_vector
-
-<span id="qiskit.chemistry.algorithms.VQEAdapt.get_optimal_vector" />
-
-`VQEAdapt.get_optimal_vector()`
-
-get optimal vector
-
-### get\_prob\_vector\_for\_params
-
-<span id="qiskit.chemistry.algorithms.VQEAdapt.get_prob_vector_for_params" />
-
-`VQEAdapt.get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)`
-
-Helper function to get probability vectors for a set of params
-
-### get\_probabilities\_for\_counts
-
-<span id="qiskit.chemistry.algorithms.VQEAdapt.get_probabilities_for_counts" />
-
-`VQEAdapt.get_probabilities_for_counts(counts)`
-
-get probabilities for counts
-
-### run
-
-<span id="qiskit.chemistry.algorithms.VQEAdapt.run" />
-
-`VQEAdapt.run(quantum_instance=None, **kwargs)`
-
-Execute the algorithm with selected backend.
-
-**Parameters**
-
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.chemistry.algorithms.VQEAdapt.set_backend" />
-
-`VQEAdapt.set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

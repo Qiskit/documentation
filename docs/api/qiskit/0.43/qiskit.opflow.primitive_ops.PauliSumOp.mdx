@@ -8,480 +8,436 @@ python_api_name: qiskit.opflow.primitive_ops.PauliSumOp
 
 # PauliSumOp
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp" />
+<Class id="qiskit.opflow.primitive_ops.PauliSumOp" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/primitive_ops/pauli_sum_op.py" signature="PauliSumOp(*args, **kwargs)">
+  Bases: [`PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp")
 
-`PauliSumOp(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/primitive_ops/pauli_sum_op.py "view source code")
+  Deprecated: Class for Operators backed by Terra’s `SparsePauliOp` class.
 
-Bases: [`PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp")
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Deprecated: Class for Operators backed by Terra’s `SparsePauliOp` class.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  *   **primitive** – The SparsePauliOp which defines the behavior of the underlying function.
+  *   **coeff** – A coefficient multiplying the primitive.
+  *   **grouping\_type** – The type of grouping. If None, the operator is not grouped.
 
-**Parameters**
+  **Raises**
 
-*   **primitive** – The SparsePauliOp which defines the behavior of the underlying function.
-*   **coeff** – A coefficient multiplying the primitive.
-*   **grouping\_type** – The type of grouping. If None, the operator is not grouped.
+  **TypeError** – invalid parameters.
 
-**Raises**
+  ## Methods Defined Here
 
-**TypeError** – invalid parameters.
+  <span id="qiskit-opflow-primitive-ops-paulisumop-add" />
 
-## Methods Defined Here
+  ### add
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-add" />
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.add" name="add" signature="PauliSumOp.add(other)">
+    Return Operator addition of self and other, overloaded by `+`.
 
-### add
+    **Parameters**
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.add" />
+    **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
 
-`PauliSumOp.add(other)`
+    **Returns**
 
-Return Operator addition of self and other, overloaded by `+`.
+    An `OperatorBase` equivalent to the sum of self and other.
 
-**Parameters**
+    **Return type**
 
-**other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-**Returns**
+  <span id="qiskit-opflow-primitive-ops-paulisumop-adjoint" />
 
-An `OperatorBase` equivalent to the sum of self and other.
+  ### adjoint
 
-**Return type**
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.adjoint" name="adjoint" signature="PauliSumOp.adjoint()">
+    Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **Returns**
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-adjoint" />
+    An `OperatorBase` equivalent to the adjoint of self.
 
-### adjoint
+    **Return type**
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.adjoint" />
+    [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")
+  </Function>
 
-`PauliSumOp.adjoint()`
+  <span id="qiskit-opflow-primitive-ops-paulisumop-compose" />
 
-Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
+  ### compose
 
-**Returns**
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.compose" name="compose" signature="PauliSumOp.compose(other, permutation=None, front=False)">
+    Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
 
-An `OperatorBase` equivalent to the adjoint of self.
+    Note: You must be conscious of Quantum Circuit vs. Linear Algebra ordering conventions. Meaning, X.compose(Y) produces an X∘Y on qubit 0, but would produce a QuantumCircuit which looks like
 
-**Return type**
+    > -\[Y]-\[X]-
 
-[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")
+    Because Terra prints circuits with the initial state at the left side of the circuit.
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-compose" />
+    **Parameters**
 
-### compose
+    *   **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` with which to compose self.
+    *   **permutation** (*List\[int] | None*) – `List[int]` which defines permutation on other operator.
+    *   **front** (*bool*) – If front==True, return `other.compose(self)`.
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.compose" />
+    **Returns**
 
-`PauliSumOp.compose(other, permutation=None, front=False)`
+    An `OperatorBase` equivalent to the function composition of self and other.
 
-Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
+    **Return type**
 
-Note: You must be conscious of Quantum Circuit vs. Linear Algebra ordering conventions. Meaning, X.compose(Y) produces an X∘Y on qubit 0, but would produce a QuantumCircuit which looks like
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-> -\[Y]-\[X]-
+  <span id="qiskit-opflow-primitive-ops-paulisumop-equals" />
 
-Because Terra prints circuits with the initial state at the left side of the circuit.
+  ### equals
 
-**Parameters**
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.equals" name="equals" signature="PauliSumOp.equals(other)">
+    Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
-*   **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` with which to compose self.
-*   **permutation** (*List\[int] | None*) – `List[int]` which defines permutation on other operator.
-*   **front** (*bool*) – If front==True, return `other.compose(self)`.
+    **Parameters**
 
-**Returns**
+    **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to compare to self.
 
-An `OperatorBase` equivalent to the function composition of self and other.
+    **Returns**
 
-**Return type**
+    A bool equal to the equality of self and other.
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **Return type**
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-equals" />
+    bool
+  </Function>
 
-### equals
+  <span id="qiskit-opflow-primitive-ops-paulisumop-eval" />
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.equals" />
+  ### eval
 
-`PauliSumOp.equals(other)`
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.eval" name="eval" signature="PauliSumOp.eval(front=None)">
+    Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
-Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
+    If `front` is None, the matrix-representation of the operator is returned.
 
-**Parameters**
+    **Parameters**
 
-**other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to compare to self.
+    **front** (*str | Dict\[str, complex] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")  *|*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector") *| None*) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function, or None.
 
-**Returns**
+    **Returns**
 
-A bool equal to the equality of self and other.
+    The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
 
-**Return type**
+    **Return type**
 
-bool
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") | complex
+  </Function>
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-eval" />
+  <span id="qiskit-opflow-primitive-ops-paulisumop-exp-i" />
 
-### eval
+  ### exp\_i
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.eval" />
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.exp_i" name="exp_i" signature="PauliSumOp.exp_i()">
+    Return a `CircuitOp` equivalent to e^-iH for this operator H.
 
-`PauliSumOp.eval(front=None)`
+    **Return type**
 
-Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-If `front` is None, the matrix-representation of the operator is returned.
+  <span id="qiskit-opflow-primitive-ops-paulisumop-from-list" />
 
-**Parameters**
+  ### from\_list
 
-**front** (*str | Dict\[str, complex] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")  *|*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector") *| None*) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function, or None.
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.from_list" name="from_list" signature="classmethod PauliSumOp.from_list(pauli_list, coeff=1.0, dtype=<class 'complex'>)">
+    Construct from a pauli\_list with the form \[(pauli\_str, coeffs)]
 
-**Returns**
+    **Parameters**
 
-The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
+    *   **pauli\_list** (*List\[Tuple\[str, complex |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*]]*) – A list of Tuple of pauli\_str and coefficient.
+    *   **coeff** (*complex |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – A coefficient multiplying the primitive.
+    *   **dtype** (*type*) – The dtype to use to construct the internal SparsePauliOp. Defaults to `complex`.
 
-**Return type**
+    **Returns**
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") | complex
+    The PauliSumOp constructed from the pauli\_list.
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-exp-i" />
+    **Return type**
 
-### exp\_i
+    [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")
+  </Function>
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.exp_i" />
+  <span id="qiskit-opflow-primitive-ops-paulisumop-is-hermitian" />
 
-`PauliSumOp.exp_i()`
+  ### is\_hermitian
 
-Return a `CircuitOp` equivalent to e^-iH for this operator H.
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.is_hermitian" name="is_hermitian" signature="PauliSumOp.is_hermitian()">
+    Return True if the operator is hermitian.
 
-**Return type**
+    Returns: Boolean value
+  </Function>
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  <span id="qiskit-opflow-primitive-ops-paulisumop-is-zero" />
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-from-list" />
+  ### is\_zero
 
-### from\_list
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.is_zero" name="is_zero" signature="PauliSumOp.is_zero()">
+    Return this operator is zero operator or not.
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.from_list" />
+    **Return type**
 
-`classmethod PauliSumOp.from_list(pauli_list, coeff=1.0, dtype=<class 'complex'>)`
+    bool
+  </Function>
 
-Construct from a pauli\_list with the form \[(pauli\_str, coeffs)]
+  <span id="qiskit-opflow-primitive-ops-paulisumop-matrix-iter" />
 
-**Parameters**
+  ### matrix\_iter
 
-*   **pauli\_list** (*List\[Tuple\[str, complex |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*]]*) – A list of Tuple of pauli\_str and coefficient.
-*   **coeff** (*complex |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – A coefficient multiplying the primitive.
-*   **dtype** (*type*) – The dtype to use to construct the internal SparsePauliOp. Defaults to `complex`.
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.matrix_iter" name="matrix_iter" signature="PauliSumOp.matrix_iter(sparse=False)">
+    Return a matrix representation iterator.
 
-**Returns**
+    This is a lazy iterator that converts each term in the PauliSumOp into a matrix as it is used. To convert to a single matrix use the [`to_matrix()`](qiskit.opflow.primitive_ops.PauliSumOp#to_matrix "qiskit.opflow.primitive_ops.PauliSumOp.to_matrix") method.
 
-The PauliSumOp constructed from the pauli\_list.
+    **Parameters**
 
-**Return type**
+    **sparse** (*bool*) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
 
-[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")
+    **Returns**
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-is-hermitian" />
+    matrix iterator object for the PauliSumOp.
 
-### is\_hermitian
+    **Return type**
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.is_hermitian" />
+    MatrixIterator
+  </Function>
 
-`PauliSumOp.is_hermitian()`
+  <span id="qiskit-opflow-primitive-ops-paulisumop-mul" />
 
-Return True if the operator is hermitian.
+  ### mul
 
-Returns: Boolean value
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.mul" name="mul" signature="PauliSumOp.mul(scalar)">
+    Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-is-zero" />
+    **Parameters**
 
-### is\_zero
+    **scalar** (*complex |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.is_zero" />
+    **Returns**
 
-`PauliSumOp.is_zero()`
+    An `OperatorBase` equivalent to product of self and scalar.
 
-Return this operator is zero operator or not.
+    **Return type**
 
-**Return type**
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-bool
+  <span id="qiskit-opflow-primitive-ops-paulisumop-permute" />
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-matrix-iter" />
+  ### permute
 
-### matrix\_iter
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.permute" name="permute" signature="PauliSumOp.permute(permutation)">
+    Permutes the sequence of `PauliSumOp`.
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.matrix_iter" />
+    **Parameters**
 
-`PauliSumOp.matrix_iter(sparse=False)`
+    **permutation** (*List\[int]*) – A list defining where each Pauli should be permuted. The Pauli at index j of the primitive should be permuted to position permutation\[j].
 
-Return a matrix representation iterator.
+    **Returns**
 
-This is a lazy iterator that converts each term in the PauliSumOp into a matrix as it is used. To convert to a single matrix use the [`to_matrix()`](qiskit.opflow.primitive_ops.PauliSumOp#to_matrix "qiskit.opflow.primitive_ops.PauliSumOp.to_matrix") method.
+    A new PauliSumOp representing the permuted operator. For operator (X ^ Y ^ Z) and indices=\[1,2,4], it returns (X ^ I ^ Y ^ Z ^ I).
 
-**Parameters**
+    **Raises**
 
-**sparse** (*bool*) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
+    [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if indices do not define a new index for each qubit.
 
-**Returns**
+    **Return type**
 
-matrix iterator object for the PauliSumOp.
+    [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")
+  </Function>
 
-**Return type**
+  <span id="qiskit-opflow-primitive-ops-paulisumop-primitive-strings" />
 
-MatrixIterator
+  ### primitive\_strings
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-mul" />
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.primitive_strings" name="primitive_strings" signature="PauliSumOp.primitive_strings()">
+    Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
-### mul
+    **Returns**
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.mul" />
+    A set of strings describing the primitives contained within the Operator.
 
-`PauliSumOp.mul(scalar)`
+    **Return type**
 
-Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
+    *Set*\[str]
+  </Function>
 
-**Parameters**
+  <span id="qiskit-opflow-primitive-ops-paulisumop-reduce" />
 
-**scalar** (*complex |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
+  ### reduce
 
-**Returns**
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.reduce" name="reduce" signature="PauliSumOp.reduce(atol=None, rtol=None)">
+    Simplify the primitive `SparsePauliOp`.
 
-An `OperatorBase` equivalent to product of self and scalar.
+    **Parameters**
 
-**Return type**
+    *   **atol** (*float | None*) – Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
+    *   **rtol** (*float | None*) – Relative tolerance for checking if coefficients are zero (Default: 1e-5).
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **Returns**
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-permute" />
+    The simplified `PauliSumOp`.
 
-### permute
+    **Return type**
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.permute" />
+    [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")
+  </Function>
 
-`PauliSumOp.permute(permutation)`
+  <span id="qiskit-opflow-primitive-ops-paulisumop-tensor" />
 
-Permutes the sequence of `PauliSumOp`.
+  ### tensor
 
-**Parameters**
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.tensor" name="tensor" signature="PauliSumOp.tensor(other)">
+    Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
-**permutation** (*List\[int]*) – A list defining where each Pauli should be permuted. The Pauli at index j of the primitive should be permuted to position permutation\[j].
+    > -\[Y]- -\[X]-
 
-**Returns**
+    Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
 
-A new PauliSumOp representing the permuted operator. For operator (X ^ Y ^ Z) and indices=\[1,2,4], it returns (X ^ I ^ Y ^ Z ^ I).
+    **Parameters**
 
-**Raises**
+    **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to tensor product with self.
 
-[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if indices do not define a new index for each qubit.
+    **Returns**
 
-**Return type**
+    An `OperatorBase` equivalent to the tensor product of self and other.
 
-[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")
+    **Return type**
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-primitive-strings" />
+    [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp") | [*TensoredOp*](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.tensored_op.TensoredOp")
+  </Function>
 
-### primitive\_strings
+  <span id="qiskit-opflow-primitive-ops-paulisumop-to-instruction" />
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.primitive_strings" />
+  ### to\_instruction
 
-`PauliSumOp.primitive_strings()`
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.to_instruction" name="to_instruction" signature="PauliSumOp.to_instruction()">
+    Returns an `Instruction` equivalent to this Operator.
 
-Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
+    **Return type**
 
-**Returns**
+    [*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  </Function>
 
-A set of strings describing the primitives contained within the Operator.
+  <span id="qiskit-opflow-primitive-ops-paulisumop-to-matrix" />
 
-**Return type**
+  ### to\_matrix
 
-*Set*\[str]
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.to_matrix" name="to_matrix" signature="PauliSumOp.to_matrix(massive=False)">
+    Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-reduce" />
+    **Returns**
 
-### reduce
+    The NumPy `ndarray` equivalent to this Operator.
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.reduce" />
+    **Return type**
 
-`PauliSumOp.reduce(atol=None, rtol=None)`
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
+  </Function>
 
-Simplify the primitive `SparsePauliOp`.
+  <span id="qiskit-opflow-primitive-ops-paulisumop-to-pauli-op" />
 
-**Parameters**
+  ### to\_pauli\_op
 
-*   **atol** (*float | None*) – Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
-*   **rtol** (*float | None*) – Relative tolerance for checking if coefficients are zero (Default: 1e-5).
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.to_pauli_op" name="to_pauli_op" signature="PauliSumOp.to_pauli_op(massive=False)">
+    Returns a sum of `PauliOp` s equivalent to this Operator.
 
-**Returns**
+    **Return type**
 
-The simplified `PauliSumOp`.
+    [*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.pauli_op.PauliOp") | [*SummedOp*](qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.summed_op.SummedOp")
+  </Function>
 
-**Return type**
+  <span id="qiskit-opflow-primitive-ops-paulisumop-to-spmatrix" />
 
-[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")
+  ### to\_spmatrix
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-tensor" />
+  <Function id="qiskit.opflow.primitive_ops.PauliSumOp.to_spmatrix" name="to_spmatrix" signature="PauliSumOp.to_spmatrix()">
+    Returns SciPy sparse matrix representation of the `PauliSumOp`.
 
-### tensor
+    **Returns**
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.tensor" />
+    CSR sparse matrix representation of the `PauliSumOp`.
 
-`PauliSumOp.tensor(other)`
+    **Raises**
 
-Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
+    **ValueError** – invalid parameters.
 
-> -\[Y]- -\[X]-
+    **Return type**
 
-Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
+    *spmatrix*
+  </Function>
 
-**Parameters**
+  ## Attributes
 
-**other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to tensor product with self.
+  ### INDENTATION
 
-**Returns**
+  <Attribute id="qiskit.opflow.primitive_ops.PauliSumOp.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
 
-An `OperatorBase` equivalent to the tensor product of self and other.
+  ### coeff
 
-**Return type**
+  <Attribute id="qiskit.opflow.primitive_ops.PauliSumOp.coeff" name="coeff">
+    The scalar coefficient multiplying the Operator.
 
-[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp") | [*TensoredOp*](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.tensored_op.TensoredOp")
+    **Returns**
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-to-instruction" />
+    The coefficient.
+  </Attribute>
 
-### to\_instruction
+  ### coeffs
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.to_instruction" />
+  <Attribute id="qiskit.opflow.primitive_ops.PauliSumOp.coeffs" name="coeffs">
+    Return the Pauli coefficients.
+  </Attribute>
 
-`PauliSumOp.to_instruction()`
+  ### grouping\_type
 
-Returns an `Instruction` equivalent to this Operator.
+  <Attribute id="qiskit.opflow.primitive_ops.PauliSumOp.grouping_type" name="grouping_type">
+    Type of Grouping
 
-**Return type**
+    **Type**
 
-[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+    Returns
+  </Attribute>
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-to-matrix" />
+  ### instance\_id
 
-### to\_matrix
+  <Attribute id="qiskit.opflow.primitive_ops.PauliSumOp.instance_id" name="instance_id">
+    Return the unique instance id.
+  </Attribute>
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.to_matrix" />
+  ### num\_qubits
 
-`PauliSumOp.to_matrix(massive=False)`
+  <Attribute id="qiskit.opflow.primitive_ops.PauliSumOp.num_qubits" name="num_qubits" />
 
-Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
+  ### parameters
 
-**Returns**
+  <Attribute id="qiskit.opflow.primitive_ops.PauliSumOp.parameters" name="parameters" />
 
-The NumPy `ndarray` equivalent to this Operator.
+  ### primitive
 
-**Return type**
+  <Attribute id="qiskit.opflow.primitive_ops.PauliSumOp.primitive" name="primitive" attributeTypeHint="SparsePauliOp">
+    The primitive defining the underlying function of the Operator.
 
-[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
+    **Returns**
 
-<span id="qiskit-opflow-primitive-ops-paulisumop-to-pauli-op" />
+    The primitive object.
+  </Attribute>
 
-### to\_pauli\_op
+  ### settings
 
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.to_pauli_op" />
-
-`PauliSumOp.to_pauli_op(massive=False)`
-
-Returns a sum of `PauliOp` s equivalent to this Operator.
-
-**Return type**
-
-[*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.pauli_op.PauliOp") | [*SummedOp*](qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.summed_op.SummedOp")
-
-<span id="qiskit-opflow-primitive-ops-paulisumop-to-spmatrix" />
-
-### to\_spmatrix
-
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.to_spmatrix" />
-
-`PauliSumOp.to_spmatrix()`
-
-Returns SciPy sparse matrix representation of the `PauliSumOp`.
-
-**Returns**
-
-CSR sparse matrix representation of the `PauliSumOp`.
-
-**Raises**
-
-**ValueError** – invalid parameters.
-
-**Return type**
-
-*spmatrix*
-
-## Attributes
-
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.INDENTATION" />
-
-### INDENTATION
-
-`= '  '`
-
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.coeff" />
-
-### coeff
-
-The scalar coefficient multiplying the Operator.
-
-**Returns**
-
-The coefficient.
-
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.coeffs" />
-
-### coeffs
-
-Return the Pauli coefficients.
-
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.grouping_type" />
-
-### grouping\_type
-
-Type of Grouping
-
-**Type**
-
-Returns
-
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.instance_id" />
-
-### instance\_id
-
-Return the unique instance id.
-
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.num_qubits" />
-
-### num\_qubits
-
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.parameters" />
-
-### parameters
-
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.primitive" />
-
-### primitive
-
-`SparsePauliOp`
-
-The primitive defining the underlying function of the Operator.
-
-**Returns**
-
-The primitive object.
-
-<span id="qiskit.opflow.primitive_ops.PauliSumOp.settings" />
-
-### settings
-
-Return operator settings.
+  <Attribute id="qiskit.opflow.primitive_ops.PauliSumOp.settings" name="settings">
+    Return operator settings.
+  </Attribute>
+</Class>
 

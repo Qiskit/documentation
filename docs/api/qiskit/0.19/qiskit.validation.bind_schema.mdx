@@ -8,53 +8,51 @@ python_api_name: qiskit.validation.bind_schema
 
 # bind\_schema
 
-<span id="qiskit.validation.bind_schema" />
+<Function id="qiskit.validation.bind_schema" name="bind_schema" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py" signature="bind_schema(schema, **kwargs)">
+  Class decorator for adding schema validation to its instances.
 
-`bind_schema(schema, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py "view source code")
+  The decorator acts on the model class by adding:
 
-Class decorator for adding schema validation to its instances.
+  *   a class attribute `schema` with the schema used for validation
+  *   a class attribute `shallow_schema` used for validation during instantiation.
 
-The decorator acts on the model class by adding:
+  The same schema cannot be bound more than once. If you need to reuse a schema for a different class, create a new schema subclassing the one you want to reuse and leave the new empty:
 
-*   a class attribute `schema` with the schema used for validation
-*   a class attribute `shallow_schema` used for validation during instantiation.
+  ```python
+  class MySchema(BaseSchema):
+      title = String()
 
-The same schema cannot be bound more than once. If you need to reuse a schema for a different class, create a new schema subclassing the one you want to reuse and leave the new empty:
+  class AnotherSchema(MySchema):
+      pass
 
-```python
-class MySchema(BaseSchema):
-    title = String()
+  @bind_schema(MySchema):
+  class MyModel(BaseModel):
+      pass
 
-class AnotherSchema(MySchema):
-    pass
+  @bind_schema(AnotherSchema):
+  class AnotherModel(BaseModel):
+      pass
+  ```
 
-@bind_schema(MySchema):
-class MyModel(BaseModel):
-    pass
+  <Admonition title="Note" type="note">
+    By default, models decorated with this decorator are validated during instantiation. If `validate=False` is passed to the constructor, this validation will not be performed.
+  </Admonition>
 
-@bind_schema(AnotherSchema):
-class AnotherModel(BaseModel):
-    pass
-```
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  By default, models decorated with this decorator are validated during instantiation. If `validate=False` is passed to the constructor, this validation will not be performed.
-</Admonition>
+  *   **schema** (*class*) – the schema class used for validation.
+  *   **\*\*kwargs** – Additional attributes for the `marshmallow.Schema` initializer.
 
-**Parameters**
+  **Raises**
 
-*   **schema** (*class*) – the schema class used for validation.
-*   **\*\*kwargs** – Additional attributes for the `marshmallow.Schema` initializer.
+  **ValueError** – when trying to bind the same schema more than once.
 
-**Raises**
+  **Returns**
 
-**ValueError** – when trying to bind the same schema more than once.
+  the same class with validation capabilities.
 
-**Returns**
+  **Return type**
 
-the same class with validation capabilities.
-
-**Return type**
-
-type
+  type
+</Function>
 

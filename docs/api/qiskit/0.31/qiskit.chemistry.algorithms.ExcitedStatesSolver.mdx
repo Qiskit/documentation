@@ -8,34 +8,30 @@ python_api_name: qiskit.chemistry.algorithms.ExcitedStatesSolver
 
 # ExcitedStatesSolver
 
-<span id="qiskit.chemistry.algorithms.ExcitedStatesSolver" />
+<Class id="qiskit.chemistry.algorithms.ExcitedStatesSolver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/excited_states_solver.py" signature="ExcitedStatesSolver">
+  Bases: `abc.ABC`
 
-`ExcitedStatesSolver` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/excited_states_solver.py "view source code")
+  The excited states calculation interface
 
-Bases: `abc.ABC`
+  ## Methods
 
-The excited states calculation interface
+  ### solve
 
-## Methods
+  <Function id="qiskit.chemistry.algorithms.ExcitedStatesSolver.solve" name="solve" signature="abstract ExcitedStatesSolver.solve(driver, aux_operators=None)">
+    Compute the excited states energies of the molecule that was supplied via the driver.
 
-### solve
+    **Parameters**
 
-<span id="qiskit.chemistry.algorithms.ExcitedStatesSolver.solve" />
+    *   **driver** (`BaseDriver`) – a chemistry driver object which defines the chemical problem that is to be solved by this calculation.
+    *   **aux\_operators** (`Union`\[`List`\[`FermionicOperator`], `List`\[`BosonicOperator`], `None`]) – Additional auxiliary operators to evaluate. Must be of type `FermionicOperator` if the qubit transformation is fermionic and of type `BosonicOperator` it is bosonic.
 
-`abstract ExcitedStatesSolver.solve(driver, aux_operators=None)`
+    **Return type**
 
-Compute the excited states energies of the molecule that was supplied via the driver.
+    `Union`\[`ElectronicStructureResult`, `VibronicStructureResult`]
 
-**Parameters**
+    **Returns**
 
-*   **driver** (`BaseDriver`) – a chemistry driver object which defines the chemical problem that is to be solved by this calculation.
-*   **aux\_operators** (`Union`\[`List`\[`FermionicOperator`], `List`\[`BosonicOperator`], `None`]) – Additional auxiliary operators to evaluate. Must be of type `FermionicOperator` if the qubit transformation is fermionic and of type `BosonicOperator` it is bosonic.
-
-**Return type**
-
-`Union`\[`ElectronicStructureResult`, `VibronicStructureResult`]
-
-**Returns**
-
-an eigenstate result
+    an eigenstate result
+  </Function>
+</Class>
 

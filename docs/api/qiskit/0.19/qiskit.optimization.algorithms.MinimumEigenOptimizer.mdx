@@ -8,104 +8,96 @@ python_api_name: qiskit.optimization.algorithms.MinimumEigenOptimizer
 
 # MinimumEigenOptimizer
 
-<span id="qiskit.optimization.algorithms.MinimumEigenOptimizer" />
+<Class id="qiskit.optimization.algorithms.MinimumEigenOptimizer" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/minimum_eigen_optimizer.py" signature="MinimumEigenOptimizer(min_eigen_solver, penalty=None)">
+  A wrapper for minimum eigen solvers from Qiskit Aqua.
 
-`MinimumEigenOptimizer(min_eigen_solver, penalty=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/minimum_eigen_optimizer.py "view source code")
+  This class provides a wrapper for minimum eigen solvers from Qiskit to be used within the optimization module. It assumes a problem consisting only of binary or integer variables as well as linear equality constraints thereof. It converts such a problem into a Quadratic Unconstrained Binary Optimization (QUBO) problem by expanding integer variables into binary variables and by adding the linear equality constraints as weighted penalty terms to the objective function. The resulting QUBO is then translated into an Ising Hamiltonian whose minimal eigen vector and corresponding eigenstate correspond to the optimal solution of the original optimization problem. The provided minimum eigen solver is then used to approximate the ground state of the Hamiltonian to find a good solution for the optimization problem.
 
-A wrapper for minimum eigen solvers from Qiskit Aqua.
+  **Examples**
 
-This class provides a wrapper for minimum eigen solvers from Qiskit to be used within the optimization module. It assumes a problem consisting only of binary or integer variables as well as linear equality constraints thereof. It converts such a problem into a Quadratic Unconstrained Binary Optimization (QUBO) problem by expanding integer variables into binary variables and by adding the linear equality constraints as weighted penalty terms to the objective function. The resulting QUBO is then translated into an Ising Hamiltonian whose minimal eigen vector and corresponding eigenstate correspond to the optimal solution of the original optimization problem. The provided minimum eigen solver is then used to approximate the ground state of the Hamiltonian to find a good solution for the optimization problem.
+  Outline of how to use this class:
 
-**Examples**
+  ```python
+  from qiskit.aqua.algorithms import QAOA
+  from qiskit.optimization.problems import QuadraticProgram
+  from qiskit.optimization.algorithms import MinimumEigenOptimizer
+  problem = QuadraticProgram()
+  # specify problem here
+  # specify minimum eigen solver to be used, e.g., QAOA
+  qaoa = QAOA(...)
+  optimizer = MinimumEigenOptimizer(qaoa)
+  result = optimizer.solve(problem)
+  ```
 
-Outline of how to use this class:
+  This initializer takes the minimum eigen solver to be used to approximate the ground state of the resulting Hamiltonian as well as a optional penalty factor to scale penalty terms representing linear equality constraints. If no penalty factor is provided, a default is computed during the algorithm (TODO).
 
-```python
-from qiskit.aqua.algorithms import QAOA
-from qiskit.optimization.problems import QuadraticProgram
-from qiskit.optimization.algorithms import MinimumEigenOptimizer
-problem = QuadraticProgram()
-# specify problem here
-# specify minimum eigen solver to be used, e.g., QAOA
-qaoa = QAOA(...)
-optimizer = MinimumEigenOptimizer(qaoa)
-result = optimizer.solve(problem)
-```
+  **Parameters**
 
-This initializer takes the minimum eigen solver to be used to approximate the ground state of the resulting Hamiltonian as well as a optional penalty factor to scale penalty terms representing linear equality constraints. If no penalty factor is provided, a default is computed during the algorithm (TODO).
+  *   **min\_eigen\_solver** ([`MinimumEigensolver`](qiskit.aqua.algorithms.MinimumEigensolver "qiskit.aqua.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver")) – The eigen solver to find the ground state of the Hamiltonian.
+  *   **penalty** (`Optional`\[`float`]) – The penalty factor to be used, or `None` for applying a default logic.
 
-**Parameters**
+  ## Methods
 
-*   **min\_eigen\_solver** ([`MinimumEigensolver`](qiskit.aqua.algorithms.MinimumEigensolver "qiskit.aqua.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver")) – The eigen solver to find the ground state of the Hamiltonian.
-*   **penalty** (`Optional`\[`float`]) – The penalty factor to be used, or `None` for applying a default logic.
+  ### get\_compatibility\_msg
 
-## Methods
+  <Function id="qiskit.optimization.algorithms.MinimumEigenOptimizer.get_compatibility_msg" name="get_compatibility_msg" signature="MinimumEigenOptimizer.get_compatibility_msg(problem)">
+    Checks whether a given problem can be solved with this optimizer.
 
-### get\_compatibility\_msg
+    Checks whether the given problem is compatible, i.e., whether the problem can be converted to a QUBO, and otherwise, returns a message explaining the incompatibility.
 
-<span id="qiskit.optimization.algorithms.MinimumEigenOptimizer.get_compatibility_msg" />
+    **Parameters**
 
-`MinimumEigenOptimizer.get_compatibility_msg(problem)`
+    **problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
 
-Checks whether a given problem can be solved with this optimizer.
+    **Return type**
 
-Checks whether the given problem is compatible, i.e., whether the problem can be converted to a QUBO, and otherwise, returns a message explaining the incompatibility.
+    `str`
 
-**Parameters**
+    **Returns**
 
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
+    A message describing the incompatibility.
+  </Function>
 
-**Return type**
+  ### is\_compatible
 
-`str`
+  <Function id="qiskit.optimization.algorithms.MinimumEigenOptimizer.is_compatible" name="is_compatible" signature="MinimumEigenOptimizer.is_compatible(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
 
-**Returns**
+    **Parameters**
 
-A message describing the incompatibility.
+    **problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
 
-### is\_compatible
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.MinimumEigenOptimizer.is_compatible" />
+    `bool`
 
-`MinimumEigenOptimizer.is_compatible(problem)`
+    **Returns**
 
-Checks whether a given problem can be solved with the optimizer implementing this method.
+    Returns True if the problem is compatible, False otherwise.
+  </Function>
 
-**Parameters**
+  ### solve
 
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
+  <Function id="qiskit.optimization.algorithms.MinimumEigenOptimizer.solve" name="solve" signature="MinimumEigenOptimizer.solve(problem)">
+    Tries to solves the given problem using the optimizer.
 
-**Return type**
+    Runs the optimizer to try to solve the optimization problem.
 
-`bool`
+    **Parameters**
 
-**Returns**
+    **problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved.
 
-Returns True if the problem is compatible, False otherwise.
+    **Return type**
 
-### solve
+    `MinimumEigenOptimizerResult`
 
-<span id="qiskit.optimization.algorithms.MinimumEigenOptimizer.solve" />
+    **Returns**
 
-`MinimumEigenOptimizer.solve(problem)`
+    The result of the optimizer applied to the problem.
 
-Tries to solves the given problem using the optimizer.
+    **Raises**
 
-Runs the optimizer to try to solve the optimization problem.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved.
-
-**Return type**
-
-`MinimumEigenOptimizerResult`
-
-**Returns**
-
-The result of the optimizer applied to the problem.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If problem not compatible.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If problem not compatible.
+  </Function>
+</Class>
 

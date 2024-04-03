@@ -22,69 +22,63 @@ portfolio diversification
 
 ### get\_operator
 
-<span id="qiskit.finance.applications.ising.portfolio_diversification.get_operator" />
+<Function id="qiskit.finance.applications.ising.portfolio_diversification.get_operator" name="get_operator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/applications/ising/portfolio_diversification.py" signature="get_operator(rho, n, q)">
+  Converts an instance of portfolio optimization into a list of Paulis.
 
-`get_operator(rho, n, q)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/applications/ising/portfolio_diversification.py "view source code")
+  **Parameters**
 
-Converts an instance of portfolio optimization into a list of Paulis.
+  *   **rho** (*numpy.ndarray*) – an asset-to-asset similarity matrix, such as the covariance matrix.
+  *   **n** (*integer*) – the number of assets.
+  *   **q** (*integer*) – the number of clusters of assets to output.
 
-**Parameters**
+  **Returns**
 
-*   **rho** (*numpy.ndarray*) – an asset-to-asset similarity matrix, such as the covariance matrix.
-*   **n** (*integer*) – the number of assets.
-*   **q** (*integer*) – the number of clusters of assets to output.
+  operator for the Hamiltonian
 
-**Returns**
+  **Return type**
 
-operator for the Hamiltonian
-
-**Return type**
-
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+  [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+</Function>
 
 ### get\_portfoliodiversification\_solution
 
-<span id="qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_solution" />
+<Function id="qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_solution" name="get_portfoliodiversification_solution" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/applications/ising/portfolio_diversification.py" signature="get_portfoliodiversification_solution(rho, n, q, result)">
+  Tries to obtain a feasible solution (in vector form) of an instance of portfolio diversification from the results dictionary.
 
-`get_portfoliodiversification_solution(rho, n, q, result)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/applications/ising/portfolio_diversification.py "view source code")
+  **Parameters**
 
-Tries to obtain a feasible solution (in vector form) of an instance of portfolio diversification from the results dictionary.
+  *   **rho** (*numpy.ndarray*) – an asset-to-asset similarity matrix, such as the covariance matrix.
+  *   **n** (*integer*) – the number of assets.
+  *   **q** (*integer*) – the number of clusters of assets to output.
+  *   **result** (*dictionary*) – a dictionary obtained by QAOA.run or VQE.run containing key ‘eigvecs’.
 
-**Parameters**
+  **Returns**
 
-*   **rho** (*numpy.ndarray*) – an asset-to-asset similarity matrix, such as the covariance matrix.
-*   **n** (*integer*) – the number of assets.
-*   **q** (*integer*) – the number of clusters of assets to output.
-*   **result** (*dictionary*) – a dictionary obtained by QAOA.run or VQE.run containing key ‘eigvecs’.
+  a vector describing the solution.
 
-**Returns**
+  **Return type**
 
-a vector describing the solution.
-
-**Return type**
-
-numpy.ndarray
+  numpy.ndarray
+</Function>
 
 ### get\_portfoliodiversification\_value
 
-<span id="qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_value" />
+<Function id="qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_value" name="get_portfoliodiversification_value" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/applications/ising/portfolio_diversification.py" signature="get_portfoliodiversification_value(rho, n, q, x_state)">
+  Evaluates an objective function of an instance of portfolio diversification and its solution (in vector form).
 
-`get_portfoliodiversification_value(rho, n, q, x_state)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/applications/ising/portfolio_diversification.py "view source code")
+  **Parameters**
 
-Evaluates an objective function of an instance of portfolio diversification and its solution (in vector form).
+  *   **rho** (*numpy.ndarray*) – an asset-to-asset similarity matrix, such as the covariance matrix.
+  *   **n** (*integer*) – the number of assets.
+  *   **q** (*integer*) – the number of clusters of assets to output.
+  *   **x\_state** (*numpy.ndarray*) – a vector describing the solution.
 
-**Parameters**
+  **Returns**
 
-*   **rho** (*numpy.ndarray*) – an asset-to-asset similarity matrix, such as the covariance matrix.
-*   **n** (*integer*) – the number of assets.
-*   **q** (*integer*) – the number of clusters of assets to output.
-*   **x\_state** (*numpy.ndarray*) – a vector describing the solution.
+  cost of the solution.
 
-**Returns**
+  **Return type**
 
-cost of the solution.
-
-**Return type**
-
-float
+  float
+</Function>
 

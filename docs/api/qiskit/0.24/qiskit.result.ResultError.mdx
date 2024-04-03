@@ -10,33 +10,29 @@ python_api_name: qiskit.result.ResultError
 
 # qiskit.result.ResultError
 
-<span id="qiskit.result.ResultError" />
+<Class id="qiskit.result.ResultError" name="ResultError" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/result/exceptions.py" signature="ResultError(error)">
+  Exceptions raised due to errors in result output.
 
-`ResultError(error)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/result/exceptions.py "view source code")
+  It may be better for the Qiskit API to raise this exception.
 
-Exceptions raised due to errors in result output.
+  **Parameters**
 
-It may be better for the Qiskit API to raise this exception.
+  **error** (*dict*) –
 
-**Parameters**
+  This is the error record as it comes back from the API. The format is like:
 
-**error** (*dict*) –
+  ```python
+  error = {'status': 403,
+           'message': 'Your credits are not enough.',
+           'code': 'MAX_CREDITS_EXCEEDED'}
+  ```
 
-This is the error record as it comes back from the API. The format is like:
+  Set the error message.
 
-```python
-error = {'status': 403,
-         'message': 'Your credits are not enough.',
-         'code': 'MAX_CREDITS_EXCEEDED'}
-```
+  ### with\_traceback
 
-Set the error message.
-
-### with\_traceback
-
-<span id="qiskit.result.ResultError.with_traceback" />
-
-`with_traceback()`
-
-Exception.with\_traceback(tb) – set self.\_\_traceback\_\_ to tb and return self.
+  <Function id="qiskit.result.ResultError.with_traceback" name="with_traceback" signature="with_traceback()">
+    Exception.with\_traceback(tb) – set self.\_\_traceback\_\_ to tb and return self.
+  </Function>
+</Class>
 

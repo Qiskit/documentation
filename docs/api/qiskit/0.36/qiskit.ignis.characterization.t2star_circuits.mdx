@@ -8,28 +8,26 @@ python_api_name: qiskit.ignis.characterization.t2star_circuits
 
 # qiskit.ignis.characterization.t2star\_circuits
 
-<span id="qiskit.ignis.characterization.t2star_circuits" />
+<Function id="qiskit.ignis.characterization.t2star_circuits" name="t2star_circuits" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/coherence/circuits.py" signature="t2star_circuits(num_of_gates, gate_time, qubits, nosc=0)">
+  Generate circuits for T2\* measurement.
 
-`t2star_circuits(num_of_gates, gate_time, qubits, nosc=0)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/coherence/circuits.py "view source code")
+  Each circuit consists of a Hadamard gate, followed by a sequence of identity gates, a phase gate (with a linear phase), and an additional Hadamard gate.
 
-Generate circuits for T2\* measurement.
+  **Parameters**
 
-Each circuit consists of a Hadamard gate, followed by a sequence of identity gates, a phase gate (with a linear phase), and an additional Hadamard gate.
+  *   **num\_of\_gates** (`Union`\[`List`\[`int`], `array`]) – the number of identity gates in each circuit. Must be in an increasing order.
+  *   **gate\_time** (`float`) – time of running a single identity gate.
+  *   **qubits** (`List`\[`int`]) – indices of the qubits whose T2\*‘s are to be measured.
+  *   **nosc** (`int`) – number of oscillations to induce using the phase gate
 
-**Parameters**
+  **Return type**
 
-*   **num\_of\_gates** (`Union`\[`List`\[`int`], `array`]) – the number of identity gates in each circuit. Must be in an increasing order.
-*   **gate\_time** (`float`) – time of running a single identity gate.
-*   **qubits** (`List`\[`int`]) – indices of the qubits whose T2\*‘s are to be measured.
-*   **nosc** (`int`) – number of oscillations to induce using the phase gate
+  `Tuple`\[`List`\[`QuantumCircuit`], `array`, `float`]
 
-**Return type**
+  **Returns**
 
-`Tuple`\[`List`\[`QuantumCircuit`], `array`, `float`]
-
-**Returns**
-
-*   The generated circuits
-*   Delay times, i.e., gate\_time multiplied by the numbers in num\_of\_gates
-*   The induced oscillation frequency
+  *   The generated circuits
+  *   Delay times, i.e., gate\_time multiplied by the numbers in num\_of\_gates
+  *   The induced oscillation frequency
+</Function>
 

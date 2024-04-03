@@ -8,229 +8,203 @@ python_api_name: qiskit.aqua.operators.legacy.Z2Symmetries
 
 # qiskit.aqua.operators.legacy.Z2Symmetries
 
-<span id="qiskit.aqua.operators.legacy.Z2Symmetries" />
+<Class id="qiskit.aqua.operators.legacy.Z2Symmetries" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/weighted_pauli_operator.py" signature="Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None)">
+  Z2 Symmetries
 
-`Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/weighted_pauli_operator.py "view source code")
+  **Parameters**
 
-Z2 Symmetries
+  *   **symmetries** (*list\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – the list of Pauli objects representing the Z\_2 symmetries
+  *   **sq\_paulis** (*list\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – the list of single - qubit Pauli objects to construct the Clifford operators
+  *   **sq\_list** (*list\[int]*) – the list of support of the single-qubit Pauli objects used to build the Clifford operators
+  *   **tapering\_values** (*list\[int], optional*) – values determines the sector.
 
-**Parameters**
+  **Raises**
 
-*   **symmetries** (*list\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – the list of Pauli objects representing the Z\_2 symmetries
-*   **sq\_paulis** (*list\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – the list of single - qubit Pauli objects to construct the Clifford operators
-*   **sq\_list** (*list\[int]*) – the list of support of the single-qubit Pauli objects used to build the Clifford operators
-*   **tapering\_values** (*list\[int], optional*) – values determines the sector.
+  [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid paulis
 
-**Raises**
+  ### \_\_init\_\_
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid paulis
+  <Function id="qiskit.aqua.operators.legacy.Z2Symmetries.__init__" name="__init__" signature="__init__(symmetries, sq_paulis, sq_list, tapering_values=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **symmetries** (*list\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – the list of Pauli objects representing the Z\_2 symmetries
+    *   **sq\_paulis** (*list\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – the list of single - qubit Pauli objects to construct the Clifford operators
+    *   **sq\_list** (*list\[int]*) – the list of support of the single-qubit Pauli objects used to build the Clifford operators
+    *   **tapering\_values** (*list\[int], optional*) – values determines the sector.
 
-<span id="qiskit.aqua.operators.legacy.Z2Symmetries.__init__" />
+    **Raises**
 
-`__init__(symmetries, sq_paulis, sq_list, tapering_values=None)`
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid paulis
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **symmetries** (*list\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – the list of Pauli objects representing the Z\_2 symmetries
-*   **sq\_paulis** (*list\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – the list of single - qubit Pauli objects to construct the Clifford operators
-*   **sq\_list** (*list\[int]*) – the list of support of the single-qubit Pauli objects used to build the Clifford operators
-*   **tapering\_values** (*list\[int], optional*) – values determines the sector.
+  |                                                                                                                                                                                   |                                                                                                               |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.operators.legacy.Z2Symmetries.__init__ "qiskit.aqua.operators.legacy.Z2Symmetries.__init__")(symmetries, sq\_paulis, sq\_list\[, …])                    | **param symmetries**the list of Pauli objects representing the Z\_2 symmetries                                |
+  | [`consistent_tapering`](#qiskit.aqua.operators.legacy.Z2Symmetries.consistent_tapering "qiskit.aqua.operators.legacy.Z2Symmetries.consistent_tapering")(operator)                 | Tapering the operator with the same manner of how this tapered operator is created.                           |
+  | [`copy`](#qiskit.aqua.operators.legacy.Z2Symmetries.copy "qiskit.aqua.operators.legacy.Z2Symmetries.copy")()                                                                      | Get a copy of self.                                                                                           |
+  | [`find_Z2_symmetries`](#qiskit.aqua.operators.legacy.Z2Symmetries.find_Z2_symmetries "qiskit.aqua.operators.legacy.Z2Symmetries.find_Z2_symmetries")(operator)                    | Finds Z2 Pauli-type symmetries of an Operator.                                                                |
+  | [`is_empty`](#qiskit.aqua.operators.legacy.Z2Symmetries.is_empty "qiskit.aqua.operators.legacy.Z2Symmetries.is_empty")()                                                          | Check the z2\_symmetries is empty or not.                                                                     |
+  | [`taper`](#qiskit.aqua.operators.legacy.Z2Symmetries.taper "qiskit.aqua.operators.legacy.Z2Symmetries.taper")(operator\[, tapering\_values])                                      | Taper an operator based on the z2\_symmetries info and sector defined by tapering\_values.                    |
+  | [`two_qubit_reduction`](#qiskit.aqua.operators.legacy.Z2Symmetries.two_qubit_reduction "qiskit.aqua.operators.legacy.Z2Symmetries.two_qubit_reduction")(operator, num\_particles) | Eliminates the central and last qubit in a list of Pauli that has diagonal operators (Z,I) at those positions |
 
-**Raises**
+  ## Attributes
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid paulis
+  |                                                                                                                                             |                                                                       |
+  | ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+  | [`cliffords`](#qiskit.aqua.operators.legacy.Z2Symmetries.cliffords "qiskit.aqua.operators.legacy.Z2Symmetries.cliffords")                   | Get clifford operators, build based on symmetries and single-qubit X. |
+  | [`sq_list`](#qiskit.aqua.operators.legacy.Z2Symmetries.sq_list "qiskit.aqua.operators.legacy.Z2Symmetries.sq_list")                         | returns sq list                                                       |
+  | [`sq_paulis`](#qiskit.aqua.operators.legacy.Z2Symmetries.sq_paulis "qiskit.aqua.operators.legacy.Z2Symmetries.sq_paulis")                   | returns sq paulis                                                     |
+  | [`symmetries`](#qiskit.aqua.operators.legacy.Z2Symmetries.symmetries "qiskit.aqua.operators.legacy.Z2Symmetries.symmetries")                | return symmetries                                                     |
+  | [`tapering_values`](#qiskit.aqua.operators.legacy.Z2Symmetries.tapering_values "qiskit.aqua.operators.legacy.Z2Symmetries.tapering_values") | returns tapering values                                               |
 
-## Methods
+  ### cliffords
 
-|                                                                                                                                                                                   |                                                                                                               |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.legacy.Z2Symmetries.__init__ "qiskit.aqua.operators.legacy.Z2Symmetries.__init__")(symmetries, sq\_paulis, sq\_list\[, …])                    | **param symmetries**the list of Pauli objects representing the Z\_2 symmetries                                |
-| [`consistent_tapering`](#qiskit.aqua.operators.legacy.Z2Symmetries.consistent_tapering "qiskit.aqua.operators.legacy.Z2Symmetries.consistent_tapering")(operator)                 | Tapering the operator with the same manner of how this tapered operator is created.                           |
-| [`copy`](#qiskit.aqua.operators.legacy.Z2Symmetries.copy "qiskit.aqua.operators.legacy.Z2Symmetries.copy")()                                                                      | Get a copy of self.                                                                                           |
-| [`find_Z2_symmetries`](#qiskit.aqua.operators.legacy.Z2Symmetries.find_Z2_symmetries "qiskit.aqua.operators.legacy.Z2Symmetries.find_Z2_symmetries")(operator)                    | Finds Z2 Pauli-type symmetries of an Operator.                                                                |
-| [`is_empty`](#qiskit.aqua.operators.legacy.Z2Symmetries.is_empty "qiskit.aqua.operators.legacy.Z2Symmetries.is_empty")()                                                          | Check the z2\_symmetries is empty or not.                                                                     |
-| [`taper`](#qiskit.aqua.operators.legacy.Z2Symmetries.taper "qiskit.aqua.operators.legacy.Z2Symmetries.taper")(operator\[, tapering\_values])                                      | Taper an operator based on the z2\_symmetries info and sector defined by tapering\_values.                    |
-| [`two_qubit_reduction`](#qiskit.aqua.operators.legacy.Z2Symmetries.two_qubit_reduction "qiskit.aqua.operators.legacy.Z2Symmetries.two_qubit_reduction")(operator, num\_particles) | Eliminates the central and last qubit in a list of Pauli that has diagonal operators (Z,I) at those positions |
+  <Function id="qiskit.aqua.operators.legacy.Z2Symmetries.cliffords" name="cliffords" signature="property cliffords">
+    Get clifford operators, build based on symmetries and single-qubit X.
 
-## Attributes
+    **Returns**
 
-|                                                                                                                                             |                                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [`cliffords`](#qiskit.aqua.operators.legacy.Z2Symmetries.cliffords "qiskit.aqua.operators.legacy.Z2Symmetries.cliffords")                   | Get clifford operators, build based on symmetries and single-qubit X. |
-| [`sq_list`](#qiskit.aqua.operators.legacy.Z2Symmetries.sq_list "qiskit.aqua.operators.legacy.Z2Symmetries.sq_list")                         | returns sq list                                                       |
-| [`sq_paulis`](#qiskit.aqua.operators.legacy.Z2Symmetries.sq_paulis "qiskit.aqua.operators.legacy.Z2Symmetries.sq_paulis")                   | returns sq paulis                                                     |
-| [`symmetries`](#qiskit.aqua.operators.legacy.Z2Symmetries.symmetries "qiskit.aqua.operators.legacy.Z2Symmetries.symmetries")                | return symmetries                                                     |
-| [`tapering_values`](#qiskit.aqua.operators.legacy.Z2Symmetries.tapering_values "qiskit.aqua.operators.legacy.Z2Symmetries.tapering_values") | returns tapering values                                               |
+    a list of unitaries used to diagonalize the Hamiltonian.
 
-### cliffords
+    **Return type**
 
-<span id="qiskit.aqua.operators.legacy.Z2Symmetries.cliffords" />
+    list\[[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")]
+  </Function>
 
-`property cliffords`
+  ### consistent\_tapering
 
-Get clifford operators, build based on symmetries and single-qubit X.
+  <Function id="qiskit.aqua.operators.legacy.Z2Symmetries.consistent_tapering" name="consistent_tapering" signature="consistent_tapering(operator)">
+    Tapering the operator with the same manner of how this tapered operator is created. i.e., using the same Cliffords and tapering values.
 
-**Returns**
+    **Parameters**
 
-a list of unitaries used to diagonalize the Hamiltonian.
+    **operator** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the to-be-tapered operator
 
-**Return type**
+    **Returns**
 
-list\[[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")]
+    the tapered operator
 
-### consistent\_tapering
+    **Return type**
 
-<span id="qiskit.aqua.operators.legacy.Z2Symmetries.consistent_tapering" />
+    TaperedWeightedPauliOperator
 
-`consistent_tapering(operator)`
+    **Raises**
 
-Tapering the operator with the same manner of how this tapered operator is created. i.e., using the same Cliffords and tapering values.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – The given operator does not commute with the symmetry
+  </Function>
 
-**Parameters**
+  ### copy
 
-**operator** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the to-be-tapered operator
+  <Function id="qiskit.aqua.operators.legacy.Z2Symmetries.copy" name="copy" signature="copy()">
+    Get a copy of self.
 
-**Returns**
+    **Return type**
 
-the tapered operator
+    `Z2Symmetries`
 
-**Return type**
+    **Returns**
 
-TaperedWeightedPauliOperator
+    copy
+  </Function>
 
-**Raises**
+  ### find\_Z2\_symmetries
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – The given operator does not commute with the symmetry
+  <Function id="qiskit.aqua.operators.legacy.Z2Symmetries.find_Z2_symmetries" name="find_Z2_symmetries" signature="classmethod find_Z2_symmetries(operator)">
+    Finds Z2 Pauli-type symmetries of an Operator.
 
-### copy
+    **Return type**
 
-<span id="qiskit.aqua.operators.legacy.Z2Symmetries.copy" />
+    `Z2Symmetries`
 
-`copy()`
+    **Returns**
 
-Get a copy of self.
+    a z2\_symmetries object contains symmetries, single-qubit X, single-qubit list.
+  </Function>
 
-**Return type**
+  ### is\_empty
 
-`Z2Symmetries`
+  <Function id="qiskit.aqua.operators.legacy.Z2Symmetries.is_empty" name="is_empty" signature="is_empty()">
+    Check the z2\_symmetries is empty or not.
 
-**Returns**
+    **Returns**
 
-copy
+    empty
 
-### find\_Z2\_symmetries
+    **Return type**
 
-<span id="qiskit.aqua.operators.legacy.Z2Symmetries.find_Z2_symmetries" />
+    bool
+  </Function>
 
-`classmethod find_Z2_symmetries(operator)`
+  ### sq\_list
 
-Finds Z2 Pauli-type symmetries of an Operator.
+  <Function id="qiskit.aqua.operators.legacy.Z2Symmetries.sq_list" name="sq_list" signature="property sq_list">
+    returns sq list
+  </Function>
 
-**Return type**
+  ### sq\_paulis
 
-`Z2Symmetries`
+  <Function id="qiskit.aqua.operators.legacy.Z2Symmetries.sq_paulis" name="sq_paulis" signature="property sq_paulis">
+    returns sq paulis
+  </Function>
 
-**Returns**
+  ### symmetries
 
-a z2\_symmetries object contains symmetries, single-qubit X, single-qubit list.
+  <Function id="qiskit.aqua.operators.legacy.Z2Symmetries.symmetries" name="symmetries" signature="property symmetries">
+    return symmetries
+  </Function>
 
-### is\_empty
+  ### taper
 
-<span id="qiskit.aqua.operators.legacy.Z2Symmetries.is_empty" />
+  <Function id="qiskit.aqua.operators.legacy.Z2Symmetries.taper" name="taper" signature="taper(operator, tapering_values=None)">
+    Taper an operator based on the z2\_symmetries info and sector defined by tapering\_values. The tapering\_values will be stored into the resulted operator for a record.
 
-`is_empty()`
+    **Parameters**
 
-Check the z2\_symmetries is empty or not.
+    *   **operator** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the to-be-tapered operator.
+    *   **tapering\_values** (*list\[int], optional*) – if None, returns operators at each sector; otherwise, returns the operator located in that sector.
 
-**Returns**
+    **Returns**
 
-empty
+    **If**
 
-**Return type**
+    tapering\_values is None: \[:class\`WeightedPauliOperator\`]; otherwise, [`WeightedPauliOperator`](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
-bool
+    **Return type**
 
-### sq\_list
+    list\[[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")] or [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
-<span id="qiskit.aqua.operators.legacy.Z2Symmetries.sq_list" />
+    **Raises**
 
-`property sq_list`
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Z2 symmetries, single qubit pauli and single qubit list cannot be empty
+  </Function>
 
-returns sq list
+  ### tapering\_values
 
-### sq\_paulis
+  <Function id="qiskit.aqua.operators.legacy.Z2Symmetries.tapering_values" name="tapering_values" signature="property tapering_values">
+    returns tapering values
+  </Function>
 
-<span id="qiskit.aqua.operators.legacy.Z2Symmetries.sq_paulis" />
+  ### two\_qubit\_reduction
 
-`property sq_paulis`
+  <Function id="qiskit.aqua.operators.legacy.Z2Symmetries.two_qubit_reduction" name="two_qubit_reduction" signature="static two_qubit_reduction(operator, num_particles)">
+    Eliminates the central and last qubit in a list of Pauli that has diagonal operators (Z,I) at those positions
 
-returns sq paulis
+    Chemistry specific method: It can be used to taper two qubits in parity and binary-tree mapped fermionic Hamiltonians when the spin orbitals are ordered in two spin sectors, (block spin order) according to the number of particles in the system.
 
-### symmetries
+    **Parameters**
 
-<span id="qiskit.aqua.operators.legacy.Z2Symmetries.symmetries" />
+    *   **operator** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the operator
+    *   **num\_particles** (*Union(list, int)*) – number of particles, if it is a list, the first number is alpha and the second number if beta.
 
-`property symmetries`
+    **Returns**
 
-return symmetries
+    a new operator whose qubit number is reduced by 2.
 
-### taper
+    **Return type**
 
-<span id="qiskit.aqua.operators.legacy.Z2Symmetries.taper" />
-
-`taper(operator, tapering_values=None)`
-
-Taper an operator based on the z2\_symmetries info and sector defined by tapering\_values. The tapering\_values will be stored into the resulted operator for a record.
-
-**Parameters**
-
-*   **operator** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the to-be-tapered operator.
-*   **tapering\_values** (*list\[int], optional*) – if None, returns operators at each sector; otherwise, returns the operator located in that sector.
-
-**Returns**
-
-**If**
-
-tapering\_values is None: \[:class\`WeightedPauliOperator\`]; otherwise, [`WeightedPauliOperator`](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
-
-**Return type**
-
-list\[[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")] or [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Z2 symmetries, single qubit pauli and single qubit list cannot be empty
-
-### tapering\_values
-
-<span id="qiskit.aqua.operators.legacy.Z2Symmetries.tapering_values" />
-
-`property tapering_values`
-
-returns tapering values
-
-### two\_qubit\_reduction
-
-<span id="qiskit.aqua.operators.legacy.Z2Symmetries.two_qubit_reduction" />
-
-`static two_qubit_reduction(operator, num_particles)`
-
-Eliminates the central and last qubit in a list of Pauli that has diagonal operators (Z,I) at those positions
-
-Chemistry specific method: It can be used to taper two qubits in parity and binary-tree mapped fermionic Hamiltonians when the spin orbitals are ordered in two spin sectors, (block spin order) according to the number of particles in the system.
-
-**Parameters**
-
-*   **operator** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the operator
-*   **num\_particles** (*Union(list, int)*) – number of particles, if it is a list, the first number is alpha and the second number if beta.
-
-**Returns**
-
-a new operator whose qubit number is reduced by 2.
-
-**Return type**
-
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+    [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+  </Function>
+</Class>
 

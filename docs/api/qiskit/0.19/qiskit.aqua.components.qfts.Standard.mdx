@@ -8,44 +8,40 @@ python_api_name: qiskit.aqua.components.qfts.Standard
 
 # Standard
 
-<span id="qiskit.aqua.components.qfts.Standard" />
+<Class id="qiskit.aqua.components.qfts.Standard" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/qfts/standard.py" signature="Standard(num_qubits)">
+  The Standard QFT.
 
-`Standard(num_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/qfts/standard.py "view source code")
+  This is a standard Quantum Fourier Transform
 
-The Standard QFT.
+  **Parameters**
 
-This is a standard Quantum Fourier Transform
+  **num\_qubits** (`int`) – The number of qubits
 
-**Parameters**
+  ## Methods
 
-**num\_qubits** (`int`) – The number of qubits
+  ### construct\_circuit
 
-## Methods
+  <Function id="qiskit.aqua.components.qfts.Standard.construct_circuit" name="construct_circuit" signature="Standard.construct_circuit(mode='circuit', qubits=None, circuit=None, do_swaps=True)">
+    Construct the circuit.
 
-### construct\_circuit
+    **Parameters**
 
-<span id="qiskit.aqua.components.qfts.Standard.construct_circuit" />
+    *   **mode** (*str*) – ‘matrix’ or ‘circuit’
+    *   **qubits** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or qubits*) – register or qubits to build the circuit on.
+    *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – circuit for construction.
+    *   **do\_swaps** (*bool*) – include the swaps.
 
-`Standard.construct_circuit(mode='circuit', qubits=None, circuit=None, do_swaps=True)`
+    **Returns**
 
-Construct the circuit.
+    The matrix or circuit depending on the specified mode.
 
-**Parameters**
+    **Return type**
 
-*   **mode** (*str*) – ‘matrix’ or ‘circuit’
-*   **qubits** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or qubits*) – register or qubits to build the circuit on.
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – circuit for construction.
-*   **do\_swaps** (*bool*) – include the swaps.
+    numpy.ndarray
 
-**Returns**
+    **Raises**
 
-The matrix or circuit depending on the specified mode.
-
-**Return type**
-
-numpy.ndarray
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – ‘Unrecognized mode
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – ‘Unrecognized mode
+  </Function>
+</Class>
 

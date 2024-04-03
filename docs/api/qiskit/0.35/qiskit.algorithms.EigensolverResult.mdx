@@ -8,63 +8,59 @@ python_api_name: qiskit.algorithms.EigensolverResult
 
 # EigensolverResult
 
-<span id="qiskit.algorithms.EigensolverResult" />
+<Class id="qiskit.algorithms.EigensolverResult" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/eigen_solvers/eigen_solver.py" signature="EigensolverResult">
+  Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 
-`EigensolverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/eigen_solvers/eigen_solver.py "view source code")
+  Eigensolver Result.
 
-Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
+  ## Methods
 
-Eigensolver Result.
+  ### combine
 
-## Methods
+  <Function id="qiskit.algorithms.EigensolverResult.combine" name="combine" signature="EigensolverResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-### combine
+    **Raises**
 
-<span id="qiskit.algorithms.EigensolverResult.combine" />
+    **TypeError** – Argument is None
 
-`EigensolverResult.combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    `None`
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**TypeError** – Argument is None
+  ### aux\_operator\_eigenvalues
 
-**Return type**
+  <Attribute id="qiskit.algorithms.EigensolverResult.aux_operator_eigenvalues" name="aux_operator_eigenvalues">
+    Return aux operator expectation values.
 
-`None`
+    These values are in fact tuples formatted as (mean, standard deviation).
 
-## Attributes
+    **Return type**
 
-<span id="qiskit.algorithms.EigensolverResult.aux_operator_eigenvalues" />
+    `Optional`\[`List`\[`Union`\[`List`\[`Optional`\[`Tuple`\[`complex`, `complex`]]], `Dict`\[`str`, `Tuple`\[`complex`, `complex`]]]]]
+  </Attribute>
 
-### aux\_operator\_eigenvalues
+  ### eigenstates
 
-Return aux operator expectation values.
+  <Attribute id="qiskit.algorithms.EigensolverResult.eigenstates" name="eigenstates">
+    return eigen states
 
-These values are in fact tuples formatted as (mean, standard deviation).
+    **Return type**
 
-**Return type**
+    `Optional`\[`ndarray`]
+  </Attribute>
 
-`Optional`\[`List`\[`Union`\[`List`\[`Optional`\[`Tuple`\[`complex`, `complex`]]], `Dict`\[`str`, `Tuple`\[`complex`, `complex`]]]]]
+  ### eigenvalues
 
-<span id="qiskit.algorithms.EigensolverResult.eigenstates" />
+  <Attribute id="qiskit.algorithms.EigensolverResult.eigenvalues" name="eigenvalues">
+    returns eigen values
 
-### eigenstates
+    **Return type**
 
-return eigen states
-
-**Return type**
-
-`Optional`\[`ndarray`]
-
-<span id="qiskit.algorithms.EigensolverResult.eigenvalues" />
-
-### eigenvalues
-
-returns eigen values
-
-**Return type**
-
-`Optional`\[`ndarray`]
+    `Optional`\[`ndarray`]
+  </Attribute>
+</Class>
 

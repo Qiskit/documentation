@@ -8,41 +8,37 @@ python_api_name: qiskit.algorithms.ImaginaryEvolver
 
 # ImaginaryEvolver
 
-<span id="qiskit.algorithms.ImaginaryEvolver" />
+<Class id="qiskit.algorithms.ImaginaryEvolver" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/evolvers/imaginary_evolver.py" signature="qiskit.algorithms.ImaginaryEvolver">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-`qiskit.algorithms.ImaginaryEvolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/evolvers/imaginary_evolver.py "view source code")
+  Deprecated: Interface for Quantum Imaginary Time Evolution.
 
-Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  The ImaginaryEvolver interface has been superseded by the `qiskit.algorithms.time_evolvers.ImaginaryTimeEvolver` interface. This interface will be deprecated in a future release and subsequently removed after that.
 
-Deprecated: Interface for Quantum Imaginary Time Evolution.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.algorithms.evolvers.imaginary_evolver.ImaginaryEvolver` is deprecated as of qiskit 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the interface `qiskit.algorithms.time_evolvers.ImaginaryTimeEvolver`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  </Admonition>
 
-The ImaginaryEvolver interface has been superseded by the `qiskit.algorithms.time_evolvers.ImaginaryTimeEvolver` interface. This interface will be deprecated in a future release and subsequently removed after that.
+  ## Methods
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.algorithms.evolvers.imaginary_evolver.ImaginaryEvolver` is deprecated as of qiskit 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the interface `qiskit.algorithms.time_evolvers.ImaginaryTimeEvolver`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+  ### evolve
 
-## Methods
+  <Function id="qiskit.algorithms.ImaginaryEvolver.evolve" name="evolve" signature="abstract evolve(evolution_problem)">
+    Perform imaginary time evolution $\exp(-\tau H)|\Psi\rangle$.
 
-### evolve
+    Evolves an initial state $|\Psi\rangle$ for an imaginary time $\tau$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
-<span id="qiskit.algorithms.ImaginaryEvolver.evolve" />
+    **Parameters**
 
-`abstract evolve(evolution_problem)`
+    **evolution\_problem** ([*EvolutionProblem*](qiskit.algorithms.EvolutionProblem "qiskit.algorithms.evolvers.evolution_problem.EvolutionProblem")) – The definition of the evolution problem.
 
-Perform imaginary time evolution $\exp(-\tau H)|\Psi\rangle$.
+    **Returns**
 
-Evolves an initial state $|\Psi\rangle$ for an imaginary time $\tau$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+    Evolution result which includes an evolved quantum state.
 
-**Parameters**
+    **Return type**
 
-**evolution\_problem** ([*EvolutionProblem*](qiskit.algorithms.EvolutionProblem "qiskit.algorithms.evolvers.evolution_problem.EvolutionProblem")) – The definition of the evolution problem.
-
-**Returns**
-
-Evolution result which includes an evolved quantum state.
-
-**Return type**
-
-[*EvolutionResult*](qiskit.algorithms.EvolutionResult "qiskit.algorithms.evolvers.evolution_result.EvolutionResult")
+    [*EvolutionResult*](qiskit.algorithms.EvolutionResult "qiskit.algorithms.evolvers.evolution_result.EvolutionResult")
+  </Function>
+</Class>
 

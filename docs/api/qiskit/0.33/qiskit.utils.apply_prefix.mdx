@@ -8,30 +8,28 @@ python_api_name: qiskit.utils.apply_prefix
 
 # qiskit.utils.apply\_prefix
 
-<span id="qiskit.utils.apply_prefix" />
+<Function id="qiskit.utils.apply_prefix" name="apply_prefix" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/utils/units.py" signature="apply_prefix(value, unit)">
+  Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.
 
-`apply_prefix(value, unit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/utils/units.py "view source code")
+  **Parameters**
 
-Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.
+  *   **value** (`Union`\[`float`, `ParameterExpression`]) – The number to apply prefix to.
+  *   **unit** (`str`) – String prefix.
 
-**Parameters**
+  **Return type**
 
-*   **value** (`Union`\[`float`, `ParameterExpression`]) – The number to apply prefix to.
-*   **unit** (`str`) – String prefix.
+  `float`
 
-**Return type**
+  **Returns**
 
-`float`
+  Converted value.
 
-**Returns**
+  <Admonition title="Note" type="note">
+    This may induce tiny value error due to internal representation of float object. See [https://docs.python.org/3/tutorial/floatingpoint.html](https://docs.python.org/3/tutorial/floatingpoint.html) for details.
+  </Admonition>
 
-Converted value.
+  **Raises**
 
-<Admonition title="Note" type="note">
-  This may induce tiny value error due to internal representation of float object. See [https://docs.python.org/3/tutorial/floatingpoint.html](https://docs.python.org/3/tutorial/floatingpoint.html) for details.
-</Admonition>
-
-**Raises**
-
-**ValueError** – If the `units` aren’t recognized.
+  **ValueError** – If the `units` aren’t recognized.
+</Function>
 

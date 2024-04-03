@@ -8,27 +8,25 @@ python_api_name: qiskit.ignis.characterization.anglecal_1Q_circuits
 
 # qiskit.ignis.characterization.anglecal\_1Q\_circuits
 
-<span id="qiskit.ignis.characterization.anglecal_1Q_circuits" />
+<Function id="qiskit.ignis.characterization.anglecal_1Q_circuits" name="anglecal_1Q_circuits" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/gates/circuits.py" signature="anglecal_1Q_circuits(max_reps, qubits, angleerr=0.0)">
+  Generates circuit for measuring the angle error of the single qubit gate
 
-`anglecal_1Q_circuits(max_reps, qubits, angleerr=0.0)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/gates/circuits.py "view source code")
+  Y90-(X90-X90-Y90-Y90)^n - X90
 
-Generates circuit for measuring the angle error of the single qubit gate
+  **Parameters**
 
-Y90-(X90-X90-Y90-Y90)^n - X90
+  *   **max\_reps** (*int*) – the maximum number of repetitions. Circuits will increment by 1 rep up to max\_rep
+  *   **qubits** (*list*) – a list of integers indices of the qubits to perform the calibration on
+  *   **angleerr** (*float*) – put in an artificial angle error (for testing)
 
-**Parameters**
+  **Returns**
 
-*   **max\_reps** (*int*) – the maximum number of repetitions. Circuits will increment by 1 rep up to max\_rep
-*   **qubits** (*list*) – a list of integers indices of the qubits to perform the calibration on
-*   **angleerr** (*float*) – put in an artificial angle error (for testing)
+  **A tuple of the form (`circuits`, `xdata`) where**
 
-**Returns**
+  `circuits` is a list of QuantumCircuit and `xdata` is a list of gate repetitions (number of u2 gates)
 
-**A tuple of the form (`circuits`, `xdata`) where**
+  **Return type**
 
-`circuits` is a list of QuantumCircuit and `xdata` is a list of gate repetitions (number of u2 gates)
-
-**Return type**
-
-tuple
+  tuple
+</Function>
 

@@ -8,137 +8,127 @@ python_api_name: qiskit.optimization.algorithms.MultiStartOptimizer
 
 # MultiStartOptimizer
 
-<span id="qiskit.optimization.algorithms.MultiStartOptimizer" />
+<Class id="qiskit.optimization.algorithms.MultiStartOptimizer" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/multistart_optimizer.py" signature="MultiStartOptimizer(trials=1, clip=100.0)">
+  Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationAlgorithm`, `abc.ABC`
 
-`MultiStartOptimizer(trials=1, clip=100.0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/multistart_optimizer.py "view source code")
+  An abstract class that implements multi start optimization and should be sub-classed by other optimizers.
 
-Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationAlgorithm`, `abc.ABC`
+  Constructs an instance of this optimizer.
 
-An abstract class that implements multi start optimization and should be sub-classed by other optimizers.
+  **Parameters**
 
-Constructs an instance of this optimizer.
+  *   **trials** (`int`) – The number of trials for multi-start method. The first trial is solved with the initial guess of zero. If more than one trial is specified then initial guesses are uniformly drawn from `[lowerbound, upperbound]` with potential clipping.
+  *   **clip** (`float`) – Clipping parameter for the initial guesses in the multi-start method. If a variable is unbounded then the lower bound and/or upper bound are replaced with the `-clip` or `clip` values correspondingly for the initial guesses.
 
-**Parameters**
+  ## Methods
 
-*   **trials** (`int`) – The number of trials for multi-start method. The first trial is solved with the initial guess of zero. If more than one trial is specified then initial guesses are uniformly drawn from `[lowerbound, upperbound]` with potential clipping.
-*   **clip** (`float`) – Clipping parameter for the initial guesses in the multi-start method. If a variable is unbounded then the lower bound and/or upper bound are replaced with the `-clip` or `clip` values correspondingly for the initial guesses.
+  ### get\_compatibility\_msg
 
-## Methods
+  <Function id="qiskit.optimization.algorithms.MultiStartOptimizer.get_compatibility_msg" name="get_compatibility_msg" signature="abstract MultiStartOptimizer.get_compatibility_msg(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
 
-### get\_compatibility\_msg
+    **Parameters**
 
-<span id="qiskit.optimization.algorithms.MultiStartOptimizer.get_compatibility_msg" />
+    **problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
 
-`abstract MultiStartOptimizer.get_compatibility_msg(problem)`
+    **Return type**
 
-Checks whether a given problem can be solved with the optimizer implementing this method.
+    `str`
 
-**Parameters**
+    **Returns**
 
-**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+    Returns the incompatibility message. If the message is empty no issues were found.
+  </Function>
 
-**Return type**
+  ### is\_compatible
 
-`str`
+  <Function id="qiskit.optimization.algorithms.MultiStartOptimizer.is_compatible" name="is_compatible" signature="MultiStartOptimizer.is_compatible(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
 
-**Returns**
+    **Parameters**
 
-Returns the incompatibility message. If the message is empty no issues were found.
+    **problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
 
-### is\_compatible
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.MultiStartOptimizer.is_compatible" />
+    `bool`
 
-`MultiStartOptimizer.is_compatible(problem)`
+    **Returns**
 
-Checks whether a given problem can be solved with the optimizer implementing this method.
+    Returns True if the problem is compatible, False otherwise.
+  </Function>
 
-**Parameters**
+  ### multi\_start\_solve
 
-**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+  <Function id="qiskit.optimization.algorithms.MultiStartOptimizer.multi_start_solve" name="multi_start_solve" signature="MultiStartOptimizer.multi_start_solve(minimize, problem)">
+    Applies a multi start method given a local optimizer.
 
-**Return type**
+    **Parameters**
 
-`bool`
+    *   **minimize** (`Callable`\[\[`ndarray`], `Tuple`\[`ndarray`, `Any`]]) – A callable object that minimizes the problem specified
+    *   **problem** (`QuadraticProgram`) – A problem to solve
 
-**Returns**
+    **Return type**
 
-Returns True if the problem is compatible, False otherwise.
+    `OptimizationResult`
 
-### multi\_start\_solve
+    **Returns**
 
-<span id="qiskit.optimization.algorithms.MultiStartOptimizer.multi_start_solve" />
+    The result of the multi start algorithm applied to the problem.
+  </Function>
 
-`MultiStartOptimizer.multi_start_solve(minimize, problem)`
+  ### solve
 
-Applies a multi start method given a local optimizer.
+  <Function id="qiskit.optimization.algorithms.MultiStartOptimizer.solve" name="solve" signature="abstract MultiStartOptimizer.solve(problem)">
+    Tries to solves the given problem using the optimizer.
 
-**Parameters**
+    Runs the optimizer to try to solve the optimization problem.
 
-*   **minimize** (`Callable`\[\[`ndarray`], `Tuple`\[`ndarray`, `Any`]]) – A callable object that minimizes the problem specified
-*   **problem** (`QuadraticProgram`) – A problem to solve
+    **Parameters**
 
-**Return type**
+    **problem** (`QuadraticProgram`) – The problem to be solved.
 
-`OptimizationResult`
+    **Return type**
 
-**Returns**
+    `OptimizationResult`
 
-The result of the multi start algorithm applied to the problem.
+    **Returns**
 
-### solve
+    The result of the optimizer applied to the problem.
 
-<span id="qiskit.optimization.algorithms.MultiStartOptimizer.solve" />
+    **Raises**
 
-`abstract MultiStartOptimizer.solve(problem)`
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+  </Function>
 
-Tries to solves the given problem using the optimizer.
+  ## Attributes
 
-Runs the optimizer to try to solve the optimization problem.
+  ### clip
 
-**Parameters**
+  <Attribute id="qiskit.optimization.algorithms.MultiStartOptimizer.clip" name="clip">
+    Returns the clip value for this optimizer.
 
-**problem** (`QuadraticProgram`) – The problem to be solved.
+    **Return type**
 
-**Return type**
+    `float`
 
-`OptimizationResult`
+    **Returns**
 
-**Returns**
+    The clip value.
+  </Attribute>
 
-The result of the optimizer applied to the problem.
+  ### trials
 
-**Raises**
+  <Attribute id="qiskit.optimization.algorithms.MultiStartOptimizer.trials" name="trials">
+    Returns the number of trials for this optimizer.
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+    **Return type**
 
-## Attributes
+    `int`
 
-<span id="qiskit.optimization.algorithms.MultiStartOptimizer.clip" />
+    **Returns**
 
-### clip
-
-Returns the clip value for this optimizer.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-The clip value.
-
-<span id="qiskit.optimization.algorithms.MultiStartOptimizer.trials" />
-
-### trials
-
-Returns the number of trials for this optimizer.
-
-**Return type**
-
-`int`
-
-**Returns**
-
-The number of trials.
+    The number of trials.
+  </Attribute>
+</Class>
 

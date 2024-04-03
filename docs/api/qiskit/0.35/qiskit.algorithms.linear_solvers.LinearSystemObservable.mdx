@@ -8,97 +8,87 @@ python_api_name: qiskit.algorithms.linear_solvers.LinearSystemObservable
 
 # LinearSystemObservable
 
-<span id="qiskit.algorithms.linear_solvers.LinearSystemObservable" />
+<Class id="qiskit.algorithms.linear_solvers.LinearSystemObservable" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/linear_system_observable.py" signature="LinearSystemObservable">
+  Bases: `abc.ABC`
 
-`LinearSystemObservable` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/linear_system_observable.py "view source code")
+  An abstract class for linear system observables in Qiskit.
 
-Bases: `abc.ABC`
+  ## Methods
 
-An abstract class for linear system observables in Qiskit.
+  ### evaluate\_classically
 
-## Methods
+  <Function id="qiskit.algorithms.linear_solvers.LinearSystemObservable.evaluate_classically" name="evaluate_classically" signature="abstract LinearSystemObservable.evaluate_classically(solution)">
+    #### Calculates the analytical value of the given observable from the solution vector to the
 
-### evaluate\_classically
+    linear system.
 
-<span id="qiskit.algorithms.linear_solvers.LinearSystemObservable.evaluate_classically" />
+    **Parameters**
 
-`abstract LinearSystemObservable.evaluate_classically(solution)`
+    **solution** (`Union`\[`array`, `QuantumCircuit`]) – The solution to the system as a numpy array or the circuit that prepares it.
 
-#### Calculates the analytical value of the given observable from the solution vector to the
+    **Return type**
 
-linear system.
+    `float`
 
-**Parameters**
+    **Returns**
 
-**solution** (`Union`\[`array`, `QuantumCircuit`]) – The solution to the system as a numpy array or the circuit that prepares it.
+    The value of the observable.
+  </Function>
 
-**Return type**
+  ### observable
 
-`float`
+  <Function id="qiskit.algorithms.linear_solvers.LinearSystemObservable.observable" name="observable" signature="abstract LinearSystemObservable.observable(num_qubits)">
+    The observable operator.
 
-**Returns**
+    **Parameters**
 
-The value of the observable.
+    **num\_qubits** (`int`) – The number of qubits on which the observable will be applied.
 
-### observable
+    **Return type**
 
-<span id="qiskit.algorithms.linear_solvers.LinearSystemObservable.observable" />
+    `Union`\[`TensoredOp`, `List`\[`TensoredOp`]]
 
-`abstract LinearSystemObservable.observable(num_qubits)`
+    **Returns**
 
-The observable operator.
+    The observable as a sum of Pauli strings.
+  </Function>
 
-**Parameters**
+  ### observable\_circuit
 
-**num\_qubits** (`int`) – The number of qubits on which the observable will be applied.
+  <Function id="qiskit.algorithms.linear_solvers.LinearSystemObservable.observable_circuit" name="observable_circuit" signature="abstract LinearSystemObservable.observable_circuit(num_qubits)">
+    The circuit implementing the observable.
 
-**Return type**
+    **Parameters**
 
-`Union`\[`TensoredOp`, `List`\[`TensoredOp`]]
+    **num\_qubits** (`int`) – The number of qubits on which the observable will be applied.
 
-**Returns**
+    **Return type**
 
-The observable as a sum of Pauli strings.
+    `Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]
 
-### observable\_circuit
+    **Returns**
 
-<span id="qiskit.algorithms.linear_solvers.LinearSystemObservable.observable_circuit" />
+    The observable as a QuantumCircuit.
+  </Function>
 
-`abstract LinearSystemObservable.observable_circuit(num_qubits)`
+  ### post\_processing
 
-The circuit implementing the observable.
+  <Function id="qiskit.algorithms.linear_solvers.LinearSystemObservable.post_processing" name="post_processing" signature="abstract LinearSystemObservable.post_processing(solution, num_qubits, scaling=1)">
+    Evaluates the given observable on the solution to the linear system.
 
-**Parameters**
+    **Parameters**
 
-**num\_qubits** (`int`) – The number of qubits on which the observable will be applied.
+    *   **solution** (`Union`\[`float`, `List`\[`float`]]) – The probability calculated from the circuit and the observable.
+    *   **num\_qubits** (`int`) – The number of qubits where the observable was applied.
+    *   **scaling** (`float`) – Scaling of the solution.
 
-**Return type**
+    **Return type**
 
-`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]
+    `float`
 
-**Returns**
+    **Returns**
 
-The observable as a QuantumCircuit.
-
-### post\_processing
-
-<span id="qiskit.algorithms.linear_solvers.LinearSystemObservable.post_processing" />
-
-`abstract LinearSystemObservable.post_processing(solution, num_qubits, scaling=1)`
-
-Evaluates the given observable on the solution to the linear system.
-
-**Parameters**
-
-*   **solution** (`Union`\[`float`, `List`\[`float`]]) – The probability calculated from the circuit and the observable.
-*   **num\_qubits** (`int`) – The number of qubits where the observable was applied.
-*   **scaling** (`float`) – Scaling of the solution.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-The value of the observable.
+    The value of the observable.
+  </Function>
+</Class>
 

@@ -8,121 +8,115 @@ python_api_name: qiskit.primitives.BaseEstimator
 
 # BaseEstimator
 
-<span id="qiskit.primitives.BaseEstimator" />
+<Class id="qiskit.primitives.BaseEstimator" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/primitives/base/base_estimator.py" signature="qiskit.primitives.BaseEstimator(*, options=None)">
+  Bases: `BasePrimitive`, [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.12)")\[`T`]
 
-`qiskit.primitives.BaseEstimator(*, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/primitives/base/base_estimator.py "view source code")
+  Estimator base class.
 
-Bases: `BasePrimitive`, [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.12)")\[`T`]
+  Base class for Estimator that estimates expectation values of quantum circuits and observables.
 
-Estimator base class.
+  Creating an instance of an Estimator, or using one in a `with` context opens a session that holds resources until the instance is `close()` ed or the context is exited.
 
-Base class for Estimator that estimates expectation values of quantum circuits and observables.
+  **Parameters**
 
-Creating an instance of an Estimator, or using one in a `with` context opens a session that holds resources until the instance is `close()` ed or the context is exited.
+  **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
 
-**Parameters**
+  ## Attributes
 
-**options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
+  ### circuits
 
-## Attributes
+  <Attribute id="qiskit.primitives.BaseEstimator.circuits" name="circuits">
+    Quantum circuits that represents quantum states.
 
-<span id="qiskit.primitives.BaseEstimator.circuits" />
+    **Returns**
 
-### circuits
+    The quantum circuits.
+  </Attribute>
 
-Quantum circuits that represents quantum states.
+  ### observables
 
-**Returns**
+  <Attribute id="qiskit.primitives.BaseEstimator.observables" name="observables">
+    Observables to be estimated.
 
-The quantum circuits.
+    **Returns**
 
-<span id="qiskit.primitives.BaseEstimator.observables" />
+    The observables.
+  </Attribute>
 
-### observables
+  ### options
 
-Observables to be estimated.
+  <Attribute id="qiskit.primitives.BaseEstimator.options" name="options">
+    Return options values for the estimator.
 
-**Returns**
+    **Returns**
 
-The observables.
+    options
+  </Attribute>
 
-<span id="qiskit.primitives.BaseEstimator.options" />
+  ### parameters
 
-### options
+  <Attribute id="qiskit.primitives.BaseEstimator.parameters" name="parameters">
+    Parameters of the quantum circuits.
 
-Return options values for the estimator.
+    **Returns**
 
-**Returns**
+    Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
+  </Attribute>
 
-options
+  ## Methods
 
-<span id="qiskit.primitives.BaseEstimator.parameters" />
+  ### run
 
-### parameters
+  <Function id="qiskit.primitives.BaseEstimator.run" name="run" signature="run(circuits, observables, parameter_values=None, **run_options)">
+    Run the job of the estimation of expectation value(s).
 
-Parameters of the quantum circuits.
+    `circuits`, `observables`, and `parameter_values` should have the same length. The i-th element of the result is the expectation of observable
 
-**Returns**
+    ```python
+    obs = observables[i]
+    ```
 
-Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
+    for the state prepared by
 
-## Methods
+    ```python
+    circ = circuits[i]
+    ```
 
-### run
+    with bound parameters
 
-<span id="qiskit.primitives.BaseEstimator.run" />
+    ```python
+    values = parameter_values[i].
+    ```
 
-`run(circuits, observables, parameter_values=None, **run_options)`
+    **Parameters**
 
-Run the job of the estimation of expectation value(s).
+    *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – one or more circuit objects.
+    *   **observables** (*Sequence\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – one or more observable objects. Several formats are allowed; importantly, `str` should follow the string representation format for [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") objects.
+    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] |* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – concrete parameters to be bound.
+    *   **run\_options** – runtime options used for circuit execution.
 
-`circuits`, `observables`, and `parameter_values` should have the same length. The i-th element of the result is the expectation of observable
+    **Returns**
 
-```python
-obs = observables[i]
-```
+    The job object of EstimatorResult.
 
-for the state prepared by
+    **Raises**
 
-```python
-circ = circuits[i]
-```
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Invalid argument type given.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid argument values given.
 
-with bound parameters
+    **Return type**
 
-```python
-values = parameter_values[i].
-```
+    T
+  </Function>
 
-**Parameters**
+  ### set\_options
 
-*   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – one or more circuit objects.
-*   **observables** (*Sequence\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – one or more observable objects. Several formats are allowed; importantly, `str` should follow the string representation format for [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") objects.
-*   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] |* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – concrete parameters to be bound.
-*   **run\_options** – runtime options used for circuit execution.
+  <Function id="qiskit.primitives.BaseEstimator.set_options" name="set_options" signature="set_options(**fields)">
+    Set options values for the estimator.
 
-**Returns**
+    **Parameters**
 
-The job object of EstimatorResult.
-
-**Raises**
-
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Invalid argument type given.
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid argument values given.
-
-**Return type**
-
-T
-
-### set\_options
-
-<span id="qiskit.primitives.BaseEstimator.set_options" />
-
-`set_options(**fields)`
-
-Set options values for the estimator.
-
-**Parameters**
-
-**\*\*fields** – The fields to update the options
+    **\*\*fields** – The fields to update the options
+  </Function>
+</Class>
 

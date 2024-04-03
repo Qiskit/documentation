@@ -8,61 +8,55 @@ python_api_name: qiskit.opflow.expectations.MatrixExpectation
 
 # MatrixExpectation
 
-<span id="qiskit.opflow.expectations.MatrixExpectation" />
+<Class id="qiskit.opflow.expectations.MatrixExpectation" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/matrix_expectation.py" signature="MatrixExpectation">
+  Bases: [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
 
-`MatrixExpectation` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/matrix_expectation.py "view source code")
+  Deprecated: An Expectation converter which converts Operator measurements to be matrix-based so they can be evaluated by matrix multiplication.
 
-Bases: [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.expectations.matrix_expectation.MatrixExpectation` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Deprecated: An Expectation converter which converts Operator measurements to be matrix-based so they can be evaluated by matrix multiplication.
+  ## Methods Defined Here
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.expectations.matrix_expectation.MatrixExpectation` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  <span id="qiskit-opflow-expectations-matrixexpectation-compute-variance" />
 
-## Methods Defined Here
+  ### compute\_variance
 
-<span id="qiskit-opflow-expectations-matrixexpectation-compute-variance" />
+  <Function id="qiskit.opflow.expectations.MatrixExpectation.compute_variance" name="compute_variance" signature="MatrixExpectation.compute_variance(exp_op)">
+    Compute the variance of the expectation estimator. Because this expectation works by matrix multiplication, the estimation is exact and the variance is always 0, but we need to return those values in a way which matches the Operator’s structure.
 
-### compute\_variance
+    **Parameters**
 
-<span id="qiskit.opflow.expectations.MatrixExpectation.compute_variance" />
+    **exp\_op** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The full expectation value Operator.
 
-`MatrixExpectation.compute_variance(exp_op)`
+    **Returns**
 
-Compute the variance of the expectation estimator. Because this expectation works by matrix multiplication, the estimation is exact and the variance is always 0, but we need to return those values in a way which matches the Operator’s structure.
+    The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation, equal to 0.
 
-**Parameters**
+    **Return type**
 
-**exp\_op** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The full expectation value Operator.
+    list | float
+  </Function>
 
-**Returns**
+  <span id="qiskit-opflow-expectations-matrixexpectation-convert" />
 
-The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation, equal to 0.
+  ### convert
 
-**Return type**
+  <Function id="qiskit.opflow.expectations.MatrixExpectation.convert" name="convert" signature="MatrixExpectation.convert(operator)">
+    Accept an Operator and return a new Operator with the Pauli measurements replaced by Matrix based measurements.
 
-list | float
+    **Parameters**
 
-<span id="qiskit-opflow-expectations-matrixexpectation-convert" />
+    **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator to convert.
 
-### convert
+    **Returns**
 
-<span id="qiskit.opflow.expectations.MatrixExpectation.convert" />
+    The converted operator.
 
-`MatrixExpectation.convert(operator)`
+    **Return type**
 
-Accept an Operator and return a new Operator with the Pauli measurements replaced by Matrix based measurements.
-
-**Parameters**
-
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator to convert.
-
-**Returns**
-
-The converted operator.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
+</Class>
 

@@ -8,59 +8,55 @@ python_api_name: qiskit.opflow.gradients.QFI
 
 # QFI
 
-<span id="qiskit.opflow.gradients.QFI" />
+<Class id="qiskit.opflow.gradients.QFI" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/gradients/qfi.py" signature="qiskit.opflow.gradients.QFI(qfi_method='lin_comb_full')">
+  Bases: [`QFIBase`](qiskit.opflow.gradients.QFIBase "qiskit.opflow.gradients.qfi_base.QFIBase")
 
-`qiskit.opflow.gradients.QFI(qfi_method='lin_comb_full')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/gradients/qfi.py "view source code")
+  Deprecated: Compute the Quantum Fisher Information (QFI).
 
-Bases: [`QFIBase`](qiskit.opflow.gradients.QFIBase "qiskit.opflow.gradients.qfi_base.QFIBase")
+  Computes the QFI given a pure, parameterized quantum state, where QFI is:
 
-Deprecated: Compute the Quantum Fisher Information (QFI).
+  $$
+  \mathrm{QFI}_{kl}= 4 \mathrm{Re}[\langle \partial_k \psi | \partial_l \psi \rangle
+      − \langle\partial_k \psi | \psi \rangle \langle\psi | \partial_l \psi \rangle].
+  $$
 
-Computes the QFI given a pure, parameterized quantum state, where QFI is:
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.gradients.qfi.QFI` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-$$
-\mathrm{QFI}_{kl}= 4 \mathrm{Re}[\langle \partial_k \psi | \partial_l \psi \rangle
-    − \langle\partial_k \psi | \psi \rangle \langle\psi | \partial_l \psi \rangle].
-$$
+  ## Attributes
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.gradients.qfi.QFI` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  ### qfi\_method
 
-## Attributes
+  <Attribute id="qiskit.opflow.gradients.QFI.qfi_method" name="qfi_method">
+    Returns `CircuitQFI`.
 
-<span id="qiskit.opflow.gradients.QFI.qfi_method" />
+    **Returns**
 
-### qfi\_method
+    `CircuitQFI`.
+  </Attribute>
 
-Returns `CircuitQFI`.
+  ## Methods
 
-**Returns**
+  ### convert
 
-`CircuitQFI`.
+  <Function id="qiskit.opflow.gradients.QFI.convert" name="convert" signature="convert(operator, params=None)">
+    **Parameters**
 
-## Methods
+    *   **operator** ([*CircuitStateFn*](qiskit.opflow.state_fns.CircuitStateFn "qiskit.opflow.state_fns.circuit_state_fn.CircuitStateFn")) – The operator corresponding to the quantum state |ψ(ω)〉for which we compute the QFI
+    *   **params** ([*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*] | None*) – The parameters we are computing the QFI wrt: ω If not explicitly passed, they are inferred from the operator and sorted by name.
 
-### convert
+    **Returns**
 
-<span id="qiskit.opflow.gradients.QFI.convert" />
+    ListOp\[ListOp] where the operator at position k,l corresponds to QFI\_kl
 
-`convert(operator, params=None)`
+    **Raises**
 
-**Parameters**
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If operator is not parameterized.
 
-*   **operator** ([*CircuitStateFn*](qiskit.opflow.state_fns.CircuitStateFn "qiskit.opflow.state_fns.circuit_state_fn.CircuitStateFn")) – The operator corresponding to the quantum state |ψ(ω)〉for which we compute the QFI
-*   **params** ([*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*] | None*) – The parameters we are computing the QFI wrt: ω If not explicitly passed, they are inferred from the operator and sorted by name.
+    **Return type**
 
-**Returns**
-
-ListOp\[ListOp] where the operator at position k,l corresponds to QFI\_kl
-
-**Raises**
-
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If operator is not parameterized.
-
-**Return type**
-
-[*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+    [*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+  </Function>
+</Class>
 

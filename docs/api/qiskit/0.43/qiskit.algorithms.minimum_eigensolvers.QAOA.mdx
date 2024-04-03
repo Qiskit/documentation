@@ -8,169 +8,163 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.QAOA
 
 # QAOA
 
-<span id="qiskit.algorithms.minimum_eigensolvers.QAOA" />
+<Class id="qiskit.algorithms.minimum_eigensolvers.QAOA" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/minimum_eigensolvers/qaoa.py" signature="QAOA(sampler, optimizer, *, reps=1, initial_state=None, mixer=None, initial_point=None, aggregation=None, callback=None)">
+  Bases: [`SamplingVQE`](qiskit.algorithms.minimum_eigensolvers.SamplingVQE "qiskit.algorithms.minimum_eigensolvers.sampling_vqe.SamplingVQE")
 
-`QAOA(sampler, optimizer, *, reps=1, initial_state=None, mixer=None, initial_point=None, aggregation=None, callback=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/minimum_eigensolvers/qaoa.py "view source code")
+  The Quantum Approximate Optimization Algorithm (QAOA).
 
-Bases: [`SamplingVQE`](qiskit.algorithms.minimum_eigensolvers.SamplingVQE "qiskit.algorithms.minimum_eigensolvers.sampling_vqe.SamplingVQE")
+  QAOA is a well-known algorithm for finding approximate solutions to combinatorial-optimization problems \[1].
 
-The Quantum Approximate Optimization Algorithm (QAOA).
+  The QAOA implementation directly extends [`SamplingVQE`](qiskit.algorithms.minimum_eigensolvers.SamplingVQE "qiskit.algorithms.minimum_eigensolvers.SamplingVQE") and inherits its optimization structure. However, unlike VQE, which can be configured with arbitrary ansatzes, QAOA uses its own fine-tuned ansatz, which comprises $p$ parameterized global $x$ rotations and $p$ different parameterizations of the problem hamiltonian. QAOA is thus principally configured by the single integer parameter, `reps`, which dictates the depth of the ansatz, and thus affects the approximation quality.
 
-QAOA is a well-known algorithm for finding approximate solutions to combinatorial-optimization problems \[1].
+  An optional array of $2p$ parameter values, as the [`initial_point`](#qiskit.algorithms.minimum_eigensolvers.QAOA.initial_point "qiskit.algorithms.minimum_eigensolvers.QAOA.initial_point"), may be provided as the starting $\beta$ and $\gamma$ parameters for the QAOA ansatz \[1].
 
-The QAOA implementation directly extends [`SamplingVQE`](qiskit.algorithms.minimum_eigensolvers.SamplingVQE "qiskit.algorithms.minimum_eigensolvers.SamplingVQE") and inherits its optimization structure. However, unlike VQE, which can be configured with arbitrary ansatzes, QAOA uses its own fine-tuned ansatz, which comprises $p$ parameterized global $x$ rotations and $p$ different parameterizations of the problem hamiltonian. QAOA is thus principally configured by the single integer parameter, `reps`, which dictates the depth of the ansatz, and thus affects the approximation quality.
+  An operator or a parameterized quantum circuit may optionally also be provided as a custom [`mixer`](#qiskit.algorithms.minimum_eigensolvers.QAOA.mixer "qiskit.algorithms.minimum_eigensolvers.QAOA.mixer") Hamiltonian. This allows in the case of quantum annealing \[2] and QAOA \[3], to run constrained optimization problems where the mixer constrains the evolution to a feasible subspace of the full Hilbert space.
 
-An optional array of $2p$ parameter values, as the [`initial_point`](#qiskit.algorithms.minimum_eigensolvers.QAOA.initial_point "qiskit.algorithms.minimum_eigensolvers.QAOA.initial_point"), may be provided as the starting $\beta$ and $\gamma$ parameters for the QAOA ansatz \[1].
+  The following attributes can be set via the initializer but can also be read and updated once the QAOA object has been constructed.
 
-An operator or a parameterized quantum circuit may optionally also be provided as a custom [`mixer`](#qiskit.algorithms.minimum_eigensolvers.QAOA.mixer "qiskit.algorithms.minimum_eigensolvers.QAOA.mixer") Hamiltonian. This allows in the case of quantum annealing \[2] and QAOA \[3], to run constrained optimization problems where the mixer constrains the evolution to a feasible subspace of the full Hilbert space.
+  ### sampler
 
-The following attributes can be set via the initializer but can also be read and updated once the QAOA object has been constructed.
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.QAOA.sampler" name="sampler">
+    The sampler primitive to sample the circuits.
 
-<span id="qiskit.algorithms.minimum_eigensolvers.QAOA.sampler" />
+    **Type**
 
-### sampler
+    [BaseSampler](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")
+  </Attribute>
 
-The sampler primitive to sample the circuits.
+  ### optimizer
 
-**Type**
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.QAOA.optimizer" name="optimizer">
+    A classical optimizer to find the minimum energy. This can either be a Qiskit [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") or a callable implementing the [`Minimizer`](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") protocol.
 
-[BaseSampler](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")
+    **Type**
 
-<span id="qiskit.algorithms.minimum_eigensolvers.QAOA.optimizer" />
+    [Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") | [Minimizer](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer")
+  </Attribute>
 
-### optimizer
+  ### reps
 
-A classical optimizer to find the minimum energy. This can either be a Qiskit [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") or a callable implementing the [`Minimizer`](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") protocol.
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.QAOA.reps" name="reps">
+    The integer parameter $p$. Has a minimum valid value of 1.
 
-**Type**
+    **Type**
 
-[Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") | [Minimizer](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer")
+    int
+  </Attribute>
 
-<span id="qiskit.algorithms.minimum_eigensolvers.QAOA.reps" />
+  ### initial\_state
 
-### reps
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.QAOA.initial_state" name="initial_state">
+    An optional initial state to prepend the QAOA circuit with.
+  </Attribute>
 
-The integer parameter $p$. Has a minimum valid value of 1.
+  ### mixer
 
-**Type**
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.QAOA.mixer" name="mixer">
+    The mixer Hamiltonian to evolve with or a custom quantum circuit. Allows support of optimizations in constrained subspaces \[2, 3] as well as warm-starting the optimization \[4].
 
-int
+    **Type**
 
-<span id="qiskit.algorithms.minimum_eigensolvers.QAOA.initial_state" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | BaseOperator | [PauliSumOp](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")
+  </Attribute>
 
-### initial\_state
+  ### aggregation
 
-An optional initial state to prepend the QAOA circuit with.
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.QAOA.aggregation" name="aggregation">
+    A float or callable to specify how the objective function evaluated on the basis states should be aggregated. If a float, this specifies the $\alpha \in [0,1]$ parameter for a CVaR expectation value.
 
-<span id="qiskit.algorithms.minimum_eigensolvers.QAOA.mixer" />
+    **Type**
 
-### mixer
+    float | Callable\[\[list\[float]], float] | None
+  </Attribute>
 
-The mixer Hamiltonian to evolve with or a custom quantum circuit. Allows support of optimizations in constrained subspaces \[2, 3] as well as warm-starting the optimization \[4].
+  ### callback
 
-**Type**
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.QAOA.callback" name="callback">
+    A callback that can access the intermediate data at each optimization step. These data are: the evaluation count, the optimizer parameters for the ansatz, the evaluated value, the the metadata dictionary, and the best measurement.
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | BaseOperator | [PauliSumOp](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")
+    **Type**
 
-<span id="qiskit.algorithms.minimum_eigensolvers.QAOA.aggregation" />
+    Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None
+  </Attribute>
 
-### aggregation
+  **References**
 
-A float or callable to specify how the objective function evaluated on the basis states should be aggregated. If a float, this specifies the $\alpha \in [0,1]$ parameter for a CVaR expectation value.
+  **\[1]: Farhi, E., Goldstone, J., Gutmann, S., “A Quantum Approximate Optimization Algorithm”**
 
-**Type**
+  [arXiv:1411.4028](https://arxiv.org/abs/1411.4028)
 
-float | Callable\[\[list\[float]], float] | None
+  **\[2]: Hen, I., Spedalieri, F. M., “Quantum Annealing for Constrained Optimization”**
 
-<span id="qiskit.algorithms.minimum_eigensolvers.QAOA.callback" />
+  [PhysRevApplied.5.034007](https://doi.org/10.1103/PhysRevApplied.5.034007)
 
-### callback
+  **\[3]: Hadfield, S. et al, “From the Quantum Approximate Optimization Algorithm to a Quantum**
 
-A callback that can access the intermediate data at each optimization step. These data are: the evaluation count, the optimizer parameters for the ansatz, the evaluated value, the the metadata dictionary, and the best measurement.
+  Alternating Operator Ansatz” [arXiv:1709.03489](https://arxiv.org/abs/1709.03489)
 
-**Type**
+  **\[4]: Egger, D. J., Marecek, J., Woerner, S., “Warm-starting quantum optimization”**
 
-Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None
+  [arXiv: 2009.10095](https://arxiv.org/abs/2009.10095)
 
-**References**
+  **Parameters**
 
-**\[1]: Farhi, E., Goldstone, J., Gutmann, S., “A Quantum Approximate Optimization Algorithm”**
+  *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")) – The sampler primitive to sample the circuits.
+  *   **optimizer** ([*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer")) – A classical optimizer to find the minimum energy. This can either be a Qiskit [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") or a callable implementing the [`Minimizer`](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") protocol.
+  *   **reps** (*int*) – The integer parameter $p$. Has a minimum valid value of 1.
+  *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – An optional initial state to prepend the QAOA circuit with.
+  *   **mixer** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *| BaseOperator |*[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – The mixer Hamiltonian to evolve with or a custom quantum circuit. Allows support of optimizations in constrained subspaces \[2, 3] as well as warm-starting the optimization \[4].
+  *   **initial\_point** (*np.ndarray | None*) – An optional initial point (i.e. initial parameter values) for the optimizer. The length of the initial point must match the number of `ansatz` parameters. If `None`, a random point will be generated within certain parameter bounds. `QAOA` will look to the ansatz for these bounds. If the ansatz does not specify bounds, bounds of $-2\pi$, $2\pi$ will be used.
+  *   **aggregation** (*float | Callable\[\[list\[float]], float] | None*) – A float or callable to specify how the objective function evaluated on the basis states should be aggregated. If a float, this specifies the $\alpha \in [0,1]$ parameter for a CVaR expectation value.
+  *   **callback** (*Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None*) – A callback that can access the intermediate data at each optimization step. These data are: the evaluation count, the optimizer parameters for the ansatz, the evaluated value, the the metadata dictionary.
 
-[arXiv:1411.4028](https://arxiv.org/abs/1411.4028)
+  ## Methods
 
-**\[2]: Hen, I., Spedalieri, F. M., “Quantum Annealing for Constrained Optimization”**
+  <span id="qiskit-algorithms-minimum-eigensolvers-qaoa-compute-minimum-eigenvalue" />
 
-[PhysRevApplied.5.034007](https://doi.org/10.1103/PhysRevApplied.5.034007)
+  ### compute\_minimum\_eigenvalue
 
-**\[3]: Hadfield, S. et al, “From the Quantum Approximate Optimization Algorithm to a Quantum**
+  <Function id="qiskit.algorithms.minimum_eigensolvers.QAOA.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="QAOA.compute_minimum_eigenvalue(operator, aux_operators=None)">
+    Compute the minimum eigenvalue of a diagonal operator.
 
-Alternating Operator Ansatz” [arXiv:1709.03489](https://arxiv.org/abs/1709.03489)
+    **Parameters**
 
-**\[4]: Egger, D. J., Marecek, J., Woerner, S., “Warm-starting quantum optimization”**
+    *   **operator** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – Diagonal qubit operator.
+    *   **aux\_operators** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*] | None*) – Optional list of auxiliary operators to be evaluated with the final state.
 
-[arXiv: 2009.10095](https://arxiv.org/abs/2009.10095)
+    **Returns**
 
-**Parameters**
+    A [`SamplingMinimumEigensolverResult`](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult") containing the optimization result.
 
-*   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")) – The sampler primitive to sample the circuits.
-*   **optimizer** ([*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer")) – A classical optimizer to find the minimum energy. This can either be a Qiskit [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") or a callable implementing the [`Minimizer`](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") protocol.
-*   **reps** (*int*) – The integer parameter $p$. Has a minimum valid value of 1.
-*   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – An optional initial state to prepend the QAOA circuit with.
-*   **mixer** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *| BaseOperator |*[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – The mixer Hamiltonian to evolve with or a custom quantum circuit. Allows support of optimizations in constrained subspaces \[2, 3] as well as warm-starting the optimization \[4].
-*   **initial\_point** (*np.ndarray | None*) – An optional initial point (i.e. initial parameter values) for the optimizer. The length of the initial point must match the number of `ansatz` parameters. If `None`, a random point will be generated within certain parameter bounds. `QAOA` will look to the ansatz for these bounds. If the ansatz does not specify bounds, bounds of $-2\pi$, $2\pi$ will be used.
-*   **aggregation** (*float | Callable\[\[list\[float]], float] | None*) – A float or callable to specify how the objective function evaluated on the basis states should be aggregated. If a float, this specifies the $\alpha \in [0,1]$ parameter for a CVaR expectation value.
-*   **callback** (*Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None*) – A callback that can access the intermediate data at each optimization step. These data are: the evaluation count, the optimizer parameters for the ansatz, the evaluated value, the the metadata dictionary.
+    **Return type**
 
-## Methods
+    [SamplingMinimumEigensolverResult](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult")
+  </Function>
 
-<span id="qiskit-algorithms-minimum-eigensolvers-qaoa-compute-minimum-eigenvalue" />
+  <span id="qiskit-algorithms-minimum-eigensolvers-qaoa-supports-aux-operators" />
 
-### compute\_minimum\_eigenvalue
+  ### supports\_aux\_operators
 
-<span id="qiskit.algorithms.minimum_eigensolvers.QAOA.compute_minimum_eigenvalue" />
+  <Function id="qiskit.algorithms.minimum_eigensolvers.QAOA.supports_aux_operators" name="supports_aux_operators" signature="classmethod QAOA.supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-`QAOA.compute_minimum_eigenvalue(operator, aux_operators=None)`
+    If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
 
-Compute the minimum eigenvalue of a diagonal operator.
+    **Returns**
 
-**Parameters**
+    True if aux\_operator expectations can be evaluated, False otherwise
 
-*   **operator** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – Diagonal qubit operator.
-*   **aux\_operators** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*] | None*) – Optional list of auxiliary operators to be evaluated with the final state.
+    **Return type**
 
-**Returns**
+    bool
+  </Function>
 
-A [`SamplingMinimumEigensolverResult`](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult") containing the optimization result.
+  ## Attributes
 
-**Return type**
+  ### initial\_point
 
-[SamplingMinimumEigensolverResult](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult")
-
-<span id="qiskit-algorithms-minimum-eigensolvers-qaoa-supports-aux-operators" />
-
-### supports\_aux\_operators
-
-<span id="qiskit.algorithms.minimum_eigensolvers.QAOA.supports_aux_operators" />
-
-`classmethod QAOA.supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
-
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
-
-**Return type**
-
-bool
-
-## Attributes
-
-<span id="qiskit.algorithms.minimum_eigensolvers.QAOA.initial_point" />
-
-### initial\_point
-
-Return the initial point.
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.QAOA.initial_point" name="initial_point">
+    Return the initial point.
+  </Attribute>
+</Class>
 

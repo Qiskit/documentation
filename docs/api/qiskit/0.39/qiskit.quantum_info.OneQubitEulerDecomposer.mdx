@@ -8,90 +8,84 @@ python_api_name: qiskit.quantum_info.OneQubitEulerDecomposer
 
 # OneQubitEulerDecomposer
 
-<span id="qiskit.quantum_info.OneQubitEulerDecomposer" />
+<Class id="qiskit.quantum_info.OneQubitEulerDecomposer" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/synthesis/one_qubit_decompose.py" signature="OneQubitEulerDecomposer(basis='U3')">
+  Bases: `object`
 
-`OneQubitEulerDecomposer(basis='U3')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+  A class for decomposing 1-qubit unitaries into Euler angle rotations.
 
-Bases: `object`
+  The resulting decomposition is parameterized by 3 Euler rotation angle parameters $(\theta, \phi, \lambda)$, and a phase parameter $\gamma$. The value of the parameters for an input unitary depends on the decomposition basis. Allowed bases and the resulting circuits are shown in the following table. Note that for the non-Euler bases (U3, U1X, RR), the ZYZ Euler parameters are used.
 
-A class for decomposing 1-qubit unitaries into Euler angle rotations.
+  | Basis  | Euler Angle Basis              | Decomposition Circuit                                                                                                    |
+  | ------ | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+  | ‘ZYZ’  | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} R_Z(\phi).R_Y(\theta).R_Z(\lambda)$                                                                         |
+  | ‘ZXZ’  | $Z(\phi) X(\theta) Z(\lambda)$ | $e^{i\gamma} R_Z(\phi).R_X(\theta).R_Z(\lambda)$                                                                         |
+  | ‘XYX’  | $X(\phi) Y(\theta) X(\lambda)$ | $e^{i\gamma} R_X(\phi).R_Y(\theta).R_X(\lambda)$                                                                         |
+  | ‘XZX’  | $X(\phi) Z(\theta) X(\lambda)$ | $e^{i\gamma} R_X(\phi).R_Z(\theta).R_X(\lambda)$                                                                         |
+  | ‘U3’   | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} U_3(\theta,\phi,\lambda)$                                                                                   |
+  | ‘U321’ | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} U_3(\theta,\phi,\lambda)$                                                                                   |
+  | ‘U’    | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} U_3(\theta,\phi,\lambda)$                                                                                   |
+  | ‘PSX’  | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} U_1(\phi+\pi).R_X\left(\frac{\pi}{2}\right).$ $U_1(\theta+\pi).R_X\left(\frac{\pi}{2}\right).U_1(\lambda)$  |
+  | ‘ZSX’  | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} R_Z(\phi+\pi).\sqrt{X}.$ $R_Z(\theta+\pi).\sqrt{X}.R_Z(\lambda)$                                            |
+  | ‘ZSXX’ | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} R_Z(\phi+\pi).\sqrt{X}.R_Z(\theta+\pi).\sqrt{X}.R_Z(\lambda)$ or $e^{i\gamma} R_Z(\phi+\pi).X.R_Z(\lambda)$ |
+  | ‘U1X’  | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} U_1(\phi+\pi).R_X\left(\frac{\pi}{2}\right).$ $U_1(\theta+\pi).R_X\left(\frac{\pi}{2}\right).U_1(\lambda)$  |
+  | ‘RR’   | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} R\left(-\pi,\frac{\phi-\lambda+\pi}{2}\right).$ $R\left(\theta+\pi,\frac{\pi}{2}-\lambda\right)$            |
 
-The resulting decomposition is parameterized by 3 Euler rotation angle parameters $(\theta, \phi, \lambda)$, and a phase parameter $\gamma$. The value of the parameters for an input unitary depends on the decomposition basis. Allowed bases and the resulting circuits are shown in the following table. Note that for the non-Euler bases (U3, U1X, RR), the ZYZ Euler parameters are used.
+  Initialize decomposer
 
-| Basis  | Euler Angle Basis              | Decomposition Circuit                                                                                                    |
-| ------ | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| ‘ZYZ’  | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} R_Z(\phi).R_Y(\theta).R_Z(\lambda)$                                                                         |
-| ‘ZXZ’  | $Z(\phi) X(\theta) Z(\lambda)$ | $e^{i\gamma} R_Z(\phi).R_X(\theta).R_Z(\lambda)$                                                                         |
-| ‘XYX’  | $X(\phi) Y(\theta) X(\lambda)$ | $e^{i\gamma} R_X(\phi).R_Y(\theta).R_X(\lambda)$                                                                         |
-| ‘XZX’  | $X(\phi) Z(\theta) X(\lambda)$ | $e^{i\gamma} R_X(\phi).R_Z(\theta).R_X(\lambda)$                                                                         |
-| ‘U3’   | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} U_3(\theta,\phi,\lambda)$                                                                                   |
-| ‘U321’ | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} U_3(\theta,\phi,\lambda)$                                                                                   |
-| ‘U’    | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} U_3(\theta,\phi,\lambda)$                                                                                   |
-| ‘PSX’  | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} U_1(\phi+\pi).R_X\left(\frac{\pi}{2}\right).$ $U_1(\theta+\pi).R_X\left(\frac{\pi}{2}\right).U_1(\lambda)$  |
-| ‘ZSX’  | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} R_Z(\phi+\pi).\sqrt{X}.$ $R_Z(\theta+\pi).\sqrt{X}.R_Z(\lambda)$                                            |
-| ‘ZSXX’ | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} R_Z(\phi+\pi).\sqrt{X}.R_Z(\theta+\pi).\sqrt{X}.R_Z(\lambda)$ or $e^{i\gamma} R_Z(\phi+\pi).X.R_Z(\lambda)$ |
-| ‘U1X’  | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} U_1(\phi+\pi).R_X\left(\frac{\pi}{2}\right).$ $U_1(\theta+\pi).R_X\left(\frac{\pi}{2}\right).U_1(\lambda)$  |
-| ‘RR’   | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} R\left(-\pi,\frac{\phi-\lambda+\pi}{2}\right).$ $R\left(\theta+\pi,\frac{\pi}{2}-\lambda\right)$            |
+  Supported bases are: ‘U’, ‘PSX’, ‘ZSXX’, ‘ZSX’, ‘U321’, ‘U3’, ‘U1X’, ‘RR’, ‘ZYZ’, ‘ZXZ’, ‘XYX’, ‘XZX’.
 
-Initialize decomposer
+  **Parameters**
 
-Supported bases are: ‘U’, ‘PSX’, ‘ZSXX’, ‘ZSX’, ‘U321’, ‘U3’, ‘U1X’, ‘RR’, ‘ZYZ’, ‘ZXZ’, ‘XYX’, ‘XZX’.
+  **basis** (*str*) – the decomposition basis \[Default: ‘U3’]
 
-**Parameters**
+  **Raises**
 
-**basis** (*str*) – the decomposition basis \[Default: ‘U3’]
+  **QiskitError** – If input basis is not recognized.
 
-**Raises**
+  ## Methods
 
-**QiskitError** – If input basis is not recognized.
+  ### angles
 
-## Methods
+  <Function id="qiskit.quantum_info.OneQubitEulerDecomposer.angles" name="angles" signature="OneQubitEulerDecomposer.angles(unitary)">
+    Return the Euler angles for input array.
 
-### angles
+    **Parameters**
 
-<span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles" />
+    **unitary** (*np.ndarray*) – 2x2 unitary matrix.
 
-`OneQubitEulerDecomposer.angles(unitary)`
+    **Returns**
 
-Return the Euler angles for input array.
+    (theta, phi, lambda).
 
-**Parameters**
+    **Return type**
 
-**unitary** (*np.ndarray*) – 2x2 unitary matrix.
+    tuple
+  </Function>
 
-**Returns**
+  ### angles\_and\_phase
 
-(theta, phi, lambda).
+  <Function id="qiskit.quantum_info.OneQubitEulerDecomposer.angles_and_phase" name="angles_and_phase" signature="OneQubitEulerDecomposer.angles_and_phase(unitary)">
+    Return the Euler angles and phase for input array.
 
-**Return type**
+    **Parameters**
 
-tuple
+    **unitary** (*np.ndarray*) – 2x2 unitary matrix.
 
-### angles\_and\_phase
+    **Returns**
 
-<span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles_and_phase" />
+    (theta, phi, lambda, phase).
 
-`OneQubitEulerDecomposer.angles_and_phase(unitary)`
+    **Return type**
 
-Return the Euler angles and phase for input array.
+    tuple
+  </Function>
 
-**Parameters**
+  ## Attributes
 
-**unitary** (*np.ndarray*) – 2x2 unitary matrix.
+  ### basis
 
-**Returns**
-
-(theta, phi, lambda, phase).
-
-**Return type**
-
-tuple
-
-## Attributes
-
-<span id="qiskit.quantum_info.OneQubitEulerDecomposer.basis" />
-
-### basis
-
-The decomposition basis.
+  <Attribute id="qiskit.quantum_info.OneQubitEulerDecomposer.basis" name="basis">
+    The decomposition basis.
+  </Attribute>
+</Class>
 

@@ -8,53 +8,47 @@ python_api_name: qiskit.opflow.expectations.ExpectationBase
 
 # ExpectationBase
 
-<span id="qiskit.opflow.expectations.ExpectationBase" />
+<Class id="qiskit.opflow.expectations.ExpectationBase" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/expectations/expectation_base.py" signature="ExpectationBase">
+  Bases: [`qiskit.opflow.converters.converter_base.ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
-`ExpectationBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/expectations/expectation_base.py "view source code")
+  A base for Expectation value converters. Expectations are converters which enable the computation of the expectation value of an Observable with respect to some state function. They traverse an Operator tree, replacing OperatorStateFn measurements with equivalent measurements which are more amenable to computation on quantum or classical hardware. For example, if one would like to measure the expectation value of an Operator `o` expressed as a sum of Paulis with respect to some state function, but only has access to diagonal measurements on Quantum hardware, we can create a measurement \~StateFn(o), use a `PauliExpectation` to convert it to a diagonal measurement and circuit pre-rotations to a append to the state, and sample this circuit on Quantum hardware with a CircuitSampler. All in all, this would be: `my_sampler.convert(my_expect.convert(~StateFn(o)) @ my_state).eval()`.
 
-Bases: [`qiskit.opflow.converters.converter_base.ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
+  ## Methods Defined Here
 
-A base for Expectation value converters. Expectations are converters which enable the computation of the expectation value of an Observable with respect to some state function. They traverse an Operator tree, replacing OperatorStateFn measurements with equivalent measurements which are more amenable to computation on quantum or classical hardware. For example, if one would like to measure the expectation value of an Operator `o` expressed as a sum of Paulis with respect to some state function, but only has access to diagonal measurements on Quantum hardware, we can create a measurement \~StateFn(o), use a `PauliExpectation` to convert it to a diagonal measurement and circuit pre-rotations to a append to the state, and sample this circuit on Quantum hardware with a CircuitSampler. All in all, this would be: `my_sampler.convert(my_expect.convert(~StateFn(o)) @ my_state).eval()`.
+  ### compute\_variance
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.expectations.ExpectationBase.compute_variance" name="compute_variance" signature="abstract ExpectationBase.compute_variance(exp_op)">
+    Compute the variance of the expectation estimator.
 
-### compute\_variance
+    **Parameters**
 
-<span id="qiskit.opflow.expectations.ExpectationBase.compute_variance" />
+    **exp\_op** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The full expectation value Operator after sampling.
 
-`abstract ExpectationBase.compute_variance(exp_op)`
+    **Return type**
 
-Compute the variance of the expectation estimator.
+    `Union`\[`list`, `complex`, `ndarray`]
 
-**Parameters**
+    **Returns**
 
-**exp\_op** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The full expectation value Operator after sampling.
+    The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation.
+  </Function>
 
-**Return type**
+  ### convert
 
-`Union`\[`list`, `complex`, `ndarray`]
+  <Function id="qiskit.opflow.expectations.ExpectationBase.convert" name="convert" signature="abstract ExpectationBase.convert(operator)">
+    Accept an Operator and return a new Operator with the measurements replaced by alternate methods to compute the expectation value.
 
-**Returns**
+    **Parameters**
 
-The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation.
+    **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator to convert.
 
-### convert
+    **Return type**
 
-<span id="qiskit.opflow.expectations.ExpectationBase.convert" />
+    [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 
-`abstract ExpectationBase.convert(operator)`
+    **Returns**
 
-Accept an Operator and return a new Operator with the measurements replaced by alternate methods to compute the expectation value.
-
-**Parameters**
-
-**operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator to convert.
-
-**Return type**
-
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
-
-**Returns**
-
-The converted operator.
+    The converted operator.
+  </Function>
+</Class>
 

@@ -8,180 +8,164 @@ python_api_name: qiskit.transpiler.PassManager
 
 # PassManager
 
-<span id="qiskit.transpiler.PassManager" />
+<Class id="qiskit.transpiler.PassManager" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passmanager.py" signature="PassManager(passes=None, max_iteration=1000, callback=None)">
+  Manager for a set of Passes and their scheduling during transpilation.
 
-`PassManager(passes=None, max_iteration=1000, callback=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passmanager.py "view source code")
+  Initialize an empty PassManager object (with no passes scheduled).
 
-Manager for a set of Passes and their scheduling during transpilation.
+  **Parameters**
 
-Initialize an empty PassManager object (with no passes scheduled).
+  *   **passes** (`Union`\[`BasePass`, `List`\[`BasePass`], `None`]) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](qiskit.transpiler.PassManager#append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
+  *   **max\_iteration** (`int`) – The maximum number of iterations the schedule will be looped if the condition is not met.
+  *   **callback** (`Optional`\[`Callable`]) – DEPRECATED - A callback function that will be called after each pass execution.
 
-**Parameters**
+  <Admonition title="Deprecated since version 0.13.0" type="danger">
+    The `callback` parameter is deprecated in favor of `PassManager.run(..., callback=callback, ...)`.
+  </Admonition>
 
-*   **passes** (`Union`\[`BasePass`, `List`\[`BasePass`], `None`]) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](qiskit.transpiler.PassManager#append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
-*   **max\_iteration** (`int`) – The maximum number of iterations the schedule will be looped if the condition is not met.
-*   **callback** (`Optional`\[`Callable`]) – DEPRECATED - A callback function that will be called after each pass execution.
+  ## Methods
 
-<Admonition title="Deprecated since version 0.13.0" type="danger">
-  The `callback` parameter is deprecated in favor of `PassManager.run(..., callback=callback, ...)`.
-</Admonition>
+  ### \_\_getitem\_\_
 
-## Methods
+  <Function id="qiskit.transpiler.PassManager.__getitem__" name="__getitem__" signature="PassManager.__getitem__(index)" />
 
-### \_\_getitem\_\_
+  ### \_\_len\_\_
 
-<span id="qiskit.transpiler.PassManager.__getitem__" />
+  <Function id="qiskit.transpiler.PassManager.__len__" name="__len__" signature="PassManager.__len__()" />
 
-`PassManager.__getitem__(index)`
+  ### append
 
-### \_\_len\_\_
+  <Function id="qiskit.transpiler.PassManager.append" name="append" signature="PassManager.append(passes, max_iteration=None, **flow_controller_conditions)">
+    Append a Pass Set to the schedule of passes.
 
-<span id="qiskit.transpiler.PassManager.__len__" />
+    **Parameters**
 
-`PassManager.__len__()`
+    *   **passes** (`Union`\[`BasePass`, `List`\[`BasePass`]]) – A set of passes (a pass set) to be added to schedule. A pass set is a list of passes that are controlled by the same flow controller. If a single pass is provided, the pass set will only have that pass a single element.
+    *   **max\_iteration** (`Optional`\[`int`]) – max number of iterations of passes.
+    *   **flow\_controller\_conditions** (`Any`) – control flow plugins.
 
-### append
+    **Raises**
 
-<span id="qiskit.transpiler.PassManager.append" />
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass.
 
-`PassManager.append(passes, max_iteration=None, **flow_controller_conditions)`
+    <Admonition title="See also" type="note">
+      `RunningPassManager.add_flow_controller()` for more information about the control flow plugins.
+    </Admonition>
 
-Append a Pass Set to the schedule of passes.
+    **Return type**
 
-**Parameters**
+    `None`
+  </Function>
 
-*   **passes** (`Union`\[`BasePass`, `List`\[`BasePass`]]) – A set of passes (a pass set) to be added to schedule. A pass set is a list of passes that are controlled by the same flow controller. If a single pass is provided, the pass set will only have that pass a single element.
-*   **max\_iteration** (`Optional`\[`int`]) – max number of iterations of passes.
-*   **flow\_controller\_conditions** (`Any`) – control flow plugins.
+  ### draw
 
-**Raises**
+  <Function id="qiskit.transpiler.PassManager.draw" name="draw" signature="PassManager.draw(filename=None, style=None, raw=False)">
+    Draw the pass manager.
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass.
+    This function needs [pydot](https://github.com/erocarrera/pydot), which in turn needs [Graphviz](https://www.graphviz.org/) to be installed.
 
-<Admonition title="See also" type="note">
-  `RunningPassManager.add_flow_controller()` for more information about the control flow plugins.
-</Admonition>
+    **Parameters**
 
-**Return type**
+    *   **filename** (*str*) – file path to save image to.
+    *   **style** (*dict*) – keys are the pass classes and the values are the colors to make them. An example can be seen in the DEFAULT\_STYLE. An ordered dict can be used to ensure a priority coloring when pass falls into multiple categories. Any values not included in the provided dict will be filled in from the default dict.
+    *   **raw** (*bool*) – If `True`, save the raw Dot output instead of the image.
 
-`None`
+    **Returns**
 
-### draw
+    an in-memory representation of the pass manager, or `None` if no image was generated or [Pillow](https://pypi.org/project/Pillow/) is not installed.
 
-<span id="qiskit.transpiler.PassManager.draw" />
+    **Return type**
 
-`PassManager.draw(filename=None, style=None, raw=False)`
+    Optional\[[PassManager](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")]
 
-Draw the pass manager.
+    **Raises**
 
-This function needs [pydot](https://github.com/erocarrera/pydot), which in turn needs [Graphviz](https://www.graphviz.org/) to be installed.
+    **ImportError** – when nxpd or pydot not installed.
+  </Function>
 
-**Parameters**
+  ### passes
 
-*   **filename** (*str*) – file path to save image to.
-*   **style** (*dict*) – keys are the pass classes and the values are the colors to make them. An example can be seen in the DEFAULT\_STYLE. An ordered dict can be used to ensure a priority coloring when pass falls into multiple categories. Any values not included in the provided dict will be filled in from the default dict.
-*   **raw** (*bool*) – If `True`, save the raw Dot output instead of the image.
+  <Function id="qiskit.transpiler.PassManager.passes" name="passes" signature="PassManager.passes()">
+    Return a list structure of the appended passes and its options.
 
-**Returns**
+    **Return type**
 
-an in-memory representation of the pass manager, or `None` if no image was generated or [Pillow](https://pypi.org/project/Pillow/) is not installed.
+    `List`\[`Dict`\[`str`, `BasePass`]]
 
-**Return type**
+    **Returns**
 
-Optional\[[PassManager](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")]
+    A list of pass sets, as defined in `append()`.
+  </Function>
 
-**Raises**
+  ### replace
 
-**ImportError** – when nxpd or pydot not installed.
+  <Function id="qiskit.transpiler.PassManager.replace" name="replace" signature="PassManager.replace(index, passes, max_iteration=None, **flow_controller_conditions)">
+    Replace a particular pass in the scheduler.
 
-### passes
+    **Parameters**
 
-<span id="qiskit.transpiler.PassManager.passes" />
+    *   **index** (`int`) – Pass index to replace, based on the position in passes().
+    *   **passes** (`Union`\[`BasePass`, `List`\[`BasePass`]]) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](qiskit.transpiler.PassManager#append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
+    *   **max\_iteration** (`Optional`\[`int`]) – max number of iterations of passes.
+    *   **flow\_controller\_conditions** (`Any`) – control flow plugins.
 
-`PassManager.passes()`
+    **Raises**
 
-Return a list structure of the appended passes and its options.
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass.
 
-**Return type**
+    <Admonition title="See also" type="note">
+      `RunningPassManager.add_flow_controller()` for more information about the control flow plugins.
+    </Admonition>
 
-`List`\[`Dict`\[`str`, `BasePass`]]
+    **Return type**
 
-**Returns**
+    `None`
+  </Function>
 
-A list of pass sets, as defined in `append()`.
+  ### run
 
-### replace
+  <Function id="qiskit.transpiler.PassManager.run" name="run" signature="PassManager.run(circuits, output_name=None, callback=None)">
+    Run all the passes on the specified `circuits`.
 
-<span id="qiskit.transpiler.PassManager.replace" />
+    **Parameters**
 
-`PassManager.replace(index, passes, max_iteration=None, **flow_controller_conditions)`
+    *   **circuits** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – Circuit(s) to transform via all the registered passes.
 
-Replace a particular pass in the scheduler.
+    *   **output\_name** (`Optional`\[`str`]) – The output circuit name. If `None`, it will be set to the same as the input circuit name.
 
-**Parameters**
+    *   **callback** (`Optional`\[`Callable`]) –
 
-*   **index** (`int`) – Pass index to replace, based on the position in passes().
-*   **passes** (`Union`\[`BasePass`, `List`\[`BasePass`]]) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](qiskit.transpiler.PassManager#append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
-*   **max\_iteration** (`Optional`\[`int`]) – max number of iterations of passes.
-*   **flow\_controller\_conditions** (`Any`) – control flow plugins.
+        A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments:
 
-**Raises**
+        ```python
+        pass_ (Pass): the pass being run
+        dag (DAGCircuit): the dag output of the pass
+        time (float): the time to execute the pass
+        property_set (PropertySet): the property set
+        count (int): the index for the pass execution
+        ```
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass.
+        The exact arguments pass expose the internals of the pass manager and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases be sure to check that the arguments being passed are the same.
 
-<Admonition title="See also" type="note">
-  `RunningPassManager.add_flow_controller()` for more information about the control flow plugins.
-</Admonition>
+        To use the callback feature you define a function that will take in kwargs dict and access the variables. For example:
 
-**Return type**
+        ```python
+        def callback_func(**kwargs):
+            pass_ = kwargs['pass_']
+            dag = kwargs['dag']
+            time = kwargs['time']
+            property_set = kwargs['property_set']
+            count = kwargs['count']
+            ...
+        ```
 
-`None`
+    **Return type**
 
-### run
+    `Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]
 
-<span id="qiskit.transpiler.PassManager.run" />
+    **Returns**
 
-`PassManager.run(circuits, output_name=None, callback=None)`
-
-Run all the passes on the specified `circuits`.
-
-**Parameters**
-
-*   **circuits** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – Circuit(s) to transform via all the registered passes.
-
-*   **output\_name** (`Optional`\[`str`]) – The output circuit name. If `None`, it will be set to the same as the input circuit name.
-
-*   **callback** (`Optional`\[`Callable`]) –
-
-    A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments:
-
-    ```python
-    pass_ (Pass): the pass being run
-    dag (DAGCircuit): the dag output of the pass
-    time (float): the time to execute the pass
-    property_set (PropertySet): the property set
-    count (int): the index for the pass execution
-    ```
-
-    The exact arguments pass expose the internals of the pass manager and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases be sure to check that the arguments being passed are the same.
-
-    To use the callback feature you define a function that will take in kwargs dict and access the variables. For example:
-
-    ```python
-    def callback_func(**kwargs):
-        pass_ = kwargs['pass_']
-        dag = kwargs['dag']
-        time = kwargs['time']
-        property_set = kwargs['property_set']
-        count = kwargs['count']
-        ...
-    ```
-
-**Return type**
-
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]
-
-**Returns**
-
-The transformed circuit(s).
+    The transformed circuit(s).
+  </Function>
+</Class>
 

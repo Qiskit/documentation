@@ -8,29 +8,25 @@ python_api_name: qiskit.dagcircuit.BlockCollapser
 
 # BlockCollapser
 
-<span id="qiskit.dagcircuit.BlockCollapser" />
+<Class id="qiskit.dagcircuit.BlockCollapser" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/dagcircuit/collect_blocks.py" signature="qiskit.dagcircuit.BlockCollapser(dag)">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.dagcircuit.BlockCollapser(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/dagcircuit/collect_blocks.py "view source code")
+  This class implements various strategies of consolidating blocks of nodes in a DAG (direct acyclic graph). It works both with the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") and [`DAGDependency`](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency") DAG representations.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  **Parameters**
 
-This class implements various strategies of consolidating blocks of nodes in a DAG (direct acyclic graph). It works both with the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") and [`DAGDependency`](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency") DAG representations.
+  **dag** (*Union\[*[*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")*,* [*DAGDependency*](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency")*]*) – The input DAG.
 
-**Parameters**
+  **Raises**
 
-**dag** (*Union\[*[*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")*,* [*DAGDependency*](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency")*]*) – The input DAG.
+  [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – the input object is not a DAG.
 
-**Raises**
+  ## Methods
 
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – the input object is not a DAG.
+  ### collapse\_to\_operation
 
-## Methods
-
-### collapse\_to\_operation
-
-<span id="qiskit.dagcircuit.BlockCollapser.collapse_to_operation" />
-
-`collapse_to_operation(blocks, collapse_fn)`
-
-For each block, constructs a quantum circuit containing instructions in the block, then uses collapse\_fn to collapse this circuit into a single operation.
+  <Function id="qiskit.dagcircuit.BlockCollapser.collapse_to_operation" name="collapse_to_operation" signature="collapse_to_operation(blocks, collapse_fn)">
+    For each block, constructs a quantum circuit containing instructions in the block, then uses collapse\_fn to collapse this circuit into a single operation.
+  </Function>
+</Class>
 

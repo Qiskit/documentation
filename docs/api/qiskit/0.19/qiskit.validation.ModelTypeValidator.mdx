@@ -8,168 +8,148 @@ python_api_name: qiskit.validation.ModelTypeValidator
 
 # ModelTypeValidator
 
-<span id="qiskit.validation.ModelTypeValidator" />
+<Class id="qiskit.validation.ModelTypeValidator" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py" signature="ModelTypeValidator(*, load_default=<marshmallow.missing>, missing=<marshmallow.missing>, dump_default=<marshmallow.missing>, default=<marshmallow.missing>, data_key=None, attribute=None, validate=None, required=False, allow_none=None, load_only=False, dump_only=False, error_messages=None, metadata=None, **additional_metadata)">
+  A field able to validate the correct type of a value.
 
-`ModelTypeValidator(*, load_default=<marshmallow.missing>, missing=<marshmallow.missing>, dump_default=<marshmallow.missing>, default=<marshmallow.missing>, data_key=None, attribute=None, validate=None, required=False, allow_none=None, load_only=False, dump_only=False, error_messages=None, metadata=None, **additional_metadata)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py "view source code")
+  ## Attributes
 
-A field able to validate the correct type of a value.
+  ### context
 
-## Attributes
+  <Attribute id="qiskit.validation.ModelTypeValidator.context" name="context">
+    The context dictionary for the parent `Schema`.
+  </Attribute>
 
-### context
+  ### default
 
-The context dictionary for the parent `Schema`.
+  <Attribute id="qiskit.validation.ModelTypeValidator.default" name="default" />
 
-### default
+  ### default\_error\_messages
 
-### default\_error\_messages
+  <Attribute id="qiskit.validation.ModelTypeValidator.default_error_messages" signature="= {'null': 'Field may not be null.', 'required': 'Missing data for required field.', 'validator_failed': 'Invalid value.'}">
+    Default error messages for various kinds of errors. The keys in this dictionary are passed to Field.make\_error. The values are error messages passed to `marshmallow.exceptions.ValidationError`.
+  </Attribute>
 
-<span id="qiskit.validation.ModelTypeValidator.default_error_messages" />
+  ### missing
 
-`= {'null': 'Field may not be null.', 'required': 'Missing data for required field.', 'validator_failed': 'Invalid value.'}`
+  <Attribute id="qiskit.validation.ModelTypeValidator.missing" name="missing" />
 
-Default error messages for various kinds of errors. The keys in this dictionary are passed to Field.make\_error. The values are error messages passed to `marshmallow.exceptions.ValidationError`.
+  ### name
 
-### missing
+  <Attribute id="qiskit.validation.ModelTypeValidator.name" signature="= None" />
 
-### name
+  ### parent
 
-<span id="qiskit.validation.ModelTypeValidator.name" />
+  <Attribute id="qiskit.validation.ModelTypeValidator.parent" signature="= None" />
 
-`= None`
+  ### root
 
-### parent
+  <Attribute id="qiskit.validation.ModelTypeValidator.root" signature="= None" />
 
-<span id="qiskit.validation.ModelTypeValidator.parent" />
+  ### valid\_types
 
-`= None`
+  <Attribute id="qiskit.validation.ModelTypeValidator.valid_types" signature="= (,)" />
 
-### root
+  ## Methods
 
-<span id="qiskit.validation.ModelTypeValidator.root" />
+  ### check\_type
 
-`= None`
+  <Function id="qiskit.validation.ModelTypeValidator.check_type" name="check_type" signature="ModelTypeValidator.check_type(value, attr, data, **_)">
+    Validates a value against the correct type of the field.
 
-### valid\_types
+    It calls `_expected_types` to get a list of valid types.
 
-<span id="qiskit.validation.ModelTypeValidator.valid_types" />
+    Subclasses can do one of the following:
 
-`= (,)`
+    1.  Override the `valid_types` property with a tuple with the expected types for this field.
+    2.  Override the `_expected_types` method to return a tuple of expected types for the field.
+    3.  Change `check_type` completely to customize validation.
 
-## Methods
+    <Admonition title="Note" type="note">
+      This method or the overrides must return the `value` parameter untouched.
+    </Admonition>
+  </Function>
 
-### check\_type
+  ### deserialize
 
-<span id="qiskit.validation.ModelTypeValidator.check_type" />
+  <Function id="qiskit.validation.ModelTypeValidator.deserialize" name="deserialize" signature="ModelTypeValidator.deserialize(value, attr=None, data=None, **kwargs)">
+    Deserialize `value`.
 
-`ModelTypeValidator.check_type(value, attr, data, **_)`
+    **Parameters**
 
-Validates a value against the correct type of the field.
+    *   **value** (`Any`) – The value to deserialize.
+    *   **attr** (`Optional`\[`str`]) – The attribute/key in data to deserialize.
+    *   **data** (`Optional`\[`Mapping`\[`str`, `Any`]]) – The raw input data passed to Schema.load.
+    *   **kwargs** – Field-specific keyword arguments.
 
-It calls `_expected_types` to get a list of valid types.
+    **Raises**
 
-Subclasses can do one of the following:
+    **ValidationError** – If an invalid value is passed or if a required value is missing.
+  </Function>
 
-1.  Override the `valid_types` property with a tuple with the expected types for this field.
-2.  Override the `_expected_types` method to return a tuple of expected types for the field.
-3.  Change `check_type` completely to customize validation.
+  ### fail
 
-<Admonition title="Note" type="note">
-  This method or the overrides must return the `value` parameter untouched.
-</Admonition>
+  <Function id="qiskit.validation.ModelTypeValidator.fail" name="fail" signature="ModelTypeValidator.fail(key, **kwargs)">
+    Helper method that raises a ValidationError with an error message from `self.error_messages`.
 
-### deserialize
+    <Admonition title="Deprecated since version 3.0.0" type="danger">
+      Use make\_error \<marshmallow\.fields.Field.make\_error> instead.
+    </Admonition>
+  </Function>
 
-<span id="qiskit.validation.ModelTypeValidator.deserialize" />
+  ### get\_value
 
-`ModelTypeValidator.deserialize(value, attr=None, data=None, **kwargs)`
+  <Function id="qiskit.validation.ModelTypeValidator.get_value" name="get_value" signature="ModelTypeValidator.get_value(obj, attr, accessor=None, default=<marshmallow.missing>)">
+    Return the value for a given key from an object.
 
-Deserialize `value`.
+    **Parameters**
 
-**Parameters**
+    *   **obj** (*object*) – The object to get the value from.
+    *   **attr** (*str*) – The attribute/key in obj to get the value from.
+    *   **accessor** (*callable*) – A callable used to retrieve the value of attr from the object obj. Defaults to marshmallow\.utils.get\_value.
+  </Function>
 
-*   **value** (`Any`) – The value to deserialize.
-*   **attr** (`Optional`\[`str`]) – The attribute/key in data to deserialize.
-*   **data** (`Optional`\[`Mapping`\[`str`, `Any`]]) – The raw input data passed to Schema.load.
-*   **kwargs** – Field-specific keyword arguments.
+  ### make\_error
 
-**Raises**
+  <Function id="qiskit.validation.ModelTypeValidator.make_error" name="make_error" signature="ModelTypeValidator.make_error(key, **kwargs)">
+    Helper method to make a ValidationError with an error message from `self.error_messages`.
 
-**ValidationError** – If an invalid value is passed or if a required value is missing.
+    **Return type**
 
-### fail
+    `ValidationError`
+  </Function>
 
-<span id="qiskit.validation.ModelTypeValidator.fail" />
+  ### make\_error\_serialize
 
-`ModelTypeValidator.fail(key, **kwargs)`
+  <Function id="qiskit.validation.ModelTypeValidator.make_error_serialize" name="make_error_serialize" signature="ModelTypeValidator.make_error_serialize(key, **kwargs)">
+    Helper method to return a ValidationError from \_serialize.
 
-Helper method that raises a ValidationError with an error message from `self.error_messages`.
+    This method wraps the result of `make_error()`, adding contextual information in order to provide more informative information to users.
 
-<Admonition title="Deprecated since version 3.0.0" type="danger">
-  Use make\_error \<marshmallow\.fields.Field.make\_error> instead.
-</Admonition>
+    **Parameters**
 
-### get\_value
+    *   **key** (*str*) – error key index.
+    *   **\*\*kwargs** – additional arguments to `make_error()`.
 
-<span id="qiskit.validation.ModelTypeValidator.get_value" />
+    **Returns**
 
-`ModelTypeValidator.get_value(obj, attr, accessor=None, default=<marshmallow.missing>)`
+    an exception with the field name.
 
-Return the value for a given key from an object.
+    **Return type**
 
-**Parameters**
+    ValidationError
+  </Function>
 
-*   **obj** (*object*) – The object to get the value from.
-*   **attr** (*str*) – The attribute/key in obj to get the value from.
-*   **accessor** (*callable*) – A callable used to retrieve the value of attr from the object obj. Defaults to marshmallow\.utils.get\_value.
+  ### serialize
 
-### make\_error
+  <Function id="qiskit.validation.ModelTypeValidator.serialize" name="serialize" signature="ModelTypeValidator.serialize(attr, obj, accessor=None, **kwargs)">
+    Pulls the value for the given key from the object, applies the field’s formatting and returns the result.
 
-<span id="qiskit.validation.ModelTypeValidator.make_error" />
+    **Parameters**
 
-`ModelTypeValidator.make_error(key, **kwargs)`
-
-Helper method to make a ValidationError with an error message from `self.error_messages`.
-
-**Return type**
-
-`ValidationError`
-
-### make\_error\_serialize
-
-<span id="qiskit.validation.ModelTypeValidator.make_error_serialize" />
-
-`ModelTypeValidator.make_error_serialize(key, **kwargs)`
-
-Helper method to return a ValidationError from \_serialize.
-
-This method wraps the result of `make_error()`, adding contextual information in order to provide more informative information to users.
-
-**Parameters**
-
-*   **key** (*str*) – error key index.
-*   **\*\*kwargs** – additional arguments to `make_error()`.
-
-**Returns**
-
-an exception with the field name.
-
-**Return type**
-
-ValidationError
-
-### serialize
-
-<span id="qiskit.validation.ModelTypeValidator.serialize" />
-
-`ModelTypeValidator.serialize(attr, obj, accessor=None, **kwargs)`
-
-Pulls the value for the given key from the object, applies the field’s formatting and returns the result.
-
-**Parameters**
-
-*   **attr** (`str`) – The attribute/key to get from the object.
-*   **obj** (`Any`) – The object to access the attribute/key from.
-*   **accessor** (`Optional`\[`Callable`\[\[`Any`, `str`, `Any`], `Any`]]) – Function used to access values from `obj`.
-*   **kwargs** – Field-specific keyword arguments.
+    *   **attr** (`str`) – The attribute/key to get from the object.
+    *   **obj** (`Any`) – The object to access the attribute/key from.
+    *   **accessor** (`Optional`\[`Callable`\[\[`Any`, `str`, `Any`], `Any`]]) – Function used to access values from `obj`.
+    *   **kwargs** – Field-specific keyword arguments.
+  </Function>
+</Class>
 

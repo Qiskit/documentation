@@ -8,54 +8,52 @@ python_api_name: qiskit.visualization.plot_state_city
 
 # qiskit.visualization.plot\_state\_city
 
-<span id="qiskit.visualization.plot_state_city" />
+<Function id="qiskit.visualization.plot_state_city" name="plot_state_city" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/state_visualization.py" signature="plot_state_city(state, title='', figsize=None, color=None, alpha=1, ax_real=None, ax_imag=None, *, rho=None, filename=None)">
+  Plot the cityscape of quantum state.
 
-`plot_state_city(state, title='', figsize=None, color=None, alpha=1, ax_real=None, ax_imag=None, *, rho=None, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/state_visualization.py "view source code")
+  Plot two 3d bar graphs (two dimensional) of the real and imaginary part of the density matrix rho.
 
-Plot the cityscape of quantum state.
+  **Parameters**
 
-Plot two 3d bar graphs (two dimensional) of the real and imaginary part of the density matrix rho.
+  *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
+  *   **title** (*str*) – a string that represents the plot title
+  *   **figsize** (*tuple*) – Figure size in inches.
+  *   **color** (*list*) – A list of len=2 giving colors for real and imaginary components of matrix elements.
+  *   **alpha** (*float*) – Transparency value for bars
+  *   **ax\_real** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. If this is specified without an ax\_imag only the real component plot will be generated. Additionally, if specified there will be no returned Figure since it is redundant.
+  *   **ax\_imag** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. If this is specified without an ax\_real only the imaginary component plot will be generated. Additionally, if specified there will be no returned Figure since it is redundant.
 
-**Parameters**
+  **Returns**
 
-*   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
-*   **title** (*str*) – a string that represents the plot title
-*   **figsize** (*tuple*) – Figure size in inches.
-*   **color** (*list*) – A list of len=2 giving colors for real and imaginary components of matrix elements.
-*   **alpha** (*float*) – Transparency value for bars
-*   **ax\_real** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. If this is specified without an ax\_imag only the real component plot will be generated. Additionally, if specified there will be no returned Figure since it is redundant.
-*   **ax\_imag** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. If this is specified without an ax\_real only the imaginary component plot will be generated. Additionally, if specified there will be no returned Figure since it is redundant.
+  The matplotlib.Figure of the visualization if the `ax_real` and `ax_imag` kwargs are not set
 
-**Returns**
+  **Return type**
 
-The matplotlib.Figure of the visualization if the `ax_real` and `ax_imag` kwargs are not set
+  matplotlib.Figure
 
-**Return type**
+  **Raises**
 
-matplotlib.Figure
+  *   **MissingOptionalLibraryError** – Requires matplotlib.
+  *   **ValueError** – When ‘color’ is not a list of len=2.
+  *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
-**Raises**
+  **Example**
 
-*   **MissingOptionalLibraryError** – Requires matplotlib.
-*   **ValueError** – When ‘color’ is not a list of len=2.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit.quantum_info import DensityMatrix
+  from qiskit.visualization import plot_state_city
+  %matplotlib inline
 
-**Example**
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0, 1)
 
-```python
-from qiskit import QuantumCircuit
-from qiskit.quantum_info import DensityMatrix
-from qiskit.visualization import plot_state_city
-%matplotlib inline
+  state = DensityMatrix.from_instruction(qc)
+  plot_state_city(state, color=['midnightblue', 'midnightblue'],
+       title="New State City")
+  ```
 
-qc = QuantumCircuit(2)
-qc.h(0)
-qc.cx(0, 1)
-
-state = DensityMatrix.from_instruction(qc)
-plot_state_city(state, color=['midnightblue', 'midnightblue'],
-     title="New State City")
-```
-
-![../\_images/qiskit.visualization.plot\_state\_city\_0\_0.png](/images/api/qiskit/0.36/qiskit.visualization.plot_state_city_0_0.png)
+  ![../\_images/qiskit.visualization.plot\_state\_city\_0\_0.png](/images/api/qiskit/0.36/qiskit.visualization.plot_state_city_0_0.png)
+</Function>
 

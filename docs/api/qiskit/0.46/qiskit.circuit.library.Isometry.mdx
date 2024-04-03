@@ -8,167 +8,159 @@ python_api_name: qiskit.circuit.library.Isometry
 
 # Isometry
 
-<span id="qiskit.circuit.library.Isometry" />
+<Class id="qiskit.circuit.library.Isometry" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/isometry.py" signature="qiskit.circuit.library.Isometry(isometry, num_ancillas_zero, num_ancillas_dirty, epsilon=1e-10)">
+  Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
-`qiskit.circuit.library.Isometry(isometry, num_ancillas_zero, num_ancillas_dirty, epsilon=1e-10)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/isometry.py "view source code")
+  Decomposition of arbitrary isometries from $m$ to $n$ qubits.
 
-Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  In particular, this allows to decompose unitaries (m=n) and to do state preparation ($m=0$).
 
-Decomposition of arbitrary isometries from $m$ to $n$ qubits.
+  The decomposition is based on \[1].
 
-In particular, this allows to decompose unitaries (m=n) and to do state preparation ($m=0$).
+  **References:**
 
-The decomposition is based on \[1].
+  **\[1] Iten et al., Quantum circuits for isometries (2016).**
 
-**References:**
+  [Phys. Rev. A 93, 032318](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.93.032318).
 
-**\[1] Iten et al., Quantum circuits for isometries (2016).**
+  **Parameters**
 
-[Phys. Rev. A 93, 032318](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.93.032318).
+  *   **isometry** (*np.ndarray*) – An isometry from $m$ to :math\`n\` qubits, i.e., a complex `np.ndarray` of dimension $2^n \times 2^m$ with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits).
+  *   **num\_ancillas\_zero** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of additional ancillas that start in the state $|0\rangle$ (the $n-m$ ancillas required for providing the output of the isometry are not accounted for here).
+  *   **num\_ancillas\_dirty** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of additional ancillas that start in an arbitrary state.
+  *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Error tolerance of calculations.
 
-**Parameters**
+  ## Attributes
 
-*   **isometry** (*np.ndarray*) – An isometry from $m$ to :math\`n\` qubits, i.e., a complex `np.ndarray` of dimension $2^n \times 2^m$ with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits).
-*   **num\_ancillas\_zero** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of additional ancillas that start in the state $|0\rangle$ (the $n-m$ ancillas required for providing the output of the isometry are not accounted for here).
-*   **num\_ancillas\_dirty** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of additional ancillas that start in an arbitrary state.
-*   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Error tolerance of calculations.
+  ### base\_class
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.Isometry.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-<span id="qiskit.circuit.library.Isometry.base_class" />
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.Isometry.base_class "qiskit.circuit.library.Isometry.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-### base\_class
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.Isometry.base_class "qiskit.circuit.library.Isometry.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### condition
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.library.Isometry.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition\_bits
 
-<span id="qiskit.circuit.library.Isometry.condition" />
+  <Attribute id="qiskit.circuit.library.Isometry.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### condition
+  ### decompositions
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.Isometry.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.Isometry.condition_bits" />
+  ### definition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.Isometry.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get Clbits in condition.
+  ### duration
 
-<span id="qiskit.circuit.library.Isometry.decompositions" />
+  <Attribute id="qiskit.circuit.library.Isometry.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.Isometry.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.library.Isometry.definition" />
+  ### mutable
 
-### definition
+  <Attribute id="qiskit.circuit.library.Isometry.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-Return definition in terms of other basic gates.
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-<span id="qiskit.circuit.library.Isometry.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.circuit.library.Isometry.name" name="name">
+    Return the name.
+  </Attribute>
 
-Get the duration.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.Isometry.label" />
+  <Attribute id="qiskit.circuit.library.Isometry.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### label
+  ### num\_qubits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.Isometry.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.Isometry.mutable" />
+  ### params
 
-### mutable
+  <Attribute id="qiskit.circuit.library.Isometry.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### unit
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.library.Isometry.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.Isometry.name" />
+  ## Methods
 
-### name
+  ### inv\_gate
 
-Return the name.
+  <Function id="qiskit.circuit.library.Isometry.inv_gate" name="inv_gate" signature="inv_gate()">
+    Return the adjoint of the unitary.
+  </Function>
 
-<span id="qiskit.circuit.library.Isometry.num_clbits" />
+  ### inverse
 
-### num\_clbits
+  <Function id="qiskit.circuit.library.Isometry.inverse" name="inverse" signature="inverse()">
+    Invert this instruction.
 
-Return the number of clbits.
+    If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
 
-<span id="qiskit.circuit.library.Isometry.num_qubits" />
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
 
-### num\_qubits
+    **Returns**
 
-Return the number of qubits.
+    a fresh instruction for the inverse
 
-<span id="qiskit.circuit.library.Isometry.params" />
+    **Return type**
 
-### params
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-return instruction params.
+    **Raises**
 
-<span id="qiskit.circuit.library.Isometry.unit" />
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
 
-### unit
+  ### validate\_parameter
 
-Get the time unit of duration.
-
-## Methods
-
-### inv\_gate
-
-<span id="qiskit.circuit.library.Isometry.inv_gate" />
-
-`inv_gate()`
-
-Return the adjoint of the unitary.
-
-### inverse
-
-<span id="qiskit.circuit.library.Isometry.inverse" />
-
-`inverse()`
-
-Invert this instruction.
-
-If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
-
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
-
-**Returns**
-
-a fresh instruction for the inverse
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
-
-### validate\_parameter
-
-<span id="qiskit.circuit.library.Isometry.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Isometry parameter has to be an ndarray.
+  <Function id="qiskit.circuit.library.Isometry.validate_parameter" name="validate_parameter" signature="validate_parameter(parameter)">
+    Isometry parameter has to be an ndarray.
+  </Function>
+</Class>
 

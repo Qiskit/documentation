@@ -8,23 +8,21 @@ python_api_name: qiskit.qasm3.dump
 
 # qiskit.qasm3.dump
 
-<span id="qiskit.qasm3.dump" />
+<Function id="qiskit.qasm3.dump" name="dump" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/qasm3/__init__.py" signature="dump(circuit, stream, **kwargs)">
+  Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as a OpenQASM3 stream to file-like object.
 
-`dump(circuit, stream, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/qasm3/__init__.py "view source code")
+  <Admonition title="Note" type="note">
+    This is a quick interface to the main [`Exporter`](qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") interface. All keyword arguments to this function are inherited from the constructor of that class, and if you have multiple circuits to export, it will be faster to create an [`Exporter`](qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") instance, and use its [`Exporter.dump`](qiskit.qasm3.Exporter#dump "qiskit.qasm3.Exporter.dump") method.
+  </Admonition>
 
-Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as a OpenQASM3 stream to file-like object.
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  This is a quick interface to the main [`Exporter`](qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") interface. All keyword arguments to this function are inherited from the constructor of that class, and if you have multiple circuits to export, it will be faster to create an [`Exporter`](qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") instance, and use its [`Exporter.dump`](qiskit.qasm3.Exporter#dump "qiskit.qasm3.Exporter.dump") method.
-</Admonition>
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Circuit to serialize.
+  *   **stream** (*TextIOBase*) – stream-like object to dump the OpenQASM3 serialization
+  *   **\*\*kwargs** – Arguments for the [`Exporter`](qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") constructor.
 
-**Parameters**
+  **Return type**
 
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Circuit to serialize.
-*   **stream** (*TextIOBase*) – stream-like object to dump the OpenQASM3 serialization
-*   **\*\*kwargs** – Arguments for the [`Exporter`](qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") constructor.
-
-**Return type**
-
-`None`
+  `None`
+</Function>
 

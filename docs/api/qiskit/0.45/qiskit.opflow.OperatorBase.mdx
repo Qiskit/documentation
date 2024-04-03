@@ -8,413 +8,369 @@ python_api_name: qiskit.opflow.OperatorBase
 
 # OperatorBase
 
-<span id="qiskit.opflow.OperatorBase" />
+<Class id="qiskit.opflow.OperatorBase" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/operator_base.py" signature="qiskit.opflow.OperatorBase">
+  Bases: `StarAlgebraMixin`, `TensorMixin`, [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-`qiskit.opflow.OperatorBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/operator_base.py "view source code")
+  Deprecated: A base class for all Operators: PrimitiveOps, StateFns, ListOps, etc. Operators are defined as functions which take one complex binary function to another. These complex binary functions are represented by StateFns, which are themselves a special class of Operators taking only the `Zero` StateFn to the complex binary function they represent.
 
-Bases: `StarAlgebraMixin`, `TensorMixin`, [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  Operators can be used to construct complicated functions and computation, and serve as the building blocks for algorithms.
 
-Deprecated: A base class for all Operators: PrimitiveOps, StateFns, ListOps, etc. Operators are defined as functions which take one complex binary function to another. These complex binary functions are represented by StateFns, which are themselves a special class of Operators taking only the `Zero` StateFn to the complex binary function they represent.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.operator_base.OperatorBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Operators can be used to construct complicated functions and computation, and serve as the building blocks for algorithms.
+  ## Attributes
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.operator_base.OperatorBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  ### INDENTATION
 
-## Attributes
+  <Attribute id="qiskit.opflow.OperatorBase.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
 
-<span id="qiskit.opflow.OperatorBase.INDENTATION" />
+  ### instance\_id
 
-### INDENTATION
+  <Attribute id="qiskit.opflow.OperatorBase.instance_id" name="instance_id">
+    Return the unique instance id.
+  </Attribute>
 
-`= '  '`
+  ### num\_qubits
 
-<span id="qiskit.opflow.OperatorBase.instance_id" />
+  <Attribute id="qiskit.opflow.OperatorBase.num_qubits" name="num_qubits">
+    The number of qubits over which the Operator is defined. If `op.num_qubits == 5`, then `op.eval('1' * 5)` will be valid, but `op.eval('11')` will not.
 
-### instance\_id
+    **Returns**
 
-Return the unique instance id.
+    The number of qubits accepted by the Operator’s underlying function.
+  </Attribute>
 
-<span id="qiskit.opflow.OperatorBase.num_qubits" />
+  ### parameters
 
-### num\_qubits
+  <Attribute id="qiskit.opflow.OperatorBase.parameters" name="parameters">
+    Return a set of Parameter objects contained in the Operator.
+  </Attribute>
 
-The number of qubits over which the Operator is defined. If `op.num_qubits == 5`, then `op.eval('1' * 5)` will be valid, but `op.eval('11')` will not.
+  ### settings
 
-**Returns**
+  <Attribute id="qiskit.opflow.OperatorBase.settings" name="settings">
+    Return settings of this object in a dictionary.
 
-The number of qubits accepted by the Operator’s underlying function.
+    You can, for example, use this `settings` dictionary to serialize the object in JSON format, if the JSON encoder you use supports all types in the dictionary.
 
-<span id="qiskit.opflow.OperatorBase.parameters" />
+    **Returns**
 
-### parameters
+    Object settings in a dictionary.
+  </Attribute>
 
-Return a set of Parameter objects contained in the Operator.
+  ## Methods
 
-<span id="qiskit.opflow.OperatorBase.settings" />
+  ### add
 
-### settings
+  <Function id="qiskit.opflow.OperatorBase.add" name="add" signature="abstract add(other)">
+    Return Operator addition of self and other, overloaded by `+`.
 
-Return settings of this object in a dictionary.
+    **Parameters**
 
-You can, for example, use this `settings` dictionary to serialize the object in JSON format, if the JSON encoder you use supports all types in the dictionary.
+    **other** ([*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
 
-**Returns**
+    **Returns**
 
-Object settings in a dictionary.
+    An `OperatorBase` equivalent to the sum of self and other.
 
-## Methods
+    **Return type**
 
-### add
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-<span id="qiskit.opflow.OperatorBase.add" />
+  ### adjoint
 
-`abstract add(other)`
+  <Function id="qiskit.opflow.OperatorBase.adjoint" name="adjoint" signature="abstract adjoint()">
+    Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
-Return Operator addition of self and other, overloaded by `+`.
+    **Returns**
 
-**Parameters**
+    An `OperatorBase` equivalent to the adjoint of self.
 
-**other** ([*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
+    **Return type**
 
-**Returns**
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-An `OperatorBase` equivalent to the sum of self and other.
+  ### assign\_parameters
 
-**Return type**
+  <Function id="qiskit.opflow.OperatorBase.assign_parameters" name="assign_parameters" signature="abstract assign_parameters(param_dict)">
+    Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
 
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **Parameters**
 
-### adjoint
+    **param\_dict** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*]]*) – The dictionary of `Parameters` to replace, and values or lists of values by which to replace them.
 
-<span id="qiskit.opflow.OperatorBase.adjoint" />
+    **Returns**
 
-`abstract adjoint()`
+    The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
 
-Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
+    **Return type**
 
-**Returns**
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-An `OperatorBase` equivalent to the adjoint of self.
+  ### bind\_parameters
 
-**Return type**
+  <Function id="qiskit.opflow.OperatorBase.bind_parameters" name="bind_parameters" signature="bind_parameters(param_dict)">
+    Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).
 
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **Return type**
 
-### assign\_parameters
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-<span id="qiskit.opflow.OperatorBase.assign_parameters" />
+  ### compose
 
-`abstract assign_parameters(param_dict)`
+  <Function id="qiskit.opflow.OperatorBase.compose" name="compose" signature="abstract compose(other, permutation=None, front=False)">
+    Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
 
-Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
+    Note: You must be conscious of Quantum Circuit vs. Linear Algebra ordering conventions. Meaning, X.compose(Y) produces an X∘Y on qubit 0, but would produce a QuantumCircuit which looks like
 
-**Parameters**
+    > -\[Y]-\[X]-
 
-**param\_dict** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*]]*) – The dictionary of `Parameters` to replace, and values or lists of values by which to replace them.
+    Because Terra prints circuits with the initial state at the left side of the circuit.
 
-**Returns**
+    **Parameters**
 
-The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
+    *   **other** ([*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` with which to compose self.
+    *   **permutation** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – `List[int]` which defines permutation on other operator.
+    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If front==True, return `other.compose(self)`.
 
-**Return type**
+    **Returns**
 
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    An `OperatorBase` equivalent to the function composition of self and other.
 
-### bind\_parameters
+    **Return type**
 
-<span id="qiskit.opflow.OperatorBase.bind_parameters" />
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-`bind_parameters(param_dict)`
+  ### copy
 
-Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).
+  <Function id="qiskit.opflow.OperatorBase.copy" name="copy" signature="copy()">
+    Return a deep copy of the Operator.
 
-**Return type**
+    **Return type**
 
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-### compose
+  ### equals
 
-<span id="qiskit.opflow.OperatorBase.compose" />
+  <Function id="qiskit.opflow.OperatorBase.equals" name="equals" signature="abstract equals(other)">
+    Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
-`abstract compose(other, permutation=None, front=False)`
+    **Parameters**
 
-Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
+    **other** ([*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to compare to self.
 
-Note: You must be conscious of Quantum Circuit vs. Linear Algebra ordering conventions. Meaning, X.compose(Y) produces an X∘Y on qubit 0, but would produce a QuantumCircuit which looks like
+    **Returns**
 
-> -\[Y]-\[X]-
+    A bool equal to the equality of self and other.
 
-Because Terra prints circuits with the initial state at the left side of the circuit.
+    **Return type**
 
-**Parameters**
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-*   **other** ([*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` with which to compose self.
-*   **permutation** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – `List[int]` which defines permutation on other operator.
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If front==True, return `other.compose(self)`.
+  ### eval
 
-**Returns**
+  <Function id="qiskit.opflow.OperatorBase.eval" name="eval" signature="abstract eval(front=None)">
+    Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
-An `OperatorBase` equivalent to the function composition of self and other.
+    If `front` is None, the matrix-representation of the operator is returned.
 
-**Return type**
+    **Parameters**
 
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **front** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")  *|*[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector") *| None*) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function, or None.
 
-### copy
+    **Returns**
 
-<span id="qiskit.opflow.OperatorBase.copy" />
+    The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
 
-`copy()`
+    **Return type**
 
-Return a deep copy of the Operator.
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") | [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")
+  </Function>
 
-**Return type**
+  ### is\_hermitian
 
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  <Function id="qiskit.opflow.OperatorBase.is_hermitian" name="is_hermitian" signature="is_hermitian()">
+    Return True if the operator is hermitian.
 
-### equals
+    Returns: Boolean value
 
-<span id="qiskit.opflow.OperatorBase.equals" />
+    **Return type**
 
-`abstract equals(other)`
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
+  ### mul
 
-**Parameters**
+  <Function id="qiskit.opflow.OperatorBase.mul" name="mul" signature="abstract mul(scalar)">
+    Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
 
-**other** ([*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to compare to self.
+    **Parameters**
 
-**Returns**
+    **scalar** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
 
-A bool equal to the equality of self and other.
+    **Returns**
 
-**Return type**
+    An `OperatorBase` equivalent to product of self and scalar.
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    **Return type**
 
-### eval
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-<span id="qiskit.opflow.OperatorBase.eval" />
+  ### neg
 
-`abstract eval(front=None)`
+  <Function id="qiskit.opflow.OperatorBase.neg" name="neg" signature="neg()">
+    Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.
 
-Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
+    **Returns**
 
-If `front` is None, the matrix-representation of the operator is returned.
+    An `OperatorBase` equivalent to the negation of self.
 
-**Parameters**
+    **Return type**
 
-**front** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")  *|*[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector") *| None*) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function, or None.
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-**Returns**
+  ### permute
 
-The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
+  <Function id="qiskit.opflow.OperatorBase.permute" name="permute" signature="abstract permute(permutation)">
+    Permutes the qubits of the operator.
 
-**Return type**
+    **Parameters**
 
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") | [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")
+    **permutation** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – A list defining where each qubit should be permuted. The qubit at index j should be permuted to position permutation\[j].
 
-### is\_hermitian
+    **Returns**
 
-<span id="qiskit.opflow.OperatorBase.is_hermitian" />
+    A new OperatorBase containing the permuted operator.
 
-`is_hermitian()`
+    **Raises**
 
-Return True if the operator is hermitian.
+    [**OpflowError**](opflow#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if indices do not define a new index for each qubit.
 
-Returns: Boolean value
+    **Return type**
 
-**Return type**
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  ### primitive\_strings
 
-### mul
+  <Function id="qiskit.opflow.OperatorBase.primitive_strings" name="primitive_strings" signature="abstract primitive_strings()">
+    Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
-<span id="qiskit.opflow.OperatorBase.mul" />
+    **Returns**
 
-`abstract mul(scalar)`
+    A set of strings describing the primitives contained within the Operator.
 
-Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
+    **Return type**
 
-**Parameters**
+    [*Set*](https://docs.python.org/3/library/typing.html#typing.Set "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
+  </Function>
 
-**scalar** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
+  ### reduce
 
-**Returns**
+  <Function id="qiskit.opflow.OperatorBase.reduce" name="reduce" signature="abstract reduce()">
+    Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
-An `OperatorBase` equivalent to product of self and scalar.
+    **Returns**
 
-**Return type**
+    The reduced `OperatorBase`.
+  </Function>
 
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  ### tensor
 
-### neg
+  <Function id="qiskit.opflow.OperatorBase.tensor" name="tensor" signature="abstract tensor(other)">
+    Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
-<span id="qiskit.opflow.OperatorBase.neg" />
+    > -\[Y]- -\[X]-
 
-`neg()`
+    Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
 
-Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.
+    **Parameters**
 
-**Returns**
+    **other** ([*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to tensor product with self.
 
-An `OperatorBase` equivalent to the negation of self.
+    **Returns**
 
-**Return type**
+    An `OperatorBase` equivalent to the tensor product of self and other.
 
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **Return type**
 
-### permute
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-<span id="qiskit.opflow.OperatorBase.permute" />
+  ### tensorpower
 
-`abstract permute(permutation)`
+  <Function id="qiskit.opflow.OperatorBase.tensorpower" name="tensorpower" signature="abstract tensorpower(other)">
+    Return tensor product with self multiple times, overloaded by `^`.
 
-Permutes the qubits of the operator.
+    **Parameters**
 
-**Parameters**
+    **other** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The int number of times to tensor product self with itself via `tensorpower`.
 
-**permutation** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – A list defining where each qubit should be permuted. The qubit at index j should be permuted to position permutation\[j].
+    **Returns**
 
-**Returns**
+    An `OperatorBase` equivalent to the tensorpower of self by other.
 
-A new OperatorBase containing the permuted operator.
+    **Return type**
 
-**Raises**
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") | [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Function>
 
-[**OpflowError**](opflow#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if indices do not define a new index for each qubit.
+  ### to\_circuit\_op
 
-**Return type**
+  <Function id="qiskit.opflow.OperatorBase.to_circuit_op" name="to_circuit_op" signature="abstract to_circuit_op()">
+    Returns a `CircuitOp` equivalent to this Operator.
 
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **Return type**
 
-### primitive\_strings
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-<span id="qiskit.opflow.OperatorBase.primitive_strings" />
+  ### to\_matrix
 
-`abstract primitive_strings()`
+  <Function id="qiskit.opflow.OperatorBase.to_matrix" name="to_matrix" signature="abstract to_matrix(massive=False)">
+    Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
-Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
+    **Returns**
 
-**Returns**
+    The NumPy `ndarray` equivalent to this Operator.
 
-A set of strings describing the primitives contained within the Operator.
+    **Return type**
 
-**Return type**
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
+  </Function>
 
-[*Set*](https://docs.python.org/3/library/typing.html#typing.Set "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
+  ### to\_matrix\_op
 
-### reduce
+  <Function id="qiskit.opflow.OperatorBase.to_matrix_op" name="to_matrix_op" signature="abstract to_matrix_op(massive=False)">
+    Returns a `MatrixOp` equivalent to this Operator.
 
-<span id="qiskit.opflow.OperatorBase.reduce" />
+    **Return type**
 
-`abstract reduce()`
+    [*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
+  ### to\_spmatrix
 
-**Returns**
+  <Function id="qiskit.opflow.OperatorBase.to_spmatrix" name="to_spmatrix" signature="to_spmatrix()">
+    Return SciPy sparse matrix representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings.
 
-The reduced `OperatorBase`.
+    **Returns**
 
-### tensor
+    The SciPy `spmatrix` equivalent to this Operator.
 
-<span id="qiskit.opflow.OperatorBase.tensor" />
+    **Return type**
 
-`abstract tensor(other)`
-
-Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
-
-> -\[Y]- -\[X]-
-
-Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
-
-**Parameters**
-
-**other** ([*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to tensor product with self.
-
-**Returns**
-
-An `OperatorBase` equivalent to the tensor product of self and other.
-
-**Return type**
-
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
-
-### tensorpower
-
-<span id="qiskit.opflow.OperatorBase.tensorpower" />
-
-`abstract tensorpower(other)`
-
-Return tensor product with self multiple times, overloaded by `^`.
-
-**Parameters**
-
-**other** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The int number of times to tensor product self with itself via `tensorpower`.
-
-**Returns**
-
-An `OperatorBase` equivalent to the tensorpower of self by other.
-
-**Return type**
-
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") | [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
-
-### to\_circuit\_op
-
-<span id="qiskit.opflow.OperatorBase.to_circuit_op" />
-
-`abstract to_circuit_op()`
-
-Returns a `CircuitOp` equivalent to this Operator.
-
-**Return type**
-
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
-
-### to\_matrix
-
-<span id="qiskit.opflow.OperatorBase.to_matrix" />
-
-`abstract to_matrix(massive=False)`
-
-Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
-
-**Returns**
-
-The NumPy `ndarray` equivalent to this Operator.
-
-**Return type**
-
-[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
-
-### to\_matrix\_op
-
-<span id="qiskit.opflow.OperatorBase.to_matrix_op" />
-
-`abstract to_matrix_op(massive=False)`
-
-Returns a `MatrixOp` equivalent to this Operator.
-
-**Return type**
-
-[*OperatorBase*](#qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
-
-### to\_spmatrix
-
-<span id="qiskit.opflow.OperatorBase.to_spmatrix" />
-
-`to_spmatrix()`
-
-Return SciPy sparse matrix representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings.
-
-**Returns**
-
-The SciPy `spmatrix` equivalent to this Operator.
-
-**Return type**
-
-*spmatrix*
+    *spmatrix*
+  </Function>
+</Class>
 

@@ -10,125 +10,111 @@ python_api_name: qiskit.chemistry.drivers.GaussianLogDriver
 
 # qiskit.chemistry.drivers.GaussianLogDriver
 
-<span id="qiskit.chemistry.drivers.GaussianLogDriver" />
+<Class id="qiskit.chemistry.drivers.GaussianLogDriver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/gaussiand/gaussian_log_driver.py" signature="GaussianLogDriver(jcf)">
+  Gaussian™ 16 log driver.
 
-`GaussianLogDriver(jcf)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/gaussiand/gaussian_log_driver.py "view source code")
+  Qiskit chemistry driver using the Gaussian™ 16 program that provides the log back, via [`GaussianLogResult`](qiskit.chemistry.drivers.GaussianLogResult "qiskit.chemistry.drivers.GaussianLogResult"), for access to the log and data recorded there.
 
-Gaussian™ 16 log driver.
+  See [http://gaussian.com/gaussian16/](http://gaussian.com/gaussian16/)
 
-Qiskit chemistry driver using the Gaussian™ 16 program that provides the log back, via [`GaussianLogResult`](qiskit.chemistry.drivers.GaussianLogResult "qiskit.chemistry.drivers.GaussianLogResult"), for access to the log and data recorded there.
+  This driver does not use Gaussian 16 interfacing code, as certain data such as forces properties are not present in the MatrixElement file. The log is returned as a [`GaussianLogResult`](qiskit.chemistry.drivers.GaussianLogResult "qiskit.chemistry.drivers.GaussianLogResult") allowing it to be parsed for whatever data may be of interest. This result class also contains ready access to certain data within the log.
 
-See [http://gaussian.com/gaussian16/](http://gaussian.com/gaussian16/)
+  **Parameters**
 
-This driver does not use Gaussian 16 interfacing code, as certain data such as forces properties are not present in the MatrixElement file. The log is returned as a [`GaussianLogResult`](qiskit.chemistry.drivers.GaussianLogResult "qiskit.chemistry.drivers.GaussianLogResult") allowing it to be parsed for whatever data may be of interest. This result class also contains ready access to certain data within the log.
+  **jcf** (`Union`\[`str`, `List`\[`str`]]) – A job control file conforming to Gaussian™ 16 format. This can be provided as a single string with ‘\n’ line separators or as a list of strings.
 
-**Parameters**
+  **Raises**
 
-**jcf** (`Union`\[`str`, `List`\[`str`]]) – A job control file conforming to Gaussian™ 16 format. This can be provided as a single string with ‘\n’ line separators or as a list of strings.
+  [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
-**Raises**
+  ### \_\_init\_\_
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+  <Function id="qiskit.chemistry.drivers.GaussianLogDriver.__init__" name="__init__" signature="__init__(jcf)">
+    **Parameters**
 
-### \_\_init\_\_
+    **jcf** (`Union`\[`str`, `List`\[`str`]]) – A job control file conforming to Gaussian™ 16 format. This can be provided as a single string with ‘\n’ line separators or as a list of strings.
 
-<span id="qiskit.chemistry.drivers.GaussianLogDriver.__init__" />
+    **Raises**
 
-`__init__(jcf)`
+    [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+  </Function>
 
-**Parameters**
+  ## Methods
 
-**jcf** (`Union`\[`str`, `List`\[`str`]]) – A job control file conforming to Gaussian™ 16 format. This can be provided as a single string with ‘\n’ line separators or as a list of strings.
+  |                                                                                                                               |                                                                          |
+  | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.chemistry.drivers.GaussianLogDriver.__init__ "qiskit.chemistry.drivers.GaussianLogDriver.__init__")(jcf) | **type jcf**`Union`\[`str`, `List`\[`str`]]                              |
+  | [`run`](#qiskit.chemistry.drivers.GaussianLogDriver.run "qiskit.chemistry.drivers.GaussianLogDriver.run")()                   | Runs the driver to produce a result given the supplied job control file. |
 
-**Raises**
+  ## Attributes
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+  |                                                                                                                                                     |                                                 |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+  | [`basis`](#qiskit.chemistry.drivers.GaussianLogDriver.basis "qiskit.chemistry.drivers.GaussianLogDriver.basis")                                     | return basis                                    |
+  | [`hf_method`](#qiskit.chemistry.drivers.GaussianLogDriver.hf_method "qiskit.chemistry.drivers.GaussianLogDriver.hf_method")                         | return Hartree-Fock method                      |
+  | [`molecule`](#qiskit.chemistry.drivers.GaussianLogDriver.molecule "qiskit.chemistry.drivers.GaussianLogDriver.molecule")                            | return molecule                                 |
+  | [`supports_molecule`](#qiskit.chemistry.drivers.GaussianLogDriver.supports_molecule "qiskit.chemistry.drivers.GaussianLogDriver.supports_molecule") | True for derived classes that support Molecule. |
 
-## Methods
+  ### basis
 
-|                                                                                                                               |                                                                          |
-| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.chemistry.drivers.GaussianLogDriver.__init__ "qiskit.chemistry.drivers.GaussianLogDriver.__init__")(jcf) | **type jcf**`Union`\[`str`, `List`\[`str`]]                              |
-| [`run`](#qiskit.chemistry.drivers.GaussianLogDriver.run "qiskit.chemistry.drivers.GaussianLogDriver.run")()                   | Runs the driver to produce a result given the supplied job control file. |
+  <Function id="qiskit.chemistry.drivers.GaussianLogDriver.basis" name="basis" signature="property basis">
+    return basis
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                                     |                                                 |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`basis`](#qiskit.chemistry.drivers.GaussianLogDriver.basis "qiskit.chemistry.drivers.GaussianLogDriver.basis")                                     | return basis                                    |
-| [`hf_method`](#qiskit.chemistry.drivers.GaussianLogDriver.hf_method "qiskit.chemistry.drivers.GaussianLogDriver.hf_method")                         | return Hartree-Fock method                      |
-| [`molecule`](#qiskit.chemistry.drivers.GaussianLogDriver.molecule "qiskit.chemistry.drivers.GaussianLogDriver.molecule")                            | return molecule                                 |
-| [`supports_molecule`](#qiskit.chemistry.drivers.GaussianLogDriver.supports_molecule "qiskit.chemistry.drivers.GaussianLogDriver.supports_molecule") | True for derived classes that support Molecule. |
+    `str`
+  </Function>
 
-### basis
+  ### hf\_method
 
-<span id="qiskit.chemistry.drivers.GaussianLogDriver.basis" />
+  <Function id="qiskit.chemistry.drivers.GaussianLogDriver.hf_method" name="hf_method" signature="property hf_method">
+    return Hartree-Fock method
 
-`property basis`
+    **Return type**
 
-return basis
+    `str`
+  </Function>
 
-**Return type**
+  ### molecule
 
-`str`
+  <Function id="qiskit.chemistry.drivers.GaussianLogDriver.molecule" name="molecule" signature="property molecule">
+    return molecule
 
-### hf\_method
+    **Return type**
 
-<span id="qiskit.chemistry.drivers.GaussianLogDriver.hf_method" />
+    `Optional`\[`Molecule`]
+  </Function>
 
-`property hf_method`
+  ### run
 
-return Hartree-Fock method
+  <Function id="qiskit.chemistry.drivers.GaussianLogDriver.run" name="run" signature="run()">
+    Runs the driver to produce a result given the supplied job control file.
 
-**Return type**
+    **Return type**
 
-`str`
+    `GaussianLogResult`
 
-### molecule
+    **Returns**
 
-<span id="qiskit.chemistry.drivers.GaussianLogDriver.molecule" />
+    A log file result.
 
-`property molecule`
+    **Raises**
 
-return molecule
+    [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Missing output log
+  </Function>
 
-**Return type**
+  ### supports\_molecule
 
-`Optional`\[`Molecule`]
+  <Function id="qiskit.chemistry.drivers.GaussianLogDriver.supports_molecule" name="supports_molecule" signature="property supports_molecule">
+    True for derived classes that support Molecule.
 
-### run
+    **Return type**
 
-<span id="qiskit.chemistry.drivers.GaussianLogDriver.run" />
+    `bool`
 
-`run()`
+    **Returns**
 
-Runs the driver to produce a result given the supplied job control file.
-
-**Return type**
-
-`GaussianLogResult`
-
-**Returns**
-
-A log file result.
-
-**Raises**
-
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Missing output log
-
-### supports\_molecule
-
-<span id="qiskit.chemistry.drivers.GaussianLogDriver.supports_molecule" />
-
-`property supports_molecule`
-
-True for derived classes that support Molecule.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if Molecule is supported.
+    True if Molecule is supported.
+  </Function>
+</Class>
 

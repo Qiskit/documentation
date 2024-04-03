@@ -8,139 +8,121 @@ python_api_name: qiskit.algorithms.GroverResult
 
 # qiskit.algorithms.GroverResult
 
-<span id="qiskit.algorithms.GroverResult" />
+<Class id="qiskit.algorithms.GroverResult" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_amplifiers/grover.py" signature="GroverResult">
+  Grover Result.
 
-`GroverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+  ### \_\_init\_\_
 
-Grover Result.
+  <Function id="qiskit.algorithms.GroverResult.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.algorithms.GroverResult.__init__" />
+  |                                                                                                       |                                                                        |
+  | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.GroverResult.__init__ "qiskit.algorithms.GroverResult.__init__")()    | Initialize self.                                                       |
+  | [`combine`](#qiskit.algorithms.GroverResult.combine "qiskit.algorithms.GroverResult.combine")(result) | Any property from the argument that exists in the receiver is updated. |
 
-`__init__()`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |                                                                                                                             |                                                                                   |
+  | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+  | [`assignment`](#qiskit.algorithms.GroverResult.assignment "qiskit.algorithms.GroverResult.assignment")                      | The post-processed value of the most likely bitstring.                            |
+  | [`circuit_results`](#qiskit.algorithms.GroverResult.circuit_results "qiskit.algorithms.GroverResult.circuit_results")       | Return the circuit results.                                                       |
+  | [`iterations`](#qiskit.algorithms.GroverResult.iterations "qiskit.algorithms.GroverResult.iterations")                      | All the powers of the Grover operator that have been tried.                       |
+  | [`max_probability`](#qiskit.algorithms.GroverResult.max_probability "qiskit.algorithms.GroverResult.max_probability")       | Return the maximum sampling probability.                                          |
+  | [`oracle_evaluation`](#qiskit.algorithms.GroverResult.oracle_evaluation "qiskit.algorithms.GroverResult.oracle_evaluation") | Whether the classical oracle evaluation of the top measurement was True or False. |
+  | [`top_measurement`](#qiskit.algorithms.GroverResult.top_measurement "qiskit.algorithms.GroverResult.top_measurement")       | The most frequently measured output as bitstring.                                 |
 
-## Methods
+  ### assignment
 
-|                                                                                                       |                                                                        |
-| ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.GroverResult.__init__ "qiskit.algorithms.GroverResult.__init__")()    | Initialize self.                                                       |
-| [`combine`](#qiskit.algorithms.GroverResult.combine "qiskit.algorithms.GroverResult.combine")(result) | Any property from the argument that exists in the receiver is updated. |
+  <Function id="qiskit.algorithms.GroverResult.assignment" name="assignment" signature="property assignment">
+    The post-processed value of the most likely bitstring.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                             |                                                                                   |
-| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| [`assignment`](#qiskit.algorithms.GroverResult.assignment "qiskit.algorithms.GroverResult.assignment")                      | The post-processed value of the most likely bitstring.                            |
-| [`circuit_results`](#qiskit.algorithms.GroverResult.circuit_results "qiskit.algorithms.GroverResult.circuit_results")       | Return the circuit results.                                                       |
-| [`iterations`](#qiskit.algorithms.GroverResult.iterations "qiskit.algorithms.GroverResult.iterations")                      | All the powers of the Grover operator that have been tried.                       |
-| [`max_probability`](#qiskit.algorithms.GroverResult.max_probability "qiskit.algorithms.GroverResult.max_probability")       | Return the maximum sampling probability.                                          |
-| [`oracle_evaluation`](#qiskit.algorithms.GroverResult.oracle_evaluation "qiskit.algorithms.GroverResult.oracle_evaluation") | Whether the classical oracle evaluation of the top measurement was True or False. |
-| [`top_measurement`](#qiskit.algorithms.GroverResult.top_measurement "qiskit.algorithms.GroverResult.top_measurement")       | The most frequently measured output as bitstring.                                 |
+    `Any`
 
-### assignment
+    **Returns**
 
-<span id="qiskit.algorithms.GroverResult.assignment" />
+    The output of the `post_processing` function of the respective `AmplificationProblem`, where the input is the `top_measurement`. The type is the same as the return type of the post-processing function.
+  </Function>
 
-`property assignment`
+  ### circuit\_results
 
-The post-processed value of the most likely bitstring.
+  <Function id="qiskit.algorithms.GroverResult.circuit_results" name="circuit_results" signature="property circuit_results">
+    Return the circuit results. Can be a statevector or counts dictionary.
 
-**Return type**
+    **Return type**
 
-`Any`
+    `Union`\[`List`\[`ndarray`], `List`\[`Dict`\[`str`, `int`]], `None`]
+  </Function>
 
-**Returns**
+  ### combine
 
-The output of the `post_processing` function of the respective `AmplificationProblem`, where the input is the `top_measurement`. The type is the same as the return type of the post-processing function.
+  <Function id="qiskit.algorithms.GroverResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-### circuit\_results
+    **Raises**
 
-<span id="qiskit.algorithms.GroverResult.circuit_results" />
+    **TypeError** – Argument is None
 
-`property circuit_results`
+    **Return type**
 
-Return the circuit results. Can be a statevector or counts dictionary.
+    `None`
+  </Function>
 
-**Return type**
+  ### iterations
 
-`Union`\[`List`\[`ndarray`], `List`\[`Dict`\[`str`, `int`]], `None`]
+  <Function id="qiskit.algorithms.GroverResult.iterations" name="iterations" signature="property iterations">
+    All the powers of the Grover operator that have been tried.
 
-### combine
+    **Return type**
 
-<span id="qiskit.algorithms.GroverResult.combine" />
+    `List`\[`int`]
 
-`combine(result)`
+    **Returns**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    The powers of the Grover operator tested.
+  </Function>
 
-**Raises**
+  ### max\_probability
 
-**TypeError** – Argument is None
+  <Function id="qiskit.algorithms.GroverResult.max_probability" name="max_probability" signature="property max_probability">
+    Return the maximum sampling probability.
 
-**Return type**
+    **Return type**
 
-`None`
+    `float`
+  </Function>
 
-### iterations
+  ### oracle\_evaluation
 
-<span id="qiskit.algorithms.GroverResult.iterations" />
+  <Function id="qiskit.algorithms.GroverResult.oracle_evaluation" name="oracle_evaluation" signature="property oracle_evaluation">
+    Whether the classical oracle evaluation of the top measurement was True or False.
 
-`property iterations`
+    **Return type**
 
-All the powers of the Grover operator that have been tried.
+    `bool`
 
-**Return type**
+    **Returns**
 
-`List`\[`int`]
+    The classical oracle evaluation of the top measurement.
+  </Function>
 
-**Returns**
+  ### top\_measurement
 
-The powers of the Grover operator tested.
+  <Function id="qiskit.algorithms.GroverResult.top_measurement" name="top_measurement" signature="property top_measurement">
+    The most frequently measured output as bitstring.
 
-### max\_probability
+    **Return type**
 
-<span id="qiskit.algorithms.GroverResult.max_probability" />
+    `Optional`\[`str`]
 
-`property max_probability`
+    **Returns**
 
-Return the maximum sampling probability.
-
-**Return type**
-
-`float`
-
-### oracle\_evaluation
-
-<span id="qiskit.algorithms.GroverResult.oracle_evaluation" />
-
-`property oracle_evaluation`
-
-Whether the classical oracle evaluation of the top measurement was True or False.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-The classical oracle evaluation of the top measurement.
-
-### top\_measurement
-
-<span id="qiskit.algorithms.GroverResult.top_measurement" />
-
-`property top_measurement`
-
-The most frequently measured output as bitstring.
-
-**Return type**
-
-`Optional`\[`str`]
-
-**Returns**
-
-The most frequently measured output state.
+    The most frequently measured output state.
+  </Function>
+</Class>
 

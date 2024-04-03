@@ -8,107 +8,103 @@ python_api_name: qiskit.algorithms.GroverResult
 
 # GroverResult
 
-<span id="qiskit.algorithms.GroverResult" />
+<Class id="qiskit.algorithms.GroverResult" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_amplifiers/grover.py" signature="GroverResult">
+  Bases: `qiskit.algorithms.amplitude_amplifiers.amplitude_amplifier.AmplitudeAmplifierResult`
 
-`GroverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+  Grover Result.
 
-Bases: `qiskit.algorithms.amplitude_amplifiers.amplitude_amplifier.AmplitudeAmplifierResult`
+  ## Methods
 
-Grover Result.
+  ### combine
 
-## Methods
+  <Function id="qiskit.algorithms.GroverResult.combine" name="combine" signature="GroverResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-### combine
+    **Raises**
 
-<span id="qiskit.algorithms.GroverResult.combine" />
+    **TypeError** – Argument is None
 
-`GroverResult.combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    `None`
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**TypeError** – Argument is None
+  ### assignment
 
-**Return type**
+  <Attribute id="qiskit.algorithms.GroverResult.assignment" name="assignment">
+    The post-processed value of the most likely bitstring.
 
-`None`
+    **Return type**
 
-## Attributes
+    `Any`
 
-<span id="qiskit.algorithms.GroverResult.assignment" />
+    **Returns**
 
-### assignment
+    The output of the `post_processing` function of the respective `AmplificationProblem`, where the input is the `top_measurement`. The type is the same as the return type of the post-processing function.
+  </Attribute>
 
-The post-processed value of the most likely bitstring.
+  ### circuit\_results
 
-**Return type**
+  <Attribute id="qiskit.algorithms.GroverResult.circuit_results" name="circuit_results">
+    Return the circuit results. Can be a statevector or counts dictionary.
 
-`Any`
+    **Return type**
 
-**Returns**
+    `Union`\[`List`\[`ndarray`], `List`\[`Dict`\[`str`, `int`]], `None`]
+  </Attribute>
 
-The output of the `post_processing` function of the respective `AmplificationProblem`, where the input is the `top_measurement`. The type is the same as the return type of the post-processing function.
+  ### iterations
 
-<span id="qiskit.algorithms.GroverResult.circuit_results" />
+  <Attribute id="qiskit.algorithms.GroverResult.iterations" name="iterations">
+    All the powers of the Grover operator that have been tried.
 
-### circuit\_results
+    **Return type**
 
-Return the circuit results. Can be a statevector or counts dictionary.
+    `List`\[`int`]
 
-**Return type**
+    **Returns**
 
-`Union`\[`List`\[`ndarray`], `List`\[`Dict`\[`str`, `int`]], `None`]
+    The powers of the Grover operator tested.
+  </Attribute>
 
-<span id="qiskit.algorithms.GroverResult.iterations" />
+  ### max\_probability
 
-### iterations
+  <Attribute id="qiskit.algorithms.GroverResult.max_probability" name="max_probability">
+    Return the maximum sampling probability.
 
-All the powers of the Grover operator that have been tried.
+    **Return type**
 
-**Return type**
+    `float`
+  </Attribute>
 
-`List`\[`int`]
+  ### oracle\_evaluation
 
-**Returns**
+  <Attribute id="qiskit.algorithms.GroverResult.oracle_evaluation" name="oracle_evaluation">
+    Whether the classical oracle evaluation of the top measurement was True or False.
 
-The powers of the Grover operator tested.
+    **Return type**
 
-<span id="qiskit.algorithms.GroverResult.max_probability" />
+    `bool`
 
-### max\_probability
+    **Returns**
 
-Return the maximum sampling probability.
+    The classical oracle evaluation of the top measurement.
+  </Attribute>
 
-**Return type**
+  ### top\_measurement
 
-`float`
+  <Attribute id="qiskit.algorithms.GroverResult.top_measurement" name="top_measurement">
+    The most frequently measured output as bitstring.
 
-<span id="qiskit.algorithms.GroverResult.oracle_evaluation" />
+    **Return type**
 
-### oracle\_evaluation
+    `Optional`\[`str`]
 
-Whether the classical oracle evaluation of the top measurement was True or False.
+    **Returns**
 
-**Return type**
-
-`bool`
-
-**Returns**
-
-The classical oracle evaluation of the top measurement.
-
-<span id="qiskit.algorithms.GroverResult.top_measurement" />
-
-### top\_measurement
-
-The most frequently measured output as bitstring.
-
-**Return type**
-
-`Optional`\[`str`]
-
-**Returns**
-
-The most frequently measured output state.
+    The most frequently measured output state.
+  </Attribute>
+</Class>
 

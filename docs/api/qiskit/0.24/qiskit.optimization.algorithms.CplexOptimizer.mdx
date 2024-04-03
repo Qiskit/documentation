@@ -10,156 +10,142 @@ python_api_name: qiskit.optimization.algorithms.CplexOptimizer
 
 # qiskit.optimization.algorithms.CplexOptimizer
 
-<span id="qiskit.optimization.algorithms.CplexOptimizer" />
+<Class id="qiskit.optimization.algorithms.CplexOptimizer" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/cplex_optimizer.py" signature="CplexOptimizer(disp=False)">
+  The CPLEX optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm").
 
-`CplexOptimizer(disp=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/cplex_optimizer.py "view source code")
+  This class provides a wrapper for `cplex.Cplex` ([https://pypi.org/project/cplex/](https://pypi.org/project/cplex/)) to be used within the optimization module.
 
-The CPLEX optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm").
+  **Examples**
 
-This class provides a wrapper for `cplex.Cplex` ([https://pypi.org/project/cplex/](https://pypi.org/project/cplex/)) to be used within the optimization module.
+  ```python
+  >>> from qiskit.optimization.problems import QuadraticProgram
+  >>> from qiskit.optimization.algorithms import CplexOptimizer
+  >>> problem = QuadraticProgram()
+  >>> # specify problem here, if cplex is installed
+  >>> optimizer = CplexOptimizer() if CplexOptimizer.is_cplex_installed() else None
+  >>> if optimizer: result = optimizer.solve(problem)
+  ```
 
-**Examples**
+  Initializes the CplexOptimizer.
 
-```python
->>> from qiskit.optimization.problems import QuadraticProgram
->>> from qiskit.optimization.algorithms import CplexOptimizer
->>> problem = QuadraticProgram()
->>> # specify problem here, if cplex is installed
->>> optimizer = CplexOptimizer() if CplexOptimizer.is_cplex_installed() else None
->>> if optimizer: result = optimizer.solve(problem)
-```
+  **Parameters**
 
-Initializes the CplexOptimizer.
+  **disp** (`Optional`\[`bool`]) – Whether to print CPLEX output or not.
 
-**Parameters**
+  **Raises**
 
-**disp** (`Optional`\[`bool`]) – Whether to print CPLEX output or not.
+  [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – CPLEX is not installed.
 
-**Raises**
+  ### \_\_init\_\_
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – CPLEX is not installed.
+  <Function id="qiskit.optimization.algorithms.CplexOptimizer.__init__" name="__init__" signature="__init__(disp=False)">
+    Initializes the CplexOptimizer.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.optimization.algorithms.CplexOptimizer.__init__" />
+    **disp** (`Optional`\[`bool`]) – Whether to print CPLEX output or not.
 
-`__init__(disp=False)`
+    **Raises**
 
-Initializes the CplexOptimizer.
+    [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – CPLEX is not installed.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-**disp** (`Optional`\[`bool`]) – Whether to print CPLEX output or not.
+  |                                                                                                                                                                                |                                                                                           |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.optimization.algorithms.CplexOptimizer.__init__ "qiskit.optimization.algorithms.CplexOptimizer.__init__")(\[disp])                                        | Initializes the CplexOptimizer.                                                           |
+  | [`get_compatibility_msg`](#qiskit.optimization.algorithms.CplexOptimizer.get_compatibility_msg "qiskit.optimization.algorithms.CplexOptimizer.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with this optimizer.                         |
+  | [`is_compatible`](#qiskit.optimization.algorithms.CplexOptimizer.is_compatible "qiskit.optimization.algorithms.CplexOptimizer.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
+  | [`is_cplex_installed`](#qiskit.optimization.algorithms.CplexOptimizer.is_cplex_installed "qiskit.optimization.algorithms.CplexOptimizer.is_cplex_installed")()                 | Returns True if cplex is installed                                                        |
+  | [`solve`](#qiskit.optimization.algorithms.CplexOptimizer.solve "qiskit.optimization.algorithms.CplexOptimizer.solve")(problem)                                                 | Tries to solves the given problem using the optimizer.                                    |
 
-**Raises**
+  ## Attributes
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – CPLEX is not installed.
+  |                                                                                                                    |                              |
+  | ------------------------------------------------------------------------------------------------------------------ | ---------------------------- |
+  | [`disp`](#qiskit.optimization.algorithms.CplexOptimizer.disp "qiskit.optimization.algorithms.CplexOptimizer.disp") | Returns the display setting. |
 
-## Methods
+  ### disp
 
-|                                                                                                                                                                                |                                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.optimization.algorithms.CplexOptimizer.__init__ "qiskit.optimization.algorithms.CplexOptimizer.__init__")(\[disp])                                        | Initializes the CplexOptimizer.                                                           |
-| [`get_compatibility_msg`](#qiskit.optimization.algorithms.CplexOptimizer.get_compatibility_msg "qiskit.optimization.algorithms.CplexOptimizer.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with this optimizer.                         |
-| [`is_compatible`](#qiskit.optimization.algorithms.CplexOptimizer.is_compatible "qiskit.optimization.algorithms.CplexOptimizer.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
-| [`is_cplex_installed`](#qiskit.optimization.algorithms.CplexOptimizer.is_cplex_installed "qiskit.optimization.algorithms.CplexOptimizer.is_cplex_installed")()                 | Returns True if cplex is installed                                                        |
-| [`solve`](#qiskit.optimization.algorithms.CplexOptimizer.solve "qiskit.optimization.algorithms.CplexOptimizer.solve")(problem)                                                 | Tries to solves the given problem using the optimizer.                                    |
+  <Function id="qiskit.optimization.algorithms.CplexOptimizer.disp" name="disp" signature="property disp">
+    Returns the display setting.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                    |                              |
-| ------------------------------------------------------------------------------------------------------------------ | ---------------------------- |
-| [`disp`](#qiskit.optimization.algorithms.CplexOptimizer.disp "qiskit.optimization.algorithms.CplexOptimizer.disp") | Returns the display setting. |
+    `bool`
 
-### disp
+    **Returns**
 
-<span id="qiskit.optimization.algorithms.CplexOptimizer.disp" />
+    Whether to print CPLEX information or not.
+  </Function>
 
-`property disp`
+  ### get\_compatibility\_msg
 
-Returns the display setting.
+  <Function id="qiskit.optimization.algorithms.CplexOptimizer.get_compatibility_msg" name="get_compatibility_msg" signature="get_compatibility_msg(problem)">
+    Checks whether a given problem can be solved with this optimizer.
 
-**Return type**
+    Returns `''` since CPLEX accepts all problems that can be modeled using the `QuadraticProgram`. CPLEX may throw an exception in case the problem is determined to be non-convex.
 
-`bool`
+    **Parameters**
 
-**Returns**
+    **problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
 
-Whether to print CPLEX information or not.
+    **Return type**
 
-### get\_compatibility\_msg
+    `str`
 
-<span id="qiskit.optimization.algorithms.CplexOptimizer.get_compatibility_msg" />
+    **Returns**
 
-`get_compatibility_msg(problem)`
+    An empty string.
+  </Function>
 
-Checks whether a given problem can be solved with this optimizer.
+  ### is\_compatible
 
-Returns `''` since CPLEX accepts all problems that can be modeled using the `QuadraticProgram`. CPLEX may throw an exception in case the problem is determined to be non-convex.
+  <Function id="qiskit.optimization.algorithms.CplexOptimizer.is_compatible" name="is_compatible" signature="is_compatible(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
 
-**Parameters**
+    **Parameters**
 
-**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+    **problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
 
-**Return type**
+    **Return type**
 
-`str`
+    `bool`
 
-**Returns**
+    **Returns**
 
-An empty string.
+    Returns True if the problem is compatible, False otherwise.
+  </Function>
 
-### is\_compatible
+  ### is\_cplex\_installed
 
-<span id="qiskit.optimization.algorithms.CplexOptimizer.is_compatible" />
+  <Function id="qiskit.optimization.algorithms.CplexOptimizer.is_cplex_installed" name="is_cplex_installed" signature="static is_cplex_installed()">
+    Returns True if cplex is installed
+  </Function>
 
-`is_compatible(problem)`
+  ### solve
 
-Checks whether a given problem can be solved with the optimizer implementing this method.
+  <Function id="qiskit.optimization.algorithms.CplexOptimizer.solve" name="solve" signature="solve(problem)">
+    Tries to solves the given problem using the optimizer.
 
-**Parameters**
+    Runs the optimizer to try to solve the optimization problem. If problem is not convex, this optimizer may raise an exception due to incompatibility, depending on the settings.
 
-**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+    **Parameters**
 
-**Return type**
+    **problem** (`QuadraticProgram`) – The problem to be solved.
 
-`bool`
+    **Return type**
 
-**Returns**
+    `OptimizationResult`
 
-Returns True if the problem is compatible, False otherwise.
+    **Returns**
 
-### is\_cplex\_installed
+    The result of the optimizer applied to the problem.
 
-<span id="qiskit.optimization.algorithms.CplexOptimizer.is_cplex_installed" />
+    **Raises**
 
-`static is_cplex_installed()`
-
-Returns True if cplex is installed
-
-### solve
-
-<span id="qiskit.optimization.algorithms.CplexOptimizer.solve" />
-
-`solve(problem)`
-
-Tries to solves the given problem using the optimizer.
-
-Runs the optimizer to try to solve the optimization problem. If problem is not convex, this optimizer may raise an exception due to incompatibility, depending on the settings.
-
-**Parameters**
-
-**problem** (`QuadraticProgram`) – The problem to be solved.
-
-**Return type**
-
-`OptimizationResult`
-
-**Returns**
-
-The result of the optimizer applied to the problem.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+  </Function>
+</Class>
 

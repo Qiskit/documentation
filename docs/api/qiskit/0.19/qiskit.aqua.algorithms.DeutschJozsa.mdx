@@ -8,107 +8,97 @@ python_api_name: qiskit.aqua.algorithms.DeutschJozsa
 
 # DeutschJozsa
 
-<span id="qiskit.aqua.algorithms.DeutschJozsa" />
+<Class id="qiskit.aqua.algorithms.DeutschJozsa" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/education/deutsch_jozsa.py" signature="DeutschJozsa(oracle, quantum_instance=None)">
+  The Deutsch-Jozsa algorithm.
 
-`DeutschJozsa(oracle, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/education/deutsch_jozsa.py "view source code")
+  The Deutsch-Jozsa algorithm was one of the first known quantum algorithms that showed an exponential speedup compared to a deterministic (non-probabilistic) classical algorithm, given a black box oracle function. The algorithm determines whether the given function $f:\{0,1\}^n \rightarrow \{0,1\}$ is constant or balanced. A constant function maps all inputs to 0 or 1, and a balanced function maps half of its inputs to 0 and the other half to 1.
 
-The Deutsch-Jozsa algorithm.
+  Note: the [`TruthTableOracle`](qiskit.aqua.components.oracles.TruthTableOracle "qiskit.aqua.components.oracles.TruthTableOracle") facilitates creating a constant or balanced function but any oracle can be used as long as the boolean function implemented by the oracle indeed satisfies the constraint of being either constant or balanced.
 
-The Deutsch-Jozsa algorithm was one of the first known quantum algorithms that showed an exponential speedup compared to a deterministic (non-probabilistic) classical algorithm, given a black box oracle function. The algorithm determines whether the given function $f:\{0,1\}^n \rightarrow \{0,1\}$ is constant or balanced. A constant function maps all inputs to 0 or 1, and a balanced function maps half of its inputs to 0 and the other half to 1.
+  **Parameters**
 
-Note: the [`TruthTableOracle`](qiskit.aqua.components.oracles.TruthTableOracle "qiskit.aqua.components.oracles.TruthTableOracle") facilitates creating a constant or balanced function but any oracle can be used as long as the boolean function implemented by the oracle indeed satisfies the constraint of being either constant or balanced.
+  *   **oracle** ([`Oracle`](qiskit.aqua.components.oracles.Oracle "qiskit.aqua.components.oracles.oracle.Oracle")) – The oracle component
+  *   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – Quantum Instance or Backend
 
-**Parameters**
+  ## Attributes
 
-*   **oracle** ([`Oracle`](qiskit.aqua.components.oracles.Oracle "qiskit.aqua.components.oracles.oracle.Oracle")) – The oracle component
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – Quantum Instance or Backend
+  ### backend
 
-## Attributes
+  <Attribute id="qiskit.aqua.algorithms.DeutschJozsa.backend" name="backend" signature="qiskit.providers.basebackend.BaseBackend">
+    Returns backend.
 
-### backend
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.DeutschJozsa.backend" />
+    [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
+  </Attribute>
 
-`qiskit.providers.basebackend.BaseBackend`
+  ### quantum\_instance
 
-Returns backend.
+  <Attribute id="qiskit.aqua.algorithms.DeutschJozsa.quantum_instance" name="quantum_instance" signature="Union[None, qiskit.aqua.quantum_instance.QuantumInstance]">
+    Returns quantum instance.
 
-**Return type**
+    **Return type**
 
-[`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
+    `Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
+  </Attribute>
 
-### quantum\_instance
+  ### random
 
-<span id="qiskit.aqua.algorithms.DeutschJozsa.quantum_instance" />
+  <Attribute id="qiskit.aqua.algorithms.DeutschJozsa.random" name="random">
+    Return a numpy random.
+  </Attribute>
 
-`Union[None, qiskit.aqua.quantum_instance.QuantumInstance]`
+  ## Methods
 
-Returns quantum instance.
+  ### construct\_circuit
 
-**Return type**
+  <Function id="qiskit.aqua.algorithms.DeutschJozsa.construct_circuit" name="construct_circuit" signature="DeutschJozsa.construct_circuit(measurement=False)">
+    Construct the quantum circuit
 
-`Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
+    **Parameters**
 
-### random
+    **measurement** (*bool*) – Boolean flag to indicate if measurement should be included in the circuit.
 
-Return a numpy random.
+    **Returns**
 
-## Methods
+    the QuantumCircuit object for the constructed circuit
 
-### construct\_circuit
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.DeutschJozsa.construct_circuit" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-`DeutschJozsa.construct_circuit(measurement=False)`
+  ### run
 
-Construct the quantum circuit
+  <Function id="qiskit.aqua.algorithms.DeutschJozsa.run" name="run" signature="DeutschJozsa.run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-**Parameters**
+    **Parameters**
 
-**measurement** (*bool*) – Boolean flag to indicate if measurement should be included in the circuit.
+    *   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-**Returns**
+    **Returns**
 
-the QuantumCircuit object for the constructed circuit
+    results of an algorithm.
 
-**Return type**
+    **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    dict
 
-### run
+    **Raises**
 
-<span id="qiskit.aqua.algorithms.DeutschJozsa.run" />
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-`DeutschJozsa.run(quantum_instance=None, **kwargs)`
+  ### set\_backend
 
-Execute the algorithm with selected backend.
+  <Function id="qiskit.aqua.algorithms.DeutschJozsa.set_backend" name="set_backend" signature="DeutschJozsa.set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-**Parameters**
+    **Return type**
 
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.DeutschJozsa.set_backend" />
-
-`DeutschJozsa.set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

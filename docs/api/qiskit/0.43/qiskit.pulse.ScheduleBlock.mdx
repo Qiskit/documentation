@@ -8,677 +8,641 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
 # ScheduleBlock
 
-<span id="qiskit.pulse.ScheduleBlock" />
+<Class id="qiskit.pulse.ScheduleBlock" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/schedule.py" signature="ScheduleBlock(name=None, metadata=None, alignment_context=None)">
+  Bases: `object`
 
-`ScheduleBlock(name=None, metadata=None, alignment_context=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/schedule.py "view source code")
+  Time-ordered sequence of instructions with alignment context.
 
-Bases: `object`
+  [`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") supports lazy scheduling of context instructions, i.e. their timeslots is always generated at runtime. This indicates we can parametrize instruction durations as well as other parameters. In contrast to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") being somewhat static, [`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") is a dynamic representation of a pulse program.
 
-Time-ordered sequence of instructions with alignment context.
+  **Pulse Builder**
 
-[`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") supports lazy scheduling of context instructions, i.e. their timeslots is always generated at runtime. This indicates we can parametrize instruction durations as well as other parameters. In contrast to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") being somewhat static, [`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") is a dynamic representation of a pulse program.
+  The Qiskit pulse builder is a domain specific language that is developed on top of the schedule block. Use of the builder syntax will improve the workflow of pulse programming. See [Pulse Builder](pulse#pulse-builder) for a user guide.
 
-**Pulse Builder**
+  **Alignment contexts**
 
-The Qiskit pulse builder is a domain specific language that is developed on top of the schedule block. Use of the builder syntax will improve the workflow of pulse programming. See [Pulse Builder](pulse#pulse-builder) for a user guide.
+  A schedule block is always relatively scheduled. Instead of taking individual instructions with absolute execution time `t0`, the schedule block defines a context of scheduling and instructions under the same context are scheduled in the same manner (alignment). Several contexts are available in [Alignments](pulse#pulse-alignments). A schedule block is instantiated with one of these alignment contexts. The default context is `AlignLeft`, for which all instructions are left-justified, in other words, meaning they use as-soon-as-possible scheduling.
 
-**Alignment contexts**
+  If you need an absolute-time interval in between instructions, you can explicitly insert [`Delay`](qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay") instructions.
 
-A schedule block is always relatively scheduled. Instead of taking individual instructions with absolute execution time `t0`, the schedule block defines a context of scheduling and instructions under the same context are scheduled in the same manner (alignment). Several contexts are available in [Alignments](pulse#pulse-alignments). A schedule block is instantiated with one of these alignment contexts. The default context is `AlignLeft`, for which all instructions are left-justified, in other words, meaning they use as-soon-as-possible scheduling.
+  **Nested blocks**
 
-If you need an absolute-time interval in between instructions, you can explicitly insert [`Delay`](qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay") instructions.
+  A schedule block can contain other nested blocks with different alignment contexts. This enables advanced scheduling, where a subset of instructions is locally scheduled in a different manner. Note that a [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") instance cannot be directly added to a schedule block. To add a [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") instance, wrap it in a [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction. This is implicitly performed when a schedule is added through the [Pulse Builder](pulse#pulse-builder).
 
-**Nested blocks**
+  **Unsupported operations**
 
-A schedule block can contain other nested blocks with different alignment contexts. This enables advanced scheduling, where a subset of instructions is locally scheduled in a different manner. Note that a [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") instance cannot be directly added to a schedule block. To add a [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") instance, wrap it in a [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction. This is implicitly performed when a schedule is added through the [Pulse Builder](pulse#pulse-builder).
+  Because the schedule block representation lacks timeslots, it cannot perform particular [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") operations such as `insert()` or `shift()` that require instruction start time `t0`. In addition, [`exclude()`](qiskit.pulse.ScheduleBlock#exclude "qiskit.pulse.ScheduleBlock.exclude") and [`filter()`](qiskit.pulse.ScheduleBlock#filter "qiskit.pulse.ScheduleBlock.filter") methods are not supported because these operations may identify the target instruction with `t0`. Except for these operations, [`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") provides full compatibility with [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule").
 
-**Unsupported operations**
+  **Subroutine**
 
-Because the schedule block representation lacks timeslots, it cannot perform particular [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") operations such as `insert()` or `shift()` that require instruction start time `t0`. In addition, [`exclude()`](qiskit.pulse.ScheduleBlock#exclude "qiskit.pulse.ScheduleBlock.exclude") and [`filter()`](qiskit.pulse.ScheduleBlock#filter "qiskit.pulse.ScheduleBlock.filter") methods are not supported because these operations may identify the target instruction with `t0`. Except for these operations, [`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") provides full compatibility with [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule").
+  The timeslots-free representation offers much greater flexibility for writing pulse programs. Because [`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") only cares about the ordering of the child blocks we can add an undefined pulse sequence as a subroutine of the main program. If your program contains the same sequence multiple times, this representation may reduce the memory footprint required by the program construction. Such a subroutine is realized by the special compiler directive [`Reference`](qiskit.pulse.instructions.Reference "qiskit.pulse.instructions.Reference") that is defined by a unique set of reference key strings to the subroutine. The (executable) subroutine is separately stored in the main program. Appended reference directives are resolved when the main program is executed. Subroutines must be assigned through [`assign_references()`](qiskit.pulse.ScheduleBlock#assign_references "qiskit.pulse.ScheduleBlock.assign_references") before execution.
 
-**Subroutine**
+  **Program Scoping**
 
-The timeslots-free representation offers much greater flexibility for writing pulse programs. Because [`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") only cares about the ordering of the child blocks we can add an undefined pulse sequence as a subroutine of the main program. If your program contains the same sequence multiple times, this representation may reduce the memory footprint required by the program construction. Such a subroutine is realized by the special compiler directive [`Reference`](qiskit.pulse.instructions.Reference "qiskit.pulse.instructions.Reference") that is defined by a unique set of reference key strings to the subroutine. The (executable) subroutine is separately stored in the main program. Appended reference directives are resolved when the main program is executed. Subroutines must be assigned through [`assign_references()`](qiskit.pulse.ScheduleBlock#assign_references "qiskit.pulse.ScheduleBlock.assign_references") before execution.
+  When you call a subroutine from another subroutine, or append a schedule block to another schedule block, the management of references and parameters can be a hard task. Schedule block offers a convenient feature to help with this by automatically scoping the parameters and subroutines.
 
-**Program Scoping**
+  ```python
+  from qiskit import pulse
+  from qiskit.circuit.parameter import Parameter
 
-When you call a subroutine from another subroutine, or append a schedule block to another schedule block, the management of references and parameters can be a hard task. Schedule block offers a convenient feature to help with this by automatically scoping the parameters and subroutines.
+  amp1 = Parameter("amp")
 
-```python
-from qiskit import pulse
-from qiskit.circuit.parameter import Parameter
+  with pulse.build() as sched1:
+      pulse.play(pulse.Constant(100, amp1), pulse.DriveChannel(0))
 
-amp1 = Parameter("amp")
+  print(sched1.scoped_parameters())
+  ```
 
-with pulse.build() as sched1:
-    pulse.play(pulse.Constant(100, amp1), pulse.DriveChannel(0))
+  ```python
+  (Parameter(root::amp),)
+  ```
 
-print(sched1.scoped_parameters())
-```
+  The [`scoped_parameters()`](qiskit.pulse.ScheduleBlock#scoped_parameters "qiskit.pulse.ScheduleBlock.scoped_parameters") method returns all [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects defined in the schedule block. The parameter name is updated to reflect its scope information, i.e. where it is defined. The outer scope is called “root”. Since the “amp” parameter is directly used in the current builder context, it is prefixed with “root”. Note that the `Parameter` object returned by [`scoped_parameters()`](qiskit.pulse.ScheduleBlock#scoped_parameters "qiskit.pulse.ScheduleBlock.scoped_parameters") preserves the hidden [UUID](https://docs.python.org/3/library/uuid.html#module-uuid) key, and thus the scoped name doesn’t break references to the original `Parameter`.
 
-```python
-(Parameter(root::amp),)
-```
+  You may want to call this program from another program. In this example, the program is called with the reference key “grand\_child”. You can call a subroutine without specifying a substantial program (like `sched1` above which we will assign later).
 
-The [`scoped_parameters()`](qiskit.pulse.ScheduleBlock#scoped_parameters "qiskit.pulse.ScheduleBlock.scoped_parameters") method returns all [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects defined in the schedule block. The parameter name is updated to reflect its scope information, i.e. where it is defined. The outer scope is called “root”. Since the “amp” parameter is directly used in the current builder context, it is prefixed with “root”. Note that the `Parameter` object returned by [`scoped_parameters()`](qiskit.pulse.ScheduleBlock#scoped_parameters "qiskit.pulse.ScheduleBlock.scoped_parameters") preserves the hidden [UUID](https://docs.python.org/3/library/uuid.html#module-uuid) key, and thus the scoped name doesn’t break references to the original `Parameter`.
+  ```python
+  amp2 = Parameter("amp")
 
-You may want to call this program from another program. In this example, the program is called with the reference key “grand\_child”. You can call a subroutine without specifying a substantial program (like `sched1` above which we will assign later).
+  with pulse.build() as sched2:
+      with pulse.align_right():
+          pulse.reference("grand_child")
+          pulse.play(pulse.Constant(200, amp2), pulse.DriveChannel(0))
 
-```python
-amp2 = Parameter("amp")
+  print(sched2.scoped_parameters())
+  ```
 
-with pulse.build() as sched2:
-    with pulse.align_right():
-        pulse.reference("grand_child")
-        pulse.play(pulse.Constant(200, amp2), pulse.DriveChannel(0))
+  ```python
+  (Parameter(root::amp),)
+  ```
 
-print(sched2.scoped_parameters())
-```
+  This only returns “root::amp” because the “grand\_child” reference is unknown. Now you assign the actual pulse program to this reference.
 
-```python
-(Parameter(root::amp),)
-```
+  ```python
+  sched2.assign_references({("grand_child", ): sched1})
+  print(sched2.scoped_parameters())
+  ```
 
-This only returns “root::amp” because the “grand\_child” reference is unknown. Now you assign the actual pulse program to this reference.
+  ```python
+  (Parameter(root::amp), Parameter(root::grand_child::amp))
+  ```
 
-```python
-sched2.assign_references({("grand_child", ): sched1})
-print(sched2.scoped_parameters())
-```
+  Now you get two parameters “root::amp” and “root::grand\_child::amp”. The second parameter name indicates it is defined within the referred program “grand\_child”. The program calling the “grand\_child” has a reference program description which is accessed through [`ScheduleBlock.references`](#qiskit.pulse.ScheduleBlock.references "qiskit.pulse.ScheduleBlock.references").
 
-```python
-(Parameter(root::amp), Parameter(root::grand_child::amp))
-```
+  ```python
+  print(sched2.references)
+  ```
 
-Now you get two parameters “root::amp” and “root::grand\_child::amp”. The second parameter name indicates it is defined within the referred program “grand\_child”. The program calling the “grand\_child” has a reference program description which is accessed through [`ScheduleBlock.references`](#qiskit.pulse.ScheduleBlock.references "qiskit.pulse.ScheduleBlock.references").
+  ```python
+  ReferenceManager:
+    - ('grand_child',): ScheduleBlock(Play(Constant(duration=100, amp=amp,...
+  ```
 
-```python
-print(sched2.references)
-```
+  Finally, you may want to call this program from another program. Here we try a different approach to define subroutine. Namely, we call a subroutine from the root program with the actual program `sched2`.
 
-```python
-ReferenceManager:
-  - ('grand_child',): ScheduleBlock(Play(Constant(duration=100, amp=amp,...
-```
+  ```python
+  amp3 = Parameter("amp")
 
-Finally, you may want to call this program from another program. Here we try a different approach to define subroutine. Namely, we call a subroutine from the root program with the actual program `sched2`.
+  with pulse.build() as main:
+      pulse.play(pulse.Constant(300, amp3), pulse.DriveChannel(0))
+      pulse.call(sched2, name="child")
 
-```python
-amp3 = Parameter("amp")
+  print(main.scoped_parameters())
+  ```
 
-with pulse.build() as main:
-    pulse.play(pulse.Constant(300, amp3), pulse.DriveChannel(0))
-    pulse.call(sched2, name="child")
+  ```python
+  (Parameter(root::amp), Parameter(root::child::amp), Parameter(root::child::grand_child::amp))
+  ```
 
-print(main.scoped_parameters())
-```
+  This implicitly creates a reference named “child” within the root program and assigns `sched2` to it. You get three parameters “root::amp”, “root::child::amp”, and “root::child::grand\_child::amp”. As you can see, each parameter name reflects the layer of calls from the root program. If you know the scope of a parameter, you can directly get the parameter object using [`ScheduleBlock.search_parameters()`](qiskit.pulse.ScheduleBlock#search_parameters "qiskit.pulse.ScheduleBlock.search_parameters") as follows.
 
-```python
-(Parameter(root::amp), Parameter(root::child::amp), Parameter(root::child::grand_child::amp))
-```
+  ```python
+  main.search_parameters("root::child::grand_child::amp")
+  ```
 
-This implicitly creates a reference named “child” within the root program and assigns `sched2` to it. You get three parameters “root::amp”, “root::child::amp”, and “root::child::grand\_child::amp”. As you can see, each parameter name reflects the layer of calls from the root program. If you know the scope of a parameter, you can directly get the parameter object using [`ScheduleBlock.search_parameters()`](qiskit.pulse.ScheduleBlock#search_parameters "qiskit.pulse.ScheduleBlock.search_parameters") as follows.
+  You can use a regular expression to specify the scope. The following returns the parameters defined within the scope of “ground\_child” regardless of its parent scope. This is sometimes convenient if you want to extract parameters from a deeply nested program.
 
-```python
-main.search_parameters("root::child::grand_child::amp")
-```
+  ```python
+  main.search_parameters("\S::grand_child::amp")
+  ```
 
-You can use a regular expression to specify the scope. The following returns the parameters defined within the scope of “ground\_child” regardless of its parent scope. This is sometimes convenient if you want to extract parameters from a deeply nested program.
+  Note that the root program is only aware of its direct references.
 
-```python
-main.search_parameters("\S::grand_child::amp")
-```
+  ```python
+  print(main.references)
+  ```
 
-Note that the root program is only aware of its direct references.
+  ```python
+  ReferenceManager:
+    - ('child',): ScheduleBlock(ScheduleBlock(ScheduleBlock(Play(Con...
+  ```
 
-```python
-print(main.references)
-```
+  As you can see the main program cannot directly assign a subroutine to the “grand\_child” because this subroutine is not called within the root program, i.e. it is indirectly called by “child”. However, the returned `ReferenceManager` is a dict-like object, and you can still reach to “grand\_child” via the “child” program with the following chained dict access.
 
-```python
-ReferenceManager:
-  - ('child',): ScheduleBlock(ScheduleBlock(ScheduleBlock(Play(Con...
-```
+  ```python
+  main.references[("child", )].references[("grand_child", )]
+  ```
 
-As you can see the main program cannot directly assign a subroutine to the “grand\_child” because this subroutine is not called within the root program, i.e. it is indirectly called by “child”. However, the returned `ReferenceManager` is a dict-like object, and you can still reach to “grand\_child” via the “child” program with the following chained dict access.
+  Note that [`ScheduleBlock.parameters`](#qiskit.pulse.ScheduleBlock.parameters "qiskit.pulse.ScheduleBlock.parameters") and [`ScheduleBlock.scoped_parameters()`](qiskit.pulse.ScheduleBlock#scoped_parameters "qiskit.pulse.ScheduleBlock.scoped_parameters") still collect all parameters also from the subroutine once it’s assigned.
 
-```python
-main.references[("child", )].references[("grand_child", )]
-```
+  Create an empty schedule block.
 
-Note that [`ScheduleBlock.parameters`](#qiskit.pulse.ScheduleBlock.parameters "qiskit.pulse.ScheduleBlock.parameters") and [`ScheduleBlock.scoped_parameters()`](qiskit.pulse.ScheduleBlock#scoped_parameters "qiskit.pulse.ScheduleBlock.scoped_parameters") still collect all parameters also from the subroutine once it’s assigned.
+  **Parameters**
 
-Create an empty schedule block.
+  *   **name** (*str | None*) – Name of this schedule. Defaults to an autogenerated string if not provided.
+  *   **metadata** (*dict | None*) – Arbitrary key value metadata to associate with the schedule. This gets stored as free-form data in a dict in the [`metadata`](#qiskit.pulse.ScheduleBlock.metadata "qiskit.pulse.ScheduleBlock.metadata") attribute. It will not be directly used in the schedule.
+  *   **alignment\_context** ([*AlignmentKind*](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.AlignmentKind")) – `AlignmentKind` instance that manages scheduling of instructions in this block.
 
-**Parameters**
+  **Raises**
 
-*   **name** (*str | None*) – Name of this schedule. Defaults to an autogenerated string if not provided.
-*   **metadata** (*dict | None*) – Arbitrary key value metadata to associate with the schedule. This gets stored as free-form data in a dict in the [`metadata`](#qiskit.pulse.ScheduleBlock.metadata "qiskit.pulse.ScheduleBlock.metadata") attribute. It will not be directly used in the schedule.
-*   **alignment\_context** ([*AlignmentKind*](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.AlignmentKind")) – `AlignmentKind` instance that manages scheduling of instructions in this block.
+  **TypeError** – if metadata is not a dict.
 
-**Raises**
+  ## Methods
 
-**TypeError** – if metadata is not a dict.
+  <span id="qiskit-pulse-scheduleblock-append" />
 
-## Methods
+  ### append
 
-<span id="qiskit-pulse-scheduleblock-append" />
+  <Function id="qiskit.pulse.ScheduleBlock.append" name="append" signature="ScheduleBlock.append(block, name=None, inplace=True)">
+    Return a new schedule block with `block` appended to the context block. The execution time is automatically assigned when the block is converted into schedule.
 
-### append
+    **Parameters**
 
-<span id="qiskit.pulse.ScheduleBlock.append" />
+    *   **block** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")) – ScheduleBlock to be appended.
+    *   **name** (*str | None*) – Name of the new `Schedule`. Defaults to name of `self`.
+    *   **inplace** (*bool*) – Perform operation inplace on this schedule. Otherwise, return a new `Schedule`.
 
-`ScheduleBlock.append(block, name=None, inplace=True)`
+    **Returns**
 
-Return a new schedule block with `block` appended to the context block. The execution time is automatically assigned when the block is converted into schedule.
+    Schedule block with appended schedule.
 
-**Parameters**
+    **Raises**
 
-*   **block** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")) – ScheduleBlock to be appended.
-*   **name** (*str | None*) – Name of the new `Schedule`. Defaults to name of `self`.
-*   **inplace** (*bool*) – Perform operation inplace on this schedule. Otherwise, return a new `Schedule`.
+    [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When invalid schedule type is specified.
 
-**Returns**
+    **Return type**
 
-Schedule block with appended schedule.
+    [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
+  </Function>
 
-**Raises**
+  <span id="qiskit-pulse-scheduleblock-assign-parameters" />
 
-[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When invalid schedule type is specified.
+  ### assign\_parameters
 
-**Return type**
+  <Function id="qiskit.pulse.ScheduleBlock.assign_parameters" name="assign_parameters" signature="ScheduleBlock.assign_parameters(value_dict, inplace=True)">
+    Assign the parameters in this schedule according to the input.
 
-[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
+    **Parameters**
 
-<span id="qiskit-pulse-scheduleblock-assign-parameters" />
+    *   **value\_dict** (*Dict\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| float]*) – A mapping from Parameters to either numeric values or another Parameter expression.
+    *   **inplace** (*bool*) – Set `True` to override this instance with new parameter.
 
-### assign\_parameters
+    **Returns**
 
-<span id="qiskit.pulse.ScheduleBlock.assign_parameters" />
+    Schedule with updated parameters.
 
-`ScheduleBlock.assign_parameters(value_dict, inplace=True)`
+    **Raises**
 
-Assign the parameters in this schedule according to the input.
+    [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When the block is nested into another block.
 
-**Parameters**
+    **Return type**
 
-*   **value\_dict** (*Dict\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| float]*) – A mapping from Parameters to either numeric values or another Parameter expression.
-*   **inplace** (*bool*) – Set `True` to override this instance with new parameter.
+    [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
+  </Function>
 
-**Returns**
+  <span id="qiskit-pulse-scheduleblock-assign-references" />
 
-Schedule with updated parameters.
+  ### assign\_references
 
-**Raises**
+  <Function id="qiskit.pulse.ScheduleBlock.assign_references" name="assign_references" signature="ScheduleBlock.assign_references(subroutine_dict, inplace=True)">
+    Assign schedules to references.
 
-[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When the block is nested into another block.
-
-**Return type**
-
-[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
-
-<span id="qiskit-pulse-scheduleblock-assign-references" />
-
-### assign\_references
-
-<span id="qiskit.pulse.ScheduleBlock.assign_references" />
-
-`ScheduleBlock.assign_references(subroutine_dict, inplace=True)`
-
-Assign schedules to references.
-
-It is only capable of assigning a schedule block to immediate references which are directly referred within the current scope. Let’s see following example:
-
-```python
-from qiskit import pulse
-
-with pulse.build() as subroutine:
-    pulse.delay(10, pulse.DriveChannel(0))
-
-with pulse.build() as sub_prog:
-    pulse.reference("A")
-
-with pulse.build() as main_prog:
-    pulse.reference("B")
-```
-
-In above example, the `main_prog` can refer to the subroutine “root::B” and the reference of “B” to program “A”, i.e., “B::A”, is not defined in the root namespace. This prevents breaking the reference “root::B::A” by the assignment of “root::B”. For example, if a user could indirectly assign “root::B::A” from the root program, one can later assign another program to “root::B” that doesn’t contain “A” within it. In this situation, a reference “root::B::A” would still live in the reference manager of the root. However, the subroutine “root::B::A” would no longer be used in the actual pulse program. To assign subroutine “A” to `nested_prog` as a nested subprogram of `main_prog`, you must first assign “A” of the `sub_prog`, and then assign the `sub_prog` to the `main_prog`.
-
-```python
-sub_prog.assign_references({("A", ): nested_prog}, inplace=True)
-main_prog.assign_references({("B", ): sub_prog}, inplace=True)
-```
-
-Alternatively, you can also write
-
-```python
-main_prog.assign_references({("B", ): sub_prog}, inplace=True)
-main_prog.references[("B", )].assign_references({"A": nested_prog}, inplace=True)
-```
-
-Here [`references`](qiskit.pulse.ScheduleBlock#references "qiskit.pulse.ScheduleBlock.references") returns a dict-like object, and you can mutably update the nested reference of the particular subroutine.
-
-<Admonition title="Note" type="note">
-  Assigned programs are deep-copied to prevent an unexpected update.
-</Admonition>
-
-**Parameters**
-
-*   **subroutine\_dict** (*Dict\[str | Tuple\[str, ...],* [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")*]*) – A mapping from reference key to schedule block of the subroutine.
-*   **inplace** (*bool*) – Set `True` to override this instance with new subroutine.
-
-**Returns**
-
-Schedule block with assigned subroutine.
-
-**Raises**
-
-[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When reference key is not defined in the current scope.
-
-**Return type**
-
-[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
-
-<span id="qiskit-pulse-scheduleblock-ch-duration" />
-
-### ch\_duration
-
-<span id="qiskit.pulse.ScheduleBlock.ch_duration" />
-
-`ScheduleBlock.ch_duration(*channels)`
-
-Return the time of the end of the last instruction over the supplied channels.
-
-**Parameters**
-
-**\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Channels within `self` to include.
-
-**Return type**
-
-int
-
-<span id="qiskit-pulse-scheduleblock-draw" />
-
-### draw
-
-<span id="qiskit.pulse.ScheduleBlock.draw" />
-
-`ScheduleBlock.draw(style=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)`
-
-Plot the schedule.
-
-**Parameters**
-
-*   **style** (*Dict\[str, Any] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
-
-*   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
-
-*   **time\_range** (*Tuple\[int, int] | None*) – Set horizontal axis limit. Tuple (tmin, tmax).
-
-*   **time\_unit** (*str*) – The unit of specified time range either dt or ns. The unit of ns is available only when backend object is provided.
-
-*   **disable\_channels** (*List\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A control property to show specific pulse channel. Pulse channel instances provided as a list are not shown in the output image.
-
-*   **show\_snapshot** (*bool*) – Show snapshot instructions.
-
-*   **show\_framechange** (*bool*) – Show frame change instructions. The frame change represents instructions that modulate phase or frequency of pulse channels.
-
-*   **show\_waveform\_info** (*bool*) – Show additional information about waveforms such as their name.
-
-*   **show\_barrier** (*bool*) – Show barrier lines.
-
-*   **plotter** (*str*) –
-
-    Name of plotter API to generate an output image. One of following APIs should be specified:
+    It is only capable of assigning a schedule block to immediate references which are directly referred within the current scope. Let’s see following example:
 
     ```python
-    mpl2d: Matplotlib API for 2D image generation.
-        Matplotlib API to generate 2D image. Charts are placed along y axis with
-        vertical offset. This API takes matplotlib.axes.Axes as ``axis`` input.
+    from qiskit import pulse
+
+    with pulse.build() as subroutine:
+        pulse.delay(10, pulse.DriveChannel(0))
+
+    with pulse.build() as sub_prog:
+        pulse.reference("A")
+
+    with pulse.build() as main_prog:
+        pulse.reference("B")
     ```
 
-    `axis` and `style` kwargs may depend on the plotter.
+    In above example, the `main_prog` can refer to the subroutine “root::B” and the reference of “B” to program “A”, i.e., “B::A”, is not defined in the root namespace. This prevents breaking the reference “root::B::A” by the assignment of “root::B”. For example, if a user could indirectly assign “root::B::A” from the root program, one can later assign another program to “root::B” that doesn’t contain “A” within it. In this situation, a reference “root::B::A” would still live in the reference manager of the root. However, the subroutine “root::B::A” would no longer be used in the actual pulse program. To assign subroutine “A” to `nested_prog` as a nested subprogram of `main_prog`, you must first assign “A” of the `sub_prog`, and then assign the `sub_prog` to the `main_prog`.
 
-*   **axis** (*Any | None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
+    ```python
+    sub_prog.assign_references({("A", ): nested_prog}, inplace=True)
+    main_prog.assign_references({("B", ): sub_prog}, inplace=True)
+    ```
 
-**Returns**
+    Alternatively, you can also write
 
-Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
+    ```python
+    main_prog.assign_references({("B", ): sub_prog}, inplace=True)
+    main_prog.references[("B", )].assign_references({"A": nested_prog}, inplace=True)
+    ```
 
-<span id="qiskit-pulse-scheduleblock-exclude" />
+    Here [`references`](qiskit.pulse.ScheduleBlock#references "qiskit.pulse.ScheduleBlock.references") returns a dict-like object, and you can mutably update the nested reference of the particular subroutine.
 
-### exclude
+    <Admonition title="Note" type="note">
+      Assigned programs are deep-copied to prevent an unexpected update.
+    </Admonition>
 
-<span id="qiskit.pulse.ScheduleBlock.exclude" />
+    **Parameters**
 
-`ScheduleBlock.exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
+    *   **subroutine\_dict** (*Dict\[str | Tuple\[str, ...],* [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")*]*) – A mapping from reference key to schedule block of the subroutine.
+    *   **inplace** (*bool*) – Set `True` to override this instance with new subroutine.
 
-Return a `Schedule` with only the instructions from this Schedule *failing* at least one of the provided filters. This method is the complement of py:meth:\~self.filter, so that:
+    **Returns**
 
-```python
-self.filter(args) | self.exclude(args) == self
-```
+    Schedule block with assigned subroutine.
 
-<Admonition title="Note" type="note">
-  This method is currently not supported. Support will be soon added please create an issue if you believe this must be prioritized.
-</Admonition>
+    **Raises**
 
-**Parameters**
+    [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When reference key is not defined in the current scope.
 
-*   **filter\_funcs** (*List\[Callable]*) – A list of Callables which take a (int, Union\[‘Schedule’, Instruction]) tuple and return a bool.
-*   **channels** (*Iterable\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
-*   **instruction\_types** (*Iterable\[ABCMeta] | ABCMeta | None*) – For example, `[PulseInstruction, AcquireInstruction]`.
-*   **time\_ranges** (*Iterable\[Tuple\[int, int]] | None*) – For example, `[(0, 5), (6, 10)]`.
-*   **intervals** (*Iterable\[Tuple\[int, int]] | None*) – For example, `[(0, 5), (6, 10)]`.
-*   **check\_subroutine** (*bool*) – Set True to individually filter instructions inside of a subroutine defined by the [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction.
+    **Return type**
 
-**Returns**
+    [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
+  </Function>
 
-`Schedule` consisting of instructions that are not match with filtering condition.
+  <span id="qiskit-pulse-scheduleblock-ch-duration" />
 
-**Raises**
+  ### ch\_duration
 
-[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method will be supported soon.
+  <Function id="qiskit.pulse.ScheduleBlock.ch_duration" name="ch_duration" signature="ScheduleBlock.ch_duration(*channels)">
+    Return the time of the end of the last instruction over the supplied channels.
 
-<span id="qiskit-pulse-scheduleblock-filter" />
+    **Parameters**
 
-### filter
+    **\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Channels within `self` to include.
 
-<span id="qiskit.pulse.ScheduleBlock.filter" />
+    **Return type**
 
-`ScheduleBlock.filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
+    int
+  </Function>
 
-Return a new `Schedule` with only the instructions from this `ScheduleBlock` which pass though the provided filters; i.e. an instruction will be retained iff every function in `filter_funcs` returns `True`, the instruction occurs on a channel type contained in `channels`, the instruction type is contained in `instruction_types`, and the period over which the instruction operates is *fully* contained in one specified in `time_ranges` or `intervals`.
+  <span id="qiskit-pulse-scheduleblock-draw" />
 
-If no arguments are provided, `self` is returned.
+  ### draw
 
-<Admonition title="Note" type="note">
-  This method is currently not supported. Support will be soon added please create an issue if you believe this must be prioritized.
-</Admonition>
+  <Function id="qiskit.pulse.ScheduleBlock.draw" name="draw" signature="ScheduleBlock.draw(style=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)">
+    Plot the schedule.
 
-**Parameters**
+    **Parameters**
 
-*   **filter\_funcs** (*List\[Callable]*) – A list of Callables which take a (int, Union\[‘Schedule’, Instruction]) tuple and return a bool.
-*   **channels** (*Iterable\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
-*   **instruction\_types** (*Iterable\[ABCMeta] | ABCMeta | None*) – For example, `[PulseInstruction, AcquireInstruction]`.
-*   **time\_ranges** (*Iterable\[Tuple\[int, int]] | None*) – For example, `[(0, 5), (6, 10)]`.
-*   **intervals** (*Iterable\[Tuple\[int, int]] | None*) – For example, `[(0, 5), (6, 10)]`.
-*   **check\_subroutine** (*bool*) – Set True to individually filter instructions inside a subroutine defined by the [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction.
+    *   **style** (*Dict\[str, Any] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
 
-**Returns**
+    *   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
-`Schedule` consisting of instructions that matches with filtering condition.
+    *   **time\_range** (*Tuple\[int, int] | None*) – Set horizontal axis limit. Tuple (tmin, tmax).
 
-**Raises**
+    *   **time\_unit** (*str*) – The unit of specified time range either dt or ns. The unit of ns is available only when backend object is provided.
 
-[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method will be supported soon.
+    *   **disable\_channels** (*List\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A control property to show specific pulse channel. Pulse channel instances provided as a list are not shown in the output image.
 
-<span id="qiskit-pulse-scheduleblock-get-parameters" />
+    *   **show\_snapshot** (*bool*) – Show snapshot instructions.
 
-### get\_parameters
+    *   **show\_framechange** (*bool*) – Show frame change instructions. The frame change represents instructions that modulate phase or frequency of pulse channels.
 
-<span id="qiskit.pulse.ScheduleBlock.get_parameters" />
+    *   **show\_waveform\_info** (*bool*) – Show additional information about waveforms such as their name.
 
-`ScheduleBlock.get_parameters(parameter_name)`
+    *   **show\_barrier** (*bool*) – Show barrier lines.
 
-Get parameter object bound to this schedule by string name.
+    *   **plotter** (*str*) –
 
-Note that we can define different parameter objects with the same name, because these different objects are identified by their unique uuid. For example,
+        Name of plotter API to generate an output image. One of following APIs should be specified:
 
-```python
-from qiskit import pulse, circuit
+        ```python
+        mpl2d: Matplotlib API for 2D image generation.
+            Matplotlib API to generate 2D image. Charts are placed along y axis with
+            vertical offset. This API takes matplotlib.axes.Axes as ``axis`` input.
+        ```
 
-amp1 = circuit.Parameter("amp")
-amp2 = circuit.Parameter("amp")
+        `axis` and `style` kwargs may depend on the plotter.
 
-with pulse.build() as sub_prog:
-    pulse.play(pulse.Constant(100, amp1), pulse.DriveChannel(0))
+    *   **axis** (*Any | None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
 
-with pulse.build() as main_prog:
-    pulse.call(sub_prog, name="sub")
-    pulse.play(pulse.Constant(100, amp2), pulse.DriveChannel(0))
+    **Returns**
 
-main_prog.get_parameters("amp")
-```
+    Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
+  </Function>
 
-This returns a list of two parameters `amp1` and `amp2`.
+  <span id="qiskit-pulse-scheduleblock-exclude" />
 
-**Parameters**
+  ### exclude
 
-**parameter\_name** (*str*) – Name of parameter.
+  <Function id="qiskit.pulse.ScheduleBlock.exclude" name="exclude" signature="ScheduleBlock.exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)">
+    Return a `Schedule` with only the instructions from this Schedule *failing* at least one of the provided filters. This method is the complement of py:meth:\~self.filter, so that:
 
-**Returns**
+    ```python
+    self.filter(args) | self.exclude(args) == self
+    ```
 
-Parameter objects that have corresponding name.
+    <Admonition title="Note" type="note">
+      This method is currently not supported. Support will be soon added please create an issue if you believe this must be prioritized.
+    </Admonition>
 
-**Return type**
+    **Parameters**
 
-*List*\[[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+    *   **filter\_funcs** (*List\[Callable]*) – A list of Callables which take a (int, Union\[‘Schedule’, Instruction]) tuple and return a bool.
+    *   **channels** (*Iterable\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
+    *   **instruction\_types** (*Iterable\[ABCMeta] | ABCMeta | None*) – For example, `[PulseInstruction, AcquireInstruction]`.
+    *   **time\_ranges** (*Iterable\[Tuple\[int, int]] | None*) – For example, `[(0, 5), (6, 10)]`.
+    *   **intervals** (*Iterable\[Tuple\[int, int]] | None*) – For example, `[(0, 5), (6, 10)]`.
+    *   **check\_subroutine** (*bool*) – Set True to individually filter instructions inside of a subroutine defined by the [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction.
 
-<span id="qiskit-pulse-scheduleblock-initialize-from" />
+    **Returns**
 
-### initialize\_from
+    `Schedule` consisting of instructions that are not match with filtering condition.
 
-<span id="qiskit.pulse.ScheduleBlock.initialize_from" />
+    **Raises**
 
-`classmethod ScheduleBlock.initialize_from(other_program, name=None)`
+    [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method will be supported soon.
+  </Function>
 
-Create new schedule object with metadata of another schedule object.
+  <span id="qiskit-pulse-scheduleblock-filter" />
 
-**Parameters**
+  ### filter
 
-*   **other\_program** (*Any*) – Qiskit program that provides metadata to new object.
-*   **name** (*str | None*) – Name of new schedule. Name of `block` is used by default.
+  <Function id="qiskit.pulse.ScheduleBlock.filter" name="filter" signature="ScheduleBlock.filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)">
+    Return a new `Schedule` with only the instructions from this `ScheduleBlock` which pass though the provided filters; i.e. an instruction will be retained iff every function in `filter_funcs` returns `True`, the instruction occurs on a channel type contained in `channels`, the instruction type is contained in `instruction_types`, and the period over which the instruction operates is *fully* contained in one specified in `time_ranges` or `intervals`.
 
-**Returns**
+    If no arguments are provided, `self` is returned.
 
-New block object with name and metadata.
+    <Admonition title="Note" type="note">
+      This method is currently not supported. Support will be soon added please create an issue if you believe this must be prioritized.
+    </Admonition>
 
-**Raises**
+    **Parameters**
 
-[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When `other_program` does not provide necessary information.
+    *   **filter\_funcs** (*List\[Callable]*) – A list of Callables which take a (int, Union\[‘Schedule’, Instruction]) tuple and return a bool.
+    *   **channels** (*Iterable\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
+    *   **instruction\_types** (*Iterable\[ABCMeta] | ABCMeta | None*) – For example, `[PulseInstruction, AcquireInstruction]`.
+    *   **time\_ranges** (*Iterable\[Tuple\[int, int]] | None*) – For example, `[(0, 5), (6, 10)]`.
+    *   **intervals** (*Iterable\[Tuple\[int, int]] | None*) – For example, `[(0, 5), (6, 10)]`.
+    *   **check\_subroutine** (*bool*) – Set True to individually filter instructions inside a subroutine defined by the [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction.
 
-**Return type**
+    **Returns**
 
-[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
+    `Schedule` consisting of instructions that matches with filtering condition.
 
-<span id="qiskit-pulse-scheduleblock-is-parameterized" />
+    **Raises**
 
-### is\_parameterized
+    [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method will be supported soon.
+  </Function>
 
-<span id="qiskit.pulse.ScheduleBlock.is_parameterized" />
+  <span id="qiskit-pulse-scheduleblock-get-parameters" />
 
-`ScheduleBlock.is_parameterized()`
+  ### get\_parameters
 
-Return True iff the instruction is parameterized.
+  <Function id="qiskit.pulse.ScheduleBlock.get_parameters" name="get_parameters" signature="ScheduleBlock.get_parameters(parameter_name)">
+    Get parameter object bound to this schedule by string name.
 
-**Return type**
+    Note that we can define different parameter objects with the same name, because these different objects are identified by their unique uuid. For example,
 
-bool
+    ```python
+    from qiskit import pulse, circuit
 
-<span id="qiskit-pulse-scheduleblock-is-referenced" />
+    amp1 = circuit.Parameter("amp")
+    amp2 = circuit.Parameter("amp")
 
-### is\_referenced
+    with pulse.build() as sub_prog:
+        pulse.play(pulse.Constant(100, amp1), pulse.DriveChannel(0))
 
-<span id="qiskit.pulse.ScheduleBlock.is_referenced" />
+    with pulse.build() as main_prog:
+        pulse.call(sub_prog, name="sub")
+        pulse.play(pulse.Constant(100, amp2), pulse.DriveChannel(0))
 
-`ScheduleBlock.is_referenced()`
+    main_prog.get_parameters("amp")
+    ```
 
-Return True iff the current schedule block contains reference to subroutine.
+    This returns a list of two parameters `amp1` and `amp2`.
 
-**Return type**
+    **Parameters**
 
-bool
+    **parameter\_name** (*str*) – Name of parameter.
 
-<span id="qiskit-pulse-scheduleblock-is-schedulable" />
+    **Returns**
 
-### is\_schedulable
+    Parameter objects that have corresponding name.
 
-<span id="qiskit.pulse.ScheduleBlock.is_schedulable" />
+    **Return type**
 
-`ScheduleBlock.is_schedulable()`
+    *List*\[[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+  </Function>
 
-Return `True` if all durations are assigned.
+  <span id="qiskit-pulse-scheduleblock-initialize-from" />
 
-**Return type**
+  ### initialize\_from
 
-bool
+  <Function id="qiskit.pulse.ScheduleBlock.initialize_from" name="initialize_from" signature="classmethod ScheduleBlock.initialize_from(other_program, name=None)">
+    Create new schedule object with metadata of another schedule object.
 
-<span id="qiskit-pulse-scheduleblock-replace" />
+    **Parameters**
 
-### replace
+    *   **other\_program** (*Any*) – Qiskit program that provides metadata to new object.
+    *   **name** (*str | None*) – Name of new schedule. Name of `block` is used by default.
 
-<span id="qiskit.pulse.ScheduleBlock.replace" />
+    **Returns**
 
-`ScheduleBlock.replace(old, new, inplace=True)`
+    New block object with name and metadata.
 
-Return a `ScheduleBlock` with the `old` component replaced with a `new` component.
+    **Raises**
 
-**Parameters**
+    [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When `other_program` does not provide necessary information.
 
-*   **old** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")) – Schedule block component to replace.
-*   **new** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")) – Schedule block component to replace with.
-*   **inplace** (*bool*) – Replace instruction by mutably modifying this `ScheduleBlock`.
+    **Return type**
 
-**Returns**
+    [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
+  </Function>
 
-The modified schedule block with `old` replaced by `new`.
+  <span id="qiskit-pulse-scheduleblock-is-parameterized" />
 
-**Return type**
+  ### is\_parameterized
 
-[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
+  <Function id="qiskit.pulse.ScheduleBlock.is_parameterized" name="is_parameterized" signature="ScheduleBlock.is_parameterized()">
+    Return True iff the instruction is parameterized.
 
-<span id="qiskit-pulse-scheduleblock-scoped-parameters" />
+    **Return type**
 
-### scoped\_parameters
+    bool
+  </Function>
 
-<span id="qiskit.pulse.ScheduleBlock.scoped_parameters" />
+  <span id="qiskit-pulse-scheduleblock-is-referenced" />
 
-`ScheduleBlock.scoped_parameters()`
+  ### is\_referenced
 
-Return unassigned parameters with scoped names.
+  <Function id="qiskit.pulse.ScheduleBlock.is_referenced" name="is_referenced" signature="ScheduleBlock.is_referenced()">
+    Return True iff the current schedule block contains reference to subroutine.
 
-<Admonition title="Note" type="note">
-  If a parameter is defined within a nested scope, it is prefixed with all parent-scope names with the delimiter string, which is “::”. If a reference key of the scope consists of multiple key strings, it will be represented by a single string joined with “,”. For example, “root::xgate,q0::amp” for the parameter “amp” defined in the reference specified by the key strings (“xgate”, “q0”).
-</Admonition>
+    **Return type**
 
-**Return type**
+    bool
+  </Function>
 
-*Tuple*\[[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+  <span id="qiskit-pulse-scheduleblock-is-schedulable" />
 
-<span id="qiskit-pulse-scheduleblock-search-parameters" />
+  ### is\_schedulable
 
-### search\_parameters
+  <Function id="qiskit.pulse.ScheduleBlock.is_schedulable" name="is_schedulable" signature="ScheduleBlock.is_schedulable()">
+    Return `True` if all durations are assigned.
 
-<span id="qiskit.pulse.ScheduleBlock.search_parameters" />
+    **Return type**
 
-`ScheduleBlock.search_parameters(parameter_regex)`
+    bool
+  </Function>
 
-Search parameter with regular expression.
+  <span id="qiskit-pulse-scheduleblock-replace" />
 
-This method looks for the scope-aware parameters. For example,
+  ### replace
 
-```python
-from qiskit import pulse, circuit
+  <Function id="qiskit.pulse.ScheduleBlock.replace" name="replace" signature="ScheduleBlock.replace(old, new, inplace=True)">
+    Return a `ScheduleBlock` with the `old` component replaced with a `new` component.
 
-amp1 = circuit.Parameter("amp")
-amp2 = circuit.Parameter("amp")
+    **Parameters**
 
-with pulse.build() as sub_prog:
-    pulse.play(pulse.Constant(100, amp1), pulse.DriveChannel(0))
+    *   **old** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")) – Schedule block component to replace.
+    *   **new** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")) – Schedule block component to replace with.
+    *   **inplace** (*bool*) – Replace instruction by mutably modifying this `ScheduleBlock`.
 
-with pulse.build() as main_prog:
-    pulse.call(sub_prog, name="sub")
-    pulse.play(pulse.Constant(100, amp2), pulse.DriveChannel(0))
+    **Returns**
 
-main_prog.search_parameters("root::sub::amp")
-```
+    The modified schedule block with `old` replaced by `new`.
 
-This finds `amp1` with scoped name “root::sub::amp”.
+    **Return type**
 
-**Parameters**
+    [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
+  </Function>
 
-**parameter\_regex** (*str*) – Regular expression for scoped parameter name.
+  <span id="qiskit-pulse-scheduleblock-scoped-parameters" />
 
-**Returns**
+  ### scoped\_parameters
 
-Parameter objects that have corresponding name.
+  <Function id="qiskit.pulse.ScheduleBlock.scoped_parameters" name="scoped_parameters" signature="ScheduleBlock.scoped_parameters()">
+    Return unassigned parameters with scoped names.
 
-**Return type**
+    <Admonition title="Note" type="note">
+      If a parameter is defined within a nested scope, it is prefixed with all parent-scope names with the delimiter string, which is “::”. If a reference key of the scope consists of multiple key strings, it will be represented by a single string joined with “,”. For example, “root::xgate,q0::amp” for the parameter “amp” defined in the reference specified by the key strings (“xgate”, “q0”).
+    </Admonition>
 
-*List*\[[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+    **Return type**
 
-## Attributes
+    *Tuple*\[[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+  </Function>
 
-<span id="qiskit.pulse.ScheduleBlock.alignment_context" />
+  <span id="qiskit-pulse-scheduleblock-search-parameters" />
 
-### alignment\_context
+  ### search\_parameters
 
-Return alignment instance that allocates block component to generate schedule.
+  <Function id="qiskit.pulse.ScheduleBlock.search_parameters" name="search_parameters" signature="ScheduleBlock.search_parameters(parameter_regex)">
+    Search parameter with regular expression.
 
-<span id="qiskit.pulse.ScheduleBlock.blocks" />
+    This method looks for the scope-aware parameters. For example,
 
-### blocks
+    ```python
+    from qiskit import pulse, circuit
 
-Get the block elements added to self.
+    amp1 = circuit.Parameter("amp")
+    amp2 = circuit.Parameter("amp")
 
-<Admonition title="Note" type="note">
-  The sequence of elements is returned in order of addition. Because the first element is schedule first, e.g. FIFO, the returned sequence is roughly time-ordered. However, in the parallel alignment context, especially in the as-late-as-possible scheduling, or [`AlignRight`](qiskit.pulse.transforms.AlignRight "qiskit.pulse.transforms.AlignRight") context, the actual timing of when the instructions are issued is unknown until the [`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") is scheduled and converted into a [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule").
-</Admonition>
+    with pulse.build() as sub_prog:
+        pulse.play(pulse.Constant(100, amp1), pulse.DriveChannel(0))
 
-<span id="qiskit.pulse.ScheduleBlock.channels" />
+    with pulse.build() as main_prog:
+        pulse.call(sub_prog, name="sub")
+        pulse.play(pulse.Constant(100, amp2), pulse.DriveChannel(0))
 
-### channels
+    main_prog.search_parameters("root::sub::amp")
+    ```
 
-Returns channels that this schedule block uses.
+    This finds `amp1` with scoped name “root::sub::amp”.
 
-<span id="qiskit.pulse.ScheduleBlock.duration" />
+    **Parameters**
 
-### duration
+    **parameter\_regex** (*str*) – Regular expression for scoped parameter name.
 
-Duration of this schedule block.
+    **Returns**
 
-<span id="qiskit.pulse.ScheduleBlock.instances_counter" />
+    Parameter objects that have corresponding name.
 
-### instances\_counter
+    **Return type**
 
-`= count(0)`
+    *List*\[[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+  </Function>
 
-<span id="qiskit.pulse.ScheduleBlock.instructions" />
+  ## Attributes
 
-### instructions
+  ### alignment\_context
 
-Get the time-ordered instructions from self.
+  <Attribute id="qiskit.pulse.ScheduleBlock.alignment_context" name="alignment_context">
+    Return alignment instance that allocates block component to generate schedule.
+  </Attribute>
 
-<span id="qiskit.pulse.ScheduleBlock.metadata" />
+  ### blocks
 
-### metadata
+  <Attribute id="qiskit.pulse.ScheduleBlock.blocks" name="blocks">
+    Get the block elements added to self.
 
-The user provided metadata associated with the schedule.
+    <Admonition title="Note" type="note">
+      The sequence of elements is returned in order of addition. Because the first element is schedule first, e.g. FIFO, the returned sequence is roughly time-ordered. However, in the parallel alignment context, especially in the as-late-as-possible scheduling, or [`AlignRight`](qiskit.pulse.transforms.AlignRight "qiskit.pulse.transforms.AlignRight") context, the actual timing of when the instructions are issued is unknown until the [`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") is scheduled and converted into a [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule").
+    </Admonition>
+  </Attribute>
 
-User provided `dict` of metadata for the schedule. The metadata contents do not affect the semantics of the program but are used to influence the execution of the schedule. It is expected to be passed between all transforms of the schedule and that providers will associate any schedule metadata with the results it returns from the execution of that schedule.
+  ### channels
 
-<span id="qiskit.pulse.ScheduleBlock.name" />
+  <Attribute id="qiskit.pulse.ScheduleBlock.channels" name="channels">
+    Returns channels that this schedule block uses.
+  </Attribute>
 
-### name
+  ### duration
 
-Return name of this schedule
+  <Attribute id="qiskit.pulse.ScheduleBlock.duration" name="duration">
+    Duration of this schedule block.
+  </Attribute>
 
-<span id="qiskit.pulse.ScheduleBlock.parameters" />
+  ### instances\_counter
 
-### parameters
+  <Attribute id="qiskit.pulse.ScheduleBlock.instances_counter" name="instances_counter" attributeValue="= count(0)" />
 
-Return unassigned parameters with raw names.
+  ### instructions
 
-<span id="qiskit.pulse.ScheduleBlock.prefix" />
+  <Attribute id="qiskit.pulse.ScheduleBlock.instructions" name="instructions">
+    Get the time-ordered instructions from self.
+  </Attribute>
 
-### prefix
+  ### metadata
 
-`= 'block'`
+  <Attribute id="qiskit.pulse.ScheduleBlock.metadata" name="metadata">
+    The user provided metadata associated with the schedule.
 
-<span id="qiskit.pulse.ScheduleBlock.references" />
+    User provided `dict` of metadata for the schedule. The metadata contents do not affect the semantics of the program but are used to influence the execution of the schedule. It is expected to be passed between all transforms of the schedule and that providers will associate any schedule metadata with the results it returns from the execution of that schedule.
+  </Attribute>
 
-### references
+  ### name
 
-Return a reference manager of the current scope.
+  <Attribute id="qiskit.pulse.ScheduleBlock.name" name="name">
+    Return name of this schedule
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.pulse.ScheduleBlock.parameters" name="parameters">
+    Return unassigned parameters with raw names.
+  </Attribute>
+
+  ### prefix
+
+  <Attribute id="qiskit.pulse.ScheduleBlock.prefix" name="prefix" attributeValue="= 'block'" />
+
+  ### references
+
+  <Attribute id="qiskit.pulse.ScheduleBlock.references" name="references">
+    Return a reference manager of the current scope.
+  </Attribute>
+</Class>
 

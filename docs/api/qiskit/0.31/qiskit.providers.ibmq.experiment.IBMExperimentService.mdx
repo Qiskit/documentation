@@ -8,658 +8,622 @@ python_api_name: qiskit.providers.ibmq.experiment.IBMExperimentService
 
 # IBMExperimentService
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService" />
+<Class id="qiskit.providers.ibmq.experiment.IBMExperimentService" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/experiment/ibm_experiment_service.py" signature="IBMExperimentService(provider)">
+  Bases: `object`
 
-`IBMExperimentService(provider)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+  Provides experiment related services.
 
-Bases: `object`
+  This class is the main interface to invoke IBM Quantum experiment service, which allows you to create, delete, update, query, and retrieve experiments, experiment figures, and analysis results. The `experiment` attribute of `AccountProvider` is an instance of this class, and the main syntax for using the service is `provider.experiment.<action>`. For example:
 
-Provides experiment related services.
+  ```python
+  from qiskit import IBMQ
+  provider = IBMQ.load_account()
 
-This class is the main interface to invoke IBM Quantum experiment service, which allows you to create, delete, update, query, and retrieve experiments, experiment figures, and analysis results. The `experiment` attribute of `AccountProvider` is an instance of this class, and the main syntax for using the service is `provider.experiment.<action>`. For example:
+  # Retrieve all experiments.
+  experiments = provider.experiment.experiments()
 
-```python
-from qiskit import IBMQ
-provider = IBMQ.load_account()
+  # Retrieve experiments with filtering.
+  experiment_filtered = provider.experiment.experiments(backend_name='ibmq_athens')
 
-# Retrieve all experiments.
-experiments = provider.experiment.experiments()
+  # Retrieve a specific experiment using its ID.
+  experiment = provider.experiment.experiment(EXPERIMENT_ID)
 
-# Retrieve experiments with filtering.
-experiment_filtered = provider.experiment.experiments(backend_name='ibmq_athens')
+  # Upload a new experiment.
+  new_experiment_id = provider.experiment.create_experiment(
+      experiment_type="T1",
+      backend_name="ibmq_athens",
+      metadata={"qubits": 5}
+  )
 
-# Retrieve a specific experiment using its ID.
-experiment = provider.experiment.experiment(EXPERIMENT_ID)
+  # Update an experiment.
+  provider.experiment.update_experiment(
+      experiment_id=EXPERIMENT_ID,
+      share_level="Group"
+  )
 
-# Upload a new experiment.
-new_experiment_id = provider.experiment.create_experiment(
-    experiment_type="T1",
-    backend_name="ibmq_athens",
-    metadata={"qubits": 5}
-)
+  # Delete an experiment.
+  provider.experiment.delete_experiment(EXPERIMENT_ID)
+  ```
 
-# Update an experiment.
-provider.experiment.update_experiment(
-    experiment_id=EXPERIMENT_ID,
-    share_level="Group"
-)
+  Similar syntax applies to analysis results and experiment figures.
 
-# Delete an experiment.
-provider.experiment.delete_experiment(EXPERIMENT_ID)
-```
+  IBMExperimentService constructor.
 
-Similar syntax applies to analysis results and experiment figures.
+  **Parameters**
 
-IBMExperimentService constructor.
+  **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
 
-**Parameters**
+  ## Methods
 
-**provider** (`AccountProvider`) – IBM Quantum Experience account provider.
+  ### analysis\_result
 
-## Methods
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.analysis_result" name="analysis_result" signature="IBMExperimentService.analysis_result(result_id, json_decoder=<class 'json.decoder.JSONDecoder'>)">
+    Retrieve a previously stored experiment.
 
-### analysis\_result
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.analysis_result" />
+    *   **result\_id** (`str`) – Analysis result ID.
+    *   **json\_decoder** (`Type`\[`JSONDecoder`]) – Custom JSON decoder to use to decode the retrieved analysis result.
 
-`IBMExperimentService.analysis_result(result_id, json_decoder=<class 'json.decoder.JSONDecoder'>)`
+    **Return type**
 
-Retrieve a previously stored experiment.
+    `Dict`
 
-**Parameters**
+    **Returns**
 
-*   **result\_id** (`str`) – Analysis result ID.
-*   **json\_decoder** (`Type`\[`JSONDecoder`]) – Custom JSON decoder to use to decode the retrieved analysis result.
+    Retrieved analysis result.
 
-**Return type**
+    **Raises**
 
-`Dict`
+    *   [**IBMExperimentEntryNotFound**](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound") – If the analysis result does not exist.
+    *   **IBMQApiError** – If the request to the server failed.
+  </Function>
 
-**Returns**
+  ### analysis\_results
 
-Retrieved analysis result.
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.analysis_results" name="analysis_results" signature="IBMExperimentService.analysis_results(limit=10, json_decoder=<class 'json.decoder.JSONDecoder'>, device_components=None, device_components_operator=None, experiment_id=None, result_type=None, result_type_operator=None, backend_name=None, quality=None, verified=None, tags=None, tags_operator='OR', sort_by=None, **filters)">
+    Retrieve all analysis results, with optional filtering.
 
-**Raises**
+    **Parameters**
 
-*   [**IBMExperimentEntryNotFound**](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound") – If the analysis result does not exist.
-*   **IBMQApiError** – If the request to the server failed.
+    *   **limit** (`Optional`\[`int`]) – Number of analysis results to retrieve.
 
-### analysis\_results
+    *   **json\_decoder** (`Type`\[`JSONDecoder`]) – Custom JSON decoder to use to decode the retrieved analysis results.
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.analysis_results" />
+    *   **device\_components** (`Optional`\[`List`\[`Union`\[`str`, `DeviceComponent`]]]) – Filter by device components.
 
-`IBMExperimentService.analysis_results(limit=10, json_decoder=<class 'json.decoder.JSONDecoder'>, device_components=None, device_components_operator=None, experiment_id=None, result_type=None, result_type_operator=None, backend_name=None, quality=None, verified=None, tags=None, tags_operator='OR', sort_by=None, **filters)`
+    *   **device\_components\_operator** (`Optional`\[`str`]) –
 
-Retrieve all analysis results, with optional filtering.
+        Operator used when filtering by device components. Valid values are `None` and “contains”:
 
-**Parameters**
+        > *   If `None`, an analysis result’s device components must match exactly for it to be included.
+        > *   If “contains” is specified, an analysis result’s device components must contain at least the values specified by the device\_components filter.
 
-*   **limit** (`Optional`\[`int`]) – Number of analysis results to retrieve.
+    *   **experiment\_id** (`Optional`\[`str`]) – Experiment ID used for filtering.
 
-*   **json\_decoder** (`Type`\[`JSONDecoder`]) – Custom JSON decoder to use to decode the retrieved analysis results.
+    *   **result\_type** (`Optional`\[`str`]) – Analysis result type used for filtering.
 
-*   **device\_components** (`Optional`\[`List`\[`Union`\[`str`, `DeviceComponent`]]]) – Filter by device components.
+    *   **result\_type\_operator** (`Optional`\[`str`]) –
 
-*   **device\_components\_operator** (`Optional`\[`str`]) –
+        Operator used when filtering by result type. Valid values are `None` and “like”:
 
-    Operator used when filtering by device components. Valid values are `None` and “contains”:
+        *   If `None` is specified, an analysis result’s type value must match exactly for it to be included.
+        *   If “like” is specified, an analysis result’s type value must contain the value specified by result\_type. For example, `result_type="foo", result_type_operator="like"` will match both `foo1` and `1foo`.
 
-    > *   If `None`, an analysis result’s device components must match exactly for it to be included.
-    > *   If “contains” is specified, an analysis result’s device components must contain at least the values specified by the device\_components filter.
+    *   **backend\_name** (`Optional`\[`str`]) – Backend name used for filtering.
 
-*   **experiment\_id** (`Optional`\[`str`]) – Experiment ID used for filtering.
+    *   **quality** (`Union`\[`List`\[`Union`\[`ResultQuality`, `str`]], `ResultQuality`, `str`, `None`]) – Quality value used for filtering. If a list is given, analysis results whose quality value is in the list will be included.
 
-*   **result\_type** (`Optional`\[`str`]) – Analysis result type used for filtering.
+    *   **verified** (`Optional`\[`bool`]) – Indicates whether this result has been verified..
 
-*   **result\_type\_operator** (`Optional`\[`str`]) –
+    *   **tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to analysis results. This can be used with tags\_operator for granular filtering.
 
-    Operator used when filtering by result type. Valid values are `None` and “like”:
+    *   **tags\_operator** (`Optional`\[`str`]) –
 
-    *   If `None` is specified, an analysis result’s type value must match exactly for it to be included.
-    *   If “like” is specified, an analysis result’s type value must contain the value specified by result\_type. For example, `result_type="foo", result_type_operator="like"` will match both `foo1` and `1foo`.
+        Logical operator to use when filtering by tags. Valid values are “AND” and “OR”:
 
-*   **backend\_name** (`Optional`\[`str`]) – Backend name used for filtering.
+        > *   If “AND” is specified, then an analysis result must have all of the tags specified in tags to be included.
+        > *   If “OR” is specified, then an analysis result only needs to have any of the tags specified in tags to be included.
 
-*   **quality** (`Union`\[`List`\[`Union`\[`ResultQuality`, `str`]], `ResultQuality`, `str`, `None`]) – Quality value used for filtering. If a list is given, analysis results whose quality value is in the list will be included.
+    *   **sort\_by** (`Union`\[`str`, `List`\[`str`], `None`]) – Specifies how the output should be sorted. This can be a single sorting option or a list of options. Each option should contain a sort key and a direction. Valid sort keys are “creation\_datetime”, “device\_components”, and “result\_type”. Valid directions are “asc” for ascending or “desc” for descending. For example, `sort_by=["result_type: asc", "creation_datetime:desc"]` will return an output list that is first sorted by result type in ascending order, then by creation datetime by descending order. By default, analysis results are sorted by `creation_datetime` descending and `result_id` ascending.
 
-*   **verified** (`Optional`\[`bool`]) – Indicates whether this result has been verified..
+    *   **\*\*filters** – Additional filtering keywords that are not supported and will be ignored.
 
-*   **tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to analysis results. This can be used with tags\_operator for granular filtering.
+    **Return type**
 
-*   **tags\_operator** (`Optional`\[`str`]) –
+    `List`\[`Dict`]
 
-    Logical operator to use when filtering by tags. Valid values are “AND” and “OR”:
+    **Returns**
 
-    > *   If “AND” is specified, then an analysis result must have all of the tags specified in tags to be included.
-    > *   If “OR” is specified, then an analysis result only needs to have any of the tags specified in tags to be included.
+    A list of analysis results. Each analysis result is a dictionary containing the retrieved analysis result.
 
-*   **sort\_by** (`Union`\[`str`, `List`\[`str`], `None`]) – Specifies how the output should be sorted. This can be a single sorting option or a list of options. Each option should contain a sort key and a direction. Valid sort keys are “creation\_datetime”, “device\_components”, and “result\_type”. Valid directions are “asc” for ascending or “desc” for descending. For example, `sort_by=["result_type: asc", "creation_datetime:desc"]` will return an output list that is first sorted by result type in ascending order, then by creation datetime by descending order. By default, analysis results are sorted by `creation_datetime` descending and `result_id` ascending.
+    **Raises**
 
-*   **\*\*filters** – Additional filtering keywords that are not supported and will be ignored.
+    *   **ValueError** – If an invalid parameter value is specified.
+    *   **IBMQApiError** – If the request to the server failed.
+  </Function>
 
-**Return type**
+  ### backends
 
-`List`\[`Dict`]
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.backends" name="backends" signature="IBMExperimentService.backends()">
+    Return a list of backends that can be used for experiments.
 
-**Returns**
+    **Return type**
 
-A list of analysis results. Each analysis result is a dictionary containing the retrieved analysis result.
+    `List`\[`Dict`]
 
-**Raises**
+    **Returns**
 
-*   **ValueError** – If an invalid parameter value is specified.
-*   **IBMQApiError** – If the request to the server failed.
+    A list of backends.
+  </Function>
 
-### backends
+  ### create\_analysis\_result
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.backends" />
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.create_analysis_result" name="create_analysis_result" signature="IBMExperimentService.create_analysis_result(experiment_id, result_data, result_type, device_components=None, tags=None, quality=<ResultQuality.UNKNOWN: 'UNKNOWN'>, verified=False, result_id=None, chisq=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)">
+    Create a new analysis result in the database.
 
-`IBMExperimentService.backends()`
+    **Parameters**
 
-Return a list of backends that can be used for experiments.
+    *   **experiment\_id** (`str`) – ID of the experiment this result is for.
+    *   **result\_data** (`Dict`) – Result data to be stored.
+    *   **result\_type** (`str`) – Analysis result type.
+    *   **device\_components** (`Union`\[`List`\[`Union`\[`str`, `DeviceComponent`]], `str`, `DeviceComponent`, `None`]) – Target device components, such as qubits.
+    *   **tags** (`Optional`\[`List`\[`str`]]) – Tags to be associated with the analysis result.
+    *   **quality** (`Union`\[`ResultQuality`, `str`]) – Quality of this analysis.
+    *   **verified** (`bool`) – Whether the result quality has been verified.
+    *   **result\_id** (`Optional`\[`str`]) – Analysis result ID. It must be in the `uuid4` format. One will be generated if not supplied.
+    *   **chisq** (`Optional`\[`float`]) – chi^2 decimal value of the fit.
+    *   **json\_encoder** (`Type`\[`JSONEncoder`]) – Custom JSON encoder to use to encode the analysis result.
+    *   **kwargs** (`Any`) – Additional analysis result attributes that are not supported and will be ignored.
 
-**Return type**
+    **Return type**
 
-`List`\[`Dict`]
+    `str`
 
-**Returns**
+    **Returns**
 
-A list of backends.
+    Analysis result ID.
 
-### create\_analysis\_result
+    **Raises**
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.create_analysis_result" />
+    *   [**IBMExperimentEntryExists**](qiskit.providers.ibmq.experiment.IBMExperimentEntryExists "qiskit.providers.ibmq.experiment.IBMExperimentEntryExists") – If the analysis result already exits.
+    *   **IBMQApiError** – If the request to the server failed.
+  </Function>
 
-`IBMExperimentService.create_analysis_result(experiment_id, result_data, result_type, device_components=None, tags=None, quality=<ResultQuality.UNKNOWN: 'UNKNOWN'>, verified=False, result_id=None, chisq=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)`
+  ### create\_experiment
 
-Create a new analysis result in the database.
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.create_experiment" name="create_experiment" signature="IBMExperimentService.create_experiment(experiment_type, backend_name, metadata=None, experiment_id=None, parent_id=None, job_ids=None, tags=None, notes=None, share_level=None, start_datetime=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)">
+    Create a new experiment in the database.
 
-**Parameters**
+    **Parameters**
 
-*   **experiment\_id** (`str`) – ID of the experiment this result is for.
-*   **result\_data** (`Dict`) – Result data to be stored.
-*   **result\_type** (`str`) – Analysis result type.
-*   **device\_components** (`Union`\[`List`\[`Union`\[`str`, `DeviceComponent`]], `str`, `DeviceComponent`, `None`]) – Target device components, such as qubits.
-*   **tags** (`Optional`\[`List`\[`str`]]) – Tags to be associated with the analysis result.
-*   **quality** (`Union`\[`ResultQuality`, `str`]) – Quality of this analysis.
-*   **verified** (`bool`) – Whether the result quality has been verified.
-*   **result\_id** (`Optional`\[`str`]) – Analysis result ID. It must be in the `uuid4` format. One will be generated if not supplied.
-*   **chisq** (`Optional`\[`float`]) – chi^2 decimal value of the fit.
-*   **json\_encoder** (`Type`\[`JSONEncoder`]) – Custom JSON encoder to use to encode the analysis result.
-*   **kwargs** (`Any`) – Additional analysis result attributes that are not supported and will be ignored.
+    *   **experiment\_type** (`str`) – Experiment type.
 
-**Return type**
+    *   **backend\_name** (`str`) – Name of the backend the experiment ran on.
 
-`str`
+    *   **metadata** (`Optional`\[`Dict`]) – Experiment metadata.
 
-**Returns**
+    *   **experiment\_id** (`Optional`\[`str`]) – Experiment ID. It must be in the `uuid4` format. One will be generated if not supplied.
 
-Analysis result ID.
+    *   **parent\_id** (`Optional`\[`str`]) – The experiment ID of the parent experiment. The parent experiment must exist, must be on the same backend as the child, and an experiment cannot be its own parent.
 
-**Raises**
+    *   **job\_ids** (`Optional`\[`List`\[`str`]]) – IDs of experiment jobs.
 
-*   [**IBMExperimentEntryExists**](qiskit.providers.ibmq.experiment.IBMExperimentEntryExists "qiskit.providers.ibmq.experiment.IBMExperimentEntryExists") – If the analysis result already exits.
-*   **IBMQApiError** – If the request to the server failed.
+    *   **tags** (`Optional`\[`List`\[`str`]]) – Tags to be associated with the experiment.
 
-### create\_experiment
+    *   **notes** (`Optional`\[`str`]) – Freeform notes about the experiment.
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.create_experiment" />
+    *   **share\_level** (`Union`\[`str`, `ExperimentShareLevel`, `None`]) –
 
-`IBMExperimentService.create_experiment(experiment_type, backend_name, metadata=None, experiment_id=None, parent_id=None, job_ids=None, tags=None, notes=None, share_level=None, start_datetime=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)`
+        The level at which the experiment is shared. This determines who can view the experiment (but not update it). This defaults to “private” for new experiments. Possible values include:
 
-Create a new experiment in the database.
+        *   private: The experiment is only visible to its owner (default)
+        *   project: The experiment is shared within its project
+        *   group: The experiment is shared within its group
+        *   hub: The experiment is shared within its hub
+        *   public: The experiment is shared publicly regardless of provider
 
-**Parameters**
+    *   **start\_datetime** (`Union`\[`str`, `datetime`, `None`]) – Timestamp when the experiment started, in local time zone.
 
-*   **experiment\_type** (`str`) – Experiment type.
+    *   **json\_encoder** (`Type`\[`JSONEncoder`]) – Custom JSON encoder to use to encode the experiment.
 
-*   **backend\_name** (`str`) – Name of the backend the experiment ran on.
+    *   **kwargs** (`Any`) – Additional experiment attributes that are not supported and will be ignored.
 
-*   **metadata** (`Optional`\[`Dict`]) – Experiment metadata.
+    **Return type**
 
-*   **experiment\_id** (`Optional`\[`str`]) – Experiment ID. It must be in the `uuid4` format. One will be generated if not supplied.
+    `str`
 
-*   **parent\_id** (`Optional`\[`str`]) – The experiment ID of the parent experiment. The parent experiment must exist, must be on the same backend as the child, and an experiment cannot be its own parent.
+    **Returns**
 
-*   **job\_ids** (`Optional`\[`List`\[`str`]]) – IDs of experiment jobs.
+    Experiment ID.
 
-*   **tags** (`Optional`\[`List`\[`str`]]) – Tags to be associated with the experiment.
+    **Raises**
 
-*   **notes** (`Optional`\[`str`]) – Freeform notes about the experiment.
+    *   [**IBMExperimentEntryExists**](qiskit.providers.ibmq.experiment.IBMExperimentEntryExists "qiskit.providers.ibmq.experiment.IBMExperimentEntryExists") – If the experiment already exits.
+    *   **IBMQApiError** – If the request to the server failed.
+  </Function>
 
-*   **share\_level** (`Union`\[`str`, `ExperimentShareLevel`, `None`]) –
+  ### create\_figure
 
-    The level at which the experiment is shared. This determines who can view the experiment (but not update it). This defaults to “private” for new experiments. Possible values include:
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.create_figure" name="create_figure" signature="IBMExperimentService.create_figure(experiment_id, figure, figure_name=None, sync_upload=True)">
+    Store a new figure in the database.
 
-    *   private: The experiment is only visible to its owner (default)
-    *   project: The experiment is shared within its project
-    *   group: The experiment is shared within its group
-    *   hub: The experiment is shared within its hub
-    *   public: The experiment is shared publicly regardless of provider
+    <Admonition title="Note" type="note">
+      Currently only SVG figures are supported.
+    </Admonition>
 
-*   **start\_datetime** (`Union`\[`str`, `datetime`, `None`]) – Timestamp when the experiment started, in local time zone.
+    **Parameters**
 
-*   **json\_encoder** (`Type`\[`JSONEncoder`]) – Custom JSON encoder to use to encode the experiment.
+    *   **experiment\_id** (`str`) – ID of the experiment this figure is for.
+    *   **figure** (`Union`\[`str`, `bytes`]) – Name of the figure file or figure data to store.
+    *   **figure\_name** (`Optional`\[`str`]) – Name of the figure. If `None`, the figure file name, if given, or a generated name is used.
+    *   **sync\_upload** (`bool`) – If `True`, the plot will be uploaded synchronously. Otherwise the upload will be asynchronous.
 
-*   **kwargs** (`Any`) – Additional experiment attributes that are not supported and will be ignored.
+    **Return type**
 
-**Return type**
+    `Tuple`\[`str`, `int`]
 
-`str`
+    **Returns**
 
-**Returns**
+    A tuple of the name and size of the saved figure.
 
-Experiment ID.
+    **Raises**
 
-**Raises**
+    *   [**IBMExperimentEntryExists**](qiskit.providers.ibmq.experiment.IBMExperimentEntryExists "qiskit.providers.ibmq.experiment.IBMExperimentEntryExists") – If the figure already exits.
+    *   **IBMQApiError** – If the request to the server failed.
+  </Function>
 
-*   [**IBMExperimentEntryExists**](qiskit.providers.ibmq.experiment.IBMExperimentEntryExists "qiskit.providers.ibmq.experiment.IBMExperimentEntryExists") – If the experiment already exits.
-*   **IBMQApiError** – If the request to the server failed.
+  ### delete\_analysis\_result
 
-### create\_figure
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.delete_analysis_result" name="delete_analysis_result" signature="IBMExperimentService.delete_analysis_result(result_id)">
+    Delete an analysis result.
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.create_figure" />
+    **Parameters**
 
-`IBMExperimentService.create_figure(experiment_id, figure, figure_name=None, sync_upload=True)`
+    **result\_id** (`str`) – Analysis result ID.
 
-Store a new figure in the database.
+    <Admonition title="Note" type="note">
+      This method prompts for confirmation and requires a response before proceeding.
+    </Admonition>
 
-<Admonition title="Note" type="note">
-  Currently only SVG figures are supported.
-</Admonition>
+    **Raises**
 
-**Parameters**
+    **IBMQApiError** – If the request to the server failed.
 
-*   **experiment\_id** (`str`) – ID of the experiment this figure is for.
-*   **figure** (`Union`\[`str`, `bytes`]) – Name of the figure file or figure data to store.
-*   **figure\_name** (`Optional`\[`str`]) – Name of the figure. If `None`, the figure file name, if given, or a generated name is used.
-*   **sync\_upload** (`bool`) – If `True`, the plot will be uploaded synchronously. Otherwise the upload will be asynchronous.
+    **Return type**
 
-**Return type**
+    `None`
+  </Function>
 
-`Tuple`\[`str`, `int`]
+  ### delete\_experiment
 
-**Returns**
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.delete_experiment" name="delete_experiment" signature="IBMExperimentService.delete_experiment(experiment_id)">
+    Delete an experiment.
 
-A tuple of the name and size of the saved figure.
+    **Parameters**
 
-**Raises**
+    **experiment\_id** (`str`) – Experiment ID.
 
-*   [**IBMExperimentEntryExists**](qiskit.providers.ibmq.experiment.IBMExperimentEntryExists "qiskit.providers.ibmq.experiment.IBMExperimentEntryExists") – If the figure already exits.
-*   **IBMQApiError** – If the request to the server failed.
+    <Admonition title="Note" type="note">
+      This method prompts for confirmation and requires a response before proceeding.
+    </Admonition>
 
-### delete\_analysis\_result
+    **Raises**
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.delete_analysis_result" />
+    **IBMQApiError** – If the request to the server failed.
 
-`IBMExperimentService.delete_analysis_result(result_id)`
+    **Return type**
 
-Delete an analysis result.
+    `None`
+  </Function>
 
-**Parameters**
+  ### delete\_figure
 
-**result\_id** (`str`) – Analysis result ID.
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.delete_figure" name="delete_figure" signature="IBMExperimentService.delete_figure(experiment_id, figure_name)">
+    Delete an experiment plot.
 
-<Admonition title="Note" type="note">
-  This method prompts for confirmation and requires a response before proceeding.
-</Admonition>
+    <Admonition title="Note" type="note">
+      This method prompts for confirmation and requires a response before proceeding.
+    </Admonition>
 
-**Raises**
+    **Parameters**
 
-**IBMQApiError** – If the request to the server failed.
+    *   **experiment\_id** (`str`) – Experiment ID.
+    *   **figure\_name** (`str`) – Name of the figure.
 
-**Return type**
+    **Raises**
 
-`None`
+    **IBMQApiError** – If the request to the server failed.
 
-### delete\_experiment
+    **Return type**
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.delete_experiment" />
+    `None`
+  </Function>
 
-`IBMExperimentService.delete_experiment(experiment_id)`
+  ### device\_components
 
-Delete an experiment.
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.device_components" name="device_components" signature="IBMExperimentService.device_components(backend_name=None)">
+    Return the device components.
 
-**Parameters**
+    **Parameters**
 
-**experiment\_id** (`str`) – Experiment ID.
+    **backend\_name** (`Optional`\[`str`]) – Name of the backend whose components are to be retrieved.
 
-<Admonition title="Note" type="note">
-  This method prompts for confirmation and requires a response before proceeding.
-</Admonition>
+    **Return type**
 
-**Raises**
+    `Union`\[`Dict`\[`str`, `List`], `List`]
 
-**IBMQApiError** – If the request to the server failed.
+    **Returns**
 
-**Return type**
+    A list of device components if backend\_name is specified. Otherwise a dictionary whose keys are backend names the values are lists of device components for the backends.
 
-`None`
+    **Raises**
 
-### delete\_figure
+    **IBMQApiError** – If the request to the server failed.
+  </Function>
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.delete_figure" />
+  ### experiment
 
-`IBMExperimentService.delete_figure(experiment_id, figure_name)`
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.experiment" name="experiment" signature="IBMExperimentService.experiment(experiment_id, json_decoder=<class 'json.decoder.JSONDecoder'>)">
+    Retrieve a previously stored experiment.
 
-Delete an experiment plot.
+    **Parameters**
 
-<Admonition title="Note" type="note">
-  This method prompts for confirmation and requires a response before proceeding.
-</Admonition>
+    *   **experiment\_id** (`str`) – Experiment ID.
+    *   **json\_decoder** (`Type`\[`JSONDecoder`]) – Custom JSON decoder to use to decode the retrieved experiment.
 
-**Parameters**
+    **Return type**
 
-*   **experiment\_id** (`str`) – Experiment ID.
-*   **figure\_name** (`str`) – Name of the figure.
+    `Dict`
 
-**Raises**
+    **Returns**
 
-**IBMQApiError** – If the request to the server failed.
+    Retrieved experiment data.
 
-**Return type**
+    **Raises**
 
-`None`
+    *   [**IBMExperimentEntryNotFound**](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound") – If the experiment does not exist.
+    *   **IBMQApiError** – If the request to the server failed.
+  </Function>
 
-### device\_components
+  ### experiments
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.device_components" />
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.experiments" name="experiments" signature="IBMExperimentService.experiments(limit=10, json_decoder=<class 'json.decoder.JSONDecoder'>, device_components=None, device_components_operator=None, experiment_type=None, experiment_type_operator=None, backend_name=None, tags=None, tags_operator='OR', start_datetime_after=None, start_datetime_before=None, hub=None, group=None, project=None, exclude_public=False, public_only=False, exclude_mine=False, mine_only=False, parent_id=None, sort_by=None, **filters)">
+    Retrieve all experiments, with optional filtering.
 
-`IBMExperimentService.device_components(backend_name=None)`
+    By default, results returned are as inclusive as possible. For example, if you don’t specify any filters, all experiments visible to you are returned. This includes your own experiments as well as those shared with you, from all providers you have access to (not just from the provider you used to invoke this experiment service).
 
-Return the device components.
+    **Parameters**
 
-**Parameters**
+    *   **limit** (`Optional`\[`int`]) – Number of experiments to retrieve. `None` indicates no limit.
 
-**backend\_name** (`Optional`\[`str`]) – Name of the backend whose components are to be retrieved.
+    *   **json\_decoder** (`Type`\[`JSONDecoder`]) – Custom JSON decoder to use to decode the retrieved experiments.
 
-**Return type**
+    *   **device\_components** (`Optional`\[`List`\[`Union`\[`str`, `DeviceComponent`]]]) – Filter by device components.
 
-`Union`\[`Dict`\[`str`, `List`], `List`]
+    *   **device\_components\_operator** (`Optional`\[`str`]) –
 
-**Returns**
+        Operator used when filtering by device components. Valid values are `None` and “contains”:
 
-A list of device components if backend\_name is specified. Otherwise a dictionary whose keys are backend names the values are lists of device components for the backends.
+        > *   If `None`, an analysis result’s device components must match exactly for it to be included.
+        > *   If “contains” is specified, an analysis result’s device components must contain at least the values specified by the device\_components filter.
 
-**Raises**
+    *   **experiment\_type** (`Optional`\[`str`]) – Experiment type used for filtering.
 
-**IBMQApiError** – If the request to the server failed.
+    *   **experiment\_type\_operator** (`Optional`\[`str`]) –
 
-### experiment
+        Operator used when filtering by experiment type. Valid values are `None` and “like”:
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.experiment" />
+        *   If `None` is specified, an experiment’s type value must match exactly for it to be included.
+        *   If “like” is specified, an experiment’s type value must contain the value specified by experiment\_type. For example, `experiment_type="foo", experiment_type_operator="like"` will match both `foo1` and `1foo`.
 
-`IBMExperimentService.experiment(experiment_id, json_decoder=<class 'json.decoder.JSONDecoder'>)`
+    *   **backend\_name** (`Optional`\[`str`]) – Backend name used for filtering.
 
-Retrieve a previously stored experiment.
+    *   **tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to experiments.
 
-**Parameters**
+    *   **tags\_operator** (`Optional`\[`str`]) –
 
-*   **experiment\_id** (`str`) – Experiment ID.
-*   **json\_decoder** (`Type`\[`JSONDecoder`]) – Custom JSON decoder to use to decode the retrieved experiment.
+        Logical operator to use when filtering by job tags. Valid values are “AND” and “OR”:
 
-**Return type**
+        > *   If “AND” is specified, then an experiment must have all of the tags specified in tags to be included.
+        > *   If “OR” is specified, then an experiment only needs to have any of the tags specified in tags to be included.
 
-`Dict`
+    *   **start\_datetime\_after** (`Optional`\[`datetime`]) – Filter by the given start timestamp, in local time. This is used to find experiments whose start date/time is after (greater than or equal to) this local timestamp.
 
-**Returns**
+    *   **start\_datetime\_before** (`Optional`\[`datetime`]) – Filter by the given start timestamp, in local time. This is used to find experiments whose start date/time is before (less than or equal to) this local timestamp.
 
-Retrieved experiment data.
+    *   **hub** (`Optional`\[`str`]) – Filter by hub.
 
-**Raises**
+    *   **group** (`Optional`\[`str`]) – Filter by hub and group. hub must also be specified if group is.
 
-*   [**IBMExperimentEntryNotFound**](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound") – If the experiment does not exist.
-*   **IBMQApiError** – If the request to the server failed.
+    *   **project** (`Optional`\[`str`]) – Filter by hub, group, and project. hub and group must also be specified if project is.
 
-### experiments
+    *   **exclude\_public** (`Optional`\[`bool`]) – If `True`, experiments with `share_level=public` (that is, experiments visible to all users) will not be returned. Cannot be `True` if public\_only is `True`.
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.experiments" />
+    *   **public\_only** (`Optional`\[`bool`]) – If `True`, only experiments with `share_level=public` (that is, experiments visible to all users) will be returned. Cannot be `True` if exclude\_public is `True`.
 
-`IBMExperimentService.experiments(limit=10, json_decoder=<class 'json.decoder.JSONDecoder'>, device_components=None, device_components_operator=None, experiment_type=None, experiment_type_operator=None, backend_name=None, tags=None, tags_operator='OR', start_datetime_after=None, start_datetime_before=None, hub=None, group=None, project=None, exclude_public=False, public_only=False, exclude_mine=False, mine_only=False, parent_id=None, sort_by=None, **filters)`
+    *   **exclude\_mine** (`Optional`\[`bool`]) – If `True`, experiments where I am the owner will not be returned. Cannot be `True` if mine\_only is `True`.
 
-Retrieve all experiments, with optional filtering.
+    *   **mine\_only** (`Optional`\[`bool`]) – If `True`, only experiments where I am the owner will be returned. Cannot be `True` if exclude\_mine is `True`.
 
-By default, results returned are as inclusive as possible. For example, if you don’t specify any filters, all experiments visible to you are returned. This includes your own experiments as well as those shared with you, from all providers you have access to (not just from the provider you used to invoke this experiment service).
+    *   **parent\_id** (`Optional`\[`str`]) – Filter experiments by this parent experiment ID.
 
-**Parameters**
+    *   **sort\_by** (`Union`\[`str`, `List`\[`str`], `None`]) – Specifies how the output should be sorted. This can be a single sorting option or a list of options. Each option should contain a sort key and a direction, separated by a semicolon. Valid sort keys are “start\_datetime” and “experiment\_type”. Valid directions are “asc” for ascending or “desc” for descending. For example, `sort_by=["experiment_type:asc", "start_datetime:desc"]` will return an output list that is first sorted by experiment type in ascending order, then by start datetime by descending order. By default, experiments are sorted by `start_datetime` descending and `experiment_id` ascending.
 
-*   **limit** (`Optional`\[`int`]) – Number of experiments to retrieve. `None` indicates no limit.
+    *   **\*\*filters** – Additional filtering keywords that are not supported and will be ignored.
 
-*   **json\_decoder** (`Type`\[`JSONDecoder`]) – Custom JSON decoder to use to decode the retrieved experiments.
+    **Return type**
 
-*   **device\_components** (`Optional`\[`List`\[`Union`\[`str`, `DeviceComponent`]]]) – Filter by device components.
+    `List`\[`Dict`]
 
-*   **device\_components\_operator** (`Optional`\[`str`]) –
+    **Returns**
 
-    Operator used when filtering by device components. Valid values are `None` and “contains”:
+    A list of experiments. Each experiment is a dictionary containing the retrieved experiment data.
 
-    > *   If `None`, an analysis result’s device components must match exactly for it to be included.
-    > *   If “contains” is specified, an analysis result’s device components must contain at least the values specified by the device\_components filter.
+    **Raises**
 
-*   **experiment\_type** (`Optional`\[`str`]) – Experiment type used for filtering.
+    *   **ValueError** – If an invalid parameter value is specified.
+    *   **IBMQApiError** – If the request to the server failed.
+  </Function>
 
-*   **experiment\_type\_operator** (`Optional`\[`str`]) –
+  ### figure
 
-    Operator used when filtering by experiment type. Valid values are `None` and “like”:
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.figure" name="figure" signature="IBMExperimentService.figure(experiment_id, figure_name, file_name=None)">
+    Retrieve an existing figure.
 
-    *   If `None` is specified, an experiment’s type value must match exactly for it to be included.
-    *   If “like” is specified, an experiment’s type value must contain the value specified by experiment\_type. For example, `experiment_type="foo", experiment_type_operator="like"` will match both `foo1` and `1foo`.
+    **Parameters**
 
-*   **backend\_name** (`Optional`\[`str`]) – Backend name used for filtering.
+    *   **experiment\_id** (`str`) – Experiment ID.
+    *   **figure\_name** (`str`) – Name of the figure.
+    *   **file\_name** (`Optional`\[`str`]) – Name of the local file to save the figure to. If `None`, the content of the figure is returned instead.
 
-*   **tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to experiments.
+    **Return type**
 
-*   **tags\_operator** (`Optional`\[`str`]) –
+    `Union`\[`int`, `bytes`]
 
-    Logical operator to use when filtering by job tags. Valid values are “AND” and “OR”:
+    **Returns**
 
-    > *   If “AND” is specified, then an experiment must have all of the tags specified in tags to be included.
-    > *   If “OR” is specified, then an experiment only needs to have any of the tags specified in tags to be included.
+    The size of the figure if file\_name is specified. Otherwise the content of the figure in bytes.
 
-*   **start\_datetime\_after** (`Optional`\[`datetime`]) – Filter by the given start timestamp, in local time. This is used to find experiments whose start date/time is after (greater than or equal to) this local timestamp.
+    **Raises**
 
-*   **start\_datetime\_before** (`Optional`\[`datetime`]) – Filter by the given start timestamp, in local time. This is used to find experiments whose start date/time is before (less than or equal to) this local timestamp.
+    *   [**IBMExperimentEntryNotFound**](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound") – If the figure does not exist.
+    *   **IBMQApiError** – If the request to the server failed.
+  </Function>
 
-*   **hub** (`Optional`\[`str`]) – Filter by hub.
+  ### save\_preferences
 
-*   **group** (`Optional`\[`str`]) – Filter by hub and group. hub must also be specified if group is.
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.save_preferences" name="save_preferences" signature="IBMExperimentService.save_preferences(auto_save=None)">
+    Stores experiment preferences on disk.
 
-*   **project** (`Optional`\[`str`]) – Filter by hub, group, and project. hub and group must also be specified if project is.
+    <Admonition title="Note" type="note">
+      These are preferences passed to the applications that use this service and have no effect on the service itself.
 
-*   **exclude\_public** (`Optional`\[`bool`]) – If `True`, experiments with `share_level=public` (that is, experiments visible to all users) will not be returned. Cannot be `True` if public\_only is `True`.
+      For example, if `auto_save` is set to `True`, it tells the application, such as `qiskit-experiments`, that you prefer changes to be automatically saved. It is up to the application to implement the preferences.
+    </Admonition>
 
-*   **public\_only** (`Optional`\[`bool`]) – If `True`, only experiments with `share_level=public` (that is, experiments visible to all users) will be returned. Cannot be `True` if exclude\_public is `True`.
+    **Parameters**
 
-*   **exclude\_mine** (`Optional`\[`bool`]) – If `True`, experiments where I am the owner will not be returned. Cannot be `True` if mine\_only is `True`.
+    **auto\_save** (`Optional`\[`bool`]) – Automatically save the experiment.
 
-*   **mine\_only** (`Optional`\[`bool`]) – If `True`, only experiments where I am the owner will be returned. Cannot be `True` if exclude\_mine is `True`.
+    **Return type**
 
-*   **parent\_id** (`Optional`\[`str`]) – Filter experiments by this parent experiment ID.
+    `None`
+  </Function>
 
-*   **sort\_by** (`Union`\[`str`, `List`\[`str`], `None`]) – Specifies how the output should be sorted. This can be a single sorting option or a list of options. Each option should contain a sort key and a direction, separated by a semicolon. Valid sort keys are “start\_datetime” and “experiment\_type”. Valid directions are “asc” for ascending or “desc” for descending. For example, `sort_by=["experiment_type:asc", "start_datetime:desc"]` will return an output list that is first sorted by experiment type in ascending order, then by start datetime by descending order. By default, experiments are sorted by `start_datetime` descending and `experiment_id` ascending.
+  ### update\_analysis\_result
 
-*   **\*\*filters** – Additional filtering keywords that are not supported and will be ignored.
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.update_analysis_result" name="update_analysis_result" signature="IBMExperimentService.update_analysis_result(result_id, result_data=None, tags=None, quality=None, verified=None, chisq=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)">
+    Update an existing analysis result.
 
-**Return type**
+    **Parameters**
 
-`List`\[`Dict`]
+    *   **result\_id** (`str`) – Analysis result ID.
+    *   **result\_data** (`Optional`\[`Dict`]) – Result data to be stored.
+    *   **quality** (`Union`\[`ResultQuality`, `str`, `None`]) – Quality of this analysis.
+    *   **verified** (`Optional`\[`bool`]) – Whether the result quality has been verified.
+    *   **tags** (`Optional`\[`List`\[`str`]]) – Tags to be associated with the analysis result.
+    *   **chisq** (`Optional`\[`float`]) – chi^2 decimal value of the fit.
+    *   **json\_encoder** (`Type`\[`JSONEncoder`]) – Custom JSON encoder to use to encode the analysis result.
+    *   **kwargs** (`Any`) – Additional analysis result attributes that are not supported and will be ignored.
 
-**Returns**
+    **Raises**
 
-A list of experiments. Each experiment is a dictionary containing the retrieved experiment data.
+    *   [**IBMExperimentEntryNotFound**](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound") – If the analysis result does not exist.
+    *   **IBMQApiError** – If the request to the server failed.
 
-**Raises**
+    **Return type**
 
-*   **ValueError** – If an invalid parameter value is specified.
-*   **IBMQApiError** – If the request to the server failed.
+    `None`
+  </Function>
 
-### figure
+  ### update\_experiment
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.figure" />
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.update_experiment" name="update_experiment" signature="IBMExperimentService.update_experiment(experiment_id, metadata=None, job_ids=None, notes=None, tags=None, share_level=None, end_datetime=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)">
+    Update an existing experiment.
 
-`IBMExperimentService.figure(experiment_id, figure_name, file_name=None)`
+    **Parameters**
 
-Retrieve an existing figure.
+    *   **experiment\_id** (`str`) – Experiment ID.
 
-**Parameters**
+    *   **metadata** (`Optional`\[`Dict`]) – Experiment metadata.
 
-*   **experiment\_id** (`str`) – Experiment ID.
-*   **figure\_name** (`str`) – Name of the figure.
-*   **file\_name** (`Optional`\[`str`]) – Name of the local file to save the figure to. If `None`, the content of the figure is returned instead.
+    *   **job\_ids** (`Optional`\[`List`\[`str`]]) – IDs of experiment jobs.
 
-**Return type**
+    *   **notes** (`Optional`\[`str`]) – Freeform notes about the experiment.
 
-`Union`\[`int`, `bytes`]
+    *   **tags** (`Optional`\[`List`\[`str`]]) – Tags to be associated with the experiment.
 
-**Returns**
+    *   **share\_level** (`Union`\[`str`, `ExperimentShareLevel`, `None`]) –
 
-The size of the figure if file\_name is specified. Otherwise the content of the figure in bytes.
+        The level at which the experiment is shared. This determines who can view the experiment (but not update it). This defaults to “private” for new experiments. Possible values include:
 
-**Raises**
+        *   private: The experiment is only visible to its owner (default)
+        *   project: The experiment is shared within its project
+        *   group: The experiment is shared within its group
+        *   hub: The experiment is shared within its hub
+        *   public: The experiment is shared publicly regardless of provider
 
-*   [**IBMExperimentEntryNotFound**](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound") – If the figure does not exist.
-*   **IBMQApiError** – If the request to the server failed.
+    *   **end\_datetime** (`Union`\[`str`, `datetime`, `None`]) – Timestamp for when the experiment ended, in local time.
 
-### save\_preferences
+    *   **json\_encoder** (`Type`\[`JSONEncoder`]) – Custom JSON encoder to use to encode the experiment.
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.save_preferences" />
+    *   **kwargs** (`Any`) – Additional experiment attributes that are not supported and will be ignored.
 
-`IBMExperimentService.save_preferences(auto_save=None)`
+    **Raises**
 
-Stores experiment preferences on disk.
+    *   [**IBMExperimentEntryNotFound**](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound") – If the experiment does not exist.
+    *   **IBMQApiError** – If the request to the server failed.
 
-<Admonition title="Note" type="note">
-  These are preferences passed to the applications that use this service and have no effect on the service itself.
+    **Return type**
 
-  For example, if `auto_save` is set to `True`, it tells the application, such as `qiskit-experiments`, that you prefer changes to be automatically saved. It is up to the application to implement the preferences.
-</Admonition>
+    `None`
+  </Function>
 
-**Parameters**
+  ### update\_figure
 
-**auto\_save** (`Optional`\[`bool`]) – Automatically save the experiment.
+  <Function id="qiskit.providers.ibmq.experiment.IBMExperimentService.update_figure" name="update_figure" signature="IBMExperimentService.update_figure(experiment_id, figure, figure_name, sync_upload=True)">
+    Update an existing figure.
 
-**Return type**
+    **Parameters**
 
-`None`
+    *   **experiment\_id** (`str`) – Experiment ID.
+    *   **figure** (`Union`\[`str`, `bytes`]) – Name of the figure file or figure data to store.
+    *   **figure\_name** (`str`) – Name of the figure.
+    *   **sync\_upload** (`bool`) – If `True`, the plot will be uploaded synchronously. Otherwise the upload will be asynchronous.
 
-### update\_analysis\_result
+    **Return type**
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.update_analysis_result" />
+    `Tuple`\[`str`, `int`]
 
-`IBMExperimentService.update_analysis_result(result_id, result_data=None, tags=None, quality=None, verified=None, chisq=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)`
+    **Returns**
 
-Update an existing analysis result.
+    A tuple of the name and size of the saved figure.
 
-**Parameters**
+    **Raises**
 
-*   **result\_id** (`str`) – Analysis result ID.
-*   **result\_data** (`Optional`\[`Dict`]) – Result data to be stored.
-*   **quality** (`Union`\[`ResultQuality`, `str`, `None`]) – Quality of this analysis.
-*   **verified** (`Optional`\[`bool`]) – Whether the result quality has been verified.
-*   **tags** (`Optional`\[`List`\[`str`]]) – Tags to be associated with the analysis result.
-*   **chisq** (`Optional`\[`float`]) – chi^2 decimal value of the fit.
-*   **json\_encoder** (`Type`\[`JSONEncoder`]) – Custom JSON encoder to use to encode the analysis result.
-*   **kwargs** (`Any`) – Additional analysis result attributes that are not supported and will be ignored.
+    *   [**IBMExperimentEntryNotFound**](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound") – If the figure does not exist.
+    *   **IBMQApiError** – If the request to the server failed.
+  </Function>
 
-**Raises**
+  ## Attributes
 
-*   [**IBMExperimentEntryNotFound**](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound") – If the analysis result does not exist.
-*   **IBMQApiError** – If the request to the server failed.
+  ### preferences
 
-**Return type**
+  <Attribute id="qiskit.providers.ibmq.experiment.IBMExperimentService.preferences" name="preferences">
+    Return saved experiment preferences.
 
-`None`
+    <Admonition title="Note" type="note">
+      These are preferences passed to the applications that use this service and have no effect on the service itself. It is up to the application, such as `qiskit-experiments` to implement the preferences.
+    </Admonition>
 
-### update\_experiment
+    **Returns**
 
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.update_experiment" />
+    The experiment preferences.
 
-`IBMExperimentService.update_experiment(experiment_id, metadata=None, job_ids=None, notes=None, tags=None, share_level=None, end_datetime=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)`
+    **Return type**
 
-Update an existing experiment.
-
-**Parameters**
-
-*   **experiment\_id** (`str`) – Experiment ID.
-
-*   **metadata** (`Optional`\[`Dict`]) – Experiment metadata.
-
-*   **job\_ids** (`Optional`\[`List`\[`str`]]) – IDs of experiment jobs.
-
-*   **notes** (`Optional`\[`str`]) – Freeform notes about the experiment.
-
-*   **tags** (`Optional`\[`List`\[`str`]]) – Tags to be associated with the experiment.
-
-*   **share\_level** (`Union`\[`str`, `ExperimentShareLevel`, `None`]) –
-
-    The level at which the experiment is shared. This determines who can view the experiment (but not update it). This defaults to “private” for new experiments. Possible values include:
-
-    *   private: The experiment is only visible to its owner (default)
-    *   project: The experiment is shared within its project
-    *   group: The experiment is shared within its group
-    *   hub: The experiment is shared within its hub
-    *   public: The experiment is shared publicly regardless of provider
-
-*   **end\_datetime** (`Union`\[`str`, `datetime`, `None`]) – Timestamp for when the experiment ended, in local time.
-
-*   **json\_encoder** (`Type`\[`JSONEncoder`]) – Custom JSON encoder to use to encode the experiment.
-
-*   **kwargs** (`Any`) – Additional experiment attributes that are not supported and will be ignored.
-
-**Raises**
-
-*   [**IBMExperimentEntryNotFound**](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound") – If the experiment does not exist.
-*   **IBMQApiError** – If the request to the server failed.
-
-**Return type**
-
-`None`
-
-### update\_figure
-
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.update_figure" />
-
-`IBMExperimentService.update_figure(experiment_id, figure, figure_name, sync_upload=True)`
-
-Update an existing figure.
-
-**Parameters**
-
-*   **experiment\_id** (`str`) – Experiment ID.
-*   **figure** (`Union`\[`str`, `bytes`]) – Name of the figure file or figure data to store.
-*   **figure\_name** (`str`) – Name of the figure.
-*   **sync\_upload** (`bool`) – If `True`, the plot will be uploaded synchronously. Otherwise the upload will be asynchronous.
-
-**Return type**
-
-`Tuple`\[`str`, `int`]
-
-**Returns**
-
-A tuple of the name and size of the saved figure.
-
-**Raises**
-
-*   [**IBMExperimentEntryNotFound**](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound") – If the figure does not exist.
-*   **IBMQApiError** – If the request to the server failed.
-
-## Attributes
-
-<span id="qiskit.providers.ibmq.experiment.IBMExperimentService.preferences" />
-
-### preferences
-
-Return saved experiment preferences.
-
-<Admonition title="Note" type="note">
-  These are preferences passed to the applications that use this service and have no effect on the service itself. It is up to the application, such as `qiskit-experiments` to implement the preferences.
-</Admonition>
-
-**Returns**
-
-The experiment preferences.
-
-**Return type**
-
-Dict
+    Dict
+  </Attribute>
+</Class>
 

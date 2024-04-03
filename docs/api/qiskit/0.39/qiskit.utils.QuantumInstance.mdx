@@ -8,314 +8,298 @@ python_api_name: qiskit.utils.QuantumInstance
 
 # QuantumInstance
 
-<span id="qiskit.utils.QuantumInstance" />
+<Class id="qiskit.utils.QuantumInstance" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/utils/quantum_instance.py" signature="QuantumInstance(backend, shots=None, seed_simulator=None, max_credits=None, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, bound_pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None, mit_pattern=None, max_job_retries=50)">
+  Bases: `object`
 
-`QuantumInstance(backend, shots=None, seed_simulator=None, max_credits=None, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, bound_pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None, mit_pattern=None, max_job_retries=50)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/utils/quantum_instance.py "view source code")
+  Quantum Backend including execution setting.
 
-Bases: `object`
+  Quantum Instance holds a Qiskit Terra backend as well as configuration for circuit transpilation and execution. When provided to an Aqua algorithm the algorithm will execute the circuits it needs to run using the instance.
 
-Quantum Backend including execution setting.
+  **Parameters**
 
-Quantum Instance holds a Qiskit Terra backend as well as configuration for circuit transpilation and execution. When provided to an Aqua algorithm the algorithm will execute the circuits it needs to run using the instance.
+  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Instance of selected backend
+  *   **shots** (`Optional`\[`int`]) – Number of repetitions of each circuit, for sampling. If None, the shots are extracted from the backend. If the backend has none set, the default is 1024.
+  *   **seed\_simulator** (`Optional`\[`int`]) – Random seed for simulators
+  *   **max\_credits** (`Optional`\[`int`]) – DEPRECATED This parameter is deprecated as of Qiskit Terra 0.20.0, and will be removed in a future release. This parameter has no effect on modern IBM Quantum systems, and no alternative is necessary.
+  *   **basis\_gates** (`Optional`\[`List`\[`str`]]) – List of basis gate names supported by the target. Defaults to basis gates of the backend.
+  *   **coupling\_map** (*Optional\[Union\['CouplingMap', List\[List]]]*) – Coupling map (perhaps custom) to target in mapping
+  *   **initial\_layout** (*Optional\[Union\['Layout', Dict, List]]*) – Initial layout of qubits in mapping
+  *   **pass\_manager** (*Optional\['PassManager']*) – Pass manager to handle how to compile the circuits. To run only this pass manager and not the `bound_pass_manager`, call the [`transpile()`](qiskit.utils.QuantumInstance#transpile "qiskit.utils.QuantumInstance.transpile") method with the argument `pass_manager=quantum_instance.unbound_pass_manager`.
+  *   **bound\_pass\_manager** (*Optional\['PassManager']*) – A second pass manager to apply on bound circuits only, that is, circuits without any free parameters. To only run this pass manager and not `pass_manager` call the [`transpile()`](qiskit.utils.QuantumInstance#transpile "qiskit.utils.QuantumInstance.transpile") method with the argument `pass_manager=quantum_instance.bound_pass_manager`. manager should also be run.
+  *   **seed\_transpiler** (`Optional`\[`int`]) – The random seed for circuit mapper
+  *   **optimization\_level** (`Optional`\[`int`]) – How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer transpilation time.
+  *   **backend\_options** (`Optional`\[`Dict`]) – All running options for backend, please refer to the provider of the backend for information as to what options it supports.
+  *   **noise\_model** (*Optional\['NoiseModel']*) – noise model for simulator
+  *   **timeout** (`Optional`\[`float`]) – Seconds to wait for job. If None, wait indefinitely.
+  *   **wait** (`float`) – Seconds between queries for job result
+  *   **skip\_qobj\_validation** (`bool`) – Bypass Qobj validation to decrease circuit processing time during submission to backend.
+  *   **measurement\_error\_mitigation\_cls** (`Optional`\[`Callable`]) – The approach to mitigate measurement errors. The classes [`CompleteMeasFitter`](qiskit.utils.mitigation.CompleteMeasFitter "qiskit.utils.mitigation.CompleteMeasFitter") or [`TensoredMeasFitter`](qiskit.utils.mitigation.TensoredMeasFitter "qiskit.utils.mitigation.TensoredMeasFitter") from the [`qiskit.utils.mitigation`](utils_mitigation#module-qiskit.utils.mitigation "qiskit.utils.mitigation") module can be used here as exact values, not instances. `TensoredMeasFitter` doesn’t support the `subset_fitter` method.
+  *   **cals\_matrix\_refresh\_period** (`int`) – How often to refresh the calibration matrix in measurement mitigation. in minutes
+  *   **measurement\_error\_mitigation\_shots** (`Optional`\[`int`]) – The number of shots number for building calibration matrix. If None, the main shots parameter value is used.
+  *   **job\_callback** (`Optional`\[`Callable`]) – Optional user supplied callback which can be used to monitor job progress as jobs are submitted for processing by an Aqua algorithm. The callback is provided the following arguments: job\_id, job\_status, queue\_position, job
+  *   **mit\_pattern** (`Optional`\[`List`\[`List`\[`int`]]]) – Qubits on which to perform the TensoredMeasFitter measurement correction, divided to groups according to tensors. If None and qr is given then assumed to be performed over the entire qr as one group (default None).
+  *   **max\_job\_retries** (*int*) – positive non-zero number of trials for the job set (-1 for infinite trials) (default: 50)
 
-**Parameters**
+  **Raises**
 
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Instance of selected backend
-*   **shots** (`Optional`\[`int`]) – Number of repetitions of each circuit, for sampling. If None, the shots are extracted from the backend. If the backend has none set, the default is 1024.
-*   **seed\_simulator** (`Optional`\[`int`]) – Random seed for simulators
-*   **max\_credits** (`Optional`\[`int`]) – DEPRECATED This parameter is deprecated as of Qiskit Terra 0.20.0, and will be removed in a future release. This parameter has no effect on modern IBM Quantum systems, and no alternative is necessary.
-*   **basis\_gates** (`Optional`\[`List`\[`str`]]) – List of basis gate names supported by the target. Defaults to basis gates of the backend.
-*   **coupling\_map** (*Optional\[Union\['CouplingMap', List\[List]]]*) – Coupling map (perhaps custom) to target in mapping
-*   **initial\_layout** (*Optional\[Union\['Layout', Dict, List]]*) – Initial layout of qubits in mapping
-*   **pass\_manager** (*Optional\['PassManager']*) – Pass manager to handle how to compile the circuits. To run only this pass manager and not the `bound_pass_manager`, call the [`transpile()`](qiskit.utils.QuantumInstance#transpile "qiskit.utils.QuantumInstance.transpile") method with the argument `pass_manager=quantum_instance.unbound_pass_manager`.
-*   **bound\_pass\_manager** (*Optional\['PassManager']*) – A second pass manager to apply on bound circuits only, that is, circuits without any free parameters. To only run this pass manager and not `pass_manager` call the [`transpile()`](qiskit.utils.QuantumInstance#transpile "qiskit.utils.QuantumInstance.transpile") method with the argument `pass_manager=quantum_instance.bound_pass_manager`. manager should also be run.
-*   **seed\_transpiler** (`Optional`\[`int`]) – The random seed for circuit mapper
-*   **optimization\_level** (`Optional`\[`int`]) – How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer transpilation time.
-*   **backend\_options** (`Optional`\[`Dict`]) – All running options for backend, please refer to the provider of the backend for information as to what options it supports.
-*   **noise\_model** (*Optional\['NoiseModel']*) – noise model for simulator
-*   **timeout** (`Optional`\[`float`]) – Seconds to wait for job. If None, wait indefinitely.
-*   **wait** (`float`) – Seconds between queries for job result
-*   **skip\_qobj\_validation** (`bool`) – Bypass Qobj validation to decrease circuit processing time during submission to backend.
-*   **measurement\_error\_mitigation\_cls** (`Optional`\[`Callable`]) – The approach to mitigate measurement errors. The classes [`CompleteMeasFitter`](qiskit.utils.mitigation.CompleteMeasFitter "qiskit.utils.mitigation.CompleteMeasFitter") or [`TensoredMeasFitter`](qiskit.utils.mitigation.TensoredMeasFitter "qiskit.utils.mitigation.TensoredMeasFitter") from the [`qiskit.utils.mitigation`](utils_mitigation#module-qiskit.utils.mitigation "qiskit.utils.mitigation") module can be used here as exact values, not instances. `TensoredMeasFitter` doesn’t support the `subset_fitter` method.
-*   **cals\_matrix\_refresh\_period** (`int`) – How often to refresh the calibration matrix in measurement mitigation. in minutes
-*   **measurement\_error\_mitigation\_shots** (`Optional`\[`int`]) – The number of shots number for building calibration matrix. If None, the main shots parameter value is used.
-*   **job\_callback** (`Optional`\[`Callable`]) – Optional user supplied callback which can be used to monitor job progress as jobs are submitted for processing by an Aqua algorithm. The callback is provided the following arguments: job\_id, job\_status, queue\_position, job
-*   **mit\_pattern** (`Optional`\[`List`\[`List`\[`int`]]]) – Qubits on which to perform the TensoredMeasFitter measurement correction, divided to groups according to tensors. If None and qr is given then assumed to be performed over the entire qr as one group (default None).
-*   **max\_job\_retries** (*int*) – positive non-zero number of trials for the job set (-1 for infinite trials) (default: 50)
+  *   **QiskitError** – the shots exceeds the maximum number of shots
+  *   **QiskitError** – set noise model but the backend does not support that
+  *   **QiskitError** – set backend\_options but the backend does not support that
 
-**Raises**
+  ## Methods
 
-*   **QiskitError** – the shots exceeds the maximum number of shots
-*   **QiskitError** – set noise model but the backend does not support that
-*   **QiskitError** – set backend\_options but the backend does not support that
+  ### assemble
 
-## Methods
+  <Function id="qiskit.utils.QuantumInstance.assemble" name="assemble" signature="QuantumInstance.assemble(circuits)">
+    assemble circuits
 
-### assemble
+    **Return type**
 
-<span id="qiskit.utils.QuantumInstance.assemble" />
+    [`Qobj`](qiskit.qobj.Qobj "qiskit.qobj.Qobj")
+  </Function>
 
-`QuantumInstance.assemble(circuits)`
+  ### cals\_matrix
 
-assemble circuits
+  <Function id="qiskit.utils.QuantumInstance.cals_matrix" name="cals_matrix" signature="QuantumInstance.cals_matrix(qubit_index=None)">
+    Get the stored calibration matrices and its timestamp.
 
-**Return type**
+    **Parameters**
 
-[`Qobj`](qiskit.qobj.Qobj "qiskit.qobj.Qobj")
+    **qubit\_index** (`Optional`\[`List`\[`int`]]) – the qubit index of corresponding calibration matrix. If None, return all stored calibration matrices.
 
-### cals\_matrix
+    **Return type**
 
-<span id="qiskit.utils.QuantumInstance.cals_matrix" />
+    `Union`\[`Tuple`\[`ndarray`, `float`], `Dict`\[`str`, `Tuple`\[`ndarray`, `float`]], `None`]
 
-`QuantumInstance.cals_matrix(qubit_index=None)`
+    **Returns**
 
-Get the stored calibration matrices and its timestamp.
+    The calibration matrix and the creation timestamp if qubit\_index is not None otherwise, return all matrices and their timestamp in a dictionary.
+  </Function>
 
-**Parameters**
+  ### execute
 
-**qubit\_index** (`Optional`\[`List`\[`int`]]) – the qubit index of corresponding calibration matrix. If None, return all stored calibration matrices.
+  <Function id="qiskit.utils.QuantumInstance.execute" name="execute" signature="QuantumInstance.execute(circuits, had_transpiled=False)">
+    A wrapper to interface with quantum backend.
 
-**Return type**
+    **Parameters**
 
-`Union`\[`Tuple`\[`ndarray`, `float`], `Dict`\[`str`, `Tuple`\[`ndarray`, `float`]], `None`]
+    *   **circuits** (*Union\['QuantumCircuit', List\['QuantumCircuit']]*) – circuits to execute
+    *   **had\_transpiled** (`bool`) – whether or not circuits had been transpiled
 
-**Returns**
+    **Raises**
 
-The calibration matrix and the creation timestamp if qubit\_index is not None otherwise, return all matrices and their timestamp in a dictionary.
+    *   **QiskitError** – Invalid error mitigation fitter class
+    *   **QiskitError** – TensoredMeasFitter class doesn’t support subset fitter
+    *   **MissingOptionalLibraryError** – Ignis not installed
 
-### execute
+    **Returns**
 
-<span id="qiskit.utils.QuantumInstance.execute" />
+    result object
 
-`QuantumInstance.execute(circuits, had_transpiled=False)`
+    **Return type**
 
-A wrapper to interface with quantum backend.
+    [Result](qiskit.result.Result "qiskit.result.Result")
 
-**Parameters**
+    #### TODO: Maybe we can combine the circuits for the main ones and calibration circuits before
 
-*   **circuits** (*Union\['QuantumCircuit', List\['QuantumCircuit']]*) – circuits to execute
-*   **had\_transpiled** (`bool`) – whether or not circuits had been transpiled
+    assembling to the qobj.
+  </Function>
 
-**Raises**
+  ### maybe\_refresh\_cals\_matrix
 
-*   **QiskitError** – Invalid error mitigation fitter class
-*   **QiskitError** – TensoredMeasFitter class doesn’t support subset fitter
-*   **MissingOptionalLibraryError** – Ignis not installed
+  <Function id="qiskit.utils.QuantumInstance.maybe_refresh_cals_matrix" name="maybe_refresh_cals_matrix" signature="QuantumInstance.maybe_refresh_cals_matrix(timestamp=None)">
+    Calculate the time difference from the query of last time.
 
-**Returns**
+    **Parameters**
 
-result object
+    **timestamp** (`Optional`\[`float`]) – timestamp
 
-**Return type**
+    **Return type**
 
-[Result](qiskit.result.Result "qiskit.result.Result")
+    `bool`
 
-#### TODO: Maybe we can combine the circuits for the main ones and calibration circuits before
+    **Returns**
 
-assembling to the qobj.
+    Whether or not refresh the cals\_matrix
+  </Function>
 
-### maybe\_refresh\_cals\_matrix
+  ### reset\_execution\_results
 
-<span id="qiskit.utils.QuantumInstance.maybe_refresh_cals_matrix" />
+  <Function id="qiskit.utils.QuantumInstance.reset_execution_results" name="reset_execution_results" signature="QuantumInstance.reset_execution_results()">
+    Reset execution results
 
-`QuantumInstance.maybe_refresh_cals_matrix(timestamp=None)`
+    **Return type**
 
-Calculate the time difference from the query of last time.
+    `None`
+  </Function>
 
-**Parameters**
+  ### set\_config
 
-**timestamp** (`Optional`\[`float`]) – timestamp
+  <Function id="qiskit.utils.QuantumInstance.set_config" name="set_config" signature="QuantumInstance.set_config(**kwargs)">
+    Set configurations for the quantum instance.
+  </Function>
 
-**Return type**
+  ### transpile
 
-`bool`
+  <Function id="qiskit.utils.QuantumInstance.transpile" name="transpile" signature="QuantumInstance.transpile(circuits, pass_manager=None)">
+    A wrapper to transpile circuits to allow algorithm access the transpiled circuits.
 
-**Returns**
+    **Parameters**
 
-Whether or not refresh the cals\_matrix
+    *   **circuits** (*Union\['QuantumCircuit', List\['QuantumCircuit']]*) – circuits to transpile
+    *   **pass\_manager** (*Optional\['PassManager']*) – A pass manager to transpile the circuits. If none is given, but either `pass_manager` or `bound_pass_manager` has been set in the initializer, these are run. If none has been provided there either, the backend and compile configs from the initializer are used.
 
-### reset\_execution\_results
+    **Returns**
 
-<span id="qiskit.utils.QuantumInstance.reset_execution_results" />
+    **The transpiled circuits, it is always a list even though**
 
-`QuantumInstance.reset_execution_results()`
+    the length is one.
 
-Reset execution results
+    **Return type**
 
-**Return type**
+    List\[‘QuantumCircuit’]
+  </Function>
 
-`None`
+  ## Attributes
 
-### set\_config
+  ### backend
 
-<span id="qiskit.utils.QuantumInstance.set_config" />
+  <Attribute id="qiskit.utils.QuantumInstance.backend" name="backend">
+    Return Backend backend object.
+  </Attribute>
 
-`QuantumInstance.set_config(**kwargs)`
+  ### backend\_config
 
-Set configurations for the quantum instance.
+  <Attribute id="qiskit.utils.QuantumInstance.backend_config" name="backend_config">
+    Getter of backend\_config.
+  </Attribute>
 
-### transpile
+  ### backend\_name
 
-<span id="qiskit.utils.QuantumInstance.transpile" />
+  <Attribute id="qiskit.utils.QuantumInstance.backend_name" name="backend_name">
+    Return backend name.
+  </Attribute>
 
-`QuantumInstance.transpile(circuits, pass_manager=None)`
+  ### backend\_options
 
-A wrapper to transpile circuits to allow algorithm access the transpiled circuits.
+  <Attribute id="qiskit.utils.QuantumInstance.backend_options" name="backend_options">
+    Getter of backend\_options.
+  </Attribute>
 
-**Parameters**
+  ### bound\_pass\_manager
 
-*   **circuits** (*Union\['QuantumCircuit', List\['QuantumCircuit']]*) – circuits to transpile
-*   **pass\_manager** (*Optional\['PassManager']*) – A pass manager to transpile the circuits. If none is given, but either `pass_manager` or `bound_pass_manager` has been set in the initializer, these are run. If none has been provided there either, the backend and compile configs from the initializer are used.
+  <Attribute id="qiskit.utils.QuantumInstance.bound_pass_manager" name="bound_pass_manager">
+    Return the pass manager for designated for bound circuits.
 
-**Returns**
+    **Returns**
 
-**The transpiled circuits, it is always a list even though**
+    The pass manager for bound circuits, if it has been set.
 
-the length is one.
+    **Return type**
 
-**Return type**
+    Optional\[‘PassManager’]
+  </Attribute>
 
-List\[‘QuantumCircuit’]
+  ### cals\_matrix\_refresh\_period
 
-## Attributes
+  <Attribute id="qiskit.utils.QuantumInstance.cals_matrix_refresh_period" name="cals_matrix_refresh_period">
+    returns matrix refresh period
+  </Attribute>
 
-<span id="qiskit.utils.QuantumInstance.backend" />
+  ### circuit\_summary
 
-### backend
+  <Attribute id="qiskit.utils.QuantumInstance.circuit_summary" name="circuit_summary">
+    Getter of circuit summary.
+  </Attribute>
 
-Return Backend backend object.
+  ### compile\_config
 
-<span id="qiskit.utils.QuantumInstance.backend_config" />
+  <Attribute id="qiskit.utils.QuantumInstance.compile_config" name="compile_config">
+    Getter of compile\_config.
+  </Attribute>
 
-### backend\_config
+  ### is\_local
 
-Getter of backend\_config.
+  <Attribute id="qiskit.utils.QuantumInstance.is_local" name="is_local">
+    Return True if backend is a local backend.
+  </Attribute>
 
-<span id="qiskit.utils.QuantumInstance.backend_name" />
+  ### is\_simulator
 
-### backend\_name
+  <Attribute id="qiskit.utils.QuantumInstance.is_simulator" name="is_simulator">
+    Return True if backend is a simulator.
+  </Attribute>
 
-Return backend name.
+  ### is\_statevector
 
-<span id="qiskit.utils.QuantumInstance.backend_options" />
+  <Attribute id="qiskit.utils.QuantumInstance.is_statevector" name="is_statevector">
+    Return True if backend is a statevector-type simulator.
+  </Attribute>
 
-### backend\_options
+  ### max\_job\_retries
 
-Getter of backend\_options.
+  <Attribute id="qiskit.utils.QuantumInstance.max_job_retries" name="max_job_retries">
+    Getter of max tries
+  </Attribute>
 
-<span id="qiskit.utils.QuantumInstance.bound_pass_manager" />
+  ### measurement\_error\_mitigation\_cls
 
-### bound\_pass\_manager
+  <Attribute id="qiskit.utils.QuantumInstance.measurement_error_mitigation_cls" name="measurement_error_mitigation_cls">
+    returns measurement error mitigation cls
+  </Attribute>
 
-Return the pass manager for designated for bound circuits.
+  ### measurement\_error\_mitigation\_shots
 
-**Returns**
+  <Attribute id="qiskit.utils.QuantumInstance.measurement_error_mitigation_shots" name="measurement_error_mitigation_shots">
+    returns measurement error mitigation shots
+  </Attribute>
 
-The pass manager for bound circuits, if it has been set.
+  ### noise\_config
 
-**Return type**
+  <Attribute id="qiskit.utils.QuantumInstance.noise_config" name="noise_config">
+    Getter of noise\_config.
+  </Attribute>
 
-Optional\[‘PassManager’]
+  ### qjob\_config
 
-<span id="qiskit.utils.QuantumInstance.cals_matrix_refresh_period" />
+  <Attribute id="qiskit.utils.QuantumInstance.qjob_config" name="qjob_config">
+    Getter of qjob\_config.
+  </Attribute>
 
-### cals\_matrix\_refresh\_period
+  ### run\_config
 
-returns matrix refresh period
+  <Attribute id="qiskit.utils.QuantumInstance.run_config" name="run_config">
+    Getter of run\_config.
+  </Attribute>
 
-<span id="qiskit.utils.QuantumInstance.circuit_summary" />
+  ### skip\_qobj\_validation
 
-### circuit\_summary
+  <Attribute id="qiskit.utils.QuantumInstance.skip_qobj_validation" name="skip_qobj_validation">
+    checks if skip qobj validation
+  </Attribute>
 
-Getter of circuit summary.
+  ### time\_taken
 
-<span id="qiskit.utils.QuantumInstance.compile_config" />
+  <Attribute id="qiskit.utils.QuantumInstance.time_taken" name="time_taken">
+    Accumulated time taken for execution.
 
-### compile\_config
+    **Return type**
 
-Getter of compile\_config.
+    `float`
+  </Attribute>
 
-<span id="qiskit.utils.QuantumInstance.is_local" />
+  ### unbound\_pass\_manager
 
-### is\_local
+  <Attribute id="qiskit.utils.QuantumInstance.unbound_pass_manager" name="unbound_pass_manager">
+    Return the pass manager for designated for unbound circuits.
 
-Return True if backend is a local backend.
+    **Returns**
 
-<span id="qiskit.utils.QuantumInstance.is_simulator" />
+    The pass manager for unbound circuits, if it has been set.
 
-### is\_simulator
+    **Return type**
 
-Return True if backend is a simulator.
-
-<span id="qiskit.utils.QuantumInstance.is_statevector" />
-
-### is\_statevector
-
-Return True if backend is a statevector-type simulator.
-
-<span id="qiskit.utils.QuantumInstance.max_job_retries" />
-
-### max\_job\_retries
-
-Getter of max tries
-
-<span id="qiskit.utils.QuantumInstance.measurement_error_mitigation_cls" />
-
-### measurement\_error\_mitigation\_cls
-
-returns measurement error mitigation cls
-
-<span id="qiskit.utils.QuantumInstance.measurement_error_mitigation_shots" />
-
-### measurement\_error\_mitigation\_shots
-
-returns measurement error mitigation shots
-
-<span id="qiskit.utils.QuantumInstance.noise_config" />
-
-### noise\_config
-
-Getter of noise\_config.
-
-<span id="qiskit.utils.QuantumInstance.qjob_config" />
-
-### qjob\_config
-
-Getter of qjob\_config.
-
-<span id="qiskit.utils.QuantumInstance.run_config" />
-
-### run\_config
-
-Getter of run\_config.
-
-<span id="qiskit.utils.QuantumInstance.skip_qobj_validation" />
-
-### skip\_qobj\_validation
-
-checks if skip qobj validation
-
-<span id="qiskit.utils.QuantumInstance.time_taken" />
-
-### time\_taken
-
-Accumulated time taken for execution.
-
-**Return type**
-
-`float`
-
-<span id="qiskit.utils.QuantumInstance.unbound_pass_manager" />
-
-### unbound\_pass\_manager
-
-Return the pass manager for designated for unbound circuits.
-
-**Returns**
-
-The pass manager for unbound circuits, if it has been set.
-
-**Return type**
-
-Optional\[‘PassManager’]
+    Optional\[‘PassManager’]
+  </Attribute>
+</Class>
 

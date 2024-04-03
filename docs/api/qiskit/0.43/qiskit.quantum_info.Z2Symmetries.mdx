@@ -8,195 +8,183 @@ python_api_name: qiskit.quantum_info.Z2Symmetries
 
 # Z2Symmetries
 
-<span id="qiskit.quantum_info.Z2Symmetries" />
+<Class id="qiskit.quantum_info.Z2Symmetries" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/analysis/z2_symmetries.py" signature="Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, *, tol=1e-14)">
+  Bases: `object`
 
-`Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, *, tol=1e-14)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/analysis/z2_symmetries.py "view source code")
+  The \$Z\_2\$ symmetry converter identifies symmetries from the problem hamiltonian and uses them to provide a tapered - more efficient - representation of operators as Paulis for this problem. For each identified symmetry, one qubit can be eliminated in the Pauli representation at the cost of having to test two symmetry sectors (for the two possible eigenvalues - tapering values - of the symmetry). In certain problems such as the finding of the main operator’s ground state, one can a priori identify the symmetry sector of the solution and thus effectively reduce the computational overhead.
 
-Bases: `object`
+  The following attributes can be read and updated once the `Z2Symmetries` object has been constructed.
 
-The \$Z\_2\$ symmetry converter identifies symmetries from the problem hamiltonian and uses them to provide a tapered - more efficient - representation of operators as Paulis for this problem. For each identified symmetry, one qubit can be eliminated in the Pauli representation at the cost of having to test two symmetry sectors (for the two possible eigenvalues - tapering values - of the symmetry). In certain problems such as the finding of the main operator’s ground state, one can a priori identify the symmetry sector of the solution and thus effectively reduce the computational overhead.
+  ### tapering\_values
 
-The following attributes can be read and updated once the `Z2Symmetries` object has been constructed.
+  <Attribute id="qiskit.quantum_info.Z2Symmetries.tapering_values" name="tapering_values">
+    Values determining the sector.
 
-<span id="qiskit.quantum_info.Z2Symmetries.tapering_values" />
+    **Type**
 
-### tapering\_values
+    list\[int] or None
+  </Attribute>
 
-Values determining the sector.
+  ### tol
 
-**Type**
+  <Attribute id="qiskit.quantum_info.Z2Symmetries.tol" name="tol">
+    The tolerance threshold for ignoring real and complex parts of a coefficient.
 
-list\[int] or None
+    **Type**
 
-<span id="qiskit.quantum_info.Z2Symmetries.tol" />
+    float
+  </Attribute>
 
-### tol
+  **References**
 
-The tolerance threshold for ignoring real and complex parts of a coefficient.
+  **\[1]: Bravyi, S., et al, “Tapering off qubits to simulate fermionic Hamiltonians”**
 
-**Type**
+  [arXiv:1701.08213](https://arxiv.org/abs/1701.08213)
 
-float
+  **Parameters**
 
-**References**
+  *   **symmetries** (*Iterable\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – Object representing the list of \$Z\_2\$ symmetries. These correspond to the generators of the symmetry group \$langle tau\_1, tau\_2dots rangle>\$.
+  *   **sq\_paulis** (*Iterable\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – Object representing the list of single-qubit Pauli \$sigma^x\_\{q(i)}\$ anti-commuting with the symmetry \$tau\_i\$ and commuting with all the other symmetries \$tau\_\{jneq i}\$. These operators are used to construct the unitary Clifford operators.
+  *   **sq\_list** (*Iterable\[int]*) – The list of indices \$q(i)\$ of the single-qubit Pauli operators used to build the Clifford operators.
+  *   **tapering\_values** (*Iterable\[int] | None*) – List of eigenvalues determining the symmetry sector for each symmetry.
+  *   **tol** (*float*) – Tolerance threshold for ignoring real and complex parts of a coefficient.
 
-**\[1]: Bravyi, S., et al, “Tapering off qubits to simulate fermionic Hamiltonians”**
+  **Raises**
 
-[arXiv:1701.08213](https://arxiv.org/abs/1701.08213)
+  **QiskitError** – Invalid paulis. The lists of symmetries, single-qubit paulis support paulis and tapering values must be of equal length. This length is the number of applied symmetries and translates directly to the number of eliminated qubits.
 
-**Parameters**
+  ## Methods
 
-*   **symmetries** (*Iterable\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – Object representing the list of \$Z\_2\$ symmetries. These correspond to the generators of the symmetry group \$langle tau\_1, tau\_2dots rangle>\$.
-*   **sq\_paulis** (*Iterable\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – Object representing the list of single-qubit Pauli \$sigma^x\_\{q(i)}\$ anti-commuting with the symmetry \$tau\_i\$ and commuting with all the other symmetries \$tau\_\{jneq i}\$. These operators are used to construct the unitary Clifford operators.
-*   **sq\_list** (*Iterable\[int]*) – The list of indices \$q(i)\$ of the single-qubit Pauli operators used to build the Clifford operators.
-*   **tapering\_values** (*Iterable\[int] | None*) – List of eigenvalues determining the symmetry sector for each symmetry.
-*   **tol** (*float*) – Tolerance threshold for ignoring real and complex parts of a coefficient.
+  <span id="qiskit-quantum-info-z2symmetries-convert-clifford" />
 
-**Raises**
+  ### convert\_clifford
 
-**QiskitError** – Invalid paulis. The lists of symmetries, single-qubit paulis support paulis and tapering values must be of equal length. This length is the number of applied symmetries and translates directly to the number of eliminated qubits.
+  <Function id="qiskit.quantum_info.Z2Symmetries.convert_clifford" name="convert_clifford" signature="Z2Symmetries.convert_clifford(operator)">
+    This method operates the first part of the tapering. It converts the operator by composing it with the clifford unitaries defined in the current symmetry.
 
-## Methods
+    **Parameters**
 
-<span id="qiskit-quantum-info-z2symmetries-convert-clifford" />
+    **operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")) – The to-be-tapered operator.
 
-### convert\_clifford
+    **Returns**
 
-<span id="qiskit.quantum_info.Z2Symmetries.convert_clifford" />
+    `SparsePauliOp` corresponding to the converted operator.
 
-`Z2Symmetries.convert_clifford(operator)`
+    **Return type**
 
-This method operates the first part of the tapering. It converts the operator by composing it with the clifford unitaries defined in the current symmetry.
+    [*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")
+  </Function>
 
-**Parameters**
+  <span id="qiskit-quantum-info-z2symmetries-find-z2-symmetries" />
 
-**operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")) – The to-be-tapered operator.
+  ### find\_z2\_symmetries
 
-**Returns**
+  <Function id="qiskit.quantum_info.Z2Symmetries.find_z2_symmetries" name="find_z2_symmetries" signature="classmethod Z2Symmetries.find_z2_symmetries(operator)">
+    Finds Z2 Pauli-type symmetries of a [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
 
-`SparsePauliOp` corresponding to the converted operator.
+    **Returns**
 
-**Return type**
+    A `Z2Symmetries` instance.
 
-[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")
+    **Return type**
 
-<span id="qiskit-quantum-info-z2symmetries-find-z2-symmetries" />
+    [*Z2Symmetries*](qiskit.quantum_info.Z2Symmetries "qiskit.quantum_info.analysis.z2_symmetries.Z2Symmetries")
+  </Function>
 
-### find\_z2\_symmetries
+  <span id="qiskit-quantum-info-z2symmetries-is-empty" />
 
-<span id="qiskit.quantum_info.Z2Symmetries.find_z2_symmetries" />
+  ### is\_empty
 
-`classmethod Z2Symmetries.find_z2_symmetries(operator)`
+  <Function id="qiskit.quantum_info.Z2Symmetries.is_empty" name="is_empty" signature="Z2Symmetries.is_empty()">
+    Check the z2\_symmetries is empty or not.
 
-Finds Z2 Pauli-type symmetries of a [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
+    **Returns**
 
-**Returns**
+    Empty or not.
 
-A `Z2Symmetries` instance.
+    **Return type**
 
-**Return type**
+    bool
+  </Function>
 
-[*Z2Symmetries*](qiskit.quantum_info.Z2Symmetries "qiskit.quantum_info.analysis.z2_symmetries.Z2Symmetries")
+  <span id="qiskit-quantum-info-z2symmetries-taper" />
 
-<span id="qiskit-quantum-info-z2symmetries-is-empty" />
+  ### taper
 
-### is\_empty
+  <Function id="qiskit.quantum_info.Z2Symmetries.taper" name="taper" signature="Z2Symmetries.taper(operator)">
+    Taper an operator based on the z2\_symmetries info and sector defined by tapering\_values. Returns operator if the symmetry object is empty.
 
-<span id="qiskit.quantum_info.Z2Symmetries.is_empty" />
+    The tapering is a two-step algorithm which first converts the operator into a [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") with same eigenvalues but where some qubits are only acted upon with the Pauli operators I or X. The number M of these redundant qubits is equal to the number M of identified symmetries.
 
-`Z2Symmetries.is_empty()`
+    The second step of the reduction consists in replacing these qubits with the possible eigenvalues of the corresponding Pauli X, giving 2^M new operators with M less qubits. If an eigenvalue sector was previously identified for the solution, then this reduces to 1 new operator with M less qubits.
 
-Check the z2\_symmetries is empty or not.
+    **Parameters**
 
-**Returns**
+    **operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – The to-be-tapered operator.
 
-Empty or not.
+    **Returns**
 
-**Return type**
+    \[[`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")]; otherwise, [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
 
-bool
+    **Return type**
 
-<span id="qiskit-quantum-info-z2symmetries-taper" />
+    If tapering\_values is None
+  </Function>
 
-### taper
+  <span id="qiskit-quantum-info-z2symmetries-taper-clifford" />
 
-<span id="qiskit.quantum_info.Z2Symmetries.taper" />
+  ### taper\_clifford
 
-`Z2Symmetries.taper(operator)`
+  <Function id="qiskit.quantum_info.Z2Symmetries.taper_clifford" name="taper_clifford" signature="Z2Symmetries.taper_clifford(operator)">
+    Operate the second part of the tapering. This function assumes that the input operators have already been transformed using [`convert_clifford()`](qiskit.quantum_info.Z2Symmetries#convert_clifford "qiskit.quantum_info.Z2Symmetries.convert_clifford"). The redundant qubits due to the symmetries are dropped and replaced by their two possible eigenvalues.
 
-Taper an operator based on the z2\_symmetries info and sector defined by tapering\_values. Returns operator if the symmetry object is empty.
+    **Parameters**
 
-The tapering is a two-step algorithm which first converts the operator into a [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") with same eigenvalues but where some qubits are only acted upon with the Pauli operators I or X. The number M of these redundant qubits is equal to the number M of identified symmetries.
+    **operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – Partially tapered operator resulting from a call to [`convert_clifford()`](qiskit.quantum_info.Z2Symmetries#convert_clifford "qiskit.quantum_info.Z2Symmetries.convert_clifford").
 
-The second step of the reduction consists in replacing these qubits with the possible eigenvalues of the corresponding Pauli X, giving 2^M new operators with M less qubits. If an eigenvalue sector was previously identified for the solution, then this reduces to 1 new operator with M less qubits.
+    **Returns**
 
-**Parameters**
+    \[[`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")]; otherwise, [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
 
-**operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – The to-be-tapered operator.
+    **Return type**
 
-**Returns**
+    If tapering\_values is None
+  </Function>
 
-\[[`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")]; otherwise, [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
+  ## Attributes
 
-**Return type**
+  ### cliffords
 
-If tapering\_values is None
+  <Attribute id="qiskit.quantum_info.Z2Symmetries.cliffords" name="cliffords">
+    Get clifford operators, built based on symmetries and single-qubit X.
 
-<span id="qiskit-quantum-info-z2symmetries-taper-clifford" />
+    **Returns**
 
-### taper\_clifford
+    A list of unitaries used to diagonalize the Hamiltonian.
+  </Attribute>
 
-<span id="qiskit.quantum_info.Z2Symmetries.taper_clifford" />
+  ### settings
 
-`Z2Symmetries.taper_clifford(operator)`
+  <Attribute id="qiskit.quantum_info.Z2Symmetries.settings" name="settings">
+    Return operator settings.
+  </Attribute>
 
-Operate the second part of the tapering. This function assumes that the input operators have already been transformed using [`convert_clifford()`](qiskit.quantum_info.Z2Symmetries#convert_clifford "qiskit.quantum_info.Z2Symmetries.convert_clifford"). The redundant qubits due to the symmetries are dropped and replaced by their two possible eigenvalues.
+  ### sq\_list
 
-**Parameters**
+  <Attribute id="qiskit.quantum_info.Z2Symmetries.sq_list" name="sq_list">
+    Return sq list.
+  </Attribute>
 
-**operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – Partially tapered operator resulting from a call to [`convert_clifford()`](qiskit.quantum_info.Z2Symmetries#convert_clifford "qiskit.quantum_info.Z2Symmetries.convert_clifford").
+  ### sq\_paulis
 
-**Returns**
+  <Attribute id="qiskit.quantum_info.Z2Symmetries.sq_paulis" name="sq_paulis">
+    Return sq paulis.
+  </Attribute>
 
-\[[`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")]; otherwise, [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
+  ### symmetries
 
-**Return type**
-
-If tapering\_values is None
-
-## Attributes
-
-<span id="qiskit.quantum_info.Z2Symmetries.cliffords" />
-
-### cliffords
-
-Get clifford operators, built based on symmetries and single-qubit X.
-
-**Returns**
-
-A list of unitaries used to diagonalize the Hamiltonian.
-
-<span id="qiskit.quantum_info.Z2Symmetries.settings" />
-
-### settings
-
-Return operator settings.
-
-<span id="qiskit.quantum_info.Z2Symmetries.sq_list" />
-
-### sq\_list
-
-Return sq list.
-
-<span id="qiskit.quantum_info.Z2Symmetries.sq_paulis" />
-
-### sq\_paulis
-
-Return sq paulis.
-
-<span id="qiskit.quantum_info.Z2Symmetries.symmetries" />
-
-### symmetries
-
-Return symmetries.
+  <Attribute id="qiskit.quantum_info.Z2Symmetries.symmetries" name="symmetries">
+    Return symmetries.
+  </Attribute>
+</Class>
 

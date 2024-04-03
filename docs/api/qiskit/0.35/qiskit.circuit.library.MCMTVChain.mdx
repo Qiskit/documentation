@@ -8,244 +8,232 @@ python_api_name: qiskit.circuit.library.MCMTVChain
 
 # MCMTVChain
 
-<span id="qiskit.circuit.library.MCMTVChain" />
+<Class id="qiskit.circuit.library.MCMTVChain" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/generalized_gates/mcmt.py" signature="MCMTVChain(gate, num_ctrl_qubits, num_target_qubits, label=None)">
+  Bases: `qiskit.circuit.library.generalized_gates.mcmt.MCMT`
 
-`MCMTVChain(gate, num_ctrl_qubits, num_target_qubits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+  The MCMT implementation using the CCX V-chain.
 
-Bases: `qiskit.circuit.library.generalized_gates.mcmt.MCMT`
+  This implementation requires ancillas but is decomposed into a much shallower circuit than the default implementation in [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT").
 
-The MCMT implementation using the CCX V-chain.
+  **Expanded Circuit:**
 
-This implementation requires ancillas but is decomposed into a much shallower circuit than the default implementation in [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT").
+  **Examples:**
 
-**Expanded Circuit:**
+  > ```python
+  > >>> from qiskit.circuit.library import HGate
+  > >>> MCMTVChain(HGate(), 3, 2).draw()
+  > ```
+  >
+  > **q\_0: ──■────────────────────────■──**
+  >
+  > │ │
+  >
+  > **q\_1: ──■────────────────────────■──**
+  >
+  > │ │
+  >
+  > **q\_2: ──┼────■──────────────■────┼──**
+  >
+  > │ │ ┌───┐ │ │
+  >
+  > **q\_3: ──┼────┼──┤ H ├───────┼────┼──**
+  >
+  > │ │ └─┬─┘┌───┐ │ │
+  >
+  > **q\_4: ──┼────┼────┼──┤ H ├──┼────┼──**
+  >
+  > ┌─┴─┐ │ │ └─┬─┘ │ ┌─┴─┐
+  >
+  > **q\_5: ┤ X ├──■────┼────┼────■──┤ X ├**
+  >
+  > └───┘┌─┴─┐ │ │ ┌─┴─┐└───┘
+  >
+  > **q\_6: ─────┤ X ├──■────■──┤ X ├─────**
+  >
+  > └───┘ └───┘
 
-**Examples:**
+  Create a new multi-control multi-target gate.
 
-> ```python
-> >>> from qiskit.circuit.library import HGate
-> >>> MCMTVChain(HGate(), 3, 2).draw()
-> ```
->
-> **q\_0: ──■────────────────────────■──**
->
-> │ │
->
-> **q\_1: ──■────────────────────────■──**
->
-> │ │
->
-> **q\_2: ──┼────■──────────────■────┼──**
->
-> │ │ ┌───┐ │ │
->
-> **q\_3: ──┼────┼──┤ H ├───────┼────┼──**
->
-> │ │ └─┬─┘┌───┐ │ │
->
-> **q\_4: ──┼────┼────┼──┤ H ├──┼────┼──**
->
-> ┌─┴─┐ │ │ └─┬─┘ │ ┌─┴─┐
->
-> **q\_5: ┤ X ├──■────┼────┼────■──┤ X ├**
->
-> └───┘┌─┴─┐ │ │ ┌─┴─┐└───┘
->
-> **q\_6: ─────┤ X ├──■────■──┤ X ├─────**
->
-> └───┘ └───┘
+  **Parameters**
 
-Create a new multi-control multi-target gate.
+  *   **gate** (`Union`\[`Gate`, `Callable`\[\[`QuantumCircuit`, `Qubit`, `Qubit`], `Instruction`]]) – The gate to be applied controlled on the control qubits and applied to the target qubits. Can be either a Gate or a circuit method. If it is a callable, it will be casted to a Gate.
+  *   **num\_ctrl\_qubits** (`int`) – The number of control qubits.
+  *   **num\_target\_qubits** (`int`) – The number of target qubits.
+  *   **label** (`Optional`\[`str`]) – The name for the controlled circuit block. If None, set to C-name where name is gate.name.
 
-**Parameters**
+  **Raises**
 
-*   **gate** (`Union`\[`Gate`, `Callable`\[\[`QuantumCircuit`, `Qubit`, `Qubit`], `Instruction`]]) – The gate to be applied controlled on the control qubits and applied to the target qubits. Can be either a Gate or a circuit method. If it is a callable, it will be casted to a Gate.
-*   **num\_ctrl\_qubits** (`int`) – The number of control qubits.
-*   **num\_target\_qubits** (`int`) – The number of target qubits.
-*   **label** (`Optional`\[`str`]) – The name for the controlled circuit block. If None, set to C-name where name is gate.name.
+  *   **AttributeError** – If the gate cannot be casted to a controlled gate.
+  *   **AttributeError** – If the number of controls or targets is 0.
 
-**Raises**
+  ## Methods Defined Here
 
-*   **AttributeError** – If the gate cannot be casted to a controlled gate.
-*   **AttributeError** – If the number of controls or targets is 0.
+  ### inverse
 
-## Methods Defined Here
+  <Function id="qiskit.circuit.library.MCMTVChain.inverse" name="inverse" signature="MCMTVChain.inverse()">
+    Return the inverse MCMT circuit, which is itself.
+  </Function>
 
-### inverse
+  ## Attributes
 
-<span id="qiskit.circuit.library.MCMTVChain.inverse" />
+  ### ancillas
 
-`MCMTVChain.inverse()`
+  <Attribute id="qiskit.circuit.library.MCMTVChain.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-Return the inverse MCMT circuit, which is itself.
+    **Return type**
 
-## Attributes
+    `List`\[`AncillaQubit`]
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCMTVChain.ancillas" />
+  ### calibrations
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.MCMTVChain.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **The custom pulse definition of a given gate is of the form**
 
-**Return type**
+    \{‘gate\_name’: \{(qubits, params): schedule}}
 
-`List`\[`AncillaQubit`]
+    **Return type**
 
-<span id="qiskit.circuit.library.MCMTVChain.calibrations" />
+    `dict`
+  </Attribute>
 
-### calibrations
+  ### clbits
 
-Return calibration dictionary.
+  <Attribute id="qiskit.circuit.library.MCMTVChain.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-**The custom pulse definition of a given gate is of the form**
+    **Return type**
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+    `List`\[`Clbit`]
+  </Attribute>
 
-**Return type**
+  ### data
 
-`dict`
+  <Attribute id="qiskit.circuit.library.MCMTVChain.data" name="data">
+    Return the circuit data (instructions and context).
 
-<span id="qiskit.circuit.library.MCMTVChain.clbits" />
+    **Returns**
 
-### clbits
+    a list-like object containing the tuples for the circuit’s data.
 
-Returns a list of classical bits in the order that the registers were added.
+    Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
-**Return type**
+    **Return type**
 
-`List`\[`Clbit`]
+    QuantumCircuitData
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCMTVChain.data" />
+  ### extension\_lib
 
-### data
+  <Attribute id="qiskit.circuit.library.MCMTVChain.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-Return the circuit data (instructions and context).
+  ### global\_phase
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.MCMTVChain.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-a list-like object containing the tuples for the circuit’s data.
+    **Return type**
 
-Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
+    `Union`\[`ParameterExpression`, `float`]
+  </Attribute>
 
-**Return type**
+  ### header
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.MCMTVChain.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-<span id="qiskit.circuit.library.MCMTVChain.extension_lib" />
+  ### instances
 
-### extension\_lib
+  <Attribute id="qiskit.circuit.library.MCMTVChain.instances" name="instances" attributeValue="= 9" />
 
-`= 'include "qelib1.inc";'`
+  ### label
 
-<span id="qiskit.circuit.library.MCMTVChain.global_phase" />
+  <Attribute id="qiskit.circuit.library.MCMTVChain.label" name="label">
+    Get label.
+  </Attribute>
 
-### global\_phase
+  ### metadata
 
-Return the global phase of the circuit in radians.
+  <Attribute id="qiskit.circuit.library.MCMTVChain.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-**Return type**
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-`Union`\[`ParameterExpression`, `float`]
+    **Return type**
 
-<span id="qiskit.circuit.library.MCMTVChain.header" />
+    `dict`
+  </Attribute>
 
-### header
+  ### num\_ancilla\_qubits
 
-`= 'OPENQASM 2.0;'`
+  <Attribute id="qiskit.circuit.library.MCMTVChain.num_ancilla_qubits" name="num_ancilla_qubits">
+    Return the number of ancilla qubits required.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCMTVChain.instances" />
+  ### num\_ancillas
 
-### instances
+  <Attribute id="qiskit.circuit.library.MCMTVChain.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-`= 9`
+    **Return type**
 
-<span id="qiskit.circuit.library.MCMTVChain.label" />
+    `int`
+  </Attribute>
 
-### label
+  ### num\_clbits
 
-Get label.
+  <Attribute id="qiskit.circuit.library.MCMTVChain.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-<span id="qiskit.circuit.library.MCMTVChain.metadata" />
+    **Return type**
 
-### metadata
+    `int`
+  </Attribute>
 
-The user provided metadata associated with the circuit
+  ### num\_parameters
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  <Attribute id="qiskit.circuit.library.MCMTVChain.num_parameters" name="num_parameters">
+    Convenience function to get the number of parameter objects in the circuit.
 
-**Return type**
+    **Return type**
 
-`dict`
+    `int`
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCMTVChain.num_ancilla_qubits" />
+  ### num\_qubits
 
-### num\_ancilla\_qubits
+  <Attribute id="qiskit.circuit.library.MCMTVChain.num_qubits" name="num_qubits">
+    Return number of qubits.
 
-Return the number of ancilla qubits required.
+    **Return type**
 
-<span id="qiskit.circuit.library.MCMTVChain.num_ancillas" />
+    `int`
+  </Attribute>
 
-### num\_ancillas
+  ### parameters
 
-Return the number of ancilla qubits.
+  <Attribute id="qiskit.circuit.library.MCMTVChain.parameters" name="parameters">
+    Convenience function to get the parameters defined in the parameter table.
 
-**Return type**
+    **Return type**
 
-`int`
+    `ParameterView`
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCMTVChain.num_clbits" />
+  ### prefix
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.MCMTVChain.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-Return number of classical bits.
+  ### qubits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.MCMTVChain.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-`int`
+    **Return type**
 
-<span id="qiskit.circuit.library.MCMTVChain.num_parameters" />
-
-### num\_parameters
-
-Convenience function to get the number of parameter objects in the circuit.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.circuit.library.MCMTVChain.num_qubits" />
-
-### num\_qubits
-
-Return number of qubits.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.circuit.library.MCMTVChain.parameters" />
-
-### parameters
-
-Convenience function to get the parameters defined in the parameter table.
-
-**Return type**
-
-`ParameterView`
-
-<span id="qiskit.circuit.library.MCMTVChain.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.MCMTVChain.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[`Qubit`]
+    `List`\[`Qubit`]
+  </Attribute>
+</Class>
 

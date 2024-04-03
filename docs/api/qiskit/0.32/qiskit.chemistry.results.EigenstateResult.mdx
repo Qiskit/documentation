@@ -8,179 +8,153 @@ python_api_name: qiskit.chemistry.results.EigenstateResult
 
 # EigenstateResult
 
-<span id="qiskit.chemistry.results.EigenstateResult" />
+<Class id="qiskit.chemistry.results.EigenstateResult" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/eigenstate_result.py" signature="EigenstateResult(a_dict=None)">
+  Bases: `qiskit.aqua.algorithms.algorithm_result.AlgorithmResult`
 
-`EigenstateResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/eigenstate_result.py "view source code")
+  The eigenstate result interface.
 
-Bases: `qiskit.aqua.algorithms.algorithm_result.AlgorithmResult`
+  ## Methods
 
-The eigenstate result interface.
+  ### clear
 
-## Methods
+  <Function id="qiskit.chemistry.results.EigenstateResult.clear" name="clear" signature="EigenstateResult.clear()">
+    **Return type**
 
-### clear
+    `None`
+  </Function>
 
-<span id="qiskit.chemistry.results.EigenstateResult.clear" />
+  ### combine
 
-`EigenstateResult.clear()`
+  <Function id="qiskit.chemistry.results.EigenstateResult.combine" name="combine" signature="EigenstateResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-**Return type**
+    **Raises**
 
-`None`
+    **TypeError** – Argument is None
 
-### combine
+    **Return type**
 
-<span id="qiskit.chemistry.results.EigenstateResult.combine" />
+    `None`
+  </Function>
 
-`EigenstateResult.combine(result)`
+  ### copy
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+  <Function id="qiskit.chemistry.results.EigenstateResult.copy" name="copy" signature="EigenstateResult.copy()" />
 
-**Raises**
+  ### fromkeys
 
-**TypeError** – Argument is None
+  <Function id="qiskit.chemistry.results.EigenstateResult.fromkeys" name="fromkeys" signature="classmethod EigenstateResult.fromkeys(iterable, value=None)" />
 
-**Return type**
+  ### get
 
-`None`
+  <Function id="qiskit.chemistry.results.EigenstateResult.get" name="get" signature="EigenstateResult.get(k[, d]) → D[k] if k in D, else d. d defaults to None." />
 
-### copy
+  ### items
 
-<span id="qiskit.chemistry.results.EigenstateResult.copy" />
+  <Function id="qiskit.chemistry.results.EigenstateResult.items" name="items" signature="EigenstateResult.items() → a set-like object providing a view on D’s items" />
 
-`EigenstateResult.copy()`
+  ### keys
 
-### fromkeys
+  <Function id="qiskit.chemistry.results.EigenstateResult.keys" name="keys" signature="EigenstateResult.keys() → a set-like object providing a view on D’s keys" />
 
-<span id="qiskit.chemistry.results.EigenstateResult.fromkeys" />
+  ### pop
 
-`classmethod EigenstateResult.fromkeys(iterable, value=None)`
+  <Function id="qiskit.chemistry.results.EigenstateResult.pop" name="pop" signature="EigenstateResult.pop(key, default=None)">
+    If key is not found, d is returned if given, otherwise KeyError is raised.
 
-### get
+    **Return type**
 
-<span id="qiskit.chemistry.results.EigenstateResult.get" />
+    `object`
+  </Function>
 
-`EigenstateResult.get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
+  ### popitem
 
-### items
+  <Function id="qiskit.chemistry.results.EigenstateResult.popitem" name="popitem" signature="EigenstateResult.popitem()">
+    as a 2-tuple; but raise KeyError if D is empty.
 
-<span id="qiskit.chemistry.results.EigenstateResult.items" />
+    **Return type**
 
-`EigenstateResult.items() → a set-like object providing a view on D’s items`
+    `Tuple`\[`object`, `object`]
+  </Function>
 
-### keys
+  ### setdefault
 
-<span id="qiskit.chemistry.results.EigenstateResult.keys" />
+  <Function id="qiskit.chemistry.results.EigenstateResult.setdefault" name="setdefault" signature="EigenstateResult.setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D" />
 
-`EigenstateResult.keys() → a set-like object providing a view on D’s keys`
+  ### update
 
-### pop
+  <Function id="qiskit.chemistry.results.EigenstateResult.update" name="update" signature="EigenstateResult.update(*args, **kwargs)">
+    If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
 
-<span id="qiskit.chemistry.results.EigenstateResult.pop" />
+    **Return type**
 
-`EigenstateResult.pop(key, default=None)`
+    `None`
+  </Function>
 
-If key is not found, d is returned if given, otherwise KeyError is raised.
+  ### values
 
-**Return type**
+  <Function id="qiskit.chemistry.results.EigenstateResult.values" name="values" signature="EigenstateResult.values() → an object providing a view on D’s values" />
 
-`object`
+  ## Attributes
 
-### popitem
+  ### aux\_operator\_eigenvalues
 
-<span id="qiskit.chemistry.results.EigenstateResult.popitem" />
+  <Attribute id="qiskit.chemistry.results.EigenstateResult.aux_operator_eigenvalues" name="aux_operator_eigenvalues">
+    return aux operator eigen values
 
-`EigenstateResult.popitem()`
+    **Return type**
 
-as a 2-tuple; but raise KeyError if D is empty.
+    `Optional`\[`List`\[`float`]]
+  </Attribute>
 
-**Return type**
+  ### eigenenergies
 
-`Tuple`\[`object`, `object`]
+  <Attribute id="qiskit.chemistry.results.EigenstateResult.eigenenergies" name="eigenenergies">
+    returns eigen energies
 
-### setdefault
+    **Return type**
 
-<span id="qiskit.chemistry.results.EigenstateResult.setdefault" />
+    `Optional`\[`ndarray`]
+  </Attribute>
 
-`EigenstateResult.setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
+  ### eigenstates
 
-### update
+  <Attribute id="qiskit.chemistry.results.EigenstateResult.eigenstates" name="eigenstates">
+    returns eigen states
 
-<span id="qiskit.chemistry.results.EigenstateResult.update" />
+    **Return type**
 
-`EigenstateResult.update(*args, **kwargs)`
+    `Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
+  </Attribute>
 
-If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
+  ### groundenergy
 
-**Return type**
+  <Attribute id="qiskit.chemistry.results.EigenstateResult.groundenergy" name="groundenergy">
+    returns ground energy
 
-`None`
+    **Return type**
 
-### values
+    `Optional`\[`float`]
+  </Attribute>
 
-<span id="qiskit.chemistry.results.EigenstateResult.values" />
+  ### groundstate
 
-`EigenstateResult.values() → an object providing a view on D’s values`
+  <Attribute id="qiskit.chemistry.results.EigenstateResult.groundstate" name="groundstate">
+    returns ground state
 
-## Attributes
+    **Return type**
 
-<span id="qiskit.chemistry.results.EigenstateResult.aux_operator_eigenvalues" />
+    `Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
+  </Attribute>
 
-### aux\_operator\_eigenvalues
+  ### raw\_result
 
-return aux operator eigen values
+  <Attribute id="qiskit.chemistry.results.EigenstateResult.raw_result" name="raw_result">
+    Returns the raw algorithm result.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`List`\[`float`]]
-
-<span id="qiskit.chemistry.results.EigenstateResult.eigenenergies" />
-
-### eigenenergies
-
-returns eigen energies
-
-**Return type**
-
-`Optional`\[`ndarray`]
-
-<span id="qiskit.chemistry.results.EigenstateResult.eigenstates" />
-
-### eigenstates
-
-returns eigen states
-
-**Return type**
-
-`Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
-
-<span id="qiskit.chemistry.results.EigenstateResult.groundenergy" />
-
-### groundenergy
-
-returns ground energy
-
-**Return type**
-
-`Optional`\[`float`]
-
-<span id="qiskit.chemistry.results.EigenstateResult.groundstate" />
-
-### groundstate
-
-returns ground state
-
-**Return type**
-
-`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
-
-<span id="qiskit.chemistry.results.EigenstateResult.raw_result" />
-
-### raw\_result
-
-Returns the raw algorithm result.
-
-**Return type**
-
-`Optional`\[`AlgorithmResult`]
+    `Optional`\[`AlgorithmResult`]
+  </Attribute>
+</Class>
 

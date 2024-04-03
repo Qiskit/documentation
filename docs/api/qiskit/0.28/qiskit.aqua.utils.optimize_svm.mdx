@@ -8,31 +8,29 @@ python_api_name: qiskit.aqua.utils.optimize_svm
 
 # qiskit.aqua.utils.optimize\_svm
 
-<span id="qiskit.aqua.utils.optimize_svm" />
+<Function id="qiskit.aqua.utils.optimize_svm" name="optimize_svm" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/qp_solver.py" signature="optimize_svm(kernel_matrix, y, scaling=None, maxiter=500, show_progress=False, max_iters=None, lambda2=0.001)">
+  Solving quadratic programming problem for SVM; thus, some constraints are fixed.
 
-`optimize_svm(kernel_matrix, y, scaling=None, maxiter=500, show_progress=False, max_iters=None, lambda2=0.001)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/qp_solver.py "view source code")
+  **Parameters**
 
-Solving quadratic programming problem for SVM; thus, some constraints are fixed.
+  *   **kernel\_matrix** (`ndarray`) – NxN array
+  *   **y** (`ndarray`) – Nx1 array
+  *   **scaling** (`Optional`\[`float`]) – the scaling factor to renormalize the y, if it is None, use L2-norm of y for normalization
+  *   **maxiter** (`int`) – number of iterations for QP solver
+  *   **show\_progress** (`bool`) – showing the progress of QP solver
+  *   **max\_iters** (`Optional`\[`int`]) – Deprecated, use maxiter.
+  *   **lambda2** (`float`) – L2 Norm regularization factor
 
-**Parameters**
+  **Returns**
 
-*   **kernel\_matrix** (`ndarray`) – NxN array
-*   **y** (`ndarray`) – Nx1 array
-*   **scaling** (`Optional`\[`float`]) – the scaling factor to renormalize the y, if it is None, use L2-norm of y for normalization
-*   **maxiter** (`int`) – number of iterations for QP solver
-*   **show\_progress** (`bool`) – showing the progress of QP solver
-*   **max\_iters** (`Optional`\[`int`]) – Deprecated, use maxiter.
-*   **lambda2** (`float`) – L2 Norm regularization factor
+  Sx1 array, where S is the number of supports np.ndarray: Sx1 array, where S is the number of supports np.ndarray: Sx1 array, where S is the number of supports
 
-**Returns**
+  **Return type**
 
-Sx1 array, where S is the number of supports np.ndarray: Sx1 array, where S is the number of supports np.ndarray: Sx1 array, where S is the number of supports
+  np.ndarray
 
-**Return type**
+  **Raises**
 
-np.ndarray
-
-**Raises**
-
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If cvxpy is not installed
+  [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If cvxpy is not installed
+</Function>
 

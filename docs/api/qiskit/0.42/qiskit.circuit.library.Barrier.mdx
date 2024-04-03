@@ -8,265 +8,239 @@ python_api_name: qiskit.circuit.library.Barrier
 
 # Barrier
 
-<span id="qiskit.circuit.library.Barrier" />
+<Class id="qiskit.circuit.library.Barrier" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/barrier.py" signature="Barrier(num_qubits, label=None)">
+  Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
-`Barrier(num_qubits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/barrier.py "view source code")
+  Barrier instruction.
 
-Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  A barrier is a visual indicator of the grouping of a circuit section. It also acts as a directive for circuit compilation to separate pieces of a circuit so that any optimizations or re-writes are constrained to only act between barriers.
 
-Barrier instruction.
+  Create new barrier instruction.
 
-A barrier is a visual indicator of the grouping of a circuit section. It also acts as a directive for circuit compilation to separate pieces of a circuit so that any optimizations or re-writes are constrained to only act between barriers.
+  **Parameters**
 
-Create new barrier instruction.
+  *   **num\_qubits** (*int*) – the number of qubits for the barrier type \[Default: 0].
+  *   **label** (*str*) – the barrier label
 
-**Parameters**
+  **Raises**
 
-*   **num\_qubits** (*int*) – the number of qubits for the barrier type \[Default: 0].
-*   **label** (*str*) – the barrier label
+  **TypeError** – if barrier label is invalid.
 
-**Raises**
+  ## Methods
 
-**TypeError** – if barrier label is invalid.
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.circuit.library.Barrier.add_decomposition" name="add_decomposition" signature="Barrier.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.circuit.library.Barrier.add_decomposition" />
+  <Function id="qiskit.circuit.library.Barrier.assemble" name="assemble" signature="Barrier.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-`Barrier.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.circuit.library.Barrier.broadcast_arguments" name="broadcast_arguments" signature="Barrier.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.circuit.library.Barrier.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`Barrier.assemble()`
+    **Yields**
 
-Assemble a QasmQobjInstruction
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.circuit.library.Barrier.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`Barrier.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit.circuit.library.Barrier.c_if" name="c_if" signature="Barrier.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-**Parameters**
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  ### copy
 
-**Yields**
+  <Function id="qiskit.circuit.library.Barrier.copy" name="copy" signature="Barrier.copy(name=None)">
+    Copy of the instruction.
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **Parameters**
 
-**Raises**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Returns**
 
-### c\_if
+    **a copy of the current instruction, with the name**
 
-<span id="qiskit.circuit.library.Barrier.c_if" />
+    updated if it was provided
 
-`Barrier.c_if(classical, val)`
+    **Return type**
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  ### inverse
 
-### copy
+  <Function id="qiskit.circuit.library.Barrier.inverse" name="inverse" signature="Barrier.inverse()">
+    Special case. Return self.
+  </Function>
 
-<span id="qiskit.circuit.library.Barrier.copy" />
+  ### is\_parameterized
 
-`Barrier.copy(name=None)`
+  <Function id="qiskit.circuit.library.Barrier.is_parameterized" name="is_parameterized" signature="Barrier.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-Copy of the instruction.
+  ### qasm
 
-**Parameters**
+  <Function id="qiskit.circuit.library.Barrier.qasm" name="qasm" signature="Barrier.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-**Returns**
+  ### repeat
 
-**a copy of the current instruction, with the name**
+  <Function id="qiskit.circuit.library.Barrier.repeat" name="repeat" signature="Barrier.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-updated if it was provided
+    **Parameters**
 
-**Return type**
+    **n** (*int*) – Number of times to repeat the instruction
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Returns**
 
-### inverse
+    Containing the definition.
 
-<span id="qiskit.circuit.library.Barrier.inverse" />
+    **Return type**
 
-`Barrier.inverse()`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-Special case. Return self.
+    **Raises**
 
-### is\_parameterized
+    **CircuitError** – If n \< 1.
+  </Function>
 
-<span id="qiskit.circuit.library.Barrier.is_parameterized" />
+  ### reverse\_ops
 
-`Barrier.is_parameterized()`
+  <Function id="qiskit.circuit.library.Barrier.reverse_ops" name="reverse_ops" signature="Barrier.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-Return True .IFF. instruction is parameterized else False
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-### qasm
+    **Returns**
 
-<span id="qiskit.circuit.library.Barrier.qasm" />
+    **a new instruction with**
 
-`Barrier.qasm()`
+    sub-instructions reversed.
 
-Return a default OpenQASM string for the instruction.
+    **Return type**
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-### repeat
+  ### soft\_compare
 
-<span id="qiskit.circuit.library.Barrier.repeat" />
+  <Function id="qiskit.circuit.library.Barrier.soft_compare" name="soft_compare" signature="Barrier.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-`Barrier.repeat(n)`
+    **Parameters**
 
-Creates an instruction with gate repeated n amount of times.
+    **other** (*instruction*) – other instruction.
 
-**Parameters**
+    **Returns**
 
-**n** (*int*) – Number of times to repeat the instruction
+    are self and other equal up to parameter expressions.
 
-**Returns**
+    **Return type**
 
-Containing the definition.
+    bool
+  </Function>
 
-**Return type**
+  ### validate\_parameter
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit.circuit.library.Barrier.validate_parameter" name="validate_parameter" signature="Barrier.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**CircuitError** – If n \< 1.
+  ### condition\_bits
 
-### reverse\_ops
+  <Attribute id="qiskit.circuit.library.Barrier.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-<span id="qiskit.circuit.library.Barrier.reverse_ops" />
+    **Return type**
 
-`Barrier.reverse_ops()`
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### decompositions
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Attribute id="qiskit.circuit.library.Barrier.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-**Returns**
+  ### definition
 
-**a new instruction with**
+  <Attribute id="qiskit.circuit.library.Barrier.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-sub-instructions reversed.
+  ### duration
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.Barrier.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### label
 
-### soft\_compare
+  <Attribute id="qiskit.circuit.library.Barrier.label" name="label">
+    Return instruction label
 
-<span id="qiskit.circuit.library.Barrier.soft_compare" />
+    **Return type**
 
-`Barrier.soft_compare(other)`
+    `str`
+  </Attribute>
 
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+  ### name
 
-**Parameters**
+  <Attribute id="qiskit.circuit.library.Barrier.name" name="name">
+    Return the name.
+  </Attribute>
 
-**other** (*instruction*) – other instruction.
+  ### num\_clbits
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.Barrier.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-are self and other equal up to parameter expressions.
+  ### num\_qubits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.Barrier.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-bool
+  ### params
 
-### validate\_parameter
+  <Attribute id="qiskit.circuit.library.Barrier.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.Barrier.validate_parameter" />
+  ### unit
 
-`Barrier.validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
-
-## Attributes
-
-<span id="qiskit.circuit.library.Barrier.condition_bits" />
-
-### condition\_bits
-
-Get Clbits in condition.
-
-**Return type**
-
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
-
-<span id="qiskit.circuit.library.Barrier.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.circuit.library.Barrier.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit.circuit.library.Barrier.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit.circuit.library.Barrier.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.library.Barrier.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.Barrier.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.Barrier.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.Barrier.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.Barrier.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.Barrier.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

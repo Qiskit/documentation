@@ -8,54 +8,50 @@ python_api_name: qiskit.primitives.BaseSampler
 
 # BaseSampler
 
-<span id="qiskit.primitives.BaseSampler" />
+<Class id="qiskit.primitives.BaseSampler" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/primitives/base_sampler.py" signature="BaseSampler(circuits: Iterable[QuantumCircuit] | QuantumCircuit, *args, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)">
+  Bases: `abc.ABC`
 
-`BaseSampler(circuits: Iterable[QuantumCircuit] | QuantumCircuit, *args, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/primitives/base_sampler.py "view source code")
+  Sampler base class
 
-Bases: `abc.ABC`
+  Base class of Sampler that calculates quasi-probabilities of bitstrings from quantum circuits.
 
-Sampler base class
+  **Parameters**
 
-Base class of Sampler that calculates quasi-probabilities of bitstrings from quantum circuits.
+  *   **circuits** – Quantum circuits to be executed.
+  *   **parameters** – Parameters of each of the quantum circuits. Defaults to `[circ.parameters for circ in circuits]`.
 
-**Parameters**
+  **Raises**
 
-*   **circuits** – Quantum circuits to be executed.
-*   **parameters** – Parameters of each of the quantum circuits. Defaults to `[circ.parameters for circ in circuits]`.
+  **QiskitError** – For mismatch of circuits and parameters list.
 
-**Raises**
+  ## Methods
 
-**QiskitError** – For mismatch of circuits and parameters list.
+  ### close
 
-## Methods
+  <Function id="qiskit.primitives.BaseSampler.close" name="close" signature="abstract BaseSampler.close()">
+    Close the session and free resources
+  </Function>
 
-### close
+  ## Attributes
 
-<span id="qiskit.primitives.BaseSampler.close" />
+  ### circuits
 
-`abstract BaseSampler.close()`
+  <Attribute id="qiskit.primitives.BaseSampler.circuits" name="circuits">
+    Quantum circuits to be sampled.
 
-Close the session and free resources
+    **Returns**
 
-## Attributes
+    The quantum circuits to be sampled.
+  </Attribute>
 
-<span id="qiskit.primitives.BaseSampler.circuits" />
+  ### parameters
 
-### circuits
+  <Attribute id="qiskit.primitives.BaseSampler.parameters" name="parameters">
+    Parameters of quantum circuits.
 
-Quantum circuits to be sampled.
+    **Returns**
 
-**Returns**
-
-The quantum circuits to be sampled.
-
-<span id="qiskit.primitives.BaseSampler.parameters" />
-
-### parameters
-
-Parameters of quantum circuits.
-
-**Returns**
-
-List of the parameters in each quantum circuit.
+    List of the parameters in each quantum circuit.
+  </Attribute>
+</Class>
 

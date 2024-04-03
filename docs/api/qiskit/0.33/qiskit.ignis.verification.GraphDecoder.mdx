@@ -8,124 +8,112 @@ python_api_name: qiskit.ignis.verification.GraphDecoder
 
 # GraphDecoder
 
-<span id="qiskit.ignis.verification.GraphDecoder" />
+<Class id="qiskit.ignis.verification.GraphDecoder" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/topological_codes/fitters.py" signature="GraphDecoder(code, S=None, brute=False)">
+  Bases: `object`
 
-`GraphDecoder(code, S=None, brute=False)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
+  Class to construct the graph corresponding to the possible syndromes of a quantum error correction code, and then run suitable decoders.
 
-Bases: `object`
+  **Parameters**
 
-Class to construct the graph corresponding to the possible syndromes of a quantum error correction code, and then run suitable decoders.
+  *   **code** (*RepitionCode*) – The QEC Code object for which this decoder will be used.
+  *   **S** (*retworkx.PyGraph*) – Graph describing connectivity between syndrome elements. Will be generated automatically if not supplied.
+  *   **brute** (*bool*) – If False, attempt to use custom method from code class.
 
-**Parameters**
+  **Additional information:**
 
-*   **code** (*RepitionCode*) – The QEC Code object for which this decoder will be used.
-*   **S** (*retworkx.PyGraph*) – Graph describing connectivity between syndrome elements. Will be generated automatically if not supplied.
-*   **brute** (*bool*) – If False, attempt to use custom method from code class.
+  The decoder for the supplied `code` is initialized by running `_make_syndrome_graph()`. Since this process can take some time, it is also possible to load in a premade `S`. However, if this was created for a differently defined `code`, it won’t work properly.
 
-**Additional information:**
+  ## Methods
 
-The decoder for the supplied `code` is initialized by running `_make_syndrome_graph()`. Since this process can take some time, it is also possible to load in a premade `S`. However, if this was created for a differently defined `code`, it won’t work properly.
+  ### get\_error\_probs
 
-## Methods
+  <Function id="qiskit.ignis.verification.GraphDecoder.get_error_probs" name="get_error_probs" signature="GraphDecoder.get_error_probs(results, logical='0')">
+    Generate probabilities of single error events from result counts. :param results: A results dictionary, as produced by the :type results: dict :param process\_results method of the code.: :param logical: Logical value whose results are used. :type logical: string
 
-### get\_error\_probs
+    **Returns**
 
-<span id="qiskit.ignis.verification.GraphDecoder.get_error_probs" />
+    Keys are the edges for specific error events, and values are the calculated probabilities
 
-`GraphDecoder.get_error_probs(results, logical='0')`
+    **Return type**
 
-Generate probabilities of single error events from result counts. :param results: A results dictionary, as produced by the :type results: dict :param process\_results method of the code.: :param logical: Logical value whose results are used. :type logical: string
+    dict
 
-**Returns**
+    #### Additional information:
 
-Keys are the edges for specific error events, and values are the calculated probabilities
+    Uses results to estimate the probability of the errors that create the pairs of nodes specified by the edge. Calculation done using the method of Spitz, et al. [https://doi.org/10.1002/qute.201800012](https://doi.org/10.1002/qute.201800012)
+  </Function>
 
-**Return type**
+  ### get\_logical\_prob
 
-dict
+  <Function id="qiskit.ignis.verification.GraphDecoder.get_logical_prob" name="get_logical_prob" signature="GraphDecoder.get_logical_prob(results, algorithm='matching')">
+    **Parameters**
 
-#### Additional information:
+    *   **results** (*dict*) – A results dictionary, as produced by the
+    *   **method of the code.** (*process\_results*) –
+    *   **algorithm** (*str*) – Choice of which decoder to use.
 
-Uses results to estimate the probability of the errors that create the pairs of nodes specified by the edge. Calculation done using the method of Spitz, et al. [https://doi.org/10.1002/qute.201800012](https://doi.org/10.1002/qute.201800012)
+    **Returns**
 
-### get\_logical\_prob
+    Dictionary of logical error probabilities for each of the encoded logical states whose results were given in the input.
 
-<span id="qiskit.ignis.verification.GraphDecoder.get_logical_prob" />
+    **Return type**
 
-`GraphDecoder.get_logical_prob(results, algorithm='matching')`
+    dict
+  </Function>
 
-**Parameters**
+  ### make\_error\_graph
 
-*   **results** (*dict*) – A results dictionary, as produced by the
-*   **method of the code.** (*process\_results*) –
-*   **algorithm** (*str*) – Choice of which decoder to use.
+  <Function id="qiskit.ignis.verification.GraphDecoder.make_error_graph" name="make_error_graph" signature="GraphDecoder.make_error_graph(string, subgraphs=None)">
+    **Parameters**
 
-**Returns**
+    *   **string** (*str*) – A string describing the output from the code.
+    *   **subgraphs** (*list*) – Used when multiple, semi-independent graphs need
+    *   **to created.** (*need*) –
 
-Dictionary of logical error probabilities for each of the encoded logical states whose results were given in the input.
+    **Returns**
 
-**Return type**
+    The subgraph(s) of S which corresponds to the non-trivial syndrome elements in the given string.
 
-dict
+    **Return type**
 
-### make\_error\_graph
+    E
+  </Function>
 
-<span id="qiskit.ignis.verification.GraphDecoder.make_error_graph" />
+  ### matching
 
-`GraphDecoder.make_error_graph(string, subgraphs=None)`
+  <Function id="qiskit.ignis.verification.GraphDecoder.matching" name="matching" signature="GraphDecoder.matching(string)">
+    **Parameters**
 
-**Parameters**
+    **string** (*str*) – A string describing the output from the code.
 
-*   **string** (*str*) – A string describing the output from the code.
-*   **subgraphs** (*list*) – Used when multiple, semi-independent graphs need
-*   **to created.** (*need*) –
+    **Returns**
 
-**Returns**
+    **A string with corrected logical values,**
 
-The subgraph(s) of S which corresponds to the non-trivial syndrome elements in the given string.
+    computed using minimum weight perfect matching.
 
-**Return type**
+    **Return type**
 
-E
+    str
 
-### matching
+    #### Additional information:
 
-<span id="qiskit.ignis.verification.GraphDecoder.matching" />
+    This function can be run directly, or used indirectly to calculate a logical error probability with get\_logical\_prob
+  </Function>
 
-`GraphDecoder.matching(string)`
+  ### weight\_syndrome\_graph
 
-**Parameters**
+  <Function id="qiskit.ignis.verification.GraphDecoder.weight_syndrome_graph" name="weight_syndrome_graph" signature="GraphDecoder.weight_syndrome_graph(results)">
+    Generate weighted syndrome graph from result counts.
 
-**string** (*str*) – A string describing the output from the code.
+    **Parameters**
 
-**Returns**
+    *   **results** (*dict*) – A results dictionary, as produced by the
+    *   **method of the code.** (*process\_results*) –
 
-**A string with corrected logical values,**
+    #### Additional information:
 
-computed using minimum weight perfect matching.
-
-**Return type**
-
-str
-
-#### Additional information:
-
-This function can be run directly, or used indirectly to calculate a logical error probability with get\_logical\_prob
-
-### weight\_syndrome\_graph
-
-<span id="qiskit.ignis.verification.GraphDecoder.weight_syndrome_graph" />
-
-`GraphDecoder.weight_syndrome_graph(results)`
-
-Generate weighted syndrome graph from result counts.
-
-**Parameters**
-
-*   **results** (*dict*) – A results dictionary, as produced by the
-*   **method of the code.** (*process\_results*) –
-
-#### Additional information:
-
-Uses results to estimate the probability of the errors that create the pairs of nodes in S. The edge weights are then replaced with the corresponding -log(p/(1-p).
+    Uses results to estimate the probability of the errors that create the pairs of nodes in S. The edge weights are then replaced with the corresponding -log(p/(1-p).
+  </Function>
+</Class>
 

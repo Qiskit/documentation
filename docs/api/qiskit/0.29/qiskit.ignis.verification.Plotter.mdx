@@ -8,62 +8,54 @@ python_api_name: qiskit.ignis.verification.Plotter
 
 # Plotter
 
-<span id="qiskit.ignis.verification.Plotter" />
+<Class id="qiskit.ignis.verification.Plotter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/entanglement/analysis.py" signature="Plotter(label)">
+  Bases: `object`
 
-`Plotter(label)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/entanglement/analysis.py "view source code")
+  Various plots of the ground state in MQC and PO experiments
 
-Bases: `object`
+  ## Methods
 
-Various plots of the ground state in MQC and PO experiments
+  ### get\_fourier\_info
 
-## Methods
+  <Function id="qiskit.ignis.verification.Plotter.get_fourier_info" name="get_fourier_info" signature="Plotter.get_fourier_info(qn, x, y, y_m, p_dict)">
+    Get fourier trans. data/plot of both mqc and po exps. :type qn: `int` :param qn: Number of qubits :type x: `array` :param x: Phase series :type y: `array` :param y: Counts series :type y\_m: `array` :param y\_m: Mitigated counts series :type p\_dict: `Dict` :param p\_dict: probabilities dictionary
 
-### get\_fourier\_info
+    **Return type**
 
-<span id="qiskit.ignis.verification.Plotter.get_fourier_info" />
+    `Dict`
 
-`Plotter.get_fourier_info(qn, x, y, y_m, p_dict)`
+    **Returns**
 
-Get fourier trans. data/plot of both mqc and po exps. :type qn: `int` :param qn: Number of qubits :type x: `array` :param x: Phase series :type y: `array` :param y: Counts series :type y\_m: `array` :param y\_m: Mitigated counts series :type p\_dict: `Dict` :param p\_dict: probabilities dictionary
+    The fourier transform data
 
-**Return type**
+    **Raises**
 
-`Dict`
+    *   **ImportError** – If matplotlib is not present
+    *   **Exception** – If y\_m or p\_dict are not provided
+  </Function>
 
-**Returns**
+  ### sin\_plotter
 
-The fourier transform data
+  <Function id="qiskit.ignis.verification.Plotter.sin_plotter" name="sin_plotter" signature="Plotter.sin_plotter(x, y, y_m=None)">
+    Make sin plot of counts in both mqc and po exps. :type x: `array` :param x: Phase series :type y: `array` :param y: Counts series :type y\_m: `Optional`\[`array`] :param y\_m: Mitigated counts series
 
-**Raises**
+    **Raises**
 
-*   **ImportError** – If matplotlib is not present
-*   **Exception** – If y\_m or p\_dict are not provided
+    **ImportError** – If matplotlib is not present
+  </Function>
 
-### sin\_plotter
+  ### title\_maker
 
-<span id="qiskit.ignis.verification.Plotter.sin_plotter" />
+  <Function id="qiskit.ignis.verification.Plotter.title_maker" name="title_maker" signature="Plotter.title_maker()">
+    Make title depending on type of exp.
 
-`Plotter.sin_plotter(x, y, y_m=None)`
+    **Return type**
 
-Make sin plot of counts in both mqc and po exps. :type x: `array` :param x: Phase series :type y: `array` :param y: Counts series :type y\_m: `Optional`\[`array`] :param y\_m: Mitigated counts series
+    `Tuple`\[`str`, `str`]
 
-**Raises**
+    **Returns**
 
-**ImportError** – If matplotlib is not present
-
-### title\_maker
-
-<span id="qiskit.ignis.verification.Plotter.title_maker" />
-
-`Plotter.title_maker()`
-
-Make title depending on type of exp.
-
-**Return type**
-
-`Tuple`\[`str`, `str`]
-
-**Returns**
-
-The title strings
+    The title strings
+  </Function>
+</Class>
 

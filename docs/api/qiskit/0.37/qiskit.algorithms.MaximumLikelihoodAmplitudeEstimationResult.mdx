@@ -8,161 +8,157 @@ python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult
 
 # MaximumLikelihoodAmplitudeEstimationResult
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult" />
+<Class id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/mlae.py" signature="MaximumLikelihoodAmplitudeEstimationResult">
+  Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult`](qiskit.algorithms.AmplitudeEstimatorResult "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult")
 
-`MaximumLikelihoodAmplitudeEstimationResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/mlae.py "view source code")
+  The `MaximumLikelihoodAmplitudeEstimation` result object.
 
-Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult`](qiskit.algorithms.AmplitudeEstimatorResult "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult")
+  ## Methods
 
-The `MaximumLikelihoodAmplitudeEstimation` result object.
+  ### combine
 
-## Methods
+  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.combine" name="combine" signature="MaximumLikelihoodAmplitudeEstimationResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-### combine
+    **Raises**
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.combine" />
+    **TypeError** – Argument is None
 
-`MaximumLikelihoodAmplitudeEstimationResult.combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    `None`
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**TypeError** – Argument is None
+  ### circuit\_results
 
-**Return type**
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.circuit_results" name="circuit_results">
+    Return the circuit results. Can be a statevector or counts dictionary.
 
-`None`
+    **Return type**
 
-## Attributes
+    `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
+  </Attribute>
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.circuit_results" />
+  ### confidence\_interval
 
-### circuit\_results
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.confidence_interval" name="confidence_interval">
+    Return the confidence interval for the amplitude (95% interval by default).
 
-Return the circuit results. Can be a statevector or counts dictionary.
+    **Return type**
 
-**Return type**
+    `Tuple`\[`float`, `float`]
+  </Attribute>
 
-`Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
+  ### confidence\_interval\_processed
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.confidence_interval" />
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.confidence_interval_processed" name="confidence_interval_processed">
+    Return the post-processed confidence interval (95% interval by default).
 
-### confidence\_interval
+    **Return type**
 
-Return the confidence interval for the amplitude (95% interval by default).
+    `Tuple`\[`float`, `float`]
+  </Attribute>
 
-**Return type**
+  ### estimation
 
-`Tuple`\[`float`, `float`]
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.estimation" name="estimation">
+    Return the estimation for the amplitude in $[0, 1]$.
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.confidence_interval_processed" />
+    **Return type**
 
-### confidence\_interval\_processed
+    `float`
+  </Attribute>
 
-Return the post-processed confidence interval (95% interval by default).
+  ### estimation\_processed
 
-**Return type**
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.estimation_processed" name="estimation_processed">
+    Return the estimation for the amplitude after the post-processing has been applied.
 
-`Tuple`\[`float`, `float`]
+    **Return type**
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.estimation" />
+    `float`
+  </Attribute>
 
-### estimation
+  ### evaluation\_schedule
 
-Return the estimation for the amplitude in $[0, 1]$.
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.evaluation_schedule" name="evaluation_schedule">
+    Return the evaluation schedule for the powers of the Grover operator.
 
-**Return type**
+    **Return type**
 
-`float`
+    `List`\[`int`]
+  </Attribute>
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.estimation_processed" />
+  ### fisher\_information
 
-### estimation\_processed
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.fisher_information" name="fisher_information">
+    Return the Fisher information for the estimated amplitude.
 
-Return the estimation for the amplitude after the post-processing has been applied.
+    **Return type**
 
-**Return type**
+    `float`
+  </Attribute>
 
-`float`
+  ### good\_counts
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.evaluation_schedule" />
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.good_counts" name="good_counts">
+    Return the percentage of good counts per circuit power.
 
-### evaluation\_schedule
+    **Return type**
 
-Return the evaluation schedule for the powers of the Grover operator.
+    `List`\[`float`]
+  </Attribute>
 
-**Return type**
+  ### minimizer
 
-`List`\[`int`]
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.minimizer" name="minimizer">
+    Return the minimizer used for the search of the likelihood function.
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.fisher_information" />
+    **Return type**
 
-### fisher\_information
+    `callable`
+  </Attribute>
 
-Return the Fisher information for the estimated amplitude.
+  ### num\_oracle\_queries
 
-**Return type**
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.num_oracle_queries" name="num_oracle_queries">
+    Return the number of Grover oracle queries.
 
-`float`
+    **Return type**
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.good_counts" />
+    `int`
+  </Attribute>
 
-### good\_counts
+  ### post\_processing
 
-Return the percentage of good counts per circuit power.
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.post_processing" name="post_processing">
+    Return a handle to the post processing function.
 
-**Return type**
+    **Return type**
 
-`List`\[`float`]
+    `Callable`\[\[`float`], `float`]
+  </Attribute>
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.minimizer" />
+  ### shots
 
-### minimizer
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.shots" name="shots">
+    Return the number of shots used. Is 1 for statevector-based simulations.
 
-Return the minimizer used for the search of the likelihood function.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`callable`
+  ### theta
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.num_oracle_queries" />
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.theta" name="theta">
+    Return the estimate for the angle $\theta$.
 
-### num\_oracle\_queries
+    **Return type**
 
-Return the number of Grover oracle queries.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.post_processing" />
-
-### post\_processing
-
-Return a handle to the post processing function.
-
-**Return type**
-
-`Callable`\[\[`float`], `float`]
-
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.shots" />
-
-### shots
-
-Return the number of shots used. Is 1 for statevector-based simulations.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.theta" />
-
-### theta
-
-Return the estimate for the angle $\theta$.
-
-**Return type**
-
-`float`
+    `float`
+  </Attribute>
+</Class>
 

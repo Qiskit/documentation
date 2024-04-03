@@ -8,42 +8,38 @@ python_api_name: qiskit.opflow.gradients.CircuitQFI
 
 # CircuitQFI
 
-<span id="qiskit.opflow.gradients.CircuitQFI" />
+<Class id="qiskit.opflow.gradients.CircuitQFI" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py" signature="CircuitQFI">
+  Bases: `qiskit.opflow.converters.converter_base.ConverterBase`
 
-`CircuitQFI` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
+  Circuit to Quantum Fisher Information operator converter.
 
-Bases: `qiskit.opflow.converters.converter_base.ConverterBase`
+  Converter for changing parameterized circuits into operators whose evaluation yields Quantum Fisher Information metric tensor with respect to the given circuit parameters
 
-Circuit to Quantum Fisher Information operator converter.
+  This is distinct from DerivativeBase converters which take gradients of composite operators and handle things like differentiating combo\_fn’s and enforcing product rules when operator coefficients are parameterized.
 
-Converter for changing parameterized circuits into operators whose evaluation yields Quantum Fisher Information metric tensor with respect to the given circuit parameters
+  CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
 
-This is distinct from DerivativeBase converters which take gradients of composite operators and handle things like differentiating combo\_fn’s and enforcing product rules when operator coefficients are parameterized.
+  ## Methods Defined Here
 
-CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
+  ### convert
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.gradients.CircuitQFI.convert" name="convert" signature="abstract CircuitQFI.convert(operator, params)">
+    **Parameters**
 
-### convert
+    *   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
+    *   **params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`]]) – The parameters $\omega$ with respect to which we are computing the QFI.
 
-<span id="qiskit.opflow.gradients.CircuitQFI.convert" />
+    **Return type**
 
-`abstract CircuitQFI.convert(operator, params)`
+    `OperatorBase`
 
-**Parameters**
+    **Returns**
 
-*   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
-*   **params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`]]) – The parameters $\omega$ with respect to which we are computing the QFI.
+    An operator whose evaluation yields the QFI metric tensor.
 
-**Return type**
+    **Raises**
 
-`OperatorBase`
-
-**Returns**
-
-An operator whose evaluation yields the QFI metric tensor.
-
-**Raises**
-
-**ValueError** – If `params` contains a parameter not present in `operator`.
+    **ValueError** – If `params` contains a parameter not present in `operator`.
+  </Function>
+</Class>
 

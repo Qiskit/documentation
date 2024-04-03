@@ -8,92 +8,86 @@ python_api_name: qiskit_aer.noise.LocalNoisePass
 
 # LocalNoisePass
 
-<span id="qiskit_aer.noise.LocalNoisePass" />
+<Class id="qiskit_aer.noise.LocalNoisePass" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/passes/local_noise_pass.py" signature="LocalNoisePass(func, op_types=None, method='append')">
+  Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-`LocalNoisePass(func, op_types=None, method='append')` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/passes/local_noise_pass.py "view source code")
+  Transpiler pass to insert noise into a circuit.
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+  The noise in this pass is defined by a noise function or callable with signature
 
-Transpiler pass to insert noise into a circuit.
+  ```python
+  def func(
+      inst: Instruction,
+      qubits: Optional[List[int]] = None
+  ) -> InstructionLike:
+  ```
 
-The noise in this pass is defined by a noise function or callable with signature
+  For every instance of one of the reference instructions in a circuit the supplied function is called on that instruction and the returned noise is added to the circuit. This noise can depend on properties of the instruction it is called on (for example parameters or duration) to allow inserting parameterized noise models.
 
-```python
-def func(
-    inst: Instruction,
-    qubits: Optional[List[int]] = None
-) -> InstructionLike:
-```
+  Several methods for adding the constructed errors to circuits are supported and can be set by using the `method` kwarg. The supported methods are
 
-For every instance of one of the reference instructions in a circuit the supplied function is called on that instruction and the returned noise is added to the circuit. This noise can depend on properties of the instruction it is called on (for example parameters or duration) to allow inserting parameterized noise models.
+  *   `"append"`: add the return of the callable after the instruction.
 
-Several methods for adding the constructed errors to circuits are supported and can be set by using the `method` kwarg. The supported methods are
+  *   `"prepend"`: add the return of the callable before the instruction.
 
-*   `"append"`: add the return of the callable after the instruction.
+  *   **`"replace"`: replace the instruction with the return of the callable.**
 
-*   `"prepend"`: add the return of the callable before the instruction.
+      If the return is None, the instruction will be removed.
 
-*   **`"replace"`: replace the instruction with the return of the callable.**
+  Initialize noise pass.
 
-    If the return is None, the instruction will be removed.
+  **Parameters**
 
-Initialize noise pass.
+  *   **func** (`Callable`\[\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), `Sequence`\[`int`]], `Union`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), [`QuantumError`](qiskit_aer.noise.QuantumError "qiskit_aer.noise.errors.quantum_error.QuantumError"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `None`]]) – noise function func(inst, qubits) -> InstructionLike.
+  *   **op\_types** (`Union`\[`type`, `Iterable`\[`type`], `None`]) – Optional, single or list of instruction types to apply the noise function to. If None the noise function will be applied to all instructions in the circuit.
+  *   **method** (`str`) – method for inserting noise. Allow methods are ‘append’, ‘prepend’, ‘replace’.
 
-**Parameters**
+  **Raises**
 
-*   **func** (`Callable`\[\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), `Sequence`\[`int`]], `Union`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), [`QuantumError`](qiskit_aer.noise.QuantumError "qiskit_aer.noise.errors.quantum_error.QuantumError"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `None`]]) – noise function func(inst, qubits) -> InstructionLike.
-*   **op\_types** (`Union`\[`type`, `Iterable`\[`type`], `None`]) – Optional, single or list of instruction types to apply the noise function to. If None the noise function will be applied to all instructions in the circuit.
-*   **method** (`str`) – method for inserting noise. Allow methods are ‘append’, ‘prepend’, ‘replace’.
+  [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if an invalid option is specified.
 
-**Raises**
+  ## Methods
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if an invalid option is specified.
+  ### name
 
-## Methods
+  <Function id="qiskit_aer.noise.LocalNoisePass.name" name="name" signature="LocalNoisePass.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit_aer.noise.LocalNoisePass.name" />
+  <Function id="qiskit_aer.noise.LocalNoisePass.run" name="run" signature="LocalNoisePass.run(dag)">
+    Run the LocalNoisePass pass on dag. :type dag: [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit") :param dag: DAG to be changed.
 
-`LocalNoisePass.name()`
+    **Return type**
 
-Return the name of the pass.
+    [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
 
-### run
+    **Returns**
 
-<span id="qiskit_aer.noise.LocalNoisePass.run" />
+    A changed DAG.
 
-`LocalNoisePass.run(dag)`
+    **Raises**
 
-Run the LocalNoisePass pass on dag. :type dag: [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit") :param dag: DAG to be changed.
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if generated operation is not valid.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+  ### is\_analysis\_pass
 
-**Returns**
+  <Attribute id="qiskit_aer.noise.LocalNoisePass.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-A changed DAG.
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-**Raises**
+  ### is\_transformation\_pass
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if generated operation is not valid.
+  <Attribute id="qiskit_aer.noise.LocalNoisePass.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-## Attributes
-
-<span id="qiskit_aer.noise.LocalNoisePass.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit_aer.noise.LocalNoisePass.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

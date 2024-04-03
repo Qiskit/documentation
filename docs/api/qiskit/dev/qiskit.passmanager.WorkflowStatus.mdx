@@ -8,43 +8,31 @@ python_api_name: qiskit.passmanager.WorkflowStatus
 
 # WorkflowStatus
 
-<span id="qiskit.passmanager.WorkflowStatus" />
+<Class id="qiskit.passmanager.WorkflowStatus" github="https://github.com/qiskit/qiskit/tree/main/qiskit/passmanager/compilation_status.py" signature="qiskit.passmanager.WorkflowStatus(count=0, completed_passes=<factory>, previous_run=RunState.FAIL)">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.passmanager.WorkflowStatus(count=0, completed_passes=<factory>, previous_run=RunState.FAIL)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/passmanager/compilation_status.py "view source code")
+  Collection of compilation status of workflow, i.e. pass manager run.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  This data structure is initialized when the pass manager is run, and recursively handed over to underlying tasks. Each pass will update this status once after being executed, and the lifetime of the workflow status object is the time during which the pass manager is running.
 
-Collection of compilation status of workflow, i.e. pass manager run.
+  ## Attributes
 
-This data structure is initialized when the pass manager is run, and recursively handed over to underlying tasks. Each pass will update this status once after being executed, and the lifetime of the workflow status object is the time during which the pass manager is running.
+  ### count
 
-## Attributes
+  <Attribute id="qiskit.passmanager.WorkflowStatus.count" name="count" attributeTypeHint="int" attributeValue="= 0">
+    Current number of pass execution.
+  </Attribute>
 
-<span id="qiskit.passmanager.WorkflowStatus.count" />
+  ### previous\_run
 
-### count
+  <Attribute id="qiskit.passmanager.WorkflowStatus.previous_run" name="previous_run" attributeTypeHint="RunState" attributeValue="= 1">
+    Status of the latest pass run.
+  </Attribute>
 
-`int`
+  ### completed\_passes
 
-`= 0`
-
-Current number of pass execution.
-
-<span id="qiskit.passmanager.WorkflowStatus.previous_run" />
-
-### previous\_run
-
-`RunState`
-
-`= 1`
-
-Status of the latest pass run.
-
-<span id="qiskit.passmanager.WorkflowStatus.completed_passes" />
-
-### completed\_passes
-
-`set`
-
-Passes already run that have not been invalidated.
+  <Attribute id="qiskit.passmanager.WorkflowStatus.completed_passes" name="completed_passes" attributeTypeHint="set">
+    Passes already run that have not been invalidated.
+  </Attribute>
+</Class>
 

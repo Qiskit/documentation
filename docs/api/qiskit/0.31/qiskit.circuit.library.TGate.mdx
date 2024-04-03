@@ -8,88 +8,84 @@ python_api_name: qiskit.circuit.library.TGate
 
 # TGate
 
-<span id="qiskit.circuit.library.TGate" />
+<Class id="qiskit.circuit.library.TGate" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/t.py" signature="TGate(label=None)">
+  Bases: `qiskit.circuit.gate.Gate`
 
-`TGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/t.py "view source code")
+  Single qubit T gate (Z\*\*0.25).
 
-Bases: `qiskit.circuit.gate.Gate`
+  It induces a $\pi/4$ phase, and is sometimes called the pi/8 gate (because of how the RZ(pi/4) matrix looks like).
 
-Single qubit T gate (Z\*\*0.25).
+  This is a non-Clifford gate and a fourth-root of Pauli-Z.
 
-It induces a $\pi/4$ phase, and is sometimes called the pi/8 gate (because of how the RZ(pi/4) matrix looks like).
+  **Matrix Representation:**
 
-This is a non-Clifford gate and a fourth-root of Pauli-Z.
+  $$
+  \begin{split}T = \begin{pmatrix}
+          1 & 0 \\
+          0 & e^{i\pi/4}
+      \end{pmatrix}\end{split}
+  $$
 
-**Matrix Representation:**
+  **Circuit symbol:**
 
-$$
-\begin{split}T = \begin{pmatrix}
-        1 & 0 \\
-        0 & e^{i\pi/4}
-    \end{pmatrix}\end{split}
-$$
+  ```python
+       ┌───┐
+  q_0: ┤ T ├
+       └───┘
+  ```
 
-**Circuit symbol:**
+  Equivalent to a $\pi/4$ radian rotation about the Z axis.
 
-```python
-     ┌───┐
-q_0: ┤ T ├
-     └───┘
-```
+  Create new T gate.
 
-Equivalent to a $\pi/4$ radian rotation about the Z axis.
+  ## Methods Defined Here
 
-Create new T gate.
+  ### inverse
 
-## Methods Defined Here
+  <Function id="qiskit.circuit.library.TGate.inverse" name="inverse" signature="TGate.inverse()">
+    Return inverse T gate (i.e. Tdg).
+  </Function>
 
-### inverse
+  ## Attributes
 
-<span id="qiskit.circuit.library.TGate.inverse" />
+  ### decompositions
 
-`TGate.inverse()`
+  <Attribute id="qiskit.circuit.library.TGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Return inverse T gate (i.e. Tdg).
+  ### definition
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.TGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.circuit.library.TGate.decompositions" />
+  ### duration
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.TGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### label
 
-<span id="qiskit.circuit.library.TGate.definition" />
+  <Attribute id="qiskit.circuit.library.TGate.label" name="label">
+    Return instruction label
 
-### definition
+    **Return type**
 
-Return definition in terms of other basic gates.
+    `str`
+  </Attribute>
 
-<span id="qiskit.circuit.library.TGate.duration" />
+  ### params
 
-### duration
+  <Attribute id="qiskit.circuit.library.TGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Get the duration.
+  ### unit
 
-<span id="qiskit.circuit.library.TGate.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.library.TGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.TGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.TGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

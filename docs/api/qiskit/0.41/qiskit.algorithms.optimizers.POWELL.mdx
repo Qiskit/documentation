@@ -8,220 +8,204 @@ python_api_name: qiskit.algorithms.optimizers.POWELL
 
 # POWELL
 
-<span id="qiskit.algorithms.optimizers.POWELL" />
+<Class id="qiskit.algorithms.optimizers.POWELL" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/powell.py" signature="POWELL(maxiter=None, maxfev=1000, disp=False, xtol=0.0001, tol=None, options=None, **kwargs)">
+  Bases: [`qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
 
-`POWELL(maxiter=None, maxfev=1000, disp=False, xtol=0.0001, tol=None, options=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/powell.py "view source code")
+  Powell optimizer.
 
-Bases: [`qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
+  The Powell algorithm performs unconstrained optimization; it ignores bounds or constraints. Powell is a *conjugate direction method*: it performs sequential one-dimensional minimization along each directional vector, which is updated at each iteration of the main minimization loop. The function being minimized need not be differentiable, and no derivatives are taken.
 
-Powell optimizer.
+  Uses scipy.optimize.minimize Powell. For further detail, please refer to See [https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html)
 
-The Powell algorithm performs unconstrained optimization; it ignores bounds or constraints. Powell is a *conjugate direction method*: it performs sequential one-dimensional minimization along each directional vector, which is updated at each iteration of the main minimization loop. The function being minimized need not be differentiable, and no derivatives are taken.
+  **Parameters**
 
-Uses scipy.optimize.minimize Powell. For further detail, please refer to See [https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html)
+  *   **maxiter** (`Optional`\[`int`]) – Maximum allowed number of iterations. If both maxiter and maxfev are set, minimization will stop at the first reached.
+  *   **maxfev** (`int`) – Maximum allowed number of function evaluations. If both maxiter and maxfev are set, minimization will stop at the first reached.
+  *   **disp** (`bool`) – Set to True to print convergence messages.
+  *   **xtol** (`float`) – Relative error in solution xopt acceptable for convergence.
+  *   **tol** (`Optional`\[`float`]) – Tolerance for termination.
+  *   **options** (`Optional`\[`dict`]) – A dictionary of solver options.
+  *   **kwargs** – additional kwargs for scipy.optimize.minimize.
 
-**Parameters**
+  ## Methods
 
-*   **maxiter** (`Optional`\[`int`]) – Maximum allowed number of iterations. If both maxiter and maxfev are set, minimization will stop at the first reached.
-*   **maxfev** (`int`) – Maximum allowed number of function evaluations. If both maxiter and maxfev are set, minimization will stop at the first reached.
-*   **disp** (`bool`) – Set to True to print convergence messages.
-*   **xtol** (`float`) – Relative error in solution xopt acceptable for convergence.
-*   **tol** (`Optional`\[`float`]) – Tolerance for termination.
-*   **options** (`Optional`\[`dict`]) – A dictionary of solver options.
-*   **kwargs** – additional kwargs for scipy.optimize.minimize.
+  ### get\_support\_level
 
-## Methods
+  <Function id="qiskit.algorithms.optimizers.POWELL.get_support_level" name="get_support_level" signature="POWELL.get_support_level()">
+    Return support level dictionary
+  </Function>
 
-### get\_support\_level
+  ### gradient\_num\_diff
 
-<span id="qiskit.algorithms.optimizers.POWELL.get_support_level" />
+  <Function id="qiskit.algorithms.optimizers.POWELL.gradient_num_diff" name="gradient_num_diff" signature="static POWELL.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-`POWELL.get_support_level()`
+    **Parameters**
 
-Return support level dictionary
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped, defaults to 1 (i.e. no batching).
 
-### gradient\_num\_diff
+    **Returns**
 
-<span id="qiskit.algorithms.optimizers.POWELL.gradient_num_diff" />
+    the gradient computed
 
-`static POWELL.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)`
+    **Return type**
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+    grad
+  </Function>
 
-**Parameters**
+  ### minimize
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped, defaults to 1 (i.e. no batching).
+  <Function id="qiskit.algorithms.optimizers.POWELL.minimize" name="minimize" signature="POWELL.minimize(fun, x0, jac=None, bounds=None)">
+    Minimize the scalar function.
 
-**Returns**
+    **Parameters**
 
-the gradient computed
+    *   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
+    *   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
+    *   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
+    *   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
 
-**Return type**
+    **Return type**
 
-grad
+    [`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
 
-### minimize
+    **Returns**
 
-<span id="qiskit.algorithms.optimizers.POWELL.minimize" />
+    The result of the optimization, containing e.g. the result as attribute `x`.
+  </Function>
 
-`POWELL.minimize(fun, x0, jac=None, bounds=None)`
+  ### print\_options
 
-Minimize the scalar function.
+  <Function id="qiskit.algorithms.optimizers.POWELL.print_options" name="print_options" signature="POWELL.print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-**Parameters**
+  ### set\_max\_evals\_grouped
 
-*   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
-*   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
-*   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
-*   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+  <Function id="qiskit.algorithms.optimizers.POWELL.set_max_evals_grouped" name="set_max_evals_grouped" signature="POWELL.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-**Return type**
+  ### set\_options
 
-[`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
+  <Function id="qiskit.algorithms.optimizers.POWELL.set_options" name="set_options" signature="POWELL.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-**Returns**
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-The result of the optimization, containing e.g. the result as attribute `x`.
+    **Parameters**
 
-### print\_options
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.POWELL.print_options" />
+  ### wrap\_function
 
-`POWELL.print_options()`
+  <Function id="qiskit.algorithms.optimizers.POWELL.wrap_function" name="wrap_function" signature="static POWELL.wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-Print algorithm-specific options.
+    **Parameters**
 
-### set\_max\_evals\_grouped
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-<span id="qiskit.algorithms.optimizers.POWELL.set_max_evals_grouped" />
+    **Returns**
 
-`POWELL.set_max_evals_grouped(limit)`
+    wrapper
 
-Set max evals grouped
+    **Return type**
 
-### set\_options
+    function\_wrapper
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.POWELL.set_options" />
+  ## Attributes
 
-`POWELL.set_options(**kwargs)`
+  ### bounds\_support\_level
 
-Sets or updates values in the options dictionary.
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
+  ### gradient\_support\_level
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-**kwargs** (*dict*) – options, given as name=value.
+  ### initial\_point\_support\_level
 
-### wrap\_function
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.POWELL.wrap_function" />
+  ### is\_bounds\_ignored
 
-`static POWELL.wrap_function(function, args)`
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-Wrap the function to implicitly inject the args at the call of the function.
+  ### is\_bounds\_required
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
+  ### is\_bounds\_supported
 
-**Returns**
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-wrapper
+  ### is\_gradient\_ignored
 
-**Return type**
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-function\_wrapper
+  ### is\_gradient\_required
 
-## Attributes
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.POWELL.bounds_support_level" />
+  ### is\_gradient\_supported
 
-### bounds\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-Returns bounds support level
+  ### is\_initial\_point\_ignored
 
-<span id="qiskit.algorithms.optimizers.POWELL.gradient_support_level" />
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-### gradient\_support\_level
+  ### is\_initial\_point\_required
 
-Returns gradient support level
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.POWELL.initial_point_support_level" />
+  ### is\_initial\_point\_supported
 
-### initial\_point\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-Returns initial point support level
+  ### setting
 
-<span id="qiskit.algorithms.optimizers.POWELL.is_bounds_ignored" />
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.setting" name="setting">
+    Return setting
+  </Attribute>
 
-### is\_bounds\_ignored
+  ### settings
 
-Returns is bounds ignored
+  <Attribute id="qiskit.algorithms.optimizers.POWELL.settings" name="settings">
+    **Return type**
 
-<span id="qiskit.algorithms.optimizers.POWELL.is_bounds_required" />
-
-### is\_bounds\_required
-
-Returns is bounds required
-
-<span id="qiskit.algorithms.optimizers.POWELL.is_bounds_supported" />
-
-### is\_bounds\_supported
-
-Returns is bounds supported
-
-<span id="qiskit.algorithms.optimizers.POWELL.is_gradient_ignored" />
-
-### is\_gradient\_ignored
-
-Returns is gradient ignored
-
-<span id="qiskit.algorithms.optimizers.POWELL.is_gradient_required" />
-
-### is\_gradient\_required
-
-Returns is gradient required
-
-<span id="qiskit.algorithms.optimizers.POWELL.is_gradient_supported" />
-
-### is\_gradient\_supported
-
-Returns is gradient supported
-
-<span id="qiskit.algorithms.optimizers.POWELL.is_initial_point_ignored" />
-
-### is\_initial\_point\_ignored
-
-Returns is initial point ignored
-
-<span id="qiskit.algorithms.optimizers.POWELL.is_initial_point_required" />
-
-### is\_initial\_point\_required
-
-Returns is initial point required
-
-<span id="qiskit.algorithms.optimizers.POWELL.is_initial_point_supported" />
-
-### is\_initial\_point\_supported
-
-Returns is initial point supported
-
-<span id="qiskit.algorithms.optimizers.POWELL.setting" />
-
-### setting
-
-Return setting
-
-<span id="qiskit.algorithms.optimizers.POWELL.settings" />
-
-### settings
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
+    `Dict`\[`str`, `Any`]
+  </Attribute>
+</Class>
 

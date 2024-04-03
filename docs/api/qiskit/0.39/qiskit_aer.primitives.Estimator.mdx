@@ -8,148 +8,140 @@ python_api_name: qiskit_aer.primitives.Estimator
 
 # Estimator
 
-<span id="qiskit_aer.primitives.Estimator" />
+<Class id="qiskit_aer.primitives.Estimator" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/primitives/estimator.py" signature="Estimator(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, observables: Iterable[SparsePauliOp] | SparsePauliOp | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)">
+  Bases: [`qiskit.primitives.base.base_estimator.BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base.base_estimator.BaseEstimator")
 
-`Estimator(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, observables: Iterable[SparsePauliOp] | SparsePauliOp | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/primitives/estimator.py "view source code")
+  Aer implmentation of Estimator.
 
-Bases: [`qiskit.primitives.base.base_estimator.BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base.base_estimator.BaseEstimator")
+  **Run Options**
 
-Aer implmentation of Estimator.
+  *   **shots** (None or int) – The number of shots. If None and approximation is True, it calculates the exact expectation values. Otherwise, it calculates expectation values with sampling.
+  *   **seed** (int) – Set a fixed seed for the sampling.
 
-**Run Options**
+  <Admonition title="Note" type="note">
+    Precedence of seeding for `seed_simulator` is as follows:
 
-*   **shots** (None or int) – The number of shots. If None and approximation is True, it calculates the exact expectation values. Otherwise, it calculates expectation values with sampling.
-*   **seed** (int) – Set a fixed seed for the sampling.
+    1.  `seed_simulator` in runtime (i.e. in `__call__()`)
+    2.  `seed` in runtime (i.e. in `__call__()`)
+    3.  `seed_simulator` of `backend_options`.
+    4.  default.
 
-<Admonition title="Note" type="note">
-  Precedence of seeding for `seed_simulator` is as follows:
+    `seed` is also used for sampling from a normal distribution when approximation is True.
+  </Admonition>
 
-  1.  `seed_simulator` in runtime (i.e. in `__call__()`)
-  2.  `seed` in runtime (i.e. in `__call__()`)
-  3.  `seed_simulator` of `backend_options`.
-  4.  default.
+  **Parameters**
 
-  `seed` is also used for sampling from a normal distribution when approximation is True.
-</Admonition>
+  *   **circuits** – Quantum circuits that represent quantum states.
+  *   **observables** – Observables.
+  *   **parameters** – Parameters of quantum circuits, specifying the order in which values will be bound. Defaults to `[circ.parameters for circ in circuits]` The indexing is such that `parameters[i, j]` is the j-th formal parameter of `circuits[i]`.
+  *   **backend\_options** – Options passed to AerSimulator.
+  *   **transpile\_options** – Options passed to transpile.
+  *   **run\_options** – Options passed to run.
+  *   **approximation** – If True, it calculates expectation values with normal distribution approximation.
+  *   **skip\_transpilation** – If True, transpilation is skipped.
 
-**Parameters**
+  ## Methods
 
-*   **circuits** – Quantum circuits that represent quantum states.
-*   **observables** – Observables.
-*   **parameters** – Parameters of quantum circuits, specifying the order in which values will be bound. Defaults to `[circ.parameters for circ in circuits]` The indexing is such that `parameters[i, j]` is the j-th formal parameter of `circuits[i]`.
-*   **backend\_options** – Options passed to AerSimulator.
-*   **transpile\_options** – Options passed to transpile.
-*   **run\_options** – Options passed to run.
-*   **approximation** – If True, it calculates expectation values with normal distribution approximation.
-*   **skip\_transpilation** – If True, transpilation is skipped.
+  ### close
 
-## Methods
+  <Function id="qiskit_aer.primitives.Estimator.close" name="close" signature="Estimator.close()">
+    Close the session and free resources
+  </Function>
 
-### close
+  ### run
 
-<span id="qiskit_aer.primitives.Estimator.close" />
+  <Function id="qiskit_aer.primitives.Estimator.run" name="run" signature="Estimator.run(circuits, observables, parameter_values=None, **run_options)">
+    Run the job of the estimation of expectation value(s).
 
-`Estimator.close()`
+    `circuits`, `observables`, and `parameter_values` should have the same length. The i-th element of the result is the expectation of observable
 
-Close the session and free resources
+    ```python
+    obs = observables[i]
+    ```
 
-### run
+    for the state prepared by
 
-<span id="qiskit_aer.primitives.Estimator.run" />
+    ```python
+    circ = circuits[i]
+    ```
 
-`Estimator.run(circuits, observables, parameter_values=None, **run_options)`
+    with bound parameters
 
-Run the job of the estimation of expectation value(s).
+    ```python
+    values = parameter_values[i].
+    ```
 
-`circuits`, `observables`, and `parameter_values` should have the same length. The i-th element of the result is the expectation of observable
+    **Parameters**
 
-```python
-obs = observables[i]
-```
+    *   **circuits** – one or more circuit objects.
+    *   **observables** – one or more observable objects.
+    *   **parameter\_values** – concrete parameters to be bound.
+    *   **run\_options** – runtime options used for circuit execution.
 
-for the state prepared by
+    **Returns**
 
-```python
-circ = circuits[i]
-```
+    The job object of EstimatorResult.
 
-with bound parameters
+    **Raises**
 
-```python
-values = parameter_values[i].
-```
+    *   **TypeError** – Invalid argument type given.
+    *   **ValueError** – Invalid argument values given.
+  </Function>
 
-**Parameters**
+  ### set\_options
 
-*   **circuits** – one or more circuit objects.
-*   **observables** – one or more observable objects.
-*   **parameter\_values** – concrete parameters to be bound.
-*   **run\_options** – runtime options used for circuit execution.
+  <Function id="qiskit_aer.primitives.Estimator.set_options" name="set_options" signature="Estimator.set_options(**fields)">
+    Set options values for the estimator.
 
-**Returns**
+    **Parameters**
 
-The job object of EstimatorResult.
+    **\*\*fields** – The fields to update the options
+  </Function>
 
-**Raises**
+  ## Attributes
 
-*   **TypeError** – Invalid argument type given.
-*   **ValueError** – Invalid argument values given.
+  ### circuits
 
-### set\_options
+  <Attribute id="qiskit_aer.primitives.Estimator.circuits" name="circuits">
+    Quantum circuits that represents quantum states.
 
-<span id="qiskit_aer.primitives.Estimator.set_options" />
+    **Returns**
 
-`Estimator.set_options(**fields)`
+    The quantum circuits.
+  </Attribute>
 
-Set options values for the estimator.
+  ### observables
 
-**Parameters**
+  <Attribute id="qiskit_aer.primitives.Estimator.observables" name="observables">
+    Observables to be estimated.
 
-**\*\*fields** – The fields to update the options
+    **Returns**
 
-## Attributes
+    The observables.
+  </Attribute>
 
-<span id="qiskit_aer.primitives.Estimator.circuits" />
+  ### options
 
-### circuits
+  <Attribute id="qiskit_aer.primitives.Estimator.options" name="options">
+    Return options values for the estimator.
 
-Quantum circuits that represents quantum states.
+    **Return type**
 
-**Returns**
+    [`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
 
-The quantum circuits.
+    **Returns**
 
-<span id="qiskit_aer.primitives.Estimator.observables" />
+    options
+  </Attribute>
 
-### observables
+  ### parameters
 
-Observables to be estimated.
+  <Attribute id="qiskit_aer.primitives.Estimator.parameters" name="parameters">
+    Parameters of the quantum circuits.
 
-**Returns**
+    **Returns**
 
-The observables.
-
-<span id="qiskit_aer.primitives.Estimator.options" />
-
-### options
-
-Return options values for the estimator.
-
-**Return type**
-
-[`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
-
-**Returns**
-
-options
-
-<span id="qiskit_aer.primitives.Estimator.parameters" />
-
-### parameters
-
-Parameters of the quantum circuits.
-
-**Returns**
-
-Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
+    Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
+  </Attribute>
+</Class>
 

@@ -8,77 +8,71 @@ python_api_name: qiskit.algorithms.gradients.SPSAEstimatorGradient
 
 # SPSAEstimatorGradient
 
-<span id="qiskit.algorithms.gradients.SPSAEstimatorGradient" />
+<Class id="qiskit.algorithms.gradients.SPSAEstimatorGradient" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/gradients/spsa_estimator_gradient.py" signature="SPSAEstimatorGradient(estimator, epsilon, batch_size=1, seed=None, **options)">
+  Bases: [`qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient")
 
-`SPSAEstimatorGradient(estimator, epsilon, batch_size=1, seed=None, **options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/gradients/spsa_estimator_gradient.py "view source code")
+  Compute the gradients of the expectation value by the Simultaneous Perturbation Stochastic Approximation (SPSA).
 
-Bases: [`qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient")
+  **Parameters**
 
-Compute the gradients of the expectation value by the Simultaneous Perturbation Stochastic Approximation (SPSA).
+  *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator used to compute the gradients.
+  *   **epsilon** (*float*) – The offset size for the SPSA gradients.
+  *   **batch\_size** (*int*) – The number of gradients to average.
+  *   **seed** (*int | None*) – The seed for a random perturbation vector.
+  *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
 
-**Parameters**
+  **Raises**
 
-*   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator used to compute the gradients.
-*   **epsilon** (*float*) – The offset size for the SPSA gradients.
-*   **batch\_size** (*int*) – The number of gradients to average.
-*   **seed** (*int | None*) – The seed for a random perturbation vector.
-*   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+  **ValueError** – If `epsilon` is not positive.
 
-**Raises**
+  ## Methods
 
-**ValueError** – If `epsilon` is not positive.
+  ### run
 
-## Methods
+  <Function id="qiskit.algorithms.gradients.SPSAEstimatorGradient.run" name="run" signature="SPSAEstimatorGradient.run(circuits, observables, parameter_values, parameters=None, **options)">
+    Run the job of the estimator gradient on the given circuits.
 
-### run
+    **Parameters**
 
-<span id="qiskit.algorithms.gradients.SPSAEstimatorGradient.run" />
+    *   **circuits** – The list of quantum circuits to compute the gradients.
+    *   **observables** – The list of observables.
+    *   **parameter\_values** – The list of parameter values to be bound to the circuit.
+    *   **parameters** – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated.
+    *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
 
-`SPSAEstimatorGradient.run(circuits, observables, parameter_values, parameters=None, **options)`
+    **Returns**
 
-Run the job of the estimator gradient on the given circuits.
+    The job object of the gradients of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`. The j-th element of the i-th result corresponds to the gradient of the i-th circuit with respect to the j-th parameter.
 
-**Parameters**
+    **Raises**
 
-*   **circuits** – The list of quantum circuits to compute the gradients.
-*   **observables** – The list of observables.
-*   **parameter\_values** – The list of parameter values to be bound to the circuit.
-*   **parameters** – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated.
-*   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+    **ValueError** – Invalid arguments are given.
+  </Function>
 
-**Returns**
+  ### update\_default\_options
 
-The job object of the gradients of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`. The j-th element of the i-th result corresponds to the gradient of the i-th circuit with respect to the j-th parameter.
+  <Function id="qiskit.algorithms.gradients.SPSAEstimatorGradient.update_default_options" name="update_default_options" signature="SPSAEstimatorGradient.update_default_options(**options)">
+    Update the gradient’s default options setting.
 
-**Raises**
+    **Parameters**
 
-**ValueError** – Invalid arguments are given.
+    **\*\*options** – The fields to update the default options.
+  </Function>
 
-### update\_default\_options
+  ## Attributes
 
-<span id="qiskit.algorithms.gradients.SPSAEstimatorGradient.update_default_options" />
+  ### options
 
-`SPSAEstimatorGradient.update_default_options(**options)`
+  <Attribute id="qiskit.algorithms.gradients.SPSAEstimatorGradient.options" name="options">
+    Return the union of estimator options setting and gradient default options, where, if the same field is set in both, the gradient’s default options override the primitive’s default setting.
 
-Update the gradient’s default options setting.
+    **Return type**
 
-**Parameters**
+    [`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
 
-**\*\*options** – The fields to update the default options.
+    **Returns**
 
-## Attributes
-
-<span id="qiskit.algorithms.gradients.SPSAEstimatorGradient.options" />
-
-### options
-
-Return the union of estimator options setting and gradient default options, where, if the same field is set in both, the gradient’s default options override the primitive’s default setting.
-
-**Return type**
-
-[`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
-
-**Returns**
-
-The gradient default + estimator options.
+    The gradient default + estimator options.
+  </Attribute>
+</Class>
 

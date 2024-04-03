@@ -8,27 +8,25 @@ python_api_name: qiskit.aqua.utils.get_entangler_map
 
 # qiskit.aqua.utils.get\_entangler\_map
 
-<span id="qiskit.aqua.utils.get_entangler_map" />
+<Function id="qiskit.aqua.utils.get_entangler_map" name="get_entangler_map" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/entangler_map.py" signature="get_entangler_map(map_type, num_qubits, offset=0)">
+  Utility method to get an entangler map among qubits.
 
-`get_entangler_map(map_type, num_qubits, offset=0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/entangler_map.py "view source code")
+  **Parameters**
 
-Utility method to get an entangler map among qubits.
+  *   **map\_type** (*str*) – ‘full’ entangles each qubit with all the subsequent ones ‘linear’ entangles each qubit with the next ‘sca’ (shifted circular alternating entanglement) is a circular entanglement where the ‘long’ entanglement is shifted by one position every block and every block the role or control/target qubits alternate
+  *   **num\_qubits** (*int*) – Number of qubits for which the map is needed
+  *   **offset** (*int*) – Some map\_types (e.g. ‘sca’) can shift the gates in the entangler map by the specified integer offset.
 
-**Parameters**
+  **Returns**
 
-*   **map\_type** (*str*) – ‘full’ entangles each qubit with all the subsequent ones ‘linear’ entangles each qubit with the next ‘sca’ (shifted circular alternating entanglement) is a circular entanglement where the ‘long’ entanglement is shifted by one position every block and every block the role or control/target qubits alternate
-*   **num\_qubits** (*int*) – Number of qubits for which the map is needed
-*   **offset** (*int*) – Some map\_types (e.g. ‘sca’) can shift the gates in the entangler map by the specified integer offset.
+  A map of qubit index to an array of indexes to which this should be entangled
 
-**Returns**
+  **Return type**
 
-A map of qubit index to an array of indexes to which this should be entangled
+  list
 
-**Return type**
+  **Raises**
 
-list
-
-**Raises**
-
-**ValueError** – if map\_type is not valid.
+  **ValueError** – if map\_type is not valid.
+</Function>
 

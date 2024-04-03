@@ -8,54 +8,52 @@ python_api_name: qiskit.tools.parallel_map
 
 # qiskit.tools.parallel\_map
 
-<span id="qiskit.tools.parallel_map" />
+<Function id="qiskit.tools.parallel_map" name="parallel_map" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/tools/parallel.py" signature="parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)">
+  Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
 
-`parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/tools/parallel.py "view source code")
+  ```python
+  result = [task(value, *task_args, **task_kwargs) for value in values]
+  ```
 
-Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
+  On Windows this function defaults to a serial implementation to avoid the overhead from spawning processes in Windows.
 
-```python
-result = [task(value, *task_args, **task_kwargs) for value in values]
-```
+  **Parameters**
 
-On Windows this function defaults to a serial implementation to avoid the overhead from spawning processes in Windows.
+  *   **task** (*func*) – Function that is to be called for each value in `values`.
+  *   **values** (*array\_like*) – List or array of values for which the `task` function is to be evaluated.
+  *   **task\_args** (*list*) – Optional additional arguments to the `task` function.
+  *   **task\_kwargs** (*dict*) – Optional additional keyword argument to the `task` function.
+  *   **num\_processes** (*int*) – Number of processes to spawn.
 
-**Parameters**
+  **Returns**
 
-*   **task** (*func*) – Function that is to be called for each value in `values`.
-*   **values** (*array\_like*) – List or array of values for which the `task` function is to be evaluated.
-*   **task\_args** (*list*) – Optional additional arguments to the `task` function.
-*   **task\_kwargs** (*dict*) – Optional additional keyword argument to the `task` function.
-*   **num\_processes** (*int*) – Number of processes to spawn.
+  **The result list contains the value of**
 
-**Returns**
+  **`task(value, *task_args, **task_kwargs)` for**
 
-**The result list contains the value of**
+  each value in `values`.
 
-**`task(value, *task_args, **task_kwargs)` for**
+  **Return type**
 
-each value in `values`.
+  result
 
-**Return type**
+  **Raises**
 
-result
+  **QiskitError** – If user interrupts via keyboard.
 
-**Raises**
+  ## Events:
 
-**QiskitError** – If user interrupts via keyboard.
+  terra.parallel.start: The collection of parallel tasks are about to start. terra.parallel.update: One of the parallel task has finished. terra.parallel.finish: All the parallel tasks have finished.
 
-## Events:
+  **Examples**
 
-terra.parallel.start: The collection of parallel tasks are about to start. terra.parallel.update: One of the parallel task has finished. terra.parallel.finish: All the parallel tasks have finished.
-
-**Examples**
-
-```python
-import time
-from qiskit.tools.parallel import parallel_map
-def func(_):
-        time.sleep(0.1)
-        return 0
-parallel_map(func, list(range(10)));
-```
+  ```python
+  import time
+  from qiskit.tools.parallel import parallel_map
+  def func(_):
+          time.sleep(0.1)
+          return 0
+  parallel_map(func, list(range(10)));
+  ```
+</Function>
 

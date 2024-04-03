@@ -8,68 +8,62 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator
 
 # SieveExtrapolator
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator" />
+<Class id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py" signature="SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)">
+  Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`
 
-`SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+  A wrapper extrapolator which clusters the parameter values - either before extrapolation, after, or both - into two large and small clusters, and sets the small clusters’ parameters to zero.
 
-Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`
+  Constructor.
 
-A wrapper extrapolator which clusters the parameter values - either before extrapolation, after, or both - into two large and small clusters, and sets the small clusters’ parameters to zero.
+  **Parameters**
 
-Constructor.
+  *   **extrapolator** (`Union`\[`PolynomialExtrapolator`, `DifferentialExtrapolator`, `None`]) – ‘internal’ extrapolator that performs extrapolation on variational parameters based on data window.
+  *   **window** (`int`) – Number of previous points to use for extrapolation.
+  *   **filter\_before** (`bool`) – Keyword to perform clustering before extrapolation.
+  *   **filter\_after** (`bool`) – Keyword to perform clustering after extrapolation.
 
-**Parameters**
+  ## Methods
 
-*   **extrapolator** (`Union`\[`PolynomialExtrapolator`, `DifferentialExtrapolator`, `None`]) – ‘internal’ extrapolator that performs extrapolation on variational parameters based on data window.
-*   **window** (`int`) – Number of previous points to use for extrapolation.
-*   **filter\_before** (`bool`) – Keyword to perform clustering before extrapolation.
-*   **filter\_after** (`bool`) – Keyword to perform clustering after extrapolation.
+  ### extrapolate
 
-## Methods
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate" name="extrapolate" signature="SieveExtrapolator.extrapolate(points, param_dict)">
+    Extrapolate at specified point of interest given a set of variational parameters. Based on the specified window, a subset of the data points will be used for extrapolation. A default window of 2 points is used, while a value of zero indicates that all previous points will be used for extrapolation. This method finds a cutoff distance based on the maximum average distance or ‘gap’ between the average values of the variational parameters. This cutoff distance is used as a criteria to divide the parameters into two clusters by setting all parameters that are below the cutoff distance to zero.
 
-### extrapolate
+    **Parameters**
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate" />
+    *   **points** (`List`\[`float`]) – List of point(s) to be used for extrapolation. Can represent some degree of freedom, ex, interatomic distance.
+    *   **param\_dict** (`Optional`\[`Dict`\[`float`, `List`\[`float`]]]) – Dictionary of variational parameters. Each key is the point and the value is a list of the variational parameters.
 
-`SieveExtrapolator.extrapolate(points, param_dict)`
+    **Return type**
 
-Extrapolate at specified point of interest given a set of variational parameters. Based on the specified window, a subset of the data points will be used for extrapolation. A default window of 2 points is used, while a value of zero indicates that all previous points will be used for extrapolation. This method finds a cutoff distance based on the maximum average distance or ‘gap’ between the average values of the variational parameters. This cutoff distance is used as a criteria to divide the parameters into two clusters by setting all parameters that are below the cutoff distance to zero.
+    `Dict`\[`float`, `List`\[`float`]]
 
-**Parameters**
+    **Returns**
 
-*   **points** (`List`\[`float`]) – List of point(s) to be used for extrapolation. Can represent some degree of freedom, ex, interatomic distance.
-*   **param\_dict** (`Optional`\[`Dict`\[`float`, `List`\[`float`]]]) – Dictionary of variational parameters. Each key is the point and the value is a list of the variational parameters.
+    Dictionary of variational parameters for extrapolated point(s).
+  </Function>
 
-**Return type**
+  ### factory
 
-`Dict`\[`float`, `List`\[`float`]]
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.factory" name="factory" signature="static SieveExtrapolator.factory(mode, **kwargs)">
+    Factory method for constructing extrapolators.
 
-**Returns**
+    **Parameters**
 
-Dictionary of variational parameters for extrapolated point(s).
+    *   **mode** (`str`) – Extrapolator to instantiate. Can be one of: - ‘window’ - ‘poly’ - ‘diff\_model’ - ‘pca’ - ‘l1’
+    *   **kwargs** – arguments to be passed to the constructor of an extrapolator
 
-### factory
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.factory" />
+    `Extrapolator`
 
-`static SieveExtrapolator.factory(mode, **kwargs)`
+    **Returns**
 
-Factory method for constructing extrapolators.
+    A newly created extrapolator instance.
 
-**Parameters**
+    **Raises**
 
-*   **mode** (`str`) – Extrapolator to instantiate. Can be one of: - ‘window’ - ‘poly’ - ‘diff\_model’ - ‘pca’ - ‘l1’
-*   **kwargs** – arguments to be passed to the constructor of an extrapolator
-
-**Return type**
-
-`Extrapolator`
-
-**Returns**
-
-A newly created extrapolator instance.
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+  </Function>
+</Class>
 

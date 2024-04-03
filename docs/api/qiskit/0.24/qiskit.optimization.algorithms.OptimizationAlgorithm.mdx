@@ -10,92 +10,82 @@ python_api_name: qiskit.optimization.algorithms.OptimizationAlgorithm
 
 # qiskit.optimization.algorithms.OptimizationAlgorithm
 
-<span id="qiskit.optimization.algorithms.OptimizationAlgorithm" />
+<Class id="qiskit.optimization.algorithms.OptimizationAlgorithm" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/optimization_algorithm.py" signature="OptimizationAlgorithm">
+  An abstract class for optimization algorithms in Qiskit’s optimization module.
 
-`OptimizationAlgorithm` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
+  ### \_\_init\_\_
 
-An abstract class for optimization algorithms in Qiskit’s optimization module.
+  <Function id="qiskit.optimization.algorithms.OptimizationAlgorithm.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.optimization.algorithms.OptimizationAlgorithm.__init__" />
+  |                                                                                                                                                                                              |                                                                                           |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.optimization.algorithms.OptimizationAlgorithm.__init__ "qiskit.optimization.algorithms.OptimizationAlgorithm.__init__")()                                               | Initialize self.                                                                          |
+  | [`get_compatibility_msg`](#qiskit.optimization.algorithms.OptimizationAlgorithm.get_compatibility_msg "qiskit.optimization.algorithms.OptimizationAlgorithm.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with the optimizer implementing this method. |
+  | [`is_compatible`](#qiskit.optimization.algorithms.OptimizationAlgorithm.is_compatible "qiskit.optimization.algorithms.OptimizationAlgorithm.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
+  | [`solve`](#qiskit.optimization.algorithms.OptimizationAlgorithm.solve "qiskit.optimization.algorithms.OptimizationAlgorithm.solve")(problem)                                                 | Tries to solves the given problem using the optimizer.                                    |
 
-`__init__()`
+  ### get\_compatibility\_msg
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.optimization.algorithms.OptimizationAlgorithm.get_compatibility_msg" name="get_compatibility_msg" signature="abstract get_compatibility_msg(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                                              |                                                                                           |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.optimization.algorithms.OptimizationAlgorithm.__init__ "qiskit.optimization.algorithms.OptimizationAlgorithm.__init__")()                                               | Initialize self.                                                                          |
-| [`get_compatibility_msg`](#qiskit.optimization.algorithms.OptimizationAlgorithm.get_compatibility_msg "qiskit.optimization.algorithms.OptimizationAlgorithm.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with the optimizer implementing this method. |
-| [`is_compatible`](#qiskit.optimization.algorithms.OptimizationAlgorithm.is_compatible "qiskit.optimization.algorithms.OptimizationAlgorithm.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
-| [`solve`](#qiskit.optimization.algorithms.OptimizationAlgorithm.solve "qiskit.optimization.algorithms.OptimizationAlgorithm.solve")(problem)                                                 | Tries to solves the given problem using the optimizer.                                    |
+    **problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
 
-### get\_compatibility\_msg
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.OptimizationAlgorithm.get_compatibility_msg" />
+    `str`
 
-`abstract get_compatibility_msg(problem)`
+    **Returns**
 
-Checks whether a given problem can be solved with the optimizer implementing this method.
+    Returns the incompatibility message. If the message is empty no issues were found.
+  </Function>
 
-**Parameters**
+  ### is\_compatible
 
-**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+  <Function id="qiskit.optimization.algorithms.OptimizationAlgorithm.is_compatible" name="is_compatible" signature="is_compatible(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
 
-**Return type**
+    **Parameters**
 
-`str`
+    **problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
 
-**Returns**
+    **Return type**
 
-Returns the incompatibility message. If the message is empty no issues were found.
+    `bool`
 
-### is\_compatible
+    **Returns**
 
-<span id="qiskit.optimization.algorithms.OptimizationAlgorithm.is_compatible" />
+    Returns True if the problem is compatible, False otherwise.
+  </Function>
 
-`is_compatible(problem)`
+  ### solve
 
-Checks whether a given problem can be solved with the optimizer implementing this method.
+  <Function id="qiskit.optimization.algorithms.OptimizationAlgorithm.solve" name="solve" signature="abstract solve(problem)">
+    Tries to solves the given problem using the optimizer.
 
-**Parameters**
+    Runs the optimizer to try to solve the optimization problem.
 
-**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+    **Parameters**
 
-**Return type**
+    **problem** (`QuadraticProgram`) – The problem to be solved.
 
-`bool`
+    **Return type**
 
-**Returns**
+    `OptimizationResult`
 
-Returns True if the problem is compatible, False otherwise.
+    **Returns**
 
-### solve
+    The result of the optimizer applied to the problem.
 
-<span id="qiskit.optimization.algorithms.OptimizationAlgorithm.solve" />
+    **Raises**
 
-`abstract solve(problem)`
-
-Tries to solves the given problem using the optimizer.
-
-Runs the optimizer to try to solve the optimization problem.
-
-**Parameters**
-
-**problem** (`QuadraticProgram`) – The problem to be solved.
-
-**Return type**
-
-`OptimizationResult`
-
-**Returns**
-
-The result of the optimizer applied to the problem.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+  </Function>
+</Class>
 

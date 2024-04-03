@@ -8,28 +8,26 @@ python_api_name: qiskit.result.sampled_expectation_value
 
 # qiskit.result.sampled\_expectation\_value
 
-<span id="qiskit.result.sampled_expectation_value" />
+<Function id="qiskit.result.sampled_expectation_value" name="sampled_expectation_value" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/sampled_expval.py" signature="sampled_expectation_value(dist, oper)">
+  Computes expectation value from a sampled distribution
 
-`sampled_expectation_value(dist, oper)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/sampled_expval.py "view source code")
+  Note that passing a raw dict requires bit-string keys.
 
-Computes expectation value from a sampled distribution
+  **Parameters**
 
-Note that passing a raw dict requires bit-string keys.
+  *   **dist** ([*Counts*](qiskit.result.Counts "qiskit.result.Counts")  *or*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")  *or*[*ProbDistribution*](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution") *or dict*) – Input sampled distribution
+  *   **oper** (*str or* [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")  *or*[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")  *or*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – The operator for the observable
 
-**Parameters**
+  **Returns**
 
-*   **dist** ([*Counts*](qiskit.result.Counts "qiskit.result.Counts")  *or*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")  *or*[*ProbDistribution*](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution") *or dict*) – Input sampled distribution
-*   **oper** (*str or* [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")  *or*[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")  *or*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – The operator for the observable
+  The expectation value
 
-**Returns**
+  **Return type**
 
-The expectation value
+  float
 
-**Return type**
+  **Raises**
 
-float
-
-**Raises**
-
-**QiskitError** – if the input distribution or operator is an invalid type
+  **QiskitError** – if the input distribution or operator is an invalid type
+</Function>
 

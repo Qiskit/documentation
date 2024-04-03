@@ -8,301 +8,271 @@ python_api_name: qiskit.extensions.UnitaryGate
 
 # UnitaryGate
 
-<span id="qiskit.extensions.UnitaryGate" />
+<Class id="qiskit.extensions.UnitaryGate" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/extensions/unitary.py" signature="UnitaryGate(data, label=None)">
+  Class for representing unitary gates
 
-`UnitaryGate(data, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/extensions/unitary.py "view source code")
+  Create a gate from a numeric unitary matrix.
 
-Class for representing unitary gates
+  **Parameters**
 
-Create a gate from a numeric unitary matrix.
+  *   **data** (*matrix or* [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – unitary operator.
+  *   **label** (*str*) – unitary name for backend \[Default: None].
 
-**Parameters**
+  **Raises**
 
-*   **data** (*matrix or* [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – unitary operator.
-*   **label** (*str*) – unitary name for backend \[Default: None].
+  **ExtensionError** – if input data is not an N-qubit unitary operator.
 
-**Raises**
+  ## Attributes
 
-**ExtensionError** – if input data is not an N-qubit unitary operator.
+  ### decompositions
 
-## Attributes
+  <Attribute id="qiskit.extensions.UnitaryGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### decompositions
+  ### definition
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.extensions.UnitaryGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### definition
+  ### label
 
-Return definition in terms of other basic gates.
+  <Attribute id="qiskit.extensions.UnitaryGate.label" name="label" signature="str">
+    Return gate label
 
-### label
+    **Return type**
 
-<span id="qiskit.extensions.UnitaryGate.label" />
+    `str`
+  </Attribute>
 
-`str`
+  ### params
 
-Return gate label
+  <Attribute id="qiskit.extensions.UnitaryGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-**Return type**
+  ## Methods
 
-`str`
+  ### add\_decomposition
 
-### params
+  <Function id="qiskit.extensions.UnitaryGate.add_decomposition" name="add_decomposition" signature="UnitaryGate.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-return instruction params.
+  ### adjoint
 
-## Methods
+  <Function id="qiskit.extensions.UnitaryGate.adjoint" name="adjoint" signature="UnitaryGate.adjoint()">
+    Return the adjoint of the unitary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.extensions.UnitaryGate.add_decomposition" />
+  <Function id="qiskit.extensions.UnitaryGate.assemble" name="assemble" signature="UnitaryGate.assemble()">
+    Assemble a QasmQobjInstruction
 
-`UnitaryGate.add_decomposition(decomposition)`
+    **Return type**
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  </Function>
 
-### adjoint
+  ### broadcast\_arguments
 
-<span id="qiskit.extensions.UnitaryGate.adjoint" />
+  <Function id="qiskit.extensions.UnitaryGate.broadcast_arguments" name="broadcast_arguments" signature="UnitaryGate.broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-`UnitaryGate.adjoint()`
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-Return the adjoint of the unitary.
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-### assemble
+    The general broadcasting rules are:
 
-<span id="qiskit.extensions.UnitaryGate.assemble" />
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-`UnitaryGate.assemble()`
+    **Parameters**
 
-Assemble a QasmQobjInstruction
+    *   **qargs** (`List`) – List of quantum bit arguments.
+    *   **cargs** (`List`) – List of classical bit arguments.
 
-**Return type**
+    **Return type**
 
-[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+    `Tuple`\[`List`, `List`]
 
-### broadcast\_arguments
+    **Returns**
 
-<span id="qiskit.extensions.UnitaryGate.broadcast_arguments" />
+    A tuple with single arguments.
 
-`UnitaryGate.broadcast_arguments(qargs, cargs)`
+    **Raises**
 
-Validation and handling of the arguments and its relationship.
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+  ### c\_if
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+  <Function id="qiskit.extensions.UnitaryGate.c_if" name="c_if" signature="UnitaryGate.c_if(classical, val)">
+    Add classical condition on register classical and value val.
+  </Function>
 
-The general broadcasting rules are:
+  ### conjugate
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+  <Function id="qiskit.extensions.UnitaryGate.conjugate" name="conjugate" signature="UnitaryGate.conjugate()">
+    Return the conjugate of the unitary.
+  </Function>
 
-**Parameters**
+  ### control
 
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
+  <Function id="qiskit.extensions.UnitaryGate.control" name="control" signature="UnitaryGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return controlled version of gate
 
-**Return type**
+    **Parameters**
 
-`Tuple`\[`List`, `List`]
+    *   **num\_ctrl\_qubits** (*int*) – number of controls to add to gate (default=1)
+    *   **label** (*str*) – optional gate label
+    *   **ctrl\_state** (*int or str or None*) – The control state in decimal or as a bit string (e.g. ‘1011’). If None, use 2\*\*num\_ctrl\_qubits-1.
 
-**Returns**
+    **Returns**
 
-A tuple with single arguments.
+    controlled version of gate.
 
-**Raises**
+    **Return type**
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    [UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-### c\_if
+    **Raises**
 
-<span id="qiskit.extensions.UnitaryGate.c_if" />
+    **QiskitError** – invalid ctrl\_state
+  </Function>
 
-`UnitaryGate.c_if(classical, val)`
+  ### copy
 
-Add classical condition on register classical and value val.
+  <Function id="qiskit.extensions.UnitaryGate.copy" name="copy" signature="UnitaryGate.copy(name=None)">
+    Copy of the instruction.
 
-### conjugate
+    **Parameters**
 
-<span id="qiskit.extensions.UnitaryGate.conjugate" />
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-`UnitaryGate.conjugate()`
+    **Returns**
 
-Return the conjugate of the unitary.
+    **a copy of the current instruction, with the name**
 
-### control
+    updated if it was provided
 
-<span id="qiskit.extensions.UnitaryGate.control" />
+    **Return type**
 
-`UnitaryGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Return controlled version of gate
+  ### inverse
 
-**Parameters**
+  <Function id="qiskit.extensions.UnitaryGate.inverse" name="inverse" signature="UnitaryGate.inverse()">
+    Return the adjoint of the unitary.
+  </Function>
 
-*   **num\_ctrl\_qubits** (*int*) – number of controls to add to gate (default=1)
-*   **label** (*str*) – optional gate label
-*   **ctrl\_state** (*int or str or None*) – The control state in decimal or as a bit string (e.g. ‘1011’). If None, use 2\*\*num\_ctrl\_qubits-1.
+  ### is\_parameterized
 
-**Returns**
+  <Function id="qiskit.extensions.UnitaryGate.is_parameterized" name="is_parameterized" signature="UnitaryGate.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-controlled version of gate.
+  ### mirror
 
-**Return type**
+  <Function id="qiskit.extensions.UnitaryGate.mirror" name="mirror" signature="UnitaryGate.mirror()">
+    For a composite instruction, reverse the order of sub-gates.
 
-[UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+    This is done by recursively mirroring all sub-instructions. It does not invert any gate.
 
-**Raises**
+    **Returns**
 
-**QiskitError** – invalid ctrl\_state
+    a fresh gate with sub-gates reversed
 
-### copy
+    **Return type**
 
-<span id="qiskit.extensions.UnitaryGate.copy" />
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-`UnitaryGate.copy(name=None)`
+  ### power
 
-Copy of the instruction.
+  <Function id="qiskit.extensions.UnitaryGate.power" name="power" signature="UnitaryGate.power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-**Parameters**
+    **Parameters**
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    **exponent** (*float*) – Gate^exponent
 
-**Returns**
+    **Returns**
 
-**a copy of the current instruction, with the name**
+    To which to\_matrix is self.to\_matrix^exponent.
 
-updated if it was provided
+    **Return type**
 
-**Return type**
+    [qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Raises**
 
-### inverse
+    **CircuitError** – If Gate is not unitary
+  </Function>
 
-<span id="qiskit.extensions.UnitaryGate.inverse" />
+  ### qasm
 
-`UnitaryGate.inverse()`
+  <Function id="qiskit.extensions.UnitaryGate.qasm" name="qasm" signature="UnitaryGate.qasm()">
+    The qasm for a custom unitary gate This is achieved by adding a custom gate that corresponds to the definition of this gate. It gives the gate a random name if one hasn’t been given to it.
+  </Function>
 
-Return the adjoint of the unitary.
+  ### repeat
 
-### is\_parameterized
+  <Function id="qiskit.extensions.UnitaryGate.repeat" name="repeat" signature="UnitaryGate.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-<span id="qiskit.extensions.UnitaryGate.is_parameterized" />
+    **Parameters**
 
-`UnitaryGate.is_parameterized()`
+    **n** (*int*) – Number of times to repeat the instruction
 
-Return True .IFF. instruction is parameterized else False
+    **Returns**
 
-### mirror
+    Containing the definition.
 
-<span id="qiskit.extensions.UnitaryGate.mirror" />
+    **Return type**
 
-`UnitaryGate.mirror()`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-For a composite instruction, reverse the order of sub-gates.
+    **Raises**
 
-This is done by recursively mirroring all sub-instructions. It does not invert any gate.
+    **CircuitError** – If n \< 1.
+  </Function>
 
-**Returns**
+  ### to\_matrix
 
-a fresh gate with sub-gates reversed
+  <Function id="qiskit.extensions.UnitaryGate.to_matrix" name="to_matrix" signature="UnitaryGate.to_matrix()">
+    Return matrix for the unitary.
+  </Function>
 
-**Return type**
+  ### transpose
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### power
-
-<span id="qiskit.extensions.UnitaryGate.power" />
-
-`UnitaryGate.power(exponent)`
-
-Creates a unitary gate as gate^exponent.
-
-**Parameters**
-
-**exponent** (*float*) – Gate^exponent
-
-**Returns**
-
-To which to\_matrix is self.to\_matrix^exponent.
-
-**Return type**
-
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
-
-**Raises**
-
-**CircuitError** – If Gate is not unitary
-
-### qasm
-
-<span id="qiskit.extensions.UnitaryGate.qasm" />
-
-`UnitaryGate.qasm()`
-
-The qasm for a custom unitary gate This is achieved by adding a custom gate that corresponds to the definition of this gate. It gives the gate a random name if one hasn’t been given to it.
-
-### repeat
-
-<span id="qiskit.extensions.UnitaryGate.repeat" />
-
-`UnitaryGate.repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### to\_matrix
-
-<span id="qiskit.extensions.UnitaryGate.to_matrix" />
-
-`UnitaryGate.to_matrix()`
-
-Return matrix for the unitary.
-
-### transpose
-
-<span id="qiskit.extensions.UnitaryGate.transpose" />
-
-`UnitaryGate.transpose()`
-
-Return the transpose of the unitary.
+  <Function id="qiskit.extensions.UnitaryGate.transpose" name="transpose" signature="UnitaryGate.transpose()">
+    Return the transpose of the unitary.
+  </Function>
+</Class>
 

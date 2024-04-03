@@ -12,57 +12,53 @@ python_api_name: qiskit.providers.ibmq.runtime.ParameterNamespace
 
 # ParameterNamespace
 
-<span id="qiskit.providers.ibmq.runtime.ParameterNamespace" />
+<Class id="qiskit.providers.ibmq.runtime.ParameterNamespace" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/runtime/runtime_program.py" signature="ParameterNamespace(parameters)">
+  Bases: `types.SimpleNamespace`
 
-`ParameterNamespace(parameters)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/runtime/runtime_program.py "view source code")
+  A namespace for program parameters with validation.
 
-Bases: `types.SimpleNamespace`
+  This class provides a namespace for program parameters with auto-completion and validation support.
 
-A namespace for program parameters with validation.
+  ParameterNamespace constructor.
 
-This class provides a namespace for program parameters with auto-completion and validation support.
+  **Parameters**
 
-ParameterNamespace constructor.
+  **parameters** (`Dict`) – The program’s input parameters.
 
-**Parameters**
+  ## Methods
 
-**parameters** (`Dict`) – The program’s input parameters.
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-## Methods
+  ### validate
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+  <Function id="qiskit.providers.ibmq.runtime.ParameterNamespace.validate" name="validate" signature="ParameterNamespace.validate()">
+    Validate program input values.
 
-### validate
+    <Admonition title="Note" type="note">
+      This method only verifies that required parameters have values. It does not fail the validation if the namespace has extraneous parameters.
+    </Admonition>
 
-<span id="qiskit.providers.ibmq.runtime.ParameterNamespace.validate" />
+    **Raises**
 
-`ParameterNamespace.validate()`
+    **IBMQInputValueError** – if validation fails
 
-Validate program input values.
+    **Return type**
 
-<Admonition title="Note" type="note">
-  This method only verifies that required parameters have values. It does not fail the validation if the namespace has extraneous parameters.
-</Admonition>
+    `None`
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**IBMQInputValueError** – if validation fails
+  ### metadata
 
-**Return type**
+  <Attribute id="qiskit.providers.ibmq.runtime.ParameterNamespace.metadata" name="metadata">
+    Returns the parameter metadata
 
-`None`
+    **Return type**
 
-## Attributes
-
-<span id="qiskit.providers.ibmq.runtime.ParameterNamespace.metadata" />
-
-### metadata
-
-Returns the parameter metadata
-
-**Return type**
-
-`Dict`
+    `Dict`
+  </Attribute>
+</Class>
 

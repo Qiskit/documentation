@@ -8,105 +8,97 @@ python_api_name: qiskit.opflow.converters.CircuitSampler
 
 # CircuitSampler
 
-<span id="qiskit.opflow.converters.CircuitSampler" />
+<Class id="qiskit.opflow.converters.CircuitSampler" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/converters/circuit_sampler.py" signature="CircuitSampler(backend, statevector=None, param_qobj=False, attach_results=False, caching='last')">
+  Bases: `qiskit.opflow.converters.converter_base.ConverterBase`
 
-`CircuitSampler(backend, statevector=None, param_qobj=False, attach_results=False, caching='last')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/converters/circuit_sampler.py "view source code")
+  The CircuitSampler traverses an Operator and converts any CircuitStateFns into approximations of the state function by a DictStateFn or VectorStateFn using a quantum backend. Note that in order to approximate the value of the CircuitStateFn, it must 1) send state function through a depolarizing channel, which will destroy all phase information and 2) replace the sampled frequencies with **square roots** of the frequency, rather than the raw probability of sampling (which would be the equivalent of sampling the **square** of the state function, per the Born rule.
 
-Bases: `qiskit.opflow.converters.converter_base.ConverterBase`
+  The CircuitSampler aggressively caches transpiled circuits to handle re-parameterization of the same circuit efficiently. If you are converting multiple different Operators, you are better off using a different CircuitSampler for each Operator to avoid cache thrashing.
 
-The CircuitSampler traverses an Operator and converts any CircuitStateFns into approximations of the state function by a DictStateFn or VectorStateFn using a quantum backend. Note that in order to approximate the value of the CircuitStateFn, it must 1) send state function through a depolarizing channel, which will destroy all phase information and 2) replace the sampled frequencies with **square roots** of the frequency, rather than the raw probability of sampling (which would be the equivalent of sampling the **square** of the state function, per the Born rule.
+  **Parameters**
 
-The CircuitSampler aggressively caches transpiled circuits to handle re-parameterization of the same circuit efficiently. If you are converting multiple different Operators, you are better off using a different CircuitSampler for each Operator to avoid cache thrashing.
+  *   **backend** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`]) – The quantum backend or QuantumInstance to use to sample the circuits.
+  *   **statevector** (`Optional`\[`bool`]) – If backend is a statevector backend, whether to replace the CircuitStateFns with DictStateFns (from the counts) or VectorStateFns (from the statevector). `None` will set this argument automatically based on the backend.
+  *   **attach\_results** (`bool`) – Whether to attach the data from the backend `Results` object for a given `` CircuitStateFn` `` to an `execution_results` field added the converted `DictStateFn` or `VectorStateFn`.
+  *   **param\_qobj** (`bool`) – Whether to use Aer’s parameterized Qobj capability to avoid re-assembling the circuits.
+  *   **caching** (`str`) – The caching strategy. Can be ‘last’ (default) to store the last operator that was converted, set to ‘all’ to cache all processed operators.
 
-**Parameters**
+  **Raises**
 
-*   **backend** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`]) – The quantum backend or QuantumInstance to use to sample the circuits.
-*   **statevector** (`Optional`\[`bool`]) – If backend is a statevector backend, whether to replace the CircuitStateFns with DictStateFns (from the counts) or VectorStateFns (from the statevector). `None` will set this argument automatically based on the backend.
-*   **attach\_results** (`bool`) – Whether to attach the data from the backend `Results` object for a given `` CircuitStateFn` `` to an `execution_results` field added the converted `DictStateFn` or `VectorStateFn`.
-*   **param\_qobj** (`bool`) – Whether to use Aer’s parameterized Qobj capability to avoid re-assembling the circuits.
-*   **caching** (`str`) – The caching strategy. Can be ‘last’ (default) to store the last operator that was converted, set to ‘all’ to cache all processed operators.
+  **ValueError** – Set statevector or param\_qobj True when not supported by backend.
 
-**Raises**
+  ## Methods Defined Here
 
-**ValueError** – Set statevector or param\_qobj True when not supported by backend.
+  ### clear\_cache
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.converters.CircuitSampler.clear_cache" name="clear_cache" signature="CircuitSampler.clear_cache()">
+    Clear the cache of sampled operator expressions.
 
-### clear\_cache
+    **Return type**
 
-<span id="qiskit.opflow.converters.CircuitSampler.clear_cache" />
+    `None`
+  </Function>
 
-`CircuitSampler.clear_cache()`
+  ### convert
 
-Clear the cache of sampled operator expressions.
+  <Function id="qiskit.opflow.converters.CircuitSampler.convert" name="convert" signature="CircuitSampler.convert(operator, params=None)">
+    Converts the Operator to one in which the CircuitStateFns are replaced by DictStateFns or VectorStateFns. Extracts the CircuitStateFns out of the Operator, caches them, calls `sample_circuits` below to get their converted replacements, and replaces the CircuitStateFns in operator with the replacement StateFns.
 
-**Return type**
+    **Parameters**
 
-`None`
+    *   **operator** (`OperatorBase`) – The Operator to convert
+    *   **params** (`Optional`\[`Dict`\[`Parameter`, `Union`\[`float`, `List`\[`float`], `List`\[`List`\[`float`]]]]]) – A dictionary mapping parameters to either single binding values or lists of binding values.
 
-### convert
+    **Return type**
 
-<span id="qiskit.opflow.converters.CircuitSampler.convert" />
+    `OperatorBase`
 
-`CircuitSampler.convert(operator, params=None)`
+    **Returns**
 
-Converts the Operator to one in which the CircuitStateFns are replaced by DictStateFns or VectorStateFns. Extracts the CircuitStateFns out of the Operator, caches them, calls `sample_circuits` below to get their converted replacements, and replaces the CircuitStateFns in operator with the replacement StateFns.
+    The converted Operator with CircuitStateFns replaced by DictStateFns or VectorStateFns.
 
-**Parameters**
+    **Raises**
 
-*   **operator** (`OperatorBase`) – The Operator to convert
-*   **params** (`Optional`\[`Dict`\[`Parameter`, `Union`\[`float`, `List`\[`float`], `List`\[`List`\[`float`]]]]]) – A dictionary mapping parameters to either single binding values or lists of binding values.
+    [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if extracted circuits are empty.
+  </Function>
 
-**Return type**
+  ### sample\_circuits
 
-`OperatorBase`
+  <Function id="qiskit.opflow.converters.CircuitSampler.sample_circuits" name="sample_circuits" signature="CircuitSampler.sample_circuits(circuit_sfns=None, param_bindings=None)">
+    Samples the CircuitStateFns and returns a dict associating their `id()` values to their replacement DictStateFn or VectorStateFn. If param\_bindings is provided, the CircuitStateFns are broken into their parameterizations, and a list of StateFns is returned in the dict for each circuit `id()`. Note that param\_bindings is provided here in a different format than in `convert`, and lists of parameters within the dict is not supported, and only binding dicts which are valid to be passed into Terra can be included in this list.
 
-**Returns**
+    **Parameters**
 
-The converted Operator with CircuitStateFns replaced by DictStateFns or VectorStateFns.
+    *   **circuit\_sfns** (`Optional`\[`List`\[`CircuitStateFn`]]) – The list of CircuitStateFns to sample.
+    *   **param\_bindings** (`Optional`\[`List`\[`Dict`\[`Parameter`, `float`]]]) – The parameterizations to bind to each CircuitStateFn.
 
-**Raises**
+    **Return type**
 
-[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if extracted circuits are empty.
+    `Dict`\[`int`, `List`\[`StateFn`]]
 
-### sample\_circuits
+    **Returns**
 
-<span id="qiskit.opflow.converters.CircuitSampler.sample_circuits" />
+    The dictionary mapping ids of the CircuitStateFns to their replacement StateFns.
 
-`CircuitSampler.sample_circuits(circuit_sfns=None, param_bindings=None)`
+    **Raises**
 
-Samples the CircuitStateFns and returns a dict associating their `id()` values to their replacement DictStateFn or VectorStateFn. If param\_bindings is provided, the CircuitStateFns are broken into their parameterizations, and a list of StateFns is returned in the dict for each circuit `id()`. Note that param\_bindings is provided here in a different format than in `convert`, and lists of parameters within the dict is not supported, and only binding dicts which are valid to be passed into Terra can be included in this list.
+    [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if extracted circuits are empty.
+  </Function>
 
-**Parameters**
+  ## Attributes
 
-*   **circuit\_sfns** (`Optional`\[`List`\[`CircuitStateFn`]]) – The list of CircuitStateFns to sample.
-*   **param\_bindings** (`Optional`\[`List`\[`Dict`\[`Parameter`, `float`]]]) – The parameterizations to bind to each CircuitStateFn.
+  ### quantum\_instance
 
-**Return type**
+  <Attribute id="qiskit.opflow.converters.CircuitSampler.quantum_instance" name="quantum_instance">
+    Returns the quantum instance.
 
-`Dict`\[`int`, `List`\[`StateFn`]]
+    **Return type**
 
-**Returns**
+    `QuantumInstance`
 
-The dictionary mapping ids of the CircuitStateFns to their replacement StateFns.
+    **Returns**
 
-**Raises**
-
-[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if extracted circuits are empty.
-
-## Attributes
-
-<span id="qiskit.opflow.converters.CircuitSampler.quantum_instance" />
-
-### quantum\_instance
-
-Returns the quantum instance.
-
-**Return type**
-
-`QuantumInstance`
-
-**Returns**
-
-The QuantumInstance used by the CircuitSampler
+    The QuantumInstance used by the CircuitSampler
+  </Attribute>
+</Class>
 

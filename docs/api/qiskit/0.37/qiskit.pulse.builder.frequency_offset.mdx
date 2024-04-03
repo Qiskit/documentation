@@ -8,47 +8,45 @@ python_api_name: qiskit.pulse.builder.frequency_offset
 
 # qiskit.pulse.builder.frequency\_offset
 
-<span id="qiskit.pulse.builder.frequency_offset" />
+<Function id="qiskit.pulse.builder.frequency_offset" name="frequency_offset" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/builder.py" signature="frequency_offset(frequency, *channels, compensate_phase=False)">
+  Shift the frequency of inputs channels on entry into context and undo on exit.
 
-`frequency_offset(frequency, *channels, compensate_phase=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/builder.py "view source code")
+  Examples:
 
-Shift the frequency of inputs channels on entry into context and undo on exit.
+  ```python
+  from qiskit import pulse
 
-Examples:
+  d0 = pulse.DriveChannel(0)
 
-```python
-from qiskit import pulse
+  with pulse.build(backend) as pulse_prog:
+      # shift frequency by 1GHz
+      with pulse.frequency_offset(1e9, d0):
+          pulse.play(pulse.Constant(10, 1.0), d0)
 
-d0 = pulse.DriveChannel(0)
+  assert len(pulse_prog.instructions) == 3
 
-with pulse.build(backend) as pulse_prog:
-    # shift frequency by 1GHz
-    with pulse.frequency_offset(1e9, d0):
-        pulse.play(pulse.Constant(10, 1.0), d0)
+  with pulse.build(backend) as pulse_prog:
+      # Shift frequency by 1GHz.
+      # Undo accumulated phase in the shifted frequency frame
+      # when exiting the context.
+      with pulse.frequency_offset(1e9, d0, compensate_phase=True):
+          pulse.play(pulse.Constant(10, 1.0), d0)
 
-assert len(pulse_prog.instructions) == 3
+  assert len(pulse_prog.instructions) == 4
+  ```
 
-with pulse.build(backend) as pulse_prog:
-    # Shift frequency by 1GHz.
-    # Undo accumulated phase in the shifted frequency frame
-    # when exiting the context.
-    with pulse.frequency_offset(1e9, d0, compensate_phase=True):
-        pulse.play(pulse.Constant(10, 1.0), d0)
+  **Parameters**
 
-assert len(pulse_prog.instructions) == 4
-```
+  *   **frequency** (`float`) – Amount of frequency offset in Hz.
+  *   **channels** (`PulseChannel`) – Channels to offset frequency of.
+  *   **compensate\_phase** (`bool`) – Compensate for accumulated phase accumulated with respect to the channels’ frame at its initial frequency.
 
-**Parameters**
+  **Yields**
 
-*   **frequency** (`float`) – Amount of frequency offset in Hz.
-*   **channels** (`PulseChannel`) – Channels to offset frequency of.
-*   **compensate\_phase** (`bool`) – Compensate for accumulated phase accumulated with respect to the channels’ frame at its initial frequency.
+  None
 
-**Yields**
+  **Return type**
 
-None
-
-**Return type**
-
-`AbstractContextManager`\[`None`]
+  `AbstractContextManager`\[`None`]
+</Function>
 

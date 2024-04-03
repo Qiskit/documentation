@@ -8,75 +8,67 @@ python_api_name: qiskit.providers.fake_provider.FakeProvider
 
 # FakeProvider
 
-<span id="qiskit.providers.fake_provider.FakeProvider" />
+<Class id="qiskit.providers.fake_provider.FakeProvider" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/fake_provider.py" signature="FakeProvider">
+  Bases: [`ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.provider.ProviderV1")
 
-`FakeProvider` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/fake_provider.py "view source code")
+  Fake provider containing fake V1 backends.
 
-Bases: [`ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.provider.ProviderV1")
+  Only filtering backends by name is implemented. This class contains all fake V1 backends available in the [`qiskit.providers.fake_provider`](providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider").
 
-Fake provider containing fake V1 backends.
+  ## Methods
 
-Only filtering backends by name is implemented. This class contains all fake V1 backends available in the [`qiskit.providers.fake_provider`](providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider").
+  <span id="qiskit-providers-fake-provider-fakeprovider-backends" />
 
-## Methods
+  ### backends
 
-<span id="qiskit-providers-fake-provider-fakeprovider-backends" />
+  <Function id="qiskit.providers.fake_provider.FakeProvider.backends" name="backends" signature="FakeProvider.backends(name=None, **kwargs)">
+    Return a list of backends matching the specified filtering.
 
-### backends
+    **Parameters**
 
-<span id="qiskit.providers.fake_provider.FakeProvider.backends" />
+    *   **name** (*str*) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-`FakeProvider.backends(name=None, **kwargs)`
+    **Returns**
 
-Return a list of backends matching the specified filtering.
+    **a list of Backends that match the filtering**
 
-**Parameters**
+    criteria.
 
-*   **name** (*str*) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
+    **Return type**
 
-**Returns**
+    list\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
+  </Function>
 
-**a list of Backends that match the filtering**
+  <span id="qiskit-providers-fake-provider-fakeprovider-get-backend" />
 
-criteria.
+  ### get\_backend
 
-**Return type**
+  <Function id="qiskit.providers.fake_provider.FakeProvider.get_backend" name="get_backend" signature="FakeProvider.get_backend(name=None, **kwargs)">
+    Return a single backend matching the specified filtering.
 
-list\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
+    **Parameters**
 
-<span id="qiskit-providers-fake-provider-fakeprovider-get-backend" />
+    *   **name** (*str*) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-### get\_backend
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeProvider.get_backend" />
+    a backend matching the filtering.
 
-`FakeProvider.get_backend(name=None, **kwargs)`
+    **Return type**
 
-Return a single backend matching the specified filtering.
+    [Backend](qiskit.providers.Backend "qiskit.providers.Backend")
 
-**Parameters**
+    **Raises**
 
-*   **name** (*str*) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
+    [**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+  </Function>
 
-**Returns**
+  ## Attributes
 
-a backend matching the filtering.
+  ### version
 
-**Return type**
-
-[Backend](qiskit.providers.Backend "qiskit.providers.Backend")
-
-**Raises**
-
-[**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
-
-## Attributes
-
-<span id="qiskit.providers.fake_provider.FakeProvider.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.fake_provider.FakeProvider.version" name="version" attributeValue="= 1" />
+</Class>
 

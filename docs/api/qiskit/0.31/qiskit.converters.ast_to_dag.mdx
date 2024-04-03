@@ -8,48 +8,46 @@ python_api_name: qiskit.converters.ast_to_dag
 
 # qiskit.converters.ast\_to\_dag
 
-<span id="qiskit.converters.ast_to_dag" />
+<Function id="qiskit.converters.ast_to_dag" name="ast_to_dag" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/converters/ast_to_dag.py" signature="ast_to_dag(ast)">
+  Build a `DAGCircuit` object from an AST `Node` object.
 
-`ast_to_dag(ast)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/converters/ast_to_dag.py "view source code")
+  **Parameters**
 
-Build a `DAGCircuit` object from an AST `Node` object.
+  **ast** (*Program*) – a Program Node of an AST (parser’s output)
 
-**Parameters**
+  **Returns**
 
-**ast** (*Program*) – a Program Node of an AST (parser’s output)
+  the DAG representing an OpenQASM’s AST
 
-**Returns**
+  **Return type**
 
-the DAG representing an OpenQASM’s AST
+  [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-**Return type**
+  **Raises**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  **QiskitError** – if the AST is malformed.
 
-**Raises**
+  **Example**
 
-**QiskitError** – if the AST is malformed.
+  ```python
+  from qiskit.converters import ast_to_dag
+  from qiskit import qasm, QuantumCircuit, ClassicalRegister, QuantumRegister
+  from qiskit.visualization import dag_drawer
+  %matplotlib inline
 
-**Example**
+  q = QuantumRegister(3, 'q')
+  c = ClassicalRegister(3, 'c')
+  circ = QuantumCircuit(q, c)
+  circ.h(q[0])
+  circ.cx(q[0], q[1])
+  circ.measure(q[0], c[0])
+  circ.rz(0.5, q[1]).c_if(c, 2)
+  qasm_str = circ.qasm()
+  ast = qasm.Qasm(data=qasm_str).parse()
+  dag = ast_to_dag(ast)
+  dag_drawer(dag)
+  ```
 
-```python
-from qiskit.converters import ast_to_dag
-from qiskit import qasm, QuantumCircuit, ClassicalRegister, QuantumRegister
-from qiskit.visualization import dag_drawer
-%matplotlib inline
-
-q = QuantumRegister(3, 'q')
-c = ClassicalRegister(3, 'c')
-circ = QuantumCircuit(q, c)
-circ.h(q[0])
-circ.cx(q[0], q[1])
-circ.measure(q[0], c[0])
-circ.rz(0.5, q[1]).c_if(c, 2)
-qasm_str = circ.qasm()
-ast = qasm.Qasm(data=qasm_str).parse()
-dag = ast_to_dag(ast)
-dag_drawer(dag)
-```
-
-![../\_images/qiskit.converters.ast\_to\_dag\_0\_0.png](/images/api/qiskit/0.31/qiskit.converters.ast_to_dag_0_0.png)
+  ![../\_images/qiskit.converters.ast\_to\_dag\_0\_0.png](/images/api/qiskit/0.31/qiskit.converters.ast_to_dag_0_0.png)
+</Function>
 

@@ -10,92 +10,80 @@ python_api_name: qiskit.transpiler.passes.TemplateOptimization
 
 # qiskit.transpiler.passes.TemplateOptimization
 
-<span id="qiskit.transpiler.passes.TemplateOptimization" />
+<Class id="qiskit.transpiler.passes.TemplateOptimization" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/optimization/template_optimization.py" signature="TemplateOptimization(*args, **kwargs)">
+  Class for the template optimization pass.
 
-`TemplateOptimization(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/optimization/template_optimization.py "view source code")
+  **Parameters**
 
-Class for the template optimization pass.
+  *   **template\_list** (*list\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*()]*) – list of the different template circuit to apply.
+  *   **heuristics\_backward\_param** (*list\[int]*) – \[length, survivor] Those are the parameters for applying heuristics on the backward part of the algorithm. This part of the algorithm creates a tree of matching scenario. This tree grows exponentially. The heuristics evaluates which scenarios have the longest match and keep only those. The length is the interval in the tree for cutting it and surviror is the number of scenarios that are kept. We advice to use l=3 and s=1 to have serious time advantage. We remind that the heuristics implies losing a part of the maximal matches. Check reference for more details.
+  *   **heuristics\_qubits\_param** (*list\[int]*) – \[length] The heuristics for the qubit choice make guesses from the dag dependency of the circuit in order to limit the number of qubit configurations to explore. The length is the number of successors or not predecessors that will be explored in the dag dependency of the circuit, each qubits of the nodes are added to the set of authorized qubits. We advice to use length=1. Check reference for more details.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **template\_list** (*list\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*()]*) – list of the different template circuit to apply.
-*   **heuristics\_backward\_param** (*list\[int]*) – \[length, survivor] Those are the parameters for applying heuristics on the backward part of the algorithm. This part of the algorithm creates a tree of matching scenario. This tree grows exponentially. The heuristics evaluates which scenarios have the longest match and keep only those. The length is the interval in the tree for cutting it and surviror is the number of scenarios that are kept. We advice to use l=3 and s=1 to have serious time advantage. We remind that the heuristics implies losing a part of the maximal matches. Check reference for more details.
-*   **heuristics\_qubits\_param** (*list\[int]*) – \[length] The heuristics for the qubit choice make guesses from the dag dependency of the circuit in order to limit the number of qubit configurations to explore. The length is the number of successors or not predecessors that will be explored in the dag dependency of the circuit, each qubits of the nodes are added to the set of authorized qubits. We advice to use length=1. Check reference for more details.
+  <Function id="qiskit.transpiler.passes.TemplateOptimization.__init__" name="__init__" signature="__init__(template_list=None, heuristics_qubits_param=None, heuristics_backward_param=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **template\_list** (*list\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*()]*) – list of the different template circuit to apply.
+    *   **heuristics\_backward\_param** (*list\[int]*) – \[length, survivor] Those are the parameters for applying heuristics on the backward part of the algorithm. This part of the algorithm creates a tree of matching scenario. This tree grows exponentially. The heuristics evaluates which scenarios have the longest match and keep only those. The length is the interval in the tree for cutting it and surviror is the number of scenarios that are kept. We advice to use l=3 and s=1 to have serious time advantage. We remind that the heuristics implies losing a part of the maximal matches. Check reference for more details.
+    *   **heuristics\_qubits\_param** (*list\[int]*) – \[length] The heuristics for the qubit choice make guesses from the dag dependency of the circuit in order to limit the number of qubit configurations to explore. The length is the number of successors or not predecessors that will be explored in the dag dependency of the circuit, each qubits of the nodes are added to the set of authorized qubits. We advice to use length=1. Check reference for more details.
+  </Function>
 
-<span id="qiskit.transpiler.passes.TemplateOptimization.__init__" />
+  ## Methods
 
-`__init__(template_list=None, heuristics_qubits_param=None, heuristics_backward_param=None)`
+  |                                                                                                                                                      |                                                                          |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.transpiler.passes.TemplateOptimization.__init__ "qiskit.transpiler.passes.TemplateOptimization.__init__")(\[template\_list, …]) | **param template\_list**list of the different template circuit to apply. |
+  | [`name`](#qiskit.transpiler.passes.TemplateOptimization.name "qiskit.transpiler.passes.TemplateOptimization.name")()                                 | Return the name of the pass.                                             |
+  | [`run`](#qiskit.transpiler.passes.TemplateOptimization.run "qiskit.transpiler.passes.TemplateOptimization.run")(dag)                                 | **param dag**DAG circuit.                                                |
 
-**Parameters**
+  ## Attributes
 
-*   **template\_list** (*list\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*()]*) – list of the different template circuit to apply.
-*   **heuristics\_backward\_param** (*list\[int]*) – \[length, survivor] Those are the parameters for applying heuristics on the backward part of the algorithm. This part of the algorithm creates a tree of matching scenario. This tree grows exponentially. The heuristics evaluates which scenarios have the longest match and keep only those. The length is the interval in the tree for cutting it and surviror is the number of scenarios that are kept. We advice to use l=3 and s=1 to have serious time advantage. We remind that the heuristics implies losing a part of the maximal matches. Check reference for more details.
-*   **heuristics\_qubits\_param** (*list\[int]*) – \[length] The heuristics for the qubit choice make guesses from the dag dependency of the circuit in order to limit the number of qubit configurations to explore. The length is the number of successors or not predecessors that will be explored in the dag dependency of the circuit, each qubits of the nodes are added to the set of authorized qubits. We advice to use length=1. Check reference for more details.
+  |                                                                                                                                                                          |                                             |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
+  | [`is_analysis_pass`](#qiskit.transpiler.passes.TemplateOptimization.is_analysis_pass "qiskit.transpiler.passes.TemplateOptimization.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
+  | [`is_transformation_pass`](#qiskit.transpiler.passes.TemplateOptimization.is_transformation_pass "qiskit.transpiler.passes.TemplateOptimization.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-## Methods
+  ### is\_analysis\_pass
 
-|                                                                                                                                                      |                                                                          |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.transpiler.passes.TemplateOptimization.__init__ "qiskit.transpiler.passes.TemplateOptimization.__init__")(\[template\_list, …]) | **param template\_list**list of the different template circuit to apply. |
-| [`name`](#qiskit.transpiler.passes.TemplateOptimization.name "qiskit.transpiler.passes.TemplateOptimization.name")()                                 | Return the name of the pass.                                             |
-| [`run`](#qiskit.transpiler.passes.TemplateOptimization.run "qiskit.transpiler.passes.TemplateOptimization.run")(dag)                                 | **param dag**DAG circuit.                                                |
+  <Function id="qiskit.transpiler.passes.TemplateOptimization.is_analysis_pass" name="is_analysis_pass" signature="property is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-## Attributes
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Function>
 
-|                                                                                                                                                                          |                                             |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
-| [`is_analysis_pass`](#qiskit.transpiler.passes.TemplateOptimization.is_analysis_pass "qiskit.transpiler.passes.TemplateOptimization.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
-| [`is_transformation_pass`](#qiskit.transpiler.passes.TemplateOptimization.is_transformation_pass "qiskit.transpiler.passes.TemplateOptimization.is_transformation_pass") | Check if the pass is a transformation pass. |
+  ### is\_transformation\_pass
 
-### is\_analysis\_pass
+  <Function id="qiskit.transpiler.passes.TemplateOptimization.is_transformation_pass" name="is_transformation_pass" signature="property is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-<span id="qiskit.transpiler.passes.TemplateOptimization.is_analysis_pass" />
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Function>
 
-`property is_analysis_pass`
+  ### name
 
-Check if the pass is an analysis pass.
+  <Function id="qiskit.transpiler.passes.TemplateOptimization.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  ### run
 
-### is\_transformation\_pass
+  <Function id="qiskit.transpiler.passes.TemplateOptimization.run" name="run" signature="run(dag)">
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.TemplateOptimization.is_transformation_pass" />
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG circuit.
 
-`property is_transformation_pass`
+    **Returns**
 
-Check if the pass is a transformation pass.
+    optimized DAG circuit.
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    **Return type**
 
-### name
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-<span id="qiskit.transpiler.passes.TemplateOptimization.name" />
+    **Raises**
 
-`name()`
-
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.TemplateOptimization.run" />
-
-`run(dag)`
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG circuit.
-
-**Returns**
-
-optimized DAG circuit.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-**Raises**
-
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If the template has not the right form or if the output circuit acts differently as the input circuit.
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If the template has not the right form or if the output circuit acts differently as the input circuit.
+  </Function>
+</Class>
 

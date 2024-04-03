@@ -8,175 +8,149 @@ python_api_name: qiskit.aqua.circuits.PiecewiseLinearRotation
 
 # PiecewiseLinearRotation
 
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation" />
+<Class id="qiskit.aqua.circuits.PiecewiseLinearRotation" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/piecewise_linear_rotation.py" signature="PiecewiseLinearRotation(breakpoints, slopes, offsets, num_state_qubits, basis='Y', i_state=None, i_target=None)">
+  *DEPRECATED.* Piecewise-linearly-controlled rotation.
 
-`PiecewiseLinearRotation(breakpoints, slopes, offsets, num_state_qubits, basis='Y', i_state=None, i_target=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/piecewise_linear_rotation.py "view source code")
+  <Admonition title="Deprecated since version 0.7.0" type="danger">
+    Use Terra’s qiskit.circuit.library.PiecewiseLinearPauliRotations instead.
+  </Admonition>
 
-*DEPRECATED.* Piecewise-linearly-controlled rotation.
+  For a piecewise linear (not necessarily continuous) function f(x). The function f(x) is defined through breakpoints, slopes and offsets as follows. Suppose the breakpoints \{ x\_0, …, x\_J } are a subset of \[0, 2^n-1], where n is the number of state qubits. Further on, denote the corresponding slopes and offsets by a\_j, b\_j respectively. Then f(x) is defined as:
 
-<Admonition title="Deprecated since version 0.7.0" type="danger">
-  Use Terra’s qiskit.circuit.library.PiecewiseLinearPauliRotations instead.
-</Admonition>
+  > x \< x\_0 –> f(x) = 0 x\_j \<= x \< x\_\{j+1} –> f(x) = a\_j \* (x - x\_j) + b\_j
 
-For a piecewise linear (not necessarily continuous) function f(x). The function f(x) is defined through breakpoints, slopes and offsets as follows. Suppose the breakpoints \{ x\_0, …, x\_J } are a subset of \[0, 2^n-1], where n is the number of state qubits. Further on, denote the corresponding slopes and offsets by a\_j, b\_j respectively. Then f(x) is defined as:
+  where we implicitly assume x\_\{J+1} = 2^n.
 
-> x \< x\_0 –> f(x) = 0 x\_j \<= x \< x\_\{j+1} –> f(x) = a\_j \* (x - x\_j) + b\_j
+  **Parameters**
 
-where we implicitly assume x\_\{J+1} = 2^n.
+  *   **breakpoints** (*Union(list, numpy.ndarray)*) – breakpoints to define piecewise-linear function
+  *   **slopes** (*Union(list, numpy.ndarray)*) – slopes for different segments of piecewise-linear function
+  *   **offsets** (*Union(list, numpy.ndarray)*) – offsets for different segments of piecewise-linear function
+  *   **num\_state\_qubits** (*int*) – number of qubits representing the state
+  *   **basis** (*Optional(str)*) – type of Pauli rotation (‘X’, ‘Y’, ‘Z’)
+  *   **i\_state** (*Optional(Union(list, numpy.ndarray))*) – indices of qubits representing the state, set to range(num\_state\_qubits) if None
+  *   **i\_target** (*Optional(int)*) – index of target qubit, set to num\_state\_qubits if None
 
-**Parameters**
+  ## Attributes
 
-*   **breakpoints** (*Union(list, numpy.ndarray)*) – breakpoints to define piecewise-linear function
-*   **slopes** (*Union(list, numpy.ndarray)*) – slopes for different segments of piecewise-linear function
-*   **offsets** (*Union(list, numpy.ndarray)*) – offsets for different segments of piecewise-linear function
-*   **num\_state\_qubits** (*int*) – number of qubits representing the state
-*   **basis** (*Optional(str)*) – type of Pauli rotation (‘X’, ‘Y’, ‘Z’)
-*   **i\_state** (*Optional(Union(list, numpy.ndarray))*) – indices of qubits representing the state, set to range(num\_state\_qubits) if None
-*   **i\_target** (*Optional(int)*) – index of target qubit, set to num\_state\_qubits if None
+  ### num\_target\_qubits
 
-## Attributes
+  <Attribute id="qiskit.aqua.circuits.PiecewiseLinearRotation.num_target_qubits" name="num_target_qubits">
+    Returns the number of target qubits
+  </Attribute>
 
-### num\_target\_qubits
+  ## Methods
 
-Returns the number of target qubits
+  ### build
 
-## Methods
+  <Function id="qiskit.aqua.circuits.PiecewiseLinearRotation.build" name="build" signature="PiecewiseLinearRotation.build(qc, q, q_ancillas=None, params=None)">
+    Build the circuit.
+  </Function>
 
-### build
+  ### build\_controlled
 
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation.build" />
+  <Function id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_controlled" name="build_controlled" signature="PiecewiseLinearRotation.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds corresponding controlled sub-circuit to given circuit
 
-`PiecewiseLinearRotation.build(qc, q, q_ancillas=None, params=None)`
+    **Parameters**
 
-Build the circuit.
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-### build\_controlled
+  ### build\_controlled\_inverse
 
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_controlled" />
+  <Function id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_controlled_inverse" name="build_controlled_inverse" signature="PiecewiseLinearRotation.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled inverse of corresponding sub-circuit to given circuit
 
-`PiecewiseLinearRotation.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+    **Parameters**
 
-Adds corresponding controlled sub-circuit to given circuit
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-**Parameters**
+  ### build\_controlled\_inverse\_power
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  <Function id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_controlled_inverse_power" name="build_controlled_inverse_power" signature="PiecewiseLinearRotation.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-### build\_controlled\_inverse
+  ### build\_controlled\_power
 
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_controlled_inverse" />
+  <Function id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_controlled_power" name="build_controlled_power" signature="PiecewiseLinearRotation.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-`PiecewiseLinearRotation.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+  ### build\_inverse
 
-Adds controlled inverse of corresponding sub-circuit to given circuit
+  <Function id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_inverse" name="build_inverse" signature="PiecewiseLinearRotation.build_inverse(qc, q, q_ancillas=None)">
+    Adds inverse of corresponding sub-circuit to given circuit
 
-**Parameters**
+    **Parameters**
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  </Function>
 
-### build\_controlled\_inverse\_power
+  ### build\_inverse\_power
 
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_controlled_inverse_power" />
+  <Function id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_inverse_power" name="build_inverse_power" signature="PiecewiseLinearRotation.build_inverse_power(qc, q, power, q_ancillas=None)">
+    Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-`PiecewiseLinearRotation.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  ### build\_power
 
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  <Function id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_power" name="build_power" signature="PiecewiseLinearRotation.build_power(qc, q, power, q_ancillas=None)">
+    Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-### build\_controlled\_power
+  ### evaluate
 
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_controlled_power" />
+  <Function id="qiskit.aqua.circuits.PiecewiseLinearRotation.evaluate" name="evaluate" signature="PiecewiseLinearRotation.evaluate(x)">
+    Classically evaluate the piecewise linear rotation
 
-`PiecewiseLinearRotation.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+    **Parameters**
 
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+    **x** (*float*) – value to be evaluated at
 
-### build\_inverse
+    **Returns**
 
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_inverse" />
+    value of piecewise linear function at x
 
-`PiecewiseLinearRotation.build_inverse(qc, q, q_ancillas=None)`
+    **Return type**
 
-Adds inverse of corresponding sub-circuit to given circuit
+    float
+  </Function>
 
-**Parameters**
+  ### get\_num\_qubits
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  <Function id="qiskit.aqua.circuits.PiecewiseLinearRotation.get_num_qubits" name="get_num_qubits" signature="PiecewiseLinearRotation.get_num_qubits()">
+    returns number of qubits
+  </Function>
 
-### build\_inverse\_power
+  ### get\_num\_qubits\_controlled
 
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_inverse_power" />
+  <Function id="qiskit.aqua.circuits.PiecewiseLinearRotation.get_num_qubits_controlled" name="get_num_qubits_controlled" signature="PiecewiseLinearRotation.get_num_qubits_controlled()">
+    returns number of qubits controlled
+  </Function>
 
-`PiecewiseLinearRotation.build_inverse_power(qc, q, power, q_ancillas=None)`
+  ### required\_ancillas
 
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  <Function id="qiskit.aqua.circuits.PiecewiseLinearRotation.required_ancillas" name="required_ancillas" signature="PiecewiseLinearRotation.required_ancillas()">
+    Return the number of required ancillas.
+  </Function>
 
-### build\_power
+  ### required\_ancillas\_controlled
 
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation.build_power" />
-
-`PiecewiseLinearRotation.build_power(qc, q, power, q_ancillas=None)`
-
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### evaluate
-
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation.evaluate" />
-
-`PiecewiseLinearRotation.evaluate(x)`
-
-Classically evaluate the piecewise linear rotation
-
-**Parameters**
-
-**x** (*float*) – value to be evaluated at
-
-**Returns**
-
-value of piecewise linear function at x
-
-**Return type**
-
-float
-
-### get\_num\_qubits
-
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation.get_num_qubits" />
-
-`PiecewiseLinearRotation.get_num_qubits()`
-
-returns number of qubits
-
-### get\_num\_qubits\_controlled
-
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation.get_num_qubits_controlled" />
-
-`PiecewiseLinearRotation.get_num_qubits_controlled()`
-
-returns number of qubits controlled
-
-### required\_ancillas
-
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation.required_ancillas" />
-
-`PiecewiseLinearRotation.required_ancillas()`
-
-Return the number of required ancillas.
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.aqua.circuits.PiecewiseLinearRotation.required_ancillas_controlled" />
-
-`PiecewiseLinearRotation.required_ancillas_controlled()`
-
-returns required ancillas controlled
+  <Function id="qiskit.aqua.circuits.PiecewiseLinearRotation.required_ancillas_controlled" name="required_ancillas_controlled" signature="PiecewiseLinearRotation.required_ancillas_controlled()">
+    returns required ancillas controlled
+  </Function>
+</Class>
 

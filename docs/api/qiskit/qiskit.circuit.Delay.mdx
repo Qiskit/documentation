@@ -8,329 +8,301 @@ python_api_name: qiskit.circuit.Delay
 
 # Delay
 
-<span id="qiskit.circuit.Delay" />
+<Class id="qiskit.circuit.Delay" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/delay.py" signature="qiskit.circuit.Delay(duration, unit='dt')">
+  Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
-`qiskit.circuit.Delay(duration, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/delay.py "view source code")
+  Do nothing and just delay/wait/idle for a specified duration.
 
-Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  Create new delay instruction.
 
-Do nothing and just delay/wait/idle for a specified duration.
+  ## Attributes
 
-Create new delay instruction.
+  ### base\_class
 
-## Attributes
+  <Attribute id="qiskit.circuit.Delay.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-<span id="qiskit.circuit.Delay.base_class" />
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.Delay.base_class "qiskit.circuit.Delay.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-### base\_class
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.Delay.base_class "qiskit.circuit.Delay.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") should be a more suitable discriminator in most situations.
+  </Attribute>
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### condition
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.Delay.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") should be a more suitable discriminator in most situations.
+  ### condition\_bits
 
-<span id="qiskit.circuit.Delay.condition" />
+  <Attribute id="qiskit.circuit.Delay.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### condition
+  ### decompositions
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.Delay.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.Delay.condition_bits" />
+  ### definition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.Delay.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get Clbits in condition.
+  ### duration
 
-<span id="qiskit.circuit.Delay.decompositions" />
+  <Attribute id="qiskit.circuit.Delay.duration" name="duration">
+    Get the duration of this delay.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.Delay.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.Delay.definition" />
+  ### mutable
 
-### definition
+  <Attribute id="qiskit.circuit.Delay.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-Return definition in terms of other basic gates.
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-<span id="qiskit.circuit.Delay.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.circuit.Delay.name" name="name">
+    Return the name.
+  </Attribute>
 
-Get the duration of this delay.
+  ### num\_clbits
 
-<span id="qiskit.circuit.Delay.label" />
+  <Attribute id="qiskit.circuit.Delay.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### label
+  ### num\_qubits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.Delay.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.Delay.mutable" />
+  ### params
 
-### mutable
+  <Attribute id="qiskit.circuit.Delay.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### unit
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.Delay.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.Delay.name" />
+  ## Methods
 
-### name
+  ### add\_decomposition
 
-Return the name.
+  <Function id="qiskit.circuit.Delay.add_decomposition" name="add_decomposition" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-<span id="qiskit.circuit.Delay.num_clbits" />
+  ### assemble
 
-### num\_clbits
+  <Function id="qiskit.circuit.Delay.assemble" name="assemble" signature="assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-Return the number of clbits.
+  ### broadcast\_arguments
 
-<span id="qiskit.circuit.Delay.num_qubits" />
+  <Function id="qiskit.circuit.Delay.broadcast_arguments" name="broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-### num\_qubits
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-Return the number of qubits.
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-<span id="qiskit.circuit.Delay.params" />
+    The general broadcasting rules are:
 
-### params
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-return instruction params.
+    **Parameters**
 
-<span id="qiskit.circuit.Delay.unit" />
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of quantum bit arguments.
+    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of classical bit arguments.
 
-### unit
+    **Returns**
 
-Get the time unit of duration.
+    A tuple with single arguments.
 
-## Methods
+    **Raises**
 
-### add\_decomposition
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="qiskit.circuit.Delay.add_decomposition" />
+    **Return type**
 
-`add_decomposition(decomposition)`
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
+  </Function>
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  ### c\_if
 
-### assemble
+  <Function id="qiskit.circuit.Delay.c_if" name="c_if" signature="c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-<span id="qiskit.circuit.Delay.assemble" />
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-`assemble()`
+  ### copy
 
-Assemble a QasmQobjInstruction
+  <Function id="qiskit.circuit.Delay.copy" name="copy" signature="copy(name=None)">
+    Copy of the instruction.
 
-### broadcast\_arguments
+    **Parameters**
 
-<span id="qiskit.circuit.Delay.broadcast_arguments" />
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name to be given to the copied circuit, if `None` then the name stays the same.
 
-`broadcast_arguments(qargs, cargs)`
+    **Returns**
 
-Validation and handling of the arguments and its relationship.
+    a copy of the current instruction, with the name updated if it was provided
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+    **Return type**
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-The general broadcasting rules are:
+  ### inverse
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+  <Function id="qiskit.circuit.Delay.inverse" name="inverse" signature="inverse(annotated=False)">
+    Special case. Return self.
+  </Function>
 
-**Parameters**
+  ### is\_parameterized
 
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of quantum bit arguments.
-*   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of classical bit arguments.
+  <Function id="qiskit.circuit.Delay.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-**Returns**
+  ### repeat
 
-A tuple with single arguments.
+  <Function id="qiskit.circuit.Delay.repeat" name="repeat" signature="repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-**Raises**
+    **Parameters**
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of times to repeat the instruction
 
-**Return type**
+    **Returns**
 
-[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
+    Containing the definition.
 
-### c\_if
+    **Return type**
 
-<span id="qiskit.circuit.Delay.c_if" />
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-`c_if(classical, val)`
+    **Raises**
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  ### reverse\_ops
 
-### copy
+  <Function id="qiskit.circuit.Delay.reverse_ops" name="reverse_ops" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-<span id="qiskit.circuit.Delay.copy" />
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-`copy(name=None)`
+    **Returns**
 
-Copy of the instruction.
+    **a new instruction with**
 
-**Parameters**
+    sub-instructions reversed.
 
-**name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+    **Return type**
 
-**Returns**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-a copy of the current instruction, with the name updated if it was provided
+  ### soft\_compare
 
-**Return type**
+  <Function id="qiskit.circuit.Delay.soft_compare" name="soft_compare" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Parameters**
 
-### inverse
+    **other** (*instruction*) – other instruction.
 
-<span id="qiskit.circuit.Delay.inverse" />
+    **Returns**
 
-`inverse(annotated=False)`
+    are self and other equal up to parameter expressions.
 
-Special case. Return self.
+    **Return type**
 
-### is\_parameterized
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-<span id="qiskit.circuit.Delay.is_parameterized" />
+  ### to\_matrix
 
-`is_parameterized()`
+  <Function id="qiskit.circuit.Delay.to_matrix" name="to_matrix" signature="to_matrix()">
+    Return a Numpy.array for the unitary matrix. This has been added to enable simulation without making delay a full Gate type.
 
-Return True .IFF. instruction is parameterized else False
+    **Returns**
 
-### repeat
+    matrix representation.
 
-<span id="qiskit.circuit.Delay.repeat" />
+    **Return type**
 
-`repeat(n)`
+    np.ndarray
+  </Function>
 
-Creates an instruction with gate repeated n amount of times.
+  ### to\_mutable
 
-**Parameters**
+  <Function id="qiskit.circuit.Delay.to_mutable" name="to_mutable" signature="to_mutable()">
+    Return a mutable copy of this gate.
 
-**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of times to repeat the instruction
+    This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
+  </Function>
 
-**Returns**
+  ### validate\_parameter
 
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
-
-### reverse\_ops
-
-<span id="qiskit.circuit.Delay.reverse_ops" />
-
-`reverse_ops()`
-
-For a composite instruction, reverse the order of sub-instructions.
-
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-**a new instruction with**
-
-sub-instructions reversed.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### soft\_compare
-
-<span id="qiskit.circuit.Delay.soft_compare" />
-
-`soft_compare(other)`
-
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
-
-**Parameters**
-
-**other** (*instruction*) – other instruction.
-
-**Returns**
-
-are self and other equal up to parameter expressions.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
-
-### to\_matrix
-
-<span id="qiskit.circuit.Delay.to_matrix" />
-
-`to_matrix()`
-
-Return a Numpy.array for the unitary matrix. This has been added to enable simulation without making delay a full Gate type.
-
-**Returns**
-
-matrix representation.
-
-**Return type**
-
-np.ndarray
-
-### to\_mutable
-
-<span id="qiskit.circuit.Delay.to_mutable" />
-
-`to_mutable()`
-
-Return a mutable copy of this gate.
-
-This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
-
-### validate\_parameter
-
-<span id="qiskit.circuit.Delay.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Delay parameter (i.e. duration) must be int, float or ParameterExpression.
+  <Function id="qiskit.circuit.Delay.validate_parameter" name="validate_parameter" signature="validate_parameter(parameter)">
+    Delay parameter (i.e. duration) must be int, float or ParameterExpression.
+  </Function>
+</Class>
 

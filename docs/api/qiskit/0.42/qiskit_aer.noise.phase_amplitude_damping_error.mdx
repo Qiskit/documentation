@@ -8,45 +8,43 @@ python_api_name: qiskit_aer.noise.phase_amplitude_damping_error
 
 # qiskit\_aer.noise.phase\_amplitude\_damping\_error
 
-<span id="qiskit_aer.noise.phase_amplitude_damping_error" />
+<Function id="qiskit_aer.noise.phase_amplitude_damping_error" name="phase_amplitude_damping_error" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/errors/standard_errors.py" signature="phase_amplitude_damping_error(param_amp, param_phase, excited_state_population=0, canonical_kraus=True)">
+  Return a single-qubit combined phase and amplitude damping quantum error channel.
 
-`phase_amplitude_damping_error(param_amp, param_phase, excited_state_population=0, canonical_kraus=True)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/errors/standard_errors.py "view source code")
+  The single-qubit combined phase and amplitude damping channel is described by the following Kraus matrices:
 
-Return a single-qubit combined phase and amplitude damping quantum error channel.
+  ```python
+  A0 = sqrt(1 - p1) * [[1, 0], [0, sqrt(1 - a - b)]]
+  A1 = sqrt(1 - p1) * [[0, sqrt(a)], [0, 0]]
+  A2 = sqrt(1 - p1) * [[0, 0], [0, sqrt(b)]]
+  B0 = sqrt(p1) * [[sqrt(1 - a - b), 0], [0, 1]]
+  B1 = sqrt(p1) * [[0, 0], [sqrt(a), 0]]
+  B2 = sqrt(p1) * [[sqrt(b), 0], [0, 0]]
+  ```
 
-The single-qubit combined phase and amplitude damping channel is described by the following Kraus matrices:
+  where `a = param_amp`, `b = param_phase`, and `p1 = excited_state_population`. The equilibrium state after infinitely many applications of the channel is:
 
-```python
-A0 = sqrt(1 - p1) * [[1, 0], [0, sqrt(1 - a - b)]]
-A1 = sqrt(1 - p1) * [[0, sqrt(a)], [0, 0]]
-A2 = sqrt(1 - p1) * [[0, 0], [0, sqrt(b)]]
-B0 = sqrt(p1) * [[sqrt(1 - a - b), 0], [0, 1]]
-B1 = sqrt(p1) * [[0, 0], [sqrt(a), 0]]
-B2 = sqrt(p1) * [[sqrt(b), 0], [0, 0]]
-```
+  ```python
+  rho_eq = [[1 - p1, 0]], [0, p1]]
+  ```
 
-where `a = param_amp`, `b = param_phase`, and `p1 = excited_state_population`. The equilibrium state after infinitely many applications of the channel is:
+  **Parameters**
 
-```python
-rho_eq = [[1 - p1, 0]], [0, p1]]
-```
+  *   **param\_amp** (*double*) – the amplitude damping error parameter.
+  *   **param\_phase** (*double*) – the phase damping error parameter.
+  *   **excited\_state\_population** (*double*) – the population of $|1\rangle$ state at equilibrium (default: 0).
+  *   **canonical\_kraus** (*bool*) – Convert input Kraus matrices into the canonical Kraus representation (default: True)
 
-**Parameters**
+  **Returns**
 
-*   **param\_amp** (*double*) – the amplitude damping error parameter.
-*   **param\_phase** (*double*) – the phase damping error parameter.
-*   **excited\_state\_population** (*double*) – the population of $|1\rangle$ state at equilibrium (default: 0).
-*   **canonical\_kraus** (*bool*) – Convert input Kraus matrices into the canonical Kraus representation (default: True)
+  a quantum error object for a noise model.
 
-**Returns**
+  **Return type**
 
-a quantum error object for a noise model.
+  [QuantumError](qiskit_aer.noise.QuantumError "qiskit_aer.noise.QuantumError")
 
-**Return type**
+  **Raises**
 
-[QuantumError](qiskit_aer.noise.QuantumError "qiskit_aer.noise.QuantumError")
-
-**Raises**
-
-**NoiseError** – If noise parameters are invalid.
+  **NoiseError** – If noise parameters are invalid.
+</Function>
 

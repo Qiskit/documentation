@@ -8,169 +8,163 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.VQE
 
 # VQE
 
-<span id="qiskit.algorithms.minimum_eigensolvers.VQE" />
+<Class id="qiskit.algorithms.minimum_eigensolvers.VQE" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/minimum_eigensolvers/vqe.py" signature="VQE(estimator, ansatz, optimizer, *, gradient=None, initial_point=None, callback=None)">
+  Bases: `VariationalAlgorithm`, [`MinimumEigensolver`](qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver "qiskit.algorithms.minimum_eigensolvers.minimum_eigensolver.MinimumEigensolver")
 
-`VQE(estimator, ansatz, optimizer, *, gradient=None, initial_point=None, callback=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/minimum_eigensolvers/vqe.py "view source code")
+  The variational quantum eigensolver (VQE) algorithm.
 
-Bases: `VariationalAlgorithm`, [`MinimumEigensolver`](qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver "qiskit.algorithms.minimum_eigensolvers.minimum_eigensolver.MinimumEigensolver")
+  VQE is a hybrid quantum-classical algorithm that uses a variational technique to find the minimum eigenvalue of a given Hamiltonian operator $H$.
 
-The variational quantum eigensolver (VQE) algorithm.
+  The `VQE` algorithm is executed using an [`estimator`](#qiskit.algorithms.minimum_eigensolvers.VQE.estimator "qiskit.algorithms.minimum_eigensolvers.VQE.estimator") primitive, which computes expectation values of operators (observables).
 
-VQE is a hybrid quantum-classical algorithm that uses a variational technique to find the minimum eigenvalue of a given Hamiltonian operator $H$.
+  An instance of `VQE` also requires an [`ansatz`](#qiskit.algorithms.minimum_eigensolvers.VQE.ansatz "qiskit.algorithms.minimum_eigensolvers.VQE.ansatz"), a parameterized [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), to prepare the trial state $|\psi(\vec\theta)\rangle$. It also needs a classical [`optimizer`](#qiskit.algorithms.minimum_eigensolvers.VQE.optimizer "qiskit.algorithms.minimum_eigensolvers.VQE.optimizer") which varies the circuit parameters $\vec\theta$ such that the expectation value of the operator on the corresponding state approaches a minimum,
 
-The `VQE` algorithm is executed using an [`estimator`](#qiskit.algorithms.minimum_eigensolvers.VQE.estimator "qiskit.algorithms.minimum_eigensolvers.VQE.estimator") primitive, which computes expectation values of operators (observables).
+  $$
+  \min_{\vec\theta} \langle\psi(\vec\theta)|H|\psi(\vec\theta)\rangle.
+  $$
 
-An instance of `VQE` also requires an [`ansatz`](#qiskit.algorithms.minimum_eigensolvers.VQE.ansatz "qiskit.algorithms.minimum_eigensolvers.VQE.ansatz"), a parameterized [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), to prepare the trial state $|\psi(\vec\theta)\rangle$. It also needs a classical [`optimizer`](#qiskit.algorithms.minimum_eigensolvers.VQE.optimizer "qiskit.algorithms.minimum_eigensolvers.VQE.optimizer") which varies the circuit parameters $\vec\theta$ such that the expectation value of the operator on the corresponding state approaches a minimum,
+  The [`estimator`](#qiskit.algorithms.minimum_eigensolvers.VQE.estimator "qiskit.algorithms.minimum_eigensolvers.VQE.estimator") is used to compute this expectation value for every optimization step.
 
-$$
-\min_{\vec\theta} \langle\psi(\vec\theta)|H|\psi(\vec\theta)\rangle.
-$$
+  The optimizer can either be one of Qiskit’s optimizers, such as [`SPSA`](qiskit.algorithms.optimizers.SPSA "qiskit.algorithms.optimizers.SPSA") or a callable with the following signature:
 
-The [`estimator`](#qiskit.algorithms.minimum_eigensolvers.VQE.estimator "qiskit.algorithms.minimum_eigensolvers.VQE.estimator") is used to compute this expectation value for every optimization step.
+  ```python
+  from qiskit.algorithms.optimizers import OptimizerResult
 
-The optimizer can either be one of Qiskit’s optimizers, such as [`SPSA`](qiskit.algorithms.optimizers.SPSA "qiskit.algorithms.optimizers.SPSA") or a callable with the following signature:
+  def my_minimizer(fun, x0, jac=None, bounds=None) -> OptimizerResult:
+      # Note that the callable *must* have these argument names!
+      # Args:
+      #     fun (callable): the function to minimize
+      #     x0 (np.ndarray): the initial point for the optimization
+      #     jac (callable, optional): the gradient of the objective function
+      #     bounds (list, optional): a list of tuples specifying the parameter bounds
 
-```python
-from qiskit.algorithms.optimizers import OptimizerResult
+      result = OptimizerResult()
+      result.x = # optimal parameters
+      result.fun = # optimal function value
+      return result
+  ```
 
-def my_minimizer(fun, x0, jac=None, bounds=None) -> OptimizerResult:
-    # Note that the callable *must* have these argument names!
-    # Args:
-    #     fun (callable): the function to minimize
-    #     x0 (np.ndarray): the initial point for the optimization
-    #     jac (callable, optional): the gradient of the objective function
-    #     bounds (list, optional): a list of tuples specifying the parameter bounds
+  The above signature also allows one to use any SciPy minimizer, for instance as
 
-    result = OptimizerResult()
-    result.x = # optimal parameters
-    result.fun = # optimal function value
-    return result
-```
+  ```python
+  from functools import partial
+  from scipy.optimize import minimize
 
-The above signature also allows one to use any SciPy minimizer, for instance as
+  optimizer = partial(minimize, method="L-BFGS-B")
+  ```
 
-```python
-from functools import partial
-from scipy.optimize import minimize
+  The following attributes can be set via the initializer but can also be read and updated once the VQE object has been constructed.
 
-optimizer = partial(minimize, method="L-BFGS-B")
-```
+  ### estimator
 
-The following attributes can be set via the initializer but can also be read and updated once the VQE object has been constructed.
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.estimator" name="estimator">
+    The estimator primitive to compute the expectation value of the Hamiltonian operator.
 
-<span id="qiskit.algorithms.minimum_eigensolvers.VQE.estimator" />
+    **Type**
 
-### estimator
+    [BaseEstimator](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")
+  </Attribute>
 
-The estimator primitive to compute the expectation value of the Hamiltonian operator.
+  ### ansatz
 
-**Type**
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.ansatz" name="ansatz">
+    A parameterized quantum circuit to prepare the trial state.
 
-[BaseEstimator](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")
+    **Type**
 
-<span id="qiskit.algorithms.minimum_eigensolvers.VQE.ansatz" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Attribute>
 
-### ansatz
+  ### optimizer
 
-A parameterized quantum circuit to prepare the trial state.
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.optimizer" name="optimizer">
+    A classical optimizer to find the minimum energy. This can either be a Qiskit [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") or a callable implementing the [`Minimizer`](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") protocol.
 
-**Type**
+    **Type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    [Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") | [Minimizer](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer")
+  </Attribute>
 
-<span id="qiskit.algorithms.minimum_eigensolvers.VQE.optimizer" />
+  ### gradient
 
-### optimizer
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.gradient" name="gradient">
+    An optional estimator gradient to be used with the optimizer.
 
-A classical optimizer to find the minimum energy. This can either be a Qiskit [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") or a callable implementing the [`Minimizer`](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") protocol.
+    **Type**
 
-**Type**
+    [BaseEstimatorGradient](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.BaseEstimatorGradient") | None
+  </Attribute>
 
-[Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") | [Minimizer](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer")
+  ### callback
 
-<span id="qiskit.algorithms.minimum_eigensolvers.VQE.gradient" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.callback" name="callback">
+    A callback that can access the intermediate data at each optimization step. These data are: the evaluation count, the optimizer parameters for the ansatz, the evaluated mean, and the metadata dictionary.
 
-### gradient
+    **Type**
 
-An optional estimator gradient to be used with the optimizer.
+    Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None
+  </Attribute>
 
-**Type**
+  **References**
 
-[BaseEstimatorGradient](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.BaseEstimatorGradient") | None
+  **\[1]: Peruzzo, A., et al, “A variational eigenvalue solver on a quantum processor”**
 
-<span id="qiskit.algorithms.minimum_eigensolvers.VQE.callback" />
+  [arXiv:1304.3061](https://arxiv.org/abs/1304.3061)
 
-### callback
+  **Parameters**
 
-A callback that can access the intermediate data at each optimization step. These data are: the evaluation count, the optimizer parameters for the ansatz, the evaluated mean, and the metadata dictionary.
+  *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator primitive to compute the expectation value of the Hamiltonian operator.
+  *   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A parameterized quantum circuit to prepare the trial state.
+  *   **optimizer** ([*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer")) – A classical optimizer to find the minimum energy. This can either be a Qiskit [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") or a callable implementing the [`Minimizer`](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") protocol.
+  *   **gradient** ([*BaseEstimatorGradient*](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.BaseEstimatorGradient") *| None*) – An optional estimator gradient to be used with the optimizer.
+  *   **initial\_point** (*Sequence\[float] | None*) – An optional initial point (i.e. initial parameter values) for the optimizer. The length of the initial point must match the number of [`ansatz`](#qiskit.algorithms.minimum_eigensolvers.VQE.ansatz "qiskit.algorithms.minimum_eigensolvers.VQE.ansatz") parameters. If `None`, a random point will be generated within certain parameter bounds. `VQE` will look to the ansatz for these bounds. If the ansatz does not specify bounds, bounds of $-2\pi$, $2\pi$ will be used.
+  *   **callback** (*Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None*) – A callback that can access the intermediate data at each optimization step. These data are: the evaluation count, the optimizer parameters for the ansatz, the estimated value, and the metadata dictionary.
 
-**Type**
+  ## Methods
 
-Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None
+  <span id="qiskit-algorithms-minimum-eigensolvers-vqe-compute-minimum-eigenvalue" />
 
-**References**
+  ### compute\_minimum\_eigenvalue
 
-**\[1]: Peruzzo, A., et al, “A variational eigenvalue solver on a quantum processor”**
+  <Function id="qiskit.algorithms.minimum_eigensolvers.VQE.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="VQE.compute_minimum_eigenvalue(operator, aux_operators=None)">
+    Computes the minimum eigenvalue. The `operator` and `aux_operators` are supplied here. While an `operator` is required by algorithms, `aux_operators` are optional.
 
-[arXiv:1304.3061](https://arxiv.org/abs/1304.3061)
+    **Parameters**
 
-**Parameters**
+    *   **operator** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – Qubit operator of the observable.
+    *   **aux\_operators** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*] | None*) – Optional list of auxiliary operators to be evaluated with the parameters of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators and total particle count operators, so we can get values for these at the ground state.
 
-*   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator primitive to compute the expectation value of the Hamiltonian operator.
-*   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A parameterized quantum circuit to prepare the trial state.
-*   **optimizer** ([*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer")) – A classical optimizer to find the minimum energy. This can either be a Qiskit [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") or a callable implementing the [`Minimizer`](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") protocol.
-*   **gradient** ([*BaseEstimatorGradient*](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.BaseEstimatorGradient") *| None*) – An optional estimator gradient to be used with the optimizer.
-*   **initial\_point** (*Sequence\[float] | None*) – An optional initial point (i.e. initial parameter values) for the optimizer. The length of the initial point must match the number of [`ansatz`](#qiskit.algorithms.minimum_eigensolvers.VQE.ansatz "qiskit.algorithms.minimum_eigensolvers.VQE.ansatz") parameters. If `None`, a random point will be generated within certain parameter bounds. `VQE` will look to the ansatz for these bounds. If the ansatz does not specify bounds, bounds of $-2\pi$, $2\pi$ will be used.
-*   **callback** (*Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None*) – A callback that can access the intermediate data at each optimization step. These data are: the evaluation count, the optimizer parameters for the ansatz, the estimated value, and the metadata dictionary.
+    **Returns**
 
-## Methods
+    A minimum eigensolver result.
 
-<span id="qiskit-algorithms-minimum-eigensolvers-vqe-compute-minimum-eigenvalue" />
+    **Return type**
 
-### compute\_minimum\_eigenvalue
+    [VQEResult](qiskit.algorithms.minimum_eigensolvers.VQEResult "qiskit.algorithms.minimum_eigensolvers.VQEResult")
+  </Function>
 
-<span id="qiskit.algorithms.minimum_eigensolvers.VQE.compute_minimum_eigenvalue" />
+  <span id="qiskit-algorithms-minimum-eigensolvers-vqe-supports-aux-operators" />
 
-`VQE.compute_minimum_eigenvalue(operator, aux_operators=None)`
+  ### supports\_aux\_operators
 
-Computes the minimum eigenvalue. The `operator` and `aux_operators` are supplied here. While an `operator` is required by algorithms, `aux_operators` are optional.
+  <Function id="qiskit.algorithms.minimum_eigensolvers.VQE.supports_aux_operators" name="supports_aux_operators" signature="classmethod VQE.supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-**Parameters**
+    If the minimum eigensolver computes an eigenvalue of the main `operator` then it can compute the expectation value of the `aux_operators` for that state. Otherwise they will be ignored.
 
-*   **operator** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – Qubit operator of the observable.
-*   **aux\_operators** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*] | None*) – Optional list of auxiliary operators to be evaluated with the parameters of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators and total particle count operators, so we can get values for these at the ground state.
+    **Returns**
 
-**Returns**
+    True if aux\_operator expectations can be evaluated, False otherwise
 
-A minimum eigensolver result.
+    **Return type**
 
-**Return type**
+    bool
+  </Function>
 
-[VQEResult](qiskit.algorithms.minimum_eigensolvers.VQEResult "qiskit.algorithms.minimum_eigensolvers.VQEResult")
+  ## Attributes
 
-<span id="qiskit-algorithms-minimum-eigensolvers-vqe-supports-aux-operators" />
+  ### initial\_point
 
-### supports\_aux\_operators
-
-<span id="qiskit.algorithms.minimum_eigensolvers.VQE.supports_aux_operators" />
-
-`classmethod VQE.supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-If the minimum eigensolver computes an eigenvalue of the main `operator` then it can compute the expectation value of the `aux_operators` for that state. Otherwise they will be ignored.
-
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
-
-**Return type**
-
-bool
-
-## Attributes
-
-<span id="qiskit.algorithms.minimum_eigensolvers.VQE.initial_point" />
-
-### initial\_point
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.initial_point" name="initial_point" />
+</Class>
 

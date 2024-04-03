@@ -8,82 +8,76 @@ python_api_name: qiskit.optimization.converters.InequalityToEquality
 
 # InequalityToEquality
 
-<span id="qiskit.optimization.converters.InequalityToEquality" />
+<Class id="qiskit.optimization.converters.InequalityToEquality" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/inequality_to_equality.py" signature="InequalityToEquality">
+  Convert inequality constraints into equality constraints by introducing slack variables.
 
-`InequalityToEquality` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/inequality_to_equality.py "view source code")
+  **Examples**
 
-Convert inequality constraints into equality constraints by introducing slack variables.
+  ```python
+  >>> from qiskit.optimization.problems import QuadraticProgram
+  >>> from qiskit.optimization.converters import InequalityToEquality
+  >>> problem = QuadraticProgram()
+  >>> # define a problem
+  >>> conv = InequalityToEquality()
+  >>> problem2 = conv.encode(problem)
+  ```
 
-**Examples**
+  ## Methods
 
-```python
->>> from qiskit.optimization.problems import QuadraticProgram
->>> from qiskit.optimization.converters import InequalityToEquality
->>> problem = QuadraticProgram()
->>> # define a problem
->>> conv = InequalityToEquality()
->>> problem2 = conv.encode(problem)
-```
+  ### decode
 
-## Methods
+  <Function id="qiskit.optimization.converters.InequalityToEquality.decode" name="decode" signature="InequalityToEquality.decode(result)">
+    Convert a result of a converted problem into that of the original problem.
 
-### decode
+    **Parameters**
 
-<span id="qiskit.optimization.converters.InequalityToEquality.decode" />
+    **result** (`OptimizationResult`) – The result of the converted problem.
 
-`InequalityToEquality.decode(result)`
+    **Return type**
 
-Convert a result of a converted problem into that of the original problem.
+    `OptimizationResult`
 
-**Parameters**
+    **Returns**
 
-**result** (`OptimizationResult`) – The result of the converted problem.
+    The result of the original problem.
+  </Function>
 
-**Return type**
+  ### encode
 
-`OptimizationResult`
+  <Function id="qiskit.optimization.converters.InequalityToEquality.encode" name="encode" signature="InequalityToEquality.encode(op, name=None, mode='auto')">
+    Convert a problem with inequality constraints into one with only equality constraints.
 
-**Returns**
+    **Parameters**
 
-The result of the original problem.
+    *   **op** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved, that may contain inequality constraints.
 
-### encode
+    *   **name** (`Optional`\[`str`]) – The name of the converted problem.
 
-<span id="qiskit.optimization.converters.InequalityToEquality.encode" />
+    *   **mode** (`str`) –
 
-`InequalityToEquality.encode(op, name=None, mode='auto')`
+        To chose the type of slack variables. There are 3 options for mode.
 
-Convert a problem with inequality constraints into one with only equality constraints.
+        *   ’integer’: All slack variables will be integer variables.
 
-**Parameters**
+        *   ’continuous’: All slack variables will be continuous variables
 
-*   **op** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved, that may contain inequality constraints.
+        *   **’auto’: Try to use integer variables but if it’s not possible,**
 
-*   **name** (`Optional`\[`str`]) – The name of the converted problem.
+            use continuous variables
 
-*   **mode** (`str`) –
+    **Return type**
 
-    To chose the type of slack variables. There are 3 options for mode.
+    [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")
 
-    *   ’integer’: All slack variables will be integer variables.
+    **Returns**
 
-    *   ’continuous’: All slack variables will be continuous variables
+    The converted problem, that contain only equality constraints.
 
-    *   **’auto’: Try to use integer variables but if it’s not possible,**
+    **Raises**
 
-        use continuous variables
-
-**Return type**
-
-[`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")
-
-**Returns**
-
-The converted problem, that contain only equality constraints.
-
-**Raises**
-
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If a variable type is not supported.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an unsupported mode is selected.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an unsupported sense is specified.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If a variable type is not supported.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an unsupported mode is selected.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an unsupported sense is specified.
+  </Function>
+</Class>
 

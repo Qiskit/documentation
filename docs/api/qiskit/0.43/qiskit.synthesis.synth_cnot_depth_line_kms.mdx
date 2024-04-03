@@ -10,31 +10,29 @@ python_api_name: qiskit.synthesis.synth_cnot_depth_line_kms
 
 # qiskit.synthesis.synth\_cnot\_depth\_line\_kms
 
-<span id="qiskit.synthesis.synth_cnot_depth_line_kms" />
+<Function id="qiskit.synthesis.synth_cnot_depth_line_kms" name="synth_cnot_depth_line_kms" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/linear/linear_depth_lnn.py" signature="synth_cnot_depth_line_kms(mat)">
+  Synthesize linear reversible circuit for linear nearest-neighbor architectures using Kutin, Moulton, Smithline method.
 
-`synth_cnot_depth_line_kms(mat)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/linear/linear_depth_lnn.py "view source code")
+  Synthesis algorithm for linear reversible circuits from \[1], Chapter 7. Synthesizes any linear reversible circuit of n qubits over linear nearest-neighbor architecture using CX gates with depth at most 5\*n.
 
-Synthesize linear reversible circuit for linear nearest-neighbor architectures using Kutin, Moulton, Smithline method.
+  **Parameters**
 
-Synthesis algorithm for linear reversible circuits from \[1], Chapter 7. Synthesizes any linear reversible circuit of n qubits over linear nearest-neighbor architecture using CX gates with depth at most 5\*n.
+  **mat** (*np.ndarray]*) – A boolean invertible matrix.
 
-**Parameters**
+  **Returns**
 
-**mat** (*np.ndarray]*) – A boolean invertible matrix.
+  the synthesized quantum circuit.
 
-**Returns**
+  **Return type**
 
-the synthesized quantum circuit.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  **QiskitError** – if mat is not invertible.
 
-**Raises**
+  **References**
 
-**QiskitError** – if mat is not invertible.
-
-**References**
-
-1.  Kutin, S., Moulton, D. P., Smithline, L., *Computation at a distance*, Chicago J. Theor. Comput. Sci., vol. 2007, (2007), [arXiv:quant-ph/0701194](https://arxiv.org/abs/quant-ph/0701194)
+  1.  Kutin, S., Moulton, D. P., Smithline, L., *Computation at a distance*, Chicago J. Theor. Comput. Sci., vol. 2007, (2007), [arXiv:quant-ph/0701194](https://arxiv.org/abs/quant-ph/0701194)
+</Function>
 

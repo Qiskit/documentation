@@ -8,59 +8,55 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolverR
 
 # NumPyMinimumEigensolverResult
 
-<span id="qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolverResult" />
+<Class id="qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolverResult" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigensolvers/numpy_minimum_eigensolver.py" signature="NumPyMinimumEigensolverResult">
+  Bases: [`qiskit.algorithms.minimum_eigensolvers.minimum_eigensolver.MinimumEigensolverResult`](qiskit.algorithms.minimum_eigensolvers.MinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.minimum_eigensolver.MinimumEigensolverResult")
 
-`NumPyMinimumEigensolverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigensolvers/numpy_minimum_eigensolver.py "view source code")
+  NumPy minimum eigensolver result.
 
-Bases: [`qiskit.algorithms.minimum_eigensolvers.minimum_eigensolver.MinimumEigensolverResult`](qiskit.algorithms.minimum_eigensolvers.MinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.minimum_eigensolver.MinimumEigensolverResult")
+  ## Methods
 
-NumPy minimum eigensolver result.
+  ### combine
 
-## Methods
+  <Function id="qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolverResult.combine" name="combine" signature="NumPyMinimumEigensolverResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-### combine
+    **Raises**
 
-<span id="qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolverResult.combine" />
+    **TypeError** – Argument is None
 
-`NumPyMinimumEigensolverResult.combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    `None`
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**TypeError** – Argument is None
+  ### aux\_operators\_evaluated
 
-**Return type**
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolverResult.aux_operators_evaluated" name="aux_operators_evaluated">
+    The aux operator expectation values.
 
-`None`
+    These values are in fact tuples formatted as (mean, (variance, shots)).
+  </Attribute>
 
-## Attributes
+  ### eigenstate
 
-<span id="qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolverResult.aux_operators_evaluated" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolverResult.eigenstate" name="eigenstate">
+    Returns the eigenstate corresponding to the computed minimum eigenvalue.
 
-### aux\_operators\_evaluated
+    **Return type**
 
-The aux operator expectation values.
+    np.ndarray | None
+  </Attribute>
 
-These values are in fact tuples formatted as (mean, (variance, shots)).
+  ### eigenvalue
 
-<span id="qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolverResult.eigenstate" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolverResult.eigenvalue" name="eigenvalue">
+    The computed minimum eigenvalue.
 
-### eigenstate
+    **Return type**
 
-Returns the eigenstate corresponding to the computed minimum eigenvalue.
-
-**Return type**
-
-np.ndarray | None
-
-<span id="qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolverResult.eigenvalue" />
-
-### eigenvalue
-
-The computed minimum eigenvalue.
-
-**Return type**
-
-complex | None
+    complex | None
+  </Attribute>
+</Class>
 

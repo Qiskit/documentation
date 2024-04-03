@@ -8,55 +8,53 @@ python_api_name: qiskit.pulse.builder.align_func
 
 # qiskit.pulse.builder.align\_func
 
-<span id="qiskit.pulse.builder.align_func" />
+<Function id="qiskit.pulse.builder.align_func" name="align_func" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py" signature="align_func(duration, func)">
+  Callback defined alignment pulse scheduling context.
 
-`align_func(duration, func)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
+  Pulse instructions within this context are scheduled at the location specified by arbitrary callback function position that takes integer index and returns the associated fractional location within \[0, 1]. Delay instruction is automatically inserted in between pulses.
 
-Callback defined alignment pulse scheduling context.
+  This context may be convenient to write a schedule of arbitrary dynamical decoupling sequences such as Uhrig dynamical decoupling.
 
-Pulse instructions within this context are scheduled at the location specified by arbitrary callback function position that takes integer index and returns the associated fractional location within \[0, 1]. Delay instruction is automatically inserted in between pulses.
+  Examples:
 
-This context may be convenient to write a schedule of arbitrary dynamical decoupling sequences such as Uhrig dynamical decoupling.
+  ```python
+  import numpy as np
+  from qiskit import pulse
 
-Examples:
+  d0 = pulse.DriveChannel(0)
+  x90 = pulse.Gaussian(10, 0.1, 3)
+  x180 = pulse.Gaussian(10, 0.2, 3)
 
-```python
-import numpy as np
-from qiskit import pulse
+  def udd10_pos(j):
+      return np.sin(np.pi*j/(2*10 + 2))**2
 
-d0 = pulse.DriveChannel(0)
-x90 = pulse.Gaussian(10, 0.1, 3)
-x180 = pulse.Gaussian(10, 0.2, 3)
+  with pulse.build() as udd_sched:
+      pulse.play(x90, d0)
+      with pulse.align_func(duration=300, func=udd10_pos):
+          for _ in range(10):
+              pulse.play(x180, d0)
+      pulse.play(x90, d0)
 
-def udd10_pos(j):
-    return np.sin(np.pi*j/(2*10 + 2))**2
+  udd_sched.draw()
+  ```
 
-with pulse.build() as udd_sched:
-    pulse.play(x90, d0)
-    with pulse.align_func(duration=300, func=udd10_pos):
-        for _ in range(10):
-            pulse.play(x180, d0)
-    pulse.play(x90, d0)
+  ![../\_images/qiskit.pulse.builder.align\_func\_0\_0.png](/images/api/qiskit/0.30/qiskit.pulse.builder.align_func_0_0.png)
 
-udd_sched.draw()
-```
+  **Parameters**
 
-![../\_images/qiskit.pulse.builder.align\_func\_0\_0.png](/images/api/qiskit/0.30/qiskit.pulse.builder.align_func_0_0.png)
+  *   **duration** (`Union`\[`int`, `ParameterExpression`]) – Duration of context. This should be larger than the schedule duration.
+  *   **func** (`Callable`\[\[`int`], `float`]) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
 
-**Parameters**
+  **Yields**
 
-*   **duration** (`Union`\[`int`, `ParameterExpression`]) – Duration of context. This should be larger than the schedule duration.
-*   **func** (`Callable`\[\[`int`], `float`]) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
+  None
 
-**Yields**
+  **Notes**
 
-None
+  The scheduling is performed for sub-schedules within the context rather than channel-wise. If you want to apply the numerical context for each channel, you need to apply the context independently to channels.
 
-**Notes**
+  **Return type**
 
-The scheduling is performed for sub-schedules within the context rather than channel-wise. If you want to apply the numerical context for each channel, you need to apply the context independently to channels.
-
-**Return type**
-
-`AlignmentKind`
+  `AlignmentKind`
+</Function>
 

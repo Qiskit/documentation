@@ -8,49 +8,47 @@ python_api_name: qiskit.pulse.builder.align_equispaced
 
 # qiskit.pulse.builder.align\_equispaced
 
-<span id="qiskit.pulse.builder.align_equispaced" />
+<Function id="qiskit.pulse.builder.align_equispaced" name="align_equispaced" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py" signature="align_equispaced(duration)">
+  Equispaced alignment pulse scheduling context.
 
-`align_equispaced(duration)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
+  Pulse instructions within this context are scheduled with the same interval spacing such that the total length of the context block is `duration`. If the total free `duration` cannot be evenly divided by the number of instructions within the context, the modulo is split and then prepended and appended to the returned schedule. Delay instructions are automatically inserted in between pulses.
 
-Equispaced alignment pulse scheduling context.
+  This context is convenient to write a schedule for periodical dynamic decoupling or the Hahn echo sequence.
 
-Pulse instructions within this context are scheduled with the same interval spacing such that the total length of the context block is `duration`. If the total free `duration` cannot be evenly divided by the number of instructions within the context, the modulo is split and then prepended and appended to the returned schedule. Delay instructions are automatically inserted in between pulses.
+  Examples:
 
-This context is convenient to write a schedule for periodical dynamic decoupling or the Hahn echo sequence.
+  ```python
+  from qiskit import pulse
 
-Examples:
+  d0 = pulse.DriveChannel(0)
+  x90 = pulse.Gaussian(10, 0.1, 3)
+  x180 = pulse.Gaussian(10, 0.2, 3)
 
-```python
-from qiskit import pulse
+  with pulse.build() as hahn_echo:
+      with pulse.align_equispaced(duration=100):
+          pulse.play(x90, d0)
+          pulse.play(x180, d0)
+          pulse.play(x90, d0)
 
-d0 = pulse.DriveChannel(0)
-x90 = pulse.Gaussian(10, 0.1, 3)
-x180 = pulse.Gaussian(10, 0.2, 3)
+  hahn_echo.draw()
+  ```
 
-with pulse.build() as hahn_echo:
-    with pulse.align_equispaced(duration=100):
-        pulse.play(x90, d0)
-        pulse.play(x180, d0)
-        pulse.play(x90, d0)
+  ![../\_images/qiskit.pulse.builder.align\_equispaced\_0\_0.png](/images/api/qiskit/0.32/qiskit.pulse.builder.align_equispaced_0_0.png)
 
-hahn_echo.draw()
-```
+  **Parameters**
 
-![../\_images/qiskit.pulse.builder.align\_equispaced\_0\_0.png](/images/api/qiskit/0.32/qiskit.pulse.builder.align_equispaced_0_0.png)
+  **duration** (`Union`\[`int`, `ParameterExpression`]) – Duration of this context. This should be larger than the schedule duration.
 
-**Parameters**
+  **Yields**
 
-**duration** (`Union`\[`int`, `ParameterExpression`]) – Duration of this context. This should be larger than the schedule duration.
+  None
 
-**Yields**
+  **Notes**
 
-None
+  The scheduling is performed for sub-schedules within the context rather than channel-wise. If you want to apply the equispaced context for each channel, you should use the context independently for channels.
 
-**Notes**
+  **Return type**
 
-The scheduling is performed for sub-schedules within the context rather than channel-wise. If you want to apply the equispaced context for each channel, you should use the context independently for channels.
-
-**Return type**
-
-`AlignmentKind`
+  `AlignmentKind`
+</Function>
 

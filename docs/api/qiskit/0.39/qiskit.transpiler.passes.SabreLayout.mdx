@@ -8,77 +8,71 @@ python_api_name: qiskit.transpiler.passes.SabreLayout
 
 # SabreLayout
 
-<span id="qiskit.transpiler.passes.SabreLayout" />
+<Class id="qiskit.transpiler.passes.SabreLayout" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/layout/sabre_layout.py" signature="SabreLayout(*args, **kwargs)">
+  Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-`SabreLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/layout/sabre_layout.py "view source code")
+  Choose a Layout via iterative bidirectional routing of the input circuit.
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+  Starting with a random initial Layout, the algorithm does a full routing of the circuit (via the routing\_pass method) to end up with a final\_layout. This final\_layout is then used as the initial\_layout for routing the reverse circuit. The algorithm iterates a number of times until it finds an initial\_layout that reduces full routing cost.
 
-Choose a Layout via iterative bidirectional routing of the input circuit.
+  This method exploits the reversibility of quantum circuits, and tries to include global circuit information in the choice of initial\_layout.
 
-Starting with a random initial Layout, the algorithm does a full routing of the circuit (via the routing\_pass method) to end up with a final\_layout. This final\_layout is then used as the initial\_layout for routing the reverse circuit. The algorithm iterates a number of times until it finds an initial\_layout that reduces full routing cost.
+  **References:**
 
-This method exploits the reversibility of quantum circuits, and tries to include global circuit information in the choice of initial\_layout.
+  \[1] Li, Gushu, Yufei Ding, and Yuan Xie. “Tackling the qubit mapping problem for NISQ-era quantum devices.” ASPLOS 2019. [arXiv:1809.02573](https://arxiv.org/pdf/1809.02573.pdf)
 
-**References:**
+  SabreLayout initializer.
 
-\[1] Li, Gushu, Yufei Ding, and Yuan Xie. “Tackling the qubit mapping problem for NISQ-era quantum devices.” ASPLOS 2019. [arXiv:1809.02573](https://arxiv.org/pdf/1809.02573.pdf)
+  **Parameters**
 
-SabreLayout initializer.
+  *   **coupling\_map** (*Coupling*) – directed graph representing a coupling map.
+  *   **routing\_pass** (*BasePass*) – the routing pass to use while iterating. This is mutually exclusive with the `swap_trials` argument and if both are set an error will be raised.
+  *   **seed** (*int*) – seed for setting a random first trial layout.
+  *   **max\_iterations** (*int*) – number of forward-backward iterations.
+  *   **swap\_trials** (*int*) – The number of trials to run of [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") for each iteration. This is equivalent to the `trials` argument on [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap"). If this is not specified (and `routing_pass` isn’t set) by default the number of physical CPUs on your local system will be used. For reproducibility between environments it is best to set this to an explicit number because the output will potentially depend on the number of trials run. This option is mutually exclusive with the `routing_pass` argument and an error will be raised if both are used.
 
-**Parameters**
+  **Raises**
 
-*   **coupling\_map** (*Coupling*) – directed graph representing a coupling map.
-*   **routing\_pass** (*BasePass*) – the routing pass to use while iterating. This is mutually exclusive with the `swap_trials` argument and if both are set an error will be raised.
-*   **seed** (*int*) – seed for setting a random first trial layout.
-*   **max\_iterations** (*int*) – number of forward-backward iterations.
-*   **swap\_trials** (*int*) – The number of trials to run of [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") for each iteration. This is equivalent to the `trials` argument on [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap"). If this is not specified (and `routing_pass` isn’t set) by default the number of physical CPUs on your local system will be used. For reproducibility between environments it is best to set this to an explicit number because the output will potentially depend on the number of trials run. This option is mutually exclusive with the `routing_pass` argument and an error will be raised if both are used.
+  [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If both `routing_pass` and `swap_trials` are specified
 
-**Raises**
+  ## Methods
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If both `routing_pass` and `swap_trials` are specified
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.SabreLayout.name" name="name" signature="SabreLayout.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.SabreLayout.name" />
+  <Function id="qiskit.transpiler.passes.SabreLayout.run" name="run" signature="SabreLayout.run(dag)">
+    Run the SabreLayout pass on dag.
 
-`SabreLayout.name()`
+    **Parameters**
 
-Return the name of the pass.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to find layout for.
 
-### run
+    **Raises**
 
-<span id="qiskit.transpiler.passes.SabreLayout.run" />
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if dag wider than self.coupling\_map
+  </Function>
 
-`SabreLayout.run(dag)`
+  ## Attributes
 
-Run the SabreLayout pass on dag.
+  ### is\_analysis\_pass
 
-**Parameters**
+  <Attribute id="qiskit.transpiler.passes.SabreLayout.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to find layout for.
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-**Raises**
+  ### is\_transformation\_pass
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if dag wider than self.coupling\_map
+  <Attribute id="qiskit.transpiler.passes.SabreLayout.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-## Attributes
-
-<span id="qiskit.transpiler.passes.SabreLayout.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.SabreLayout.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

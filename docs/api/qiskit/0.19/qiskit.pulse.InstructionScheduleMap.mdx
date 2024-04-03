@@ -8,235 +8,213 @@ python_api_name: qiskit.pulse.InstructionScheduleMap
 
 # InstructionScheduleMap
 
-<span id="qiskit.pulse.InstructionScheduleMap" />
+<Class id="qiskit.pulse.InstructionScheduleMap" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instruction_schedule_map.py" signature="InstructionScheduleMap">
+  Mapping from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and qubits to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") s. In particular, the mapping is formatted as type:
 
-`InstructionScheduleMap` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instruction_schedule_map.py "view source code")
+  ```python
+  Dict[str, Dict[Tuple[int], Schedule]]
+  ```
 
-Mapping from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and qubits to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") s. In particular, the mapping is formatted as type:
+  where the first key is the name of a circuit instruction (e.g. `'u1'`, `'measure'`), the second key is a tuple of qubit indices, and the final value is a Schedule implementing the requested instruction.
 
-```python
-Dict[str, Dict[Tuple[int], Schedule]]
-```
+  These can usually be seen as gate calibrations.
 
-where the first key is the name of a circuit instruction (e.g. `'u1'`, `'measure'`), the second key is a tuple of qubit indices, and the final value is a Schedule implementing the requested instruction.
+  Initialize a circuit instruction to schedule mapper instance.
 
-These can usually be seen as gate calibrations.
+  ## Attributes
 
-Initialize a circuit instruction to schedule mapper instance.
+  ### instructions
 
-## Attributes
+  <Attribute id="qiskit.pulse.InstructionScheduleMap.instructions" name="instructions" signature="List[str]">
+    Return all instructions which have definitions.
 
-### instructions
+    By default, these are typically the basis gates along with other instructions such as measure and reset.
 
-<span id="qiskit.pulse.InstructionScheduleMap.instructions" />
+    **Return type**
 
-`List[str]`
+    `List`\[`str`]
 
-Return all instructions which have definitions.
+    **Returns**
 
-By default, these are typically the basis gates along with other instructions such as measure and reset.
+    The names of all the circuit instructions which have Schedule definitions in this.
+  </Attribute>
 
-**Return type**
+  ## Methods
 
-`List`\[`str`]
+  ### add
 
-**Returns**
+  <Function id="qiskit.pulse.InstructionScheduleMap.add" name="add" signature="InstructionScheduleMap.add(instruction, qubits, schedule)">
+    Add a new known instruction for the given qubits and its mapping to a pulse schedule.
 
-The names of all the circuit instructions which have Schedule definitions in this.
+    **Parameters**
 
-## Methods
+    *   **instruction** (`str`) – The name of the instruction to add.
+    *   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The qubits which the instruction applies to.
+    *   **schedule** (`Union`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `Callable`\[…, [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]) – The Schedule that implements the given instruction.
 
-### add
+    **Raises**
 
-<span id="qiskit.pulse.InstructionScheduleMap.add" />
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the qubits are provided as an empty iterable.
 
-`InstructionScheduleMap.add(instruction, qubits, schedule)`
+    **Return type**
 
-Add a new known instruction for the given qubits and its mapping to a pulse schedule.
+    `None`
+  </Function>
 
-**Parameters**
+  ### assert\_has
 
-*   **instruction** (`str`) – The name of the instruction to add.
-*   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The qubits which the instruction applies to.
-*   **schedule** (`Union`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `Callable`\[…, [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]) – The Schedule that implements the given instruction.
+  <Function id="qiskit.pulse.InstructionScheduleMap.assert_has" name="assert_has" signature="InstructionScheduleMap.assert_has(instruction, qubits)">
+    Error if the given instruction is not defined.
 
-**Raises**
+    **Parameters**
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the qubits are provided as an empty iterable.
+    *   **instruction** (`str`) – The instruction for which to look.
+    *   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The specific qubits for the instruction.
 
-**Return type**
+    **Raises**
 
-`None`
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the instruction is not defined on the qubits.
 
-### assert\_has
+    **Return type**
 
-<span id="qiskit.pulse.InstructionScheduleMap.assert_has" />
+    `None`
+  </Function>
 
-`InstructionScheduleMap.assert_has(instruction, qubits)`
+  ### get
 
-Error if the given instruction is not defined.
+  <Function id="qiskit.pulse.InstructionScheduleMap.get" name="get" signature="InstructionScheduleMap.get(instruction, qubits, *params, **kwparams)">
+    Return the defined [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") for the given instruction on the given qubits.
 
-**Parameters**
+    **Parameters**
 
-*   **instruction** (`str`) – The instruction for which to look.
-*   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The specific qubits for the instruction.
+    *   **instruction** (`str`) – Name of the instruction.
+    *   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The qubits for the instruction.
+    *   **\*params** – Command parameters for generating the output schedule.
+    *   **\*\*kwparams** – Keyworded command parameters for generating the schedule.
 
-**Raises**
+    **Return type**
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the instruction is not defined on the qubits.
+    [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 
-**Return type**
+    **Returns**
 
-`None`
+    The Schedule defined for the input.
+  </Function>
 
-### get
+  ### get\_parameters
 
-<span id="qiskit.pulse.InstructionScheduleMap.get" />
+  <Function id="qiskit.pulse.InstructionScheduleMap.get_parameters" name="get_parameters" signature="InstructionScheduleMap.get_parameters(instruction, qubits)">
+    Return the list of parameters taken by the given instruction on the given qubits.
 
-`InstructionScheduleMap.get(instruction, qubits, *params, **kwparams)`
+    **Parameters**
 
-Return the defined [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") for the given instruction on the given qubits.
+    *   **instruction** (`str`) – Name of the instruction.
+    *   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The qubits for the instruction.
 
-**Parameters**
+    **Return type**
 
-*   **instruction** (`str`) – Name of the instruction.
-*   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The qubits for the instruction.
-*   **\*params** – Command parameters for generating the output schedule.
-*   **\*\*kwparams** – Keyworded command parameters for generating the schedule.
+    `Tuple`\[`str`]
 
-**Return type**
+    **Returns**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+    The names of the parameters required by the instruction.
+  </Function>
 
-**Returns**
+  ### has
 
-The Schedule defined for the input.
+  <Function id="qiskit.pulse.InstructionScheduleMap.has" name="has" signature="InstructionScheduleMap.has(instruction, qubits)">
+    Is the instruction defined for the given qubits?
 
-### get\_parameters
+    **Parameters**
 
-<span id="qiskit.pulse.InstructionScheduleMap.get_parameters" />
+    *   **instruction** (`str`) – The instruction for which to look.
+    *   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The specific qubits for the instruction.
 
-`InstructionScheduleMap.get_parameters(instruction, qubits)`
+    **Return type**
 
-Return the list of parameters taken by the given instruction on the given qubits.
+    `bool`
 
-**Parameters**
+    **Returns**
 
-*   **instruction** (`str`) – Name of the instruction.
-*   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The qubits for the instruction.
+    True iff the instruction is defined.
+  </Function>
 
-**Return type**
+  ### pop
 
-`Tuple`\[`str`]
+  <Function id="qiskit.pulse.InstructionScheduleMap.pop" name="pop" signature="InstructionScheduleMap.pop(instruction, qubits, *params, **kwparams)">
+    Remove and return the defined `Schedule` for the given instruction on the given qubits.
 
-**Returns**
+    **Parameters**
 
-The names of the parameters required by the instruction.
+    *   **instruction** (`str`) – Name of the instruction.
+    *   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The qubits for the instruction.
+    *   **\*params** – Command parameters for generating the output schedule.
+    *   **\*\*kwparams** – Keyworded command parameters for generating the schedule.
 
-### has
+    **Return type**
 
-<span id="qiskit.pulse.InstructionScheduleMap.has" />
+    [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 
-`InstructionScheduleMap.has(instruction, qubits)`
+    **Returns**
 
-Is the instruction defined for the given qubits?
+    The Schedule defined for the input.
+  </Function>
 
-**Parameters**
+  ### qubit\_instructions
 
-*   **instruction** (`str`) – The instruction for which to look.
-*   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The specific qubits for the instruction.
+  <Function id="qiskit.pulse.InstructionScheduleMap.qubit_instructions" name="qubit_instructions" signature="InstructionScheduleMap.qubit_instructions(qubits)">
+    Return a list of the instruction names that are defined by the backend for the given qubit or qubits.
 
-**Return type**
+    **Parameters**
 
-`bool`
+    **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – A qubit index, or a list or tuple of indices.
 
-**Returns**
+    **Return type**
 
-True iff the instruction is defined.
+    `List`\[`str`]
 
-### pop
+    **Returns**
 
-<span id="qiskit.pulse.InstructionScheduleMap.pop" />
+    All the instructions which are defined on the qubits.
 
-`InstructionScheduleMap.pop(instruction, qubits, *params, **kwparams)`
+    For 1 qubit, all the 1Q instructions defined. For multiple qubits, all the instructions which apply to that whole set of qubits (e.g. `qubits=[0, 1]` may return `['cx']`).
+  </Function>
 
-Remove and return the defined `Schedule` for the given instruction on the given qubits.
+  ### qubits\_with\_instruction
 
-**Parameters**
+  <Function id="qiskit.pulse.InstructionScheduleMap.qubits_with_instruction" name="qubits_with_instruction" signature="InstructionScheduleMap.qubits_with_instruction(instruction)">
+    Return a list of the qubits for which the given instruction is defined. Single qubit instructions return a flat list, and multiqubit instructions return a list of ordered tuples.
 
-*   **instruction** (`str`) – Name of the instruction.
-*   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The qubits for the instruction.
-*   **\*params** – Command parameters for generating the output schedule.
-*   **\*\*kwparams** – Keyworded command parameters for generating the schedule.
+    **Parameters**
 
-**Return type**
+    **instruction** (`str`) – The name of the circuit instruction.
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+    **Return type**
 
-**Returns**
+    `List`\[`Union`\[`int`, `Tuple`\[`int`]]]
 
-The Schedule defined for the input.
+    **Returns**
 
-### qubit\_instructions
+    Qubit indices which have the given instruction defined. This is a list of tuples if the instruction has an arity greater than 1, or a flat list of ints otherwise.
 
-<span id="qiskit.pulse.InstructionScheduleMap.qubit_instructions" />
+    **Raises**
 
-`InstructionScheduleMap.qubit_instructions(qubits)`
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the instruction is not found.
+  </Function>
 
-Return a list of the instruction names that are defined by the backend for the given qubit or qubits.
+  ### remove
 
-**Parameters**
+  <Function id="qiskit.pulse.InstructionScheduleMap.remove" name="remove" signature="InstructionScheduleMap.remove(instruction, qubits)">
+    Remove the given instruction from the listing of instructions defined in self.
 
-**qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – A qubit index, or a list or tuple of indices.
+    **Parameters**
 
-**Return type**
+    *   **instruction** (`str`) – The name of the instruction to add.
+    *   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The qubits which the instruction applies to.
 
-`List`\[`str`]
+    **Return type**
 
-**Returns**
-
-All the instructions which are defined on the qubits.
-
-For 1 qubit, all the 1Q instructions defined. For multiple qubits, all the instructions which apply to that whole set of qubits (e.g. `qubits=[0, 1]` may return `['cx']`).
-
-### qubits\_with\_instruction
-
-<span id="qiskit.pulse.InstructionScheduleMap.qubits_with_instruction" />
-
-`InstructionScheduleMap.qubits_with_instruction(instruction)`
-
-Return a list of the qubits for which the given instruction is defined. Single qubit instructions return a flat list, and multiqubit instructions return a list of ordered tuples.
-
-**Parameters**
-
-**instruction** (`str`) – The name of the circuit instruction.
-
-**Return type**
-
-`List`\[`Union`\[`int`, `Tuple`\[`int`]]]
-
-**Returns**
-
-Qubit indices which have the given instruction defined. This is a list of tuples if the instruction has an arity greater than 1, or a flat list of ints otherwise.
-
-**Raises**
-
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the instruction is not found.
-
-### remove
-
-<span id="qiskit.pulse.InstructionScheduleMap.remove" />
-
-`InstructionScheduleMap.remove(instruction, qubits)`
-
-Remove the given instruction from the listing of instructions defined in self.
-
-**Parameters**
-
-*   **instruction** (`str`) – The name of the instruction to add.
-*   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The qubits which the instruction applies to.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

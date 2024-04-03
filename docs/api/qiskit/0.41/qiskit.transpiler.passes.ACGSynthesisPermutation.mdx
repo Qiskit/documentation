@@ -8,41 +8,37 @@ python_api_name: qiskit.transpiler.passes.ACGSynthesisPermutation
 
 # ACGSynthesisPermutation
 
-<span id="qiskit.transpiler.passes.ACGSynthesisPermutation" />
+<Class id="qiskit.transpiler.passes.ACGSynthesisPermutation" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/high_level_synthesis.py" signature="ACGSynthesisPermutation">
+  Bases: [`qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
 
-`ACGSynthesisPermutation` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
+  The permutation synthesis plugin based on the Alon, Chung, Graham method.
 
-Bases: [`qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
+  This plugin can be accessed by the `acg` method name in the `HLSConfig` for `permutation`. For example:
 
-The permutation synthesis plugin based on the Alon, Chung, Graham method.
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import PermutationGate
+  from qiskit.transpiler import PassManager
+  from qiskit.transpiler.passes.synthesis.high_level_synthesis import HLSConfig, HighLevelSynthesis
+  from qiskit.transpiler.passes.synthesis.plugin import HighLevelSynthesisPluginManager
 
-This plugin can be accessed by the `acg` method name in the `HLSConfig` for `permutation`. For example:
+  # Create a permutation and add it to a quantum circuit
+  perm = PermutationGate([4, 6, 3, 7, 1, 2, 0, 5])
+  qc = QuantumCircuit(8)
+  qc.append(perm, range(8))
 
-```python
-from qiskit.circuit import QuantumCircuit
-from qiskit.circuit.library import PermutationGate
-from qiskit.transpiler import PassManager
-from qiskit.transpiler.passes.synthesis.high_level_synthesis import HLSConfig, HighLevelSynthesis
-from qiskit.transpiler.passes.synthesis.plugin import HighLevelSynthesisPluginManager
+  # ACGSynthesisPermutation plugin for permutations
+  # Returns a quantum circuit with size 6 and depth 2
+  qct = PassManager(HighLevelSynthesis(HLSConfig(permutation=[("acg", {})]))).run(qc)
+  print(f"acg: {qct.size() = }, {qct.depth() = }")
+  ```
 
-# Create a permutation and add it to a quantum circuit
-perm = PermutationGate([4, 6, 3, 7, 1, 2, 0, 5])
-qc = QuantumCircuit(8)
-qc.append(perm, range(8))
+  ## Methods
 
-# ACGSynthesisPermutation plugin for permutations
-# Returns a quantum circuit with size 6 and depth 2
-qct = PassManager(HighLevelSynthesis(HLSConfig(permutation=[("acg", {})]))).run(qc)
-print(f"acg: {qct.size() = }, {qct.depth() = }")
-```
+  ### run
 
-## Methods
-
-### run
-
-<span id="qiskit.transpiler.passes.ACGSynthesisPermutation.run" />
-
-`ACGSynthesisPermutation.run(high_level_object, **options)`
-
-Run synthesis for the given Permutation.
+  <Function id="qiskit.transpiler.passes.ACGSynthesisPermutation.run" name="run" signature="ACGSynthesisPermutation.run(high_level_object, **options)">
+    Run synthesis for the given Permutation.
+  </Function>
+</Class>
 

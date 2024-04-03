@@ -8,126 +8,116 @@ python_api_name: qiskit.ignis.mitigation.CompleteMeasFitter
 
 # CompleteMeasFitter
 
-<span id="qiskit.ignis.mitigation.CompleteMeasFitter" />
+<Class id="qiskit.ignis.mitigation.CompleteMeasFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/measurement/fitters.py" signature="CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')">
+  Bases: `object`
 
-`CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
+  Measurement correction fitter for a full calibration
 
-Bases: `object`
+  Initialize a measurement calibration matrix from the results of running the circuits returned by measurement\_calibration\_circuits
 
-Measurement correction fitter for a full calibration
+  A wrapper for the tensored fitter
 
-Initialize a measurement calibration matrix from the results of running the circuits returned by measurement\_calibration\_circuits
+  **Parameters**
 
-A wrapper for the tensored fitter
+  *   **results** (`Union`\[`Result`, `List`\[`Result`]]) – the results of running the measurement calibration circuits. If this is None the user will set a calibration matrix later.
+  *   **state\_labels** (`List`\[`str`]) – list of calibration state labels returned from measurement\_calibration\_circuits. The output matrix will obey this ordering.
+  *   **qubit\_list** (`Optional`\[`List`\[`int`]]) – List of the qubits (for reference and if the subset is needed). If None, the qubit\_list will be created according to the length of state\_labels\[0].
+  *   **circlabel** (`str`) – if the qubits were labeled.
 
-**Parameters**
+  ## Methods
 
-*   **results** (`Union`\[`Result`, `List`\[`Result`]]) – the results of running the measurement calibration circuits. If this is None the user will set a calibration matrix later.
-*   **state\_labels** (`List`\[`str`]) – list of calibration state labels returned from measurement\_calibration\_circuits. The output matrix will obey this ordering.
-*   **qubit\_list** (`Optional`\[`List`\[`int`]]) – List of the qubits (for reference and if the subset is needed). If None, the qubit\_list will be created according to the length of state\_labels\[0].
-*   **circlabel** (`str`) – if the qubits were labeled.
+  ### add\_data
 
-## Methods
+  <Function id="qiskit.ignis.mitigation.CompleteMeasFitter.add_data" name="add_data" signature="CompleteMeasFitter.add_data(new_results, rebuild_cal_matrix=True)">
+    Add measurement calibration data
 
-### add\_data
+    **Parameters**
 
-<span id="qiskit.ignis.mitigation.CompleteMeasFitter.add_data" />
+    *   **new\_results** (*list or* [*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of result objects.
+    *   **rebuild\_cal\_matrix** (*bool*) – rebuild the calibration matrix
+  </Function>
 
-`CompleteMeasFitter.add_data(new_results, rebuild_cal_matrix=True)`
+  ### plot\_calibration
 
-Add measurement calibration data
+  <Function id="qiskit.ignis.mitigation.CompleteMeasFitter.plot_calibration" name="plot_calibration" signature="CompleteMeasFitter.plot_calibration(ax=None, show_plot=True)">
+    Plot the calibration matrix (2D color grid plot)
 
-**Parameters**
+    **Parameters**
 
-*   **new\_results** (*list or* [*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of result objects.
-*   **rebuild\_cal\_matrix** (*bool*) – rebuild the calibration matrix
+    *   **show\_plot** (*bool*) – call plt.show()
+    *   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to use for the plot
+  </Function>
 
-### plot\_calibration
+  ### readout\_fidelity
 
-<span id="qiskit.ignis.mitigation.CompleteMeasFitter.plot_calibration" />
+  <Function id="qiskit.ignis.mitigation.CompleteMeasFitter.readout_fidelity" name="readout_fidelity" signature="CompleteMeasFitter.readout_fidelity(label_list=None)">
+    Based on the results, output the readout fidelity which is the normalized trace of the calibration matrix
 
-`CompleteMeasFitter.plot_calibration(ax=None, show_plot=True)`
+    **Parameters**
 
-Plot the calibration matrix (2D color grid plot)
+    **label\_list** (*bool*) – If None, returns the average assignment fidelity of a single state. Otherwise it returns the assignment fidelity to be in any one of these states averaged over the second index.
 
-**Parameters**
+    **Returns**
 
-*   **show\_plot** (*bool*) – call plt.show()
-*   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to use for the plot
+    readout fidelity (assignment fidelity)
 
-### readout\_fidelity
+    **Return type**
 
-<span id="qiskit.ignis.mitigation.CompleteMeasFitter.readout_fidelity" />
+    numpy.array
 
-`CompleteMeasFitter.readout_fidelity(label_list=None)`
+    #### Additional Information:
 
-Based on the results, output the readout fidelity which is the normalized trace of the calibration matrix
+    The on-diagonal elements of the calibration matrix are the probabilities of measuring state ‘x’ given preparation of state ‘x’ and so the normalized trace is the average assignment fidelity
+  </Function>
 
-**Parameters**
+  ### subset\_fitter
 
-**label\_list** (*bool*) – If None, returns the average assignment fidelity of a single state. Otherwise it returns the assignment fidelity to be in any one of these states averaged over the second index.
+  <Function id="qiskit.ignis.mitigation.CompleteMeasFitter.subset_fitter" name="subset_fitter" signature="CompleteMeasFitter.subset_fitter(qubit_sublist=None)">
+    Return a fitter object that is a subset of the qubits in the original list.
 
-**Returns**
+    **Parameters**
 
-readout fidelity (assignment fidelity)
+    **qubit\_sublist** (*list*) – must be a subset of qubit\_list
 
-**Return type**
+    **Returns**
 
-numpy.array
+    **A new fitter that has the calibration for a**
 
-#### Additional Information:
+    subset of qubits
 
-The on-diagonal elements of the calibration matrix are the probabilities of measuring state ‘x’ given preparation of state ‘x’ and so the normalized trace is the average assignment fidelity
+    **Return type**
 
-### subset\_fitter
+    [CompleteMeasFitter](qiskit.ignis.mitigation.CompleteMeasFitter "qiskit.ignis.mitigation.CompleteMeasFitter")
 
-<span id="qiskit.ignis.mitigation.CompleteMeasFitter.subset_fitter" />
+    **Raises**
 
-`CompleteMeasFitter.subset_fitter(qubit_sublist=None)`
+    **QiskitError** – If the calibration matrix is not initialized
+  </Function>
 
-Return a fitter object that is a subset of the qubits in the original list.
+  ## Attributes
 
-**Parameters**
+  ### cal\_matrix
 
-**qubit\_sublist** (*list*) – must be a subset of qubit\_list
+  <Attribute id="qiskit.ignis.mitigation.CompleteMeasFitter.cal_matrix" name="cal_matrix">
+    Return cal\_matrix.
+  </Attribute>
 
-**Returns**
+  ### filter
 
-**A new fitter that has the calibration for a**
+  <Attribute id="qiskit.ignis.mitigation.CompleteMeasFitter.filter" name="filter">
+    Return a measurement filter using the cal matrix.
+  </Attribute>
 
-subset of qubits
+  ### qubit\_list
 
-**Return type**
+  <Attribute id="qiskit.ignis.mitigation.CompleteMeasFitter.qubit_list" name="qubit_list">
+    Return list of qubits.
+  </Attribute>
 
-[CompleteMeasFitter](qiskit.ignis.mitigation.CompleteMeasFitter "qiskit.ignis.mitigation.CompleteMeasFitter")
+  ### state\_labels
 
-**Raises**
-
-**QiskitError** – If the calibration matrix is not initialized
-
-## Attributes
-
-<span id="qiskit.ignis.mitigation.CompleteMeasFitter.cal_matrix" />
-
-### cal\_matrix
-
-Return cal\_matrix.
-
-<span id="qiskit.ignis.mitigation.CompleteMeasFitter.filter" />
-
-### filter
-
-Return a measurement filter using the cal matrix.
-
-<span id="qiskit.ignis.mitigation.CompleteMeasFitter.qubit_list" />
-
-### qubit\_list
-
-Return list of qubits.
-
-<span id="qiskit.ignis.mitigation.CompleteMeasFitter.state_labels" />
-
-### state\_labels
-
-Return state\_labels.
+  <Attribute id="qiskit.ignis.mitigation.CompleteMeasFitter.state_labels" name="state_labels">
+    Return state\_labels.
+  </Attribute>
+</Class>
 

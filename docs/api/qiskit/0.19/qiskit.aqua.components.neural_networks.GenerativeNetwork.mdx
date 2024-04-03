@@ -8,85 +8,75 @@ python_api_name: qiskit.aqua.components.neural_networks.GenerativeNetwork
 
 # GenerativeNetwork
 
-<span id="qiskit.aqua.components.neural_networks.GenerativeNetwork" />
+<Class id="qiskit.aqua.components.neural_networks.GenerativeNetwork" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/generative_network.py" signature="GenerativeNetwork">
+  Base class for generative Quantum and Classical Neural Networks.
 
-`GenerativeNetwork` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/generative_network.py "view source code")
+  This method should initialize the module, but raise an exception if a required component of the module is not available.
 
-Base class for generative Quantum and Classical Neural Networks.
+  ## Methods
 
-This method should initialize the module, but raise an exception if a required component of the module is not available.
+  ### get\_output
 
-## Methods
+  <Function id="qiskit.aqua.components.neural_networks.GenerativeNetwork.get_output" name="get_output" signature="abstract GenerativeNetwork.get_output(quantum_instance, qc_state_in, params, shots)">
+    Apply quantum/classical neural network to given input and get the respective output
 
-### get\_output
+    **Parameters**
 
-<span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.get_output" />
+    *   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Quantum Instance, used to run the generator circuit.
+    *   **qc\_state\_in** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or vector*) – corresponding to the network input state
+    *   **params** (*numpy.ndarray*) – parameters which should be used to run the generator, if None use self.\_params
+    *   **shots** (*int*) – if not None use a number of shots that is different from the number set in quantum\_instance
 
-`abstract GenerativeNetwork.get_output(quantum_instance, qc_state_in, params, shots)`
+    **Returns**
 
-Apply quantum/classical neural network to given input and get the respective output
+    Neural network output
 
-**Parameters**
+    **Raises**
 
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Quantum Instance, used to run the generator circuit.
-*   **qc\_state\_in** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or vector*) – corresponding to the network input state
-*   **params** (*numpy.ndarray*) – parameters which should be used to run the generator, if None use self.\_params
-*   **shots** (*int*) – if not None use a number of shots that is different from the number set in quantum\_instance
+    **NotImplementedError** – not implemented
+  </Function>
 
-**Returns**
+  ### loss
 
-Neural network output
+  <Function id="qiskit.aqua.components.neural_networks.GenerativeNetwork.loss" name="loss" signature="abstract GenerativeNetwork.loss()">
+    Loss function used for optimization
+  </Function>
 
-**Raises**
+  ### set\_seed
 
-**NotImplementedError** – not implemented
+  <Function id="qiskit.aqua.components.neural_networks.GenerativeNetwork.set_seed" name="set_seed" signature="abstract GenerativeNetwork.set_seed(seed)">
+    Set seed.
 
-### loss
+    **Parameters**
 
-<span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.loss" />
+    **seed** (*int*) – seed
 
-`abstract GenerativeNetwork.loss()`
+    **Raises**
 
-Loss function used for optimization
+    **NotImplementedError** – not implemented
+  </Function>
 
-### set\_seed
+  ### train
 
-<span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.set_seed" />
+  <Function id="qiskit.aqua.components.neural_networks.GenerativeNetwork.train" name="train" signature="abstract GenerativeNetwork.train(quantum_instance=None, shots=None)">
+    Perform one training step w\.r.t to the generator’s parameters
 
-`abstract GenerativeNetwork.set_seed(seed)`
+    **Parameters**
 
-Set seed.
+    *   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – used to run generator network. Ignored for a classical network.
+    *   **shots** (*int*) – Number of shots for hardware or qasm execution. Ignored for classical network
 
-**Parameters**
+    **Returns**
 
-**seed** (*int*) – seed
+    generator loss and updated parameters.
 
-**Raises**
+    **Return type**
 
-**NotImplementedError** – not implemented
+    dict
 
-### train
+    **Raises**
 
-<span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.train" />
-
-`abstract GenerativeNetwork.train(quantum_instance=None, shots=None)`
-
-Perform one training step w\.r.t to the generator’s parameters
-
-**Parameters**
-
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – used to run generator network. Ignored for a classical network.
-*   **shots** (*int*) – Number of shots for hardware or qasm execution. Ignored for classical network
-
-**Returns**
-
-generator loss and updated parameters.
-
-**Return type**
-
-dict
-
-**Raises**
-
-**NotImplementedError** – not implemented
+    **NotImplementedError** – not implemented
+  </Function>
+</Class>
 

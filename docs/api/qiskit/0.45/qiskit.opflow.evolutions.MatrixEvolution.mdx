@@ -8,37 +8,33 @@ python_api_name: qiskit.opflow.evolutions.MatrixEvolution
 
 # MatrixEvolution
 
-<span id="qiskit.opflow.evolutions.MatrixEvolution" />
+<Class id="qiskit.opflow.evolutions.MatrixEvolution" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/evolutions/matrix_evolution.py" signature="qiskit.opflow.evolutions.MatrixEvolution">
+  Bases: [`EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.evolution_base.EvolutionBase")
 
-`qiskit.opflow.evolutions.MatrixEvolution` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/evolutions/matrix_evolution.py "view source code")
+  Deprecated: Performs Evolution by classical matrix exponentiation, constructing a circuit with `UnitaryGates` or `HamiltonianGates` containing the exponentiation of the Operator.
 
-Bases: [`EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.evolution_base.EvolutionBase")
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.evolutions.matrix_evolution.MatrixEvolution` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Deprecated: Performs Evolution by classical matrix exponentiation, constructing a circuit with `UnitaryGates` or `HamiltonianGates` containing the exponentiation of the Operator.
+  ## Methods
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.evolutions.matrix_evolution.MatrixEvolution` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  ### convert
 
-## Methods
+  <Function id="qiskit.opflow.evolutions.MatrixEvolution.convert" name="convert" signature="convert(operator)">
+    Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing `UnitaryGates` or `HamiltonianGates` (if self.coeff is a `ParameterExpression`) equalling the exponentiation of -i \* operator. This is done by converting the `EvolvedOp.primitive` to a `MatrixOp` and simply calling `.exp_i()` on that.
 
-### convert
+    **Parameters**
 
-<span id="qiskit.opflow.evolutions.MatrixEvolution.convert" />
+    **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator to convert.
 
-`convert(operator)`
+    **Returns**
 
-Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing `UnitaryGates` or `HamiltonianGates` (if self.coeff is a `ParameterExpression`) equalling the exponentiation of -i \* operator. This is done by converting the `EvolvedOp.primitive` to a `MatrixOp` and simply calling `.exp_i()` on that.
+    The converted operator.
 
-**Parameters**
+    **Return type**
 
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator to convert.
-
-**Returns**
-
-The converted operator.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
+</Class>
 

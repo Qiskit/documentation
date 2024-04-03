@@ -8,151 +8,133 @@ python_api_name: qiskit.providers.fake_provider.FakeTokyo
 
 # FakeTokyo
 
-<span id="qiskit.providers.fake_provider.FakeTokyo" />
+<Class id="qiskit.providers.fake_provider.FakeTokyo" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/tokyo/fake_tokyo.py" signature="FakeTokyo">
+  Bases: `FakeBackend`
 
-`FakeTokyo` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/tokyo/fake_tokyo.py "view source code")
+  A fake 20 qubit backend.
 
-Bases: `FakeBackend`
+  ```python
+  00 ↔ 01 ↔ 02 ↔ 03 ↔ 04
+   ↕    ↕    ↕    ↕ ⤫  ↕
+  05 ↔ 06 ↔ 07 ↔ 08 ↔ 09
+   ↕ ⤫ ↕    ↕ ⤫ ↕
+  10 ↔ 11 ↔ 12 ↔ 13 ↔ 14
+   ↕    ↕ ⤫      ↕ ⤫  ↕
+  15 ↔ 16 ↔ 17   18   19
+  ```
 
-A fake 20 qubit backend.
+  ## Methods
 
-```python
-00 ↔ 01 ↔ 02 ↔ 03 ↔ 04
- ↕    ↕    ↕    ↕ ⤫  ↕
-05 ↔ 06 ↔ 07 ↔ 08 ↔ 09
- ↕ ⤫ ↕    ↕ ⤫ ↕
-10 ↔ 11 ↔ 12 ↔ 13 ↔ 14
- ↕    ↕ ⤫      ↕ ⤫  ↕
-15 ↔ 16 ↔ 17   18   19
-```
+  <span id="qiskit-providers-fake-provider-faketokyo-configuration" />
 
-## Methods
+  ### configuration
 
-<span id="qiskit-providers-fake-provider-faketokyo-configuration" />
+  <Function id="qiskit.providers.fake_provider.FakeTokyo.configuration" name="configuration" signature="FakeTokyo.configuration()">
+    Return the backend configuration.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeTokyo.configuration" />
+    the configuration for the backend.
 
-`FakeTokyo.configuration()`
+    **Return type**
 
-Return the backend configuration.
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-**Returns**
+  <span id="qiskit-providers-fake-provider-faketokyo-name" />
 
-the configuration for the backend.
+  ### name
 
-**Return type**
+  <Function id="qiskit.providers.fake_provider.FakeTokyo.name" name="name" signature="FakeTokyo.name()">
+    Return the backend name.
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    **Returns**
 
-<span id="qiskit-providers-fake-provider-faketokyo-name" />
+    the name of the backend.
 
-### name
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeTokyo.name" />
+    str
+  </Function>
 
-`FakeTokyo.name()`
+  <span id="qiskit-providers-fake-provider-faketokyo-properties" />
 
-Return the backend name.
+  ### properties
 
-**Returns**
+  <Function id="qiskit.providers.fake_provider.FakeTokyo.properties" name="properties" signature="FakeTokyo.properties()">
+    Returns a snapshot of device properties as recorded on 8/30/19.
+  </Function>
 
-the name of the backend.
+  <span id="qiskit-providers-fake-provider-faketokyo-provider" />
 
-**Return type**
+  ### provider
 
-str
+  <Function id="qiskit.providers.fake_provider.FakeTokyo.provider" name="provider" signature="FakeTokyo.provider()">
+    Return the backend Provider.
 
-<span id="qiskit-providers-fake-provider-faketokyo-properties" />
+    **Returns**
 
-### properties
+    the Provider responsible for the backend.
 
-<span id="qiskit.providers.fake_provider.FakeTokyo.properties" />
+    **Return type**
 
-`FakeTokyo.properties()`
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-Returns a snapshot of device properties as recorded on 8/30/19.
+  <span id="qiskit-providers-fake-provider-faketokyo-run" />
 
-<span id="qiskit-providers-fake-provider-faketokyo-provider" />
+  ### run
 
-### provider
+  <Function id="qiskit.providers.fake_provider.FakeTokyo.run" name="run" signature="FakeTokyo.run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-<span id="qiskit.providers.fake_provider.FakeTokyo.provider" />
+  <span id="qiskit-providers-fake-provider-faketokyo-set-options" />
 
-`FakeTokyo.provider()`
+  ### set\_options
 
-Return the backend Provider.
+  <Function id="qiskit.providers.fake_provider.FakeTokyo.set_options" name="set_options" signature="FakeTokyo.set_options(**fields)">
+    Set the options fields for the backend
 
-**Returns**
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-the Provider responsible for the backend.
+    **Parameters**
 
-**Return type**
+    **fields** – The fields to update the options
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    **Raises**
 
-<span id="qiskit-providers-fake-provider-faketokyo-run" />
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-### run
+  <span id="qiskit-providers-fake-provider-faketokyo-status" />
 
-<span id="qiskit.providers.fake_provider.FakeTokyo.run" />
+  ### status
 
-`FakeTokyo.run(run_input, **kwargs)`
+  <Function id="qiskit.providers.fake_provider.FakeTokyo.status" name="status" signature="FakeTokyo.status()">
+    Return the backend status.
 
-Main job in simulator
+    **Returns**
 
-<span id="qiskit-providers-fake-provider-faketokyo-set-options" />
+    the status of the backend.
 
-### set\_options
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeTokyo.set_options" />
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-`FakeTokyo.set_options(**fields)`
+  ## Attributes
 
-Set the options fields for the backend
+  ### options
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+  <Attribute id="qiskit.providers.fake_provider.FakeTokyo.options" name="options">
+    Return the options for the backend
 
-**Parameters**
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeTokyo#run "qiskit.providers.fake_provider.FakeTokyo.run") method.
+  </Attribute>
 
-**fields** – The fields to update the options
+  ### version
 
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
-
-<span id="qiskit-providers-fake-provider-faketokyo-status" />
-
-### status
-
-<span id="qiskit.providers.fake_provider.FakeTokyo.status" />
-
-`FakeTokyo.status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.fake_provider.FakeTokyo.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeTokyo#run "qiskit.providers.fake_provider.FakeTokyo.run") method.
-
-<span id="qiskit.providers.fake_provider.FakeTokyo.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.fake_provider.FakeTokyo.version" name="version" attributeValue="= 1" />
+</Class>
 

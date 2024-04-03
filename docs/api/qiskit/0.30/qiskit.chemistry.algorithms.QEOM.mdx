@@ -8,53 +8,49 @@ python_api_name: qiskit.chemistry.algorithms.QEOM
 
 # QEOM
 
-<span id="qiskit.chemistry.algorithms.QEOM" />
+<Class id="qiskit.chemistry.algorithms.QEOM" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/qeom.py" signature="QEOM(ground_state_solver, excitations='sd')">
+  Bases: `qiskit.chemistry.algorithms.excited_states_solvers.excited_states_solver.ExcitedStatesSolver`
 
-`QEOM(ground_state_solver, excitations='sd')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/qeom.py "view source code")
+  The calculation of excited states via the qEOM algorithm
 
-Bases: `qiskit.chemistry.algorithms.excited_states_solvers.excited_states_solver.ExcitedStatesSolver`
+  **Parameters**
 
-The calculation of excited states via the qEOM algorithm
+  *   **ground\_state\_solver** (`GroundStateSolver`) – a GroundStateSolver object. The qEOM algorithm will use this ground state to compute the EOM matrix elements
+  *   **excitations** (`Union`\[`str`, `List`\[`List`\[`int`]]]) – The excitations to be included in the eom pseudo-eigenvalue problem. If a string (‘s’, ‘d’ or ‘sd’) then all excitations of the given type will be used. Otherwise a list of custom excitations can directly be provided.
 
-**Parameters**
+  ## Methods
 
-*   **ground\_state\_solver** (`GroundStateSolver`) – a GroundStateSolver object. The qEOM algorithm will use this ground state to compute the EOM matrix elements
-*   **excitations** (`Union`\[`str`, `List`\[`List`\[`int`]]]) – The excitations to be included in the eom pseudo-eigenvalue problem. If a string (‘s’, ‘d’ or ‘sd’) then all excitations of the given type will be used. Otherwise a list of custom excitations can directly be provided.
+  ### solve
 
-## Methods
+  <Function id="qiskit.chemistry.algorithms.QEOM.solve" name="solve" signature="QEOM.solve(driver, aux_operators=None)">
+    Run the excited-states calculation.
 
-### solve
+    Construct and solves the EOM pseudo-eigenvalue problem to obtain the excitation energies and the excitation operators expansion coefficients.
 
-<span id="qiskit.chemistry.algorithms.QEOM.solve" />
+    **Parameters**
 
-`QEOM.solve(driver, aux_operators=None)`
+    *   **driver** (`BaseDriver`) – a chemistry driver object which defines the chemical problem that is to be solved by this calculation.
+    *   **aux\_operators** (`Union`\[`List`\[`FermionicOperator`], `List`\[`BosonicOperator`], `None`]) – Additional auxiliary operators to evaluate. Must be of type `FermionicOperator` if the qubit transformation is fermionic and of type `BosonicOperator` it is bosonic.
 
-Run the excited-states calculation.
+    **Return type**
 
-Construct and solves the EOM pseudo-eigenvalue problem to obtain the excitation energies and the excitation operators expansion coefficients.
+    `Union`\[`ElectronicStructureResult`, `VibronicStructureResult`]
 
-**Parameters**
+    **Returns**
 
-*   **driver** (`BaseDriver`) – a chemistry driver object which defines the chemical problem that is to be solved by this calculation.
-*   **aux\_operators** (`Union`\[`List`\[`FermionicOperator`], `List`\[`BosonicOperator`], `None`]) – Additional auxiliary operators to evaluate. Must be of type `FermionicOperator` if the qubit transformation is fermionic and of type `BosonicOperator` it is bosonic.
+    The excited states result. In case of a fermionic problem a `ElectronicStructureResult` is returned and in the bosonic case a `VibronicStructureResult`.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`Union`\[`ElectronicStructureResult`, `VibronicStructureResult`]
+  ### excitations
 
-**Returns**
+  <Attribute id="qiskit.chemistry.algorithms.QEOM.excitations" name="excitations">
+    Returns the excitations to be included in the eom pseudo-eigenvalue problem.
 
-The excited states result. In case of a fermionic problem a `ElectronicStructureResult` is returned and in the bosonic case a `VibronicStructureResult`.
+    **Return type**
 
-## Attributes
-
-<span id="qiskit.chemistry.algorithms.QEOM.excitations" />
-
-### excitations
-
-Returns the excitations to be included in the eom pseudo-eigenvalue problem.
-
-**Return type**
-
-`Union`\[`str`, `List`\[`List`\[`int`]]]
+    `Union`\[`str`, `List`\[`List`\[`int`]]]
+  </Attribute>
+</Class>
 

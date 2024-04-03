@@ -8,188 +8,182 @@ python_api_name: qiskit.circuit.library.RZZGate
 
 # RZZGate
 
-<span id="qiskit.circuit.library.RZZGate" />
+<Class id="qiskit.circuit.library.RZZGate" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/rzz.py" signature="qiskit.circuit.library.RZZGate(theta, label=None, *, duration=None, unit='dt')">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+
+  A parametric 2-qubit $Z \otimes Z$ interaction (rotation about ZZ).
 
-`qiskit.circuit.library.RZZGate(theta, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/rzz.py "view source code")
+  This gate is symmetric, and is maximally entangling at $\theta = \pi/2$.
+
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rzz()`](qiskit.circuit.QuantumCircuit#rzz "qiskit.circuit.QuantumCircuit.rzz") method.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  **Circuit Symbol:**
 
-A parametric 2-qubit $Z \otimes Z$ interaction (rotation about ZZ).
+  ```python
+  q_0: ───■────
+          │zz(θ)
+  q_1: ───■────
+  ```
 
-This gate is symmetric, and is maximally entangling at $\theta = \pi/2$.
+  **Matrix Representation:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rzz()`](qiskit.circuit.QuantumCircuit#rzz "qiskit.circuit.QuantumCircuit.rzz") method.
+  $$
+  \newcommand{\rotationangle}{\frac{\theta}{2}}
 
-**Circuit Symbol:**
+  R_{ZZ}(\theta) = \exp\left(-i \rotationangle Z{\otimes}Z\right) =
+      \begin{pmatrix}
+          e^{-i \rotationangle} & 0 & 0 & 0 \\
+          0 & e^{i \rotationangle} & 0 & 0 \\
+          0 & 0 & e^{i \rotationangle} & 0 \\
+          0 & 0 & 0 & e^{-i \rotationangle}
+      \end{pmatrix}
+  $$
 
-```python
-q_0: ───■────
-        │zz(θ)
-q_1: ───■────
-```
+  This is a direct sum of RZ rotations, so this gate is equivalent to a uniformly controlled (multiplexed) RZ gate:
 
-**Matrix Representation:**
+  $$
+  R_{ZZ}(\theta) =
+      \begin{pmatrix}
+          RZ(\theta) & 0 \\
+          0 & RZ(-\theta)
+      \end{pmatrix}
+  $$
 
-$$
-\newcommand{\rotationangle}{\frac{\theta}{2}}
+  **Examples:**
 
-R_{ZZ}(\theta) = \exp\left(-i \rotationangle Z{\otimes}Z\right) =
-    \begin{pmatrix}
-        e^{-i \rotationangle} & 0 & 0 & 0 \\
-        0 & e^{i \rotationangle} & 0 & 0 \\
-        0 & 0 & e^{i \rotationangle} & 0 \\
-        0 & 0 & 0 & e^{-i \rotationangle}
-    \end{pmatrix}
-$$
+  > $$
+  > R_{ZZ}(\theta = 0) = I
+  > $$
+  >
+  > $$
+  > R_{ZZ}(\theta = 2\pi) = -I
+  > $$
+  >
+  > $$
+  > R_{ZZ}(\theta = \pi) = - Z \otimes Z
+  > $$
+  >
+  > $$
+  > R_{ZZ}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
+  >                         \begin{pmatrix}
+  >                             1-i & 0 & 0 & 0 \\
+  >                             0 & 1+i & 0 & 0 \\
+  >                             0 & 0 & 1+i & 0 \\
+  >                             0 & 0 & 0 & 1-i
+  >                         \end{pmatrix}
+  > $$
 
-This is a direct sum of RZ rotations, so this gate is equivalent to a uniformly controlled (multiplexed) RZ gate:
+  Create new RZZ gate.
 
-$$
-R_{ZZ}(\theta) =
-    \begin{pmatrix}
-        RZ(\theta) & 0 \\
-        0 & RZ(-\theta)
-    \end{pmatrix}
-$$
+  ## Attributes
 
-**Examples:**
+  ### base\_class
 
-> $$
-> R_{ZZ}(\theta = 0) = I
-> $$
->
-> $$
-> R_{ZZ}(\theta = 2\pi) = -I
-> $$
->
-> $$
-> R_{ZZ}(\theta = \pi) = - Z \otimes Z
-> $$
->
-> $$
-> R_{ZZ}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
->                         \begin{pmatrix}
->                             1-i & 0 & 0 & 0 \\
->                             0 & 1+i & 0 & 0 \\
->                             0 & 0 & 1+i & 0 \\
->                             0 & 0 & 0 & 1-i
->                         \end{pmatrix}
-> $$
+  <Attribute id="qiskit.circuit.library.RZZGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-Create new RZZ gate.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.RZZGate.base_class "qiskit.circuit.library.RZZGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-## Attributes
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-<span id="qiskit.circuit.library.RZZGate.base_class" />
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-### base\_class
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+  ### condition
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.RZZGate.base_class "qiskit.circuit.library.RZZGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+  <Attribute id="qiskit.circuit.library.RZZGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### condition\_bits
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.library.RZZGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### decompositions
 
-<span id="qiskit.circuit.library.RZZGate.condition" />
+  <Attribute id="qiskit.circuit.library.RZZGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### condition
+  ### definition
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.RZZGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RZZGate.condition_bits" />
+  ### duration
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.RZZGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Get Clbits in condition.
+  ### label
 
-<span id="qiskit.circuit.library.RZZGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.RZZGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-### decompositions
+  ### mutable
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.RZZGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-<span id="qiskit.circuit.library.RZZGate.definition" />
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-### definition
+  ### name
 
-Return definition in terms of other basic gates.
+  <Attribute id="qiskit.circuit.library.RZZGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RZZGate.duration" />
+  ### num\_clbits
 
-### duration
+  <Attribute id="qiskit.circuit.library.RZZGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Get the duration.
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.RZZGate.label" />
+  <Attribute id="qiskit.circuit.library.RZZGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-### label
+  ### params
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.RZZGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RZZGate.mutable" />
+  ### unit
 
-### mutable
+  <Attribute id="qiskit.circuit.library.RZZGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ## Methods
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  ### inverse
 
-<span id="qiskit.circuit.library.RZZGate.name" />
+  <Function id="qiskit.circuit.library.RZZGate.inverse" name="inverse" signature="inverse()">
+    Return inverse RZZ gate (i.e. with the negative rotation angle).
+  </Function>
 
-### name
+  ### power
 
-Return the name.
-
-<span id="qiskit.circuit.library.RZZGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.RZZGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.RZZGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.RZZGate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### inverse
-
-<span id="qiskit.circuit.library.RZZGate.inverse" />
-
-`inverse()`
-
-Return inverse RZZ gate (i.e. with the negative rotation angle).
-
-### power
-
-<span id="qiskit.circuit.library.RZZGate.power" />
-
-`power(exponent)`
-
-Raise gate to a power.
+  <Function id="qiskit.circuit.library.RZZGate.power" name="power" signature="power(exponent)">
+    Raise gate to a power.
+  </Function>
+</Class>
 

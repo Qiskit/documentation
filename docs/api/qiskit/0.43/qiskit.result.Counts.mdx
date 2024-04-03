@@ -8,227 +8,193 @@ python_api_name: qiskit.result.Counts
 
 # Counts
 
-<span id="qiskit.result.Counts" />
+<Class id="qiskit.result.Counts" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/result/counts.py" signature="Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)">
+  Bases: `dict`
 
-`Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/result/counts.py "view source code")
+  A class to store a counts result from a circuit execution.
 
-Bases: `dict`
+  Build a counts object
 
-A class to store a counts result from a circuit execution.
+  **Parameters**
 
-Build a counts object
+  *   **data** (*dict*) –
 
-**Parameters**
+      The dictionary input for the counts. Where the keys represent a measured classical value and the value is an integer the number of shots with that result. The keys can be one of several formats:
 
-*   **data** (*dict*) –
+      > *   A hexadecimal string of the form `'0x4a'`
+      > *   A bit string prefixed with `0b` for example `'0b1011'`
+      > *   A bit string formatted across register and memory slots. For example, `'00 10'`.
+      > *   A dit string, for example `'02'`. Note for objects created with dit strings the `creg_sizes` and `memory_slots` kwargs don’t work and [`hex_outcomes()`](qiskit.result.Counts#hex_outcomes "qiskit.result.Counts.hex_outcomes") and [`int_outcomes()`](qiskit.result.Counts#int_outcomes "qiskit.result.Counts.int_outcomes") also do not work.
 
-    The dictionary input for the counts. Where the keys represent a measured classical value and the value is an integer the number of shots with that result. The keys can be one of several formats:
+  *   **time\_taken** (*float*) – The duration of the experiment that generated the counts in seconds.
 
-    > *   A hexadecimal string of the form `'0x4a'`
-    > *   A bit string prefixed with `0b` for example `'0b1011'`
-    > *   A bit string formatted across register and memory slots. For example, `'00 10'`.
-    > *   A dit string, for example `'02'`. Note for objects created with dit strings the `creg_sizes` and `memory_slots` kwargs don’t work and [`hex_outcomes()`](qiskit.result.Counts#hex_outcomes "qiskit.result.Counts.hex_outcomes") and [`int_outcomes()`](qiskit.result.Counts#int_outcomes "qiskit.result.Counts.int_outcomes") also do not work.
+  *   **creg\_sizes** (*list*) – a nested list where the inner element is a list of tuples containing both the classical register name and classical register size. For example, `[('c_reg', 2), ('my_creg', 4)]`.
 
-*   **time\_taken** (*float*) – The duration of the experiment that generated the counts in seconds.
+  *   **memory\_slots** (*int*) – The number of total `memory_slots` in the experiment.
 
-*   **creg\_sizes** (*list*) – a nested list where the inner element is a list of tuples containing both the classical register name and classical register size. For example, `[('c_reg', 2), ('my_creg', 4)]`.
+  **Raises**
 
-*   **memory\_slots** (*int*) – The number of total `memory_slots` in the experiment.
+  *   **TypeError** – If the input key type is not an `int` or `str`.
+  *   **QiskitError** – If a dit string key is input with `creg_sizes` and/or `memory_slots`.
 
-**Raises**
+  ## Methods
 
-*   **TypeError** – If the input key type is not an `int` or `str`.
-*   **QiskitError** – If a dit string key is input with `creg_sizes` and/or `memory_slots`.
+  <span id="qiskit-result-counts-clear" />
 
-## Methods
+  ### clear
 
-<span id="qiskit-result-counts-clear" />
+  <Function id="qiskit.result.Counts.clear" name="clear" signature="Counts.clear() → None.  Remove all items from D." />
 
-### clear
+  <span id="qiskit-result-counts-copy" />
 
-<span id="qiskit.result.Counts.clear" />
+  ### copy
 
-`Counts.clear() → None.  Remove all items from D.`
+  <Function id="qiskit.result.Counts.copy" name="copy" signature="Counts.copy() → a shallow copy of D" />
 
-<span id="qiskit-result-counts-copy" />
+  <span id="qiskit-result-counts-fromkeys" />
 
-### copy
+  ### fromkeys
 
-<span id="qiskit.result.Counts.copy" />
+  <Function id="qiskit.result.Counts.fromkeys" name="fromkeys" signature="Counts.fromkeys(value=None, /)">
+    Create a new dictionary with keys from iterable and values set to value.
+  </Function>
 
-`Counts.copy() → a shallow copy of D`
+  <span id="qiskit-result-counts-get" />
 
-<span id="qiskit-result-counts-fromkeys" />
+  ### get
 
-### fromkeys
+  <Function id="qiskit.result.Counts.get" name="get" signature="Counts.get(key, default=None, /)">
+    Return the value for key if key is in the dictionary, else default.
+  </Function>
 
-<span id="qiskit.result.Counts.fromkeys" />
+  <span id="qiskit-result-counts-hex-outcomes" />
 
-`Counts.fromkeys(value=None, /)`
+  ### hex\_outcomes
 
-Create a new dictionary with keys from iterable and values set to value.
+  <Function id="qiskit.result.Counts.hex_outcomes" name="hex_outcomes" signature="Counts.hex_outcomes()">
+    Return a counts dictionary with hexadecimal string keys
 
-<span id="qiskit-result-counts-get" />
+    **Returns**
 
-### get
+    **A dictionary with the keys as hexadecimal strings instead of**
 
-<span id="qiskit.result.Counts.get" />
+    bitstrings
 
-`Counts.get(key, default=None, /)`
+    **Return type**
 
-Return the value for key if key is in the dictionary, else default.
+    dict
 
-<span id="qiskit-result-counts-hex-outcomes" />
+    **Raises**
 
-### hex\_outcomes
+    **QiskitError** – If the Counts object contains counts for dit strings
+  </Function>
 
-<span id="qiskit.result.Counts.hex_outcomes" />
+  <span id="qiskit-result-counts-int-outcomes" />
 
-`Counts.hex_outcomes()`
+  ### int\_outcomes
 
-Return a counts dictionary with hexadecimal string keys
+  <Function id="qiskit.result.Counts.int_outcomes" name="int_outcomes" signature="Counts.int_outcomes()">
+    Build a counts dictionary with integer keys instead of count strings
 
-**Returns**
+    **Returns**
 
-**A dictionary with the keys as hexadecimal strings instead of**
+    A dictionary with the keys as integers instead of bitstrings
 
-bitstrings
+    **Return type**
 
-**Return type**
+    dict
 
-dict
+    **Raises**
 
-**Raises**
+    **QiskitError** – If the Counts object contains counts for dit strings
+  </Function>
 
-**QiskitError** – If the Counts object contains counts for dit strings
+  <span id="qiskit-result-counts-items" />
 
-<span id="qiskit-result-counts-int-outcomes" />
+  ### items
 
-### int\_outcomes
+  <Function id="qiskit.result.Counts.items" name="items" signature="Counts.items() → a set-like object providing a view on D's items" />
 
-<span id="qiskit.result.Counts.int_outcomes" />
+  <span id="qiskit-result-counts-keys" />
 
-`Counts.int_outcomes()`
+  ### keys
 
-Build a counts dictionary with integer keys instead of count strings
+  <Function id="qiskit.result.Counts.keys" name="keys" signature="Counts.keys() → a set-like object providing a view on D's keys" />
 
-**Returns**
+  <span id="qiskit-result-counts-most-frequent" />
 
-A dictionary with the keys as integers instead of bitstrings
+  ### most\_frequent
 
-**Return type**
+  <Function id="qiskit.result.Counts.most_frequent" name="most_frequent" signature="Counts.most_frequent()">
+    Return the most frequent count
 
-dict
+    **Returns**
 
-**Raises**
+    The bit string for the most frequent result
 
-**QiskitError** – If the Counts object contains counts for dit strings
+    **Return type**
 
-<span id="qiskit-result-counts-items" />
+    str
 
-### items
+    **Raises**
 
-<span id="qiskit.result.Counts.items" />
+    **QiskitError** – when there is >1 count with the same max counts, or an empty object.
+  </Function>
 
-`Counts.items() → a set-like object providing a view on D's items`
+  <span id="qiskit-result-counts-pop" />
 
-<span id="qiskit-result-counts-keys" />
+  ### pop
 
-### keys
+  <Function id="qiskit.result.Counts.pop" name="pop" signature="Counts.pop(k[, d]) → v, remove specified key and return the corresponding value.">
+    If key is not found, d is returned if given, otherwise KeyError is raised
+  </Function>
 
-<span id="qiskit.result.Counts.keys" />
+  <span id="qiskit-result-counts-popitem" />
 
-`Counts.keys() → a set-like object providing a view on D's keys`
+  ### popitem
 
-<span id="qiskit-result-counts-most-frequent" />
+  <Function id="qiskit.result.Counts.popitem" name="popitem" signature="Counts.popitem()">
+    Remove and return a (key, value) pair as a 2-tuple.
 
-### most\_frequent
+    Pairs are returned in LIFO (last-in, first-out) order. Raises KeyError if the dict is empty.
+  </Function>
 
-<span id="qiskit.result.Counts.most_frequent" />
+  <span id="qiskit-result-counts-setdefault" />
 
-`Counts.most_frequent()`
+  ### setdefault
 
-Return the most frequent count
+  <Function id="qiskit.result.Counts.setdefault" name="setdefault" signature="Counts.setdefault(key, default=None, /)">
+    Insert key with a value of default if key is not in the dictionary.
 
-**Returns**
+    Return the value for key if key is in the dictionary, else default.
+  </Function>
 
-The bit string for the most frequent result
+  <span id="qiskit-result-counts-shots" />
 
-**Return type**
+  ### shots
 
-str
+  <Function id="qiskit.result.Counts.shots" name="shots" signature="Counts.shots()">
+    Return the number of shots
+  </Function>
 
-**Raises**
+  <span id="qiskit-result-counts-update" />
 
-**QiskitError** – when there is >1 count with the same max counts, or an empty object.
+  ### update
 
-<span id="qiskit-result-counts-pop" />
+  <Function id="qiskit.result.Counts.update" name="update" signature="Counts.update([E, ]**F) → None.  Update D from dict/iterable E and F.">
+    If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
+  </Function>
 
-### pop
+  <span id="qiskit-result-counts-values" />
 
-<span id="qiskit.result.Counts.pop" />
+  ### values
 
-`Counts.pop(k[, d]) → v, remove specified key and return the corresponding value.`
+  <Function id="qiskit.result.Counts.values" name="values" signature="Counts.values() → an object providing a view on D's values" />
 
-If key is not found, d is returned if given, otherwise KeyError is raised
+  ## Attributes
 
-<span id="qiskit-result-counts-popitem" />
+  ### bitstring\_regex
 
-### popitem
-
-<span id="qiskit.result.Counts.popitem" />
-
-`Counts.popitem()`
-
-Remove and return a (key, value) pair as a 2-tuple.
-
-Pairs are returned in LIFO (last-in, first-out) order. Raises KeyError if the dict is empty.
-
-<span id="qiskit-result-counts-setdefault" />
-
-### setdefault
-
-<span id="qiskit.result.Counts.setdefault" />
-
-`Counts.setdefault(key, default=None, /)`
-
-Insert key with a value of default if key is not in the dictionary.
-
-Return the value for key if key is in the dictionary, else default.
-
-<span id="qiskit-result-counts-shots" />
-
-### shots
-
-<span id="qiskit.result.Counts.shots" />
-
-`Counts.shots()`
-
-Return the number of shots
-
-<span id="qiskit-result-counts-update" />
-
-### update
-
-<span id="qiskit.result.Counts.update" />
-
-`Counts.update([E, ]**F) → None.  Update D from dict/iterable E and F.`
-
-If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
-
-<span id="qiskit-result-counts-values" />
-
-### values
-
-<span id="qiskit.result.Counts.values" />
-
-`Counts.values() → an object providing a view on D's values`
-
-## Attributes
-
-<span id="qiskit.result.Counts.bitstring_regex" />
-
-### bitstring\_regex
-
-`= re.compile('^[01\\s]+$')`
+  <Attribute id="qiskit.result.Counts.bitstring_regex" name="bitstring_regex" attributeValue="= re.compile('^[01\\s]+$')" />
+</Class>
 

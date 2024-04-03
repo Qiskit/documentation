@@ -8,149 +8,145 @@ python_api_name: qiskit.providers.models.QasmBackendConfiguration
 
 # QasmBackendConfiguration
 
-<span id="qiskit.providers.models.QasmBackendConfiguration" />
+<Class id="qiskit.providers.models.QasmBackendConfiguration" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/backendconfiguration.py" signature="QasmBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, **kwargs)">
+  Class representing a Qasm Backend Configuration.
 
-`QasmBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/backendconfiguration.py "view source code")
+  ### backend\_name
 
-Class representing a Qasm Backend Configuration.
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.backend_name" name="backend_name">
+    backend name.
+  </Attribute>
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.backend_name" />
+  ### backend\_version
 
-### backend\_name
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.backend_version" name="backend_version">
+    backend version in the form X.Y.Z.
+  </Attribute>
 
-backend name.
+  ### n\_qubits
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.backend_version" />
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.n_qubits" name="n_qubits">
+    number of qubits.
+  </Attribute>
 
-### backend\_version
+  ### basis\_gates
 
-backend version in the form X.Y.Z.
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.basis_gates" name="basis_gates">
+    list of basis gates names on the backend.
+  </Attribute>
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.n_qubits" />
+  ### gates
 
-### n\_qubits
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.gates" name="gates">
+    list of basis gates on the backend.
+  </Attribute>
 
-number of qubits.
+  ### local
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.basis_gates" />
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.local" name="local">
+    backend is local or remote.
+  </Attribute>
 
-### basis\_gates
+  ### simulator
 
-list of basis gates names on the backend.
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.simulator" name="simulator">
+    backend is a simulator.
+  </Attribute>
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.gates" />
+  ### conditional
 
-### gates
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.conditional" name="conditional">
+    backend supports conditional operations.
+  </Attribute>
 
-list of basis gates on the backend.
+  ### open\_pulse
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.local" />
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.open_pulse" name="open_pulse">
+    backend supports open pulse.
+  </Attribute>
 
-### local
+  ### memory
 
-backend is local or remote.
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.memory" name="memory">
+    backend supports memory.
+  </Attribute>
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.simulator" />
+  ### max\_shots
 
-### simulator
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.max_shots" name="max_shots">
+    maximum number of shots supported.
+  </Attribute>
 
-backend is a simulator.
+  Initialize a QasmBackendConfiguration Object
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.conditional" />
+  **Parameters**
 
-### conditional
+  *   **backend\_name** (*str*) – The backend name
+  *   **backend\_version** (*str*) – The backend version in the form X.Y.Z
+  *   **n\_qubits** (*int*) – the number of qubits for the backend
+  *   **basis\_gates** (*list*) – The list of strings for the basis gates of the backends
+  *   **gates** (*list*) – The list of GateConfig objects for the basis gates of the backend
+  *   **local** (*bool*) – True if the backend is local or False if remote
+  *   **simulator** (*bool*) – True if the backend is a simulator
+  *   **conditional** (*bool*) – True if the backend supports conditional operations
+  *   **open\_pulse** (*bool*) – True if the backend supports OpenPulse
+  *   **memory** (*bool*) – True if the backend supports memory
+  *   **max\_shots** (*int*) – The maximum number of shots allowed on the backend
+  *   **coupling\_map** (*list*) – The coupling map for the device
+  *   **max\_experiments** (*int*) – The maximum number of experiments per job
+  *   **sample\_name** (*str*) – Sample name for the backend
+  *   **n\_registers** (*int*) – Number of register slots available for feedback (if conditional is True)
+  *   **register\_map** (*list*) – An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
+  *   **configurable** (*bool*) – True if the backend is configurable, if the backend is a simulator
+  *   **credits\_required** (*bool*) – True if backend requires credits to run a job.
+  *   **online\_date** (*datetime*) – The date that the device went online
+  *   **display\_name** (*str*) – Alternate name field for the backend
+  *   **description** (*str*) – A description for the backend
+  *   **tags** (*list*) – A list of string tags to describe the backend
+  *   **\*\*kwargs** – optional fields
 
-backend supports conditional operations.
+  ## Attributes
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.open_pulse" />
+  ### num\_qubits
 
-### open\_pulse
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.num_qubits" name="num_qubits">
+    Returns the number of qubits.
 
-backend supports open pulse.
+    In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
+  </Attribute>
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.memory" />
+  ## Methods
 
-### memory
+  ### from\_dict
 
-backend supports memory.
+  <Function id="qiskit.providers.models.QasmBackendConfiguration.from_dict" name="from_dict" signature="classmethod QasmBackendConfiguration.from_dict(data)">
+    Create a new GateConfig object from a dictionary.
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.max_shots" />
+    **Parameters**
 
-### max\_shots
+    **data** (*dict*) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.QasmBackendConfiguration#to_dict "qiskit.providers.models.QasmBackendConfiguration.to_dict").
 
-maximum number of shots supported.
+    **Returns**
 
-Initialize a QasmBackendConfiguration Object
+    The GateConfig from the input dictionary.
 
-**Parameters**
+    **Return type**
 
-*   **backend\_name** (*str*) – The backend name
-*   **backend\_version** (*str*) – The backend version in the form X.Y.Z
-*   **n\_qubits** (*int*) – the number of qubits for the backend
-*   **basis\_gates** (*list*) – The list of strings for the basis gates of the backends
-*   **gates** (*list*) – The list of GateConfig objects for the basis gates of the backend
-*   **local** (*bool*) – True if the backend is local or False if remote
-*   **simulator** (*bool*) – True if the backend is a simulator
-*   **conditional** (*bool*) – True if the backend supports conditional operations
-*   **open\_pulse** (*bool*) – True if the backend supports OpenPulse
-*   **memory** (*bool*) – True if the backend supports memory
-*   **max\_shots** (*int*) – The maximum number of shots allowed on the backend
-*   **coupling\_map** (*list*) – The coupling map for the device
-*   **max\_experiments** (*int*) – The maximum number of experiments per job
-*   **sample\_name** (*str*) – Sample name for the backend
-*   **n\_registers** (*int*) – Number of register slots available for feedback (if conditional is True)
-*   **register\_map** (*list*) – An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
-*   **configurable** (*bool*) – True if the backend is configurable, if the backend is a simulator
-*   **credits\_required** (*bool*) – True if backend requires credits to run a job.
-*   **online\_date** (*datetime*) – The date that the device went online
-*   **display\_name** (*str*) – Alternate name field for the backend
-*   **description** (*str*) – A description for the backend
-*   **tags** (*list*) – A list of string tags to describe the backend
-*   **\*\*kwargs** – optional fields
+    [GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
+  </Function>
 
-## Attributes
+  ### to\_dict
 
-### num\_qubits
+  <Function id="qiskit.providers.models.QasmBackendConfiguration.to_dict" name="to_dict" signature="QasmBackendConfiguration.to_dict()">
+    Return a dictionary format representation of the GateConfig.
 
-Returns the number of qubits.
+    **Returns**
 
-In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
+    The dictionary form of the GateConfig.
 
-## Methods
+    **Return type**
 
-### from\_dict
-
-<span id="qiskit.providers.models.QasmBackendConfiguration.from_dict" />
-
-`classmethod QasmBackendConfiguration.from_dict(data)`
-
-Create a new GateConfig object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.QasmBackendConfiguration#to_dict "qiskit.providers.models.QasmBackendConfiguration.to_dict").
-
-**Returns**
-
-The GateConfig from the input dictionary.
-
-**Return type**
-
-[GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
-
-### to\_dict
-
-<span id="qiskit.providers.models.QasmBackendConfiguration.to_dict" />
-
-`QasmBackendConfiguration.to_dict()`
-
-Return a dictionary format representation of the GateConfig.
-
-**Returns**
-
-The dictionary form of the GateConfig.
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 

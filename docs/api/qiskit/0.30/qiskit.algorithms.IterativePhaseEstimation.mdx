@@ -8,75 +8,69 @@ python_api_name: qiskit.algorithms.IterativePhaseEstimation
 
 # IterativePhaseEstimation
 
-<span id="qiskit.algorithms.IterativePhaseEstimation" />
+<Class id="qiskit.algorithms.IterativePhaseEstimation" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/ipe.py" signature="IterativePhaseEstimation(num_iterations, quantum_instance=None)">
+  Bases: `qiskit.algorithms.phase_estimators.phase_estimator.PhaseEstimator`
 
-`IterativePhaseEstimation(num_iterations, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/ipe.py "view source code")
+  Run the Iterative quantum phase estimation (QPE) algorithm.
 
-Bases: `qiskit.algorithms.phase_estimators.phase_estimator.PhaseEstimator`
+  Given a unitary circuit and a circuit preparing an eigenstate, return the phase of the eigenvalue as a number in $[0,1)$ using the iterative phase estimation algorithm.
 
-Run the Iterative quantum phase estimation (QPE) algorithm.
+  **\[1]: Dobsicek et al. (2006), Arbitrary accuracy iterative phase estimation algorithm as a two**
 
-Given a unitary circuit and a circuit preparing an eigenstate, return the phase of the eigenvalue as a number in $[0,1)$ using the iterative phase estimation algorithm.
+  qubit benchmark, [arxiv/quant-ph/0610214](https://arxiv.org/abs/quant-ph/0610214)
 
-**\[1]: Dobsicek et al. (2006), Arbitrary accuracy iterative phase estimation algorithm as a two**
+  **Parameters**
 
-qubit benchmark, [arxiv/quant-ph/0610214](https://arxiv.org/abs/quant-ph/0610214)
+  *   **num\_iterations** (`int`) – The number of iterations (rounds) of the phase estimation to run.
+  *   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – The quantum instance on which the circuit will be run.
 
-**Parameters**
+  **Raises**
 
-*   **num\_iterations** (`int`) – The number of iterations (rounds) of the phase estimation to run.
-*   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – The quantum instance on which the circuit will be run.
+  **ValueError** – if num\_iterations is not greater than zero.
 
-**Raises**
+  ## Methods
 
-**ValueError** – if num\_iterations is not greater than zero.
+  ### construct\_circuit
 
-## Methods
+  <Function id="qiskit.algorithms.IterativePhaseEstimation.construct_circuit" name="construct_circuit" signature="IterativePhaseEstimation.construct_circuit(unitary, state_preparation, k, omega=0, measurement=False)">
+    Construct the kth iteration Quantum Phase Estimation circuit.
 
-### construct\_circuit
+    For details of parameters, see Fig. 2 in [https://arxiv.org/pdf/quant-ph/0610214.pdf](https://arxiv.org/pdf/quant-ph/0610214.pdf).
 
-<span id="qiskit.algorithms.IterativePhaseEstimation.construct_circuit" />
+    **Parameters**
 
-`IterativePhaseEstimation.construct_circuit(unitary, state_preparation, k, omega=0, measurement=False)`
+    *   **unitary** (`QuantumCircuit`) – The circuit representing the unitary operator whose eigenvalue (via phase) will be measured.
+    *   **state\_preparation** (`QuantumCircuit`) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
+    *   **k** (`int`) – the iteration idx.
+    *   **omega** (`float`) – the feedback angle.
+    *   **measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
 
-Construct the kth iteration Quantum Phase Estimation circuit.
+    **Returns**
 
-For details of parameters, see Fig. 2 in [https://arxiv.org/pdf/quant-ph/0610214.pdf](https://arxiv.org/pdf/quant-ph/0610214.pdf).
+    the quantum circuit per iteration
 
-**Parameters**
+    **Return type**
 
-*   **unitary** (`QuantumCircuit`) – The circuit representing the unitary operator whose eigenvalue (via phase) will be measured.
-*   **state\_preparation** (`QuantumCircuit`) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
-*   **k** (`int`) – the iteration idx.
-*   **omega** (`float`) – the feedback angle.
-*   **measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-**Returns**
+  ### estimate
 
-the quantum circuit per iteration
+  <Function id="qiskit.algorithms.IterativePhaseEstimation.estimate" name="estimate" signature="IterativePhaseEstimation.estimate(unitary, state_preparation)">
+    Estimate the eigenphase of the input unitary and initial-state pair.
 
-**Return type**
+    **Parameters**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    *   **unitary** (`QuantumCircuit`) – The circuit representing the unitary operator whose eigenvalue (via phase) will be measured.
+    *   **state\_preparation** (`QuantumCircuit`) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
 
-### estimate
+    **Return type**
 
-<span id="qiskit.algorithms.IterativePhaseEstimation.estimate" />
+    `IterativePhaseEstimationResult`
 
-`IterativePhaseEstimation.estimate(unitary, state_preparation)`
+    **Returns**
 
-Estimate the eigenphase of the input unitary and initial-state pair.
-
-**Parameters**
-
-*   **unitary** (`QuantumCircuit`) – The circuit representing the unitary operator whose eigenvalue (via phase) will be measured.
-*   **state\_preparation** (`QuantumCircuit`) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
-
-**Return type**
-
-`IterativePhaseEstimationResult`
-
-**Returns**
-
-Estimated phase in an IterativePhaseEstimationResult object.
+    Estimated phase in an IterativePhaseEstimationResult object.
+  </Function>
+</Class>
 

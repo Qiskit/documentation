@@ -8,291 +8,259 @@ python_api_name: qiskit.validation.BaseSchema
 
 # BaseSchema
 
-<span id="qiskit.validation.BaseSchema" />
+<Class id="qiskit.validation.BaseSchema" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py" signature="BaseSchema(*, only=None, exclude=(), many=False, context=None, load_only=(), dump_only=(), partial=False, unknown=None)">
+  Base class for Schemas for validated Qiskit classes.
 
-`BaseSchema(*, only=None, exclude=(), many=False, context=None, load_only=(), dump_only=(), partial=False, unknown=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py "view source code")
+  Provides convenience functionality for the Qiskit common use case:
 
-Base class for Schemas for validated Qiskit classes.
+  *   deserialization into class instances instead of dicts.
+  *   handling of unknown attributes not defined in the schema.
 
-Provides convenience functionality for the Qiskit common use case:
+  ### model\_cls
 
-*   deserialization into class instances instead of dicts.
-*   handling of unknown attributes not defined in the schema.
+  <Attribute id="qiskit.validation.BaseSchema.model_cls" name="model_cls">
+    class used to instantiate the instance. The
 
-<span id="qiskit.validation.BaseSchema.model_cls" />
+    **Type**
 
-### model\_cls
+    type
+  </Attribute>
 
-class used to instantiate the instance. The
+  ###
 
-**Type**
+  <Attribute name="constructor is passed all named parameters from deserialization." />
 
-type
+  ## Attributes
 
-### constructor is passed all named parameters from deserialization.
+  ### TYPE\_MAPPING
 
-## Attributes
+  <Attribute id="qiskit.validation.BaseSchema.TYPE_MAPPING" signature="= {: , : , : , : , : , : , : , : , : , : , : , : , : , : }" />
 
-### TYPE\_MAPPING
+  ### dict\_class
 
-<span id="qiskit.validation.BaseSchema.TYPE_MAPPING" />
+  <Attribute id="qiskit.validation.BaseSchema.dict_class" name="dict_class" signature="type">
+    **Return type**
 
-`= {: , : , : , : , : , : , : , : , : , : , : , : , : , : }`
+    `type`
+  </Attribute>
 
-### dict\_class
+  ### error\_messages
 
-<span id="qiskit.validation.BaseSchema.dict_class" />
+  <Attribute id="qiskit.validation.BaseSchema.error_messages" signature="= {}">
+    Overrides for default schema-level error messages
+  </Attribute>
 
-`type`
+  ### opts
 
-**Return type**
+  <Attribute id="qiskit.validation.BaseSchema.opts" signature="=" />
 
-`type`
+  ### set\_class
 
-### error\_messages
+  <Attribute id="qiskit.validation.BaseSchema.set_class" name="set_class" signature="type">
+    **Return type**
 
-<span id="qiskit.validation.BaseSchema.error_messages" />
+    `type`
+  </Attribute>
 
-`= {}`
+  ## Methods
 
-Overrides for default schema-level error messages
+  ### dump
 
-### opts
+  <Function id="qiskit.validation.BaseSchema.dump" name="dump" signature="BaseSchema.dump(obj, *, many=None)">
+    Serialize an object to native Python data types according to this Schema’s fields.
 
-<span id="qiskit.validation.BaseSchema.opts" />
+    **Parameters**
 
-`=`
+    *   **obj** (`Any`) – The object to serialize.
+    *   **many** (`Optional`\[`bool`]) – Whether to serialize obj as a collection. If None, the value for self.many is used.
 
-### set\_class
+    **Returns**
 
-<span id="qiskit.validation.BaseSchema.set_class" />
+    Serialized data
 
-`type`
+    New in version 1.0.0.
 
-**Return type**
+    Changed in version 3.0.0b7: This method returns the serialized data rather than a `(data, errors)` duple. A `ValidationError` is raised if `obj` is invalid.
 
-`type`
+    Changed in version 3.0.0rc9: Validation no longer occurs upon serialization.
+  </Function>
 
-## Methods
+  ### dump\_additional\_data
 
-### dump
+  <Function id="qiskit.validation.BaseSchema.dump_additional_data" name="dump_additional_data" signature="BaseSchema.dump_additional_data(valid_data, original_data, **kwargs)">
+    Include unknown fields after dumping.
 
-<span id="qiskit.validation.BaseSchema.dump" />
+    Unknown fields are added with no processing at all.
 
-`BaseSchema.dump(obj, *, many=None)`
+    **Parameters**
 
-Serialize an object to native Python data types according to this Schema’s fields.
+    *   **valid\_data** (*dict or list*) – data collected and returned by `dump()`.
+    *   **original\_data** (*object or list*) – object passed to `dump()` in the first place.
+    *   **\*\*kwargs** – extra arguments from the decorators.
 
-**Parameters**
+    **Returns**
 
-*   **obj** (`Any`) – The object to serialize.
-*   **many** (`Optional`\[`bool`]) – Whether to serialize obj as a collection. If None, the value for self.many is used.
+    the same `valid_data` extended with the unknown attributes.
 
-**Returns**
+    **Return type**
 
-Serialized data
+    dict
 
-New in version 1.0.0.
+    Inspired by [https://github.com/marshmallow-code/marshmallow/pull/595](https://github.com/marshmallow-code/marshmallow/pull/595).
+  </Function>
 
-Changed in version 3.0.0b7: This method returns the serialized data rather than a `(data, errors)` duple. A `ValidationError` is raised if `obj` is invalid.
+  ### dumps
 
-Changed in version 3.0.0rc9: Validation no longer occurs upon serialization.
+  <Function id="qiskit.validation.BaseSchema.dumps" name="dumps" signature="BaseSchema.dumps(obj, *args, many=None, **kwargs)">
+    Same as [`dump()`](qiskit.validation.BaseSchema#dump "qiskit.validation.BaseSchema.dump"), except return a JSON-encoded string.
 
-### dump\_additional\_data
+    **Parameters**
 
-<span id="qiskit.validation.BaseSchema.dump_additional_data" />
+    *   **obj** (`Any`) – The object to serialize.
+    *   **many** (`Optional`\[`bool`]) – Whether to serialize obj as a collection. If None, the value for self.many is used.
 
-`BaseSchema.dump_additional_data(valid_data, original_data, **kwargs)`
+    **Returns**
 
-Include unknown fields after dumping.
+    A `json` string
 
-Unknown fields are added with no processing at all.
+    New in version 1.0.0.
 
-**Parameters**
+    Changed in version 3.0.0b7: This method returns the serialized data rather than a `(data, errors)` duple. A `ValidationError` is raised if `obj` is invalid.
+  </Function>
 
-*   **valid\_data** (*dict or list*) – data collected and returned by `dump()`.
-*   **original\_data** (*object or list*) – object passed to `dump()` in the first place.
-*   **\*\*kwargs** – extra arguments from the decorators.
+  ### from\_dict
 
-**Returns**
+  <Function id="qiskit.validation.BaseSchema.from_dict" name="from_dict" signature="classmethod BaseSchema.from_dict(fields, *, name='GeneratedSchema')">
+    Generate a Schema class given a dictionary of fields.
 
-the same `valid_data` extended with the unknown attributes.
+    ```python
+    from marshmallow import Schema, fields
 
-**Return type**
+    PersonSchema = Schema.from_dict({"name": fields.Str()})
+    print(PersonSchema().load({"name": "David"}))  # => {'name': 'David'}
+    ```
 
-dict
+    Generated schemas are not added to the class registry and therefore cannot be referred to by name in Nested fields.
 
-Inspired by [https://github.com/marshmallow-code/marshmallow/pull/595](https://github.com/marshmallow-code/marshmallow/pull/595).
+    **Parameters**
 
-### dumps
+    *   **fields** (*dict*) – Dictionary mapping field names to field instances.
+    *   **name** (*str*) – Optional name for the class, which will appear in the `repr` for the class.
 
-<span id="qiskit.validation.BaseSchema.dumps" />
+    New in version 3.0.0.
 
-`BaseSchema.dumps(obj, *args, many=None, **kwargs)`
+    **Return type**
 
-Same as [`dump()`](qiskit.validation.BaseSchema#dump "qiskit.validation.BaseSchema.dump"), except return a JSON-encoded string.
+    `type`
+  </Function>
 
-**Parameters**
+  ### get\_attribute
 
-*   **obj** (`Any`) – The object to serialize.
-*   **many** (`Optional`\[`bool`]) – Whether to serialize obj as a collection. If None, the value for self.many is used.
+  <Function id="qiskit.validation.BaseSchema.get_attribute" name="get_attribute" signature="BaseSchema.get_attribute(obj, attr, default)">
+    Defines how to pull values from an object to serialize.
 
-**Returns**
+    New in version 2.0.0.
 
-A `json` string
+    Changed in version 3.0.0a1: Changed position of `obj` and `attr`.
+  </Function>
 
-New in version 1.0.0.
+  ### handle\_error
 
-Changed in version 3.0.0b7: This method returns the serialized data rather than a `(data, errors)` duple. A `ValidationError` is raised if `obj` is invalid.
+  <Function id="qiskit.validation.BaseSchema.handle_error" name="handle_error" signature="BaseSchema.handle_error(error, data, *, many, **kwargs)">
+    Custom error handler function for the schema.
 
-### from\_dict
+    **Parameters**
 
-<span id="qiskit.validation.BaseSchema.from_dict" />
+    *   **error** (`ValidationError`) – The ValidationError raised during (de)serialization.
+    *   **data** (`Any`) – The original input data.
+    *   **many** (`bool`) – Value of `many` on dump or load.
+    *   **partial** – Value of `partial` on load.
 
-`classmethod BaseSchema.from_dict(fields, *, name='GeneratedSchema')`
+    New in version 2.0.0.
 
-Generate a Schema class given a dictionary of fields.
+    Changed in version 3.0.0rc9: Receives many and partial (on deserialization) as keyword arguments.
+  </Function>
 
-```python
-from marshmallow import Schema, fields
+  ### load
 
-PersonSchema = Schema.from_dict({"name": fields.Str()})
-print(PersonSchema().load({"name": "David"}))  # => {'name': 'David'}
-```
+  <Function id="qiskit.validation.BaseSchema.load" name="load" signature="BaseSchema.load(data, *, many=None, partial=None, unknown=None)">
+    Deserialize a data structure to an object defined by this Schema’s fields.
 
-Generated schemas are not added to the class registry and therefore cannot be referred to by name in Nested fields.
+    **Parameters**
 
-**Parameters**
+    *   **data** (`Union`\[`Mapping`\[`str`, `Any`], `Iterable`\[`Mapping`\[`str`, `Any`]]]) – The data to deserialize.
+    *   **many** (`Optional`\[`bool`]) – Whether to deserialize data as a collection. If None, the value for self.many is used.
+    *   **partial** (`Union`\[`bool`, `Sequence`\[`str`], `Set`\[`str`], `None`]) – Whether to ignore missing fields and not require any fields declared. Propagates down to `Nested` fields as well. If its value is an iterable, only missing fields listed in that iterable will be ignored. Use dot delimiters to specify nested fields.
+    *   **unknown** (`Optional`\[`str`]) – Whether to exclude, include, or raise an error for unknown fields in the data. Use EXCLUDE, INCLUDE or RAISE. If None, the value for self.unknown is used.
 
-*   **fields** (*dict*) – Dictionary mapping field names to field instances.
-*   **name** (*str*) – Optional name for the class, which will appear in the `repr` for the class.
+    **Returns**
 
-New in version 3.0.0.
+    Deserialized data
 
-**Return type**
+    New in version 1.0.0.
 
-`type`
+    Changed in version 3.0.0b7: This method returns the deserialized data rather than a `(data, errors)` duple. A `ValidationError` is raised if invalid data are passed.
+  </Function>
 
-### get\_attribute
+  ### loads
 
-<span id="qiskit.validation.BaseSchema.get_attribute" />
+  <Function id="qiskit.validation.BaseSchema.loads" name="loads" signature="BaseSchema.loads(json_data, *, many=None, partial=None, unknown=None, **kwargs)">
+    Same as [`load()`](qiskit.validation.BaseSchema#load "qiskit.validation.BaseSchema.load"), except it takes a JSON string as input.
 
-`BaseSchema.get_attribute(obj, attr, default)`
+    **Parameters**
 
-Defines how to pull values from an object to serialize.
+    *   **json\_data** (`str`) – A JSON string of the data to deserialize.
+    *   **many** (`Optional`\[`bool`]) – Whether to deserialize obj as a collection. If None, the value for self.many is used.
+    *   **partial** (`Union`\[`bool`, `Sequence`\[`str`], `Set`\[`str`], `None`]) – Whether to ignore missing fields and not require any fields declared. Propagates down to `Nested` fields as well. If its value is an iterable, only missing fields listed in that iterable will be ignored. Use dot delimiters to specify nested fields.
+    *   **unknown** (`Optional`\[`str`]) – Whether to exclude, include, or raise an error for unknown fields in the data. Use EXCLUDE, INCLUDE or RAISE. If None, the value for self.unknown is used.
 
-New in version 2.0.0.
+    **Returns**
 
-Changed in version 3.0.0a1: Changed position of `obj` and `attr`.
+    Deserialized data
 
-### handle\_error
+    New in version 1.0.0.
 
-<span id="qiskit.validation.BaseSchema.handle_error" />
+    Changed in version 3.0.0b7: This method returns the deserialized data rather than a `(data, errors)` duple. A `ValidationError` is raised if invalid data are passed.
+  </Function>
 
-`BaseSchema.handle_error(error, data, *, many, **kwargs)`
+  ### make\_model
 
-Custom error handler function for the schema.
+  <Function id="qiskit.validation.BaseSchema.make_model" name="make_model" signature="BaseSchema.make_model(data, **_)">
+    Make `load` return a `model_cls` instance instead of a dict.
+  </Function>
 
-**Parameters**
+  ### on\_bind\_field
 
-*   **error** (`ValidationError`) – The ValidationError raised during (de)serialization.
-*   **data** (`Any`) – The original input data.
-*   **many** (`bool`) – Value of `many` on dump or load.
-*   **partial** – Value of `partial` on load.
+  <Function id="qiskit.validation.BaseSchema.on_bind_field" name="on_bind_field" signature="BaseSchema.on_bind_field(field_name, field_obj)">
+    Hook to modify a field when it is bound to the Schema.
 
-New in version 2.0.0.
+    No-op by default.
 
-Changed in version 3.0.0rc9: Receives many and partial (on deserialization) as keyword arguments.
+    **Return type**
 
-### load
+    `None`
+  </Function>
 
-<span id="qiskit.validation.BaseSchema.load" />
+  ### validate
 
-`BaseSchema.load(data, *, many=None, partial=None, unknown=None)`
+  <Function id="qiskit.validation.BaseSchema.validate" name="validate" signature="BaseSchema.validate(data, *, many=None, partial=None)">
+    Validate data against the schema, returning a dictionary of validation errors.
 
-Deserialize a data structure to an object defined by this Schema’s fields.
+    **Parameters**
 
-**Parameters**
+    *   **data** (`Mapping`) – The data to validate.
+    *   **many** (`Optional`\[`bool`]) – Whether to validate data as a collection. If None, the value for self.many is used.
+    *   **partial** (`Union`\[`bool`, `Sequence`\[`str`], `Set`\[`str`], `None`]) – Whether to ignore missing fields and not require any fields declared. Propagates down to `Nested` fields as well. If its value is an iterable, only missing fields listed in that iterable will be ignored. Use dot delimiters to specify nested fields.
 
-*   **data** (`Union`\[`Mapping`\[`str`, `Any`], `Iterable`\[`Mapping`\[`str`, `Any`]]]) – The data to deserialize.
-*   **many** (`Optional`\[`bool`]) – Whether to deserialize data as a collection. If None, the value for self.many is used.
-*   **partial** (`Union`\[`bool`, `Sequence`\[`str`], `Set`\[`str`], `None`]) – Whether to ignore missing fields and not require any fields declared. Propagates down to `Nested` fields as well. If its value is an iterable, only missing fields listed in that iterable will be ignored. Use dot delimiters to specify nested fields.
-*   **unknown** (`Optional`\[`str`]) – Whether to exclude, include, or raise an error for unknown fields in the data. Use EXCLUDE, INCLUDE or RAISE. If None, the value for self.unknown is used.
+    **Return type**
 
-**Returns**
+    `Dict`\[`str`, `List`\[`str`]]
 
-Deserialized data
+    **Returns**
 
-New in version 1.0.0.
+    A dictionary of validation errors.
 
-Changed in version 3.0.0b7: This method returns the deserialized data rather than a `(data, errors)` duple. A `ValidationError` is raised if invalid data are passed.
-
-### loads
-
-<span id="qiskit.validation.BaseSchema.loads" />
-
-`BaseSchema.loads(json_data, *, many=None, partial=None, unknown=None, **kwargs)`
-
-Same as [`load()`](qiskit.validation.BaseSchema#load "qiskit.validation.BaseSchema.load"), except it takes a JSON string as input.
-
-**Parameters**
-
-*   **json\_data** (`str`) – A JSON string of the data to deserialize.
-*   **many** (`Optional`\[`bool`]) – Whether to deserialize obj as a collection. If None, the value for self.many is used.
-*   **partial** (`Union`\[`bool`, `Sequence`\[`str`], `Set`\[`str`], `None`]) – Whether to ignore missing fields and not require any fields declared. Propagates down to `Nested` fields as well. If its value is an iterable, only missing fields listed in that iterable will be ignored. Use dot delimiters to specify nested fields.
-*   **unknown** (`Optional`\[`str`]) – Whether to exclude, include, or raise an error for unknown fields in the data. Use EXCLUDE, INCLUDE or RAISE. If None, the value for self.unknown is used.
-
-**Returns**
-
-Deserialized data
-
-New in version 1.0.0.
-
-Changed in version 3.0.0b7: This method returns the deserialized data rather than a `(data, errors)` duple. A `ValidationError` is raised if invalid data are passed.
-
-### make\_model
-
-<span id="qiskit.validation.BaseSchema.make_model" />
-
-`BaseSchema.make_model(data, **_)`
-
-Make `load` return a `model_cls` instance instead of a dict.
-
-### on\_bind\_field
-
-<span id="qiskit.validation.BaseSchema.on_bind_field" />
-
-`BaseSchema.on_bind_field(field_name, field_obj)`
-
-Hook to modify a field when it is bound to the Schema.
-
-No-op by default.
-
-**Return type**
-
-`None`
-
-### validate
-
-<span id="qiskit.validation.BaseSchema.validate" />
-
-`BaseSchema.validate(data, *, many=None, partial=None)`
-
-Validate data against the schema, returning a dictionary of validation errors.
-
-**Parameters**
-
-*   **data** (`Mapping`) – The data to validate.
-*   **many** (`Optional`\[`bool`]) – Whether to validate data as a collection. If None, the value for self.many is used.
-*   **partial** (`Union`\[`bool`, `Sequence`\[`str`], `Set`\[`str`], `None`]) – Whether to ignore missing fields and not require any fields declared. Propagates down to `Nested` fields as well. If its value is an iterable, only missing fields listed in that iterable will be ignored. Use dot delimiters to specify nested fields.
-
-**Return type**
-
-`Dict`\[`str`, `List`\[`str`]]
-
-**Returns**
-
-A dictionary of validation errors.
-
-New in version 1.1.0.
+    New in version 1.1.0.
+  </Function>
+</Class>
 
