@@ -394,6 +394,8 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 
 # How to write the documentation
 
+Refer to our [style guide](./style-guide.md) for technical writing guidance.
+
 We use [MDX](https://mdxjs.com), which is like normal markdown but adds extensions for custom components we have.
 
 Refer to the [Common Markdown syntax](https://commonmark.org/) for a primer on Markdown. The below guide focuses on the other features you can use when writing docs.
