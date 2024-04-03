@@ -1109,8 +1109,8 @@ backend = service.least_busy(operational=True, simulator=False, min_num_qubits=1
  
 with Session(service=service, backend=backend) as session: 
     sampler = Sampler(session=session) 
-    job = sampler.run([(isa_circuit)]) 
-    another_job = sampler.run([(another_isa_circuit)]) 
+    job = sampler.run([(isa_circuit,)]) 
+    another_job = sampler.run([(another_isa_circuit,)]) 
     result = job.result()
     another_result = another_job.result() 
  
