@@ -25,7 +25,7 @@ The following list highlights grammatical and stylistic situations we most often
 
 ## Style and specific word usage
 
-- Use American English spelling when there is a difference with British English
+- Use American English spelling when it differs from British English
 - Simple words are clearest. For example, "use" rather than "utilize", or "run" rather than "execute"
 - Use the serial (or Oxford) comma in a series of items ("I invited my parents, the hippo, and the giraffe" rather than "I invited my parents, the hippo and the giraffe")
 - Avoid latin abbreviations i.e., e.g., vs., and etc. (spell them out or use alternative wording instead) - but if you must use them, follow i.e. and e.g. with a comma: i.e., e.g.,
