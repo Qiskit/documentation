@@ -16,7 +16,6 @@ The following list highlights grammatical and stylistic situations we frequently
 - Avoid first-person (I, we, us); use second-person instead (you -- whether explicit or understood)
 - Choose active voice over passive voice (for example, "The Estimator primitive returns a list of values." instead of "A list of values is returned by the Estimator primitive.")
 - Avoid future tense as well as future perfect tense (for example, ask yourself any time you use the word "will" if you really need it)
-- Do not use "may" - rather, use "can" or "might" depending on context
 
 ## Lists
 
@@ -36,6 +35,7 @@ The following list highlights grammatical and stylistic situations we frequently
 - Do not use Latin abbreviations i.e., e.g., etc., and vs. Use alternative wording instead: "that is," "for example," "and so on," or "versus"
 - Do not use "please"
 - The word "which" in most cases is preceded by a comma; the word "that" (in a similar context) is not preceded by a comma ("The ice cream sandwich, which had melted, was a sticky mess" or "The ice cream sandwich that had melted was a sticky mess")
+- Do not use "may" - rather, use "can" or "might" depending on context
 - Avoid using "above" and "below" when referring to software versions/fix levels; instead, use "earlier" and "later". Also avoid "above" and "below" to indicate the location of content within a page. Instead, use "preceding" or "previous" and "later"
 - Avoid anthropomorphizing or stating that inanimate objects grant abilities to people, as in “the product lets you / allows you / enables you to…” or "the software understands/hopes/believes...". Whenever possible, use a direct, user-focused alternative such as “you can use the product to…” or “with this product, users can…”
 - Use DD Monthname YYYY to format dates (note no comma after the month); for example, '13 February 2024'
