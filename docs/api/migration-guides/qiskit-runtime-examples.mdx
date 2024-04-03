@@ -212,10 +212,6 @@ Note that the Estimator returns a list of values, as it can perform batched eval
   <TabItem value="legacy" label="backend.run()">
 The legacy workflow required many steps to compute an expectation value:
 
-<Admonition type="note">
-    Replace `ibmq_qasm_simulator` with your device name to run the complete workflow on a real device.
-</Admonition>
-
 ``` python
 from qiskit.opflow import StateFn, PauliExpectation, CircuitSampler
 from qiskit import IBMQ
@@ -226,9 +222,16 @@ measurable_expression = StateFn(opflow_op, is_measurement=True).compose(opflow_s
 # Convert to expectation value calculation object
 expectation = PauliExpectation().convert(measurable_expression)
 
-# Define provider and backend
+# Define provider and simulator backend
 provider = IBMQ.get_provider(hub="ibm-q", group="open", project="main")
 backend = provider.get_backend("ibmq_qasm_simulator")
+
+# Define a statevector simulator
+# from qiskit_aer import AerSimulator
+# backend = AerSimulator(method="statevector", shots=100)
+
+# Define a real backend
+# backend = provider.get_backend("ibm_brisbane")
 
 # Inject backend into circuit sampler
 sampler = CircuitSampler(backend).convert(expectation)
