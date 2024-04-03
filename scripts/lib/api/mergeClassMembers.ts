@@ -66,11 +66,10 @@ export async function mergeClassMembers(
             return async (root: Root) => {
               // The attribute and method's section can be found under the class component
               const mdxClassElement = root.children
-                .filter(
+                .find(
                   (node): node is MdxJsxFlowElement =>
                     node.type == "mdxJsxFlowElement" && node.name == "Class",
-                )
-                .shift();
+                );
 
               for (const node of mdxClassElement?.children ?? []) {
                 await replaceMembersAfterTitle(
