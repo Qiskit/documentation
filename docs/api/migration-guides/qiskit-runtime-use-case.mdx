@@ -12,7 +12,13 @@ The only changes when running basic circuits are how you run the job and retriev
 <Tabs>
   <TabItem value="Updated" label="Runtime primitives">
 ```python
-from qiskit_ibm_runtime import SamplerV2 as Sampler
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+# Define the service.  This allows you to access IBM Quantum systems.
+service = QiskitRuntimeService()
+
+# Get a backend
+backend = service.least_busy(operational=True, simulator=False)
 
 job = sampler.run([isa_circuit])
 result = job.result()
@@ -159,12 +165,7 @@ The primitives take in parametrized circuits directly, together
 with the parameter values, and the parameter assignment operation can be
 performed more efficiently on the server side.  The input is in the form of primitive unified blocs (PUBs), where each PUB is a tuple that contains a circuit and the data broadcasted to it. For further details, see [Introduction to primitives.](../../run/primitives#interface-changes)
 
-This feature is particularly interesting when working with iterative
-algorithms because the parametrized circuit remains unchanged between
-calls while the parameter values change. The primitives can transpile
-once and then cache the unbound circuit, using classical resources more
-efficiently. Moreover, only the updated parameters are transferred to
-the cloud, saving additional bandwidth.
+If you have multiple sets of parameter values you want to bind to the same circuit, you can specify them in a single PUB, in the format of (circuit, [parameter_value_set1, parameter_value_set2]).
 
 <Admonition type="note">
 You need the classical register name to get the results.  By default, it is named `meas` when you use `measure_all()`.  However, the classical register name for this example is `c`.  You can find the classical register name by running `<circuit_name>.cregs`. For example, `qc.cregs`.
