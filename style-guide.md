@@ -24,6 +24,7 @@ The following list highlights grammatical and stylistic situations we most often
 - Do not introduce a list with a sentence fragment and complete the sentence in the list items.  For example, do not do the following:
 
 ![Starting a list with a sentence fragment](public/images/style-guide/fragment.png)
+
 - Use a period at the end of each item, or none of them (and be consistent within your document)
 
 ## Style and specific word usage
