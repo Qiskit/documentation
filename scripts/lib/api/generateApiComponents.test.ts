@@ -79,6 +79,7 @@ describe("createOpeningTag()", () => {
     name='run'
     attributeTypeHint='undefined'
     attributeValue='undefined'
+    isDedicatedPage='undefined'
     github='undefined'
     signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
     extraSignatures='[]'
@@ -100,9 +101,10 @@ describe("createOpeningTag()", () => {
     name='run'
     attributeTypeHint='undefined'
     attributeValue='undefined'
+    isDedicatedPage='undefined'
     github='undefined'
     signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
-    extraSignatures='[${APOSTROPHE_HEX_CODE}Estimator.run(circuits, observables, parameter_values=None, **kwargs)${APOSTROPHE_HEX_CODE}, ${APOSTROPHE_HEX_CODE}Estimator.run(circuits, observables, parameter_values=None, **kwargs)${APOSTROPHE_HEX_CODE}]'
+    extraSignatures='["Estimator.run(circuits, observables, parameter_values=None, **kwargs)", "Estimator.run(circuits, observables, parameter_values=None, **kwargs)"]'
     >
   `);
   });
@@ -121,6 +123,7 @@ describe("createOpeningTag()", () => {
     name='instance'
     attributeTypeHint='str | None'
     attributeValue='None'
+    isDedicatedPage='undefined'
     github='undefined'
     signature=''
     extraSignatures='[]'
@@ -139,6 +142,7 @@ describe("createOpeningTag()", () => {
     name='undefined'
     attributeTypeHint='undefined'
     attributeValue='undefined'
+    isDedicatedPage='undefined'
     github='undefined'
     signature=''
     extraSignatures='[]'
