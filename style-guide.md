@@ -1,6 +1,6 @@
 # Technical documentation writing guidelines
 
-Technical documentation avoids conversational language because it must be translatable, accessible, and understood by a variety of audiences. Effective technical writing is direct, bland, and bossy! (And that's ok!)
+Technical documentation avoids conversational language because it must be translatable, accessible, and understood by a variety of audiences. Effective technical writing is direct, bland, and bossy! (And that's ok!)  Feel free to ask us (@abbycross or @beckykd) about these guidelines or any other style questions!
 
 In addition to “normal” grammar rules, IBM Quantum technical documentation follows [IBM style guidelines](https://ibmdocs-test.dcs.ibm.com/docs/en/ibm-style), which include rules for ensuring clear translation, correct [terminology usage](https://w3.terminology.g11n.ibm.com/standards/terminology/), accessibility, and general guidelines that helps all IBM documentation have the same look and feel. (Note that this is specific to technical documentation, not marketing material or blogs, which have their own voice, tone, and style guides.)
 
