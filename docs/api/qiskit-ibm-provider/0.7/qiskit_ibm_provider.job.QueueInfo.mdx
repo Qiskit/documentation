@@ -8,73 +8,65 @@ python_api_name: qiskit_ibm_provider.job.QueueInfo
 
 # QueueInfo
 
-<span id="qiskit_ibm_provider.job.QueueInfo" />
+<Class id="qiskit_ibm_provider.job.QueueInfo" github="https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/queueinfo.py" signature="QueueInfo(position_in_queue=None, status=None, estimated_start_time=None, estimated_completion_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)">
+  Queue information for a job.
 
-`QueueInfo(position_in_queue=None, status=None, estimated_start_time=None, estimated_completion_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/queueinfo.py "view source code")
+  QueueInfo constructor.
 
-Queue information for a job.
+  **Parameters**
 
-QueueInfo constructor.
+  *   **position** – Position in the queue.
+  *   **status** (`Optional`\[`str`]) – Job status.
+  *   **estimated\_start\_time** (`Union`\[`str`, `datetime`, `None`]) – Estimated start time for the job, in UTC.
+  *   **estimated\_complete\_time** – Estimated complete time for the job, in UTC.
+  *   **hub\_priority** (`Optional`\[`float`]) – Dynamic priority for the hub.
+  *   **group\_priority** (`Optional`\[`float`]) – Dynamic priority for the group.
+  *   **project\_priority** (`Optional`\[`float`]) – Dynamic priority for the project.
+  *   **job\_id** (`Optional`\[`str`]) – Job ID.
+  *   **kwargs** (`Any`) – Additional attributes.
 
-**Parameters**
+  ## Attributes
 
-*   **position** – Position in the queue.
-*   **status** (`Optional`\[`str`]) – Job status.
-*   **estimated\_start\_time** (`Union`\[`str`, `datetime`, `None`]) – Estimated start time for the job, in UTC.
-*   **estimated\_complete\_time** – Estimated complete time for the job, in UTC.
-*   **hub\_priority** (`Optional`\[`float`]) – Dynamic priority for the hub.
-*   **group\_priority** (`Optional`\[`float`]) – Dynamic priority for the group.
-*   **project\_priority** (`Optional`\[`float`]) – Dynamic priority for the project.
-*   **job\_id** (`Optional`\[`str`]) – Job ID.
-*   **kwargs** (`Any`) – Additional attributes.
+  <span id="queueinfo-estimated-complete-time" />
 
-## Attributes
+  ### estimated\_complete\_time
 
-<span id="queueinfo-estimated-complete-time" />
+  <Attribute id="qiskit_ibm_provider.job.QueueInfo.estimated_complete_time" name="estimated_complete_time" signature="datetime | None">
+    Return estimated complete time in local time.
 
-### estimated\_complete\_time
+    **Return type**
 
-<span id="qiskit_ibm_provider.job.QueueInfo.estimated_complete_time" />
+    `Optional`\[`datetime`]
+  </Attribute>
 
-`datetime | None`
+  <span id="queueinfo-estimated-start-time" />
 
-Return estimated complete time in local time.
+  ### estimated\_start\_time
 
-**Return type**
+  <Attribute id="qiskit_ibm_provider.job.QueueInfo.estimated_start_time" name="estimated_start_time" signature="datetime | None">
+    Return estimated start time in local time.
 
-`Optional`\[`datetime`]
+    **Return type**
 
-<span id="queueinfo-estimated-start-time" />
+    `Optional`\[`datetime`]
+  </Attribute>
 
-### estimated\_start\_time
+  ## Methods
 
-<span id="qiskit_ibm_provider.job.QueueInfo.estimated_start_time" />
+  <span id="queueinfo-format" />
 
-`datetime | None`
+  ### format
 
-Return estimated start time in local time.
+  <Function id="qiskit_ibm_provider.job.QueueInfo.format" name="format" signature="QueueInfo.format()">
+    Build a user-friendly report for the job queue information.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`datetime`]
+    `str`
 
-## Methods
+    **Returns**
 
-<span id="queueinfo-format" />
-
-### format
-
-<span id="qiskit_ibm_provider.job.QueueInfo.format" />
-
-`QueueInfo.format()`
-
-Build a user-friendly report for the job queue information.
-
-**Return type**
-
-`str`
-
-**Returns**
-
-The job queue information report.
+    The job queue information report.
+  </Function>
+</Class>
 
