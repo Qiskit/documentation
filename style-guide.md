@@ -1,6 +1,6 @@
 # Technical documentation writing guidelines
 
-Technical documentation avoids conversational language because it must be translatable, accessible, and understood by a variety of audiences. Effective technical writing is direct, bland, and bossy! (And that's ok!)  Feel free to ask us (@abbycross or @beckykd) about these guidelines or any other style questions!
+Technical documentation avoids conversational language because it must be translatable, accessible, and understood by a variety of audiences. Effective technical writing is direct, bland, and bossy! (And that's ok!) Feel free to ask us (@abbycross or @beckykd) about these guidelines or any other style questions!
 
 In addition to “normal” grammar rules, IBM Quantum technical documentation follows [IBM style guidelines](https://ibmdocs-test.dcs.ibm.com/docs/en/ibm-style), which include rules for ensuring clear translation, correct [terminology usage](https://w3.terminology.g11n.ibm.com/standards/terminology/), accessibility, and general guidelines that helps all IBM documentation have the same look and feel. (Note that this is specific to technical documentation, not marketing material or blogs, which have their own voice, tone, and style guides.)
 
@@ -21,9 +21,10 @@ The following list highlights grammatical and stylistic situations we most often
 ## Lists
 
 - When using bullet points or numbered lists, capitalize the first letter of the first word of each item
-- Do not introduce a list with a sentence fragment and complete the sentence in the list items.  For example, do not do the following:
+- Do not introduce a list with a sentence fragment and complete the sentence in the list items. For example, do not do the following:
 
 ![Starting a list with a sentence fragment](public/images/style-guide/fragment.png)
+
 - Use a period at the end of each item, or none of them (and be consistent within your document)
 
 ## Style and specific word usage
@@ -31,7 +32,7 @@ The following list highlights grammatical and stylistic situations we most often
 - Use American English spelling when it differs from British English
 - Simple words are clearest. For example, "use" rather than "utilize", or "run" rather than "execute"
 - Use the serial (or Oxford) comma in a series of items ("I invited my parents, the hippo, and the giraffe" rather than "I invited my parents, the hippo and the giraffe")
-- Do not use Latin abbreviations i.e., e.g., etc., and vs. Use alternative wording instead:  "that is," "for example," "and so on," or "versus"
+- Do not use Latin abbreviations i.e., e.g., etc., and vs. Use alternative wording instead: "that is," "for example," "and so on," or "versus"
 - Do not use "please"
 - The word "which" in most cases is preceded by a comma; the word "that" (in a similar context) is not preceded by a comma ("The ice cream sandwich, which had melted, was a sticky mess" or "The ice cream sandwich that had melted was a sticky mess")
 - Avoid using "above" and "below" when referring to software versions/fix levels; instead, use "earlier" and "later". Also avoid "above" and "below" to indicate the location of content within a page. Instead, use "preceding" or "previous" and "later"
