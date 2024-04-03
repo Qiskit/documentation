@@ -31,7 +31,7 @@ The following list highlights grammatical and stylistic situations we most often
 - Use American English spelling when it differs from British English
 - Simple words are clearest. For example, "use" rather than "utilize", or "run" rather than "execute"
 - Use the serial (or Oxford) comma in a series of items ("I invited my parents, the hippo, and the giraffe" rather than "I invited my parents, the hippo and the giraffe")
-- Avoid latin abbreviations i.e., e.g., vs., and etc. (spell them out or use alternative wording instead) - but if you must use them, follow i.e. and e.g. with a comma: i.e., e.g.,
+- Do not use Latin abbreviations i.e., e.g., etc., and vs. Use alternative wording instead:  "that is," "for example," "and so on," or "versus"
 - Do not use "please"
 - The word "which" in most cases is preceded by a comma; the word "that" (in a similar context) is not preceded by a comma ("The ice cream sandwich, which had melted, was a sticky mess" or "The ice cream sandwich that had melted was a sticky mess")
 - Avoid using "above" and "below" when referring to software versions/fix levels; instead, use "earlier" and "later". Also avoid "above" and "below" to indicate the location of content within a page. Instead, use "preceding" or "previous" and "later"
