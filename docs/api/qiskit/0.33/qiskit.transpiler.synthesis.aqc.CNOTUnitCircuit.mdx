@@ -8,210 +8,198 @@ python_api_name: qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit
 
 # CNOTUnitCircuit
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit" />
+<Class id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/synthesis/aqc/cnot_unit_circuit.py" signature="CNOTUnitCircuit(num_qubits, cnots, tol=0.0, name=None)">
+  Bases: `qiskit.transpiler.synthesis.aqc.approximate.ApproximateCircuit`
 
-`CNOTUnitCircuit(num_qubits, cnots, tol=0.0, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/synthesis/aqc/cnot_unit_circuit.py "view source code")
+  A class that represents an approximate circuit based on CNOT unit blocks.
 
-Bases: `qiskit.transpiler.synthesis.aqc.approximate.ApproximateCircuit`
+  **Parameters**
 
-A class that represents an approximate circuit based on CNOT unit blocks.
+  *   **num\_qubits** (`int`) – the number of qubits in this circuit.
+  *   **cnots** (`ndarray`) – an array of dimensions `(2, L)` indicating where the CNOT units will be placed.
+  *   **tol** (`Optional`\[`float`]) – angle parameter less or equal this (small) value is considered equal zero and corresponding gate is not inserted into the output circuit (because it becomes identity one in this case).
+  *   **name** (`Optional`\[`str`]) – name of this circuit
 
-**Parameters**
+  **Raises**
 
-*   **num\_qubits** (`int`) – the number of qubits in this circuit.
-*   **cnots** (`ndarray`) – an array of dimensions `(2, L)` indicating where the CNOT units will be placed.
-*   **tol** (`Optional`\[`float`]) – angle parameter less or equal this (small) value is considered equal zero and corresponding gate is not inserted into the output circuit (because it becomes identity one in this case).
-*   **name** (`Optional`\[`str`]) – name of this circuit
+  **ValueError** – if an unsupported parameter is passed.
 
-**Raises**
+  ## Methods Defined Here
 
-**ValueError** – if an unsupported parameter is passed.
+  ### build
 
-## Methods Defined Here
+  <Function id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.build" name="build" signature="CNOTUnitCircuit.build(thetas)">
+    #### Constructs a Qiskit quantum circuit out of the parameters (angles) of this circuit. If a
 
-### build
+    parameter value is less in absolute value than the specified tolerance then the corresponding rotation gate will be skipped in the circuit.
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.build" />
+    **Return type**
 
-`CNOTUnitCircuit.build(thetas)`
+    `None`
+  </Function>
 
-#### Constructs a Qiskit quantum circuit out of the parameters (angles) of this circuit. If a
+  ## Attributes
 
-parameter value is less in absolute value than the specified tolerance then the corresponding rotation gate will be skipped in the circuit.
+  ### ancillas
 
-**Return type**
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-`None`
+    **Return type**
 
-## Attributes
+    `List`\[`AncillaQubit`]
+  </Attribute>
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.ancillas" />
+  ### calibrations
 
-### ancillas
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **The custom pulse definition of a given gate is of the form**
 
-**Return type**
+    \{‘gate\_name’: \{(qubits, params): schedule}}
 
-`List`\[`AncillaQubit`]
+    **Return type**
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.calibrations" />
+    `dict`
+  </Attribute>
 
-### calibrations
+  ### clbits
 
-Return calibration dictionary.
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-**The custom pulse definition of a given gate is of the form**
+    **Return type**
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+    `List`\[`Clbit`]
+  </Attribute>
 
-**Return type**
+  ### data
 
-`dict`
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.data" name="data">
+    Return the circuit data (instructions and context).
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.clbits" />
+    **Returns**
 
-### clbits
+    a list-like object containing the tuples for the circuit’s data.
 
-Returns a list of classical bits in the order that the registers were added.
+    Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
-**Return type**
+    **Return type**
 
-`List`\[`Clbit`]
+    QuantumCircuitData
+  </Attribute>
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.data" />
+  ### extension\_lib
 
-### data
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-Return the circuit data (instructions and context).
+  ### global\_phase
 
-**Returns**
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-a list-like object containing the tuples for the circuit’s data.
+    **Return type**
 
-Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
+    `Union`\[`ParameterExpression`, `float`]
+  </Attribute>
 
-**Return type**
+  ### header
 
-QuantumCircuitData
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.extension_lib" />
+  ### instances
 
-### extension\_lib
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.instances" name="instances" attributeValue="= 9" />
 
-`= 'include "qelib1.inc";'`
+  ### metadata
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.global_phase" />
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-### global\_phase
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-Return the global phase of the circuit in radians.
+    **Return type**
 
-**Return type**
+    `dict`
+  </Attribute>
 
-`Union`\[`ParameterExpression`, `float`]
+  ### num\_ancillas
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.header" />
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-### header
+    **Return type**
 
-`= 'OPENQASM 2.0;'`
+    `int`
+  </Attribute>
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.instances" />
+  ### num\_clbits
 
-### instances
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-`= 9`
+    **Return type**
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.metadata" />
+    `int`
+  </Attribute>
 
-### metadata
+  ### num\_parameters
 
-The user provided metadata associated with the circuit
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.num_parameters" name="num_parameters">
+    Convenience function to get the number of parameter objects in the circuit.
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`dict`
+  ### num\_qubits
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.num_ancillas" />
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.num_qubits" name="num_qubits">
+    Return number of qubits.
 
-### num\_ancillas
+    **Return type**
 
-Return the number of ancilla qubits.
+    `int`
+  </Attribute>
 
-**Return type**
+  ### parameters
 
-`int`
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.parameters" name="parameters">
+    Convenience function to get the parameters defined in the parameter table.
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.num_clbits" />
+    **Return type**
 
-### num\_clbits
+    `ParameterView`
+  </Attribute>
 
-Return number of classical bits.
+  ### prefix
 
-**Return type**
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-`int`
+  ### qubits
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.num_parameters" />
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-### num\_parameters
+    **Return type**
 
-Convenience function to get the number of parameter objects in the circuit.
+    `List`\[`Qubit`]
+  </Attribute>
 
-**Return type**
+  ### thetas
 
-`int`
+  <Attribute id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.thetas" name="thetas">
+    Returns a vector of rotation angles used by CNOT units in this circuit.
 
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.num_qubits" />
+    **Return type**
 
-### num\_qubits
+    `ndarray`
 
-Return number of qubits.
+    **Returns**
 
-**Return type**
-
-`int`
-
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.parameters" />
-
-### parameters
-
-Convenience function to get the parameters defined in the parameter table.
-
-**Return type**
-
-`ParameterView`
-
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[`Qubit`]
-
-<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.thetas" />
-
-### thetas
-
-Returns a vector of rotation angles used by CNOT units in this circuit.
-
-**Return type**
-
-`ndarray`
-
-**Returns**
-
-Parameters of the rotation gates in this circuit.
+    Parameters of the rotation gates in this circuit.
+  </Attribute>
+</Class>
 

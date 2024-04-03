@@ -8,88 +8,80 @@ python_api_name: qiskit.optimization.converters.IntegerToBinary
 
 # qiskit.optimization.converters.IntegerToBinary
 
-<span id="qiskit.optimization.converters.IntegerToBinary" />
+<Class id="qiskit.optimization.converters.IntegerToBinary" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/integer_to_binary.py" signature="IntegerToBinary">
+  Convert a [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.QuadraticProgram") into new one by encoding integer with binary variables.
 
-`IntegerToBinary` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/integer_to_binary.py "view source code")
+  This bounded-coefficient encoding used in this converted is proposed in \[1], Eq. (5).
 
-Convert a [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.QuadraticProgram") into new one by encoding integer with binary variables.
+  **Examples**
 
-This bounded-coefficient encoding used in this converted is proposed in \[1], Eq. (5).
+  ```python
+  >>> from qiskit.optimization.problems import QuadraticProgram
+  >>> from qiskit.optimization.converters import IntegerToBinary
+  >>> problem = QuadraticProgram()
+  >>> var = problem.integer_var(name='x', lowerbound=0, upperbound=10)
+  >>> conv = IntegerToBinary()
+  >>> problem2 = conv.convert(problem)
+  ```
 
-**Examples**
+  **References**
 
-```python
->>> from qiskit.optimization.problems import QuadraticProgram
->>> from qiskit.optimization.converters import IntegerToBinary
->>> problem = QuadraticProgram()
->>> var = problem.integer_var(name='x', lowerbound=0, upperbound=10)
->>> conv = IntegerToBinary()
->>> problem2 = conv.convert(problem)
-```
+  **\[1]: Sahar Karimi, Pooya Ronagh (2017), Practical Integer-to-Binary Mapping for Quantum**
 
-**References**
+  Annealers. arxiv.org:1706.01945.
 
-**\[1]: Sahar Karimi, Pooya Ronagh (2017), Practical Integer-to-Binary Mapping for Quantum**
+  ### \_\_init\_\_
 
-Annealers. arxiv.org:1706.01945.
+  <Function id="qiskit.optimization.converters.IntegerToBinary.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.optimization.converters.IntegerToBinary.__init__" />
+  |                                                                                                                                        |                                                                                            |
+  | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.optimization.converters.IntegerToBinary.__init__ "qiskit.optimization.converters.IntegerToBinary.__init__")()     | Initialize self.                                                                           |
+  | [`convert`](#qiskit.optimization.converters.IntegerToBinary.convert "qiskit.optimization.converters.IntegerToBinary.convert")(problem) | Convert an integer problem into a new problem with binary variables.                       |
+  | [`interpret`](#qiskit.optimization.converters.IntegerToBinary.interpret "qiskit.optimization.converters.IntegerToBinary.interpret")(x) | Convert back the converted problem (binary variables) to the original (integer variables). |
 
-`__init__()`
+  ### convert
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.optimization.converters.IntegerToBinary.convert" name="convert" signature="convert(problem)">
+    Convert an integer problem into a new problem with binary variables.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                        |                                                                                            |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.optimization.converters.IntegerToBinary.__init__ "qiskit.optimization.converters.IntegerToBinary.__init__")()     | Initialize self.                                                                           |
-| [`convert`](#qiskit.optimization.converters.IntegerToBinary.convert "qiskit.optimization.converters.IntegerToBinary.convert")(problem) | Convert an integer problem into a new problem with binary variables.                       |
-| [`interpret`](#qiskit.optimization.converters.IntegerToBinary.interpret "qiskit.optimization.converters.IntegerToBinary.interpret")(x) | Convert back the converted problem (binary variables) to the original (integer variables). |
+    **problem** (`QuadraticProgram`) – The problem to be solved, that may contain integer variables.
 
-### convert
+    **Return type**
 
-<span id="qiskit.optimization.converters.IntegerToBinary.convert" />
+    `QuadraticProgram`
 
-`convert(problem)`
+    **Returns**
 
-Convert an integer problem into a new problem with binary variables.
+    The converted problem, that contains no integer variables.
 
-**Parameters**
+    **Raises**
 
-**problem** (`QuadraticProgram`) – The problem to be solved, that may contain integer variables.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if variable or constraint type is not supported.
+  </Function>
 
-**Return type**
+  ### interpret
 
-`QuadraticProgram`
+  <Function id="qiskit.optimization.converters.IntegerToBinary.interpret" name="interpret" signature="interpret(x)">
+    Convert back the converted problem (binary variables) to the original (integer variables).
 
-**Returns**
+    **Parameters**
 
-The converted problem, that contains no integer variables.
+    **x** (`Union`\[`ndarray`, `List`\[`float`]]) – The result of the converted problem or the given result in case of FAILURE.
 
-**Raises**
+    **Return type**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if variable or constraint type is not supported.
+    `ndarray`
 
-### interpret
+    **Returns**
 
-<span id="qiskit.optimization.converters.IntegerToBinary.interpret" />
-
-`interpret(x)`
-
-Convert back the converted problem (binary variables) to the original (integer variables).
-
-**Parameters**
-
-**x** (`Union`\[`ndarray`, `List`\[`float`]]) – The result of the converted problem or the given result in case of FAILURE.
-
-**Return type**
-
-`ndarray`
-
-**Returns**
-
-The result of the original problem.
+    The result of the original problem.
+  </Function>
+</Class>
 

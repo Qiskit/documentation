@@ -8,184 +8,178 @@ python_api_name: qiskit.circuit.library.YGate
 
 # YGate
 
-<span id="qiskit.circuit.library.YGate" />
+<Class id="qiskit.circuit.library.YGate" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/y.py" signature="qiskit.circuit.library.YGate(*args, _force_mutable=False, **kwargs)">
+  Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
-`qiskit.circuit.library.YGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/y.py "view source code")
+  The single-qubit Pauli-Y gate ($\sigma_y$).
 
-Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`y()`](qiskit.circuit.QuantumCircuit#y "qiskit.circuit.QuantumCircuit.y") method.
 
-The single-qubit Pauli-Y gate ($\sigma_y$).
-
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`y()`](qiskit.circuit.QuantumCircuit#y "qiskit.circuit.QuantumCircuit.y") method.
-
-**Matrix Representation:**
-
-$$
-Y = \begin{pmatrix}
-        0 & -i \\
-        i & 0
-    \end{pmatrix}
-$$
-
-**Circuit symbol:**
-
-```python
-     ┌───┐
-q_0: ┤ Y ├
-     └───┘
-```
-
-Equivalent to a $\pi$ radian rotation about the Y axis.
-
-<Admonition title="Note" type="note">
-  A global phase difference exists between the definitions of $RY(\pi)$ and $Y$.
+  **Matrix Representation:**
 
   $$
-  RY(\pi) = \begin{pmatrix}
-              0 & -1 \\
-              1 & 0
-            \end{pmatrix}
-          = -i Y
+  Y = \begin{pmatrix}
+          0 & -i \\
+          i & 0
+      \end{pmatrix}
   $$
-</Admonition>
 
-The gate is equivalent to a bit and phase flip.
+  **Circuit symbol:**
 
-$$
-|0\rangle \rightarrow i|1\rangle \\
-|1\rangle \rightarrow -i|0\rangle
-$$
+  ```python
+       ┌───┐
+  q_0: ┤ Y ├
+       └───┘
+  ```
 
-Create new Y gate.
+  Equivalent to a $\pi$ radian rotation about the Y axis.
 
-## Attributes
+  <Admonition title="Note" type="note">
+    A global phase difference exists between the definitions of $RY(\pi)$ and $Y$.
 
-<span id="qiskit.circuit.library.YGate.base_class" />
+    $$
+    RY(\pi) = \begin{pmatrix}
+                0 & -1 \\
+                1 & 0
+              \end{pmatrix}
+            = -i Y
+    $$
+  </Admonition>
 
-### base\_class
+  The gate is equivalent to a bit and phase flip.
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+  $$
+  |0\rangle \rightarrow i|1\rangle \\
+  |1\rangle \rightarrow -i|0\rangle
+  $$
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.YGate.base_class "qiskit.circuit.library.YGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+  Create new Y gate.
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ## Attributes
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  ### base\_class
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  <Attribute id="qiskit.circuit.library.YGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-<span id="qiskit.circuit.library.YGate.condition" />
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.YGate.base_class "qiskit.circuit.library.YGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-### condition
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-The classical condition on the instruction.
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-<span id="qiskit.circuit.library.YGate.condition_bits" />
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-### condition\_bits
+  ### condition
 
-Get Clbits in condition.
+  <Attribute id="qiskit.circuit.library.YGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-<span id="qiskit.circuit.library.YGate.decompositions" />
+  ### condition\_bits
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.YGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### decompositions
 
-<span id="qiskit.circuit.library.YGate.definition" />
+  <Attribute id="qiskit.circuit.library.YGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### definition
+  ### definition
 
-Return definition in terms of other basic gates.
+  <Attribute id="qiskit.circuit.library.YGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.circuit.library.YGate.duration" />
+  ### duration
 
-### duration
+  <Attribute id="qiskit.circuit.library.YGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Get the duration.
+  ### label
 
-<span id="qiskit.circuit.library.YGate.label" />
+  <Attribute id="qiskit.circuit.library.YGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-### label
+  ### mutable
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.YGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-<span id="qiskit.circuit.library.YGate.mutable" />
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-### mutable
+  ### name
 
-Is this instance is a mutable unique instance or not.
+  <Attribute id="qiskit.circuit.library.YGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.YGate.name" />
+  <Attribute id="qiskit.circuit.library.YGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### name
+  ### num\_qubits
 
-Return the name.
+  <Attribute id="qiskit.circuit.library.YGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.YGate.num_clbits" />
+  ### params
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.YGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Return the number of clbits.
+  ### unit
 
-<span id="qiskit.circuit.library.YGate.num_qubits" />
+  <Attribute id="qiskit.circuit.library.YGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-### num\_qubits
+  ## Methods
 
-Return the number of qubits.
+  ### control
 
-<span id="qiskit.circuit.library.YGate.params" />
+  <Function id="qiskit.circuit.library.YGate.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a (multi-)controlled-Y gate.
 
-### params
+    One control returns a CY gate.
 
-return instruction params.
+    **Parameters**
 
-<span id="qiskit.circuit.library.YGate.unit" />
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-### unit
+    **Returns**
 
-Get the time unit of duration.
+    controlled version of this gate.
 
-## Methods
+    **Return type**
 
-### control
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-<span id="qiskit.circuit.library.YGate.control" />
+  ### inverse
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
-
-Return a (multi-)controlled-Y gate.
-
-One control returns a CY gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.YGate.inverse" />
-
-`inverse()`
-
-Return inverted Y gate ($Y^{\dagger} = Y$)
+  <Function id="qiskit.circuit.library.YGate.inverse" name="inverse" signature="inverse()">
+    Return inverted Y gate ($Y^{\dagger} = Y$)
+  </Function>
+</Class>
 

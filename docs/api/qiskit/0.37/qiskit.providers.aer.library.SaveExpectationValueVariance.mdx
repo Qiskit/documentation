@@ -8,272 +8,246 @@ python_api_name: qiskit.providers.aer.library.SaveExpectationValueVariance
 
 # SaveExpectationValueVariance
 
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance" />
+<Class id="qiskit.providers.aer.library.SaveExpectationValueVariance" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/save_instructions/save_expectation_value.py" signature="SaveExpectationValueVariance(operator, label='expectation_value_variance', unnormalized=False, pershot=False, conditional=False)">
+  Bases: `qiskit.providers.aer.library.save_instructions.save_data.SaveAverageData`
 
-`SaveExpectationValueVariance(operator, label='expectation_value_variance', unnormalized=False, pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/save_instructions/save_expectation_value.py "view source code")
+  Save expectation value and variance of an operator.
 
-Bases: `qiskit.providers.aer.library.save_instructions.save_data.SaveAverageData`
+  Instruction to save the expectation value and variance of a Hermitian operator.
 
-Save expectation value and variance of an operator.
+  The expectation value of a Hermitian operator $H$ for a simulator in quantum state :math\`rho\`is given by $\langle H\rangle = \mbox{Tr}[H.\rho]$. The variance is given by $\sigma^2 = \langle H^2 \rangle - \langle H \rangle>^2$.
 
-Instruction to save the expectation value and variance of a Hermitian operator.
+  **Parameters**
 
-The expectation value of a Hermitian operator $H$ for a simulator in quantum state :math\`rho\`is given by $\langle H\rangle = \mbox{Tr}[H.\rho]$. The variance is given by $\sigma^2 = \langle H^2 \rangle - \langle H \rangle>^2$.
+  *   **operator** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *or*[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a Hermitian operator.
+  *   **label** (*str*) – the key for retrieving saved data from results.
+  *   **unnormalized** (*bool*) – If True return save the unnormalized accumulated or conditional accumulated expectation value over all shot \[Default: False].
+  *   **pershot** (*bool*) – if True save a list of expectation values for each shot of the simulation rather than the average over all shots \[Default: False].
+  *   **conditional** (*bool*) – if True save the average or pershot data conditional on the current classical register values \[Default: False].
 
-**Parameters**
+  **Raises**
 
-*   **operator** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *or*[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a Hermitian operator.
-*   **label** (*str*) – the key for retrieving saved data from results.
-*   **unnormalized** (*bool*) – If True return save the unnormalized accumulated or conditional accumulated expectation value over all shot \[Default: False].
-*   **pershot** (*bool*) – if True save a list of expectation values for each shot of the simulation rather than the average over all shots \[Default: False].
-*   **conditional** (*bool*) – if True save the average or pershot data conditional on the current classical register values \[Default: False].
+  **ExtensionError** – if the input operator is invalid or not Hermitian.
 
-**Raises**
+  <Admonition title="Note" type="note">
+    This instruction can be directly appended to a circuit using the [`save_expectation_value()`](qiskit.providers.aer.library.save_expectation_value "qiskit.providers.aer.library.save_expectation_value") circuit method.
+  </Admonition>
 
-**ExtensionError** – if the input operator is invalid or not Hermitian.
+  ## Methods
 
-<Admonition title="Note" type="note">
-  This instruction can be directly appended to a circuit using the [`save_expectation_value()`](qiskit.providers.aer.library.save_expectation_value "qiskit.providers.aer.library.save_expectation_value") circuit method.
-</Admonition>
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.providers.aer.library.SaveExpectationValueVariance.add_decomposition" name="add_decomposition" signature="SaveExpectationValueVariance.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.add_decomposition" />
+  <Function id="qiskit.providers.aer.library.SaveExpectationValueVariance.assemble" name="assemble" signature="SaveExpectationValueVariance.assemble()">
+    Return the QasmQobjInstruction for the intructions.
+  </Function>
 
-`SaveExpectationValueVariance.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.providers.aer.library.SaveExpectationValueVariance.broadcast_arguments" name="broadcast_arguments" signature="SaveExpectationValueVariance.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`SaveExpectationValueVariance.assemble()`
+    **Yields**
 
-Return the QasmQobjInstruction for the intructions.
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`SaveExpectationValueVariance.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit.providers.aer.library.SaveExpectationValueVariance.c_if" name="c_if" signature="SaveExpectationValueVariance.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-**Parameters**
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  ### copy
 
-**Yields**
+  <Function id="qiskit.providers.aer.library.SaveExpectationValueVariance.copy" name="copy" signature="SaveExpectationValueVariance.copy(name=None)">
+    Copy of the instruction.
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **Parameters**
 
-**Raises**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Returns**
 
-### c\_if
+    **a copy of the current instruction, with the name**
 
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.c_if" />
+    updated if it was provided
 
-`SaveExpectationValueVariance.c_if(classical, val)`
+    **Return type**
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  ### inverse
 
-### copy
+  <Function id="qiskit.providers.aer.library.SaveExpectationValueVariance.inverse" name="inverse" signature="SaveExpectationValueVariance.inverse()">
+    Special case. Return self.
+  </Function>
 
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.copy" />
+  ### is\_parameterized
 
-`SaveExpectationValueVariance.copy(name=None)`
+  <Function id="qiskit.providers.aer.library.SaveExpectationValueVariance.is_parameterized" name="is_parameterized" signature="SaveExpectationValueVariance.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-Copy of the instruction.
+  ### qasm
 
-**Parameters**
+  <Function id="qiskit.providers.aer.library.SaveExpectationValueVariance.qasm" name="qasm" signature="SaveExpectationValueVariance.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-**Returns**
+  ### repeat
 
-**a copy of the current instruction, with the name**
+  <Function id="qiskit.providers.aer.library.SaveExpectationValueVariance.repeat" name="repeat" signature="SaveExpectationValueVariance.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-updated if it was provided
+    **Parameters**
 
-**Return type**
+    **n** (*int*) – Number of times to repeat the instruction
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Returns**
 
-### inverse
+    Containing the definition.
 
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.inverse" />
+    **Return type**
 
-`SaveExpectationValueVariance.inverse()`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-Special case. Return self.
+    **Raises**
 
-### is\_parameterized
+    **CircuitError** – If n \< 1.
+  </Function>
 
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.is_parameterized" />
+  ### reverse\_ops
 
-`SaveExpectationValueVariance.is_parameterized()`
+  <Function id="qiskit.providers.aer.library.SaveExpectationValueVariance.reverse_ops" name="reverse_ops" signature="SaveExpectationValueVariance.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-Return True .IFF. instruction is parameterized else False
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-### qasm
+    **Returns**
 
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.qasm" />
+    **a new instruction with**
 
-`SaveExpectationValueVariance.qasm()`
+    sub-instructions reversed.
 
-Return a default OpenQASM string for the instruction.
+    **Return type**
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-### repeat
+  ### soft\_compare
 
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.repeat" />
+  <Function id="qiskit.providers.aer.library.SaveExpectationValueVariance.soft_compare" name="soft_compare" signature="SaveExpectationValueVariance.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-`SaveExpectationValueVariance.repeat(n)`
+    **Parameters**
 
-Creates an instruction with gate repeated n amount of times.
+    **other** (*instruction*) – other instruction.
 
-**Parameters**
+    **Returns**
 
-**n** (*int*) – Number of times to repeat the instruction
+    are self and other equal up to parameter expressions.
 
-**Returns**
+    **Return type**
 
-Containing the definition.
+    bool
+  </Function>
 
-**Return type**
+  ### validate\_parameter
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit.providers.aer.library.SaveExpectationValueVariance.validate_parameter" name="validate_parameter" signature="SaveExpectationValueVariance.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**CircuitError** – If n \< 1.
+  ### condition\_bits
 
-### reverse\_ops
+  <Attribute id="qiskit.providers.aer.library.SaveExpectationValueVariance.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.reverse_ops" />
+    **Return type**
 
-`SaveExpectationValueVariance.reverse_ops()`
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### decompositions
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Attribute id="qiskit.providers.aer.library.SaveExpectationValueVariance.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-**Returns**
+  ### definition
 
-**a new instruction with**
+  <Attribute id="qiskit.providers.aer.library.SaveExpectationValueVariance.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-sub-instructions reversed.
+  ### duration
 
-**Return type**
+  <Attribute id="qiskit.providers.aer.library.SaveExpectationValueVariance.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### label
 
-### soft\_compare
+  <Attribute id="qiskit.providers.aer.library.SaveExpectationValueVariance.label" name="label">
+    Return instruction label
 
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.soft_compare" />
+    **Return type**
 
-`SaveExpectationValueVariance.soft_compare(other)`
+    `str`
+  </Attribute>
 
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+  ### name
 
-**Parameters**
+  <Attribute id="qiskit.providers.aer.library.SaveExpectationValueVariance.name" name="name">
+    Return the name.
+  </Attribute>
 
-**other** (*instruction*) – other instruction.
+  ### num\_clbits
 
-**Returns**
+  <Attribute id="qiskit.providers.aer.library.SaveExpectationValueVariance.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-are self and other equal up to parameter expressions.
+  ### num\_qubits
 
-**Return type**
+  <Attribute id="qiskit.providers.aer.library.SaveExpectationValueVariance.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-bool
+  ### params
 
-### validate\_parameter
+  <Attribute id="qiskit.providers.aer.library.SaveExpectationValueVariance.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.validate_parameter" />
+  ### unit
 
-`SaveExpectationValueVariance.validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
-
-## Attributes
-
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.condition_bits" />
-
-### condition\_bits
-
-Get Clbits in condition.
-
-**Return type**
-
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
-
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.providers.aer.library.SaveExpectationValueVariance.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.providers.aer.library.SaveExpectationValueVariance.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

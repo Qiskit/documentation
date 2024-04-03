@@ -8,134 +8,128 @@ python_api_name: qiskit.transpiler.passes.DynamicalDecoupling
 
 # DynamicalDecoupling
 
-<span id="qiskit.transpiler.passes.DynamicalDecoupling" />
+<Class id="qiskit.transpiler.passes.DynamicalDecoupling" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/scheduling/dynamical_decoupling.py" signature="DynamicalDecoupling(*args, **kwargs)">
+  Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-`DynamicalDecoupling(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
+  Dynamical decoupling insertion pass.
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+  This pass works on a scheduled, physical circuit. It scans the circuit for idle periods of time (i.e. those containing delay instructions) and inserts a DD sequence of gates in those spots. These gates amount to the identity, so do not alter the logical action of the circuit, but have the effect of mitigating decoherence in those idle periods.
 
-Dynamical decoupling insertion pass.
+  As a special case, the pass allows a length-1 sequence (e.g. \[XGate()]). In this case the DD insertion happens only when the gate inverse can be absorbed into a neighboring gate in the circuit (so we would still be replacing Delay with something that is equivalent to the identity). This can be used, for instance, as a Hahn echo.
 
-This pass works on a scheduled, physical circuit. It scans the circuit for idle periods of time (i.e. those containing delay instructions) and inserts a DD sequence of gates in those spots. These gates amount to the identity, so do not alter the logical action of the circuit, but have the effect of mitigating decoherence in those idle periods.
+  This pass ensures that the inserted sequence preserves the circuit exactly (including global phase).
 
-As a special case, the pass allows a length-1 sequence (e.g. \[XGate()]). In this case the DD insertion happens only when the gate inverse can be absorbed into a neighboring gate in the circuit (so we would still be replacing Delay with something that is equivalent to the identity). This can be used, for instance, as a Hahn echo.
+  ```python
+  import numpy as np
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import XGate
+  from qiskit.transpiler import PassManager, InstructionDurations
+  from qiskit.transpiler.passes import ALAPSchedule, DynamicalDecoupling
+  from qiskit.visualization import timeline_drawer
+  circ = QuantumCircuit(4)
+  circ.h(0)
+  circ.cx(0, 1)
+  circ.cx(1, 2)
+  circ.cx(2, 3)
+  circ.measure_all()
+  durations = InstructionDurations(
+      [("h", 0, 50), ("cx", [0, 1], 700), ("reset", None, 10),
+       ("cx", [1, 2], 200), ("cx", [2, 3], 300),
+       ("x", None, 50), ("measure", None, 1000)]
+  )
+  ```
 
-This pass ensures that the inserted sequence preserves the circuit exactly (including global phase).
+  ```python
+  # balanced X-X sequence on all qubits
+  dd_sequence = [XGate(), XGate()]
+  pm = PassManager([ALAPSchedule(durations),
+                    DynamicalDecoupling(durations, dd_sequence)])
+  circ_dd = pm.run(circ)
+  timeline_drawer(circ_dd)
+  ```
 
-```python
-import numpy as np
-from qiskit.circuit import QuantumCircuit
-from qiskit.circuit.library import XGate
-from qiskit.transpiler import PassManager, InstructionDurations
-from qiskit.transpiler.passes import ALAPSchedule, DynamicalDecoupling
-from qiskit.visualization import timeline_drawer
-circ = QuantumCircuit(4)
-circ.h(0)
-circ.cx(0, 1)
-circ.cx(1, 2)
-circ.cx(2, 3)
-circ.measure_all()
-durations = InstructionDurations(
-    [("h", 0, 50), ("cx", [0, 1], 700), ("reset", None, 10),
-     ("cx", [1, 2], 200), ("cx", [2, 3], 300),
-     ("x", None, 50), ("measure", None, 1000)]
-)
-```
+  ![../\_images/qiskit.transpiler.passes.DynamicalDecoupling\_1\_0.png](/images/api/qiskit/0.37/qiskit.transpiler.passes.DynamicalDecoupling_1_0.png)
 
-```python
-# balanced X-X sequence on all qubits
-dd_sequence = [XGate(), XGate()]
-pm = PassManager([ALAPSchedule(durations),
-                  DynamicalDecoupling(durations, dd_sequence)])
-circ_dd = pm.run(circ)
-timeline_drawer(circ_dd)
-```
+  ```python
+  # Uhrig sequence on qubit 0
+  n = 8
+  dd_sequence = [XGate()] * n
+  def uhrig_pulse_location(k):
+      return np.sin(np.pi * (k + 1) / (2 * n + 2)) ** 2
+  spacing = []
+  for k in range(n):
+      spacing.append(uhrig_pulse_location(k) - sum(spacing))
+  spacing.append(1 - sum(spacing))
+  pm = PassManager(
+      [
+          ALAPSchedule(durations),
+          DynamicalDecoupling(durations, dd_sequence, qubits=[0], spacing=spacing),
+      ]
+  )
+  circ_dd = pm.run(circ)
+  timeline_drawer(circ_dd)
+  ```
 
-![../\_images/qiskit.transpiler.passes.DynamicalDecoupling\_1\_0.png](/images/api/qiskit/0.37/qiskit.transpiler.passes.DynamicalDecoupling_1_0.png)
+  ![../\_images/qiskit.transpiler.passes.DynamicalDecoupling\_2\_0.png](/images/api/qiskit/0.37/qiskit.transpiler.passes.DynamicalDecoupling_2_0.png)
 
-```python
-# Uhrig sequence on qubit 0
-n = 8
-dd_sequence = [XGate()] * n
-def uhrig_pulse_location(k):
-    return np.sin(np.pi * (k + 1) / (2 * n + 2)) ** 2
-spacing = []
-for k in range(n):
-    spacing.append(uhrig_pulse_location(k) - sum(spacing))
-spacing.append(1 - sum(spacing))
-pm = PassManager(
-    [
-        ALAPSchedule(durations),
-        DynamicalDecoupling(durations, dd_sequence, qubits=[0], spacing=spacing),
-    ]
-)
-circ_dd = pm.run(circ)
-timeline_drawer(circ_dd)
-```
+  Dynamical decoupling initializer.
 
-![../\_images/qiskit.transpiler.passes.DynamicalDecoupling\_2\_0.png](/images/api/qiskit/0.37/qiskit.transpiler.passes.DynamicalDecoupling_2_0.png)
+  **Parameters**
 
-Dynamical decoupling initializer.
+  *   **durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Durations of instructions to be used in scheduling.
+  *   **dd\_sequence** (*list\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – sequence of gates to apply in idle spots.
+  *   **qubits** (*list\[int]*) – physical qubits on which to apply DD. If None, all qubits will undergo DD (when possible).
+  *   **spacing** (*list\[float]*) – a list of spacings between the DD gates. The available slack will be divided according to this. The list length must be one more than the length of dd\_sequence, and the elements must sum to 1. If None, a balanced spacing will be used \[d/2, d, d, …, d, d, d/2].
+  *   **skip\_reset\_qubits** (*bool*) – if True, does not insert DD on idle periods that immediately follow initialized/reset qubits (as qubits in the ground state are less susceptile to decoherence).
 
-**Parameters**
+  ## Methods
 
-*   **durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Durations of instructions to be used in scheduling.
-*   **dd\_sequence** (*list\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – sequence of gates to apply in idle spots.
-*   **qubits** (*list\[int]*) – physical qubits on which to apply DD. If None, all qubits will undergo DD (when possible).
-*   **spacing** (*list\[float]*) – a list of spacings between the DD gates. The available slack will be divided according to this. The list length must be one more than the length of dd\_sequence, and the elements must sum to 1. If None, a balanced spacing will be used \[d/2, d, d, …, d, d, d/2].
-*   **skip\_reset\_qubits** (*bool*) – if True, does not insert DD on idle periods that immediately follow initialized/reset qubits (as qubits in the ground state are less susceptile to decoherence).
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.DynamicalDecoupling.name" name="name" signature="DynamicalDecoupling.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.DynamicalDecoupling.name" />
+  <Function id="qiskit.transpiler.passes.DynamicalDecoupling.run" name="run" signature="DynamicalDecoupling.run(dag)">
+    Run the DynamicalDecoupling pass on dag.
 
-`DynamicalDecoupling.name()`
+    **Parameters**
 
-Return the name of the pass.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – a scheduled DAG.
 
-### run
+    **Returns**
 
-<span id="qiskit.transpiler.passes.DynamicalDecoupling.run" />
+    **equivalent circuit with delays interrupted by DD,**
 
-`DynamicalDecoupling.run(dag)`
+    where possible.
 
-Run the DynamicalDecoupling pass on dag.
+    **Return type**
 
-**Parameters**
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – a scheduled DAG.
+    **Raises**
 
-**Returns**
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the circuit is not mapped on physical qubits.
+  </Function>
 
-**equivalent circuit with delays interrupted by DD,**
+  ## Attributes
 
-where possible.
+  ### is\_analysis\_pass
 
-**Return type**
+  <Attribute id="qiskit.transpiler.passes.DynamicalDecoupling.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-**Raises**
+  ### is\_transformation\_pass
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the circuit is not mapped on physical qubits.
+  <Attribute id="qiskit.transpiler.passes.DynamicalDecoupling.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-## Attributes
-
-<span id="qiskit.transpiler.passes.DynamicalDecoupling.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.DynamicalDecoupling.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

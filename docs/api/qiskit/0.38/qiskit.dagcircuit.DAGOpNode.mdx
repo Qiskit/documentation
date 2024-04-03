@@ -8,62 +8,58 @@ python_api_name: qiskit.dagcircuit.DAGOpNode
 
 # DAGOpNode
 
-<span id="qiskit.dagcircuit.DAGOpNode" />
+<Class id="qiskit.dagcircuit.DAGOpNode" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/dagcircuit/dagnode.py" signature="DAGOpNode(op, qargs=(), cargs=())">
+  Bases: [`qiskit.dagcircuit.dagnode.DAGNode`](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.dagnode.DAGNode")
 
-`DAGOpNode(op, qargs=(), cargs=())` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/dagcircuit/dagnode.py "view source code")
+  Object to represent an Instruction at a node in the DAGCircuit.
 
-Bases: [`qiskit.dagcircuit.dagnode.DAGNode`](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.dagnode.DAGNode")
+  Create an Instruction node
 
-Object to represent an Instruction at a node in the DAGCircuit.
+  ## Methods
 
-Create an Instruction node
+  ### semantic\_eq
 
-## Methods
+  <Function id="qiskit.dagcircuit.DAGOpNode.semantic_eq" name="semantic_eq" signature="static DAGOpNode.semantic_eq(node1, node2, bit_indices1=None, bit_indices2=None)">
+    Check if DAG nodes are considered equivalent, e.g., as a node\_match for nx.is\_isomorphic.
 
-### semantic\_eq
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGOpNode.semantic_eq" />
+    *   **node1** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – A node to compare.
+    *   **node2** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – The other node to compare.
+    *   **bit\_indices1** (*dict*) – Dictionary mapping Bit instances to their index within the circuit containing node1
+    *   **bit\_indices2** (*dict*) – Dictionary mapping Bit instances to their index within the circuit containing node2
 
-`static DAGOpNode.semantic_eq(node1, node2, bit_indices1=None, bit_indices2=None)`
+    **Returns**
 
-Check if DAG nodes are considered equivalent, e.g., as a node\_match for nx.is\_isomorphic.
+    If node1 == node2
 
-**Parameters**
+    **Return type**
 
-*   **node1** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – A node to compare.
-*   **node2** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – The other node to compare.
-*   **bit\_indices1** (*dict*) – Dictionary mapping Bit instances to their index within the circuit containing node1
-*   **bit\_indices2** (*dict*) – Dictionary mapping Bit instances to their index within the circuit containing node2
+    Bool
+  </Function>
 
-**Returns**
+  ## Attributes
 
-If node1 == node2
+  ### op
 
-**Return type**
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.op" name="op" />
 
-Bool
+  ### qargs
 
-## Attributes
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.qargs" name="qargs" />
 
-<span id="qiskit.dagcircuit.DAGOpNode.op" />
+  ### cargs
 
-### op
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.cargs" name="cargs" />
 
-<span id="qiskit.dagcircuit.DAGOpNode.qargs" />
+  ### sort\_key
 
-### qargs
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.sort_key" name="sort_key" />
 
-<span id="qiskit.dagcircuit.DAGOpNode.cargs" />
+  ### name
 
-### cargs
-
-<span id="qiskit.dagcircuit.DAGOpNode.sort_key" />
-
-### sort\_key
-
-<span id="qiskit.dagcircuit.DAGOpNode.name" />
-
-### name
-
-Returns the Instruction name corresponding to the op for this node
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.name" name="name">
+    Returns the Instruction name corresponding to the op for this node
+  </Attribute>
+</Class>
 

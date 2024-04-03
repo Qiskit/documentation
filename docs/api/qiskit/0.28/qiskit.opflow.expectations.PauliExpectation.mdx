@@ -8,71 +8,63 @@ python_api_name: qiskit.opflow.expectations.PauliExpectation
 
 # qiskit.opflow\.expectations.PauliExpectation
 
-<span id="qiskit.opflow.expectations.PauliExpectation" />
+<Class id="qiskit.opflow.expectations.PauliExpectation" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/expectations/pauli_expectation.py" signature="PauliExpectation(group_paulis=True)">
+  An Expectation converter for Pauli-basis observables by changing Pauli measurements to a diagonal (\{Z, I}^n) basis and appending circuit post-rotations to the measured state function. Optionally groups the Paulis with the same post-rotations (those that commute with one another, or form Abelian groups) into single measurements to reduce circuit execution overhead.
 
-`PauliExpectation(group_paulis=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/expectations/pauli_expectation.py "view source code")
+  **Parameters**
 
-An Expectation converter for Pauli-basis observables by changing Pauli measurements to a diagonal (\{Z, I}^n) basis and appending circuit post-rotations to the measured state function. Optionally groups the Paulis with the same post-rotations (those that commute with one another, or form Abelian groups) into single measurements to reduce circuit execution overhead.
+  **group\_paulis** (`bool`) – Whether to group the Pauli measurements into commuting sums, which all have the same diagonalizing circuit.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**group\_paulis** (`bool`) – Whether to group the Pauli measurements into commuting sums, which all have the same diagonalizing circuit.
+  <Function id="qiskit.opflow.expectations.PauliExpectation.__init__" name="__init__" signature="__init__(group_paulis=True)">
+    **Parameters**
 
-### \_\_init\_\_
+    **group\_paulis** (`bool`) – Whether to group the Pauli measurements into commuting sums, which all have the same diagonalizing circuit.
+  </Function>
 
-<span id="qiskit.opflow.expectations.PauliExpectation.__init__" />
+  ## Methods
 
-`__init__(group_paulis=True)`
+  |                                                                                                                                                             |                                                                                                                                                                                            |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.opflow.expectations.PauliExpectation.__init__ "qiskit.opflow.expectations.PauliExpectation.__init__")(\[group\_paulis])                | **type group\_paulis**`bool`                                                                                                                                                               |
+  | [`compute_variance`](#qiskit.opflow.expectations.PauliExpectation.compute_variance "qiskit.opflow.expectations.PauliExpectation.compute_variance")(exp\_op) | Compute the variance of the expectation estimator.                                                                                                                                         |
+  | [`convert`](#qiskit.opflow.expectations.PauliExpectation.convert "qiskit.opflow.expectations.PauliExpectation.convert")(operator)                           | Accepts an Operator and returns a new Operator with the Pauli measurements replaced by diagonal Pauli post-rotation based measurements so they can be evaluated by sampling and averaging. |
 
-**Parameters**
+  ### compute\_variance
 
-**group\_paulis** (`bool`) – Whether to group the Pauli measurements into commuting sums, which all have the same diagonalizing circuit.
+  <Function id="qiskit.opflow.expectations.PauliExpectation.compute_variance" name="compute_variance" signature="compute_variance(exp_op)">
+    Compute the variance of the expectation estimator.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                             |                                                                                                                                                                                            |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.opflow.expectations.PauliExpectation.__init__ "qiskit.opflow.expectations.PauliExpectation.__init__")(\[group\_paulis])                | **type group\_paulis**`bool`                                                                                                                                                               |
-| [`compute_variance`](#qiskit.opflow.expectations.PauliExpectation.compute_variance "qiskit.opflow.expectations.PauliExpectation.compute_variance")(exp\_op) | Compute the variance of the expectation estimator.                                                                                                                                         |
-| [`convert`](#qiskit.opflow.expectations.PauliExpectation.convert "qiskit.opflow.expectations.PauliExpectation.convert")(operator)                           | Accepts an Operator and returns a new Operator with the Pauli measurements replaced by diagonal Pauli post-rotation based measurements so they can be evaluated by sampling and averaging. |
+    **exp\_op** (`OperatorBase`) – The full expectation value Operator after sampling.
 
-### compute\_variance
+    **Return type**
 
-<span id="qiskit.opflow.expectations.PauliExpectation.compute_variance" />
+    `Union`\[`list`, `float`, `ndarray`]
 
-`compute_variance(exp_op)`
+    **Returns**
 
-Compute the variance of the expectation estimator.
+    The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation.
+  </Function>
 
-**Parameters**
+  ### convert
 
-**exp\_op** (`OperatorBase`) – The full expectation value Operator after sampling.
+  <Function id="qiskit.opflow.expectations.PauliExpectation.convert" name="convert" signature="convert(operator)">
+    Accepts an Operator and returns a new Operator with the Pauli measurements replaced by diagonal Pauli post-rotation based measurements so they can be evaluated by sampling and averaging.
 
-**Return type**
+    **Parameters**
 
-`Union`\[`list`, `float`, `ndarray`]
+    **operator** (`OperatorBase`) – The operator to convert.
 
-**Returns**
+    **Return type**
 
-The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation.
+    `OperatorBase`
 
-### convert
+    **Returns**
 
-<span id="qiskit.opflow.expectations.PauliExpectation.convert" />
-
-`convert(operator)`
-
-Accepts an Operator and returns a new Operator with the Pauli measurements replaced by diagonal Pauli post-rotation based measurements so they can be evaluated by sampling and averaging.
-
-**Parameters**
-
-**operator** (`OperatorBase`) – The operator to convert.
-
-**Return type**
-
-`OperatorBase`
-
-**Returns**
-
-The converted operator.
+    The converted operator.
+  </Function>
+</Class>
 

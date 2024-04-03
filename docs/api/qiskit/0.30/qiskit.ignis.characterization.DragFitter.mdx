@@ -8,215 +8,203 @@ python_api_name: qiskit.ignis.characterization.DragFitter
 
 # DragFitter
 
-<span id="qiskit.ignis.characterization.DragFitter" />
+<Class id="qiskit.ignis.characterization.DragFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/calibrations/fitters.py" signature="DragFitter(backend_result, xdata, qubits, fit_p0, fit_bounds=None)">
+  Bases: `qiskit.ignis.characterization.fitters.IQFitter`
 
-`DragFitter(backend_result, xdata, qubits, fit_p0, fit_bounds=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
+  Drag Experiment fitter
 
-Bases: `qiskit.ignis.characterization.fitters.IQFitter`
+  See IQFitter \_\_init\_\_
 
-Drag Experiment fitter
+  fit\_p0 is \[a, x0, c] where the fit is a\*(x-x0)^2+c
 
-See IQFitter \_\_init\_\_
+  ## Methods
 
-fit\_p0 is \[a, x0, c] where the fit is a\*(x-x0)^2+c
+  ### add\_data
 
-## Methods
+  <Function id="qiskit.ignis.characterization.DragFitter.add_data" name="add_data" signature="DragFitter.add_data(results, recalc=True, refit=True)">
+    Add new execution results to previous execution results
 
-### add\_data
+    **Parameters**
 
-<span id="qiskit.ignis.characterization.DragFitter.add_data" />
+    *   **results** (`Union`\[`Result`, `List`\[`Result`]]) – new execution results
+    *   **recalc** (`bool`) – whether tp recalculate the data
+    *   **refit** (`bool`) – whether to refit the data
+  </Function>
 
-`DragFitter.add_data(results, recalc=True, refit=True)`
+  ### drag\_amplitude
 
-Add new execution results to previous execution results
+  <Function id="qiskit.ignis.characterization.DragFitter.drag_amplitude" name="drag_amplitude" signature="DragFitter.drag_amplitude(qind=- 1)">
+    Return the drag amplitude from the fit
 
-**Parameters**
+    **Parameters**
 
-*   **results** (`Union`\[`Result`, `List`\[`Result`]]) – new execution results
-*   **recalc** (`bool`) – whether tp recalculate the data
-*   **refit** (`bool`) – whether to refit the data
+    **qind** (*int*) – qubit index
 
-### drag\_amplitude
+    **Returns**
 
-<span id="qiskit.ignis.characterization.DragFitter.drag_amplitude" />
+    drag amp
 
-`DragFitter.drag_amplitude(qind=- 1)`
+    **Return type**
 
-Return the drag amplitude from the fit
+    float
+  </Function>
 
-**Parameters**
+  ### fit\_data
 
-**qind** (*int*) – qubit index
+  <Function id="qiskit.ignis.characterization.DragFitter.fit_data" name="fit_data" signature="DragFitter.fit_data(qid=- 1, p0=None, bounds=None, series=None)">
+    Fit the curve.
 
-**Returns**
+    Compute self.\_params and self.\_params\_err
 
-drag amp
+    **Parameters**
 
-**Return type**
+    *   **qid** (`int`) – qubit for fitting. If -1 fit for all the qubits
+    *   **p0** (`Optional`\[`List`\[`float`]]) – initial guess, equivalent to p0 in scipy.optimize
+    *   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
+    *   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
+  </Function>
 
-float
+  ### guess\_params
 
-### fit\_data
+  <Function id="qiskit.ignis.characterization.DragFitter.guess_params" name="guess_params" signature="DragFitter.guess_params(qind=0)">
+    Guess parameters for the drag fit
 
-<span id="qiskit.ignis.characterization.DragFitter.fit_data" />
+    **Parameters**
 
-`DragFitter.fit_data(qid=- 1, p0=None, bounds=None, series=None)`
+    **qind** (*int*) – qubit index
 
-Fit the curve.
+    **Returns**
 
-Compute self.\_params and self.\_params\_err
+    **guess parameters**
 
-**Parameters**
+    \[a, x0, c] where the fit is $a * (x - x0)^{2+c}$
 
-*   **qid** (`int`) – qubit for fitting. If -1 fit for all the qubits
-*   **p0** (`Optional`\[`List`\[`float`]]) – initial guess, equivalent to p0 in scipy.optimize
-*   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
-*   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
+    **Return type**
 
-### guess\_params
+    list
+  </Function>
 
-<span id="qiskit.ignis.characterization.DragFitter.guess_params" />
+  ### plot
 
-`DragFitter.guess_params(qind=0)`
+  <Function id="qiskit.ignis.characterization.DragFitter.plot" name="plot" signature="DragFitter.plot(qind, series='0', ax=None, show_plot=False)">
+    Plot the data and fit
 
-Guess parameters for the drag fit
+    **Parameters**
 
-**Parameters**
+    *   **qind** (*int*) – qubit index
+    *   **series** (*str*) – data series to plot (for rabi data always ‘0’)
+    *   **ax** (*Axes*) – matploblib axes (if none created)
+    *   **show\_plot** (*bool*) – do plot.show
 
-**qind** (*int*) – qubit index
+    **Returns**
 
-**Returns**
+    Plot axes
 
-**guess parameters**
+    **Return type**
 
-\[a, x0, c] where the fit is $a * (x - x0)^{2+c}$
+    Axes
+  </Function>
 
-**Return type**
+  ## Attributes
 
-list
+  ### backend\_result
 
-### plot
+  <Attribute id="qiskit.ignis.characterization.DragFitter.backend_result" name="backend_result">
+    Return the execution results
 
-<span id="qiskit.ignis.characterization.DragFitter.plot" />
+    **Return type**
 
-`DragFitter.plot(qind, series='0', ax=None, show_plot=False)`
+    `Union`\[`Result`, `List`\[`Result`]]
+  </Attribute>
 
-Plot the data and fit
+  ### description
 
-**Parameters**
+  <Attribute id="qiskit.ignis.characterization.DragFitter.description" name="description">
+    Return the fitter’s purpose, e.g. ‘T1’
 
-*   **qind** (*int*) – qubit index
-*   **series** (*str*) – data series to plot (for rabi data always ‘0’)
-*   **ax** (*Axes*) – matploblib axes (if none created)
-*   **show\_plot** (*bool*) – do plot.show
+    **Return type**
 
-**Returns**
+    `str`
+  </Attribute>
 
-Plot axes
+  ### fit\_fun
 
-**Return type**
+  <Attribute id="qiskit.ignis.characterization.DragFitter.fit_fun" name="fit_fun">
+    Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 
-Axes
+    **Return type**
 
-## Attributes
+    `Callable`
+  </Attribute>
 
-<span id="qiskit.ignis.characterization.DragFitter.backend_result" />
+  ### measured\_qubits
 
-### backend\_result
+  <Attribute id="qiskit.ignis.characterization.DragFitter.measured_qubits" name="measured_qubits">
+    Return the indices of the qubits to be characterized
 
-Return the execution results
+    **Return type**
 
-**Return type**
+    `List`\[`int`]
+  </Attribute>
 
-`Union`\[`Result`, `List`\[`Result`]]
+  ### params
 
-<span id="qiskit.ignis.characterization.DragFitter.description" />
+  <Attribute id="qiskit.ignis.characterization.DragFitter.params" name="params">
+    Return the fit function parameters that were calculated by curve\_fit
 
-### description
+    **Return type**
 
-Return the fitter’s purpose, e.g. ‘T1’
+    `List`\[`float`]
+  </Attribute>
 
-**Return type**
+  ### params\_err
 
-`str`
+  <Attribute id="qiskit.ignis.characterization.DragFitter.params_err" name="params_err">
+    Return the error of the fit function parameters
 
-<span id="qiskit.ignis.characterization.DragFitter.fit_fun" />
+    **Return type**
 
-### fit\_fun
+    `List`\[`float`]
+  </Attribute>
 
-Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
+  ### series
 
-**Return type**
+  <Attribute id="qiskit.ignis.characterization.DragFitter.series" name="series">
+    Return the list of series for the data
 
-`Callable`
+    **Return type**
 
-<span id="qiskit.ignis.characterization.DragFitter.measured_qubits" />
+    `Optional`\[`List`\[`str`]]
+  </Attribute>
 
-### measured\_qubits
+  ### xdata
 
-Return the indices of the qubits to be characterized
+  <Attribute id="qiskit.ignis.characterization.DragFitter.xdata" name="xdata">
+    Return the data points on the x-axis, the independenet parameter which is fit against
 
-**Return type**
+    **Return type**
 
-`List`\[`int`]
+    `Union`\[`List`\[`float`], `array`]
+  </Attribute>
 
-<span id="qiskit.ignis.characterization.DragFitter.params" />
+  ### ydata
 
-### params
+  <Attribute id="qiskit.ignis.characterization.DragFitter.ydata" name="ydata">
+    Return the data points on the y-axis
 
-Return the fit function parameters that were calculated by curve\_fit
+    The data points are returning in the form of a list of dictionaries:
 
-**Return type**
+    > *   **ydata\[i]\[‘mean’] is a list, where item**
+    >
+    >     no. j is the probability of success of qubit i for a circuit that lasts xdata\[j].
+    >
+    > *   **ydata\[i]\[‘std’] is a list, where ydata\[‘std’]\[j] is the**
+    >
+    >     standard deviation of the success of qubit i.
 
-`List`\[`float`]
+    **Return type**
 
-<span id="qiskit.ignis.characterization.DragFitter.params_err" />
-
-### params\_err
-
-Return the error of the fit function parameters
-
-**Return type**
-
-`List`\[`float`]
-
-<span id="qiskit.ignis.characterization.DragFitter.series" />
-
-### series
-
-Return the list of series for the data
-
-**Return type**
-
-`Optional`\[`List`\[`str`]]
-
-<span id="qiskit.ignis.characterization.DragFitter.xdata" />
-
-### xdata
-
-Return the data points on the x-axis, the independenet parameter which is fit against
-
-**Return type**
-
-`Union`\[`List`\[`float`], `array`]
-
-<span id="qiskit.ignis.characterization.DragFitter.ydata" />
-
-### ydata
-
-Return the data points on the y-axis
-
-The data points are returning in the form of a list of dictionaries:
-
-> *   **ydata\[i]\[‘mean’] is a list, where item**
->
->     no. j is the probability of success of qubit i for a circuit that lasts xdata\[j].
->
-> *   **ydata\[i]\[‘std’] is a list, where ydata\[‘std’]\[j] is the**
->
->     standard deviation of the success of qubit i.
-
-**Return type**
-
-`List`\[`Dict`]
+    `List`\[`Dict`]
+  </Attribute>
+</Class>
 

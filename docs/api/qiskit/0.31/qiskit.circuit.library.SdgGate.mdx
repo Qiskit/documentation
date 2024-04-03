@@ -8,88 +8,84 @@ python_api_name: qiskit.circuit.library.SdgGate
 
 # SdgGate
 
-<span id="qiskit.circuit.library.SdgGate" />
+<Class id="qiskit.circuit.library.SdgGate" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/s.py" signature="SdgGate(label=None)">
+  Bases: `qiskit.circuit.gate.Gate`
 
-`SdgGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/s.py "view source code")
+  Single qubit S-adjoint gate (\~Z\*\*0.5).
 
-Bases: `qiskit.circuit.gate.Gate`
+  It induces a $-\pi/2$ phase.
 
-Single qubit S-adjoint gate (\~Z\*\*0.5).
+  This is a Clifford gate and a square-root of Pauli-Z.
 
-It induces a $-\pi/2$ phase.
+  **Matrix Representation:**
 
-This is a Clifford gate and a square-root of Pauli-Z.
+  $$
+  \begin{split}Sdg = \begin{pmatrix}
+          1 & 0 \\
+          0 & -i
+      \end{pmatrix}\end{split}
+  $$
 
-**Matrix Representation:**
+  **Circuit symbol:**
 
-$$
-\begin{split}Sdg = \begin{pmatrix}
-        1 & 0 \\
-        0 & -i
-    \end{pmatrix}\end{split}
-$$
+  ```python
+       ┌─────┐
+  q_0: ┤ Sdg ├
+       └─────┘
+  ```
 
-**Circuit symbol:**
+  Equivalent to a $\pi/2$ radian rotation about the Z axis.
 
-```python
-     ┌─────┐
-q_0: ┤ Sdg ├
-     └─────┘
-```
+  Create new Sdg gate.
 
-Equivalent to a $\pi/2$ radian rotation about the Z axis.
+  ## Methods Defined Here
 
-Create new Sdg gate.
+  ### inverse
 
-## Methods Defined Here
+  <Function id="qiskit.circuit.library.SdgGate.inverse" name="inverse" signature="SdgGate.inverse()">
+    Return inverse of Sdg (SGate).
+  </Function>
 
-### inverse
+  ## Attributes
 
-<span id="qiskit.circuit.library.SdgGate.inverse" />
+  ### decompositions
 
-`SdgGate.inverse()`
+  <Attribute id="qiskit.circuit.library.SdgGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Return inverse of Sdg (SGate).
+  ### definition
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.SdgGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SdgGate.decompositions" />
+  ### duration
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.SdgGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### label
 
-<span id="qiskit.circuit.library.SdgGate.definition" />
+  <Attribute id="qiskit.circuit.library.SdgGate.label" name="label">
+    Return instruction label
 
-### definition
+    **Return type**
 
-Return definition in terms of other basic gates.
+    `str`
+  </Attribute>
 
-<span id="qiskit.circuit.library.SdgGate.duration" />
+  ### params
 
-### duration
+  <Attribute id="qiskit.circuit.library.SdgGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Get the duration.
+  ### unit
 
-<span id="qiskit.circuit.library.SdgGate.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.library.SdgGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.SdgGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.SdgGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

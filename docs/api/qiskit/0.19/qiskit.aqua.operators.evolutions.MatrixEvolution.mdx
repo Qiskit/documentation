@@ -8,31 +8,27 @@ python_api_name: qiskit.aqua.operators.evolutions.MatrixEvolution
 
 # MatrixEvolution
 
-<span id="qiskit.aqua.operators.evolutions.MatrixEvolution" />
+<Class id="qiskit.aqua.operators.evolutions.MatrixEvolution" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/matrix_evolution.py" signature="MatrixEvolution">
+  Performs Evolution by classical matrix exponentiation, constructing a circuit with `UnitaryGates` or `HamiltonianGates` containing the exponentiation of the Operator.
 
-`MatrixEvolution` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/matrix_evolution.py "view source code")
+  ## Methods
 
-Performs Evolution by classical matrix exponentiation, constructing a circuit with `UnitaryGates` or `HamiltonianGates` containing the exponentiation of the Operator.
+  ### convert
 
-## Methods
+  <Function id="qiskit.aqua.operators.evolutions.MatrixEvolution.convert" name="convert" signature="MatrixEvolution.convert(operator)">
+    Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing `UnitaryGates` or `HamiltonianGates` (if self.coeff is a `ParameterExpression`) equalling the exponentiation of -i \* operator. This is done by converting the `EvolvedOp.primitive` to a `MatrixOp` and simply calling `.exp_i()` on that.
 
-### convert
+    **Parameters**
 
-<span id="qiskit.aqua.operators.evolutions.MatrixEvolution.convert" />
+    **operator** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The Operator to convert.
 
-`MatrixEvolution.convert(operator)`
+    **Return type**
 
-Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing `UnitaryGates` or `HamiltonianGates` (if self.coeff is a `ParameterExpression`) equalling the exponentiation of -i \* operator. This is done by converting the `EvolvedOp.primitive` to a `MatrixOp` and simply calling `.exp_i()` on that.
+    [`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
 
-**Parameters**
+    **Returns**
 
-**operator** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The Operator to convert.
-
-**Return type**
-
-[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
-
-**Returns**
-
-The converted operator.
+    The converted operator.
+  </Function>
+</Class>
 

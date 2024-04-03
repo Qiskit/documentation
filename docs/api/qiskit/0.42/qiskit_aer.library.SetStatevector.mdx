@@ -8,282 +8,256 @@ python_api_name: qiskit_aer.library.SetStatevector
 
 # SetStatevector
 
-<span id="qiskit_aer.library.SetStatevector" />
+<Class id="qiskit_aer.library.SetStatevector" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/library/set_instructions/set_statevector.py" signature="SetStatevector(state)">
+  Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
-`SetStatevector(state)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/library/set_instructions/set_statevector.py "view source code")
+  Set the statevector state of the simulator
 
-Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  Create new instruction to set the statevector state of the simulator.
 
-Set the statevector state of the simulator
+  **Parameters**
 
-Create new instruction to set the statevector state of the simulator.
+  **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – a statevector.
 
-**Parameters**
+  **Raises**
 
-**state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – a statevector.
+  **ExtensionError** – if the input is not a valid state.
 
-**Raises**
+  <Admonition title="Note" type="note">
+    This set instruction must always be performed on the full width of qubits in a circuit, otherwise an exception will be raised during simulation.
+  </Admonition>
 
-**ExtensionError** – if the input is not a valid state.
+  ## Methods
 
-<Admonition title="Note" type="note">
-  This set instruction must always be performed on the full width of qubits in a circuit, otherwise an exception will be raised during simulation.
-</Admonition>
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit_aer.library.SetStatevector.add_decomposition" name="add_decomposition" signature="SetStatevector.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit_aer.library.SetStatevector.add_decomposition" />
+  <Function id="qiskit_aer.library.SetStatevector.assemble" name="assemble" signature="SetStatevector.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-`SetStatevector.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit_aer.library.SetStatevector.broadcast_arguments" name="broadcast_arguments" signature="SetStatevector.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit_aer.library.SetStatevector.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`SetStatevector.assemble()`
+    **Yields**
 
-Assemble a QasmQobjInstruction
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit_aer.library.SetStatevector.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`SetStatevector.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit_aer.library.SetStatevector.c_if" name="c_if" signature="SetStatevector.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-**Parameters**
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  ### copy
 
-**Yields**
+  <Function id="qiskit_aer.library.SetStatevector.copy" name="copy" signature="SetStatevector.copy(name=None)">
+    Copy of the instruction.
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **Parameters**
 
-**Raises**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Returns**
 
-### c\_if
+    **a copy of the current instruction, with the name**
 
-<span id="qiskit_aer.library.SetStatevector.c_if" />
+    updated if it was provided
 
-`SetStatevector.c_if(classical, val)`
+    **Return type**
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  ### inverse
 
-### copy
+  <Function id="qiskit_aer.library.SetStatevector.inverse" name="inverse" signature="SetStatevector.inverse()">
+    Invert this instruction.
 
-<span id="qiskit_aer.library.SetStatevector.copy" />
+    If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
 
-`SetStatevector.copy(name=None)`
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
 
-Copy of the instruction.
+    **Returns**
 
-**Parameters**
+    a fresh instruction for the inverse
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    **Return type**
 
-**Returns**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**a copy of the current instruction, with the name**
+    **Raises**
 
-updated if it was provided
+    **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
 
-**Return type**
+  ### is\_parameterized
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit_aer.library.SetStatevector.is_parameterized" name="is_parameterized" signature="SetStatevector.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-### inverse
+  ### qasm
 
-<span id="qiskit_aer.library.SetStatevector.inverse" />
+  <Function id="qiskit_aer.library.SetStatevector.qasm" name="qasm" signature="SetStatevector.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-`SetStatevector.inverse()`
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-Invert this instruction.
+  ### repeat
 
-If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+  <Function id="qiskit_aer.library.SetStatevector.repeat" name="repeat" signature="SetStatevector.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+    **Parameters**
 
-**Returns**
+    **n** (*int*) – Number of times to repeat the instruction
 
-a fresh instruction for the inverse
+    **Returns**
 
-**Return type**
+    Containing the definition.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Return type**
 
-**Raises**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+    **Raises**
 
-### is\_parameterized
+    **CircuitError** – If n \< 1.
+  </Function>
 
-<span id="qiskit_aer.library.SetStatevector.is_parameterized" />
+  ### reverse\_ops
 
-`SetStatevector.is_parameterized()`
+  <Function id="qiskit_aer.library.SetStatevector.reverse_ops" name="reverse_ops" signature="SetStatevector.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-Return True .IFF. instruction is parameterized else False
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-### qasm
+    **Returns**
 
-<span id="qiskit_aer.library.SetStatevector.qasm" />
+    **a new instruction with**
 
-`SetStatevector.qasm()`
+    sub-instructions reversed.
 
-Return a default OpenQASM string for the instruction.
+    **Return type**
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-### repeat
+  ### soft\_compare
 
-<span id="qiskit_aer.library.SetStatevector.repeat" />
+  <Function id="qiskit_aer.library.SetStatevector.soft_compare" name="soft_compare" signature="SetStatevector.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-`SetStatevector.repeat(n)`
+    **Parameters**
 
-Creates an instruction with gate repeated n amount of times.
+    **other** (*instruction*) – other instruction.
 
-**Parameters**
+    **Returns**
 
-**n** (*int*) – Number of times to repeat the instruction
+    are self and other equal up to parameter expressions.
 
-**Returns**
+    **Return type**
 
-Containing the definition.
+    bool
+  </Function>
 
-**Return type**
+  ### validate\_parameter
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit_aer.library.SetStatevector.validate_parameter" name="validate_parameter" signature="SetStatevector.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**CircuitError** – If n \< 1.
+  ### condition\_bits
 
-### reverse\_ops
+  <Attribute id="qiskit_aer.library.SetStatevector.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-<span id="qiskit_aer.library.SetStatevector.reverse_ops" />
+    **Return type**
 
-`SetStatevector.reverse_ops()`
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### decompositions
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Attribute id="qiskit_aer.library.SetStatevector.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-**Returns**
+  ### definition
 
-**a new instruction with**
+  <Attribute id="qiskit_aer.library.SetStatevector.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-sub-instructions reversed.
+  ### duration
 
-**Return type**
+  <Attribute id="qiskit_aer.library.SetStatevector.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### label
 
-### soft\_compare
+  <Attribute id="qiskit_aer.library.SetStatevector.label" name="label">
+    Return instruction label
 
-<span id="qiskit_aer.library.SetStatevector.soft_compare" />
+    **Return type**
 
-`SetStatevector.soft_compare(other)`
+    `str`
+  </Attribute>
 
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+  ### name
 
-**Parameters**
+  <Attribute id="qiskit_aer.library.SetStatevector.name" name="name">
+    Return the name.
+  </Attribute>
 
-**other** (*instruction*) – other instruction.
+  ### num\_clbits
 
-**Returns**
+  <Attribute id="qiskit_aer.library.SetStatevector.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-are self and other equal up to parameter expressions.
+  ### num\_qubits
 
-**Return type**
+  <Attribute id="qiskit_aer.library.SetStatevector.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-bool
+  ### params
 
-### validate\_parameter
+  <Attribute id="qiskit_aer.library.SetStatevector.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit_aer.library.SetStatevector.validate_parameter" />
+  ### unit
 
-`SetStatevector.validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
-
-## Attributes
-
-<span id="qiskit_aer.library.SetStatevector.condition_bits" />
-
-### condition\_bits
-
-Get Clbits in condition.
-
-**Return type**
-
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
-
-<span id="qiskit_aer.library.SetStatevector.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit_aer.library.SetStatevector.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit_aer.library.SetStatevector.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit_aer.library.SetStatevector.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit_aer.library.SetStatevector.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit_aer.library.SetStatevector.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit_aer.library.SetStatevector.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit_aer.library.SetStatevector.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit_aer.library.SetStatevector.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit_aer.library.SetStatevector.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

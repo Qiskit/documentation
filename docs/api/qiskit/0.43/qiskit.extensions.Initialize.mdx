@@ -8,315 +8,287 @@ python_api_name: qiskit.extensions.Initialize
 
 # Initialize
 
-<span id="qiskit.extensions.Initialize" />
+<Class id="qiskit.extensions.Initialize" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/extensions/quantum_initializer/initializer.py" signature="Initialize(params, num_qubits=None)">
+  Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
-`Initialize(params, num_qubits=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/extensions/quantum_initializer/initializer.py "view source code")
+  Complex amplitude initialization.
 
-Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  Class that initializes some flexible collection of qubit registers, implemented by calling the `qiskit.extensions.StatePreparation` Class. Note that Initialize is an Instruction and not a Gate since it contains a reset instruction, which is not unitary.
 
-Complex amplitude initialization.
+  Create new initialize composite.
 
-Class that initializes some flexible collection of qubit registers, implemented by calling the `qiskit.extensions.StatePreparation` Class. Note that Initialize is an Instruction and not a Gate since it contains a reset instruction, which is not unitary.
+  **Parameters**
 
-Create new initialize composite.
+  *   **params** (*str, list, int or* [*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) –
 
-**Parameters**
+      *   Statevector: Statevector to initialize to.
+      *   list: vector of complex amplitudes to initialize to.
+      *   string: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
+      *   int: an integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
 
-*   **params** (*str, list, int or* [*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) –
+  *   **num\_qubits** (*int*) – This parameter is only used if params is an int. Indicates the total number of qubits in the initialize call. Example: initialize covers 5 qubits and params is 3. This allows qubits 0 and 1 to be initialized to $|1\rangle$ and the remaining 3 qubits to be initialized to $|0\rangle$.
 
-    *   Statevector: Statevector to initialize to.
-    *   list: vector of complex amplitudes to initialize to.
-    *   string: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
-    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
+  ## Methods
 
-*   **num\_qubits** (*int*) – This parameter is only used if params is an int. Indicates the total number of qubits in the initialize call. Example: initialize covers 5 qubits and params is 3. This allows qubits 0 and 1 to be initialized to $|1\rangle$ and the remaining 3 qubits to be initialized to $|0\rangle$.
+  <span id="qiskit-extensions-initialize-add-decomposition" />
 
-## Methods
+  ### add\_decomposition
 
-<span id="qiskit-extensions-initialize-add-decomposition" />
+  <Function id="qiskit.extensions.Initialize.add_decomposition" name="add_decomposition" signature="Initialize.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  <span id="qiskit-extensions-initialize-assemble" />
 
-<span id="qiskit.extensions.Initialize.add_decomposition" />
+  ### assemble
 
-`Initialize.add_decomposition(decomposition)`
+  <Function id="qiskit.extensions.Initialize.assemble" name="assemble" signature="Initialize.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <span id="qiskit-extensions-initialize-broadcast-arguments" />
 
-<span id="qiskit-extensions-initialize-assemble" />
+  ### broadcast\_arguments
 
-### assemble
+  <Function id="qiskit.extensions.Initialize.broadcast_arguments" name="broadcast_arguments" signature="Initialize.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-<span id="qiskit.extensions.Initialize.assemble" />
+    **Parameters**
 
-`Initialize.assemble()`
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-Assemble a QasmQobjInstruction
+    **Yields**
 
-<span id="qiskit-extensions-initialize-broadcast-arguments" />
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.extensions.Initialize.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`Initialize.broadcast_arguments(qargs, cargs)`
+  <span id="qiskit-extensions-initialize-c-if" />
 
-Validation of the arguments.
+  ### c\_if
 
-**Parameters**
+  <Function id="qiskit.extensions.Initialize.c_if" name="c_if" signature="Initialize.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-**Yields**
+  <span id="qiskit-extensions-initialize-copy" />
 
-*Tuple(List, List)* – A tuple with single arguments.
+  ### copy
 
-**Raises**
+  <Function id="qiskit.extensions.Initialize.copy" name="copy" signature="Initialize.copy(name=None)">
+    Copy of the instruction.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Parameters**
 
-<span id="qiskit-extensions-initialize-c-if" />
+    **name** (*str*) – name to be given to the copied circuit, if `None` then the name stays the same.
 
-### c\_if
+    **Returns**
 
-<span id="qiskit.extensions.Initialize.c_if" />
+    a copy of the current instruction, with the name updated if it was provided
 
-`Initialize.c_if(classical, val)`
+    **Return type**
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  <span id="qiskit-extensions-initialize-gates-to-uncompute" />
 
-<span id="qiskit-extensions-initialize-copy" />
+  ### gates\_to\_uncompute
 
-### copy
+  <Function id="qiskit.extensions.Initialize.gates_to_uncompute" name="gates_to_uncompute" signature="Initialize.gates_to_uncompute()">
+    Call to create a circuit with gates that take the desired vector to zero.
 
-<span id="qiskit.extensions.Initialize.copy" />
+    **Returns**
 
-`Initialize.copy(name=None)`
+    circuit to take self.params vector to $|{00\ldots0}\rangle$
 
-Copy of the instruction.
+    **Return type**
 
-**Parameters**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-**name** (*str*) – name to be given to the copied circuit, if `None` then the name stays the same.
+  <span id="qiskit-extensions-initialize-inverse" />
 
-**Returns**
+  ### inverse
 
-a copy of the current instruction, with the name updated if it was provided
+  <Function id="qiskit.extensions.Initialize.inverse" name="inverse" signature="Initialize.inverse()">
+    Invert this instruction.
 
-**Return type**
+    If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
 
-<span id="qiskit-extensions-initialize-gates-to-uncompute" />
+    **Returns**
 
-### gates\_to\_uncompute
+    a fresh instruction for the inverse
 
-<span id="qiskit.extensions.Initialize.gates_to_uncompute" />
+    **Return type**
 
-`Initialize.gates_to_uncompute()`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-Call to create a circuit with gates that take the desired vector to zero.
+    **Raises**
 
-**Returns**
+    **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
 
-circuit to take self.params vector to $|{00\ldots0}\rangle$
+  <span id="qiskit-extensions-initialize-is-parameterized" />
 
-**Return type**
+  ### is\_parameterized
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.extensions.Initialize.is_parameterized" name="is_parameterized" signature="Initialize.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-<span id="qiskit-extensions-initialize-inverse" />
+  <span id="qiskit-extensions-initialize-qasm" />
 
-### inverse
+  ### qasm
 
-<span id="qiskit.extensions.Initialize.inverse" />
+  <Function id="qiskit.extensions.Initialize.qasm" name="qasm" signature="Initialize.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-`Initialize.inverse()`
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-Invert this instruction.
+  <span id="qiskit-extensions-initialize-repeat" />
 
-If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+  ### repeat
 
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+  <Function id="qiskit.extensions.Initialize.repeat" name="repeat" signature="Initialize.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-**Returns**
+    **Parameters**
 
-a fresh instruction for the inverse
+    **n** (*int*) – Number of times to repeat the instruction
 
-**Return type**
+    **Returns**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    Containing the definition.
 
-**Raises**
+    **Return type**
 
-**CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="qiskit-extensions-initialize-is-parameterized" />
+    **Raises**
 
-### is\_parameterized
+    **CircuitError** – If n \< 1.
+  </Function>
 
-<span id="qiskit.extensions.Initialize.is_parameterized" />
+  <span id="qiskit-extensions-initialize-reverse-ops" />
 
-`Initialize.is_parameterized()`
+  ### reverse\_ops
 
-Return True .IFF. instruction is parameterized else False
+  <Function id="qiskit.extensions.Initialize.reverse_ops" name="reverse_ops" signature="Initialize.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-<span id="qiskit-extensions-initialize-qasm" />
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-### qasm
+    **Returns**
 
-<span id="qiskit.extensions.Initialize.qasm" />
+    **a new instruction with**
 
-`Initialize.qasm()`
+    sub-instructions reversed.
 
-Return a default OpenQASM string for the instruction.
+    **Return type**
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<span id="qiskit-extensions-initialize-repeat" />
+  <span id="qiskit-extensions-initialize-soft-compare" />
 
-### repeat
+  ### soft\_compare
 
-<span id="qiskit.extensions.Initialize.repeat" />
+  <Function id="qiskit.extensions.Initialize.soft_compare" name="soft_compare" signature="Initialize.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-`Initialize.repeat(n)`
+    **Parameters**
 
-Creates an instruction with gate repeated n amount of times.
+    **other** (*instruction*) – other instruction.
 
-**Parameters**
+    **Returns**
 
-**n** (*int*) – Number of times to repeat the instruction
+    are self and other equal up to parameter expressions.
 
-**Returns**
+    **Return type**
 
-Containing the definition.
+    bool
+  </Function>
 
-**Return type**
+  <span id="qiskit-extensions-initialize-validate-parameter" />
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### validate\_parameter
 
-**Raises**
+  <Function id="qiskit.extensions.Initialize.validate_parameter" name="validate_parameter" signature="Initialize.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-**CircuitError** – If n \< 1.
+  ## Attributes
 
-<span id="qiskit-extensions-initialize-reverse-ops" />
+  ### condition\_bits
 
-### reverse\_ops
+  <Attribute id="qiskit.extensions.Initialize.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.extensions.Initialize.reverse_ops" />
+  ### decompositions
 
-`Initialize.reverse_ops()`
+  <Attribute id="qiskit.extensions.Initialize.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### definition
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Attribute id="qiskit.extensions.Initialize.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-**Returns**
+  ### duration
 
-**a new instruction with**
+  <Attribute id="qiskit.extensions.Initialize.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-sub-instructions reversed.
+  ### label
 
-**Return type**
+  <Attribute id="qiskit.extensions.Initialize.label" name="label">
+    Return instruction label
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### name
 
-<span id="qiskit-extensions-initialize-soft-compare" />
+  <Attribute id="qiskit.extensions.Initialize.name" name="name">
+    Return the name.
+  </Attribute>
 
-### soft\_compare
+  ### num\_clbits
 
-<span id="qiskit.extensions.Initialize.soft_compare" />
+  <Attribute id="qiskit.extensions.Initialize.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-`Initialize.soft_compare(other)`
+  ### num\_qubits
 
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+  <Attribute id="qiskit.extensions.Initialize.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-**Parameters**
+  ### params
 
-**other** (*instruction*) – other instruction.
+  <Attribute id="qiskit.extensions.Initialize.params" name="params">
+    Return initialize params.
+  </Attribute>
 
-**Returns**
+  ### unit
 
-are self and other equal up to parameter expressions.
-
-**Return type**
-
-bool
-
-<span id="qiskit-extensions-initialize-validate-parameter" />
-
-### validate\_parameter
-
-<span id="qiskit.extensions.Initialize.validate_parameter" />
-
-`Initialize.validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
-
-## Attributes
-
-<span id="qiskit.extensions.Initialize.condition_bits" />
-
-### condition\_bits
-
-Get Clbits in condition.
-
-<span id="qiskit.extensions.Initialize.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.extensions.Initialize.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit.extensions.Initialize.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit.extensions.Initialize.label" />
-
-### label
-
-Return instruction label
-
-<span id="qiskit.extensions.Initialize.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.extensions.Initialize.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.extensions.Initialize.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.extensions.Initialize.params" />
-
-### params
-
-Return initialize params.
-
-<span id="qiskit.extensions.Initialize.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.extensions.Initialize.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

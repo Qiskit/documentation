@@ -8,340 +8,312 @@ python_api_name: qiskit.providers.fake_provider.FakeCasablancaV2
 
 # FakeCasablancaV2
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2" />
+<Class id="qiskit.providers.fake_provider.FakeCasablancaV2" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/backends/casablanca/fake_casablanca.py" signature="qiskit.providers.fake_provider.FakeCasablancaV2">
+  Bases: [`FakeBackendV2`](providers_fake_provider#qiskit.providers.fake_provider.fake_backend.FakeBackendV2 "qiskit.providers.fake_provider.fake_backend.FakeBackendV2")
 
-`qiskit.providers.fake_provider.FakeCasablancaV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/backends/casablanca/fake_casablanca.py "view source code")
+  A fake 7 qubit backend.
 
-Bases: [`FakeBackendV2`](providers_fake_provider#qiskit.providers.fake_provider.fake_backend.FakeBackendV2 "qiskit.providers.fake_provider.fake_backend.FakeBackendV2")
+  FakeBackendV2 initializer.
 
-A fake 7 qubit backend.
+  ## Attributes
 
-FakeBackendV2 initializer.
+  ### backend\_name
 
-## Attributes
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.backend_name" name="backend_name" attributeValue="= 'fake_casablanca'" />
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.backend_name" />
+  ### conf\_filename
 
-### backend\_name
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.conf_filename" name="conf_filename" attributeValue="= 'conf_casablanca.json'" />
 
-`= 'fake_casablanca'`
+  ### coupling\_map
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.conf_filename" />
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.coupling_map" name="coupling_map">
+    Return the [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object
+  </Attribute>
 
-### conf\_filename
+  ### defs\_filename
 
-`= 'conf_casablanca.json'`
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.defs_filename" name="defs_filename" attributeValue="= 'defs_casablanca.json'" />
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.coupling_map" />
+  ### dirname
 
-### coupling\_map
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.dirname" name="dirname" attributeValue="= '/home/runner/work/qiskit/qiskit/qiskit/providers/fake_provider/backends/casablanca'" />
 
-Return the [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object
+  ### dt
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.defs_filename" />
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.dt" name="dt">
+    Return the system time resolution of input signals
 
-### defs\_filename
+    This is required to be implemented if the backend supports Pulse scheduling.
 
-`= 'defs_casablanca.json'`
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.dirname" />
+    The input signal timestep in seconds. If the backend doesn’t define `dt`, `None` will be returned.
+  </Attribute>
 
-### dirname
+  ### dtm
 
-`= '/home/runner/work/qiskit/qiskit/qiskit/providers/fake_provider/backends/casablanca'`
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.dtm" name="dtm">
+    Return the system time resolution of output signals
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.dt" />
+    **Returns**
 
-### dt
+    The output signal timestep in seconds.
+  </Attribute>
 
-Return the system time resolution of input signals
+  ### instruction\_durations
 
-This is required to be implemented if the backend supports Pulse scheduling.
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.instruction_durations" name="instruction_durations">
+    Return the [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") object.
+  </Attribute>
 
-**Returns**
+  ### instruction\_schedule\_map
 
-The input signal timestep in seconds. If the backend doesn’t define `dt`, `None` will be returned.
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.instruction_schedule_map" name="instruction_schedule_map">
+    Return the [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") for the instructions defined in this backend’s target.
+  </Attribute>
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.dtm" />
+  ### instructions
 
-### dtm
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.instructions" name="instructions">
+    A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
+  </Attribute>
 
-Return the system time resolution of output signals
+  ### max\_circuits
 
-**Returns**
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.max_circuits" name="max_circuits" />
 
-The output signal timestep in seconds.
+  ### meas\_map
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.instruction_durations" />
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.meas_map" name="meas_map">
+    Return the grouping of measurements which are multiplexed This is required to be implemented if the backend supports Pulse scheduling.
 
-### instruction\_durations
+    **Returns**
 
-Return the [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") object.
+    The grouping of measurements which are multiplexed
+  </Attribute>
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.instruction_schedule_map" />
+  ### num\_qubits
 
-### instruction\_schedule\_map
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.num_qubits" name="num_qubits">
+    Return the number of qubits the backend has.
+  </Attribute>
 
-Return the [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") for the instructions defined in this backend’s target.
+  ### operation\_names
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.instructions" />
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.operation_names" name="operation_names">
+    A list of instruction names that the backend supports.
+  </Attribute>
 
-### instructions
+  ### operations
 
-A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.operations" name="operations">
+    A list of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances that the backend supports.
+  </Attribute>
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.max_circuits" />
+  ### options
 
-### max\_circuits
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.meas_map" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.fake_provider.FakeCasablancaV2.run "qiskit.providers.fake_provider.FakeCasablancaV2.run") method.
+  </Attribute>
 
-### meas\_map
+  ### props\_filename
 
-Return the grouping of measurements which are multiplexed This is required to be implemented if the backend supports Pulse scheduling.
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.props_filename" name="props_filename" attributeValue="= 'props_casablanca.json'" />
 
-**Returns**
+  ### provider
 
-The grouping of measurements which are multiplexed
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.provider" name="provider">
+    Return the backend Provider.
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.num_qubits" />
+    **Returns**
 
-### num\_qubits
+    the Provider responsible for the backend.
 
-Return the number of qubits the backend has.
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.operation_names" />
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Attribute>
 
-### operation\_names
+  ### target
 
-A list of instruction names that the backend supports.
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.target" name="target">
+    A [`qiskit.transpiler.Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object for the backend.
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.operations" />
+    **Return type**
 
-### operations
+    [Target](qiskit.transpiler.Target "qiskit.transpiler.Target")
+  </Attribute>
 
-A list of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances that the backend supports.
+  ### version
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.options" />
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.version" name="version" attributeValue="= 2" />
 
-### options
+  ### name
 
-Return the options for the backend
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.name" name="name">
+    Name of the backend.
+  </Attribute>
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.fake_provider.FakeCasablancaV2.run "qiskit.providers.fake_provider.FakeCasablancaV2.run") method.
+  ### description
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.props_filename" />
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.description" name="description">
+    Optional human-readable description.
+  </Attribute>
 
-### props\_filename
+  ### online\_date
 
-`= 'props_casablanca.json'`
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.online_date" name="online_date">
+    Date that the backend came online.
+  </Attribute>
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.provider" />
+  ### backend\_version
 
-### provider
+  <Attribute id="qiskit.providers.fake_provider.FakeCasablancaV2.backend_version" name="backend_version">
+    Version of the backend being provided. This is not the same as [`BackendV2.version`](qiskit.providers.BackendV2#version "qiskit.providers.BackendV2.version"), which is the version of the [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") abstract interface.
+  </Attribute>
 
-Return the backend Provider.
+  ## Methods
 
-**Returns**
+  ### acquire\_channel
 
-the Provider responsible for the backend.
+  <Function id="qiskit.providers.fake_provider.FakeCasablancaV2.acquire_channel" name="acquire_channel" signature="acquire_channel(qubit)">
+    Return the acquisition channel for the given qubit.
 
-**Return type**
+    This is required to be implemented if the backend supports Pulse scheduling.
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.target" />
+    The Qubit measurement acquisition line.
 
-### target
+    **Return type**
 
-A [`qiskit.transpiler.Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object for the backend.
+    [AcquireChannel](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
+  </Function>
 
-**Return type**
+  ### control\_channel
 
-[Target](qiskit.transpiler.Target "qiskit.transpiler.Target")
+  <Function id="qiskit.providers.fake_provider.FakeCasablancaV2.control_channel" name="control_channel" signature="control_channel(qubits)">
+    Return the secondary drive channel for the given qubit
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.version" />
+    This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
 
-### version
+    This is required to be implemented if the backend supports Pulse scheduling.
 
-`= 2`
+    **Parameters**
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.name" />
+    **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
 
-### name
+    **Returns**
 
-Name of the backend.
+    The multi qubit control line.
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.description" />
+    **Return type**
 
-### description
+    List\[[ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+  </Function>
 
-Optional human-readable description.
+  ### drive\_channel
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.online_date" />
+  <Function id="qiskit.providers.fake_provider.FakeCasablancaV2.drive_channel" name="drive_channel" signature="drive_channel(qubit)">
+    Return the drive channel for the given qubit.
 
-### online\_date
+    This is required to be implemented if the backend supports Pulse scheduling.
 
-Date that the backend came online.
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.backend_version" />
+    The Qubit drive channel
 
-### backend\_version
+    **Return type**
 
-Version of the backend being provided. This is not the same as [`BackendV2.version`](qiskit.providers.BackendV2#version "qiskit.providers.BackendV2.version"), which is the version of the [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") abstract interface.
+    [DriveChannel](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
+  </Function>
 
-## Methods
+  ### measure\_channel
 
-### acquire\_channel
+  <Function id="qiskit.providers.fake_provider.FakeCasablancaV2.measure_channel" name="measure_channel" signature="measure_channel(qubit)">
+    Return the measure stimulus channel for the given qubit.
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.acquire_channel" />
+    This is required to be implemented if the backend supports Pulse scheduling.
 
-`acquire_channel(qubit)`
+    **Returns**
 
-Return the acquisition channel for the given qubit.
+    The Qubit measurement stimulus line
 
-This is required to be implemented if the backend supports Pulse scheduling.
+    **Return type**
 
-**Returns**
+    [MeasureChannel](qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")
+  </Function>
 
-The Qubit measurement acquisition line.
+  ### qubit\_properties
 
-**Return type**
+  <Function id="qiskit.providers.fake_provider.FakeCasablancaV2.qubit_properties" name="qubit_properties" signature="qubit_properties(qubit)">
+    Return QubitProperties for a given qubit.
 
-[AcquireChannel](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
+    If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
 
-### control\_channel
+    **Parameters**
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.control_channel" />
+    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit to get the [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for. This can be a single integer for 1 qubit or a list of qubits and a list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects will be returned in the same order
 
-`control_channel(qubits)`
+    **Returns**
 
-Return the secondary drive channel for the given qubit
+    The [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for the specified qubit. If a list of qubits is provided a list will be returned. If properties are missing for a qubit this can be `None`.
 
-This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
+    **Raises**
 
-This is required to be implemented if the backend supports Pulse scheduling.
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the qubit properties
 
-**Parameters**
+    **Return type**
 
-**qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
+    [*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties") | [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties")]
+  </Function>
 
-**Returns**
+  ### run
 
-The multi qubit control line.
+  <Function id="qiskit.providers.fake_provider.FakeCasablancaV2.run" name="run" signature="run(run_input, **options)">
+    Run on the fake backend using a simulator.
 
-**Return type**
+    This method runs circuit jobs (an individual or a list of QuantumCircuit ) and pulse jobs (an individual or a list of Schedule or ScheduleBlock) using BasicAer or Aer simulator and returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object.
 
-List\[[ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+    If qiskit-aer is installed, jobs will be run using AerSimulator with noise model of the fake backend. Otherwise, jobs will be run using BasicAer simulator without noise.
 
-### drive\_channel
+    Currently noisy simulation of a pulse job is not supported yet in FakeBackendV2.
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.drive_channel" />
+    **Parameters**
 
-`drive_channel(qubit)`
+    *   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An individual or a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"), or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend.
+    *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
 
-Return the drive channel for the given qubit.
+    **Returns**
 
-This is required to be implemented if the backend supports Pulse scheduling.
+    The job object for the run
 
-**Returns**
+    **Return type**
 
-The Qubit drive channel
+    [Job](qiskit.providers.Job "qiskit.providers.Job")
 
-**Return type**
+    **Raises**
 
-[DriveChannel](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If a pulse job is supplied and qiskit-aer is not installed.
+  </Function>
 
-### measure\_channel
+  ### set\_options
 
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.measure_channel" />
+  <Function id="qiskit.providers.fake_provider.FakeCasablancaV2.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-`measure_channel(qubit)`
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-Return the measure stimulus channel for the given qubit.
+    **Parameters**
 
-This is required to be implemented if the backend supports Pulse scheduling.
+    **fields** – The fields to update the options
 
-**Returns**
+    **Raises**
 
-The Qubit measurement stimulus line
-
-**Return type**
-
-[MeasureChannel](qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")
-
-### qubit\_properties
-
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.qubit_properties" />
-
-`qubit_properties(qubit)`
-
-Return QubitProperties for a given qubit.
-
-If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
-
-**Parameters**
-
-**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit to get the [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for. This can be a single integer for 1 qubit or a list of qubits and a list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects will be returned in the same order
-
-**Returns**
-
-The [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for the specified qubit. If a list of qubits is provided a list will be returned. If properties are missing for a qubit this can be `None`.
-
-**Raises**
-
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the qubit properties
-
-**Return type**
-
-[*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties") | [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties")]
-
-### run
-
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.run" />
-
-`run(run_input, **options)`
-
-Run on the fake backend using a simulator.
-
-This method runs circuit jobs (an individual or a list of QuantumCircuit ) and pulse jobs (an individual or a list of Schedule or ScheduleBlock) using BasicAer or Aer simulator and returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object.
-
-If qiskit-aer is installed, jobs will be run using AerSimulator with noise model of the fake backend. Otherwise, jobs will be run using BasicAer simulator without noise.
-
-Currently noisy simulation of a pulse job is not supported yet in FakeBackendV2.
-
-**Parameters**
-
-*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An individual or a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"), or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend.
-*   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
-
-**Returns**
-
-The job object for the run
-
-**Return type**
-
-[Job](qiskit.providers.Job "qiskit.providers.Job")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If a pulse job is supplied and qiskit-aer is not installed.
-
-### set\_options
-
-<span id="qiskit.providers.fake_provider.FakeCasablancaV2.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
+  </Function>
+</Class>
 

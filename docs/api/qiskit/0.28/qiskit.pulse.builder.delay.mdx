@@ -8,26 +8,24 @@ python_api_name: qiskit.pulse.builder.delay
 
 # qiskit.pulse.builder.delay
 
-<span id="qiskit.pulse.builder.delay" />
+<Function id="qiskit.pulse.builder.delay" name="delay" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py" signature="delay(duration, channel, name=None)">
+  Delay on a `channel` for a `duration`.
 
-`delay(duration, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
+  Examples:
 
-Delay on a `channel` for a `duration`.
+  ```python
+  from qiskit import pulse
 
-Examples:
+  d0 = pulse.DriveChannel(0)
 
-```python
-from qiskit import pulse
+  with pulse.build() as pulse_prog:
+      pulse.delay(10, d0)
+  ```
 
-d0 = pulse.DriveChannel(0)
+  **Parameters**
 
-with pulse.build() as pulse_prog:
-    pulse.delay(10, d0)
-```
-
-**Parameters**
-
-*   **duration** (`int`) – Number of cycles to delay for on `channel`.
-*   **channel** ([`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")) – Channel to delay on.
-*   **name** (`Optional`\[`str`]) – Name of the instruction.
+  *   **duration** (`int`) – Number of cycles to delay for on `channel`.
+  *   **channel** ([`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")) – Channel to delay on.
+  *   **name** (`Optional`\[`str`]) – Name of the instruction.
+</Function>
 

@@ -8,124 +8,108 @@ python_api_name: qiskit.aqua.components.oracles.LogicalExpressionOracle
 
 # qiskit.aqua.components.oracles.LogicalExpressionOracle
 
-<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle" />
+<Class id="qiskit.aqua.components.oracles.LogicalExpressionOracle" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/logical_expression_oracle.py" signature="LogicalExpressionOracle(expression, optimization=False, mct_mode='basic')">
+  The Logical Expression Quantum Oracle.
 
-`LogicalExpressionOracle(expression, optimization=False, mct_mode='basic')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/logical_expression_oracle.py "view source code")
+  The Logical Expression Oracle, as its name suggests, constructs circuits for any arbitrary input logical expressions. A logical expression is composed of logical operators & (AND), | (OR), \~ (NOT), and ^ (XOR), as well as symbols for literals (variables). For example, ‘a & b’, and (v0 | \~v1) ^ (\~v2 & v3) are both valid string representation of boolean logical expressions.
 
-The Logical Expression Quantum Oracle.
+  For convenience, this oracle, in addition to parsing arbitrary logical expressions, also supports input strings in the [DIMACS CNF format](http://www.satcompetition.org/2009/format-benchmarks2009.html), which is the standard format for specifying SATisfiability (SAT) problem instances in [Conjunctive Normal Form (CNF)](https://en.wikipedia.org/wiki/Conjunctive_normal_form), which is a conjunction of one or more clauses, where a clause is a disjunction of one or more literals.
 
-The Logical Expression Oracle, as its name suggests, constructs circuits for any arbitrary input logical expressions. A logical expression is composed of logical operators & (AND), | (OR), \~ (NOT), and ^ (XOR), as well as symbols for literals (variables). For example, ‘a & b’, and (v0 | \~v1) ^ (\~v2 & v3) are both valid string representation of boolean logical expressions.
+  The following is an example of a CNF expressed in DIMACS format:
 
-For convenience, this oracle, in addition to parsing arbitrary logical expressions, also supports input strings in the [DIMACS CNF format](http://www.satcompetition.org/2009/format-benchmarks2009.html), which is the standard format for specifying SATisfiability (SAT) problem instances in [Conjunctive Normal Form (CNF)](https://en.wikipedia.org/wiki/Conjunctive_normal_form), which is a conjunction of one or more clauses, where a clause is a disjunction of one or more literals.
+  ```python
+  c This is an example DIMACS CNF file with 3 satisfying assignments: 1 -2 3, -1 -2 -3, 1 2 -3.
+  p cnf 3 5
+  -1 -2 -3 0
+  1 -2 3 0
+  1 2 -3 0
+  1 -2 -3 0
+  -1 2 3 0
+  ```
 
-The following is an example of a CNF expressed in DIMACS format:
+  The first line, following the c character, is a comment. The second line specifies that the CNF is over three boolean variables — let us call them $x_1, x_2, x_3$, and contains five clauses. The five clauses, listed afterwards, are implicitly joined by the logical AND operator, $\land$, while the variables in each clause, represented by their indices, are implicitly disjoined by the logical OR operator, $lor$. The $-$ symbol preceding a boolean variable index corresponds to the logical NOT operator, $lnot$. Character 0 (zero) marks the end of each clause. Essentially, the code above corresponds to the following CNF:
 
-```python
-c This is an example DIMACS CNF file with 3 satisfying assignments: 1 -2 3, -1 -2 -3, 1 2 -3.
-p cnf 3 5
--1 -2 -3 0
-1 -2 3 0
-1 2 -3 0
-1 -2 -3 0
--1 2 3 0
-```
+  $(\lnot x_1 \lor \lnot x_2 \lor \lnot x_3) \land (x_1 \lor \lnot x_2 \lor x_3) \land (x_1 \lor x_2 \lor \lnot x_3) \land (x_1 \lor \lnot x_2 \lor \lnot x_3) \land (\lnot x_1 \lor x_2 \lor x_3)$.
 
-The first line, following the c character, is a comment. The second line specifies that the CNF is over three boolean variables — let us call them $x_1, x_2, x_3$, and contains five clauses. The five clauses, listed afterwards, are implicitly joined by the logical AND operator, $\land$, while the variables in each clause, represented by their indices, are implicitly disjoined by the logical OR operator, $lor$. The $-$ symbol preceding a boolean variable index corresponds to the logical NOT operator, $lnot$. Character 0 (zero) marks the end of each clause. Essentially, the code above corresponds to the following CNF:
+  This is an example showing how to search for a satisfying assignment to an SAT problem encoded in DIMACS using the [Logical Expression oracle with the Grover algorithm.](https://github.com/Qiskit/qiskit-tutorials-community/blob/master/optimization/grover.ipynb)
 
-$(\lnot x_1 \lor \lnot x_2 \lor \lnot x_3) \land (x_1 \lor \lnot x_2 \lor x_3) \land (x_1 \lor x_2 \lor \lnot x_3) \land (x_1 \lor \lnot x_2 \lor \lnot x_3) \land (\lnot x_1 \lor x_2 \lor x_3)$.
+  Logic expressions, regardless of the input formats, are parsed and stored as Abstract Syntax Tree (AST) tuples, from which the corresponding circuits are constructed. The oracle circuits can then be used with any oracle-oriented algorithms when appropriate. For example, an oracle built from a DIMACS input can be used with the Grover’s algorithm to search for a satisfying assignment to the encoded SAT instance.
 
-This is an example showing how to search for a satisfying assignment to an SAT problem encoded in DIMACS using the [Logical Expression oracle with the Grover algorithm.](https://github.com/Qiskit/qiskit-tutorials-community/blob/master/optimization/grover.ipynb)
+  By default, the Logical Expression oracle will not try to apply any optimization when building the circuits. For any DIMACS input, the constructed circuit truthfully recreates each inner disjunctive clauses as well as the outermost conjunction; For other arbitrary input expression, It only tries to convert it to a CNF or DNF (Disjunctive Normal Form, similar to CNF, but with inner conjunctions and a outer disjunction) before constructing its circuit. This, for example, could be good for educational purposes, where a user would like to compare a built circuit against their input expression to examine and analyze details. However, this often leads to relatively deep circuits that possibly also involve many ancillary qubits. The oracle therefore, provides the option to try to optimize the input logical expression before building its circuit.
 
-Logic expressions, regardless of the input formats, are parsed and stored as Abstract Syntax Tree (AST) tuples, from which the corresponding circuits are constructed. The oracle circuits can then be used with any oracle-oriented algorithms when appropriate. For example, an oracle built from a DIMACS input can be used with the Grover’s algorithm to search for a satisfying assignment to the encoded SAT instance.
+  **Parameters**
 
-By default, the Logical Expression oracle will not try to apply any optimization when building the circuits. For any DIMACS input, the constructed circuit truthfully recreates each inner disjunctive clauses as well as the outermost conjunction; For other arbitrary input expression, It only tries to convert it to a CNF or DNF (Disjunctive Normal Form, similar to CNF, but with inner conjunctions and a outer disjunction) before constructing its circuit. This, for example, could be good for educational purposes, where a user would like to compare a built circuit against their input expression to examine and analyze details. However, this often leads to relatively deep circuits that possibly also involve many ancillary qubits. The oracle therefore, provides the option to try to optimize the input logical expression before building its circuit.
+  *   **expression** (`str`) – The string of the desired logical expression. It could be either in the DIMACS CNF format, or a general boolean logical expression, such as ‘a ^ b’ and ‘v\[0] & (\~v\[1] | v\[2])’
+  *   **optimization** (`bool`) – Boolean flag for attempting logical expression optimization
+  *   **mct\_mode** (`str`) – The mode to use for building Multiple-Control Toffoli.
 
-**Parameters**
+  **Raises**
 
-*   **expression** (`str`) – The string of the desired logical expression. It could be either in the DIMACS CNF format, or a general boolean logical expression, such as ‘a ^ b’ and ‘v\[0] & (\~v\[1] | v\[2])’
-*   **optimization** (`bool`) – Boolean flag for attempting logical expression optimization
-*   **mct\_mode** (`str`) – The mode to use for building Multiple-Control Toffoli.
+  [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
 
-**Raises**
+  ### \_\_init\_\_
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
+  <Function id="qiskit.aqua.components.oracles.LogicalExpressionOracle.__init__" name="__init__" signature="__init__(expression, optimization=False, mct_mode='basic')">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **expression** (`str`) – The string of the desired logical expression. It could be either in the DIMACS CNF format, or a general boolean logical expression, such as ‘a ^ b’ and ‘v\[0] & (\~v\[1] | v\[2])’
+    *   **optimization** (`bool`) – Boolean flag for attempting logical expression optimization
+    *   **mct\_mode** (`str`) – The mode to use for building Multiple-Control Toffoli.
 
-<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.__init__" />
+    **Raises**
 
-`__init__(expression, optimization=False, mct_mode='basic')`
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **expression** (`str`) – The string of the desired logical expression. It could be either in the DIMACS CNF format, or a general boolean logical expression, such as ‘a ^ b’ and ‘v\[0] & (\~v\[1] | v\[2])’
-*   **optimization** (`bool`) – Boolean flag for attempting logical expression optimization
-*   **mct\_mode** (`str`) – The mode to use for building Multiple-Control Toffoli.
+  |                                                                                                                                                                                                   |                          |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+  | [`__init__`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.__init__ "qiskit.aqua.components.oracles.LogicalExpressionOracle.__init__")(expression\[, optimization, mct\_mode])          | **type expression**`str` |
+  | [`construct_circuit`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.construct_circuit "qiskit.aqua.components.oracles.LogicalExpressionOracle.construct_circuit")()                     | construct circuit        |
+  | [`evaluate_classically`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.evaluate_classically "qiskit.aqua.components.oracles.LogicalExpressionOracle.evaluate_classically")(measurement) | evaluate classically     |
 
-**Raises**
+  ## Attributes
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
+  |                                                                                                                                                                                |                            |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- |
+  | [`ancillary_register`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.ancillary_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.ancillary_register") | returns ancillary register |
+  | [`circuit`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.circuit "qiskit.aqua.components.oracles.LogicalExpressionOracle.circuit")                                  |                            |
+  | [`output_register`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register")          | returns output register    |
+  | [`variable_register`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register")    | returns variable register  |
 
-## Methods
+  ### ancillary\_register
 
-|                                                                                                                                                                                                   |                          |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| [`__init__`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.__init__ "qiskit.aqua.components.oracles.LogicalExpressionOracle.__init__")(expression\[, optimization, mct\_mode])          | **type expression**`str` |
-| [`construct_circuit`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.construct_circuit "qiskit.aqua.components.oracles.LogicalExpressionOracle.construct_circuit")()                     | construct circuit        |
-| [`evaluate_classically`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.evaluate_classically "qiskit.aqua.components.oracles.LogicalExpressionOracle.evaluate_classically")(measurement) | evaluate classically     |
+  <Function id="qiskit.aqua.components.oracles.LogicalExpressionOracle.ancillary_register" name="ancillary_register" signature="property ancillary_register">
+    returns ancillary register
+  </Function>
 
-## Attributes
+  ### circuit
 
-|                                                                                                                                                                                |                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- |
-| [`ancillary_register`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.ancillary_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.ancillary_register") | returns ancillary register |
-| [`circuit`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.circuit "qiskit.aqua.components.oracles.LogicalExpressionOracle.circuit")                                  |                            |
-| [`output_register`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register")          | returns output register    |
-| [`variable_register`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register")    | returns variable register  |
+  <Function id="qiskit.aqua.components.oracles.LogicalExpressionOracle.circuit" name="circuit" signature="property circuit" />
 
-### ancillary\_register
+  ### construct\_circuit
 
-<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.ancillary_register" />
+  <Function id="qiskit.aqua.components.oracles.LogicalExpressionOracle.construct_circuit" name="construct_circuit" signature="construct_circuit()">
+    construct circuit
+  </Function>
 
-`property ancillary_register`
+  ### evaluate\_classically
 
-returns ancillary register
+  <Function id="qiskit.aqua.components.oracles.LogicalExpressionOracle.evaluate_classically" name="evaluate_classically" signature="evaluate_classically(measurement)">
+    evaluate classically
+  </Function>
 
-### circuit
+  ### output\_register
 
-<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.circuit" />
+  <Function id="qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register" name="output_register" signature="property output_register">
+    returns output register
+  </Function>
 
-`property circuit`
+  ### variable\_register
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.construct_circuit" />
-
-`construct_circuit()`
-
-construct circuit
-
-### evaluate\_classically
-
-<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.evaluate_classically" />
-
-`evaluate_classically(measurement)`
-
-evaluate classically
-
-### output\_register
-
-<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register" />
-
-`property output_register`
-
-returns output register
-
-### variable\_register
-
-<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register" />
-
-`property variable_register`
-
-returns variable register
+  <Function id="qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register" name="variable_register" signature="property variable_register">
+    returns variable register
+  </Function>
+</Class>
 

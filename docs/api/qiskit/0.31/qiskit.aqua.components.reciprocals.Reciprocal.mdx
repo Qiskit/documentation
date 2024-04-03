@@ -8,50 +8,44 @@ python_api_name: qiskit.aqua.components.reciprocals.Reciprocal
 
 # Reciprocal
 
-<span id="qiskit.aqua.components.reciprocals.Reciprocal" />
+<Class id="qiskit.aqua.components.reciprocals.Reciprocal" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/reciprocals/reciprocal.py" signature="Reciprocal">
+  Bases: `abc.ABC`
 
-`Reciprocal` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/reciprocals/reciprocal.py "view source code")
+  Base class for reciprocal calculation.
 
-Bases: `abc.ABC`
+  This method should initialize the module and use an exception if a component of the module is not available.
 
-Base class for reciprocal calculation.
+  ## Methods
 
-This method should initialize the module and use an exception if a component of the module is not available.
+  ### construct\_circuit
 
-## Methods
+  <Function id="qiskit.aqua.components.reciprocals.Reciprocal.construct_circuit" name="construct_circuit" signature="abstract Reciprocal.construct_circuit(mode, register=None, circuit=None)">
+    Construct the initial state circuit.
 
-### construct\_circuit
+    **Parameters**
 
-<span id="qiskit.aqua.components.reciprocals.Reciprocal.construct_circuit" />
+    *   **mode** (*str*) – ‘matrix’ or ‘circuit’
+    *   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – register for circuit construction.
+    *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – circuit for construction.
 
-`abstract Reciprocal.construct_circuit(mode, register=None, circuit=None)`
+    **Returns**
 
-Construct the initial state circuit.
+    The reciprocal circuit.
+  </Function>
 
-**Parameters**
+  ### sv\_to\_resvec
 
-*   **mode** (*str*) – ‘matrix’ or ‘circuit’
-*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – register for circuit construction.
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – circuit for construction.
+  <Function id="qiskit.aqua.components.reciprocals.Reciprocal.sv_to_resvec" name="sv_to_resvec" signature="abstract Reciprocal.sv_to_resvec(statevector, num_q)">
+    Convert statevector to result vector.
 
-**Returns**
+    **Parameters**
 
-The reciprocal circuit.
+    *   **statevector** (*list*) – The statevector from simulation.
+    *   **num\_q** (*int*) – Number of qubits of result register.
 
-### sv\_to\_resvec
+    **Returns**
 
-<span id="qiskit.aqua.components.reciprocals.Reciprocal.sv_to_resvec" />
-
-`abstract Reciprocal.sv_to_resvec(statevector, num_q)`
-
-Convert statevector to result vector.
-
-**Parameters**
-
-*   **statevector** (*list*) – The statevector from simulation.
-*   **num\_q** (*int*) – Number of qubits of result register.
-
-**Returns**
-
-The result vector.
+    The result vector.
+  </Function>
+</Class>
 

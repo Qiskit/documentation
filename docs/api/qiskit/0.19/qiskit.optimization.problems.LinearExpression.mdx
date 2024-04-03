@@ -8,130 +8,116 @@ python_api_name: qiskit.optimization.problems.LinearExpression
 
 # LinearExpression
 
-<span id="qiskit.optimization.problems.LinearExpression" />
+<Class id="qiskit.optimization.problems.LinearExpression" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/linear_expression.py" signature="LinearExpression(quadratic_program, coefficients)">
+  Representation of a linear expression by its coefficients.
 
-`LinearExpression(quadratic_program, coefficients)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/linear_expression.py "view source code")
+  Creates a new linear expression.
 
-Representation of a linear expression by its coefficients.
+  The linear expression can be defined via an array, a list, a sparse matrix, or a dictionary that uses variable names or indices as keys and stores the values internally as a dok\_matrix.
 
-Creates a new linear expression.
+  **Parameters**
 
-The linear expression can be defined via an array, a list, a sparse matrix, or a dictionary that uses variable names or indices as keys and stores the values internally as a dok\_matrix.
+  *   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
+  *   **coefficients** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`]]) – The (sparse) representation of the coefficients.
 
-**Parameters**
+  ## Attributes
 
-*   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
-*   **coefficients** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`]]) – The (sparse) representation of the coefficients.
+  ### coefficients
 
-## Attributes
+  <Attribute id="qiskit.optimization.problems.LinearExpression.coefficients" name="coefficients" signature="scipy.sparse.dok.dok_matrix">
+    Returns the coefficients of the linear expression.
 
-### coefficients
+    **Return type**
 
-<span id="qiskit.optimization.problems.LinearExpression.coefficients" />
+    `dok_matrix`
 
-`scipy.sparse.dok.dok_matrix`
+    **Returns**
 
-Returns the coefficients of the linear expression.
+    The coefficients of the linear expression.
+  </Attribute>
 
-**Return type**
+  ### quadratic\_program
 
-`dok_matrix`
+  <Attribute id="qiskit.optimization.problems.LinearExpression.quadratic_program" name="quadratic_program" signature="Any">
+    Returns the parent QuadraticProgram.
 
-**Returns**
+    **Return type**
 
-The coefficients of the linear expression.
+    `Any`
 
-### quadratic\_program
+    **Returns**
 
-<span id="qiskit.optimization.problems.LinearExpression.quadratic_program" />
+    The parent QuadraticProgram.
+  </Attribute>
 
-`Any`
+  ## Methods
 
-Returns the parent QuadraticProgram.
+  ### \_\_getitem\_\_
 
-**Return type**
+  <Function id="qiskit.optimization.problems.LinearExpression.__getitem__" name="__getitem__" signature="LinearExpression.__getitem__(i)">
+    Returns the i-th coefficient where i can be a variable name or index.
 
-`Any`
+    **Parameters**
 
-**Returns**
+    **i** (`Union`\[`int`, `str`]) – the index or name of the variable corresponding to the coefficient.
 
-The parent QuadraticProgram.
+    **Return type**
 
-## Methods
+    `float`
 
-### \_\_getitem\_\_
+    **Returns**
 
-<span id="qiskit.optimization.problems.LinearExpression.__getitem__" />
+    The coefficient corresponding to the addressed variable.
+  </Function>
 
-`LinearExpression.__getitem__(i)`
+  ### evaluate
 
-Returns the i-th coefficient where i can be a variable name or index.
+  <Function id="qiskit.optimization.problems.LinearExpression.evaluate" name="evaluate" signature="LinearExpression.evaluate(x)">
+    Evaluate the linear expression for given variables.
 
-**Parameters**
+    **Parameters**
 
-**i** (`Union`\[`int`, `str`]) – the index or name of the variable corresponding to the coefficient.
+    **x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
 
-**Return type**
+    **Return type**
 
-`float`
+    `float`
 
-**Returns**
+    **Returns**
 
-The coefficient corresponding to the addressed variable.
+    The value of the linear expression given the variable values.
+  </Function>
 
-### evaluate
+  ### to\_array
 
-<span id="qiskit.optimization.problems.LinearExpression.evaluate" />
+  <Function id="qiskit.optimization.problems.LinearExpression.to_array" name="to_array" signature="LinearExpression.to_array()">
+    Returns the coefficients of the linear expression as array.
 
-`LinearExpression.evaluate(x)`
+    **Return type**
 
-Evaluate the linear expression for given variables.
+    `ndarray`
 
-**Parameters**
+    **Returns**
 
-**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
+    An array with the coefficients corresponding to the linear expression.
+  </Function>
 
-**Return type**
+  ### to\_dict
 
-`float`
+  <Function id="qiskit.optimization.problems.LinearExpression.to_dict" name="to_dict" signature="LinearExpression.to_dict(use_name=False)">
+    Returns the coefficients of the linear expression as dictionary, either using variable names or indices as keys.
 
-**Returns**
+    **Parameters**
 
-The value of the linear expression given the variable values.
+    **use\_name** (`bool`) – Determines whether to use index or names to refer to variables.
 
-### to\_array
+    **Return type**
 
-<span id="qiskit.optimization.problems.LinearExpression.to_array" />
+    `Dict`\[`Union`\[`int`, `str`], `float`]
 
-`LinearExpression.to_array()`
+    **Returns**
 
-Returns the coefficients of the linear expression as array.
-
-**Return type**
-
-`ndarray`
-
-**Returns**
-
-An array with the coefficients corresponding to the linear expression.
-
-### to\_dict
-
-<span id="qiskit.optimization.problems.LinearExpression.to_dict" />
-
-`LinearExpression.to_dict(use_name=False)`
-
-Returns the coefficients of the linear expression as dictionary, either using variable names or indices as keys.
-
-**Parameters**
-
-**use\_name** (`bool`) – Determines whether to use index or names to refer to variables.
-
-**Return type**
-
-`Dict`\[`Union`\[`int`, `str`], `float`]
-
-**Returns**
-
-An dictionary with the coefficients corresponding to the linear expression.
+    An dictionary with the coefficients corresponding to the linear expression.
+  </Function>
+</Class>
 

@@ -8,59 +8,57 @@ python_api_name: qiskit.transpiler.passes.EnlargeWithAncilla
 
 # EnlargeWithAncilla
 
-<span id="qiskit.transpiler.passes.EnlargeWithAncilla" />
+<Class id="qiskit.transpiler.passes.EnlargeWithAncilla" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/layout/enlarge_with_ancilla.py" signature="EnlargeWithAncilla(*args, **kwargs)">
+  Extend the dag with virtual qubits that are in layout but not in the circuit yet.
 
-`EnlargeWithAncilla(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/layout/enlarge_with_ancilla.py "view source code")
+  Extend the DAG circuit with new virtual qubits (ancilla) that are specified in the layout, but not present in the circuit. Which qubits to add are previously allocated in the `layout` property, by a previous pass.
 
-Extend the dag with virtual qubits that are in layout but not in the circuit yet.
+  ## Attributes
 
-Extend the DAG circuit with new virtual qubits (ancilla) that are specified in the layout, but not present in the circuit. Which qubits to add are previously allocated in the `layout` property, by a previous pass.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.EnlargeWithAncilla.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-### is\_analysis\_pass
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-Check if the pass is an analysis pass.
+  ### is\_transformation\_pass
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  <Attribute id="qiskit.transpiler.passes.EnlargeWithAncilla.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-### is\_transformation\_pass
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-Check if the pass is a transformation pass.
+  ## Methods
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.EnlargeWithAncilla.name" name="name" signature="EnlargeWithAncilla.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.EnlargeWithAncilla.name" />
+  <Function id="qiskit.transpiler.passes.EnlargeWithAncilla.run" name="run" signature="EnlargeWithAncilla.run(dag)">
+    Run the EnlargeWithAncilla pass on dag.
 
-`EnlargeWithAncilla.name()`
+    **Parameters**
 
-Return the name of the pass.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to extend.
 
-### run
+    **Returns**
 
-<span id="qiskit.transpiler.passes.EnlargeWithAncilla.run" />
+    An extended DAG.
 
-`EnlargeWithAncilla.run(dag)`
+    **Return type**
 
-Run the EnlargeWithAncilla pass on dag.
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-**Parameters**
+    **Raises**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to extend.
-
-**Returns**
-
-An extended DAG.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-**Raises**
-
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If there is not layout in the property set or not set at init time.
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If there is not layout in the property set or not set at init time.
+  </Function>
+</Class>
 

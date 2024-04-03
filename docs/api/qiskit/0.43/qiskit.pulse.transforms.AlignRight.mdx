@@ -8,65 +8,59 @@ python_api_name: qiskit.pulse.transforms.AlignRight
 
 # AlignRight
 
-<span id="qiskit.pulse.transforms.AlignRight" />
+<Class id="qiskit.pulse.transforms.AlignRight" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/alignments.py" signature="AlignRight">
+  Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
-`AlignRight` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/alignments.py "view source code")
+  Align instructions in as-late-as-possible manner.
 
-Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+  Instructions are placed at latest available timeslots.
 
-Align instructions in as-late-as-possible manner.
+  Create new right-justified context.
 
-Instructions are placed at latest available timeslots.
+  ## Methods
 
-Create new right-justified context.
+  <span id="qiskit-pulse-transforms-alignright-align" />
 
-## Methods
+  ### align
 
-<span id="qiskit-pulse-transforms-alignright-align" />
+  <Function id="qiskit.pulse.transforms.AlignRight.align" name="align" signature="AlignRight.align(schedule)">
+    Reallocate instructions according to the policy.
 
-### align
+    Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
 
-<span id="qiskit.pulse.transforms.AlignRight.align" />
+    **Parameters**
 
-`AlignRight.align(schedule)`
+    **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
 
-Reallocate instructions according to the policy.
+    **Returns**
 
-Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
+    Schedule with reallocated instructions.
 
-**Parameters**
+    **Return type**
 
-**schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
+    [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+  </Function>
 
-**Returns**
+  <span id="qiskit-pulse-transforms-alignright-to-dict" />
 
-Schedule with reallocated instructions.
+  ### to\_dict
 
-**Return type**
+  <Function id="qiskit.pulse.transforms.AlignRight.to_dict" name="to_dict" signature="AlignRight.to_dict()">
+    Returns dictionary to represent this alignment.
 
-[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+    <Admonition title="Deprecated since version 0.21" type="danger">
+      The method `qiskit.pulse.transforms.alignments.AlignmentKind.to_dict()` is deprecated as of qiskit-terra 0.21. It will be removed no earlier than 3 months after the release date.
+    </Admonition>
 
-<span id="qiskit-pulse-transforms-alignright-to-dict" />
+    **Return type**
 
-### to\_dict
+    *Dict*\[str, *Any*]
+  </Function>
 
-<span id="qiskit.pulse.transforms.AlignRight.to_dict" />
+  ## Attributes
 
-`AlignRight.to_dict()`
+  ### is\_sequential
 
-Returns dictionary to represent this alignment.
-
-<Admonition title="Deprecated since version 0.21" type="danger">
-  The method `qiskit.pulse.transforms.alignments.AlignmentKind.to_dict()` is deprecated as of qiskit-terra 0.21. It will be removed no earlier than 3 months after the release date.
-</Admonition>
-
-**Return type**
-
-*Dict*\[str, *Any*]
-
-## Attributes
-
-<span id="qiskit.pulse.transforms.AlignRight.is_sequential" />
-
-### is\_sequential
+  <Attribute id="qiskit.pulse.transforms.AlignRight.is_sequential" name="is_sequential" />
+</Class>
 

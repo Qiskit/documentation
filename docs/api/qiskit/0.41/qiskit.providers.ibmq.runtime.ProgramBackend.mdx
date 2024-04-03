@@ -12,221 +12,201 @@ python_api_name: qiskit.providers.ibmq.runtime.ProgramBackend
 
 # ProgramBackend
 
-<span id="qiskit.providers.ibmq.runtime.ProgramBackend" />
+<Class id="qiskit.providers.ibmq.runtime.ProgramBackend" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/runtime/program/program_backend.py" signature="ProgramBackend(configuration, provider=None, **fields)">
+  Bases: [`qiskit.providers.backend.BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1"), `abc.ABC`
 
-`ProgramBackend(configuration, provider=None, **fields)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/runtime/program/program_backend.py "view source code")
+  Base class for a program backend.
 
-Bases: [`qiskit.providers.backend.BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1"), `abc.ABC`
+  This is a [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") class for runtime programs to submit circuits.
 
-Base class for a program backend.
+  Initialize a backend class
 
-This is a [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") class for runtime programs to submit circuits.
+  **Parameters**
 
-Initialize a backend class
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
+  *   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
+  *   **fields** – kwargs for the values to use to override the default options.
 
-**Parameters**
+  **Raises**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
-*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
-*   **fields** – kwargs for the values to use to override the default options.
+  **AttributeError** – if input field not a valid options
 
-**Raises**
+  In addition to the public abstract methods, subclasses should also implement the following private methods:
 
-**AttributeError** – if input field not a valid options
+  ### \_default\_options
 
-In addition to the public abstract methods, subclasses should also implement the following private methods:
+  <Function id="qiskit.providers.ibmq.runtime.ProgramBackend._default_options" name="_default_options" signature="abstract classmethod _default_options()">
+    Return the default options
 
-### \_default\_options
+    This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
 
-<span id="qiskit.providers.ibmq.runtime.ProgramBackend._default_options" />
+    **Returns**
 
-`abstract classmethod _default_options()`
+    **A options object with**
 
-Return the default options
+    default values set
 
-This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
+    **Return type**
 
-**Returns**
+    [qiskit.providers.Options](qiskit.providers.Options "qiskit.providers.Options")
+  </Function>
 
-**A options object with**
+  ## Methods
 
-default values set
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-**Return type**
+  ### configuration
 
-[qiskit.providers.Options](qiskit.providers.Options "qiskit.providers.Options")
+  <Function id="qiskit.providers.ibmq.runtime.ProgramBackend.configuration" name="configuration" signature="ProgramBackend.configuration()">
+    Return the backend configuration.
 
-## Methods
+    **Returns**
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    the configuration for the backend.
 
-### configuration
+    **Return type**
 
-<span id="qiskit.providers.ibmq.runtime.ProgramBackend.configuration" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-`ProgramBackend.configuration()`
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-Return the backend configuration.
+  ### name
 
-**Returns**
+  <Function id="qiskit.providers.ibmq.runtime.ProgramBackend.name" name="name" signature="ProgramBackend.name()">
+    Return the backend name.
 
-the configuration for the backend.
+    **Returns**
 
-**Return type**
+    the name of the backend.
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    **Return type**
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    str
+  </Function>
 
-### name
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-<span id="qiskit.providers.ibmq.runtime.ProgramBackend.name" />
+  ### properties
 
-`ProgramBackend.name()`
+  <Function id="qiskit.providers.ibmq.runtime.ProgramBackend.properties" name="properties" signature="ProgramBackend.properties()">
+    Return the backend properties.
 
-Return the backend name.
+    **Returns**
 
-**Returns**
+    the configuration for the backend. If the backend does not support properties, it returns `None`.
 
-the name of the backend.
+    **Return type**
 
-**Return type**
+    [BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+  </Function>
 
-str
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+  ### provider
 
-### properties
+  <Function id="qiskit.providers.ibmq.runtime.ProgramBackend.provider" name="provider" signature="ProgramBackend.provider()">
+    Return the backend Provider.
 
-<span id="qiskit.providers.ibmq.runtime.ProgramBackend.properties" />
+    **Returns**
 
-`ProgramBackend.properties()`
+    the Provider responsible for the backend.
 
-Return the backend properties.
+    **Return type**
 
-**Returns**
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-the configuration for the backend. If the backend does not support properties, it returns `None`.
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-**Return type**
+  ### run
 
-[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+  <Function id="qiskit.providers.ibmq.runtime.ProgramBackend.run" name="run" signature="abstract ProgramBackend.run(circuits, timeout=None, **run_config)">
+    Run on the backend.
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    Runtime circuit execution is synchronous, and control will not go back until the execution finishes. You can use the timeout parameter to set a timeout value to wait for the execution to finish. Note that if the execution times out, circuit execution results will not be available.
 
-### provider
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.runtime.ProgramBackend.provider" />
+    *   **circuits** (`Union`\[[`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj"), [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `List`\[`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]]) – An individual or a list of `QuantumCircuit` or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend. A [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") or a [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") object is also supported but is deprecated.
+    *   **timeout** (`Optional`\[`int`]) – Seconds to wait for circuit execution to finish.
+    *   **\*\*run\_config** – Extra arguments used to configure the run.
 
-`ProgramBackend.provider()`
+    **Return type**
 
-Return the backend Provider.
+    [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.job.JobV1")
 
-**Returns**
+    **Returns**
 
-the Provider responsible for the backend.
+    The job to be executed.
 
-**Return type**
+    **Raises**
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    *   [**IBMQBackendApiError**](qiskit.providers.ibmq.IBMQBackendApiError "qiskit.providers.ibmq.IBMQBackendApiError") – If an unexpected error occurred while submitting the job.
+    *   [**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If an unexpected value received from the server.
+    *   [**IBMQBackendValueError**](qiskit.providers.ibmq.IBMQBackendValueError "qiskit.providers.ibmq.IBMQBackendValueError") – If an input parameter value is not valid.
+  </Function>
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-### run
+  ### set\_options
 
-<span id="qiskit.providers.ibmq.runtime.ProgramBackend.run" />
+  <Function id="qiskit.providers.ibmq.runtime.ProgramBackend.set_options" name="set_options" signature="ProgramBackend.set_options(**fields)">
+    Set the options fields for the backend
 
-`abstract ProgramBackend.run(circuits, timeout=None, **run_config)`
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-Run on the backend.
+    **Parameters**
 
-Runtime circuit execution is synchronous, and control will not go back until the execution finishes. You can use the timeout parameter to set a timeout value to wait for the execution to finish. Note that if the execution times out, circuit execution results will not be available.
+    **fields** – The fields to update the options
 
-**Parameters**
+    **Raises**
 
-*   **circuits** (`Union`\[[`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj"), [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `List`\[`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]]) – An individual or a list of `QuantumCircuit` or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend. A [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") or a [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") object is also supported but is deprecated.
-*   **timeout** (`Optional`\[`int`]) – Seconds to wait for circuit execution to finish.
-*   **\*\*run\_config** – Extra arguments used to configure the run.
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-**Return type**
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-[`JobV1`](qiskit.providers.JobV1 "qiskit.providers.job.JobV1")
+  ### status
 
-**Returns**
+  <Function id="qiskit.providers.ibmq.runtime.ProgramBackend.status" name="status" signature="ProgramBackend.status()">
+    Return the backend status.
 
-The job to be executed.
+    **Returns**
 
-**Raises**
+    the status of the backend.
 
-*   [**IBMQBackendApiError**](qiskit.providers.ibmq.IBMQBackendApiError "qiskit.providers.ibmq.IBMQBackendApiError") – If an unexpected error occurred while submitting the job.
-*   [**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If an unexpected value received from the server.
-*   [**IBMQBackendValueError**](qiskit.providers.ibmq.IBMQBackendValueError "qiskit.providers.ibmq.IBMQBackendValueError") – If an input parameter value is not valid.
+    **Return type**
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-### set\_options
+  ## Attributes
 
-<span id="qiskit.providers.ibmq.runtime.ProgramBackend.set_options" />
+  ### options
 
-`ProgramBackend.set_options(**fields)`
+  <Attribute id="qiskit.providers.ibmq.runtime.ProgramBackend.options" name="options">
+    Return the options for the backend
 
-Set the options fields for the backend
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.ibmq.runtime.ProgramBackend#run "qiskit.providers.ibmq.runtime.ProgramBackend.run") method.
+  </Attribute>
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+  ### version
 
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
-
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
-
-### status
-
-<span id="qiskit.providers.ibmq.runtime.ProgramBackend.status" />
-
-`ProgramBackend.status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.ibmq.runtime.ProgramBackend.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.ibmq.runtime.ProgramBackend#run "qiskit.providers.ibmq.runtime.ProgramBackend.run") method.
-
-<span id="qiskit.providers.ibmq.runtime.ProgramBackend.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.ibmq.runtime.ProgramBackend.version" name="version" attributeValue="= 1" />
+</Class>
 

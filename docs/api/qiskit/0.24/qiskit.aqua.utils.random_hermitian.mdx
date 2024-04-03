@@ -10,30 +10,28 @@ python_api_name: qiskit.aqua.utils.random_hermitian
 
 # qiskit.aqua.utils.random\_hermitian
 
-<span id="qiskit.aqua.utils.random_hermitian" />
+<Function id="qiskit.aqua.utils.random_hermitian" name="random_hermitian" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/random_matrix_generator.py" signature="random_hermitian(N, eigs=None, K=None, eigrange=None, sparsity=None, trunc=None)">
+  Generate random hermitian (sparse) matrix with given properties. Sparsity is achieved by truncating Pauli matrices. Sparsity settings alternate the eigenvalues due to truncation.
 
-`random_hermitian(N, eigs=None, K=None, eigrange=None, sparsity=None, trunc=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/random_matrix_generator.py "view source code")
+  **Parameters**
 
-Generate random hermitian (sparse) matrix with given properties. Sparsity is achieved by truncating Pauli matrices. Sparsity settings alternate the eigenvalues due to truncation.
+  *   **N** (*int*) – size of matrix
+  *   **eigs** (*Union(list, tuple, np.ndarray)*) – list of N eigenvalues. Overrides K, eigrange
+  *   **K** (*Union(float, list, tuple)*) – condition number. Either use only condition number K or list/tuple of (K, lmin) or (K, lmin, sgn). Where lmin is the smallest eigenvalue and sign +/- 1 specifies if eigenvalues can be negative.
+  *   **eigrange** (*Union(list, tuple, nd.ndarray)*) – \[min, max] list for eigenvalue range. (default=\[0, 1])
+  *   **trunc** (*int*) – limit for number of Pauli matrices.
+  *   **sparsity** (*float*) – sparsity of matrix. Overrides trunc.
 
-**Parameters**
+  **Returns**
 
-*   **N** (*int*) – size of matrix
-*   **eigs** (*Union(list, tuple, np.ndarray)*) – list of N eigenvalues. Overrides K, eigrange
-*   **K** (*Union(float, list, tuple)*) – condition number. Either use only condition number K or list/tuple of (K, lmin) or (K, lmin, sgn). Where lmin is the smallest eigenvalue and sign +/- 1 specifies if eigenvalues can be negative.
-*   **eigrange** (*Union(list, tuple, nd.ndarray)*) – \[min, max] list for eigenvalue range. (default=\[0, 1])
-*   **trunc** (*int*) – limit for number of Pauli matrices.
-*   **sparsity** (*float*) – sparsity of matrix. Overrides trunc.
+  hermitian matrix
 
-**Returns**
+  **Return type**
 
-hermitian matrix
+  np.ndarray
 
-**Return type**
+  **Raises**
 
-np.ndarray
-
-**Raises**
-
-**ValueError** – invalid matrix
+  **ValueError** – invalid matrix
+</Function>
 

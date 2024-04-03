@@ -8,123 +8,109 @@ python_api_name: qiskit.chemistry.drivers.PSI4Driver
 
 # qiskit.chemistry.drivers.PSI4Driver
 
-<span id="qiskit.chemistry.drivers.PSI4Driver" />
+<Class id="qiskit.chemistry.drivers.PSI4Driver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/psi4d/psi4driver.py" signature="PSI4Driver(config='molecule h2 {\\n 0 1\\n H 0.0 0.0 0.0\\n H 0.0 0.0 0.735\\n}\\n\\nset {\\n basis sto-3g\\n scf_type pk\\n reference rhf\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)">
+  Qiskit chemistry driver using the PSI4 program.
 
-`PSI4Driver(config='molecule h2 {\\n 0 1\\n H 0.0 0.0 0.0\\n H 0.0 0.0 0.735\\n}\\n\\nset {\\n basis sto-3g\\n scf_type pk\\n reference rhf\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/psi4d/psi4driver.py "view source code")
+  See [http://www.psicode.org/](http://www.psicode.org/)
 
-Qiskit chemistry driver using the PSI4 program.
+  **Parameters**
 
-See [http://www.psicode.org/](http://www.psicode.org/)
+  *   **config** (`Union`\[`str`, `List`\[`str`]]) – A molecular configuration conforming to PSI4 format.
+  *   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the config parameter is ignored and the Molecule instance, along with basis and hf\_method is used to build a basic config instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
+  *   **basis** (`str`) – Basis set
+  *   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
 
-**Parameters**
+  **Raises**
 
-*   **config** (`Union`\[`str`, `List`\[`str`]]) – A molecular configuration conforming to PSI4 format.
-*   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the config parameter is ignored and the Molecule instance, along with basis and hf\_method is used to build a basic config instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
-*   **basis** (`str`) – Basis set
-*   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
+  [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
-**Raises**
+  ### \_\_init\_\_
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+  <Function id="qiskit.chemistry.drivers.PSI4Driver.__init__" name="__init__" signature="__init__(config='molecule h2 {\\n 0 1\\n H 0.0 0.0 0.0\\n H 0.0 0.0 0.735\\n}\\n\\nset {\\n basis sto-3g\\n scf_type pk\\n reference rhf\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **config** (`Union`\[`str`, `List`\[`str`]]) – A molecular configuration conforming to PSI4 format.
+    *   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the config parameter is ignored and the Molecule instance, along with basis and hf\_method is used to build a basic config instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
+    *   **basis** (`str`) – Basis set
+    *   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
 
-<span id="qiskit.chemistry.drivers.PSI4Driver.__init__" />
+    **Raises**
 
-`__init__(config='molecule h2 {\\n 0 1\\n H 0.0 0.0 0.0\\n H 0.0 0.0 0.735\\n}\\n\\nset {\\n basis sto-3g\\n scf_type pk\\n reference rhf\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`
+    [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **config** (`Union`\[`str`, `List`\[`str`]]) – A molecular configuration conforming to PSI4 format.
-*   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the config parameter is ignored and the Molecule instance, along with basis and hf\_method is used to build a basic config instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
-*   **basis** (`str`) – Basis set
-*   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
+  |                                                                                                                                                    |                                                |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.drivers.PSI4Driver.__init__ "qiskit.chemistry.drivers.PSI4Driver.__init__")(\[config, molecule, basis, hf\_method]) | **type config**`Union`\[`str`, `List`\[`str`]] |
+  | [`run`](#qiskit.chemistry.drivers.PSI4Driver.run "qiskit.chemistry.drivers.PSI4Driver.run")()                                                      | Runs driver to produce a QMolecule output.     |
 
-**Raises**
+  ## Attributes
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+  |                                                                                                                                       |                                                 |
+  | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+  | [`basis`](#qiskit.chemistry.drivers.PSI4Driver.basis "qiskit.chemistry.drivers.PSI4Driver.basis")                                     | return basis                                    |
+  | [`hf_method`](#qiskit.chemistry.drivers.PSI4Driver.hf_method "qiskit.chemistry.drivers.PSI4Driver.hf_method")                         | return Hartree-Fock method                      |
+  | [`molecule`](#qiskit.chemistry.drivers.PSI4Driver.molecule "qiskit.chemistry.drivers.PSI4Driver.molecule")                            | return molecule                                 |
+  | [`supports_molecule`](#qiskit.chemistry.drivers.PSI4Driver.supports_molecule "qiskit.chemistry.drivers.PSI4Driver.supports_molecule") | True for derived classes that support Molecule. |
 
-## Methods
+  ### basis
 
-|                                                                                                                                                    |                                                |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.drivers.PSI4Driver.__init__ "qiskit.chemistry.drivers.PSI4Driver.__init__")(\[config, molecule, basis, hf\_method]) | **type config**`Union`\[`str`, `List`\[`str`]] |
-| [`run`](#qiskit.chemistry.drivers.PSI4Driver.run "qiskit.chemistry.drivers.PSI4Driver.run")()                                                      | Runs driver to produce a QMolecule output.     |
+  <Function id="qiskit.chemistry.drivers.PSI4Driver.basis" name="basis" signature="property basis">
+    return basis
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                       |                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`basis`](#qiskit.chemistry.drivers.PSI4Driver.basis "qiskit.chemistry.drivers.PSI4Driver.basis")                                     | return basis                                    |
-| [`hf_method`](#qiskit.chemistry.drivers.PSI4Driver.hf_method "qiskit.chemistry.drivers.PSI4Driver.hf_method")                         | return Hartree-Fock method                      |
-| [`molecule`](#qiskit.chemistry.drivers.PSI4Driver.molecule "qiskit.chemistry.drivers.PSI4Driver.molecule")                            | return molecule                                 |
-| [`supports_molecule`](#qiskit.chemistry.drivers.PSI4Driver.supports_molecule "qiskit.chemistry.drivers.PSI4Driver.supports_molecule") | True for derived classes that support Molecule. |
+    `str`
+  </Function>
 
-### basis
+  ### hf\_method
 
-<span id="qiskit.chemistry.drivers.PSI4Driver.basis" />
+  <Function id="qiskit.chemistry.drivers.PSI4Driver.hf_method" name="hf_method" signature="property hf_method">
+    return Hartree-Fock method
 
-`property basis`
+    **Return type**
 
-return basis
+    `str`
+  </Function>
 
-**Return type**
+  ### molecule
 
-`str`
+  <Function id="qiskit.chemistry.drivers.PSI4Driver.molecule" name="molecule" signature="property molecule">
+    return molecule
 
-### hf\_method
+    **Return type**
 
-<span id="qiskit.chemistry.drivers.PSI4Driver.hf_method" />
+    `Optional`\[`Molecule`]
+  </Function>
 
-`property hf_method`
+  ### run
 
-return Hartree-Fock method
+  <Function id="qiskit.chemistry.drivers.PSI4Driver.run" name="run" signature="run()">
+    Runs driver to produce a QMolecule output.
 
-**Return type**
+    **Return type**
 
-`str`
+    `QMolecule`
 
-### molecule
+    **Returns**
 
-<span id="qiskit.chemistry.drivers.PSI4Driver.molecule" />
+    A QMolecule containing the molecular data.
+  </Function>
 
-`property molecule`
+  ### supports\_molecule
 
-return molecule
+  <Function id="qiskit.chemistry.drivers.PSI4Driver.supports_molecule" name="supports_molecule" signature="property supports_molecule">
+    True for derived classes that support Molecule.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`Molecule`]
+    `bool`
 
-### run
+    **Returns**
 
-<span id="qiskit.chemistry.drivers.PSI4Driver.run" />
-
-`run()`
-
-Runs driver to produce a QMolecule output.
-
-**Return type**
-
-`QMolecule`
-
-**Returns**
-
-A QMolecule containing the molecular data.
-
-### supports\_molecule
-
-<span id="qiskit.chemistry.drivers.PSI4Driver.supports_molecule" />
-
-`property supports_molecule`
-
-True for derived classes that support Molecule.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if Molecule is supported.
+    True if Molecule is supported.
+  </Function>
+</Class>
 

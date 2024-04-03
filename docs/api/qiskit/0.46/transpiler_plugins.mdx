@@ -99,72 +99,68 @@ Note that the entry point `name = path` is a single string not a Python expressi
 
 ### list\_stage\_plugins
 
-<span id="qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins" />
+<Function id="qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins" name="list_stage_plugins" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/plugin.py" signature="qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins(stage_name)">
+  Get a list of installed plugins for a stage.
 
-`qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins(stage_name)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
+  **Parameters**
 
-Get a list of installed plugins for a stage.
+  **stage\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The stage name to get the plugin names for
 
-**Parameters**
+  **Returns**
 
-**stage\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The stage name to get the plugin names for
+  The list of installed plugin names for the specified stages
 
-**Returns**
+  **Return type**
 
-The list of installed plugin names for the specified stages
+  plugins
 
-**Return type**
+  **Raises**
 
-plugins
-
-**Raises**
-
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If an invalid stage name is specified.
+  [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If an invalid stage name is specified.
+</Function>
 
 ### passmanager\_stage\_plugins
 
-<span id="qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins" />
+<Function id="qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins" name="passmanager_stage_plugins" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/plugin.py" signature="qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins(stage)">
+  Return a dict with, for each stage name, the class type of the plugin.
 
-`qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins(stage)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
+  This function is useful for getting more information about a plugin:
 
-Return a dict with, for each stage name, the class type of the plugin.
+  ```python
+  from qiskit.transpiler.preset_passmanagers.plugin import passmanager_stage_plugins
+  routing_plugins = passmanager_stage_plugins('routing')
+  basic_plugin = routing_plugins['basic']
+  help(basic_plugin)
+  ```
 
-This function is useful for getting more information about a plugin:
+  ```python
+  Help on BasicSwapPassManager in module ...preset_passmanagers.builtin_plugins object:
 
-```python
-from qiskit.transpiler.preset_passmanagers.plugin import passmanager_stage_plugins
-routing_plugins = passmanager_stage_plugins('routing')
-basic_plugin = routing_plugins['basic']
-help(basic_plugin)
-```
+  class BasicSwapPassManager(...preset_passmanagers.plugin.PassManagerStagePlugin)
+   |  Plugin class for routing stage with :class:`~.BasicSwap`
+   |
+   |  Method resolution order:
+   |      BasicSwapPassManager
+   |      ...preset_passmanagers.plugin.PassManagerStagePlugin
+   |      abc.ABC
+   |      builtins.object
+   ...
+  ```
 
-```python
-Help on BasicSwapPassManager in module ...preset_passmanagers.builtin_plugins object:
+  **Parameters**
 
-class BasicSwapPassManager(...preset_passmanagers.plugin.PassManagerStagePlugin)
- |  Plugin class for routing stage with :class:`~.BasicSwap`
- |
- |  Method resolution order:
- |      BasicSwapPassManager
- |      ...preset_passmanagers.plugin.PassManagerStagePlugin
- |      abc.ABC
- |      builtins.object
- ...
-```
+  **stage** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The stage name to get
 
-**Parameters**
+  **Returns**
 
-**stage** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The stage name to get
+  the key is the name of the plugin and the value is the class type for each.
 
-**Returns**
+  **Return type**
 
-the key is the name of the plugin and the value is the class type for each.
+  [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
-**Return type**
+  **Raises**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
-
-**Raises**
-
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If an invalid stage name is specified.
+  [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If an invalid stage name is specified.
+</Function>
 

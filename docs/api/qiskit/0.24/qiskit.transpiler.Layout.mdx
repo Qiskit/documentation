@@ -10,283 +10,251 @@ python_api_name: qiskit.transpiler.Layout
 
 # qiskit.transpiler.Layout
 
-<span id="qiskit.transpiler.Layout" />
+<Class id="qiskit.transpiler.Layout" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/layout.py" signature="Layout(input_dict=None)">
+  Two-ways dict to represent a Layout.
 
-`Layout(input_dict=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/layout.py "view source code")
+  construct a Layout from a bijective dictionary, mapping virtual qubits to physical qubits
 
-Two-ways dict to represent a Layout.
+  ### \_\_init\_\_
 
-construct a Layout from a bijective dictionary, mapping virtual qubits to physical qubits
+  <Function id="qiskit.transpiler.Layout.__init__" name="__init__" signature="__init__(input_dict=None)">
+    construct a Layout from a bijective dictionary, mapping virtual qubits to physical qubits
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.transpiler.Layout.__init__" />
+  |                                                                                                                                              |                                                                                                                                                     |
+  | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.transpiler.Layout.__init__ "qiskit.transpiler.Layout.__init__")(\[input\_dict])                                         | construct a Layout from a bijective dictionary, mapping virtual qubits to physical qubits                                                           |
+  | [`add`](#qiskit.transpiler.Layout.add "qiskit.transpiler.Layout.add")(virtual\_bit\[, physical\_bit])                                        | Adds a map element between bit and physical\_bit.                                                                                                   |
+  | [`add_register`](#qiskit.transpiler.Layout.add_register "qiskit.transpiler.Layout.add_register")(reg)                                        | Adds at the end physical\_qubits that map each bit in reg.                                                                                          |
+  | [`combine_into_edge_map`](#qiskit.transpiler.Layout.combine_into_edge_map "qiskit.transpiler.Layout.combine_into_edge_map")(another\_layout) | Combines self and another\_layout into an “edge map”.                                                                                               |
+  | [`copy`](#qiskit.transpiler.Layout.copy "qiskit.transpiler.Layout.copy")()                                                                   | Returns a copy of a Layout instance.                                                                                                                |
+  | [`from_dict`](#qiskit.transpiler.Layout.from_dict "qiskit.transpiler.Layout.from_dict")(input\_dict)                                         | Populates a Layout from a dictionary.                                                                                                               |
+  | [`from_intlist`](#qiskit.transpiler.Layout.from_intlist "qiskit.transpiler.Layout.from_intlist")(int\_list, \*qregs)                         | Converts a list of integers to a Layout mapping virtual qubits (index of the list) to physical qubits (the list values).                            |
+  | [`from_qubit_list`](#qiskit.transpiler.Layout.from_qubit_list "qiskit.transpiler.Layout.from_qubit_list")(qubit\_list)                       | Populates a Layout from a list containing virtual qubits, Qubit or None.                                                                            |
+  | [`generate_trivial_layout`](#qiskit.transpiler.Layout.generate_trivial_layout "qiskit.transpiler.Layout.generate_trivial_layout")(\*regs)    | Creates a trivial (“one-to-one”) Layout with the registers in regs.                                                                                 |
+  | [`get_physical_bits`](#qiskit.transpiler.Layout.get_physical_bits "qiskit.transpiler.Layout.get_physical_bits")()                            | Returns the dictionary where the keys are physical (qu)bits and the values are virtual (qu)bits.                                                    |
+  | [`get_registers`](#qiskit.transpiler.Layout.get_registers "qiskit.transpiler.Layout.get_registers")()                                        | Returns the registers in the layout \[QuantumRegister(2, ‘qr0’), QuantumRegister(3, ‘qr1’)] :returns: A list of Register in the layout :rtype: List |
+  | [`get_virtual_bits`](#qiskit.transpiler.Layout.get_virtual_bits "qiskit.transpiler.Layout.get_virtual_bits")()                               | Returns the dictionary where the keys are virtual (qu)bits and the values are physical (qu)bits.                                                    |
+  | [`order_based_on_type`](#qiskit.transpiler.Layout.order_based_on_type "qiskit.transpiler.Layout.order_based_on_type")(value1, value2)        | decides which one is physical/virtual based on the type.                                                                                            |
+  | [`reorder_bits`](#qiskit.transpiler.Layout.reorder_bits "qiskit.transpiler.Layout.reorder_bits")(bits)                                       | Given an ordered list of bits, reorder them according to this layout.                                                                               |
+  | [`swap`](#qiskit.transpiler.Layout.swap "qiskit.transpiler.Layout.swap")(left, right)                                                        | Swaps the map between left and right.                                                                                                               |
 
-`__init__(input_dict=None)`
+  ### add
 
-construct a Layout from a bijective dictionary, mapping virtual qubits to physical qubits
+  <Function id="qiskit.transpiler.Layout.add" name="add" signature="add(virtual_bit, physical_bit=None)">
+    Adds a map element between bit and physical\_bit. If physical\_bit is not defined, bit will be mapped to a new physical bit (extending the length of the layout by one.)
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                              |                                                                                                                                                     |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.transpiler.Layout.__init__ "qiskit.transpiler.Layout.__init__")(\[input\_dict])                                         | construct a Layout from a bijective dictionary, mapping virtual qubits to physical qubits                                                           |
-| [`add`](#qiskit.transpiler.Layout.add "qiskit.transpiler.Layout.add")(virtual\_bit\[, physical\_bit])                                        | Adds a map element between bit and physical\_bit.                                                                                                   |
-| [`add_register`](#qiskit.transpiler.Layout.add_register "qiskit.transpiler.Layout.add_register")(reg)                                        | Adds at the end physical\_qubits that map each bit in reg.                                                                                          |
-| [`combine_into_edge_map`](#qiskit.transpiler.Layout.combine_into_edge_map "qiskit.transpiler.Layout.combine_into_edge_map")(another\_layout) | Combines self and another\_layout into an “edge map”.                                                                                               |
-| [`copy`](#qiskit.transpiler.Layout.copy "qiskit.transpiler.Layout.copy")()                                                                   | Returns a copy of a Layout instance.                                                                                                                |
-| [`from_dict`](#qiskit.transpiler.Layout.from_dict "qiskit.transpiler.Layout.from_dict")(input\_dict)                                         | Populates a Layout from a dictionary.                                                                                                               |
-| [`from_intlist`](#qiskit.transpiler.Layout.from_intlist "qiskit.transpiler.Layout.from_intlist")(int\_list, \*qregs)                         | Converts a list of integers to a Layout mapping virtual qubits (index of the list) to physical qubits (the list values).                            |
-| [`from_qubit_list`](#qiskit.transpiler.Layout.from_qubit_list "qiskit.transpiler.Layout.from_qubit_list")(qubit\_list)                       | Populates a Layout from a list containing virtual qubits, Qubit or None.                                                                            |
-| [`generate_trivial_layout`](#qiskit.transpiler.Layout.generate_trivial_layout "qiskit.transpiler.Layout.generate_trivial_layout")(\*regs)    | Creates a trivial (“one-to-one”) Layout with the registers in regs.                                                                                 |
-| [`get_physical_bits`](#qiskit.transpiler.Layout.get_physical_bits "qiskit.transpiler.Layout.get_physical_bits")()                            | Returns the dictionary where the keys are physical (qu)bits and the values are virtual (qu)bits.                                                    |
-| [`get_registers`](#qiskit.transpiler.Layout.get_registers "qiskit.transpiler.Layout.get_registers")()                                        | Returns the registers in the layout \[QuantumRegister(2, ‘qr0’), QuantumRegister(3, ‘qr1’)] :returns: A list of Register in the layout :rtype: List |
-| [`get_virtual_bits`](#qiskit.transpiler.Layout.get_virtual_bits "qiskit.transpiler.Layout.get_virtual_bits")()                               | Returns the dictionary where the keys are virtual (qu)bits and the values are physical (qu)bits.                                                    |
-| [`order_based_on_type`](#qiskit.transpiler.Layout.order_based_on_type "qiskit.transpiler.Layout.order_based_on_type")(value1, value2)        | decides which one is physical/virtual based on the type.                                                                                            |
-| [`reorder_bits`](#qiskit.transpiler.Layout.reorder_bits "qiskit.transpiler.Layout.reorder_bits")(bits)                                       | Given an ordered list of bits, reorder them according to this layout.                                                                               |
-| [`swap`](#qiskit.transpiler.Layout.swap "qiskit.transpiler.Layout.swap")(left, right)                                                        | Swaps the map between left and right.                                                                                                               |
+    *   **virtual\_bit** (*tuple*) – A (qu)bit. For example, (QuantumRegister(3, ‘qr’), 2).
+    *   **physical\_bit** (*int*) – A physical bit. For example, 3.
+  </Function>
 
-### add
+  ### add\_register
 
-<span id="qiskit.transpiler.Layout.add" />
+  <Function id="qiskit.transpiler.Layout.add_register" name="add_register" signature="add_register(reg)">
+    Adds at the end physical\_qubits that map each bit in reg.
 
-`add(virtual_bit, physical_bit=None)`
+    **Parameters**
 
-Adds a map element between bit and physical\_bit. If physical\_bit is not defined, bit will be mapped to a new physical bit (extending the length of the layout by one.)
+    **reg** (*Register*) – A (qu)bit Register. For example, QuantumRegister(3, ‘qr’).
+  </Function>
 
-**Parameters**
+  ### combine\_into\_edge\_map
 
-*   **virtual\_bit** (*tuple*) – A (qu)bit. For example, (QuantumRegister(3, ‘qr’), 2).
-*   **physical\_bit** (*int*) – A physical bit. For example, 3.
+  <Function id="qiskit.transpiler.Layout.combine_into_edge_map" name="combine_into_edge_map" signature="combine_into_edge_map(another_layout)">
+    Combines self and another\_layout into an “edge map”.
 
-### add\_register
+    For example:
 
-<span id="qiskit.transpiler.Layout.add_register" />
+    ```python
+       self       another_layout  resulting edge map
+    qr_1 -> 0        0 <- q_2         qr_1 -> q_2
+    qr_2 -> 2        2 <- q_1         qr_2 -> q_1
+    qr_3 -> 3        3 <- q_0         qr_3 -> q_0
+    ```
 
-`add_register(reg)`
+    The edge map is used to compose dags via, for example, compose.
 
-Adds at the end physical\_qubits that map each bit in reg.
+    **Parameters**
 
-**Parameters**
+    **another\_layout** ([*Layout*](#qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – The other layout to combine.
 
-**reg** (*Register*) – A (qu)bit Register. For example, QuantumRegister(3, ‘qr’).
+    **Returns**
 
-### combine\_into\_edge\_map
+    A “edge map”.
 
-<span id="qiskit.transpiler.Layout.combine_into_edge_map" />
+    **Return type**
 
-`combine_into_edge_map(another_layout)`
+    dict
 
-Combines self and another\_layout into an “edge map”.
+    **Raises**
 
-For example:
+    **LayoutError** – another\_layout can be bigger than self, but not smaller. Otherwise, raises.
+  </Function>
 
-```python
-   self       another_layout  resulting edge map
-qr_1 -> 0        0 <- q_2         qr_1 -> q_2
-qr_2 -> 2        2 <- q_1         qr_2 -> q_1
-qr_3 -> 3        3 <- q_0         qr_3 -> q_0
-```
+  ### copy
 
-The edge map is used to compose dags via, for example, compose.
+  <Function id="qiskit.transpiler.Layout.copy" name="copy" signature="copy()">
+    Returns a copy of a Layout instance.
+  </Function>
 
-**Parameters**
+  ### from\_dict
 
-**another\_layout** ([*Layout*](#qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – The other layout to combine.
+  <Function id="qiskit.transpiler.Layout.from_dict" name="from_dict" signature="from_dict(input_dict)">
+    Populates a Layout from a dictionary.
 
-**Returns**
+    The dictionary must be a bijective mapping between virtual qubits (tuple) and physical qubits (int).
 
-A “edge map”.
+    **Parameters**
 
-**Return type**
+    **input\_dict** (*dict*) –
 
-dict
+    e.g.:
 
-**Raises**
+    ```python
+    {(QuantumRegister(3, 'qr'), 0): 0,
+     (QuantumRegister(3, 'qr'), 1): 1,
+     (QuantumRegister(3, 'qr'), 2): 2}
 
-**LayoutError** – another\_layout can be bigger than self, but not smaller. Otherwise, raises.
+    Can be written more concisely as follows:
 
-### copy
+    * virtual to physical::
 
-<span id="qiskit.transpiler.Layout.copy" />
+        {qr[0]: 0,
+         qr[1]: 1,
+         qr[2]: 2}
 
-`copy()`
+    * physical to virtual::
 
-Returns a copy of a Layout instance.
+        {0: qr[0],
+         1: qr[1],
+         2: qr[2]}
+    ```
+  </Function>
 
-### from\_dict
+  ### from\_intlist
 
-<span id="qiskit.transpiler.Layout.from_dict" />
+  <Function id="qiskit.transpiler.Layout.from_intlist" name="from_intlist" signature="static from_intlist(int_list, *qregs)">
+    Converts a list of integers to a Layout mapping virtual qubits (index of the list) to physical qubits (the list values).
 
-`from_dict(input_dict)`
+    **Parameters**
 
-Populates a Layout from a dictionary.
+    *   **int\_list** (*list*) – A list of integers.
+    *   **\*qregs** (*QuantumRegisters*) – The quantum registers to apply the layout to.
 
-The dictionary must be a bijective mapping between virtual qubits (tuple) and physical qubits (int).
+    **Returns**
 
-**Parameters**
+    The corresponding Layout object.
 
-**input\_dict** (*dict*) –
+    **Return type**
 
-e.g.:
+    [Layout](#qiskit.transpiler.Layout "qiskit.transpiler.Layout")
 
-```python
-{(QuantumRegister(3, 'qr'), 0): 0,
- (QuantumRegister(3, 'qr'), 1): 1,
- (QuantumRegister(3, 'qr'), 2): 2}
+    **Raises**
 
-Can be written more concisely as follows:
+    **LayoutError** – Invalid input layout.
+  </Function>
 
-* virtual to physical::
+  ### from\_qubit\_list
 
-    {qr[0]: 0,
-     qr[1]: 1,
-     qr[2]: 2}
+  <Function id="qiskit.transpiler.Layout.from_qubit_list" name="from_qubit_list" signature="static from_qubit_list(qubit_list)">
+    Populates a Layout from a list containing virtual qubits, Qubit or None.
 
-* physical to virtual::
+    **Parameters**
 
-    {0: qr[0],
-     1: qr[1],
-     2: qr[2]}
-```
+    **qubit\_list** (*list*) – e.g.: \[qr\[0], None, qr\[2], qr\[3]]
 
-### from\_intlist
+    **Returns**
 
-<span id="qiskit.transpiler.Layout.from_intlist" />
+    the corresponding Layout object
 
-`static from_intlist(int_list, *qregs)`
+    **Return type**
 
-Converts a list of integers to a Layout mapping virtual qubits (index of the list) to physical qubits (the list values).
+    [Layout](#qiskit.transpiler.Layout "qiskit.transpiler.Layout")
 
-**Parameters**
+    **Raises**
 
-*   **int\_list** (*list*) – A list of integers.
-*   **\*qregs** (*QuantumRegisters*) – The quantum registers to apply the layout to.
+    **LayoutError** – If the elements are not Qubit or None
+  </Function>
 
-**Returns**
+  ### generate\_trivial\_layout
 
-The corresponding Layout object.
+  <Function id="qiskit.transpiler.Layout.generate_trivial_layout" name="generate_trivial_layout" signature="static generate_trivial_layout(*regs)">
+    Creates a trivial (“one-to-one”) Layout with the registers in regs.
 
-**Return type**
+    **Parameters**
 
-[Layout](#qiskit.transpiler.Layout "qiskit.transpiler.Layout")
+    **\*regs** (*Registers*) – registers to include in the layout.
 
-**Raises**
+    **Returns**
 
-**LayoutError** – Invalid input layout.
+    A layout with all the regs in the given order.
 
-### from\_qubit\_list
+    **Return type**
 
-<span id="qiskit.transpiler.Layout.from_qubit_list" />
+    [Layout](#qiskit.transpiler.Layout "qiskit.transpiler.Layout")
+  </Function>
 
-`static from_qubit_list(qubit_list)`
+  ### get\_physical\_bits
 
-Populates a Layout from a list containing virtual qubits, Qubit or None.
+  <Function id="qiskit.transpiler.Layout.get_physical_bits" name="get_physical_bits" signature="get_physical_bits()">
+    Returns the dictionary where the keys are physical (qu)bits and the values are virtual (qu)bits.
+  </Function>
 
-**Parameters**
+  ### get\_registers
 
-**qubit\_list** (*list*) – e.g.: \[qr\[0], None, qr\[2], qr\[3]]
+  <Function id="qiskit.transpiler.Layout.get_registers" name="get_registers" signature="get_registers()">
+    Returns the registers in the layout \[QuantumRegister(2, ‘qr0’), QuantumRegister(3, ‘qr1’)] :returns: A list of Register in the layout :rtype: List
+  </Function>
 
-**Returns**
+  ### get\_virtual\_bits
 
-the corresponding Layout object
+  <Function id="qiskit.transpiler.Layout.get_virtual_bits" name="get_virtual_bits" signature="get_virtual_bits()">
+    Returns the dictionary where the keys are virtual (qu)bits and the values are physical (qu)bits.
+  </Function>
 
-**Return type**
+  ### order\_based\_on\_type
 
-[Layout](#qiskit.transpiler.Layout "qiskit.transpiler.Layout")
+  <Function id="qiskit.transpiler.Layout.order_based_on_type" name="order_based_on_type" signature="static order_based_on_type(value1, value2)">
+    decides which one is physical/virtual based on the type. Returns (virtual, physical)
+  </Function>
 
-**Raises**
+  ### reorder\_bits
 
-**LayoutError** – If the elements are not Qubit or None
+  <Function id="qiskit.transpiler.Layout.reorder_bits" name="reorder_bits" signature="reorder_bits(bits)">
+    Given an ordered list of bits, reorder them according to this layout.
 
-### generate\_trivial\_layout
+    The list of bits must exactly match the virtual bits in this layout.
 
-<span id="qiskit.transpiler.Layout.generate_trivial_layout" />
+    **Parameters**
 
-`static generate_trivial_layout(*regs)`
+    **bits** (*list\[Bit]*) – the bits to reorder.
 
-Creates a trivial (“one-to-one”) Layout with the registers in regs.
+    **Returns**
 
-**Parameters**
+    ordered bits.
 
-**\*regs** (*Registers*) – registers to include in the layout.
+    **Return type**
 
-**Returns**
+    List
+  </Function>
 
-A layout with all the regs in the given order.
+  ### swap
 
-**Return type**
+  <Function id="qiskit.transpiler.Layout.swap" name="swap" signature="swap(left, right)">
+    Swaps the map between left and right.
 
-[Layout](#qiskit.transpiler.Layout "qiskit.transpiler.Layout")
+    **Parameters**
 
-### get\_physical\_bits
+    *   **left** (*tuple or int*) – Item to swap with right.
+    *   **right** (*tuple or int*) – Item to swap with left.
 
-<span id="qiskit.transpiler.Layout.get_physical_bits" />
+    **Raises**
 
-`get_physical_bits()`
-
-Returns the dictionary where the keys are physical (qu)bits and the values are virtual (qu)bits.
-
-### get\_registers
-
-<span id="qiskit.transpiler.Layout.get_registers" />
-
-`get_registers()`
-
-Returns the registers in the layout \[QuantumRegister(2, ‘qr0’), QuantumRegister(3, ‘qr1’)] :returns: A list of Register in the layout :rtype: List
-
-### get\_virtual\_bits
-
-<span id="qiskit.transpiler.Layout.get_virtual_bits" />
-
-`get_virtual_bits()`
-
-Returns the dictionary where the keys are virtual (qu)bits and the values are physical (qu)bits.
-
-### order\_based\_on\_type
-
-<span id="qiskit.transpiler.Layout.order_based_on_type" />
-
-`static order_based_on_type(value1, value2)`
-
-decides which one is physical/virtual based on the type. Returns (virtual, physical)
-
-### reorder\_bits
-
-<span id="qiskit.transpiler.Layout.reorder_bits" />
-
-`reorder_bits(bits)`
-
-Given an ordered list of bits, reorder them according to this layout.
-
-The list of bits must exactly match the virtual bits in this layout.
-
-**Parameters**
-
-**bits** (*list\[Bit]*) – the bits to reorder.
-
-**Returns**
-
-ordered bits.
-
-**Return type**
-
-List
-
-### swap
-
-<span id="qiskit.transpiler.Layout.swap" />
-
-`swap(left, right)`
-
-Swaps the map between left and right.
-
-**Parameters**
-
-*   **left** (*tuple or int*) – Item to swap with right.
-*   **right** (*tuple or int*) – Item to swap with left.
-
-**Raises**
-
-**LayoutError** – If left and right have not the same type.
+    **LayoutError** – If left and right have not the same type.
+  </Function>
+</Class>
 

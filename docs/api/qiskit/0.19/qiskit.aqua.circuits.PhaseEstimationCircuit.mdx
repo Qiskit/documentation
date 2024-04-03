@@ -8,78 +8,80 @@ python_api_name: qiskit.aqua.circuits.PhaseEstimationCircuit
 
 # PhaseEstimationCircuit
 
-<span id="qiskit.aqua.circuits.PhaseEstimationCircuit" />
+<Class id="qiskit.aqua.circuits.PhaseEstimationCircuit" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/phase_estimation_circuit.py" signature="PhaseEstimationCircuit(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=6.283185307179586, state_in_circuit_factory=None, unitary_circuit_factory=None, shallow_circuit_concat=False, pauli_list=None)">
+  Quantum Phase Estimation Circuit.
 
-`PhaseEstimationCircuit(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=6.283185307179586, state_in_circuit_factory=None, unitary_circuit_factory=None, shallow_circuit_concat=False, pauli_list=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/phase_estimation_circuit.py "view source code")
+  **Parameters**
 
-Quantum Phase Estimation Circuit.
+  *   **operator** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the hamiltonian Operator object
+  *   **state\_in** ([*InitialState*](qiskit.aqua.components.initial_states.InitialState "qiskit.aqua.components.initial_states.InitialState")) – the InitialState component
+  *   **state** (*representing the initial quantum*) –
+  *   **iqft** (*Union\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*IQFT*](qiskit.aqua.components.iqfts.IQFT "qiskit.aqua.components.iqfts.IQFT")*]*) – the Inverse Quantum Fourier Transform as circuit or Aqua component
+  *   **num\_time\_slices** (*int*) – the number of time slices
+  *   **num\_ancillae** (*int*) – the number of ancillary qubits to use for the measurement
+  *   **expansion\_mode** (*str*) – the expansion mode (trotter|suzuki)
+  *   **expansion\_order** (*int*) – the suzuki expansion order
+  *   **evo\_time** (*float*) – the evolution time
+  *   **state\_in\_circuit\_factory** ([*CircuitFactory*](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")) – the initial state represented by
+  *   **object** (*by a CircuitFactory*) –
+  *   **unitary\_circuit\_factory** ([*CircuitFactory*](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")) – the problem unitary represented
+  *   **object** –
+  *   **shallow\_circuit\_concat** (*bool*) – indicate whether to use shallow (cheap) mode
+  *   **concatenation** (*for circuit*) –
+  *   **pauli\_list** (*list\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – the flat list of paulis for the operator
 
-**Parameters**
+  **Raises**
 
-*   **operator** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the hamiltonian Operator object
-*   **state\_in** ([*InitialState*](qiskit.aqua.components.initial_states.InitialState "qiskit.aqua.components.initial_states.InitialState")) – the InitialState component
-*   **state** (*representing the initial quantum*) –
-*   **iqft** (*Union\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*IQFT*](qiskit.aqua.components.iqfts.IQFT "qiskit.aqua.components.iqfts.IQFT")*]*) – the Inverse Quantum Fourier Transform as circuit or Aqua component
-*   **num\_time\_slices** (*int*) – the number of time slices
-*   **num\_ancillae** (*int*) – the number of ancillary qubits to use for the measurement
-*   **expansion\_mode** (*str*) – the expansion mode (trotter|suzuki)
-*   **expansion\_order** (*int*) – the suzuki expansion order
-*   **evo\_time** (*float*) – the evolution time
-*   **state\_in\_circuit\_factory** ([*CircuitFactory*](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")) – the initial state represented by
-*   **object** (*by a CircuitFactory*) –
-*   **unitary\_circuit\_factory** ([*CircuitFactory*](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")) – the problem unitary represented
-*   **object** –
-*   **shallow\_circuit\_concat** (*bool*) – indicate whether to use shallow (cheap) mode
-*   **concatenation** (*for circuit*) –
-*   **pauli\_list** (*list\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – the flat list of paulis for the operator
+  [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Missing input
 
-**Raises**
+  ## Attributes
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Missing input
+  ### ancillary\_register
 
-## Attributes
+  <Attribute id="qiskit.aqua.circuits.PhaseEstimationCircuit.ancillary_register" name="ancillary_register">
+    returns ancillary register
+  </Attribute>
 
-### ancillary\_register
+  ### auxiliary\_register
 
-returns ancillary register
+  <Attribute id="qiskit.aqua.circuits.PhaseEstimationCircuit.auxiliary_register" name="auxiliary_register">
+    returns auxiliary register
+  </Attribute>
 
-### auxiliary\_register
+  ### state\_register
 
-returns auxiliary register
+  <Attribute id="qiskit.aqua.circuits.PhaseEstimationCircuit.state_register" name="state_register">
+    returns state register
+  </Attribute>
 
-### state\_register
+  ## Methods
 
-returns state register
+  ### construct\_circuit
 
-## Methods
+  <Function id="qiskit.aqua.circuits.PhaseEstimationCircuit.construct_circuit" name="construct_circuit" signature="PhaseEstimationCircuit.construct_circuit(state_register=None, ancillary_register=None, auxiliary_register=None, measurement=False)">
+    Construct the Phase Estimation circuit
 
-### construct\_circuit
+    **Parameters**
 
-<span id="qiskit.aqua.circuits.PhaseEstimationCircuit.construct_circuit" />
+    *   **state\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the optional register to use for the quantum state
+    *   **ancillary\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the optional register to use for
+    *   **qubits** (*the ancillary measurement*) –
+    *   **auxiliary\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – an optional auxiliary quantum register
+    *   **measurement** (*bool*) – Boolean flag to indicate if measurement should be included
+    *   **circuit.** (*in the*) –
 
-`PhaseEstimationCircuit.construct_circuit(state_register=None, ancillary_register=None, auxiliary_register=None, measurement=False)`
+    **Returns**
 
-Construct the Phase Estimation circuit
+    the QuantumCircuit object for the constructed circuit
 
-**Parameters**
+    **Return type**
 
-*   **state\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the optional register to use for the quantum state
-*   **ancillary\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the optional register to use for
-*   **qubits** (*the ancillary measurement*) –
-*   **auxiliary\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – an optional auxiliary quantum register
-*   **measurement** (*bool*) – Boolean flag to indicate if measurement should be included
-*   **circuit.** (*in the*) –
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Returns**
+    **Raises**
 
-the QuantumCircuit object for the constructed circuit
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-*   **RuntimeError** – Multiple identity pauli terms are present
-*   **ValueError** – invalid mode
+    *   **RuntimeError** – Multiple identity pauli terms are present
+    *   **ValueError** – invalid mode
+  </Function>
+</Class>
 

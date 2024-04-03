@@ -8,37 +8,35 @@ python_api_name: qiskit.providers.aer.noise.phase_damping_error
 
 # qiskit.providers.aer.noise.phase\_damping\_error
 
-<span id="qiskit.providers.aer.noise.phase_damping_error" />
+<Function id="qiskit.providers.aer.noise.phase_damping_error" name="phase_damping_error" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/noise/errors/standard_errors.py" signature="phase_damping_error(param_phase, canonical_kraus=True)">
+  Return a single-qubit combined phase and amplitude damping quantum error channel.
 
-`phase_damping_error(param_phase, canonical_kraus=True)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/noise/errors/standard_errors.py "view source code")
+  The single-qubit combined phase and amplitude damping channel is described by the following Kraus matrices:
 
-Return a single-qubit combined phase and amplitude damping quantum error channel.
+  ```python
+  A0 = [[1, 0], [0, sqrt(1 - b)]]
+  A2 = [[0, 0], [0, sqrt(b)]]
+  ```
 
-The single-qubit combined phase and amplitude damping channel is described by the following Kraus matrices:
+  where `b = param_phase`. The equilibrium state after infinitely many applications of the channel is:
 
-```python
-A0 = [[1, 0], [0, sqrt(1 - b)]]
-A2 = [[0, 0], [0, sqrt(b)]]
-```
+  ```python
+  rho_eq = [[rho_init[0, 0], 0]], [0, rho_init[1, 1]]]
+  ```
 
-where `b = param_phase`. The equilibrium state after infinitely many applications of the channel is:
+  where `rho_init` is the input state ρ.
 
-```python
-rho_eq = [[rho_init[0, 0], 0]], [0, rho_init[1, 1]]]
-```
+  **Parameters**
 
-where `rho_init` is the input state ρ.
+  *   **param\_phase** (*double*) – the phase damping parameter.
+  *   **canonical\_kraus** (*bool*) – Convert input Kraus matrices into the canonical Kraus representation (default: True)
 
-**Parameters**
+  **Returns**
 
-*   **param\_phase** (*double*) – the phase damping parameter.
-*   **canonical\_kraus** (*bool*) – Convert input Kraus matrices into the canonical Kraus representation (default: True)
+  a quantum error object for a noise model.
 
-**Returns**
+  **Return type**
 
-a quantum error object for a noise model.
-
-**Return type**
-
-[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+  [QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+</Function>
 

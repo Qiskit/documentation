@@ -8,89 +8,79 @@ python_api_name: qiskit.aqua.operators.evolutions.PauliTrotterEvolution
 
 # PauliTrotterEvolution
 
-<span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution" />
+<Class id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/pauli_trotter_evolution.py" signature="PauliTrotterEvolution(trotter_mode='trotter', reps=1)">
+  An Evolution algorithm replacing exponentiated sums of Paulis by changing them each to the Z basis, rotating with an rZ, changing back, and trotterizing.
 
-`PauliTrotterEvolution(trotter_mode='trotter', reps=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/pauli_trotter_evolution.py "view source code")
+  More specifically, we compute basis change circuits for each Pauli into a single-qubit Z, evolve the Z by the desired evolution time with an rZ gate, and change the basis back using the adjoint of the original basis change circuit. For sums of Paulis, the individual Pauli evolution circuits are composed together by Trotterization scheme.
 
-An Evolution algorithm replacing exponentiated sums of Paulis by changing them each to the Z basis, rotating with an rZ, changing back, and trotterizing.
+  **Parameters**
 
-More specifically, we compute basis change circuits for each Pauli into a single-qubit Z, evolve the Z by the desired evolution time with an rZ gate, and change the basis back using the adjoint of the original basis change circuit. For sums of Paulis, the individual Pauli evolution circuits are composed together by Trotterization scheme.
+  *   **trotter\_mode** (`Union`\[`str`, [`TrotterizationBase`](qiskit.aqua.operators.evolutions.TrotterizationBase "qiskit.aqua.operators.evolutions.trotterizations.trotterization_base.TrotterizationBase"), `None`]) – A string (‘trotter’, ‘suzuki’, or ‘qdrift’) to pass to the TrotterizationFactory, or a TrotterizationBase, indicating how to combine individual Pauli evolution circuits to equal the exponentiation of the Pauli sum.
+  *   **reps** (`Optional`\[`int`]) – How many Trotterization repetitions to make, to improve the approximation accuracy.
+  *   **evolution.** (*# TODO uncomment when we implement Abelian grouped*) –
+  *   **group\_paulis** (*#*) – Whether to group Pauli sums into Abelian
+  *   **sub-groups** (*#*) –
+  *   **group** (*so a single diagonalization circuit can be used for each*) –
+  *   **Pauli.** (*# rather than each*) –
 
-**Parameters**
+  ## Attributes
 
-*   **trotter\_mode** (`Union`\[`str`, [`TrotterizationBase`](qiskit.aqua.operators.evolutions.TrotterizationBase "qiskit.aqua.operators.evolutions.trotterizations.trotterization_base.TrotterizationBase"), `None`]) – A string (‘trotter’, ‘suzuki’, or ‘qdrift’) to pass to the TrotterizationFactory, or a TrotterizationBase, indicating how to combine individual Pauli evolution circuits to equal the exponentiation of the Pauli sum.
-*   **reps** (`Optional`\[`int`]) – How many Trotterization repetitions to make, to improve the approximation accuracy.
-*   **evolution.** (*# TODO uncomment when we implement Abelian grouped*) –
-*   **group\_paulis** (*#*) – Whether to group Pauli sums into Abelian
-*   **sub-groups** (*#*) –
-*   **group** (*so a single diagonalization circuit can be used for each*) –
-*   **Pauli.** (*# rather than each*) –
+  ### trotter
 
-## Attributes
+  <Attribute id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.trotter" name="trotter" signature="qiskit.aqua.operators.evolutions.trotterizations.trotterization_base.TrotterizationBase">
+    TrotterizationBase used to evolve SummedOps.
 
-### trotter
+    **Return type**
 
-<span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.trotter" />
+    [`TrotterizationBase`](qiskit.aqua.operators.evolutions.TrotterizationBase "qiskit.aqua.operators.evolutions.trotterizations.trotterization_base.TrotterizationBase")
+  </Attribute>
 
-`qiskit.aqua.operators.evolutions.trotterizations.trotterization_base.TrotterizationBase`
+  ## Methods
 
-TrotterizationBase used to evolve SummedOps.
+  ### convert
 
-**Return type**
+  <Function id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.convert" name="convert" signature="PauliTrotterEvolution.convert(operator)">
+    Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing trotterized evolutions equalling the exponentiation of -i \* operator.
 
-[`TrotterizationBase`](qiskit.aqua.operators.evolutions.TrotterizationBase "qiskit.aqua.operators.evolutions.trotterizations.trotterization_base.TrotterizationBase")
+    **Parameters**
 
-## Methods
+    **operator** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The Operator to convert.
 
-### convert
+    **Return type**
 
-<span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.convert" />
+    [`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
 
-`PauliTrotterEvolution.convert(operator)`
+    **Returns**
 
-Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing trotterized evolutions equalling the exponentiation of -i \* operator.
+    The converted operator.
+  </Function>
 
-**Parameters**
+  ### evolution\_for\_abelian\_paulisum
 
-**operator** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The Operator to convert.
+  <Function id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.evolution_for_abelian_paulisum" name="evolution_for_abelian_paulisum" signature="PauliTrotterEvolution.evolution_for_abelian_paulisum(op_sum)">
+    Evolution for abelian pauli sum
 
-**Return type**
+    **Return type**
 
-[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
+    [`PrimitiveOp`](qiskit.aqua.operators.primitive_ops.PrimitiveOp "qiskit.aqua.operators.primitive_ops.primitive_op.PrimitiveOp")
+  </Function>
 
-**Returns**
+  ### evolution\_for\_pauli
 
-The converted operator.
+  <Function id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.evolution_for_pauli" name="evolution_for_pauli" signature="PauliTrotterEvolution.evolution_for_pauli(pauli_op)">
+    Compute evolution Operator for a single Pauli using a `PauliBasisChange`.
 
-### evolution\_for\_abelian\_paulisum
+    **Parameters**
 
-<span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.evolution_for_abelian_paulisum" />
+    **pauli\_op** ([`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")) – The `PauliOp` to evolve.
 
-`PauliTrotterEvolution.evolution_for_abelian_paulisum(op_sum)`
+    **Return type**
 
-Evolution for abelian pauli sum
+    [`PrimitiveOp`](qiskit.aqua.operators.primitive_ops.PrimitiveOp "qiskit.aqua.operators.primitive_ops.primitive_op.PrimitiveOp")
 
-**Return type**
+    **Returns**
 
-[`PrimitiveOp`](qiskit.aqua.operators.primitive_ops.PrimitiveOp "qiskit.aqua.operators.primitive_ops.primitive_op.PrimitiveOp")
-
-### evolution\_for\_pauli
-
-<span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.evolution_for_pauli" />
-
-`PauliTrotterEvolution.evolution_for_pauli(pauli_op)`
-
-Compute evolution Operator for a single Pauli using a `PauliBasisChange`.
-
-**Parameters**
-
-**pauli\_op** ([`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")) – The `PauliOp` to evolve.
-
-**Return type**
-
-[`PrimitiveOp`](qiskit.aqua.operators.primitive_ops.PrimitiveOp "qiskit.aqua.operators.primitive_ops.primitive_op.PrimitiveOp")
-
-**Returns**
-
-A `PrimitiveOp`, either the evolution `CircuitOp` or a `PauliOp` equal to the identity if pauli\_op is the identity.
+    A `PrimitiveOp`, either the evolution `CircuitOp` or a `PauliOp` equal to the identity if pauli\_op is the identity.
+  </Function>
+</Class>
 

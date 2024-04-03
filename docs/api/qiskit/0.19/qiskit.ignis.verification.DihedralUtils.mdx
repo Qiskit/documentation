@@ -8,278 +8,246 @@ python_api_name: qiskit.ignis.verification.DihedralUtils
 
 # DihedralUtils
 
-<span id="qiskit.ignis.verification.DihedralUtils" />
+<Class id="qiskit.ignis.verification.DihedralUtils" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py" signature="DihedralUtils(num_qubits=2, group_tables=None, elmnt=None, gatelist=None, elmnt_key=None)">
+  Class for util functions for the CNOT-dihedral group.
 
-`DihedralUtils(num_qubits=2, group_tables=None, elmnt=None, gatelist=None, elmnt_key=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+  **Parameters**
 
-Class for util functions for the CNOT-dihedral group.
+  *   **num\_qubits** (*int*) – number of qubits, dimension of the CNOT-dihedral object.
+  *   **group\_tables** (*dict*) – table of all CNOTDihedral objects of a given dimension.
+  *   **elmnt** ([*CNOTDihedral*](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")) – a CNOT-dihedral group element.
+  *   **elmnt\_key** (*str*) – a unique key of a CNOTDihedral object.
+  *   **gatelist** (*list*) – a list of gates corresponding to a CNOTDihedral object.
 
-**Parameters**
+  ## Methods
 
-*   **num\_qubits** (*int*) – number of qubits, dimension of the CNOT-dihedral object.
-*   **group\_tables** (*dict*) – table of all CNOTDihedral objects of a given dimension.
-*   **elmnt** ([*CNOTDihedral*](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")) – a CNOT-dihedral group element.
-*   **elmnt\_key** (*str*) – a unique key of a CNOTDihedral object.
-*   **gatelist** (*list*) – a list of gates corresponding to a CNOTDihedral object.
+  ### cnot\_dihedral\_gates
 
-## Methods
+  <Function id="qiskit.ignis.verification.DihedralUtils.cnot_dihedral_gates" name="cnot_dihedral_gates" signature="DihedralUtils.cnot_dihedral_gates(idx, G_table, G_keys)">
+    Make a single CNOT-dihedral element on num\_qubits.
 
-### cnot\_dihedral\_gates
+    **Parameters**
 
-<span id="qiskit.ignis.verification.DihedralUtils.cnot_dihedral_gates" />
+    *   **idx** (*int*) – a unique index of a single CNOT-dihedral element.
+    *   **G\_table** (*dict*) – the CNOT-dihedral group table on num\_qubits.
+    *   **G\_keys** (*list*) – list of keys to the CNOT-dihedral group table.
 
-`DihedralUtils.cnot_dihedral_gates(idx, G_table, G_keys)`
+    **Returns**
 
-Make a single CNOT-dihedral element on num\_qubits.
+    A single CNOT-dihedral element on num\_qubits.
 
-**Parameters**
+    **Return type**
 
-*   **idx** (*int*) – a unique index of a single CNOT-dihedral element.
-*   **G\_table** (*dict*) – the CNOT-dihedral group table on num\_qubits.
-*   **G\_keys** (*list*) – list of keys to the CNOT-dihedral group table.
+    [CNOTDihedral](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")
+  </Function>
 
-**Returns**
+  ### cnot\_dihedral\_tables
 
-A single CNOT-dihedral element on num\_qubits.
+  <Function id="qiskit.ignis.verification.DihedralUtils.cnot_dihedral_tables" name="cnot_dihedral_tables" signature="DihedralUtils.cnot_dihedral_tables(num_qubits)">
+    Generate a table of all CNOT-dihedral group elements on num\_qubits.
 
-**Return type**
+    **Parameters**
 
-[CNOTDihedral](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")
+    **num\_qubits** (*int*) – number of qubits for the CNOTDihedral object.
 
-### cnot\_dihedral\_tables
+    **Returns**
 
-<span id="qiskit.ignis.verification.DihedralUtils.cnot_dihedral_tables" />
+    **A table of all CNOT-dihedral group elements**
 
-`DihedralUtils.cnot_dihedral_tables(num_qubits)`
+    on num\_qubits.
 
-Generate a table of all CNOT-dihedral group elements on num\_qubits.
+    **Return type**
 
-**Parameters**
+    dict
+  </Function>
 
-**num\_qubits** (*int*) – number of qubits for the CNOTDihedral object.
+  ### compose\_gates
 
-**Returns**
+  <Function id="qiskit.ignis.verification.DihedralUtils.compose_gates" name="compose_gates" signature="DihedralUtils.compose_gates(elem, next_elem)">
+    Compose two CNOTDihedral objects.
 
-**A table of all CNOT-dihedral group elements**
+    **Parameters**
 
-on num\_qubits.
+    *   **elem** ([*CNOTDihedral*](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")) – a CNOTDihedral object.
+    *   **next\_elem** ([*CNOTDihedral*](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")) – another CNOTDihedral object.
 
-**Return type**
+    **Returns**
 
-dict
+    A CNOTDihedral object, that is a composition of the two CNOTDihedral objects.
 
-### compose\_gates
+    **Return type**
 
-<span id="qiskit.ignis.verification.DihedralUtils.compose_gates" />
+    [CNOTDihedral](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")
+  </Function>
 
-`DihedralUtils.compose_gates(elem, next_elem)`
+  ### elem\_to\_gates
 
-Compose two CNOTDihedral objects.
+  <Function id="qiskit.ignis.verification.DihedralUtils.elem_to_gates" name="elem_to_gates" signature="DihedralUtils.elem_to_gates(circ)">
+    Convert a CNOT-dihedral list of gates for the QuantumCircuit.
 
-**Parameters**
+    **Parameters**
 
-*   **elem** ([*CNOTDihedral*](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")) – a CNOTDihedral object.
-*   **next\_elem** ([*CNOTDihedral*](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")) – another CNOTDihedral object.
+    **circ** (*list*) – list of gates of an element in the CNOT-dihedral group (from the group table).
 
-**Returns**
+    **Returns**
 
-A CNOTDihedral object, that is a composition of the two CNOTDihedral objects.
+    List of gates for the QuantumCircuit.
 
-**Return type**
+    **Return type**
 
-[CNOTDihedral](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")
+    list
 
-### elem\_to\_gates
+    **Raises**
 
-<span id="qiskit.ignis.verification.DihedralUtils.elem_to_gates" />
+    **ValueError** – unknown gate type.
+  </Function>
 
-`DihedralUtils.elem_to_gates(circ)`
+  ### elmnt
 
-Convert a CNOT-dihedral list of gates for the QuantumCircuit.
+  <Function id="qiskit.ignis.verification.DihedralUtils.elmnt" name="elmnt" signature="DihedralUtils.elmnt()">
+    Return a CNOTDihedral object.
+  </Function>
 
-**Parameters**
+  ### elmnt\_key
 
-**circ** (*list*) – list of gates of an element in the CNOT-dihedral group (from the group table).
+  <Function id="qiskit.ignis.verification.DihedralUtils.elmnt_key" name="elmnt_key" signature="DihedralUtils.elmnt_key()">
+    Return a unique key of a CNOTDihedral object.
+  </Function>
 
-**Returns**
+  ### find\_inverse\_gates
 
-List of gates for the QuantumCircuit.
+  <Function id="qiskit.ignis.verification.DihedralUtils.find_inverse_gates" name="find_inverse_gates" signature="DihedralUtils.find_inverse_gates(num_qubits, elem)">
+    Find the inverse of a CNOT-dihedral element.
 
-**Return type**
+    **Parameters**
 
-list
+    *   **num\_qubits** (*int*) – the dimension of the CNOTDihedral element.
+    *   **elem** ([*CNOTDihedral*](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")) – an element in the CNOTDihedral group table.
 
-**Raises**
+    **Returns**
 
-**ValueError** – unknown gate type.
+    An inverse list of gates.
 
-### elmnt
+    **Return type**
 
-<span id="qiskit.ignis.verification.DihedralUtils.elmnt" />
+    list
 
-`DihedralUtils.elmnt()`
+    **Raises**
 
-Return a CNOTDihedral object.
+    **ValueError** – number of qubits bigger than 2 is not supported.
+  </Function>
 
-### elmnt\_key
+  ### find\_key
 
-<span id="qiskit.ignis.verification.DihedralUtils.elmnt_key" />
+  <Function id="qiskit.ignis.verification.DihedralUtils.find_key" name="find_key" signature="DihedralUtils.find_key(elem, num_qubits)">
+    Find the key of a CNOTDihedral object in the group table.
 
-`DihedralUtils.elmnt_key()`
+    **Parameters**
 
-Return a unique key of a CNOTDihedral object.
+    *   **elem** ([*CNOTDihedral*](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")) – CNOTDihedral object
+    *   **num\_qubits** (*int*) – the dimension of the CNOTDihedral object.
 
-### find\_inverse\_gates
+    **Returns**
 
-<span id="qiskit.ignis.verification.DihedralUtils.find_inverse_gates" />
+    A unique key to the CNOT-dihedral group table.
 
-`DihedralUtils.find_inverse_gates(num_qubits, elem)`
+    **Return type**
 
-Find the inverse of a CNOT-dihedral element.
+    str
+  </Function>
 
-**Parameters**
+  ### gatelist
 
-*   **num\_qubits** (*int*) – the dimension of the CNOTDihedral element.
-*   **elem** ([*CNOTDihedral*](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")) – an element in the CNOTDihedral group table.
+  <Function id="qiskit.ignis.verification.DihedralUtils.gatelist" name="gatelist" signature="DihedralUtils.gatelist()">
+    Return a list of gates corresponding to a CNOTDihedral object.
+  </Function>
 
-**Returns**
+  ### group\_tables
 
-An inverse list of gates.
+  <Function id="qiskit.ignis.verification.DihedralUtils.group_tables" name="group_tables" signature="DihedralUtils.group_tables()">
+    Return the CNOT-dihedral group tables.
+  </Function>
 
-**Return type**
+  ### load\_dihedral\_table
 
-list
+  <Function id="qiskit.ignis.verification.DihedralUtils.load_dihedral_table" name="load_dihedral_table" signature="DihedralUtils.load_dihedral_table(picklefile='cnot_dihedral_2.pickle')">
+    Load pickled files of the CNOT-dihedral group tables.
 
-**Raises**
+    **Parameters**
 
-**ValueError** – number of qubits bigger than 2 is not supported.
+    **picklefile** (*str*) – pickle file name.
 
-### find\_key
+    **Returns**
 
-<span id="qiskit.ignis.verification.DihedralUtils.find_key" />
+    A table of all CNOT-dihedral group elements.
 
-`DihedralUtils.find_key(elem, num_qubits)`
+    **Return type**
 
-Find the key of a CNOTDihedral object in the group table.
+    dict
+  </Function>
 
-**Parameters**
+  ### load\_tables
 
-*   **elem** ([*CNOTDihedral*](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")) – CNOTDihedral object
-*   **num\_qubits** (*int*) – the dimension of the CNOTDihedral object.
+  <Function id="qiskit.ignis.verification.DihedralUtils.load_tables" name="load_tables" signature="DihedralUtils.load_tables(num_qubits)">
+    Return the CNOT dihedral group tables.
 
-**Returns**
+    **Parameters**
 
-A unique key to the CNOT-dihedral group table.
+    **num\_qubits** (*int*) – number of qubits for the CNOTDihedral object.
 
-**Return type**
+    **Returns**
 
-str
+    A table of all the CNOTDihedral objects.
 
-### gatelist
+    **Return type**
 
-<span id="qiskit.ignis.verification.DihedralUtils.gatelist" />
+    dict
 
-`DihedralUtils.gatelist()`
+    **Raises**
 
-Return a list of gates corresponding to a CNOTDihedral object.
+    **ValueError** – number of qubits bigger than 2 is not supported.
+  </Function>
 
-### group\_tables
+  ### num\_qubits
 
-<span id="qiskit.ignis.verification.DihedralUtils.group_tables" />
+  <Function id="qiskit.ignis.verification.DihedralUtils.num_qubits" name="num_qubits" signature="DihedralUtils.num_qubits()">
+    Return the number of qubits of the CNOTDihedral object.
+  </Function>
 
-`DihedralUtils.group_tables()`
+  ### pickle\_dihedral\_table
 
-Return the CNOT-dihedral group tables.
+  <Function id="qiskit.ignis.verification.DihedralUtils.pickle_dihedral_table" name="pickle_dihedral_table" signature="DihedralUtils.pickle_dihedral_table(num_qubits=2)">
+    Create pickled versions of the CNOT-dihedral group tables.
 
-### load\_dihedral\_table
+    **Parameters**
 
-<span id="qiskit.ignis.verification.DihedralUtils.load_dihedral_table" />
+    **num\_qubits** (*int*) – number of qubits of the CNOTDihedral object.
 
-`DihedralUtils.load_dihedral_table(picklefile='cnot_dihedral_2.pickle')`
+    **Raises**
 
-Load pickled files of the CNOT-dihedral group tables.
+    **ValueError** – number of qubits bigger than 2 is not supported.
+  </Function>
 
-**Parameters**
+  ### random\_gates
 
-**picklefile** (*str*) – pickle file name.
+  <Function id="qiskit.ignis.verification.DihedralUtils.random_gates" name="random_gates" signature="DihedralUtils.random_gates(num_qubits)">
+    Pick a random CNOT-dihedral element on num\_qubits.
 
-**Returns**
+    **Parameters**
 
-A table of all CNOT-dihedral group elements.
+    **num\_qubits** (*int*) – number of qubits of the CNOTDihedral object.
 
-**Return type**
+    **Returns**
 
-dict
+    A CNOTDihedral object.
 
-### load\_tables
+    **Return type**
 
-<span id="qiskit.ignis.verification.DihedralUtils.load_tables" />
+    [CNOTDihedral](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")
 
-`DihedralUtils.load_tables(num_qubits)`
+    **Raises**
 
-Return the CNOT dihedral group tables.
-
-**Parameters**
-
-**num\_qubits** (*int*) – number of qubits for the CNOTDihedral object.
-
-**Returns**
-
-A table of all the CNOTDihedral objects.
-
-**Return type**
-
-dict
-
-**Raises**
-
-**ValueError** – number of qubits bigger than 2 is not supported.
-
-### num\_qubits
-
-<span id="qiskit.ignis.verification.DihedralUtils.num_qubits" />
-
-`DihedralUtils.num_qubits()`
-
-Return the number of qubits of the CNOTDihedral object.
-
-### pickle\_dihedral\_table
-
-<span id="qiskit.ignis.verification.DihedralUtils.pickle_dihedral_table" />
-
-`DihedralUtils.pickle_dihedral_table(num_qubits=2)`
-
-Create pickled versions of the CNOT-dihedral group tables.
-
-**Parameters**
-
-**num\_qubits** (*int*) – number of qubits of the CNOTDihedral object.
-
-**Raises**
-
-**ValueError** – number of qubits bigger than 2 is not supported.
-
-### random\_gates
-
-<span id="qiskit.ignis.verification.DihedralUtils.random_gates" />
-
-`DihedralUtils.random_gates(num_qubits)`
-
-Pick a random CNOT-dihedral element on num\_qubits.
-
-**Parameters**
-
-**num\_qubits** (*int*) – number of qubits of the CNOTDihedral object.
-
-**Returns**
-
-A CNOTDihedral object.
-
-**Return type**
-
-[CNOTDihedral](qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")
-
-**Raises**
-
-**ValueError** – number of qubits bigger than 2 is not supported.
+    **ValueError** – number of qubits bigger than 2 is not supported.
+  </Function>
+</Class>
 

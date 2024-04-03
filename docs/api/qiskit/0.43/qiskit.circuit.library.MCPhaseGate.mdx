@@ -8,168 +8,162 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
 # MCPhaseGate
 
-<span id="qiskit.circuit.library.MCPhaseGate" />
+<Class id="qiskit.circuit.library.MCPhaseGate" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/p.py" signature="MCPhaseGate(lam, num_ctrl_qubits, label=None)">
+  Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
-`MCPhaseGate(lam, num_ctrl_qubits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/p.py "view source code")
+  Multi-controlled-Phase gate.
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+  This is a diagonal and symmetric gate that induces a phase on the state of the target qubit, depending on the state of the control qubits.
 
-Multi-controlled-Phase gate.
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`mcp()`](qiskit.circuit.QuantumCircuit#mcp "qiskit.circuit.QuantumCircuit.mcp") method.
 
-This is a diagonal and symmetric gate that induces a phase on the state of the target qubit, depending on the state of the control qubits.
+  **Circuit symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`mcp()`](qiskit.circuit.QuantumCircuit#mcp "qiskit.circuit.QuantumCircuit.mcp") method.
+  ```python
+      q_0: ───■────
+              │
+              .
+              │
+  q_(n-1): ───■────
+           ┌──┴───┐
+      q_n: ┤ P(λ) ├
+           └──────┘
+  ```
 
-**Circuit symbol:**
+  <Admonition title="See also" type="note">
+    `CPhaseGate`: The singly-controlled-version of this gate.
+  </Admonition>
 
-```python
-    q_0: ───■────
-            │
-            .
-            │
-q_(n-1): ───■────
-         ┌──┴───┐
-    q_n: ┤ P(λ) ├
-         └──────┘
-```
+  Create new MCPhase gate.
 
-<Admonition title="See also" type="note">
-  `CPhaseGate`: The singly-controlled-version of this gate.
-</Admonition>
+  ## Methods Defined Here
 
-Create new MCPhase gate.
+  <span id="qiskit-circuit-library-mcphasegate-control" />
 
-## Methods Defined Here
+  ### control
 
-<span id="qiskit-circuit-library-mcphasegate-control" />
+  <Function id="qiskit.circuit.library.MCPhaseGate.control" name="control" signature="MCPhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Controlled version of this gate.
 
-### control
+    **Parameters**
 
-<span id="qiskit.circuit.library.MCPhaseGate.control" />
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-`MCPhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    **Returns**
 
-Controlled version of this gate.
+    controlled version of this gate.
 
-**Parameters**
+    **Return type**
 
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-**Returns**
+  <span id="qiskit-circuit-library-mcphasegate-inverse" />
 
-controlled version of this gate.
+  ### inverse
 
-**Return type**
+  <Function id="qiskit.circuit.library.MCPhaseGate.inverse" name="inverse" signature="MCPhaseGate.inverse()">
+    Return inverted MCU1 gate ($MCU1(\lambda)^{\dagger} = MCU1(-\lambda)$)
+  </Function>
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  ## Attributes
 
-<span id="qiskit-circuit-library-mcphasegate-inverse" />
+  ### condition\_bits
 
-### inverse
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCPhaseGate.inverse" />
+  ### ctrl\_state
 
-`MCPhaseGate.inverse()`
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
 
-Return inverted MCU1 gate ($MCU1(\lambda)^{\dagger} = MCU1(-\lambda)$)
+  ### decompositions
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCPhaseGate.condition_bits" />
+  ### definition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  </Attribute>
 
-Get Clbits in condition.
+  ### duration
 
-<span id="qiskit.circuit.library.MCPhaseGate.ctrl_state" />
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### ctrl\_state
+  ### label
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCPhaseGate.decompositions" />
+  ### name
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+    > \<original\_name\_o\<ctrl\_state>
 
-<span id="qiskit.circuit.library.MCPhaseGate.definition" />
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
 
-### definition
+  ### num\_clbits
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCPhaseGate.duration" />
+  ### num\_ctrl\_qubits
 
-### duration
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-Get the duration.
+    **Returns**
 
-<span id="qiskit.circuit.library.MCPhaseGate.label" />
+    The number of control qubits for the gate.
 
-### label
+    **Return type**
 
-Return instruction label
+    int
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCPhaseGate.name" />
+  ### num\_qubits
 
-### name
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Get name of gate. If the gate has open controls the gate name will become:
+  ### params
 
-> \<original\_name\_o\<ctrl\_state>
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.params" name="params">
+    Get parameters from base\_gate.
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+    **Returns**
 
-<span id="qiskit.circuit.library.MCPhaseGate.num_clbits" />
+    List of gate parameters.
 
-### num\_clbits
+    **Return type**
 
-Return the number of clbits.
+    list
 
-<span id="qiskit.circuit.library.MCPhaseGate.num_ctrl_qubits" />
+    **Raises**
 
-### num\_ctrl\_qubits
+    **CircuitError** – Controlled gate does not define a base gate
+  </Attribute>
 
-Get number of control qubits.
+  ### unit
 
-**Returns**
-
-The number of control qubits for the gate.
-
-**Return type**
-
-int
-
-<span id="qiskit.circuit.library.MCPhaseGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.MCPhaseGate.params" />
-
-### params
-
-Get parameters from base\_gate.
-
-**Returns**
-
-List of gate parameters.
-
-**Return type**
-
-list
-
-**Raises**
-
-**CircuitError** – Controlled gate does not define a base gate
-
-<span id="qiskit.circuit.library.MCPhaseGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

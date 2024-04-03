@@ -8,88 +8,78 @@ python_api_name: qiskit.algorithms.NumPyMinimumEigensolver
 
 # qiskit.algorithms.NumPyMinimumEigensolver
 
-<span id="qiskit.algorithms.NumPyMinimumEigensolver" />
+<Class id="qiskit.algorithms.NumPyMinimumEigensolver" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/minimum_eigen_solvers/numpy_minimum_eigen_solver.py" signature="NumPyMinimumEigensolver(filter_criterion=None)">
+  The Numpy Minimum Eigensolver algorithm.
 
-`NumPyMinimumEigensolver(filter_criterion=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/minimum_eigen_solvers/numpy_minimum_eigen_solver.py "view source code")
+  **Parameters**
 
-The Numpy Minimum Eigensolver algorithm.
+  **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
+  <Function id="qiskit.algorithms.NumPyMinimumEigensolver.__init__" name="__init__" signature="__init__(filter_criterion=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
+  </Function>
 
-<span id="qiskit.algorithms.NumPyMinimumEigensolver.__init__" />
+  ## Methods
 
-`__init__(filter_criterion=None)`
+  |                                                                                                                                                                                              |                                                                                                                                    |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.NumPyMinimumEigensolver.__init__ "qiskit.algorithms.NumPyMinimumEigensolver.__init__")(\[filter\_criterion])                                                 | **type filter\_criterion**`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]] |
+  | [`compute_minimum_eigenvalue`](#qiskit.algorithms.NumPyMinimumEigensolver.compute_minimum_eigenvalue "qiskit.algorithms.NumPyMinimumEigensolver.compute_minimum_eigenvalue")(operator\[, …]) | Computes minimum eigenvalue.                                                                                                       |
+  | [`supports_aux_operators`](#qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators "qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators")()                           | Whether computing the expectation value of auxiliary operators is supported.                                                       |
 
-**Parameters**
+  ## Attributes
 
-**filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
+  |                                                                                                                                                |                                     |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+  | [`filter_criterion`](#qiskit.algorithms.NumPyMinimumEigensolver.filter_criterion "qiskit.algorithms.NumPyMinimumEigensolver.filter_criterion") | returns the filter criterion if set |
 
-## Methods
+  ### compute\_minimum\_eigenvalue
 
-|                                                                                                                                                                                              |                                                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.NumPyMinimumEigensolver.__init__ "qiskit.algorithms.NumPyMinimumEigensolver.__init__")(\[filter\_criterion])                                                 | **type filter\_criterion**`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]] |
-| [`compute_minimum_eigenvalue`](#qiskit.algorithms.NumPyMinimumEigensolver.compute_minimum_eigenvalue "qiskit.algorithms.NumPyMinimumEigensolver.compute_minimum_eigenvalue")(operator\[, …]) | Computes minimum eigenvalue.                                                                                                       |
-| [`supports_aux_operators`](#qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators "qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators")()                           | Whether computing the expectation value of auxiliary operators is supported.                                                       |
+  <Function id="qiskit.algorithms.NumPyMinimumEigensolver.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="compute_minimum_eigenvalue(operator, aux_operators=None)">
+    Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                                |                                     |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| [`filter_criterion`](#qiskit.algorithms.NumPyMinimumEigensolver.filter_criterion "qiskit.algorithms.NumPyMinimumEigensolver.filter_criterion") | returns the filter criterion if set |
+    *   **operator** (`OperatorBase`) – Qubit operator of the Observable
+    *   **aux\_operators** (`Optional`\[`List`\[`Optional`\[`OperatorBase`]]]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
 
-### compute\_minimum\_eigenvalue
+    **Return type**
 
-<span id="qiskit.algorithms.NumPyMinimumEigensolver.compute_minimum_eigenvalue" />
+    `MinimumEigensolverResult`
 
-`compute_minimum_eigenvalue(operator, aux_operators=None)`
+    **Returns**
 
-Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
+    MinimumEigensolverResult
+  </Function>
 
-**Parameters**
+  ### filter\_criterion
 
-*   **operator** (`OperatorBase`) – Qubit operator of the Observable
-*   **aux\_operators** (`Optional`\[`List`\[`Optional`\[`OperatorBase`]]]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
+  <Function id="qiskit.algorithms.NumPyMinimumEigensolver.filter_criterion" name="filter_criterion" signature="property filter_criterion">
+    returns the filter criterion if set
 
-**Return type**
+    **Return type**
 
-`MinimumEigensolverResult`
+    `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
+  </Function>
 
-**Returns**
+  ### supports\_aux\_operators
 
-MinimumEigensolverResult
+  <Function id="qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-### filter\_criterion
+    If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
 
-<span id="qiskit.algorithms.NumPyMinimumEigensolver.filter_criterion" />
+    **Return type**
 
-`property filter_criterion`
+    `bool`
 
-returns the filter criterion if set
+    **Returns**
 
-**Return type**
-
-`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
-
-### supports\_aux\_operators
-
-<span id="qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators" />
-
-`classmethod supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
+    True if aux\_operator expectations can be evaluated, False otherwise
+  </Function>
+</Class>
 

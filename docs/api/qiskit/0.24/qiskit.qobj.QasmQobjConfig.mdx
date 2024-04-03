@@ -10,91 +10,83 @@ python_api_name: qiskit.qobj.QasmQobjConfig
 
 # qiskit.qobj.QasmQobjConfig
 
-<span id="qiskit.qobj.QasmQobjConfig" />
+<Class id="qiskit.qobj.QasmQobjConfig" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/qasm_qobj.py" signature="QasmQobjConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, **kwargs)">
+  A configuration for a QASM Qobj.
 
-`QasmQobjConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/qasm_qobj.py "view source code")
+  Model for RunConfig.
 
-A configuration for a QASM Qobj.
+  **Parameters**
 
-Model for RunConfig.
+  *   **shots** (*int*) – the number of shots.
+  *   **max\_credits** (*int*) – the max\_credits to use on the IBMQ public devices.
+  *   **seed\_simulator** (*int*) – the seed to use in the simulator
+  *   **memory** (*bool*) – whether to request memory from backend (per-shot readouts)
+  *   **parameter\_binds** (*list\[dict]*) – List of parameter bindings
+  *   **memory\_slots** (*int*) – The number of memory slots on the device
+  *   **n\_qubits** (*int*) – The number of qubits on the device
+  *   **pulse\_library** (*list*) – List of [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem").
+  *   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
+  *   **rep\_delay** (*float*) – Delay between programs in sec. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). Must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is `backend.configuration().default_rep_delay`.
+  *   **kwargs** – Additional free form key value fields to add to the configuration.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **shots** (*int*) – the number of shots.
-*   **max\_credits** (*int*) – the max\_credits to use on the IBMQ public devices.
-*   **seed\_simulator** (*int*) – the seed to use in the simulator
-*   **memory** (*bool*) – whether to request memory from backend (per-shot readouts)
-*   **parameter\_binds** (*list\[dict]*) – List of parameter bindings
-*   **memory\_slots** (*int*) – The number of memory slots on the device
-*   **n\_qubits** (*int*) – The number of qubits on the device
-*   **pulse\_library** (*list*) – List of [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem").
-*   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
-*   **rep\_delay** (*float*) – Delay between programs in sec. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). Must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is `backend.configuration().default_rep_delay`.
-*   **kwargs** – Additional free form key value fields to add to the configuration.
+  <Function id="qiskit.qobj.QasmQobjConfig.__init__" name="__init__" signature="__init__(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, **kwargs)">
+    Model for RunConfig.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.qobj.QasmQobjConfig.__init__" />
+    *   **shots** (*int*) – the number of shots.
+    *   **max\_credits** (*int*) – the max\_credits to use on the IBMQ public devices.
+    *   **seed\_simulator** (*int*) – the seed to use in the simulator
+    *   **memory** (*bool*) – whether to request memory from backend (per-shot readouts)
+    *   **parameter\_binds** (*list\[dict]*) – List of parameter bindings
+    *   **memory\_slots** (*int*) – The number of memory slots on the device
+    *   **n\_qubits** (*int*) – The number of qubits on the device
+    *   **pulse\_library** (*list*) – List of [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem").
+    *   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
+    *   **rep\_delay** (*float*) – Delay between programs in sec. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). Must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is `backend.configuration().default_rep_delay`.
+    *   **kwargs** – Additional free form key value fields to add to the configuration.
+  </Function>
 
-`__init__(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, **kwargs)`
+  ## Methods
 
-Model for RunConfig.
+  |                                                                                                                     |                                                                    |
+  | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.qobj.QasmQobjConfig.__init__ "qiskit.qobj.QasmQobjConfig.__init__")(\[shots, max\_credits, …]) | Model for RunConfig.                                               |
+  | [`from_dict`](#qiskit.qobj.QasmQobjConfig.from_dict "qiskit.qobj.QasmQobjConfig.from_dict")(data)                   | Create a new QasmQobjConfig object from a dictionary.              |
+  | [`to_dict`](#qiskit.qobj.QasmQobjConfig.to_dict "qiskit.qobj.QasmQobjConfig.to_dict")()                             | Return a dictionary format representation of the QASM Qobj config. |
 
-**Parameters**
+  ### from\_dict
 
-*   **shots** (*int*) – the number of shots.
-*   **max\_credits** (*int*) – the max\_credits to use on the IBMQ public devices.
-*   **seed\_simulator** (*int*) – the seed to use in the simulator
-*   **memory** (*bool*) – whether to request memory from backend (per-shot readouts)
-*   **parameter\_binds** (*list\[dict]*) – List of parameter bindings
-*   **memory\_slots** (*int*) – The number of memory slots on the device
-*   **n\_qubits** (*int*) – The number of qubits on the device
-*   **pulse\_library** (*list*) – List of [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem").
-*   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
-*   **rep\_delay** (*float*) – Delay between programs in sec. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). Must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is `backend.configuration().default_rep_delay`.
-*   **kwargs** – Additional free form key value fields to add to the configuration.
+  <Function id="qiskit.qobj.QasmQobjConfig.from_dict" name="from_dict" signature="classmethod from_dict(data)">
+    Create a new QasmQobjConfig object from a dictionary.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                     |                                                                    |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [`__init__`](#qiskit.qobj.QasmQobjConfig.__init__ "qiskit.qobj.QasmQobjConfig.__init__")(\[shots, max\_credits, …]) | Model for RunConfig.                                               |
-| [`from_dict`](#qiskit.qobj.QasmQobjConfig.from_dict "qiskit.qobj.QasmQobjConfig.from_dict")(data)                   | Create a new QasmQobjConfig object from a dictionary.              |
-| [`to_dict`](#qiskit.qobj.QasmQobjConfig.to_dict "qiskit.qobj.QasmQobjConfig.to_dict")()                             | Return a dictionary format representation of the QASM Qobj config. |
+    **data** (*dict*) – A dictionary for the config
 
-### from\_dict
+    **Returns**
 
-<span id="qiskit.qobj.QasmQobjConfig.from_dict" />
+    The object from the input dictionary.
 
-`classmethod from_dict(data)`
+    **Return type**
 
-Create a new QasmQobjConfig object from a dictionary.
+    [QasmQobjConfig](#qiskit.qobj.QasmQobjConfig "qiskit.qobj.QasmQobjConfig")
+  </Function>
 
-**Parameters**
+  ### to\_dict
 
-**data** (*dict*) – A dictionary for the config
+  <Function id="qiskit.qobj.QasmQobjConfig.to_dict" name="to_dict" signature="to_dict()">
+    Return a dictionary format representation of the QASM Qobj config.
 
-**Returns**
+    **Returns**
 
-The object from the input dictionary.
+    The dictionary form of the QasmQobjConfig.
 
-**Return type**
+    **Return type**
 
-[QasmQobjConfig](#qiskit.qobj.QasmQobjConfig "qiskit.qobj.QasmQobjConfig")
-
-### to\_dict
-
-<span id="qiskit.qobj.QasmQobjConfig.to_dict" />
-
-`to_dict()`
-
-Return a dictionary format representation of the QASM Qobj config.
-
-**Returns**
-
-The dictionary form of the QasmQobjConfig.
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 

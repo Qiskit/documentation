@@ -10,102 +10,94 @@ python_api_name: qiskit.qobj.PulseQobj
 
 # qiskit.qobj.PulseQobj
 
-<span id="qiskit.qobj.PulseQobj" />
+<Class id="qiskit.qobj.PulseQobj" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/pulse_qobj.py" signature="PulseQobj(qobj_id, config, experiments, header=None)">
+  A Pulse Qobj.
 
-`PulseQobj(qobj_id, config, experiments, header=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/pulse_qobj.py "view source code")
+  Instatiate a new Pulse Qobj Object.
 
-A Pulse Qobj.
+  Each Pulse Qobj object is used to represent a single payload that will be passed to a Qiskit provider. It mirrors the Qobj the published [Qobj specification](https://arxiv.org/abs/1809.03452) for Pulse experiments.
 
-Instatiate a new Pulse Qobj Object.
+  **Parameters**
 
-Each Pulse Qobj object is used to represent a single payload that will be passed to a Qiskit provider. It mirrors the Qobj the published [Qobj specification](https://arxiv.org/abs/1809.03452) for Pulse experiments.
+  *   **qobj\_id** (*str*) – An identifier for the qobj
+  *   **config** ([*PulseQobjConfig*](qiskit.qobj.PulseQobjConfig "qiskit.qobj.PulseQobjConfig")) – A config for the entire run
+  *   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
+  *   **experiments** (*list*) – A list of lists of [`PulseQobjExperiment`](qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment") objects representing an experiment
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **qobj\_id** (*str*) – An identifier for the qobj
-*   **config** ([*PulseQobjConfig*](qiskit.qobj.PulseQobjConfig "qiskit.qobj.PulseQobjConfig")) – A config for the entire run
-*   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
-*   **experiments** (*list*) – A list of lists of [`PulseQobjExperiment`](qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment") objects representing an experiment
+  <Function id="qiskit.qobj.PulseQobj.__init__" name="__init__" signature="__init__(qobj_id, config, experiments, header=None)">
+    Instatiate a new Pulse Qobj Object.
 
-### \_\_init\_\_
+    Each Pulse Qobj object is used to represent a single payload that will be passed to a Qiskit provider. It mirrors the Qobj the published [Qobj specification](https://arxiv.org/abs/1809.03452) for Pulse experiments.
 
-<span id="qiskit.qobj.PulseQobj.__init__" />
+    **Parameters**
 
-`__init__(qobj_id, config, experiments, header=None)`
+    *   **qobj\_id** (*str*) – An identifier for the qobj
+    *   **config** ([*PulseQobjConfig*](qiskit.qobj.PulseQobjConfig "qiskit.qobj.PulseQobjConfig")) – A config for the entire run
+    *   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
+    *   **experiments** (*list*) – A list of lists of [`PulseQobjExperiment`](qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment") objects representing an experiment
+  </Function>
 
-Instatiate a new Pulse Qobj Object.
+  ## Methods
 
-Each Pulse Qobj object is used to represent a single payload that will be passed to a Qiskit provider. It mirrors the Qobj the published [Qobj specification](https://arxiv.org/abs/1809.03452) for Pulse experiments.
+  |                                                                                                                          |                                                              |
+  | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+  | [`__init__`](#qiskit.qobj.PulseQobj.__init__ "qiskit.qobj.PulseQobj.__init__")(qobj\_id, config, experiments\[, header]) | Instatiate a new Pulse Qobj Object.                          |
+  | [`from_dict`](#qiskit.qobj.PulseQobj.from_dict "qiskit.qobj.PulseQobj.from_dict")(data)                                  | Create a new PulseQobj object from a dictionary.             |
+  | [`to_dict`](#qiskit.qobj.PulseQobj.to_dict "qiskit.qobj.PulseQobj.to_dict")(\[validate])                                 | Return a dictionary format representation of the Pulse Qobj. |
 
-**Parameters**
+  ### from\_dict
 
-*   **qobj\_id** (*str*) – An identifier for the qobj
-*   **config** ([*PulseQobjConfig*](qiskit.qobj.PulseQobjConfig "qiskit.qobj.PulseQobjConfig")) – A config for the entire run
-*   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
-*   **experiments** (*list*) – A list of lists of [`PulseQobjExperiment`](qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment") objects representing an experiment
+  <Function id="qiskit.qobj.PulseQobj.from_dict" name="from_dict" signature="classmethod from_dict(data)">
+    Create a new PulseQobj object from a dictionary.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                          |                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
-| [`__init__`](#qiskit.qobj.PulseQobj.__init__ "qiskit.qobj.PulseQobj.__init__")(qobj\_id, config, experiments\[, header]) | Instatiate a new Pulse Qobj Object.                          |
-| [`from_dict`](#qiskit.qobj.PulseQobj.from_dict "qiskit.qobj.PulseQobj.from_dict")(data)                                  | Create a new PulseQobj object from a dictionary.             |
-| [`to_dict`](#qiskit.qobj.PulseQobj.to_dict "qiskit.qobj.PulseQobj.to_dict")(\[validate])                                 | Return a dictionary format representation of the Pulse Qobj. |
+    **data** (*dict*) – A dictionary representing the PulseQobj to create. It will be in the same format as output by [`to_dict()`](#qiskit.qobj.PulseQobj.to_dict "qiskit.qobj.PulseQobj.to_dict").
 
-### from\_dict
+    **Returns**
 
-<span id="qiskit.qobj.PulseQobj.from_dict" />
+    The PulseQobj from the input dictionary.
 
-`classmethod from_dict(data)`
+    **Return type**
 
-Create a new PulseQobj object from a dictionary.
+    [PulseQobj](#qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj")
+  </Function>
 
-**Parameters**
+  ### to\_dict
 
-**data** (*dict*) – A dictionary representing the PulseQobj to create. It will be in the same format as output by [`to_dict()`](#qiskit.qobj.PulseQobj.to_dict "qiskit.qobj.PulseQobj.to_dict").
+  <Function id="qiskit.qobj.PulseQobj.to_dict" name="to_dict" signature="to_dict(validate=False)">
+    Return a dictionary format representation of the Pulse Qobj.
 
-**Returns**
+    Note this dict is not in the json wire format expected by IBMQ and qobj specification because complex numbers are still of type complex. Also this may contain native numpy arrays. When serializing this output for use with IBMQ you can leverage a json encoder that converts these as expected. For example:
 
-The PulseQobj from the input dictionary.
+    ```python
+    import json
+    import numpy
 
-**Return type**
+    class QobjEncoder(json.JSONEncoder):
+        def default(self, obj):
+            if isinstance(obj, numpy.ndarray):
+                return obj.tolist()
+            if isinstance(obj, complex):
+                return (obj.real, obj.imag)
+            return json.JSONEncoder.default(self, obj)
 
-[PulseQobj](#qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj")
+    json.dumps(qobj.to_dict(), cls=QobjEncoder)
+    ```
 
-### to\_dict
+    **Parameters**
 
-<span id="qiskit.qobj.PulseQobj.to_dict" />
+    **validate** (*bool*) – When set to true validate the output dictionary against the jsonschema for qobj spec.
 
-`to_dict(validate=False)`
+    **Returns**
 
-Return a dictionary format representation of the Pulse Qobj.
+    A dictionary representation of the PulseQobj object
 
-Note this dict is not in the json wire format expected by IBMQ and qobj specification because complex numbers are still of type complex. Also this may contain native numpy arrays. When serializing this output for use with IBMQ you can leverage a json encoder that converts these as expected. For example:
+    **Return type**
 
-```python
-import json
-import numpy
-
-class QobjEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, numpy.ndarray):
-            return obj.tolist()
-        if isinstance(obj, complex):
-            return (obj.real, obj.imag)
-        return json.JSONEncoder.default(self, obj)
-
-json.dumps(qobj.to_dict(), cls=QobjEncoder)
-```
-
-**Parameters**
-
-**validate** (*bool*) – When set to true validate the output dictionary against the jsonschema for qobj spec.
-
-**Returns**
-
-A dictionary representation of the PulseQobj object
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 

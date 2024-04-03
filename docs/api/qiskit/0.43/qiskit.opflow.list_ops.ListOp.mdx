@@ -8,555 +8,507 @@ python_api_name: qiskit.opflow.list_ops.ListOp
 
 # ListOp
 
-<span id="qiskit.opflow.list_ops.ListOp" />
+<Class id="qiskit.opflow.list_ops.ListOp" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/list_op.py" signature="ListOp(oplist, combo_fn=None, coeff=1.0, abelian=False, grad_combo_fn=None)">
+  Bases: [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 
-`ListOp(oplist, combo_fn=None, coeff=1.0, abelian=False, grad_combo_fn=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/list_op.py "view source code")
+  Deprecated: A Class for manipulating List Operators, and parent class to `SummedOp`, `ComposedOp` and `TensoredOp`.
 
-Bases: [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  List Operators are classes for storing and manipulating lists of Operators, State functions, or Measurements, and include some rule or `combo_fn` defining how the Operator functions of the list constituents should be combined to form to cumulative Operator function of the `ListOp`. For example, a `SummedOp` has an addition-based `combo_fn`, so once the Operators in its list are evaluated against some bitstring to produce a list of results, we know to add up those results to produce the final result of the `SummedOp`’s evaluation. In theory, this `combo_fn` can be any function over classical complex values, but for convenience we’ve chosen for them to be defined over NumPy arrays and values. This way, large numbers of evaluations, such as after calling `to_matrix` on the list constituents, can be efficiently combined. While the combination function is defined over classical values, it should be understood as the operation by which each Operators’ underlying function is combined to form the underlying Operator function of the `ListOp`. In this way, the `ListOps` are the basis for constructing large and sophisticated Operators, State Functions, and Measurements.
 
-Deprecated: A Class for manipulating List Operators, and parent class to `SummedOp`, `ComposedOp` and `TensoredOp`.
+  The base `ListOp` class is particularly interesting, as its `combo_fn` is “the identity list Operation”. Meaning, if we understand the `combo_fn` as a function from a list of complex values to some output, one such function is returning the list as-is. This is powerful for constructing compact hierarchical Operators which return many measurements in multiple dimensional lists.
 
-List Operators are classes for storing and manipulating lists of Operators, State functions, or Measurements, and include some rule or `combo_fn` defining how the Operator functions of the list constituents should be combined to form to cumulative Operator function of the `ListOp`. For example, a `SummedOp` has an addition-based `combo_fn`, so once the Operators in its list are evaluated against some bitstring to produce a list of results, we know to add up those results to produce the final result of the `SummedOp`’s evaluation. In theory, this `combo_fn` can be any function over classical complex values, but for convenience we’ve chosen for them to be defined over NumPy arrays and values. This way, large numbers of evaluations, such as after calling `to_matrix` on the list constituents, can be efficiently combined. While the combination function is defined over classical values, it should be understood as the operation by which each Operators’ underlying function is combined to form the underlying Operator function of the `ListOp`. In this way, the `ListOps` are the basis for constructing large and sophisticated Operators, State Functions, and Measurements.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.list_ops.list_op.ListOp` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-The base `ListOp` class is particularly interesting, as its `combo_fn` is “the identity list Operation”. Meaning, if we understand the `combo_fn` as a function from a list of complex values to some output, one such function is returning the list as-is. This is powerful for constructing compact hierarchical Operators which return many measurements in multiple dimensional lists.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.list_ops.list_op.ListOp` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  *   **oplist** (*Sequence\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")*]*) – The list of `OperatorBases` defining this Operator’s underlying function.
+  *   **combo\_fn** (*Callable | None*) – The recombination function to combine classical results of the `oplist` Operators’ eval functions (e.g. sum). Default is lambda x: x.
+  *   **coeff** (*complex |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – A coefficient multiplying the operator
+  *   **abelian** (*bool*) – Indicates whether the Operators in `oplist` are known to mutually commute.
+  *   **grad\_combo\_fn** (*Callable | None*) – The gradient of recombination function. If None, the gradient will be computed automatically.
+  *   **the** (*Note that the default "recombination function" lambda above is essentially*) –
+  *   **values** (*identity - it accepts the list of*) –
+  *   **list.** (*and returns them in a*) –
 
-**Parameters**
+  ## Methods Defined Here
 
-*   **oplist** (*Sequence\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")*]*) – The list of `OperatorBases` defining this Operator’s underlying function.
-*   **combo\_fn** (*Callable | None*) – The recombination function to combine classical results of the `oplist` Operators’ eval functions (e.g. sum). Default is lambda x: x.
-*   **coeff** (*complex |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – A coefficient multiplying the operator
-*   **abelian** (*bool*) – Indicates whether the Operators in `oplist` are known to mutually commute.
-*   **grad\_combo\_fn** (*Callable | None*) – The gradient of recombination function. If None, the gradient will be computed automatically.
-*   **the** (*Note that the default "recombination function" lambda above is essentially*) –
-*   **values** (*identity - it accepts the list of*) –
-*   **list.** (*and returns them in a*) –
+  <span id="qiskit-opflow-list-ops-listop-add" />
 
-## Methods Defined Here
+  ### add
 
-<span id="qiskit-opflow-list-ops-listop-add" />
+  <Function id="qiskit.opflow.list_ops.ListOp.add" name="add" signature="ListOp.add(other)">
+    Return Operator addition of self and other, overloaded by `+`.
 
-### add
+    **Parameters**
 
-<span id="qiskit.opflow.list_ops.ListOp.add" />
+    **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
 
-`ListOp.add(other)`
+    **Returns**
 
-Return Operator addition of self and other, overloaded by `+`.
+    An `OperatorBase` equivalent to the sum of self and other.
 
-**Parameters**
+    **Return type**
 
-**other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
+    [*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+  </Function>
 
-**Returns**
+  <span id="qiskit-opflow-list-ops-listop-adjoint" />
 
-An `OperatorBase` equivalent to the sum of self and other.
+  ### adjoint
 
-**Return type**
+  <Function id="qiskit.opflow.list_ops.ListOp.adjoint" name="adjoint" signature="ListOp.adjoint()">
+    Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
-[*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+    **Returns**
 
-<span id="qiskit-opflow-list-ops-listop-adjoint" />
+    An `OperatorBase` equivalent to the adjoint of self.
 
-### adjoint
+    **Return type**
 
-<span id="qiskit.opflow.list_ops.ListOp.adjoint" />
+    [*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+  </Function>
 
-`ListOp.adjoint()`
+  <span id="qiskit-opflow-list-ops-listop-assign-parameters" />
 
-Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
+  ### assign\_parameters
 
-**Returns**
+  <Function id="qiskit.opflow.list_ops.ListOp.assign_parameters" name="assign_parameters" signature="ListOp.assign_parameters(param_dict)">
+    Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
 
-An `OperatorBase` equivalent to the adjoint of self.
+    **Parameters**
 
-**Return type**
+    **param\_dict** (*dict*) – The dictionary of `Parameters` to replace, and values or lists of values by which to replace them.
 
-[*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+    **Returns**
 
-<span id="qiskit-opflow-list-ops-listop-assign-parameters" />
+    The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
 
-### assign\_parameters
+    **Return type**
 
-<span id="qiskit.opflow.list_ops.ListOp.assign_parameters" />
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-`ListOp.assign_parameters(param_dict)`
+  <span id="qiskit-opflow-list-ops-listop-compose" />
 
-Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
+  ### compose
 
-**Parameters**
+  <Function id="qiskit.opflow.list_ops.ListOp.compose" name="compose" signature="ListOp.compose(other, permutation=None, front=False)">
+    Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
 
-**param\_dict** (*dict*) – The dictionary of `Parameters` to replace, and values or lists of values by which to replace them.
+    Note: You must be conscious of Quantum Circuit vs. Linear Algebra ordering conventions. Meaning, X.compose(Y) produces an X∘Y on qubit 0, but would produce a QuantumCircuit which looks like
 
-**Returns**
+    > -\[Y]-\[X]-
 
-The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
+    Because Terra prints circuits with the initial state at the left side of the circuit.
 
-**Return type**
+    **Parameters**
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    *   **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` with which to compose self.
+    *   **permutation** (*List\[int] | None*) – `List[int]` which defines permutation on other operator.
+    *   **front** (*bool*) – If front==True, return `other.compose(self)`.
 
-<span id="qiskit-opflow-list-ops-listop-compose" />
+    **Returns**
 
-### compose
+    An `OperatorBase` equivalent to the function composition of self and other.
 
-<span id="qiskit.opflow.list_ops.ListOp.compose" />
+    **Return type**
 
-`ListOp.compose(other, permutation=None, front=False)`
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
+  <span id="qiskit-opflow-list-ops-listop-default-combo-fn" />
 
-Note: You must be conscious of Quantum Circuit vs. Linear Algebra ordering conventions. Meaning, X.compose(Y) produces an X∘Y on qubit 0, but would produce a QuantumCircuit which looks like
+  ### default\_combo\_fn
 
-> -\[Y]-\[X]-
+  <Function id="qiskit.opflow.list_ops.ListOp.default_combo_fn" name="default_combo_fn" signature="static ListOp.default_combo_fn(x)">
+    ListOp default combo function i.e. lambda x: x
 
-Because Terra prints circuits with the initial state at the left side of the circuit.
+    **Return type**
 
-**Parameters**
+    *Any*
+  </Function>
 
-*   **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` with which to compose self.
-*   **permutation** (*List\[int] | None*) – `List[int]` which defines permutation on other operator.
-*   **front** (*bool*) – If front==True, return `other.compose(self)`.
+  <span id="qiskit-opflow-list-ops-listop-equals" />
 
-**Returns**
+  ### equals
 
-An `OperatorBase` equivalent to the function composition of self and other.
+  <Function id="qiskit.opflow.list_ops.ListOp.equals" name="equals" signature="ListOp.equals(other)">
+    Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
-**Return type**
+    **Parameters**
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to compare to self.
 
-<span id="qiskit-opflow-list-ops-listop-default-combo-fn" />
+    **Returns**
 
-### default\_combo\_fn
+    A bool equal to the equality of self and other.
 
-<span id="qiskit.opflow.list_ops.ListOp.default_combo_fn" />
+    **Return type**
 
-`static ListOp.default_combo_fn(x)`
+    bool
+  </Function>
 
-ListOp default combo function i.e. lambda x: x
+  <span id="qiskit-opflow-list-ops-listop-eval" />
 
-**Return type**
+  ### eval
 
-*Any*
+  <Function id="qiskit.opflow.list_ops.ListOp.eval" name="eval" signature="ListOp.eval(front=None)">
+    Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
-<span id="qiskit-opflow-list-ops-listop-equals" />
+    ListOp’s eval recursively evaluates each Operator in `oplist`, and combines the results using the recombination function `combo_fn`.
 
-### equals
+    **Parameters**
 
-<span id="qiskit.opflow.list_ops.ListOp.equals" />
+    **front** (*str | Dict\[str, complex] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")  *|*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector") *| None*) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function.
 
-`ListOp.equals(other)`
+    **Returns**
 
-Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
+    The output of the `oplist` Operators’ evaluation function, combined with the `combo_fn`. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
 
-**Parameters**
+    **Raises**
 
-**other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to compare to self.
+    *   **NotImplementedError** – Raised if called for a subclass which is not distributive.
+    *   **TypeError** – Operators with mixed hierarchies, such as a ListOp containing both PrimitiveOps and ListOps, are not supported.
+    *   **NotImplementedError** – Attempting to call ListOp’s eval from a non-distributive subclass.
 
-**Returns**
+    **Return type**
 
-A bool equal to the equality of self and other.
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") | complex
+  </Function>
 
-**Return type**
+  <span id="qiskit-opflow-list-ops-listop-exp-i" />
 
-bool
+  ### exp\_i
 
-<span id="qiskit-opflow-list-ops-listop-eval" />
+  <Function id="qiskit.opflow.list_ops.ListOp.exp_i" name="exp_i" signature="ListOp.exp_i()">
+    Return an `OperatorBase` equivalent to an exponentiation of self \* -i, e^(-i\*op).
 
-### eval
+    **Return type**
 
-<span id="qiskit.opflow.list_ops.ListOp.eval" />
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-`ListOp.eval(front=None)`
+  <span id="qiskit-opflow-list-ops-listop-log-i" />
 
-Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
+  ### log\_i
 
-ListOp’s eval recursively evaluates each Operator in `oplist`, and combines the results using the recombination function `combo_fn`.
+  <Function id="qiskit.opflow.list_ops.ListOp.log_i" name="log_i" signature="ListOp.log_i(massive=False)">
+    Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function is the effective inverse of exp\_i, equivalent to finding the Hermitian Operator which produces self when exponentiated. For proper ListOps, applies `log_i` to all ops in oplist.
 
-**Parameters**
+    **Return type**
 
-**front** (*str | Dict\[str, complex] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")  *|*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector") *| None*) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function.
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-**Returns**
+  <span id="qiskit-opflow-list-ops-listop-mul" />
 
-The output of the `oplist` Operators’ evaluation function, combined with the `combo_fn`. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
+  ### mul
 
-**Raises**
+  <Function id="qiskit.opflow.list_ops.ListOp.mul" name="mul" signature="ListOp.mul(scalar)">
+    Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
 
-*   **NotImplementedError** – Raised if called for a subclass which is not distributive.
-*   **TypeError** – Operators with mixed hierarchies, such as a ListOp containing both PrimitiveOps and ListOps, are not supported.
-*   **NotImplementedError** – Attempting to call ListOp’s eval from a non-distributive subclass.
+    **Parameters**
 
-**Return type**
+    **scalar** (*complex |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") | complex
+    **Returns**
 
-<span id="qiskit-opflow-list-ops-listop-exp-i" />
+    An `OperatorBase` equivalent to product of self and scalar.
 
-### exp\_i
+    **Return type**
 
-<span id="qiskit.opflow.list_ops.ListOp.exp_i" />
+    [*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+  </Function>
 
-`ListOp.exp_i()`
+  <span id="qiskit-opflow-list-ops-listop-permute" />
 
-Return an `OperatorBase` equivalent to an exponentiation of self \* -i, e^(-i\*op).
+  ### permute
 
-**Return type**
+  <Function id="qiskit.opflow.list_ops.ListOp.permute" name="permute" signature="ListOp.permute(permutation)">
+    Permute the qubits of the operator.
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **Parameters**
 
-<span id="qiskit-opflow-list-ops-listop-log-i" />
+    **permutation** (*List\[int]*) – A list defining where each qubit should be permuted. The qubit at index j should be permuted to position permutation\[j].
 
-### log\_i
+    **Returns**
 
-<span id="qiskit.opflow.list_ops.ListOp.log_i" />
+    A new ListOp representing the permuted operator.
 
-`ListOp.log_i(massive=False)`
+    **Raises**
 
-Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function is the effective inverse of exp\_i, equivalent to finding the Hermitian Operator which produces self when exponentiated. For proper ListOps, applies `log_i` to all ops in oplist.
+    [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if indices do not define a new index for each qubit.
 
-**Return type**
+    **Return type**
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-<span id="qiskit-opflow-list-ops-listop-mul" />
+  <span id="qiskit-opflow-list-ops-listop-power" />
 
-### mul
+  ### power
 
-<span id="qiskit.opflow.list_ops.ListOp.mul" />
+  <Function id="qiskit.opflow.list_ops.ListOp.power" name="power" signature="ListOp.power(exponent)">
+    Return Operator composed with self multiple times, overloaded by `**`.
 
-`ListOp.mul(scalar)`
+    **Return type**
 
-Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-**Parameters**
+  <span id="qiskit-opflow-list-ops-listop-primitive-strings" />
 
-**scalar** (*complex |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
+  ### primitive\_strings
 
-**Returns**
+  <Function id="qiskit.opflow.list_ops.ListOp.primitive_strings" name="primitive_strings" signature="ListOp.primitive_strings()">
+    Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
-An `OperatorBase` equivalent to product of self and scalar.
+    **Returns**
 
-**Return type**
+    A set of strings describing the primitives contained within the Operator.
 
-[*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+    **Return type**
 
-<span id="qiskit-opflow-list-ops-listop-permute" />
+    *Set*\[str]
+  </Function>
 
-### permute
+  <span id="qiskit-opflow-list-ops-listop-reduce" />
 
-<span id="qiskit.opflow.list_ops.ListOp.permute" />
+  ### reduce
 
-`ListOp.permute(permutation)`
+  <Function id="qiskit.opflow.list_ops.ListOp.reduce" name="reduce" signature="ListOp.reduce()">
+    Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
-Permute the qubits of the operator.
+    **Returns**
 
-**Parameters**
+    The reduced `OperatorBase`.
 
-**permutation** (*List\[int]*) – A list defining where each qubit should be permuted. The qubit at index j should be permuted to position permutation\[j].
+    **Return type**
 
-**Returns**
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-A new ListOp representing the permuted operator.
+  <span id="qiskit-opflow-list-ops-listop-tensor" />
 
-**Raises**
+  ### tensor
 
-[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if indices do not define a new index for each qubit.
+  <Function id="qiskit.opflow.list_ops.ListOp.tensor" name="tensor" signature="ListOp.tensor(other)">
+    Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
-**Return type**
+    > -\[Y]- -\[X]-
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
 
-<span id="qiskit-opflow-list-ops-listop-power" />
+    **Parameters**
 
-### power
+    **other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to tensor product with self.
 
-<span id="qiskit.opflow.list_ops.ListOp.power" />
+    **Returns**
 
-`ListOp.power(exponent)`
+    An `OperatorBase` equivalent to the tensor product of self and other.
 
-Return Operator composed with self multiple times, overloaded by `**`.
+    **Return type**
 
-**Return type**
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  <span id="qiskit-opflow-list-ops-listop-tensorpower" />
 
-<span id="qiskit-opflow-list-ops-listop-primitive-strings" />
+  ### tensorpower
 
-### primitive\_strings
+  <Function id="qiskit.opflow.list_ops.ListOp.tensorpower" name="tensorpower" signature="ListOp.tensorpower(other)">
+    Return tensor product with self multiple times, overloaded by `^`.
 
-<span id="qiskit.opflow.list_ops.ListOp.primitive_strings" />
+    **Parameters**
 
-`ListOp.primitive_strings()`
+    **other** (*int*) – The int number of times to tensor product self with itself via `tensorpower`.
 
-Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
+    **Returns**
 
-**Returns**
+    An `OperatorBase` equivalent to the tensorpower of self by other.
 
-A set of strings describing the primitives contained within the Operator.
+    **Return type**
 
-**Return type**
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") | int
+  </Function>
 
-*Set*\[str]
+  <span id="qiskit-opflow-list-ops-listop-to-circuit-op" />
 
-<span id="qiskit-opflow-list-ops-listop-reduce" />
+  ### to\_circuit\_op
 
-### reduce
+  <Function id="qiskit.opflow.list_ops.ListOp.to_circuit_op" name="to_circuit_op" signature="ListOp.to_circuit_op()">
+    Returns an equivalent Operator composed of only QuantumCircuit-based primitives, such as `CircuitOp` and `CircuitStateFn`.
 
-<span id="qiskit.opflow.list_ops.ListOp.reduce" />
+    **Return type**
 
-`ListOp.reduce()`
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
+  <span id="qiskit-opflow-list-ops-listop-to-matrix" />
 
-**Returns**
+  ### to\_matrix
 
-The reduced `OperatorBase`.
+  <Function id="qiskit.opflow.list_ops.ListOp.to_matrix" name="to_matrix" signature="ListOp.to_matrix(massive=False)">
+    Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
-**Return type**
+    **Returns**
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    The NumPy `ndarray` equivalent to this Operator.
 
-<span id="qiskit-opflow-list-ops-listop-tensor" />
+    **Return type**
 
-### tensor
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
+  </Function>
 
-<span id="qiskit.opflow.list_ops.ListOp.tensor" />
+  <span id="qiskit-opflow-list-ops-listop-to-matrix-op" />
 
-`ListOp.tensor(other)`
+  ### to\_matrix\_op
 
-Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
+  <Function id="qiskit.opflow.list_ops.ListOp.to_matrix_op" name="to_matrix_op" signature="ListOp.to_matrix_op(massive=False)">
+    Returns an equivalent Operator composed of only NumPy-based primitives, such as `MatrixOp` and `VectorStateFn`.
 
-> -\[Y]- -\[X]-
+    **Return type**
 
-Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
+    [*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+  </Function>
 
-**Parameters**
+  <span id="qiskit-opflow-list-ops-listop-to-pauli-op" />
 
-**other** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to tensor product with self.
+  ### to\_pauli\_op
 
-**Returns**
+  <Function id="qiskit.opflow.list_ops.ListOp.to_pauli_op" name="to_pauli_op" signature="ListOp.to_pauli_op(massive=False)">
+    Returns an equivalent Operator composed of only Pauli-based primitives, such as `PauliOp`.
 
-An `OperatorBase` equivalent to the tensor product of self and other.
+    **Return type**
 
-**Return type**
+    [*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+  </Function>
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  <span id="qiskit-opflow-list-ops-listop-to-spmatrix" />
 
-<span id="qiskit-opflow-list-ops-listop-tensorpower" />
+  ### to\_spmatrix
 
-### tensorpower
+  <Function id="qiskit.opflow.list_ops.ListOp.to_spmatrix" name="to_spmatrix" signature="ListOp.to_spmatrix()">
+    Returns SciPy sparse matrix representation of the Operator.
 
-<span id="qiskit.opflow.list_ops.ListOp.tensorpower" />
+    **Returns**
 
-`ListOp.tensorpower(other)`
+    CSR sparse matrix representation of the Operator, or List thereof.
 
-Return tensor product with self multiple times, overloaded by `^`.
+    **Return type**
 
-**Parameters**
+    *spmatrix* | *List*\[*spmatrix*]
+  </Function>
 
-**other** (*int*) – The int number of times to tensor product self with itself via `tensorpower`.
+  <span id="qiskit-opflow-list-ops-listop-traverse" />
 
-**Returns**
+  ### traverse
 
-An `OperatorBase` equivalent to the tensorpower of self by other.
+  <Function id="qiskit.opflow.list_ops.ListOp.traverse" name="traverse" signature="ListOp.traverse(convert_fn, coeff=None)">
+    Apply the convert\_fn to each node in the oplist.
 
-**Return type**
+    **Parameters**
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") | int
+    *   **convert\_fn** (*Callable*) – The function to apply to the internal OperatorBase.
+    *   **coeff** (*complex |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| None*) – A coefficient to multiply by after applying convert\_fn. If it is None, self.coeff is used instead.
 
-<span id="qiskit-opflow-list-ops-listop-to-circuit-op" />
+    **Returns**
 
-### to\_circuit\_op
+    The converted ListOp.
 
-<span id="qiskit.opflow.list_ops.ListOp.to_circuit_op" />
+    **Return type**
 
-`ListOp.to_circuit_op()`
+    [*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+  </Function>
 
-Returns an equivalent Operator composed of only QuantumCircuit-based primitives, such as `CircuitOp` and `CircuitStateFn`.
+  ## Attributes
 
-**Return type**
+  ### INDENTATION
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  <Attribute id="qiskit.opflow.list_ops.ListOp.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
 
-<span id="qiskit-opflow-list-ops-listop-to-matrix" />
+  ### abelian
 
-### to\_matrix
+  <Attribute id="qiskit.opflow.list_ops.ListOp.abelian" name="abelian">
+    Whether the Operators in `oplist` are known to commute with one another.
 
-<span id="qiskit.opflow.list_ops.ListOp.to_matrix" />
+    **Returns**
 
-`ListOp.to_matrix(massive=False)`
+    A bool indicating whether the `oplist` is Abelian.
+  </Attribute>
 
-Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
+  ### coeff
 
-**Returns**
+  <Attribute id="qiskit.opflow.list_ops.ListOp.coeff" name="coeff">
+    The scalar coefficient multiplying the Operator.
 
-The NumPy `ndarray` equivalent to this Operator.
+    **Returns**
 
-**Return type**
+    The coefficient.
+  </Attribute>
 
-[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
+  ### coeffs
 
-<span id="qiskit-opflow-list-ops-listop-to-matrix-op" />
+  <Attribute id="qiskit.opflow.list_ops.ListOp.coeffs" name="coeffs">
+    Return a list of the coefficients of the operators listed. Raises exception for nested Listops.
+  </Attribute>
 
-### to\_matrix\_op
+  ### combo\_fn
 
-<span id="qiskit.opflow.list_ops.ListOp.to_matrix_op" />
+  <Attribute id="qiskit.opflow.list_ops.ListOp.combo_fn" name="combo_fn">
+    The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
 
-`ListOp.to_matrix_op(massive=False)`
+    **Returns**
 
-Returns an equivalent Operator composed of only NumPy-based primitives, such as `MatrixOp` and `VectorStateFn`.
+    The combination function.
+  </Attribute>
 
-**Return type**
+  ### distributive
 
-[*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+  <Attribute id="qiskit.opflow.list_ops.ListOp.distributive" name="distributive">
+    Indicates whether the ListOp or subclass is distributive under composition. ListOp and SummedOp are, meaning that (opv @ op) = (opv\[0] @ op + opv\[1] @ op) (using plus for SummedOp, list for ListOp, etc.), while ComposedOp and TensoredOp do not behave this way.
 
-<span id="qiskit-opflow-list-ops-listop-to-pauli-op" />
+    **Returns**
 
-### to\_pauli\_op
+    A bool indicating whether the ListOp is distributive under composition.
+  </Attribute>
 
-<span id="qiskit.opflow.list_ops.ListOp.to_pauli_op" />
+  ### grad\_combo\_fn
 
-`ListOp.to_pauli_op(massive=False)`
+  <Attribute id="qiskit.opflow.list_ops.ListOp.grad_combo_fn" name="grad_combo_fn">
+    The gradient of `combo_fn`.
+  </Attribute>
 
-Returns an equivalent Operator composed of only Pauli-based primitives, such as `PauliOp`.
+  ### instance\_id
 
-**Return type**
+  <Attribute id="qiskit.opflow.list_ops.ListOp.instance_id" name="instance_id">
+    Return the unique instance id.
+  </Attribute>
 
-[*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+  ### num\_qubits
 
-<span id="qiskit-opflow-list-ops-listop-to-spmatrix" />
+  <Attribute id="qiskit.opflow.list_ops.ListOp.num_qubits" name="num_qubits" />
 
-### to\_spmatrix
+  ### oplist
 
-<span id="qiskit.opflow.list_ops.ListOp.to_spmatrix" />
+  <Attribute id="qiskit.opflow.list_ops.ListOp.oplist" name="oplist">
+    The list of `OperatorBases` defining the underlying function of this Operator.
 
-`ListOp.to_spmatrix()`
+    **Returns**
 
-Returns SciPy sparse matrix representation of the Operator.
+    The Operators defining the ListOp
+  </Attribute>
 
-**Returns**
+  ### parameters
 
-CSR sparse matrix representation of the Operator, or List thereof.
+  <Attribute id="qiskit.opflow.list_ops.ListOp.parameters" name="parameters" />
 
-**Return type**
+  ### settings
 
-*spmatrix* | *List*\[*spmatrix*]
-
-<span id="qiskit-opflow-list-ops-listop-traverse" />
-
-### traverse
-
-<span id="qiskit.opflow.list_ops.ListOp.traverse" />
-
-`ListOp.traverse(convert_fn, coeff=None)`
-
-Apply the convert\_fn to each node in the oplist.
-
-**Parameters**
-
-*   **convert\_fn** (*Callable*) – The function to apply to the internal OperatorBase.
-*   **coeff** (*complex |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| None*) – A coefficient to multiply by after applying convert\_fn. If it is None, self.coeff is used instead.
-
-**Returns**
-
-The converted ListOp.
-
-**Return type**
-
-[*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
-
-## Attributes
-
-<span id="qiskit.opflow.list_ops.ListOp.INDENTATION" />
-
-### INDENTATION
-
-`= '  '`
-
-<span id="qiskit.opflow.list_ops.ListOp.abelian" />
-
-### abelian
-
-Whether the Operators in `oplist` are known to commute with one another.
-
-**Returns**
-
-A bool indicating whether the `oplist` is Abelian.
-
-<span id="qiskit.opflow.list_ops.ListOp.coeff" />
-
-### coeff
-
-The scalar coefficient multiplying the Operator.
-
-**Returns**
-
-The coefficient.
-
-<span id="qiskit.opflow.list_ops.ListOp.coeffs" />
-
-### coeffs
-
-Return a list of the coefficients of the operators listed. Raises exception for nested Listops.
-
-<span id="qiskit.opflow.list_ops.ListOp.combo_fn" />
-
-### combo\_fn
-
-The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
-
-**Returns**
-
-The combination function.
-
-<span id="qiskit.opflow.list_ops.ListOp.distributive" />
-
-### distributive
-
-Indicates whether the ListOp or subclass is distributive under composition. ListOp and SummedOp are, meaning that (opv @ op) = (opv\[0] @ op + opv\[1] @ op) (using plus for SummedOp, list for ListOp, etc.), while ComposedOp and TensoredOp do not behave this way.
-
-**Returns**
-
-A bool indicating whether the ListOp is distributive under composition.
-
-<span id="qiskit.opflow.list_ops.ListOp.grad_combo_fn" />
-
-### grad\_combo\_fn
-
-The gradient of `combo_fn`.
-
-<span id="qiskit.opflow.list_ops.ListOp.instance_id" />
-
-### instance\_id
-
-Return the unique instance id.
-
-<span id="qiskit.opflow.list_ops.ListOp.num_qubits" />
-
-### num\_qubits
-
-<span id="qiskit.opflow.list_ops.ListOp.oplist" />
-
-### oplist
-
-The list of `OperatorBases` defining the underlying function of this Operator.
-
-**Returns**
-
-The Operators defining the ListOp
-
-<span id="qiskit.opflow.list_ops.ListOp.parameters" />
-
-### parameters
-
-<span id="qiskit.opflow.list_ops.ListOp.settings" />
-
-### settings
-
-Return settings.
+  <Attribute id="qiskit.opflow.list_ops.ListOp.settings" name="settings">
+    Return settings.
+  </Attribute>
+</Class>
 

@@ -8,37 +8,33 @@ python_api_name: qiskit.algorithms.RealEvolver
 
 # RealEvolver
 
-<span id="qiskit.algorithms.RealEvolver" />
+<Class id="qiskit.algorithms.RealEvolver" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/evolvers/real_evolver.py" signature="RealEvolver">
+  Bases: `abc.ABC`
 
-`RealEvolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/evolvers/real_evolver.py "view source code")
+  Pending deprecation: Interface for Quantum Real Time Evolution.
 
-Bases: `abc.ABC`
+  The RealEvolver interface has been superseded by the `qiskit.algorithms.time_evolvers.RealTimeEvolver` interface. This interface will be deprecated in a future release and subsequently removed after that.
 
-Pending deprecation: Interface for Quantum Real Time Evolution.
+  ## Methods
 
-The RealEvolver interface has been superseded by the `qiskit.algorithms.time_evolvers.RealTimeEvolver` interface. This interface will be deprecated in a future release and subsequently removed after that.
+  ### evolve
 
-## Methods
+  <Function id="qiskit.algorithms.RealEvolver.evolve" name="evolve" signature="abstract RealEvolver.evolve(evolution_problem)">
+    Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 
-### evolve
+    Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
-<span id="qiskit.algorithms.RealEvolver.evolve" />
+    **Parameters**
 
-`abstract RealEvolver.evolve(evolution_problem)`
+    **evolution\_problem** ([`EvolutionProblem`](qiskit.algorithms.EvolutionProblem "qiskit.algorithms.evolvers.evolution_problem.EvolutionProblem")) – The definition of the evolution problem.
 
-Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
+    **Return type**
 
-Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+    [`EvolutionResult`](qiskit.algorithms.EvolutionResult "qiskit.algorithms.evolvers.evolution_result.EvolutionResult")
 
-**Parameters**
+    **Returns**
 
-**evolution\_problem** ([`EvolutionProblem`](qiskit.algorithms.EvolutionProblem "qiskit.algorithms.evolvers.evolution_problem.EvolutionProblem")) – The definition of the evolution problem.
-
-**Return type**
-
-[`EvolutionResult`](qiskit.algorithms.EvolutionResult "qiskit.algorithms.evolvers.evolution_result.EvolutionResult")
-
-**Returns**
-
-Evolution result which includes an evolved quantum state.
+    Evolution result which includes an evolved quantum state.
+  </Function>
+</Class>
 

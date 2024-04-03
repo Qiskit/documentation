@@ -8,150 +8,134 @@ python_api_name: qiskit.algorithms.AmplificationProblem
 
 # qiskit.algorithms.AmplificationProblem
 
-<span id="qiskit.algorithms.AmplificationProblem" />
+<Class id="qiskit.algorithms.AmplificationProblem" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_amplifiers/amplification_problem.py" signature="AmplificationProblem(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)">
+  The amplification problem is the input to amplitude amplification algorithms, like Grover.
 
-`AmplificationProblem(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_amplifiers/amplification_problem.py "view source code")
+  This class contains all problem-specific information required to run an amplitude amplification algorithm. It minimally contains the Grover operator. It can further hold some post processing on the optimal bitstring.
 
-The amplification problem is the input to amplitude amplification algorithms, like Grover.
+  **Parameters**
 
-This class contains all problem-specific information required to run an amplitude amplification algorithm. It minimally contains the Grover operator. It can further hold some post processing on the optimal bitstring.
+  *   **oracle** (`QuantumCircuit`) – The oracle reflecting about the bad states.
+  *   **state\_preparation** (`Optional`\[`QuantumCircuit`]) – A circuit preparing the input state, referred to as $\mathcal{A}$. If None, a layer of Hadamard gates is used.
+  *   **grover\_operator** (`Optional`\[`QuantumCircuit`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit. If None, this operator is constructed from the `oracle` and `state_preparation`.
+  *   **post\_processing** (`Optional`\[`Callable`\[\[`str`], `Any`]]) – A mapping applied to the most likely bitstring.
+  *   **objective\_qubits** (`Union`\[`int`, `List`\[`int`], `None`]) – If set, specifies the indices of the qubits that should be measured. If None, all qubits will be measured. The `is_good_state` function will be applied on the measurement outcome of these qubits.
+  *   **is\_good\_state** (`Optional`\[`Callable`\[\[`str`], `bool`]]) – A function to check whether a string represents a good state.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **oracle** (`QuantumCircuit`) – The oracle reflecting about the bad states.
-*   **state\_preparation** (`Optional`\[`QuantumCircuit`]) – A circuit preparing the input state, referred to as $\mathcal{A}$. If None, a layer of Hadamard gates is used.
-*   **grover\_operator** (`Optional`\[`QuantumCircuit`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit. If None, this operator is constructed from the `oracle` and `state_preparation`.
-*   **post\_processing** (`Optional`\[`Callable`\[\[`str`], `Any`]]) – A mapping applied to the most likely bitstring.
-*   **objective\_qubits** (`Union`\[`int`, `List`\[`int`], `None`]) – If set, specifies the indices of the qubits that should be measured. If None, all qubits will be measured. The `is_good_state` function will be applied on the measurement outcome of these qubits.
-*   **is\_good\_state** (`Optional`\[`Callable`\[\[`str`], `bool`]]) – A function to check whether a string represents a good state.
+  <Function id="qiskit.algorithms.AmplificationProblem.__init__" name="__init__" signature="__init__(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **oracle** (`QuantumCircuit`) – The oracle reflecting about the bad states.
+    *   **state\_preparation** (`Optional`\[`QuantumCircuit`]) – A circuit preparing the input state, referred to as $\mathcal{A}$. If None, a layer of Hadamard gates is used.
+    *   **grover\_operator** (`Optional`\[`QuantumCircuit`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit. If None, this operator is constructed from the `oracle` and `state_preparation`.
+    *   **post\_processing** (`Optional`\[`Callable`\[\[`str`], `Any`]]) – A mapping applied to the most likely bitstring.
+    *   **objective\_qubits** (`Union`\[`int`, `List`\[`int`], `None`]) – If set, specifies the indices of the qubits that should be measured. If None, all qubits will be measured. The `is_good_state` function will be applied on the measurement outcome of these qubits.
+    *   **is\_good\_state** (`Optional`\[`Callable`\[\[`str`], `bool`]]) – A function to check whether a string represents a good state.
+  </Function>
 
-<span id="qiskit.algorithms.AmplificationProblem.__init__" />
+  ## Methods
 
-`__init__(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)`
+  |                                                                                                                                                    |                                 |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+  | [`__init__`](#qiskit.algorithms.AmplificationProblem.__init__ "qiskit.algorithms.AmplificationProblem.__init__")(oracle\[, state\_preparation, …]) | **type oracle**`QuantumCircuit` |
 
-**Parameters**
+  ## Attributes
 
-*   **oracle** (`QuantumCircuit`) – The oracle reflecting about the bad states.
-*   **state\_preparation** (`Optional`\[`QuantumCircuit`]) – A circuit preparing the input state, referred to as $\mathcal{A}$. If None, a layer of Hadamard gates is used.
-*   **grover\_operator** (`Optional`\[`QuantumCircuit`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit. If None, this operator is constructed from the `oracle` and `state_preparation`.
-*   **post\_processing** (`Optional`\[`Callable`\[\[`str`], `Any`]]) – A mapping applied to the most likely bitstring.
-*   **objective\_qubits** (`Union`\[`int`, `List`\[`int`], `None`]) – If set, specifies the indices of the qubits that should be measured. If None, all qubits will be measured. The `is_good_state` function will be applied on the measurement outcome of these qubits.
-*   **is\_good\_state** (`Optional`\[`Callable`\[\[`str`], `bool`]]) – A function to check whether a string represents a good state.
+  |                                                                                                                                             |                                                            |
+  | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+  | [`grover_operator`](#qiskit.algorithms.AmplificationProblem.grover_operator "qiskit.algorithms.AmplificationProblem.grover_operator")       | Get the $\mathcal{Q}$ operator, or Grover operator.        |
+  | [`is_good_state`](#qiskit.algorithms.AmplificationProblem.is_good_state "qiskit.algorithms.AmplificationProblem.is_good_state")             | Check whether a provided bitstring is a good state or not. |
+  | [`objective_qubits`](#qiskit.algorithms.AmplificationProblem.objective_qubits "qiskit.algorithms.AmplificationProblem.objective_qubits")    | The indices of the objective qubits.                       |
+  | [`oracle`](#qiskit.algorithms.AmplificationProblem.oracle "qiskit.algorithms.AmplificationProblem.oracle")                                  | Return the oracle.                                         |
+  | [`post_processing`](#qiskit.algorithms.AmplificationProblem.post_processing "qiskit.algorithms.AmplificationProblem.post_processing")       | Apply post processing to the input value.                  |
+  | [`state_preparation`](#qiskit.algorithms.AmplificationProblem.state_preparation "qiskit.algorithms.AmplificationProblem.state_preparation") | Get the state preparation operator $\mathcal{A}$.          |
 
-## Methods
+  ### grover\_operator
 
-|                                                                                                                                                    |                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`__init__`](#qiskit.algorithms.AmplificationProblem.__init__ "qiskit.algorithms.AmplificationProblem.__init__")(oracle\[, state\_preparation, …]) | **type oracle**`QuantumCircuit` |
+  <Function id="qiskit.algorithms.AmplificationProblem.grover_operator" name="grover_operator" signature="property grover_operator">
+    Get the $\mathcal{Q}$ operator, or Grover operator.
 
-## Attributes
+    If the Grover operator is not set, we try to build it from the $\mathcal{A}$ operator and objective\_qubits. This only works if objective\_qubits is a list of integers.
 
-|                                                                                                                                             |                                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`grover_operator`](#qiskit.algorithms.AmplificationProblem.grover_operator "qiskit.algorithms.AmplificationProblem.grover_operator")       | Get the $\mathcal{Q}$ operator, or Grover operator.        |
-| [`is_good_state`](#qiskit.algorithms.AmplificationProblem.is_good_state "qiskit.algorithms.AmplificationProblem.is_good_state")             | Check whether a provided bitstring is a good state or not. |
-| [`objective_qubits`](#qiskit.algorithms.AmplificationProblem.objective_qubits "qiskit.algorithms.AmplificationProblem.objective_qubits")    | The indices of the objective qubits.                       |
-| [`oracle`](#qiskit.algorithms.AmplificationProblem.oracle "qiskit.algorithms.AmplificationProblem.oracle")                                  | Return the oracle.                                         |
-| [`post_processing`](#qiskit.algorithms.AmplificationProblem.post_processing "qiskit.algorithms.AmplificationProblem.post_processing")       | Apply post processing to the input value.                  |
-| [`state_preparation`](#qiskit.algorithms.AmplificationProblem.state_preparation "qiskit.algorithms.AmplificationProblem.state_preparation") | Get the state preparation operator $\mathcal{A}$.          |
+    **Return type**
 
-### grover\_operator
+    `Optional`\[`QuantumCircuit`]
 
-<span id="qiskit.algorithms.AmplificationProblem.grover_operator" />
+    **Returns**
 
-`property grover_operator`
+    The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
+  </Function>
 
-Get the $\mathcal{Q}$ operator, or Grover operator.
+  ### is\_good\_state
 
-If the Grover operator is not set, we try to build it from the $\mathcal{A}$ operator and objective\_qubits. This only works if objective\_qubits is a list of integers.
+  <Function id="qiskit.algorithms.AmplificationProblem.is_good_state" name="is_good_state" signature="property is_good_state">
+    Check whether a provided bitstring is a good state or not.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`QuantumCircuit`]
+    `Callable`\[\[`str`], `float`]
 
-**Returns**
+    **Returns**
 
-The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
+    A callable that takes in a bitstring and returns True if the measurement is a good state, False otherwise.
+  </Function>
 
-### is\_good\_state
+  ### objective\_qubits
 
-<span id="qiskit.algorithms.AmplificationProblem.is_good_state" />
+  <Function id="qiskit.algorithms.AmplificationProblem.objective_qubits" name="objective_qubits" signature="property objective_qubits">
+    The indices of the objective qubits.
 
-`property is_good_state`
+    **Return type**
 
-Check whether a provided bitstring is a good state or not.
+    `List`\[`int`]
 
-**Return type**
+    **Returns**
 
-`Callable`\[\[`str`], `float`]
+    The indices of the objective qubits as list of integers.
+  </Function>
 
-**Returns**
+  ### oracle
 
-A callable that takes in a bitstring and returns True if the measurement is a good state, False otherwise.
+  <Function id="qiskit.algorithms.AmplificationProblem.oracle" name="oracle" signature="property oracle">
+    Return the oracle.
 
-### objective\_qubits
+    **Return type**
 
-<span id="qiskit.algorithms.AmplificationProblem.objective_qubits" />
+    `QuantumCircuit`
 
-`property objective_qubits`
+    **Returns**
 
-The indices of the objective qubits.
+    The oracle.
+  </Function>
 
-**Return type**
+  ### post\_processing
 
-`List`\[`int`]
+  <Function id="qiskit.algorithms.AmplificationProblem.post_processing" name="post_processing" signature="property post_processing">
+    Apply post processing to the input value.
 
-**Returns**
+    **Return type**
 
-The indices of the objective qubits as list of integers.
+    `Callable`\[\[`str`], `Any`]
 
-### oracle
+    **Returns**
 
-<span id="qiskit.algorithms.AmplificationProblem.oracle" />
+    A handle to the post processing function. Acts as identity by default.
+  </Function>
 
-`property oracle`
+  ### state\_preparation
 
-Return the oracle.
+  <Function id="qiskit.algorithms.AmplificationProblem.state_preparation" name="state_preparation" signature="property state_preparation">
+    Get the state preparation operator $\mathcal{A}$.
 
-**Return type**
+    **Return type**
 
-`QuantumCircuit`
+    `QuantumCircuit`
 
-**Returns**
+    **Returns**
 
-The oracle.
-
-### post\_processing
-
-<span id="qiskit.algorithms.AmplificationProblem.post_processing" />
-
-`property post_processing`
-
-Apply post processing to the input value.
-
-**Return type**
-
-`Callable`\[\[`str`], `Any`]
-
-**Returns**
-
-A handle to the post processing function. Acts as identity by default.
-
-### state\_preparation
-
-<span id="qiskit.algorithms.AmplificationProblem.state_preparation" />
-
-`property state_preparation`
-
-Get the state preparation operator $\mathcal{A}$.
-
-**Return type**
-
-`QuantumCircuit`
-
-**Returns**
-
-The $\mathcal{A}$ operator as QuantumCircuit.
+    The $\mathcal{A}$ operator as QuantumCircuit.
+  </Function>
+</Class>
 

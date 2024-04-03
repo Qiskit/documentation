@@ -8,225 +8,195 @@ python_api_name: qiskit.providers.aer.jobs.AerJob
 
 # AerJob
 
-<span id="qiskit.providers.aer.jobs.AerJob" />
+<Class id="qiskit.providers.aer.jobs.AerJob" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/jobs/aerjob.py" signature="AerJob(backend, job_id, fn, qobj, executor=None)">
+  Bases: `qiskit.providers.job.JobV1`
 
-`AerJob(backend, job_id, fn, qobj, executor=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/jobs/aerjob.py "view source code")
+  AerJob class for Qiskit Aer Simulators.
 
-Bases: `qiskit.providers.job.JobV1`
+  Initializes the asynchronous job.
 
-AerJob class for Qiskit Aer Simulators.
+  **Parameters**
 
-Initializes the asynchronous job.
+  *   **backend** (*AerBackend*) – the backend used to run the job.
+  *   **job\_id** (*str*) – a unique id in the context of the backend used to run the job.
+  *   **fn** (*function*) – a callable function to execute qobj on backend. This should usually be a bound `AerBackend._run()` method, with the signature (qobj: QasmQobj, job\_id: str) -> Result.
+  *   **qobj** ([*QasmQobj*](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj")) – qobj to execute
+  *   **executor** (*ThreadPoolExecutor or dask.distributed.client*) – The executor to be used to submit the job.
 
-**Parameters**
+  ## Methods
 
-*   **backend** (*AerBackend*) – the backend used to run the job.
-*   **job\_id** (*str*) – a unique id in the context of the backend used to run the job.
-*   **fn** (*function*) – a callable function to execute qobj on backend. This should usually be a bound `AerBackend._run()` method, with the signature (qobj: QasmQobj, job\_id: str) -> Result.
-*   **qobj** ([*QasmQobj*](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj")) – qobj to execute
-*   **executor** (*ThreadPoolExecutor or dask.distributed.client*) – The executor to be used to submit the job.
+  ### backend
 
-## Methods
+  <Function id="qiskit.providers.aer.jobs.AerJob.backend" name="backend" signature="AerJob.backend()">
+    Return the instance of the backend used for this job.
+  </Function>
 
-### backend
+  ### cancel
 
-<span id="qiskit.providers.aer.jobs.AerJob.backend" />
+  <Function id="qiskit.providers.aer.jobs.AerJob.cancel" name="cancel" signature="AerJob.cancel()">
+    Attempt to cancel the job.
+  </Function>
 
-`AerJob.backend()`
+  ### cancelled
 
-Return the instance of the backend used for this job.
+  <Function id="qiskit.providers.aer.jobs.AerJob.cancelled" name="cancelled" signature="AerJob.cancelled()">
+    Return whether the job has been cancelled.
 
-### cancel
+    **Return type**
 
-<span id="qiskit.providers.aer.jobs.AerJob.cancel" />
+    `bool`
+  </Function>
 
-`AerJob.cancel()`
+  ### done
 
-Attempt to cancel the job.
+  <Function id="qiskit.providers.aer.jobs.AerJob.done" name="done" signature="AerJob.done()">
+    Return whether the job has successfully run.
 
-### cancelled
+    **Return type**
 
-<span id="qiskit.providers.aer.jobs.AerJob.cancelled" />
+    `bool`
+  </Function>
 
-`AerJob.cancelled()`
+  ### executor
 
-Return whether the job has been cancelled.
+  <Function id="qiskit.providers.aer.jobs.AerJob.executor" name="executor" signature="AerJob.executor()">
+    Return the executor for this job
+  </Function>
 
-**Return type**
+  ### in\_final\_state
 
-`bool`
+  <Function id="qiskit.providers.aer.jobs.AerJob.in_final_state" name="in_final_state" signature="AerJob.in_final_state()">
+    Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
-### done
+    **Return type**
 
-<span id="qiskit.providers.aer.jobs.AerJob.done" />
+    `bool`
+  </Function>
 
-`AerJob.done()`
+  ### job\_id
 
-Return whether the job has successfully run.
+  <Function id="qiskit.providers.aer.jobs.AerJob.job_id" name="job_id" signature="AerJob.job_id()">
+    Return a unique id identifying the job.
 
-**Return type**
+    **Return type**
 
-`bool`
+    `str`
+  </Function>
 
-### executor
+  ### qobj
 
-<span id="qiskit.providers.aer.jobs.AerJob.executor" />
+  <Function id="qiskit.providers.aer.jobs.AerJob.qobj" name="qobj" signature="AerJob.qobj()">
+    Return the Qobj submitted for this job.
 
-`AerJob.executor()`
+    **Returns**
 
-Return the executor for this job
+    the Qobj submitted for this job.
 
-### in\_final\_state
+    **Return type**
 
-<span id="qiskit.providers.aer.jobs.AerJob.in_final_state" />
+    [Qobj](qiskit.qobj.Qobj "qiskit.qobj.Qobj")
+  </Function>
 
-`AerJob.in_final_state()`
+  ### result
 
-Return whether the job is in a final job state such as `DONE` or `ERROR`.
+  <Function id="qiskit.providers.aer.jobs.AerJob.result" name="result" signature="AerJob.result(timeout=None)">
+    Get job result. The behavior is the same as the underlying concurrent Future objects,
 
-**Return type**
+    [https://docs.python.org/3/library/concurrent.futures.html#future-objects](https://docs.python.org/3/library/concurrent.futures.html#future-objects)
 
-`bool`
+    **Parameters**
 
-### job\_id
+    **timeout** (*float*) – number of seconds to wait for results.
 
-<span id="qiskit.providers.aer.jobs.AerJob.job_id" />
+    **Returns**
 
-`AerJob.job_id()`
+    Result object
 
-Return a unique id identifying the job.
+    **Return type**
 
-**Return type**
+    qiskit.Result
 
-`str`
+    **Raises**
 
-### qobj
+    *   **concurrent.futures.TimeoutError** – if timeout occurred.
+    *   **concurrent.futures.CancelledError** – if job cancelled before completed.
+  </Function>
 
-<span id="qiskit.providers.aer.jobs.AerJob.qobj" />
+  ### running
 
-`AerJob.qobj()`
+  <Function id="qiskit.providers.aer.jobs.AerJob.running" name="running" signature="AerJob.running()">
+    Return whether the job is actively running.
 
-Return the Qobj submitted for this job.
+    **Return type**
 
-**Returns**
+    `bool`
+  </Function>
 
-the Qobj submitted for this job.
+  ### status
 
-**Return type**
+  <Function id="qiskit.providers.aer.jobs.AerJob.status" name="status" signature="AerJob.status()">
+    Gets the status of the job by querying the Python’s future
 
-[Qobj](qiskit.qobj.Qobj "qiskit.qobj.Qobj")
+    **Returns**
 
-### result
+    The current JobStatus
 
-<span id="qiskit.providers.aer.jobs.AerJob.result" />
+    **Return type**
 
-`AerJob.result(timeout=None)`
+    [JobStatus](qiskit.providers.JobStatus "qiskit.providers.JobStatus")
 
-Get job result. The behavior is the same as the underlying concurrent Future objects,
+    **Raises**
 
-[https://docs.python.org/3/library/concurrent.futures.html#future-objects](https://docs.python.org/3/library/concurrent.futures.html#future-objects)
+    *   [**JobError**](qiskit.providers.JobError "qiskit.providers.JobError") – If the future is in unexpected state
+    *   **concurrent.futures.TimeoutError** – if timeout occurred.
+  </Function>
 
-**Parameters**
+  ### submit
 
-**timeout** (*float*) – number of seconds to wait for results.
+  <Function id="qiskit.providers.aer.jobs.AerJob.submit" name="submit" signature="AerJob.submit()">
+    Submit the job to the backend for execution.
 
-**Returns**
+    **Raises**
 
-Result object
+    *   **QobjValidationError** – if the JSON serialization of the Qobj passed
+    *   **during construction does not validate against the Qobj schema.** –
+    *   [**JobError**](qiskit.providers.JobError "qiskit.providers.JobError") – if trying to re-submit the job.
+  </Function>
 
-**Return type**
+  ### wait\_for\_final\_state
 
-qiskit.Result
+  <Function id="qiskit.providers.aer.jobs.AerJob.wait_for_final_state" name="wait_for_final_state" signature="AerJob.wait_for_final_state(timeout=None, wait=5, callback=None)">
+    Poll the job status until it progresses to a final state such as `DONE` or `ERROR`.
 
-**Raises**
+    **Parameters**
 
-*   **concurrent.futures.TimeoutError** – if timeout occurred.
-*   **concurrent.futures.CancelledError** – if job cancelled before completed.
+    *   **timeout** (`Optional`\[`float`]) – Seconds to wait for the job. If `None`, wait indefinitely.
 
-### running
+    *   **wait** (`float`) – Seconds between queries.
 
-<span id="qiskit.providers.aer.jobs.AerJob.running" />
+    *   **callback** (`Optional`\[`Callable`]) –
 
-`AerJob.running()`
+        Callback function invoked after each query. The following positional arguments are provided to the callback function:
 
-Return whether the job is actively running.
+        *   job\_id: Job ID
+        *   job\_status: Status of the job from the last query
+        *   job: This BaseJob instance
 
-**Return type**
+        Note: different subclass might provide different arguments to the callback function.
 
-`bool`
+    **Raises**
 
-### status
+    [**JobTimeoutError**](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not reach a final state before the specified timeout.
 
-<span id="qiskit.providers.aer.jobs.AerJob.status" />
+    **Return type**
 
-`AerJob.status()`
+    `None`
+  </Function>
 
-Gets the status of the job by querying the Python’s future
+  ## Attributes
 
-**Returns**
+  ### version
 
-The current JobStatus
-
-**Return type**
-
-[JobStatus](qiskit.providers.JobStatus "qiskit.providers.JobStatus")
-
-**Raises**
-
-*   [**JobError**](qiskit.providers.JobError "qiskit.providers.JobError") – If the future is in unexpected state
-*   **concurrent.futures.TimeoutError** – if timeout occurred.
-
-### submit
-
-<span id="qiskit.providers.aer.jobs.AerJob.submit" />
-
-`AerJob.submit()`
-
-Submit the job to the backend for execution.
-
-**Raises**
-
-*   **QobjValidationError** – if the JSON serialization of the Qobj passed
-*   **during construction does not validate against the Qobj schema.** –
-*   [**JobError**](qiskit.providers.JobError "qiskit.providers.JobError") – if trying to re-submit the job.
-
-### wait\_for\_final\_state
-
-<span id="qiskit.providers.aer.jobs.AerJob.wait_for_final_state" />
-
-`AerJob.wait_for_final_state(timeout=None, wait=5, callback=None)`
-
-Poll the job status until it progresses to a final state such as `DONE` or `ERROR`.
-
-**Parameters**
-
-*   **timeout** (`Optional`\[`float`]) – Seconds to wait for the job. If `None`, wait indefinitely.
-
-*   **wait** (`float`) – Seconds between queries.
-
-*   **callback** (`Optional`\[`Callable`]) –
-
-    Callback function invoked after each query. The following positional arguments are provided to the callback function:
-
-    *   job\_id: Job ID
-    *   job\_status: Status of the job from the last query
-    *   job: This BaseJob instance
-
-    Note: different subclass might provide different arguments to the callback function.
-
-**Raises**
-
-[**JobTimeoutError**](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not reach a final state before the specified timeout.
-
-**Return type**
-
-`None`
-
-## Attributes
-
-<span id="qiskit.providers.aer.jobs.AerJob.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.aer.jobs.AerJob.version" name="version" attributeValue="= 1" />
+</Class>
 

@@ -8,136 +8,128 @@ python_api_name: qiskit.primitives.BaseEstimator
 
 # BaseEstimator
 
-<span id="qiskit.primitives.BaseEstimator" />
+<Class id="qiskit.primitives.BaseEstimator" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/primitives/base/base_estimator.py" signature="BaseEstimator(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, observables: Iterable[SparsePauliOp] | SparsePauliOp | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)">
+  Bases: `qiskit.primitives.base.base_primitive.BasePrimitive`
 
-`BaseEstimator(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, observables: Iterable[SparsePauliOp] | SparsePauliOp | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/primitives/base/base_estimator.py "view source code")
+  Estimator base class.
 
-Bases: `qiskit.primitives.base.base_primitive.BasePrimitive`
+  Base class for Estimator that estimates expectation values of quantum circuits and observables.
 
-Estimator base class.
+  Creating an instance of an Estimator, or using one in a `with` context opens a session that holds resources until the instance is `close()` ed or the context is exited.
 
-Base class for Estimator that estimates expectation values of quantum circuits and observables.
+  **Parameters**
 
-Creating an instance of an Estimator, or using one in a `with` context opens a session that holds resources until the instance is `close()` ed or the context is exited.
+  *   **circuits** – Quantum circuits that represent quantum states.
+  *   **observables** – Observables.
+  *   **parameters** – Parameters of quantum circuits, specifying the order in which values will be bound. Defaults to `[circ.parameters for circ in circuits]` The indexing is such that `parameters[i, j]` is the j-th formal parameter of `circuits[i]`.
+  *   **options** – Default options.
 
-**Parameters**
+  **Raises**
 
-*   **circuits** – Quantum circuits that represent quantum states.
-*   **observables** – Observables.
-*   **parameters** – Parameters of quantum circuits, specifying the order in which values will be bound. Defaults to `[circ.parameters for circ in circuits]` The indexing is such that `parameters[i, j]` is the j-th formal parameter of `circuits[i]`.
-*   **options** – Default options.
+  **ValueError** – For mismatch of circuits and parameters list.
 
-**Raises**
+  ## Methods
 
-**ValueError** – For mismatch of circuits and parameters list.
+  ### close
 
-## Methods
+  <Function id="qiskit.primitives.BaseEstimator.close" name="close" signature="BaseEstimator.close()">
+    Close the session and free resources
+  </Function>
 
-### close
+  ### run
 
-<span id="qiskit.primitives.BaseEstimator.close" />
+  <Function id="qiskit.primitives.BaseEstimator.run" name="run" signature="BaseEstimator.run(circuits, observables, parameter_values=None, **run_options)">
+    Run the job of the estimation of expectation value(s).
 
-`BaseEstimator.close()`
+    `circuits`, `observables`, and `parameter_values` should have the same length. The i-th element of the result is the expectation of observable
 
-Close the session and free resources
+    ```python
+    obs = observables[i]
+    ```
 
-### run
+    for the state prepared by
 
-<span id="qiskit.primitives.BaseEstimator.run" />
+    ```python
+    circ = circuits[i]
+    ```
 
-`BaseEstimator.run(circuits, observables, parameter_values=None, **run_options)`
+    with bound parameters
 
-Run the job of the estimation of expectation value(s).
+    ```python
+    values = parameter_values[i].
+    ```
 
-`circuits`, `observables`, and `parameter_values` should have the same length. The i-th element of the result is the expectation of observable
+    **Parameters**
 
-```python
-obs = observables[i]
-```
+    *   **circuits** – one or more circuit objects.
+    *   **observables** – one or more observable objects.
+    *   **parameter\_values** – concrete parameters to be bound.
+    *   **run\_options** – runtime options used for circuit execution.
 
-for the state prepared by
+    **Returns**
 
-```python
-circ = circuits[i]
-```
+    The job object of EstimatorResult.
 
-with bound parameters
+    **Raises**
 
-```python
-values = parameter_values[i].
-```
+    *   **TypeError** – Invalid argument type given.
+    *   **ValueError** – Invalid argument values given.
+  </Function>
 
-**Parameters**
+  ### set\_options
 
-*   **circuits** – one or more circuit objects.
-*   **observables** – one or more observable objects.
-*   **parameter\_values** – concrete parameters to be bound.
-*   **run\_options** – runtime options used for circuit execution.
+  <Function id="qiskit.primitives.BaseEstimator.set_options" name="set_options" signature="BaseEstimator.set_options(**fields)">
+    Set options values for the estimator.
 
-**Returns**
+    **Parameters**
 
-The job object of EstimatorResult.
+    **\*\*fields** – The fields to update the options
+  </Function>
 
-**Raises**
+  ## Attributes
 
-*   **TypeError** – Invalid argument type given.
-*   **ValueError** – Invalid argument values given.
+  ### circuits
 
-### set\_options
+  <Attribute id="qiskit.primitives.BaseEstimator.circuits" name="circuits">
+    Quantum circuits that represents quantum states.
 
-<span id="qiskit.primitives.BaseEstimator.set_options" />
+    **Returns**
 
-`BaseEstimator.set_options(**fields)`
+    The quantum circuits.
+  </Attribute>
 
-Set options values for the estimator.
+  ### observables
 
-**Parameters**
+  <Attribute id="qiskit.primitives.BaseEstimator.observables" name="observables">
+    Observables to be estimated.
 
-**\*\*fields** – The fields to update the options
+    **Returns**
 
-## Attributes
+    The observables.
+  </Attribute>
 
-<span id="qiskit.primitives.BaseEstimator.circuits" />
+  ### options
 
-### circuits
+  <Attribute id="qiskit.primitives.BaseEstimator.options" name="options">
+    Return options values for the estimator.
 
-Quantum circuits that represents quantum states.
+    **Return type**
 
-**Returns**
+    [`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
 
-The quantum circuits.
+    **Returns**
 
-<span id="qiskit.primitives.BaseEstimator.observables" />
+    options
+  </Attribute>
 
-### observables
+  ### parameters
 
-Observables to be estimated.
+  <Attribute id="qiskit.primitives.BaseEstimator.parameters" name="parameters">
+    Parameters of the quantum circuits.
 
-**Returns**
+    **Returns**
 
-The observables.
-
-<span id="qiskit.primitives.BaseEstimator.options" />
-
-### options
-
-Return options values for the estimator.
-
-**Return type**
-
-[`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
-
-**Returns**
-
-options
-
-<span id="qiskit.primitives.BaseEstimator.parameters" />
-
-### parameters
-
-Parameters of the quantum circuits.
-
-**Returns**
-
-Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
+    Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
+  </Attribute>
+</Class>
 

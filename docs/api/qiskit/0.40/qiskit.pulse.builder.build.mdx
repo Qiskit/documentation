@@ -8,46 +8,44 @@ python_api_name: qiskit.pulse.builder.build
 
 # qiskit.pulse.builder.build
 
-<span id="qiskit.pulse.builder.build" />
+<Function id="qiskit.pulse.builder.build" name="build" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py" signature="build(backend=None, schedule=None, name=None, default_alignment='left', default_transpiler_settings=None, default_circuit_scheduler_settings=None)">
+  Create a context manager for launching the imperative pulse builder DSL.
 
-`build(backend=None, schedule=None, name=None, default_alignment='left', default_transpiler_settings=None, default_circuit_scheduler_settings=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
+  To enter a building context and starting building a pulse program:
 
-Create a context manager for launching the imperative pulse builder DSL.
+  ```python
+  from qiskit import execute, pulse
+  from qiskit.providers.fake_provider import FakeOpenPulse2Q
 
-To enter a building context and starting building a pulse program:
+  backend = FakeOpenPulse2Q()
 
-```python
-from qiskit import execute, pulse
-from qiskit.providers.fake_provider import FakeOpenPulse2Q
+  d0 = pulse.DriveChannel(0)
 
-backend = FakeOpenPulse2Q()
+  with pulse.build() as pulse_prog:
+      pulse.play(pulse.Constant(100, 0.5), d0)
+  ```
 
-d0 = pulse.DriveChannel(0)
+  While the output program `pulse_prog` cannot be executed as we are using a mock backend. If a real backend is being used, executing the program is done with:
 
-with pulse.build() as pulse_prog:
-    pulse.play(pulse.Constant(100, 0.5), d0)
-```
+  ```python
+  qiskit.execute(pulse_prog, backend)
+  ```
 
-While the output program `pulse_prog` cannot be executed as we are using a mock backend. If a real backend is being used, executing the program is done with:
+  **Parameters**
 
-```python
-qiskit.execute(pulse_prog, backend)
-```
+  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – A Qiskit backend. If not supplied certain builder functionality will be unavailable.
+  *   **schedule** (`Optional`\[[`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]) – A pulse `ScheduleBlock` in which your pulse program will be built.
+  *   **name** (`Optional`\[`str`]) – Name of pulse program to be built.
+  *   **default\_alignment** (`Union`\[`str`, [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind"), `None`]) – Default scheduling alignment for builder. One of `left`, `right`, `sequential` or an alignment context.
+  *   **default\_transpiler\_settings** (`Optional`\[`Dict`\[`str`, `Any`]]) – Default settings for the transpiler.
+  *   **default\_circuit\_scheduler\_settings** (`Optional`\[`Dict`\[`str`, `Any`]]) – Default settings for the circuit to pulse scheduler.
 
-**Parameters**
+  **Return type**
 
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – A Qiskit backend. If not supplied certain builder functionality will be unavailable.
-*   **schedule** (`Optional`\[[`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]) – A pulse `ScheduleBlock` in which your pulse program will be built.
-*   **name** (`Optional`\[`str`]) – Name of pulse program to be built.
-*   **default\_alignment** (`Union`\[`str`, [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind"), `None`]) – Default scheduling alignment for builder. One of `left`, `right`, `sequential` or an alignment context.
-*   **default\_transpiler\_settings** (`Optional`\[`Dict`\[`str`, `Any`]]) – Default settings for the transpiler.
-*   **default\_circuit\_scheduler\_settings** (`Optional`\[`Dict`\[`str`, `Any`]]) – Default settings for the circuit to pulse scheduler.
+  `AbstractContextManager`\[[`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
 
-**Return type**
+  **Returns**
 
-`AbstractContextManager`\[[`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
-
-**Returns**
-
-A new builder context which has the active builder initialized.
+  A new builder context which has the active builder initialized.
+</Function>
 

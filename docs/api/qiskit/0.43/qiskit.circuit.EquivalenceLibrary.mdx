@@ -8,191 +8,175 @@ python_api_name: qiskit.circuit.EquivalenceLibrary
 
 # EquivalenceLibrary
 
-<span id="qiskit.circuit.EquivalenceLibrary" />
+<Class id="qiskit.circuit.EquivalenceLibrary" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/equivalence.py" signature="EquivalenceLibrary(*, base=None)">
+  Bases: `object`
 
-`EquivalenceLibrary(*, base=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/equivalence.py "view source code")
+  A library providing a one-way mapping of Gates to their equivalent implementations as QuantumCircuits.
 
-Bases: `object`
+  Create a new equivalence library.
 
-A library providing a one-way mapping of Gates to their equivalent implementations as QuantumCircuits.
+  **Parameters**
 
-Create a new equivalence library.
+  **base** (*Optional\[*[*EquivalenceLibrary*](#qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")*]*) – Base equivalence library to be referenced if an entry is not found in this library.
 
-**Parameters**
+  ## Methods
 
-**base** (*Optional\[*[*EquivalenceLibrary*](#qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")*]*) – Base equivalence library to be referenced if an entry is not found in this library.
+  <span id="qiskit-circuit-equivalencelibrary-add-equivalence" />
 
-## Methods
+  ### add\_equivalence
 
-<span id="qiskit-circuit-equivalencelibrary-add-equivalence" />
+  <Function id="qiskit.circuit.EquivalenceLibrary.add_equivalence" name="add_equivalence" signature="EquivalenceLibrary.add_equivalence(gate, equivalent_circuit)">
+    Add a new equivalence to the library. Future queries for the Gate will include the given circuit, in addition to all existing equivalences (including those from base).
 
-### add\_equivalence
+    Parameterized Gates (those including qiskit.circuit.Parameters in their Gate.params) can be marked equivalent to parameterized circuits, provided the parameters match.
 
-<span id="qiskit.circuit.EquivalenceLibrary.add_equivalence" />
+    **Parameters**
 
-`EquivalenceLibrary.add_equivalence(gate, equivalent_circuit)`
+    *   **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
+    *   **equivalent\_circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A circuit equivalently implementing the given Gate.
+  </Function>
 
-Add a new equivalence to the library. Future queries for the Gate will include the given circuit, in addition to all existing equivalences (including those from base).
+  <span id="qiskit-circuit-equivalencelibrary-draw" />
 
-Parameterized Gates (those including qiskit.circuit.Parameters in their Gate.params) can be marked equivalent to parameterized circuits, provided the parameters match.
+  ### draw
 
-**Parameters**
+  <Function id="qiskit.circuit.EquivalenceLibrary.draw" name="draw" signature="EquivalenceLibrary.draw(filename=None)">
+    Draws the equivalence relations available in the library.
 
-*   **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
-*   **equivalent\_circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A circuit equivalently implementing the given Gate.
+    **Parameters**
 
-<span id="qiskit-circuit-equivalencelibrary-draw" />
+    **filename** (*str*) – An optional path to write the output image to if specified this method will return None.
 
-### draw
+    **Returns**
 
-<span id="qiskit.circuit.EquivalenceLibrary.draw" />
+    **Drawn equivalence library as an**
 
-`EquivalenceLibrary.draw(filename=None)`
+    IPython SVG if in a jupyter notebook, or as a PIL.Image otherwise.
 
-Draws the equivalence relations available in the library.
+    **Return type**
 
-**Parameters**
+    PIL.Image or IPython.display.SVG
 
-**filename** (*str*) – An optional path to write the output image to if specified this method will return None.
+    **Raises**
 
-**Returns**
+    **InvalidFileError** – if filename is not valid.
+  </Function>
 
-**Drawn equivalence library as an**
+  <span id="qiskit-circuit-equivalencelibrary-get-entry" />
 
-IPython SVG if in a jupyter notebook, or as a PIL.Image otherwise.
+  ### get\_entry
 
-**Return type**
+  <Function id="qiskit.circuit.EquivalenceLibrary.get_entry" name="get_entry" signature="EquivalenceLibrary.get_entry(gate)">
+    Gets the set of QuantumCircuits circuits from the library which equivalently implement the given Gate.
 
-PIL.Image or IPython.display.SVG
+    Parameterized circuits will have their parameters replaced with the corresponding entries from Gate.params.
 
-**Raises**
+    **Parameters**
 
-**InvalidFileError** – if filename is not valid.
+    **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
 
-<span id="qiskit-circuit-equivalencelibrary-get-entry" />
+    **Returns**
 
-### get\_entry
+    **A list of equivalent QuantumCircuits. If empty,**
 
-<span id="qiskit.circuit.EquivalenceLibrary.get_entry" />
+    library contains no known decompositions of Gate.
 
-`EquivalenceLibrary.get_entry(gate)`
+    Returned circuits will be ordered according to their insertion in the library, from earliest to latest, from top to base. The ordering of the StandardEquivalenceLibrary will not generally be consistent across Qiskit versions.
 
-Gets the set of QuantumCircuits circuits from the library which equivalently implement the given Gate.
+    **Return type**
 
-Parameterized circuits will have their parameters replaced with the corresponding entries from Gate.params.
+    List\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+  </Function>
 
-**Parameters**
+  <span id="qiskit-circuit-equivalencelibrary-has-entry" />
 
-**gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
+  ### has\_entry
 
-**Returns**
+  <Function id="qiskit.circuit.EquivalenceLibrary.has_entry" name="has_entry" signature="EquivalenceLibrary.has_entry(gate)">
+    Check if a library contains any decompositions for gate.
 
-**A list of equivalent QuantumCircuits. If empty,**
+    **Parameters**
 
-library contains no known decompositions of Gate.
+    **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
 
-Returned circuits will be ordered according to their insertion in the library, from earliest to latest, from top to base. The ordering of the StandardEquivalenceLibrary will not generally be consistent across Qiskit versions.
+    **Returns**
 
-**Return type**
+    **True if gate has a known decomposition in the library.**
 
-List\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+    False otherwise.
 
-<span id="qiskit-circuit-equivalencelibrary-has-entry" />
+    **Return type**
 
-### has\_entry
+    Bool
+  </Function>
 
-<span id="qiskit.circuit.EquivalenceLibrary.has_entry" />
+  <span id="qiskit-circuit-equivalencelibrary-keys" />
 
-`EquivalenceLibrary.has_entry(gate)`
+  ### keys
 
-Check if a library contains any decompositions for gate.
+  <Function id="qiskit.circuit.EquivalenceLibrary.keys" name="keys" signature="EquivalenceLibrary.keys()">
+    Return list of keys to key to node index map.
 
-**Parameters**
+    **Returns**
 
-**gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
+    Keys to the key to node index map.
 
-**Returns**
+    **Return type**
 
-**True if gate has a known decomposition in the library.**
+    List
+  </Function>
 
-False otherwise.
+  <span id="qiskit-circuit-equivalencelibrary-node-index" />
 
-**Return type**
+  ### node\_index
 
-Bool
+  <Function id="qiskit.circuit.EquivalenceLibrary.node_index" name="node_index" signature="EquivalenceLibrary.node_index(key)">
+    Return node index for a given key.
 
-<span id="qiskit-circuit-equivalencelibrary-keys" />
+    **Parameters**
 
-### keys
+    **key** (*Key*) – Key to an equivalence.
 
-<span id="qiskit.circuit.EquivalenceLibrary.keys" />
+    **Returns**
 
-`EquivalenceLibrary.keys()`
+    Index to the node in the graph for the given key.
 
-Return list of keys to key to node index map.
+    **Return type**
 
-**Returns**
+    Int
+  </Function>
 
-Keys to the key to node index map.
+  <span id="qiskit-circuit-equivalencelibrary-set-entry" />
 
-**Return type**
+  ### set\_entry
 
-List
+  <Function id="qiskit.circuit.EquivalenceLibrary.set_entry" name="set_entry" signature="EquivalenceLibrary.set_entry(gate, entry)">
+    Set the equivalence record for a Gate. Future queries for the Gate will return only the circuits provided.
 
-<span id="qiskit-circuit-equivalencelibrary-node-index" />
+    Parameterized Gates (those including qiskit.circuit.Parameters in their Gate.params) can be marked equivalent to parameterized circuits, provided the parameters match.
 
-### node\_index
+    **Parameters**
 
-<span id="qiskit.circuit.EquivalenceLibrary.node_index" />
+    *   **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
+    *   **entry** (*List\['QuantumCircuit']*) – A list of QuantumCircuits, each equivalently implementing the given Gate.
+  </Function>
 
-`EquivalenceLibrary.node_index(key)`
+  ## Attributes
 
-Return node index for a given key.
+  ### graph
 
-**Parameters**
+  <Attribute id="qiskit.circuit.EquivalenceLibrary.graph" name="graph">
+    Return graph representing the equivalence library data.
 
-**key** (*Key*) – Key to an equivalence.
+    This property should be treated as read-only as it provides a reference to the internal state of the [`EquivalenceLibrary`](#qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") object. If the graph returned by this property is mutated it could corrupt the the contents of the object. If you need to modify the output `PyDiGraph` be sure to make a copy prior to any modification.
 
-**Returns**
+    **Returns**
 
-Index to the node in the graph for the given key.
+    A graph object with equivalence data in each node.
 
-**Return type**
+    **Return type**
 
-Int
-
-<span id="qiskit-circuit-equivalencelibrary-set-entry" />
-
-### set\_entry
-
-<span id="qiskit.circuit.EquivalenceLibrary.set_entry" />
-
-`EquivalenceLibrary.set_entry(gate, entry)`
-
-Set the equivalence record for a Gate. Future queries for the Gate will return only the circuits provided.
-
-Parameterized Gates (those including qiskit.circuit.Parameters in their Gate.params) can be marked equivalent to parameterized circuits, provided the parameters match.
-
-**Parameters**
-
-*   **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
-*   **entry** (*List\['QuantumCircuit']*) – A list of QuantumCircuits, each equivalently implementing the given Gate.
-
-## Attributes
-
-<span id="qiskit.circuit.EquivalenceLibrary.graph" />
-
-### graph
-
-Return graph representing the equivalence library data.
-
-This property should be treated as read-only as it provides a reference to the internal state of the [`EquivalenceLibrary`](#qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") object. If the graph returned by this property is mutated it could corrupt the the contents of the object. If you need to modify the output `PyDiGraph` be sure to make a copy prior to any modification.
-
-**Returns**
-
-A graph object with equivalence data in each node.
-
-**Return type**
-
-PyDiGraph
+    PyDiGraph
+  </Attribute>
+</Class>
 

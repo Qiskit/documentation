@@ -10,35 +10,33 @@ python_api_name: qiskit.pulse.builder.call
 
 # qiskit.pulse.builder.call
 
-<span id="qiskit.pulse.builder.call" />
+<Function id="qiskit.pulse.builder.call" name="call" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py" signature="call(target)">
+  Call the `target` within the currently active builder context.
 
-`call(target)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
+  Examples:
 
-Call the `target` within the currently active builder context.
+  ```python
+  from qiskit import circuit, pulse, schedule, transpile
+  from qiskit.test.mock import FakeOpenPulse2Q
 
-Examples:
+  backend = FakeOpenPulse2Q()
 
-```python
-from qiskit import circuit, pulse, schedule, transpile
-from qiskit.test.mock import FakeOpenPulse2Q
+  qc = circuit.QuantumCircuit(2)
+  qc.cx(0, 1)
+  qc_transpiled = transpile(qc, optimization_level=3)
+  sched = schedule(qc_transpiled, backend)
 
-backend = FakeOpenPulse2Q()
+  with pulse.build(backend) as pulse_prog:
+          pulse.call(sched)
+          pulse.call(qc)
+  ```
 
-qc = circuit.QuantumCircuit(2)
-qc.cx(0, 1)
-qc_transpiled = transpile(qc, optimization_level=3)
-sched = schedule(qc_transpiled, backend)
+  **Parameters**
 
-with pulse.build(backend) as pulse_prog:
-        pulse.call(sched)
-        pulse.call(qc)
-```
+  **target** (`Union`\[`QuantumCircuit`, `Schedule`]) – Target circuit or pulse schedule to call.
 
-**Parameters**
+  **Raises**
 
-**target** (`Union`\[`QuantumCircuit`, `Schedule`]) – Target circuit or pulse schedule to call.
-
-**Raises**
-
-**exceptions.PulseError** – If the input `target` type is not supported.
+  **exceptions.PulseError** – If the input `target` type is not supported.
+</Function>
 

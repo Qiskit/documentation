@@ -8,32 +8,30 @@ python_api_name: qiskit.scheduler.schedule_circuit
 
 # schedule\_circuit
 
-<span id="qiskit.scheduler.schedule_circuit" />
+<Function id="qiskit.scheduler.schedule_circuit" name="schedule_circuit" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/schedule_circuit.py" signature="schedule_circuit(circuit, schedule_config, method=None)">
+  Basic scheduling pass from a circuit to a pulse Schedule, using the backend. If no method is specified, then a basic, as late as possible scheduling pass is performed, i.e. pulses are scheduled to occur as late as possible.
 
-`schedule_circuit(circuit, schedule_config, method=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/schedule_circuit.py "view source code")
+  Supported methods:
 
-Basic scheduling pass from a circuit to a pulse Schedule, using the backend. If no method is specified, then a basic, as late as possible scheduling pass is performed, i.e. pulses are scheduled to occur as late as possible.
+  > *   `'as_soon_as_possible'`: Schedule pulses greedily, as early as possible on a qubit resource. alias: `'asap'`)
+  > *   `'as_late_as_possible'`: Schedule pulses late– keep qubits in the ground state when possible. (alias: `'alap'`)
 
-Supported methods:
+  **Parameters**
 
-> *   `'as_soon_as_possible'`: Schedule pulses greedily, as early as possible on a qubit resource. alias: `'asap'`)
-> *   `'as_late_as_possible'`: Schedule pulses late– keep qubits in the ground state when possible. (alias: `'alap'`)
+  *   **circuit** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The quantum circuit to translate.
+  *   **schedule\_config** ([`ScheduleConfig`](qiskit.scheduler.ScheduleConfig "qiskit.scheduler.config.ScheduleConfig")) – Backend specific parameters used for building the Schedule.
+  *   **method** (`Optional`\[`str`]) – The scheduling pass method to use.
 
-**Parameters**
+  **Return type**
 
-*   **circuit** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The quantum circuit to translate.
-*   **schedule\_config** ([`ScheduleConfig`](qiskit.scheduler.ScheduleConfig "qiskit.scheduler.config.ScheduleConfig")) – Backend specific parameters used for building the Schedule.
-*   **method** (`Optional`\[`str`]) – The scheduling pass method to use.
+  [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 
-**Return type**
+  **Returns**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+  Schedule corresponding to the input circuit.
 
-**Returns**
+  **Raises**
 
-Schedule corresponding to the input circuit.
-
-**Raises**
-
-**QiskitError** – If method isn’t recognized.
+  **QiskitError** – If method isn’t recognized.
+</Function>
 

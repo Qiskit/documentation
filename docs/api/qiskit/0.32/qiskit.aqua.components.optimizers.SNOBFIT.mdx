@@ -8,198 +8,182 @@ python_api_name: qiskit.aqua.components.optimizers.SNOBFIT
 
 # SNOBFIT
 
-<span id="qiskit.aqua.components.optimizers.SNOBFIT" />
+<Class id="qiskit.aqua.components.optimizers.SNOBFIT" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/snobfit.py" signature="SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)">
+  Bases: `qiskit.aqua.components.optimizers.optimizer.Optimizer`
 
-`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/snobfit.py "view source code")
+  Stable Noisy Optimization by Branch and FIT algorithm.
 
-Bases: `qiskit.aqua.components.optimizers.optimizer.Optimizer`
+  SnobFit is used for the optimization of derivative-free, noisy objective functions providing robust and fast solutions of problems with continuous variables varying within bound.
 
-Stable Noisy Optimization by Branch and FIT algorithm.
+  Uses skquant.opt installed with pip install scikit-quant. For further detail, please refer to [https://github.com/scikit-quant/scikit-quant](https://github.com/scikit-quant/scikit-quant) and [https://qat4chem.lbl.gov/software](https://qat4chem.lbl.gov/software).
 
-SnobFit is used for the optimization of derivative-free, noisy objective functions providing robust and fast solutions of problems with continuous variables varying within bound.
+  **Parameters**
 
-Uses skquant.opt installed with pip install scikit-quant. For further detail, please refer to [https://github.com/scikit-quant/scikit-quant](https://github.com/scikit-quant/scikit-quant) and [https://qat4chem.lbl.gov/software](https://qat4chem.lbl.gov/software).
+  *   **maxiter** (`int`) – Maximum number of function evaluations.
+  *   **maxmp** (`Optional`\[`int`]) – Maximum number of model points requested for the local fit. Default = 2 \* number of parameters + 6 set to this value when None.
+  *   **maxfail** (`int`) – Maximum number of failures to improve the solution. Stops the algorithm after maxfail is reached.
+  *   **verbose** (`bool`) – Provide verbose (debugging) output.
 
-**Parameters**
+  **Raises**
 
-*   **maxiter** (`int`) – Maximum number of function evaluations.
-*   **maxmp** (`Optional`\[`int`]) – Maximum number of model points requested for the local fit. Default = 2 \* number of parameters + 6 set to this value when None.
-*   **maxfail** (`int`) – Maximum number of failures to improve the solution. Stops the algorithm after maxfail is reached.
-*   **verbose** (`bool`) – Provide verbose (debugging) output.
+  [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant or SQSnobFit not installed
 
-**Raises**
+  ## Methods
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant or SQSnobFit not installed
+  ### get\_support\_level
 
-## Methods
+  <Function id="qiskit.aqua.components.optimizers.SNOBFIT.get_support_level" name="get_support_level" signature="SNOBFIT.get_support_level()">
+    Returns support level dictionary.
+  </Function>
 
-### get\_support\_level
+  ### gradient\_num\_diff
 
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.get_support_level" />
+  <Function id="qiskit.aqua.components.optimizers.SNOBFIT.gradient_num_diff" name="gradient_num_diff" signature="static SNOBFIT.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-`SNOBFIT.get_support_level()`
+    **Parameters**
 
-Returns support level dictionary.
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped
 
-### gradient\_num\_diff
+    **Returns**
 
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.gradient_num_diff" />
+    the gradient computed
 
-`static SNOBFIT.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
+    **Return type**
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+    grad
+  </Function>
 
-**Parameters**
+  ### optimize
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped
+  <Function id="qiskit.aqua.components.optimizers.SNOBFIT.optimize" name="optimize" signature="SNOBFIT.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)">
+    Runs the optimization.
+  </Function>
 
-**Returns**
+  ### print\_options
 
-the gradient computed
+  <Function id="qiskit.aqua.components.optimizers.SNOBFIT.print_options" name="print_options" signature="SNOBFIT.print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-**Return type**
+  ### set\_max\_evals\_grouped
 
-grad
+  <Function id="qiskit.aqua.components.optimizers.SNOBFIT.set_max_evals_grouped" name="set_max_evals_grouped" signature="SNOBFIT.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-### optimize
+  ### set\_options
 
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.optimize" />
+  <Function id="qiskit.aqua.components.optimizers.SNOBFIT.set_options" name="set_options" signature="SNOBFIT.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-`SNOBFIT.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-Runs the optimization.
+    **Parameters**
 
-### print\_options
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.print_options" />
+  ### wrap\_function
 
-`SNOBFIT.print_options()`
+  <Function id="qiskit.aqua.components.optimizers.SNOBFIT.wrap_function" name="wrap_function" signature="static SNOBFIT.wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-Print algorithm-specific options.
+    **Parameters**
 
-### set\_max\_evals\_grouped
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.set_max_evals_grouped" />
+    **Returns**
 
-`SNOBFIT.set_max_evals_grouped(limit)`
+    wrapper
 
-Set max evals grouped
+    **Return type**
 
-### set\_options
+    function\_wrapper
+  </Function>
 
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.set_options" />
+  ## Attributes
 
-`SNOBFIT.set_options(**kwargs)`
+  ### bounds\_support\_level
 
-Sets or updates values in the options dictionary.
+  <Attribute id="qiskit.aqua.components.optimizers.SNOBFIT.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
+  ### gradient\_support\_level
 
-**Parameters**
+  <Attribute id="qiskit.aqua.components.optimizers.SNOBFIT.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-**kwargs** (*dict*) – options, given as name=value.
+  ### initial\_point\_support\_level
 
-### wrap\_function
+  <Attribute id="qiskit.aqua.components.optimizers.SNOBFIT.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.wrap_function" />
+  ### is\_bounds\_ignored
 
-`static SNOBFIT.wrap_function(function, args)`
+  <Attribute id="qiskit.aqua.components.optimizers.SNOBFIT.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-Wrap the function to implicitly inject the args at the call of the function.
+  ### is\_bounds\_required
 
-**Parameters**
+  <Attribute id="qiskit.aqua.components.optimizers.SNOBFIT.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
+  ### is\_bounds\_supported
 
-**Returns**
+  <Attribute id="qiskit.aqua.components.optimizers.SNOBFIT.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-wrapper
+  ### is\_gradient\_ignored
 
-**Return type**
+  <Attribute id="qiskit.aqua.components.optimizers.SNOBFIT.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-function\_wrapper
+  ### is\_gradient\_required
 
-## Attributes
+  <Attribute id="qiskit.aqua.components.optimizers.SNOBFIT.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.bounds_support_level" />
+  ### is\_gradient\_supported
 
-### bounds\_support\_level
+  <Attribute id="qiskit.aqua.components.optimizers.SNOBFIT.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-Returns bounds support level
+  ### is\_initial\_point\_ignored
 
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.gradient_support_level" />
+  <Attribute id="qiskit.aqua.components.optimizers.SNOBFIT.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-### gradient\_support\_level
+  ### is\_initial\_point\_required
 
-Returns gradient support level
+  <Attribute id="qiskit.aqua.components.optimizers.SNOBFIT.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.initial_point_support_level" />
+  ### is\_initial\_point\_supported
 
-### initial\_point\_support\_level
+  <Attribute id="qiskit.aqua.components.optimizers.SNOBFIT.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-Returns initial point support level
+  ### setting
 
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_bounds_ignored" />
-
-### is\_bounds\_ignored
-
-Returns is bounds ignored
-
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_bounds_required" />
-
-### is\_bounds\_required
-
-Returns is bounds required
-
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_bounds_supported" />
-
-### is\_bounds\_supported
-
-Returns is bounds supported
-
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_gradient_ignored" />
-
-### is\_gradient\_ignored
-
-Returns is gradient ignored
-
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_gradient_required" />
-
-### is\_gradient\_required
-
-Returns is gradient required
-
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_gradient_supported" />
-
-### is\_gradient\_supported
-
-Returns is gradient supported
-
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_initial_point_ignored" />
-
-### is\_initial\_point\_ignored
-
-Returns is initial point ignored
-
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_initial_point_required" />
-
-### is\_initial\_point\_required
-
-Returns is initial point required
-
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_initial_point_supported" />
-
-### is\_initial\_point\_supported
-
-Returns is initial point supported
-
-<span id="qiskit.aqua.components.optimizers.SNOBFIT.setting" />
-
-### setting
-
-Return setting
+  <Attribute id="qiskit.aqua.components.optimizers.SNOBFIT.setting" name="setting">
+    Return setting
+  </Attribute>
+</Class>
 

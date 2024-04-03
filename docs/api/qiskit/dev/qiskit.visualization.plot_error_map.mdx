@@ -10,41 +10,39 @@ python_api_name: qiskit.visualization.plot_error_map
 
 # qiskit.visualization.plot\_error\_map
 
-<span id="qiskit.visualization.plot_error_map" />
+<Function id="qiskit.visualization.plot_error_map" name="plot_error_map" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/main/qiskit/visualization/gate_map.py" signature="qiskit.visualization.plot_error_map(backend, figsize=(15, 12), show_title=True, qubit_coordinates=None)">
+  Plots the error map of a given backend.
 
-`qiskit.visualization.plot_error_map(backend, figsize=(15, 12), show_title=True, qubit_coordinates=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/visualization/gate_map.py "view source code")
+  **Parameters**
 
-Plots the error map of a given backend.
+  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Given backend.
+  *   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – Figure size in inches.
+  *   **show\_title** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show the title or not.
+  *   **qubit\_coordinates** (*Sequence*) – An optional sequence input (list or array being the most common) of 2d coordinates for each qubit. The length of the sequence much mast the number of qubits on the backend. The sequence should be the planar coordinates in a 0-based square grid where each qubit is located.
 
-**Parameters**
+  **Returns**
 
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Given backend.
-*   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – Figure size in inches.
-*   **show\_title** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show the title or not.
-*   **qubit\_coordinates** (*Sequence*) – An optional sequence input (list or array being the most common) of 2d coordinates for each qubit. The length of the sequence much mast the number of qubits on the backend. The sequence should be the planar coordinates in a 0-based square grid where each qubit is located.
+  A matplotlib figure showing error map.
 
-**Returns**
+  **Return type**
 
-A matplotlib figure showing error map.
+  Figure
 
-**Return type**
+  **Raises**
 
-Figure
+  *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – The backend does not provide gate errors for the ‘sx’ gate.
+  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If matplotlib or seaborn is not installed.
 
-**Raises**
+  **Example**
 
-*   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – The backend does not provide gate errors for the ‘sx’ gate.
-*   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If matplotlib or seaborn is not installed.
+  ```python
+  from qiskit.visualization import plot_error_map
+  from qiskit.providers.fake_provider import GenericBackendV2
 
-**Example**
+  backend = GenericBackendV2(num_qubits=5)
+  plot_error_map(backend)
+  ```
 
-```python
-from qiskit.visualization import plot_error_map
-from qiskit.providers.fake_provider import GenericBackendV2
-
-backend = GenericBackendV2(num_qubits=5)
-plot_error_map(backend)
-```
-
-![../\_images/qiskit-visualization-plot\_error\_map-1.png](/images/api/qiskit/dev/qiskit-visualization-plot_error_map-1.png)
+  ![../\_images/qiskit-visualization-plot\_error\_map-1.png](/images/api/qiskit/dev/qiskit-visualization-plot_error_map-1.png)
+</Function>
 

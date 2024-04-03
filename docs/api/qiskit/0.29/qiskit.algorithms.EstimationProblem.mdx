@@ -8,117 +8,113 @@ python_api_name: qiskit.algorithms.EstimationProblem
 
 # EstimationProblem
 
-<span id="qiskit.algorithms.EstimationProblem" />
+<Class id="qiskit.algorithms.EstimationProblem" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_estimators/estimation_problem.py" signature="EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)">
+  Bases: `object`
 
-`EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
+  The estimation problem is the input to amplitude estimation algorithm.
 
-Bases: `object`
+  This class contains all problem-specific information required to run an amplitude estimation algorithm. That means, it minimally contains the state preparation and the specification of the good state. It can further hold some post processing on the estimation of the amplitude or a custom Grover operator.
 
-The estimation problem is the input to amplitude estimation algorithm.
+  **Parameters**
 
-This class contains all problem-specific information required to run an amplitude estimation algorithm. That means, it minimally contains the state preparation and the specification of the good state. It can further hold some post processing on the estimation of the amplitude or a custom Grover operator.
+  *   **state\_preparation** (`QuantumCircuit`) – A circuit preparing the input state, referred to as $\mathcal{A}$.
+  *   **objective\_qubits** (`Union`\[`int`, `List`\[`int`]]) – A single qubit index or a list of qubit indices to specify which qubits to measure. The `is_good_state` function is applied on the bitstring of these objective qubits.
+  *   **grover\_operator** (`Optional`\[`QuantumCircuit`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit.
+  *   **post\_processing** (`Optional`\[`Callable`\[\[`float`], `float`]]) – A mapping applied to the result of the algorithm $0 \leq a \leq 1$, usually used to map the estimate to a target interval. Defaults to the identity.
+  *   **is\_good\_state** (`Optional`\[`Callable`\[\[`str`], `bool`]]) – A function to check whether a string represents a good state. Defaults to all objective qubits being in state $|1\rangle$.
 
-**Parameters**
+  ## Methods
 
-*   **state\_preparation** (`QuantumCircuit`) – A circuit preparing the input state, referred to as $\mathcal{A}$.
-*   **objective\_qubits** (`Union`\[`int`, `List`\[`int`]]) – A single qubit index or a list of qubit indices to specify which qubits to measure. The `is_good_state` function is applied on the bitstring of these objective qubits.
-*   **grover\_operator** (`Optional`\[`QuantumCircuit`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit.
-*   **post\_processing** (`Optional`\[`Callable`\[\[`float`], `float`]]) – A mapping applied to the result of the algorithm $0 \leq a \leq 1$, usually used to map the estimate to a target interval. Defaults to the identity.
-*   **is\_good\_state** (`Optional`\[`Callable`\[\[`str`], `bool`]]) – A function to check whether a string represents a good state. Defaults to all objective qubits being in state $|1\rangle$.
+  ### rescale
 
-## Methods
+  <Function id="qiskit.algorithms.EstimationProblem.rescale" name="rescale" signature="EstimationProblem.rescale(scaling_factor)">
+    Rescale the good state amplitude in the estimation problem.
 
-### rescale
+    **Parameters**
 
-<span id="qiskit.algorithms.EstimationProblem.rescale" />
+    **scaling\_factor** (`float`) – The scaling factor in \[0, 1].
 
-`EstimationProblem.rescale(scaling_factor)`
+    **Return type**
 
-Rescale the good state amplitude in the estimation problem.
+    `EstimationProblem`
 
-**Parameters**
+    **Returns**
 
-**scaling\_factor** (`float`) – The scaling factor in \[0, 1].
+    A rescaled estimation problem.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`EstimationProblem`
+  ### grover\_operator
 
-**Returns**
+  <Attribute id="qiskit.algorithms.EstimationProblem.grover_operator" name="grover_operator">
+    Get the $\mathcal{Q}$ operator, or Grover operator.
 
-A rescaled estimation problem.
+    If the Grover operator is not set, we try to build it from the $\mathcal{A}$ operator and objective\_qubits. This only works if objective\_qubits is a list of integers.
 
-## Attributes
+    **Return type**
 
-<span id="qiskit.algorithms.EstimationProblem.grover_operator" />
+    `Optional`\[`QuantumCircuit`]
 
-### grover\_operator
+    **Returns**
 
-Get the $\mathcal{Q}$ operator, or Grover operator.
+    The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
+  </Attribute>
 
-If the Grover operator is not set, we try to build it from the $\mathcal{A}$ operator and objective\_qubits. This only works if objective\_qubits is a list of integers.
+  ### is\_good\_state
 
-**Return type**
+  <Attribute id="qiskit.algorithms.EstimationProblem.is_good_state" name="is_good_state">
+    Checks whether a bitstring represents a good state.
 
-`Optional`\[`QuantumCircuit`]
+    **Return type**
 
-**Returns**
+    `Callable`\[\[`str`], `bool`]
 
-The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
+    **Returns**
 
-<span id="qiskit.algorithms.EstimationProblem.is_good_state" />
+    Handle to the `is_good_state` callable.
+  </Attribute>
 
-### is\_good\_state
+  ### objective\_qubits
 
-Checks whether a bitstring represents a good state.
+  <Attribute id="qiskit.algorithms.EstimationProblem.objective_qubits" name="objective_qubits">
+    Get the criterion for a measurement outcome to be in a ‘good’ state.
 
-**Return type**
+    **Return type**
 
-`Callable`\[\[`str`], `bool`]
+    `List`\[`int`]
 
-**Returns**
+    **Returns**
 
-Handle to the `is_good_state` callable.
+    The criterion as list of qubit indices.
+  </Attribute>
 
-<span id="qiskit.algorithms.EstimationProblem.objective_qubits" />
+  ### post\_processing
 
-### objective\_qubits
+  <Attribute id="qiskit.algorithms.EstimationProblem.post_processing" name="post_processing">
+    Apply post processing to the input value.
 
-Get the criterion for a measurement outcome to be in a ‘good’ state.
+    **Return type**
 
-**Return type**
+    `Callable`\[\[`float`], `float`]
 
-`List`\[`int`]
+    **Returns**
 
-**Returns**
+    A handle to the post processing function. Acts as identity by default.
+  </Attribute>
 
-The criterion as list of qubit indices.
+  ### state\_preparation
 
-<span id="qiskit.algorithms.EstimationProblem.post_processing" />
+  <Attribute id="qiskit.algorithms.EstimationProblem.state_preparation" name="state_preparation">
+    Get the $\mathcal{A}$ operator encoding the amplitude $a$.
 
-### post\_processing
+    **Return type**
 
-Apply post processing to the input value.
+    `Optional`\[`QuantumCircuit`]
 
-**Return type**
+    **Returns**
 
-`Callable`\[\[`float`], `float`]
-
-**Returns**
-
-A handle to the post processing function. Acts as identity by default.
-
-<span id="qiskit.algorithms.EstimationProblem.state_preparation" />
-
-### state\_preparation
-
-Get the $\mathcal{A}$ operator encoding the amplitude $a$.
-
-**Return type**
-
-`Optional`\[`QuantumCircuit`]
-
-**Returns**
-
-The $\mathcal{A}$ operator as QuantumCircuit.
+    The $\mathcal{A}$ operator as QuantumCircuit.
+  </Attribute>
+</Class>
 

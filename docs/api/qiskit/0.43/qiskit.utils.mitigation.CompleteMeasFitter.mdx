@@ -8,127 +8,119 @@ python_api_name: qiskit.utils.mitigation.CompleteMeasFitter
 
 # CompleteMeasFitter
 
-<span id="qiskit.utils.mitigation.CompleteMeasFitter" />
+<Class id="qiskit.utils.mitigation.CompleteMeasFitter" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/mitigation/fitters.py" signature="CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')">
+  Bases: `object`
 
-`CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/mitigation/fitters.py "view source code")
+  Deprecated: Measurement correction fitter for a full calibration
 
-Bases: `object`
+  Initialize a measurement calibration matrix from the results of running the circuits returned by measurement\_calibration\_circuits
 
-Deprecated: Measurement correction fitter for a full calibration
+  A wrapper for the tensored fitter
 
-Initialize a measurement calibration matrix from the results of running the circuits returned by measurement\_calibration\_circuits
+  <Admonition title="Warning" type="caution">
+    This class is not a public API. The internals are not stable and will likely change. It is used solely for the `measurement_error_mitigation_cls` kwarg of the [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") class’s constructor (as a class not an instance). Anything outside of that usage does not have the normal user-facing API stability.
+  </Admonition>
 
-A wrapper for the tensored fitter
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.utils.mitigation.fitters.CompleteMeasFitter` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
+  </Admonition>
 
-<Admonition title="Warning" type="caution">
-  This class is not a public API. The internals are not stable and will likely change. It is used solely for the `measurement_error_mitigation_cls` kwarg of the [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") class’s constructor (as a class not an instance). Anything outside of that usage does not have the normal user-facing API stability.
-</Admonition>
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.utils.mitigation.fitters.CompleteMeasFitter` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
-</Admonition>
+  *   **results** – the results of running the measurement calibration circuits. If this is None the user will set a calibration matrix later.
+  *   **state\_labels** (*List\[str]*) – list of calibration state labels returned from measurement\_calibration\_circuits. The output matrix will obey this ordering.
+  *   **qubit\_list** (*List\[int]*) – List of the qubits (for reference and if the subset is needed). If None, the qubit\_list will be created according to the length of state\_labels\[0].
+  *   **circlabel** (*str*) – if the qubits were labeled.
 
-**Parameters**
+  ## Methods
 
-*   **results** – the results of running the measurement calibration circuits. If this is None the user will set a calibration matrix later.
-*   **state\_labels** (*List\[str]*) – list of calibration state labels returned from measurement\_calibration\_circuits. The output matrix will obey this ordering.
-*   **qubit\_list** (*List\[int]*) – List of the qubits (for reference and if the subset is needed). If None, the qubit\_list will be created according to the length of state\_labels\[0].
-*   **circlabel** (*str*) – if the qubits were labeled.
+  <span id="qiskit-utils-mitigation-completemeasfitter-add-data" />
 
-## Methods
+  ### add\_data
 
-<span id="qiskit-utils-mitigation-completemeasfitter-add-data" />
+  <Function id="qiskit.utils.mitigation.CompleteMeasFitter.add_data" name="add_data" signature="CompleteMeasFitter.add_data(new_results, rebuild_cal_matrix=True)">
+    Add measurement calibration data
 
-### add\_data
+    **Parameters**
 
-<span id="qiskit.utils.mitigation.CompleteMeasFitter.add_data" />
+    *   **new\_results** (*list or* [*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of result objects.
+    *   **rebuild\_cal\_matrix** (*bool*) – rebuild the calibration matrix
+  </Function>
 
-`CompleteMeasFitter.add_data(new_results, rebuild_cal_matrix=True)`
+  <span id="qiskit-utils-mitigation-completemeasfitter-readout-fidelity" />
 
-Add measurement calibration data
+  ### readout\_fidelity
 
-**Parameters**
+  <Function id="qiskit.utils.mitigation.CompleteMeasFitter.readout_fidelity" name="readout_fidelity" signature="CompleteMeasFitter.readout_fidelity(label_list=None)">
+    Based on the results, output the readout fidelity which is the normalized trace of the calibration matrix
 
-*   **new\_results** (*list or* [*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of result objects.
-*   **rebuild\_cal\_matrix** (*bool*) – rebuild the calibration matrix
+    **Parameters**
 
-<span id="qiskit-utils-mitigation-completemeasfitter-readout-fidelity" />
+    **label\_list** (*bool*) – If None, returns the average assignment fidelity of a single state. Otherwise it returns the assignment fidelity to be in any one of these states averaged over the second index.
 
-### readout\_fidelity
+    **Returns**
 
-<span id="qiskit.utils.mitigation.CompleteMeasFitter.readout_fidelity" />
+    readout fidelity (assignment fidelity)
 
-`CompleteMeasFitter.readout_fidelity(label_list=None)`
+    **Return type**
 
-Based on the results, output the readout fidelity which is the normalized trace of the calibration matrix
+    numpy.array
 
-**Parameters**
+    #### Additional Information:
 
-**label\_list** (*bool*) – If None, returns the average assignment fidelity of a single state. Otherwise it returns the assignment fidelity to be in any one of these states averaged over the second index.
+    The on-diagonal elements of the calibration matrix are the probabilities of measuring state ‘x’ given preparation of state ‘x’ and so the normalized trace is the average assignment fidelity
+  </Function>
 
-**Returns**
+  <span id="qiskit-utils-mitigation-completemeasfitter-subset-fitter" />
 
-readout fidelity (assignment fidelity)
+  ### subset\_fitter
 
-**Return type**
+  <Function id="qiskit.utils.mitigation.CompleteMeasFitter.subset_fitter" name="subset_fitter" signature="CompleteMeasFitter.subset_fitter(qubit_sublist)">
+    Return a fitter object that is a subset of the qubits in the original list.
 
-numpy.array
+    **Parameters**
 
-#### Additional Information:
+    **qubit\_sublist** (*list*) – must be a subset of qubit\_list
 
-The on-diagonal elements of the calibration matrix are the probabilities of measuring state ‘x’ given preparation of state ‘x’ and so the normalized trace is the average assignment fidelity
+    **Returns**
 
-<span id="qiskit-utils-mitigation-completemeasfitter-subset-fitter" />
+    **A new fitter that has the calibration for a**
 
-### subset\_fitter
+    subset of qubits
 
-<span id="qiskit.utils.mitigation.CompleteMeasFitter.subset_fitter" />
+    **Return type**
 
-`CompleteMeasFitter.subset_fitter(qubit_sublist)`
+    [CompleteMeasFitter](qiskit.utils.mitigation.CompleteMeasFitter "qiskit.utils.mitigation.CompleteMeasFitter")
 
-Return a fitter object that is a subset of the qubits in the original list.
+    **Raises**
 
-**Parameters**
+    **QiskitError** – If the calibration matrix is not initialized
+  </Function>
 
-**qubit\_sublist** (*list*) – must be a subset of qubit\_list
+  ## Attributes
 
-**Returns**
+  ### cal\_matrix
 
-**A new fitter that has the calibration for a**
+  <Attribute id="qiskit.utils.mitigation.CompleteMeasFitter.cal_matrix" name="cal_matrix">
+    Return cal\_matrix.
+  </Attribute>
 
-subset of qubits
+  ### filter
 
-**Return type**
+  <Attribute id="qiskit.utils.mitigation.CompleteMeasFitter.filter" name="filter">
+    Return a measurement filter using the cal matrix.
+  </Attribute>
 
-[CompleteMeasFitter](qiskit.utils.mitigation.CompleteMeasFitter "qiskit.utils.mitigation.CompleteMeasFitter")
+  ### qubit\_list
 
-**Raises**
+  <Attribute id="qiskit.utils.mitigation.CompleteMeasFitter.qubit_list" name="qubit_list">
+    Return list of qubits.
+  </Attribute>
 
-**QiskitError** – If the calibration matrix is not initialized
+  ### state\_labels
 
-## Attributes
-
-<span id="qiskit.utils.mitigation.CompleteMeasFitter.cal_matrix" />
-
-### cal\_matrix
-
-Return cal\_matrix.
-
-<span id="qiskit.utils.mitigation.CompleteMeasFitter.filter" />
-
-### filter
-
-Return a measurement filter using the cal matrix.
-
-<span id="qiskit.utils.mitigation.CompleteMeasFitter.qubit_list" />
-
-### qubit\_list
-
-Return list of qubits.
-
-<span id="qiskit.utils.mitigation.CompleteMeasFitter.state_labels" />
-
-### state\_labels
-
-Return state\_labels.
+  <Attribute id="qiskit.utils.mitigation.CompleteMeasFitter.state_labels" name="state_labels">
+    Return state\_labels.
+  </Attribute>
+</Class>
 

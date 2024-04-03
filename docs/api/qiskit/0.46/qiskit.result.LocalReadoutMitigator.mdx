@@ -8,165 +8,153 @@ python_api_name: qiskit.result.LocalReadoutMitigator
 
 # LocalReadoutMitigator
 
-<span id="qiskit.result.LocalReadoutMitigator" />
+<Class id="qiskit.result.LocalReadoutMitigator" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/result/mitigation/local_readout_mitigator.py" signature="qiskit.result.LocalReadoutMitigator(assignment_matrices=None, qubits=None, backend=None)">
+  Bases: [`BaseReadoutMitigator`](qiskit.result.BaseReadoutMitigator "qiskit.result.mitigation.base_readout_mitigator.BaseReadoutMitigator")
 
-`qiskit.result.LocalReadoutMitigator(assignment_matrices=None, qubits=None, backend=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/result/mitigation/local_readout_mitigator.py "view source code")
+  1-qubit tensor product readout error mitigator.
 
-Bases: [`BaseReadoutMitigator`](qiskit.result.BaseReadoutMitigator "qiskit.result.mitigation.base_readout_mitigator.BaseReadoutMitigator")
+  Mitigates [`expectation_value()`](#qiskit.result.LocalReadoutMitigator.expectation_value "qiskit.result.LocalReadoutMitigator.expectation_value") and [`quasi_probabilities()`](#qiskit.result.LocalReadoutMitigator.quasi_probabilities "qiskit.result.LocalReadoutMitigator.quasi_probabilities"). The mitigator should either be calibrated using qiskit experiments, or calculated directly from the backend properties. This mitigation method should be used in case the readout errors of the qubits are assumed to be uncorrelated. For *N* qubits there are *N* mitigation matrices, each of size $2 x 2$ and the mitigation complexity is $O(2^N)$, so it is more efficient than the [`CorrelatedReadoutMitigator`](qiskit.result.CorrelatedReadoutMitigator "qiskit.result.CorrelatedReadoutMitigator") class.
 
-1-qubit tensor product readout error mitigator.
+  Initialize a LocalReadoutMitigator
 
-Mitigates [`expectation_value()`](#qiskit.result.LocalReadoutMitigator.expectation_value "qiskit.result.LocalReadoutMitigator.expectation_value") and [`quasi_probabilities()`](#qiskit.result.LocalReadoutMitigator.quasi_probabilities "qiskit.result.LocalReadoutMitigator.quasi_probabilities"). The mitigator should either be calibrated using qiskit experiments, or calculated directly from the backend properties. This mitigation method should be used in case the readout errors of the qubits are assumed to be uncorrelated. For *N* qubits there are *N* mitigation matrices, each of size $2 x 2$ and the mitigation complexity is $O(2^N)$, so it is more efficient than the [`CorrelatedReadoutMitigator`](qiskit.result.CorrelatedReadoutMitigator "qiskit.result.CorrelatedReadoutMitigator") class.
+  **Parameters**
 
-Initialize a LocalReadoutMitigator
+  *   **assignment\_matrices** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")*] | None*) – Optional, list of single-qubit readout error assignment matrices.
+  *   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, the measured physical qubits for mitigation.
+  *   **backend** – Optional, backend name.
 
-**Parameters**
+  **Raises**
 
-*   **assignment\_matrices** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")*] | None*) – Optional, list of single-qubit readout error assignment matrices.
-*   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, the measured physical qubits for mitigation.
-*   **backend** – Optional, backend name.
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – matrices sizes do not agree with number of qubits
 
-**Raises**
+  ## Attributes
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – matrices sizes do not agree with number of qubits
+  ### qubits
 
-## Attributes
+  <Attribute id="qiskit.result.LocalReadoutMitigator.qubits" name="qubits">
+    The device qubits for this mitigator
+  </Attribute>
 
-<span id="qiskit.result.LocalReadoutMitigator.qubits" />
+  ### settings
 
-### qubits
+  <Attribute id="qiskit.result.LocalReadoutMitigator.settings" name="settings">
+    Return settings.
+  </Attribute>
 
-The device qubits for this mitigator
+  ## Methods
 
-<span id="qiskit.result.LocalReadoutMitigator.settings" />
+  ### assignment\_matrix
 
-### settings
+  <Function id="qiskit.result.LocalReadoutMitigator.assignment_matrix" name="assignment_matrix" signature="assignment_matrix(qubits=None)">
+    Return the measurement assignment matrix for specified qubits.
 
-Return settings.
+    The assignment matrix is the stochastic matrix $A$ which assigns a noisy measurement probability distribution to an ideal input measurement distribution: $P(i|j) = \langle i | A | j \rangle$.
 
-## Methods
+    **Parameters**
 
-### assignment\_matrix
+    **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, qubits being measured for operator expval.
 
-<span id="qiskit.result.LocalReadoutMitigator.assignment_matrix" />
+    **Returns**
 
-`assignment_matrix(qubits=None)`
+    the assignment matrix A.
 
-Return the measurement assignment matrix for specified qubits.
+    **Return type**
 
-The assignment matrix is the stochastic matrix $A$ which assigns a noisy measurement probability distribution to an ideal input measurement distribution: $P(i|j) = \langle i | A | j \rangle$.
+    np.ndarray
+  </Function>
 
-**Parameters**
+  ### expectation\_value
 
-**qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, qubits being measured for operator expval.
+  <Function id="qiskit.result.LocalReadoutMitigator.expectation_value" name="expectation_value" signature="expectation_value(data, diagonal=None, qubits=None, clbits=None, shots=None)">
+    Compute the mitigated expectation value of a diagonal observable.
 
-**Returns**
+    This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
 
-the assignment matrix A.
+    **Parameters**
 
-**Return type**
+    *   **data** ([*Counts*](qiskit.result.Counts "qiskit.result.counts.Counts")) – Counts object
+    *   **diagonal** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)") *| None*) – Optional, the vector of diagonal values for summing the expectation value. If `None` the default value is $[1, -1]^\otimes n$.
+    *   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, the measured physical qubits the count bitstrings correspond to. If None qubits are assumed to be $[0, ..., n-1]$.
+    *   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, if not None marginalize counts to the specified bits.
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – the number of shots.
 
-np.ndarray
+    **Returns**
 
-### expectation\_value
+    the expectation value and an upper bound of the standard deviation.
 
-<span id="qiskit.result.LocalReadoutMitigator.expectation_value" />
+    **Return type**
 
-`expectation_value(data, diagonal=None, qubits=None, clbits=None, shots=None)`
+    ([float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"))
 
-Compute the mitigated expectation value of a diagonal observable.
+    **Additional Information:**
 
-This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
+    The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Numpy array $[O(0), ..., O(2^n -1)]$. If no diagonal is specified the diagonal of the Pauli operator :math\`O = mbox\{diag}(Z^\{otimes n}) = \[1, -1]^\{otimes n}\` is used. The `clbits` kwarg is used to marginalize the input counts dictionary over the specified bit-values, and the `qubits` kwarg is used to specify which physical qubits these bit-values correspond to as `circuit.measure(qubits, clbits)`.
+  </Function>
 
-**Parameters**
+  ### mitigation\_matrix
 
-*   **data** ([*Counts*](qiskit.result.Counts "qiskit.result.counts.Counts")) – Counts object
-*   **diagonal** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)") *| None*) – Optional, the vector of diagonal values for summing the expectation value. If `None` the default value is $[1, -1]^\otimes n$.
-*   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, the measured physical qubits the count bitstrings correspond to. If None qubits are assumed to be $[0, ..., n-1]$.
-*   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, if not None marginalize counts to the specified bits.
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – the number of shots.
+  <Function id="qiskit.result.LocalReadoutMitigator.mitigation_matrix" name="mitigation_matrix" signature="mitigation_matrix(qubits=None)">
+    Return the measurement mitigation matrix for the specified qubits.
 
-**Returns**
+    The mitigation matrix $A^{-1}$ is defined as the inverse of the [`assignment_matrix()`](#qiskit.result.LocalReadoutMitigator.assignment_matrix "qiskit.result.LocalReadoutMitigator.assignment_matrix") $A$.
 
-the expectation value and an upper bound of the standard deviation.
+    **Parameters**
 
-**Return type**
+    **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Optional, qubits being measured for operator expval. if a single int is given, it is assumed to be the index of the qubit in self.\_qubits
 
-([float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"))
+    **Returns**
 
-**Additional Information:**
+    the measurement error mitigation matrix $A^{-1}$.
 
-The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Numpy array $[O(0), ..., O(2^n -1)]$. If no diagonal is specified the diagonal of the Pauli operator :math\`O = mbox\{diag}(Z^\{otimes n}) = \[1, -1]^\{otimes n}\` is used. The `clbits` kwarg is used to marginalize the input counts dictionary over the specified bit-values, and the `qubits` kwarg is used to specify which physical qubits these bit-values correspond to as `circuit.measure(qubits, clbits)`.
+    **Return type**
 
-### mitigation\_matrix
+    np.ndarray
+  </Function>
 
-<span id="qiskit.result.LocalReadoutMitigator.mitigation_matrix" />
+  ### quasi\_probabilities
 
-`mitigation_matrix(qubits=None)`
+  <Function id="qiskit.result.LocalReadoutMitigator.quasi_probabilities" name="quasi_probabilities" signature="quasi_probabilities(data, qubits=None, clbits=None, shots=None)">
+    Compute mitigated quasi probabilities value.
 
-Return the measurement mitigation matrix for the specified qubits.
+    **Parameters**
 
-The mitigation matrix $A^{-1}$ is defined as the inverse of the [`assignment_matrix()`](#qiskit.result.LocalReadoutMitigator.assignment_matrix "qiskit.result.LocalReadoutMitigator.assignment_matrix") $A$.
+    *   **data** ([*Counts*](qiskit.result.Counts "qiskit.result.counts.Counts")) – counts object
+    *   **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – qubits the count bitstrings correspond to.
+    *   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, marginalize counts to just these bits.
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
 
-**Parameters**
+    **Returns**
 
-**qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Optional, qubits being measured for operator expval. if a single int is given, it is assumed to be the index of the qubit in self.\_qubits
+    **A dictionary containing pairs of \[output, mean] where “output”**
 
-**Returns**
+    is the key in the dictionaries, which is the length-N bitstring of a measured standard basis state, and “mean” is the mean of non-zero quasi-probability estimates.
 
-the measurement error mitigation matrix $A^{-1}$.
+    **Return type**
 
-**Return type**
+    [QuasiDistribution](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")
 
-np.ndarray
+    **Raises**
 
-### quasi\_probabilities
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if qubit and clbit kwargs are not valid.
+  </Function>
 
-<span id="qiskit.result.LocalReadoutMitigator.quasi_probabilities" />
+  ### stddev\_upper\_bound
 
-`quasi_probabilities(data, qubits=None, clbits=None, shots=None)`
+  <Function id="qiskit.result.LocalReadoutMitigator.stddev_upper_bound" name="stddev_upper_bound" signature="stddev_upper_bound(shots, qubits=None)">
+    Return an upper bound on standard deviation of expval estimator.
 
-Compute mitigated quasi probabilities value.
+    **Parameters**
 
-**Parameters**
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of shots used for expectation value measurement.
+    *   **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – qubits being measured for operator expval.
 
-*   **data** ([*Counts*](qiskit.result.Counts "qiskit.result.counts.Counts")) – counts object
-*   **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – qubits the count bitstrings correspond to.
-*   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, marginalize counts to just these bits.
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
+    **Returns**
 
-**Returns**
+    the standard deviation upper bound.
 
-**A dictionary containing pairs of \[output, mean] where “output”**
+    **Return type**
 
-is the key in the dictionaries, which is the length-N bitstring of a measured standard basis state, and “mean” is the mean of non-zero quasi-probability estimates.
-
-**Return type**
-
-[QuasiDistribution](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if qubit and clbit kwargs are not valid.
-
-### stddev\_upper\_bound
-
-<span id="qiskit.result.LocalReadoutMitigator.stddev_upper_bound" />
-
-`stddev_upper_bound(shots, qubits=None)`
-
-Return an upper bound on standard deviation of expval estimator.
-
-**Parameters**
-
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of shots used for expectation value measurement.
-*   **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – qubits being measured for operator expval.
-
-**Returns**
-
-the standard deviation upper bound.
-
-**Return type**
-
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+  </Function>
+</Class>
 

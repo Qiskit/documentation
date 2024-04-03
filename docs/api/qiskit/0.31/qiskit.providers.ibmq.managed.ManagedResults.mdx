@@ -8,195 +8,181 @@ python_api_name: qiskit.providers.ibmq.managed.ManagedResults
 
 # ManagedResults
 
-<span id="qiskit.providers.ibmq.managed.ManagedResults" />
+<Class id="qiskit.providers.ibmq.managed.ManagedResults" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/managed/managedresults.py" signature="ManagedResults(job_set, backend_name, success)">
+  Bases: `object`
 
-`ManagedResults(job_set, backend_name, success)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/managed/managedresults.py "view source code")
+  Results managed by the Job Manager.
 
-Bases: `object`
+  This class is a wrapper around the [`Result`](qiskit.result.Result "qiskit.result.Result") class and provides the same methods. Please refer to the [`Result`](qiskit.result.Result "qiskit.result.Result") class for more information on the methods.
 
-Results managed by the Job Manager.
+  ManagedResults constructor.
 
-This class is a wrapper around the [`Result`](qiskit.result.Result "qiskit.result.Result") class and provides the same methods. Please refer to the [`Result`](qiskit.result.Result "qiskit.result.Result") class for more information on the methods.
+  **Parameters**
 
-ManagedResults constructor.
+  *   **job\_set** (`ManagedJobSet`) – Managed job set for these results.
+  *   **backend\_name** (`str`) – Name of the backend used to run the experiments.
+  *   **success** (`bool`) – `True` if all experiments were successful and results available. `False` otherwise.
 
-**Parameters**
+  ### backend\_name
 
-*   **job\_set** (`ManagedJobSet`) – Managed job set for these results.
-*   **backend\_name** (`str`) – Name of the backend used to run the experiments.
-*   **success** (`bool`) – `True` if all experiments were successful and results available. `False` otherwise.
+  <Attribute id="qiskit.providers.ibmq.managed.ManagedResults.backend_name" name="backend_name">
+    Name of the backend used to run the experiments.
+  </Attribute>
 
-<span id="qiskit.providers.ibmq.managed.ManagedResults.backend_name" />
+  ### success
 
-### backend\_name
+  <Attribute id="qiskit.providers.ibmq.managed.ManagedResults.success" name="success">
+    Whether all experiments were successful.
+  </Attribute>
 
-Name of the backend used to run the experiments.
+  ## Methods
 
-<span id="qiskit.providers.ibmq.managed.ManagedResults.success" />
+  ### combine\_results
 
-### success
+  <Function id="qiskit.providers.ibmq.managed.ManagedResults.combine_results" name="combine_results" signature="ManagedResults.combine_results()">
+    Combine results from all jobs into a single Result.
 
-Whether all experiments were successful.
+    <Admonition title="Note" type="note">
+      Since the order of the results must match the order of the initial experiments, job results can only be combined if all jobs succeeded.
+    </Admonition>
 
-## Methods
+    **Return type**
 
-### combine\_results
+    `Result`
 
-<span id="qiskit.providers.ibmq.managed.ManagedResults.combine_results" />
+    **Returns**
 
-`ManagedResults.combine_results()`
+    **A [`Result`](qiskit.result.Result "qiskit.result.Result") object that contains results from**
 
-Combine results from all jobs into a single Result.
+    all jobs.
 
-<Admonition title="Note" type="note">
-  Since the order of the results must match the order of the initial experiments, job results can only be combined if all jobs succeeded.
-</Admonition>
+    **Raises**
 
-**Return type**
+    [**IBMQManagedResultDataNotAvailable**](qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable "qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable") – If results cannot be combined because some jobs failed.
+  </Function>
 
-`Result`
+  ### data
 
-**Returns**
+  <Function id="qiskit.providers.ibmq.managed.ManagedResults.data" name="data" signature="ManagedResults.data(experiment)">
+    Get the raw data for an experiment.
 
-**A [`Result`](qiskit.result.Result "qiskit.result.Result") object that contains results from**
+    **Parameters**
 
-all jobs.
+    **experiment** (`Union`\[`str`, `QuantumCircuit`, `Schedule`, `int`]) –
 
-**Raises**
+    Retrieve result for this experiment. Several types are accepted for convenience:
 
-[**IBMQManagedResultDataNotAvailable**](qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable "qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable") – If results cannot be combined because some jobs failed.
+    > *   str: The name of the experiment.
+    > *   QuantumCircuit: The name of the circuit instance will be used.
+    > *   Schedule: The name of the schedule instance will be used.
+    > *   int: The position of the experiment.
 
-### data
+    **Return type**
 
-<span id="qiskit.providers.ibmq.managed.ManagedResults.data" />
+    `Dict`
 
-`ManagedResults.data(experiment)`
+    **Returns**
 
-Get the raw data for an experiment.
+    Refer to the [`Result.data()`](qiskit.result.Result#data "qiskit.result.Result.data") for information on return data.
 
-**Parameters**
+    **Raises**
 
-**experiment** (`Union`\[`str`, `QuantumCircuit`, `Schedule`, `int`]) –
+    *   [**IBMQManagedResultDataNotAvailable**](qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable "qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable") – If data for the experiment could not be retrieved.
+    *   [**IBMQJobManagerJobNotFound**](qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound "qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound") – If the job for the experiment could not be found.
+  </Function>
 
-Retrieve result for this experiment. Several types are accepted for convenience:
+  ### get\_counts
 
-> *   str: The name of the experiment.
-> *   QuantumCircuit: The name of the circuit instance will be used.
-> *   Schedule: The name of the schedule instance will be used.
-> *   int: The position of the experiment.
+  <Function id="qiskit.providers.ibmq.managed.ManagedResults.get_counts" name="get_counts" signature="ManagedResults.get_counts(experiment)">
+    Get the histogram data of an experiment.
 
-**Return type**
+    **Parameters**
 
-`Dict`
+    **experiment** (`Union`\[`str`, `QuantumCircuit`, `Schedule`, `int`]) – Retrieve result for this experiment, as specified by [`data()`](qiskit.providers.ibmq.managed.ManagedResults#data "qiskit.providers.ibmq.managed.ManagedResults.data").
 
-**Returns**
+    **Return type**
 
-Refer to the [`Result.data()`](qiskit.result.Result#data "qiskit.result.Result.data") for information on return data.
+    `Dict`\[`str`, `int`]
 
-**Raises**
+    **Returns**
 
-*   [**IBMQManagedResultDataNotAvailable**](qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable "qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable") – If data for the experiment could not be retrieved.
-*   [**IBMQJobManagerJobNotFound**](qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound "qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound") – If the job for the experiment could not be found.
+    Refer to the [`Result.get_counts()`](qiskit.result.Result#get_counts "qiskit.result.Result.get_counts") for information on return data.
 
-### get\_counts
+    **Raises**
 
-<span id="qiskit.providers.ibmq.managed.ManagedResults.get_counts" />
+    *   [**IBMQManagedResultDataNotAvailable**](qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable "qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable") – If data for the experiment could not be retrieved.
+    *   [**IBMQJobManagerJobNotFound**](qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound "qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound") – If the job for the experiment could not be found.
+  </Function>
 
-`ManagedResults.get_counts(experiment)`
+  ### get\_memory
 
-Get the histogram data of an experiment.
+  <Function id="qiskit.providers.ibmq.managed.ManagedResults.get_memory" name="get_memory" signature="ManagedResults.get_memory(experiment)">
+    Get the sequence of memory states (readouts) for each shot. The data from the experiment is a list of format \[‘00000’, ‘01000’, ‘10100’, ‘10100’, ‘11101’, ‘11100’, ‘00101’, …, ‘01010’]
 
-**Parameters**
+    **Parameters**
 
-**experiment** (`Union`\[`str`, `QuantumCircuit`, `Schedule`, `int`]) – Retrieve result for this experiment, as specified by [`data()`](qiskit.providers.ibmq.managed.ManagedResults#data "qiskit.providers.ibmq.managed.ManagedResults.data").
+    **experiment** (`Union`\[`str`, `QuantumCircuit`, `Schedule`, `int`]) – Retrieve result for this experiment, as specified by [`data()`](qiskit.providers.ibmq.managed.ManagedResults#data "qiskit.providers.ibmq.managed.ManagedResults.data").
 
-**Return type**
+    **Return type**
 
-`Dict`\[`str`, `int`]
+    `Union`\[`list`, `ndarray`]
 
-**Returns**
+    **Returns**
 
-Refer to the [`Result.get_counts()`](qiskit.result.Result#get_counts "qiskit.result.Result.get_counts") for information on return data.
+    Refer to the [`Result.get_memory()`](qiskit.result.Result#get_memory "qiskit.result.Result.get_memory") for information on return data.
 
-**Raises**
+    **Raises**
 
-*   [**IBMQManagedResultDataNotAvailable**](qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable "qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable") – If data for the experiment could not be retrieved.
-*   [**IBMQJobManagerJobNotFound**](qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound "qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound") – If the job for the experiment could not be found.
+    *   [**IBMQManagedResultDataNotAvailable**](qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable "qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable") – If data for the experiment could not be retrieved.
+    *   [**IBMQJobManagerJobNotFound**](qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound "qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound") – If the job for the experiment could not be found.
+  </Function>
 
-### get\_memory
+  ### get\_statevector
 
-<span id="qiskit.providers.ibmq.managed.ManagedResults.get_memory" />
+  <Function id="qiskit.providers.ibmq.managed.ManagedResults.get_statevector" name="get_statevector" signature="ManagedResults.get_statevector(experiment, decimals=None)">
+    Get the final statevector of an experiment.
 
-`ManagedResults.get_memory(experiment)`
+    **Parameters**
 
-Get the sequence of memory states (readouts) for each shot. The data from the experiment is a list of format \[‘00000’, ‘01000’, ‘10100’, ‘10100’, ‘11101’, ‘11100’, ‘00101’, …, ‘01010’]
+    *   **experiment** (`Union`\[`str`, `QuantumCircuit`, `Schedule`, `int`]) – Retrieve result for this experiment, as specified by [`data()`](qiskit.providers.ibmq.managed.ManagedResults#data "qiskit.providers.ibmq.managed.ManagedResults.data").
+    *   **decimals** (`Optional`\[`int`]) – The number of decimals in the statevector. If `None`, skip rounding.
 
-**Parameters**
+    **Return type**
 
-**experiment** (`Union`\[`str`, `QuantumCircuit`, `Schedule`, `int`]) – Retrieve result for this experiment, as specified by [`data()`](qiskit.providers.ibmq.managed.ManagedResults#data "qiskit.providers.ibmq.managed.ManagedResults.data").
+    `List`\[`complex`]
 
-**Return type**
+    **Returns**
 
-`Union`\[`list`, `ndarray`]
+    Refer to the [`Result.get_statevector()`](qiskit.result.Result#get_statevector "qiskit.result.Result.get_statevector") for information on return data.
 
-**Returns**
+    **Raises**
 
-Refer to the [`Result.get_memory()`](qiskit.result.Result#get_memory "qiskit.result.Result.get_memory") for information on return data.
+    *   [**IBMQManagedResultDataNotAvailable**](qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable "qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable") – If data for the experiment could not be retrieved.
+    *   [**IBMQJobManagerJobNotFound**](qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound "qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound") – If the job for the experiment could not be found.
+  </Function>
 
-**Raises**
+  ### get\_unitary
 
-*   [**IBMQManagedResultDataNotAvailable**](qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable "qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable") – If data for the experiment could not be retrieved.
-*   [**IBMQJobManagerJobNotFound**](qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound "qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound") – If the job for the experiment could not be found.
+  <Function id="qiskit.providers.ibmq.managed.ManagedResults.get_unitary" name="get_unitary" signature="ManagedResults.get_unitary(experiment, decimals=None)">
+    Get the final unitary of an experiment.
 
-### get\_statevector
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.managed.ManagedResults.get_statevector" />
+    *   **experiment** (`Union`\[`str`, `QuantumCircuit`, `Schedule`, `int`]) – Retrieve result for this experiment, as specified by [`data()`](qiskit.providers.ibmq.managed.ManagedResults#data "qiskit.providers.ibmq.managed.ManagedResults.data").
+    *   **decimals** (`Optional`\[`int`]) – The number of decimals in the unitary. If `None`, skip rounding.
 
-`ManagedResults.get_statevector(experiment, decimals=None)`
+    **Return type**
 
-Get the final statevector of an experiment.
+    `List`\[`List`\[`complex`]]
 
-**Parameters**
+    **Returns**
 
-*   **experiment** (`Union`\[`str`, `QuantumCircuit`, `Schedule`, `int`]) – Retrieve result for this experiment, as specified by [`data()`](qiskit.providers.ibmq.managed.ManagedResults#data "qiskit.providers.ibmq.managed.ManagedResults.data").
-*   **decimals** (`Optional`\[`int`]) – The number of decimals in the statevector. If `None`, skip rounding.
+    Refer to the [`Result.get_unitary()`](qiskit.result.Result#get_unitary "qiskit.result.Result.get_unitary") for information on return data.
 
-**Return type**
+    **Raises**
 
-`List`\[`complex`]
-
-**Returns**
-
-Refer to the [`Result.get_statevector()`](qiskit.result.Result#get_statevector "qiskit.result.Result.get_statevector") for information on return data.
-
-**Raises**
-
-*   [**IBMQManagedResultDataNotAvailable**](qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable "qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable") – If data for the experiment could not be retrieved.
-*   [**IBMQJobManagerJobNotFound**](qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound "qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound") – If the job for the experiment could not be found.
-
-### get\_unitary
-
-<span id="qiskit.providers.ibmq.managed.ManagedResults.get_unitary" />
-
-`ManagedResults.get_unitary(experiment, decimals=None)`
-
-Get the final unitary of an experiment.
-
-**Parameters**
-
-*   **experiment** (`Union`\[`str`, `QuantumCircuit`, `Schedule`, `int`]) – Retrieve result for this experiment, as specified by [`data()`](qiskit.providers.ibmq.managed.ManagedResults#data "qiskit.providers.ibmq.managed.ManagedResults.data").
-*   **decimals** (`Optional`\[`int`]) – The number of decimals in the unitary. If `None`, skip rounding.
-
-**Return type**
-
-`List`\[`List`\[`complex`]]
-
-**Returns**
-
-Refer to the [`Result.get_unitary()`](qiskit.result.Result#get_unitary "qiskit.result.Result.get_unitary") for information on return data.
-
-**Raises**
-
-*   [**IBMQManagedResultDataNotAvailable**](qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable "qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable") – If data for the experiment could not be retrieved.
-*   [**IBMQJobManagerJobNotFound**](qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound "qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound") – If the job for the experiment could not be found.
+    *   [**IBMQManagedResultDataNotAvailable**](qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable "qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable") – If data for the experiment could not be retrieved.
+    *   [**IBMQJobManagerJobNotFound**](qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound "qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound") – If the job for the experiment could not be found.
+  </Function>
+</Class>
 

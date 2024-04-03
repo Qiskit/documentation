@@ -8,181 +8,177 @@ python_api_name: qiskit.algorithms.AmplitudeEstimationResult
 
 # AmplitudeEstimationResult
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult" />
+<Class id="qiskit.algorithms.AmplitudeEstimationResult" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/ae.py" signature="AmplitudeEstimationResult">
+  Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult`](qiskit.algorithms.AmplitudeEstimatorResult "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult")
 
-`AmplitudeEstimationResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
+  The `AmplitudeEstimation` result object.
 
-Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult`](qiskit.algorithms.AmplitudeEstimatorResult "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult")
+  ## Methods
 
-The `AmplitudeEstimation` result object.
+  ### combine
 
-## Methods
+  <Function id="qiskit.algorithms.AmplitudeEstimationResult.combine" name="combine" signature="AmplitudeEstimationResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-### combine
+    **Raises**
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult.combine" />
+    **TypeError** – Argument is None
 
-`AmplitudeEstimationResult.combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    `None`
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**TypeError** – Argument is None
+  ### circuit\_results
 
-**Return type**
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.circuit_results" name="circuit_results">
+    Return the circuit results. Can be a statevector or counts dictionary.
 
-`None`
+    **Return type**
 
-## Attributes
+    `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
+  </Attribute>
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult.circuit_results" />
+  ### confidence\_interval
 
-### circuit\_results
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.confidence_interval" name="confidence_interval">
+    Return the confidence interval for the amplitude (95% interval by default).
 
-Return the circuit results. Can be a statevector or counts dictionary.
+    **Return type**
 
-**Return type**
+    `Tuple`\[`float`, `float`]
+  </Attribute>
 
-`Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
+  ### confidence\_interval\_processed
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult.confidence_interval" />
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.confidence_interval_processed" name="confidence_interval_processed">
+    Return the post-processed confidence interval (95% interval by default).
 
-### confidence\_interval
+    **Return type**
 
-Return the confidence interval for the amplitude (95% interval by default).
+    `Tuple`\[`float`, `float`]
+  </Attribute>
 
-**Return type**
+  ### estimation
 
-`Tuple`\[`float`, `float`]
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.estimation" name="estimation">
+    Return the estimation for the amplitude in $[0, 1]$.
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult.confidence_interval_processed" />
+    **Return type**
 
-### confidence\_interval\_processed
+    `float`
+  </Attribute>
 
-Return the post-processed confidence interval (95% interval by default).
+  ### estimation\_processed
 
-**Return type**
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.estimation_processed" name="estimation_processed">
+    Return the estimation for the amplitude after the post-processing has been applied.
 
-`Tuple`\[`float`, `float`]
+    **Return type**
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult.estimation" />
+    `float`
+  </Attribute>
 
-### estimation
+  ### max\_probability
 
-Return the estimation for the amplitude in $[0, 1]$.
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.max_probability" name="max_probability">
+    Return the maximum sampling probability.
 
-**Return type**
+    **Return type**
 
-`float`
+    `float`
+  </Attribute>
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult.estimation_processed" />
+  ### measurements
 
-### estimation\_processed
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.measurements" name="measurements">
+    Return the measurements as integers with their measurement probability.
 
-Return the estimation for the amplitude after the post-processing has been applied.
+    **Return type**
 
-**Return type**
+    `Dict`\[`int`, `float`]
+  </Attribute>
 
-`float`
+  ### mle
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult.max_probability" />
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.mle" name="mle">
+    Return the MLE for the amplitude, in $\[0, 1]\$.
 
-### max\_probability
+    **Return type**
 
-Return the maximum sampling probability.
+    `float`
+  </Attribute>
 
-**Return type**
+  ### mle\_processed
 
-`float`
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.mle_processed" name="mle_processed">
+    Return the post-processed MLE for the amplitude.
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult.measurements" />
+    **Return type**
 
-### measurements
+    `float`
+  </Attribute>
 
-Return the measurements as integers with their measurement probability.
+  ### num\_evaluation\_qubits
 
-**Return type**
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.num_evaluation_qubits" name="num_evaluation_qubits">
+    Returns the number of evaluation qubits.
 
-`Dict`\[`int`, `float`]
+    **Return type**
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult.mle" />
+    `int`
+  </Attribute>
 
-### mle
+  ### num\_oracle\_queries
 
-Return the MLE for the amplitude, in $\[0, 1]\$.
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.num_oracle_queries" name="num_oracle_queries">
+    Return the number of Grover oracle queries.
 
-**Return type**
+    **Return type**
 
-`float`
+    `int`
+  </Attribute>
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult.mle_processed" />
+  ### post\_processing
 
-### mle\_processed
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.post_processing" name="post_processing">
+    Return a handle to the post processing function.
 
-Return the post-processed MLE for the amplitude.
+    **Return type**
 
-**Return type**
+    `Callable`\[\[`float`], `float`]
+  </Attribute>
 
-`float`
+  ### samples
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult.num_evaluation_qubits" />
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.samples" name="samples">
+    Return the measurement samples with their measurement probability.
 
-### num\_evaluation\_qubits
+    **Return type**
 
-Returns the number of evaluation qubits.
+    `Dict`\[`float`, `float`]
+  </Attribute>
 
-**Return type**
+  ### samples\_processed
 
-`int`
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.samples_processed" name="samples_processed">
+    Return the post-processed measurement samples with their measurement probability.
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult.num_oracle_queries" />
+    **Return type**
 
-### num\_oracle\_queries
+    `Dict`\[`float`, `float`]
+  </Attribute>
 
-Return the number of Grover oracle queries.
+  ### shots
 
-**Return type**
+  <Attribute id="qiskit.algorithms.AmplitudeEstimationResult.shots" name="shots">
+    Return the number of shots used. Is 1 for statevector-based simulations.
 
-`int`
+    **Return type**
 
-<span id="qiskit.algorithms.AmplitudeEstimationResult.post_processing" />
-
-### post\_processing
-
-Return a handle to the post processing function.
-
-**Return type**
-
-`Callable`\[\[`float`], `float`]
-
-<span id="qiskit.algorithms.AmplitudeEstimationResult.samples" />
-
-### samples
-
-Return the measurement samples with their measurement probability.
-
-**Return type**
-
-`Dict`\[`float`, `float`]
-
-<span id="qiskit.algorithms.AmplitudeEstimationResult.samples_processed" />
-
-### samples\_processed
-
-Return the post-processed measurement samples with their measurement probability.
-
-**Return type**
-
-`Dict`\[`float`, `float`]
-
-<span id="qiskit.algorithms.AmplitudeEstimationResult.shots" />
-
-### shots
-
-Return the number of shots used. Is 1 for statevector-based simulations.
-
-**Return type**
-
-`int`
+    `int`
+  </Attribute>
+</Class>
 

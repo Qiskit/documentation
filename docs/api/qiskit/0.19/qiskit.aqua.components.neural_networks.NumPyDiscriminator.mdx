@@ -8,123 +8,111 @@ python_api_name: qiskit.aqua.components.neural_networks.NumPyDiscriminator
 
 # NumPyDiscriminator
 
-<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator" />
+<Class id="qiskit.aqua.components.neural_networks.NumPyDiscriminator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/numpy_discriminator.py" signature="NumPyDiscriminator(n_features=1, n_out=1)">
+  Discriminator based on NumPy
 
-`NumPyDiscriminator(n_features=1, n_out=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/numpy_discriminator.py "view source code")
+  **Parameters**
 
-Discriminator based on NumPy
+  *   **n\_features** (`int`) – Dimension of input data vector.
+  *   **n\_out** (`int`) – Dimension of the discriminator’s output vector.
 
-**Parameters**
+  ## Attributes
 
-*   **n\_features** (`int`) – Dimension of input data vector.
-*   **n\_out** (`int`) – Dimension of the discriminator’s output vector.
+  ### discriminator\_net
 
-## Attributes
+  <Attribute id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.discriminator_net" name="discriminator_net">
+    Get discriminator
 
-### discriminator\_net
+    **Returns**
 
-Get discriminator
+    discriminator object
 
-**Returns**
+    **Return type**
 
-discriminator object
+    DiscriminatorNet
+  </Attribute>
 
-**Return type**
+  ## Methods
 
-DiscriminatorNet
+  ### get\_label
 
-## Methods
+  <Function id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.get_label" name="get_label" signature="NumPyDiscriminator.get_label(x, detach=False)">
+    Get data sample labels, i.e. true or fake.
 
-### get\_label
+    **Parameters**
 
-<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.get_label" />
+    *   **x** (*numpy.ndarray*) – Discriminator input, i.e. data sample.
+    *   **detach** (*bool*) – depreciated for numpy network
 
-`NumPyDiscriminator.get_label(x, detach=False)`
+    **Returns**
 
-Get data sample labels, i.e. true or fake.
+    Discriminator output, i.e. data label
 
-**Parameters**
+    **Return type**
 
-*   **x** (*numpy.ndarray*) – Discriminator input, i.e. data sample.
-*   **detach** (*bool*) – depreciated for numpy network
+    numpy.ndarray
+  </Function>
 
-**Returns**
+  ### load\_model
 
-Discriminator output, i.e. data label
+  <Function id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.load_model" name="load_model" signature="NumPyDiscriminator.load_model(load_dir)">
+    Load discriminator model
 
-**Return type**
+    **Parameters**
 
-numpy.ndarray
+    **load\_dir** (*str*) – file with stored pytorch discriminator model to be loaded
+  </Function>
 
-### load\_model
+  ### loss
 
-<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.load_model" />
+  <Function id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.loss" name="loss" signature="NumPyDiscriminator.loss(x, y, weights=None)">
+    Loss function :param x: sample label (equivalent to discriminator output) :type x: numpy.ndarray :param y: target label :type y: numpy.ndarray :param weights: customized scaling for each sample (optional) :type weights: numpy.ndarray
 
-`NumPyDiscriminator.load_model(load_dir)`
+    **Returns**
 
-Load discriminator model
+    loss function
 
-**Parameters**
+    **Return type**
 
-**load\_dir** (*str*) – file with stored pytorch discriminator model to be loaded
+    float
+  </Function>
 
-### loss
+  ### save\_model
 
-<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.loss" />
+  <Function id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.save_model" name="save_model" signature="NumPyDiscriminator.save_model(snapshot_dir)">
+    Save discriminator model
 
-`NumPyDiscriminator.loss(x, y, weights=None)`
+    **Parameters**
 
-Loss function :param x: sample label (equivalent to discriminator output) :type x: numpy.ndarray :param y: target label :type y: numpy.ndarray :param weights: customized scaling for each sample (optional) :type weights: numpy.ndarray
+    **snapshot\_dir** (*str*) – directory path for saving the model
+  </Function>
 
-**Returns**
+  ### set\_seed
 
-loss function
+  <Function id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.set_seed" name="set_seed" signature="NumPyDiscriminator.set_seed(seed)">
+    Set seed. :param seed: seed :type seed: int
+  </Function>
 
-**Return type**
+  ### train
 
-float
+  <Function id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.train" name="train" signature="NumPyDiscriminator.train(data, weights, penalty=False, quantum_instance=None, shots=None)">
+    Perform one training step w\.r.t to the discriminator’s parameters
 
-### save\_model
+    **Parameters**
 
-<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.save_model" />
+    *   **data** (*tuple(numpy.ndarray, numpy.ndarray)*) – real\_batch: array, Training data batch. generated\_batch: array, Generated data batch.
+    *   **weights** (*tuple*) – real problem, generated problem
+    *   **penalty** (*bool*) – Depreciated for classical networks.
+    *   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Depreciated for classical networks.
+    *   **shots** (*int*) – Number of shots for hardware or qasm execution. Ignored for classical networks.
 
-`NumPyDiscriminator.save_model(snapshot_dir)`
+    **Returns**
 
-Save discriminator model
+    with Discriminator loss and updated parameters.
 
-**Parameters**
+    **Return type**
 
-**snapshot\_dir** (*str*) – directory path for saving the model
-
-### set\_seed
-
-<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.set_seed" />
-
-`NumPyDiscriminator.set_seed(seed)`
-
-Set seed. :param seed: seed :type seed: int
-
-### train
-
-<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.train" />
-
-`NumPyDiscriminator.train(data, weights, penalty=False, quantum_instance=None, shots=None)`
-
-Perform one training step w\.r.t to the discriminator’s parameters
-
-**Parameters**
-
-*   **data** (*tuple(numpy.ndarray, numpy.ndarray)*) – real\_batch: array, Training data batch. generated\_batch: array, Generated data batch.
-*   **weights** (*tuple*) – real problem, generated problem
-*   **penalty** (*bool*) – Depreciated for classical networks.
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Depreciated for classical networks.
-*   **shots** (*int*) – Number of shots for hardware or qasm execution. Ignored for classical networks.
-
-**Returns**
-
-with Discriminator loss and updated parameters.
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 

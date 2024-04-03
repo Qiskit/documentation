@@ -8,30 +8,28 @@ python_api_name: qiskit.quantum_info.decompose_clifford
 
 # qiskit.quantum\_info.decompose\_clifford
 
-<span id="qiskit.quantum_info.decompose_clifford" />
+<Function id="qiskit.quantum_info.decompose_clifford" name="decompose_clifford" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/synthesis/clifford_decompose.py" signature="decompose_clifford(clifford, method=None)">
+  Decompose a Clifford operator into a QuantumCircuit.
 
-`decompose_clifford(clifford, method=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/synthesis/clifford_decompose.py "view source code")
+  For N \<= 3 qubits this is based on optimal CX cost decomposition from reference \[1]. For N > 3 qubits this is done using the general non-optimal greedy compilation routine from reference \[3], which typically yields better CX cost compared to the AG method in \[2].
 
-Decompose a Clifford operator into a QuantumCircuit.
+  **Parameters**
 
-For N \<= 3 qubits this is based on optimal CX cost decomposition from reference \[1]. For N > 3 qubits this is done using the general non-optimal greedy compilation routine from reference \[3], which typically yields better CX cost compared to the AG method in \[2].
+  *   **clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
+  *   **method** (*str*) – Optional, a synthesis method (‘AG’ or ‘greedy’). If set this overrides optimal decomposition for N \<=3 qubits.
 
-**Parameters**
+  **Returns**
 
-*   **clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
-*   **method** (*str*) – Optional, a synthesis method (‘AG’ or ‘greedy’). If set this overrides optimal decomposition for N \<=3 qubits.
+  a circuit implementation of the Clifford.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the Clifford.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **References**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**References**
-
-1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
-2.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
-3.  Sergey Bravyi, Shaohan Hu, Dmitri Maslov, Ruslan Shaydulin, *Clifford Circuit Optimization with Templates and Symbolic Pauli Gates*, [arXiv:2105.02291 \[quant-ph\]](https://arxiv.org/abs/2105.02291)
+  1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+  2.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
+  3.  Sergey Bravyi, Shaohan Hu, Dmitri Maslov, Ruslan Shaydulin, *Clifford Circuit Optimization with Templates and Symbolic Pauli Gates*, [arXiv:2105.02291 \[quant-ph\]](https://arxiv.org/abs/2105.02291)
+</Function>
 

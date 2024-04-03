@@ -8,110 +8,104 @@ python_api_name: qiskit.circuit.library.PauliGate
 
 # PauliGate
 
-<span id="qiskit.circuit.library.PauliGate" />
+<Class id="qiskit.circuit.library.PauliGate" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/pauli.py" signature="PauliGate(label)">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`PauliGate(label)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/pauli.py "view source code")
+  A multi-qubit Pauli gate.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  This gate exists for optimization purposes for the quantum statevector simulation, since applying multiple pauli gates to different qubits at once can be done via a single pass on the statevector.
 
-A multi-qubit Pauli gate.
+  The functionality is equivalent to applying the pauli gates sequentially using standard Qiskit gates.
 
-This gate exists for optimization purposes for the quantum statevector simulation, since applying multiple pauli gates to different qubits at once can be done via a single pass on the statevector.
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`pauli()`](qiskit.circuit.QuantumCircuit#pauli "qiskit.circuit.QuantumCircuit.pauli") method.
 
-The functionality is equivalent to applying the pauli gates sequentially using standard Qiskit gates.
+  Create a new gate.
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`pauli()`](qiskit.circuit.QuantumCircuit#pauli "qiskit.circuit.QuantumCircuit.pauli") method.
+  **Parameters**
 
-Create a new gate.
+  *   **name** – The Qobj name of the gate.
+  *   **num\_qubits** – The number of qubits the gate acts on.
+  *   **params** – A list of parameters.
+  *   **label** – An optional label for the gate.
 
-**Parameters**
+  ## Methods Defined Here
 
-*   **name** – The Qobj name of the gate.
-*   **num\_qubits** – The number of qubits the gate acts on.
-*   **params** – A list of parameters.
-*   **label** – An optional label for the gate.
+  <span id="qiskit-circuit-library-pauligate-inverse" />
 
-## Methods Defined Here
+  ### inverse
 
-<span id="qiskit-circuit-library-pauligate-inverse" />
+  <Function id="qiskit.circuit.library.PauliGate.inverse" name="inverse" signature="PauliGate.inverse()">
+    Return inverted pauli gate (itself).
+  </Function>
 
-### inverse
+  <span id="qiskit-circuit-library-pauligate-validate-parameter" />
 
-<span id="qiskit.circuit.library.PauliGate.inverse" />
+  ### validate\_parameter
 
-`PauliGate.inverse()`
+  <Function id="qiskit.circuit.library.PauliGate.validate_parameter" name="validate_parameter" signature="PauliGate.validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
 
-Return inverted pauli gate (itself).
+  ## Attributes
 
-<span id="qiskit-circuit-library-pauligate-validate-parameter" />
+  ### condition\_bits
 
-### validate\_parameter
+  <Attribute id="qiskit.circuit.library.PauliGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliGate.validate_parameter" />
+  ### decompositions
 
-`PauliGate.validate_parameter(parameter)`
+  <Attribute id="qiskit.circuit.library.PauliGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Gate parameters should be int, float, or ParameterExpression
+  ### definition
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.PauliGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliGate.condition_bits" />
+  ### duration
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.PauliGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Get Clbits in condition.
+  ### label
 
-<span id="qiskit.circuit.library.PauliGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.PauliGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-### decompositions
+  ### name
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.PauliGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliGate.definition" />
+  ### num\_clbits
 
-### definition
+  <Attribute id="qiskit.circuit.library.PauliGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.PauliGate.duration" />
+  <Attribute id="qiskit.circuit.library.PauliGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-### duration
+  ### params
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.PauliGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliGate.label" />
+  ### unit
 
-### label
-
-Return instruction label
-
-<span id="qiskit.circuit.library.PauliGate.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.PauliGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.PauliGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.PauliGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.PauliGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.PauliGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

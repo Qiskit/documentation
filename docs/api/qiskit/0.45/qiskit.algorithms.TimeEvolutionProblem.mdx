@@ -8,109 +8,105 @@ python_api_name: qiskit.algorithms.TimeEvolutionProblem
 
 # TimeEvolutionProblem
 
-<span id="qiskit.algorithms.TimeEvolutionProblem" />
+<Class id="qiskit.algorithms.TimeEvolutionProblem" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/time_evolvers/time_evolution_problem.py" signature="qiskit.algorithms.TimeEvolutionProblem(hamiltonian, time, initial_state=None, aux_operators=None, truncation_threshold=1e-12, t_param=None, param_value_map=None)">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.algorithms.TimeEvolutionProblem(hamiltonian, time, initial_state=None, aux_operators=None, truncation_threshold=1e-12, t_param=None, param_value_map=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/time_evolvers/time_evolution_problem.py "view source code")
+  Time evolution problem class.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  This class is the input to time evolution algorithms and must contain information on the total evolution time, a quantum state to be evolved and under which Hamiltonian the state is evolved.
 
-Time evolution problem class.
+  ### hamiltonian
 
-This class is the input to time evolution algorithms and must contain information on the total evolution time, a quantum state to be evolved and under which Hamiltonian the state is evolved.
+  <Attribute id="qiskit.algorithms.TimeEvolutionProblem.hamiltonian" name="hamiltonian">
+    The Hamiltonian under which to evolve the system.
 
-<span id="qiskit.algorithms.TimeEvolutionProblem.hamiltonian" />
+    **Type**
 
-### hamiltonian
+    BaseOperator | [PauliSumOp](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")
+  </Attribute>
 
-The Hamiltonian under which to evolve the system.
+  ### initial\_state
 
-**Type**
+  <Attribute id="qiskit.algorithms.TimeEvolutionProblem.initial_state" name="initial_state">
+    The quantum state to be evolved for methods like Trotterization. For variational time evolutions, where the evolution happens in an ansatz, this argument is not required.
 
-BaseOperator | [PauliSumOp](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")
+    **Type**
 
-<span id="qiskit.algorithms.TimeEvolutionProblem.initial_state" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | [Statevector](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") | None
+  </Attribute>
 
-### initial\_state
+  ### aux\_operators
 
-The quantum state to be evolved for methods like Trotterization. For variational time evolutions, where the evolution happens in an ansatz, this argument is not required.
+  <Attribute id="qiskit.algorithms.TimeEvolutionProblem.aux_operators" name="aux_operators">
+    Optional list of auxiliary operators to be evaluated with the evolved `initial_state` and their expectation values returned.
 
-**Type**
+    **Type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | [Statevector](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") | None
+    ListOrDict\[BaseOperator | [PauliSumOp](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")] | None
+  </Attribute>
 
-<span id="qiskit.algorithms.TimeEvolutionProblem.aux_operators" />
+  ### truncation\_threshold
 
-### aux\_operators
+  <Attribute id="qiskit.algorithms.TimeEvolutionProblem.truncation_threshold" name="truncation_threshold">
+    Defines a threshold under which values can be assumed to be 0. Used when `aux_operators` is provided.
 
-Optional list of auxiliary operators to be evaluated with the evolved `initial_state` and their expectation values returned.
+    **Type**
 
-**Type**
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+  </Attribute>
 
-ListOrDict\[BaseOperator | [PauliSumOp](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")] | None
+  ### t\_param
 
-<span id="qiskit.algorithms.TimeEvolutionProblem.truncation_threshold" />
+  <Attribute id="qiskit.algorithms.TimeEvolutionProblem.t_param" name="t_param">
+    Time parameter in case of a time-dependent Hamiltonian. This free parameter must be within the `hamiltonian`.
 
-### truncation\_threshold
+    **Type**
 
-Defines a threshold under which values can be assumed to be 0. Used when `aux_operators` is provided.
+    [Parameter](qiskit.circuit.Parameter "qiskit.circuit.Parameter") | None
+  </Attribute>
 
-**Type**
+  ### param\_value\_map
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+  <Attribute id="qiskit.algorithms.TimeEvolutionProblem.param_value_map" name="param_value_map">
+    Maps free parameters in the problem to values. Depending on the algorithm, it might refer to e.g. a Hamiltonian or an initial state.
 
-<span id="qiskit.algorithms.TimeEvolutionProblem.t_param" />
+    **Type**
 
-### t\_param
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[Parameter](qiskit.circuit.Parameter "qiskit.circuit.Parameter"), [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")] | None
+  </Attribute>
 
-Time parameter in case of a time-dependent Hamiltonian. This free parameter must be within the `hamiltonian`.
+  **Parameters**
 
-**Type**
+  *   **hamiltonian** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – The Hamiltonian under which to evolve the system.
+  *   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Total time of evolution.
+  *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") *| None*) – The quantum state to be evolved for methods like Trotterization. For variational time evolutions, where the evolution happens in an ansatz, this argument is not required.
+  *   **aux\_operators** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*] | None*) – Optional list of auxiliary operators to be evaluated with the evolved `initial_state` and their expectation values returned.
+  *   **truncation\_threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Defines a threshold under which values can be assumed to be 0. Used when `aux_operators` is provided.
+  *   **t\_param** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter") *| None*) – Time parameter in case of a time-dependent Hamiltonian. This free parameter must be within the `hamiltonian`.
+  *   **param\_value\_map** (*Mapping\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*] | None*) – Maps free parameters in the problem to values. Depending on the algorithm, it might refer to e.g. a Hamiltonian or an initial state.
 
-[Parameter](qiskit.circuit.Parameter "qiskit.circuit.Parameter") | None
+  **Raises**
 
-<span id="qiskit.algorithms.TimeEvolutionProblem.param_value_map" />
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If non-positive time of evolution is provided.
 
-### param\_value\_map
+  ## Attributes
 
-Maps free parameters in the problem to values. Depending on the algorithm, it might refer to e.g. a Hamiltonian or an initial state.
+  ### time
 
-**Type**
+  <Attribute id="qiskit.algorithms.TimeEvolutionProblem.time" name="time">
+    Returns time.
+  </Attribute>
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[Parameter](qiskit.circuit.Parameter "qiskit.circuit.Parameter"), [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")] | None
+  ## Methods
 
-**Parameters**
+  ### validate\_params
 
-*   **hamiltonian** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – The Hamiltonian under which to evolve the system.
-*   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Total time of evolution.
-*   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") *| None*) – The quantum state to be evolved for methods like Trotterization. For variational time evolutions, where the evolution happens in an ansatz, this argument is not required.
-*   **aux\_operators** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*] | None*) – Optional list of auxiliary operators to be evaluated with the evolved `initial_state` and their expectation values returned.
-*   **truncation\_threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Defines a threshold under which values can be assumed to be 0. Used when `aux_operators` is provided.
-*   **t\_param** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter") *| None*) – Time parameter in case of a time-dependent Hamiltonian. This free parameter must be within the `hamiltonian`.
-*   **param\_value\_map** (*Mapping\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*] | None*) – Maps free parameters in the problem to values. Depending on the algorithm, it might refer to e.g. a Hamiltonian or an initial state.
+  <Function id="qiskit.algorithms.TimeEvolutionProblem.validate_params" name="validate_params" signature="validate_params()">
+    Checks if all parameters present in the Hamiltonian are also present in the dictionary that maps them to values.
 
-**Raises**
+    **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If non-positive time of evolution is provided.
-
-## Attributes
-
-<span id="qiskit.algorithms.TimeEvolutionProblem.time" />
-
-### time
-
-Returns time.
-
-## Methods
-
-### validate\_params
-
-<span id="qiskit.algorithms.TimeEvolutionProblem.validate_params" />
-
-`validate_params()`
-
-Checks if all parameters present in the Hamiltonian are also present in the dictionary that maps them to values.
-
-**Raises**
-
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If Hamiltonian parameters cannot be bound with data provided.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If Hamiltonian parameters cannot be bound with data provided.
+  </Function>
+</Class>
 

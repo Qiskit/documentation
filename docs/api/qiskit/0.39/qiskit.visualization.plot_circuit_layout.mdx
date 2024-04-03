@@ -8,55 +8,53 @@ python_api_name: qiskit.visualization.plot_circuit_layout
 
 # qiskit.visualization.plot\_circuit\_layout
 
-<span id="qiskit.visualization.plot_circuit_layout" />
+<Function id="qiskit.visualization.plot_circuit_layout" name="plot_circuit_layout" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/visualization/gate_map.py" signature="plot_circuit_layout(circuit, backend, view='virtual', qubit_coordinates=None)">
+  Plot the layout of a circuit transpiled for a given target backend.
 
-`plot_circuit_layout(circuit, backend, view='virtual', qubit_coordinates=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/visualization/gate_map.py "view source code")
+  **Parameters**
 
-Plot the layout of a circuit transpiled for a given target backend.
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Input quantum circuit.
+  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Target backend.
+  *   **view** (*str*) – Layout view: either ‘virtual’ or ‘physical’.
+  *   **qubit\_coordinates** (*Sequence*) – An optional sequence input (list or array being the most common) of 2d coordinates for each qubit. The length of the sequence much mast the number of qubits on the backend. The sequence should be the planar coordinates in a 0-based square grid where each qubit is located.
 
-**Parameters**
+  **Returns**
 
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Input quantum circuit.
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Target backend.
-*   **view** (*str*) – Layout view: either ‘virtual’ or ‘physical’.
-*   **qubit\_coordinates** (*Sequence*) – An optional sequence input (list or array being the most common) of 2d coordinates for each qubit. The length of the sequence much mast the number of qubits on the backend. The sequence should be the planar coordinates in a 0-based square grid where each qubit is located.
+  A matplotlib figure showing layout.
 
-**Returns**
+  **Return type**
 
-A matplotlib figure showing layout.
+  Figure
 
-**Return type**
+  **Raises**
 
-Figure
+  *   **QiskitError** – Invalid view type given.
+  *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – Circuit has no layout attribute.
 
-**Raises**
+  **Example**
 
-*   **QiskitError** – Invalid view type given.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – Circuit has no layout attribute.
+  ```python
+  import numpy as np
+  from qiskit import QuantumCircuit, IBMQ, transpile
+  from qiskit.visualization import plot_histogram, plot_gate_map, plot_circuit_layout
+  from qiskit.tools.monitor import job_monitor
+  import matplotlib.pyplot as plt
+  %matplotlib inline
 
-**Example**
+  IBMQ.load_account()
 
-```python
-import numpy as np
-from qiskit import QuantumCircuit, IBMQ, transpile
-from qiskit.visualization import plot_histogram, plot_gate_map, plot_circuit_layout
-from qiskit.tools.monitor import job_monitor
-import matplotlib.pyplot as plt
-%matplotlib inline
+  ghz = QuantumCircuit(3, 3)
+  ghz.h(0)
+  for idx in range(1,3):
+      ghz.cx(0,idx)
+  ghz.measure(range(3), range(3))
 
-IBMQ.load_account()
+  provider = IBMQ.get_provider(hub='ibm-q')
+  backend = provider.get_backend('ibmq_vigo')
+  new_circ_lv3 = transpile(ghz, backend=backend, optimization_level=3)
+  plot_circuit_layout(new_circ_lv3, backend)
+  ```
 
-ghz = QuantumCircuit(3, 3)
-ghz.h(0)
-for idx in range(1,3):
-    ghz.cx(0,idx)
-ghz.measure(range(3), range(3))
-
-provider = IBMQ.get_provider(hub='ibm-q')
-backend = provider.get_backend('ibmq_vigo')
-new_circ_lv3 = transpile(ghz, backend=backend, optimization_level=3)
-plot_circuit_layout(new_circ_lv3, backend)
-```
-
-![../\_images/qiskit.visualization.plot\_circuit\_layout\_1\_0.png](/images/api/qiskit/0.39/qiskit.visualization.plot_circuit_layout_1_0.png)
+  ![../\_images/qiskit.visualization.plot\_circuit\_layout\_1\_0.png](/images/api/qiskit/0.39/qiskit.visualization.plot_circuit_layout_1_0.png)
+</Function>
 

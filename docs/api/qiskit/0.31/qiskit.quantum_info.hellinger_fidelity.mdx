@@ -8,55 +8,53 @@ python_api_name: qiskit.quantum_info.hellinger_fidelity
 
 # qiskit.quantum\_info.hellinger\_fidelity
 
-<span id="qiskit.quantum_info.hellinger_fidelity" />
+<Function id="qiskit.quantum_info.hellinger_fidelity" name="hellinger_fidelity" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/analysis/distance.py" signature="hellinger_fidelity(dist_p, dist_q)">
+  Computes the Hellinger fidelity between two counts distributions.
 
-`hellinger_fidelity(dist_p, dist_q)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/analysis/distance.py "view source code")
+  The fidelity is defined as $\left(1-H^{2}\right)^{2}$ where H is the Hellinger distance. This value is bounded in the range \[0, 1].
 
-Computes the Hellinger fidelity between two counts distributions.
+  This is equivalent to the standard classical fidelity $F(Q,P)=\left(\sum_{i}\sqrt{p_{i}q_{i}}\right)^{2}$ that in turn is equal to the quantum state fidelity for diagonal density matrices.
 
-The fidelity is defined as $\left(1-H^{2}\right)^{2}$ where H is the Hellinger distance. This value is bounded in the range \[0, 1].
+  **Parameters**
 
-This is equivalent to the standard classical fidelity $F(Q,P)=\left(\sum_{i}\sqrt{p_{i}q_{i}}\right)^{2}$ that in turn is equal to the quantum state fidelity for diagonal density matrices.
+  *   **dist\_p** (*dict*) – First dict of counts.
+  *   **dist\_q** (*dict*) – Second dict of counts.
 
-**Parameters**
+  **Returns**
 
-*   **dist\_p** (*dict*) – First dict of counts.
-*   **dist\_q** (*dict*) – Second dict of counts.
+  Fidelity
 
-**Returns**
+  **Return type**
 
-Fidelity
+  float
 
-**Return type**
+  **Example**
 
-float
+  ```python
+  from qiskit import QuantumCircuit, execute, BasicAer
+  from qiskit.quantum_info.analysis import hellinger_fidelity
 
-**Example**
+  qc = QuantumCircuit(5, 5)
+  qc.h(2)
+  qc.cx(2, 1)
+  qc.cx(2, 3)
+  qc.cx(3, 4)
+  qc.cx(1, 0)
+  qc.measure(range(5), range(5))
 
-```python
-from qiskit import QuantumCircuit, execute, BasicAer
-from qiskit.quantum_info.analysis import hellinger_fidelity
+  sim = BasicAer.get_backend('qasm_simulator')
+  res1 = execute(qc, sim).result()
+  res2 = execute(qc, sim).result()
 
-qc = QuantumCircuit(5, 5)
-qc.h(2)
-qc.cx(2, 1)
-qc.cx(2, 3)
-qc.cx(3, 4)
-qc.cx(1, 0)
-qc.measure(range(5), range(5))
+  hellinger_fidelity(res1.get_counts(), res2.get_counts())
+  ```
 
-sim = BasicAer.get_backend('qasm_simulator')
-res1 = execute(qc, sim).result()
-res2 = execute(qc, sim).result()
+  ```python
+  0.9993551955573895
+  ```
 
-hellinger_fidelity(res1.get_counts(), res2.get_counts())
-```
+  **References**
 
-```python
-0.9993551955573895
-```
-
-**References**
-
-[Quantum Fidelity @ wikipedia](https://en.wikipedia.org/wiki/Fidelity_of_quantum_states) [Hellinger Distance @ wikipedia](https://en.wikipedia.org/wiki/Hellinger_distance)
+  [Quantum Fidelity @ wikipedia](https://en.wikipedia.org/wiki/Fidelity_of_quantum_states) [Hellinger Distance @ wikipedia](https://en.wikipedia.org/wiki/Hellinger_distance)
+</Function>
 

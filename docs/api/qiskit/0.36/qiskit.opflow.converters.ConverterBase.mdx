@@ -8,33 +8,29 @@ python_api_name: qiskit.opflow.converters.ConverterBase
 
 # ConverterBase
 
-<span id="qiskit.opflow.converters.ConverterBase" />
+<Class id="qiskit.opflow.converters.ConverterBase" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/converters/converter_base.py" signature="ConverterBase">
+  Bases: `abc.ABC`
 
-`ConverterBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/converters/converter_base.py "view source code")
+  Converters take an Operator and return a new Operator, generally isomorphic in some way with the first, but with certain desired properties. For example, a converter may accept `CircuitOp` and return a `SummedOp` of `PauliOps` representing the circuit unitary. Converters may not have polynomial space or time scaling in their operations. On the contrary, many converters, such as a `MatrixExpectation` or `MatrixEvolution`, which convert `PauliOps` to `MatrixOps` internally, will require time or space exponential in the number of qubits unless a clever trick is known (such as the use of sparse matrices).
 
-Bases: `abc.ABC`
+  ## Methods Defined Here
 
-Converters take an Operator and return a new Operator, generally isomorphic in some way with the first, but with certain desired properties. For example, a converter may accept `CircuitOp` and return a `SummedOp` of `PauliOps` representing the circuit unitary. Converters may not have polynomial space or time scaling in their operations. On the contrary, many converters, such as a `MatrixExpectation` or `MatrixEvolution`, which convert `PauliOps` to `MatrixOps` internally, will require time or space exponential in the number of qubits unless a clever trick is known (such as the use of sparse matrices).
+  ### convert
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.converters.ConverterBase.convert" name="convert" signature="abstract ConverterBase.convert(operator)">
+    Accept the Operator and return the converted Operator
 
-### convert
+    **Parameters**
 
-<span id="qiskit.opflow.converters.ConverterBase.convert" />
+    **operator** (`OperatorBase`) – The Operator to convert.
 
-`abstract ConverterBase.convert(operator)`
+    **Return type**
 
-Accept the Operator and return the converted Operator
+    `OperatorBase`
 
-**Parameters**
+    **Returns**
 
-**operator** (`OperatorBase`) – The Operator to convert.
-
-**Return type**
-
-`OperatorBase`
-
-**Returns**
-
-The converted Operator.
+    The converted Operator.
+  </Function>
+</Class>
 

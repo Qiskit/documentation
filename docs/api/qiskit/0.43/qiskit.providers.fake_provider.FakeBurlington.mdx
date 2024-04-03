@@ -8,178 +8,152 @@ python_api_name: qiskit.providers.fake_provider.FakeBurlington
 
 # FakeBurlington
 
-<span id="qiskit.providers.fake_provider.FakeBurlington" />
+<Class id="qiskit.providers.fake_provider.FakeBurlington" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/burlington/fake_burlington.py" signature="FakeBurlington">
+  Bases: `FakeQasmBackend`
 
-`FakeBurlington` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/burlington/fake_burlington.py "view source code")
+  A fake 5 qubit backend.
 
-Bases: `FakeQasmBackend`
+  ```python
+  0 ↔ 1 ↔ 3 ↔ 4
+      ↕
+      2
+  ```
 
-A fake 5 qubit backend.
+  FakeBackend initializer.
 
-```python
-0 ↔ 1 ↔ 3 ↔ 4
-    ↕
-    2
-```
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+  *   **time\_alive** (*int*) – time to wait before returning result
 
-**Parameters**
+  ## Methods
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **time\_alive** (*int*) – time to wait before returning result
+  <span id="qiskit-providers-fake-provider-fakeburlington-configuration" />
 
-## Methods
+  ### configuration
 
-<span id="qiskit-providers-fake-provider-fakeburlington-configuration" />
+  <Function id="qiskit.providers.fake_provider.FakeBurlington.configuration" name="configuration" signature="FakeBurlington.configuration()">
+    Return the backend configuration.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeBurlington.configuration" />
+    the configuration for the backend.
 
-`FakeBurlington.configuration()`
+    **Return type**
 
-Return the backend configuration.
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-**Returns**
+  <span id="qiskit-providers-fake-provider-fakeburlington-name" />
 
-the configuration for the backend.
+  ### name
 
-**Return type**
+  <Function id="qiskit.providers.fake_provider.FakeBurlington.name" name="name" signature="FakeBurlington.name()">
+    Return the backend name.
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    **Returns**
 
-<span id="qiskit-providers-fake-provider-fakeburlington-name" />
+    the name of the backend.
 
-### name
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeBurlington.name" />
+    str
+  </Function>
 
-`FakeBurlington.name()`
+  <span id="qiskit-providers-fake-provider-fakeburlington-properties" />
 
-Return the backend name.
+  ### properties
 
-**Returns**
+  <Function id="qiskit.providers.fake_provider.FakeBurlington.properties" name="properties" signature="FakeBurlington.properties()">
+    Returns a snapshot of device properties
+  </Function>
 
-the name of the backend.
+  <span id="qiskit-providers-fake-provider-fakeburlington-provider" />
 
-**Return type**
+  ### provider
 
-str
+  <Function id="qiskit.providers.fake_provider.FakeBurlington.provider" name="provider" signature="FakeBurlington.provider()">
+    Return the backend Provider.
 
-<span id="qiskit-providers-fake-provider-fakeburlington-properties" />
+    **Returns**
 
-### properties
+    the Provider responsible for the backend.
 
-<span id="qiskit.providers.fake_provider.FakeBurlington.properties" />
+    **Return type**
 
-`FakeBurlington.properties()`
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-Returns a snapshot of device properties
+  <span id="qiskit-providers-fake-provider-fakeburlington-run" />
 
-<span id="qiskit-providers-fake-provider-fakeburlington-provider" />
+  ### run
 
-### provider
+  <Function id="qiskit.providers.fake_provider.FakeBurlington.run" name="run" signature="FakeBurlington.run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-<span id="qiskit.providers.fake_provider.FakeBurlington.provider" />
+  <span id="qiskit-providers-fake-provider-fakeburlington-set-options" />
 
-`FakeBurlington.provider()`
+  ### set\_options
 
-Return the backend Provider.
+  <Function id="qiskit.providers.fake_provider.FakeBurlington.set_options" name="set_options" signature="FakeBurlington.set_options(**fields)">
+    Set the options fields for the backend
 
-**Returns**
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-the Provider responsible for the backend.
+    **Parameters**
 
-**Return type**
+    **fields** – The fields to update the options
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    **Raises**
 
-<span id="qiskit-providers-fake-provider-fakeburlington-run" />
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-### run
+  <span id="qiskit-providers-fake-provider-fakeburlington-status" />
 
-<span id="qiskit.providers.fake_provider.FakeBurlington.run" />
+  ### status
 
-`FakeBurlington.run(run_input, **kwargs)`
+  <Function id="qiskit.providers.fake_provider.FakeBurlington.status" name="status" signature="FakeBurlington.status()">
+    Return the backend status.
 
-Main job in simulator
+    **Returns**
 
-<span id="qiskit-providers-fake-provider-fakeburlington-set-options" />
+    the status of the backend.
 
-### set\_options
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeBurlington.set_options" />
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-`FakeBurlington.set_options(**fields)`
+  ## Attributes
 
-Set the options fields for the backend
+  ### backend\_name
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+  <Attribute id="qiskit.providers.fake_provider.FakeBurlington.backend_name" name="backend_name" attributeValue="= 'fake_burlington'" />
 
-**Parameters**
+  ### conf\_filename
 
-**fields** – The fields to update the options
+  <Attribute id="qiskit.providers.fake_provider.FakeBurlington.conf_filename" name="conf_filename" attributeValue="= 'conf_burlington.json'" />
 
-**Raises**
+  ### dirname
 
-**AttributeError** – If the field passed in is not part of the options
+  <Attribute id="qiskit.providers.fake_provider.FakeBurlington.dirname" name="dirname" attributeValue="= '/home/computertreker/git/qiskit/qiskit/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends/burlington'" />
 
-<span id="qiskit-providers-fake-provider-fakeburlington-status" />
+  ### options
 
-### status
+  <Attribute id="qiskit.providers.fake_provider.FakeBurlington.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit.providers.fake_provider.FakeBurlington.status" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeBurlington#run "qiskit.providers.fake_provider.FakeBurlington.run") method.
+  </Attribute>
 
-`FakeBurlington.status()`
+  ### props\_filename
 
-Return the backend status.
+  <Attribute id="qiskit.providers.fake_provider.FakeBurlington.props_filename" name="props_filename" attributeValue="= 'props_burlington.json'" />
 
-**Returns**
+  ### version
 
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.fake_provider.FakeBurlington.backend_name" />
-
-### backend\_name
-
-`= 'fake_burlington'`
-
-<span id="qiskit.providers.fake_provider.FakeBurlington.conf_filename" />
-
-### conf\_filename
-
-`= 'conf_burlington.json'`
-
-<span id="qiskit.providers.fake_provider.FakeBurlington.dirname" />
-
-### dirname
-
-`= '/home/computertreker/git/qiskit/qiskit/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends/burlington'`
-
-<span id="qiskit.providers.fake_provider.FakeBurlington.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeBurlington#run "qiskit.providers.fake_provider.FakeBurlington.run") method.
-
-<span id="qiskit.providers.fake_provider.FakeBurlington.props_filename" />
-
-### props\_filename
-
-`= 'props_burlington.json'`
-
-<span id="qiskit.providers.fake_provider.FakeBurlington.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.fake_provider.FakeBurlington.version" name="version" attributeValue="= 1" />
+</Class>
 

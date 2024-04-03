@@ -105,152 +105,132 @@ Each of the lazy checkers is an instance of [`LazyDependencyManager`](#qiskit.ut
 from qiskit.utils import LazyImportTester
 ```
 
-<span id="qiskit.utils.LazyDependencyManager" />
+<Class id="qiskit.utils.LazyDependencyManager" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/utils/lazy_tester.py" signature="LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)">
+  A mananger for some optional features that are expensive to import, or to verify the existence of.
 
-`LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/utils/lazy_tester.py "view source code")
+  These objects can be used as Booleans, such as `if x`, and will evaluate `True` if the dependency they test for is available, and `False` if not. The presence of the dependency will only be tested when the Boolean is evaluated, so it can be used as a runtime test in functions and methods without requiring an import-time test.
 
-A mananger for some optional features that are expensive to import, or to verify the existence of.
+  These objects also encapsulate the error handling if their dependency is not present, so you can do things such as:
 
-These objects can be used as Booleans, such as `if x`, and will evaluate `True` if the dependency they test for is available, and `False` if not. The presence of the dependency will only be tested when the Boolean is evaluated, so it can be used as a runtime test in functions and methods without requiring an import-time test.
+  ```python
+  from qiskit.utils import LazyImportManager
+  HAS_MATPLOTLIB = LazyImportManager("matplotlib")
 
-These objects also encapsulate the error handling if their dependency is not present, so you can do things such as:
+  @HAS_MATPLOTLIB.require_in_call
+  def my_visualisation():
+      ...
 
-```python
-from qiskit.utils import LazyImportManager
-HAS_MATPLOTLIB = LazyImportManager("matplotlib")
+  def my_other_visualisation():
+      # ... some setup ...
+      HAS_MATPLOTLIB.require_now("my_other_visualisation")
+      ...
 
-@HAS_MATPLOTLIB.require_in_call
-def my_visualisation():
-    ...
+  def my_third_visualisation():
+      if HAS_MATPLOTLIB:
+          from matplotlib import pyplot
+      else:
+          ...
+  ```
 
-def my_other_visualisation():
-    # ... some setup ...
-    HAS_MATPLOTLIB.require_now("my_other_visualisation")
-    ...
+  In all of these cases, `matplotlib` is not imported until the functions are entered. In the case of the decorator, `matplotlib` is tested for import when the function is called for the first time. In the second and third cases, the loader attempts to import `matplotlib` when the [`require_now()`](#qiskit.utils.LazyDependencyManager.require_now "qiskit.utils.LazyDependencyManager.require_now") method is called, or when the Boolean context is evaluated. For the `require` methods, an error is raised if the library is not available.
 
-def my_third_visualisation():
-    if HAS_MATPLOTLIB:
-        from matplotlib import pyplot
-    else:
-        ...
-```
+  This is the base class, which provides the Boolean context checking and error management. The concrete classes [`LazyImportTester`](#qiskit.utils.LazyImportTester "qiskit.utils.LazyImportTester") and [`LazySubprocessTester`](#qiskit.utils.LazySubprocessTester "qiskit.utils.LazySubprocessTester") provide convenient entry points for testing that certain symbols are importable from modules, or certain command-line tools are available, respectively.
 
-In all of these cases, `matplotlib` is not imported until the functions are entered. In the case of the decorator, `matplotlib` is tested for import when the function is called for the first time. In the second and third cases, the loader attempts to import `matplotlib` when the [`require_now()`](#qiskit.utils.LazyDependencyManager.require_now "qiskit.utils.LazyDependencyManager.require_now") method is called, or when the Boolean context is evaluated. For the `require` methods, an error is raised if the library is not available.
+  **Parameters**
 
-This is the base class, which provides the Boolean context checking and error management. The concrete classes [`LazyImportTester`](#qiskit.utils.LazyImportTester "qiskit.utils.LazyImportTester") and [`LazySubprocessTester`](#qiskit.utils.LazySubprocessTester "qiskit.utils.LazySubprocessTester") provide convenient entry points for testing that certain symbols are importable from modules, or certain command-line tools are available, respectively.
+  *   **name** – the name of this optional dependency.
+  *   **callback** – a callback that is called immediately after the availability of the library is tested with the result. This will only be called once.
+  *   **install** – how to install this optional dependency. Passed to `MissingOptionalLibraryError` as the `pip_install` parameter.
+  *   **msg** – an extra message to include in the error raised if this is required.
 
-**Parameters**
+  ### \_is\_available
 
-*   **name** – the name of this optional dependency.
-*   **callback** – a callback that is called immediately after the availability of the library is tested with the result. This will only be called once.
-*   **install** – how to install this optional dependency. Passed to `MissingOptionalLibraryError` as the `pip_install` parameter.
-*   **msg** – an extra message to include in the error raised if this is required.
+  <Function id="qiskit.utils.LazyDependencyManager._is_available" name="_is_available" signature="abstract _is_available()">
+    Subclasses of [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qiskit.utils.LazyDependencyManager") should override this method to implement the actual test of availability. This method should return a Boolean, where `True` indicates that the dependency was available. This method will only ever be called once.
 
-### \_is\_available
+    **Return type**
 
-<span id="qiskit.utils.LazyDependencyManager._is_available" />
+    `bool`
+  </Function>
 
-`abstract _is_available()`
+  ### disable\_locally
 
-Subclasses of [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qiskit.utils.LazyDependencyManager") should override this method to implement the actual test of availability. This method should return a Boolean, where `True` indicates that the dependency was available. This method will only ever be called once.
+  <Function id="qiskit.utils.LazyDependencyManager.disable_locally" name="disable_locally" signature="disable_locally()">
+    Create a context, during which the value of the dependency manager will be `False`. This means that within the context, any calls to this object will behave as if the dependency is not available, including raising errors. It is valid to call this method whether or not the dependency has already been evaluated. This is most useful in tests.
+  </Function>
 
-**Return type**
+  ### require\_in\_call
 
-`bool`
+  <Function id="qiskit.utils.LazyDependencyManager.require_in_call" name="require_in_call" signature="require_in_call(feature_or_callable: Callable) → Callable" extraSignatures={["require_in_call(feature_or_callable: str) → Callable[[Callable], Callable]"]}>
+    Create a decorator for callables that requires that the dependency is available when the decorated function or method is called.
 
-### disable\_locally
+    **Parameters**
 
-<span id="qiskit.utils.LazyDependencyManager.disable_locally" />
+    **feature\_or\_callable** (*str or Callable*) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_call` as opposed to `@HAS_X.require_in_call("my feature")`), then the feature name will be taken to be the function name, or class and method name as appropriate.
 
-`disable_locally()`
+    **Returns**
 
-Create a context, during which the value of the dependency manager will be `False`. This means that within the context, any calls to this object will behave as if the dependency is not available, including raising errors. It is valid to call this method whether or not the dependency has already been evaluated. This is most useful in tests.
+    a decorator that will make its argument require this dependency before it is called.
 
-### require\_in\_call
+    **Return type**
 
-<span id="qiskit.utils.LazyDependencyManager.require_in_call" />
+    Callable
+  </Function>
 
-`require_in_call(feature_or_callable: Callable) → Callable`
+  ### require\_in\_instance
 
-`require_in_call(feature_or_callable: str) → Callable[[Callable], Callable]`
+  <Function id="qiskit.utils.LazyDependencyManager.require_in_instance" name="require_in_instance" signature="require_in_instance(feature_or_class: Type) → Type" extraSignatures={["require_in_instance(feature_or_class: str) → Callable[[Type], Type]"]}>
+    A class decorator that requires the dependency is available when the class is initialised. This decorator can be used even if the class does not define an `__init__` method.
 
-Create a decorator for callables that requires that the dependency is available when the decorated function or method is called.
+    **Parameters**
 
-**Parameters**
+    **feature\_or\_class** (*str or Type*) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_instance` as opposed to `@HAS_X.require_in_instance("my feature")`), then the feature name will be taken as the name of the class.
 
-**feature\_or\_callable** (*str or Callable*) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_call` as opposed to `@HAS_X.require_in_call("my feature")`), then the feature name will be taken to be the function name, or class and method name as appropriate.
+    **Returns**
 
-**Returns**
+    a class decorator that ensures that the wrapped feature is present if the class is initialised.
 
-a decorator that will make its argument require this dependency before it is called.
+    **Return type**
 
-**Return type**
+    Callable
+  </Function>
 
-Callable
+  ### require\_now
 
-### require\_in\_instance
+  <Function id="qiskit.utils.LazyDependencyManager.require_now" name="require_now" signature="require_now(feature)">
+    Eagerly attempt to import the dependencies in this object, and raise an exception if they cannot be imported.
 
-<span id="qiskit.utils.LazyDependencyManager.require_in_instance" />
+    **Parameters**
 
-`require_in_instance(feature_or_class: Type) → Type`
+    **feature** (`str`) – the name of the feature that is requiring these dependencies.
 
-`require_in_instance(feature_or_class: str) → Callable[[Type], Type]`
+    **Raises**
 
-A class decorator that requires the dependency is available when the class is initialised. This decorator can be used even if the class does not define an `__init__` method.
+    **MissingOptionalLibraryError** – if the dependencies cannot be imported.
+  </Function>
+</Class>
 
-**Parameters**
+<Class id="qiskit.utils.LazyImportTester" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/utils/lazy_tester.py" signature="LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)">
+  A lazy dependency tester for importable Python modules. Any required objects will only be imported at the point that this object is tested for its Boolean value.
 
-**feature\_or\_class** (*str or Type*) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_instance` as opposed to `@HAS_X.require_in_instance("my feature")`), then the feature name will be taken as the name of the class.
+  **Parameters**
 
-**Returns**
+  **name\_map\_or\_modules** (`Union`\[`str`, `Dict`\[`str`, `Iterable`\[`str`]], `Iterable`\[`str`]]) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
 
-a class decorator that ensures that the wrapped feature is present if the class is initialised.
+  **Raises**
 
-**Return type**
+  **ValueError** – if no modules are given.
+</Class>
 
-Callable
+<Class id="qiskit.utils.LazySubprocessTester" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/utils/lazy_tester.py" signature="LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)">
+  A lazy checker that a command-line tool is available. The command will only be run once, at the point that this object is checked for its Boolean value.
 
-### require\_now
+  **Parameters**
 
-<span id="qiskit.utils.LazyDependencyManager.require_now" />
+  **command** (`Union`\[`str`, `Iterable`\[`str`]]) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
 
-`require_now(feature)`
+  **Raises**
 
-Eagerly attempt to import the dependencies in this object, and raise an exception if they cannot be imported.
-
-**Parameters**
-
-**feature** (`str`) – the name of the feature that is requiring these dependencies.
-
-**Raises**
-
-**MissingOptionalLibraryError** – if the dependencies cannot be imported.
-
-<span id="qiskit.utils.LazyImportTester" />
-
-`LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/utils/lazy_tester.py "view source code")
-
-A lazy dependency tester for importable Python modules. Any required objects will only be imported at the point that this object is tested for its Boolean value.
-
-**Parameters**
-
-**name\_map\_or\_modules** (`Union`\[`str`, `Dict`\[`str`, `Iterable`\[`str`]], `Iterable`\[`str`]]) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
-
-**Raises**
-
-**ValueError** – if no modules are given.
-
-<span id="qiskit.utils.LazySubprocessTester" />
-
-`LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/utils/lazy_tester.py "view source code")
-
-A lazy checker that a command-line tool is available. The command will only be run once, at the point that this object is checked for its Boolean value.
-
-**Parameters**
-
-**command** (`Union`\[`str`, `Iterable`\[`str`]]) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
-
-**Raises**
-
-**ValueError** – if an empty command is given.
+  **ValueError** – if an empty command is given.
+</Class>
 

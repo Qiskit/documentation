@@ -8,201 +8,195 @@ python_api_name: qiskit.providers.models.QasmBackendConfiguration
 
 # QasmBackendConfiguration
 
-<span id="qiskit.providers.models.QasmBackendConfiguration" />
+<Class id="qiskit.providers.models.QasmBackendConfiguration" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/models/backendconfiguration.py" signature="QasmBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, supported_instructions=None, dynamic_reprate_enabled=False, rep_delay_range=None, default_rep_delay=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, dt=None, dtm=None, processor_type=None, parametric_pulses=None, **kwargs)">
+  Bases: `object`
 
-`QasmBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, supported_instructions=None, dynamic_reprate_enabled=False, rep_delay_range=None, default_rep_delay=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, dt=None, dtm=None, processor_type=None, parametric_pulses=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/models/backendconfiguration.py "view source code")
+  Class representing a Qasm Backend Configuration.
 
-Bases: `object`
+  ### backend\_name
 
-Class representing a Qasm Backend Configuration.
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.backend_name" name="backend_name">
+    backend name.
+  </Attribute>
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.backend_name" />
+  ### backend\_version
 
-### backend\_name
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.backend_version" name="backend_version">
+    backend version in the form X.Y.Z.
+  </Attribute>
 
-backend name.
+  ### n\_qubits
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.backend_version" />
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.n_qubits" name="n_qubits">
+    number of qubits.
+  </Attribute>
 
-### backend\_version
+  ### basis\_gates
 
-backend version in the form X.Y.Z.
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.basis_gates" name="basis_gates">
+    list of basis gates names on the backend.
+  </Attribute>
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.n_qubits" />
+  ### gates
 
-### n\_qubits
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.gates" name="gates">
+    list of basis gates on the backend.
+  </Attribute>
 
-number of qubits.
+  ### local
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.basis_gates" />
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.local" name="local">
+    backend is local or remote.
+  </Attribute>
 
-### basis\_gates
+  ### simulator
 
-list of basis gates names on the backend.
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.simulator" name="simulator">
+    backend is a simulator.
+  </Attribute>
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.gates" />
+  ### conditional
 
-### gates
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.conditional" name="conditional">
+    backend supports conditional operations.
+  </Attribute>
 
-list of basis gates on the backend.
+  ### open\_pulse
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.local" />
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.open_pulse" name="open_pulse">
+    backend supports open pulse.
+  </Attribute>
 
-### local
+  ### memory
 
-backend is local or remote.
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.memory" name="memory">
+    backend supports memory.
+  </Attribute>
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.simulator" />
+  ### max\_shots
 
-### simulator
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.max_shots" name="max_shots">
+    maximum number of shots supported.
+  </Attribute>
 
-backend is a simulator.
+  Initialize a QasmBackendConfiguration Object
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.conditional" />
+  **Parameters**
 
-### conditional
+  *   **backend\_name** (*str*) – The backend name
 
-backend supports conditional operations.
+  *   **backend\_version** (*str*) – The backend version in the form X.Y.Z
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.open_pulse" />
+  *   **n\_qubits** (*int*) – the number of qubits for the backend
 
-### open\_pulse
+  *   **basis\_gates** (*list*) – The list of strings for the basis gates of the backends
 
-backend supports open pulse.
+  *   **gates** (*list*) – The list of GateConfig objects for the basis gates of the backend
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.memory" />
+  *   **local** (*bool*) – True if the backend is local or False if remote
 
-### memory
+  *   **simulator** (*bool*) – True if the backend is a simulator
 
-backend supports memory.
+  *   **conditional** (*bool*) – True if the backend supports conditional operations
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.max_shots" />
+  *   **open\_pulse** (*bool*) – True if the backend supports OpenPulse
 
-### max\_shots
+  *   **memory** (*bool*) – True if the backend supports memory
 
-maximum number of shots supported.
+  *   **max\_shots** (*int*) – The maximum number of shots allowed on the backend
 
-Initialize a QasmBackendConfiguration Object
+  *   **coupling\_map** (*list*) – The coupling map for the device
 
-**Parameters**
+  *   **supported\_instructions** (*List\[str]*) – Instructions supported by the backend.
 
-*   **backend\_name** (*str*) – The backend name
+  *   **dynamic\_reprate\_enabled** (*bool*) – whether delay between programs can be set dynamically (ie via `rep_delay`). Defaults to False.
 
-*   **backend\_version** (*str*) – The backend version in the form X.Y.Z
+  *   **rep\_delay\_range** (*List\[float]*) – 2d list defining supported range of repetition delays for backend in μs. First entry is lower end of the range, second entry is higher end of the range. Optional, but will be specified when `dynamic_reprate_enabled=True`.
 
-*   **n\_qubits** (*int*) – the number of qubits for the backend
+  *   **default\_rep\_delay** (*float*) – Value of `rep_delay` if not specified by user and `dynamic_reprate_enabled=True`.
 
-*   **basis\_gates** (*list*) – The list of strings for the basis gates of the backends
+  *   **max\_experiments** (*int*) – The maximum number of experiments per job
 
-*   **gates** (*list*) – The list of GateConfig objects for the basis gates of the backend
+  *   **sample\_name** (*str*) – Sample name for the backend
 
-*   **local** (*bool*) – True if the backend is local or False if remote
+  *   **n\_registers** (*int*) – Number of register slots available for feedback (if conditional is True)
 
-*   **simulator** (*bool*) – True if the backend is a simulator
+  *   **register\_map** (*list*) – An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
 
-*   **conditional** (*bool*) – True if the backend supports conditional operations
+  *   **configurable** (*bool*) – True if the backend is configurable, if the backend is a simulator
 
-*   **open\_pulse** (*bool*) – True if the backend supports OpenPulse
+  *   **credits\_required** (*bool*) – True if backend requires credits to run a job.
 
-*   **memory** (*bool*) – True if the backend supports memory
+  *   **online\_date** (*datetime*) – The date that the device went online
 
-*   **max\_shots** (*int*) – The maximum number of shots allowed on the backend
+  *   **display\_name** (*str*) – Alternate name field for the backend
 
-*   **coupling\_map** (*list*) – The coupling map for the device
+  *   **description** (*str*) – A description for the backend
 
-*   **supported\_instructions** (*List\[str]*) – Instructions supported by the backend.
+  *   **tags** (*list*) – A list of string tags to describe the backend
 
-*   **dynamic\_reprate\_enabled** (*bool*) – whether delay between programs can be set dynamically (ie via `rep_delay`). Defaults to False.
+  *   **dt** (*float*) – Qubit drive channel timestep in nanoseconds.
 
-*   **rep\_delay\_range** (*List\[float]*) – 2d list defining supported range of repetition delays for backend in μs. First entry is lower end of the range, second entry is higher end of the range. Optional, but will be specified when `dynamic_reprate_enabled=True`.
+  *   **dtm** (*float*) – Measurement drive channel timestep in nanoseconds.
 
-*   **default\_rep\_delay** (*float*) – Value of `rep_delay` if not specified by user and `dynamic_reprate_enabled=True`.
+  *   **processor\_type** (*dict*) –
 
-*   **max\_experiments** (*int*) – The maximum number of experiments per job
+      Processor type for this backend. A dictionary of the form `{"family": <str>, "revision": <str>, segment: <str>}` such as `{"family": "Canary", "revision": "1.0", segment: "A"}`.
 
-*   **sample\_name** (*str*) – Sample name for the backend
+      *   family: Processor family of this backend.
+      *   revision: Revision version of this processor.
+      *   segment: Segment this processor belongs to within a larger chip.
 
-*   **n\_registers** (*int*) – Number of register slots available for feedback (if conditional is True)
+  *   **parametric\_pulses** (*list*) – A list of pulse shapes which are supported on the backend. For example: `['gaussian', 'constant']`
 
-*   **register\_map** (*list*) – An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
+  *   **\*\*kwargs** – optional fields
 
-*   **configurable** (*bool*) – True if the backend is configurable, if the backend is a simulator
+  ## Methods
 
-*   **credits\_required** (*bool*) – True if backend requires credits to run a job.
+  <span id="qiskit-providers-models-qasmbackendconfiguration-from-dict" />
 
-*   **online\_date** (*datetime*) – The date that the device went online
+  ### from\_dict
 
-*   **display\_name** (*str*) – Alternate name field for the backend
+  <Function id="qiskit.providers.models.QasmBackendConfiguration.from_dict" name="from_dict" signature="classmethod QasmBackendConfiguration.from_dict(data)">
+    Create a new GateConfig object from a dictionary.
 
-*   **description** (*str*) – A description for the backend
+    **Parameters**
 
-*   **tags** (*list*) – A list of string tags to describe the backend
+    **data** (*dict*) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.QasmBackendConfiguration#to_dict "qiskit.providers.models.QasmBackendConfiguration.to_dict").
 
-*   **dt** (*float*) – Qubit drive channel timestep in nanoseconds.
+    **Returns**
 
-*   **dtm** (*float*) – Measurement drive channel timestep in nanoseconds.
+    The GateConfig from the input dictionary.
 
-*   **processor\_type** (*dict*) –
+    **Return type**
 
-    Processor type for this backend. A dictionary of the form `{"family": <str>, "revision": <str>, segment: <str>}` such as `{"family": "Canary", "revision": "1.0", segment: "A"}`.
+    [GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
+  </Function>
 
-    *   family: Processor family of this backend.
-    *   revision: Revision version of this processor.
-    *   segment: Segment this processor belongs to within a larger chip.
+  <span id="qiskit-providers-models-qasmbackendconfiguration-to-dict" />
 
-*   **parametric\_pulses** (*list*) – A list of pulse shapes which are supported on the backend. For example: `['gaussian', 'constant']`
+  ### to\_dict
 
-*   **\*\*kwargs** – optional fields
+  <Function id="qiskit.providers.models.QasmBackendConfiguration.to_dict" name="to_dict" signature="QasmBackendConfiguration.to_dict()">
+    Return a dictionary format representation of the GateConfig.
 
-## Methods
+    **Returns**
 
-<span id="qiskit-providers-models-qasmbackendconfiguration-from-dict" />
+    The dictionary form of the GateConfig.
 
-### from\_dict
+    **Return type**
 
-<span id="qiskit.providers.models.QasmBackendConfiguration.from_dict" />
+    dict
+  </Function>
 
-`classmethod QasmBackendConfiguration.from_dict(data)`
+  ## Attributes
 
-Create a new GateConfig object from a dictionary.
+  ### num\_qubits
 
-**Parameters**
+  <Attribute id="qiskit.providers.models.QasmBackendConfiguration.num_qubits" name="num_qubits">
+    Returns the number of qubits.
 
-**data** (*dict*) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.QasmBackendConfiguration#to_dict "qiskit.providers.models.QasmBackendConfiguration.to_dict").
-
-**Returns**
-
-The GateConfig from the input dictionary.
-
-**Return type**
-
-[GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
-
-<span id="qiskit-providers-models-qasmbackendconfiguration-to-dict" />
-
-### to\_dict
-
-<span id="qiskit.providers.models.QasmBackendConfiguration.to_dict" />
-
-`QasmBackendConfiguration.to_dict()`
-
-Return a dictionary format representation of the GateConfig.
-
-**Returns**
-
-The dictionary form of the GateConfig.
-
-**Return type**
-
-dict
-
-## Attributes
-
-<span id="qiskit.providers.models.QasmBackendConfiguration.num_qubits" />
-
-### num\_qubits
-
-Returns the number of qubits.
-
-In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
+    In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
+  </Attribute>
+</Class>
 

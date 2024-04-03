@@ -8,114 +8,112 @@ python_api_name: qiskit.circuit.library.UCRXGate
 
 # UCRXGate
 
-<span id="qiskit.circuit.library.UCRXGate" />
+<Class id="qiskit.circuit.library.UCRXGate" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/ucrx.py" signature="qiskit.circuit.library.UCRXGate(angle_list)">
+  Bases: [`UCPauliRotGate`](qiskit.circuit.library.UCPauliRotGate "qiskit.circuit.library.generalized_gates.uc_pauli_rot.UCPauliRotGate")
 
-`qiskit.circuit.library.UCRXGate(angle_list)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/ucrx.py "view source code")
+  Uniformly controlled Pauli-X rotations.
 
-Bases: [`UCPauliRotGate`](qiskit.circuit.library.UCPauliRotGate "qiskit.circuit.library.generalized_gates.uc_pauli_rot.UCPauliRotGate")
+  Implements the [`UCGate`](qiskit.circuit.library.UCGate "qiskit.circuit.library.UCGate") for the special case that all unitaries are Pauli-X rotations, $U_i = R_X(a_i)$ where $a_i \in \mathbb{R}$ is the rotation angle.
 
-Uniformly controlled Pauli-X rotations.
+  **Parameters**
 
-Implements the [`UCGate`](qiskit.circuit.library.UCGate "qiskit.circuit.library.UCGate") for the special case that all unitaries are Pauli-X rotations, $U_i = R_X(a_i)$ where $a_i \in \mathbb{R}$ is the rotation angle.
+  **angle\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – List of rotation angles $[a_0, ..., a_{2^{k-1}}]$.
 
-**Parameters**
+  ## Attributes
 
-**angle\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – List of rotation angles $[a_0, ..., a_{2^{k-1}}]$.
+  ### base\_class
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.UCRXGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-<span id="qiskit.circuit.library.UCRXGate.base_class" />
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.UCRXGate.base_class "qiskit.circuit.library.UCRXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-### base\_class
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.UCRXGate.base_class "qiskit.circuit.library.UCRXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### condition
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.library.UCRXGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition\_bits
 
-<span id="qiskit.circuit.library.UCRXGate.condition" />
+  <Attribute id="qiskit.circuit.library.UCRXGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### condition
+  ### decompositions
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.UCRXGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.UCRXGate.condition_bits" />
+  ### definition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.UCRXGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get Clbits in condition.
+  ### duration
 
-<span id="qiskit.circuit.library.UCRXGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.UCRXGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.UCRXGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.library.UCRXGate.definition" />
+  ### mutable
 
-### definition
+  <Attribute id="qiskit.circuit.library.UCRXGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-Return definition in terms of other basic gates.
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-<span id="qiskit.circuit.library.UCRXGate.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.circuit.library.UCRXGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-Get the duration.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.UCRXGate.label" />
+  <Attribute id="qiskit.circuit.library.UCRXGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### label
+  ### num\_qubits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.UCRXGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.UCRXGate.mutable" />
+  ### params
 
-### mutable
+  <Attribute id="qiskit.circuit.library.UCRXGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### unit
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
-
-<span id="qiskit.circuit.library.UCRXGate.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.UCRXGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.UCRXGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.UCRXGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.UCRXGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.UCRXGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

@@ -8,30 +8,28 @@ python_api_name: qiskit.quantum_info.random_quantum_channel
 
 # qiskit.quantum\_info.random\_quantum\_channel
 
-<span id="qiskit.quantum_info.random_quantum_channel" />
+<Function id="qiskit.quantum_info.random_quantum_channel" name="random_quantum_channel" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/random.py" signature="random_quantum_channel(input_dims=None, output_dims=None, rank=None, seed=None)">
+  Return a random CPTP quantum channel.
 
-`random_quantum_channel(input_dims=None, output_dims=None, rank=None, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/random.py "view source code")
+  This constructs the Stinespring operator for the quantum channel by sampling a random isometry from the unitary Haar measure.
 
-Return a random CPTP quantum channel.
+  **Parameters**
 
-This constructs the Stinespring operator for the quantum channel by sampling a random isometry from the unitary Haar measure.
+  *   **input\_dims** (*int or tuple*) – the input dimension of the channel.
+  *   **output\_dims** (*int or tuple*) – the input dimension of the channel.
+  *   **rank** (*int*) – Optional. The rank of the quantum channel Choi-matrix.
+  *   **seed** (*int or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
 
-**Parameters**
+  **Returns**
 
-*   **input\_dims** (*int or tuple*) – the input dimension of the channel.
-*   **output\_dims** (*int or tuple*) – the input dimension of the channel.
-*   **rank** (*int*) – Optional. The rank of the quantum channel Choi-matrix.
-*   **seed** (*int or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+  a quantum channel operator.
 
-**Returns**
+  **Return type**
 
-a quantum channel operator.
+  [Stinespring](qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")
 
-**Return type**
+  **Raises**
 
-[Stinespring](qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")
-
-**Raises**
-
-**QiskitError** – if rank or dimensions are invalid.
+  **QiskitError** – if rank or dimensions are invalid.
+</Function>
 

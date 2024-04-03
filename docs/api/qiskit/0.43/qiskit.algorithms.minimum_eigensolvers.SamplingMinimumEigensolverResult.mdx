@@ -8,61 +8,57 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolv
 
 # SamplingMinimumEigensolverResult
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult" />
+<Class id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/minimum_eigensolvers/sampling_mes.py" signature="SamplingMinimumEigensolverResult">
+  Bases: `AlgorithmResult`
 
-`SamplingMinimumEigensolverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/minimum_eigensolvers/sampling_mes.py "view source code")
+  Sampling Minimum Eigensolver Result.
 
-Bases: `AlgorithmResult`
+  In contrast to the result of a `MinimumEigenSolver`, this result also contains the best measurement of the overall optimization and the samples of the final state.
 
-Sampling Minimum Eigensolver Result.
+  ## Methods
 
-In contrast to the result of a `MinimumEigenSolver`, this result also contains the best measurement of the overall optimization and the samples of the final state.
+  <span id="qiskit-algorithms-minimum-eigensolvers-samplingminimumeigensolverresult-combine" />
 
-## Methods
+  ### combine
 
-<span id="qiskit-algorithms-minimum-eigensolvers-samplingminimumeigensolverresult-combine" />
+  <Function id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.combine" name="combine" signature="SamplingMinimumEigensolverResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
 
-### combine
+    **Raises**
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.combine" />
+    **TypeError** – Argument is None
+  </Function>
 
-`SamplingMinimumEigensolverResult.combine(result)`
+  ## Attributes
 
-Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
+  ### aux\_operators\_evaluated
 
-**Raises**
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.aux_operators_evaluated" name="aux_operators_evaluated">
+    Return aux operator expectation values and metadata.
 
-**TypeError** – Argument is None
+    These are formatted as (mean, metadata).
+  </Attribute>
 
-## Attributes
+  ### best\_measurement
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.aux_operators_evaluated" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.best_measurement" name="best_measurement">
+    Return the best measurement over the entire optimization.
 
-### aux\_operators\_evaluated
+    Possesses keys: `state`, `bitstring`, `value`, `probability`.
+  </Attribute>
 
-Return aux operator expectation values and metadata.
+  ### eigenstate
 
-These are formatted as (mean, metadata).
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.eigenstate" name="eigenstate">
+    Return the quasi-distribution sampled from the final state.
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.best_measurement" />
+    The ansatz is sampled when parameterized with the optimal parameters that where obtained computing the minimum eigenvalue. The keys represent a measured classical value and the value is a float for the quasi-probability of that result.
+  </Attribute>
 
-### best\_measurement
+  ### eigenvalue
 
-Return the best measurement over the entire optimization.
-
-Possesses keys: `state`, `bitstring`, `value`, `probability`.
-
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.eigenstate" />
-
-### eigenstate
-
-Return the quasi-distribution sampled from the final state.
-
-The ansatz is sampled when parameterized with the optimal parameters that where obtained computing the minimum eigenvalue. The keys represent a measured classical value and the value is a float for the quasi-probability of that result.
-
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.eigenvalue" />
-
-### eigenvalue
-
-Return the approximation to the eigenvalue.
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.eigenvalue" name="eigenvalue">
+    Return the approximation to the eigenvalue.
+  </Attribute>
+</Class>
 

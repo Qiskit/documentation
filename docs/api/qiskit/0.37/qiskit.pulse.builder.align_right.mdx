@@ -8,38 +8,36 @@ python_api_name: qiskit.pulse.builder.align_right
 
 # qiskit.pulse.builder.align\_right
 
-<span id="qiskit.pulse.builder.align_right" />
+<Function id="qiskit.pulse.builder.align_right" name="align_right" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/builder.py" signature="align_right()">
+  Right alignment pulse scheduling context.
 
-`align_right()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/builder.py "view source code")
+  Pulse instructions within this context are scheduled as late as possible by shifting them right to the latest available time.
 
-Right alignment pulse scheduling context.
+  Examples:
 
-Pulse instructions within this context are scheduled as late as possible by shifting them right to the latest available time.
+  ```python
+  from qiskit import pulse
 
-Examples:
+  d0 = pulse.DriveChannel(0)
+  d1 = pulse.DriveChannel(1)
 
-```python
-from qiskit import pulse
+  with pulse.build() as pulse_prog:
+      with pulse.align_right():
+          # this pulse will start at t=0
+          pulse.play(pulse.Constant(100, 1.0), d0)
+          # this pulse will start at t=80
+          pulse.play(pulse.Constant(20, 1.0), d1)
+  pulse_prog = pulse.transforms.block_to_schedule(pulse_prog)
 
-d0 = pulse.DriveChannel(0)
-d1 = pulse.DriveChannel(1)
+  assert pulse_prog.ch_stop_time(d0) == pulse_prog.ch_stop_time(d1)
+  ```
 
-with pulse.build() as pulse_prog:
-    with pulse.align_right():
-        # this pulse will start at t=0
-        pulse.play(pulse.Constant(100, 1.0), d0)
-        # this pulse will start at t=80
-        pulse.play(pulse.Constant(20, 1.0), d1)
-pulse_prog = pulse.transforms.block_to_schedule(pulse_prog)
+  **Yields**
 
-assert pulse_prog.ch_stop_time(d0) == pulse_prog.ch_stop_time(d1)
-```
+  None
 
-**Yields**
+  **Return type**
 
-None
-
-**Return type**
-
-[`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+  [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+</Function>
 

@@ -8,534 +8,514 @@ python_api_name: qiskit.circuit.library.NLocal
 
 # NLocal
 
-<span id="qiskit.circuit.library.NLocal" />
+<Class id="qiskit.circuit.library.NLocal" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/n_local.py" signature="NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal')">
+  Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 
-`NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/n_local.py "view source code")
+  The n-local circuit class.
 
-Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
+  The structure of the n-local circuit are alternating rotation and entanglement layers. In both layers, parameterized circuit-blocks act on the circuit in a defined way. In the rotation layer, the blocks are applied stacked on top of each other, while in the entanglement layer according to the `entanglement` strategy. The circuit blocks can have arbitrary sizes (smaller equal to the number of qubits in the circuit). Each layer is repeated `reps` times, and by default a final rotation layer is appended.
 
-The n-local circuit class.
+  For instance, a rotation block on 2 qubits and an entanglement block on 4 qubits using `'linear'` entanglement yields the following circuit.
 
-The structure of the n-local circuit are alternating rotation and entanglement layers. In both layers, parameterized circuit-blocks act on the circuit in a defined way. In the rotation layer, the blocks are applied stacked on top of each other, while in the entanglement layer according to the `entanglement` strategy. The circuit blocks can have arbitrary sizes (smaller equal to the number of qubits in the circuit). Each layer is repeated `reps` times, and by default a final rotation layer is appended.
+  ```python
+  ┌──────┐ ░ ┌──────┐                      ░ ┌──────┐
+  ┤0     ├─░─┤0     ├──────────────── ... ─░─┤0     ├
+  │  Rot │ ░ │      │┌──────┐              ░ │  Rot │
+  ┤1     ├─░─┤1     ├┤0     ├──────── ... ─░─┤1     ├
+  ├──────┤ ░ │  Ent ││      │┌──────┐      ░ ├──────┤
+  ┤0     ├─░─┤2     ├┤1     ├┤0     ├ ... ─░─┤0     ├
+  │  Rot │ ░ │      ││  Ent ││      │      ░ │  Rot │
+  ┤1     ├─░─┤3     ├┤2     ├┤1     ├ ... ─░─┤1     ├
+  ├──────┤ ░ └──────┘│      ││  Ent │      ░ ├──────┤
+  ┤0     ├─░─────────┤3     ├┤2     ├ ... ─░─┤0     ├
+  │  Rot │ ░         └──────┘│      │      ░ │  Rot │
+  ┤1     ├─░─────────────────┤3     ├ ... ─░─┤1     ├
+  └──────┘ ░                 └──────┘      ░ └──────┘
 
-For instance, a rotation block on 2 qubits and an entanglement block on 4 qubits using `'linear'` entanglement yields the following circuit.
+  |                                 |
+  +---------------------------------+
+         repeated reps times
+  ```
 
-```python
-┌──────┐ ░ ┌──────┐                      ░ ┌──────┐
-┤0     ├─░─┤0     ├──────────────── ... ─░─┤0     ├
-│  Rot │ ░ │      │┌──────┐              ░ │  Rot │
-┤1     ├─░─┤1     ├┤0     ├──────── ... ─░─┤1     ├
-├──────┤ ░ │  Ent ││      │┌──────┐      ░ ├──────┤
-┤0     ├─░─┤2     ├┤1     ├┤0     ├ ... ─░─┤0     ├
-│  Rot │ ░ │      ││  Ent ││      │      ░ │  Rot │
-┤1     ├─░─┤3     ├┤2     ├┤1     ├ ... ─░─┤1     ├
-├──────┤ ░ └──────┘│      ││  Ent │      ░ ├──────┤
-┤0     ├─░─────────┤3     ├┤2     ├ ... ─░─┤0     ├
-│  Rot │ ░         └──────┘│      │      ░ │  Rot │
-┤1     ├─░─────────────────┤3     ├ ... ─░─┤1     ├
-└──────┘ ░                 └──────┘      ░ └──────┘
+  If specified, barriers can be inserted in between every block. If an initial state object is provided, it is added in front of the NLocal.
 
-|                                 |
-+---------------------------------+
-       repeated reps times
-```
+  Create a new n-local circuit.
 
-If specified, barriers can be inserted in between every block. If an initial state object is provided, it is added in front of the NLocal.
+  **Parameters**
 
-Create a new n-local circuit.
+  *   **num\_qubits** (`Optional`\[`int`]) – The number of qubits of the circuit.
+  *   **rotation\_blocks** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")], [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), `List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")], `None`]) – The blocks used in the rotation layers. If multiple are passed, these will be applied one after another (like new sub-layers).
+  *   **entanglement\_blocks** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")], [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), `List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")], `None`]) – The blocks used in the entanglement layers. If multiple are passed, these will be applied one after another. To use different entanglements for the sub-layers, see [`get_entangler_map()`](qiskit.circuit.library.NLocal#get_entangler_map "qiskit.circuit.library.NLocal.get_entangler_map").
+  *   **entanglement** (`Union`\[`List`\[`int`], `List`\[`List`\[`int`]], `None`]) – The indices specifying on which qubits the input blocks act. If `None`, the entanglement blocks are applied at the top of the circuit.
+  *   **reps** (`int`) – Specifies how often the rotation blocks and entanglement blocks are repeated.
+  *   **insert\_barriers** (`bool`) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted.
+  *   **parameter\_prefix** (`str`) – The prefix used if default parameters are generated.
+  *   **overwrite\_block\_parameters** (`Union`\[`bool`, `List`\[`List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]]]) – If the parameters in the added blocks should be overwritten. If `False`, the parameters in the blocks are not changed.
+  *   **skip\_final\_rotation\_layer** (`bool`) – Whether a final rotation layer is added to the circuit.
+  *   **skip\_unentangled\_qubits** (`bool`) – If `True`, the rotation gates act only on qubits that are entangled. If `False`, the rotation gates act on all qubits.
+  *   **initial\_state** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – A [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object which can be used to describe an initial state prepended to the NLocal circuit.
+  *   **name** (`Optional`\[`str`]) – The name of the circuit.
 
-**Parameters**
+  **Examples**
 
-*   **num\_qubits** (`Optional`\[`int`]) – The number of qubits of the circuit.
-*   **rotation\_blocks** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")], [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), `List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")], `None`]) – The blocks used in the rotation layers. If multiple are passed, these will be applied one after another (like new sub-layers).
-*   **entanglement\_blocks** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")], [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), `List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")], `None`]) – The blocks used in the entanglement layers. If multiple are passed, these will be applied one after another. To use different entanglements for the sub-layers, see [`get_entangler_map()`](qiskit.circuit.library.NLocal#get_entangler_map "qiskit.circuit.library.NLocal.get_entangler_map").
-*   **entanglement** (`Union`\[`List`\[`int`], `List`\[`List`\[`int`]], `None`]) – The indices specifying on which qubits the input blocks act. If `None`, the entanglement blocks are applied at the top of the circuit.
-*   **reps** (`int`) – Specifies how often the rotation blocks and entanglement blocks are repeated.
-*   **insert\_barriers** (`bool`) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted.
-*   **parameter\_prefix** (`str`) – The prefix used if default parameters are generated.
-*   **overwrite\_block\_parameters** (`Union`\[`bool`, `List`\[`List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]]]) – If the parameters in the added blocks should be overwritten. If `False`, the parameters in the blocks are not changed.
-*   **skip\_final\_rotation\_layer** (`bool`) – Whether a final rotation layer is added to the circuit.
-*   **skip\_unentangled\_qubits** (`bool`) – If `True`, the rotation gates act only on qubits that are entangled. If `False`, the rotation gates act on all qubits.
-*   **initial\_state** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – A [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object which can be used to describe an initial state prepended to the NLocal circuit.
-*   **name** (`Optional`\[`str`]) – The name of the circuit.
+  TODO
 
-**Examples**
+  **Raises**
 
-TODO
+  *   **ValueError** – If `reps` parameter is less than or equal to 0.
+  *   **TypeError** – If `reps` parameter is not an int value.
 
-**Raises**
+  ## Methods Defined Here
 
-*   **ValueError** – If `reps` parameter is less than or equal to 0.
-*   **TypeError** – If `reps` parameter is not an int value.
+  ### add\_layer
 
-## Methods Defined Here
+  <Function id="qiskit.circuit.library.NLocal.add_layer" name="add_layer" signature="NLocal.add_layer(other, entanglement=None, front=False)">
+    Append another layer to the NLocal.
 
-### add\_layer
+    **Parameters**
 
-<span id="qiskit.circuit.library.NLocal.add_layer" />
+    *   **other** (`Union`\[[`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal"), [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – The layer to compose, can be another NLocal, an Instruction or Gate, or a QuantumCircuit.
+    *   **entanglement** (`Union`\[`List`\[`int`], `str`, `List`\[`List`\[`int`]], `None`]) – The entanglement or qubit indices.
+    *   **front** (`bool`) – If True, `other` is appended to the front, else to the back.
 
-`NLocal.add_layer(other, entanglement=None, front=False)`
+    **Return type**
 
-Append another layer to the NLocal.
+    [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
-**Parameters**
+    **Returns**
 
-*   **other** (`Union`\[[`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal"), [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – The layer to compose, can be another NLocal, an Instruction or Gate, or a QuantumCircuit.
-*   **entanglement** (`Union`\[`List`\[`int`], `str`, `List`\[`List`\[`int`]], `None`]) – The entanglement or qubit indices.
-*   **front** (`bool`) – If True, `other` is appended to the front, else to the back.
+    self, such that chained composes are possible.
 
-**Return type**
+    **Raises**
 
-[`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
+    **TypeError** – If other is not compatible, i.e. is no Instruction and does not have a to\_instruction method.
+  </Function>
 
-**Returns**
+  ### assign\_parameters
 
-self, such that chained composes are possible.
+  <Function id="qiskit.circuit.library.NLocal.assign_parameters" name="assign_parameters" signature="NLocal.assign_parameters(parameters, inplace=False)">
+    Assign parameters to the n-local circuit.
 
-**Raises**
+    This method also supports passing a list instead of a dictionary. If a list is passed, the list must have the same length as the number of unbound parameters in the circuit. The parameters are assigned in the order of the parameters in [`ordered_parameters()`](qiskit.circuit.library.NLocal#ordered_parameters "qiskit.circuit.library.NLocal.ordered_parameters").
 
-**TypeError** – If other is not compatible, i.e. is no Instruction and does not have a to\_instruction method.
+    **Return type**
 
-### assign\_parameters
+    `Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
 
-<span id="qiskit.circuit.library.NLocal.assign_parameters" />
+    **Returns**
 
-`NLocal.assign_parameters(parameters, inplace=False)`
+    A copy of the NLocal circuit with the specified parameters.
 
-Assign parameters to the n-local circuit.
+    **Raises**
 
-This method also supports passing a list instead of a dictionary. If a list is passed, the list must have the same length as the number of unbound parameters in the circuit. The parameters are assigned in the order of the parameters in [`ordered_parameters()`](qiskit.circuit.library.NLocal#ordered_parameters "qiskit.circuit.library.NLocal.ordered_parameters").
+    **AttributeError** – If the parameters are given as list and do not match the number of parameters.
+  </Function>
 
-**Return type**
+  ### get\_entangler\_map
 
-`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
+  <Function id="qiskit.circuit.library.NLocal.get_entangler_map" name="get_entangler_map" signature="NLocal.get_entangler_map(rep_num, block_num, num_block_qubits)">
+    Get the entangler map for in the repetition `rep_num` and the block `block_num`.
 
-**Returns**
+    The entangler map for the current block is derived from the value of `self.entanglement`. Below the different cases are listed, where `i` and `j` denote the repetition number and the block number, respectively, and `n` the number of qubits in the block.
 
-A copy of the NLocal circuit with the specified parameters.
+    | entanglement type                | entangler map                                      |
+    | -------------------------------- | -------------------------------------------------- |
+    | `None`                           | `[[0, ..., n - 1]]`                                |
+    | `str` (e.g `'full'`)             | the specified connectivity on `n` qubits           |
+    | `List[int]`                      | \[`entanglement`]                                  |
+    | `List[List[int]]`                | `entanglement`                                     |
+    | `List[List[List[int]]]`          | `entanglement[i]`                                  |
+    | `List[List[List[List[int]]]]`    | `entanglement[i][j]`                               |
+    | `List[str]`                      | the connectivity specified in `entanglement[i]`    |
+    | `List[List[str]]`                | the connectivity specified in `entanglement[i][j]` |
+    | `Callable[int, str]`             | same as `List[str]`                                |
+    | `Callable[int, List[List[int]]]` | same as `List[List[List[int]]]`                    |
 
-**Raises**
+    Note that all indices are to be taken modulo the length of the array they act on, i.e. no out-of-bounds index error will be raised but we re-iterate from the beginning of the list.
 
-**AttributeError** – If the parameters are given as list and do not match the number of parameters.
+    **Parameters**
 
-### get\_entangler\_map
+    *   **rep\_num** (`int`) – The current repetition we are in.
+    *   **block\_num** (`int`) – The block number within the entanglement layers.
+    *   **num\_block\_qubits** (`int`) – The number of qubits in the block.
 
-<span id="qiskit.circuit.library.NLocal.get_entangler_map" />
+    **Return type**
 
-`NLocal.get_entangler_map(rep_num, block_num, num_block_qubits)`
+    `List`\[`List`\[`int`]]
 
-Get the entangler map for in the repetition `rep_num` and the block `block_num`.
+    **Returns**
 
-The entangler map for the current block is derived from the value of `self.entanglement`. Below the different cases are listed, where `i` and `j` denote the repetition number and the block number, respectively, and `n` the number of qubits in the block.
+    The entangler map for the current block in the current repetition.
 
-| entanglement type                | entangler map                                      |
-| -------------------------------- | -------------------------------------------------- |
-| `None`                           | `[[0, ..., n - 1]]`                                |
-| `str` (e.g `'full'`)             | the specified connectivity on `n` qubits           |
-| `List[int]`                      | \[`entanglement`]                                  |
-| `List[List[int]]`                | `entanglement`                                     |
-| `List[List[List[int]]]`          | `entanglement[i]`                                  |
-| `List[List[List[List[int]]]]`    | `entanglement[i][j]`                               |
-| `List[str]`                      | the connectivity specified in `entanglement[i]`    |
-| `List[List[str]]`                | the connectivity specified in `entanglement[i][j]` |
-| `Callable[int, str]`             | same as `List[str]`                                |
-| `Callable[int, List[List[int]]]` | same as `List[List[List[int]]]`                    |
+    **Raises**
 
-Note that all indices are to be taken modulo the length of the array they act on, i.e. no out-of-bounds index error will be raised but we re-iterate from the beginning of the list.
+    **ValueError** – If the value of `entanglement` could not be cast to a corresponding entangler map.
+  </Function>
 
-**Parameters**
+  ### get\_unentangled\_qubits
 
-*   **rep\_num** (`int`) – The current repetition we are in.
-*   **block\_num** (`int`) – The block number within the entanglement layers.
-*   **num\_block\_qubits** (`int`) – The number of qubits in the block.
+  <Function id="qiskit.circuit.library.NLocal.get_unentangled_qubits" name="get_unentangled_qubits" signature="NLocal.get_unentangled_qubits()">
+    Get the indices of unentangled qubits in a set.
 
-**Return type**
+    **Return type**
 
-`List`\[`List`\[`int`]]
+    `Set`\[`int`]
 
-**Returns**
+    **Returns**
 
-The entangler map for the current block in the current repetition.
+    The unentangled qubits.
+  </Function>
 
-**Raises**
+  ### print\_settings
 
-**ValueError** – If the value of `entanglement` could not be cast to a corresponding entangler map.
+  <Function id="qiskit.circuit.library.NLocal.print_settings" name="print_settings" signature="NLocal.print_settings()">
+    Returns information about the setting.
 
-### get\_unentangled\_qubits
+    **Return type**
 
-<span id="qiskit.circuit.library.NLocal.get_unentangled_qubits" />
+    `str`
 
-`NLocal.get_unentangled_qubits()`
+    **Returns**
 
-Get the indices of unentangled qubits in a set.
+    The class name and the attributes/parameters of the instance as `str`.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`Set`\[`int`]
+  ### ancillas
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.NLocal.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-The unentangled qubits.
+    **Return type**
 
-### print\_settings
+    `List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  </Attribute>
 
-<span id="qiskit.circuit.library.NLocal.print_settings" />
+  ### calibrations
 
-`NLocal.print_settings()`
+  <Attribute id="qiskit.circuit.library.NLocal.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-Returns information about the setting.
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
 
-**Return type**
+    **Return type**
 
-`str`
+    `dict`
+  </Attribute>
 
-**Returns**
+  ### clbits
 
-The class name and the attributes/parameters of the instance as `str`.
+  <Attribute id="qiskit.circuit.library.NLocal.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-## Attributes
+    **Return type**
 
-<span id="qiskit.circuit.library.NLocal.ancillas" />
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-### ancillas
+  ### data
 
-Returns a list of ancilla bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.NLocal.data" name="data" />
 
-**Return type**
+  ### entanglement
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  <Attribute id="qiskit.circuit.library.NLocal.entanglement" name="entanglement">
+    Get the entanglement strategy.
 
-<span id="qiskit.circuit.library.NLocal.calibrations" />
+    **Return type**
 
-### calibrations
+    `Union`\[`str`, `List`\[`str`], `List`\[`List`\[`str`]], `List`\[`int`], `List`\[`List`\[`int`]], `List`\[`List`\[`List`\[`int`]]], `List`\[`List`\[`List`\[`List`\[`int`]]]], `Callable`\[\[`int`], `str`], `Callable`\[\[`int`], `List`\[`List`\[`int`]]]]
 
-Return calibration dictionary.
+    **Returns**
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+    The entanglement strategy, see [`get_entangler_map()`](qiskit.circuit.library.NLocal#get_entangler_map "qiskit.circuit.library.NLocal.get_entangler_map") for more detail on how the format is interpreted.
+  </Attribute>
 
-**Return type**
+  ### entanglement\_blocks
 
-`dict`
+  <Attribute id="qiskit.circuit.library.NLocal.entanglement_blocks" name="entanglement_blocks">
+    The blocks in the entanglement layers.
 
-<span id="qiskit.circuit.library.NLocal.clbits" />
+    **Return type**
 
-### clbits
+    `List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
 
-Returns a list of classical bits in the order that the registers were added.
+    **Returns**
 
-**Return type**
+    The blocks in the entanglement layers.
+  </Attribute>
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  ### extension\_lib
 
-<span id="qiskit.circuit.library.NLocal.data" />
+  <Attribute id="qiskit.circuit.library.NLocal.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-### data
+  ### global\_phase
 
-<span id="qiskit.circuit.library.NLocal.entanglement" />
+  <Attribute id="qiskit.circuit.library.NLocal.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-### entanglement
+    **Return type**
 
-Get the entanglement strategy.
+    `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  </Attribute>
 
-**Return type**
+  ### header
 
-`Union`\[`str`, `List`\[`str`], `List`\[`List`\[`str`]], `List`\[`int`], `List`\[`List`\[`int`]], `List`\[`List`\[`List`\[`int`]]], `List`\[`List`\[`List`\[`List`\[`int`]]]], `Callable`\[\[`int`], `str`], `Callable`\[\[`int`], `List`\[`List`\[`int`]]]]
+  <Attribute id="qiskit.circuit.library.NLocal.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-**Returns**
+  ### initial\_state
 
-The entanglement strategy, see [`get_entangler_map()`](qiskit.circuit.library.NLocal#get_entangler_map "qiskit.circuit.library.NLocal.get_entangler_map") for more detail on how the format is interpreted.
+  <Attribute id="qiskit.circuit.library.NLocal.initial_state" name="initial_state">
+    Return the initial state that is added in front of the n-local circuit.
 
-<span id="qiskit.circuit.library.NLocal.entanglement_blocks" />
+    **Return type**
 
-### entanglement\_blocks
+    [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
-The blocks in the entanglement layers.
+    **Returns**
 
-**Return type**
+    The initial state.
+  </Attribute>
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+  ### insert\_barriers
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.NLocal.insert_barriers" name="insert_barriers">
+    If barriers are inserted in between the layers or not.
 
-The blocks in the entanglement layers.
+    **Return type**
 
-<span id="qiskit.circuit.library.NLocal.extension_lib" />
+    `bool`
 
-### extension\_lib
+    **Returns**
 
-`= 'include "qelib1.inc";'`
+    `True`, if barriers are inserted in between the layers, `False` if not.
+  </Attribute>
 
-<span id="qiskit.circuit.library.NLocal.global_phase" />
+  ### instances
 
-### global\_phase
+  <Attribute id="qiskit.circuit.library.NLocal.instances" name="instances" attributeValue="= 2136" />
 
-Return the global phase of the circuit in radians.
+  ### metadata
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.NLocal.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-<span id="qiskit.circuit.library.NLocal.header" />
+    **Return type**
 
-### header
+    `dict`
+  </Attribute>
 
-`= 'OPENQASM 2.0;'`
+  ### num\_ancillas
 
-<span id="qiskit.circuit.library.NLocal.initial_state" />
+  <Attribute id="qiskit.circuit.library.NLocal.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-### initial\_state
+    **Return type**
 
-Return the initial state that is added in front of the n-local circuit.
+    `int`
+  </Attribute>
 
-**Return type**
+  ### num\_clbits
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  <Attribute id="qiskit.circuit.library.NLocal.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-**Returns**
+    **Return type**
 
-The initial state.
+    `int`
+  </Attribute>
 
-<span id="qiskit.circuit.library.NLocal.insert_barriers" />
+  ### num\_layers
 
-### insert\_barriers
+  <Attribute id="qiskit.circuit.library.NLocal.num_layers" name="num_layers">
+    Return the number of layers in the n-local circuit.
 
-If barriers are inserted in between the layers or not.
+    **Return type**
 
-**Return type**
+    `int`
 
-`bool`
+    **Returns**
 
-**Returns**
+    The number of layers in the circuit.
+  </Attribute>
 
-`True`, if barriers are inserted in between the layers, `False` if not.
+  ### num\_parameters
 
-<span id="qiskit.circuit.library.NLocal.instances" />
+  <Attribute id="qiskit.circuit.library.NLocal.num_parameters" name="num_parameters">
+    **Return type**
 
-### instances
+    `int`
+  </Attribute>
 
-`= 2136`
+  ### num\_parameters\_settable
 
-<span id="qiskit.circuit.library.NLocal.metadata" />
+  <Attribute id="qiskit.circuit.library.NLocal.num_parameters_settable" name="num_parameters_settable">
+    The number of total parameters that can be set to distinct values.
 
-### metadata
+    This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
 
-The user provided metadata associated with the circuit
+    **Return type**
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    `int`
 
-**Return type**
+    **Returns**
 
-`dict`
+    The number of parameters originally available in the circuit.
 
-<span id="qiskit.circuit.library.NLocal.num_ancillas" />
+    <Admonition title="Note" type="note">
+      This quantity does not require the circuit to be built yet.
+    </Admonition>
+  </Attribute>
 
-### num\_ancillas
+  ### num\_qubits
 
-Return the number of ancilla qubits.
+  <Attribute id="qiskit.circuit.library.NLocal.num_qubits" name="num_qubits">
+    Returns the number of qubits in this circuit.
 
-**Return type**
+    **Return type**
 
-`int`
+    `int`
 
-<span id="qiskit.circuit.library.NLocal.num_clbits" />
+    **Returns**
 
-### num\_clbits
+    The number of qubits.
+  </Attribute>
 
-Return number of classical bits.
+  ### op\_start\_times
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.NLocal.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-`int`
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-<span id="qiskit.circuit.library.NLocal.num_layers" />
+    **Return type**
 
-### num\_layers
+    `List`\[`int`]
 
-Return the number of layers in the n-local circuit.
+    **Returns**
 
-**Return type**
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-`int`
+    **Raises**
 
-**Returns**
+    **AttributeError** – When circuit is not scheduled.
+  </Attribute>
 
-The number of layers in the circuit.
+  ### ordered\_parameters
 
-<span id="qiskit.circuit.library.NLocal.num_parameters" />
+  <Attribute id="qiskit.circuit.library.NLocal.ordered_parameters" name="ordered_parameters">
+    The parameters used in the underlying circuit.
 
-### num\_parameters
+    This includes float values and duplicates.
 
-**Return type**
+    **Examples**
 
-`int`
+    ```python
+    >>> # prepare circuit ...
+    >>> print(nlocal)
+         ┌───────┐┌──────────┐┌──────────┐┌──────────┐
+    q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
+         └───────┘└──────────┘└──────────┘└──────────┘
+    >>> nlocal.parameters
+    {Parameter(θ[1]), Parameter(θ[3])}
+    >>> nlocal.ordered_parameters
+    [1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
+    ```
 
-<span id="qiskit.circuit.library.NLocal.num_parameters_settable" />
+    **Return type**
 
-### num\_parameters\_settable
+    `List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
 
-The number of total parameters that can be set to distinct values.
+    **Returns**
 
-This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
+    The parameters objects used in the circuit.
+  </Attribute>
 
-**Return type**
+  ### parameter\_bounds
 
-`int`
+  <Attribute id="qiskit.circuit.library.NLocal.parameter_bounds" name="parameter_bounds">
+    The parameter bounds for the unbound parameters in the circuit.
 
-**Returns**
+    **Return type**
 
-The number of parameters originally available in the circuit.
+    `Optional`\[`List`\[`Tuple`\[`float`, `float`]]]
 
-<Admonition title="Note" type="note">
-  This quantity does not require the circuit to be built yet.
-</Admonition>
+    **Returns**
 
-<span id="qiskit.circuit.library.NLocal.num_qubits" />
+    A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If `None` is returned, problem is fully unbounded.
+  </Attribute>
 
-### num\_qubits
+  ### parameters
 
-Returns the number of qubits in this circuit.
+  <Attribute id="qiskit.circuit.library.NLocal.parameters" name="parameters">
+    **Return type**
 
-**Return type**
+    `ParameterView`
+  </Attribute>
 
-`int`
+  ### preferred\_init\_points
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.NLocal.preferred_init_points" name="preferred_init_points">
+    The initial points for the parameters. Can be stored as initial guess in optimization.
 
-The number of qubits.
+    **Return type**
 
-<span id="qiskit.circuit.library.NLocal.op_start_times" />
+    `Optional`\[`List`\[`float`]]
 
-### op\_start\_times
+    **Returns**
 
-Return a list of operation start times.
+    The initial values for the parameters, or None, if none have been set.
+  </Attribute>
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+  ### prefix
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.NLocal.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-`List`\[`int`]
+  ### qregs
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.NLocal.qregs" name="qregs">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+  ### qubits
 
-**Raises**
+  <Attribute id="qiskit.circuit.library.NLocal.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-**AttributeError** – When circuit is not scheduled.
+    **Return type**
 
-<span id="qiskit.circuit.library.NLocal.ordered_parameters" />
+    `List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+  </Attribute>
 
-### ordered\_parameters
+  ### reps
 
-The parameters used in the underlying circuit.
+  <Attribute id="qiskit.circuit.library.NLocal.reps" name="reps">
+    The number of times rotation and entanglement block are repeated.
 
-This includes float values and duplicates.
+    **Return type**
 
-**Examples**
+    `int`
 
-```python
->>> # prepare circuit ...
->>> print(nlocal)
-     ┌───────┐┌──────────┐┌──────────┐┌──────────┐
-q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
-     └───────┘└──────────┘└──────────┘└──────────┘
->>> nlocal.parameters
-{Parameter(θ[1]), Parameter(θ[3])}
->>> nlocal.ordered_parameters
-[1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
-```
+    **Returns**
 
-**Return type**
+    The number of repetitions.
+  </Attribute>
 
-`List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+  ### rotation\_blocks
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.NLocal.rotation_blocks" name="rotation_blocks">
+    The blocks in the rotation layers.
 
-The parameters objects used in the circuit.
+    **Return type**
 
-<span id="qiskit.circuit.library.NLocal.parameter_bounds" />
+    `List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
 
-### parameter\_bounds
+    **Returns**
 
-The parameter bounds for the unbound parameters in the circuit.
-
-**Return type**
-
-`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]
-
-**Returns**
-
-A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If `None` is returned, problem is fully unbounded.
-
-<span id="qiskit.circuit.library.NLocal.parameters" />
-
-### parameters
-
-**Return type**
-
-`ParameterView`
-
-<span id="qiskit.circuit.library.NLocal.preferred_init_points" />
-
-### preferred\_init\_points
-
-The initial points for the parameters. Can be stored as initial guess in optimization.
-
-**Return type**
-
-`Optional`\[`List`\[`float`]]
-
-**Returns**
-
-The initial values for the parameters, or None, if none have been set.
-
-<span id="qiskit.circuit.library.NLocal.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.NLocal.qregs" />
-
-### qregs
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.NLocal.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
-
-<span id="qiskit.circuit.library.NLocal.reps" />
-
-### reps
-
-The number of times rotation and entanglement block are repeated.
-
-**Return type**
-
-`int`
-
-**Returns**
-
-The number of repetitions.
-
-<span id="qiskit.circuit.library.NLocal.rotation_blocks" />
-
-### rotation\_blocks
-
-The blocks in the rotation layers.
-
-**Return type**
-
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
-
-**Returns**
-
-The blocks in the rotation layers.
+    The blocks in the rotation layers.
+  </Attribute>
+</Class>
 

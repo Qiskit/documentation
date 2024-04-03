@@ -8,43 +8,41 @@ python_api_name: qiskit.converters.circuit_to_dag
 
 # qiskit.converters.circuit\_to\_dag
 
-<span id="qiskit.converters.circuit_to_dag" />
+<Function id="qiskit.converters.circuit_to_dag" name="circuit_to_dag" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/converters/circuit_to_dag.py" signature="circuit_to_dag(circuit)">
+  Build a `DAGCircuit` object from a `QuantumCircuit`.
 
-`circuit_to_dag(circuit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/converters/circuit_to_dag.py "view source code")
+  **Parameters**
 
-Build a `DAGCircuit` object from a `QuantumCircuit`.
+  **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
 
-**Parameters**
+  **Returns**
 
-**circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
+  the DAG representing the input circuit.
 
-**Returns**
+  **Return type**
 
-the DAG representing the input circuit.
+  [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-**Return type**
+  **Example**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  ```python
+  from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+  from qiskit.dagcircuit import DAGCircuit
+  from qiskit.converters import circuit_to_dag
+  from qiskit.visualization import dag_drawer
+  %matplotlib inline
 
-**Example**
+  q = QuantumRegister(3, 'q')
+  c = ClassicalRegister(3, 'c')
+  circ = QuantumCircuit(q, c)
+  circ.h(q[0])
+  circ.cx(q[0], q[1])
+  circ.measure(q[0], c[0])
+  circ.rz(0.5, q[1]).c_if(c, 2)
+  dag = circuit_to_dag(circ)
+  dag_drawer(dag)
+  ```
 
-```python
-from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
-from qiskit.dagcircuit import DAGCircuit
-from qiskit.converters import circuit_to_dag
-from qiskit.visualization import dag_drawer
-%matplotlib inline
-
-q = QuantumRegister(3, 'q')
-c = ClassicalRegister(3, 'c')
-circ = QuantumCircuit(q, c)
-circ.h(q[0])
-circ.cx(q[0], q[1])
-circ.measure(q[0], c[0])
-circ.rz(0.5, q[1]).c_if(c, 2)
-dag = circuit_to_dag(circ)
-dag_drawer(dag)
-```
-
-![../\_images/qiskit.converters.circuit\_to\_dag\_0\_0.png](/images/api/qiskit/0.39/qiskit.converters.circuit_to_dag_0_0.png)
+  ![../\_images/qiskit.converters.circuit\_to\_dag\_0\_0.png](/images/api/qiskit/0.39/qiskit.converters.circuit_to_dag_0_0.png)
+</Function>
 

@@ -8,53 +8,49 @@ python_api_name: qiskit.providers.ibmq.runtime.ParameterNamespace
 
 # ParameterNamespace
 
-<span id="qiskit.providers.ibmq.runtime.ParameterNamespace" />
+<Class id="qiskit.providers.ibmq.runtime.ParameterNamespace" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_program.py" signature="ParameterNamespace(params)">
+  Bases: `types.SimpleNamespace`
 
-`ParameterNamespace(params)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_program.py "view source code")
+  A namespace for program parameters with validation.
 
-Bases: `types.SimpleNamespace`
+  This class provides a namespace for program parameters with auto-completion and validation support.
 
-A namespace for program parameters with validation.
+  ParameterNamespace constructor.
 
-This class provides a namespace for program parameters with auto-completion and validation support.
+  **Parameters**
 
-ParameterNamespace constructor.
+  **params** (`List`\[`ProgramParameter`]) – The program’s input parameters.
 
-**Parameters**
+  ## Methods
 
-**params** (`List`\[`ProgramParameter`]) – The program’s input parameters.
+  ### validate
 
-## Methods
+  <Function id="qiskit.providers.ibmq.runtime.ParameterNamespace.validate" name="validate" signature="ParameterNamespace.validate()">
+    Validate program input values.
 
-### validate
+    <Admonition title="Note" type="note">
+      This method only verifies that required parameters have values. It does not fail the validation if the namespace has extraneous parameters.
+    </Admonition>
 
-<span id="qiskit.providers.ibmq.runtime.ParameterNamespace.validate" />
+    **Raises**
 
-`ParameterNamespace.validate()`
+    **IBMQInputValueError** – if validation fails
 
-Validate program input values.
+    **Return type**
 
-<Admonition title="Note" type="note">
-  This method only verifies that required parameters have values. It does not fail the validation if the namespace has extraneous parameters.
-</Admonition>
+    `None`
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**IBMQInputValueError** – if validation fails
+  ### metadata
 
-**Return type**
+  <Attribute id="qiskit.providers.ibmq.runtime.ParameterNamespace.metadata" name="metadata">
+    Returns the parameter metadata
 
-`None`
+    **Return type**
 
-## Attributes
-
-<span id="qiskit.providers.ibmq.runtime.ParameterNamespace.metadata" />
-
-### metadata
-
-Returns the parameter metadata
-
-**Return type**
-
-`List`\[`ProgramParameter`]
+    `List`\[`ProgramParameter`]
+  </Attribute>
+</Class>
 

@@ -8,168 +8,158 @@ python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
 # MaximumLikelihoodAmplitudeEstimation
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation" />
+<Class id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/amplitude_estimators/mlae.py" signature="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None, sampler=None)">
+  Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
-`qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/amplitude_estimators/mlae.py "view source code")
+  The Maximum Likelihood Amplitude Estimation algorithm.
 
-Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
+  This class implements the quantum amplitude estimation (QAE) algorithm without phase estimation, as introduced in \[1]. In comparison to the original QAE algorithm \[2], this implementation relies solely on different powers of the Grover operator and does not require additional evaluation qubits. Finally, the estimate is determined via a maximum likelihood estimation, which is why this class in named `MaximumLikelihoodAmplitudeEstimation`.
 
-The Maximum Likelihood Amplitude Estimation algorithm.
+  **References**
 
-This class implements the quantum amplitude estimation (QAE) algorithm without phase estimation, as introduced in \[1]. In comparison to the original QAE algorithm \[2], this implementation relies solely on different powers of the Grover operator and does not require additional evaluation qubits. Finally, the estimate is determined via a maximum likelihood estimation, which is why this class in named `MaximumLikelihoodAmplitudeEstimation`.
+  **\[1]: Suzuki, Y., Uno, S., Raymond, R., Tanaka, T., Onodera, T., & Yamamoto, N. (2019).**
 
-**References**
+  Amplitude Estimation without Phase Estimation. [arXiv:1904.10246](https://arxiv.org/abs/1904.10246).
 
-**\[1]: Suzuki, Y., Uno, S., Raymond, R., Tanaka, T., Onodera, T., & Yamamoto, N. (2019).**
+  **\[2]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
 
-Amplitude Estimation without Phase Estimation. [arXiv:1904.10246](https://arxiv.org/abs/1904.10246).
+  Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
 
-**\[2]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    `qiskit.algorithms.amplitude_estimators.mlae.MaximumLikelihoodAmplitudeEstimation.__init__()`’s argument `quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the `sampler` argument. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  </Admonition>
 
-Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  `qiskit.algorithms.amplitude_estimators.mlae.MaximumLikelihoodAmplitudeEstimation.__init__()`’s argument `quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the `sampler` argument. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+  *   **evaluation\_schedule** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – If a list, the powers applied to the Grover operator. The list element must be non-negative. If a non-negative integer, an exponential schedule is used where the highest power is 2 to the integer minus 1: \[id, Q^2^0, …, Q^2^(evaluation\_schedule-1)].
+  *   **minimizer** (*MINIMIZER | None*) – A minimizer used to find the minimum of the likelihood function. Defaults to a brute search where the number of evaluation points is determined according to `evaluation_schedule`. The minimizer takes a function as first argument and a list of (float, float) tuples (as bounds) as second argument and returns a single float which is the found minimum.
+  *   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: Quantum Instance or Backend
+  *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – A sampler primitive to evaluate the circuits.
 
-**Parameters**
+  **Raises**
 
-*   **evaluation\_schedule** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – If a list, the powers applied to the Grover operator. The list element must be non-negative. If a non-negative integer, an exponential schedule is used where the highest power is 2 to the integer minus 1: \[id, Q^2^0, …, Q^2^(evaluation\_schedule-1)].
-*   **minimizer** (*MINIMIZER | None*) – A minimizer used to find the minimum of the likelihood function. Defaults to a brute search where the number of evaluation points is determined according to `evaluation_schedule`. The minimizer takes a function as first argument and a list of (float, float) tuples (as bounds) as second argument and returns a single float which is the found minimum.
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: Quantum Instance or Backend
-*   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – A sampler primitive to evaluate the circuits.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the number of oracle circuits is smaller than 1.
 
-**Raises**
+  ## Attributes
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the number of oracle circuits is smaller than 1.
+  ### quantum\_instance
 
-## Attributes
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance" name="quantum_instance">
+    Deprecated. Get the quantum instance.
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance" />
+    <Admonition title="Deprecated since version 0.24.0" type="danger">
+      The property `qiskit.algorithms.amplitude_estimators.mlae.MaximumLikelihoodAmplitudeEstimation.quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+    </Admonition>
 
-### quantum\_instance
+    **Returns**
 
-Deprecated. Get the quantum instance.
+    The quantum instance used to run this algorithm.
+  </Attribute>
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The property `qiskit.algorithms.amplitude_estimators.mlae.MaximumLikelihoodAmplitudeEstimation.quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+  ### sampler
 
-**Returns**
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.sampler" name="sampler">
+    Get the sampler primitive.
 
-The quantum instance used to run this algorithm.
+    **Returns**
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.sampler" />
+    The sampler primitive to evaluate the circuits.
+  </Attribute>
 
-### sampler
+  ## Methods
 
-Get the sampler primitive.
+  ### compute\_confidence\_interval
 
-**Returns**
+  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_confidence_interval" name="compute_confidence_interval" signature="static compute_confidence_interval(result, alpha, kind='fisher', apply_post_processing=False)">
+    Compute the alpha confidence interval using the method kind.
 
-The sampler primitive to evaluate the circuits.
+    The confidence level is (1 - alpha) and supported kinds are ‘fisher’, ‘likelihood\_ratio’ and ‘observed\_fisher’ with shorthand notations ‘fi’, ‘lr’ and ‘oi’, respectively.
 
-## Methods
+    **Parameters**
 
-### compute\_confidence\_interval
+    *   **result** ([*MaximumLikelihoodAmplitudeEstimationResult*](qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult "qiskit.algorithms.amplitude_estimators.mlae.MaximumLikelihoodAmplitudeEstimationResult")) – A maximum likelihood amplitude estimation result.
+    *   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The confidence level.
+    *   **kind** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The method to compute the confidence interval. Defaults to ‘fisher’, which computes the theoretical Fisher information.
+    *   **apply\_post\_processing** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, apply post-processing to the confidence interval.
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_confidence_interval" />
+    **Returns**
 
-`static compute_confidence_interval(result, alpha, kind='fisher', apply_post_processing=False)`
+    The specified confidence interval.
 
-Compute the alpha confidence interval using the method kind.
+    **Raises**
 
-The confidence level is (1 - alpha) and supported kinds are ‘fisher’, ‘likelihood\_ratio’ and ‘observed\_fisher’ with shorthand notations ‘fi’, ‘lr’ and ‘oi’, respectively.
+    *   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If run() hasn’t been called yet.
+    *   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – If the method kind is not supported.
 
-**Parameters**
+    **Return type**
 
-*   **result** ([*MaximumLikelihoodAmplitudeEstimationResult*](qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult "qiskit.algorithms.amplitude_estimators.mlae.MaximumLikelihoodAmplitudeEstimationResult")) – A maximum likelihood amplitude estimation result.
-*   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The confidence level.
-*   **kind** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The method to compute the confidence interval. Defaults to ‘fisher’, which computes the theoretical Fisher information.
-*   **apply\_post\_processing** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, apply post-processing to the confidence interval.
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+  </Function>
 
-**Returns**
+  ### compute\_mle
 
-The specified confidence interval.
+  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_mle" name="compute_mle" signature="compute_mle(circuit_results, estimation_problem, num_state_qubits=None, return_counts=False)">
+    Compute the MLE via a grid-search.
 
-**Raises**
+    This is a stable approach if sufficient gridpoints are used.
 
-*   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If run() hasn’t been called yet.
-*   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – If the method kind is not supported.
+    **Parameters**
 
-**Return type**
+    *   **circuit\_results** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | np.ndarray]*) – A list of circuit outcomes. Can be counts or statevectors.
+    *   **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.EstimationProblem")) – The estimation problem containing the evaluation schedule and the number of likelihood function evaluations used to find the minimum.
+    *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of state qubits, required for statevector simulations.
+    *   **return\_counts** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, returns the good counts.
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+    **Returns**
 
-### compute\_mle
+    The MLE for the provided result object.
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_mle" />
+    **Return type**
 
-`compute_mle(circuit_results, estimation_problem, num_state_qubits=None, return_counts=False)`
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]]
+  </Function>
 
-Compute the MLE via a grid-search.
+  ### construct\_circuits
 
-This is a stable approach if sufficient gridpoints are used.
+  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits" name="construct_circuits" signature="construct_circuits(estimation_problem, measurement=False)">
+    Construct the Amplitude Estimation w/o QPE quantum circuits.
 
-**Parameters**
+    **Parameters**
 
-*   **circuit\_results** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | np.ndarray]*) – A list of circuit outcomes. Can be counts or statevectors.
-*   **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.EstimationProblem")) – The estimation problem containing the evaluation schedule and the number of likelihood function evaluations used to find the minimum.
-*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of state qubits, required for statevector simulations.
-*   **return\_counts** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, returns the good counts.
+    *   **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem for which to construct the QAE circuit.
+    *   **measurement** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Boolean flag to indicate if measurement should be included in the circuits.
 
-**Returns**
+    **Returns**
 
-The MLE for the provided result object.
+    A list with the QuantumCircuit objects for the algorithm.
 
-**Return type**
+    **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]]
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.circuit.quantumcircuit.QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
+  </Function>
 
-### construct\_circuits
+  ### estimate
 
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits" />
+  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.estimate" name="estimate" signature="estimate(estimation_problem)">
+    Run the amplitude estimation algorithm on provided estimation problem.
 
-`construct_circuits(estimation_problem, measurement=False)`
+    **Parameters**
 
-Construct the Amplitude Estimation w/o QPE quantum circuits.
+    **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem.
 
-**Parameters**
+    **Returns**
 
-*   **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem for which to construct the QAE circuit.
-*   **measurement** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Boolean flag to indicate if measurement should be included in the circuits.
+    An amplitude estimation results object.
 
-**Returns**
+    **Raises**
 
-A list with the QuantumCircuit objects for the algorithm.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – A quantum instance or Sampler must be provided.
+    *   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If state\_preparation is not set in estimation\_problem.
+    *   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – Sampler job run error
 
-**Return type**
+    **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.circuit.quantumcircuit.QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
-
-### estimate
-
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.estimate" />
-
-`estimate(estimation_problem)`
-
-Run the amplitude estimation algorithm on provided estimation problem.
-
-**Parameters**
-
-**estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem.
-
-**Returns**
-
-An amplitude estimation results object.
-
-**Raises**
-
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – A quantum instance or Sampler must be provided.
-*   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If state\_preparation is not set in estimation\_problem.
-*   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – Sampler job run error
-
-**Return type**
-
-[*MaximumLikelihoodAmplitudeEstimationResult*](qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult "qiskit.algorithms.amplitude_estimators.mlae.MaximumLikelihoodAmplitudeEstimationResult")
+    [*MaximumLikelihoodAmplitudeEstimationResult*](qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult "qiskit.algorithms.amplitude_estimators.mlae.MaximumLikelihoodAmplitudeEstimationResult")
+  </Function>
+</Class>
 

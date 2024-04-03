@@ -8,23 +8,21 @@ python_api_name: qiskit.ignis.verification.marginal_counts
 
 # qiskit.ignis.verification.marginal\_counts
 
-<span id="qiskit.ignis.verification.marginal_counts" />
+<Function id="qiskit.ignis.verification.marginal_counts" name="marginal_counts" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/data.py" signature="marginal_counts(counts, meas_qubits=True, pad_zeros=False)">
+  Compute marginal counts from a counts dictionary.
 
-`marginal_counts(counts, meas_qubits=True, pad_zeros=False)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/data.py "view source code")
+  **Parameters**
 
-Compute marginal counts from a counts dictionary.
+  *   **counts** (`Dict`\[`str`, `int`]) – a counts dictionary.
+  *   **meas\_qubits** (`Union`\[`bool`, `List`\[`int`]]) – (default: True) the qubits to NOT be marinalized over if this is True meas\_qubits will be all measured qubits.
+  *   **pad\_zeros** (`bool`) – (default: False) Include zero count outcomes in return dict.
 
-**Parameters**
+  **Return type**
 
-*   **counts** (`Dict`\[`str`, `int`]) – a counts dictionary.
-*   **meas\_qubits** (`Union`\[`bool`, `List`\[`int`]]) – (default: True) the qubits to NOT be marinalized over if this is True meas\_qubits will be all measured qubits.
-*   **pad\_zeros** (`bool`) – (default: False) Include zero count outcomes in return dict.
+  `Dict`\[`str`, `int`]
 
-**Return type**
+  **Returns**
 
-`Dict`\[`str`, `int`]
-
-**Returns**
-
-A counts dictionary for the specified qubits. The returned dictionary will have any whitespace trimmed from the input counts keys. Thus if meas\_qubits=True the returned dictionary will have the same values as the input dictionary, but with whitespace trimmed from the keys.
+  A counts dictionary for the specified qubits. The returned dictionary will have any whitespace trimmed from the input counts keys. Thus if meas\_qubits=True the returned dictionary will have the same values as the input dictionary, but with whitespace trimmed from the keys.
+</Function>
 

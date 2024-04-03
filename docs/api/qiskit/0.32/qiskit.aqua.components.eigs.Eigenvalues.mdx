@@ -8,84 +8,74 @@ python_api_name: qiskit.aqua.components.eigs.Eigenvalues
 
 # Eigenvalues
 
-<span id="qiskit.aqua.components.eigs.Eigenvalues" />
+<Class id="qiskit.aqua.components.eigs.Eigenvalues" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs.py" signature="Eigenvalues">
+  Bases: `abc.ABC`
 
-`Eigenvalues` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs.py "view source code")
+  Base class for eigenvalue estimation.
 
-Bases: `abc.ABC`
+  This method should initialize the module and use an exception if a component of the module is not available.
 
-Base class for eigenvalue estimation.
+  ## Methods
 
-This method should initialize the module and use an exception if a component of the module is not available.
+  ### construct\_circuit
 
-## Methods
+  <Function id="qiskit.aqua.components.eigs.Eigenvalues.construct_circuit" name="construct_circuit" signature="abstract Eigenvalues.construct_circuit(mode, register=None)">
+    Construct the eigenvalue estimation quantum circuit.
 
-### construct\_circuit
+    **Parameters**
 
-<span id="qiskit.aqua.components.eigs.Eigenvalues.construct_circuit" />
+    *   **mode** (*str*) – ‘matrix’ or ‘circuit’
+    *   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – register for circuit construction where eigenvalues will be stored.
 
-`abstract Eigenvalues.construct_circuit(mode, register=None)`
+    **Returns**
 
-Construct the eigenvalue estimation quantum circuit.
+    object for the eigenvalue estimation circuit.
 
-**Parameters**
+    **Return type**
 
-*   **mode** (*str*) – ‘matrix’ or ‘circuit’
-*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – register for circuit construction where eigenvalues will be stored.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Returns**
+    **Raises**
 
-object for the eigenvalue estimation circuit.
+    **NotImplementedError** – not implemented
+  </Function>
 
-**Return type**
+  ### construct\_inverse
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.aqua.components.eigs.Eigenvalues.construct_inverse" name="construct_inverse" signature="Eigenvalues.construct_inverse(mode, circuit)">
+    Construct the inverse eigenvalue estimation quantum circuit.
 
-**Raises**
+    **Parameters**
 
-**NotImplementedError** – not implemented
+    *   **mode** (*str*) – construction mode, ‘matrix’ not supported
+    *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit to invert
 
-### construct\_inverse
+    **Returns**
 
-<span id="qiskit.aqua.components.eigs.Eigenvalues.construct_inverse" />
+    **object for of the inverted eigenvalue estimation**
 
-`Eigenvalues.construct_inverse(mode, circuit)`
+    circuit.
 
-Construct the inverse eigenvalue estimation quantum circuit.
+    **Return type**
 
-**Parameters**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-*   **mode** (*str*) – construction mode, ‘matrix’ not supported
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit to invert
+    **Raises**
 
-**Returns**
+    *   **NotImplementedError** – not implemented for matrix mode
+    *   **ValueError** – Circuit was not constructed beforehand
+  </Function>
 
-**object for of the inverted eigenvalue estimation**
+  ### get\_register\_sizes
 
-circuit.
+  <Function id="qiskit.aqua.components.eigs.Eigenvalues.get_register_sizes" name="get_register_sizes" signature="abstract Eigenvalues.get_register_sizes()">
+    get register sizes
+  </Function>
 
-**Return type**
+  ### get\_scaling
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-*   **NotImplementedError** – not implemented for matrix mode
-*   **ValueError** – Circuit was not constructed beforehand
-
-### get\_register\_sizes
-
-<span id="qiskit.aqua.components.eigs.Eigenvalues.get_register_sizes" />
-
-`abstract Eigenvalues.get_register_sizes()`
-
-get register sizes
-
-### get\_scaling
-
-<span id="qiskit.aqua.components.eigs.Eigenvalues.get_scaling" />
-
-`abstract Eigenvalues.get_scaling()`
-
-get scaling
+  <Function id="qiskit.aqua.components.eigs.Eigenvalues.get_scaling" name="get_scaling" signature="abstract Eigenvalues.get_scaling()">
+    get scaling
+  </Function>
+</Class>
 

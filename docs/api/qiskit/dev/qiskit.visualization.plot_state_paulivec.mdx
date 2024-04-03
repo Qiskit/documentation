@@ -10,83 +10,81 @@ python_api_name: qiskit.visualization.plot_state_paulivec
 
 # qiskit.visualization.plot\_state\_paulivec
 
-<span id="qiskit.visualization.plot_state_paulivec" />
+<Function id="qiskit.visualization.plot_state_paulivec" name="plot_state_paulivec" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/main/qiskit/visualization/state_visualization.py" signature="qiskit.visualization.plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, filename=None)">
+  Plot the Pauli-vector representation of a quantum state as bar graph.
 
-`qiskit.visualization.plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/visualization/state_visualization.py "view source code")
+  The Pauli-vector of a density matrix $\rho$ is defined by the expectation of each possible tensor product of single-qubit Pauli operators (including the identity), that is
 
-Plot the Pauli-vector representation of a quantum state as bar graph.
+  $$
+  \rho = \frac{1}{2^n} \sum_{\sigma \in \{I, X, Y, Z\}^{\otimes n}}
+         \mathrm{Tr}(\sigma \rho) \sigma.
+  $$
 
-The Pauli-vector of a density matrix $\rho$ is defined by the expectation of each possible tensor product of single-qubit Pauli operators (including the identity), that is
+  This function plots the coefficients $\mathrm{Tr}(\sigma\rho)$ as bar graph.
 
-$$
-\rho = \frac{1}{2^n} \sum_{\sigma \in \{I, X, Y, Z\}^{\otimes n}}
-       \mathrm{Tr}(\sigma \rho) \sigma.
-$$
+  **Parameters**
 
-This function plots the coefficients $\mathrm{Tr}(\sigma\rho)$ as bar graph.
+  *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
+  *   **title** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – a string that represents the plot title
+  *   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – Figure size in inches.
+  *   **color** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Color of the coefficient value bars.
+  *   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.3)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
 
-**Parameters**
+  **Returns**
 
-*   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
-*   **title** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – a string that represents the plot title
-*   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – Figure size in inches.
-*   **color** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Color of the coefficient value bars.
-*   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.3)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
+  The matplotlib.Figure of the visualization if the `ax` kwarg is not set
 
-**Returns**
+  **Return type**
 
-The matplotlib.Figure of the visualization if the `ax` kwarg is not set
+  [`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.3)")
 
-**Return type**
+  **Raises**
 
-[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.3)")
+  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – Requires matplotlib.
+  *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
-**Raises**
+  **Examples**
 
-*   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – Requires matplotlib.
-*   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
+  ```python
+  # You can set a color for all the bars.
 
-**Examples**
+  from qiskit import QuantumCircuit
+  from qiskit.quantum_info import Statevector
+  from qiskit.visualization import plot_state_paulivec
 
-```python
-# You can set a color for all the bars.
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0, 1)
 
-from qiskit import QuantumCircuit
-from qiskit.quantum_info import Statevector
-from qiskit.visualization import plot_state_paulivec
+  state = Statevector(qc)
+  plot_state_paulivec(state, color='midnightblue', title="New PauliVec plot")
+  ```
 
-qc = QuantumCircuit(2)
-qc.h(0)
-qc.cx(0, 1)
+  ![../\_images/qiskit-visualization-plot\_state\_paulivec-1.png](/images/api/qiskit/dev/qiskit-visualization-plot_state_paulivec-1.png)
 
-state = Statevector(qc)
-plot_state_paulivec(state, color='midnightblue', title="New PauliVec plot")
-```
+  ```python
+  # If you introduce a list with less colors than bars, the color of the bars will
+  # alternate following the sequence from the list.
 
-![../\_images/qiskit-visualization-plot\_state\_paulivec-1.png](/images/api/qiskit/dev/qiskit-visualization-plot_state_paulivec-1.png)
+  import numpy as np
+  from qiskit.quantum_info import DensityMatrix
+  from qiskit import QuantumCircuit
+  from qiskit.visualization import plot_state_paulivec
 
-```python
-# If you introduce a list with less colors than bars, the color of the bars will
-# alternate following the sequence from the list.
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0, 1)
 
-import numpy as np
-from qiskit.quantum_info import DensityMatrix
-from qiskit import QuantumCircuit
-from qiskit.visualization import plot_state_paulivec
+  qc = QuantumCircuit(2)
+  qc.h([0, 1])
+  qc.cz(0, 1)
+  qc.ry(np.pi/3, 0)
+  qc.rx(np.pi/5, 1)
 
-qc = QuantumCircuit(2)
-qc.h(0)
-qc.cx(0, 1)
+  matrix = DensityMatrix(qc)
+  plot_state_paulivec(matrix, color=['crimson', 'midnightblue', 'seagreen'])
+  ```
 
-qc = QuantumCircuit(2)
-qc.h([0, 1])
-qc.cz(0, 1)
-qc.ry(np.pi/3, 0)
-qc.rx(np.pi/5, 1)
-
-matrix = DensityMatrix(qc)
-plot_state_paulivec(matrix, color=['crimson', 'midnightblue', 'seagreen'])
-```
-
-![../\_images/qiskit-visualization-plot\_state\_paulivec-2.png](/images/api/qiskit/dev/qiskit-visualization-plot_state_paulivec-2.png)
+  ![../\_images/qiskit-visualization-plot\_state\_paulivec-2.png](/images/api/qiskit/dev/qiskit-visualization-plot_state_paulivec-2.png)
+</Function>
 

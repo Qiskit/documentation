@@ -8,74 +8,68 @@ python_api_name: qiskit.transpiler.passes.RemoveBarriers
 
 # RemoveBarriers
 
-<span id="qiskit.transpiler.passes.RemoveBarriers" />
+<Class id="qiskit.transpiler.passes.RemoveBarriers" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/remove_barriers.py" signature="RemoveBarriers(*args, **kwargs)">
+  Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
-`RemoveBarriers(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/remove_barriers.py "view source code")
+  Return a circuit with any barrier removed.
 
-Bases: `qiskit.transpiler.basepasses.TransformationPass`
+  This transformation is not semantics preserving.
 
-Return a circuit with any barrier removed.
+  **Example**
 
-This transformation is not semantics preserving.
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit.transpiler.passes import RemoveBarriers
 
-**Example**
+  circuit = QuantumCircuit(1)
+  circuit.x(0)
+  circuit.barrier()
+  circuit.h(0)
 
-```python
-from qiskit import QuantumCircuit
-from qiskit.transpiler.passes import RemoveBarriers
+  circuit = RemoveBarriers()(circuit)
+  circuit.draw()
+  ```
 
-circuit = QuantumCircuit(1)
-circuit.x(0)
-circuit.barrier()
-circuit.h(0)
+  ```python
+     ┌───┐┌───┐
+  q: ┤ X ├┤ H ├
+     └───┘└───┘
+  ```
 
-circuit = RemoveBarriers()(circuit)
-circuit.draw()
-```
+  ## Methods
 
-```python
-   ┌───┐┌───┐
-q: ┤ X ├┤ H ├
-   └───┘└───┘
-```
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.RemoveBarriers.name" name="name" signature="RemoveBarriers.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.RemoveBarriers.name" />
+  <Function id="qiskit.transpiler.passes.RemoveBarriers.run" name="run" signature="RemoveBarriers.run(dag)">
+    Run the RemoveBarriers pass on dag.
 
-`RemoveBarriers.name()`
+    **Return type**
 
-Return the name of the pass.
+    `DAGCircuit`
+  </Function>
 
-### run
+  ## Attributes
 
-<span id="qiskit.transpiler.passes.RemoveBarriers.run" />
+  ### is\_analysis\_pass
 
-`RemoveBarriers.run(dag)`
+  <Attribute id="qiskit.transpiler.passes.RemoveBarriers.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-Run the RemoveBarriers pass on dag.
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-**Return type**
+  ### is\_transformation\_pass
 
-`DAGCircuit`
+  <Attribute id="qiskit.transpiler.passes.RemoveBarriers.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-## Attributes
-
-<span id="qiskit.transpiler.passes.RemoveBarriers.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.RemoveBarriers.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

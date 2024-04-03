@@ -8,37 +8,35 @@ python_api_name: qiskit_aer.noise.device.basic_device_gate_errors
 
 # qiskit\_aer.noise.device.basic\_device\_gate\_errors
 
-<span id="qiskit_aer.noise.device.basic_device_gate_errors" />
+<Function id="qiskit_aer.noise.device.basic_device_gate_errors" name="basic_device_gate_errors" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/device/models.py" signature="basic_device_gate_errors(properties=None, gate_error=True, thermal_relaxation=True, gate_lengths=None, gate_length_units='ns', temperature=0, standard_gates=None, warnings=None, target=None)">
+  Return QuantumErrors derived from either of a devices BackendProperties or Target.
 
-`basic_device_gate_errors(properties=None, gate_error=True, thermal_relaxation=True, gate_lengths=None, gate_length_units='ns', temperature=0, standard_gates=None, warnings=None, target=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/device/models.py "view source code")
+  If non-default values are used gate\_lengths should be a list of tuples `(name, qubits, value)` where `name` is the gate name string, `qubits` is either a list of qubits or `None` to apply gate time to this gate one any set of qubits, and `value` is the gate time in nanoseconds.
 
-Return QuantumErrors derived from either of a devices BackendProperties or Target.
+  The resulting errors may contains two types of errors: gate errors and relaxation errors. The gate errors are generated only for `Gate` objects while the relaxation errors are generated for all `Instruction` objects. Exceptionally, no `QuantumError` s are generated for `Measure` since `ReadoutError` s are generated separately instead.
 
-If non-default values are used gate\_lengths should be a list of tuples `(name, qubits, value)` where `name` is the gate name string, `qubits` is either a list of qubits or `None` to apply gate time to this gate one any set of qubits, and `value` is the gate time in nanoseconds.
+  **Parameters**
 
-The resulting errors may contains two types of errors: gate errors and relaxation errors. The gate errors are generated only for `Gate` objects while the relaxation errors are generated for all `Instruction` objects. Exceptionally, no `QuantumError` s are generated for `Measure` since `ReadoutError` s are generated separately instead.
+  *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – device backend properties.
+  *   **gate\_error** (*bool*) – Include depolarizing gate errors (Default: True).
+  *   **thermal\_relaxation** (*Bool*) – Include thermal relaxation errors (Default: True).
+  *   **gate\_lengths** (*list*) – Override device gate times with custom values. If None use gate times from backend properties. (Default: None).
+  *   **gate\_length\_units** (*str*) – Time units for gate length values in gate\_lengths. Can be ‘ns’, ‘ms’, ‘us’, or ‘s’ (Default: ‘ns’).
+  *   **temperature** (*double*) – qubit temperature in milli-Kelvin (mK) (Default: 0).
+  *   **standard\_gates** (*bool*) – DEPRECATED, If true return errors as standard qobj gates. If false return as unitary qobj instructions (Default: None).
+  *   **warnings** (*bool*) – PLAN TO BE DEPRECATED, Display warnings (Default: None).
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – device backend target (Default: None). When this is supplied, several options are disabled: properties, gate\_lengths and gate\_length\_units are not used during the construction of gate errors. Default values are always used for standard\_gates and warnings.
 
-**Parameters**
+  **Returns**
 
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – device backend properties.
-*   **gate\_error** (*bool*) – Include depolarizing gate errors (Default: True).
-*   **thermal\_relaxation** (*Bool*) – Include thermal relaxation errors (Default: True).
-*   **gate\_lengths** (*list*) – Override device gate times with custom values. If None use gate times from backend properties. (Default: None).
-*   **gate\_length\_units** (*str*) – Time units for gate length values in gate\_lengths. Can be ‘ns’, ‘ms’, ‘us’, or ‘s’ (Default: ‘ns’).
-*   **temperature** (*double*) – qubit temperature in milli-Kelvin (mK) (Default: 0).
-*   **standard\_gates** (*bool*) – DEPRECATED, If true return errors as standard qobj gates. If false return as unitary qobj instructions (Default: None).
-*   **warnings** (*bool*) – PLAN TO BE DEPRECATED, Display warnings (Default: None).
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – device backend target (Default: None). When this is supplied, several options are disabled: properties, gate\_lengths and gate\_length\_units are not used during the construction of gate errors. Default values are always used for standard\_gates and warnings.
+  A list of tuples `(label, qubits, QuantumError)`, for gates with non-zero quantum error terms, where label is the label of the noisy gate, qubits is the list of qubits for the gate.
 
-**Returns**
+  **Return type**
 
-A list of tuples `(label, qubits, QuantumError)`, for gates with non-zero quantum error terms, where label is the label of the noisy gate, qubits is the list of qubits for the gate.
+  list
 
-**Return type**
+  **Raises**
 
-list
-
-**Raises**
-
-**NoiseError** – If invalid arguments are supplied.
+  **NoiseError** – If invalid arguments are supplied.
+</Function>
 

@@ -8,94 +8,86 @@ python_api_name: qiskit.pulse.MeasureChannel
 
 # MeasureChannel
 
-<span id="qiskit.pulse.MeasureChannel" />
+<Class id="qiskit.pulse.MeasureChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py" signature="MeasureChannel(index)">
+  Bases: `qiskit.pulse.channels.PulseChannel`
 
-`MeasureChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
+  Measure channels transmit measurement stimulus pulses for readout.
 
-Bases: `qiskit.pulse.channels.PulseChannel`
+  Channel class.
 
-Measure channels transmit measurement stimulus pulses for readout.
+  **Parameters**
 
-Channel class.
+  **index** (`int`) – Index of channel.
 
-**Parameters**
+  ## Methods
 
-**index** (`int`) – Index of channel.
+  ### assign
 
-## Methods
+  <Function id="qiskit.pulse.MeasureChannel.assign" name="assign" signature="MeasureChannel.assign(parameter, value)">
+    Return a new channel with the input Parameter assigned to value.
 
-### assign
+    **Parameters**
 
-<span id="qiskit.pulse.MeasureChannel.assign" />
+    *   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
+    *   **value** (`Union`\[`ParameterExpression`, `float`]) – The new value to bind to.
 
-`MeasureChannel.assign(parameter, value)`
+    **Return type**
 
-Return a new channel with the input Parameter assigned to value.
+    `Channel`
 
-**Parameters**
+    **Returns**
 
-*   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
-*   **value** (`Union`\[`ParameterExpression`, `float`]) – The new value to bind to.
+    A new channel with updated parameters.
 
-**Return type**
+    **Raises**
 
-`Channel`
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  </Function>
 
-**Returns**
+  ### is\_parameterized
 
-A new channel with updated parameters.
+  <Function id="qiskit.pulse.MeasureChannel.is_parameterized" name="is_parameterized" signature="MeasureChannel.is_parameterized()">
+    Return True iff the channel is parameterized.
 
-**Raises**
+    **Return type**
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+    `bool`
+  </Function>
 
-### is\_parameterized
+  ## Attributes
 
-<span id="qiskit.pulse.MeasureChannel.is_parameterized" />
+  ### index
 
-`MeasureChannel.is_parameterized()`
+  <Attribute id="qiskit.pulse.MeasureChannel.index" name="index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
 
-Return True iff the channel is parameterized.
+    **Return type**
 
-**Return type**
+    `Union`\[`int`, `ParameterExpression`]
+  </Attribute>
 
-`bool`
+  ### name
 
-## Attributes
+  <Attribute id="qiskit.pulse.MeasureChannel.name" name="name">
+    Return the shorthand alias for this channel, which is based on its type and index.
 
-<span id="qiskit.pulse.MeasureChannel.index" />
+    **Return type**
 
-### index
+    `str`
+  </Attribute>
 
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
+  ### parameters
 
-**Return type**
+  <Attribute id="qiskit.pulse.MeasureChannel.parameters" name="parameters">
+    Parameters which determine the channel index.
 
-`Union`\[`int`, `ParameterExpression`]
+    **Return type**
 
-<span id="qiskit.pulse.MeasureChannel.name" />
+    `Set`
+  </Attribute>
 
-### name
+  ### prefix
 
-Return the shorthand alias for this channel, which is based on its type and index.
-
-**Return type**
-
-`str`
-
-<span id="qiskit.pulse.MeasureChannel.parameters" />
-
-### parameters
-
-Parameters which determine the channel index.
-
-**Return type**
-
-`Set`
-
-<span id="qiskit.pulse.MeasureChannel.prefix" />
-
-### prefix
-
-`= 'm'`
+  <Attribute id="qiskit.pulse.MeasureChannel.prefix" name="prefix" attributeValue="= 'm'" />
+</Class>
 

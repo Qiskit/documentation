@@ -8,131 +8,125 @@ python_api_name: qiskit.providers.models.BackendConfiguration
 
 # BackendConfiguration
 
-<span id="qiskit.providers.models.BackendConfiguration" />
+<Class id="qiskit.providers.models.BackendConfiguration" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/models/backendconfiguration.py" signature="qiskit.providers.models.BackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, supported_instructions=None, dynamic_reprate_enabled=False, rep_delay_range=None, default_rep_delay=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, dt=None, dtm=None, processor_type=None, parametric_pulses=None, **kwargs)">
+  Bases: [`QasmBackendConfiguration`](qiskit.providers.models.QasmBackendConfiguration "qiskit.providers.models.backendconfiguration.QasmBackendConfiguration")
 
-`qiskit.providers.models.BackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, supported_instructions=None, dynamic_reprate_enabled=False, rep_delay_range=None, default_rep_delay=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, dt=None, dtm=None, processor_type=None, parametric_pulses=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/models/backendconfiguration.py "view source code")
+  Backwards compat shim representing an abstract backend configuration.
 
-Bases: [`QasmBackendConfiguration`](qiskit.providers.models.QasmBackendConfiguration "qiskit.providers.models.backendconfiguration.QasmBackendConfiguration")
+  Initialize a QasmBackendConfiguration Object
 
-Backwards compat shim representing an abstract backend configuration.
+  **Parameters**
 
-Initialize a QasmBackendConfiguration Object
+  *   **backend\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The backend name
 
-**Parameters**
+  *   **backend\_version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The backend version in the form X.Y.Z
 
-*   **backend\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The backend name
+  *   **n\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of qubits for the backend
 
-*   **backend\_version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The backend version in the form X.Y.Z
+  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The list of strings for the basis gates of the backends
 
-*   **n\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of qubits for the backend
+  *   **gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The list of GateConfig objects for the basis gates of the backend
 
-*   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The list of strings for the basis gates of the backends
+  *   **local** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend is local or False if remote
 
-*   **gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The list of GateConfig objects for the basis gates of the backend
+  *   **simulator** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend is a simulator
 
-*   **local** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend is local or False if remote
+  *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend supports conditional operations
 
-*   **simulator** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend is a simulator
+  *   **open\_pulse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend supports OpenPulse
 
-*   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend supports conditional operations
+  *   **memory** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend supports memory
 
-*   **open\_pulse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend supports OpenPulse
+  *   **max\_shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of shots allowed on the backend
 
-*   **memory** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend supports memory
+  *   **coupling\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The coupling map for the device
 
-*   **max\_shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of shots allowed on the backend
+  *   **supported\_instructions** (*List\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Instructions supported by the backend.
 
-*   **coupling\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The coupling map for the device
+  *   **dynamic\_reprate\_enabled** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether delay between programs can be set dynamically (ie via `rep_delay`). Defaults to False.
 
-*   **supported\_instructions** (*List\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Instructions supported by the backend.
+  *   **rep\_delay\_range** (*List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – 2d list defining supported range of repetition delays for backend in μs. First entry is lower end of the range, second entry is higher end of the range. Optional, but will be specified when `dynamic_reprate_enabled=True`.
 
-*   **dynamic\_reprate\_enabled** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether delay between programs can be set dynamically (ie via `rep_delay`). Defaults to False.
+  *   **default\_rep\_delay** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Value of `rep_delay` if not specified by user and `dynamic_reprate_enabled=True`.
 
-*   **rep\_delay\_range** (*List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – 2d list defining supported range of repetition delays for backend in μs. First entry is lower end of the range, second entry is higher end of the range. Optional, but will be specified when `dynamic_reprate_enabled=True`.
+  *   **max\_experiments** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of experiments per job
 
-*   **default\_rep\_delay** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Value of `rep_delay` if not specified by user and `dynamic_reprate_enabled=True`.
+  *   **sample\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Sample name for the backend
 
-*   **max\_experiments** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of experiments per job
+  *   **n\_registers** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of register slots available for feedback (if conditional is True)
 
-*   **sample\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Sample name for the backend
+  *   **register\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
 
-*   **n\_registers** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of register slots available for feedback (if conditional is True)
+  *   **configurable** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend is configurable, if the backend is a simulator
 
-*   **register\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
+  *   **credits\_required** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if backend requires credits to run a job.
 
-*   **configurable** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend is configurable, if the backend is a simulator
+  *   **online\_date** ([*datetime.datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")) – The date that the device went online
 
-*   **credits\_required** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if backend requires credits to run a job.
+  *   **display\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Alternate name field for the backend
 
-*   **online\_date** ([*datetime.datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")) – The date that the device went online
+  *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A description for the backend
 
-*   **display\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Alternate name field for the backend
+  *   **tags** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of string tags to describe the backend
 
-*   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A description for the backend
+  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Qubit drive channel timestep in nanoseconds.
 
-*   **tags** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of string tags to describe the backend
+  *   **dtm** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Measurement drive channel timestep in nanoseconds.
 
-*   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Qubit drive channel timestep in nanoseconds.
+  *   **processor\_type** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) –
 
-*   **dtm** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Measurement drive channel timestep in nanoseconds.
+      Processor type for this backend. A dictionary of the form `{"family": <str>, "revision": <str>, segment: <str>}` such as `{"family": "Canary", "revision": "1.0", segment: "A"}`.
 
-*   **processor\_type** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) –
+      *   family: Processor family of this backend.
+      *   revision: Revision version of this processor.
+      *   segment: Segment this processor belongs to within a larger chip.
 
-    Processor type for this backend. A dictionary of the form `{"family": <str>, "revision": <str>, segment: <str>}` such as `{"family": "Canary", "revision": "1.0", segment: "A"}`.
+  *   **parametric\_pulses** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of pulse shapes which are supported on the backend. For example: `['gaussian', 'constant']`
 
-    *   family: Processor family of this backend.
-    *   revision: Revision version of this processor.
-    *   segment: Segment this processor belongs to within a larger chip.
+  *   **\*\*kwargs** – optional fields
 
-*   **parametric\_pulses** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of pulse shapes which are supported on the backend. For example: `['gaussian', 'constant']`
+  ## Attributes
 
-*   **\*\*kwargs** – optional fields
+  ### num\_qubits
 
-## Attributes
+  <Attribute id="qiskit.providers.models.BackendConfiguration.num_qubits" name="num_qubits">
+    Returns the number of qubits.
 
-<span id="qiskit.providers.models.BackendConfiguration.num_qubits" />
+    In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
+  </Attribute>
 
-### num\_qubits
+  ## Methods
 
-Returns the number of qubits.
+  ### from\_dict
 
-In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
+  <Function id="qiskit.providers.models.BackendConfiguration.from_dict" name="from_dict" signature="classmethod from_dict(data)">
+    Create a new GateConfig object from a dictionary.
 
-## Methods
+    **Parameters**
 
-### from\_dict
+    **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.BackendConfiguration.to_dict "qiskit.providers.models.BackendConfiguration.to_dict").
 
-<span id="qiskit.providers.models.BackendConfiguration.from_dict" />
+    **Returns**
 
-`classmethod from_dict(data)`
+    The GateConfig from the input dictionary.
 
-Create a new GateConfig object from a dictionary.
+    **Return type**
 
-**Parameters**
+    [GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
+  </Function>
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.BackendConfiguration.to_dict "qiskit.providers.models.BackendConfiguration.to_dict").
+  ### to\_dict
 
-**Returns**
+  <Function id="qiskit.providers.models.BackendConfiguration.to_dict" name="to_dict" signature="to_dict()">
+    Return a dictionary format representation of the GateConfig.
 
-The GateConfig from the input dictionary.
+    **Returns**
 
-**Return type**
+    The dictionary form of the GateConfig.
 
-[GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
+    **Return type**
 
-### to\_dict
-
-<span id="qiskit.providers.models.BackendConfiguration.to_dict" />
-
-`to_dict()`
-
-Return a dictionary format representation of the GateConfig.
-
-**Returns**
-
-The dictionary form of the GateConfig.
-
-**Return type**
-
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
+  </Function>
+</Class>
 
