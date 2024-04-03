@@ -15,16 +15,16 @@ python_api_name: qiskit.circuit.library.WeightedAdder
 
   Given $n$ qubit basis states $q_0, \ldots, q_{n-1} \in \{0, 1\}$ and non-negative integer weights $\lambda_0, \ldots, \lambda_{n-1}$, this circuit performs the operation
 
-  $$
-  |q_0 \ldots q_{n-1}\rangle |0\rangle_s
-  \mapsto |q_0 \ldots q_{n-1}\rangle |\sum_{j=0}^{n-1} \lambda_j q_j\rangle_s
-  $$
+$$
+|q_0 \ldots q_{n-1}\rangle |0\rangle_s
+\mapsto |q_0 \ldots q_{n-1}\rangle |\sum_{j=0}^{n-1} \lambda_j q_j\rangle_s
+$$
 
   where $s$ is the number of sum qubits required. This can be computed as
 
-  $$
-  s = 1 + \left\lfloor \log_2\left( \sum_{j=0}^{n-1} \lambda_j \right) \right\rfloor
-  $$
+$$
+s = 1 + \left\lfloor \log_2\left( \sum_{j=0}^{n-1} \lambda_j \right) \right\rfloor
+$$
 
   or $s = 1$ if the sum of the weights is 0 (then the expression in the logarithm is invalid).
 
