@@ -13,7 +13,7 @@ The following list highlights grammatical and stylistic situations we most often
 
 ## Tense and voice
 
-- Avoid first-person (I, we, us); use second-person instead
+- Avoid first-person (I, we, us); use second-person instead (you -- whether explicit or understood)
 - Choose active voice over passive voice (for example, "The Estimator primitive returns a list of values." instead of "A list of values is returned by the Estimator primitive.")
 - Avoid future tense as well as future perfect tense (for example, ask yourself any time you use the word "will" if you really need it)
 - Do not use "may" - rather, use "can" or "might" depending on context
