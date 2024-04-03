@@ -33,7 +33,7 @@ The following list highlights grammatical and stylistic situations we most often
 - The word "which" in most cases is preceded by a comma; the word "that" (in a similar context) is not preceded by a comma ("The ice cream sandwich, which had melted, was a sticky mess" or "The ice cream sandwich that had melted was a sticky mess")
 - Avoid using "above" and "below" when referring to software versions/fix levels; instead, use "earlier" and "later". Also avoid "above" and "below" to indicate the location of content within a page. Instead, use "preceding" or "previous" and "later"
 - Avoid anthropomorphizing or stating that inanimate objects grant abilities to people, as in “the product lets you / allows you / enables you to…” or "the software understands/hopes/believes...". Whenever possible, use a direct, user-focused alternative such as “you can use the product to…” or “with this product, users can…”
-- Use DD Monthname YYYY to format dates (note no comma after the month)
+- Use DD Monthname YYYY to format dates (note no comma after the month); for example, '13 February 2024'
 
 ## Translation and accessibility concerns
 
