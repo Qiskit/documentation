@@ -8,7 +8,7 @@ The following list highlights grammatical and stylistic situations we most often
 
 ## Titles and headers
 
-- Titles and headers use "sentence case" (first letter of the first word is capitalized; the rest lower-case) as opposed to "camel case" (where each word is capitalized)
+- Titles and headers use "Sentence case" (first letter of the first word is capitalized; the rest lower-case) as opposed to "Camel Case" (where each word is capitalized)
 - Avoid using -ing in titles/headers wherever possible; instead, use direct action-oriented language
 
 ## Tense and voice
