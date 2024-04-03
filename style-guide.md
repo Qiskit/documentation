@@ -23,8 +23,8 @@ The following list highlights grammatical and stylistic situations we most often
 - When using bullet points or numbered lists, capitalize the first letter of the first word of each item
 - Do not introduce a list with a sentence fragment and complete the sentence in the list items.
 - Use a period at the end of each item, or none of them (and be consistent within your document)
-- Do not introduce a list with a sentence fragment and complete the sentence in the list items. For example, do not do the following:
-  I went to the store and bought:
+- Do not introduce a list with a sentence fragment and complete the sentence in the list items. For example, do not write the following:
+  I went to the store and bought
   - Milk
   - Eggs
 
