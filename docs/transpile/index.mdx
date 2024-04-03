@@ -15,11 +15,11 @@ Find more information about the pass manager stages in the [Transpiler stages](t
 
 
 ### Instruction set architecture
-In addition to reducing the depth and complexity of quantum circuits, the transpiler is designed to transform the instructions contained in a given `QuantumCircuit` to obey the **Instruction Set Architecture** (**ISA**) of a particular backend.  Circuits obeying the ISA consist only of instructions which are supported by the backend's [`Target`](../api/qiskit/qiskit.transpiler.Target) (e.g. the hardware's available basis gates, measurements, resets, control flow operations, etc.) and comply with the constraints specified by the connectivity of the hardware (i.e. the target's [`CouplingMap`](../api/qiskit/qiskit.transpiler.CouplingMap)).  When using Qiskit Runtime to submit a job to an IBM Quantum&trade; backend, the circuits must adhere to the backend's ISA. 
+In addition to reducing the depth and complexity of quantum circuits, the transpiler is designed to transform the instructions contained in a given `QuantumCircuit` to obey the Instruction Set Architecture (ISA) of a particular backend.  Circuits obeying the ISA consist only of instructions that are supported by the backend's [`Target`](../api/qiskit/qiskit.transpiler.Target), such as the hardware's available basis gates, measurements, resets, and control flow operations, and comply with the constraints specified by the connectivity of the hardware, that is, the target's [`CouplingMap`](../api/qiskit/qiskit.transpiler.CouplingMap).  When submitting a job to an IBM Quantum&trade; backend, the circuits must adhere to the backend's ISA. 
 
 
 <Admonition type="caution">
-  If you perform transpilation locally and submit the transpiled circuits to the Qiskit Runtime service, the service will attempt to apply additional optimizations by default, corresponding to `optimization_level=1` described [here](/run/configure-runtime-compilation#set-the-optimization-level). If you do not wish to have your circuits further transformed, set the `skip_transpilation` option to `True` to indicate to the service not to apply these optimizations (see [Advanced runtime compilation options](/run/configure-runtime-compilation#advanced-runtime-compilation-options)). However, note that all circuits submitted to the Qiskit Runtime service must be composed of instructions supported by the system's Instruction Set Architecture (ISA); otherwise, the jobs will fail.
+  If you perform transpilation locally and submit the transpiled circuits to the Qiskit Runtime service, the service tries to apply additional optimizations by default, corresponding to `optimization_level=1` described [here](/run/configure-runtime-compilation#set-the-optimization-level). If you do not want the circuits further transformed, set the optimization_level to 0. 
 </Admonition>
 
 
@@ -29,7 +29,7 @@ Qiskit's prebuilt transpiler pipeline consists of six fundamental stages:
 
 1. `init` - This pass runs any initial passes that are required before we start embedding the circuit to the system.  This typically involves unrolling custom instructions and converting the circuit to all single- and two-qubit gates. (By default this will just validate the circuit instructions and translate multi-qubit gates into single- and two-qubit gates.)
 1. `layout` - This pass applies a *layout*, mapping/assigning the virtual qubits in your circuit to the physical qubits of a system.
-1. `routing` - This pass runs after a layout has been applied and will inject gates (i.e., SWAPs) in the original circuit in order to make it compatible with the system's connectivity/coupling map.
+1. `routing` - This pass runs after a layout has been applied and will inject gates (that is, SWAPs) in the original circuit in order to make it compatible with the system's connectivity/coupling map.
 1. `translation` - This pass translates the gates in the circuit to the system's basis set of instructions.
 1. `optimization` - This pass runs an optimization loop to find more efficient decompositions of your quantum circuit until a condition is met (such as a fixed depth).
 1. `scheduling` - This stage is for any hardware-aware scheduling passes. If the user specifies a scheduling method, this stage accounts for all idle time in the circuit.
