@@ -21,7 +21,7 @@ The following list highlights grammatical and stylistic situations we most often
 ## Lists
 
 - When using bullet points or numbered lists, capitalize the first letter of the first word of each item
-- Use a period at the end of each item, or nothing at all (and be consistent within your document)
+- Use a period at the end of each item, or none of them (and be consistent within your document)
 
 ## Style and specific word usage
 
