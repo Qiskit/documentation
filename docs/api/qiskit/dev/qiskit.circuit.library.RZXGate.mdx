@@ -31,17 +31,17 @@ python_api_name: qiskit.circuit.library.RZXGate
 
   **Matrix Representation:**
 
-  $$
-  \newcommand{\rotationangle}{\frac{\theta}{2}}
+$$
+\newcommand{\rotationangle}{\frac{\theta}{2}}
 
-  R_{ZX}(\theta)\ q_0, q_1 = \exp\left(-i \frac{\theta}{2} X{\otimes}Z\right) =
-      \begin{pmatrix}
-          \cos\left(\rotationangle\right) & 0 & -i\sin\left(\rotationangle\right) & 0 \\
-          0 & \cos\left(\rotationangle\right) & 0 & i\sin\left(\rotationangle\right) \\
-          -i\sin\left(\rotationangle\right) & 0 & \cos\left(\rotationangle\right) & 0 \\
-          0 & i\sin\left(\rotationangle\right) & 0 & \cos\left(\rotationangle\right)
-      \end{pmatrix}
-  $$
+R_{ZX}(\theta)\ q_0, q_1 = \exp\left(-i \frac{\theta}{2} X{\otimes}Z\right) =
+\begin{pmatrix}
+\cos\left(\rotationangle\right) & 0 & -i\sin\left(\rotationangle\right) & 0 \\
+0 & \cos\left(\rotationangle\right) & 0 & i\sin\left(\rotationangle\right) \\
+-i\sin\left(\rotationangle\right) & 0 & \cos\left(\rotationangle\right) & 0 \\
+0 & i\sin\left(\rotationangle\right) & 0 & \cos\left(\rotationangle\right)
+\end{pmatrix}
+$$
 
   <Admonition title="Note" type="note">
     In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in the $X \otimes Z$ tensor order. Instead, if we apply it on (q\_1, q\_0), the matrix will be $Z \otimes X$:
@@ -54,27 +54,27 @@ python_api_name: qiskit.circuit.library.RZXGate
          └─────────┘
     ```
 
-    $$
-    \newcommand{\rotationangle}{\frac{\theta}{2}}
+$$
+\newcommand{\rotationangle}{\frac{\theta}{2}}
 
-    R_{ZX}(\theta)\ q_1, q_0 = exp(-i \frac{\theta}{2} Z{\otimes}X) =
-        \begin{pmatrix}
-            \cos(\rotationangle)   & -i\sin(\rotationangle) & 0           & 0          \\
-            -i\sin(\rotationangle) & \cos(\rotationangle)   & 0           & 0          \\
-            0           & 0           & \cos(\rotationangle)   & i\sin(\rotationangle) \\
-            0           & 0           & i\sin(\rotationangle)  & \cos(\rotationangle)
-        \end{pmatrix}
-    $$
+R_{ZX}(\theta)\ q_1, q_0 = exp(-i \frac{\theta}{2} Z{\otimes}X) =
+\begin{pmatrix}
+\cos(\rotationangle)   & -i\sin(\rotationangle) & 0           & 0          \\
+-i\sin(\rotationangle) & \cos(\rotationangle)   & 0           & 0          \\
+0           & 0           & \cos(\rotationangle)   & i\sin(\rotationangle) \\
+0           & 0           & i\sin(\rotationangle)  & \cos(\rotationangle)
+\end{pmatrix}
+$$
 
     This is a direct sum of RX rotations, so this gate is equivalent to a uniformly controlled (multiplexed) RX gate:
 
-    $$
-    R_{ZX}(\theta)\ q_1, q_0 =
-        \begin{pmatrix}
-            RX(\theta) & 0 \\
-            0 & RX(-\theta)
-        \end{pmatrix}
-    $$
+$$
+R_{ZX}(\theta)\ q_1, q_0 =
+\begin{pmatrix}
+RX(\theta) & 0 \\
+0 & RX(-\theta)
+\end{pmatrix}
+$$
   </Admonition>
 
   **Examples:**
