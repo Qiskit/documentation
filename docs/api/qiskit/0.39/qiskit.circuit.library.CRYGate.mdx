@@ -26,16 +26,16 @@ python_api_name: qiskit.circuit.library.CRYGate
 
   **Matrix representation:**
 
-  $$
-   \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_0, q_1 =
-      I \otimes |0\rangle\langle 0| + RY(\theta) \otimes |1\rangle\langle 1| =
-      \begin{pmatrix}
-          1 & 0         & 0 & 0 \\
-          0 & \cos{\th} & 0 & -\sin{\th} \\
-          0 & 0         & 1 & 0 \\
-          0 & \sin{\th} & 0 & \cos{\th}
-      \end{pmatrix}\end{split}\end{aligned}\end{align} 
-  $$
+$$
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_0, q_1 =
+I \otimes |0\rangle\langle 0| + RY(\theta) \otimes |1\rangle\langle 1| =
+\begin{pmatrix}
+1 & 0         & 0 & 0 \\
+0 & \cos{\th} & 0 & -\sin{\th} \\
+0 & 0         & 1 & 0 \\
+0 & \sin{\th} & 0 & \cos{\th}
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
+$$
 
   <Admonition title="Note" type="note">
     In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
@@ -47,16 +47,16 @@ python_api_name: qiskit.circuit.library.CRYGate
     q_1: ────■────
     ```
 
-    $$
-     \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_1, q_0 =
-    |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RY(\theta) =
-        \begin{pmatrix}
-            1 & 0 & 0 & 0 \\
-            0 & 1 & 0 & 0 \\
-            0 & 0 & \cos{\th} & -\sin{\th} \\
-            0 & 0 & \sin{\th} & \cos{\th}
-        \end{pmatrix}\end{split}\end{aligned}\end{align} 
-    $$
+$$
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_1, q_0 =
+|0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RY(\theta) =
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & \cos{\th} & -\sin{\th} \\
+0 & 0 & \sin{\th} & \cos{\th}
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
+$$
   </Admonition>
 
   Create new CRY gate.
