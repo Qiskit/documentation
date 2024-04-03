@@ -13,30 +13,30 @@ python_api_name: qiskit.ignis.verification.calculate_1q_epg
 
   Given that a standard 1Q RB sequences consist of `u1`, `u2` and `u3` gates, the EPC can be written using those EPGs:
 
-  $$
-  EPC = 1 - (1 - EPG_{U1})^{N_{U1}} (1 - EPG_{U2})^{N_{U2}} (1 - EPG_{U3})^{N_{U3}}.
-  $$
+$$
+EPC = 1 - (1 - EPG_{U1})^{N_{U1}} (1 - EPG_{U2})^{N_{U2}} (1 - EPG_{U3})^{N_{U3}}.
+$$
 
   where $N_{x}$ is the number of gate $x$ per Clifford. Assuming `u1` composed of virtual-Z gate, ie FrameChange instruction, the $EPG_{U1}$ is estimated to be zero within the range of quantization error. Therefore the EPC can be written as:
 
-  $$
-  EPC = 1 - (1 - EPG_{U2})^{N_{U2}} (1 - EPG_{U3})^{N_{U3}}.
-  $$
+$$
+EPC = 1 - (1 - EPG_{U2})^{N_{U2}} (1 - EPG_{U3})^{N_{U3}}.
+$$
 
   Because `u2` and `u3` gates are respectively implemented by a single and two half-pi pulses with virtual-Z rotations, we assume $EPG_{U3} = 2EPG_{U2}$. Using this relation in the limit of $EPG_{U2} \ll 1$:
 
-  $$
-  \begin{split}EPC & = 1 - (1 - EPG_{U2})^{N_{U2}} (1 - 2 EPG_{U2})^{N_{U3}} \\
-      & \simeq EPG_{U2}(N_{U2} + 2 N_{U3}).\end{split}
-  $$
+$$
+\begin{split}EPC & = 1 - (1 - EPG_{U2})^{N_{U2}} (1 - 2 EPG_{U2})^{N_{U3}} \\
+& \simeq EPG_{U2}(N_{U2} + 2 N_{U3}).\end{split}
+$$
 
   Finally the EPG of each basis gate can be written using EPC and number of gates:
 
-  $$
-  \begin{split}EPG_{U1} &= 0 \\
-  EPG_{U2} &= EPC / (N_{U2} + 2 N_{U3}) \\
-  EPG_{U3} &= 2 EPC / (N_{U2} + 2 N_{U3})\end{split}
-  $$
+$$
+\begin{split}EPG_{U1} &= 0 \\
+EPG_{U2} &= EPC / (N_{U2} + 2 N_{U3}) \\
+EPG_{U3} &= 2 EPC / (N_{U2} + 2 N_{U3})\end{split}
+$$
 
   To run this function, you first need to run a standard 1Q RB experiment with transpiled `QuantumCircuit` and count the number of basis gates composing the RB circuits.
 
