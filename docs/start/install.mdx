@@ -1,12 +1,12 @@
 ---
-title: Install and set up the Qiskit SDK
-description: Install and set up the Qiskit SDK and Qiskit Runtime on various operating systems
+title: Install Qiskit
+description: Install the Qiskit SDK and Qiskit Runtime on various operating systems
 
 ---
 <span id="qiskit-install"></span>
-# Install and set up the Qiskit SDK
+# Install Qiskit
 
-Whether you will work locally or in a cloud environment, the first step for all users is to install the Qiskit SDK. For those wanting to run on a real system, your next step is to choose one of two channels in order to access IBM Quantum&trade; systems: IBM Quantum Platform or IBM Cloud&reg;.
+Whether you will work locally or in a cloud environment, the first step for all users is to install Qiskit. For those wanting to run on a real system, your next step is to choose one of two channels in order to access IBM Quantum&trade; systems: IBM Quantum Platform or IBM Cloud&reg;.
 
 <Admonition type="caution" title="Upgrade from Qiskit 0.x to Qiskit 1.0 and beyond">
   (If you are installing Qiskit for the first time, skip ahead to the [Install and set up](#local) section. This notice is relevant only to users who have installed Qiskit previously.)
@@ -19,13 +19,25 @@ Whether you will work locally or in a cloud environment, the first step for all 
 </Admonition>
 
 <span id="local"></span>
-## Install and set up Qiskit with the Qiskit Runtime client
+## Install the Qiskit SDK and the Qiskit Runtime client
+
 
 1. Install Python. Check the "Programming Language" section on the [Qiskit PyPI project page](https://pypi.org/project/qiskit/) to determine which Python versions are supported by the most recent release. For download instructions, see the [Python Beginners Guide.](https://wiki.python.org/moin/BeginnersGuide/Download)
 
-    We recommend that you use [Python virtual environments](https://docs.python.org/3.10/tutorial/venv.html) to separate Qiskit from other applications.  We also recommend that you use the [Jupyter](https://jupyter.org/install) development environment to interact with Qiskit.
+    We recommend that you use [Python virtual environments](https://docs.python.org/3.10/tutorial/venv.html) to separate Qiskit from other applications.
 
-    1. Create a minimal environment with only Python installed in it.
+    <details>
+    <summary>
+    If you're new to virtual environments, click here for more information.
+    </summary>
+    A virtual Python environment is an isolated space to work with Python for a specific purpose — so you can install whatever packages you wish, and set up libraries, dependencies, and so on, without affecting the "base" Python environment on your machine.
+
+    One important advantage of a virtual environment is that if your Python environment becomes corrupted somewhere along the way, you can easily delete the virtual environment and start over!
+    
+    Choose a preferred location in which to store information about your virtual environments. Commonly they're stored in a directory named `.venv` within a user's home directory. 
+    </details>
+
+    First, create a minimal environment with only Python installed in it. 
 
         <OperatingSystemTabs>
           <TabItem value="mac" label="macOS">
@@ -47,7 +59,7 @@ Whether you will work locally or in a cloud environment, the first step for all 
           </TabItem>
          </OperatingSystemTabs>
 
-    1. Activate your new environment.
+    Next, activate your new environment.
 
          <OperatingSystemTabs>
            <TabItem value="mac" label="macOS">
@@ -69,12 +81,9 @@ Whether you will work locally or in a cloud environment, the first step for all 
            </TabItem>
          </OperatingSystemTabs>
 
-1. [Install pip](https://pip.pypa.io/en/stable/installation/).
-1. Install the following packages.
+1. [Install pip](https://pip.pypa.io/en/stable/installation/). Pip is a Python package manager that you use to install Qiskit and other Python packages. Use `pip list` to see what is in your virtual environment.
 
-      <Admonition type="note">
-          Periodically rerun these commands or check the [Qiskit release notes](../api/qiskit/release-notes) and the [Qiskit Runtime release notes](../api/qiskit-ibm-runtime/release-notes) so that you always have the latest versions.
-      </Admonition>
+1. Install the Qiskit SDK. If you plan to run jobs on quantum hardware, also install Qiskit Runtime.
 
       ```shell
       pip install qiskit
@@ -83,19 +92,39 @@ Whether you will work locally or in a cloud environment, the first step for all 
       ```shell
       pip install qiskit-ibm-runtime
       ```
-
-      Run `pip list` to see the active packages in your virtual environment.
+      <Admonition type="note">
+          Periodically rerun these commands or check the [Qiskit release notes](../api/qiskit/release-notes) and the [Qiskit Runtime release notes](../api/qiskit-ibm-runtime/release-notes) so that you always have the latest versions.
+      </Admonition>
 
       If you intend to use visualization functionality or Jupyter notebooks, it is recommended to install Qiskit with the extra visualization support. Note that **zsh users** need to put `'qiskit[visualization]'` in single quotes.
+
+      <Tabs>
+      <TabItem value="default" label="Default">
 
       ```shell
       pip install qiskit[visualization]
       ```
-      zsh users:
+      </TabItem>
 
+      <TabItem value="zsh" label="zsh">
       ```shell
       pip install 'qiskit[visualization]'
       ```
+      </TabItem>
+    </Tabs>
+
+1. If you want to run a Jupyter notebook with the Qiskit packages you just installed, you will need to install Jupyter in your environment.
+
+      ```shell
+      pip install jupyter
+      ```
+    Then open your notebook as follows:
+
+      ```shell
+      jupyter notebook path/to/notebook.ipynb
+      ```
+
+
 
 If you are planning to work locally and use simulators built into Qiskit, then your installation is done. If you want to run jobs on IBM Quantum systems, next [select an access channel](setup-channel) and finish your setup.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
 <span id="qiskit_ibm_runtime.IBMBackend" />
 
-`IBMBackend(configuration, service, api_client, instance=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L75-L856 "view source code")
+`IBMBackend(configuration, service, api_client, instance=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L75-L863 "view source code")
 
 Backend class interfacing with an IBM Quantum backend.
 
@@ -380,7 +380,7 @@ AcquireChannel
 
 <span id="qiskit_ibm_runtime.IBMBackend.cancel_session" />
 
-`cancel_session()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L839-L846 "view source code")
+`cancel_session()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L846-L853 "view source code")
 
 Cancel session. All pending jobs will be cancelled.
 
@@ -412,7 +412,7 @@ Check if the input circuit uses faulty qubits or edges.
 
 <span id="qiskit_ibm_runtime.IBMBackend.close_session" />
 
-`close_session()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L848-L856 "view source code")
+`close_session()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L855-L863 "view source code")
 
 Close the session so new jobs will no longer be accepted, but existing queued or running jobs will run to completion. The session will be terminated once there are no more pending jobs.
 
@@ -520,7 +520,7 @@ MeasureChannel
 
 <span id="qiskit_ibm_runtime.IBMBackend.open_session" />
 
-`open_session(max_time=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L823-L832 "view source code")
+`open_session(max_time=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L830-L839 "view source code")
 
 Open session
 
@@ -588,7 +588,7 @@ The `QubitProperties` object for the specified qubit. If a list of qubits is pro
 
 <span id="qiskit_ibm_runtime.IBMBackend.run" />
 
-`run(circuits, dynamic=None, job_tags=None, init_circuit=None, init_num_resets=None, header=None, shots=None, memory=None, meas_level=None, meas_return=None, rep_delay=None, init_qubits=None, use_measure_esp=None, noise_model=None, seed_simulator=None, **run_config)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L582-L739 "view source code")
+`run(circuits, dynamic=None, job_tags=None, init_circuit=None, init_num_resets=None, header=None, shots=None, memory=None, meas_level=None, meas_return=None, rep_delay=None, init_qubits=None, use_measure_esp=None, noise_model=None, seed_simulator=None, **run_config)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L582-L746 "view source code")
 
 Run on the backend. If a keyword specified here is also present in the `options` attribute/object, the value specified here will be used for this run.
 
@@ -604,15 +604,11 @@ Run on the backend. If a keyword specified here is also present in the `options`
 
 *   **init\_num\_resets** (`Optional`\[`int`]) – The number of qubit resets to insert before each circuit execution.
 
-*   **or** (*The following parameters are applicable only if dynamic=False is specified*) –
+*   **header** (`Optional`\[`Dict`]) – User input that will be attached to the job and will be copied to the corresponding result header. Headers do not affect the run. This replaces the old `Qobj` header. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-*   **to.** (*defaulted*) –
+*   **shots** (`Union`\[`int`, `float`, `None`]) – Number of repetitions of each circuit, for sampling. Default: 4000 or `max_shots` from the backend configuration, whichever is smaller. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-*   **header** (`Optional`\[`Dict`]) – User input that will be attached to the job and will be copied to the corresponding result header. Headers do not affect the run. This replaces the old `Qobj` header.
-
-*   **shots** (`Union`\[`int`, `float`, `None`]) – Number of repetitions of each circuit, for sampling. Default: 4000 or `max_shots` from the backend configuration, whichever is smaller.
-
-*   **memory** (`Optional`\[`bool`]) – If `True`, per-shot measurement bitstrings are returned as well (provided the backend supports it). For OpenPulse jobs, only measurement level 2 supports this option.
+*   **memory** (`Optional`\[`bool`]) – If `True`, per-shot measurement bitstrings are returned as well (provided the backend supports it). For OpenPulse jobs, only measurement level 2 supports this option. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
 *   **meas\_level** (`Union`\[`int`, `MeasLevel`, `None`]) –
 
@@ -622,6 +618,8 @@ Run on the backend. If a keyword specified here is also present in the `options`
     *   `1`, measurement kernel is selected (a complex number obtained after applying the measurement kernel to the measurement output signal)
     *   `2` (default), a discriminator is selected and the qubit state is stored (0 or 1)
 
+    This parameter is applicable only if `dynamic=False` is specified or defaulted to.
+
 *   **meas\_return** (`Union`\[`str`, `MeasReturnType`, `None`]) –
 
     Level of measurement data for the backend to return. For `meas_level` 0 and 1:
@@ -629,17 +627,19 @@ Run on the backend. If a keyword specified here is also present in the `options`
     *   `single` returns information from every shot.
     *   `avg` returns average measurement output (averaged over number of shots).
 
-*   **rep\_delay** (`Optional`\[`float`]) – Delay between programs in seconds. Only supported on certain backends (if `backend.configuration().dynamic_reprate_enabled=True`). If supported, `rep_delay` must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is given by `backend.configuration().default_rep_delay`.
+    This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-*   **init\_qubits** (`Optional`\[`bool`]) – Whether to reset the qubits to the ground state for each shot. Default: `True`.
+*   **rep\_delay** (`Optional`\[`float`]) – Delay between programs in seconds. Only supported on certain backends (if `backend.configuration().dynamic_reprate_enabled=True`). If supported, `rep_delay` must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is given by `backend.configuration().default_rep_delay`. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-*   **use\_measure\_esp** (`Optional`\[`bool`]) – Whether to use excited state promoted (ESP) readout for measurements which are the terminal instruction to a qubit. ESP readout can offer higher fidelity than standard measurement sequences. See [here](https://arxiv.org/pdf/2008.08571.pdf). Default: `True` if backend supports ESP readout, else `False`. Backend support for ESP readout is determined by the flag `measure_esp_enabled` in `backend.configuration()`.
+*   **init\_qubits** (`Optional`\[`bool`]) – Whether to reset the qubits to the ground state for each shot. Default: `True`. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-*   **noise\_model** (`Optional`\[`Any`]) – Noise model. (Simulators only)
+*   **use\_measure\_esp** (`Optional`\[`bool`]) – Whether to use excited state promoted (ESP) readout for measurements which are the terminal instruction to a qubit. ESP readout can offer higher fidelity than standard measurement sequences. See [here](https://arxiv.org/pdf/2008.08571.pdf). Default: `True` if backend supports ESP readout, else `False`. Backend support for ESP readout is determined by the flag `measure_esp_enabled` in `backend.configuration()`. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-*   **seed\_simulator** (`Optional`\[`int`]) – Random seed to control sampling. (Simulators only)
+*   **noise\_model** (`Optional`\[`Any`]) – Noise model (Simulators only). This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-*   **\*\*run\_config** – Extra arguments used to configure the run.
+*   **seed\_simulator** (`Optional`\[`int`]) – Random seed to control sampling (Simulators only). This parameter is applicable only if `dynamic=False` is specified or defaulted to.
+
+*   **\*\*run\_config** – Extra arguments used to configure the run. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
 **Return type**
 

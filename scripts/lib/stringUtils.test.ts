@@ -17,6 +17,7 @@ import {
   removePrefix,
   removeSuffix,
   getLastPartFromFullIdentifier,
+  capitalize,
 } from "./stringUtils";
 
 test("removePart()", () => {
@@ -48,4 +49,9 @@ test("getLastPartFromFullIdentifier", () => {
   expect(getLastPartFromFullIdentifier("my_software.foo")).toEqual("foo");
   expect(getLastPartFromFullIdentifier("my_software")).toEqual("my_software");
   expect(getLastPartFromFullIdentifier("")).toEqual("");
+});
+
+test("capitalize()", () => {
+  const input = "hello world!";
+  expect(capitalize(input)).toEqual("Hello world!");
 });

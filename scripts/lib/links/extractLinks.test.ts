@@ -62,6 +62,14 @@ test("parseAnchors()", () => {
   ##### Header 2
 
   ## \`code-header\`
+
+  <Function id="mdx.component.testId" name="testId" signature="testId">
+    Convert to dictionary.
+
+    **Return type**
+
+    \`Dict\`
+  </Function>
   `);
   expect(result).toEqual(
     new Set([
@@ -70,6 +78,7 @@ test("parseAnchors()", () => {
       "#code-header",
       "#this-is-a-hardcoded-anchor",
       "#another_span",
+      "#mdx.component.testId",
     ]),
   );
 });
