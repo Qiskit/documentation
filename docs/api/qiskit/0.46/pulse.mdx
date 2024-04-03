@@ -119,9 +119,9 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
   For $A=$ `amp`, samples from the function:
 
-  $$
-  f(x) = A
-  $$
+$$
+f(x) = A
+$$
 
   <Admonition title="Deprecated since version 0.46.0" type="danger">
     The function `qiskit.pulse.library.discrete.constant()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. The discrete pulses library, including constant() is deprecated. Instead, use the SymbolicPulse library to create the waveform with pulse.Constant(…).get\_waveform(). Note that complex value support for the amp parameter is deprecated in the SymbolicPulse library. Use two float values for (amp, angle) instead of complex amp
@@ -145,9 +145,9 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
   Samples from the function:
 
-  $$
-  f(x) = 0
-  $$
+$$
+f(x) = 0
+$$
 
   <Admonition title="Deprecated since version 0.46.0" type="danger">
     The function `qiskit.pulse.library.discrete.zero()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. The discrete pulses library, including zero() is deprecated. Instead, use the SymbolicPulse library to create the waveform with pulse.Constant(amp=0,…).get\_waveform().
@@ -170,9 +170,9 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
   For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A \text{sign}\left[ \sin\left(\frac{2 \pi x}{T} + 2\phi\right) \right]
-  $$
+$$
+f(x) = A \text{sign}\left[ \sin\left(\frac{2 \pi x}{T} + 2\phi\right) \right]
+$$
 
   with the convention $\text{sign}(0) = 1$.
 
@@ -200,9 +200,9 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
   For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = 2 A \left( g(x) - \left\lfloor \frac{1}{2} + g(x) \right\rfloor\right)
-  $$
+$$
+f(x) = 2 A \left( g(x) - \left\lfloor \frac{1}{2} + g(x) \right\rfloor\right)
+$$
 
   where $g(x) = x/T + \phi/\pi$.
 
@@ -247,9 +247,9 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
   For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A \left(-2\left|\text{sawtooth}(x, A, T, \phi)\right| + 1\right)
-  $$
+$$
+f(x) = A \left(-2\left|\text{sawtooth}(x, A, T, \phi)\right| + 1\right)
+$$
 
   This a non-sinusoidal wave with linear ramping.
 
@@ -294,9 +294,9 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
   For $A=$ `amp`, $\omega=$ `freq`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A \cos(2 \pi \omega x + \phi)
-  $$
+$$
+f(x) = A \cos(2 \pi \omega x + \phi)
+$$
 
   <Admonition title="Deprecated since version 0.46.0" type="danger">
     The function `qiskit.pulse.library.discrete.cos()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. The discrete pulses library, including cos() is deprecated. Instead, use the SymbolicPulse library to create the waveform with pulse.Cos(…).get\_waveform(). Note that pulse.Cos() does not support complex values for amp. Instead, use two float values for (amp, angle).
@@ -322,9 +322,9 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
   For $A=$ `amp`, $\omega=$ `freq`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A \sin(2 \pi \omega x + \phi)
-  $$
+$$
+f(x) = A \sin(2 \pi \omega x + \phi)
+$$
 
   <Admonition title="Deprecated since version 0.46.0" type="danger">
     The function `qiskit.pulse.library.discrete.sin()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. The discrete pulses library, including sin() is deprecated. Instead, use the SymbolicPulse library to create the waveform with pulse.Sin(…).get\_waveform(). Note that pulse.Sin() does not support complex values for amp. Instead, use two float values for (amp, angle).
@@ -350,17 +350,17 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
   For $A=$ `amp` and $\sigma=$ `sigma`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A\exp\left(\left(\frac{x - \mu}{2\sigma}\right)^2 \right),
-  $$
+$$
+f(x) = A\exp\left(\left(\frac{x - \mu}{2\sigma}\right)^2 \right),
+$$
 
   with the center $\mu=$ `duration/2`.
 
   If `zero_ends==True`, each output sample $y$ is modified according to:
 
-  $$
-  y \mapsto A\frac{y-y^*}{A-y^*},
-  $$
+$$
+y \mapsto A\frac{y-y^*}{A-y^*},
+$$
 
   where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$ while preserving the amplitude at the center. If $A=y^*$, $y$ is set to $1$. By default, the endpoints are at `x = -1, x = duration + 1`.
 
@@ -390,10 +390,10 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
   For $A=$ `amp` and $\sigma=$ `sigma` applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = -A\frac{(x - \mu)}{\sigma^2}\exp
-      \left(-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2 \right)
-  $$
+$$
+f(x) = -A\frac{(x - \mu)}{\sigma^2}\exp
+\left(-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2 \right)
+$$
 
   i.e. the derivative of the Gaussian function, with center $\mu=$ `duration/2`.
 
@@ -420,17 +420,17 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
   For $A=$ `amp` and $\sigma=$ `sigma`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A\text{sech}\left(\frac{x-\mu}{\sigma} \right)
-  $$
+$$
+f(x) = A\text{sech}\left(\frac{x-\mu}{\sigma} \right)
+$$
 
   with the center $\mu=$ `duration/2`.
 
   If `zero_ends==True`, each output sample $y$ is modified according to:
 
-  $$
-  y \mapsto A\frac{y-y^*}{A-y^*},
-  $$
+$$
+y \mapsto A\frac{y-y^*}{A-y^*},
+$$
 
   where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$ while preserving the amplitude at the center. If $A=y^*$, $y$ is set to $1$. By default, the endpoints are at `x = -1, x = duration + 1`.
 
@@ -458,11 +458,11 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
   For $A=$ `amp`, $\sigma=$ `sigma`, and center $\mu=$ `duration/2`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = \frac{d}{dx}\left[A\text{sech}\left(\frac{x-\mu}{\sigma} \right)\right],
+$$
+f(x) = \frac{d}{dx}\left[A\text{sech}\left(\frac{x-\mu}{\sigma} \right)\right],
 
 
-  $$
+$$
 
   i.e. the derivative of $\text{sech}$.
 
@@ -489,13 +489,13 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
   For $d=$ `duration`, $A=$ `amp`, $\sigma=$ `sigma`, and $r=$ `risefall`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = \begin{cases}
-              g(x - r) ) & x\leq r \\
-              A & r\leq x\leq d-r \\
-              g(x - (d - r)) & d-r\leq x
-          \end{cases}
-  $$
+$$
+f(x) = \begin{cases}
+g(x - r) ) & x\leq r \\
+A & r\leq x\leq d-r \\
+g(x - (d - r)) & d-r\leq x
+\end{cases}
+$$
 
   where $g(x)$ is the Gaussian function sampled from in [`gaussian()`](#qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian") with $A=$ `amp`, $\mu=1$, and $\sigma=$ `sigma`. I.e. $f(x)$ represents a square pulse with smooth Gaussian edges.
 
@@ -531,9 +531,9 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
   For $A=$ `amp`, $\sigma=$ `sigma`, and $\beta=$ `beta`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = g(x) + i \beta h(x),
-  $$
+$$
+f(x) = g(x) + i \beta h(x),
+$$
 
   where $g(x)$ is the function sampled in [`gaussian()`](#qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian"), and $h(x)$ is the function sampled in [`gaussian_deriv()`](#qiskit.pulse.library.gaussian_deriv "qiskit.pulse.library.gaussian_deriv").
 
