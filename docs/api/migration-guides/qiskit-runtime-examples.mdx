@@ -138,13 +138,15 @@ backend = FakeManilaV2()
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
-isa_state = pm.run(state)
+isa_circuit = pm.run(circuit)
+
 isa_observables = [operator.apply_layout(isa_state.layout) for operator in op]
 
 ```
   </TabItem>
 
-  <TabItem value="PrimV1" label="backend.run">
+  <TabItem value="backend.run" label="backend.run">
+
 ``` python
 from qiskit import QuantumCircuit
 from qiskit.quantum_info import SparsePauliOp
