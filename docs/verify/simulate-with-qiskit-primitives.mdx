@@ -53,7 +53,7 @@ import numpy as np
 theta_values = [[0], [np.pi/6], [np.pi/2]]
 ```
 
-Note: fix circuit image (doesn't correspond to code)
+TODO: fix circuit image (doesn't correspond to code)
 ![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/estimator-initialize.png "Initial QuantumCircuit")
 
 ### Initialize an Estimator
@@ -94,8 +94,8 @@ observable.
   <TabItem value="EstimatorV2" label="StatevectorEstimator (V2)">
     Run the estimation by calling the [`StatevectorEstimator.run`](../api/qiskit/qiskit.primitives.StatevectorEstimator#run)
     method, which returns an instance of ... You can get the results from the
-    job (as an [`qiskit.primitives....Result`](../api/qiskit/qiskit.primitives.EstimatorResult) object)
-    with the [`qiskit.providers....result`](../api/qiskit/qiskit.providers.JobV1#result) method.
+    job (as a [`qiskit.primitives.PrimitiveResult`](../api/qiskit/qiskit.primitives.PrimitiveResult) object)
+    with the [`qiskit.primitives.PrimitiveResult.result`](../api/qiskit/qiskit.primitives.PrimitiveResult#result) method.
 
 ```python
 job = estimator.run([(qc, observable, parameter_values)])
@@ -103,7 +103,7 @@ result = job.result()
 print(f" > Result class: {type(result)}")
 ```
 ```text
-      (fix)
+... (TODO:add output)
 EstimatorResult(values=array([4.]), metadata=[{}])
 ```
   </TabItem>
@@ -119,7 +119,7 @@ result = job.result()
 print(f" > Result class: {type(result)}")
 ```
 ```text
-      (fix)
+... (TODO:add output)
 EstimatorResult(values=array([4.]), metadata=[{}])
 ```
   </TabItem>
@@ -130,23 +130,26 @@ EstimatorResult(values=array([4.]), metadata=[{}])
 <Tabs>
   <TabItem value="EstimatorV2" label="StatevectorEstimator (V2)">
 
-      The primitives V2 result outputs an array of "Pub results". To retrieve the expectation values and metadata for the first
-      (and in this case, only) circuit evaluation, we must access the evaluation data for pub 0:
+      The primitives V2 result outputs an array of `PubResult`s, where each item of the array is a `PubResult` object
+      that contains in its data the array of evaluations corresponding to every circuit-observable combination in the Pub.
+      To retrieve the expectation values and metadata for the first
+      (and in this case, only) circuit evaluation, we must access the evaluation `data` for pub 0:
 
 ```python
 print(f" > Expectation value: {result[0].data.evs}")
 print(f" > Metadata: {result[0].metadata}")
 ```
 ```text
-... (fix)
+... (TODO:add output)
 ...
 ```
   </TabItem>
   <TabItem value="EstimatorV1" label="Estimator (V1)">
 
       The primitives V1 result stores an array of values that can be accessed through the attribute
-      [`EstimatorResult.values`](../api/qiskit/qiskit.primitives.EstimatorResult#values), to see the values for the first
-      (and in this case, only) circuit evaluation, we must access the first item of the array:
+      [`EstimatorResult.values`](../api/qiskit/qiskit.primitives.EstimatorResult#values), where the`i`<sup>th</sup>
+      element is the expectation value corresponding to the `i`<sup>th</sup> circuit and `i`<sup>th</sup> observable.
+      To see the values for the first (and in this case, only) circuit evaluation, we must access the first item of the array.
 
 ```python
 print(f" > Expectation value: {result.values[0]}")
@@ -154,13 +157,9 @@ print(f" > Metadata: {result.metadata}")
 ```
 
 ```text
-... (fix)
+... (TODO:add output)
 ...
 ```
-
-[//]: # (      [`qiskit.primitives.EstimatorResult.values`]&#40;../api/qiskit/qiskit.primitives.EstimatorResult#values&#41; returns a `numpy.ndarray`)
-
-[//]: # (whose `i`<sup>th</sup> element is the expectation value corresponding to the `i`<sup>th</sup> circuit and `i`<sup>th</sup> observable.)
   </TabItem>
 </Tabs>
 
@@ -269,27 +268,27 @@ sampler = Sampler()
 <Tabs>
   <TabItem value="SamplerV2" label="StatevectorSampler (V2)">
     ```python
-# execute 1 circuit with 3 parameter sets using Sampler V2
-job = sampler_v2.run([(circuit, [vals1, vals2, vals3])])
-counts = job.result()[0].data.meas.get_counts()
-```
-        V2 primitives accept multiple PUBs as inputs, and each pub gets its own result. This
+    # execute 1 circuit with 3 parameter sets using Sampler V2
+    job = sampler_v2.run([(circuit, [vals1, vals2, vals3])])
+    counts = job.result()[0].data.meas.get_counts()
+    ```
+  V2 primitives accept multiple PUBs as inputs, and each pub gets its own result. This
   lets you run different circuits with various parameter/observable combinations,
   which was not always possible in the V1 interface:
 
-```python
-# execute 2 circuits with 1 parameter set using Sampler V2
-job = sampler_v2.run([(circuit1, vals1), (circuit2, vals1)])
-counts1 = job.result()
-counts2 = job.result()
-```      
+    ```python
+    # execute 2 circuits with 1 parameter set using Sampler V2
+    job = sampler_v2.run([(circuit1, vals1), (circuit2, vals1)])
+    counts1 = job.result()
+    counts2 = job.result()
+    ```
   </TabItem>
 
   <TabItem value="SamplerV1" label="Sampler (V1)">
       Run Sampler by calling the [`qiskit.primitives.Sampler.run`](../api/qiskit/qiskit.primitives.Sampler#run)
-method, which returns an instance of [`qiskit.providers.JobV1`](../api/qiskit/qiskit.providers.JobV1).
-You can get the results from the job (as a [`qiskit.primitives.SamplerResult`](../api/qiskit/qiskit.primitives.SamplerResult) object)
-with the [`qiskit.providers.JobV1.result`](../api/qiskit/qiskit.providers.JobV1#result) method.
+    method, which returns an instance of [`qiskit.providers.JobV1`](../api/qiskit/qiskit.providers.JobV1).
+    You can get the results from the job (as a [`qiskit.primitives.SamplerResult`](../api/qiskit/qiskit.primitives.SamplerResult) object)
+    with the [`qiskit.providers.JobV1.result`](../api/qiskit/qiskit.providers.JobV1#result) method.
 
     ```python
     job = sampler.run(qc)
