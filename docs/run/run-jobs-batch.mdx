@@ -20,10 +20,16 @@ Batch mode can shorten processing time if all jobs can be provided at the outset
 The following example shows how you can divide up a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
 
 ```python
+from qiskit_ibm_runtime import SamplerV2 as Sampler, Batch
+
+max_circuits = 100
 jobs = []
-with Batch(backend) as batch:
-    estimator = Estimator(batch)
-    # calls within this context are part of the batch.
-    for obs_set in observable_sets:
-        jobs.append(estimator.run(circuits, observables=obs_set))
+start_idx = 0
+
+with Batch(backend):
+    sampler = Sampler()    
+    while start_idx < len(circuits):
+        end_idx = start_idx + max_circuits  
+        jobs.append(sampler.run([circuits[start_idx:end_idx]]))
+        start_idx = end_idx
 ```
