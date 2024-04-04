@@ -17,15 +17,15 @@ python_api_name: qiskit.algorithms.PhaseEstimation
 
   The algorithm takes as input a unitary $U$ and a state $|\psi\rangle$, which may be written
 
-  $$
-  |\psi\rangle = \sum_j c_j |\phi_j\rangle,
-  $$
+$$
+|\psi\rangle = \sum_j c_j |\phi_j\rangle,
+$$
 
   where $|\phi_j\rangle$ are eigenstates of $U$. We prepare the quantum register in the state $|\psi\rangle$ then apply $U$ leaving the register in the state
 
-  $$
-  U|\psi\rangle = \sum_j \exp(i \phi_j) c_j |\phi_j\rangle.
-  $$
+$$
+U|\psi\rangle = \sum_j \exp(i \phi_j) c_j |\phi_j\rangle.
+$$
 
   In the ideal case, one then measures the phase $\phi_j$ with probability $|c_j|^2$. In practice, many (or all) of the bit strings may be measured due to noise and the possibility that $\phi_j$ may not be representable exactly by the output register. In the latter case the probability for each eigenphase will be spread across bitstrings, with amplitudes that decrease with distance from the bitstring most closely approximating the eigenphase.
 

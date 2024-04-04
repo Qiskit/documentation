@@ -15,19 +15,19 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
   The Pauli Expansion circuit is a data encoding circuit that transforms input data $\vec{x} \in \mathbb{R}^n$, where n is the `feature_dimension`, as
 
-  $$
-  U_{\Phi(\vec{x})}=\exp\left(i\sum_{S \in \mathcal{I}}
-  \phi_S(\vec{x})\prod_{i\in S} P_i\right).
-  $$
+$$
+U_{\Phi(\vec{x})}=\exp\left(i\sum_{S \in \mathcal{I}}
+\phi_S(\vec{x})\prod_{i\in S} P_i\right).
+$$
 
   Here, $S$ is a set of qubit indices that describes the connections in the feature map, $\mathcal{I}$ is a set containing all these index sets, and $P_i \in \{I, X, Y, Z\}$. Per default the data-mapping $\phi_S$ is
 
-  $$
-  \begin{split}\phi_S(\vec{x}) = \begin{cases}
-      x_i \text{ if } S = \{i\} \\
-      \prod_{j \in S} (\pi - x_j) \text{ if } |S| > 1
-      \end{cases}.\end{split}
-  $$
+$$
+\begin{split}\phi_S(\vec{x}) = \begin{cases}
+x_i \text{ if } S = \{i\} \\
+\prod_{j \in S} (\pi - x_j) \text{ if } |S| > 1
+\end{cases}.\end{split}
+$$
 
   The possible connections can be set using the `entanglement` and `paulis` arguments. For example, for single-qubit $Z$ rotations and two-qubit $YY$ interactions between all qubit pairs, we can set:
 

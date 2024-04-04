@@ -19,10 +19,10 @@ python_api_name: qiskit.providers.aer.pulse.duffing_system_model
 
   For each oscillator, the above parameters enter into the Hamiltonian via the terms:
 
-  $$
-  \pi(2 \nu - \alpha)a^\dagger a +
-  \pi \alpha (a^\dagger a)^2 + 2 \pi r D(t) (a + a^\dagger),
-  $$
+$$
+\pi(2 \nu - \alpha)a^\dagger a +
+\pi \alpha (a^\dagger a)^2 + 2 \pi r D(t) (a + a^\dagger),
+$$
 
   where $a^\dagger$ and $a$ are, respectively, the creation and annihilation operators for the oscillator, and $D(t)$ is the drive signal for the oscillator.
 
@@ -33,9 +33,9 @@ python_api_name: qiskit.providers.aer.pulse.duffing_system_model
 
   which are passed in the argument `coupling_dict`, which is a `dict` with keys being the `tuple` `(i,k)`, and values the strength `j`. Specifying a coupling results in the Hamiltonian term:
 
-  $$
-  2 \pi j (a_i^\dagger a_k + a_i a_k^\dagger).
-  $$
+$$
+2 \pi j (a_i^\dagger a_k + a_i a_k^\dagger).
+$$
 
   Finally, the returned [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") is setup for performing cross-resonance drives between coupled qubits. The index for the `ControlChannel` corresponding to a particular cross-resonance drive channel is retreived by calling [`PulseSystemModel.control_channel_index()`](qiskit.providers.aer.pulse.PulseSystemModel#control_channel_index "qiskit.providers.aer.pulse.PulseSystemModel.control_channel_index") with the tuple `(drive_idx, target_idx)`, where `drive_idx` is the index of the oscillator being driven, and `target_idx` is the target oscillator (see example below).
 

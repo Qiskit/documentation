@@ -15,13 +15,13 @@ python_api_name: qiskit.pulse.library.gaussian_square
 
   For $d=$ `duration`, $A=$ `amp`, $\sigma=$ `sigma`, and $r=$ `risefall`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  \begin{split}f(x) = \begin{cases}
-              g(x - r) ) & x\leq r \\
-              A & r\leq x\leq d-r \\
-              g(x - (d - r)) & d-r\leq x
-          \end{cases}\end{split}
-  $$
+$$
+\begin{split}f(x) = \begin{cases}
+g(x - r) ) & x\leq r \\
+A & r\leq x\leq d-r \\
+g(x - (d - r)) & d-r\leq x
+\end{cases}\end{split}
+$$
 
   where $g(x)$ is the Gaussian function sampled from in [`gaussian()`](qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian") with $A=$ `amp`, $\mu=1$, and $\sigma=$ `sigma`. I.e. $f(x)$ represents a square pulse with smooth Gaussian edges.
 

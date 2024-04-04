@@ -15,17 +15,17 @@ python_api_name: qiskit.pulse.library.sech
 
   For $A=$ `amp` and $\sigma=$ `sigma`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A\text{sech}\left(\frac{x-\mu}{\sigma} \right)
-  $$
+$$
+f(x) = A\text{sech}\left(\frac{x-\mu}{\sigma} \right)
+$$
 
   with the center $\mu=$ `duration/2`.
 
   If `zero_ends==True`, each output sample $y$ is modified according to:
 
-  $$
-  y \mapsto A\frac{y-y^*}{A-y^*},
-  $$
+$$
+y \mapsto A\frac{y-y^*}{A-y^*},
+$$
 
   where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$ while preserving the amplitude at the center. If $A=y^*$, $y$ is set to $1$. By default, the endpoints are at `x = -1, x = duration + 1`.
 
