@@ -100,6 +100,8 @@ To execute notebooks in a fixed Python environment, first install `tox` using
 pipx install tox
 ```
 
+You also need to install a few system dependencies: TeX, Poppler, and graphviz. On macOS, you can run `brew install mactex-no-gui poppler graphviz`. On Ubuntu, you can run `apt-get install texlive-pictures texlive-latex-extra poppler-utils graphviz`.
+
 - To execute all notebooks, run tox.
   ```sh
   tox
