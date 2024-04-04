@@ -431,7 +431,8 @@ isa_circuit = pm.run(circuit)
     ``` python
 sampler = Sampler(backend=backend)
 
-job = sampler.run([(isa_circuit,)])
+job = sampler.run([isa_circuit])
+
 result = job.result()
 # Get results for the first (and only) PUB
 pub_result = result[0]
