@@ -175,7 +175,7 @@ with Session(backend=backend):
     sampler = Sampler()
     estimator = Estimator()
 
-    job = sampler.run([(sampler_circuit,)])
+    job = sampler.run([sampler_circuit])
     result = job.result()
     print(f" > Counts: {result[0].data.meas.get_counts()}")
 

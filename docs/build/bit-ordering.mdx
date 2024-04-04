@@ -63,7 +63,7 @@ decimal integer `2` (measured with probability `1.0`).
 from qiskit.primitives import Samplerv2 as Sampler
 qc.measure_all()
 
-job = sampler.run([(qc)])
+job = sampler.run([qc])
 result = job.result()
 print(f" > Counts: {result[0].data.meas.get_counts()}")
 ```

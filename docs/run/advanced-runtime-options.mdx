@@ -123,7 +123,7 @@ You can pass in options by using the `run()` method. This overwrites the options
 In V2, the only options you can pass to `run()` are options defined in the interface.  That is, `shots` for Sampler and `precision` for Estimator.
 ```python
 # Sample two circuits at 128 shots each.
-sampler.run([(circuit1,), (circuit2,)], shots=128)
+sampler.run([circuit1, circuit2], shots=128)
 ```
 
   </TabItem>
@@ -162,7 +162,7 @@ sampler.options.default_shots=2000
 sampler.options.update(default_shots=1024, dynamical_decoupling={"sequence_type": "XpXm"})
 
 # Sample two circuits at 128 shots each.
-sampler.run([(circuit1,), (circuit2,)], shots=128)
+sampler.run([circuit1, circuit2], shots=128)
 ```
   </TabItem>
 
