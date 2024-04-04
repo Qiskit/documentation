@@ -133,7 +133,7 @@ EstimatorResult(values=array([4.]), metadata=[{}])
       The primitives V2 result outputs an array of `PubResult`s, where each item of the array is a `PubResult` object
       that contains in its data the array of evaluations corresponding to every circuit-observable combination in the Pub.
       To retrieve the expectation values and metadata for the first
-      (and in this case, only) circuit evaluation, we must access the evaluation `data` for pub 0:
+      (and in this case, only) circuit evaluation, we must access the evaluation `data` for PUB 0:
 
 ```python
 print(f" > Expectation value: {result[0].data.evs}")
@@ -179,7 +179,7 @@ instead of the number of `shots` used in the V1 interface.
   <TabItem value="V2" label="StatevectorEstimator (V2)">
 
       The sampling overhead is now called `precision`, and is defined exclusively at the `.run()`
-      method level. This allows for a more finely-grained tuning of the option all the way to the pub level.
+      method level. This allows for a more finely-grained tuning of the option all the way to the PUB level.
 
     ```python
     # Estimate expectation values for two PUBs, both with 0.05 precision.
@@ -272,7 +272,7 @@ sampler = Sampler()
     job = sampler_v2.run([(circuit, [vals1, vals2, vals3])])
     counts = job.result()[0].data.meas.get_counts()
     ```
-  V2 primitives accept multiple pubs as inputs, and each pub gets its own result.
+  V2 primitives accept multiple PUBs as inputs, and each PUB gets its own result.
   Therefore, you can run different circuits with various parameter/observable combinations,
   which was not always possible in the V1 interface:
 
@@ -331,7 +331,7 @@ compatibility with dynamic circuits.
     ```python
     # Run using V2 sampler
     result = sampler_v2.run([circuit]).result()
-    # Access result data for pub 0
+    # Access result data for PUB 0
     data_pub = result[0].data
     # Access bitstring for the classical register "meas"
     bitstring = data_pub.meas.get_bitstring()
@@ -392,7 +392,7 @@ By default, the reference Sampler performs an exact statevector calculation base
 However, this can be modified to introduce the effect of the sampling overhead (also known as "shot noise").
 
 With the introduction of the new V2 interface, the sampling overhead in the Sampler is now more precisely defined.
-The new interface accepts a `shots` argument that can be defined at the "pub level".
+The new interface accepts a `shots` argument that can be defined at the "PUB level".
 
 <Tabs>
   <TabItem value="V2" label="StatevectorSampler (V2)">
