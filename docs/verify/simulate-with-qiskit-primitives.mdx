@@ -272,8 +272,8 @@ sampler = Sampler()
     job = sampler_v2.run([(circuit, [vals1, vals2, vals3])])
     counts = job.result()[0].data.meas.get_counts()
     ```
-  V2 primitives accept multiple PUBs as inputs, and each pub gets its own result. This
-  lets you run different circuits with various parameter/observable combinations,
+  V2 primitives accept multiple pubs as inputs, and each pub gets its own result.
+  Therefore, you can run different circuits with various parameter/observable combinations,
   which was not always possible in the V1 interface:
 
     ```python
