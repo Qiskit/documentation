@@ -206,6 +206,62 @@ print(counts)
   </TabItem>
 </Tabs>
 
+## Get the averaged IQ data (meas_level=1)
+
+<Tabs>
+  <TabItem value="updated" label="Runtime primitives">
+```python
+from qiskit.circuit import QuantumCircuit
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+circuit = QuantumCircuit(2, 2)
+circuit.h(0)
+circuit.cx(0, 1)
+circuit.measure_all()
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+
+sampler = Sampler(backend)
+# Get the averaged IQ data. 
+# This is equivalent to meas_level=1, meas_return="avg" in backend.run
+sampler.options.execution.meas_type = "avg_kerneled"
+job = sampler.run([isa_circuit], shots=10)
+pub_result = job.result()[0]
+print(f">>> Averaged IQ data: {pub_result.data.meas}")
+```
+  </TabItem>
+
+  <TabItem value="legacy" label="backend.run">
+```python
+from qiskit import QuantumCircuit
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+
+circuit = QuantumCircuit(2, 2)
+circuit.h(0)
+circuit.cx(0, 1)
+circuit.measure_all()
+
+# Define provider and simulator backend
+from qiskit import IBMQ
+
+IBMQ.load_account() 
+provider = IBMQ.get_provider(hub="ibm-q", group="open", project="main")
+backend = provider.get_backend("ibmq_qasm_simulator")
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+
+result = backend.run(isa_circuit, shots=10, meas_level=1, meas_return="avg").result()
+
+>>> print("result: ", result)
+```
+  </TabItem>
+</Tabs>
+
 ## Upload, view, or delete custom prototype programs
 
 This function has been replaced with Quantum Serverless patterns.  For instructions to migrate, see [Converting from Qiskit Runtime Programs.](https://qiskit-extensions.github.io/quantum-serverless/migration/migration_from_qiskit_runtime_programs.html)
