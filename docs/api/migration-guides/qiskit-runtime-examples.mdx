@@ -140,7 +140,8 @@ from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
-isa_observables = [operator.apply_layout(isa_state.layout) for operator in op]
+isa_observable = op.apply_layout(isa_state.layout)
+
 
 ```
   </TabItem>
@@ -170,7 +171,8 @@ state.x(1)
 # Define provider and simulator backend
 from qiskit import IBMQ
 
-provider = IBMQ.get_provider(hub="ibm-q", group="open", project="main")
+provider = IBMProvider()
+
 backend = provider.get_backend("ibmq_qasm_simulator")
 
 # Define a statevector simulator
@@ -184,7 +186,11 @@ backend = provider.get_backend("ibmq_qasm_simulator")
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
-isa_state = pm.run(state)
+
+from qiskit.opflow import CircuitStateFn, PauliSumOp
+
+opflow_op = PauliSumOp(op)
+opflow_state = CircuitStateFn(isa_state)
 ```
   </TabItem>
 </Tabs>
@@ -209,14 +215,16 @@ This step is not necessary when using the primitives. For instructions to migrat
 
 <Tabs>
   <TabItem value="updated" label="Runtime Estimator">
-Estimator simplifies the user-side syntax, making it a more
+Estimator simplifies the user-side syntax compared to the legacy approaches, making it a more
+
 convenient tool for algorithm design.
 
 ``` python
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
 estimator = Estimator(backend, options={"default_shots": int(1e4)})
-job = estimator.run([(isa_state, isa_observables)])
+job = estimator.run([(isa_state, isa_observable)])
+
 
 # Get results for the first (and only) PUB
 pub_result = job.result()[0]
@@ -225,17 +233,18 @@ pub_result = job.result()[0]
 Note that the Estimator returns a list of values, as it can perform batched evaluations.
 
 ``` python
->>> print(f">>> Expectation values: {pub_result.data.evs}")
->>> Expectation values: [-1.05237325 -0.20984981  0.37345495 -0.00564005 -0.00141352]
+print(f">>> Expectation value: {pub_result.data.evs}")
+>>> Expectation value: -0.8879899326312926
+
 ```
   </TabItem>
 
   <TabItem value="legacy" label="backend.run()">
-The legacy workflow required many steps to compute an expectation value:
+The legacy workflow required additional elements and steps to compute an expectation value. The `QuantumInstance` class stored a `PassManager` and a `Backend` instance, and wrapped the conversion step to ISA circuits and `backend.run` calls.  The `CircuitSampler` class from `qiskit.opflow` wrapped the `QuantumInstance` `run` and `transpile` methods. This degree of nesting is no longer supported, the new workflow allows to access and directly manipulate all the key components of the computation (backend, pass manager, circuits and observables) at all stages of the algorithm. 
 
 ``` python
 from qiskit.opflow import StateFn, PauliExpectation, CircuitSampler
-from qiskit import IBMQ
+from qiskit.utils import QuantumInstance
 
 # Define the state to sample
 measurable_expression = StateFn(opflow_op, is_measurement=True).compose(opflow_state)
@@ -243,8 +252,12 @@ measurable_expression = StateFn(opflow_op, is_measurement=True).compose(opflow_s
 # Convert to expectation value calculation object
 expectation = PauliExpectation().convert(measurable_expression)
 
-# Inject backend into circuit sampler
-sampler = CircuitSampler(backend).convert(expectation)
+# Define quantum instance with backend and pass manager
+quantum_instance = QuantumInstance(backend, pass_manager = pm)
+
+# Inject quantum instance into circuit sampler and convert
+sampler = CircuitSampler(quantum_instance).convert(expectation)
+
 
 # Evaluate
 expectation_value = sampler.eval().real
@@ -274,7 +287,8 @@ difference is the format of the output: `backend.run()` outputs
 <Tabs>
   <TabItem value="provider" label="qiskit-ibmq-provider">
     ``` python
-    from qiskit import IBMQ
+    from qiskit_ibm_provider import IBMProvider
+
 
     # Select provider
     provider = IBMQ.load_account()
