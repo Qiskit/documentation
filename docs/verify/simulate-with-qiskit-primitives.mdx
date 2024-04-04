@@ -14,58 +14,6 @@ from output distributions of circuits.
 
 The following sections show how to use the reference primitives to run your workflow locally.
 
-[//]: # ()
-[//]: # (<Admonition type="note">)
-
-[//]: # (  While this guide uses the Qiskit reference implementation, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`]&#40;../api/qiskit/qiskit.primitives.BackendEstimator&#41;. There is not yet an equivalent implementation in V2, but it is coming soon.)
-
-[//]: # ()
-[//]: # (  ```python)
-
-[//]: # (  from qiskit.primitives import BackendEstimator)
-
-[//]: # (  from <some_qiskit_provider> import QiskitProvider)
-
-[//]: # ()
-[//]: # (  provider = QiskitProvider&#40;&#41;)
-
-[//]: # (  backend = provider.get_backend&#40;'backend_name'&#41;)
-
-[//]: # (  estimator = BackendEstimator&#40;backend&#41;)
-
-[//]: # (  ```)
-
-[//]: # ()
-[//]: # (  There are some providers that implement primitives natively &#40;see [the Qiskit Ecosystem page]&#40;https://qiskit.github.io/ecosystem/#primitives&#41; for more details&#41;.)
-
-[//]: # (</Admonition>)
-
-[//]: # ()
-[//]: # (<Admonition type="note">)
-
-[//]: # (  While this guide uses the Qiskit reference implementation, the `Sampler` primitive can be run with any provider using [`qiskit.primitives.BackendSampler`]&#40;../api/qiskit/qiskit.primitives.BackendSampler&#41;.)
-
-[//]: # ()
-[//]: # (  ```python)
-
-[//]: # (  from qiskit.primitives import BackendSampler)
-
-[//]: # (  from <some_qiskit_provider> import QiskitProvider)
-
-[//]: # ()
-[//]: # (  provider = QiskitProvider&#40;&#41;)
-
-[//]: # (  backend = provider.get_backend&#40;'backend_name'&#41;)
-
-[//]: # (  sampler = BackendSampler&#40;backend&#41;)
-
-[//]: # (  ```)
-
-[//]: # ()
-[//]: # (  There are some providers that implement primitives natively &#40;see [the Qiskit Ecosystem page]&#40;https://qiskit.github.io/ecosystem#providers&#41; for more details&#41;.)
-
-[//]: # (</Admonition>)
-
 
 ## Use the reference `Estimator`
 
@@ -80,10 +28,6 @@ computed expectation values.
 The following code prepares the inputs that will be used in the examples below. The expected input type for the
 observables is [`qiskit.quantum_info.SparsePauliOp`](../api/qiskit/qiskit.quantum_info.SparsePauliOp). Note that
 the circuit in the example is parametrized, but you can also run the Estimator on non-parametrized circuits.
-
-[//]: # (    The main difference with the previous case is that now you need to specify the sets of parameter values for which you want to evaluate the expectation value as a `list` of `list`s of `float`s.)
-
-[//]: # (The `i`<sup>th</sup> element of the outer `list` is the set of parameter values that corresponds to the `i`<sup>th</sup> circuit and observable.)
 
 <Admonition type="note">
   Any circuit passed to an Estimator must **not** include any **measurements**.
@@ -145,20 +89,6 @@ estimator = Estimator()
 This example only uses one circuit (of type [`QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit)) and one
 observable.
 
-[//]: # (I think that we are going to need a page explaining the V2 broadcasting rules with very very clear examples,)
-
-[//]: # (so maybe we can keep the example here simple and not try to squeeze in a fast explanation.)
-
-[//]: # (* For V1 primitives, if you want to get expectation values for multiple circuits and observables, )
-
-[//]: # (you can pass a `list` of [`qiskit.circuit.QuantumCircuit`]&#40;../api/qiskit/qiskit.circuit.QuantumCircuit&#41;s and )
-
-[//]: # (a list of `BaseOperator`s to the [`qiskit.primitives.Estimator.run`]&#40;../api/qiskit/qiskit.primitives.Estimator#run&#41; method. Both `list`s must have the same length.)
-
-[//]: # ()
-[//]: # (* The V2 primitives accept **vectorized inputs**, where single circuits can be grouped with array-valued specifications. That is, one circuit can be executed)
-
-[//]: # (  for arrays of `n` parameter sets, `n` observables, or both &#40;in the case of the estimator&#41;. Each group is called a  **primitive unified bloc &#40;PUB&#41;**, and can be represented as a tuple: `&#40;1 x circuit, [n x observables], [n x parameters]&#41;`. Each PUB gets its own result.)
 
 <Tabs>
   <TabItem value="EstimatorV2" label="StatevectorEstimator (V2)">
@@ -241,40 +171,10 @@ By default, the reference Estimator performs an exact statevector calculation ba
 [`quantum_info.Statevector`](../api/qiskit/qiskit.quantum_info.Statevector) class.
 However, this can be modified to introduce the effect of the sampling overhead (also known as "shot noise").
 
-With the introduction of the new V2 interface, the sampling overhead in the Estimator is now more precisely defined.
+With the introduction of the new V2 interface, the sampling overhead in the Estimator is now more concretely defined.
 The new interface accepts a `precision` argument that expresses the error bars that the
 primitive implementation should target for expectation values estimates,
 instead of the number of `shots` used in the V1 interface.
-
-[//]: # (    The sampling overhead, commonly exposed by V1 implementations)
-
-[//]: # (  through the `shots` run option, is now an argument of the primitives `run&#40;&#41;` method )
-
-[//]: # (  that can be specified at the **PUB** level.)
-
-[//]: # (  The V2 base classes expose the arguments in formats different from the V1 API:)
-
-[//]: # ()
-[//]: # (    * [`BaseSamplerV2.run`]&#40;/api/qiskit/qiskit.primitives.BaseSamplerV2#run&#41;)
-
-[//]: # (      exposes a `shots` argument &#40;similar to the previous workflow&#41;:)
-
-[//]: # (        )
-[//]: # (        ```python)
-
-[//]: # (        # Sample two circuits at 128 shots each.)
-
-[//]: # (        sampler_v2.run&#40;[circuit1, circuit2], shots=128&#41;)
-
-[//]: # (        # Sample two circuits at different amounts of shots. The "None"s are necessary)
-
-[//]: # (        # as placeholders)
-
-[//]: # (        # for the lack of parameter values in this example.)
-
-[//]: # (        sampler_v2.run&#40;[&#40;circuit1, None, 123&#41;, &#40;circuit2, None, 456&#41;]&#41;)
-
-[//]: # (        ```)
 
 <Tabs>
   <TabItem value="V2" label="StatevectorEstimator (V2)">
@@ -305,235 +205,6 @@ instead of the number of `shots` used in the V1 interface.
 </Tabs>
 
 
-[//]: # (    By default, the reference [`qiskit.primitives.Estimator`]&#40;../api/qiskit/qiskit.primitives.Estimator&#41; class performs an exact )
-
-[//]: # (      statevector calculation based on the [`qiskit.quantum_info.Statevector`]&#40;../api/qiskit/qiskit.quantum_info.Statevector&#41; class.)
-
-[//]: # (      However, this can be modified to include shot noise if the number of `shots` is set.)
-
-[//]: # (      For reproducibility purposes, a `seed` will also be set in the following examples.)
-
-[//]: # ()
-[//]: # (There are two main ways of setting options in the [`qiskit.primitives.Estimator`]&#40;../api/qiskit/qiskit.primitives.Estimator&#41;:)
-
-[//]: # ()
-[//]: # (  - Set keyword arguments in the [`qiskit.primitives.Estimator.run`]&#40;../api/qiskit/qiskit.primitives.Estimator#run&#41; method.)
-
-[//]: # (  - Modify [`qiskit.primitives.Estimator`]&#40;../api/qiskit/qiskit.primitives.Estimator&#41; options.)
-
-[//]: # (#### Set keyword arguments for [`qiskit.primitives.Estimator.run`]&#40;../api/qiskit/qiskit.primitives.Estimator#run&#41;)
-
-[//]: # ()
-[//]: # (If you only want to change the settings for a specific run, it can be more convenient to set the options inside the [`qiskit.primitives.Estimator.run`]&#40;../api/qiskit/qiskit.primitives.Estimator#run&#41; method. You can do this by passing them as keyword arguments.)
-
-[//]: # ()
-[//]: # (<Tabs>)
-
-[//]: # (  <TabItem value="EstimatorV2" label="EstimatorV2">)
-
-[//]: # (    ```python)
-
-[//]: # (        # Estimate expectation values for two PUBs, both with 0.05 precision.)
-
-[//]: # (        estimator_v2.run&#40;[&#40;circuit1, obs_array1&#41;, &#40;circuit2, obs_array_2&#41;], precision=0.05&#41;)
-
-[//]: # (        ```)
-
-[//]: # (  </TabItem>)
-
-[//]: # ()
-[//]: # (  <TabItem value="EstimatorV1" label="Estimator &#40;V1&#41;">)
-
-[//]: # (    ```python)
-
-[//]: # (job = estimator.run&#40;qc, observable, shots=2048, seed=123&#41;)
-
-[//]: # (result = job.result&#40;&#41;)
-
-[//]: # (print&#40;result&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (EstimatorResult&#40;values=array&#40;[4.]&#41;, metadata=[{'variance': 3.552713678800501e-15, 'shots': 2048}]&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (print&#40;result.values[0]&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (3.999999998697238)
-
-[//]: # (```)
-
-[//]: # (  </TabItem>)
-
-[//]: # (</Tabs>)
-
-[//]: # ()
-[//]: # (#### Modify [`qiskit.primitives.Estimator`]&#40;../api/qiskit/qiskit.primitives.Estimator&#41; options)
-
-[//]: # ()
-[//]: # (If you want to keep some configuration values for several runs, it can be better to change the [`qiskit.primitives.Estimator`]&#40;../api/qiskit/qiskit.primitives.Estimator&#41; options. That way you can use the same [`qiskit.primitives.Estimator`]&#40;../api/qiskit/qiskit.primitives.Estimator&#41; object as many times as you wish without having to)
-
-[//]: # (rewrite the configuration values every time you use [`qiskit.primitives.Estimator.run`]&#40;../api/qiskit/qiskit.primitives.Estimator#run&#41;.)
-
-[//]: # ()
-[//]: # (#### Modify existing [`qiskit.primitives.Estimator`]&#40;../api/qiskit/qiskit.primitives.Estimator&#41;)
-
-[//]: # ()
-[//]: # (If you prefer to change the options of an already-defined [`qiskit.primitives.Estimator`]&#40;../api/qiskit/qiskit.primitives.Estimator&#41;, you can use the method [`qiskit.primitives.Estimator.set_options`]&#40;../api/qiskit/qiskit.primitives.Estimator#set_options&#41; and introduce the new options as keyword arguments.)
-
-[//]: # ()
-[//]: # (V1 primitives example: )
-
-[//]: # ()
-[//]: # (<Admonition>)
-
-[//]: # ( For V2 primitives, `shots` is now an argument of the primitives `run&#40;&#41;` method.)
-
-[//]: # ( </Admonition>)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (estimator.set_options&#40;shots=2048, seed=123&#41;)
-
-[//]: # ()
-[//]: # (job = estimator.run&#40;qc, observable&#41;)
-
-[//]: # (result = job.result&#40;&#41;)
-
-[//]: # (print&#40;result&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (EstimatorResult&#40;values=array&#40;[4.]&#41;, metadata=[{'variance': 3.552713678800501e-15, 'shots': 2048}]&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (print&#40;result.values[0]&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (3.999999998697238)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (#### Define a new [`qiskit.primitives.Estimator`]&#40;../api/qiskit/qiskit.primitives.Estimator&#41; with the options)
-
-[//]: # ()
-[//]: # (If you prefer to define a new [`qiskit.primitives.Estimator`]&#40;../api/qiskit/qiskit.primitives.Estimator&#41; with new options, define a `dict` like this one:)
-
-[//]: # ()
-[//]: # ()
-[//]: # (<Tabs>)
-
-[//]: # (  <TabItem value="EstimatorV2" label="EstimatorV2">)
-
-[//]: # (     For V2 primitives, `shots` is  an argument of the primitives `run&#40;&#41;` method, although you can specify different options, such as `optimization_level`.)
-
-[//]: # ()
-[//]: # ( **I'M NOT SURE WHAT TO PUT FOR THIS. ARE THERE ANY OPTIONS STILL AVAILABLE FOR V2 BASE PRIMITIVES?**)
-
-[//]: # ()
-[//]: # ()
-[//]: # ( ```python)
-
-[//]: # (from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options)
-
-[//]: # ()
-[//]: # (service = QiskitRuntimeService&#40;&#41;)
-
-[//]: # (options = Options&#40;&#41;)
-
-[//]: # (options.resilience_level = 2)
-
-[//]: # (options.optimization_level = 1)
-
-[//]: # (backend = service.backend&#40;"ibmq_qasm_simulator"&#41;)
-
-[//]: # ()
-[//]: # (estimator = Estimator&#40;options=options, backend=backend&#41;)
-
-[//]: # (job = estimator.run&#40;circuits=[psi1], observables=[H1], parameter_values=[theta1]&#41;)
-
-[//]: # (psi1_H1 = job.result&#40;&#41;)
-
-[//]: # (```)
-
-[//]: # (  </TabItem>)
-
-[//]: # ()
-[//]: # (  <TabItem value="EstimatorV1" label="Estimator &#40;V1&#41;">)
-
-[//]: # (    ```python)
-
-[//]: # (options = {"shots": 2048, "seed": 123})
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (You can then introduce it into your new [`qiskit.primitives.Estimator`]&#40;../api/qiskit/qiskit.primitives.Estimator&#41; with the `options` argument.)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (estimator = Estimator&#40;options=options&#41;)
-
-[//]: # ()
-[//]: # (job = estimator.run&#40;qc, observable&#41;)
-
-[//]: # (result = job.result&#40;&#41;)
-
-[//]: # (print&#40;result&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (EstimatorResult&#40;values=array&#40;[4.]&#41;, metadata=[{'variance': 3.552713678800501e-15, 'shots': 2048}]&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (print&#40;result.values[0]&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (3.999999998697238)
-
-[//]: # (```)
-
-[//]: # (  </TabItem>)
-
-[//]: # (</Tabs>)
-
 ## Use the reference `Sampler`
 
 Similarly to the Estimator, there are two reference implementations of `Sampler` in `qiskit.primitives`:
@@ -549,13 +220,8 @@ the output probability distributions, but they are expressed in different terms:
 - The Sampler (V1) output is always expressed as a "quasi-probability" distribution of output states
 
 The following code prepares the inputs that will be used in the examples below. Note that
-the circuit in the example is parametrized, but you can also run the Sampler on non-parametrized circuits.
-
-[//]: # (While this example only uses one [`qiskit.circuit.QuantumCircuit`]&#40;../api/qiskit/qiskit.circuit.QuantumCircuit&#41;, you can sam)
-
-[//]: # (      ple multiple circuits by passing a `list` of [`qiskit.circuit.QuantumCircuit`]&#40;../api/qiskit/qiskit.circuit.QuantumCircuit)
-
-[//]: # (      &#41; instances to the [`qiskit.primitives.Sampler.run`]&#40;../api/qiskit/qiskit.primitives.Sampler#run&#41; method.)
+these examples run a single circuit, and the circuit is parametrized, but you can also run the Sampler
+on non-parametrized circuits.
 
 ```python
 from qiskit import QuantumCircuit
@@ -648,10 +314,6 @@ The V2 sampler returns measurement outcome samples in the form of **bitstrings**
 order in which they were measured. The V2 sampler result objects organize
 data in terms of their input circuits' classical register names, for
 compatibility with dynamic circuits.
-
-[//]: # (    Even though there is only one circuit in this example, [`qiskit.primitives.SamplerResult.quasi_dists`]&#40;../api/qiskit/qiskit.primitives.SamplerResult#quasi_dists&#41; returns a list of [`qiskit.result.QuasiDistribution`]&#40;../api/qiskit/qiskit.result.QuasiDistribution&#41;s.)
-
-[//]: # (`result.quasi_dists[i]` is the quasi-probability distribution of the `i`<sup>th</sup> circuit.)
 
 
 <Tabs>
@@ -762,171 +424,6 @@ The new interface accepts a `shots` argument that can be defined at the "pub lev
   </TabItem>
 </Tabs>
 
-[//]: # (### Change run options)
-
-[//]: # ()
-[//]: # (Your workflow might require tuning primitive run options, such as the number of shots.)
-
-[//]: # ()
-[//]: # (By default, the reference [`qiskit.primitives.Sampler`]&#40;../api/qiskit/qiskit.primitives.Sampler&#41; class performs an exact statevector)
-
-[//]: # (calculation based on the [`qiskit.quantum_info.Statevector`]&#40;../api/qiskit/qiskit.quantum_info.Statevector&#41; class. However, this can be)
-
-[//]: # (modified to include shot noise if the number of `shots` is set.)
-
-[//]: # (For reproducibility purposes, a `seed` will also be set in the following examples.)
-
-[//]: # ()
-[//]: # (There are two main ways of setting options in the [`qiskit.primitives.Sampler`]&#40;../api/qiskit/qiskit.primitives.Sampler&#41;:)
-
-[//]: # ()
-[//]: # (- Set keyword arguments in the [`qiskit.primitives.Sampler.run`]&#40;../api/qiskit/qiskit.primitives.Sampler#run&#41; method.)
-
-[//]: # (- Modify [`qiskit.primitives.Sampler`]&#40;../api/qiskit/qiskit.primitives.Sampler&#41; options.)
-
-[//]: # ()
-[//]: # (#### Set keyword arguments for [`qiskit.primitives.Sampler.run`]&#40;../api/qiskit/qiskit.primitives.Sampler#run&#41;)
-
-[//]: # ()
-[//]: # (If you only want to change the settings for a specific run, it can be more convenient to set the options inside the [`qiskit.primitives.Sampler.run`]&#40;../api/qiskit/qiskit.primitives.Sampler#run&#41; method. You can do this by passing them as keyword arguments.)
-
-[//]: # ()
-[//]: # ()
-[//]: # ()
-[//]: # (<Tabs>)
-
-[//]: # (  <TabItem value="SamplerV2" label="SamplerV2">)
-
-[//]: # (    ```python)
-
-[//]: # (# Sample two circuits at 128 shots each.)
-
-[//]: # (sampler_v2.run&#40;[circuit1, circuit2], shots=128&#41;)
-
-[//]: # (# Sample two circuits at different amounts of shots. The "None"s are necessary)
-
-[//]: # (# as placeholders)
-
-[//]: # (# for the lack of parameter values in this example.)
-
-[//]: # (sampler_v2.run&#40;[&#40;circuit1, None, 123&#41;, &#40;circuit2, None, 456&#41;]&#41;)
-
-[//]: # (```)
-
-[//]: # (  </TabItem>)
-
-[//]: # ()
-[//]: # (  <TabItem value="SamplerV1" label="Sampler &#40;V1&#41;">)
-
-[//]: # (    ```python)
-
-[//]: # (job = sampler.run&#40;qc, shots=2048, seed=123&#41;)
-
-[//]: # (result = job.result&#40;&#41;)
-
-[//]: # (print&#40;result&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (SamplerResult&#40;quasi_dists=[{0: 0.5205078125, 3: 0.4794921875}], metadata=[{'shots': 2048}]&#41;)
-
-[//]: # (```)
-
-[//]: # (  </TabItem>)
-
-[//]: # (</Tabs>)
-
-[//]: # ()
-[//]: # (#### Modify [`qiskit.primitives.Sampler`]&#40;../api/qiskit/qiskit.primitives.Sampler&#41; options)
-
-[//]: # ()
-[//]: # (If you want to keep some configuration values for several runs, it can be better to change the [`qiskit.primitives.Sampler`]&#40;../api/qiskit/qiskit.primitives.Sampler&#41; options. That way you can use the same [`qiskit.primitives.Sampler`]&#40;../api/qiskit/qiskit.primitives.Sampler&#41; object as many times as you wish without having to rewrite the configuration values every time you use [`qiskit.primitives.Sampler.run`]&#40;../api/qiskit/qiskit.primitives.Sampler#run&#41;.)
-
-[//]: # ()
-[//]: # (#### Modify existing [`qiskit.primitives.Sampler`]&#40;../api/qiskit/qiskit.primitives.Sampler&#41; &#40;V1&#41;)
-
-[//]: # ()
-[//]: # (If you prefer to change the options of an already-defined [`qiskit.primitives.Sampler`]&#40;../api/qiskit/qiskit.primitives.Sampler&#41;, you can use [`qiskit.primitives.Sampler.set_options`]&#40;../api/qiskit/qiskit.primitives.Sampler#set_options&#41; and introduce the new options as keyword arguments.)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (sampler.set_options&#40;shots=2048, seed=123&#41;)
-
-[//]: # ()
-[//]: # (job = sampler.run&#40;qc&#41;)
-
-[//]: # (result = job.result&#40;&#41;)
-
-[//]: # (print&#40;result&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (SamplerResult&#40;quasi_dists=[{0: 0.5205078125, 3: 0.4794921875}], metadata=[{'shots': 2048}]&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (#### Define a new [`qiskit.primitives.Sampler`]&#40;../api/qiskit/qiskit.primitives.Sampler&#41; with the options)
-
-[//]: # ()
-[//]: # (If you prefer, you can define a new [`qiskit.primitives.Sampler`]&#40;../api/qiskit/qiskit.primitives.Sampler&#41; with new options.)
-
-[//]: # ()
-[//]: # (<Tabs>)
-
-[//]: # (  <TabItem value="SamplerV2" label="SamplerV2">)
-
-[//]: # (    **I'M NOT SURE WHAT TO PUT FOR THIS. ARE THERE ANY OPTIONS STILL AVAILABLE FOR V2 BASE PRIMITIVES?**)
-
-[//]: # (  </TabItem>)
-
-[//]: # ()
-[//]: # (  <TabItem value="SamplerV1" label="Sampler &#40;V1&#41;">)
-
-[//]: # (    Define a `dict` like this one:)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (options = {"shots": 2048, "seed": 123})
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (You can then introduce it into your new [`qiskit.primitives.Sampler`]&#40;../api/qiskit/qiskit.primitives.Sampler&#41; with the `options` argument.)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (sampler = Sampler&#40;options=options&#41;)
-
-[//]: # ()
-[//]: # (job = sampler.run&#40;qc&#41;)
-
-[//]: # (result = job.result&#40;&#41;)
-
-[//]: # (print&#40;result&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (```python)
-
-[//]: # (SamplerResult&#40;quasi_dists=[{0: 0.5205078125, 3: 0.4794921875}], metadata=[{'shots': 2048}]&#41;)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (  </TabItem>)
-
-[//]: # (</Tabs>)
 
 ## Next steps
 
