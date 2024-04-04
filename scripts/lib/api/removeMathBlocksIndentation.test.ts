@@ -1,6 +1,6 @@
 // This code is a Qiskit project.
 //
-// (C) Copyright IBM 2023.
+// (C) Copyright IBM 2024.
 //
 // This code is licensed under the Apache License, Version 2.0. You may
 // obtain a copy of this license in the LICENSE file in the root directory
@@ -14,7 +14,7 @@ import { expect, test } from "@jest/globals";
 
 import removeMathBlocksIndentation from "./removeMathBlocksIndentation";
 
-test("dedupeHtmlIds()", async () => {
+test("removeMathBlocksIndentation()", async () => {
   const results = [
     {
       markdown: `
@@ -23,16 +23,33 @@ test("dedupeHtmlIds()", async () => {
 
     ### decomp0
   
-    <Function id="qiskit.synthesis.TwoQubitBasisDecomposer.decomp0" name="decomp0" signature="static decomp0(target)">
-      Decompose target $\sim U_d(x, y, z)$ with $0$ uses of the basis gate. Result $U_r$ has trace:
-      
-      $$
-        \\Big\\vert\\text{Tr}(U_r\\cdot U_\\text{target}^{\\dag})\\Big\\vert =
-        4\\Big\vert (\\cos(x)\\cos(y)\\cos(z)+ j \\sin(x)\\sin(y)\\sin(z)\\Big\\vert
-      $$
-      
-      which is optimal for all targets and bases
-    </Function>
+    <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_2 and q\_1. Thus a textbook matrix for this gate will be:
+
+    \`\`\`python
+         ┌───┐
+    q_0: ┤ X ├
+         └─┬─┘
+    q_1: ──■──
+           │
+    q_2: ──■──
+    \`\`\`
+
+    $$
+    \begin{split}CCX\ q_2, q_1, q_0 =
+        I \otimes I \otimes |0 \rangle \langle 0| + CX \otimes |1 \rangle \langle 1| =
+        \begin{pmatrix}
+            1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+            0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+            0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+            0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+            0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+            0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+            0 & 0 & 0 & 0 & 0 & 0 & 1 & 0
+        \end{pmatrix}\end{split}
+    $$
+  </Admonition>
     
     <Function id="qiskit.synthesis.TwoQubitBasisDecomposer.num_basis_gates" name="num_basis_gates" signature="num_basis_gates(unitary)">
       Computes the number of basis gates needed in a decomposition of input unitary
@@ -56,16 +73,33 @@ test("dedupeHtmlIds()", async () => {
 
     ### decomp0
   
-    <Function id="qiskit.synthesis.TwoQubitBasisDecomposer.decomp0" name="decomp0" signature="static decomp0(target)">
-      Decompose target $\sim U_d(x, y, z)$ with $0$ uses of the basis gate. Result $U_r$ has trace:
-      
+    <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_2 and q\_1. Thus a textbook matrix for this gate will be:
+
+    \`\`\`python
+         ┌───┐
+    q_0: ┤ X ├
+         └─┬─┘
+    q_1: ──■──
+           │
+    q_2: ──■──
+    \`\`\`
+
 $$
-\\Big\\vert\\text{Tr}(U_r\\cdot U_\\text{target}^{\\dag})\\Big\\vert =
-4\\Big\vert (\\cos(x)\\cos(y)\\cos(z)+ j \\sin(x)\\sin(y)\\sin(z)\\Big\\vert
+\begin{split}CCX\ q_2, q_1, q_0 =
+I \otimes I \otimes |0 \rangle \langle 0| + CX \otimes |1 \rangle \langle 1| =
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0
+\end{pmatrix}\end{split}
 $$
-      
-      which is optimal for all targets and bases
-    </Function>
+  </Admonition>
     
     <Function id="qiskit.synthesis.TwoQubitBasisDecomposer.num_basis_gates" name="num_basis_gates" signature="num_basis_gates(unitary)">
       Computes the number of basis gates needed in a decomposition of input unitary

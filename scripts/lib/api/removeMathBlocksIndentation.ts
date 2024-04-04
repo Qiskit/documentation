@@ -10,24 +10,25 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
+import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
 /**
- * The math blocks (latex expressions between double dollars $$) can't be
- * indented more than one time. After introducing the MDX components for
- * classes, functions, and attributes, we can't guarantee only one indentation,
- * and this function removes them all
+ * can't be indented more than one time because it causes the docs app to
+ * not properly handle the math block. For example, if the math block appears
+ * inside a component like <Class> and the math block is indented 4 spaces,
+ * the app errors saying that there is no closing </Class> tag.
+ * This is unexpected behavior.
  */
 function removeMathBlocksIndentation(results: HtmlToMdResultWithUrl[]): void {
-  for (const result of results) {
+  results.forEach((result) => {
     // Captures all the lines in the math blocks, including the indentation
     // before the $$ characters
     const mathBlockRegex = /^[^\S\r\n]( *)\$\$([\s\S]*?)\$\$/gm;
     const indentRegex = /^ +/gm;
-    result.markdown = result.markdown.replace(mathBlockRegex, function (match) {
-      return match.replace(indentRegex, "");
-    });
-  }
+    result.markdown = result.markdown.replace(mathBlockRegex, (match) =>
+      match.replace(indentRegex, ""),
+    );
+  });
 }
 
 export default removeMathBlocksIndentation;
