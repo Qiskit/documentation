@@ -19,45 +19,45 @@ python_api_name: qiskit.pulse.library.GaussianSquareDrag
 
   If `risefall_sigma_ratio` is not `None` and `width` is `None`:
 
-  $$
-  \begin{aligned}
-  \text{risefall} &= \text{risefall\_sigma\_ratio} \times \text{sigma}\\
-  \text{width} &= \text{duration} - 2 \times \text{risefall}
-  \end{aligned}
-  $$
+$$
+\begin{aligned}
+\text{risefall} &= \text{risefall\_sigma\_ratio} \times \text{sigma}\\
+\text{width} &= \text{duration} - 2 \times \text{risefall}
+\end{aligned}
+$$
 
   If `width` is not None and `risefall_sigma_ratio` is None:
 
-  $$
-  \text{risefall} = \frac{\text{duration} - \text{width}}{2}
+$$
+\text{risefall} = \frac{\text{duration} - \text{width}}{2}
 
 
-  $$
+$$
 
   Gaussian $g(x, c, σ)$ and lifted gaussian $g'(x, c, σ)$ curves can be written as:
 
-  $$
-  \begin{aligned}
-  g(x, c, σ) &= \exp\Bigl(-\frac12 \frac{(x - c)^2}{σ^2}\Bigr)\\
-  g'(x, c, σ) &= \frac{g(x, c, σ)-g(-1, c, σ)}{1-g(-1, c, σ)}
-  \end{aligned}
-  $$
+$$
+\begin{aligned}
+g(x, c, σ) &= \exp\Bigl(-\frac12 \frac{(x - c)^2}{σ^2}\Bigr)\\
+g'(x, c, σ) &= \frac{g(x, c, σ)-g(-1, c, σ)}{1-g(-1, c, σ)}
+\end{aligned}
+$$
 
   From these, the lifted DRAG curve $d'(x, c, σ, β)$ can be written as
 
-  $$
-  d'(x, c, σ, β) = g'(x, c, σ) \times \Bigl(1 + 1j \times β \times            \Bigl(-\frac{x - c}{σ^2}\Bigr)\Bigr)
-  $$
+$$
+d'(x, c, σ, β) = g'(x, c, σ) \times \Bigl(1 + 1j \times β \times            \Bigl(-\frac{x - c}{σ^2}\Bigr)\Bigr)
+$$
 
   The lifted gaussian square drag pulse $f'(x)$ is defined as:
 
-  $$
-  \begin{aligned}
-  f'(x) &= \begin{cases}            \text{A} \times d'(x, \text{risefall}, \text{sigma}, \text{beta})                & x < \text{risefall}\\
-      \text{A}                & \text{risefall} \le x < \text{risefall} + \text{width}\\
-      \text{A} \times \times d'(                    x - (\text{risefall} + \text{width}),                    \text{risefall},                    \text{sigma},                    \text{beta}                )                & \text{risefall} + \text{width} \le x        \end{cases}\\
-  \end{aligned}
-  $$
+$$
+\begin{aligned}
+f'(x) &= \begin{cases}            \text{A} \times d'(x, \text{risefall}, \text{sigma}, \text{beta})                & x < \text{risefall}\\
+\text{A}                & \text{risefall} \le x < \text{risefall} + \text{width}\\
+\text{A} \times \times d'(                    x - (\text{risefall} + \text{width}),                    \text{risefall},                    \text{sigma},                    \text{beta}                )                & \text{risefall} + \text{width} \le x        \end{cases}\\
+\end{aligned}
+$$
 
   where $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
 

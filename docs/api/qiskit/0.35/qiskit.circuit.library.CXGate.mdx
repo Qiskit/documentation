@@ -24,16 +24,16 @@ python_api_name: qiskit.circuit.library.CXGate
 
   **Matrix representation:**
 
-  $$
-  \begin{split}CX\ q_0, q_1 =
-      I \otimes |0\rangle\langle0| + X \otimes |1\rangle\langle1| =
-      \begin{pmatrix}
-          1 & 0 & 0 & 0 \\
-          0 & 0 & 0 & 1 \\
-          0 & 0 & 1 & 0 \\
-          0 & 1 & 0 & 0
-      \end{pmatrix}\end{split}
-  $$
+$$
+\begin{split}CX\ q_0, q_1 =
+I \otimes |0\rangle\langle0| + X \otimes |1\rangle\langle1| =
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0
+\end{pmatrix}\end{split}
+$$
 
   <Admonition title="Note" type="note">
     In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
@@ -45,23 +45,23 @@ python_api_name: qiskit.circuit.library.CXGate
     q_1: ──■──
     ```
 
-    $$
-    \begin{split}CX\ q_1, q_0 =
-        |0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes X =
-        \begin{pmatrix}
-            1 & 0 & 0 & 0 \\
-            0 & 1 & 0 & 0 \\
-            0 & 0 & 0 & 1 \\
-            0 & 0 & 1 & 0
-        \end{pmatrix}\end{split}
-    $$
+$$
+\begin{split}CX\ q_1, q_0 =
+|0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes X =
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0
+\end{pmatrix}\end{split}
+$$
   </Admonition>
 
   In the computational basis, this gate flips the target qubit if the control qubit is in the $|1\rangle$ state. In this sense it is similar to a classical XOR gate.
 
-  $$
-  `|a, b\rangle \rightarrow |a, a \oplus b\rangle`
-  $$
+$$
+`|a, b\rangle \rightarrow |a, a \oplus b\rangle`
+$$
 
   Create new CX gate.
 

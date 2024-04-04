@@ -37,9 +37,9 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
   For $A=$ `amp`, samples from the function:
 
-  $$
-  f(x) = A
-  $$
+$$
+f(x) = A
+$$
 
   **Parameters**
 
@@ -59,9 +59,9 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
   For $A=$ `amp`, $\omega=$ `freq`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A \cos(2 \pi \omega x + \phi)
-  $$
+$$
+f(x) = A \cos(2 \pi \omega x + \phi)
+$$
 
   **Parameters**
 
@@ -83,9 +83,9 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
   For $A=$ `amp`, $\sigma=$ `sigma`, and $\beta=$ `beta`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = g(x) + i \beta h(x),
-  $$
+$$
+f(x) = g(x) + i \beta h(x),
+$$
 
   where $g(x)$ is the function sampled in [`gaussian()`](#qiskit.pulse.pulse_lib.discrete.gaussian "qiskit.pulse.pulse_lib.discrete.gaussian"), and $h(x)$ is the function sampled in [`gaussian_deriv()`](#qiskit.pulse.pulse_lib.discrete.gaussian_deriv "qiskit.pulse.pulse_lib.discrete.gaussian_deriv").
 
@@ -116,17 +116,17 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
   For $A=$ `amp` and $\sigma=$ `sigma`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A\exp\left(\left(\frac{x - \mu}{2\sigma}\right)^2 \right),
-  $$
+$$
+f(x) = A\exp\left(\left(\frac{x - \mu}{2\sigma}\right)^2 \right),
+$$
 
   with the center $\mu=$ `duration/2`.
 
   If `zero_ends==True`, each output sample $y$ is modifed according to:
 
-  $$
-  y \mapsto A\frac{y-y^*}{A-y^*},
-  $$
+$$
+y \mapsto A\frac{y-y^*}{A-y^*},
+$$
 
   where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$ while preserving the amplitude at the center. If $A=y^*$, $y$ is set to $1$.
 
@@ -152,9 +152,9 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
   For $A=$ `amp` and $\sigma=$ `sigma` applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A\frac{(x - \mu)}{\sigma^2}\exp\left(\left(\frac{x - \mu}{2\sigma}\right)^2 \right)
-  $$
+$$
+f(x) = A\frac{(x - \mu)}{\sigma^2}\exp\left(\left(\frac{x - \mu}{2\sigma}\right)^2 \right)
+$$
 
   i.e. the derivative of the Gaussian function, with center $\mu=$ `duration/2`.
 
@@ -177,13 +177,13 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
   For $d=$ `duration`, $A=$ `amp`, $\sigma=$ `sigma`, and $r=$ `risefall`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  \begin{split}f(x) = \begin{cases}
-              g(x - r) ) & x\leq r \\
-              A & r\leq x\leq d-r \\
-              g(x - (d - r)) & d-r\leq x
-          \end{cases}\end{split}
-  $$
+$$
+\begin{split}f(x) = \begin{cases}
+g(x - r) ) & x\leq r \\
+A & r\leq x\leq d-r \\
+g(x - (d - r)) & d-r\leq x
+\end{cases}\end{split}
+$$
 
   where $g(x)$ is the Gaussian function sampled from in [`gaussian()`](#qiskit.pulse.pulse_lib.discrete.gaussian "qiskit.pulse.pulse_lib.discrete.gaussian") with $A=$ `amp`, $\mu=1$, and $\sigma=$ `sigma`. I.e. $f(x)$ represents a square pulse with smooth Gaussian edges.
 
@@ -215,9 +215,9 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
   For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = 2 A \left( g(x) - \left\lfloor \frac{1}{2} + g(x) \right\rfloor\right)
-  $$
+$$
+f(x) = 2 A \left( g(x) - \left\lfloor \frac{1}{2} + g(x) \right\rfloor\right)
+$$
 
   where $g(x) = x/T + \phi/\pi$.
 
@@ -260,17 +260,17 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
   For $A=$ `amp` and $\sigma=$ `sigma`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A\text{sech}\left(\frac{x-\mu}{\sigma} \right)
-  $$
+$$
+f(x) = A\text{sech}\left(\frac{x-\mu}{\sigma} \right)
+$$
 
   with the center $\mu=$ `duration/2`.
 
   If `zero_ends==True`, each output sample $y$ is modifed according to:
 
-  $$
-  y \mapsto A\frac{y-y^*}{A-y^*},
-  $$
+$$
+y \mapsto A\frac{y-y^*}{A-y^*},
+$$
 
   where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$ while preserving the amplitude at the center. If $A=y^*$, $y$ is set to $1$.
 
@@ -294,9 +294,9 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
   For $A=$ `amp`, $\sigma=$ `sigma`, and center $\mu=$ `duration/2`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = \frac{d}{dx}\left[A\text{sech}\left(\frac{x-\mu}{\sigma} \right)\right],
-  $$
+$$
+f(x) = \frac{d}{dx}\left[A\text{sech}\left(\frac{x-\mu}{\sigma} \right)\right],
+$$
 
   i.e. the derivative of $\text{sech}$.
 
@@ -319,9 +319,9 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
   For $A=$ `amp`, $\omega=$ `freq`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A \sin(2 \pi \omega x + \phi)
-  $$
+$$
+f(x) = A \sin(2 \pi \omega x + \phi)
+$$
 
   **Parameters**
 
@@ -343,9 +343,9 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
   For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A \text{sign}\left[ \sin\left(\frac{2 \pi x}{T} + 2\phi\right) \right]
-  $$
+$$
+f(x) = A \text{sign}\left[ \sin\left(\frac{2 \pi x}{T} + 2\phi\right) \right]
+$$
 
   with the convention $\text{sign}(0) = 1$.
 
@@ -370,9 +370,9 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
   For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
-  $$
-  f(x) = A \left(-2\left|\text{sawtooth}(x, A, T, \phi)\right| + 1\right)
-  $$
+$$
+f(x) = A \left(-2\left|\text{sawtooth}(x, A, T, \phi)\right| + 1\right)
+$$
 
   This a non-sinusoidal wave with linear ramping.
 
@@ -415,9 +415,9 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
   Samples from the function:
 
-  $$
-  f(x) = 0
-  $$
+$$
+f(x) = 0
+$$
 
   **Parameters**
 

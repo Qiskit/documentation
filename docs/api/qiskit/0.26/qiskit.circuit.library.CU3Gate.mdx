@@ -24,17 +24,17 @@ python_api_name: qiskit.circuit.library.CU3Gate
 
   **Matrix representation:**
 
-  $$
-   \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CU3(\theta, \phi, \lambda)\ q_0, q_1 =
-      I \otimes |0\rangle\langle 0| +
-      U3(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
-      \begin{pmatrix}
-          1 & 0                   & 0 & 0 \\
-          0 & \cos(\th)           & 0 & -e^{i\lambda}\sin(\th) \\
-          0 & 0                   & 1 & 0 \\
-          0 & e^{i\phi}\sin(\th)  & 0 & e^{i(\phi+\lambda)}\cos(\th)
-      \end{pmatrix}\end{split}\end{aligned}\end{align} 
-  $$
+$$
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CU3(\theta, \phi, \lambda)\ q_0, q_1 =
+I \otimes |0\rangle\langle 0| +
+U3(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
+\begin{pmatrix}
+1 & 0                   & 0 & 0 \\
+0 & \cos(\th)           & 0 & -e^{i\lambda}\sin(\th) \\
+0 & 0                   & 1 & 0 \\
+0 & e^{i\phi}\sin(\th)  & 0 & e^{i(\phi+\lambda)}\cos(\th)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
+$$
 
   <Admonition title="Note" type="note">
     In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
@@ -46,17 +46,17 @@ python_api_name: qiskit.circuit.library.CU3Gate
     q_1: ──────■──────
     ```
 
-    $$
-    \begin{split}CU3(\theta, \phi, \lambda)\ q_1, q_0 =
-        |0\rangle\langle 0| \otimes I +
-        |1\rangle\langle 1| \otimes U3(\theta,\phi,\lambda) =
-        \begin{pmatrix}
-            1 & 0   & 0                  & 0 \\
-            0 & 1   & 0                  & 0 \\
-            0 & 0   & \cos(\th)          & -e^{i\lambda}\sin(\th) \\
-            0 & 0   & e^{i\phi}\sin(\th) & e^{i(\phi+\lambda)}\cos(\th)
-        \end{pmatrix}\end{split}
-    $$
+$$
+\begin{split}CU3(\theta, \phi, \lambda)\ q_1, q_0 =
+|0\rangle\langle 0| \otimes I +
+|1\rangle\langle 1| \otimes U3(\theta,\phi,\lambda) =
+\begin{pmatrix}
+1 & 0   & 0                  & 0 \\
+0 & 1   & 0                  & 0 \\
+0 & 0   & \cos(\th)          & -e^{i\lambda}\sin(\th) \\
+0 & 0   & e^{i\phi}\sin(\th) & e^{i(\phi+\lambda)}\cos(\th)
+\end{pmatrix}\end{split}
+$$
   </Admonition>
 
   Create new CU3 gate.

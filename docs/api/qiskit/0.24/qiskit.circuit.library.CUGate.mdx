@@ -26,17 +26,17 @@ python_api_name: qiskit.circuit.library.CUGate
 
   **Matrix representation:**
 
-  $$
-   \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CU(\theta, \phi, \lambda)\ q_0, q_1 =
-      I \otimes |0\rangle\langle 0| +
-      e^{i\gamma} U(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
-      \begin{pmatrix}
-          1 & 0                           & 0 & 0 \\
-          0 & e^{i\gamma}\cos(\th)        & 0 & -e^{i(\gamma + \lambda)}\sin(\th) \\
-          0 & 0                           & 1 & 0 \\
-          0 & e^{i(\gamma+\phi)}\sin(\th) & 0 & e^{i(\gamma+\phi+\lambda)}\cos(\th)
-      \end{pmatrix}\end{split}\end{aligned}\end{align} 
-  $$
+$$
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CU(\theta, \phi, \lambda)\ q_0, q_1 =
+I \otimes |0\rangle\langle 0| +
+e^{i\gamma} U(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
+\begin{pmatrix}
+1 & 0                           & 0 & 0 \\
+0 & e^{i\gamma}\cos(\th)        & 0 & -e^{i(\gamma + \lambda)}\sin(\th) \\
+0 & 0                           & 1 & 0 \\
+0 & e^{i(\gamma+\phi)}\sin(\th) & 0 & e^{i(\gamma+\phi+\lambda)}\cos(\th)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
+$$
 
   <Admonition title="Note" type="note">
     In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
@@ -48,17 +48,17 @@ python_api_name: qiskit.circuit.library.CUGate
     q_1: ──────■───────
     ```
 
-    $$
-    \begin{split}CU(\theta, \phi, \lambda)\ q_1, q_0 =
-        |0\rangle\langle 0| \otimes I +
-        e^{i\gamma}|1\rangle\langle 1| \otimes U3(\theta,\phi,\lambda) =
-        \begin{pmatrix}
-            1 & 0 & 0                             & 0 \\
-            0 & 1 & 0                             & 0 \\
-            0 & 0 & e^{i\gamma} \cos(\th)         & -e^{i(\gamma + \lambda)}\sin(\th) \\
-            0 & 0 & e^{i(\gamma + \phi)}\sin(\th) & e^{i(\gamma + \phi+\lambda)}\cos(\th)
-        \end{pmatrix}\end{split}
-    $$
+$$
+\begin{split}CU(\theta, \phi, \lambda)\ q_1, q_0 =
+|0\rangle\langle 0| \otimes I +
+e^{i\gamma}|1\rangle\langle 1| \otimes U3(\theta,\phi,\lambda) =
+\begin{pmatrix}
+1 & 0 & 0                             & 0 \\
+0 & 1 & 0                             & 0 \\
+0 & 0 & e^{i\gamma} \cos(\th)         & -e^{i(\gamma + \lambda)}\sin(\th) \\
+0 & 0 & e^{i(\gamma + \phi)}\sin(\th) & e^{i(\gamma + \phi+\lambda)}\cos(\th)
+\end{pmatrix}\end{split}
+$$
   </Admonition>
 
   Create new CU gate.

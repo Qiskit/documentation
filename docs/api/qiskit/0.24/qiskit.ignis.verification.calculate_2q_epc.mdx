@@ -15,9 +15,9 @@ python_api_name: qiskit.ignis.verification.calculate_2q_epc
 
   Given that we know the number of gates per Clifford $N_i$ and those EPGs, we can predict EPC of that RB sequence:
 
-  $$
-  EPC = 1 - \prod_i \left( 1 - EPG_i \right)^{N_i}
-  $$
+$$
+EPC = 1 - \prod_i \left( 1 - EPG_i \right)^{N_i}
+$$
 
   This function isolates the contribution of two qubit gate to the EPC \[1]. This will give you more accurate estimation of EPC, especially when the `cx` gate fidelity is close to that of single qubit gate. To run this function, you need to know EPG of both single and two qubit gates. For example, when you prepare 2Q RB experiment with appropriate error model, you can define EPG of those basis gate set. Then you can estimate the EPC of prepared RB sequence without running experiment.
 

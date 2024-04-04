@@ -13,17 +13,17 @@ python_api_name: qiskit.circuit.library.QuadraticForm
 
   A quadratic form on binary variables is a quadratic function $Q$ acting on a binary variable of $n$ bits, $x = x_0 ... x_{n-1}$. For an integer matrix $A$, an integer vector $b$ and an integer $c$ the function can be written as
 
-  $$
-  Q(x) = x^T A x + x^T b + c
-  $$
+$$
+Q(x) = x^T A x + x^T b + c
+$$
 
   If $A$, $b$ or $c$ contain scalar values, this circuit computes only an approximation of the quadratic form.
 
   Provided with $m$ qubits to encode the value, this circuit computes $Q(x) \mod 2^m$ in \[two’s complement]\([https://stackoverflow.com/questions/1049722/what-is-2s-complement](https://stackoverflow.com/questions/1049722/what-is-2s-complement)) representation.
 
-  $$
-  |x\rangle_n |0\rangle_m \mapsto |x\rangle_n |(Q(x) + 2^m) \mod 2^m \rangle_m
-  $$
+$$
+|x\rangle_n |0\rangle_m \mapsto |x\rangle_n |(Q(x) + 2^m) \mod 2^m \rangle_m
+$$
 
   Since we use two’s complement e.g. the value of $Q(x) = 3$ requires 2 bits to represent the value and 1 bit for the sign: 3 = ‘011’ where the first 0 indicates a positive value. On the other hand, $Q(x) = -3$ would be -3 = ‘101’, where the first 1 indicates a negative value and 01 is the two’s complement of 3.
 

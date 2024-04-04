@@ -26,16 +26,16 @@ python_api_name: qiskit.circuit.library.CRXGate
 
   **Matrix representation:**
 
-  $$
-   \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRX(\theta)\ q_0, q_1 =
-      I \otimes |0\rangle\langle 0| + RX(\theta) \otimes |1\rangle\langle 1| =
-      \begin{pmatrix}
-          1 & 0 & 0 & 0 \\
-          0 & \cos\left(\th\right) & 0 & -i\sin\left(\th\right) \\
-          0 & 0 & 1 & 0 \\
-          0 & -i\sin\left(\th\right) & 0 & \cos\left(\th\right)
-      \end{pmatrix}\end{split}\end{aligned}\end{align} 
-  $$
+$$
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRX(\theta)\ q_0, q_1 =
+I \otimes |0\rangle\langle 0| + RX(\theta) \otimes |1\rangle\langle 1| =
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & \cos\left(\th\right) & 0 & -i\sin\left(\th\right) \\
+0 & 0 & 1 & 0 \\
+0 & -i\sin\left(\th\right) & 0 & \cos\left(\th\right)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
+$$
 
   <Admonition title="Note" type="note">
     In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
@@ -47,16 +47,16 @@ python_api_name: qiskit.circuit.library.CRXGate
     q_1: ────■────
     ```
 
-    $$
-     \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRX(\theta)\ q_1, q_0 =
-    |0\rangle\langle0| \otimes I + |1\rangle\langle1| \otimes RX(\theta) =
-        \begin{pmatrix}
-            1 & 0 & 0 & 0 \\
-            0 & 1 & 0 & 0 \\
-            0 & 0 & \cos\left(\th\right)   & -i\sin\left(\th\right) \\
-            0 & 0 & -i\sin\left(\th\right) & \cos\left(\th\right)
-        \end{pmatrix}\end{split}\end{aligned}\end{align} 
-    $$
+$$
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRX(\theta)\ q_1, q_0 =
+|0\rangle\langle0| \otimes I + |1\rangle\langle1| \otimes RX(\theta) =
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & \cos\left(\th\right)   & -i\sin\left(\th\right) \\
+0 & 0 & -i\sin\left(\th\right) & \cos\left(\th\right)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
+$$
   </Admonition>
 
   Create new CRX gate.

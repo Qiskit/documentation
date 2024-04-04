@@ -17,25 +17,25 @@ python_api_name: qiskit.pulse.library.GaussianSquare
 
   If `risefall_sigma_ratio` is not None and `width` is None:
 
-  $$
-  \begin{split}\text{risefall} &= \text{risefall_sigma_ratio} \times \text{sigma}\\
-  \text{width} &= \text{duration} - 2 \times \text{risefall}\end{split}
-  $$
+$$
+\begin{split}\text{risefall} &= \text{risefall_sigma_ratio} \times \text{sigma}\\
+\text{width} &= \text{duration} - 2 \times \text{risefall}\end{split}
+$$
 
   If `width` is not None and `risefall_sigma_ratio` is None:
 
-  $$
-  \text{risefall} = \frac{\text{duration} - \text{width}}{2}
-  $$
+$$
+\text{risefall} = \frac{\text{duration} - \text{width}}{2}
+$$
 
   In both cases, the lifted gaussian square pulse $f'(x)$ is defined as:
 
-  $$
-  \begin{split}f'(x) &= \begin{cases}            \exp\biggl(-\frac12 \frac{(x - \text{risefall})^2}{\text{sigma}^2}\biggr)                & x < \text{risefall}\\
-      1                & \text{risefall} \le x < \text{risefall} + \text{width}\\
-      \exp\biggl(-\frac12                    \frac{{\bigl(x - (\text{risefall} + \text{width})\bigr)}^2}                          {\text{sigma}^2}                    \biggr)                & \text{risefall} + \text{width} \le x        \end{cases}\\
-  f(x) &= \text{A} \times \frac{f'(x) - f'(-1)}{1-f'(-1)},            \quad 0 \le x < \text{duration}\end{split}
-  $$
+$$
+\begin{split}f'(x) &= \begin{cases}            \exp\biggl(-\frac12 \frac{(x - \text{risefall})^2}{\text{sigma}^2}\biggr)                & x < \text{risefall}\\
+1                & \text{risefall} \le x < \text{risefall} + \text{width}\\
+\exp\biggl(-\frac12                    \frac{{\bigl(x - (\text{risefall} + \text{width})\bigr)}^2}                          {\text{sigma}^2}                    \biggr)                & \text{risefall} + \text{width} \le x        \end{cases}\\
+f(x) &= \text{A} \times \frac{f'(x) - f'(-1)}{1-f'(-1)},            \quad 0 \le x < \text{duration}\end{split}
+$$
 
   where $f'(x)$ is the gaussian square waveform without lifting or amplitude scaling, and $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
 

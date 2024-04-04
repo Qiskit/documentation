@@ -29,6 +29,7 @@ import { updateLinks } from "./updateLinks";
 import { specialCaseResults } from "./specialCaseResults";
 import addFrontMatter from "./addFrontMatter";
 import { dedupeHtmlIdsFromResults } from "./dedupeHtmlIds";
+import removeMathBlocksIndentation from "./removeMathBlocksIndentation";
 import { Pkg } from "./Pkg";
 import { pathExists } from "../fs";
 import {
@@ -154,6 +155,7 @@ async function postProcessResults(
   await updateLinks(results, maybeObjectsInv);
   await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
+  removeMathBlocksIndentation(results);
   return results;
 }
 

@@ -13,19 +13,19 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
   The Pauli Expansion circuit is a data encoding circuit that transforms input data $\vec{x} \in \mathbb{R}^n$ as
 
-  $$
-  U_{\Phi(\vec{x})}=\exp\left(i\sum_{S\subseteq [n]}
-  \phi_S(\vec{x})\prod_{i\in S} P_i\right)
-  $$
+$$
+U_{\Phi(\vec{x})}=\exp\left(i\sum_{S\subseteq [n]}
+\phi_S(\vec{x})\prod_{i\in S} P_i\right)
+$$
 
   The circuit contains `reps` repetitions of this transformation. The variable $P_i \in \{ I, X, Y, Z \}$ denotes the Pauli matrices. The index $S$ describes connectivities between different qubits or datapoints: $S \in \{\binom{n}{k}\ combinations,\ k = 1,... n \}$. Per default the data-mapping $\phi_S$ is
 
-  $$
-  \begin{split}\phi_S(\vec{x}) = \begin{cases}
-      x_0 \text{ if } k = 1 \\
-      \prod_{j \in S} (\pi - x_j) \text{ otherwise }
-      \end{cases}\end{split}
-  $$
+$$
+\begin{split}\phi_S(\vec{x}) = \begin{cases}
+x_0 \text{ if } k = 1 \\
+\prod_{j \in S} (\pi - x_j) \text{ otherwise }
+\end{cases}\end{split}
+$$
 
   For example, if the Pauli strings are chosen to be $P_0 = Z$ and $P_{0,1} = YY$ on 2 qubits and with 1 repetition using the default data-mapping, the Pauli evolution feature map is represented by:
 

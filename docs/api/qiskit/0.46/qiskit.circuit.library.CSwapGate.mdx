@@ -27,21 +27,21 @@ python_api_name: qiskit.circuit.library.CSwapGate
 
   **Matrix representation:**
 
-  $$
-  CSWAP\ q_0, q_1, q_2 =
-      I \otimes I \otimes |0 \rangle \langle 0| +
-      SWAP \otimes |1 \rangle \langle 1| =
-      \begin{pmatrix}
-          1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-          0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
-          0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
-          0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
-          0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
-          0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
-          0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
-          0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
-      \end{pmatrix}
-  $$
+$$
+CSWAP\ q_0, q_1, q_2 =
+I \otimes I \otimes |0 \rangle \langle 0| +
+SWAP \otimes |1 \rangle \langle 1| =
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+\end{pmatrix}
+$$
 
   <Admonition title="Note" type="note">
     In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_2. Thus a textbook matrix for this gate will be:
@@ -54,31 +54,31 @@ python_api_name: qiskit.circuit.library.CSwapGate
     q_2: ─■─
     ```
 
-    $$
-    CSWAP\ q_2, q_1, q_0 =
-        |0 \rangle \langle 0| \otimes I \otimes I +
-        |1 \rangle \langle 1| \otimes SWAP =
-        \begin{pmatrix}
-            1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-            0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
-            0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
-            0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
-            0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
-            0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
-            0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
-            0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
-        \end{pmatrix}
-    $$
+$$
+CSWAP\ q_2, q_1, q_0 =
+|0 \rangle \langle 0| \otimes I \otimes I +
+|1 \rangle \langle 1| \otimes SWAP =
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+\end{pmatrix}
+$$
   </Admonition>
 
   In the computational basis, this gate swaps the states of the two target qubits if the control qubit is in the $|1\rangle$ state.
 
-  $$
-  |0, b, c\rangle \rightarrow |0, b, c\rangle
-  |1, b, c\rangle \rightarrow |1, c, b\rangle
+$$
+|0, b, c\rangle \rightarrow |0, b, c\rangle
+|1, b, c\rangle \rightarrow |1, c, b\rangle
 
 
-  $$
+$$
 
   Create new CSWAP gate.
 
