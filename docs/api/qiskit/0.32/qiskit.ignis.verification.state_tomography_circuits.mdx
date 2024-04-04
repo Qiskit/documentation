@@ -8,32 +8,30 @@ python_api_name: qiskit.ignis.verification.state_tomography_circuits
 
 # qiskit.ignis.verification.state\_tomography\_circuits
 
-<span id="qiskit.ignis.verification.state_tomography_circuits" />
+<Function id="qiskit.ignis.verification.state_tomography_circuits" name="state_tomography_circuits" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/basis/circuits.py" signature="state_tomography_circuits(circuit, measured_qubits, meas_labels='Pauli', meas_basis='Pauli')">
+  Return a list of quantum state tomography circuits.
 
-`state_tomography_circuits(circuit, measured_qubits, meas_labels='Pauli', meas_basis='Pauli')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/basis/circuits.py "view source code")
+  This performs measurement in the Pauli-basis resulting in $3^n$ circuits for an n-qubit state tomography experiment.
 
-Return a list of quantum state tomography circuits.
+  **Parameters**
 
-This performs measurement in the Pauli-basis resulting in $3^n$ circuits for an n-qubit state tomography experiment.
+  *   **circuit** (`QuantumCircuit`) – the state preparation circuit to be tomographed.
+  *   **measured\_qubits** (`QuantumRegister`) – the qubits to be measured. This can also be a list of whole QuantumRegisters or individual QuantumRegister qubit tuples.
+  *   **meas\_labels** (`Union`\[`str`, `Tuple`\[`str`], `List`\[`Tuple`\[`str`]]]) – (default: ‘Pauli’) The measurement operator labels.
+  *   **meas\_basis** (`Union`\[`str`, `TomographyBasis`]) – (default: ‘Pauli’) The measurement basis.
 
-**Parameters**
+  **Return type**
 
-*   **circuit** (`QuantumCircuit`) – the state preparation circuit to be tomographed.
-*   **measured\_qubits** (`QuantumRegister`) – the qubits to be measured. This can also be a list of whole QuantumRegisters or individual QuantumRegister qubit tuples.
-*   **meas\_labels** (`Union`\[`str`, `Tuple`\[`str`], `List`\[`Tuple`\[`str`]]]) – (default: ‘Pauli’) The measurement operator labels.
-*   **meas\_basis** (`Union`\[`str`, `TomographyBasis`]) – (default: ‘Pauli’) The measurement basis.
+  `List`\[`QuantumCircuit`]
 
-**Return type**
+  **Returns**
 
-`List`\[`QuantumCircuit`]
+  A list containing copies of the original circuit with state tomography measurements appended at the end.
 
-**Returns**
+  ## Additional Information:
 
-A list containing copies of the original circuit with state tomography measurements appended at the end.
+  The returned circuits are named by the measurement basis.
 
-## Additional Information:
-
-The returned circuits are named by the measurement basis.
-
-To perform tomography measurement in a custom basis, or to generate a subset of state tomography circuits for a partial tomography experiment use the general function tomography\_circuits.
+  To perform tomography measurement in a custom basis, or to generate a subset of state tomography circuits for a partial tomography experiment use the general function tomography\_circuits.
+</Function>
 

@@ -10,205 +10,181 @@ python_api_name: qiskit.pulse.GaussianSquare
 
 # qiskit.pulse.GaussianSquare
 
-<span id="qiskit.pulse.GaussianSquare" />
-
-`GaussianSquare(duration, amp, sigma, width, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/parametric_pulses.py "view source code")
-
-A square pulse with a Gaussian shaped risefall on either side:
+<Class id="qiskit.pulse.GaussianSquare" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/parametric_pulses.py" signature="GaussianSquare(duration, amp, sigma, width, name=None)">
+  A square pulse with a Gaussian shaped risefall on either side:
 
 $$
- \begin{align}\begin{aligned}risefall = (duration - width) / 2\\0 <= x < risefall\\f(x) = amp * exp( -(1/2) * (x - risefall/2)^2 / sigma^2) )\\risefall <= x < risefall + width\\f(x) = amp\\risefall + width <= x < duration\\f(x) = amp * exp( -(1/2) * (x - (risefall + width)/2)^2 / sigma^2) )\end{aligned}\end{align} 
+\begin{align}\begin{aligned}risefall = (duration - width) / 2\\0 <= x < risefall\\f(x) = amp * exp( -(1/2) * (x - risefall/2)^2 / sigma^2) )\\risefall <= x < risefall + width\\f(x) = amp\\risefall + width <= x < duration\\f(x) = amp * exp( -(1/2) * (x - (risefall + width)/2)^2 / sigma^2) )\end{aligned}\end{align} 
 $$
 
-Initialize the gaussian square pulse.
+  Initialize the gaussian square pulse.
 
-**Parameters**
+  **Parameters**
 
-*   **duration** (`int`) – Pulse length in terms of the the sampling period dt.
-*   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the Gaussian and of the square pulse.
-*   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian risefall is; see the class docstring for more details.
-*   **width** (`Union`\[`float`, `ParameterExpression`]) – The duration of the embedded square pulse.
-*   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
+  *   **duration** (`int`) – Pulse length in terms of the the sampling period dt.
+  *   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the Gaussian and of the square pulse.
+  *   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian risefall is; see the class docstring for more details.
+  *   **width** (`Union`\[`float`, `ParameterExpression`]) – The duration of the embedded square pulse.
+  *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 
-### \_\_init\_\_
+  ### \_\_init\_\_
 
-<span id="qiskit.pulse.GaussianSquare.__init__" />
+  <Function id="qiskit.pulse.GaussianSquare.__init__" name="__init__" signature="__init__(duration, amp, sigma, width, name=None)">
+    Initialize the gaussian square pulse.
 
-`__init__(duration, amp, sigma, width, name=None)`
+    **Parameters**
 
-Initialize the gaussian square pulse.
+    *   **duration** (`int`) – Pulse length in terms of the the sampling period dt.
+    *   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the Gaussian and of the square pulse.
+    *   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian risefall is; see the class docstring for more details.
+    *   **width** (`Union`\[`float`, `ParameterExpression`]) – The duration of the embedded square pulse.
+    *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **duration** (`int`) – Pulse length in terms of the the sampling period dt.
-*   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the Gaussian and of the square pulse.
-*   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian risefall is; see the class docstring for more details.
-*   **width** (`Union`\[`float`, `ParameterExpression`]) – The duration of the embedded square pulse.
-*   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
+  |                                                                                                                                    |                                                                                                                                |
+  | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.pulse.GaussianSquare.__init__ "qiskit.pulse.GaussianSquare.__init__")(duration, amp, sigma, width\[, name])   | Initialize the gaussian square pulse.                                                                                          |
+  | [`assign_parameters`](#qiskit.pulse.GaussianSquare.assign_parameters "qiskit.pulse.GaussianSquare.assign_parameters")(value\_dict) | Return a new ParametricPulse with parameters assigned.                                                                         |
+  | [`draw`](#qiskit.pulse.GaussianSquare.draw "qiskit.pulse.GaussianSquare.draw")(\[dt, style, filename, interp\_method, …])          | Plot the pulse.                                                                                                                |
+  | [`get_sample_pulse`](#qiskit.pulse.GaussianSquare.get_sample_pulse "qiskit.pulse.GaussianSquare.get_sample_pulse")()               | Deprecated.                                                                                                                    |
+  | [`get_waveform`](#qiskit.pulse.GaussianSquare.get_waveform "qiskit.pulse.GaussianSquare.get_waveform")()                           | Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains. |
+  | [`validate_parameters`](#qiskit.pulse.GaussianSquare.validate_parameters "qiskit.pulse.GaussianSquare.validate_parameters")()      | Validate parameters.                                                                                                           |
 
-## Methods
+  ## Attributes
 
-|                                                                                                                                    |                                                                                                                                |
-| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.pulse.GaussianSquare.__init__ "qiskit.pulse.GaussianSquare.__init__")(duration, amp, sigma, width\[, name])   | Initialize the gaussian square pulse.                                                                                          |
-| [`assign_parameters`](#qiskit.pulse.GaussianSquare.assign_parameters "qiskit.pulse.GaussianSquare.assign_parameters")(value\_dict) | Return a new ParametricPulse with parameters assigned.                                                                         |
-| [`draw`](#qiskit.pulse.GaussianSquare.draw "qiskit.pulse.GaussianSquare.draw")(\[dt, style, filename, interp\_method, …])          | Plot the pulse.                                                                                                                |
-| [`get_sample_pulse`](#qiskit.pulse.GaussianSquare.get_sample_pulse "qiskit.pulse.GaussianSquare.get_sample_pulse")()               | Deprecated.                                                                                                                    |
-| [`get_waveform`](#qiskit.pulse.GaussianSquare.get_waveform "qiskit.pulse.GaussianSquare.get_waveform")()                           | Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains. |
-| [`validate_parameters`](#qiskit.pulse.GaussianSquare.validate_parameters "qiskit.pulse.GaussianSquare.validate_parameters")()      | Validate parameters.                                                                                                           |
+  |                                                                                                  |                                                        |
+  | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------ |
+  | [`amp`](#qiskit.pulse.GaussianSquare.amp "qiskit.pulse.GaussianSquare.amp")                      | The Gaussian amplitude.                                |
+  | [`id`](#qiskit.pulse.GaussianSquare.id "qiskit.pulse.GaussianSquare.id")                         | Unique identifier for this pulse.                      |
+  | [`parameters`](#qiskit.pulse.GaussianSquare.parameters "qiskit.pulse.GaussianSquare.parameters") | Return a dictionary containing the pulse’s parameters. |
+  | [`sigma`](#qiskit.pulse.GaussianSquare.sigma "qiskit.pulse.GaussianSquare.sigma")                | The Gaussian standard deviation of the pulse width.    |
+  | [`width`](#qiskit.pulse.GaussianSquare.width "qiskit.pulse.GaussianSquare.width")                | The width of the square portion of the pulse.          |
 
-## Attributes
+  ### amp
 
-|                                                                                                  |                                                        |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------ |
-| [`amp`](#qiskit.pulse.GaussianSquare.amp "qiskit.pulse.GaussianSquare.amp")                      | The Gaussian amplitude.                                |
-| [`id`](#qiskit.pulse.GaussianSquare.id "qiskit.pulse.GaussianSquare.id")                         | Unique identifier for this pulse.                      |
-| [`parameters`](#qiskit.pulse.GaussianSquare.parameters "qiskit.pulse.GaussianSquare.parameters") | Return a dictionary containing the pulse’s parameters. |
-| [`sigma`](#qiskit.pulse.GaussianSquare.sigma "qiskit.pulse.GaussianSquare.sigma")                | The Gaussian standard deviation of the pulse width.    |
-| [`width`](#qiskit.pulse.GaussianSquare.width "qiskit.pulse.GaussianSquare.width")                | The width of the square portion of the pulse.          |
+  <Function id="qiskit.pulse.GaussianSquare.amp" name="amp" signature="property amp">
+    The Gaussian amplitude.
 
-### amp
+    **Return type**
 
-<span id="qiskit.pulse.GaussianSquare.amp" />
+    `Union`\[`complex`, `ParameterExpression`]
+  </Function>
 
-`property amp`
+  ### assign\_parameters
 
-The Gaussian amplitude.
+  <Function id="qiskit.pulse.GaussianSquare.assign_parameters" name="assign_parameters" signature="assign_parameters(value_dict)">
+    Return a new ParametricPulse with parameters assigned.
 
-**Return type**
+    **Parameters**
 
-`Union`\[`complex`, `ParameterExpression`]
+    **value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`, `int`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
 
-### assign\_parameters
+    **Return type**
 
-<span id="qiskit.pulse.GaussianSquare.assign_parameters" />
+    `ParametricPulse`
 
-`assign_parameters(value_dict)`
+    **Returns**
 
-Return a new ParametricPulse with parameters assigned.
+    New pulse with updated parameters.
+  </Function>
 
-**Parameters**
+  ### draw
 
-**value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`, `int`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
+  <Function id="qiskit.pulse.GaussianSquare.draw" name="draw" signature="draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)">
+    Plot the pulse.
 
-**Return type**
+    **Parameters**
 
-`ParametricPulse`
+    *   **dt** (`float`) – Time interval of samples.
+    *   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
+    *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
+    *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
+    *   **scale** (`float`) – Relative visual scaling of waveform amplitudes
+    *   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
 
-**Returns**
+    **Returns**
 
-New pulse with updated parameters.
+    A matplotlib figure object of the pulse envelope
 
-### draw
+    **Return type**
 
-<span id="qiskit.pulse.GaussianSquare.draw" />
+    matplotlib.figure
+  </Function>
 
-`draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)`
+  ### get\_sample\_pulse
 
-Plot the pulse.
+  <Function id="qiskit.pulse.GaussianSquare.get_sample_pulse" name="get_sample_pulse" signature="get_sample_pulse()">
+    Deprecated.
 
-**Parameters**
+    **Return type**
 
-*   **dt** (`float`) – Time interval of samples.
-*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
-*   **filename** (`Optional`\[`str`]) – Name required to save pulse image
-*   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
-*   **scale** (`float`) – Relative visual scaling of waveform amplitudes
-*   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
+    `Waveform`
+  </Function>
 
-**Returns**
+  ### get\_waveform
 
-A matplotlib figure object of the pulse envelope
+  <Function id="qiskit.pulse.GaussianSquare.get_waveform" name="get_waveform" signature="get_waveform()">
+    Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
-**Return type**
+    **Return type**
 
-matplotlib.figure
+    `Waveform`
+  </Function>
 
-### get\_sample\_pulse
+  ### id
 
-<span id="qiskit.pulse.GaussianSquare.get_sample_pulse" />
+  <Function id="qiskit.pulse.GaussianSquare.id" name="id" signature="property id">
+    Unique identifier for this pulse.
 
-`get_sample_pulse()`
+    **Return type**
 
-Deprecated.
+    `int`
+  </Function>
 
-**Return type**
+  ### parameters
 
-`Waveform`
+  <Function id="qiskit.pulse.GaussianSquare.parameters" name="parameters" signature="property parameters">
+    Return a dictionary containing the pulse’s parameters.
 
-### get\_waveform
+    **Return type**
 
-<span id="qiskit.pulse.GaussianSquare.get_waveform" />
+    `Dict`\[`str`, `Any`]
+  </Function>
 
-`get_waveform()`
+  ### sigma
 
-Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
+  <Function id="qiskit.pulse.GaussianSquare.sigma" name="sigma" signature="property sigma">
+    The Gaussian standard deviation of the pulse width.
 
-**Return type**
+    **Return type**
 
-`Waveform`
+    `Union`\[`float`, `ParameterExpression`]
+  </Function>
 
-### id
+  ### validate\_parameters
 
-<span id="qiskit.pulse.GaussianSquare.id" />
+  <Function id="qiskit.pulse.GaussianSquare.validate_parameters" name="validate_parameters" signature="validate_parameters()">
+    Validate parameters.
 
-`property id`
+    **Raises**
 
-Unique identifier for this pulse.
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
 
-**Return type**
+    **Return type**
 
-`int`
+    `None`
+  </Function>
 
-### parameters
+  ### width
 
-<span id="qiskit.pulse.GaussianSquare.parameters" />
+  <Function id="qiskit.pulse.GaussianSquare.width" name="width" signature="property width">
+    The width of the square portion of the pulse.
 
-`property parameters`
+    **Return type**
 
-Return a dictionary containing the pulse’s parameters.
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
-
-### sigma
-
-<span id="qiskit.pulse.GaussianSquare.sigma" />
-
-`property sigma`
-
-The Gaussian standard deviation of the pulse width.
-
-**Return type**
-
-`Union`\[`float`, `ParameterExpression`]
-
-### validate\_parameters
-
-<span id="qiskit.pulse.GaussianSquare.validate_parameters" />
-
-`validate_parameters()`
-
-Validate parameters.
-
-**Raises**
-
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
-
-**Return type**
-
-`None`
-
-### width
-
-<span id="qiskit.pulse.GaussianSquare.width" />
-
-`property width`
-
-The width of the square portion of the pulse.
-
-**Return type**
-
-`Union`\[`float`, `ParameterExpression`]
+    `Union`\[`float`, `ParameterExpression`]
+  </Function>
+</Class>
 

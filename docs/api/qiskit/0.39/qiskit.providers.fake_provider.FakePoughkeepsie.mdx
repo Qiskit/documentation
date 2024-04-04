@@ -8,137 +8,119 @@ python_api_name: qiskit.providers.fake_provider.FakePoughkeepsie
 
 # FakePoughkeepsie
 
-<span id="qiskit.providers.fake_provider.FakePoughkeepsie" />
+<Class id="qiskit.providers.fake_provider.FakePoughkeepsie" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/poughkeepsie/fake_poughkeepsie.py" signature="FakePoughkeepsie">
+  Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
 
-`FakePoughkeepsie` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/poughkeepsie/fake_poughkeepsie.py "view source code")
+  A fake Poughkeepsie backend.
 
-Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
+  ```python
+  00 ↔ 01 ↔ 02 ↔ 03 ↔ 04
+   ↕                   ↕
+  05 ↔ 06 ↔ 07 ↔ 08 ↔ 09
+   ↕         ↕         ↕
+  10 ↔ 11 ↔ 12 ↔ 13 ↔ 14
+   ↕                   ↕
+  15 ↔ 16 ↔ 17 ↔ 18 ↔ 19
+  ```
 
-A fake Poughkeepsie backend.
+  ## Methods
 
-```python
-00 ↔ 01 ↔ 02 ↔ 03 ↔ 04
- ↕                   ↕
-05 ↔ 06 ↔ 07 ↔ 08 ↔ 09
- ↕         ↕         ↕
-10 ↔ 11 ↔ 12 ↔ 13 ↔ 14
- ↕                   ↕
-15 ↔ 16 ↔ 17 ↔ 18 ↔ 19
-```
+  ### configuration
 
-## Methods
+  <Function id="qiskit.providers.fake_provider.FakePoughkeepsie.configuration" name="configuration" signature="FakePoughkeepsie.configuration()">
+    Return the backend configuration.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakePoughkeepsie.configuration" />
+    the configuration for the backend.
 
-`FakePoughkeepsie.configuration()`
+    **Return type**
 
-Return the backend configuration.
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-**Returns**
+  ### name
 
-the configuration for the backend.
+  <Function id="qiskit.providers.fake_provider.FakePoughkeepsie.name" name="name" signature="FakePoughkeepsie.name()">
+    Return the backend name.
 
-**Return type**
+    **Returns**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    the name of the backend.
 
-### name
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakePoughkeepsie.name" />
+    str
+  </Function>
 
-`FakePoughkeepsie.name()`
+  ### properties
 
-Return the backend name.
+  <Function id="qiskit.providers.fake_provider.FakePoughkeepsie.properties" name="properties" signature="FakePoughkeepsie.properties()">
+    Returns a snapshot of device properties
+  </Function>
 
-**Returns**
+  ### provider
 
-the name of the backend.
+  <Function id="qiskit.providers.fake_provider.FakePoughkeepsie.provider" name="provider" signature="FakePoughkeepsie.provider()">
+    Return the backend Provider.
 
-**Return type**
+    **Returns**
 
-str
+    the Provider responsible for the backend.
 
-### properties
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakePoughkeepsie.properties" />
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-`FakePoughkeepsie.properties()`
+  ### run
 
-Returns a snapshot of device properties
+  <Function id="qiskit.providers.fake_provider.FakePoughkeepsie.run" name="run" signature="FakePoughkeepsie.run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-### provider
+  ### set\_options
 
-<span id="qiskit.providers.fake_provider.FakePoughkeepsie.provider" />
+  <Function id="qiskit.providers.fake_provider.FakePoughkeepsie.set_options" name="set_options" signature="FakePoughkeepsie.set_options(**fields)">
+    Set the options fields for the backend
 
-`FakePoughkeepsie.provider()`
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-Return the backend Provider.
+    **Parameters**
 
-**Returns**
+    **fields** – The fields to update the options
 
-the Provider responsible for the backend.
+    **Raises**
 
-**Return type**
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  ### status
 
-### run
+  <Function id="qiskit.providers.fake_provider.FakePoughkeepsie.status" name="status" signature="FakePoughkeepsie.status()">
+    Return the backend status.
 
-<span id="qiskit.providers.fake_provider.FakePoughkeepsie.run" />
+    **Returns**
 
-`FakePoughkeepsie.run(run_input, **kwargs)`
+    the status of the backend.
 
-Main job in simulator
+    **Return type**
 
-### set\_options
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-<span id="qiskit.providers.fake_provider.FakePoughkeepsie.set_options" />
+  ## Attributes
 
-`FakePoughkeepsie.set_options(**fields)`
+  ### options
 
-Set the options fields for the backend
+  <Attribute id="qiskit.providers.fake_provider.FakePoughkeepsie.options" name="options">
+    Return the options for the backend
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakePoughkeepsie#run "qiskit.providers.fake_provider.FakePoughkeepsie.run") method.
+  </Attribute>
 
-**Parameters**
+  ### version
 
-**fields** – The fields to update the options
-
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit.providers.fake_provider.FakePoughkeepsie.status" />
-
-`FakePoughkeepsie.status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.fake_provider.FakePoughkeepsie.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakePoughkeepsie#run "qiskit.providers.fake_provider.FakePoughkeepsie.run") method.
-
-<span id="qiskit.providers.fake_provider.FakePoughkeepsie.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.fake_provider.FakePoughkeepsie.version" name="version" attributeValue="= 1" />
+</Class>
 

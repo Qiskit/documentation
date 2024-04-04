@@ -8,392 +8,350 @@ python_api_name: qiskit.quantum_info.Stinespring
 
 # Stinespring
 
-<span id="qiskit.quantum_info.Stinespring" />
+<Class id="qiskit.quantum_info.Stinespring" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/operators/channel/stinespring.py" signature="qiskit.quantum_info.Stinespring(data, input_dims=None, output_dims=None)">
+  Bases: `QuantumChannel`
 
-`qiskit.quantum_info.Stinespring(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/operators/channel/stinespring.py "view source code")
+  Stinespring representation of a quantum channel.
 
-Bases: `QuantumChannel`
-
-Stinespring representation of a quantum channel.
-
-The Stinespring representation of a quantum channel $\mathcal{E}$ is a rectangular matrix $A$ such that the evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ is given by
+  The Stinespring representation of a quantum channel $\mathcal{E}$ is a rectangular matrix $A$ such that the evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ is given by
 
 $$
 \mathcal{E}(ρ) = \mbox{Tr}_2\left[A ρ A^\dagger\right]
 $$
 
-where $\mbox{Tr}_2$ is the [`partial_trace()`](quantum_info#qiskit.quantum_info.partial_trace "qiskit.quantum_info.partial_trace") over subsystem 2.
+  where $\mbox{Tr}_2$ is the [`partial_trace()`](quantum_info#qiskit.quantum_info.partial_trace "qiskit.quantum_info.partial_trace") over subsystem 2.
 
-A general operator map $\mathcal{G}$ can also be written using the generalized Stinespring representation which is given by two matrices $A$, $B$ such that
+  A general operator map $\mathcal{G}$ can also be written using the generalized Stinespring representation which is given by two matrices $A$, $B$ such that
 
 $$
 \mathcal{G}(ρ) = \mbox{Tr}_2\left[A ρ B^\dagger\right]
 $$
 
-See reference \[1] for further details.
+  See reference \[1] for further details.
 
-**References**
+  **References**
 
-1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
+  1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
 
-Initialize a quantum channel Stinespring operator.
+  Initialize a quantum channel Stinespring operator.
 
-**Parameters**
+  **Parameters**
 
-*   **or** (*data (*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Instruction or BaseOperator or matrix): data to initialize superoperator.
-*   **input\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the input subsystem dimensions. \[Default: None]
-*   **output\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the output subsystem dimensions. \[Default: None]
+  *   **or** (*data (*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Instruction or BaseOperator or matrix): data to initialize superoperator.
+  *   **input\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the input subsystem dimensions. \[Default: None]
+  *   **output\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the output subsystem dimensions. \[Default: None]
 
-**Raises**
+  **Raises**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data cannot be initialized as a a list of Kraus matrices.
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data cannot be initialized as a a list of Kraus matrices.
 
-**Additional Information:**
+  **Additional Information:**
 
-If the input or output dimensions are None, they will be automatically determined from the input data. This can fail for the Stinespring operator if the output dimension cannot be automatically determined.
+  If the input or output dimensions are None, they will be automatically determined from the input data. This can fail for the Stinespring operator if the output dimension cannot be automatically determined.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.quantum_info.Stinespring.atol" />
+  ### atol
 
-### atol
+  <Attribute id="qiskit.quantum_info.Stinespring.atol" name="atol" attributeValue="= 1e-08" />
 
-`= 1e-08`
+  ### data
 
-<span id="qiskit.quantum_info.Stinespring.data" />
+  <Attribute id="qiskit.quantum_info.Stinespring.data" name="data" />
 
-### data
+  ### dim
 
-<span id="qiskit.quantum_info.Stinespring.dim" />
+  <Attribute id="qiskit.quantum_info.Stinespring.dim" name="dim">
+    Return tuple (input\_shape, output\_shape).
+  </Attribute>
 
-### dim
+  ### num\_qubits
 
-Return tuple (input\_shape, output\_shape).
+  <Attribute id="qiskit.quantum_info.Stinespring.num_qubits" name="num_qubits">
+    Return the number of qubits if a N-qubit operator or None otherwise.
+  </Attribute>
 
-<span id="qiskit.quantum_info.Stinespring.num_qubits" />
+  ### qargs
 
-### num\_qubits
+  <Attribute id="qiskit.quantum_info.Stinespring.qargs" name="qargs">
+    Return the qargs for the operator.
+  </Attribute>
 
-Return the number of qubits if a N-qubit operator or None otherwise.
+  ### rtol
 
-<span id="qiskit.quantum_info.Stinespring.qargs" />
+  <Attribute id="qiskit.quantum_info.Stinespring.rtol" name="rtol" attributeValue="= 1e-05" />
 
-### qargs
+  ### settings
 
-Return the qargs for the operator.
+  <Attribute id="qiskit.quantum_info.Stinespring.settings" name="settings">
+    Return settings.
+  </Attribute>
 
-<span id="qiskit.quantum_info.Stinespring.rtol" />
+  ## Methods
 
-### rtol
+  ### adjoint
 
-`= 1e-05`
+  <Function id="qiskit.quantum_info.Stinespring.adjoint" name="adjoint" signature="adjoint()">
+    Return the adjoint quantum channel.
 
-<span id="qiskit.quantum_info.Stinespring.settings" />
+    <Admonition title="Note" type="note">
+      This is equivalent to the matrix Hermitian conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the adjoint channel $\mathcal{{E}}^\dagger$ is $S_{\mathcal{E}^\dagger} = S_{\mathcal{E}}^\dagger$.
+    </Admonition>
 
-### settings
+    **Return type**
 
-Return settings.
+    *Self*
+  </Function>
 
-## Methods
+  ### compose
 
-### adjoint
+  <Function id="qiskit.quantum_info.Stinespring.compose" name="compose" signature="compose(other, qargs=None, front=False)">
+    Return the operator composition with another Stinespring.
 
-<span id="qiskit.quantum_info.Stinespring.adjoint" />
+    **Parameters**
 
-`adjoint()`
+    *   **other** ([*Stinespring*](#qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")) – a Stinespring object.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
-Return the adjoint quantum channel.
+    **Returns**
 
-<Admonition title="Note" type="note">
-  This is equivalent to the matrix Hermitian conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the adjoint channel $\mathcal{{E}}^\dagger$ is $S_{\mathcal{E}^\dagger} = S_{\mathcal{E}}^\dagger$.
-</Admonition>
+    The composed Stinespring.
 
-**Return type**
+    **Return type**
 
-*Self*
+    [Stinespring](#qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")
 
-### compose
+    **Raises**
 
-<span id="qiskit.quantum_info.Stinespring.compose" />
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
-`compose(other, qargs=None, front=False)`
+    <Admonition title="Note" type="note">
+      Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](#qiskit.quantum_info.Stinespring.dot "qiskit.quantum_info.Stinespring.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
 
-Return the operator composition with another Stinespring.
+      Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.Stinespring.dot "qiskit.quantum_info.Stinespring.dot") method `A.dot(B) == A.compose(B, front=True)`.
+    </Admonition>
+  </Function>
 
-**Parameters**
+  ### conjugate
 
-*   **other** ([*Stinespring*](#qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")) – a Stinespring object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+  <Function id="qiskit.quantum_info.Stinespring.conjugate" name="conjugate" signature="conjugate()">
+    Return the conjugate quantum channel.
 
-**Returns**
+    <Admonition title="Note" type="note">
+      This is equivalent to the matrix complex conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the conjugate channel $\overline{{\mathcal{{E}}}}$ is $S_{\overline{\mathcal{E}^\dagger}} = \overline{S_{\mathcal{E}}}$.
+    </Admonition>
+  </Function>
 
-The composed Stinespring.
+  ### copy
 
-**Return type**
+  <Function id="qiskit.quantum_info.Stinespring.copy" name="copy" signature="copy()">
+    Make a deep copy of current operator.
+  </Function>
 
-[Stinespring](#qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")
+  ### dot
 
-**Raises**
+  <Function id="qiskit.quantum_info.Stinespring.dot" name="dot" signature="dot(other, qargs=None)">
+    Return the right multiplied operator self \* other.
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
+    **Parameters**
 
-<Admonition title="Note" type="note">
-  Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](#qiskit.quantum_info.Stinespring.dot "qiskit.quantum_info.Stinespring.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
+    *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
 
-  Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.Stinespring.dot "qiskit.quantum_info.Stinespring.dot") method `A.dot(B) == A.compose(B, front=True)`.
-</Admonition>
+    **Returns**
 
-### conjugate
+    The right matrix multiplied Operator.
 
-<span id="qiskit.quantum_info.Stinespring.conjugate" />
+    **Return type**
 
-`conjugate()`
+    [Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-Return the conjugate quantum channel.
+    <Admonition title="Note" type="note">
+      The dot product can be obtained using the `@` binary operator. Hence `a.dot(b)` is equivalent to `a @ b`.
+    </Admonition>
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is equivalent to the matrix complex conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the conjugate channel $\overline{{\mathcal{{E}}}}$ is $S_{\overline{\mathcal{E}^\dagger}} = \overline{S_{\mathcal{E}}}$.
-</Admonition>
+  ### expand
 
-### copy
+  <Function id="qiskit.quantum_info.Stinespring.expand" name="expand" signature="expand(other)">
+    Return the reverse-order tensor product with another Stinespring.
 
-<span id="qiskit.quantum_info.Stinespring.copy" />
+    **Parameters**
 
-`copy()`
+    **other** ([*Stinespring*](#qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")) – a Stinespring object.
 
-Make a deep copy of current operator.
+    **Returns**
 
-### dot
+    **the tensor product $b \otimes a$, where $a$**
 
-<span id="qiskit.quantum_info.Stinespring.dot" />
+    is the current Stinespring, and $b$ is the other Stinespring.
 
-`dot(other, qargs=None)`
+    **Return type**
 
-Return the right multiplied operator self \* other.
+    [Stinespring](#qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")
+  </Function>
 
-**Parameters**
+  ### input\_dims
 
-*   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+  <Function id="qiskit.quantum_info.Stinespring.input_dims" name="input_dims" signature="input_dims(qargs=None)">
+    Return tuple of input dimension for specified subsystems.
+  </Function>
 
-**Returns**
+  ### is\_cp
 
-The right matrix multiplied Operator.
+  <Function id="qiskit.quantum_info.Stinespring.is_cp" name="is_cp" signature="is_cp(atol=None, rtol=None)">
+    Test if Choi-matrix is completely-positive (CP)
 
-**Return type**
+    **Return type**
 
-[Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-<Admonition title="Note" type="note">
-  The dot product can be obtained using the `@` binary operator. Hence `a.dot(b)` is equivalent to `a @ b`.
-</Admonition>
+  ### is\_cptp
 
-### expand
+  <Function id="qiskit.quantum_info.Stinespring.is_cptp" name="is_cptp" signature="is_cptp(atol=None, rtol=None)">
+    Return True if completely-positive trace-preserving.
+  </Function>
 
-<span id="qiskit.quantum_info.Stinespring.expand" />
+  ### is\_tp
 
-`expand(other)`
+  <Function id="qiskit.quantum_info.Stinespring.is_tp" name="is_tp" signature="is_tp(atol=None, rtol=None)">
+    Test if a channel is trace-preserving (TP)
 
-Return the reverse-order tensor product with another Stinespring.
+    **Return type**
 
-**Parameters**
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-**other** ([*Stinespring*](#qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")) – a Stinespring object.
+  ### is\_unitary
 
-**Returns**
+  <Function id="qiskit.quantum_info.Stinespring.is_unitary" name="is_unitary" signature="is_unitary(atol=None, rtol=None)">
+    Return True if QuantumChannel is a unitary channel.
 
-**the tensor product $b \otimes a$, where $a$**
+    **Return type**
 
-is the current Stinespring, and $b$ is the other Stinespring.
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-**Return type**
+  ### output\_dims
 
-[Stinespring](#qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")
+  <Function id="qiskit.quantum_info.Stinespring.output_dims" name="output_dims" signature="output_dims(qargs=None)">
+    Return tuple of output dimension for specified subsystems.
+  </Function>
 
-### input\_dims
+  ### power
 
-<span id="qiskit.quantum_info.Stinespring.input_dims" />
+  <Function id="qiskit.quantum_info.Stinespring.power" name="power" signature="power(n)">
+    Return the power of the quantum channel.
 
-`input_dims(qargs=None)`
+    **Parameters**
 
-Return tuple of input dimension for specified subsystems.
+    **n** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the power exponent.
 
-### is\_cp
+    **Returns**
 
-<span id="qiskit.quantum_info.Stinespring.is_cp" />
+    the channel $\mathcal{{E}} ^n$.
 
-`is_cp(atol=None, rtol=None)`
+    **Return type**
 
-Test if Choi-matrix is completely-positive (CP)
+    [SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
 
-**Return type**
+    **Raises**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the SuperOp are not equal.
 
-### is\_cptp
+    <Admonition title="Note" type="note">
+      For non-positive or non-integer exponents the power is defined as the matrix power of the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{{E}}$, the SuperOp of the powered channel $\mathcal{{E}}^\n$ is $S_{{\mathcal{{E}}^n}} = S_{{\mathcal{{E}}}}^n$.
+    </Admonition>
+  </Function>
 
-<span id="qiskit.quantum_info.Stinespring.is_cptp" />
+  ### reshape
 
-`is_cptp(atol=None, rtol=None)`
+  <Function id="qiskit.quantum_info.Stinespring.reshape" name="reshape" signature="reshape(input_dims=None, output_dims=None, num_qubits=None)">
+    Return a shallow copy with reshaped input and output subsystem dimensions.
 
-Return True if completely-positive trace-preserving.
+    **Parameters**
 
-### is\_tp
+    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
 
-<span id="qiskit.quantum_info.Stinespring.is_tp" />
+    **Returns**
 
-`is_tp(atol=None, rtol=None)`
+    returns self with reshaped input and output dimensions.
 
-Test if a channel is trace-preserving (TP)
+    **Return type**
 
-**Return type**
+    BaseOperator
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    **Raises**
 
-### is\_unitary
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  </Function>
 
-<span id="qiskit.quantum_info.Stinespring.is_unitary" />
+  ### tensor
 
-`is_unitary(atol=None, rtol=None)`
+  <Function id="qiskit.quantum_info.Stinespring.tensor" name="tensor" signature="tensor(other)">
+    Return the tensor product with another Stinespring.
 
-Return True if QuantumChannel is a unitary channel.
+    **Parameters**
 
-**Return type**
+    **other** ([*Stinespring*](#qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")) – a Stinespring object.
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    **Returns**
 
-### output\_dims
+    **the tensor product $a \otimes b$, where $a$**
 
-<span id="qiskit.quantum_info.Stinespring.output_dims" />
+    is the current Stinespring, and $b$ is the other Stinespring.
 
-`output_dims(qargs=None)`
+    **Return type**
 
-Return tuple of output dimension for specified subsystems.
+    [Stinespring](#qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")
 
-### power
+    <Admonition title="Note" type="note">
+      The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
+    </Admonition>
+  </Function>
 
-<span id="qiskit.quantum_info.Stinespring.power" />
+  ### to\_instruction
 
-`power(n)`
+  <Function id="qiskit.quantum_info.Stinespring.to_instruction" name="to_instruction" signature="to_instruction()">
+    Convert to a Kraus or UnitaryGate circuit instruction.
 
-Return the power of the quantum channel.
+    If the channel is unitary it will be added as a unitary gate, otherwise it will be added as a kraus simulator instruction.
 
-**Parameters**
+    **Returns**
 
-**n** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the power exponent.
+    A kraus instruction for the channel.
 
-**Returns**
+    **Return type**
 
-the channel $\mathcal{{E}} ^n$.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**Return type**
+    **Raises**
 
-[SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data is not an N-qubit CPTP quantum channel.
+  </Function>
 
-**Raises**
+  ### to\_operator
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the SuperOp are not equal.
+  <Function id="qiskit.quantum_info.Stinespring.to_operator" name="to_operator" signature="to_operator()">
+    Try to convert channel to a unitary representation Operator.
 
-<Admonition title="Note" type="note">
-  For non-positive or non-integer exponents the power is defined as the matrix power of the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{{E}}$, the SuperOp of the powered channel $\mathcal{{E}}^\n$ is $S_{{\mathcal{{E}}^n}} = S_{{\mathcal{{E}}}}^n$.
-</Admonition>
+    **Return type**
 
-### reshape
+    [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator")
+  </Function>
 
-<span id="qiskit.quantum_info.Stinespring.reshape" />
+  ### transpose
 
-`reshape(input_dims=None, output_dims=None, num_qubits=None)`
+  <Function id="qiskit.quantum_info.Stinespring.transpose" name="transpose" signature="transpose()">
+    Return the transpose quantum channel.
 
-Return a shallow copy with reshaped input and output subsystem dimensions.
-
-**Parameters**
-
-*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
-
-**Returns**
-
-returns self with reshaped input and output dimensions.
-
-**Return type**
-
-BaseOperator
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
-
-### tensor
-
-<span id="qiskit.quantum_info.Stinespring.tensor" />
-
-`tensor(other)`
-
-Return the tensor product with another Stinespring.
-
-**Parameters**
-
-**other** ([*Stinespring*](#qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")) – a Stinespring object.
-
-**Returns**
-
-**the tensor product $a \otimes b$, where $a$**
-
-is the current Stinespring, and $b$ is the other Stinespring.
-
-**Return type**
-
-[Stinespring](#qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")
-
-<Admonition title="Note" type="note">
-  The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
-</Admonition>
-
-### to\_instruction
-
-<span id="qiskit.quantum_info.Stinespring.to_instruction" />
-
-`to_instruction()`
-
-Convert to a Kraus or UnitaryGate circuit instruction.
-
-If the channel is unitary it will be added as a unitary gate, otherwise it will be added as a kraus simulator instruction.
-
-**Returns**
-
-A kraus instruction for the channel.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data is not an N-qubit CPTP quantum channel.
-
-### to\_operator
-
-<span id="qiskit.quantum_info.Stinespring.to_operator" />
-
-`to_operator()`
-
-Try to convert channel to a unitary representation Operator.
-
-**Return type**
-
-[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator")
-
-### transpose
-
-<span id="qiskit.quantum_info.Stinespring.transpose" />
-
-`transpose()`
-
-Return the transpose quantum channel.
-
-<Admonition title="Note" type="note">
-  This is equivalent to the matrix transpose in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation, ie. for a channel $\mathcal{E}$, the SuperOp of the transpose channel $\mathcal{{E}}^T$ is $S_{mathcal{E}^T} = S_{\mathcal{E}}^T$.
-</Admonition>
+    <Admonition title="Note" type="note">
+      This is equivalent to the matrix transpose in the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation, ie. for a channel $\mathcal{E}$, the SuperOp of the transpose channel $\mathcal{{E}}^T$ is $S_{mathcal{E}^T} = S_{\mathcal{E}}^T$.
+    </Admonition>
+  </Function>
+</Class>
 

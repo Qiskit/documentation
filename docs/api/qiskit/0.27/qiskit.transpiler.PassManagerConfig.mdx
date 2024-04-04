@@ -8,53 +8,49 @@ python_api_name: qiskit.transpiler.PassManagerConfig
 
 # qiskit.transpiler.PassManagerConfig
 
-<span id="qiskit.transpiler.PassManagerConfig" />
+<Class id="qiskit.transpiler.PassManagerConfig" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passmanager_config.py" signature="PassManagerConfig(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, approximation_degree=None, seed_transpiler=None)">
+  Pass Manager Configuration.
 
-`PassManagerConfig(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, approximation_degree=None, seed_transpiler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passmanager_config.py "view source code")
+  Initialize a PassManagerConfig object
 
-Pass Manager Configuration.
+  **Parameters**
 
-Initialize a PassManagerConfig object
+  *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – Initial position of virtual qubits on physical qubits.
+  *   **basis\_gates** (*list*) – List of basis gate names to unroll to.
+  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
+  *   **layout\_method** (*str*) – the pass to use for choosing initial qubit placement.
+  *   **routing\_method** (*str*) – the pass to use for routing qubits on the architecture.
+  *   **translation\_method** (*str*) – the pass to use for translating gates to basis\_gates.
+  *   **scheduling\_method** (*str*) – the pass to use for scheduling instructions.
+  *   **instruction\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Dictionary of duration (in dt) for each instruction.
+  *   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc.
+  *   **approximation\_degree** (*float*) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
+  *   **seed\_transpiler** (*int*) – Sets random seed for the stochastic parts of the transpiler.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – Initial position of virtual qubits on physical qubits.
-*   **basis\_gates** (*list*) – List of basis gate names to unroll to.
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
-*   **layout\_method** (*str*) – the pass to use for choosing initial qubit placement.
-*   **routing\_method** (*str*) – the pass to use for routing qubits on the architecture.
-*   **translation\_method** (*str*) – the pass to use for translating gates to basis\_gates.
-*   **scheduling\_method** (*str*) – the pass to use for scheduling instructions.
-*   **instruction\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Dictionary of duration (in dt) for each instruction.
-*   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc.
-*   **approximation\_degree** (*float*) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
-*   **seed\_transpiler** (*int*) – Sets random seed for the stochastic parts of the transpiler.
+  <Function id="qiskit.transpiler.PassManagerConfig.__init__" name="__init__" signature="__init__(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, approximation_degree=None, seed_transpiler=None)">
+    Initialize a PassManagerConfig object
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.transpiler.PassManagerConfig.__init__" />
+    *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – Initial position of virtual qubits on physical qubits.
+    *   **basis\_gates** (*list*) – List of basis gate names to unroll to.
+    *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
+    *   **layout\_method** (*str*) – the pass to use for choosing initial qubit placement.
+    *   **routing\_method** (*str*) – the pass to use for routing qubits on the architecture.
+    *   **translation\_method** (*str*) – the pass to use for translating gates to basis\_gates.
+    *   **scheduling\_method** (*str*) – the pass to use for scheduling instructions.
+    *   **instruction\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Dictionary of duration (in dt) for each instruction.
+    *   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc.
+    *   **approximation\_degree** (*float*) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
+    *   **seed\_transpiler** (*int*) – Sets random seed for the stochastic parts of the transpiler.
+  </Function>
 
-`__init__(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, approximation_degree=None, seed_transpiler=None)`
+  ## Methods
 
-Initialize a PassManagerConfig object
-
-**Parameters**
-
-*   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – Initial position of virtual qubits on physical qubits.
-*   **basis\_gates** (*list*) – List of basis gate names to unroll to.
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
-*   **layout\_method** (*str*) – the pass to use for choosing initial qubit placement.
-*   **routing\_method** (*str*) – the pass to use for routing qubits on the architecture.
-*   **translation\_method** (*str*) – the pass to use for translating gates to basis\_gates.
-*   **scheduling\_method** (*str*) – the pass to use for scheduling instructions.
-*   **instruction\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Dictionary of duration (in dt) for each instruction.
-*   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc.
-*   **approximation\_degree** (*float*) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
-*   **seed\_transpiler** (*int*) – Sets random seed for the stochastic parts of the transpiler.
-
-## Methods
-
-|                                                                                                                                                 |                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| [`__init__`](#qiskit.transpiler.PassManagerConfig.__init__ "qiskit.transpiler.PassManagerConfig.__init__")(\[initial\_layout, basis\_gates, …]) | Initialize a PassManagerConfig object |
+  |                                                                                                                                                 |                                       |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+  | [`__init__`](#qiskit.transpiler.PassManagerConfig.__init__ "qiskit.transpiler.PassManagerConfig.__init__")(\[initial\_layout, basis\_gates, …]) | Initialize a PassManagerConfig object |
+</Class>
 

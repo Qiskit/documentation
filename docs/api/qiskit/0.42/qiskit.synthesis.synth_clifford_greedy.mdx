@@ -8,31 +8,29 @@ python_api_name: qiskit.synthesis.synth_clifford_greedy
 
 # qiskit.synthesis.synth\_clifford\_greedy
 
-<span id="qiskit.synthesis.synth_clifford_greedy" />
+<Function id="qiskit.synthesis.synth_clifford_greedy" name="synth_clifford_greedy" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/clifford/clifford_decompose_greedy.py" signature="synth_clifford_greedy(clifford)">
+  Decompose a Clifford operator into a QuantumCircuit based on the greedy Clifford compiler that is described in Appendix A of Bravyi, Hu, Maslov and Shaydulin.
 
-`synth_clifford_greedy(clifford)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/clifford/clifford_decompose_greedy.py "view source code")
+  This method typically yields better CX cost compared to the Aaronson-Gottesma method.
 
-Decompose a Clifford operator into a QuantumCircuit based on the greedy Clifford compiler that is described in Appendix A of Bravyi, Hu, Maslov and Shaydulin.
+  **Parameters**
 
-This method typically yields better CX cost compared to the Aaronson-Gottesma method.
+  **clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
 
-**Parameters**
+  **Returns**
 
-**clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
+  a circuit implementation of the Clifford.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the Clifford.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  **QiskitError** – if symplectic Gaussian elimination fails.
 
-**Raises**
+  ## Reference:
 
-**QiskitError** – if symplectic Gaussian elimination fails.
-
-## Reference:
-
-1.  Sergey Bravyi, Shaohan Hu, Dmitri Maslov, Ruslan Shaydulin, *Clifford Circuit Optimization with Templates and Symbolic Pauli Gates*, [arXiv:2105.02291 \[quant-ph\]](https://arxiv.org/abs/2105.02291)
+  1.  Sergey Bravyi, Shaohan Hu, Dmitri Maslov, Ruslan Shaydulin, *Clifford Circuit Optimization with Templates and Symbolic Pauli Gates*, [arXiv:2105.02291 \[quant-ph\]](https://arxiv.org/abs/2105.02291)
+</Function>
 

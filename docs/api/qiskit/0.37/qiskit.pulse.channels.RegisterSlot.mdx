@@ -8,73 +8,65 @@ python_api_name: qiskit.pulse.channels.RegisterSlot
 
 # RegisterSlot
 
-<span id="qiskit.pulse.channels.RegisterSlot" />
+<Class id="qiskit.pulse.channels.RegisterSlot" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/channels.py" signature="RegisterSlot(index)">
+  Bases: [`qiskit.pulse.channels.Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 
-`RegisterSlot(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/channels.py "view source code")
+  Classical resister slot channels represent classical registers (low-latency classical memory).
 
-Bases: [`qiskit.pulse.channels.Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
+  Channel class.
 
-Classical resister slot channels represent classical registers (low-latency classical memory).
+  **Parameters**
 
-Channel class.
+  **index** (`int`) – Index of channel.
 
-**Parameters**
+  ## Methods
 
-**index** (`int`) – Index of channel.
+  ### is\_parameterized
 
-## Methods
+  <Function id="qiskit.pulse.channels.RegisterSlot.is_parameterized" name="is_parameterized" signature="RegisterSlot.is_parameterized()">
+    Return True iff the channel is parameterized.
 
-### is\_parameterized
+    **Return type**
 
-<span id="qiskit.pulse.channels.RegisterSlot.is_parameterized" />
+    `bool`
+  </Function>
 
-`RegisterSlot.is_parameterized()`
+  ## Attributes
 
-Return True iff the channel is parameterized.
+  ### index
 
-**Return type**
+  <Attribute id="qiskit.pulse.channels.RegisterSlot.index" name="index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
 
-`bool`
+    **Return type**
 
-## Attributes
+    `Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+  </Attribute>
 
-<span id="qiskit.pulse.channels.RegisterSlot.index" />
+  ### name
 
-### index
+  <Attribute id="qiskit.pulse.channels.RegisterSlot.name" name="name">
+    Return the shorthand alias for this channel, which is based on its type and index.
 
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
+    **Return type**
 
-**Return type**
+    `str`
+  </Attribute>
 
-`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+  ### parameters
 
-<span id="qiskit.pulse.channels.RegisterSlot.name" />
+  <Attribute id="qiskit.pulse.channels.RegisterSlot.parameters" name="parameters">
+    Parameters which determine the channel index.
 
-### name
+    **Return type**
 
-Return the shorthand alias for this channel, which is based on its type and index.
+    `Set`
+  </Attribute>
 
-**Return type**
+  ### prefix
 
-`str`
-
-<span id="qiskit.pulse.channels.RegisterSlot.parameters" />
-
-### parameters
-
-Parameters which determine the channel index.
-
-**Return type**
-
-`Set`
-
-<span id="qiskit.pulse.channels.RegisterSlot.prefix" />
-
-### prefix
-
-`Optional[str]`
-
-`= 'c'`
-
-A shorthand string prefix for characterizing the channel type.
+  <Attribute id="qiskit.pulse.channels.RegisterSlot.prefix" name="prefix" attributeTypeHint="Optional[str]" attributeValue="= 'c'">
+    A shorthand string prefix for characterizing the channel type.
+  </Attribute>
+</Class>
 

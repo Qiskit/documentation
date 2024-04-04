@@ -8,73 +8,71 @@ python_api_name: qiskit.pulse.builder.call
 
 # qiskit.pulse.builder.call
 
-<span id="qiskit.pulse.builder.call" />
+<Function id="qiskit.pulse.builder.call" name="call" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/builder.py" signature="call(target, name=None, value_dict=None, **kw_params)">
+  Call the `target` within the currently active builder context with arbitrary parameters which will be assigned to the target program.
 
-`call(target, name=None, value_dict=None, **kw_params)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/builder.py "view source code")
+  <Admonition title="Note" type="note">
+    The `target` program is inserted as a `Call` instruction. This instruction defines a subroutine. See [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") for more details.
+  </Admonition>
 
-Call the `target` within the currently active builder context with arbitrary parameters which will be assigned to the target program.
+  Examples:
 
-<Admonition title="Note" type="note">
-  The `target` program is inserted as a `Call` instruction. This instruction defines a subroutine. See [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") for more details.
-</Admonition>
+  ```python
+  from qiskit import circuit, pulse, schedule, transpile
+  from qiskit.test.mock import FakeOpenPulse2Q
 
-Examples:
+  backend = FakeOpenPulse2Q()
 
-```python
-from qiskit import circuit, pulse, schedule, transpile
-from qiskit.test.mock import FakeOpenPulse2Q
+  qc = circuit.QuantumCircuit(2)
+  qc.cx(0, 1)
+  qc_transpiled = transpile(qc, optimization_level=3)
+  sched = schedule(qc_transpiled, backend)
 
-backend = FakeOpenPulse2Q()
+  with pulse.build(backend) as pulse_prog:
+          pulse.call(sched)
+          pulse.call(qc)
+  ```
 
-qc = circuit.QuantumCircuit(2)
-qc.cx(0, 1)
-qc_transpiled = transpile(qc, optimization_level=3)
-sched = schedule(qc_transpiled, backend)
+  This function can optionally take parameter dictionary with the parameterized target program.
 
-with pulse.build(backend) as pulse_prog:
-        pulse.call(sched)
-        pulse.call(qc)
-```
+  ```python
+  from qiskit import circuit, pulse
 
-This function can optionally take parameter dictionary with the parameterized target program.
+  amp = circuit.Parameter('amp')
 
-```python
-from qiskit import circuit, pulse
+  with pulse.build() as subroutine:
+      pulse.play(pulse.Gaussian(160, amp, 40), pulse.DriveChannel(0))
 
-amp = circuit.Parameter('amp')
+  with pulse.build() as main_prog:
+      pulse.call(subroutine, amp=0.1)
+      pulse.call(subroutine, amp=0.3)
+  ```
 
-with pulse.build() as subroutine:
-    pulse.play(pulse.Gaussian(160, amp, 40), pulse.DriveChannel(0))
+  If there is any parameter name collision, you can distinguish them by specifying each parameter object as a python dictionary. Otherwise `amp1` and `amp2` will be updated with the same value.
 
-with pulse.build() as main_prog:
-    pulse.call(subroutine, amp=0.1)
-    pulse.call(subroutine, amp=0.3)
-```
+  ```python
+  from qiskit import circuit, pulse
 
-If there is any parameter name collision, you can distinguish them by specifying each parameter object as a python dictionary. Otherwise `amp1` and `amp2` will be updated with the same value.
+  amp1 = circuit.Parameter('amp')
+  amp2 = circuit.Parameter('amp')
 
-```python
-from qiskit import circuit, pulse
+  with pulse.build() as subroutine:
+      pulse.play(pulse.Gaussian(160, amp1, 40), pulse.DriveChannel(0))
+      pulse.play(pulse.Gaussian(160, amp2, 40), pulse.DriveChannel(1))
 
-amp1 = circuit.Parameter('amp')
-amp2 = circuit.Parameter('amp')
+  with pulse.build() as main_prog:
+      pulse.call(subroutine, value_dict={amp1: 0.1, amp2: 0.2})
+  ```
 
-with pulse.build() as subroutine:
-    pulse.play(pulse.Gaussian(160, amp1, 40), pulse.DriveChannel(0))
-    pulse.play(pulse.Gaussian(160, amp2, 40), pulse.DriveChannel(1))
+  **Parameters**
 
-with pulse.build() as main_prog:
-    pulse.call(subroutine, value_dict={amp1: 0.1, amp2: 0.2})
-```
+  *   **target** (`Union`\[`QuantumCircuit`, `Schedule`, `ScheduleBlock`]) – Target circuit or pulse schedule to call.
+  *   **name** (`Optional`\[`str`]) – Name of subroutine if defined.
+  *   **value\_dict** (`Optional`\[`Dict`\[`Union`\[`ParameterExpression`, `float`], `Union`\[`ParameterExpression`, `float`]]]) – Parameter object and assigned value mapping. This is more precise way to identify a parameter since mapping is managed with unique object id rather than name. Especially there is any name collision in a parameter table.
+  *   **kw\_params** (`Union`\[`ParameterExpression`, `float`]) – Parameter values to bind to the target subroutine with string parameter names. If there are parameter name overlapping, these parameters are updated with the same assigned value.
 
-**Parameters**
+  **Raises**
 
-*   **target** (`Union`\[`QuantumCircuit`, `Schedule`, `ScheduleBlock`]) – Target circuit or pulse schedule to call.
-*   **name** (`Optional`\[`str`]) – Name of subroutine if defined.
-*   **value\_dict** (`Optional`\[`Dict`\[`Union`\[`ParameterExpression`, `float`], `Union`\[`ParameterExpression`, `float`]]]) – Parameter object and assigned value mapping. This is more precise way to identify a parameter since mapping is managed with unique object id rather than name. Especially there is any name collision in a parameter table.
-*   **kw\_params** (`Union`\[`ParameterExpression`, `float`]) – Parameter values to bind to the target subroutine with string parameter names. If there are parameter name overlapping, these parameters are updated with the same assigned value.
-
-**Raises**
-
-**exceptions.PulseError** – If the input `target` type is not supported.
+  **exceptions.PulseError** – If the input `target` type is not supported.
+</Function>
 

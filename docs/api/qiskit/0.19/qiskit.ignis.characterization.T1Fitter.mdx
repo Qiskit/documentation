@@ -8,250 +8,220 @@ python_api_name: qiskit.ignis.characterization.T1Fitter
 
 # T1Fitter
 
-<span id="qiskit.ignis.characterization.T1Fitter" />
+<Class id="qiskit.ignis.characterization.T1Fitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/coherence/fitters.py" signature="T1Fitter(backend_result, xdata, qubits, fit_p0, fit_bounds, time_unit='micro-seconds')">
+  Estimate T1, based on experiments outcomes,
 
-`T1Fitter(backend_result, xdata, qubits, fit_p0, fit_bounds, time_unit='micro-seconds')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/coherence/fitters.py "view source code")
+  The experiments were created by t1\_circuits, and executed on the device.
 
-Estimate T1, based on experiments outcomes,
-
-The experiments were created by t1\_circuits, and executed on the device.
-
-The probabilities of measuring 1 is assumed to be of the form
+  The probabilities of measuring 1 is assumed to be of the form
 
 $$
 f(t) = A\mathrm{e}^{-t/T_1}+B,
 $$
 
-for unknown parameters A, B, and T1.
+  for unknown parameters A, B, and T1.
 
-**Parameters**
+  **Parameters**
 
-*   **backend\_result** ([`Result`](qiskit.result.Result "qiskit.result.result.Result")) – result of execution of t1\_circuits on the backend.
-*   **xdata** (`Union`\[`List`\[`float`], `array`]) – delay times of the T1 circuits.
-*   **qubits** (`List`\[`int`]) – indices of the qubits whose T1‘s are to be measured.
-*   **fit\_p0** (`List`\[`float`]) – initial values to the fit parameters, where the order is $(A, T_1, B)$.
-*   **fit\_bounds** (`Tuple`\[`List`\[`float`], `List`\[`float`]]) – bounds on the parameters to fit. The first tuple is the lower bounds, in the order $(A, T_1, B)$. The second tuple is the upper bounds.
-*   **time\_unit** (`str`) – unit of delay times in xdata.
+  *   **backend\_result** ([`Result`](qiskit.result.Result "qiskit.result.result.Result")) – result of execution of t1\_circuits on the backend.
+  *   **xdata** (`Union`\[`List`\[`float`], `array`]) – delay times of the T1 circuits.
+  *   **qubits** (`List`\[`int`]) – indices of the qubits whose T1‘s are to be measured.
+  *   **fit\_p0** (`List`\[`float`]) – initial values to the fit parameters, where the order is $(A, T_1, B)$.
+  *   **fit\_bounds** (`Tuple`\[`List`\[`float`], `List`\[`float`]]) – bounds on the parameters to fit. The first tuple is the lower bounds, in the order $(A, T_1, B)$. The second tuple is the upper bounds.
+  *   **time\_unit** (`str`) – unit of delay times in xdata.
 
-## Attributes
+  ## Attributes
 
-### backend\_result
+  ### backend\_result
 
-<span id="qiskit.ignis.characterization.T1Fitter.backend_result" />
+  <Attribute id="qiskit.ignis.characterization.T1Fitter.backend_result" name="backend_result" signature="Union[qiskit.result.result.Result, List[qiskit.result.result.Result]]">
+    Return the execution results
 
-`Union[qiskit.result.result.Result, List[qiskit.result.result.Result]]`
+    **Return type**
 
-Return the execution results
+    `Union`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result"), `List`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]]
+  </Attribute>
 
-**Return type**
+  ### description
 
-`Union`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result"), `List`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]]
+  <Attribute id="qiskit.ignis.characterization.T1Fitter.description" name="description" signature="str">
+    Return the fitter’s purpose, e.g. ‘T1’
 
-### description
+    **Return type**
 
-<span id="qiskit.ignis.characterization.T1Fitter.description" />
+    `str`
+  </Attribute>
 
-`str`
+  ### fit\_fun
 
-Return the fitter’s purpose, e.g. ‘T1’
+  <Attribute id="qiskit.ignis.characterization.T1Fitter.fit_fun" name="fit_fun" signature="Callable">
+    Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 
-**Return type**
+    **Return type**
 
-`str`
+    `Callable`
+  </Attribute>
 
-### fit\_fun
+  ### measured\_qubits
 
-<span id="qiskit.ignis.characterization.T1Fitter.fit_fun" />
+  <Attribute id="qiskit.ignis.characterization.T1Fitter.measured_qubits" name="measured_qubits" signature="List[int]">
+    Return the indices of the qubits to be characterized
 
-`Callable`
+    **Return type**
 
-Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
+    `List`\[`int`]
+  </Attribute>
 
-**Return type**
+  ### params
 
-`Callable`
+  <Attribute id="qiskit.ignis.characterization.T1Fitter.params" name="params" signature="List[float]">
+    Return the fit function parameters that were calculated by curve\_fit
 
-### measured\_qubits
+    **Return type**
 
-<span id="qiskit.ignis.characterization.T1Fitter.measured_qubits" />
+    `List`\[`float`]
+  </Attribute>
 
-`List[int]`
+  ### params\_err
 
-Return the indices of the qubits to be characterized
+  <Attribute id="qiskit.ignis.characterization.T1Fitter.params_err" name="params_err" signature="List[float]">
+    Return the error of the fit function parameters
 
-**Return type**
+    **Return type**
 
-`List`\[`int`]
+    `List`\[`float`]
+  </Attribute>
 
-### params
+  ### series
 
-<span id="qiskit.ignis.characterization.T1Fitter.params" />
+  <Attribute id="qiskit.ignis.characterization.T1Fitter.series" name="series" signature="Optional[List[str]]">
+    Return the list of series for the data
 
-`List[float]`
+    **Return type**
 
-Return the fit function parameters that were calculated by curve\_fit
+    `Optional`\[`List`\[`str`]]
+  </Attribute>
 
-**Return type**
+  ### xdata
 
-`List`\[`float`]
+  <Attribute id="qiskit.ignis.characterization.T1Fitter.xdata" name="xdata" signature="Union[List[float], numpy.array]">
+    Return the data points on the x-axis, the independenet parameter which is fit against
 
-### params\_err
+    **Return type**
 
-<span id="qiskit.ignis.characterization.T1Fitter.params_err" />
+    `Union`\[`List`\[`float`], `array`]
+  </Attribute>
 
-`List[float]`
+  ### ydata
 
-Return the error of the fit function parameters
+  <Attribute id="qiskit.ignis.characterization.T1Fitter.ydata" name="ydata" signature="List[Dict]">
+    Return the data points on the y-axis
 
-**Return type**
+    The data points are returning in the form of a list of dictionaries:
 
-`List`\[`float`]
+    > *   #### ydata\[i]\[‘mean’] is a list, where item
+    >
+    >     no. j is the probability of success of qubit i for a circuit that lasts xdata\[j].
+    >
+    > *   #### ydata\[i]\[‘std’] is a list, where ydata\[‘std’]\[j] is the
+    >
+    >     standard deviation of the success of qubit i.
 
-### series
+    **Return type**
 
-<span id="qiskit.ignis.characterization.T1Fitter.series" />
+    `List`\[`Dict`]
+  </Attribute>
 
-`Optional[List[str]]`
+  ## Methods
 
-Return the list of series for the data
+  ### add\_data
 
-**Return type**
+  <Function id="qiskit.ignis.characterization.T1Fitter.add_data" name="add_data" signature="T1Fitter.add_data(results, recalc=True, refit=True)">
+    Add new execution results to previous execution results
 
-`Optional`\[`List`\[`str`]]
+    **Parameters**
 
-### xdata
+    *   **results** (`Union`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result"), `List`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]]) – new execution results
+    *   **recalc** (`bool`) – whether tp recalculate the data
+    *   **refit** (`bool`) – whether to refit the data
+  </Function>
 
-<span id="qiskit.ignis.characterization.T1Fitter.xdata" />
+  ### fit\_data
 
-`Union[List[float], numpy.array]`
+  <Function id="qiskit.ignis.characterization.T1Fitter.fit_data" name="fit_data" signature="T1Fitter.fit_data(qid=- 1, p0=None, bounds=None, series=None)">
+    Fit the curve.
 
-Return the data points on the x-axis, the independenet parameter which is fit against
+    Compute self.\_params and self.\_params\_err
 
-**Return type**
+    **Parameters**
 
-`Union`\[`List`\[`float`], `array`]
+    *   **qid** (`int`) – qubit for fitting. If -1 fit for all the qubits
+    *   **p0** (`Optional`\[`List`\[`float`]]) – initial guess, equivalent to p0 in scipy.optimize
+    *   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
+    *   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
+  </Function>
 
-### ydata
+  ### plot
 
-<span id="qiskit.ignis.characterization.T1Fitter.ydata" />
+  <Function id="qiskit.ignis.characterization.T1Fitter.plot" name="plot" signature="T1Fitter.plot(qind, series='0', ax=None, show_plot=False)">
+    Plot coherence data.
 
-`List[Dict]`
+    **Parameters**
 
-Return the data points on the y-axis
+    *   **qind** – qubit index to plot
+    *   **series** – which series to plot (if list then plot multiple)
+    *   **ax** – plot axes
+    *   **show\_plot** – whether to call plt.show()
 
-The data points are returning in the form of a list of dictionaries:
+    **Returns**
 
-> *   #### ydata\[i]\[‘mean’] is a list, where item
->
->     no. j is the probability of success of qubit i for a circuit that lasts xdata\[j].
->
-> *   #### ydata\[i]\[‘std’] is a list, where ydata\[‘std’]\[j] is the
->
->     standard deviation of the success of qubit i.
+    The axes object
 
-**Return type**
+    **Return type**
 
-`List`\[`Dict`]
+    Axes
 
-## Methods
+    **Raises**
 
-### add\_data
+    **ImportError** – if matplotlib is not installed
+  </Function>
 
-<span id="qiskit.ignis.characterization.T1Fitter.add_data" />
+  ### time
 
-`T1Fitter.add_data(results, recalc=True, refit=True)`
+  <Function id="qiskit.ignis.characterization.T1Fitter.time" name="time" signature="T1Fitter.time(qid=- 1, series='0')">
+    Return the characteristic time for the given qubit and series
 
-Add new execution results to previous execution results
+    **Parameters**
 
-**Parameters**
+    *   **qid** (`int`) – the qubit index (or all qubits if -1)
+    *   **series** (`str`) – the series to get
 
-*   **results** (`Union`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result"), `List`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]]) – new execution results
-*   **recalc** (`bool`) – whether tp recalculate the data
-*   **refit** (`bool`) – whether to refit the data
+    **Return type**
 
-### fit\_data
+    `Union`\[`float`, `List`\[`float`]]
 
-<span id="qiskit.ignis.characterization.T1Fitter.fit_data" />
+    **Returns**
 
-`T1Fitter.fit_data(qid=- 1, p0=None, bounds=None, series=None)`
+    The characteristic time of the qubit, or all qubits
+  </Function>
 
-Fit the curve.
+  ### time\_err
 
-Compute self.\_params and self.\_params\_err
+  <Function id="qiskit.ignis.characterization.T1Fitter.time_err" name="time_err" signature="T1Fitter.time_err(qid=- 1, series='0')">
+    Return the error of characteristic time for the given qubit and series
 
-**Parameters**
+    **Parameters**
 
-*   **qid** (`int`) – qubit for fitting. If -1 fit for all the qubits
-*   **p0** (`Optional`\[`List`\[`float`]]) – initial guess, equivalent to p0 in scipy.optimize
-*   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
-*   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
+    *   **qid** (`int`) – the qubit index (or all qubits if -1)
+    *   **series** (`str`) – the series to get
 
-### plot
+    **Return type**
 
-<span id="qiskit.ignis.characterization.T1Fitter.plot" />
+    `Union`\[`float`, `List`\[`float`]]
 
-`T1Fitter.plot(qind, series='0', ax=None, show_plot=False)`
+    **Returns**
 
-Plot coherence data.
-
-**Parameters**
-
-*   **qind** – qubit index to plot
-*   **series** – which series to plot (if list then plot multiple)
-*   **ax** – plot axes
-*   **show\_plot** – whether to call plt.show()
-
-**Returns**
-
-The axes object
-
-**Return type**
-
-Axes
-
-**Raises**
-
-**ImportError** – if matplotlib is not installed
-
-### time
-
-<span id="qiskit.ignis.characterization.T1Fitter.time" />
-
-`T1Fitter.time(qid=- 1, series='0')`
-
-Return the characteristic time for the given qubit and series
-
-**Parameters**
-
-*   **qid** (`int`) – the qubit index (or all qubits if -1)
-*   **series** (`str`) – the series to get
-
-**Return type**
-
-`Union`\[`float`, `List`\[`float`]]
-
-**Returns**
-
-The characteristic time of the qubit, or all qubits
-
-### time\_err
-
-<span id="qiskit.ignis.characterization.T1Fitter.time_err" />
-
-`T1Fitter.time_err(qid=- 1, series='0')`
-
-Return the error of characteristic time for the given qubit and series
-
-**Parameters**
-
-*   **qid** (`int`) – the qubit index (or all qubits if -1)
-*   **series** (`str`) – the series to get
-
-**Return type**
-
-`Union`\[`float`, `List`\[`float`]]
-
-**Returns**
-
-The error of the characteristic time of the qubit, or all qubits
+    The error of the characteristic time of the qubit, or all qubits
+  </Function>
+</Class>
 

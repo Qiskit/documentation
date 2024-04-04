@@ -8,37 +8,33 @@ python_api_name: qiskit.opflow.evolutions.EvolutionFactory
 
 # EvolutionFactory
 
-<span id="qiskit.opflow.evolutions.EvolutionFactory" />
+<Class id="qiskit.opflow.evolutions.EvolutionFactory" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/evolutions/evolution_factory.py" signature="EvolutionFactory">
+  Bases: `object`
 
-`EvolutionFactory` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/evolutions/evolution_factory.py "view source code")
+  A factory class for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
 
-Bases: `object`
+  ## Methods Defined Here
 
-A factory class for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
+  ### build
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.evolutions.EvolutionFactory.build" name="build" signature="static EvolutionFactory.build(operator=None)">
+    A factory method for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
 
-### build
+    **Parameters**
 
-<span id="qiskit.opflow.evolutions.EvolutionFactory.build" />
+    **operator** (`Optional`\[`OperatorBase`]) – the Operator being evolved
 
-`static EvolutionFactory.build(operator=None)`
+    **Returns**
 
-A factory method for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
+    the `EvolutionBase` best suited to evolve operator.
 
-**Parameters**
+    **Return type**
 
-**operator** (`Optional`\[`OperatorBase`]) – the Operator being evolved
+    [EvolutionBase](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase")
 
-**Returns**
+    **Raises**
 
-the `EvolutionBase` best suited to evolve operator.
-
-**Return type**
-
-[EvolutionBase](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase")
-
-**Raises**
-
-**ValueError** – If operator is not of a composition for which we know the best Evolution method.
+    **ValueError** – If operator is not of a composition for which we know the best Evolution method.
+  </Function>
+</Class>
 

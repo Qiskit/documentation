@@ -8,383 +8,337 @@ python_api_name: qiskit.dagcircuit.DAGDependency
 
 # DAGDependency
 
-<span id="qiskit.dagcircuit.DAGDependency" />
+<Class id="qiskit.dagcircuit.DAGDependency" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/dagcircuit/dagdependency.py" signature="qiskit.dagcircuit.DAGDependency">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.dagcircuit.DAGDependency` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/dagcircuit/dagdependency.py "view source code")
+  Object to represent a quantum circuit as a Directed Acyclic Graph (DAG) via operation dependencies (i.e. lack of commutation).
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  The nodes in the graph are operations represented by quantum gates. The edges correspond to non-commutation between two operations (i.e. a dependency). A directed edge from node A to node B means that operation A does not commute with operation B. The object’s methods allow circuits to be constructed.
 
-Object to represent a quantum circuit as a Directed Acyclic Graph (DAG) via operation dependencies (i.e. lack of commutation).
+  The nodes in the graph have the following attributes: ‘operation’, ‘successors’, ‘predecessors’.
 
-The nodes in the graph are operations represented by quantum gates. The edges correspond to non-commutation between two operations (i.e. a dependency). A directed edge from node A to node B means that operation A does not commute with operation B. The object’s methods allow circuits to be constructed.
+  **Example:**
 
-The nodes in the graph have the following attributes: ‘operation’, ‘successors’, ‘predecessors’.
+  Bell circuit with no measurement.
 
-**Example:**
+  ```python
+        ┌───┐
+  qr_0: ┤ H ├──■──
+        └───┘┌─┴─┐
+  qr_1: ─────┤ X ├
+             └───┘
+  ```
 
-Bell circuit with no measurement.
+  The dependency DAG for the above circuit is represented by two nodes. The first one corresponds to Hadamard gate, the second one to the CNOT gate as the gates do not commute there is an edge between the two nodes.
 
-```python
-      ┌───┐
-qr_0: ┤ H ├──■──
-      └───┘┌─┴─┐
-qr_1: ─────┤ X ├
-           └───┘
-```
+  **Reference:**
 
-The dependency DAG for the above circuit is represented by two nodes. The first one corresponds to Hadamard gate, the second one to the CNOT gate as the gates do not commute there is an edge between the two nodes.
+  \[1] Iten, R., Moyard, R., Metger, T., Sutter, D. and Woerner, S., 2020. Exact and practical pattern matching for quantum circuit optimization. [arXiv:1909.05270](https://arxiv.org/abs/1909.05270)
 
-**Reference:**
+  Create an empty DAGDependency.
 
-\[1] Iten, R., Moyard, R., Metger, T., Sutter, D. and Woerner, S., 2020. Exact and practical pattern matching for quantum circuit optimization. [arXiv:1909.05270](https://arxiv.org/abs/1909.05270)
+  ## Attributes
 
-Create an empty DAGDependency.
+  ### calibrations
 
-## Attributes
+  <Attribute id="qiskit.dagcircuit.DAGDependency.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-<span id="qiskit.dagcircuit.DAGDependency.calibrations" />
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`.
+  </Attribute>
 
-### calibrations
+  ### global\_phase
 
-Return calibration dictionary.
+  <Attribute id="qiskit.dagcircuit.DAGDependency.global_phase" name="global_phase">
+    Return the global phase of the circuit.
+  </Attribute>
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`.
+  ## Methods
 
-<span id="qiskit.dagcircuit.DAGDependency.global_phase" />
+  ### add\_clbits
 
-### global\_phase
+  <Function id="qiskit.dagcircuit.DAGDependency.add_clbits" name="add_clbits" signature="add_clbits(clbits)">
+    Add individual clbit wires.
+  </Function>
 
-Return the global phase of the circuit.
+  ### add\_creg
 
-## Methods
+  <Function id="qiskit.dagcircuit.DAGDependency.add_creg" name="add_creg" signature="add_creg(creg)">
+    Add clbits in a classical register.
+  </Function>
 
-### add\_clbits
+  ### add\_op\_node
 
-<span id="qiskit.dagcircuit.DAGDependency.add_clbits" />
+  <Function id="qiskit.dagcircuit.DAGDependency.add_op_node" name="add_op_node" signature="add_op_node(operation, qargs, cargs)">
+    Add a DAGDepNode to the graph and update the edges.
 
-`add_clbits(clbits)`
+    **Parameters**
 
-Add individual clbit wires.
+    *   **operation** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – operation as a quantum gate
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of qubits on which the operation acts
+    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – list of classical wires to attach to
+  </Function>
 
-### add\_creg
+  ### add\_qreg
 
-<span id="qiskit.dagcircuit.DAGDependency.add_creg" />
+  <Function id="qiskit.dagcircuit.DAGDependency.add_qreg" name="add_qreg" signature="add_qreg(qreg)">
+    Add qubits in a quantum register.
+  </Function>
 
-`add_creg(creg)`
+  ### add\_qubits
 
-Add clbits in a classical register.
+  <Function id="qiskit.dagcircuit.DAGDependency.add_qubits" name="add_qubits" signature="add_qubits(qubits)">
+    Add individual qubit wires.
+  </Function>
 
-### add\_op\_node
+  ### copy
 
-<span id="qiskit.dagcircuit.DAGDependency.add_op_node" />
+  <Function id="qiskit.dagcircuit.DAGDependency.copy" name="copy" signature="copy()">
+    Function to copy a DAGDependency object. :returns: a copy of a DAGDependency object. :rtype: DAGDependency
+  </Function>
 
-`add_op_node(operation, qargs, cargs)`
+  ### depth
 
-Add a DAGDepNode to the graph and update the edges.
+  <Function id="qiskit.dagcircuit.DAGDependency.depth" name="depth" signature="depth()">
+    Return the circuit depth. :returns: the circuit depth :rtype: int
+  </Function>
 
-**Parameters**
+  ### direct\_predecessors
 
-*   **operation** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – operation as a quantum gate
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of qubits on which the operation acts
-*   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – list of classical wires to attach to
+  <Function id="qiskit.dagcircuit.DAGDependency.direct_predecessors" name="direct_predecessors" signature="direct_predecessors(node_id)">
+    Direct predecessors id of a given node as sorted list.
 
-### add\_qreg
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGDependency.add_qreg" />
+    **node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
-`add_qreg(qreg)`
+    **Returns**
 
-Add qubits in a quantum register.
+    direct predecessors id as a sorted list
 
-### add\_qubits
+    **Return type**
 
-<span id="qiskit.dagcircuit.DAGDependency.add_qubits" />
+    List
+  </Function>
 
-`add_qubits(qubits)`
+  ### direct\_successors
 
-Add individual qubit wires.
+  <Function id="qiskit.dagcircuit.DAGDependency.direct_successors" name="direct_successors" signature="direct_successors(node_id)">
+    Direct successors id of a given node as sorted list.
 
-### copy
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGDependency.copy" />
+    **node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
-`copy()`
+    **Returns**
 
-Function to copy a DAGDependency object. :returns: a copy of a DAGDependency object. :rtype: DAGDependency
+    direct successors id as a sorted list
 
-### depth
+    **Return type**
 
-<span id="qiskit.dagcircuit.DAGDependency.depth" />
+    List
+  </Function>
 
-`depth()`
+  ### draw
 
-Return the circuit depth. :returns: the circuit depth :rtype: int
+  <Function id="qiskit.dagcircuit.DAGDependency.draw" name="draw" signature="draw(scale=0.7, filename=None, style='color')">
+    Draws the DAGDependency graph.
 
-### direct\_predecessors
+    This function needs pydot \<[https://github.com/erocarrera/pydot](https://github.com/erocarrera/pydot)>, which in turn needs Graphviz \<[https://www.graphviz.org/](https://www.graphviz.org/)>\` to be installed.
 
-<span id="qiskit.dagcircuit.DAGDependency.direct_predecessors" />
+    **Parameters**
 
-`direct_predecessors(node_id)`
+    *   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – scaling factor
+    *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – file path to save image to (format inferred from name)
+    *   **style** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – ‘plain’: B\&W graph ‘color’ (default): color input/output/op nodes
 
-Direct predecessors id of a given node as sorted list.
+    **Returns**
 
-**Parameters**
+    if in Jupyter notebook and not saving to file, otherwise None.
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
+    **Return type**
 
-**Returns**
+    Ipython.display.Image
+  </Function>
 
-direct predecessors id as a sorted list
+  ### get\_all\_edges
 
-**Return type**
+  <Function id="qiskit.dagcircuit.DAGDependency.get_all_edges" name="get_all_edges" signature="get_all_edges()">
+    Enumeration of all edges.
 
-List
+    **Returns**
 
-### direct\_successors
+    corresponding to the label.
 
-<span id="qiskit.dagcircuit.DAGDependency.direct_successors" />
+    **Return type**
 
-`direct_successors(node_id)`
+    List
+  </Function>
 
-Direct successors id of a given node as sorted list.
+  ### get\_edges
 
-**Parameters**
+  <Function id="qiskit.dagcircuit.DAGDependency.get_edges" name="get_edges" signature="get_edges(src_id, dest_id)">
+    Edge enumeration between two nodes through method get\_all\_edge\_data.
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
+    **Parameters**
 
-**Returns**
+    *   **src\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of the first node.
+    *   **dest\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of the second node.
 
-direct successors id as a sorted list
+    **Returns**
 
-**Return type**
+    corresponding to all edges between the two nodes.
 
-List
+    **Return type**
 
-### draw
+    List
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGDependency.draw" />
+  ### get\_in\_edges
 
-`draw(scale=0.7, filename=None, style='color')`
+  <Function id="qiskit.dagcircuit.DAGDependency.get_in_edges" name="get_in_edges" signature="get_in_edges(node_id)">
+    Enumeration of all incoming edges for a given node.
 
-Draws the DAGDependency graph.
+    **Parameters**
 
-This function needs pydot \<[https://github.com/erocarrera/pydot](https://github.com/erocarrera/pydot)>, which in turn needs Graphviz \<[https://www.graphviz.org/](https://www.graphviz.org/)>\` to be installed.
+    **node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
-**Parameters**
+    **Returns**
 
-*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – scaling factor
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – file path to save image to (format inferred from name)
-*   **style** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – ‘plain’: B\&W graph ‘color’ (default): color input/output/op nodes
+    corresponding incoming edges data.
 
-**Returns**
+    **Return type**
 
-if in Jupyter notebook and not saving to file, otherwise None.
+    List
+  </Function>
 
-**Return type**
+  ### get\_node
 
-Ipython.display.Image
+  <Function id="qiskit.dagcircuit.DAGDependency.get_node" name="get_node" signature="get_node(node_id)">
+    **Parameters**
 
-### get\_all\_edges
+    **node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
-<span id="qiskit.dagcircuit.DAGDependency.get_all_edges" />
+    **Returns**
 
-`get_all_edges()`
+    corresponding to the label.
 
-Enumeration of all edges.
+    **Return type**
 
-**Returns**
+    node
+  </Function>
 
-corresponding to the label.
+  ### get\_nodes
 
-**Return type**
+  <Function id="qiskit.dagcircuit.DAGDependency.get_nodes" name="get_nodes" signature="get_nodes()">
+    **Returns**
 
-List
+    iterator over all the nodes.
 
-### get\_edges
+    **Return type**
 
-<span id="qiskit.dagcircuit.DAGDependency.get_edges" />
+    generator([dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)"))
+  </Function>
 
-`get_edges(src_id, dest_id)`
+  ### get\_out\_edges
 
-Edge enumeration between two nodes through method get\_all\_edge\_data.
+  <Function id="qiskit.dagcircuit.DAGDependency.get_out_edges" name="get_out_edges" signature="get_out_edges(node_id)">
+    Enumeration of all outgoing edges for a given node.
 
-**Parameters**
+    **Parameters**
 
-*   **src\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of the first node.
-*   **dest\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of the second node.
+    **node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
-**Returns**
+    **Returns**
 
-corresponding to all edges between the two nodes.
+    corresponding outgoing edges data.
 
-**Return type**
+    **Return type**
 
-List
+    List
+  </Function>
 
-### get\_in\_edges
+  ### predecessors
 
-<span id="qiskit.dagcircuit.DAGDependency.get_in_edges" />
+  <Function id="qiskit.dagcircuit.DAGDependency.predecessors" name="predecessors" signature="predecessors(node_id)">
+    Predecessors id of a given node as sorted list.
 
-`get_in_edges(node_id)`
+    **Parameters**
 
-Enumeration of all incoming edges for a given node.
+    **node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
-**Parameters**
+    **Returns**
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
+    all predecessors id as a sorted list
 
-**Returns**
+    **Return type**
 
-corresponding incoming edges data.
+    List
+  </Function>
 
-**Return type**
+  ### replace\_block\_with\_op
 
-List
+  <Function id="qiskit.dagcircuit.DAGDependency.replace_block_with_op" name="replace_block_with_op" signature="replace_block_with_op(node_block, op, wire_pos_map, cycle_check=True)">
+    Replace a block of nodes with a single node.
 
-### get\_node
+    This is used to consolidate a block of DAGDepNodes into a single operation. A typical example is a block of CX and SWAP gates consolidated into a LinearFunction. This function is an adaptation of a similar function from DAGCircuit.
 
-<span id="qiskit.dagcircuit.DAGDependency.get_node" />
+    It is important that such consolidation preserves commutativity assumptions present in DAGDependency. As an example, suppose that every node in a block \[A, B, C, D] commutes with another node E. Let F be the consolidated node, F = A o B o C o D. Then F also commutes with E, and thus the result of replacing \[A, B, C, D] by F results in a valid DAGDependency. That is, any deduction about commutativity in consolidated DAGDependency is correct. On the other hand, suppose that at least one of the nodes, say B, does not commute with E. Then the consolidated DAGDependency would imply that F does not commute with E. Even though F and E may actually commute, it is still safe to assume that they do not. That is, the current implementation of consolidation may lead to suboptimal but not to incorrect results.
 
-`get_node(node_id)`
+    **Parameters**
 
-**Parameters**
+    *   **node\_block** (*List\[*[*DAGDepNode*](qiskit.dagcircuit.DAGDepNode "qiskit.dagcircuit.DAGDepNode")*]*) – A list of dag nodes that represents the node block to be replaced
+    *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The operation to replace the block with
+    *   **wire\_pos\_map** (*Dict\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The dictionary mapping the qarg to the position. This is necessary to reconstruct the qarg order over multiple gates in the combined single op node.
+    *   **cycle\_check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to True this method will check that replacing the provided `node_block` with a single node would introduce a cycle (which would invalidate the `DAGDependency`) and will raise a `DAGDependencyError` if a cycle would be introduced. This checking comes with a run time penalty. If you can guarantee that your input `node_block` is a contiguous block and won’t introduce a cycle when it’s contracted to a single node, this can be set to `False` to improve the runtime performance of this method.
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
+    **Raises**
 
-**Returns**
+    [**DAGDependencyError**](dagcircuit#qiskit.dagcircuit.DAGDependencyError "qiskit.dagcircuit.DAGDependencyError") – if `cycle_check` is set to `True` and replacing the specified block introduces a cycle or if `node_block` is empty.
+  </Function>
 
-corresponding to the label.
+  ### size
 
-**Return type**
+  <Function id="qiskit.dagcircuit.DAGDependency.size" name="size" signature="size()">
+    Returns the number of gates in the circuit
+  </Function>
 
-node
+  ### successors
 
-### get\_nodes
+  <Function id="qiskit.dagcircuit.DAGDependency.successors" name="successors" signature="successors(node_id)">
+    Successors id of a given node as sorted list.
 
-<span id="qiskit.dagcircuit.DAGDependency.get_nodes" />
+    **Parameters**
 
-`get_nodes()`
+    **node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
-**Returns**
+    **Returns**
 
-iterator over all the nodes.
+    all successors id as a sorted list
 
-**Return type**
+    **Return type**
 
-generator([dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)"))
+    List
+  </Function>
 
-### get\_out\_edges
+  ### to\_retworkx
 
-<span id="qiskit.dagcircuit.DAGDependency.get_out_edges" />
+  <Function id="qiskit.dagcircuit.DAGDependency.to_retworkx" name="to_retworkx" signature="to_retworkx()">
+    Returns the DAGDependency in retworkx format.
+  </Function>
 
-`get_out_edges(node_id)`
+  ### topological\_nodes
 
-Enumeration of all outgoing edges for a given node.
+  <Function id="qiskit.dagcircuit.DAGDependency.topological_nodes" name="topological_nodes" signature="topological_nodes()">
+    Yield nodes in topological order.
 
-**Parameters**
+    **Returns**
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
+    node in topological order.
 
-**Returns**
+    **Return type**
 
-corresponding outgoing edges data.
-
-**Return type**
-
-List
-
-### predecessors
-
-<span id="qiskit.dagcircuit.DAGDependency.predecessors" />
-
-`predecessors(node_id)`
-
-Predecessors id of a given node as sorted list.
-
-**Parameters**
-
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
-
-**Returns**
-
-all predecessors id as a sorted list
-
-**Return type**
-
-List
-
-### replace\_block\_with\_op
-
-<span id="qiskit.dagcircuit.DAGDependency.replace_block_with_op" />
-
-`replace_block_with_op(node_block, op, wire_pos_map, cycle_check=True)`
-
-Replace a block of nodes with a single node.
-
-This is used to consolidate a block of DAGDepNodes into a single operation. A typical example is a block of CX and SWAP gates consolidated into a LinearFunction. This function is an adaptation of a similar function from DAGCircuit.
-
-It is important that such consolidation preserves commutativity assumptions present in DAGDependency. As an example, suppose that every node in a block \[A, B, C, D] commutes with another node E. Let F be the consolidated node, F = A o B o C o D. Then F also commutes with E, and thus the result of replacing \[A, B, C, D] by F results in a valid DAGDependency. That is, any deduction about commutativity in consolidated DAGDependency is correct. On the other hand, suppose that at least one of the nodes, say B, does not commute with E. Then the consolidated DAGDependency would imply that F does not commute with E. Even though F and E may actually commute, it is still safe to assume that they do not. That is, the current implementation of consolidation may lead to suboptimal but not to incorrect results.
-
-**Parameters**
-
-*   **node\_block** (*List\[*[*DAGDepNode*](qiskit.dagcircuit.DAGDepNode "qiskit.dagcircuit.DAGDepNode")*]*) – A list of dag nodes that represents the node block to be replaced
-*   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The operation to replace the block with
-*   **wire\_pos\_map** (*Dict\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The dictionary mapping the qarg to the position. This is necessary to reconstruct the qarg order over multiple gates in the combined single op node.
-*   **cycle\_check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to True this method will check that replacing the provided `node_block` with a single node would introduce a cycle (which would invalidate the `DAGDependency`) and will raise a `DAGDependencyError` if a cycle would be introduced. This checking comes with a run time penalty. If you can guarantee that your input `node_block` is a contiguous block and won’t introduce a cycle when it’s contracted to a single node, this can be set to `False` to improve the runtime performance of this method.
-
-**Raises**
-
-[**DAGDependencyError**](dagcircuit#qiskit.dagcircuit.DAGDependencyError "qiskit.dagcircuit.DAGDependencyError") – if `cycle_check` is set to `True` and replacing the specified block introduces a cycle or if `node_block` is empty.
-
-### size
-
-<span id="qiskit.dagcircuit.DAGDependency.size" />
-
-`size()`
-
-Returns the number of gates in the circuit
-
-### successors
-
-<span id="qiskit.dagcircuit.DAGDependency.successors" />
-
-`successors(node_id)`
-
-Successors id of a given node as sorted list.
-
-**Parameters**
-
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
-
-**Returns**
-
-all successors id as a sorted list
-
-**Return type**
-
-List
-
-### to\_retworkx
-
-<span id="qiskit.dagcircuit.DAGDependency.to_retworkx" />
-
-`to_retworkx()`
-
-Returns the DAGDependency in retworkx format.
-
-### topological\_nodes
-
-<span id="qiskit.dagcircuit.DAGDependency.topological_nodes" />
-
-`topological_nodes()`
-
-Yield nodes in topological order.
-
-**Returns**
-
-node in topological order.
-
-**Return type**
-
-generator([DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode"))
+    generator([DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode"))
+  </Function>
+</Class>
 

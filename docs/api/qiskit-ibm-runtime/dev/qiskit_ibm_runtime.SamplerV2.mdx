@@ -8,94 +8,86 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
 # SamplerV2
 
-<span id="qiskit_ibm_runtime.SamplerV2" />
+<Class id="qiskit_ibm_runtime.SamplerV2" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L46-L136" signature="SamplerV2(backend=None, session=None, options=None)">
+  Class for interacting with Qiskit Runtime Sampler primitive service.
 
-`SamplerV2(backend=None, session=None, options=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L46-L136 "view source code")
+  This class supports version 2 of the Sampler interface, which uses different input and output formats than version 1.
 
-Class for interacting with Qiskit Runtime Sampler primitive service.
+  Qiskit Runtime Sampler primitive returns the sampled result according to the specified output type. For example, it returns a bitstring for each shot if measurement level 2 (bits) is requested.
 
-This class supports version 2 of the Sampler interface, which uses different input and output formats than version 1.
+  The [`run()`](#qiskit_ibm_runtime.SamplerV2.run "qiskit_ibm_runtime.SamplerV2.run") method can be used to submit circuits and parameters to the Sampler primitive.
 
-Qiskit Runtime Sampler primitive returns the sampled result according to the specified output type. For example, it returns a bitstring for each shot if measurement level 2 (bits) is requested.
+  Initializes the Sampler primitive.
 
-The [`run()`](#qiskit_ibm_runtime.SamplerV2.run "qiskit_ibm_runtime.SamplerV2.run") method can be used to submit circuits and parameters to the Sampler primitive.
+  **Parameters**
 
-Initializes the Sampler primitive.
+  *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
 
-**Parameters**
+  *   **session** (`Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]) –
 
-*   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
+      Session in which to call the primitive.
 
-*   **session** (`Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]) –
+      If both `session` and `backend` are specified, `session` takes precedence. If neither is specified, and the primitive is created inside a [`qiskit_ibm_runtime.Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") context manager, then the session is used. Otherwise if IBM Cloud channel is used, a default backend is selected.
 
-    Session in which to call the primitive.
+  *   **options** (`Union`\[`Dict`, [`SamplerOptions`](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ibm_runtime.options.sampler_options.SamplerOptions"), `None`]) – Sampler options, see `SamplerOptions` for detailed description.
 
-    If both `session` and `backend` are specified, `session` takes precedence. If neither is specified, and the primitive is created inside a [`qiskit_ibm_runtime.Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") context manager, then the session is used. Otherwise if IBM Cloud channel is used, a default backend is selected.
+  **Raises**
 
-*   **options** (`Union`\[`Dict`, [`SamplerOptions`](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ibm_runtime.options.sampler_options.SamplerOptions"), `None`]) – Sampler options, see `SamplerOptions` for detailed description.
+  **NotImplementedError** – If “q-ctrl” channel strategy is used.
 
-**Raises**
+  ## Attributes
 
-**NotImplementedError** – If “q-ctrl” channel strategy is used.
+  ### options
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.SamplerV2.options" name="options" attributeTypeHint="SamplerOptions">
+    Return options
 
-<span id="qiskit_ibm_runtime.SamplerV2.options" />
+    **Return type**
 
-### options
+    `TypeVar`(`OptionsT`, bound= `BaseOptions`)
+  </Attribute>
 
-`SamplerOptions`
+  ### session
 
-Return options
+  <Attribute id="qiskit_ibm_runtime.SamplerV2.session" name="session">
+    Return session used by this primitive.
 
-**Return type**
+    **Return type**
 
-`TypeVar`(`OptionsT`, bound= `BaseOptions`)
+    `Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]
 
-<span id="qiskit_ibm_runtime.SamplerV2.session" />
+    **Returns**
 
-### session
+    Session used by this primitive, or `None` if session is not used.
+  </Attribute>
 
-Return session used by this primitive.
+  ### version
 
-**Return type**
+  <Attribute id="qiskit_ibm_runtime.SamplerV2.version" name="version" attributeValue="= 2" />
 
-`Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]
+  ## Methods
 
-**Returns**
+  ### run
 
-Session used by this primitive, or `None` if session is not used.
+  <Function id="qiskit_ibm_runtime.SamplerV2.run" name="run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L96-L123" signature="run(pubs, *, shots=None)">
+    Submit a request to the sampler primitive.
 
-<span id="qiskit_ibm_runtime.SamplerV2.version" />
+    **Parameters**
 
-### version
+    *   **pubs** (*Iterable\[SamplerPubLike]*) – An iterable of pub-like objects. For example, a list of circuits or tuples `(circuit, parameter_values)`.
+    *   **shots** (*int | None*) – The total number of shots to sample for each sampler pub that does not specify its own shots. If `None`, the primitive’s default shots value will be used, which can vary by implementation.
 
-`= 2`
+    **Return type**
 
-## Methods
+    [RuntimeJobV2](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2")
 
-### run
+    **Returns**
 
-<span id="qiskit_ibm_runtime.SamplerV2.run" />
+    Submitted job. The result of the job is an instance of `qiskit.primitives.containers.PrimitiveResult`.
 
-`run(pubs, *, shots=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L96-L123 "view source code")
+    **Raises**
 
-Submit a request to the sampler primitive.
-
-**Parameters**
-
-*   **pubs** (*Iterable\[SamplerPubLike]*) – An iterable of pub-like objects. For example, a list of circuits or tuples `(circuit, parameter_values)`.
-*   **shots** (*int | None*) – The total number of shots to sample for each sampler pub that does not specify its own shots. If `None`, the primitive’s default shots value will be used, which can vary by implementation.
-
-**Return type**
-
-[RuntimeJobV2](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2")
-
-**Returns**
-
-Submitted job. The result of the job is an instance of `qiskit.primitives.containers.PrimitiveResult`.
-
-**Raises**
-
-**ValueError** – Invalid arguments are given.
+    **ValueError** – Invalid arguments are given.
+  </Function>
+</Class>
 

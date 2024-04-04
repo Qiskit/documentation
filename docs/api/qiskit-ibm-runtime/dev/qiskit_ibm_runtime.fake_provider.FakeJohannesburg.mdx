@@ -8,170 +8,144 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeJohannesburg
 
 # FakeJohannesburg
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg" />
+<Class id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/johannesburg/fake_johannesburg.py#L41-L58" signature="FakeJohannesburg">
+  A fake Johannesburg backend.
 
-`FakeJohannesburg` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/johannesburg/fake_johannesburg.py#L41-L58 "view source code")
+  ```python
+  00 ↔ 01 ↔ 02 ↔ 03 ↔ 04
+   ↕                   ↕
+  05 ↔ 06 ↔ 07 ↔ 08 ↔ 09
+   ↕         ↕         ↕
+  10 ↔ 11 ↔ 12 ↔ 13 ↔ 14
+   ↕                   ↕
+  15 ↔ 16 ↔ 17 ↔ 18 ↔ 19
+  ```
 
-A fake Johannesburg backend.
+  FakeBackend initializer.
 
-```python
-00 ↔ 01 ↔ 02 ↔ 03 ↔ 04
- ↕                   ↕
-05 ↔ 06 ↔ 07 ↔ 08 ↔ 09
- ↕         ↕         ↕
-10 ↔ 11 ↔ 12 ↔ 13 ↔ 14
- ↕                   ↕
-15 ↔ 16 ↔ 17 ↔ 18 ↔ 19
-```
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** (*BackendConfiguration*) – backend configuration
+  *   **time\_alive** (*int*) – time to wait before returning result
 
-**Parameters**
+  ## Attributes
 
-*   **configuration** (*BackendConfiguration*) – backend configuration
-*   **time\_alive** (*int*) – time to wait before returning result
+  ### backend\_name
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.backend_name" name="backend_name" attributeValue="= 'fake_johannesburg'" />
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.backend_name" />
+  ### conf\_filename
 
-### backend\_name
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.conf_filename" name="conf_filename" attributeValue="= 'conf_johannesburg.json'" />
 
-`= 'fake_johannesburg'`
+  ### dirname
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.conf_filename" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.dirname" name="dirname" attributeValue="= '/home/runner/work/qiskit-ibm-runtime/qiskit-ibm-runtime/qiskit_ibm_runtime/fake_provider/backends/johannesburg'" />
 
-### conf\_filename
+  ### options
 
-`= 'conf_johannesburg.json'`
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.dirname" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeJohannesburg.run "qiskit_ibm_runtime.fake_provider.FakeJohannesburg.run") method.
+  </Attribute>
 
-### dirname
+  ### props\_filename
 
-`= '/home/runner/work/qiskit-ibm-runtime/qiskit-ibm-runtime/qiskit_ibm_runtime/fake_provider/backends/johannesburg'`
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.props_filename" name="props_filename" attributeValue="= 'props_johannesburg.json'" />
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.options" />
+  ### version
 
-### options
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.version" name="version" attributeValue="= 1" />
 
-Return the options for the backend
+  ## Methods
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeJohannesburg.run "qiskit_ibm_runtime.fake_provider.FakeJohannesburg.run") method.
+  ### configuration
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.props_filename" />
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.configuration" name="configuration" signature="configuration()">
+    Return the backend configuration.
 
-### props\_filename
+    **Returns**
 
-`= 'props_johannesburg.json'`
+    the configuration for the backend.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.version" />
+    **Return type**
 
-### version
+    BackendConfiguration
+  </Function>
 
-`= 1`
+  ### name
 
-## Methods
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.name" name="name" signature="name()">
+    Return the backend name.
 
-### configuration
+    **Returns**
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.configuration" />
+    the name of the backend.
 
-`configuration()`
+    **Return type**
 
-Return the backend configuration.
+    str
+  </Function>
 
-**Returns**
+  ### properties
 
-the configuration for the backend.
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.properties" name="properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48" signature="properties()">
+    Returns a snapshot of device properties
 
-**Return type**
+    **Return type**
 
-BackendConfiguration
+    `BackendProperties`
+  </Function>
 
-### name
+  ### provider
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.name" />
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.provider" name="provider" signature="provider()">
+    Return the backend Provider.
 
-`name()`
+    **Returns**
 
-Return the backend name.
+    the Provider responsible for the backend.
 
-**Returns**
+    **Return type**
 
-the name of the backend.
+    Provider
+  </Function>
 
-**Return type**
+  ### run
 
-str
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.run" name="run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574" signature="run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-### properties
+  ### set\_options
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.properties" />
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-Returns a snapshot of device properties
+    **Parameters**
 
-**Return type**
+    **fields** – The fields to update the options
 
-`BackendProperties`
+    **Raises**
 
-### provider
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.provider" />
+  ### status
 
-`provider()`
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.status" name="status" signature="status()">
+    Return the backend status.
 
-Return the backend Provider.
+    **Returns**
 
-**Returns**
+    the status of the backend.
 
-the Provider responsible for the backend.
+    **Return type**
 
-**Return type**
-
-Provider
-
-### run
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.run" />
-
-`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
-
-Main job in simulator
-
-### set\_options
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.status" />
-
-`status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-BackendStatus
+    BackendStatus
+  </Function>
+</Class>
 

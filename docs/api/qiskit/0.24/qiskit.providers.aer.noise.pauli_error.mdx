@@ -10,28 +10,26 @@ python_api_name: qiskit.providers.aer.noise.pauli_error
 
 # qiskit.providers.aer.noise.pauli\_error
 
-<span id="qiskit.providers.aer.noise.pauli_error" />
+<Function id="qiskit.providers.aer.noise.pauli_error" name="pauli_error" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/noise/errors/standard_errors.py" signature="pauli_error(noise_ops, standard_gates=True)">
+  Return a mixed Pauli quantum error channel.
 
-`pauli_error(noise_ops, standard_gates=True)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/noise/errors/standard_errors.py "view source code")
+  The input should be a list of pairs `(P[j], p[j])`, where `P[j]` is a `Pauli` object or string label, and `p[j]` is a probability. All probabilities must sum to 1 for the input ops to be valid.
 
-Return a mixed Pauli quantum error channel.
+  **Parameters**
 
-The input should be a list of pairs `(P[j], p[j])`, where `P[j]` is a `Pauli` object or string label, and `p[j]` is a probability. All probabilities must sum to 1 for the input ops to be valid.
+  *   **noise\_ops** (*list\[pair\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*, double]]*) – Pauli error terms.
+  *   **standard\_gates** (*bool*) – if True return the operators as standard qobj Pauli gate instructions. If false return as unitary matrix qobj instructions. (Default: True)
 
-**Parameters**
+  **Returns**
 
-*   **noise\_ops** (*list\[pair\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*, double]]*) – Pauli error terms.
-*   **standard\_gates** (*bool*) – if True return the operators as standard qobj Pauli gate instructions. If false return as unitary matrix qobj instructions. (Default: True)
+  The quantum error object.
 
-**Returns**
+  **Return type**
 
-The quantum error object.
+  [QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
-**Return type**
+  **Raises**
 
-[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
-
-**Raises**
-
-**NoiseError** – If depolarizing probability is less than 0 or greater than 1.
+  **NoiseError** – If depolarizing probability is less than 0 or greater than 1.
+</Function>
 

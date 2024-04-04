@@ -8,135 +8,119 @@ python_api_name: qiskit.aqua.algorithms.Simon
 
 # qiskit.aqua.algorithms.Simon
 
-<span id="qiskit.aqua.algorithms.Simon" />
+<Class id="qiskit.aqua.algorithms.Simon" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/simon.py" signature="Simon(oracle, quantum_instance=None)">
+  The Simon algorithm.
 
-`Simon(oracle, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/simon.py "view source code")
+  The Simon algorithm finds a hidden integer $s \in \{0,1\}^n$ from an oracle $f_s$ that satisfies $f_s(x) = f_s(y)$ if and only if $y=x \oplus s$ for all $x \in \{0,1\}^n$. Thus, if $s = 0\ldots 0$, i.e., the all-zero bitstring, then $f_s$ is a 1-to-1 (or, permutation) function. Otherwise, if $s \neq 0\ldots 0$, then $f_s$ is a 2-to-1 function.
 
-The Simon algorithm.
+  Note: the [`TruthTableOracle`](qiskit.aqua.components.oracles.TruthTableOracle "qiskit.aqua.components.oracles.TruthTableOracle") may be the easiest to use to create one that can be used with the Simon algorithm.
 
-The Simon algorithm finds a hidden integer $s \in \{0,1\}^n$ from an oracle $f_s$ that satisfies $f_s(x) = f_s(y)$ if and only if $y=x \oplus s$ for all $x \in \{0,1\}^n$. Thus, if $s = 0\ldots 0$, i.e., the all-zero bitstring, then $f_s$ is a 1-to-1 (or, permutation) function. Otherwise, if $s \neq 0\ldots 0$, then $f_s$ is a 2-to-1 function.
+  **Parameters**
 
-Note: the [`TruthTableOracle`](qiskit.aqua.components.oracles.TruthTableOracle "qiskit.aqua.components.oracles.TruthTableOracle") may be the easiest to use to create one that can be used with the Simon algorithm.
+  *   **oracle** (`Oracle`) – The oracle component
+  *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **oracle** (`Oracle`) – The oracle component
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
+  <Function id="qiskit.aqua.algorithms.Simon.__init__" name="__init__" signature="__init__(oracle, quantum_instance=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **oracle** (`Oracle`) – The oracle component
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
+  </Function>
 
-<span id="qiskit.aqua.algorithms.Simon.__init__" />
+  ## Methods
 
-`__init__(oracle, quantum_instance=None)`
+  |                                                                                                                                         |                                              |
+  | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.algorithms.Simon.__init__ "qiskit.aqua.algorithms.Simon.__init__")(oracle\[, quantum\_instance])              | **type oracle**`Oracle`                      |
+  | [`construct_circuit`](#qiskit.aqua.algorithms.Simon.construct_circuit "qiskit.aqua.algorithms.Simon.construct_circuit")(\[measurement]) | Construct the quantum circuit                |
+  | [`run`](#qiskit.aqua.algorithms.Simon.run "qiskit.aqua.algorithms.Simon.run")(\[quantum\_instance])                                     | Execute the algorithm with selected backend. |
+  | [`set_backend`](#qiskit.aqua.algorithms.Simon.set_backend "qiskit.aqua.algorithms.Simon.set_backend")(backend, \*\*kwargs)              | Sets backend with configuration.             |
 
-**Parameters**
+  ## Attributes
 
-*   **oracle** (`Oracle`) – The oracle component
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
+  |                                                                                                                      |                           |
+  | -------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+  | [`backend`](#qiskit.aqua.algorithms.Simon.backend "qiskit.aqua.algorithms.Simon.backend")                            | Returns backend.          |
+  | [`quantum_instance`](#qiskit.aqua.algorithms.Simon.quantum_instance "qiskit.aqua.algorithms.Simon.quantum_instance") | Returns quantum instance. |
+  | [`random`](#qiskit.aqua.algorithms.Simon.random "qiskit.aqua.algorithms.Simon.random")                               | Return a numpy random.    |
 
-## Methods
+  ### backend
 
-|                                                                                                                                         |                                              |
-| --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`__init__`](#qiskit.aqua.algorithms.Simon.__init__ "qiskit.aqua.algorithms.Simon.__init__")(oracle\[, quantum\_instance])              | **type oracle**`Oracle`                      |
-| [`construct_circuit`](#qiskit.aqua.algorithms.Simon.construct_circuit "qiskit.aqua.algorithms.Simon.construct_circuit")(\[measurement]) | Construct the quantum circuit                |
-| [`run`](#qiskit.aqua.algorithms.Simon.run "qiskit.aqua.algorithms.Simon.run")(\[quantum\_instance])                                     | Execute the algorithm with selected backend. |
-| [`set_backend`](#qiskit.aqua.algorithms.Simon.set_backend "qiskit.aqua.algorithms.Simon.set_backend")(backend, \*\*kwargs)              | Sets backend with configuration.             |
+  <Function id="qiskit.aqua.algorithms.Simon.backend" name="backend" signature="property backend">
+    Returns backend.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                      |                           |
-| -------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| [`backend`](#qiskit.aqua.algorithms.Simon.backend "qiskit.aqua.algorithms.Simon.backend")                            | Returns backend.          |
-| [`quantum_instance`](#qiskit.aqua.algorithms.Simon.quantum_instance "qiskit.aqua.algorithms.Simon.quantum_instance") | Returns quantum instance. |
-| [`random`](#qiskit.aqua.algorithms.Simon.random "qiskit.aqua.algorithms.Simon.random")                               | Return a numpy random.    |
+    `Union`\[`Backend`, `BaseBackend`]
+  </Function>
 
-### backend
+  ### construct\_circuit
 
-<span id="qiskit.aqua.algorithms.Simon.backend" />
+  <Function id="qiskit.aqua.algorithms.Simon.construct_circuit" name="construct_circuit" signature="construct_circuit(measurement=False)">
+    Construct the quantum circuit
 
-`property backend`
+    **Parameters**
 
-Returns backend.
+    **measurement** (*bool*) – Boolean flag to indicate if measurement should be included in the circuit.
 
-**Return type**
+    **Returns**
 
-`Union`\[`Backend`, `BaseBackend`]
+    the QuantumCircuit object for the constructed circuit
 
-### construct\_circuit
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.Simon.construct_circuit" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-`construct_circuit(measurement=False)`
+  ### quantum\_instance
 
-Construct the quantum circuit
+  <Function id="qiskit.aqua.algorithms.Simon.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+    Returns quantum instance.
 
-**Parameters**
+    **Return type**
 
-**measurement** (*bool*) – Boolean flag to indicate if measurement should be included in the circuit.
+    `Optional`\[`QuantumInstance`]
+  </Function>
 
-**Returns**
+  ### random
 
-the QuantumCircuit object for the constructed circuit
+  <Function id="qiskit.aqua.algorithms.Simon.random" name="random" signature="property random">
+    Return a numpy random.
+  </Function>
 
-**Return type**
+  ### run
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.aqua.algorithms.Simon.run" name="run" signature="run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-### quantum\_instance
+    **Parameters**
 
-<span id="qiskit.aqua.algorithms.Simon.quantum_instance" />
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-`property quantum_instance`
+    **Returns**
 
-Returns quantum instance.
+    results of an algorithm.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`QuantumInstance`]
+    dict
 
-### random
+    **Raises**
 
-<span id="qiskit.aqua.algorithms.Simon.random" />
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-`property random`
+  ### set\_backend
 
-Return a numpy random.
+  <Function id="qiskit.aqua.algorithms.Simon.set_backend" name="set_backend" signature="set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-### run
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.Simon.run" />
-
-`run(quantum_instance=None, **kwargs)`
-
-Execute the algorithm with selected backend.
-
-**Parameters**
-
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.Simon.set_backend" />
-
-`set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

@@ -8,272 +8,246 @@ python_api_name: qiskit.extensions.Snapshot
 
 # Snapshot
 
-<span id="qiskit.extensions.Snapshot" />
+<Class id="qiskit.extensions.Snapshot" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/extensions/simulator/snapshot.py" signature="Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)">
+  Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
-`Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/extensions/simulator/snapshot.py "view source code")
+  Simulator snapshot instruction.
 
-Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  Create new snapshot instruction.
 
-Simulator snapshot instruction.
+  **Parameters**
 
-Create new snapshot instruction.
+  *   **label** (*str*) – the snapshot label for result data.
+  *   **snapshot\_type** (*str*) – the type of the snapshot.
+  *   **num\_qubits** (*int*) – the number of qubits for the snapshot type \[Default: 0].
+  *   **num\_clbits** (*int*) – the number of classical bits for the snapshot type \[Default: 0].
+  *   **params** (*list or None*) – the parameters for snapshot\_type \[Default: None].
 
-**Parameters**
+  **Raises**
 
-*   **label** (*str*) – the snapshot label for result data.
-*   **snapshot\_type** (*str*) – the type of the snapshot.
-*   **num\_qubits** (*int*) – the number of qubits for the snapshot type \[Default: 0].
-*   **num\_clbits** (*int*) – the number of classical bits for the snapshot type \[Default: 0].
-*   **params** (*list or None*) – the parameters for snapshot\_type \[Default: None].
+  **ExtensionError** – if snapshot label is invalid.
 
-**Raises**
+  ## Methods
 
-**ExtensionError** – if snapshot label is invalid.
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.extensions.Snapshot.add_decomposition" name="add_decomposition" signature="Snapshot.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.extensions.Snapshot.add_decomposition" />
+  <Function id="qiskit.extensions.Snapshot.assemble" name="assemble" signature="Snapshot.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-`Snapshot.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.extensions.Snapshot.broadcast_arguments" name="broadcast_arguments" signature="Snapshot.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.extensions.Snapshot.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`Snapshot.assemble()`
+    **Yields**
 
-Assemble a QasmQobjInstruction
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.extensions.Snapshot.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`Snapshot.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit.extensions.Snapshot.c_if" name="c_if" signature="Snapshot.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-**Parameters**
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  ### copy
 
-**Yields**
+  <Function id="qiskit.extensions.Snapshot.copy" name="copy" signature="Snapshot.copy(name=None)">
+    Copy of the instruction.
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **Parameters**
 
-**Raises**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Returns**
 
-### c\_if
+    **a copy of the current instruction, with the name**
 
-<span id="qiskit.extensions.Snapshot.c_if" />
+    updated if it was provided
 
-`Snapshot.c_if(classical, val)`
+    **Return type**
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  ### inverse
 
-### copy
+  <Function id="qiskit.extensions.Snapshot.inverse" name="inverse" signature="Snapshot.inverse()">
+    Special case. Return self.
+  </Function>
 
-<span id="qiskit.extensions.Snapshot.copy" />
+  ### is\_parameterized
 
-`Snapshot.copy(name=None)`
+  <Function id="qiskit.extensions.Snapshot.is_parameterized" name="is_parameterized" signature="Snapshot.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-Copy of the instruction.
+  ### qasm
 
-**Parameters**
+  <Function id="qiskit.extensions.Snapshot.qasm" name="qasm" signature="Snapshot.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-**Returns**
+  ### repeat
 
-**a copy of the current instruction, with the name**
+  <Function id="qiskit.extensions.Snapshot.repeat" name="repeat" signature="Snapshot.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-updated if it was provided
+    **Parameters**
 
-**Return type**
+    **n** (*int*) – Number of times to repeat the instruction
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Returns**
 
-### inverse
+    Containing the definition.
 
-<span id="qiskit.extensions.Snapshot.inverse" />
+    **Return type**
 
-`Snapshot.inverse()`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-Special case. Return self.
+    **Raises**
 
-### is\_parameterized
+    **CircuitError** – If n \< 1.
+  </Function>
 
-<span id="qiskit.extensions.Snapshot.is_parameterized" />
+  ### reverse\_ops
 
-`Snapshot.is_parameterized()`
+  <Function id="qiskit.extensions.Snapshot.reverse_ops" name="reverse_ops" signature="Snapshot.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-Return True .IFF. instruction is parameterized else False
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-### qasm
+    **Returns**
 
-<span id="qiskit.extensions.Snapshot.qasm" />
+    **a new instruction with**
 
-`Snapshot.qasm()`
+    sub-instructions reversed.
 
-Return a default OpenQASM string for the instruction.
+    **Return type**
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-### repeat
+  ### soft\_compare
 
-<span id="qiskit.extensions.Snapshot.repeat" />
+  <Function id="qiskit.extensions.Snapshot.soft_compare" name="soft_compare" signature="Snapshot.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-`Snapshot.repeat(n)`
+    **Parameters**
 
-Creates an instruction with gate repeated n amount of times.
+    **other** (*instruction*) – other instruction.
 
-**Parameters**
+    **Returns**
 
-**n** (*int*) – Number of times to repeat the instruction
+    are self and other equal up to parameter expressions.
 
-**Returns**
+    **Return type**
 
-Containing the definition.
+    bool
+  </Function>
 
-**Return type**
+  ### validate\_parameter
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit.extensions.Snapshot.validate_parameter" name="validate_parameter" signature="Snapshot.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**CircuitError** – If n \< 1.
+  ### condition\_bits
 
-### reverse\_ops
+  <Attribute id="qiskit.extensions.Snapshot.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-<span id="qiskit.extensions.Snapshot.reverse_ops" />
+    **Return type**
 
-`Snapshot.reverse_ops()`
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### decompositions
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Attribute id="qiskit.extensions.Snapshot.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-**Returns**
+  ### definition
 
-**a new instruction with**
+  <Attribute id="qiskit.extensions.Snapshot.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-sub-instructions reversed.
+  ### duration
 
-**Return type**
+  <Attribute id="qiskit.extensions.Snapshot.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### label
 
-### soft\_compare
+  <Attribute id="qiskit.extensions.Snapshot.label" name="label">
+    Return instruction label
 
-<span id="qiskit.extensions.Snapshot.soft_compare" />
+    **Return type**
 
-`Snapshot.soft_compare(other)`
+    `str`
+  </Attribute>
 
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+  ### name
 
-**Parameters**
+  <Attribute id="qiskit.extensions.Snapshot.name" name="name">
+    Return the name.
+  </Attribute>
 
-**other** (*instruction*) – other instruction.
+  ### num\_clbits
 
-**Returns**
+  <Attribute id="qiskit.extensions.Snapshot.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-are self and other equal up to parameter expressions.
+  ### num\_qubits
 
-**Return type**
+  <Attribute id="qiskit.extensions.Snapshot.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-bool
+  ### params
 
-### validate\_parameter
+  <Attribute id="qiskit.extensions.Snapshot.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.extensions.Snapshot.validate_parameter" />
+  ### snapshot\_type
 
-`Snapshot.validate_parameter(parameter)`
+  <Attribute id="qiskit.extensions.Snapshot.snapshot_type" name="snapshot_type">
+    Return snapshot type
+  </Attribute>
 
-Instruction parameters has no validation or normalization.
+  ### unit
 
-## Attributes
-
-<span id="qiskit.extensions.Snapshot.condition_bits" />
-
-### condition\_bits
-
-Get Clbits in condition.
-
-**Return type**
-
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
-
-<span id="qiskit.extensions.Snapshot.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.extensions.Snapshot.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit.extensions.Snapshot.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit.extensions.Snapshot.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.extensions.Snapshot.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.extensions.Snapshot.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.extensions.Snapshot.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.extensions.Snapshot.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.extensions.Snapshot.snapshot_type" />
-
-### snapshot\_type
-
-Return snapshot type
-
-<span id="qiskit.extensions.Snapshot.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.extensions.Snapshot.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

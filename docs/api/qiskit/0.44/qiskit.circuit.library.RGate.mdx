@@ -8,115 +8,109 @@ python_api_name: qiskit.circuit.library.RGate
 
 # RGate
 
-<span id="qiskit.circuit.library.RGate" />
+<Class id="qiskit.circuit.library.RGate" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/r.py" signature="qiskit.circuit.library.RGate(theta, phi, label=None)">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`qiskit.circuit.library.RGate(theta, phi, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/r.py "view source code")
+  Rotation θ around the cos(φ)x + sin(φ)y axis.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`r()`](qiskit.circuit.QuantumCircuit#r "qiskit.circuit.QuantumCircuit.r") method.
 
-Rotation θ around the cos(φ)x + sin(φ)y axis.
+  **Circuit symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`r()`](qiskit.circuit.QuantumCircuit#r "qiskit.circuit.QuantumCircuit.r") method.
+  ```python
+       ┌──────┐
+  q_0: ┤ R(ϴ) ├
+       └──────┘
+  ```
 
-**Circuit symbol:**
-
-```python
-     ┌──────┐
-q_0: ┤ R(ϴ) ├
-     └──────┘
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R(\theta, \phi) = e^{-i \th \left(\cos{\phi} x + \sin{\phi} y\right)} =
-    \begin{pmatrix}
-        \cos\left(\th\right) & -i e^{-i \phi} \sin\left(\th\right) \\
-        -i e^{i \phi} \sin\left(\th\right) & \cos\left(\th\right)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R(\theta, \phi) = e^{-i \th \left(\cos{\phi} x + \sin{\phi} y\right)} =
+\begin{pmatrix}
+\cos\left(\th\right) & -i e^{-i \phi} \sin\left(\th\right) \\
+-i e^{i \phi} \sin\left(\th\right) & \cos\left(\th\right)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
-Create new r single-qubit gate.
+  Create new r single-qubit gate.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.RGate.condition_bits" />
+  ### condition\_bits
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.RGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-Get Clbits in condition.
+  ### decompositions
 
-<span id="qiskit.circuit.library.RGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.RGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### decompositions
+  ### definition
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.RGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RGate.definition" />
+  ### duration
 
-### definition
+  <Attribute id="qiskit.circuit.library.RGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### label
 
-<span id="qiskit.circuit.library.RGate.duration" />
+  <Attribute id="qiskit.circuit.library.RGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-### duration
+  ### name
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.RGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RGate.label" />
+  ### num\_clbits
 
-### label
+  <Attribute id="qiskit.circuit.library.RGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Return instruction label
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.RGate.name" />
+  <Attribute id="qiskit.circuit.library.RGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-### name
+  ### params
 
-Return the name.
+  <Attribute id="qiskit.circuit.library.RGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RGate.num_clbits" />
+  ### unit
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.RGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-Return the number of clbits.
+  ## Methods
 
-<span id="qiskit.circuit.library.RGate.num_qubits" />
+  ### inverse
 
-### num\_qubits
+  <Function id="qiskit.circuit.library.RGate.inverse" name="inverse" signature="inverse()">
+    Invert this gate.
 
-Return the number of qubits.
+    r(θ, φ)^dagger = r(-θ, φ)
+  </Function>
 
-<span id="qiskit.circuit.library.RGate.params" />
+  ### power
 
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.RGate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### inverse
-
-<span id="qiskit.circuit.library.RGate.inverse" />
-
-`inverse()`
-
-Invert this gate.
-
-r(θ, φ)^dagger = r(-θ, φ)
-
-### power
-
-<span id="qiskit.circuit.library.RGate.power" />
-
-`power(exponent)`
-
-Raise gate to a power.
+  <Function id="qiskit.circuit.library.RGate.power" name="power" signature="power(exponent)">
+    Raise gate to a power.
+  </Function>
+</Class>
 

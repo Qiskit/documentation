@@ -8,109 +8,105 @@ python_api_name: qiskit.circuit.library.RXXGate
 
 # RXXGate
 
-<span id="qiskit.circuit.library.RXXGate" />
+<Class id="qiskit.circuit.library.RXXGate" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/rxx.py" signature="RXXGate(theta)">
+  Bases: `qiskit.circuit.gate.Gate`
 
-`RXXGate(theta)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/rxx.py "view source code")
+  A parametric 2-qubit $X \otimes X$ interaction (rotation about XX).
 
-Bases: `qiskit.circuit.gate.Gate`
+  This gate is symmetric, and is maximally entangling at $\theta = \pi/2$.
 
-A parametric 2-qubit $X \otimes X$ interaction (rotation about XX).
+  **Circuit Symbol:**
 
-This gate is symmetric, and is maximally entangling at $\theta = \pi/2$.
+  ```python
+       ┌─────────┐
+  q_0: ┤1        ├
+       │  Rxx(ϴ) │
+  q_1: ┤0        ├
+       └─────────┘
+  ```
 
-**Circuit Symbol:**
-
-```python
-     ┌─────────┐
-q_0: ┤1        ├
-     │  Rxx(ϴ) │
-q_1: ┤0        ├
-     └─────────┘
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX}(\theta) = exp(-i \th X{\otimes}X) =
-    \begin{pmatrix}
-        \cos(\th)   & 0           & 0           & -i\sin(\th) \\
-        0           & \cos(\th)   & -i\sin(\th) & 0 \\
-        0           & -i\sin(\th) & \cos(\th)   & 0 \\
-        -i\sin(\th) & 0           & 0           & \cos(\th)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX}(\theta) = exp(-i \th X{\otimes}X) =
+\begin{pmatrix}
+\cos(\th)   & 0           & 0           & -i\sin(\th) \\
+0           & \cos(\th)   & -i\sin(\th) & 0 \\
+0           & -i\sin(\th) & \cos(\th)   & 0 \\
+-i\sin(\th) & 0           & 0           & \cos(\th)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
-**Examples:**
+  **Examples:**
 
-> $$
-> R_{XX}(\theta = 0) = I
-> $$
->
-> $$
-> R_{XX}(\theta = \pi) = i X \otimes X
-> $$
->
-> $$
-> \begin{split}R_{XX}(\theta = \frac{\pi}{2}) = \frac{1}{\sqrt{2}}
->                         \begin{pmatrix}
->                             1  & 0  & 0  & -i \\
->                             0  & 1  & -i & 0 \\
->                             0  & -i & 1  & 0 \\
->                             -i & 0  & 0  & 1
->                         \end{pmatrix}\end{split}
-> $$
+  > $$
+  > R_{XX}(\theta = 0) = I
+  > $$
+  >
+  > $$
+  > R_{XX}(\theta = \pi) = i X \otimes X
+  > $$
+  >
+  > $$
+  > \begin{split}R_{XX}(\theta = \frac{\pi}{2}) = \frac{1}{\sqrt{2}}
+  >                         \begin{pmatrix}
+  >                             1  & 0  & 0  & -i \\
+  >                             0  & 1  & -i & 0 \\
+  >                             0  & -i & 1  & 0 \\
+  >                             -i & 0  & 0  & 1
+  >                         \end{pmatrix}\end{split}
+  > $$
 
-Create new RXX gate.
+  Create new RXX gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-### inverse
+  ### inverse
 
-<span id="qiskit.circuit.library.RXXGate.inverse" />
+  <Function id="qiskit.circuit.library.RXXGate.inverse" name="inverse" signature="RXXGate.inverse()">
+    Return inverse RXX gate (i.e. with the negative rotation angle).
+  </Function>
 
-`RXXGate.inverse()`
+  ## Attributes
 
-Return inverse RXX gate (i.e. with the negative rotation angle).
+  ### decompositions
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.RXXGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RXXGate.decompositions" />
+  ### definition
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.RXXGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### duration
 
-<span id="qiskit.circuit.library.RXXGate.definition" />
+  <Attribute id="qiskit.circuit.library.RXXGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### definition
+  ### label
 
-Return definition in terms of other basic gates.
+  <Attribute id="qiskit.circuit.library.RXXGate.label" name="label">
+    Return instruction label
 
-<span id="qiskit.circuit.library.RXXGate.duration" />
+    **Return type**
 
-### duration
+    `str`
+  </Attribute>
 
-Get the duration.
+  ### params
 
-<span id="qiskit.circuit.library.RXXGate.label" />
+  <Attribute id="qiskit.circuit.library.RXXGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### label
+  ### unit
 
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.library.RXXGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.RXXGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.RXXGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

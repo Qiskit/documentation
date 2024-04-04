@@ -8,1907 +8,1689 @@ python_api_name: qiskit.circuit.library.MCMT
 
 # MCMT
 
-<span id="qiskit.circuit.library.MCMT" />
+<Class id="qiskit.circuit.library.MCMT" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/generalized_gates/mcmt.py" signature="MCMT(gate, num_ctrl_qubits, num_target_qubits)">
+  The multi-controlled multi-target gate, for an arbitrary singly controlled target gate.
 
-`MCMT(gate, num_ctrl_qubits, num_target_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+  This default implementations requires no ancilla qubits, by broadcasting the target gate to the number of target qubits and using Qiskit’s generic control routine to control the broadcasted target on the control qubits. If ancilla qubits are available, a more efficient variant using the so-called V-chain decomposition can be used. This is implemented in [`MCMTVChain`](qiskit.circuit.library.MCMTVChain "qiskit.circuit.library.MCMTVChain").
 
-The multi-controlled multi-target gate, for an arbitrary singly controlled target gate.
+  Create a new multi-control multi-target gate.
 
-This default implementations requires no ancilla qubits, by broadcasting the target gate to the number of target qubits and using Qiskit’s generic control routine to control the broadcasted target on the control qubits. If ancilla qubits are available, a more efficient variant using the so-called V-chain decomposition can be used. This is implemented in [`MCMTVChain`](qiskit.circuit.library.MCMTVChain "qiskit.circuit.library.MCMTVChain").
+  **Parameters**
 
-Create a new multi-control multi-target gate.
+  *   **gate** (`Union`\[[`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate"), `Callable`\[\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")], [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]]) – The gate to be applied controlled on the control qubits and applied to the target qubits. Can be either a Gate or a circuit method. If it is a callable, it will be casted to a Gate.
+  *   **num\_ctrl\_qubits** (`int`) – The number of control qubits.
+  *   **num\_target\_qubits** (`int`) – The number of target qubits.
 
-**Parameters**
+  **Raises**
 
-*   **gate** (`Union`\[[`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate"), `Callable`\[\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")], [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]]) – The gate to be applied controlled on the control qubits and applied to the target qubits. Can be either a Gate or a circuit method. If it is a callable, it will be casted to a Gate.
-*   **num\_ctrl\_qubits** (`int`) – The number of control qubits.
-*   **num\_target\_qubits** (`int`) – The number of target qubits.
+  *   **AttributeError** – If the gate cannot be casted to a controlled gate.
+  *   **AttributeError** – If the number of controls or targets is 0.
 
-**Raises**
+  ## Attributes
 
-*   **AttributeError** – If the gate cannot be casted to a controlled gate.
-*   **AttributeError** – If the number of controls or targets is 0.
+  ### clbits
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.MCMT.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-### clbits
+  ### data
 
-Returns a list of classical bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.MCMT.data" name="data">
+    Return the circuit data (instructions and context).
 
-### data
+    **Returns**
 
-Return the circuit data (instructions and context).
+    a list-like object containing the tuples for the circuit’s data.
 
-**Returns**
+    Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
-a list-like object containing the tuples for the circuit’s data.
+    **Return type**
 
-Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
+    QuantumCircuitData
+  </Attribute>
 
-**Return type**
+  ### extension\_lib
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.MCMT.extension_lib" signature="= 'include \&#x22;qelib1.inc\&#x22;;'" />
 
-### extension\_lib
+  ### header
 
-<span id="qiskit.circuit.library.MCMT.extension_lib" />
+  <Attribute id="qiskit.circuit.library.MCMT.header" signature="= 'OPENQASM 2.0;'" />
 
-`= 'include "qelib1.inc";'`
+  ### instances
 
-### header
+  <Attribute id="qiskit.circuit.library.MCMT.instances" signature="= 8" />
 
-<span id="qiskit.circuit.library.MCMT.header" />
+  ### n\_qubits
 
-`= 'OPENQASM 2.0;'`
+  <Attribute id="qiskit.circuit.library.MCMT.n_qubits" name="n_qubits">
+    Deprecated, use `num_qubits` instead. Return number of qubits.
+  </Attribute>
 
-### instances
+  ### num\_ancilla\_qubits
 
-<span id="qiskit.circuit.library.MCMT.instances" />
+  <Attribute id="qiskit.circuit.library.MCMT.num_ancilla_qubits" name="num_ancilla_qubits">
+    Return the number of ancillas.
+  </Attribute>
 
-`= 8`
+  ### num\_clbits
 
-### n\_qubits
+  <Attribute id="qiskit.circuit.library.MCMT.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-Deprecated, use `num_qubits` instead. Return number of qubits.
+  ### num\_parameters
 
-### num\_ancilla\_qubits
+  <Attribute id="qiskit.circuit.library.MCMT.num_parameters" name="num_parameters">
+    Convenience function to get the number of parameter objects in the circuit.
+  </Attribute>
 
-Return the number of ancillas.
+  ### num\_qubits
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.MCMT.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-Return number of classical bits.
+  ### parameters
 
-### num\_parameters
+  <Attribute id="qiskit.circuit.library.MCMT.parameters" name="parameters">
+    Convenience function to get the parameters defined in the parameter table.
+  </Attribute>
 
-Convenience function to get the number of parameter objects in the circuit.
+  ### prefix
 
-### num\_qubits
+  <Attribute id="qiskit.circuit.library.MCMT.prefix" signature="= 'circuit'" />
 
-Return number of qubits.
+  ### qubits
 
-### parameters
+  <Attribute id="qiskit.circuit.library.MCMT.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
 
-Convenience function to get the parameters defined in the parameter table.
+  ## Methods
 
-### prefix
+  ### AND
 
-<span id="qiskit.circuit.library.MCMT.prefix" />
+  <Function id="qiskit.circuit.library.MCMT.AND" name="AND" signature="MCMT.AND(qr_variables, qb_target, qr_ancillae, flags=None, mct_mode='no-ancilla')">
+    Build a collective conjunction (AND) circuit in place using mct.
 
-`= 'circuit'`
+    **Parameters**
 
-### qubits
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to build the conjunction on.
+    *   **qr\_variables** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister holding the variable qubits.
+    *   **qb\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit to hold the conjunction result.
+    *   **qr\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The ancillary QuantumRegister for building the mct.
+    *   **flags** (*list\[int]*) – A list of +1/-1/0 to mark negations or omissions of qubits.
+    *   **mct\_mode** (*str*) – The mct building mode.
+  </Function>
 
-Returns a list of quantum bits in the order that the registers were added.
+  ### OR
 
-## Methods
+  <Function id="qiskit.circuit.library.MCMT.OR" name="OR" signature="MCMT.OR(qr_variables, qb_target, qr_ancillae, flags=None, mct_mode='basic')">
+    Build a collective disjunction (OR) circuit in place using mct.
 
-### AND
+    **Parameters**
 
-<span id="qiskit.circuit.library.MCMT.AND" />
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to build the disjunction on.
+    *   **qr\_variables** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister holding the variable qubits.
+    *   **flags** (*list\[int]*) – A list of +1/-1/0 to mark negations or omissions of qubits.
+    *   **qb\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit to hold the disjunction result.
+    *   **qr\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The ancillary QuantumRegister for building the mct.
+    *   **mct\_mode** (*str*) – The mct building mode.
+  </Function>
 
-`MCMT.AND(qr_variables, qb_target, qr_ancillae, flags=None, mct_mode='no-ancilla')`
+  ### \_\_getitem\_\_
 
-Build a collective conjunction (AND) circuit in place using mct.
+  <Function id="qiskit.circuit.library.MCMT.__getitem__" name="__getitem__" signature="MCMT.__getitem__(item)">
+    Return indexed operation.
+  </Function>
 
-**Parameters**
+  ### \_\_len\_\_
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to build the conjunction on.
-*   **qr\_variables** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister holding the variable qubits.
-*   **qb\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit to hold the conjunction result.
-*   **qr\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The ancillary QuantumRegister for building the mct.
-*   **flags** (*list\[int]*) – A list of +1/-1/0 to mark negations or omissions of qubits.
-*   **mct\_mode** (*str*) – The mct building mode.
+  <Function id="qiskit.circuit.library.MCMT.__len__" name="__len__" signature="MCMT.__len__()">
+    Return number of operations in circuit.
+  </Function>
 
-### OR
+  ### add\_register
 
-<span id="qiskit.circuit.library.MCMT.OR" />
+  <Function id="qiskit.circuit.library.MCMT.add_register" name="add_register" signature="MCMT.add_register(*regs)">
+    Add registers.
+  </Function>
 
-`MCMT.OR(qr_variables, qb_target, qr_ancillae, flags=None, mct_mode='basic')`
+  ### append
 
-Build a collective disjunction (OR) circuit in place using mct.
+  <Function id="qiskit.circuit.library.MCMT.append" name="append" signature="MCMT.append(instruction, qargs=None, cargs=None)">
+    Append one or more instructions to the end of the circuit, modifying the circuit in place. Expands qargs and cargs.
 
-**Parameters**
+    **Parameters**
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to build the disjunction on.
-*   **qr\_variables** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister holding the variable qubits.
-*   **flags** (*list\[int]*) – A list of +1/-1/0 to mark negations or omissions of qubits.
-*   **qb\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit to hold the disjunction result.
-*   **qr\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The ancillary QuantumRegister for building the mct.
-*   **mct\_mode** (*str*) – The mct building mode.
+    *   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – Instruction instance to append
+    *   **qargs** (*list(argument)*) – qubits to attach instruction to
+    *   **cargs** (*list(argument)*) – clbits to attach instruction to
 
-### \_\_getitem\_\_
+    **Returns**
 
-<span id="qiskit.circuit.library.MCMT.__getitem__" />
+    a handle to the instruction that was just added
 
-`MCMT.__getitem__(item)`
+    **Return type**
 
-Return indexed operation.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-### \_\_len\_\_
+  ### assign\_parameters
 
-<span id="qiskit.circuit.library.MCMT.__len__" />
+  <Function id="qiskit.circuit.library.MCMT.assign_parameters" name="assign_parameters" signature="MCMT.assign_parameters(param_dict, inplace=False)">
+    Assign parameters to new parameters or values.
 
-`MCMT.__len__()`
+    The keys of the parameter dictionary must be Parameter instances in the current circuit. The values of the dictionary can either be numeric values or new parameter objects. The values can be assigned to the current circuit object or to a copy of it.
 
-Return number of operations in circuit.
+    **Parameters**
 
-### add\_register
+    *   **param\_dict** (*dict*) – A dictionary specifying the mapping from `current_parameter` to `new_parameter`, where `new_parameter` can be a new parameter object or a numeric value.
+    *   **inplace** (*bool*) – If False, a copy of the circuit with the bound parameters is returned. If True the circuit instance itself is modified.
 
-<span id="qiskit.circuit.library.MCMT.add_register" />
+    **Raises**
 
-`MCMT.add_register(*regs)`
+    **CircuitError** – If param\_dict contains parameters not present in the circuit
 
-Add registers.
+    **Returns**
 
-### append
+    **A copy of the circuit with bound parameters, if**
 
-<span id="qiskit.circuit.library.MCMT.append" />
+    `inplace` is True, otherwise None.
 
-`MCMT.append(instruction, qargs=None, cargs=None)`
+    **Return type**
 
-Append one or more instructions to the end of the circuit, modifying the circuit in place. Expands qargs and cargs.
+    optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
 
-**Parameters**
-
-*   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – Instruction instance to append
-*   **qargs** (*list(argument)*) – qubits to attach instruction to
-*   **cargs** (*list(argument)*) – clbits to attach instruction to
-
-**Returns**
-
-a handle to the instruction that was just added
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### assign\_parameters
-
-<span id="qiskit.circuit.library.MCMT.assign_parameters" />
-
-`MCMT.assign_parameters(param_dict, inplace=False)`
-
-Assign parameters to new parameters or values.
-
-The keys of the parameter dictionary must be Parameter instances in the current circuit. The values of the dictionary can either be numeric values or new parameter objects. The values can be assigned to the current circuit object or to a copy of it.
-
-**Parameters**
-
-*   **param\_dict** (*dict*) – A dictionary specifying the mapping from `current_parameter` to `new_parameter`, where `new_parameter` can be a new parameter object or a numeric value.
-*   **inplace** (*bool*) – If False, a copy of the circuit with the bound parameters is returned. If True the circuit instance itself is modified.
-
-**Raises**
-
-**CircuitError** – If param\_dict contains parameters not present in the circuit
-
-**Returns**
-
-**A copy of the circuit with bound parameters, if**
-
-`inplace` is True, otherwise None.
-
-**Return type**
-
-optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
-
-**Examples**
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> circuit = QuantumCircuit(2)
->>> params = [Parameter('A'), Parameter('B'), Parameter('C')]
->>> circuit.ry(params[0], 0)
->>> circuit.crx(params[1], 0, 1)
->>> circuit.draw()
-        ┌───────┐
-q_0: |0>┤ Ry(A) ├────■────
-        └───────┘┌───┴───┐
-q_1: |0>─────────┤ Rx(B) ├
-                 └───────┘
->>> circuit.assign_parameters({params[0]: params[2]}, inplace=True)
->>> circuit.draw()
-        ┌───────┐
-q_0: |0>┤ Ry(C) ├────■────
-        └───────┘┌───┴───┐
-q_1: |0>─────────┤ Rx(B) ├
-                 └───────┘
->>> bound_circuit = circuit.assign_parameters({params[1]: 1, params[2]: 2})
->>> bound_circuit.draw()
-        ┌───────┐
-q_0: |0>┤ Ry(2) ├────■────
-        └───────┘┌───┴───┐
-q_1: |0>─────────┤ Rx(1) ├
-                 └───────┘
->>> bound_circuit.parameters  # this one has no free parameters anymore
-set()
->>> circuit.parameters  # the original one is still parameterized
-{Parameter(A), Parameter(C)}
-```
-
-### barrier
-
-<span id="qiskit.circuit.library.MCMT.barrier" />
-
-`MCMT.barrier(*qargs)`
-
-Apply `Barrier`. If qargs is None, applies to all.
-
-### bind\_parameters
-
-<span id="qiskit.circuit.library.MCMT.bind_parameters" />
-
-`MCMT.bind_parameters(value_dict)`
-
-Assign numeric parameters to values yielding a new circuit.
-
-To assign new Parameter objects or bind the values in-place, without yielding a new circuit, use the assign\_parameters method.
-
-**Parameters**
-
-**value\_dict** (*dict*) – \{parameter: value, …}
-
-**Raises**
-
-*   **CircuitError** – If value\_dict contains parameters not present in the circuit
-*   **TypeError** – If value\_dict contains a ParameterExpression in the values.
-
-**Returns**
-
-copy of self with assignment substitution.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### cast
-
-<span id="qiskit.circuit.library.MCMT.cast" />
-
-`static MCMT.cast(value, _type)`
-
-Best effort to cast value to type. Otherwise, returns the value.
-
-### cbit\_argument\_conversion
-
-<span id="qiskit.circuit.library.MCMT.cbit_argument_conversion" />
-
-`MCMT.cbit_argument_conversion(clbit_representation)`
-
-Converts several classical bit representations (such as indexes, range, etc.) into a list of classical bits.
-
-**Parameters**
-
-**clbit\_representation** (*Object*) – representation to expand
-
-**Returns**
-
-Where each tuple is a classical bit.
-
-**Return type**
-
-List(tuple)
-
-### ccx
-
-<span id="qiskit.circuit.library.MCMT.ccx" />
-
-`MCMT.ccx(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)`
-
-Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
-
-### ch
-
-<span id="qiskit.circuit.library.MCMT.ch" />
-
-`MCMT.ch(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
-
-### cls\_instances
-
-<span id="qiskit.circuit.library.MCMT.cls_instances" />
-
-`classmethod MCMT.cls_instances()`
-
-Return the current number of instances of this class, useful for auto naming.
-
-### cls\_prefix
-
-<span id="qiskit.circuit.library.MCMT.cls_prefix" />
-
-`classmethod MCMT.cls_prefix()`
-
-Return the prefix to use for auto naming.
-
-### cnot
-
-<span id="qiskit.circuit.library.MCMT.cnot" />
-
-`MCMT.cnot(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
-
-### combine
-
-<span id="qiskit.circuit.library.MCMT.combine" />
-
-`MCMT.combine(rhs)`
-
-Append rhs to self if self contains compatible registers.
-
-Two circuits are compatible if they contain the same registers or if they contain different registers with unique names. The returned circuit will contain all unique registers between both circuits.
-
-Return self + rhs as a new object.
-
-**Parameters**
-
-**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
-
-**Returns**
-
-Returns a new QuantumCircuit object
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**QiskitError** – if the rhs circuit is not compatible
-
-### compose
-
-<span id="qiskit.circuit.library.MCMT.compose" />
-
-`MCMT.compose(other, qubits=None, clbits=None, front=False, inplace=False)`
-
-Compose circuit with `other` circuit or instruction, optionally permuting wires.
-
-`other` can be narrower or of equal width to `self`.
-
-**Parameters**
-
-*   **other** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or BaseOperator*) – (sub)circuit to compose onto self.
-*   **qubits** (*list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|int]*) – qubits of self to compose onto.
-*   **clbits** (*list\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|int]*) – clbits of self to compose onto.
-*   **front** (*bool*) – If True, front composition will be performed (not implemented yet).
-*   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
-
-**Returns**
-
-the composed circuit (returns None if inplace==True).
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-*   **CircuitError** – if composing on the front.
-*   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
-
-**Examples**
-
-```python
->>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
-```
-
-```python
-            ┌───┐                   ┌─────┐                ┌───┐
-lqr_1_0: ───┤ H ├───    rqr_0: ──■──┤ Tdg ├    lqr_1_0: ───┤ H ├───────────────
-            ├───┤              ┌─┴─┐└─────┘                ├───┤
-lqr_1_1: ───┤ X ├───    rqr_1: ┤ X ├───────    lqr_1_1: ───┤ X ├───────────────
-         ┌──┴───┴──┐           └───┘                    ┌──┴───┴──┐┌───┐
-lqr_1_2: ┤ U1(0.1) ├  +                     =  lqr_1_2: ┤ U1(0.1) ├┤ X ├───────
-         └─────────┘                                    └─────────┘└─┬─┘┌─────┐
-lqr_2_0: ─────■─────                           lqr_2_0: ─────■───────■──┤ Tdg ├
-            ┌─┴─┐                                          ┌─┴─┐        └─────┘
-lqr_2_1: ───┤ X ├───                           lqr_2_1: ───┤ X ├───────────────
-            └───┘                                          └───┘
-lcr_0: 0 ═══════════                           lcr_0: 0 ═══════════════════════
-
-lcr_1: 0 ═══════════                           lcr_1: 0 ═══════════════════════
-```
-
-### control
-
-<span id="qiskit.circuit.library.MCMT.control" />
-
-`MCMT.control(num_ctrl_qubits=1)`
-
-Return the controlled version of the MCMT circuit.
-
-### copy
-
-<span id="qiskit.circuit.library.MCMT.copy" />
-
-`MCMT.copy(name=None)`
-
-Copy the circuit.
-
-**Parameters**
-
-**name** (*str*) – name to be given to the copied circuit. If None, then the name stays the same
-
-**Returns**
-
-a deepcopy of the current circuit, with the specified name
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### count\_ops
-
-<span id="qiskit.circuit.library.MCMT.count_ops" />
-
-`MCMT.count_ops()`
-
-Count each operation kind in the circuit.
-
-**Returns**
-
-a breakdown of how many operations of each kind, sorted by amount.
-
-**Return type**
-
-OrderedDict
-
-### crx
-
-<span id="qiskit.circuit.library.MCMT.crx" />
-
-`MCMT.crx(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").
-
-### cry
-
-<span id="qiskit.circuit.library.MCMT.cry" />
-
-`MCMT.cry(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").
-
-### crz
-
-<span id="qiskit.circuit.library.MCMT.crz" />
-
-`MCMT.crz(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").
-
-### cswap
-
-<span id="qiskit.circuit.library.MCMT.cswap" />
-
-`MCMT.cswap(control_qubit, target_qubit1, target_qubit2, *, label=None, ctrl_state=None, ctl=None, tgt1=None, tgt2=None)`
-
-Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
-
-### cu1
-
-<span id="qiskit.circuit.library.MCMT.cu1" />
-
-`MCMT.cu1(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").
-
-### cu3
-
-<span id="qiskit.circuit.library.MCMT.cu3" />
-
-`MCMT.cu3(theta, phi, lam, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").
-
-### cx
-
-<span id="qiskit.circuit.library.MCMT.cx" />
-
-`MCMT.cx(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
-
-### cy
-
-<span id="qiskit.circuit.library.MCMT.cy" />
-
-`MCMT.cy(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
-
-### cz
-
-<span id="qiskit.circuit.library.MCMT.cz" />
-
-`MCMT.cz(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
-
-### dcx
-
-<span id="qiskit.circuit.library.MCMT.dcx" />
-
-`MCMT.dcx(qubit1, qubit2)`
-
-Apply [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").
-
-### decompose
-
-<span id="qiskit.circuit.library.MCMT.decompose" />
-
-`MCMT.decompose()`
-
-Call a decomposition pass on this circuit, to decompose one level (shallow decompose).
-
-**Returns**
-
-a circuit one level decomposed
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### depth
-
-<span id="qiskit.circuit.library.MCMT.depth" />
-
-`MCMT.depth()`
-
-Return circuit depth (i.e., length of critical path). This does not include compiler or simulator directives such as ‘barrier’ or ‘snapshot’.
-
-**Returns**
-
-Depth of circuit.
-
-**Return type**
-
-int
-
-**Notes**
-
-The circuit depth and the DAG depth need not be the same.
-
-### diag\_gate
-
-<span id="qiskit.circuit.library.MCMT.diag_gate" />
-
-`MCMT.diag_gate(diag, qubit)`
-
-Deprecated version of QuantumCircuit.diagonal.
-
-### diagonal
-
-<span id="qiskit.circuit.library.MCMT.diagonal" />
-
-`MCMT.diagonal(diag, qubit)`
-
-Attach a diagonal gate to a circuit.
-
-The decomposition is based on Theorem 7 given in “Synthesis of Quantum Logic Circuits” by Shende et al. ([https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf)).
-
-**Parameters**
-
-*   **diag** (*list*) – list of the 2^k diagonal entries (for a diagonal gate on k qubits). Must contain at least two entries
-*   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k qubits the diagonal is acting on (the order of the qubits specifies the computational basis in which the diagonal gate is provided: the first element in diag acts on the state where all the qubits in q are in the state 0, the second entry acts on the state where all the qubits q\[1],…,q\[k-1] are in the state zero and q\[0] is in the state 1, and so on)
-
-**Returns**
-
-the diagonal gate which was attached to the circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**QiskitError** – if the list of the diagonal entries or the qubit list is in bad format; if the number of diagonal entries is not 2^k, where k denotes the number of qubits
-
-### draw
-
-<span id="qiskit.circuit.library.MCMT.draw" />
-
-`MCMT.draw(output=None, scale=0.7, filename=None, style=None, interactive=False, line_length=None, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=False)`
-
-Draw the quantum circuit.
-
-**text**: ASCII art TextDrawing that can be printed in the console.
-
-**latex**: high-quality images compiled via LaTeX.
-
-**latex\_source**: raw uncompiled LaTeX output.
-
-**matplotlib**: images with color rendered purely in Python.
-
-**Parameters**
-
-*   **output** (*str*) – Select the output method to use for drawing the circuit. Valid choices are `text`, `latex`, `latex_source`, or `mpl`. By default the ‘text’ drawer is used unless a user config file has an alternative backend set as the default. If the output kwarg is set, that backend will always be used over the default in a user config file.
-*   **scale** (*float*) – scale of image to draw (shrink if \< 1)
-*   **filename** (*str*) – file path to save image to
-*   **style** (*dict or str*) – dictionary of style or file name of style file. This option is only used by the `mpl` output type. If a str is passed in that is the path to a json file which contains a dictionary of style, then that will be opened, parsed, and used as the input dict. See: [Style Dict Doc](qiskit.circuit.library.ZZFeatureMap#draw) for more information on the contents.
-*   **interactive** (*bool*) – when set true show the circuit in a new window (for mpl this depends on the matplotlib backend being used supporting this). Note when used with either the text or the latex\_source output type this has no effect and will be silently ignored.
-*   **line\_length** (*int*) – Deprecated; see fold which supersedes this option. Sets the length of the lines generated by text output type. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil.get_terminal_size()`. However, if you’re running in jupyter, the default line length is set to 80 characters. If you don’t want pagination at all, set `line_length=-1`.
-*   **reverse\_bits** (*bool*) – When set to True, reverse the bit order inside registers for the output visualization.
-*   **plot\_barriers** (*bool*) – Enable/disable drawing barriers in the output circuit. Defaults to True.
-*   **justify** (*string*) – Options are `left`, `right` or `none`. If anything else is supplied it defaults to left justified. It refers to where gates should be placed in the output circuit if there is an option. `none` results in each gate being placed in its own column.
-*   **vertical\_compression** (*string*) – `high`, `medium` or `low`. It merges the lines generated by the `text` output so the drawing will take less vertical room. Default is `medium`. Only used by the `text` output, will be silently ignored otherwise.
-*   **idle\_wires** (*bool*) – Include idle wires (wires with no circuit elements) in output visualization. Default is True.
-*   **with\_layout** (*bool*) – Include layout information, with labels on the physical layout. Default is True.
-*   **fold** (*int*) – Sets pagination. It can be disabled using -1. In text, sets the length of the lines. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil. get_terminal_size()`. However, if running in jupyter, the default line length is set to 80 characters. In `mpl` is the number of (visual) layers before folding. Default is 25.
-*   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified, a new matplotlib Figure will be created and used. Additionally, if specified, there will be no returned Figure since it is redundant. This is only used when the `output` kwarg is set to use the `mpl` backend. It will be silently ignored with all other outputs.
-*   **initial\_state** (*bool*) – Optional. Adds `|0>` in the beginning of the wire. Only used by the `text`, `latex` and `latex_source` outputs. Default: `False`.
-*   **cregbundle** (*bool*) – Optional. If set True bundle classical registers. Only used by the `text` output. Default: `False`.
-
-**Returns**
-
-`PIL.Image` or `matplotlib.figure` or `str` or `TextDrawing`:
-
-*   **PIL.Image (output=’latex’)**
-
-    an in-memory representation of the image of the circuit diagram.
-
-*   **matplotlib.figure.Figure (output=’mpl’)**
-
-    a matplotlib figure object for the circuit diagram.
-
-*   **str (output=’latex\_source’)**
-
-    The LaTeX source code for visualizing the circuit diagram.
-
-*   **TextDrawing (output=’text’)**
-
-    A drawing that can be printed as ASCII art.
-
-**Raises**
-
-*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
-*   **ImportError** – when the output methods require non-installed libraries
-
-**Style Dict Details**
-
-The style dict kwarg contains numerous options that define the style of the output circuit visualization. The style dict is only used by the `mpl` output. The options available in the style dict are defined below:
-
-**Parameters**
-
-*   **textcolor** (*str*) – The color code to use for text. Defaults to ‘#000000’
-
-*   **subtextcolor** (*str*) – The color code to use for subtext. Defaults to ‘#000000’
-
-*   **linecolor** (*str*) – The color code to use for lines. Defaults to ‘#000000’
-
-*   **creglinecolor** (*str*) – The color code to use for classical register lines. Defaults to ‘#778899’
-
-*   **gatetextcolor** (*str*) – The color code to use for gate text. Defaults to ‘#000000’
-
-*   **gatefacecolor** (*str*) – The color code to use for gates. Defaults to ‘#ffffff’
-
-*   **barrierfacecolor** (*str*) – The color code to use for barriers. Defaults to ‘#bdbdbd’
-
-*   **backgroundcolor** (*str*) – The color code to use for the background. Defaults to ‘#ffffff’
-
-*   **fontsize** (*int*) – The font size to use for text. Defaults to 13.
-
-*   **subfontsize** (*int*) – The font size to use for subtext. Defaults to 8.
-
-*   **displaytext** (*dict*) –
-
-    A dictionary of the text to use for each element type in the output visualization. The default values are:
+    **Examples**
 
     ```python
-    {
-        'id': 'id',
-        'u0': 'U_0',
-        'u1': 'U_1',
-        'u2': 'U_2',
-        'u3': 'U_3',
-        'x': 'X',
-        'y': 'Y',
-        'z': 'Z',
-        'h': 'H',
-        's': 'S',
-        'sdg': 'S^\dagger',
-        't': 'T',
-        'tdg': 'T^\dagger',
-        'rx': 'R_x',
-        'ry': 'R_y',
-        'rz': 'R_z',
-        'reset': '\left|0\right\rangle'
-    }
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> circuit = QuantumCircuit(2)
+    >>> params = [Parameter('A'), Parameter('B'), Parameter('C')]
+    >>> circuit.ry(params[0], 0)
+    >>> circuit.crx(params[1], 0, 1)
+    >>> circuit.draw()
+            ┌───────┐
+    q_0: |0>┤ Ry(A) ├────■────
+            └───────┘┌───┴───┐
+    q_1: |0>─────────┤ Rx(B) ├
+                     └───────┘
+    >>> circuit.assign_parameters({params[0]: params[2]}, inplace=True)
+    >>> circuit.draw()
+            ┌───────┐
+    q_0: |0>┤ Ry(C) ├────■────
+            └───────┘┌───┴───┐
+    q_1: |0>─────────┤ Rx(B) ├
+                     └───────┘
+    >>> bound_circuit = circuit.assign_parameters({params[1]: 1, params[2]: 2})
+    >>> bound_circuit.draw()
+            ┌───────┐
+    q_0: |0>┤ Ry(2) ├────■────
+            └───────┘┌───┴───┐
+    q_1: |0>─────────┤ Rx(1) ├
+                     └───────┘
+    >>> bound_circuit.parameters  # this one has no free parameters anymore
+    set()
+    >>> circuit.parameters  # the original one is still parameterized
+    {Parameter(A), Parameter(C)}
     ```
+  </Function>
 
-    You must specify all the necessary values if using this. There is no provision for passing an incomplete dict in.
+  ### barrier
 
-*   **displaycolor** (*dict*) –
+  <Function id="qiskit.circuit.library.MCMT.barrier" name="barrier" signature="MCMT.barrier(*qargs)">
+    Apply `Barrier`. If qargs is None, applies to all.
+  </Function>
 
-    **The color codes to use for each circuit**
+  ### bind\_parameters
 
-    element. The default values are:
+  <Function id="qiskit.circuit.library.MCMT.bind_parameters" name="bind_parameters" signature="MCMT.bind_parameters(value_dict)">
+    Assign numeric parameters to values yielding a new circuit.
+
+    To assign new Parameter objects or bind the values in-place, without yielding a new circuit, use the assign\_parameters method.
+
+    **Parameters**
+
+    **value\_dict** (*dict*) – \{parameter: value, …}
+
+    **Raises**
+
+    *   **CircuitError** – If value\_dict contains parameters not present in the circuit
+    *   **TypeError** – If value\_dict contains a ParameterExpression in the values.
+
+    **Returns**
+
+    copy of self with assignment substitution.
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+
+  ### cast
+
+  <Function id="qiskit.circuit.library.MCMT.cast" name="cast" signature="static MCMT.cast(value, _type)">
+    Best effort to cast value to type. Otherwise, returns the value.
+  </Function>
+
+  ### cbit\_argument\_conversion
+
+  <Function id="qiskit.circuit.library.MCMT.cbit_argument_conversion" name="cbit_argument_conversion" signature="MCMT.cbit_argument_conversion(clbit_representation)">
+    Converts several classical bit representations (such as indexes, range, etc.) into a list of classical bits.
+
+    **Parameters**
+
+    **clbit\_representation** (*Object*) – representation to expand
+
+    **Returns**
+
+    Where each tuple is a classical bit.
+
+    **Return type**
+
+    List(tuple)
+  </Function>
+
+  ### ccx
+
+  <Function id="qiskit.circuit.library.MCMT.ccx" name="ccx" signature="MCMT.ccx(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)">
+    Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
+  </Function>
+
+  ### ch
+
+  <Function id="qiskit.circuit.library.MCMT.ch" name="ch" signature="MCMT.ch(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
+  </Function>
+
+  ### cls\_instances
+
+  <Function id="qiskit.circuit.library.MCMT.cls_instances" name="cls_instances" signature="classmethod MCMT.cls_instances()">
+    Return the current number of instances of this class, useful for auto naming.
+  </Function>
+
+  ### cls\_prefix
+
+  <Function id="qiskit.circuit.library.MCMT.cls_prefix" name="cls_prefix" signature="classmethod MCMT.cls_prefix()">
+    Return the prefix to use for auto naming.
+  </Function>
+
+  ### cnot
+
+  <Function id="qiskit.circuit.library.MCMT.cnot" name="cnot" signature="MCMT.cnot(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+  </Function>
+
+  ### combine
+
+  <Function id="qiskit.circuit.library.MCMT.combine" name="combine" signature="MCMT.combine(rhs)">
+    Append rhs to self if self contains compatible registers.
+
+    Two circuits are compatible if they contain the same registers or if they contain different registers with unique names. The returned circuit will contain all unique registers between both circuits.
+
+    Return self + rhs as a new object.
+
+    **Parameters**
+
+    **rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
+
+    **Returns**
+
+    Returns a new QuantumCircuit object
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+    **Raises**
+
+    **QiskitError** – if the rhs circuit is not compatible
+  </Function>
+
+  ### compose
+
+  <Function id="qiskit.circuit.library.MCMT.compose" name="compose" signature="MCMT.compose(other, qubits=None, clbits=None, front=False, inplace=False)">
+    Compose circuit with `other` circuit or instruction, optionally permuting wires.
+
+    `other` can be narrower or of equal width to `self`.
+
+    **Parameters**
+
+    *   **other** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or BaseOperator*) – (sub)circuit to compose onto self.
+    *   **qubits** (*list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|int]*) – qubits of self to compose onto.
+    *   **clbits** (*list\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|int]*) – clbits of self to compose onto.
+    *   **front** (*bool*) – If True, front composition will be performed (not implemented yet).
+    *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
+
+    **Returns**
+
+    the composed circuit (returns None if inplace==True).
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+    **Raises**
+
+    *   **CircuitError** – if composing on the front.
+    *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
+
+    **Examples**
 
     ```python
-    {
-        'id': '#F0E442',
-        'u0': '#E7AB3B',
-        'u1': '#E7AB3B',
-        'u2': '#E7AB3B',
-        'u3': '#E7AB3B',
-        'x': '#58C698',
-        'y': '#58C698',
-        'z': '#58C698',
-        'h': '#70B7EB',
-        's': '#E0722D',
-        'sdg': '#E0722D',
-        't': '#E0722D',
-        'tdg': '#E0722D',
-        'rx': '#ffffff',
-        'ry': '#ffffff',
-        'rz': '#ffffff',
-        'reset': '#D188B4',
-        'target': '#70B7EB',
-        'meas': '#D188B4'
-    }
+    >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
     ```
 
-    Also, just like displaytext there is no provision for an incomplete dict passed in.
+    ```python
+                ┌───┐                   ┌─────┐                ┌───┐
+    lqr_1_0: ───┤ H ├───    rqr_0: ──■──┤ Tdg ├    lqr_1_0: ───┤ H ├───────────────
+                ├───┤              ┌─┴─┐└─────┘                ├───┤
+    lqr_1_1: ───┤ X ├───    rqr_1: ┤ X ├───────    lqr_1_1: ───┤ X ├───────────────
+             ┌──┴───┴──┐           └───┘                    ┌──┴───┴──┐┌───┐
+    lqr_1_2: ┤ U1(0.1) ├  +                     =  lqr_1_2: ┤ U1(0.1) ├┤ X ├───────
+             └─────────┘                                    └─────────┘└─┬─┘┌─────┐
+    lqr_2_0: ─────■─────                           lqr_2_0: ─────■───────■──┤ Tdg ├
+                ┌─┴─┐                                          ┌─┴─┐        └─────┘
+    lqr_2_1: ───┤ X ├───                           lqr_2_1: ───┤ X ├───────────────
+                └───┘                                          └───┘
+    lcr_0: 0 ═══════════                           lcr_0: 0 ═══════════════════════
 
-*   **latexdrawerstyle** (*bool*) – When set to True, enable LaTeX mode, which will draw gates like the latex output modes.
+    lcr_1: 0 ═══════════                           lcr_1: 0 ═══════════════════════
+    ```
+  </Function>
 
-*   **usepiformat** (*bool*) – When set to True, use radians for output.
+  ### control
 
-*   **fold** (*int*) – The number of circuit elements to fold the circuit at. Defaults to 20.
+  <Function id="qiskit.circuit.library.MCMT.control" name="control" signature="MCMT.control(num_ctrl_qubits=1)">
+    Return the controlled version of the MCMT circuit.
+  </Function>
 
-*   **cregbundle** (*bool*) – If set True, bundle classical registers
+  ### copy
 
-*   **showindex** (*bool*) – If set True, draw an index.
+  <Function id="qiskit.circuit.library.MCMT.copy" name="copy" signature="MCMT.copy(name=None)">
+    Copy the circuit.
 
-*   **compress** (*bool*) – If set True, draw a compressed circuit.
+    **Parameters**
 
-*   **figwidth** (*int*) – The maximum width (in inches) for the output figure.
+    **name** (*str*) – name to be given to the copied circuit. If None, then the name stays the same
 
-*   **dpi** (*int*) – The DPI to use for the output image. Defaults to 150.
+    **Returns**
 
-*   **margin** (*list*) – A list of margin values to adjust spacing around output image. Takes a list of 4 ints: \[x left, x right, y bottom, y top].
+    a deepcopy of the current circuit, with the specified name
 
-*   **creglinestyle** (*str*) – The style of line to use for classical registers. Choices are ‘solid’, ‘doublet’, or any valid matplotlib linestyle kwarg value. Defaults to doublet
+    **Return type**
 
-### extend
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-<span id="qiskit.circuit.library.MCMT.extend" />
+  ### count\_ops
 
-`MCMT.extend(rhs)`
+  <Function id="qiskit.circuit.library.MCMT.count_ops" name="count_ops" signature="MCMT.count_ops()">
+    Count each operation kind in the circuit.
 
-Append QuantumCircuit to the right hand side if it contains compatible registers.
+    **Returns**
 
-Two circuits are compatible if they contain the same registers or if they contain different registers with unique names. The returned circuit will contain all unique registers between both circuits.
+    a breakdown of how many operations of each kind, sorted by amount.
 
-Modify and return self.
+    **Return type**
 
-**Parameters**
+    OrderedDict
+  </Function>
 
-**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
+  ### crx
 
-**Returns**
+  <Function id="qiskit.circuit.library.MCMT.crx" name="crx" signature="MCMT.crx(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").
+  </Function>
 
-Returns this QuantumCircuit object (which has been modified)
+  ### cry
 
-**Return type**
+  <Function id="qiskit.circuit.library.MCMT.cry" name="cry" signature="MCMT.cry(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").
+  </Function>
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  ### crz
 
-**Raises**
+  <Function id="qiskit.circuit.library.MCMT.crz" name="crz" signature="MCMT.crz(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").
+  </Function>
 
-**QiskitError** – if the rhs circuit is not compatible
+  ### cswap
 
-### fredkin
+  <Function id="qiskit.circuit.library.MCMT.cswap" name="cswap" signature="MCMT.cswap(control_qubit, target_qubit1, target_qubit2, *, label=None, ctrl_state=None, ctl=None, tgt1=None, tgt2=None)">
+    Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
+  </Function>
 
-<span id="qiskit.circuit.library.MCMT.fredkin" />
+  ### cu1
 
-`MCMT.fredkin(control_qubit, target_qubit1, target_qubit2, *, ctl=None, tgt1=None, tgt2=None)`
+  <Function id="qiskit.circuit.library.MCMT.cu1" name="cu1" signature="MCMT.cu1(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").
+  </Function>
 
-Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
+  ### cu3
 
-### from\_qasm\_file
+  <Function id="qiskit.circuit.library.MCMT.cu3" name="cu3" signature="MCMT.cu3(theta, phi, lam, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").
+  </Function>
 
-<span id="qiskit.circuit.library.MCMT.from_qasm_file" />
+  ### cx
 
-`static MCMT.from_qasm_file(path)`
+  <Function id="qiskit.circuit.library.MCMT.cx" name="cx" signature="MCMT.cx(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+  </Function>
 
-Take in a QASM file and generate a QuantumCircuit object.
+  ### cy
 
-**Parameters**
+  <Function id="qiskit.circuit.library.MCMT.cy" name="cy" signature="MCMT.cy(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
+  </Function>
 
-**path** (*str*) – Path to the file for a QASM program
+  ### cz
 
-**Returns**
+  <Function id="qiskit.circuit.library.MCMT.cz" name="cz" signature="MCMT.cz(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
+  </Function>
 
-The QuantumCircuit object for the input QASM
+  ### dcx
 
-**Return type**
+  <Function id="qiskit.circuit.library.MCMT.dcx" name="dcx" signature="MCMT.dcx(qubit1, qubit2)">
+    Apply [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").
+  </Function>
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  ### decompose
 
-### from\_qasm\_str
+  <Function id="qiskit.circuit.library.MCMT.decompose" name="decompose" signature="MCMT.decompose()">
+    Call a decomposition pass on this circuit, to decompose one level (shallow decompose).
 
-<span id="qiskit.circuit.library.MCMT.from_qasm_str" />
+    **Returns**
 
-`static MCMT.from_qasm_str(qasm_str)`
+    a circuit one level decomposed
 
-Take in a QASM string and generate a QuantumCircuit object.
+    **Return type**
 
-**Parameters**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-**qasm\_str** (*str*) – A QASM program string
+  ### depth
 
-**Returns**
+  <Function id="qiskit.circuit.library.MCMT.depth" name="depth" signature="MCMT.depth()">
+    Return circuit depth (i.e., length of critical path). This does not include compiler or simulator directives such as ‘barrier’ or ‘snapshot’.
 
-The QuantumCircuit object for the input QASM
+    **Returns**
 
-**Return type**
+    Depth of circuit.
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **Return type**
 
-### h
+    int
 
-<span id="qiskit.circuit.library.MCMT.h" />
+    **Notes**
 
-`MCMT.h(qubit, *, q=None)`
+    The circuit depth and the DAG depth need not be the same.
+  </Function>
 
-Apply [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").
+  ### diag\_gate
 
-### hamiltonian
+  <Function id="qiskit.circuit.library.MCMT.diag_gate" name="diag_gate" signature="MCMT.diag_gate(diag, qubit)">
+    Deprecated version of QuantumCircuit.diagonal.
+  </Function>
 
-<span id="qiskit.circuit.library.MCMT.hamiltonian" />
+  ### diagonal
 
-`MCMT.hamiltonian(operator, time, qubits, label=None)`
+  <Function id="qiskit.circuit.library.MCMT.diagonal" name="diagonal" signature="MCMT.diagonal(diag, qubit)">
+    Attach a diagonal gate to a circuit.
 
-Apply hamiltonian evolution to to qubits.
+    The decomposition is based on Theorem 7 given in “Synthesis of Quantum Logic Circuits” by Shende et al. ([https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf)).
 
-### has\_register
+    **Parameters**
 
-<span id="qiskit.circuit.library.MCMT.has_register" />
+    *   **diag** (*list*) – list of the 2^k diagonal entries (for a diagonal gate on k qubits). Must contain at least two entries
+    *   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k qubits the diagonal is acting on (the order of the qubits specifies the computational basis in which the diagonal gate is provided: the first element in diag acts on the state where all the qubits in q are in the state 0, the second entry acts on the state where all the qubits q\[1],…,q\[k-1] are in the state zero and q\[0] is in the state 1, and so on)
 
-`MCMT.has_register(register)`
+    **Returns**
 
-Test if this circuit has the register r.
+    the diagonal gate which was attached to the circuit.
 
-**Parameters**
+    **Return type**
 
-**register** (*Register*) – a quantum or classical register.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Returns**
+    **Raises**
 
-True if the register is contained in this circuit.
+    **QiskitError** – if the list of the diagonal entries or the qubit list is in bad format; if the number of diagonal entries is not 2^k, where k denotes the number of qubits
+  </Function>
 
-**Return type**
+  ### draw
 
-bool
+  <Function id="qiskit.circuit.library.MCMT.draw" name="draw" signature="MCMT.draw(output=None, scale=0.7, filename=None, style=None, interactive=False, line_length=None, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=False)">
+    Draw the quantum circuit.
 
-### i
+    **text**: ASCII art TextDrawing that can be printed in the console.
 
-<span id="qiskit.circuit.library.MCMT.i" />
+    **latex**: high-quality images compiled via LaTeX.
 
-`MCMT.i(qubit, *, q=None)`
+    **latex\_source**: raw uncompiled LaTeX output.
 
-Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+    **matplotlib**: images with color rendered purely in Python.
 
-### id
+    **Parameters**
 
-<span id="qiskit.circuit.library.MCMT.id" />
+    *   **output** (*str*) – Select the output method to use for drawing the circuit. Valid choices are `text`, `latex`, `latex_source`, or `mpl`. By default the ‘text’ drawer is used unless a user config file has an alternative backend set as the default. If the output kwarg is set, that backend will always be used over the default in a user config file.
+    *   **scale** (*float*) – scale of image to draw (shrink if \< 1)
+    *   **filename** (*str*) – file path to save image to
+    *   **style** (*dict or str*) – dictionary of style or file name of style file. This option is only used by the `mpl` output type. If a str is passed in that is the path to a json file which contains a dictionary of style, then that will be opened, parsed, and used as the input dict. See: [Style Dict Doc](qiskit.circuit.library.ZZFeatureMap#draw) for more information on the contents.
+    *   **interactive** (*bool*) – when set true show the circuit in a new window (for mpl this depends on the matplotlib backend being used supporting this). Note when used with either the text or the latex\_source output type this has no effect and will be silently ignored.
+    *   **line\_length** (*int*) – Deprecated; see fold which supersedes this option. Sets the length of the lines generated by text output type. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil.get_terminal_size()`. However, if you’re running in jupyter, the default line length is set to 80 characters. If you don’t want pagination at all, set `line_length=-1`.
+    *   **reverse\_bits** (*bool*) – When set to True, reverse the bit order inside registers for the output visualization.
+    *   **plot\_barriers** (*bool*) – Enable/disable drawing barriers in the output circuit. Defaults to True.
+    *   **justify** (*string*) – Options are `left`, `right` or `none`. If anything else is supplied it defaults to left justified. It refers to where gates should be placed in the output circuit if there is an option. `none` results in each gate being placed in its own column.
+    *   **vertical\_compression** (*string*) – `high`, `medium` or `low`. It merges the lines generated by the `text` output so the drawing will take less vertical room. Default is `medium`. Only used by the `text` output, will be silently ignored otherwise.
+    *   **idle\_wires** (*bool*) – Include idle wires (wires with no circuit elements) in output visualization. Default is True.
+    *   **with\_layout** (*bool*) – Include layout information, with labels on the physical layout. Default is True.
+    *   **fold** (*int*) – Sets pagination. It can be disabled using -1. In text, sets the length of the lines. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil. get_terminal_size()`. However, if running in jupyter, the default line length is set to 80 characters. In `mpl` is the number of (visual) layers before folding. Default is 25.
+    *   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified, a new matplotlib Figure will be created and used. Additionally, if specified, there will be no returned Figure since it is redundant. This is only used when the `output` kwarg is set to use the `mpl` backend. It will be silently ignored with all other outputs.
+    *   **initial\_state** (*bool*) – Optional. Adds `|0>` in the beginning of the wire. Only used by the `text`, `latex` and `latex_source` outputs. Default: `False`.
+    *   **cregbundle** (*bool*) – Optional. If set True bundle classical registers. Only used by the `text` output. Default: `False`.
 
-`MCMT.id(qubit, *, q=None)`
+    **Returns**
 
-Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+    `PIL.Image` or `matplotlib.figure` or `str` or `TextDrawing`:
 
-### iden
+    *   **PIL.Image (output=’latex’)**
 
-<span id="qiskit.circuit.library.MCMT.iden" />
+        an in-memory representation of the image of the circuit diagram.
 
-`MCMT.iden(qubit, *, q=None)`
+    *   **matplotlib.figure.Figure (output=’mpl’)**
 
-Deprecated identity gate.
+        a matplotlib figure object for the circuit diagram.
 
-### initialize
+    *   **str (output=’latex\_source’)**
 
-<span id="qiskit.circuit.library.MCMT.initialize" />
+        The LaTeX source code for visualizing the circuit diagram.
 
-`MCMT.initialize(params, qubits)`
+    *   **TextDrawing (output=’text’)**
 
-Apply initialize to circuit.
+        A drawing that can be printed as ASCII art.
 
-### inverse
+    **Raises**
 
-<span id="qiskit.circuit.library.MCMT.inverse" />
+    *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
+    *   **ImportError** – when the output methods require non-installed libraries
 
-`MCMT.inverse()`
+    **Style Dict Details**
 
-Return the inverse MCMT circuit, which is itself.
+    The style dict kwarg contains numerous options that define the style of the output circuit visualization. The style dict is only used by the `mpl` output. The options available in the style dict are defined below:
 
-### iso
+    **Parameters**
 
-<span id="qiskit.circuit.library.MCMT.iso" />
+    *   **textcolor** (*str*) – The color code to use for text. Defaults to ‘#000000’
 
-`MCMT.iso(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)`
+    *   **subtextcolor** (*str*) – The color code to use for subtext. Defaults to ‘#000000’
 
-Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
+    *   **linecolor** (*str*) – The color code to use for lines. Defaults to ‘#000000’
 
-**Parameters**
+    *   **creglinecolor** (*str*) – The color code to use for classical register lines. Defaults to ‘#778899’
 
-*   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
+    *   **gatetextcolor** (*str*) – The color code to use for gate text. Defaults to ‘#000000’
 
-**Returns**
+    *   **gatefacecolor** (*str*) – The color code to use for gates. Defaults to ‘#ffffff’
 
-the isometry is attached to the quantum circuit.
+    *   **barrierfacecolor** (*str*) – The color code to use for barriers. Defaults to ‘#bdbdbd’
 
-**Return type**
+    *   **backgroundcolor** (*str*) – The color code to use for the background. Defaults to ‘#ffffff’
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    *   **fontsize** (*int*) – The font size to use for text. Defaults to 13.
 
-**Raises**
+    *   **subfontsize** (*int*) – The font size to use for subtext. Defaults to 8.
 
-**QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
+    *   **displaytext** (*dict*) –
 
-### isometry
+        A dictionary of the text to use for each element type in the output visualization. The default values are:
 
-<span id="qiskit.circuit.library.MCMT.isometry" />
+        ```python
+        {
+            'id': 'id',
+            'u0': 'U_0',
+            'u1': 'U_1',
+            'u2': 'U_2',
+            'u3': 'U_3',
+            'x': 'X',
+            'y': 'Y',
+            'z': 'Z',
+            'h': 'H',
+            's': 'S',
+            'sdg': 'S^\dagger',
+            't': 'T',
+            'tdg': 'T^\dagger',
+            'rx': 'R_x',
+            'ry': 'R_y',
+            'rz': 'R_z',
+            'reset': '\left|0\right\rangle'
+        }
+        ```
 
-`MCMT.isometry(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)`
+        You must specify all the necessary values if using this. There is no provision for passing an incomplete dict in.
 
-Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
+    *   **displaycolor** (*dict*) –
 
-**Parameters**
+        **The color codes to use for each circuit**
 
-*   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
+        element. The default values are:
 
-**Returns**
+        ```python
+        {
+            'id': '#F0E442',
+            'u0': '#E7AB3B',
+            'u1': '#E7AB3B',
+            'u2': '#E7AB3B',
+            'u3': '#E7AB3B',
+            'x': '#58C698',
+            'y': '#58C698',
+            'z': '#58C698',
+            'h': '#70B7EB',
+            's': '#E0722D',
+            'sdg': '#E0722D',
+            't': '#E0722D',
+            'tdg': '#E0722D',
+            'rx': '#ffffff',
+            'ry': '#ffffff',
+            'rz': '#ffffff',
+            'reset': '#D188B4',
+            'target': '#70B7EB',
+            'meas': '#D188B4'
+        }
+        ```
 
-the isometry is attached to the quantum circuit.
+        Also, just like displaytext there is no provision for an incomplete dict passed in.
 
-**Return type**
+    *   **latexdrawerstyle** (*bool*) – When set to True, enable LaTeX mode, which will draw gates like the latex output modes.
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    *   **usepiformat** (*bool*) – When set to True, use radians for output.
 
-**Raises**
+    *   **fold** (*int*) – The number of circuit elements to fold the circuit at. Defaults to 20.
 
-**QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
+    *   **cregbundle** (*bool*) – If set True, bundle classical registers
 
-### iswap
+    *   **showindex** (*bool*) – If set True, draw an index.
 
-<span id="qiskit.circuit.library.MCMT.iswap" />
+    *   **compress** (*bool*) – If set True, draw a compressed circuit.
 
-`MCMT.iswap(qubit1, qubit2)`
+    *   **figwidth** (*int*) – The maximum width (in inches) for the output figure.
 
-Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").
+    *   **dpi** (*int*) – The DPI to use for the output image. Defaults to 150.
 
-### mcmt
+    *   **margin** (*list*) – A list of margin values to adjust spacing around output image. Takes a list of 4 ints: \[x left, x right, y bottom, y top].
 
-<span id="qiskit.circuit.library.MCMT.mcmt" />
+    *   **creglinestyle** (*str*) – The style of line to use for classical registers. Choices are ‘solid’, ‘doublet’, or any valid matplotlib linestyle kwarg value. Defaults to doublet
+  </Function>
 
-`MCMT.mcmt(gate, control_qubits, target_qubits, ancilla_qubits=None, mode='no-ancilla', *, single_control_gate_fun=None, q_controls=None, q_ancillae=None, q_targets=None)`
+  ### extend
 
-Apply a multi-control, multi-target using a generic gate.
+  <Function id="qiskit.circuit.library.MCMT.extend" name="extend" signature="MCMT.extend(rhs)">
+    Append QuantumCircuit to the right hand side if it contains compatible registers.
 
-This can also be used to implement a generic multi-control gate, as the target could also be of length 1.
+    Two circuits are compatible if they contain the same registers or if they contain different registers with unique names. The returned circuit will contain all unique registers between both circuits.
 
-### mcrx
+    Modify and return self.
 
-<span id="qiskit.circuit.library.MCMT.mcrx" />
+    **Parameters**
 
-`MCMT.mcrx(theta, q_controls, q_target, use_basis_gates=False)`
+    **rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
 
-Apply Multiple-Controlled X rotation gate
+    **Returns**
 
-**Parameters**
+    Returns this QuantumCircuit object (which has been modified)
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrx gate on.
-*   **theta** (*float*) – angle theta
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
-*   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
+    **Return type**
 
-**Raises**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**QiskitError** – parameter errors
+    **Raises**
 
-### mcry
+    **QiskitError** – if the rhs circuit is not compatible
+  </Function>
 
-<span id="qiskit.circuit.library.MCMT.mcry" />
+  ### fredkin
 
-`MCMT.mcry(theta, q_controls, q_target, q_ancillae, mode='basic', use_basis_gates=False)`
+  <Function id="qiskit.circuit.library.MCMT.fredkin" name="fredkin" signature="MCMT.fredkin(control_qubit, target_qubit1, target_qubit2, *, ctl=None, tgt1=None, tgt2=None)">
+    Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
+  </Function>
 
-Apply Multiple-Controlled Y rotation gate
+  ### from\_qasm\_file
 
-**Parameters**
+  <Function id="qiskit.circuit.library.MCMT.from_qasm_file" name="from_qasm_file" signature="static MCMT.from_qasm_file(path)">
+    Take in a QASM file and generate a QuantumCircuit object.
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcry gate on.
-*   **theta** (*float*) – angle theta
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
-*   **q\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or tuple(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, int)*) – The list of ancillary qubits.
-*   **mode** (*string*) – The implementation mode to use
-*   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
+    **Parameters**
 
-**Raises**
+    **path** (*str*) – Path to the file for a QASM program
 
-**QiskitError** – parameter errors
+    **Returns**
 
-### mcrz
+    The QuantumCircuit object for the input QASM
 
-<span id="qiskit.circuit.library.MCMT.mcrz" />
+    **Return type**
 
-`MCMT.mcrz(lam, q_controls, q_target, use_basis_gates=False)`
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-Apply Multiple-Controlled Z rotation gate
+  ### from\_qasm\_str
 
-**Parameters**
+  <Function id="qiskit.circuit.library.MCMT.from_qasm_str" name="from_qasm_str" signature="static MCMT.from_qasm_str(qasm_str)">
+    Take in a QASM string and generate a QuantumCircuit object.
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrz gate on.
-*   **lam** (*float*) – angle lambda
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
-*   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
+    **Parameters**
 
-**Raises**
+    **qasm\_str** (*str*) – A QASM program string
 
-**QiskitError** – parameter errors
+    **Returns**
 
-### mct
+    The QuantumCircuit object for the input QASM
 
-<span id="qiskit.circuit.library.MCMT.mct" />
+    **Return type**
 
-`MCMT.mct(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-Apply `MCXGate`.
+  ### h
 
-### mcu1
+  <Function id="qiskit.circuit.library.MCMT.h" name="h" signature="MCMT.h(qubit, *, q=None)">
+    Apply [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").
+  </Function>
 
-<span id="qiskit.circuit.library.MCMT.mcu1" />
+  ### hamiltonian
 
-`MCMT.mcu1(lam, control_qubits, target_qubit)`
+  <Function id="qiskit.circuit.library.MCMT.hamiltonian" name="hamiltonian" signature="MCMT.hamiltonian(operator, time, qubits, label=None)">
+    Apply hamiltonian evolution to to qubits.
+  </Function>
 
-Apply `MCU1Gate`.
+  ### has\_register
 
-### mcx
+  <Function id="qiskit.circuit.library.MCMT.has_register" name="has_register" signature="MCMT.has_register(register)">
+    Test if this circuit has the register r.
 
-<span id="qiskit.circuit.library.MCMT.mcx" />
+    **Parameters**
 
-`MCMT.mcx(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
+    **register** (*Register*) – a quantum or classical register.
 
-Apply `MCXGate`.
+    **Returns**
 
-The multi-cX gate can be implemented using different techniques, which use different numbers of ancilla qubits and have varying circuit depth. These modes are: - ‘no-ancilla’: Requires 0 ancilla qubits. - ‘recursion’: Requires 1 ancilla qubit if more than 4 controls are used, otherwise 0. - ‘v-chain’: Requires 2 less ancillas than the number of control qubits. - ‘v-chain-dirty’: Same as for the clean ancillas (but the circuit will be longer).
+    True if the register is contained in this circuit.
 
-### measure
+    **Return type**
 
-<span id="qiskit.circuit.library.MCMT.measure" />
+    bool
+  </Function>
 
-`MCMT.measure(qubit, cbit)`
+  ### i
 
-Measure quantum bit into classical bit (tuples).
+  <Function id="qiskit.circuit.library.MCMT.i" name="i" signature="MCMT.i(qubit, *, q=None)">
+    Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+  </Function>
 
-**Parameters**
+  ### id
 
-*   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list|tuple*) – quantum register
-*   **cbit** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*|list|tuple*) – classical register
+  <Function id="qiskit.circuit.library.MCMT.id" name="id" signature="MCMT.id(qubit, *, q=None)">
+    Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+  </Function>
 
-**Returns**
+  ### iden
 
-the attached measure instruction.
+  <Function id="qiskit.circuit.library.MCMT.iden" name="iden" signature="MCMT.iden(qubit, *, q=None)">
+    Deprecated identity gate.
+  </Function>
 
-**Return type**
+  ### initialize
 
-qiskit.Instruction
+  <Function id="qiskit.circuit.library.MCMT.initialize" name="initialize" signature="MCMT.initialize(params, qubits)">
+    Apply initialize to circuit.
+  </Function>
 
-**Raises**
+  ### inverse
 
-**CircuitError** – if qubit is not in this circuit or bad format; if cbit is not in this circuit or not creg.
+  <Function id="qiskit.circuit.library.MCMT.inverse" name="inverse" signature="MCMT.inverse()">
+    Return the inverse MCMT circuit, which is itself.
+  </Function>
 
-### measure\_active
+  ### iso
 
-<span id="qiskit.circuit.library.MCMT.measure_active" />
+  <Function id="qiskit.circuit.library.MCMT.iso" name="iso" signature="MCMT.iso(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)">
+    Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
 
-`MCMT.measure_active(inplace=True)`
+    **Parameters**
 
-Adds measurement to all non-idle qubits. Creates a new ClassicalRegister with a size equal to the number of non-idle qubits being measured.
+    *   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
+    *   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
+    *   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
+    *   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
+    *   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
 
-Returns a new circuit with measurements if inplace=False.
+    **Returns**
 
-**Parameters**
+    the isometry is attached to the quantum circuit.
 
-**inplace** (*bool*) – All measurements inplace or return new circuit.
+    **Return type**
 
-**Returns**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-Returns circuit with measurements when inplace = False.
+    **Raises**
 
-**Return type**
+    **QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
+  </Function>
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  ### isometry
 
-### measure\_all
+  <Function id="qiskit.circuit.library.MCMT.isometry" name="isometry" signature="MCMT.isometry(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)">
+    Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
 
-<span id="qiskit.circuit.library.MCMT.measure_all" />
+    **Parameters**
 
-`MCMT.measure_all(inplace=True)`
+    *   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
+    *   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
+    *   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
+    *   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
+    *   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
 
-Adds measurement to all qubits. Creates a new ClassicalRegister with a size equal to the number of qubits being measured.
+    **Returns**
 
-Returns a new circuit with measurements if inplace=False.
+    the isometry is attached to the quantum circuit.
 
-**Parameters**
+    **Return type**
 
-**inplace** (*bool*) – All measurements inplace or return new circuit.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Returns**
+    **Raises**
 
-Returns circuit with measurements when inplace = False.
+    **QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
+  </Function>
 
-**Return type**
+  ### iswap
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.circuit.library.MCMT.iswap" name="iswap" signature="MCMT.iswap(qubit1, qubit2)">
+    Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").
+  </Function>
 
-### mirror
+  ### mcmt
 
-<span id="qiskit.circuit.library.MCMT.mirror" />
+  <Function id="qiskit.circuit.library.MCMT.mcmt" name="mcmt" signature="MCMT.mcmt(gate, control_qubits, target_qubits, ancilla_qubits=None, mode='no-ancilla', *, single_control_gate_fun=None, q_controls=None, q_ancillae=None, q_targets=None)">
+    Apply a multi-control, multi-target using a generic gate.
 
-`MCMT.mirror()`
+    This can also be used to implement a generic multi-control gate, as the target could also be of length 1.
+  </Function>
 
-Mirror the circuit by reversing the instructions.
+  ### mcrx
 
-This is done by recursively mirroring all instructions. It does not invert any gate.
+  <Function id="qiskit.circuit.library.MCMT.mcrx" name="mcrx" signature="MCMT.mcrx(theta, q_controls, q_target, use_basis_gates=False)">
+    Apply Multiple-Controlled X rotation gate
 
-**Returns**
+    **Parameters**
 
-the mirrored circuit
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrx gate on.
+    *   **theta** (*float*) – angle theta
+    *   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+    *   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+    *   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
 
-**Return type**
+    **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **QiskitError** – parameter errors
+  </Function>
 
-### ms
+  ### mcry
 
-<span id="qiskit.circuit.library.MCMT.ms" />
+  <Function id="qiskit.circuit.library.MCMT.mcry" name="mcry" signature="MCMT.mcry(theta, q_controls, q_target, q_ancillae, mode='basic', use_basis_gates=False)">
+    Apply Multiple-Controlled Y rotation gate
 
-`MCMT.ms(theta, qubits)`
+    **Parameters**
 
-Apply [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcry gate on.
+    *   **theta** (*float*) – angle theta
+    *   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+    *   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+    *   **q\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or tuple(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, int)*) – The list of ancillary qubits.
+    *   **mode** (*string*) – The implementation mode to use
+    *   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
 
-### num\_connected\_components
+    **Raises**
 
-<span id="qiskit.circuit.library.MCMT.num_connected_components" />
+    **QiskitError** – parameter errors
+  </Function>
 
-`MCMT.num_connected_components(unitary_only=False)`
+  ### mcrz
 
-How many non-entangled subcircuits can the circuit be factored to.
+  <Function id="qiskit.circuit.library.MCMT.mcrz" name="mcrz" signature="MCMT.mcrz(lam, q_controls, q_target, use_basis_gates=False)">
+    Apply Multiple-Controlled Z rotation gate
 
-**Parameters**
+    **Parameters**
 
-**unitary\_only** (*bool*) – Compute only unitary part of graph.
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrz gate on.
+    *   **lam** (*float*) – angle lambda
+    *   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+    *   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+    *   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
 
-**Returns**
+    **Raises**
 
-Number of connected components in circuit.
+    **QiskitError** – parameter errors
+  </Function>
 
-**Return type**
+  ### mct
 
-int
+  <Function id="qiskit.circuit.library.MCMT.mct" name="mct" signature="MCMT.mct(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')">
+    Apply `MCXGate`.
+  </Function>
 
-### num\_nonlocal\_gates
+  ### mcu1
 
-<span id="qiskit.circuit.library.MCMT.num_nonlocal_gates" />
+  <Function id="qiskit.circuit.library.MCMT.mcu1" name="mcu1" signature="MCMT.mcu1(lam, control_qubits, target_qubit)">
+    Apply `MCU1Gate`.
+  </Function>
 
-`MCMT.num_nonlocal_gates()`
+  ### mcx
 
-Return number of non-local gates (i.e. involving 2+ qubits).
+  <Function id="qiskit.circuit.library.MCMT.mcx" name="mcx" signature="MCMT.mcx(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')">
+    Apply `MCXGate`.
 
-Conditional nonlocal gates are also included.
+    The multi-cX gate can be implemented using different techniques, which use different numbers of ancilla qubits and have varying circuit depth. These modes are: - ‘no-ancilla’: Requires 0 ancilla qubits. - ‘recursion’: Requires 1 ancilla qubit if more than 4 controls are used, otherwise 0. - ‘v-chain’: Requires 2 less ancillas than the number of control qubits. - ‘v-chain-dirty’: Same as for the clean ancillas (but the circuit will be longer).
+  </Function>
 
-### num\_tensor\_factors
+  ### measure
 
-<span id="qiskit.circuit.library.MCMT.num_tensor_factors" />
+  <Function id="qiskit.circuit.library.MCMT.measure" name="measure" signature="MCMT.measure(qubit, cbit)">
+    Measure quantum bit into classical bit (tuples).
 
-`MCMT.num_tensor_factors()`
+    **Parameters**
 
-Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
+    *   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list|tuple*) – quantum register
+    *   **cbit** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*|list|tuple*) – classical register
 
-**Notes**
+    **Returns**
 
-This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
+    the attached measure instruction.
 
-### num\_unitary\_factors
+    **Return type**
 
-<span id="qiskit.circuit.library.MCMT.num_unitary_factors" />
+    qiskit.Instruction
 
-`MCMT.num_unitary_factors()`
+    **Raises**
 
-Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
+    **CircuitError** – if qubit is not in this circuit or bad format; if cbit is not in this circuit or not creg.
+  </Function>
 
-### qasm
+  ### measure\_active
 
-<span id="qiskit.circuit.library.MCMT.qasm" />
+  <Function id="qiskit.circuit.library.MCMT.measure_active" name="measure_active" signature="MCMT.measure_active(inplace=True)">
+    Adds measurement to all non-idle qubits. Creates a new ClassicalRegister with a size equal to the number of non-idle qubits being measured.
 
-`MCMT.qasm(formatted=False, filename=None)`
+    Returns a new circuit with measurements if inplace=False.
 
-Return OpenQASM string.
+    **Parameters**
 
-**Parameters**
+    **inplace** (*bool*) – All measurements inplace or return new circuit.
 
-*   **formatted** (*bool*) – Return formatted Qasm string.
-*   **filename** (*str*) – Save Qasm to file with name ‘filename’.
+    **Returns**
 
-**Returns**
+    Returns circuit with measurements when inplace = False.
 
-If formatted=False.
+    **Return type**
 
-**Return type**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-str
+  ### measure\_all
 
-**Raises**
+  <Function id="qiskit.circuit.library.MCMT.measure_all" name="measure_all" signature="MCMT.measure_all(inplace=True)">
+    Adds measurement to all qubits. Creates a new ClassicalRegister with a size equal to the number of qubits being measured.
 
-**ImportError** – If pygments is not installed and `formatted` is `True`.
+    Returns a new circuit with measurements if inplace=False.
 
-### qbit\_argument\_conversion
+    **Parameters**
 
-<span id="qiskit.circuit.library.MCMT.qbit_argument_conversion" />
+    **inplace** (*bool*) – All measurements inplace or return new circuit.
 
-`MCMT.qbit_argument_conversion(qubit_representation)`
+    **Returns**
 
-Converts several qubit representations (such as indexes, range, etc.) into a list of qubits.
+    Returns circuit with measurements when inplace = False.
 
-**Parameters**
+    **Return type**
 
-**qubit\_representation** (*Object*) – representation to expand
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-**Returns**
+  ### mirror
 
-Where each tuple is a qubit.
+  <Function id="qiskit.circuit.library.MCMT.mirror" name="mirror" signature="MCMT.mirror()">
+    Mirror the circuit by reversing the instructions.
 
-**Return type**
+    This is done by recursively mirroring all instructions. It does not invert any gate.
 
-List(tuple)
+    **Returns**
 
-### r
+    the mirrored circuit
 
-<span id="qiskit.circuit.library.MCMT.r" />
+    **Return type**
 
-`MCMT.r(theta, phi, qubit, *, q=None)`
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-Apply `RGate`.
+  ### ms
 
-### rcccx
+  <Function id="qiskit.circuit.library.MCMT.ms" name="ms" signature="MCMT.ms(theta, qubits)">
+    Apply [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").
+  </Function>
 
-<span id="qiskit.circuit.library.MCMT.rcccx" />
+  ### num\_connected\_components
 
-`MCMT.rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)`
+  <Function id="qiskit.circuit.library.MCMT.num_connected_components" name="num_connected_components" signature="MCMT.num_connected_components(unitary_only=False)">
+    How many non-entangled subcircuits can the circuit be factored to.
 
-Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
+    **Parameters**
 
-### rccx
+    **unitary\_only** (*bool*) – Compute only unitary part of graph.
 
-<span id="qiskit.circuit.library.MCMT.rccx" />
+    **Returns**
 
-`MCMT.rccx(control_qubit1, control_qubit2, target_qubit)`
+    Number of connected components in circuit.
 
-Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").
+    **Return type**
 
-### remove\_final\_measurements
+    int
+  </Function>
 
-<span id="qiskit.circuit.library.MCMT.remove_final_measurements" />
+  ### num\_nonlocal\_gates
 
-`MCMT.remove_final_measurements(inplace=True)`
+  <Function id="qiskit.circuit.library.MCMT.num_nonlocal_gates" name="num_nonlocal_gates" signature="MCMT.num_nonlocal_gates()">
+    Return number of non-local gates (i.e. involving 2+ qubits).
 
-Removes final measurement on all qubits if they are present. Deletes the ClassicalRegister that was used to store the values from these measurements if it is idle.
+    Conditional nonlocal gates are also included.
+  </Function>
 
-Returns a new circuit without measurements if inplace=False.
+  ### num\_tensor\_factors
 
-**Parameters**
+  <Function id="qiskit.circuit.library.MCMT.num_tensor_factors" name="num_tensor_factors" signature="MCMT.num_tensor_factors()">
+    Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-**inplace** (*bool*) – All measurements removed inplace or return new circuit.
+    **Notes**
 
-**Returns**
+    This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
+  </Function>
 
-Returns circuit with measurements removed when inplace = False.
+  ### num\_unitary\_factors
 
-**Return type**
+  <Function id="qiskit.circuit.library.MCMT.num_unitary_factors" name="num_unitary_factors" signature="MCMT.num_unitary_factors()">
+    Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
+  </Function>
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  ### qasm
 
-### reset
+  <Function id="qiskit.circuit.library.MCMT.qasm" name="qasm" signature="MCMT.qasm(formatted=False, filename=None)">
+    Return OpenQASM string.
 
-<span id="qiskit.circuit.library.MCMT.reset" />
+    **Parameters**
 
-`MCMT.reset(qubit)`
+    *   **formatted** (*bool*) – Return formatted Qasm string.
+    *   **filename** (*str*) – Save Qasm to file with name ‘filename’.
 
-Reset q.
+    **Returns**
 
-### rx
+    If formatted=False.
 
-<span id="qiskit.circuit.library.MCMT.rx" />
+    **Return type**
 
-`MCMT.rx(theta, qubit, *, label=None, q=None)`
+    str
 
-Apply [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
+    **Raises**
 
-### rxx
+    **ImportError** – If pygments is not installed and `formatted` is `True`.
+  </Function>
 
-<span id="qiskit.circuit.library.MCMT.rxx" />
+  ### qbit\_argument\_conversion
 
-`MCMT.rxx(theta, qubit1, qubit2)`
+  <Function id="qiskit.circuit.library.MCMT.qbit_argument_conversion" name="qbit_argument_conversion" signature="MCMT.qbit_argument_conversion(qubit_representation)">
+    Converts several qubit representations (such as indexes, range, etc.) into a list of qubits.
 
-Apply [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+    **Parameters**
 
-### ry
+    **qubit\_representation** (*Object*) – representation to expand
 
-<span id="qiskit.circuit.library.MCMT.ry" />
+    **Returns**
 
-`MCMT.ry(theta, qubit, *, label=None, q=None)`
+    Where each tuple is a qubit.
 
-Apply [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
+    **Return type**
 
-### ryy
+    List(tuple)
+  </Function>
 
-<span id="qiskit.circuit.library.MCMT.ryy" />
+  ### r
 
-`MCMT.ryy(theta, qubit1, qubit2)`
+  <Function id="qiskit.circuit.library.MCMT.r" name="r" signature="MCMT.r(theta, phi, qubit, *, q=None)">
+    Apply `RGate`.
+  </Function>
 
-Apply [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").
+  ### rcccx
 
-### rz
+  <Function id="qiskit.circuit.library.MCMT.rcccx" name="rcccx" signature="MCMT.rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)">
+    Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
+  </Function>
 
-<span id="qiskit.circuit.library.MCMT.rz" />
+  ### rccx
 
-`MCMT.rz(phi, qubit, *, q=None)`
+  <Function id="qiskit.circuit.library.MCMT.rccx" name="rccx" signature="MCMT.rccx(control_qubit1, control_qubit2, target_qubit)">
+    Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").
+  </Function>
 
-Apply [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
+  ### remove\_final\_measurements
 
-### rzx
+  <Function id="qiskit.circuit.library.MCMT.remove_final_measurements" name="remove_final_measurements" signature="MCMT.remove_final_measurements(inplace=True)">
+    Removes final measurement on all qubits if they are present. Deletes the ClassicalRegister that was used to store the values from these measurements if it is idle.
 
-<span id="qiskit.circuit.library.MCMT.rzx" />
+    Returns a new circuit without measurements if inplace=False.
 
-`MCMT.rzx(theta, qubit1, qubit2)`
+    **Parameters**
 
-Apply [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").
+    **inplace** (*bool*) – All measurements removed inplace or return new circuit.
 
-### rzz
+    **Returns**
 
-<span id="qiskit.circuit.library.MCMT.rzz" />
+    Returns circuit with measurements removed when inplace = False.
 
-`MCMT.rzz(theta, qubit1, qubit2)`
+    **Return type**
 
-Apply [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-### s
+  ### reset
 
-<span id="qiskit.circuit.library.MCMT.s" />
+  <Function id="qiskit.circuit.library.MCMT.reset" name="reset" signature="MCMT.reset(qubit)">
+    Reset q.
+  </Function>
 
-`MCMT.s(qubit, *, q=None)`
+  ### rx
 
-Apply [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
+  <Function id="qiskit.circuit.library.MCMT.rx" name="rx" signature="MCMT.rx(theta, qubit, *, label=None, q=None)">
+    Apply [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
+  </Function>
 
-### sdg
+  ### rxx
 
-<span id="qiskit.circuit.library.MCMT.sdg" />
+  <Function id="qiskit.circuit.library.MCMT.rxx" name="rxx" signature="MCMT.rxx(theta, qubit1, qubit2)">
+    Apply [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+  </Function>
 
-`MCMT.sdg(qubit, *, q=None)`
+  ### ry
 
-Apply [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
+  <Function id="qiskit.circuit.library.MCMT.ry" name="ry" signature="MCMT.ry(theta, qubit, *, label=None, q=None)">
+    Apply [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
+  </Function>
 
-### size
+  ### ryy
 
-<span id="qiskit.circuit.library.MCMT.size" />
+  <Function id="qiskit.circuit.library.MCMT.ryy" name="ryy" signature="MCMT.ryy(theta, qubit1, qubit2)">
+    Apply [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").
+  </Function>
 
-`MCMT.size()`
+  ### rz
 
-Returns total number of gate operations in circuit.
+  <Function id="qiskit.circuit.library.MCMT.rz" name="rz" signature="MCMT.rz(phi, qubit, *, q=None)">
+    Apply [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
+  </Function>
 
-**Returns**
+  ### rzx
 
-Total number of gate operations.
+  <Function id="qiskit.circuit.library.MCMT.rzx" name="rzx" signature="MCMT.rzx(theta, qubit1, qubit2)">
+    Apply [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").
+  </Function>
 
-**Return type**
+  ### rzz
 
-int
+  <Function id="qiskit.circuit.library.MCMT.rzz" name="rzz" signature="MCMT.rzz(theta, qubit1, qubit2)">
+    Apply [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
+  </Function>
 
-### snapshot
+  ### s
 
-<span id="qiskit.circuit.library.MCMT.snapshot" />
+  <Function id="qiskit.circuit.library.MCMT.s" name="s" signature="MCMT.s(qubit, *, q=None)">
+    Apply [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
+  </Function>
 
-`MCMT.snapshot(label, snapshot_type='statevector', qubits=None, params=None)`
+  ### sdg
 
-Take a statevector snapshot of the internal simulator representation. Works on all qubits, and prevents reordering (like barrier). :param label: a snapshot label to report the result :type label: str :param snapshot\_type: the type of the snapshot. :type snapshot\_type: str :param qubits: the qubits to apply snapshot to \[Default: None]. :type qubits: list or None :param params: the parameters for snapshot\_type \[Default: None]. :type params: list or None
+  <Function id="qiskit.circuit.library.MCMT.sdg" name="sdg" signature="MCMT.sdg(qubit, *, q=None)">
+    Apply [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
+  </Function>
 
-**Returns**
+  ### size
 
-with attached command
+  <Function id="qiskit.circuit.library.MCMT.size" name="size" signature="MCMT.size()">
+    Returns total number of gate operations in circuit.
 
-**Return type**
+    **Returns**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    Total number of gate operations.
 
-**Raises**
+    **Return type**
 
-**ExtensionError** – malformed command
+    int
+  </Function>
 
-### snapshot\_density\_matrix
+  ### snapshot
 
-<span id="qiskit.circuit.library.MCMT.snapshot_density_matrix" />
+  <Function id="qiskit.circuit.library.MCMT.snapshot" name="snapshot" signature="MCMT.snapshot(label, snapshot_type='statevector', qubits=None, params=None)">
+    Take a statevector snapshot of the internal simulator representation. Works on all qubits, and prevents reordering (like barrier). :param label: a snapshot label to report the result :type label: str :param snapshot\_type: the type of the snapshot. :type snapshot\_type: str :param qubits: the qubits to apply snapshot to \[Default: None]. :type qubits: list or None :param params: the parameters for snapshot\_type \[Default: None]. :type params: list or None
 
-`MCMT.snapshot_density_matrix(label, qubits=None)`
+    **Returns**
 
-Take a density matrix snapshot of simulator state.
+    with attached command
 
-**Parameters**
+    **Return type**
 
-*   **label** (*str*) – a snapshot label to report the result
-*   **qubits** (*list or None*) – the qubits to apply snapshot to. If None all qubits will be snapshot \[Default: None].
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Returns**
+    **Raises**
 
-with attached instruction.
+    **ExtensionError** – malformed command
+  </Function>
 
-**Return type**
+  ### snapshot\_density\_matrix
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.circuit.library.MCMT.snapshot_density_matrix" name="snapshot_density_matrix" signature="MCMT.snapshot_density_matrix(label, qubits=None)">
+    Take a density matrix snapshot of simulator state.
 
-**Raises**
+    **Parameters**
 
-**ExtensionError** – if snapshot is invalid.
+    *   **label** (*str*) – a snapshot label to report the result
+    *   **qubits** (*list or None*) – the qubits to apply snapshot to. If None all qubits will be snapshot \[Default: None].
 
-### snapshot\_expectation\_value
+    **Returns**
 
-<span id="qiskit.circuit.library.MCMT.snapshot_expectation_value" />
+    with attached instruction.
 
-`MCMT.snapshot_expectation_value(label, op, qubits, single_shot=False, variance=False)`
+    **Return type**
 
-Take a snapshot of expectation value \<O> of an Operator.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Parameters**
+    **Raises**
 
-*   **label** (*str*) – a snapshot label to report the result
-*   **op** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot
-*   **qubits** (*list*) – the qubits to snapshot.
-*   **single\_shot** (*bool*) – return list for each shot rather than average \[Default: False]
-*   **variance** (*bool*) – compute variance of probabilities \[Default: False]
+    **ExtensionError** – if snapshot is invalid.
+  </Function>
 
-**Returns**
+  ### snapshot\_expectation\_value
 
-with attached instruction.
+  <Function id="qiskit.circuit.library.MCMT.snapshot_expectation_value" name="snapshot_expectation_value" signature="MCMT.snapshot_expectation_value(label, op, qubits, single_shot=False, variance=False)">
+    Take a snapshot of expectation value \<O> of an Operator.
 
-**Return type**
+    **Parameters**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    *   **label** (*str*) – a snapshot label to report the result
+    *   **op** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot
+    *   **qubits** (*list*) – the qubits to snapshot.
+    *   **single\_shot** (*bool*) – return list for each shot rather than average \[Default: False]
+    *   **variance** (*bool*) – compute variance of probabilities \[Default: False]
 
-**Raises**
+    **Returns**
 
-**ExtensionError** – if snapshot is invalid.
+    with attached instruction.
 
-### snapshot\_probabilities
+    **Return type**
 
-<span id="qiskit.circuit.library.MCMT.snapshot_probabilities" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-`MCMT.snapshot_probabilities(label, qubits, variance=False)`
+    **Raises**
 
-Take a probability snapshot of the simulator state.
+    **ExtensionError** – if snapshot is invalid.
+  </Function>
 
-**Parameters**
+  ### snapshot\_probabilities
 
-*   **label** (*str*) – a snapshot label to report the result
-*   **qubits** (*list*) – the qubits to snapshot.
-*   **variance** (*bool*) – compute variance of probabilities \[Default: False]
+  <Function id="qiskit.circuit.library.MCMT.snapshot_probabilities" name="snapshot_probabilities" signature="MCMT.snapshot_probabilities(label, qubits, variance=False)">
+    Take a probability snapshot of the simulator state.
 
-**Returns**
+    **Parameters**
 
-with attached instruction.
+    *   **label** (*str*) – a snapshot label to report the result
+    *   **qubits** (*list*) – the qubits to snapshot.
+    *   **variance** (*bool*) – compute variance of probabilities \[Default: False]
 
-**Return type**
+    **Returns**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    with attached instruction.
 
-**Raises**
+    **Return type**
 
-**ExtensionError** – if snapshot is invalid.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-### snapshot\_stabilizer
+    **Raises**
 
-<span id="qiskit.circuit.library.MCMT.snapshot_stabilizer" />
+    **ExtensionError** – if snapshot is invalid.
+  </Function>
 
-`MCMT.snapshot_stabilizer(label)`
+  ### snapshot\_stabilizer
 
-Take a stabilizer snapshot of the simulator state.
+  <Function id="qiskit.circuit.library.MCMT.snapshot_stabilizer" name="snapshot_stabilizer" signature="MCMT.snapshot_stabilizer(label)">
+    Take a stabilizer snapshot of the simulator state.
 
-**Parameters**
+    **Parameters**
 
-**label** (*str*) – a snapshot label to report the result.
+    **label** (*str*) – a snapshot label to report the result.
 
-**Returns**
+    **Returns**
 
-with attached instruction.
+    with attached instruction.
 
-**Return type**
+    **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Raises**
+    **Raises**
 
-**ExtensionError** – if snapshot is invalid.
+    **ExtensionError** – if snapshot is invalid.
 
-#### Additional Information:
+    #### Additional Information:
 
-This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+    This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+  </Function>
 
-### snapshot\_statevector
+  ### snapshot\_statevector
 
-<span id="qiskit.circuit.library.MCMT.snapshot_statevector" />
+  <Function id="qiskit.circuit.library.MCMT.snapshot_statevector" name="snapshot_statevector" signature="MCMT.snapshot_statevector(label)">
+    Take a statevector snapshot of the simulator state.
 
-`MCMT.snapshot_statevector(label)`
+    **Parameters**
 
-Take a statevector snapshot of the simulator state.
+    **label** (*str*) – a snapshot label to report the result.
 
-**Parameters**
+    **Returns**
 
-**label** (*str*) – a snapshot label to report the result.
+    with attached instruction.
 
-**Returns**
+    **Return type**
 
-with attached instruction.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+    **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **ExtensionError** – if snapshot is invalid.
 
-**Raises**
+    #### Additional Information:
 
-**ExtensionError** – if snapshot is invalid.
+    This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+  </Function>
 
-#### Additional Information:
+  ### squ
 
-This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+  <Function id="qiskit.circuit.library.MCMT.squ" name="squ" signature="MCMT.squ(unitary_matrix, qubit, mode='ZYZ', up_to_diagonal=False, *, u=None)">
+    Decompose an arbitrary 2\*2 unitary into three rotation gates.
 
-### squ
+    Note that the decomposition is up to a global phase shift. (This is a well known decomposition, which can be found for example in Nielsen and Chuang’s book “Quantum computation and quantum information”.)
 
-<span id="qiskit.circuit.library.MCMT.squ" />
+    **Parameters**
 
-`MCMT.squ(unitary_matrix, qubit, mode='ZYZ', up_to_diagonal=False, *, u=None)`
+    *   **unitary\_matrix** (*ndarray*) – 2\*2 unitary (given as a (complex) ndarray).
+    *   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The qubit which the gate is acting on.
+    *   **mode** (*string*) – determines the used decomposition by providing the rotation axes. The allowed modes are: “ZYZ” (default)
+    *   **up\_to\_diagonal** (*bool*) – if set to True, the single-qubit unitary is decomposed up to a diagonal matrix, i.e. a unitary u’ is implemented such that there exists a 2\*2 diagonal gate d with u = d.dot(u’)
+    *   **u** (*ndarray*) – Deprecated, use `unitary_matrix` instead.
 
-Decompose an arbitrary 2\*2 unitary into three rotation gates.
+    **Returns**
 
-Note that the decomposition is up to a global phase shift. (This is a well known decomposition, which can be found for example in Nielsen and Chuang’s book “Quantum computation and quantum information”.)
+    The single-qubit unitary instruction attached to the circuit.
 
-**Parameters**
+    **Return type**
 
-*   **unitary\_matrix** (*ndarray*) – 2\*2 unitary (given as a (complex) ndarray).
-*   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The qubit which the gate is acting on.
-*   **mode** (*string*) – determines the used decomposition by providing the rotation axes. The allowed modes are: “ZYZ” (default)
-*   **up\_to\_diagonal** (*bool*) – if set to True, the single-qubit unitary is decomposed up to a diagonal matrix, i.e. a unitary u’ is implemented such that there exists a 2\*2 diagonal gate d with u = d.dot(u’)
-*   **u** (*ndarray*) – Deprecated, use `unitary_matrix` instead.
+    [InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
-**Returns**
+    **Raises**
 
-The single-qubit unitary instruction attached to the circuit.
+    **QiskitError** – if the format is wrong; if the array u is not unitary
+  </Function>
 
-**Return type**
+  ### swap
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+  <Function id="qiskit.circuit.library.MCMT.swap" name="swap" signature="MCMT.swap(qubit1, qubit2)">
+    Apply [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").
+  </Function>
 
-**Raises**
+  ### t
 
-**QiskitError** – if the format is wrong; if the array u is not unitary
+  <Function id="qiskit.circuit.library.MCMT.t" name="t" signature="MCMT.t(qubit, *, q=None)">
+    Apply [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
+  </Function>
 
-### swap
+  ### tdg
 
-<span id="qiskit.circuit.library.MCMT.swap" />
+  <Function id="qiskit.circuit.library.MCMT.tdg" name="tdg" signature="MCMT.tdg(qubit, *, q=None)">
+    Apply [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
+  </Function>
 
-`MCMT.swap(qubit1, qubit2)`
+  ### to\_gate
 
-Apply [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").
+  <Function id="qiskit.circuit.library.MCMT.to_gate" name="to_gate" signature="MCMT.to_gate(parameter_map=None)">
+    Create a Gate out of this circuit.
 
-### t
+    **Parameters**
 
-<span id="qiskit.circuit.library.MCMT.t" />
+    **parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If None, existing circuit parameters will also parameterize the gate.
 
-`MCMT.t(qubit, *, q=None)`
+    **Returns**
 
-Apply [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
+    a composite gate encapsulating this circuit (can be decomposed back)
 
-### tdg
+    **Return type**
 
-<span id="qiskit.circuit.library.MCMT.tdg" />
+    [Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
+  </Function>
 
-`MCMT.tdg(qubit, *, q=None)`
+  ### to\_instruction
 
-Apply [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
+  <Function id="qiskit.circuit.library.MCMT.to_instruction" name="to_instruction" signature="MCMT.to_instruction(parameter_map=None)">
+    Create an Instruction out of this circuit.
 
-### to\_gate
+    **Parameters**
 
-<span id="qiskit.circuit.library.MCMT.to_gate" />
+    **parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the instruction. If None, existing circuit parameters will also parameterize the instruction.
 
-`MCMT.to_gate(parameter_map=None)`
+    **Returns**
 
-Create a Gate out of this circuit.
+    a composite instruction encapsulating this circuit (can be decomposed back)
 
-**Parameters**
+    **Return type**
 
-**parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If None, existing circuit parameters will also parameterize the gate.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**Returns**
+  ### toffoli
 
-a composite gate encapsulating this circuit (can be decomposed back)
+  <Function id="qiskit.circuit.library.MCMT.toffoli" name="toffoli" signature="MCMT.toffoli(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)">
+    Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
+  </Function>
 
-**Return type**
+  ### u1
 
-[Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
+  <Function id="qiskit.circuit.library.MCMT.u1" name="u1" signature="MCMT.u1(theta, qubit, *, q=None)">
+    Apply [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").
+  </Function>
 
-### to\_instruction
+  ### u2
 
-<span id="qiskit.circuit.library.MCMT.to_instruction" />
+  <Function id="qiskit.circuit.library.MCMT.u2" name="u2" signature="MCMT.u2(phi, lam, qubit, *, q=None)">
+    Apply [`U2Gate`](qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").
+  </Function>
 
-`MCMT.to_instruction(parameter_map=None)`
+  ### u3
 
-Create an Instruction out of this circuit.
+  <Function id="qiskit.circuit.library.MCMT.u3" name="u3" signature="MCMT.u3(theta, phi, lam, qubit, *, q=None)">
+    Apply [`U3Gate`](qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").
+  </Function>
 
-**Parameters**
+  ### uc
 
-**parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the instruction. If None, existing circuit parameters will also parameterize the instruction.
+  <Function id="qiskit.circuit.library.MCMT.uc" name="uc" signature="MCMT.uc(gate_list, q_controls, q_target, up_to_diagonal=False)">
+    Attach a uniformly controlled gates (also called multiplexed gates) to a circuit.
 
-**Returns**
+    The decomposition was introduced by Bergholm et al. in [https://arxiv.org/pdf/quant-ph/0410066.pdf](https://arxiv.org/pdf/quant-ph/0410066.pdf).
 
-a composite instruction encapsulating this circuit (can be decomposed back)
+    **Parameters**
 
-**Return type**
+    *   **gate\_list** (*list\[ndarray]*) – list of two qubit unitaries \[U\_0,…,U\_\{2^k-1}], where each single-qubit unitary U\_i is a given as a 2\*2 array
+    *   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)]*) – list of k control qubits. The qubits are ordered according to their significance in the computational basis. For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the unitary U\_0 is performed if q\[1] and q\[2] are in the state zero, U\_1 is performed if q\[2] is in the state zero and q\[1] is in the state one, and so on
+    *   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)*) – target qubit, where we act on with the single-qubit gates.
+    *   **up\_to\_diagonal** (*bool*) – If set to True, the uniformly controlled gate is decomposed up to a diagonal gate, i.e. a unitary u’ is implemented such that there exists a diagonal gate d with u = d.dot(u’), where the unitary u describes the uniformly controlled gate
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Returns**
 
-### toffoli
+    the uniformly controlled gate is attached to the circuit.
 
-<span id="qiskit.circuit.library.MCMT.toffoli" />
+    **Return type**
 
-`MCMT.toffoli(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)`
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
+    **Raises**
 
-### u1
+    **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  </Function>
 
-<span id="qiskit.circuit.library.MCMT.u1" />
+  ### ucg
 
-`MCMT.u1(theta, qubit, *, q=None)`
+  <Function id="qiskit.circuit.library.MCMT.ucg" name="ucg" signature="MCMT.ucg(angle_list, q_controls, q_target, up_to_diagonal=False)">
+    Deprecated version of uc.
+  </Function>
 
-Apply [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").
+  ### ucrx
 
-### u2
+  <Function id="qiskit.circuit.library.MCMT.ucrx" name="ucrx" signature="MCMT.ucrx(angle_list, q_controls, q_target)">
+    Attach a uniformly controlled (also called multiplexed) Rx rotation gate to a circuit.
 
-<span id="qiskit.circuit.library.MCMT.u2" />
+    The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
 
-`MCMT.u2(phi, lam, qubit, *, q=None)`
+    **Parameters**
 
-Apply [`U2Gate`](qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").
+    *   **angle\_list** (*list*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
+    *   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Rx(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Rx(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
+    *   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
 
-### u3
+    **Returns**
 
-<span id="qiskit.circuit.library.MCMT.u3" />
+    the uniformly controlled rotation gate is attached to the circuit.
 
-`MCMT.u3(theta, phi, lam, qubit, *, q=None)`
+    **Return type**
 
-Apply [`U3Gate`](qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-### uc
+    **Raises**
 
-<span id="qiskit.circuit.library.MCMT.uc" />
+    **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  </Function>
 
-`MCMT.uc(gate_list, q_controls, q_target, up_to_diagonal=False)`
+  ### ucry
 
-Attach a uniformly controlled gates (also called multiplexed gates) to a circuit.
+  <Function id="qiskit.circuit.library.MCMT.ucry" name="ucry" signature="MCMT.ucry(angle_list, q_controls, q_target)">
+    Attach a uniformly controlled (also called multiplexed) Ry rotation gate to a circuit.
 
-The decomposition was introduced by Bergholm et al. in [https://arxiv.org/pdf/quant-ph/0410066.pdf](https://arxiv.org/pdf/quant-ph/0410066.pdf).
+    The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
 
-**Parameters**
+    **Parameters**
 
-*   **gate\_list** (*list\[ndarray]*) – list of two qubit unitaries \[U\_0,…,U\_\{2^k-1}], where each single-qubit unitary U\_i is a given as a 2\*2 array
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)]*) – list of k control qubits. The qubits are ordered according to their significance in the computational basis. For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the unitary U\_0 is performed if q\[1] and q\[2] are in the state zero, U\_1 is performed if q\[2] is in the state zero and q\[1] is in the state one, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)*) – target qubit, where we act on with the single-qubit gates.
-*   **up\_to\_diagonal** (*bool*) – If set to True, the uniformly controlled gate is decomposed up to a diagonal gate, i.e. a unitary u’ is implemented such that there exists a diagonal gate d with u = d.dot(u’), where the unitary u describes the uniformly controlled gate
+    *   **angle\_list** (*list\[numbers*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
+    *   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Ry(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Ry(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
+    *   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
 
-**Returns**
+    **Returns**
 
-the uniformly controlled gate is attached to the circuit.
+    the uniformly controlled rotation gate is attached to the circuit.
 
-**Return type**
+    **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Raises**
+    **Raises**
 
-**QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+    **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  </Function>
 
-### ucg
+  ### ucrz
 
-<span id="qiskit.circuit.library.MCMT.ucg" />
+  <Function id="qiskit.circuit.library.MCMT.ucrz" name="ucrz" signature="MCMT.ucrz(angle_list, q_controls, q_target)">
+    Attach a uniformly controlled (also called multiplexed gates) Rz rotation gate to a circuit.
 
-`MCMT.ucg(angle_list, q_controls, q_target, up_to_diagonal=False)`
+    The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
 
-Deprecated version of uc.
+    **Parameters**
 
-### ucrx
+    *   **angle\_list** (*list\[numbers*) – list of (real) rotation angles \[a\_0,…,a\_\{2^k-1}]
+    *   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the rotation Rz(a\_0)is performed if q\[1] and q\[2] are in the state zero, the rotation Rz(a\_1) is performed if q\[1] is in the state one and q\[2] is in the state zero, and so on
+    *   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
 
-<span id="qiskit.circuit.library.MCMT.ucrx" />
+    **Returns**
 
-`MCMT.ucrx(angle_list, q_controls, q_target)`
+    the uniformly controlled rotation gate is attached to the circuit.
 
-Attach a uniformly controlled (also called multiplexed) Rx rotation gate to a circuit.
+    **Return type**
 
-The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Parameters**
+    **Raises**
 
-*   **angle\_list** (*list*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Rx(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Rx(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
+    **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  </Function>
 
-**Returns**
+  ### ucx
 
-the uniformly controlled rotation gate is attached to the circuit.
+  <Function id="qiskit.circuit.library.MCMT.ucx" name="ucx" signature="MCMT.ucx(angle_list, q_controls, q_target)">
+    Deprecated version of ucrx.
+  </Function>
 
-**Return type**
+  ### ucy
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.circuit.library.MCMT.ucy" name="ucy" signature="MCMT.ucy(angle_list, q_controls, q_target)">
+    Deprecated version of ucry.
+  </Function>
 
-**Raises**
+  ### ucz
 
-**QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  <Function id="qiskit.circuit.library.MCMT.ucz" name="ucz" signature="MCMT.ucz(angle_list, q_controls, q_target)">
+    Deprecated version of ucrz.
+  </Function>
 
-### ucry
+  ### unitary
 
-<span id="qiskit.circuit.library.MCMT.ucry" />
+  <Function id="qiskit.circuit.library.MCMT.unitary" name="unitary" signature="MCMT.unitary(obj, qubits, label=None)">
+    Apply unitary gate to q.
+  </Function>
 
-`MCMT.ucry(angle_list, q_controls, q_target)`
+  ### width
 
-Attach a uniformly controlled (also called multiplexed) Ry rotation gate to a circuit.
+  <Function id="qiskit.circuit.library.MCMT.width" name="width" signature="MCMT.width()">
+    Return number of qubits plus clbits in circuit.
 
-The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
+    **Returns**
 
-**Parameters**
+    Width of circuit.
 
-*   **angle\_list** (*list\[numbers*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Ry(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Ry(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
+    **Return type**
 
-**Returns**
+    int
+  </Function>
 
-the uniformly controlled rotation gate is attached to the circuit.
+  ### x
 
-**Return type**
+  <Function id="qiskit.circuit.library.MCMT.x" name="x" signature="MCMT.x(qubit, *, label=None, ctrl_state=None, q=None)">
+    Apply [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
+  </Function>
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  ### y
 
-**Raises**
+  <Function id="qiskit.circuit.library.MCMT.y" name="y" signature="MCMT.y(qubit, *, q=None)">
+    Apply [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
+  </Function>
 
-**QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  ### z
 
-### ucrz
-
-<span id="qiskit.circuit.library.MCMT.ucrz" />
-
-`MCMT.ucrz(angle_list, q_controls, q_target)`
-
-Attach a uniformly controlled (also called multiplexed gates) Rz rotation gate to a circuit.
-
-The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
-
-**Parameters**
-
-*   **angle\_list** (*list\[numbers*) – list of (real) rotation angles \[a\_0,…,a\_\{2^k-1}]
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the rotation Rz(a\_0)is performed if q\[1] and q\[2] are in the state zero, the rotation Rz(a\_1) is performed if q\[1] is in the state one and q\[2] is in the state zero, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
-
-**Returns**
-
-the uniformly controlled rotation gate is attached to the circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
-
-### ucx
-
-<span id="qiskit.circuit.library.MCMT.ucx" />
-
-`MCMT.ucx(angle_list, q_controls, q_target)`
-
-Deprecated version of ucrx.
-
-### ucy
-
-<span id="qiskit.circuit.library.MCMT.ucy" />
-
-`MCMT.ucy(angle_list, q_controls, q_target)`
-
-Deprecated version of ucry.
-
-### ucz
-
-<span id="qiskit.circuit.library.MCMT.ucz" />
-
-`MCMT.ucz(angle_list, q_controls, q_target)`
-
-Deprecated version of ucrz.
-
-### unitary
-
-<span id="qiskit.circuit.library.MCMT.unitary" />
-
-`MCMT.unitary(obj, qubits, label=None)`
-
-Apply unitary gate to q.
-
-### width
-
-<span id="qiskit.circuit.library.MCMT.width" />
-
-`MCMT.width()`
-
-Return number of qubits plus clbits in circuit.
-
-**Returns**
-
-Width of circuit.
-
-**Return type**
-
-int
-
-### x
-
-<span id="qiskit.circuit.library.MCMT.x" />
-
-`MCMT.x(qubit, *, label=None, ctrl_state=None, q=None)`
-
-Apply [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
-
-### y
-
-<span id="qiskit.circuit.library.MCMT.y" />
-
-`MCMT.y(qubit, *, q=None)`
-
-Apply [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
-
-### z
-
-<span id="qiskit.circuit.library.MCMT.z" />
-
-`MCMT.z(qubit, *, q=None)`
-
-Apply [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").
+  <Function id="qiskit.circuit.library.MCMT.z" name="z" signature="MCMT.z(qubit, *, q=None)">
+    Apply [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").
+  </Function>
+</Class>
 

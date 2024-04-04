@@ -8,38 +8,36 @@ python_api_name: qiskit.ignis.characterization.t2_circuits
 
 # qiskit.ignis.characterization.t2\_circuits
 
-<span id="qiskit.ignis.characterization.t2_circuits" />
+<Function id="qiskit.ignis.characterization.t2_circuits" name="t2_circuits" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/coherence/circuits.py" signature="t2_circuits(num_of_gates, gate_time, qubits, n_echos=1, phase_alt_echo=False)">
+  Generate circuits for T2 (echo) measurement, by a CPMG sequence.
 
-`t2_circuits(num_of_gates, gate_time, qubits, n_echos=1, phase_alt_echo=False)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/coherence/circuits.py "view source code")
+  ## Each circuit consists of:
 
-Generate circuits for T2 (echo) measurement, by a CPMG sequence.
+  *   $Y90-t-Y-[t-t-X/Y]^m-t-Y90$
+  *   $n_{echos} = n+1$
+  *   if phase\_alt\_echo then the X/Y alternate, if phase\_alt\_echo=False tthen he pulses are always Y
 
-## Each circuit consists of:
+  Standard T2\* echo is $n_echos=1$
 
-*   $Y90-t-Y-[t-t-X/Y]^m-t-Y90$
-*   $n_{echos} = n+1$
-*   if phase\_alt\_echo then the X/Y alternate, if phase\_alt\_echo=False tthen he pulses are always Y
+  **Parameters**
 
-Standard T2\* echo is $n_echos=1$
+  *   **num\_of\_gates** (`Union`\[`List`\[`int`], `array`]) – Each element of the list corresponds to a circuit. num\_of\_gates\[i] is the number of identity gates in each section “t” of the pulse sequence in circuit no. i. Must be in an increasing order.
+  *   **gate\_time** (`float`) – time of running a single identity gate.
+  *   **qubits** (`List`\[`int`]) – indices of the qubits whose T2\*‘s are to be measured.
+  *   **n\_echos** (`int`) – number of echo gates (X or Y).
+  *   **phase\_alt\_echo** (`bool`) – if True then alternate the echo between X and Y.
 
-**Parameters**
+  **Return type**
 
-*   **num\_of\_gates** (`Union`\[`List`\[`int`], `array`]) – Each element of the list corresponds to a circuit. num\_of\_gates\[i] is the number of identity gates in each section “t” of the pulse sequence in circuit no. i. Must be in an increasing order.
-*   **gate\_time** (`float`) – time of running a single identity gate.
-*   **qubits** (`List`\[`int`]) – indices of the qubits whose T2\*‘s are to be measured.
-*   **n\_echos** (`int`) – number of echo gates (X or Y).
-*   **phase\_alt\_echo** (`bool`) – if True then alternate the echo between X and Y.
+  `Tuple`\[`List`\[`QuantumCircuit`], `array`]
 
-**Return type**
+  **Returns**
 
-`Tuple`\[`List`\[`QuantumCircuit`], `array`]
+  *   Generated circuits
+  *   Delay times, i.e., gate\_time multiplied by the numbers in num\_of\_gates
 
-**Returns**
+  **Raises**
 
-*   Generated circuits
-*   Delay times, i.e., gate\_time multiplied by the numbers in num\_of\_gates
-
-**Raises**
-
-**ValueError** – If n\_echos is less than 1
+  **ValueError** – If n\_echos is less than 1
+</Function>
 

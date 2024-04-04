@@ -8,27 +8,25 @@ python_api_name: qiskit.pulse.builder.u2
 
 # qiskit.pulse.builder.u2
 
-<span id="qiskit.pulse.builder.u2" />
+<Function id="qiskit.pulse.builder.u2" name="u2" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/builder.py" signature="u2(phi, lam, qubit)">
+  Call a `U2Gate` on the input physical qubit.
 
-`u2(phi, lam, qubit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/builder.py "view source code")
+  <Admonition title="Note" type="note">
+    Calling gates directly within the pulse builder namespace will be deprecated in the future in favor of tight integration with a circuit builder interface which is under development.
+  </Admonition>
 
-Call a `U2Gate` on the input physical qubit.
+  Examples:
 
-<Admonition title="Note" type="note">
-  Calling gates directly within the pulse builder namespace will be deprecated in the future in favor of tight integration with a circuit builder interface which is under development.
-</Admonition>
+  ```python
+  import math
 
-Examples:
+  from qiskit import pulse
+  from qiskit.providers.fake_provider import FakeOpenPulse2Q
 
-```python
-import math
+  backend = FakeOpenPulse2Q()
 
-from qiskit import pulse
-from qiskit.providers.fake_provider import FakeOpenPulse2Q
-
-backend = FakeOpenPulse2Q()
-
-with pulse.build(backend) as pulse_prog:
-    pulse.u2(0, math.pi, 1)
-```
+  with pulse.build(backend) as pulse_prog:
+      pulse.u2(0, math.pi, 1)
+  ```
+</Function>
 

@@ -8,234 +8,224 @@ python_api_name: qiskit.circuit.library.GR
 
 # GR
 
-<span id="qiskit.circuit.library.GR" />
+<Class id="qiskit.circuit.library.GR" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/gr.py" signature="qiskit.circuit.library.GR(num_qubits, theta, phi)">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
-`qiskit.circuit.library.GR(num_qubits, theta, phi)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/gr.py "view source code")
+  Global R gate.
 
-Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  **Circuit symbol:**
 
-Global R gate.
+  ```python
+       ┌──────────┐
+  q_0: ┤0         ├
+       │          │
+  q_1: ┤1 GR(ϴ,φ) ├
+       │          │
+  q_2: ┤2         ├
+       └──────────┘
+  ```
 
-**Circuit symbol:**
+  The global R gate is native to atomic systems (ion traps, cold neutrals). The global R can be applied to multiple qubits simultaneously.
 
-```python
-     ┌──────────┐
-q_0: ┤0         ├
-     │          │
-q_1: ┤1 GR(ϴ,φ) ├
-     │          │
-q_2: ┤2         ├
-     └──────────┘
-```
-
-The global R gate is native to atomic systems (ion traps, cold neutrals). The global R can be applied to multiple qubits simultaneously.
-
-In the one-qubit case, this is equivalent to an R(theta, phi) operation, and is thus reduced to the RGate. The global R gate is a direct sum of R operations on all individual qubits.
+  In the one-qubit case, this is equivalent to an R(theta, phi) operation, and is thus reduced to the RGate. The global R gate is a direct sum of R operations on all individual qubits.
 
 $$
 GR(\theta, \phi) = \exp(-i \sum_{i=1}^{n} (\cos(\phi)X_i + \sin(\phi)Y_i) \theta/2)
 $$
 
-**Expanded Circuit:**
+  **Expanded Circuit:**
 
-![../\_images/qiskit-circuit-library-GR-1.png](/images/api/qiskit/0.45/qiskit-circuit-library-GR-1.png)
+  ![../\_images/qiskit-circuit-library-GR-1.png](/images/api/qiskit/0.45/qiskit-circuit-library-GR-1.png)
 
-Create a new Global R (GR) gate.
+  Create a new Global R (GR) gate.
 
-**Parameters**
+  **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
-*   **theta** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – rotation angle about axis determined by phi
-*   **phi** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – angle of rotation axis in xy-plane
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
+  *   **theta** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – rotation angle about axis determined by phi
+  *   **phi** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – angle of rotation axis in xy-plane
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.GR.ancillas" />
+  ### ancillas
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.GR.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-Returns a list of ancilla bits in the order that the registers were added.
+  ### calibrations
 
-<span id="qiskit.circuit.library.GR.calibrations" />
+  <Attribute id="qiskit.circuit.library.GR.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-### calibrations
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
 
-Return calibration dictionary.
+  ### clbits
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  <Attribute id="qiskit.circuit.library.GR.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.GR.clbits" />
+  ### data
 
-### clbits
+  <Attribute id="qiskit.circuit.library.GR.data" name="data">
+    Return the circuit data (instructions and context).
 
-Returns a list of classical bits in the order that the registers were added.
+    **Returns**
 
-<span id="qiskit.circuit.library.GR.data" />
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
-### data
+    **Return type**
 
-Return the circuit data (instructions and context).
+    QuantumCircuitData
+  </Attribute>
 
-**Returns**
+  ### extension\_lib
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+  <Attribute id="qiskit.circuit.library.GR.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-**Return type**
+  ### global\_phase
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.GR.global_phase" name="global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
 
-<span id="qiskit.circuit.library.GR.extension_lib" />
+  ### header
 
-### extension\_lib
+  <Attribute id="qiskit.circuit.library.GR.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-`= 'include "qelib1.inc";'`
+  ### instances
 
-<span id="qiskit.circuit.library.GR.global_phase" />
+  <Attribute id="qiskit.circuit.library.GR.instances" name="instances" attributeValue="= 187" />
 
-### global\_phase
+  ### layout
 
-Return the global phase of the current circuit scope in radians.
+  <Attribute id="qiskit.circuit.library.GR.layout" name="layout">
+    Return any associated layout information about the circuit
 
-<span id="qiskit.circuit.library.GR.header" />
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
-### header
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
 
-`= 'OPENQASM 2.0;'`
+  ### metadata
 
-<span id="qiskit.circuit.library.GR.instances" />
+  <Attribute id="qiskit.circuit.library.GR.metadata" name="metadata">
+    The user provided metadata associated with the circuit.
 
-### instances
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-`= 187`
+  ### num\_ancillas
 
-<span id="qiskit.circuit.library.GR.layout" />
+  <Attribute id="qiskit.circuit.library.GR.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-### layout
+  ### num\_clbits
 
-Return any associated layout information about the circuit
+  <Attribute id="qiskit.circuit.library.GR.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+  ### num\_parameters
 
-There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  <Attribute id="qiskit.circuit.library.GR.num_parameters" name="num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
 
-<span id="qiskit.circuit.library.GR.metadata" />
+  ### num\_qubits
 
-### metadata
+  <Attribute id="qiskit.circuit.library.GR.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-The user provided metadata associated with the circuit.
+  ### op\_start\_times
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  <Attribute id="qiskit.circuit.library.GR.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-<span id="qiskit.circuit.library.GR.num_ancillas" />
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-### num\_ancillas
+    **Returns**
 
-Return the number of ancilla qubits.
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-<span id="qiskit.circuit.library.GR.num_clbits" />
+    **Raises**
 
-### num\_clbits
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
 
-Return number of classical bits.
+  ### parameters
 
-<span id="qiskit.circuit.library.GR.num_parameters" />
+  <Attribute id="qiskit.circuit.library.GR.parameters" name="parameters">
+    The parameters defined in the circuit.
 
-### num\_parameters
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-The number of parameter objects in the circuit.
+    **Examples**
 
-<span id="qiskit.circuit.library.GR.num_qubits" />
+    The snippet below shows that insertion order of parameters does not matter.
 
-### num\_qubits
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
 
-Return number of qubits.
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
-<span id="qiskit.circuit.library.GR.op_start_times" />
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
 
-### op\_start\_times
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
-Return a list of operation start times.
+    ```python
+    ```
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
 
-**Returns**
+    **Returns**
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
-**Raises**
+  ### prefix
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  <Attribute id="qiskit.circuit.library.GR.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-<span id="qiskit.circuit.library.GR.parameters" />
+  ### qubits
 
-### parameters
-
-The parameters defined in the circuit.
-
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
-
-**Examples**
-
-The snippet below shows that insertion order of parameters does not matter.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
->>> circuit = QuantumCircuit(1)
->>> circuit.rx(b, 0)
->>> circuit.rz(elephant, 0)
->>> circuit.ry(a, 0)
->>> circuit.parameters  # sorted alphabetically!
-ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
-```
-
-Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
->>> circuit = QuantumCircuit(1)
->>> circuit.u(*angles, 0)
->>> circuit.draw()
-   ┌─────────────────────────────┐
-q: ┤ U(angle_1,angle_2,angle_10) ├
-   └─────────────────────────────┘
->>> circuit.parameters
-ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
-```
-
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
->>> x = ParameterVector("x", 12)
->>> circuit = QuantumCircuit(1)
->>> for x_i in x:
-...     circuit.rx(x_i, 0)
->>> circuit.parameters
-ParameterView([
-    ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
-    ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
-    ..., ParameterVectorElement(x[11])
-])
-```
-
-**Returns**
-
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
-
-<span id="qiskit.circuit.library.GR.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.GR.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.GR.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+</Class>
 

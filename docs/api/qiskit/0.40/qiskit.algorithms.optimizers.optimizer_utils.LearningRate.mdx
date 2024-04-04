@@ -8,49 +8,41 @@ python_api_name: qiskit.algorithms.optimizers.optimizer_utils.LearningRate
 
 # LearningRate
 
-<span id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate" />
+<Class id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/optimizer_utils/learning_rate.py" signature="LearningRate(learning_rate)">
+  Bases: `Generator`
 
-`LearningRate(learning_rate)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/optimizer_utils/learning_rate.py "view source code")
+  Represents a Learning Rate. Will be an attribute of [`GradientDescentState`](qiskit.algorithms.optimizers.GradientDescentState "qiskit.algorithms.optimizers.GradientDescentState"). Note that [`GradientDescent`](qiskit.algorithms.optimizers.GradientDescent "qiskit.algorithms.optimizers.GradientDescent") also has a learning rate. That learning rate can be a float, a list, an array, a function returning a generator and will be used to create a generator to be used during the optimization process. This class wraps `Generator` so that we can also access the last yielded value.
 
-Bases: `Generator`
+  **Parameters**
 
-Represents a Learning Rate. Will be an attribute of [`GradientDescentState`](qiskit.algorithms.optimizers.GradientDescentState "qiskit.algorithms.optimizers.GradientDescentState"). Note that [`GradientDescent`](qiskit.algorithms.optimizers.GradientDescent "qiskit.algorithms.optimizers.GradientDescent") also has a learning rate. That learning rate can be a float, a list, an array, a function returning a generator and will be used to create a generator to be used during the optimization process. This class wraps `Generator` so that we can also access the last yielded value.
+  **learning\_rate** (`Union`\[`float`, `List`\[`float`], `ndarray`, `Callable`\[\[], `Iterator`]]) – Used to create a generator to iterate on.
 
-**Parameters**
+  ## Methods
 
-**learning\_rate** (`Union`\[`float`, `List`\[`float`], `ndarray`, `Callable`\[\[], `Iterator`]]) – Used to create a generator to iterate on.
+  ### close
 
-## Methods
+  <Function id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate.close" name="close" signature="LearningRate.close()">
+    Raise GeneratorExit inside generator.
+  </Function>
 
-### close
+  ### send
 
-<span id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate.close" />
+  <Function id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate.send" name="send" signature="LearningRate.send(value)">
+    Send a value into the generator. Return next yielded value or raise StopIteration.
+  </Function>
 
-`LearningRate.close()`
+  ### throw
 
-Raise GeneratorExit inside generator.
+  <Function id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate.throw" name="throw" signature="LearningRate.throw(typ, val=None, tb=None)">
+    Raise an exception in the generator. Return next yielded value or raise StopIteration.
+  </Function>
 
-### send
+  ## Attributes
 
-<span id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate.send" />
+  ### current
 
-`LearningRate.send(value)`
-
-Send a value into the generator. Return next yielded value or raise StopIteration.
-
-### throw
-
-<span id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate.throw" />
-
-`LearningRate.throw(typ, val=None, tb=None)`
-
-Raise an exception in the generator. Return next yielded value or raise StopIteration.
-
-## Attributes
-
-<span id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate.current" />
-
-### current
-
-Returns the current value of the learning rate.
+  <Attribute id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate.current" name="current">
+    Returns the current value of the learning rate.
+  </Attribute>
+</Class>
 

@@ -10,300 +10,256 @@ python_api_name: qiskit.aqua.components.optimizers.SPSA
 
 # qiskit.aqua.components.optimizers.SPSA
 
-<span id="qiskit.aqua.components.optimizers.SPSA" />
+<Class id="qiskit.aqua.components.optimizers.SPSA" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/spsa.py" signature="SPSA(maxiter=1000, save_steps=1, last_avg=1, c0=0.6283185307179586, c1=0.1, c2=0.602, c3=0.101, c4=0, skip_calibration=False, max_trials=None)">
+  Simultaneous Perturbation Stochastic Approximation (SPSA) optimizer.
+
+  SPSA is an algorithmic method for optimizing systems with multiple unknown parameters. As an optimization method, it is appropriately suited to large-scale population models, adaptive modeling, and simulation optimization.
+
+  <Admonition title="See also" type="note">
+    Many examples are presented at the [SPSA Web site](http://www.jhuapl.edu/SPSA).
+  </Admonition>
+
+  SPSA is a descent method capable of finding global minima, sharing this property with other methods as simulated annealing. Its main feature is the gradient approximation, which requires only two measurements of the objective function, regardless of the dimension of the optimization problem.
+
+  <Admonition title="Note" type="note">
+    SPSA can be used in the presence of noise, and it is therefore indicated in situations involving measurement uncertainty on a quantum computation when finding a minimum. If you are executing a variational algorithm using a Quantum ASseMbly Language (QASM) simulator or a real device, SPSA would be the most recommended choice among the optimizers provided here.
+  </Admonition>
+
+  The optimization process includes a calibration phase, which requires additional functional evaluations.
 
-`SPSA(maxiter=1000, save_steps=1, last_avg=1, c0=0.6283185307179586, c1=0.1, c2=0.602, c3=0.101, c4=0, skip_calibration=False, max_trials=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/spsa.py "view source code")
+  For further details, please refer to [https://arxiv.org/pdf/1704.05018v2.pdf#section\*.11](https://arxiv.org/pdf/1704.05018v2.pdf#section*.11) (Supplementary information Section IV.)
+
+  **Parameters**
 
-Simultaneous Perturbation Stochastic Approximation (SPSA) optimizer.
+  *   **maxiter** (`int`) – Maximum number of iterations to perform.
+  *   **save\_steps** (`int`) – Save intermediate info every save\_steps step. It has a min. value of 1.
+  *   **last\_avg** (`int`) – Averaged parameters over the last\_avg iterations. If last\_avg = 1, only the last iteration is considered. It has a min. value of 1.
+  *   **c0** (`float`) – The initial a. Step size to update parameters.
+  *   **c1** (`float`) – The initial c. The step size used to approximate gradient.
+  *   **c2** (`float`) – The alpha in the paper, and it is used to adjust a (c0) at each iteration.
+  *   **c3** (`float`) – The gamma in the paper, and it is used to adjust c (c1) at each iteration.
+  *   **c4** (`float`) – The parameter used to control a as well.
+  *   **skip\_calibration** (`bool`) – Skip calibration and use provided c(s) as is.
+  *   **max\_trials** (`Optional`\[`int`]) – Deprecated, use maxiter.
 
-SPSA is an algorithmic method for optimizing systems with multiple unknown parameters. As an optimization method, it is appropriately suited to large-scale population models, adaptive modeling, and simulation optimization.
+  ### \_\_init\_\_
 
-<Admonition title="See also" type="note">
-  Many examples are presented at the [SPSA Web site](http://www.jhuapl.edu/SPSA).
-</Admonition>
+  <Function id="qiskit.aqua.components.optimizers.SPSA.__init__" name="__init__" signature="__init__(maxiter=1000, save_steps=1, last_avg=1, c0=0.6283185307179586, c1=0.1, c2=0.602, c3=0.101, c4=0, skip_calibration=False, max_trials=None)">
+    **Parameters**
 
-SPSA is a descent method capable of finding global minima, sharing this property with other methods as simulated annealing. Its main feature is the gradient approximation, which requires only two measurements of the objective function, regardless of the dimension of the optimization problem.
+    *   **maxiter** (`int`) – Maximum number of iterations to perform.
+    *   **save\_steps** (`int`) – Save intermediate info every save\_steps step. It has a min. value of 1.
+    *   **last\_avg** (`int`) – Averaged parameters over the last\_avg iterations. If last\_avg = 1, only the last iteration is considered. It has a min. value of 1.
+    *   **c0** (`float`) – The initial a. Step size to update parameters.
+    *   **c1** (`float`) – The initial c. The step size used to approximate gradient.
+    *   **c2** (`float`) – The alpha in the paper, and it is used to adjust a (c0) at each iteration.
+    *   **c3** (`float`) – The gamma in the paper, and it is used to adjust c (c1) at each iteration.
+    *   **c4** (`float`) – The parameter used to control a as well.
+    *   **skip\_calibration** (`bool`) – Skip calibration and use provided c(s) as is.
+    *   **max\_trials** (`Optional`\[`int`]) – Deprecated, use maxiter.
+  </Function>
 
-<Admonition title="Note" type="note">
-  SPSA can be used in the presence of noise, and it is therefore indicated in situations involving measurement uncertainty on a quantum computation when finding a minimum. If you are executing a variational algorithm using a Quantum ASseMbly Language (QASM) simulator or a real device, SPSA would be the most recommended choice among the optimizers provided here.
-</Admonition>
+  ## Methods
 
-The optimization process includes a calibration phase, which requires additional functional evaluations.
+  |                                                                                                                                                                          |                                                                                                           |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.components.optimizers.SPSA.__init__ "qiskit.aqua.components.optimizers.SPSA.__init__")(\[maxiter, save\_steps, last\_avg, …])                  | **type maxiter**`int`                                                                                     |
+  | [`get_support_level`](#qiskit.aqua.components.optimizers.SPSA.get_support_level "qiskit.aqua.components.optimizers.SPSA.get_support_level")()                            | return support level dictionary                                                                           |
+  | [`gradient_num_diff`](#qiskit.aqua.components.optimizers.SPSA.gradient_num_diff "qiskit.aqua.components.optimizers.SPSA.gradient_num_diff")(x\_center, f, epsilon\[, …]) | We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center. |
+  | [`optimize`](#qiskit.aqua.components.optimizers.SPSA.optimize "qiskit.aqua.components.optimizers.SPSA.optimize")(num\_vars, objective\_function\[, …])                   | Perform optimization.                                                                                     |
+  | [`print_options`](#qiskit.aqua.components.optimizers.SPSA.print_options "qiskit.aqua.components.optimizers.SPSA.print_options")()                                        | Print algorithm-specific options.                                                                         |
+  | [`set_max_evals_grouped`](#qiskit.aqua.components.optimizers.SPSA.set_max_evals_grouped "qiskit.aqua.components.optimizers.SPSA.set_max_evals_grouped")(limit)           | Set max evals grouped                                                                                     |
+  | [`set_options`](#qiskit.aqua.components.optimizers.SPSA.set_options "qiskit.aqua.components.optimizers.SPSA.set_options")(\*\*kwargs)                                    | Sets or updates values in the options dictionary.                                                         |
+  | [`wrap_function`](#qiskit.aqua.components.optimizers.SPSA.wrap_function "qiskit.aqua.components.optimizers.SPSA.wrap_function")(function, args)                          | Wrap the function to implicitly inject the args at the call of the function.                              |
 
-For further details, please refer to [https://arxiv.org/pdf/1704.05018v2.pdf#section\*.11](https://arxiv.org/pdf/1704.05018v2.pdf#section*.11) (Supplementary information Section IV.)
+  ## Attributes
 
-**Parameters**
+  |                                                                                                                                                                           |                                     |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+  | [`bounds_support_level`](#qiskit.aqua.components.optimizers.SPSA.bounds_support_level "qiskit.aqua.components.optimizers.SPSA.bounds_support_level")                      | Returns bounds support level        |
+  | [`gradient_support_level`](#qiskit.aqua.components.optimizers.SPSA.gradient_support_level "qiskit.aqua.components.optimizers.SPSA.gradient_support_level")                | Returns gradient support level      |
+  | [`initial_point_support_level`](#qiskit.aqua.components.optimizers.SPSA.initial_point_support_level "qiskit.aqua.components.optimizers.SPSA.initial_point_support_level") | Returns initial point support level |
+  | [`is_bounds_ignored`](#qiskit.aqua.components.optimizers.SPSA.is_bounds_ignored "qiskit.aqua.components.optimizers.SPSA.is_bounds_ignored")                               | Returns is bounds ignored           |
+  | [`is_bounds_required`](#qiskit.aqua.components.optimizers.SPSA.is_bounds_required "qiskit.aqua.components.optimizers.SPSA.is_bounds_required")                            | Returns is bounds required          |
+  | [`is_bounds_supported`](#qiskit.aqua.components.optimizers.SPSA.is_bounds_supported "qiskit.aqua.components.optimizers.SPSA.is_bounds_supported")                         | Returns is bounds supported         |
+  | [`is_gradient_ignored`](#qiskit.aqua.components.optimizers.SPSA.is_gradient_ignored "qiskit.aqua.components.optimizers.SPSA.is_gradient_ignored")                         | Returns is gradient ignored         |
+  | [`is_gradient_required`](#qiskit.aqua.components.optimizers.SPSA.is_gradient_required "qiskit.aqua.components.optimizers.SPSA.is_gradient_required")                      | Returns is gradient required        |
+  | [`is_gradient_supported`](#qiskit.aqua.components.optimizers.SPSA.is_gradient_supported "qiskit.aqua.components.optimizers.SPSA.is_gradient_supported")                   | Returns is gradient supported       |
+  | [`is_initial_point_ignored`](#qiskit.aqua.components.optimizers.SPSA.is_initial_point_ignored "qiskit.aqua.components.optimizers.SPSA.is_initial_point_ignored")          | Returns is initial point ignored    |
+  | [`is_initial_point_required`](#qiskit.aqua.components.optimizers.SPSA.is_initial_point_required "qiskit.aqua.components.optimizers.SPSA.is_initial_point_required")       | Returns is initial point required   |
+  | [`is_initial_point_supported`](#qiskit.aqua.components.optimizers.SPSA.is_initial_point_supported "qiskit.aqua.components.optimizers.SPSA.is_initial_point_supported")    | Returns is initial point supported  |
+  | [`setting`](#qiskit.aqua.components.optimizers.SPSA.setting "qiskit.aqua.components.optimizers.SPSA.setting")                                                             | Return setting                      |
 
-*   **maxiter** (`int`) – Maximum number of iterations to perform.
-*   **save\_steps** (`int`) – Save intermediate info every save\_steps step. It has a min. value of 1.
-*   **last\_avg** (`int`) – Averaged parameters over the last\_avg iterations. If last\_avg = 1, only the last iteration is considered. It has a min. value of 1.
-*   **c0** (`float`) – The initial a. Step size to update parameters.
-*   **c1** (`float`) – The initial c. The step size used to approximate gradient.
-*   **c2** (`float`) – The alpha in the paper, and it is used to adjust a (c0) at each iteration.
-*   **c3** (`float`) – The gamma in the paper, and it is used to adjust c (c1) at each iteration.
-*   **c4** (`float`) – The parameter used to control a as well.
-*   **skip\_calibration** (`bool`) – Skip calibration and use provided c(s) as is.
-*   **max\_trials** (`Optional`\[`int`]) – Deprecated, use maxiter.
+  ### bounds\_support\_level
 
-### \_\_init\_\_
+  <Function id="qiskit.aqua.components.optimizers.SPSA.bounds_support_level" name="bounds_support_level" signature="property bounds_support_level">
+    Returns bounds support level
+  </Function>
 
-<span id="qiskit.aqua.components.optimizers.SPSA.__init__" />
+  ### get\_support\_level
 
-`__init__(maxiter=1000, save_steps=1, last_avg=1, c0=0.6283185307179586, c1=0.1, c2=0.602, c3=0.101, c4=0, skip_calibration=False, max_trials=None)`
+  <Function id="qiskit.aqua.components.optimizers.SPSA.get_support_level" name="get_support_level" signature="get_support_level()">
+    return support level dictionary
+  </Function>
 
-**Parameters**
+  ### gradient\_num\_diff
 
-*   **maxiter** (`int`) – Maximum number of iterations to perform.
-*   **save\_steps** (`int`) – Save intermediate info every save\_steps step. It has a min. value of 1.
-*   **last\_avg** (`int`) – Averaged parameters over the last\_avg iterations. If last\_avg = 1, only the last iteration is considered. It has a min. value of 1.
-*   **c0** (`float`) – The initial a. Step size to update parameters.
-*   **c1** (`float`) – The initial c. The step size used to approximate gradient.
-*   **c2** (`float`) – The alpha in the paper, and it is used to adjust a (c0) at each iteration.
-*   **c3** (`float`) – The gamma in the paper, and it is used to adjust c (c1) at each iteration.
-*   **c4** (`float`) – The parameter used to control a as well.
-*   **skip\_calibration** (`bool`) – Skip calibration and use provided c(s) as is.
-*   **max\_trials** (`Optional`\[`int`]) – Deprecated, use maxiter.
+  <Function id="qiskit.aqua.components.optimizers.SPSA.gradient_num_diff" name="gradient_num_diff" signature="static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                          |                                                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.components.optimizers.SPSA.__init__ "qiskit.aqua.components.optimizers.SPSA.__init__")(\[maxiter, save\_steps, last\_avg, …])                  | **type maxiter**`int`                                                                                     |
-| [`get_support_level`](#qiskit.aqua.components.optimizers.SPSA.get_support_level "qiskit.aqua.components.optimizers.SPSA.get_support_level")()                            | return support level dictionary                                                                           |
-| [`gradient_num_diff`](#qiskit.aqua.components.optimizers.SPSA.gradient_num_diff "qiskit.aqua.components.optimizers.SPSA.gradient_num_diff")(x\_center, f, epsilon\[, …]) | We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center. |
-| [`optimize`](#qiskit.aqua.components.optimizers.SPSA.optimize "qiskit.aqua.components.optimizers.SPSA.optimize")(num\_vars, objective\_function\[, …])                   | Perform optimization.                                                                                     |
-| [`print_options`](#qiskit.aqua.components.optimizers.SPSA.print_options "qiskit.aqua.components.optimizers.SPSA.print_options")()                                        | Print algorithm-specific options.                                                                         |
-| [`set_max_evals_grouped`](#qiskit.aqua.components.optimizers.SPSA.set_max_evals_grouped "qiskit.aqua.components.optimizers.SPSA.set_max_evals_grouped")(limit)           | Set max evals grouped                                                                                     |
-| [`set_options`](#qiskit.aqua.components.optimizers.SPSA.set_options "qiskit.aqua.components.optimizers.SPSA.set_options")(\*\*kwargs)                                    | Sets or updates values in the options dictionary.                                                         |
-| [`wrap_function`](#qiskit.aqua.components.optimizers.SPSA.wrap_function "qiskit.aqua.components.optimizers.SPSA.wrap_function")(function, args)                          | Wrap the function to implicitly inject the args at the call of the function.                              |
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped
 
-## Attributes
+    **Returns**
 
-|                                                                                                                                                                           |                                     |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| [`bounds_support_level`](#qiskit.aqua.components.optimizers.SPSA.bounds_support_level "qiskit.aqua.components.optimizers.SPSA.bounds_support_level")                      | Returns bounds support level        |
-| [`gradient_support_level`](#qiskit.aqua.components.optimizers.SPSA.gradient_support_level "qiskit.aqua.components.optimizers.SPSA.gradient_support_level")                | Returns gradient support level      |
-| [`initial_point_support_level`](#qiskit.aqua.components.optimizers.SPSA.initial_point_support_level "qiskit.aqua.components.optimizers.SPSA.initial_point_support_level") | Returns initial point support level |
-| [`is_bounds_ignored`](#qiskit.aqua.components.optimizers.SPSA.is_bounds_ignored "qiskit.aqua.components.optimizers.SPSA.is_bounds_ignored")                               | Returns is bounds ignored           |
-| [`is_bounds_required`](#qiskit.aqua.components.optimizers.SPSA.is_bounds_required "qiskit.aqua.components.optimizers.SPSA.is_bounds_required")                            | Returns is bounds required          |
-| [`is_bounds_supported`](#qiskit.aqua.components.optimizers.SPSA.is_bounds_supported "qiskit.aqua.components.optimizers.SPSA.is_bounds_supported")                         | Returns is bounds supported         |
-| [`is_gradient_ignored`](#qiskit.aqua.components.optimizers.SPSA.is_gradient_ignored "qiskit.aqua.components.optimizers.SPSA.is_gradient_ignored")                         | Returns is gradient ignored         |
-| [`is_gradient_required`](#qiskit.aqua.components.optimizers.SPSA.is_gradient_required "qiskit.aqua.components.optimizers.SPSA.is_gradient_required")                      | Returns is gradient required        |
-| [`is_gradient_supported`](#qiskit.aqua.components.optimizers.SPSA.is_gradient_supported "qiskit.aqua.components.optimizers.SPSA.is_gradient_supported")                   | Returns is gradient supported       |
-| [`is_initial_point_ignored`](#qiskit.aqua.components.optimizers.SPSA.is_initial_point_ignored "qiskit.aqua.components.optimizers.SPSA.is_initial_point_ignored")          | Returns is initial point ignored    |
-| [`is_initial_point_required`](#qiskit.aqua.components.optimizers.SPSA.is_initial_point_required "qiskit.aqua.components.optimizers.SPSA.is_initial_point_required")       | Returns is initial point required   |
-| [`is_initial_point_supported`](#qiskit.aqua.components.optimizers.SPSA.is_initial_point_supported "qiskit.aqua.components.optimizers.SPSA.is_initial_point_supported")    | Returns is initial point supported  |
-| [`setting`](#qiskit.aqua.components.optimizers.SPSA.setting "qiskit.aqua.components.optimizers.SPSA.setting")                                                             | Return setting                      |
+    the gradient computed
 
-### bounds\_support\_level
+    **Return type**
 
-<span id="qiskit.aqua.components.optimizers.SPSA.bounds_support_level" />
+    grad
+  </Function>
 
-`property bounds_support_level`
+  ### gradient\_support\_level
 
-Returns bounds support level
+  <Function id="qiskit.aqua.components.optimizers.SPSA.gradient_support_level" name="gradient_support_level" signature="property gradient_support_level">
+    Returns gradient support level
+  </Function>
 
-### get\_support\_level
+  ### initial\_point\_support\_level
 
-<span id="qiskit.aqua.components.optimizers.SPSA.get_support_level" />
+  <Function id="qiskit.aqua.components.optimizers.SPSA.initial_point_support_level" name="initial_point_support_level" signature="property initial_point_support_level">
+    Returns initial point support level
+  </Function>
 
-`get_support_level()`
+  ### is\_bounds\_ignored
 
-return support level dictionary
+  <Function id="qiskit.aqua.components.optimizers.SPSA.is_bounds_ignored" name="is_bounds_ignored" signature="property is_bounds_ignored">
+    Returns is bounds ignored
+  </Function>
 
-### gradient\_num\_diff
+  ### is\_bounds\_required
 
-<span id="qiskit.aqua.components.optimizers.SPSA.gradient_num_diff" />
+  <Function id="qiskit.aqua.components.optimizers.SPSA.is_bounds_required" name="is_bounds_required" signature="property is_bounds_required">
+    Returns is bounds required
+  </Function>
 
-`static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
+  ### is\_bounds\_supported
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+  <Function id="qiskit.aqua.components.optimizers.SPSA.is_bounds_supported" name="is_bounds_supported" signature="property is_bounds_supported">
+    Returns is bounds supported
+  </Function>
 
-**Parameters**
+  ### is\_gradient\_ignored
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped
+  <Function id="qiskit.aqua.components.optimizers.SPSA.is_gradient_ignored" name="is_gradient_ignored" signature="property is_gradient_ignored">
+    Returns is gradient ignored
+  </Function>
 
-**Returns**
+  ### is\_gradient\_required
 
-the gradient computed
+  <Function id="qiskit.aqua.components.optimizers.SPSA.is_gradient_required" name="is_gradient_required" signature="property is_gradient_required">
+    Returns is gradient required
+  </Function>
 
-**Return type**
+  ### is\_gradient\_supported
 
-grad
+  <Function id="qiskit.aqua.components.optimizers.SPSA.is_gradient_supported" name="is_gradient_supported" signature="property is_gradient_supported">
+    Returns is gradient supported
+  </Function>
 
-### gradient\_support\_level
+  ### is\_initial\_point\_ignored
 
-<span id="qiskit.aqua.components.optimizers.SPSA.gradient_support_level" />
+  <Function id="qiskit.aqua.components.optimizers.SPSA.is_initial_point_ignored" name="is_initial_point_ignored" signature="property is_initial_point_ignored">
+    Returns is initial point ignored
+  </Function>
 
-`property gradient_support_level`
+  ### is\_initial\_point\_required
 
-Returns gradient support level
+  <Function id="qiskit.aqua.components.optimizers.SPSA.is_initial_point_required" name="is_initial_point_required" signature="property is_initial_point_required">
+    Returns is initial point required
+  </Function>
 
-### initial\_point\_support\_level
+  ### is\_initial\_point\_supported
 
-<span id="qiskit.aqua.components.optimizers.SPSA.initial_point_support_level" />
+  <Function id="qiskit.aqua.components.optimizers.SPSA.is_initial_point_supported" name="is_initial_point_supported" signature="property is_initial_point_supported">
+    Returns is initial point supported
+  </Function>
 
-`property initial_point_support_level`
+  ### optimize
 
-Returns initial point support level
+  <Function id="qiskit.aqua.components.optimizers.SPSA.optimize" name="optimize" signature="optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)">
+    Perform optimization.
 
-### is\_bounds\_ignored
+    **Parameters**
 
-<span id="qiskit.aqua.components.optimizers.SPSA.is_bounds_ignored" />
+    *   **num\_vars** (*int*) – Number of parameters to be optimized.
+    *   **objective\_function** (*callable*) – A function that computes the objective function.
+    *   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+    *   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
+    *   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
 
-`property is_bounds_ignored`
+    **Returns**
 
-Returns is bounds ignored
+    **point, value, nfev**
 
-### is\_bounds\_required
+    point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
 
-<span id="qiskit.aqua.components.optimizers.SPSA.is_bounds_required" />
+    **Raises**
 
-`property is_bounds_required`
+    **ValueError** – invalid input
+  </Function>
 
-Returns is bounds required
+  ### print\_options
 
-### is\_bounds\_supported
+  <Function id="qiskit.aqua.components.optimizers.SPSA.print_options" name="print_options" signature="print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-<span id="qiskit.aqua.components.optimizers.SPSA.is_bounds_supported" />
+  ### set\_max\_evals\_grouped
 
-`property is_bounds_supported`
+  <Function id="qiskit.aqua.components.optimizers.SPSA.set_max_evals_grouped" name="set_max_evals_grouped" signature="set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-Returns is bounds supported
+  ### set\_options
 
-### is\_gradient\_ignored
+  <Function id="qiskit.aqua.components.optimizers.SPSA.set_options" name="set_options" signature="set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-<span id="qiskit.aqua.components.optimizers.SPSA.is_gradient_ignored" />
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-`property is_gradient_ignored`
+    **Parameters**
 
-Returns is gradient ignored
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-### is\_gradient\_required
+  ### setting
 
-<span id="qiskit.aqua.components.optimizers.SPSA.is_gradient_required" />
+  <Function id="qiskit.aqua.components.optimizers.SPSA.setting" name="setting" signature="property setting">
+    Return setting
+  </Function>
 
-`property is_gradient_required`
+  ### wrap\_function
 
-Returns is gradient required
+  <Function id="qiskit.aqua.components.optimizers.SPSA.wrap_function" name="wrap_function" signature="static wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-### is\_gradient\_supported
+    **Parameters**
 
-<span id="qiskit.aqua.components.optimizers.SPSA.is_gradient_supported" />
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-`property is_gradient_supported`
+    **Returns**
 
-Returns is gradient supported
+    wrapper
 
-### is\_initial\_point\_ignored
+    **Return type**
 
-<span id="qiskit.aqua.components.optimizers.SPSA.is_initial_point_ignored" />
-
-`property is_initial_point_ignored`
-
-Returns is initial point ignored
-
-### is\_initial\_point\_required
-
-<span id="qiskit.aqua.components.optimizers.SPSA.is_initial_point_required" />
-
-`property is_initial_point_required`
-
-Returns is initial point required
-
-### is\_initial\_point\_supported
-
-<span id="qiskit.aqua.components.optimizers.SPSA.is_initial_point_supported" />
-
-`property is_initial_point_supported`
-
-Returns is initial point supported
-
-### optimize
-
-<span id="qiskit.aqua.components.optimizers.SPSA.optimize" />
-
-`optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
-
-Perform optimization.
-
-**Parameters**
-
-*   **num\_vars** (*int*) – Number of parameters to be optimized.
-*   **objective\_function** (*callable*) – A function that computes the objective function.
-*   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
-*   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
-*   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
-
-**Returns**
-
-**point, value, nfev**
-
-point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
-
-**Raises**
-
-**ValueError** – invalid input
-
-### print\_options
-
-<span id="qiskit.aqua.components.optimizers.SPSA.print_options" />
-
-`print_options()`
-
-Print algorithm-specific options.
-
-### set\_max\_evals\_grouped
-
-<span id="qiskit.aqua.components.optimizers.SPSA.set_max_evals_grouped" />
-
-`set_max_evals_grouped(limit)`
-
-Set max evals grouped
-
-### set\_options
-
-<span id="qiskit.aqua.components.optimizers.SPSA.set_options" />
-
-`set_options(**kwargs)`
-
-Sets or updates values in the options dictionary.
-
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
-
-**Parameters**
-
-**kwargs** (*dict*) – options, given as name=value.
-
-### setting
-
-<span id="qiskit.aqua.components.optimizers.SPSA.setting" />
-
-`property setting`
-
-Return setting
-
-### wrap\_function
-
-<span id="qiskit.aqua.components.optimizers.SPSA.wrap_function" />
-
-`static wrap_function(function, args)`
-
-Wrap the function to implicitly inject the args at the call of the function.
-
-**Parameters**
-
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
-
-**Returns**
-
-wrapper
-
-**Return type**
-
-function\_wrapper
+    function\_wrapper
+  </Function>
+</Class>
 

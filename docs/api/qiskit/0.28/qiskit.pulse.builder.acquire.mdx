@@ -8,40 +8,38 @@ python_api_name: qiskit.pulse.builder.acquire
 
 # qiskit.pulse.builder.acquire
 
-<span id="qiskit.pulse.builder.acquire" />
+<Function id="qiskit.pulse.builder.acquire" name="acquire" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py" signature="acquire(duration, qubit_or_channel, register, **metadata)">
+  Acquire for a `duration` on a `channel` and store the result in a `register`.
 
-`acquire(duration, qubit_or_channel, register, **metadata)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
+  Examples:
 
-Acquire for a `duration` on a `channel` and store the result in a `register`.
+  ```python
+  from qiskit import pulse
 
-Examples:
+  d0 = pulse.MeasureChannel(0)
+  mem0 = pulse.MemorySlot(0)
 
-```python
-from qiskit import pulse
+  with pulse.build() as pulse_prog:
+      pulse.acquire(100, d0, mem0)
 
-d0 = pulse.MeasureChannel(0)
-mem0 = pulse.MemorySlot(0)
+      # measurement metadata
+      kernel = pulse.configuration.Kernel('linear_discriminator')
+      pulse.acquire(100, d0, mem0, kernel=kernel)
+  ```
 
-with pulse.build() as pulse_prog:
-    pulse.acquire(100, d0, mem0)
+  <Admonition title="Note" type="note">
+    The type of data acquire will depend on the execution `meas_level`.
+  </Admonition>
 
-    # measurement metadata
-    kernel = pulse.configuration.Kernel('linear_discriminator')
-    pulse.acquire(100, d0, mem0, kernel=kernel)
-```
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  The type of data acquire will depend on the execution `meas_level`.
-</Admonition>
+  *   **duration** (`int`) – Duration to acquire data for
+  *   **qubit\_or\_channel** (`Union`\[`int`, [`AcquireChannel`](qiskit.pulse.channels#acquirechannel "qiskit.pulse.channels.AcquireChannel")]) – Either the qubit to acquire data for or the specific [`AcquireChannel`](qiskit.pulse.channels#acquirechannel "qiskit.pulse.channels.AcquireChannel") to acquire on.
+  *   **register** (`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")])) – Location to store measured result.
+  *   **metadata** (`Union`\[`Kernel`, `Discriminator`]) – Additional metadata for measurement. See [`Acquire`](qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire") for more information.
 
-**Parameters**
+  **Raises**
 
-*   **duration** (`int`) – Duration to acquire data for
-*   **qubit\_or\_channel** (`Union`\[`int`, [`AcquireChannel`](qiskit.pulse.channels#acquirechannel "qiskit.pulse.channels.AcquireChannel")]) – Either the qubit to acquire data for or the specific [`AcquireChannel`](qiskit.pulse.channels#acquirechannel "qiskit.pulse.channels.AcquireChannel") to acquire on.
-*   **register** (`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")])) – Location to store measured result.
-*   **metadata** (`Union`\[`Kernel`, `Discriminator`]) – Additional metadata for measurement. See [`Acquire`](qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire") for more information.
-
-**Raises**
-
-**exceptions.PulseError** – If the register type is not supported.
+  **exceptions.PulseError** – If the register type is not supported.
+</Function>
 

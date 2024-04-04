@@ -8,57 +8,55 @@ python_api_name: qiskit.transpiler.passes.Collect2qBlocks
 
 # Collect2qBlocks
 
-<span id="qiskit.transpiler.passes.Collect2qBlocks" />
+<Class id="qiskit.transpiler.passes.Collect2qBlocks" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/optimization/collect_2q_blocks.py" signature="Collect2qBlocks(*args, **kwargs)">
+  Collect sequences of uninterrupted gates acting on 2 qubits.
 
-`Collect2qBlocks(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/optimization/collect_2q_blocks.py "view source code")
+  Traverse the DAG and find blocks of gates that act consecutively on pairs of qubits. Write the blocks to propert\_set as a dictionary of the form:
 
-Collect sequences of uninterrupted gates acting on 2 qubits.
+  ```python
+  {(q0, q1): [[g0, g1, g2], [g5]],
+   (q0, q2): [[g3, g4]]
+   ..
+   .
+  }
+  ```
 
-Traverse the DAG and find blocks of gates that act consecutively on pairs of qubits. Write the blocks to propert\_set as a dictionary of the form:
+  Based on implementation by Andrew Cross.
 
-```python
-{(q0, q1): [[g0, g1, g2], [g5]],
- (q0, q2): [[g3, g4]]
- ..
- .
-}
-```
+  ## Attributes
 
-Based on implementation by Andrew Cross.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.Collect2qBlocks.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-### is\_analysis\_pass
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-Check if the pass is an analysis pass.
+  ### is\_transformation\_pass
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  <Attribute id="qiskit.transpiler.passes.Collect2qBlocks.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-### is\_transformation\_pass
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-Check if the pass is a transformation pass.
+  ## Methods
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.Collect2qBlocks.name" name="name" signature="Collect2qBlocks.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.Collect2qBlocks.name" />
+  <Function id="qiskit.transpiler.passes.Collect2qBlocks.run" name="run" signature="Collect2qBlocks.run(dag)">
+    Run the Collect2qBlocks pass on dag.
 
-`Collect2qBlocks.name()`
+    The blocks contain “op” nodes in topological sort order such that all gates in a block act on the same pair of qubits and are adjacent in the circuit. the blocks are built by examining predecessors and successors of “cx” gates in the circuit. u1, u2, u3, cx, id gates will be included.
 
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.Collect2qBlocks.run" />
-
-`Collect2qBlocks.run(dag)`
-
-Run the Collect2qBlocks pass on dag.
-
-The blocks contain “op” nodes in topological sort order such that all gates in a block act on the same pair of qubits and are adjacent in the circuit. the blocks are built by examining predecessors and successors of “cx” gates in the circuit. u1, u2, u3, cx, id gates will be included.
-
-After the execution, `property_set['block_list']` is set to a list of tuples of “op” node labels.
+    After the execution, `property_set['block_list']` is set to a list of tuples of “op” node labels.
+  </Function>
+</Class>
 

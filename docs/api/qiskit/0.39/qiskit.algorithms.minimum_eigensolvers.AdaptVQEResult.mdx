@@ -8,159 +8,155 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult
 
 # AdaptVQEResult
 
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult" />
+<Class id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigensolvers/adapt_vqe.py" signature="AdaptVQEResult">
+  Bases: [`qiskit.algorithms.minimum_eigensolvers.vqe.VQEResult`](qiskit.algorithms.minimum_eigensolvers.VQEResult "qiskit.algorithms.minimum_eigensolvers.vqe.VQEResult")
 
-`AdaptVQEResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigensolvers/adapt_vqe.py "view source code")
+  AdaptVQE Result.
 
-Bases: [`qiskit.algorithms.minimum_eigensolvers.vqe.VQEResult`](qiskit.algorithms.minimum_eigensolvers.VQEResult "qiskit.algorithms.minimum_eigensolvers.vqe.VQEResult")
+  ## Methods
 
-AdaptVQE Result.
+  ### combine
 
-## Methods
+  <Function id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.combine" name="combine" signature="AdaptVQEResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-### combine
+    **Raises**
 
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.combine" />
+    **TypeError** – Argument is None
 
-`AdaptVQEResult.combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    `None`
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**TypeError** – Argument is None
+  ### aux\_operators\_evaluated
 
-**Return type**
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.aux_operators_evaluated" name="aux_operators_evaluated">
+    The aux operator expectation values.
 
-`None`
+    These values are in fact tuples formatted as (mean, (variance, shots)).
+  </Attribute>
 
-## Attributes
+  ### cost\_function\_evals
 
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.aux_operators_evaluated" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.cost_function_evals" name="cost_function_evals">
+    The number of cost optimizer evaluations.
 
-### aux\_operators\_evaluated
+    **Return type**
 
-The aux operator expectation values.
+    int | None
+  </Attribute>
 
-These values are in fact tuples formatted as (mean, (variance, shots)).
+  ### eigenvalue
 
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.cost_function_evals" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.eigenvalue" name="eigenvalue">
+    The computed minimum eigenvalue.
 
-### cost\_function\_evals
+    **Return type**
 
-The number of cost optimizer evaluations.
+    complex | None
+  </Attribute>
 
-**Return type**
+  ### final\_max\_gradient
 
-int | None
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.final_max_gradient" name="final_max_gradient">
+    Returns final maximum gradient
 
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.eigenvalue" />
+    **Return type**
 
-### eigenvalue
+    `float`
+  </Attribute>
 
-The computed minimum eigenvalue.
+  ### num\_iterations
 
-**Return type**
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.num_iterations" name="num_iterations">
+    Returns number of iterations
 
-complex | None
+    **Return type**
 
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.final_max_gradient" />
+    `int`
+  </Attribute>
 
-### final\_max\_gradient
+  ### optimal\_circuit
 
-Returns final maximum gradient
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimal_circuit" name="optimal_circuit">
+    The optimal circuits. Along with the optimal parameters, these can be used to retrieve the minimum eigenstate.
 
-**Return type**
+    **Return type**
 
-`float`
+    [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  </Attribute>
 
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.num_iterations" />
+  ### optimal\_parameters
 
-### num\_iterations
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimal_parameters" name="optimal_parameters">
+    Returns the optimal parameters in a dictionary
 
-Returns number of iterations
+    **Return type**
 
-**Return type**
+    `Optional`\[`Dict`]
+  </Attribute>
 
-`int`
+  ### optimal\_point
 
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimal_circuit" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimal_point" name="optimal_point">
+    Returns optimal point
 
-### optimal\_circuit
+    **Return type**
 
-The optimal circuits. Along with the optimal parameters, these can be used to retrieve the minimum eigenstate.
+    `Optional`\[`ndarray`]
+  </Attribute>
 
-**Return type**
+  ### optimal\_value
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimal_value" name="optimal_value">
+    Returns optimal value
 
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimal_parameters" />
+    **Return type**
 
-### optimal\_parameters
+    `Optional`\[`float`]
+  </Attribute>
 
-Returns the optimal parameters in a dictionary
+  ### optimizer\_evals
 
-**Return type**
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimizer_evals" name="optimizer_evals">
+    Returns number of optimizer evaluations
 
-`Optional`\[`Dict`]
+    **Return type**
 
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimal_point" />
+    `Optional`\[`int`]
+  </Attribute>
 
-### optimal\_point
+  ### optimizer\_result
 
-Returns optimal point
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimizer_result" name="optimizer_result">
+    Returns the optimizer result
 
-**Return type**
+    **Return type**
 
-`Optional`\[`ndarray`]
+    `Optional`\[[`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")]
+  </Attribute>
 
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimal_value" />
+  ### optimizer\_time
 
-### optimal\_value
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimizer_time" name="optimizer_time">
+    Returns time taken for optimization
 
-Returns optimal value
+    **Return type**
 
-**Return type**
+    `Optional`\[`float`]
+  </Attribute>
 
-`Optional`\[`float`]
+  ### termination\_criterion
 
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimizer_evals" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.termination_criterion" name="termination_criterion">
+    Returns termination criterion
 
-### optimizer\_evals
+    **Return type**
 
-Returns number of optimizer evaluations
-
-**Return type**
-
-`Optional`\[`int`]
-
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimizer_result" />
-
-### optimizer\_result
-
-Returns the optimizer result
-
-**Return type**
-
-`Optional`\[[`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")]
-
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.optimizer_time" />
-
-### optimizer\_time
-
-Returns time taken for optimization
-
-**Return type**
-
-`Optional`\[`float`]
-
-<span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult.termination_criterion" />
-
-### termination\_criterion
-
-Returns termination criterion
-
-**Return type**
-
-`str`
+    `str`
+  </Attribute>
+</Class>
 

@@ -8,37 +8,35 @@ python_api_name: qiskit_aer.utils.approximate_quantum_error
 
 # qiskit\_aer.utils.approximate\_quantum\_error
 
-<span id="qiskit_aer.utils.approximate_quantum_error" />
+<Function id="qiskit_aer.utils.approximate_quantum_error" name="approximate_quantum_error" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/utils/noise_transformation.py" signature="approximate_quantum_error(error, *, operator_string=None, operator_dict=None, operator_list=None)">
+  Return a `QuantumError` object that approximates an error as a mixture of specified operators (channels).
 
-`approximate_quantum_error(error, *, operator_string=None, operator_dict=None, operator_list=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/utils/noise_transformation.py "view source code")
+  The approximation is done by minimizing the Hilbert-Schmidt distance between the process matrix of the target error channel ($T$) and the process matrix of the output channel ($S = \sum_i{p_i S_i}$), i.e. $Tr[(T-S)^\dagger (T-S)]$, where $[p_1, p_2, ..., p_n]$ denote probabilities and $[S_1, S_2, ..., S_n]$ denote basis operators (channels).
 
-Return a `QuantumError` object that approximates an error as a mixture of specified operators (channels).
+  See [arXiv:1207.0046](http://arxiv.org/abs/1207.0046) for the details.
 
-The approximation is done by minimizing the Hilbert-Schmidt distance between the process matrix of the target error channel ($T$) and the process matrix of the output channel ($S = \sum_i{p_i S_i}$), i.e. $Tr[(T-S)^\dagger (T-S)]$, where $[p_1, p_2, ..., p_n]$ denote probabilities and $[S_1, S_2, ..., S_n]$ denote basis operators (channels).
+  **Parameters**
 
-See [arXiv:1207.0046](http://arxiv.org/abs/1207.0046) for the details.
+  *   **error** ([*QuantumError*](qiskit_aer.noise.QuantumError "qiskit_aer.noise.QuantumError") *or QuantumChannel*) – the error to be approximated. The number of qubits must be 1 or 2.
+  *   **operator\_string** (*string*) – a name for a pre-made set of building blocks for the output channel (Default: None). Possible values are `'pauli'`, `'reset'`, `'clifford'`.
+  *   **operator\_dict** (*dict*) – a dictionary whose values are the building blocks for the output channel (Default: None). E.g. \{“x”: XGate(), “y”: YGate()}, keys “x” and “y” are not used in transformation.
+  *   **operator\_list** (*list*) – list of building block operators for the output channel (Default: None). E.g. \[XGate(), YGate()]
 
-**Parameters**
+  **Returns**
 
-*   **error** ([*QuantumError*](qiskit_aer.noise.QuantumError "qiskit_aer.noise.QuantumError") *or QuantumChannel*) – the error to be approximated. The number of qubits must be 1 or 2.
-*   **operator\_string** (*string*) – a name for a pre-made set of building blocks for the output channel (Default: None). Possible values are `'pauli'`, `'reset'`, `'clifford'`.
-*   **operator\_dict** (*dict*) – a dictionary whose values are the building blocks for the output channel (Default: None). E.g. \{“x”: XGate(), “y”: YGate()}, keys “x” and “y” are not used in transformation.
-*   **operator\_list** (*list*) – list of building block operators for the output channel (Default: None). E.g. \[XGate(), YGate()]
+  the approximate quantum error.
 
-**Returns**
+  **Return type**
 
-the approximate quantum error.
+  [QuantumError](qiskit_aer.noise.QuantumError "qiskit_aer.noise.QuantumError")
 
-**Return type**
+  **Raises**
 
-[QuantumError](qiskit_aer.noise.QuantumError "qiskit_aer.noise.QuantumError")
+  *   **NoiseError** – if any invalid argument is specified or approximation failed.
+  *   **MissingOptionalLibraryError** – if cvxpy is not installed.
 
-**Raises**
-
-*   **NoiseError** – if any invalid argument is specified or approximation failed.
-*   **MissingOptionalLibraryError** – if cvxpy is not installed.
-
-<Admonition title="Note" type="note">
-  The operator input precedence is: `list` \< `dict` \< `string`. If a `string` is given, `dict` is overwritten; if a `dict` is given, `list` is overwritten. The `string` supports only 1- or 2-qubit errors and its possible values are `'pauli'`, `'reset'`, `'clifford'`. The `'clifford'` does not support 2-qubit errors.
-</Admonition>
+  <Admonition title="Note" type="note">
+    The operator input precedence is: `list` \< `dict` \< `string`. If a `string` is given, `dict` is overwritten; if a `dict` is given, `list` is overwritten. The `string` supports only 1- or 2-qubit errors and its possible values are `'pauli'`, `'reset'`, `'clifford'`. The `'clifford'` does not support 2-qubit errors.
+  </Admonition>
+</Function>
 

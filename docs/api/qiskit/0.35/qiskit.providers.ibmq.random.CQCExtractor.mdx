@@ -8,140 +8,130 @@ python_api_name: qiskit.providers.ibmq.random.CQCExtractor
 
 # CQCExtractor
 
-<span id="qiskit.providers.ibmq.random.CQCExtractor" />
+<Class id="qiskit.providers.ibmq.random.CQCExtractor" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/random/cqcextractor.py" signature="CQCExtractor(name, provider, client, methods)">
+  Bases: `qiskit.providers.ibmq.random.baserandomservice.BaseRandomService`
 
-`CQCExtractor(name, provider, client, methods)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/random/cqcextractor.py "view source code")
+  Class for interfacing with a CQC remote extractor.
 
-Bases: `qiskit.providers.ibmq.random.baserandomservice.BaseRandomService`
+  There are two extractor methods - Dodis (extractor 1) and Hayashi (extractor 2). These methods can be invoked synchronously or asynchronously. To invoke them synchronously:
 
-Class for interfacing with a CQC remote extractor.
+  ```python
+  random_bits = extractor.run(*cqc_parameters)
+  ```
 
-There are two extractor methods - Dodis (extractor 1) and Hayashi (extractor 2). These methods can be invoked synchronously or asynchronously. To invoke them synchronously:
+  To invoke them asynchronously:
 
-```python
-random_bits = extractor.run(*cqc_parameters)
-```
+  ```python
+  import numpy as np
+  extractor1_out = extractor.run_async_ext1(*ext1_parameters).block_until_ready()
+  extractor2_out = extractor.run_async_ext2(
+      ext2_seed=extractor1_out, *ext2_parameters).block_until_ready()
+  random_bits = np.append(extractor1_out, extractor2_out)
+  ```
 
-To invoke them asynchronously:
+  Running them asynchronously takes more steps because extractor 2 uses the output of extractor 1 as its seed, so it must wait for extractor 1 to finish first.
 
-```python
-import numpy as np
-extractor1_out = extractor.run_async_ext1(*ext1_parameters).block_until_ready()
-extractor2_out = extractor.run_async_ext2(
-    ext2_seed=extractor1_out, *ext2_parameters).block_until_ready()
-random_bits = np.append(extractor1_out, extractor2_out)
-```
+  BaseRandomService constructor.
 
-Running them asynchronously takes more steps because extractor 2 uses the output of extractor 1 as its seed, so it must wait for extractor 1 to finish first.
+  **Parameters**
 
-BaseRandomService constructor.
+  *   **name** (`str`) – Name of the extractor.
+  *   **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
+  *   **client** (`RandomClient`) – Client used to communicate with the server.
+  *   **methods** (`List`) – Service methods.
 
-**Parameters**
+  ## Methods
 
-*   **name** (`str`) – Name of the extractor.
-*   **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
-*   **client** (`RandomClient`) – Client used to communicate with the server.
-*   **methods** (`List`) – Service methods.
+  ### retrieve\_job
 
-## Methods
+  <Function id="qiskit.providers.ibmq.random.CQCExtractor.retrieve_job" name="retrieve_job" signature="CQCExtractor.retrieve_job(job_id)">
+    Retrieve a previously submitted job.
 
-### retrieve\_job
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.random.CQCExtractor.retrieve_job" />
+    **job\_id** (`str`) – Job ID.
 
-`CQCExtractor.retrieve_job(job_id)`
+    **Return type**
 
-Retrieve a previously submitted job.
+    `CQCExtractorJob`
 
-**Parameters**
+    **Returns**
 
-**job\_id** (`str`) – Job ID.
+    A `CQCExtractorJob` instance.
+  </Function>
 
-**Return type**
+  ### run
 
-`CQCExtractorJob`
+  <Function id="qiskit.providers.ibmq.random.CQCExtractor.run" name="run" signature="CQCExtractor.run(ext1_input_num_bits, ext1_output_num_bits, ext1_raw_bytes, ext1_wsr_bytes, ext2_seed_num_bits, ext2_wsr_multiplier, ext2_wsr_generator=None)">
+    Process input data synchronously.
 
-**Returns**
+    **Parameters**
 
-A `CQCExtractorJob` instance.
+    *   **ext1\_input\_num\_bits** (`int`) – Number of input bits, for extractor 1.
+    *   **ext1\_output\_num\_bits** (`int`) – Number of output bits, for extractor 1.
+    *   **ext1\_raw\_bytes** (`bytes`) – Initial random numbers, in bytes, for extractor 1.
+    *   **ext1\_wsr\_bytes** (`bytes`) – Initial WSRs, in bytes, for extractor 1.
+    *   **ext2\_seed\_num\_bits** (`int`) – Number of bits in the seed, for extractor 2.
+    *   **ext2\_wsr\_multiplier** (`int`) – WSR multiplier, for extractor 2. The number of bits used by extractor 2 is ext2\_seed\_num\_bits\*ext2\_wsr\_multiplier.
+    *   **ext2\_wsr\_generator** (`Optional`\[`Callable`]) – WSR generator used for extractor 2. It must take the number of bits as the input and a list of random bits (0s and 1s) as the output. If `None`, :func:`generate_wsr` is used.
 
-### run
+    **Return type**
 
-<span id="qiskit.providers.ibmq.random.CQCExtractor.run" />
+    `List`\[`int`]
 
-`CQCExtractor.run(ext1_input_num_bits, ext1_output_num_bits, ext1_raw_bytes, ext1_wsr_bytes, ext2_seed_num_bits, ext2_wsr_multiplier, ext2_wsr_generator=None)`
+    **Returns**
 
-Process input data synchronously.
+    An instance of `CQCExtractorJob` which can be used to retrieve the results later.
+  </Function>
 
-**Parameters**
+  ### run\_async\_ext1
 
-*   **ext1\_input\_num\_bits** (`int`) – Number of input bits, for extractor 1.
-*   **ext1\_output\_num\_bits** (`int`) – Number of output bits, for extractor 1.
-*   **ext1\_raw\_bytes** (`bytes`) – Initial random numbers, in bytes, for extractor 1.
-*   **ext1\_wsr\_bytes** (`bytes`) – Initial WSRs, in bytes, for extractor 1.
-*   **ext2\_seed\_num\_bits** (`int`) – Number of bits in the seed, for extractor 2.
-*   **ext2\_wsr\_multiplier** (`int`) – WSR multiplier, for extractor 2. The number of bits used by extractor 2 is ext2\_seed\_num\_bits\*ext2\_wsr\_multiplier.
-*   **ext2\_wsr\_generator** (`Optional`\[`Callable`]) – WSR generator used for extractor 2. It must take the number of bits as the input and a list of random bits (0s and 1s) as the output. If `None`, :func:`generate_wsr` is used.
+  <Function id="qiskit.providers.ibmq.random.CQCExtractor.run_async_ext1" name="run_async_ext1" signature="CQCExtractor.run_async_ext1(ext1_input_num_bits, ext1_output_num_bits, ext1_raw_bytes, ext1_wsr_bytes)">
+    Run the first extractor asynchronously.
 
-**Return type**
+    **Parameters**
 
-`List`\[`int`]
+    *   **ext1\_input\_num\_bits** (`int`) – Number of input bits, for extractor 1.
+    *   **ext1\_output\_num\_bits** (`int`) – Number of output bits, for extractor 1.
+    *   **ext1\_raw\_bytes** (`bytes`) – Initial random numbers, in bytes, for extractor 1.
+    *   **ext1\_wsr\_bytes** (`bytes`) – Initial WSRs, in bytes, for extractor 1.
 
-**Returns**
+    **Return type**
 
-An instance of `CQCExtractorJob` which can be used to retrieve the results later.
+    `CQCExtractorJob`
 
-### run\_async\_ext1
+    **Returns**
 
-<span id="qiskit.providers.ibmq.random.CQCExtractor.run_async_ext1" />
+    An instance of `CQCExtractorJob` which can be used to retrieve the results later.
 
-`CQCExtractor.run_async_ext1(ext1_input_num_bits, ext1_output_num_bits, ext1_raw_bytes, ext1_wsr_bytes)`
+    **Raises**
 
-Run the first extractor asynchronously.
+    **ValueError** – If an invalid argument values are specified.
+  </Function>
 
-**Parameters**
+  ### run\_async\_ext2
 
-*   **ext1\_input\_num\_bits** (`int`) – Number of input bits, for extractor 1.
-*   **ext1\_output\_num\_bits** (`int`) – Number of output bits, for extractor 1.
-*   **ext1\_raw\_bytes** (`bytes`) – Initial random numbers, in bytes, for extractor 1.
-*   **ext1\_wsr\_bytes** (`bytes`) – Initial WSRs, in bytes, for extractor 1.
+  <Function id="qiskit.providers.ibmq.random.CQCExtractor.run_async_ext2" name="run_async_ext2" signature="CQCExtractor.run_async_ext2(ext2_seed, ext2_seed_num_bits, ext2_wsr_multiplier, ext2_wsr_generator=None)">
+    Run the second extractor asynchronously.
 
-**Return type**
+    **Parameters**
 
-`CQCExtractorJob`
+    *   **ext2\_seed** (`List`\[`int`]) – Seed used for extractor 2, such as the output of extractor 1.
+    *   **ext2\_seed\_num\_bits** (`int`) – Number of bits in the seed, for extractor 2.
+    *   **ext2\_wsr\_multiplier** (`int`) – WSR multiplier, for extractor 2. The number of bits used by extractor 2 is ext2\_seed\_num\_bits\*ext2\_wsr\_multiplier.
+    *   **ext2\_wsr\_generator** (`Optional`\[`Callable`]) – WSR generator used for extractor 2. It must take the number of bits as the input and a list of random bits (0s and 1s) as the output. If `None`, :func:`generate_wsr` is used.
 
-**Returns**
+    **Return type**
 
-An instance of `CQCExtractorJob` which can be used to retrieve the results later.
+    `CQCExtractorJob`
 
-**Raises**
+    **Returns**
 
-**ValueError** – If an invalid argument values are specified.
+    An instance of `CQCExtractorJob` which can be used to retrieve the results later.
 
-### run\_async\_ext2
+    **Raises**
 
-<span id="qiskit.providers.ibmq.random.CQCExtractor.run_async_ext2" />
-
-`CQCExtractor.run_async_ext2(ext2_seed, ext2_seed_num_bits, ext2_wsr_multiplier, ext2_wsr_generator=None)`
-
-Run the second extractor asynchronously.
-
-**Parameters**
-
-*   **ext2\_seed** (`List`\[`int`]) – Seed used for extractor 2, such as the output of extractor 1.
-*   **ext2\_seed\_num\_bits** (`int`) – Number of bits in the seed, for extractor 2.
-*   **ext2\_wsr\_multiplier** (`int`) – WSR multiplier, for extractor 2. The number of bits used by extractor 2 is ext2\_seed\_num\_bits\*ext2\_wsr\_multiplier.
-*   **ext2\_wsr\_generator** (`Optional`\[`Callable`]) – WSR generator used for extractor 2. It must take the number of bits as the input and a list of random bits (0s and 1s) as the output. If `None`, :func:`generate_wsr` is used.
-
-**Return type**
-
-`CQCExtractorJob`
-
-**Returns**
-
-An instance of `CQCExtractorJob` which can be used to retrieve the results later.
-
-**Raises**
-
-**ValueError** – If an invalid argument values are specified.
+    **ValueError** – If an invalid argument values are specified.
+  </Function>
+</Class>
 

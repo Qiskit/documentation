@@ -8,227 +8,231 @@ python_api_name: qiskit.aqua.components.optimizers.ADAM
 
 # ADAM
 
-<span id="qiskit.aqua.components.optimizers.ADAM" />
+<Class id="qiskit.aqua.components.optimizers.ADAM" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/adam_amsgrad.py" signature="ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)">
+  Adam and AMSGRAD optimizer.
 
-`ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/adam_amsgrad.py "view source code")
+  **Adam**
 
-Adam and AMSGRAD optimizer.
+  *Kingma, Diederik & Ba, Jimmy. (2014).*
 
-**Adam**
+  Adam: A Method for Stochastic Optimization. International Conference on Learning Representations.
 
-*Kingma, Diederik & Ba, Jimmy. (2014).*
+  Adam is a gradient-based optimization algorithm that is relies on adaptive estimates of lower-order moments. The algorithm requires little memory and is invariant to diagonal rescaling of the gradients. Furthermore, it is able to cope with non-stationary objective functions and noisy and/or sparse gradients.
 
-Adam: A Method for Stochastic Optimization. International Conference on Learning Representations.
+  **AMSGRAD**
 
-Adam is a gradient-based optimization algorithm that is relies on adaptive estimates of lower-order moments. The algorithm requires little memory and is invariant to diagonal rescaling of the gradients. Furthermore, it is able to cope with non-stationary objective functions and noisy and/or sparse gradients.
+  *Sashank J. Reddi and Satyen Kale and Sanjiv Kumar. (2018).*
 
-**AMSGRAD**
+  On the Convergence of Adam and Beyond. International Conference on Learning Representations.
 
-*Sashank J. Reddi and Satyen Kale and Sanjiv Kumar. (2018).*
+  AMSGRAD (a variant of ADAM) uses a ‘long-term memory’ of past gradients and, thereby, improves convergence properties.
 
-On the Convergence of Adam and Beyond. International Conference on Learning Representations.
+  **Parameters**
 
-AMSGRAD (a variant of ADAM) uses a ‘long-term memory’ of past gradients and, thereby, improves convergence properties.
+  *   **maxiter** (`int`) – Maximum number of iterations
+  *   **tol** (`float`) – Tolerance for termination
+  *   **lr** (`float`) – Value >= 0, Learning rate.
+  *   **beta\_1** (`float`) – Value in range 0 to 1, Generally close to 1.
+  *   **beta\_2** (`float`) – Value in range 0 to 1, Generally close to 1.
+  *   **noise\_factor** (`float`) – Value >= 0, Noise factor
+  *   **eps** (`float`) – Value >=0, Epsilon to be used for finite differences if no analytic gradient method is given.
+  *   **amsgrad** (`bool`) – True to use AMSGRAD, False if not
+  *   **snapshot\_dir** (`Optional`\[`str`]) – If not None save the optimizer’s parameter after every step to the given directory
 
-**Parameters**
+  ## Attributes
 
-*   **maxiter** (`int`) – Maximum number of iterations
-*   **tol** (`float`) – Tolerance for termination
-*   **lr** (`float`) – Value >= 0, Learning rate.
-*   **beta\_1** (`float`) – Value in range 0 to 1, Generally close to 1.
-*   **beta\_2** (`float`) – Value in range 0 to 1, Generally close to 1.
-*   **noise\_factor** (`float`) – Value >= 0, Noise factor
-*   **eps** (`float`) – Value >=0, Epsilon to be used for finite differences if no analytic gradient method is given.
-*   **amsgrad** (`bool`) – True to use AMSGRAD, False if not
-*   **snapshot\_dir** (`Optional`\[`str`]) – If not None save the optimizer’s parameter after every step to the given directory
+  ### bounds\_support\_level
 
-## Attributes
+  <Attribute id="qiskit.aqua.components.optimizers.ADAM.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-### bounds\_support\_level
+  ### gradient\_support\_level
 
-Returns bounds support level
+  <Attribute id="qiskit.aqua.components.optimizers.ADAM.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-### gradient\_support\_level
+  ### initial\_point\_support\_level
 
-Returns gradient support level
+  <Attribute id="qiskit.aqua.components.optimizers.ADAM.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-### initial\_point\_support\_level
+  ### is\_bounds\_ignored
 
-Returns initial point support level
+  <Attribute id="qiskit.aqua.components.optimizers.ADAM.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-### is\_bounds\_ignored
+  ### is\_bounds\_required
 
-Returns is bounds ignored
+  <Attribute id="qiskit.aqua.components.optimizers.ADAM.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-### is\_bounds\_required
+  ### is\_bounds\_supported
 
-Returns is bounds required
+  <Attribute id="qiskit.aqua.components.optimizers.ADAM.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-### is\_bounds\_supported
+  ### is\_gradient\_ignored
 
-Returns is bounds supported
+  <Attribute id="qiskit.aqua.components.optimizers.ADAM.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-### is\_gradient\_ignored
+  ### is\_gradient\_required
 
-Returns is gradient ignored
+  <Attribute id="qiskit.aqua.components.optimizers.ADAM.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-### is\_gradient\_required
+  ### is\_gradient\_supported
 
-Returns is gradient required
+  <Attribute id="qiskit.aqua.components.optimizers.ADAM.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-### is\_gradient\_supported
+  ### is\_initial\_point\_ignored
 
-Returns is gradient supported
+  <Attribute id="qiskit.aqua.components.optimizers.ADAM.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-### is\_initial\_point\_ignored
+  ### is\_initial\_point\_required
 
-Returns is initial point ignored
+  <Attribute id="qiskit.aqua.components.optimizers.ADAM.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-### is\_initial\_point\_required
+  ### is\_initial\_point\_supported
 
-Returns is initial point required
+  <Attribute id="qiskit.aqua.components.optimizers.ADAM.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-### is\_initial\_point\_supported
+  ### setting
 
-Returns is initial point supported
+  <Attribute id="qiskit.aqua.components.optimizers.ADAM.setting" name="setting">
+    Return setting
+  </Attribute>
 
-### setting
+  ## Methods
 
-Return setting
+  ### get\_support\_level
 
-## Methods
+  <Function id="qiskit.aqua.components.optimizers.ADAM.get_support_level" name="get_support_level" signature="ADAM.get_support_level()">
+    Return support level dictionary
+  </Function>
 
-### get\_support\_level
+  ### gradient\_num\_diff
 
-<span id="qiskit.aqua.components.optimizers.ADAM.get_support_level" />
+  <Function id="qiskit.aqua.components.optimizers.ADAM.gradient_num_diff" name="gradient_num_diff" signature="static ADAM.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-`ADAM.get_support_level()`
+    **Parameters**
 
-Return support level dictionary
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped
 
-### gradient\_num\_diff
+    **Returns**
 
-<span id="qiskit.aqua.components.optimizers.ADAM.gradient_num_diff" />
+    the gradient computed
 
-`static ADAM.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
+    **Return type**
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+    grad
+  </Function>
 
-**Parameters**
+  ### load\_params
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped
+  <Function id="qiskit.aqua.components.optimizers.ADAM.load_params" name="load_params" signature="ADAM.load_params(load_dir)">
+    load params
+  </Function>
 
-**Returns**
+  ### minimize
 
-the gradient computed
+  <Function id="qiskit.aqua.components.optimizers.ADAM.minimize" name="minimize" signature="ADAM.minimize(objective_function, initial_point, gradient_function)" />
 
-**Return type**
+  ### optimize
 
-grad
+  <Function id="qiskit.aqua.components.optimizers.ADAM.optimize" name="optimize" signature="ADAM.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)">
+    Perform optimization.
 
-### load\_params
+    **Parameters**
 
-<span id="qiskit.aqua.components.optimizers.ADAM.load_params" />
+    *   **num\_vars** (*int*) – number of parameters to be optimized.
+    *   **objective\_function** (*callable*) – handle to a function that computes the objective function.
+    *   **gradient\_function** (*callable*) – handle to a function that computes the gradient of the objective function, or None if not available.
+    *   **variable\_bounds** (*list\[(float, float)]*) – deprecated
+    *   **initial\_point** (*numpy.ndarray\[float]*) – initial point.
 
-`ADAM.load_params(load_dir)`
+    **Returns**
 
-load params
+    tuple has (point, value, nfev) where
 
-### minimize
+    > point: is a 1D numpy.ndarray\[float] containing the solution
+    >
+    > value: is a float with the objective function value
+    >
+    > nfev: number of objective function calls made if available or None
 
-<span id="qiskit.aqua.components.optimizers.ADAM.minimize" />
+    **Return type**
 
-`ADAM.minimize(objective_function, initial_point, gradient_function)`
+    tuple(numpy.ndarray, float, int)
+  </Function>
 
-### optimize
+  ### print\_options
 
-<span id="qiskit.aqua.components.optimizers.ADAM.optimize" />
+  <Function id="qiskit.aqua.components.optimizers.ADAM.print_options" name="print_options" signature="ADAM.print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-`ADAM.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
+  ### save\_params
 
-Perform optimization.
+  <Function id="qiskit.aqua.components.optimizers.ADAM.save_params" name="save_params" signature="ADAM.save_params(snapshot_dir)">
+    save params
+  </Function>
 
-**Parameters**
+  ### set\_max\_evals\_grouped
 
-*   **num\_vars** (*int*) – number of parameters to be optimized.
-*   **objective\_function** (*callable*) – handle to a function that computes the objective function.
-*   **gradient\_function** (*callable*) – handle to a function that computes the gradient of the objective function, or None if not available.
-*   **variable\_bounds** (*list\[(float, float)]*) – deprecated
-*   **initial\_point** (*numpy.ndarray\[float]*) – initial point.
+  <Function id="qiskit.aqua.components.optimizers.ADAM.set_max_evals_grouped" name="set_max_evals_grouped" signature="ADAM.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-**Returns**
+  ### set\_options
 
-tuple has (point, value, nfev) where
+  <Function id="qiskit.aqua.components.optimizers.ADAM.set_options" name="set_options" signature="ADAM.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-> point: is a 1D numpy.ndarray\[float] containing the solution
->
-> value: is a float with the objective function value
->
-> nfev: number of objective function calls made if available or None
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-**Return type**
+    **Parameters**
 
-tuple(numpy.ndarray, float, int)
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-### print\_options
+  ### wrap\_function
 
-<span id="qiskit.aqua.components.optimizers.ADAM.print_options" />
+  <Function id="qiskit.aqua.components.optimizers.ADAM.wrap_function" name="wrap_function" signature="static ADAM.wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-`ADAM.print_options()`
+    **Parameters**
 
-Print algorithm-specific options.
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-### save\_params
+    **Returns**
 
-<span id="qiskit.aqua.components.optimizers.ADAM.save_params" />
+    wrapper
 
-`ADAM.save_params(snapshot_dir)`
+    **Return type**
 
-save params
-
-### set\_max\_evals\_grouped
-
-<span id="qiskit.aqua.components.optimizers.ADAM.set_max_evals_grouped" />
-
-`ADAM.set_max_evals_grouped(limit)`
-
-Set max evals grouped
-
-### set\_options
-
-<span id="qiskit.aqua.components.optimizers.ADAM.set_options" />
-
-`ADAM.set_options(**kwargs)`
-
-Sets or updates values in the options dictionary.
-
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
-
-**Parameters**
-
-**kwargs** (*dict*) – options, given as name=value.
-
-### wrap\_function
-
-<span id="qiskit.aqua.components.optimizers.ADAM.wrap_function" />
-
-`static ADAM.wrap_function(function, args)`
-
-Wrap the function to implicitly inject the args at the call of the function.
-
-**Parameters**
-
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
-
-**Returns**
-
-wrapper
-
-**Return type**
-
-function\_wrapper
+    function\_wrapper
+  </Function>
+</Class>
 

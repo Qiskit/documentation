@@ -12,50 +12,46 @@ python_api_name: qiskit.providers.ibmq.runtime.ResultDecoder
 
 # ResultDecoder
 
-<span id="qiskit.providers.ibmq.runtime.ResultDecoder" />
+<Class id="qiskit.providers.ibmq.runtime.ResultDecoder" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/runtime/program/result_decoder.py" signature="ResultDecoder">
+  Bases: `object`
 
-`ResultDecoder` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/runtime/program/result_decoder.py "view source code")
+  Runtime job result decoder.
 
-Bases: `object`
+  You can subclass this class and overwrite the [`decode()`](qiskit.providers.ibmq.runtime.ResultDecoder#decode "qiskit.providers.ibmq.runtime.ResultDecoder.decode") method to create a custom result decoder for the results of your runtime program. For example:
 
-Runtime job result decoder.
+  ```python
+  class MyResultDecoder(ResultDecoder):
 
-You can subclass this class and overwrite the [`decode()`](qiskit.providers.ibmq.runtime.ResultDecoder#decode "qiskit.providers.ibmq.runtime.ResultDecoder.decode") method to create a custom result decoder for the results of your runtime program. For example:
+      @classmethod
+      def decode(cls, data):
+          decoded = super().decode(data)
+          custom_processing(decoded)  # perform custom processing
+  ```
 
-```python
-class MyResultDecoder(ResultDecoder):
+  Users of your program will need to pass in the subclass when invoking [`qiskit.providers.ibmq.runtime.RuntimeJob.result()`](qiskit.providers.ibmq.runtime.RuntimeJob#result "qiskit.providers.ibmq.runtime.RuntimeJob.result") or [`qiskit.providers.ibmq.runtime.IBMRuntimeService.run()`](qiskit.providers.ibmq.runtime.IBMRuntimeService#run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run").
 
-    @classmethod
-    def decode(cls, data):
-        decoded = super().decode(data)
-        custom_processing(decoded)  # perform custom processing
-```
+  ## Methods
 
-Users of your program will need to pass in the subclass when invoking [`qiskit.providers.ibmq.runtime.RuntimeJob.result()`](qiskit.providers.ibmq.runtime.RuntimeJob#result "qiskit.providers.ibmq.runtime.RuntimeJob.result") or [`qiskit.providers.ibmq.runtime.IBMRuntimeService.run()`](qiskit.providers.ibmq.runtime.IBMRuntimeService#run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run").
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-## Methods
+  ### decode
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+  <Function id="qiskit.providers.ibmq.runtime.ResultDecoder.decode" name="decode" signature="classmethod ResultDecoder.decode(data)">
+    Decode the result data.
 
-### decode
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.runtime.ResultDecoder.decode" />
+    **data** (`str`) – Result data to be decoded.
 
-`classmethod ResultDecoder.decode(data)`
+    **Return type**
 
-Decode the result data.
+    `Any`
 
-**Parameters**
+    **Returns**
 
-**data** (`str`) – Result data to be decoded.
-
-**Return type**
-
-`Any`
-
-**Returns**
-
-Decoded result data.
+    Decoded result data.
+  </Function>
+</Class>
 

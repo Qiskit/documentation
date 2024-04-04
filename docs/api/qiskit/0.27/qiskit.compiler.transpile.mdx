@@ -8,121 +8,119 @@ python_api_name: qiskit.compiler.transpile
 
 # qiskit.compiler.transpile
 
-<span id="qiskit.compiler.transpile" />
+<Function id="qiskit.compiler.transpile" name="transpile" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/compiler/transpiler.py" signature="transpile(circuits, backend=None, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=None, seed_transpiler=None, optimization_level=None, pass_manager=None, callback=None, output_name=None)">
+  Transpile one or more circuits, according to some desired transpilation targets.
 
-`transpile(circuits, backend=None, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=None, seed_transpiler=None, optimization_level=None, pass_manager=None, callback=None, output_name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/compiler/transpiler.py "view source code")
+  All arguments may be given as either a singleton or list. In case of a list, the length must be equal to the number of circuits being transpiled.
 
-Transpile one or more circuits, according to some desired transpilation targets.
+  Transpilation is done in parallel using multiprocessing.
 
-All arguments may be given as either a singleton or list. In case of a list, the length must be equal to the number of circuits being transpiled.
+  **Parameters**
 
-Transpilation is done in parallel using multiprocessing.
+  *   **circuits** (`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]) – Circuit(s) to transpile
 
-**Parameters**
+  *   **backend** (`Union`\[`Backend`, `BaseBackend`, `None`]) –
 
-*   **circuits** (`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]) – Circuit(s) to transpile
+      If set, transpiler options are automatically grabbed from `backend.configuration()` and `backend.properties()`. If any other option is explicitly set (e.g., `coupling_map`), it will override the backend’s.
 
-*   **backend** (`Union`\[`Backend`, `BaseBackend`, `None`]) –
+        <Admonition title="Note" type="note">
+          The backend arg is purely for convenience. The resulting circuit may be run on any backend as long as it is compatible.
+        </Admonition>
 
-    If set, transpiler options are automatically grabbed from `backend.configuration()` and `backend.properties()`. If any other option is explicitly set (e.g., `coupling_map`), it will override the backend’s.
+  *   **basis\_gates** (`Optional`\[`List`\[`str`]]) – List of basis gate names to unroll to (e.g: `['u1', 'u2', 'u3', 'cx']`). If `None`, do not unroll.
 
-    <Admonition title="Note" type="note">
-      The backend arg is purely for convenience. The resulting circuit may be run on any backend as long as it is compatible.
-    </Admonition>
+  *   **coupling\_map** (`Union`\[`CouplingMap`, `List`\[`List`\[`int`]], `None`]) –
 
-*   **basis\_gates** (`Optional`\[`List`\[`str`]]) – List of basis gate names to unroll to (e.g: `['u1', 'u2', 'u3', 'cx']`). If `None`, do not unroll.
+      Coupling map (perhaps custom) to target in mapping. Multiple formats are supported:
 
-*   **coupling\_map** (`Union`\[`CouplingMap`, `List`\[`List`\[`int`]], `None`]) –
+      1.  `CouplingMap` instance
+      2.  List, must be given as an adjacency matrix, where each entry specifies all two-qubit interactions supported by backend, e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
 
-    Coupling map (perhaps custom) to target in mapping. Multiple formats are supported:
+  *   **backend\_properties** (`Optional`\[`BackendProperties`]) – properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc. Find a backend that provides this information with: `backend.properties()`
 
-    1.  `CouplingMap` instance
-    2.  List, must be given as an adjacency matrix, where each entry specifies all two-qubit interactions supported by backend, e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
+  *   **initial\_layout** (`Union`\[`Layout`, `Dict`, `List`, `None`]) –
 
-*   **backend\_properties** (`Optional`\[`BackendProperties`]) – properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc. Find a backend that provides this information with: `backend.properties()`
+      Initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the coupling\_map constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler may permute qubits through swaps or other means. Multiple formats are supported:
 
-*   **initial\_layout** (`Union`\[`Layout`, `Dict`, `List`, `None`]) –
+      1.  `Layout` instance
 
-    Initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the coupling\_map constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler may permute qubits through swaps or other means. Multiple formats are supported:
+      2.  Dict \* virtual to physical:
 
-    1.  `Layout` instance
+          ```python
+          {qr[0]: 0,
+           qr[1]: 3,
+           qr[2]: 5}
+          ```
 
-    2.  Dict \* virtual to physical:
+          *   physical to virtual:
 
-        ```python
-        {qr[0]: 0,
-         qr[1]: 3,
-         qr[2]: 5}
-        ```
+              ```python
+              {0: qr[0],
+               3: qr[1],
+               5: qr[2]}
+              ```
 
-        *   physical to virtual:
+      3.  List
 
-            ```python
-            {0: qr[0],
-             3: qr[1],
-             5: qr[2]}
-            ```
+          *   virtual to physical:
 
-    3.  List
+              ```python
+              [0, 3, 5]  # virtual qubits are ordered (in addition to named)
+              ```
 
-        *   virtual to physical:
+          *   physical to virtual:
 
-            ```python
-            [0, 3, 5]  # virtual qubits are ordered (in addition to named)
-            ```
+              ```python
+              [qr[0], None, None, qr[1], None, qr[2]]
+              ```
 
-        *   physical to virtual:
+  *   **layout\_method** (`Optional`\[`str`]) – Name of layout selection pass (‘trivial’, ‘dense’, ‘noise\_adaptive’, ‘sabre’)
 
-            ```python
-            [qr[0], None, None, qr[1], None, qr[2]]
-            ```
+  *   **routing\_method** (`Optional`\[`str`]) – Name of routing pass (‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’, ‘none’)
 
-*   **layout\_method** (`Optional`\[`str`]) – Name of layout selection pass (‘trivial’, ‘dense’, ‘noise\_adaptive’, ‘sabre’)
+  *   **translation\_method** (`Optional`\[`str`]) – Name of translation pass (‘unroller’, ‘translator’, ‘synthesis’)
 
-*   **routing\_method** (`Optional`\[`str`]) – Name of routing pass (‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’, ‘none’)
+  *   **scheduling\_method** (`Optional`\[`str`]) – Name of scheduling pass. \* `'as_soon_as_possible'`: Schedule instructions greedily, as early as possible on a qubit resource. (alias: `'asap'`) \* `'as_late_as_possible'`: Schedule instructions late, i.e. keeping qubits in the ground state when possible. (alias: `'alap'`) If `None`, no scheduling will be done.
 
-*   **translation\_method** (`Optional`\[`str`]) – Name of translation pass (‘unroller’, ‘translator’, ‘synthesis’)
+  *   **instruction\_durations** (`Union`\[`List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `Union`\[`float`, `int`], `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `Union`\[`float`, `int`]]], `InstructionDurations`, `None`]) – Durations of instructions. The gate lengths defined in `backend.properties` are used as default. They are overwritten if this `instruction_durations` is specified. The format of `instruction_durations` must be as follows. The instruction\_durations must be given as a list of tuples \[(instruction\_name, qubits, duration, unit), …]. | \[(‘cx’, \[0, 1], 12.3, ‘ns’), (‘u3’, \[0], 4.56, ‘ns’)] | \[(‘cx’, \[0, 1], 1000), (‘u3’, \[0], 300)] If unit is omitted, the default is ‘dt’, which is a sample time depending on backend. If the time unit is ‘dt’, the duration must be an integer.
 
-*   **scheduling\_method** (`Optional`\[`str`]) – Name of scheduling pass. \* `'as_soon_as_possible'`: Schedule instructions greedily, as early as possible on a qubit resource. (alias: `'asap'`) \* `'as_late_as_possible'`: Schedule instructions late, i.e. keeping qubits in the ground state when possible. (alias: `'alap'`) If `None`, no scheduling will be done.
+  *   **dt** (`Optional`\[`float`]) – Backend sample time (resolution) in seconds. If `None` (default), `backend.configuration().dt` is used.
 
-*   **instruction\_durations** (`Union`\[`List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `Union`\[`float`, `int`], `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `Union`\[`float`, `int`]]], `InstructionDurations`, `None`]) – Durations of instructions. The gate lengths defined in `backend.properties` are used as default. They are overwritten if this `instruction_durations` is specified. The format of `instruction_durations` must be as follows. The instruction\_durations must be given as a list of tuples \[(instruction\_name, qubits, duration, unit), …]. | \[(‘cx’, \[0, 1], 12.3, ‘ns’), (‘u3’, \[0], 4.56, ‘ns’)] | \[(‘cx’, \[0, 1], 1000), (‘u3’, \[0], 300)] If unit is omitted, the default is ‘dt’, which is a sample time depending on backend. If the time unit is ‘dt’, the duration must be an integer.
+  *   **approximation\_degree** (*float*) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
 
-*   **dt** (`Optional`\[`float`]) – Backend sample time (resolution) in seconds. If `None` (default), `backend.configuration().dt` is used.
+  *   **seed\_transpiler** (`Optional`\[`int`]) – Sets random seed for the stochastic parts of the transpiler
 
-*   **approximation\_degree** (*float*) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
+  *   **optimization\_level** (`Optional`\[`int`]) – How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer transpilation time. \* 0: no optimization \* 1: light optimization \* 2: heavy optimization \* 3: even heavier optimization If `None`, level 1 will be chosen as default.
 
-*   **seed\_transpiler** (`Optional`\[`int`]) – Sets random seed for the stochastic parts of the transpiler
+  *   **pass\_manager** (`Optional`\[`PassManager`]) – The pass manager to use for a custom pipeline of transpiler passes. If this arg is present, all other args will be ignored and the pass manager will be used directly (Qiskit will not attempt to auto-select a pass manager based on transpile options).
 
-*   **optimization\_level** (`Optional`\[`int`]) – How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer transpilation time. \* 0: no optimization \* 1: light optimization \* 2: heavy optimization \* 3: even heavier optimization If `None`, level 1 will be chosen as default.
+  *   **callback** (`Optional`\[`Callable`\[\[`BasePass`, `DAGCircuit`, `float`, `PropertySet`, `int`], `Any`]]) –
 
-*   **pass\_manager** (`Optional`\[`PassManager`]) – The pass manager to use for a custom pipeline of transpiler passes. If this arg is present, all other args will be ignored and the pass manager will be used directly (Qiskit will not attempt to auto-select a pass manager based on transpile options).
+      A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments, | `pass_`: the pass being run. | `dag`: the dag output of the pass. | `time`: the time to execute the pass. | `property_set`: the property set. | `count`: the index for the pass execution. The exact arguments passed expose the internals of the pass manager, and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases, be sure to check that the arguments being passed are the same. To use the callback feature, define a function that will take in kwargs dict and access the variables. For example:
 
-*   **callback** (`Optional`\[`Callable`\[\[`BasePass`, `DAGCircuit`, `float`, `PropertySet`, `int`], `Any`]]) –
+      ```python
+      def callback_func(**kwargs):
+          pass_ = kwargs['pass_']
+          dag = kwargs['dag']
+          time = kwargs['time']
+          property_set = kwargs['property_set']
+          count = kwargs['count']
+          ...
+      transpile(circ, callback=callback_func)
+      ```
 
-    A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments, | `pass_`: the pass being run. | `dag`: the dag output of the pass. | `time`: the time to execute the pass. | `property_set`: the property set. | `count`: the index for the pass execution. The exact arguments passed expose the internals of the pass manager, and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases, be sure to check that the arguments being passed are the same. To use the callback feature, define a function that will take in kwargs dict and access the variables. For example:
+  *   **output\_name** (`Union`\[`str`, `List`\[`str`], `None`]) – A list with strings to identify the output circuits. The length of the list should be exactly the length of the `circuits` parameter.
 
-    ```python
-    def callback_func(**kwargs):
-        pass_ = kwargs['pass_']
-        dag = kwargs['dag']
-        time = kwargs['time']
-        property_set = kwargs['property_set']
-        count = kwargs['count']
-        ...
-    transpile(circ, callback=callback_func)
-    ```
+  **Return type**
 
-*   **output\_name** (`Union`\[`str`, `List`\[`str`], `None`]) – A list with strings to identify the output circuits. The length of the list should be exactly the length of the `circuits` parameter.
+  `Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]
 
-**Return type**
+  **Returns**
 
-`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]
+  The transpiled circuit(s).
 
-**Returns**
+  **Raises**
 
-The transpiled circuit(s).
-
-**Raises**
-
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – in case of bad inputs to transpiler (like conflicting parameters) or errors in passes
+  [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – in case of bad inputs to transpiler (like conflicting parameters) or errors in passes
+</Function>
 

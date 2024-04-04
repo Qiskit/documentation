@@ -8,111 +8,105 @@ python_api_name: qiskit.chemistry.drivers.FCIDumpDriver
 
 # FCIDumpDriver
 
-<span id="qiskit.chemistry.drivers.FCIDumpDriver" />
+<Class id="qiskit.chemistry.drivers.FCIDumpDriver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/fcidumpd/fcidumpdriver.py" signature="FCIDumpDriver(fcidump_input, atoms=None)">
+  Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
 
-`FCIDumpDriver(fcidump_input, atoms=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/fcidumpd/fcidumpdriver.py "view source code")
+  Qiskit chemistry driver reading an FCIDump file.
 
-Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
+  The FCIDump format is partially defined in Knowles1989.
 
-Qiskit chemistry driver reading an FCIDump file.
+  **References**
 
-The FCIDump format is partially defined in Knowles1989.
+  **Knowles1989: Peter J. Knowles, Nicholas C. Handy,**
 
-**References**
+  A determinant based full configuration interaction program, Computer Physics Communications, Volume 54, Issue 1, 1989, Pages 75-83, ISSN 0010-4655, [https://doi.org/10.1016/0010-4655(89)90033-7](https://doi.org/10.1016/0010-4655\(89\)90033-7).
 
-**Knowles1989: Peter J. Knowles, Nicholas C. Handy,**
+  **Parameters**
 
-A determinant based full configuration interaction program, Computer Physics Communications, Volume 54, Issue 1, 1989, Pages 75-83, ISSN 0010-4655, [https://doi.org/10.1016/0010-4655(89)90033-7](https://doi.org/10.1016/0010-4655\(89\)90033-7).
+  *   **fcidump\_input** (`str`) – Path to the FCIDump file.
+  *   **atoms** (`Optional`\[`List`\[`str`]]) – Allows to specify the atom list of the molecule. If it is provided, the created QMolecule instance will permit frozen core Hamiltonians. This list must consist of valid atom symbols.
 
-**Parameters**
+  **Raises**
 
-*   **fcidump\_input** (`str`) – Path to the FCIDump file.
-*   **atoms** (`Optional`\[`List`\[`str`]]) – Allows to specify the atom list of the molecule. If it is provided, the created QMolecule instance will permit frozen core Hamiltonians. This list must consist of valid atom symbols.
+  [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If `fcidump_input` is not a string or if `atoms` is not a list of valid atomic symbols as specified in `QMolecule`.
 
-**Raises**
+  ## Methods
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If `fcidump_input` is not a string or if `atoms` is not a list of valid atomic symbols as specified in `QMolecule`.
+  ### dump
 
-## Methods
+  <Function id="qiskit.chemistry.drivers.FCIDumpDriver.dump" name="dump" signature="static FCIDumpDriver.dump(q_mol, outpath, orbsym=None, isym=1)">
+    Convenience method to produce an FCIDump output file.
 
-### dump
+    **Parameters**
 
-<span id="qiskit.chemistry.drivers.FCIDumpDriver.dump" />
+    *   **outpath** (`str`) – Path to the output file.
+    *   **q\_mol** (`QMolecule`) – QMolecule data to be dumped. It is assumed that the nuclear\_repulsion\_energy in this QMolecule instance contains the inactive core energy.
+    *   **orbsym** (`Optional`\[`List`\[`str`]]) – A list of spatial symmetries of the orbitals.
+    *   **isym** (`int`) – The spatial symmetry of the wave function.
 
-`static FCIDumpDriver.dump(q_mol, outpath, orbsym=None, isym=1)`
+    **Return type**
 
-Convenience method to produce an FCIDump output file.
+    `None`
+  </Function>
 
-**Parameters**
+  ### run
 
-*   **outpath** (`str`) – Path to the output file.
-*   **q\_mol** (`QMolecule`) – QMolecule data to be dumped. It is assumed that the nuclear\_repulsion\_energy in this QMolecule instance contains the inactive core energy.
-*   **orbsym** (`Optional`\[`List`\[`str`]]) – A list of spatial symmetries of the orbitals.
-*   **isym** (`int`) – The spatial symmetry of the wave function.
+  <Function id="qiskit.chemistry.drivers.FCIDumpDriver.run" name="run" signature="FCIDumpDriver.run()">
+    Constructs a QMolecule instance out of a FCIDump file.
 
-**Return type**
+    **Return type**
 
-`None`
+    `QMolecule`
 
-### run
+    **Returns**
 
-<span id="qiskit.chemistry.drivers.FCIDumpDriver.run" />
+    A QMolecule instance populated with a minimal set of required data.
+  </Function>
 
-`FCIDumpDriver.run()`
+  ## Attributes
 
-Constructs a QMolecule instance out of a FCIDump file.
+  ### basis
 
-**Return type**
+  <Attribute id="qiskit.chemistry.drivers.FCIDumpDriver.basis" name="basis">
+    return basis
 
-`QMolecule`
+    **Return type**
 
-**Returns**
+    `str`
+  </Attribute>
 
-A QMolecule instance populated with a minimal set of required data.
+  ### hf\_method
 
-## Attributes
+  <Attribute id="qiskit.chemistry.drivers.FCIDumpDriver.hf_method" name="hf_method">
+    return Hartree-Fock method
 
-<span id="qiskit.chemistry.drivers.FCIDumpDriver.basis" />
+    **Return type**
 
-### basis
+    `str`
+  </Attribute>
 
-return basis
+  ### molecule
 
-**Return type**
+  <Attribute id="qiskit.chemistry.drivers.FCIDumpDriver.molecule" name="molecule">
+    return molecule
 
-`str`
+    **Return type**
 
-<span id="qiskit.chemistry.drivers.FCIDumpDriver.hf_method" />
+    `Optional`\[`Molecule`]
+  </Attribute>
 
-### hf\_method
+  ### supports\_molecule
 
-return Hartree-Fock method
+  <Attribute id="qiskit.chemistry.drivers.FCIDumpDriver.supports_molecule" name="supports_molecule">
+    True for derived classes that support Molecule.
 
-**Return type**
+    **Return type**
 
-`str`
+    `bool`
 
-<span id="qiskit.chemistry.drivers.FCIDumpDriver.molecule" />
+    **Returns**
 
-### molecule
-
-return molecule
-
-**Return type**
-
-`Optional`\[`Molecule`]
-
-<span id="qiskit.chemistry.drivers.FCIDumpDriver.supports_molecule" />
-
-### supports\_molecule
-
-True for derived classes that support Molecule.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if Molecule is supported.
+    True if Molecule is supported.
+  </Attribute>
+</Class>
 

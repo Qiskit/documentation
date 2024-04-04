@@ -8,50 +8,46 @@ python_api_name: qiskit.chemistry.algorithms.BOPESSampler
 
 # BOPESSampler
 
-<span id="qiskit.chemistry.algorithms.BOPESSampler" />
+<Class id="qiskit.chemistry.algorithms.BOPESSampler" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/bopes_sampler.py" signature="BOPESSampler(gss, tolerance=0.001, bootstrap=True, num_bootstrap=None, extrapolator=None)">
+  Bases: `object`
 
-`BOPESSampler(gss, tolerance=0.001, bootstrap=True, num_bootstrap=None, extrapolator=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/bopes_sampler.py "view source code")
+  Class to evaluate the Born-Oppenheimer Potential Energy Surface (BOPES).
 
-Bases: `object`
+  **Parameters**
 
-Class to evaluate the Born-Oppenheimer Potential Energy Surface (BOPES).
+  *   **gss** (`GroundStateSolver`) – GroundStateSolver
+  *   **tolerance** (`float`) – Tolerance desired for minimum energy.
+  *   **bootstrap** (`bool`) – Whether to warm-start the solution of variational minimum eigensolvers.
+  *   **num\_bootstrap** (`Optional`\[`int`]) – Number of previous points for extrapolation and bootstrapping. If None and a list of extrapolators is defined, the first two points will be used for bootstrapping. If no extrapolator is defined and bootstrap is True, all previous points will be used for bootstrapping.
+  *   **extrapolator** (`Optional`\[`Extrapolator`]) – Extrapolator objects that define space/window and method to extrapolate variational parameters.
 
-**Parameters**
+  **Raises**
 
-*   **gss** (`GroundStateSolver`) – GroundStateSolver
-*   **tolerance** (`float`) – Tolerance desired for minimum energy.
-*   **bootstrap** (`bool`) – Whether to warm-start the solution of variational minimum eigensolvers.
-*   **num\_bootstrap** (`Optional`\[`int`]) – Number of previous points for extrapolation and bootstrapping. If None and a list of extrapolators is defined, the first two points will be used for bootstrapping. If no extrapolator is defined and bootstrap is True, all previous points will be used for bootstrapping.
-*   **extrapolator** (`Optional`\[`Extrapolator`]) – Extrapolator objects that define space/window and method to extrapolate variational parameters.
+  [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If `num_boostrap` is an integer smaller than 2, or if `num_boostrap` is larger than 2 and the extrapolator is not an instance of `WindowExtrapolator`.
 
-**Raises**
+  ## Methods
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If `num_boostrap` is an integer smaller than 2, or if `num_boostrap` is larger than 2 and the extrapolator is not an instance of `WindowExtrapolator`.
+  ### sample
 
-## Methods
+  <Function id="qiskit.chemistry.algorithms.BOPESSampler.sample" name="sample" signature="BOPESSampler.sample(driver, points)">
+    Run the sampler at the given points, potentially with repetitions.
 
-### sample
+    **Parameters**
 
-<span id="qiskit.chemistry.algorithms.BOPESSampler.sample" />
+    *   **driver** (`BaseDriver`) – BaseDriver specific for the problem. The driver should be based on a Molecule object that has perturbations to be varied.
+    *   **points** (`List`\[`float`]) – The points along the degrees of freedom to evaluate.
 
-`BOPESSampler.sample(driver, points)`
+    **Return type**
 
-Run the sampler at the given points, potentially with repetitions.
+    `BOPESSamplerResult`
 
-**Parameters**
+    **Returns**
 
-*   **driver** (`BaseDriver`) – BaseDriver specific for the problem. The driver should be based on a Molecule object that has perturbations to be varied.
-*   **points** (`List`\[`float`]) – The points along the degrees of freedom to evaluate.
+    BOPES Sampler Result
 
-**Return type**
+    **Raises**
 
-`BOPESSamplerResult`
-
-**Returns**
-
-BOPES Sampler Result
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the driver does not have a molecule specified.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the driver does not have a molecule specified.
+  </Function>
+</Class>
 

@@ -8,236 +8,214 @@ python_api_name: qiskit.providers.models.BackendProperties
 
 # BackendProperties
 
-<span id="qiskit.providers.models.BackendProperties" />
+<Class id="qiskit.providers.models.BackendProperties" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/backendproperties.py" signature="BackendProperties(backend_name, backend_version, last_update_date, qubits, gates, general, **kwargs)">
+  Class representing backend properties
 
-`BackendProperties(backend_name, backend_version, last_update_date, qubits, gates, general, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/backendproperties.py "view source code")
+  This holds backend properties measured by the provider. All properties which are provided optionally. These properties may describe qubits, gates, or other general propeties of the backend.
 
-Class representing backend properties
+  Initialize a BackendProperties instance.
 
-This holds backend properties measured by the provider. All properties which are provided optionally. These properties may describe qubits, gates, or other general propeties of the backend.
+  **Parameters**
 
-Initialize a BackendProperties instance.
+  *   **backend\_name** (*str*) – Backend name.
+  *   **backend\_version** (*str*) – Backend version in the form X.Y.Z.
+  *   **last\_update\_date** (*datetime or str*) – Last date/time that a property was updated. If specified as a `str`, it must be in ISO format.
+  *   **qubits** (*list*) – System qubit parameters as a list of lists of `Nduv` objects
+  *   **gates** (*list*) – System gate parameters as a list of `Gate` objects
+  *   **general** (*list*) – General parameters as a list of `Nduv` objects
+  *   **kwargs** – optional additional fields
 
-**Parameters**
+  ## Methods
 
-*   **backend\_name** (*str*) – Backend name.
-*   **backend\_version** (*str*) – Backend version in the form X.Y.Z.
-*   **last\_update\_date** (*datetime or str*) – Last date/time that a property was updated. If specified as a `str`, it must be in ISO format.
-*   **qubits** (*list*) – System qubit parameters as a list of lists of `Nduv` objects
-*   **gates** (*list*) – System gate parameters as a list of `Gate` objects
-*   **general** (*list*) – General parameters as a list of `Nduv` objects
-*   **kwargs** – optional additional fields
+  ### frequency
 
-## Methods
+  <Function id="qiskit.providers.models.BackendProperties.frequency" name="frequency" signature="BackendProperties.frequency(qubit)">
+    Return the frequency of the given qubit.
 
-### frequency
+    **Parameters**
 
-<span id="qiskit.providers.models.BackendProperties.frequency" />
+    **qubit** (`int`) – Qubit for which to return frequency of.
 
-`BackendProperties.frequency(qubit)`
+    **Return type**
 
-Return the frequency of the given qubit.
+    `float`
 
-**Parameters**
+    **Returns**
 
-**qubit** (`int`) – Qubit for which to return frequency of.
+    Frequency of the given qubit.
+  </Function>
 
-**Return type**
+  ### from\_dict
 
-`float`
+  <Function id="qiskit.providers.models.BackendProperties.from_dict" name="from_dict" signature="classmethod BackendProperties.from_dict(data)">
+    Create a new Gate object from a dictionary.
 
-**Returns**
+    **Parameters**
 
-Frequency of the given qubit.
+    **data** (*dict*) – A dictionary representing the Gate to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.BackendProperties#to_dict "qiskit.providers.models.BackendProperties.to_dict").
 
-### from\_dict
+    **Returns**
 
-<span id="qiskit.providers.models.BackendProperties.from_dict" />
+    **The BackendProperties from the input**
 
-`classmethod BackendProperties.from_dict(data)`
+    dictionary.
 
-Create a new Gate object from a dictionary.
+    **Return type**
 
-**Parameters**
+    [BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+  </Function>
 
-**data** (*dict*) – A dictionary representing the Gate to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.BackendProperties#to_dict "qiskit.providers.models.BackendProperties.to_dict").
+  ### gate\_error
 
-**Returns**
+  <Function id="qiskit.providers.models.BackendProperties.gate_error" name="gate_error" signature="BackendProperties.gate_error(gate, qubits)">
+    Return gate error estimates from backend properties.
 
-**The BackendProperties from the input**
+    **Parameters**
 
-dictionary.
+    *   **gate** (`str`) – The gate for which to get the error.
+    *   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The specific qubits for the gate.
 
-**Return type**
+    **Return type**
 
-[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+    `float`
 
-### gate\_error
+    **Returns**
 
-<span id="qiskit.providers.models.BackendProperties.gate_error" />
+    Gate error of the given gate and qubit(s).
+  </Function>
 
-`BackendProperties.gate_error(gate, qubits)`
+  ### gate\_length
 
-Return gate error estimates from backend properties.
+  <Function id="qiskit.providers.models.BackendProperties.gate_length" name="gate_length" signature="BackendProperties.gate_length(gate, qubits)">
+    Return the duration of the gate in units of seconds.
 
-**Parameters**
+    **Parameters**
 
-*   **gate** (`str`) – The gate for which to get the error.
-*   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The specific qubits for the gate.
+    *   **gate** (`str`) – The gate for which to get the duration.
+    *   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The specific qubits for the gate.
 
-**Return type**
+    **Return type**
 
-`float`
+    `float`
 
-**Returns**
+    **Returns**
 
-Gate error of the given gate and qubit(s).
+    Gate length of the given gate and qubit(s).
+  </Function>
 
-### gate\_length
+  ### gate\_property
 
-<span id="qiskit.providers.models.BackendProperties.gate_length" />
+  <Function id="qiskit.providers.models.BackendProperties.gate_property" name="gate_property" signature="BackendProperties.gate_property(gate, qubits=None, name=None)">
+    Return the property of the given gate.
 
-`BackendProperties.gate_length(gate, qubits)`
+    **Parameters**
 
-Return the duration of the gate in units of seconds.
+    *   **gate** (`str`) – Name of the gate.
+    *   **qubits** (`Union`\[`int`, `Iterable`\[`int`], `None`]) – The qubit to find the property for.
+    *   **name** (`Optional`\[`str`]) – Optionally used to specify which gate property to return.
 
-**Parameters**
+    **Return type**
 
-*   **gate** (`str`) – The gate for which to get the duration.
-*   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – The specific qubits for the gate.
+    `Tuple`\[`Any`, `datetime`]
 
-**Return type**
+    **Returns**
 
-`float`
+    Gate property as a tuple of the value and the time it was measured.
 
-**Returns**
+    **Raises**
 
-Gate length of the given gate and qubit(s).
+    [**BackendPropertyError**](qiskit.providers.BackendPropertyError "qiskit.providers.BackendPropertyError") – If the property is not found or name is specified but qubit is not.
+  </Function>
 
-### gate\_property
+  ### qubit\_property
 
-<span id="qiskit.providers.models.BackendProperties.gate_property" />
+  <Function id="qiskit.providers.models.BackendProperties.qubit_property" name="qubit_property" signature="BackendProperties.qubit_property(qubit, name=None)">
+    Return the property of the given qubit.
 
-`BackendProperties.gate_property(gate, qubits=None, name=None)`
+    **Parameters**
 
-Return the property of the given gate.
+    *   **qubit** (`int`) – The property to look for.
+    *   **name** (`Optional`\[`str`]) – Optionally used to specify within the hierarchy which property to return.
 
-**Parameters**
+    **Return type**
 
-*   **gate** (`str`) – Name of the gate.
-*   **qubits** (`Union`\[`int`, `Iterable`\[`int`], `None`]) – The qubit to find the property for.
-*   **name** (`Optional`\[`str`]) – Optionally used to specify which gate property to return.
+    `Tuple`\[`Any`, `datetime`]
 
-**Return type**
+    **Returns**
 
-`Tuple`\[`Any`, `datetime`]
+    Qubit property as a tuple of the value and the time it was measured.
 
-**Returns**
+    **Raises**
 
-Gate property as a tuple of the value and the time it was measured.
+    [**BackendPropertyError**](qiskit.providers.BackendPropertyError "qiskit.providers.BackendPropertyError") – If the property is not found.
+  </Function>
 
-**Raises**
+  ### readout\_error
 
-[**BackendPropertyError**](qiskit.providers.BackendPropertyError "qiskit.providers.BackendPropertyError") – If the property is not found or name is specified but qubit is not.
+  <Function id="qiskit.providers.models.BackendProperties.readout_error" name="readout_error" signature="BackendProperties.readout_error(qubit)">
+    Return the readout error of the given qubit.
 
-### qubit\_property
+    **Parameters**
 
-<span id="qiskit.providers.models.BackendProperties.qubit_property" />
+    **qubit** (`int`) – Qubit for which to return the readout error of.
 
-`BackendProperties.qubit_property(qubit, name=None)`
+    **Return type**
 
-Return the property of the given qubit.
+    `float`
 
-**Parameters**
+    **Returns**
 
-*   **qubit** (`int`) – The property to look for.
-*   **name** (`Optional`\[`str`]) – Optionally used to specify within the hierarchy which property to return.
+    Readout error of the given qubit,
+  </Function>
 
-**Return type**
+  ### t1
 
-`Tuple`\[`Any`, `datetime`]
+  <Function id="qiskit.providers.models.BackendProperties.t1" name="t1" signature="BackendProperties.t1(qubit)">
+    Return the T1 time of the given qubit.
 
-**Returns**
+    **Parameters**
 
-Qubit property as a tuple of the value and the time it was measured.
+    **qubit** (`int`) – Qubit for which to return the T1 time of.
 
-**Raises**
+    **Return type**
 
-[**BackendPropertyError**](qiskit.providers.BackendPropertyError "qiskit.providers.BackendPropertyError") – If the property is not found.
+    `float`
 
-### readout\_error
+    **Returns**
 
-<span id="qiskit.providers.models.BackendProperties.readout_error" />
+    T1 time of the given qubit.
+  </Function>
 
-`BackendProperties.readout_error(qubit)`
+  ### t2
 
-Return the readout error of the given qubit.
+  <Function id="qiskit.providers.models.BackendProperties.t2" name="t2" signature="BackendProperties.t2(qubit)">
+    Return the T2 time of the given qubit.
 
-**Parameters**
+    **Parameters**
 
-**qubit** (`int`) – Qubit for which to return the readout error of.
+    **qubit** (`int`) – Qubit for which to return the T2 time of.
 
-**Return type**
+    **Return type**
 
-`float`
+    `float`
 
-**Returns**
+    **Returns**
 
-Readout error of the given qubit,
+    T2 time of the given qubit.
+  </Function>
 
-### t1
+  ### to\_dict
 
-<span id="qiskit.providers.models.BackendProperties.t1" />
+  <Function id="qiskit.providers.models.BackendProperties.to_dict" name="to_dict" signature="BackendProperties.to_dict()">
+    Return a dictionary format representation of the BackendProperties.
 
-`BackendProperties.t1(qubit)`
+    **Returns**
 
-Return the T1 time of the given qubit.
+    The dictionary form of the BackendProperties.
 
-**Parameters**
+    **Return type**
 
-**qubit** (`int`) – Qubit for which to return the T1 time of.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-T1 time of the given qubit.
-
-### t2
-
-<span id="qiskit.providers.models.BackendProperties.t2" />
-
-`BackendProperties.t2(qubit)`
-
-Return the T2 time of the given qubit.
-
-**Parameters**
-
-**qubit** (`int`) – Qubit for which to return the T2 time of.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-T2 time of the given qubit.
-
-### to\_dict
-
-<span id="qiskit.providers.models.BackendProperties.to_dict" />
-
-`BackendProperties.to_dict()`
-
-Return a dictionary format representation of the BackendProperties.
-
-**Returns**
-
-The dictionary form of the BackendProperties.
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 

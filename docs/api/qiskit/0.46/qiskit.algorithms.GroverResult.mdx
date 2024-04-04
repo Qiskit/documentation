@@ -8,79 +8,75 @@ python_api_name: qiskit.algorithms.GroverResult
 
 # GroverResult
 
-<span id="qiskit.algorithms.GroverResult" />
+<Class id="qiskit.algorithms.GroverResult" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/amplitude_amplifiers/grover.py" signature="qiskit.algorithms.GroverResult">
+  Bases: `AmplitudeAmplifierResult`
 
-`qiskit.algorithms.GroverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+  Grover Result.
 
-Bases: `AmplitudeAmplifierResult`
+  ## Attributes
 
-Grover Result.
+  ### assignment
 
-## Attributes
+  <Attribute id="qiskit.algorithms.GroverResult.assignment" name="assignment">
+    The post-processed value of the most likely bitstring.
 
-<span id="qiskit.algorithms.GroverResult.assignment" />
+    **Returns**
 
-### assignment
+    The output of the `post_processing` function of the respective `AmplificationProblem`, where the input is the `top_measurement`. The type is the same as the return type of the post-processing function.
+  </Attribute>
 
-The post-processed value of the most likely bitstring.
+  ### circuit\_results
 
-**Returns**
+  <Attribute id="qiskit.algorithms.GroverResult.circuit_results" name="circuit_results">
+    Return the circuit results. Can be a statevector or counts dictionary.
+  </Attribute>
 
-The output of the `post_processing` function of the respective `AmplificationProblem`, where the input is the `top_measurement`. The type is the same as the return type of the post-processing function.
+  ### iterations
 
-<span id="qiskit.algorithms.GroverResult.circuit_results" />
+  <Attribute id="qiskit.algorithms.GroverResult.iterations" name="iterations">
+    All the powers of the Grover operator that have been tried.
 
-### circuit\_results
+    **Returns**
 
-Return the circuit results. Can be a statevector or counts dictionary.
+    The powers of the Grover operator tested.
+  </Attribute>
 
-<span id="qiskit.algorithms.GroverResult.iterations" />
+  ### max\_probability
 
-### iterations
+  <Attribute id="qiskit.algorithms.GroverResult.max_probability" name="max_probability">
+    Return the maximum sampling probability.
+  </Attribute>
 
-All the powers of the Grover operator that have been tried.
+  ### oracle\_evaluation
 
-**Returns**
+  <Attribute id="qiskit.algorithms.GroverResult.oracle_evaluation" name="oracle_evaluation">
+    Whether the classical oracle evaluation of the top measurement was True or False.
 
-The powers of the Grover operator tested.
+    **Returns**
 
-<span id="qiskit.algorithms.GroverResult.max_probability" />
+    The classical oracle evaluation of the top measurement.
+  </Attribute>
 
-### max\_probability
+  ### top\_measurement
 
-Return the maximum sampling probability.
+  <Attribute id="qiskit.algorithms.GroverResult.top_measurement" name="top_measurement">
+    The most frequently measured output as bitstring.
 
-<span id="qiskit.algorithms.GroverResult.oracle_evaluation" />
+    **Returns**
 
-### oracle\_evaluation
+    The most frequently measured output state.
+  </Attribute>
 
-Whether the classical oracle evaluation of the top measurement was True or False.
+  ## Methods
 
-**Returns**
+  ### combine
 
-The classical oracle evaluation of the top measurement.
+  <Function id="qiskit.algorithms.GroverResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
 
-<span id="qiskit.algorithms.GroverResult.top_measurement" />
+    **Raises**
 
-### top\_measurement
-
-The most frequently measured output as bitstring.
-
-**Returns**
-
-The most frequently measured output state.
-
-## Methods
-
-### combine
-
-<span id="qiskit.algorithms.GroverResult.combine" />
-
-`combine(result)`
-
-Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
-
-**Raises**
-
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Argument is None
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Argument is None
+  </Function>
+</Class>
 

@@ -8,188 +8,182 @@ python_api_name: qiskit.circuit.library.RXXGate
 
 # RXXGate
 
-<span id="qiskit.circuit.library.RXXGate" />
+<Class id="qiskit.circuit.library.RXXGate" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/rxx.py" signature="qiskit.circuit.library.RXXGate(theta, label=None, *, duration=None, unit='dt')">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`qiskit.circuit.library.RXXGate(theta, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/rxx.py "view source code")
+  A parametric 2-qubit $X \otimes X$ interaction (rotation about XX).
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  This gate is symmetric, and is maximally entangling at $\theta = \pi/2$.
 
-A parametric 2-qubit $X \otimes X$ interaction (rotation about XX).
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rxx()`](qiskit.circuit.QuantumCircuit#rxx "qiskit.circuit.QuantumCircuit.rxx") method.
 
-This gate is symmetric, and is maximally entangling at $\theta = \pi/2$.
+  **Circuit Symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rxx()`](qiskit.circuit.QuantumCircuit#rxx "qiskit.circuit.QuantumCircuit.rxx") method.
+  ```python
+       ┌─────────┐
+  q_0: ┤1        ├
+       │  Rxx(ϴ) │
+  q_1: ┤0        ├
+       └─────────┘
+  ```
 
-**Circuit Symbol:**
-
-```python
-     ┌─────────┐
-q_0: ┤1        ├
-     │  Rxx(ϴ) │
-q_1: ┤0        ├
-     └─────────┘
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 \newcommand{\rotationangle}{\frac{\theta}{2}}
 
 R_{XX}(\theta) = \exp\left(-i \rotationangle X{\otimes}X\right) =
-    \begin{pmatrix}
-        \cos\left(\rotationangle\right) & 0 & 0 & -i\sin\left(\rotationangle\right) \\
-        0 & \cos\left(\rotationangle\right) & -i\sin\left(\rotationangle\right) & 0 \\
-        0 & -i\sin\left(\rotationangle\right) & \cos\left(\rotationangle\right) & 0 \\
-        -i\sin\left(\rotationangle\right) & 0 & 0 & \cos\left(\rotationangle\right)
-    \end{pmatrix}
+\begin{pmatrix}
+\cos\left(\rotationangle\right) & 0 & 0 & -i\sin\left(\rotationangle\right) \\
+0 & \cos\left(\rotationangle\right) & -i\sin\left(\rotationangle\right) & 0 \\
+0 & -i\sin\left(\rotationangle\right) & \cos\left(\rotationangle\right) & 0 \\
+-i\sin\left(\rotationangle\right) & 0 & 0 & \cos\left(\rotationangle\right)
+\end{pmatrix}
 $$
 
-**Examples:**
+  **Examples:**
 
-> $$
-> R_{XX}(\theta = 0) = I
-> $$
->
-> $$
-> R_{XX}(\theta = \pi) = i X \otimes X
-> $$
->
-> $$
-> R_{XX}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
->                         \begin{pmatrix}
->                             1  & 0  & 0  & -i \\
->                             0  & 1  & -i & 0 \\
->                             0  & -i & 1  & 0 \\
->                             -i & 0  & 0  & 1
->                         \end{pmatrix}
-> $$
+  > $$
+  > R_{XX}(\theta = 0) = I
+  > $$
+  >
+  > $$
+  > R_{XX}(\theta = \pi) = i X \otimes X
+  > $$
+  >
+  > $$
+  > R_{XX}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
+  >                         \begin{pmatrix}
+  >                             1  & 0  & 0  & -i \\
+  >                             0  & 1  & -i & 0 \\
+  >                             0  & -i & 1  & 0 \\
+  >                             -i & 0  & 0  & 1
+  >                         \end{pmatrix}
+  > $$
 
-Create new RXX gate.
+  Create new RXX gate.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.RXXGate.base_class" />
+  ### base\_class
 
-### base\_class
+  <Attribute id="qiskit.circuit.library.RXXGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.RXXGate.base_class "qiskit.circuit.library.RXXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.RXXGate.base_class "qiskit.circuit.library.RXXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition
 
-<span id="qiskit.circuit.library.RXXGate.condition" />
+  <Attribute id="qiskit.circuit.library.RXXGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-### condition
+  ### condition\_bits
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.RXXGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RXXGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.RXXGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-<span id="qiskit.circuit.library.RXXGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.RXXGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### decompositions
+  ### duration
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.RXXGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RXXGate.definition" />
+  ### label
 
-### definition
+  <Attribute id="qiskit.circuit.library.RXXGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### mutable
 
-<span id="qiskit.circuit.library.RXXGate.duration" />
+  <Attribute id="qiskit.circuit.library.RXXGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-### duration
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-Get the duration.
+  ### name
 
-<span id="qiskit.circuit.library.RXXGate.label" />
+  <Attribute id="qiskit.circuit.library.RXXGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-### label
+  ### num\_clbits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.RXXGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RXXGate.mutable" />
+  ### num\_qubits
 
-### mutable
+  <Attribute id="qiskit.circuit.library.RXXGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### params
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.library.RXXGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RXXGate.name" />
+  ### unit
 
-### name
+  <Attribute id="qiskit.circuit.library.RXXGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-Return the name.
+  ## Methods
 
-<span id="qiskit.circuit.library.RXXGate.num_clbits" />
+  ### inverse
 
-### num\_clbits
+  <Function id="qiskit.circuit.library.RXXGate.inverse" name="inverse" signature="inverse(annotated=False)">
+    Return inverse RXX gate (i.e. with the negative rotation angle).
 
-Return the number of clbits.
+    **Parameters**
 
-<span id="qiskit.circuit.library.RXXGate.num_qubits" />
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`RXXGate`](#qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate") with an inverted parameter value.
 
-### num\_qubits
+    **Returns**
 
-Return the number of qubits.
+    inverse gate.
 
-<span id="qiskit.circuit.library.RXXGate.params" />
+    **Return type**
 
-### params
+    [RXXGate](#qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate")
+  </Function>
 
-return instruction params.
+  ### power
 
-<span id="qiskit.circuit.library.RXXGate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### inverse
-
-<span id="qiskit.circuit.library.RXXGate.inverse" />
-
-`inverse(annotated=False)`
-
-Return inverse RXX gate (i.e. with the negative rotation angle).
-
-**Parameters**
-
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`RXXGate`](#qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate") with an inverted parameter value.
-
-**Returns**
-
-inverse gate.
-
-**Return type**
-
-[RXXGate](#qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate")
-
-### power
-
-<span id="qiskit.circuit.library.RXXGate.power" />
-
-`power(exponent)`
-
-Raise gate to a power.
+  <Function id="qiskit.circuit.library.RXXGate.power" name="power" signature="power(exponent)">
+    Raise gate to a power.
+  </Function>
+</Class>
 

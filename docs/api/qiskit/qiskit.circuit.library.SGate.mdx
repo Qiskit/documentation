@@ -8,165 +8,159 @@ python_api_name: qiskit.circuit.library.SGate
 
 # SGate
 
-<span id="qiskit.circuit.library.SGate" />
+<Class id="qiskit.circuit.library.SGate" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/s.py" signature="qiskit.circuit.library.SGate(*args, _force_mutable=False, **kwargs)">
+  Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
-`qiskit.circuit.library.SGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/s.py "view source code")
+  Single qubit S gate (Z\*\*0.5).
 
-Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
+  It induces a $\pi/2$ phase, and is sometimes called the P gate (phase).
 
-Single qubit S gate (Z\*\*0.5).
+  This is a Clifford gate and a square-root of Pauli-Z.
 
-It induces a $\pi/2$ phase, and is sometimes called the P gate (phase).
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`s()`](qiskit.circuit.QuantumCircuit#s "qiskit.circuit.QuantumCircuit.s") method.
 
-This is a Clifford gate and a square-root of Pauli-Z.
-
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`s()`](qiskit.circuit.QuantumCircuit#s "qiskit.circuit.QuantumCircuit.s") method.
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 S = \begin{pmatrix}
-        1 & 0 \\
-        0 & i
-    \end{pmatrix}
+1 & 0 \\
+0 & i
+\end{pmatrix}
 $$
 
-**Circuit symbol:**
+  **Circuit symbol:**
 
-```python
-     ┌───┐
-q_0: ┤ S ├
-     └───┘
-```
+  ```python
+       ┌───┐
+  q_0: ┤ S ├
+       └───┘
+  ```
 
-Equivalent to a $\pi/2$ radian rotation about the Z axis.
+  Equivalent to a $\pi/2$ radian rotation about the Z axis.
 
-Create new S gate.
+  Create new S gate.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.SGate.base_class" />
+  ### base\_class
 
-### base\_class
+  <Attribute id="qiskit.circuit.library.SGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.SGate.base_class "qiskit.circuit.library.SGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.SGate.base_class "qiskit.circuit.library.SGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition
 
-<span id="qiskit.circuit.library.SGate.condition" />
+  <Attribute id="qiskit.circuit.library.SGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-### condition
+  ### condition\_bits
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.SGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.SGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-<span id="qiskit.circuit.library.SGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.SGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### decompositions
+  ### duration
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.SGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SGate.definition" />
+  ### label
 
-### definition
+  <Attribute id="qiskit.circuit.library.SGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### mutable
 
-<span id="qiskit.circuit.library.SGate.duration" />
+  <Attribute id="qiskit.circuit.library.SGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-### duration
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-Get the duration.
+  ### name
 
-<span id="qiskit.circuit.library.SGate.label" />
+  <Attribute id="qiskit.circuit.library.SGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-### label
+  ### num\_clbits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.SGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SGate.mutable" />
+  ### num\_qubits
 
-### mutable
+  <Attribute id="qiskit.circuit.library.SGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### params
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.library.SGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SGate.name" />
+  ### unit
 
-### name
+  <Attribute id="qiskit.circuit.library.SGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-Return the name.
+  ## Methods
 
-<span id="qiskit.circuit.library.SGate.num_clbits" />
+  ### inverse
 
-### num\_clbits
+  <Function id="qiskit.circuit.library.SGate.inverse" name="inverse" signature="inverse(annotated=False)">
+    Return inverse of S (SdgGate).
 
-Return the number of clbits.
+    **Parameters**
 
-<span id="qiskit.circuit.library.SGate.num_qubits" />
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
 
-### num\_qubits
+    **Returns**
 
-Return the number of qubits.
+    inverse of [`SGate`](#qiskit.circuit.library.SGate "qiskit.circuit.library.SGate")
 
-<span id="qiskit.circuit.library.SGate.params" />
+    **Return type**
 
-### params
+    [SdgGate](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate")
+  </Function>
 
-return instruction params.
+  ### power
 
-<span id="qiskit.circuit.library.SGate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### inverse
-
-<span id="qiskit.circuit.library.SGate.inverse" />
-
-`inverse(annotated=False)`
-
-Return inverse of S (SdgGate).
-
-**Parameters**
-
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
-
-**Returns**
-
-inverse of [`SGate`](#qiskit.circuit.library.SGate "qiskit.circuit.library.SGate")
-
-**Return type**
-
-[SdgGate](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate")
-
-### power
-
-<span id="qiskit.circuit.library.SGate.power" />
-
-`power(exponent)`
-
-Raise gate to a power.
+  <Function id="qiskit.circuit.library.SGate.power" name="power" signature="power(exponent)">
+    Raise gate to a power.
+  </Function>
+</Class>
 

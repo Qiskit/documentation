@@ -8,99 +8,93 @@ python_api_name: qiskit.pulse.transforms.AlignFunc
 
 # AlignFunc
 
-<span id="qiskit.pulse.transforms.AlignFunc" />
+<Class id="qiskit.pulse.transforms.AlignFunc" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/alignments.py" signature="AlignFunc(duration, func)">
+  Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
-`AlignFunc(duration, func)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/alignments.py "view source code")
+  Allocate instructions at position specified by callback function.
 
-Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+  The position is specified for each instruction of index `j` as a fractional coordinate in \[0, 1] within the specified duration.
 
-Allocate instructions at position specified by callback function.
+  Instructions played on different channels are also arranged in a sequence. This alignment is convenient to create dynamical decoupling sequences such as UDD.
 
-The position is specified for each instruction of index `j` as a fractional coordinate in \[0, 1] within the specified duration.
+  For example, UDD sequence with 10 pulses can be specified with following function.
 
-Instructions played on different channels are also arranged in a sequence. This alignment is convenient to create dynamical decoupling sequences such as UDD.
+  ```python
+  def udd10_pos(j):
+  return np.sin(np.pi*j/(2*10 + 2))**2
+  ```
 
-For example, UDD sequence with 10 pulses can be specified with following function.
+  <Admonition title="Note" type="note">
+    This context cannot be QPY serialized because of the callable. If you use this context, your program cannot be saved in QPY format.
+  </Admonition>
 
-```python
-def udd10_pos(j):
-return np.sin(np.pi*j/(2*10 + 2))**2
-```
+  Create new equispaced context.
 
-<Admonition title="Note" type="note">
-  This context cannot be QPY serialized because of the callable. If you use this context, your program cannot be saved in QPY format.
-</Admonition>
+  **Parameters**
 
-Create new equispaced context.
+  *   **duration** (*int |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
+  *   **func** (*Callable*) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
 
-**Parameters**
+  ## Methods
 
-*   **duration** (*int |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
-*   **func** (*Callable*) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
+  <span id="qiskit-pulse-transforms-alignfunc-align" />
 
-## Methods
+  ### align
 
-<span id="qiskit-pulse-transforms-alignfunc-align" />
+  <Function id="qiskit.pulse.transforms.AlignFunc.align" name="align" signature="AlignFunc.align(schedule)">
+    Reallocate instructions according to the policy.
 
-### align
+    Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
 
-<span id="qiskit.pulse.transforms.AlignFunc.align" />
+    **Parameters**
 
-`AlignFunc.align(schedule)`
+    **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
 
-Reallocate instructions according to the policy.
+    **Returns**
 
-Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
+    Schedule with reallocated instructions.
 
-**Parameters**
+    **Return type**
 
-**schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
+    [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+  </Function>
 
-**Returns**
+  <span id="qiskit-pulse-transforms-alignfunc-to-dict" />
 
-Schedule with reallocated instructions.
+  ### to\_dict
 
-**Return type**
+  <Function id="qiskit.pulse.transforms.AlignFunc.to_dict" name="to_dict" signature="AlignFunc.to_dict()">
+    Returns dictionary to represent this alignment.
 
-[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+    <Admonition title="Note" type="note">
+      `func` is not presented in this dictionary. Just name.
+    </Admonition>
 
-<span id="qiskit-pulse-transforms-alignfunc-to-dict" />
+    <Admonition title="Deprecated since version 0.21" type="danger">
+      The method `qiskit.pulse.transforms.alignments.AlignFunc.to_dict()` is deprecated as of qiskit-terra 0.21. It will be removed no earlier than 3 months after the release date.
+    </Admonition>
 
-### to\_dict
+    **Return type**
 
-<span id="qiskit.pulse.transforms.AlignFunc.to_dict" />
+    *Dict*\[str, *Any*]
+  </Function>
 
-`AlignFunc.to_dict()`
+  ## Attributes
 
-Returns dictionary to represent this alignment.
+  ### duration
 
-<Admonition title="Note" type="note">
-  `func` is not presented in this dictionary. Just name.
-</Admonition>
+  <Attribute id="qiskit.pulse.transforms.AlignFunc.duration" name="duration">
+    Return context duration.
+  </Attribute>
 
-<Admonition title="Deprecated since version 0.21" type="danger">
-  The method `qiskit.pulse.transforms.alignments.AlignFunc.to_dict()` is deprecated as of qiskit-terra 0.21. It will be removed no earlier than 3 months after the release date.
-</Admonition>
+  ### func
 
-**Return type**
+  <Attribute id="qiskit.pulse.transforms.AlignFunc.func" name="func">
+    Return context alignment function.
+  </Attribute>
 
-*Dict*\[str, *Any*]
+  ### is\_sequential
 
-## Attributes
-
-<span id="qiskit.pulse.transforms.AlignFunc.duration" />
-
-### duration
-
-Return context duration.
-
-<span id="qiskit.pulse.transforms.AlignFunc.func" />
-
-### func
-
-Return context alignment function.
-
-<span id="qiskit.pulse.transforms.AlignFunc.is_sequential" />
-
-### is\_sequential
+  <Attribute id="qiskit.pulse.transforms.AlignFunc.is_sequential" name="is_sequential" />
+</Class>
 

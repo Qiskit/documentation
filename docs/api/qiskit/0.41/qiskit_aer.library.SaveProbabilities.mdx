@@ -8,262 +8,236 @@ python_api_name: qiskit_aer.library.SaveProbabilities
 
 # SaveProbabilities
 
-<span id="qiskit_aer.library.SaveProbabilities" />
+<Class id="qiskit_aer.library.SaveProbabilities" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/library/save_instructions/save_probabilities.py" signature="SaveProbabilities(num_qubits, label='probabilities', unnormalized=False, pershot=False, conditional=False)">
+  Bases: `qiskit_aer.library.save_instructions.save_data.SaveAverageData`
 
-`SaveProbabilities(num_qubits, label='probabilities', unnormalized=False, pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/library/save_instructions/save_probabilities.py "view source code")
+  Save measurement outcome probabilities vector.
 
-Bases: `qiskit_aer.library.save_instructions.save_data.SaveAverageData`
+  Instruction to save measurement probabilities vector.
 
-Save measurement outcome probabilities vector.
+  **Parameters**
 
-Instruction to save measurement probabilities vector.
+  *   **num\_qubits** (*int*) – the number of qubits for the snapshot type.
+  *   **label** (*str*) – the key for retrieving saved data from results.
+  *   **unnormalized** (*bool*) – If True return save the unnormalized accumulated probabilities over all shots \[Default: False].
+  *   **pershot** (*bool*) – if True save a list of probabilities for each shot of the simulation rather than the average over all shots \[Default: False].
+  *   **conditional** (*bool*) – if True save the probabilities data conditional on the current classical register values \[Default: False].
 
-**Parameters**
+  ## Methods
 
-*   **num\_qubits** (*int*) – the number of qubits for the snapshot type.
-*   **label** (*str*) – the key for retrieving saved data from results.
-*   **unnormalized** (*bool*) – If True return save the unnormalized accumulated probabilities over all shots \[Default: False].
-*   **pershot** (*bool*) – if True save a list of probabilities for each shot of the simulation rather than the average over all shots \[Default: False].
-*   **conditional** (*bool*) – if True save the probabilities data conditional on the current classical register values \[Default: False].
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit_aer.library.SaveProbabilities.add_decomposition" name="add_decomposition" signature="SaveProbabilities.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit_aer.library.SaveProbabilities.add_decomposition" />
+  <Function id="qiskit_aer.library.SaveProbabilities.assemble" name="assemble" signature="SaveProbabilities.assemble()">
+    Return the QasmQobjInstruction for the intructions.
+  </Function>
 
-`SaveProbabilities.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit_aer.library.SaveProbabilities.broadcast_arguments" name="broadcast_arguments" signature="SaveProbabilities.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit_aer.library.SaveProbabilities.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`SaveProbabilities.assemble()`
+    **Yields**
 
-Return the QasmQobjInstruction for the intructions.
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit_aer.library.SaveProbabilities.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`SaveProbabilities.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit_aer.library.SaveProbabilities.c_if" name="c_if" signature="SaveProbabilities.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-**Parameters**
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  ### copy
 
-**Yields**
+  <Function id="qiskit_aer.library.SaveProbabilities.copy" name="copy" signature="SaveProbabilities.copy(name=None)">
+    Copy of the instruction.
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **Parameters**
 
-**Raises**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Returns**
 
-### c\_if
+    **a copy of the current instruction, with the name**
 
-<span id="qiskit_aer.library.SaveProbabilities.c_if" />
+    updated if it was provided
 
-`SaveProbabilities.c_if(classical, val)`
+    **Return type**
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  ### inverse
 
-### copy
+  <Function id="qiskit_aer.library.SaveProbabilities.inverse" name="inverse" signature="SaveProbabilities.inverse()">
+    Special case. Return self.
+  </Function>
 
-<span id="qiskit_aer.library.SaveProbabilities.copy" />
+  ### is\_parameterized
 
-`SaveProbabilities.copy(name=None)`
+  <Function id="qiskit_aer.library.SaveProbabilities.is_parameterized" name="is_parameterized" signature="SaveProbabilities.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-Copy of the instruction.
+  ### qasm
 
-**Parameters**
+  <Function id="qiskit_aer.library.SaveProbabilities.qasm" name="qasm" signature="SaveProbabilities.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-**Returns**
+  ### repeat
 
-**a copy of the current instruction, with the name**
+  <Function id="qiskit_aer.library.SaveProbabilities.repeat" name="repeat" signature="SaveProbabilities.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-updated if it was provided
+    **Parameters**
 
-**Return type**
+    **n** (*int*) – Number of times to repeat the instruction
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Returns**
 
-### inverse
+    Containing the definition.
 
-<span id="qiskit_aer.library.SaveProbabilities.inverse" />
+    **Return type**
 
-`SaveProbabilities.inverse()`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-Special case. Return self.
+    **Raises**
 
-### is\_parameterized
+    **CircuitError** – If n \< 1.
+  </Function>
 
-<span id="qiskit_aer.library.SaveProbabilities.is_parameterized" />
+  ### reverse\_ops
 
-`SaveProbabilities.is_parameterized()`
+  <Function id="qiskit_aer.library.SaveProbabilities.reverse_ops" name="reverse_ops" signature="SaveProbabilities.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-Return True .IFF. instruction is parameterized else False
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-### qasm
+    **Returns**
 
-<span id="qiskit_aer.library.SaveProbabilities.qasm" />
+    **a new instruction with**
 
-`SaveProbabilities.qasm()`
+    sub-instructions reversed.
 
-Return a default OpenQASM string for the instruction.
+    **Return type**
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-### repeat
+  ### soft\_compare
 
-<span id="qiskit_aer.library.SaveProbabilities.repeat" />
+  <Function id="qiskit_aer.library.SaveProbabilities.soft_compare" name="soft_compare" signature="SaveProbabilities.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-`SaveProbabilities.repeat(n)`
+    **Parameters**
 
-Creates an instruction with gate repeated n amount of times.
+    **other** (*instruction*) – other instruction.
 
-**Parameters**
+    **Returns**
 
-**n** (*int*) – Number of times to repeat the instruction
+    are self and other equal up to parameter expressions.
 
-**Returns**
+    **Return type**
 
-Containing the definition.
+    bool
+  </Function>
 
-**Return type**
+  ### validate\_parameter
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit_aer.library.SaveProbabilities.validate_parameter" name="validate_parameter" signature="SaveProbabilities.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**CircuitError** – If n \< 1.
+  ### condition\_bits
 
-### reverse\_ops
+  <Attribute id="qiskit_aer.library.SaveProbabilities.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-<span id="qiskit_aer.library.SaveProbabilities.reverse_ops" />
+    **Return type**
 
-`SaveProbabilities.reverse_ops()`
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### decompositions
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Attribute id="qiskit_aer.library.SaveProbabilities.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-**Returns**
+  ### definition
 
-**a new instruction with**
+  <Attribute id="qiskit_aer.library.SaveProbabilities.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-sub-instructions reversed.
+  ### duration
 
-**Return type**
+  <Attribute id="qiskit_aer.library.SaveProbabilities.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### label
 
-### soft\_compare
+  <Attribute id="qiskit_aer.library.SaveProbabilities.label" name="label">
+    Return instruction label
 
-<span id="qiskit_aer.library.SaveProbabilities.soft_compare" />
+    **Return type**
 
-`SaveProbabilities.soft_compare(other)`
+    `str`
+  </Attribute>
 
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+  ### name
 
-**Parameters**
+  <Attribute id="qiskit_aer.library.SaveProbabilities.name" name="name">
+    Return the name.
+  </Attribute>
 
-**other** (*instruction*) – other instruction.
+  ### num\_clbits
 
-**Returns**
+  <Attribute id="qiskit_aer.library.SaveProbabilities.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-are self and other equal up to parameter expressions.
+  ### num\_qubits
 
-**Return type**
+  <Attribute id="qiskit_aer.library.SaveProbabilities.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-bool
+  ### params
 
-### validate\_parameter
+  <Attribute id="qiskit_aer.library.SaveProbabilities.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit_aer.library.SaveProbabilities.validate_parameter" />
+  ### unit
 
-`SaveProbabilities.validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
-
-## Attributes
-
-<span id="qiskit_aer.library.SaveProbabilities.condition_bits" />
-
-### condition\_bits
-
-Get Clbits in condition.
-
-**Return type**
-
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
-
-<span id="qiskit_aer.library.SaveProbabilities.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit_aer.library.SaveProbabilities.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit_aer.library.SaveProbabilities.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit_aer.library.SaveProbabilities.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit_aer.library.SaveProbabilities.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit_aer.library.SaveProbabilities.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit_aer.library.SaveProbabilities.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit_aer.library.SaveProbabilities.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit_aer.library.SaveProbabilities.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit_aer.library.SaveProbabilities.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

@@ -8,180 +8,174 @@ python_api_name: qiskit_ibm_runtime.Estimator
 
 # Estimator
 
-<span id="qiskit_ibm_runtime.Estimator" />
+<Class id="qiskit_ibm_runtime.Estimator" github="https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/estimator.py" signature="Estimator(backend=None, session=None, options=None)">
+  Class for interacting with Qiskit Runtime Estimator primitive service.
 
-`Estimator(backend=None, session=None, options=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/estimator.py "view source code")
+  Qiskit Runtime Estimator primitive service estimates expectation values of quantum circuits and observables.
 
-Class for interacting with Qiskit Runtime Estimator primitive service.
+  The [`run()`](#qiskit_ibm_runtime.Estimator.run "qiskit_ibm_runtime.Estimator.run") can be used to submit circuits, observables, and parameters to the Estimator primitive.
 
-Qiskit Runtime Estimator primitive service estimates expectation values of quantum circuits and observables.
+  You are encouraged to use [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") to open a session, during which you can invoke one or more primitives. Jobs submitted within a session are prioritized by the scheduler, and data is cached for efficiency.
 
-The [`run()`](#qiskit_ibm_runtime.Estimator.run "qiskit_ibm_runtime.Estimator.run") can be used to submit circuits, observables, and parameters to the Estimator primitive.
+  Example:
 
-You are encouraged to use [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") to open a session, during which you can invoke one or more primitives. Jobs submitted within a session are prioritized by the scheduler, and data is cached for efficiency.
+  ```python
+  from qiskit.circuit.library import RealAmplitudes
+  from qiskit.quantum_info import SparsePauliOp
 
-Example:
+  from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
-```python
-from qiskit.circuit.library import RealAmplitudes
-from qiskit.quantum_info import SparsePauliOp
+  service = QiskitRuntimeService(channel="ibm_cloud")
 
-from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
+  psi1 = RealAmplitudes(num_qubits=2, reps=2)
 
-service = QiskitRuntimeService(channel="ibm_cloud")
+  H1 = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
+  H2 = SparsePauliOp.from_list([("IZ", 1)])
+  H3 = SparsePauliOp.from_list([("ZI", 1), ("ZZ", 1)])
 
-psi1 = RealAmplitudes(num_qubits=2, reps=2)
+  with Session(service=service, backend="ibmq_qasm_simulator") as session:
+      estimator = Estimator(session=session)
 
-H1 = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
-H2 = SparsePauliOp.from_list([("IZ", 1)])
-H3 = SparsePauliOp.from_list([("ZI", 1), ("ZZ", 1)])
+      theta1 = [0, 1, 1, 2, 3, 5]
 
-with Session(service=service, backend="ibmq_qasm_simulator") as session:
-    estimator = Estimator(session=session)
+      # calculate [ <psi1(theta1)|H1|psi1(theta1)> ]
+      psi1_H1 = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1])
+      print(psi1_H1.result())
 
-    theta1 = [0, 1, 1, 2, 3, 5]
+      # calculate [ <psi1(theta1)|H2|psi1(theta1)>, <psi1(theta1)|H3|psi1(theta1)> ]
+      psi1_H23 = estimator.run(
+          circuits=[psi1, psi1],
+          observables=[H2, H3],
+          parameter_values=[theta1]*2
+      )
+      print(psi1_H23.result())
+  ```
 
-    # calculate [ <psi1(theta1)|H1|psi1(theta1)> ]
-    psi1_H1 = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1])
-    print(psi1_H1.result())
+  Initializes the Estimator primitive.
 
-    # calculate [ <psi1(theta1)|H2|psi1(theta1)>, <psi1(theta1)|H3|psi1(theta1)> ]
-    psi1_H23 = estimator.run(
-        circuits=[psi1, psi1],
-        observables=[H2, H3],
-        parameter_values=[theta1]*2
-    )
-    print(psi1_H23.result())
-```
+  **Parameters**
 
-Initializes the Estimator primitive.
+  *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
 
-**Parameters**
+  *   **session** (`Union`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), `str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) –
 
-*   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
+      Session in which to call the primitive.
 
-*   **session** (`Union`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), `str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) –
+      If both `session` and `backend` are specified, `session` takes precedence. If neither is specified, and the primitive is created inside a [`qiskit_ibm_runtime.Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") context manager, then the session is used. Otherwise if IBM Cloud channel is used, a default backend is selected.
 
-    Session in which to call the primitive.
+  *   **options** (`Union`\[`Dict`, [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.options.Options"), `None`]) – Primitive options, see `Options` for detailed description. The `backend` keyword is still supported but is deprecated.
 
-    If both `session` and `backend` are specified, `session` takes precedence. If neither is specified, and the primitive is created inside a [`qiskit_ibm_runtime.Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") context manager, then the session is used. Otherwise if IBM Cloud channel is used, a default backend is selected.
+  ## Attributes
 
-*   **options** (`Union`\[`Dict`, [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.options.Options"), `None`]) – Primitive options, see `Options` for detailed description. The `backend` keyword is still supported but is deprecated.
+  ### circuits
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.Estimator.circuits" name="circuits">
+    Quantum circuits that represents quantum states.
 
-<span id="qiskit_ibm_runtime.Estimator.circuits" />
+    **Return type**
 
-### circuits
+    `tuple`\[`QuantumCircuit`, `...`]
 
-Quantum circuits that represents quantum states.
+    **Returns**
 
-**Return type**
+    The quantum circuits.
+  </Attribute>
 
-`tuple`\[`QuantumCircuit`, `...`]
+  ### observables
 
-**Returns**
+  <Attribute id="qiskit_ibm_runtime.Estimator.observables" name="observables">
+    Observables to be estimated.
 
-The quantum circuits.
+    **Return type**
 
-<span id="qiskit_ibm_runtime.Estimator.observables" />
+    `tuple`\[`SparsePauliOp`, `...`]
 
-### observables
+    **Returns**
 
-Observables to be estimated.
+    The observables.
+  </Attribute>
 
-**Return type**
+  ### options
 
-`tuple`\[`SparsePauliOp`, `...`]
+  <Attribute id="qiskit_ibm_runtime.Estimator.options" name="options">
+    Return options values for the sampler.
 
-**Returns**
+    **Return type**
 
-The observables.
+    `Options`
 
-<span id="qiskit_ibm_runtime.Estimator.options" />
+    **Returns**
 
-### options
+    options
+  </Attribute>
 
-Return options values for the sampler.
+  ### parameters
 
-**Return type**
+  <Attribute id="qiskit_ibm_runtime.Estimator.parameters" name="parameters">
+    Parameters of the quantum circuits.
 
-`Options`
+    **Return type**
 
-**Returns**
+    `tuple`\[`ParameterView`, `...`]
 
-options
+    **Returns**
 
-<span id="qiskit_ibm_runtime.Estimator.parameters" />
+    Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
+  </Attribute>
 
-### parameters
+  ### session
 
-Parameters of the quantum circuits.
+  <Attribute id="qiskit_ibm_runtime.Estimator.session" name="session">
+    Return session used by this primitive.
 
-**Return type**
+    **Return type**
 
-`tuple`\[`ParameterView`, `...`]
+    `Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]
 
-**Returns**
+    **Returns**
 
-Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
+    Session used by this primitive, or `None` if session is not used.
+  </Attribute>
 
-<span id="qiskit_ibm_runtime.Estimator.session" />
+  ## Methods
 
-### session
+  ### run
 
-Return session used by this primitive.
+  <Function id="qiskit_ibm_runtime.Estimator.run" name="run" signature="run(circuits, observables, parameter_values=None, **kwargs)">
+    Submit a request to the estimator primitive.
 
-**Return type**
+    **Parameters**
 
-`Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]
+    *   **circuits** (*QuantumCircuit | Sequence\[QuantumCircuit]*) – a (parameterized) `QuantumCircuit` or a list of (parameterized) `QuantumCircuit`.
+    *   **observables** (*BaseOperator | PauliSumOp | Sequence\[BaseOperator | PauliSumOp]*) – Observable objects.
+    *   **parameter\_values** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Concrete parameters to be bound.
+    *   **\*\*kwargs** – Individual options to overwrite the default primitive options. These include the runtime options in [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions").
 
-**Returns**
+    **Return type**
 
-Session used by this primitive, or `None` if session is not used.
+    [RuntimeJob](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob")
 
-## Methods
+    **Returns**
 
-### run
+    Submitted job. The result of the job is an instance of `qiskit.primitives.EstimatorResult`.
 
-<span id="qiskit_ibm_runtime.Estimator.run" />
+    **Raises**
 
-`run(circuits, observables, parameter_values=None, **kwargs)`
+    **ValueError** – Invalid arguments are given.
+  </Function>
 
-Submit a request to the estimator primitive.
+  ### set\_options
 
-**Parameters**
+  <Function id="qiskit_ibm_runtime.Estimator.set_options" name="set_options" signature="set_options(**fields)">
+    Set options values for the sampler.
 
-*   **circuits** (*QuantumCircuit | Sequence\[QuantumCircuit]*) – a (parameterized) `QuantumCircuit` or a list of (parameterized) `QuantumCircuit`.
-*   **observables** (*BaseOperator | PauliSumOp | Sequence\[BaseOperator | PauliSumOp]*) – Observable objects.
-*   **parameter\_values** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Concrete parameters to be bound.
-*   **\*\*kwargs** – Individual options to overwrite the default primitive options. These include the runtime options in [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions").
+    **Parameters**
 
-**Return type**
+    **\*\*fields** – The fields to update the options
 
-[RuntimeJob](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob")
+    **Return type**
 
-**Returns**
-
-Submitted job. The result of the job is an instance of `qiskit.primitives.EstimatorResult`.
-
-**Raises**
-
-**ValueError** – Invalid arguments are given.
-
-### set\_options
-
-<span id="qiskit_ibm_runtime.Estimator.set_options" />
-
-`set_options(**fields)`
-
-Set options values for the sampler.
-
-**Parameters**
-
-**\*\*fields** – The fields to update the options
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

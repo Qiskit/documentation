@@ -12,335 +12,313 @@ python_api_name: qiskit.providers.ibmq.runtime.RuntimeJob
 
 # RuntimeJob
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob" />
+<Class id="qiskit.providers.ibmq.runtime.RuntimeJob" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/runtime/runtime_job.py" signature="RuntimeJob(backend, api_client, credentials, job_id, program_id, params=None, creation_date=None, user_callback=None, result_decoder=<class 'qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder'>, image='')">
+  Bases: `object`
 
-`RuntimeJob(backend, api_client, credentials, job_id, program_id, params=None, creation_date=None, user_callback=None, result_decoder=<class 'qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder'>, image='')` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
+  Representation of a runtime program execution.
 
-Bases: `object`
+  A new `RuntimeJob` instance is returned when you call [`IBMRuntimeService.run`](qiskit.providers.ibmq.runtime.IBMRuntimeService#run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run") to execute a runtime program, or [`IBMRuntimeService.job`](qiskit.providers.ibmq.runtime.IBMRuntimeService#job "qiskit.providers.ibmq.runtime.IBMRuntimeService.job") to retrieve a previously executed job.
 
-Representation of a runtime program execution.
+  If the program execution is successful, you can inspect the job’s status by calling [`status()`](qiskit.providers.ibmq.runtime.RuntimeJob#status "qiskit.providers.ibmq.runtime.RuntimeJob.status"). Job status can be one of the [`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.JobStatus") members.
 
-A new `RuntimeJob` instance is returned when you call [`IBMRuntimeService.run`](qiskit.providers.ibmq.runtime.IBMRuntimeService#run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run") to execute a runtime program, or [`IBMRuntimeService.job`](qiskit.providers.ibmq.runtime.IBMRuntimeService#job "qiskit.providers.ibmq.runtime.IBMRuntimeService.job") to retrieve a previously executed job.
+  Some of the methods in this class are blocking, which means control may not be returned immediately. [`result()`](qiskit.providers.ibmq.runtime.RuntimeJob#result "qiskit.providers.ibmq.runtime.RuntimeJob.result") is an example of a blocking method:
 
-If the program execution is successful, you can inspect the job’s status by calling [`status()`](qiskit.providers.ibmq.runtime.RuntimeJob#status "qiskit.providers.ibmq.runtime.RuntimeJob.status"). Job status can be one of the [`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.JobStatus") members.
+  ```python
+  job = provider.runtime.run(...)
 
-Some of the methods in this class are blocking, which means control may not be returned immediately. [`result()`](qiskit.providers.ibmq.runtime.RuntimeJob#result "qiskit.providers.ibmq.runtime.RuntimeJob.result") is an example of a blocking method:
+  try:
+      job_result = job.result()  # It will block until the job finishes.
+      print("The job finished with result {}".format(job_result))
+  except RuntimeJobFailureError as ex:
+      print("Job failed!: {}".format(ex))
+  ```
 
-```python
-job = provider.runtime.run(...)
+  If the program has any interim results, you can use the `callback` parameter of the [`run()`](qiskit.providers.ibmq.runtime.IBMRuntimeService#run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run") method to stream the interim results. Alternatively, you can use the [`stream_results()`](qiskit.providers.ibmq.runtime.RuntimeJob#stream_results "qiskit.providers.ibmq.runtime.RuntimeJob.stream_results") method to stream the results at a later time, but before the job finishes.
 
-try:
-    job_result = job.result()  # It will block until the job finishes.
-    print("The job finished with result {}".format(job_result))
-except RuntimeJobFailureError as ex:
-    print("Job failed!: {}".format(ex))
-```
+  RuntimeJob constructor.
 
-If the program has any interim results, you can use the `callback` parameter of the [`run()`](qiskit.providers.ibmq.runtime.IBMRuntimeService#run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run") method to stream the interim results. Alternatively, you can use the [`stream_results()`](qiskit.providers.ibmq.runtime.RuntimeJob#stream_results "qiskit.providers.ibmq.runtime.RuntimeJob.stream_results") method to stream the results at a later time, but before the job finishes.
+  **Parameters**
 
-RuntimeJob constructor.
+  *   **backend** ([`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")) – The backend instance used to run this job.
+  *   **api\_client** (`RuntimeClient`) – Object for connecting to the server.
+  *   **credentials** ([`Credentials`](qiskit.providers.ibmq.credentials.Credentials "qiskit.providers.ibmq.credentials.credentials.Credentials")) – Account credentials.
+  *   **job\_id** (`str`) – Job ID.
+  *   **program\_id** (`str`) – ID of the program this job is for.
+  *   **params** (`Optional`\[`Dict`]) – Job parameters.
+  *   **creation\_date** (`Optional`\[`str`]) – Job creation date, in UTC.
+  *   **user\_callback** (`Optional`\[`Callable`]) – User callback function.
+  *   **result\_decoder** (`Type`\[[`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder")]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results.
+  *   **image** (`Optional`\[`str`]) – Runtime image used for this job: image\_name:tag.
 
-**Parameters**
+  ## Methods
 
-*   **backend** ([`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")) – The backend instance used to run this job.
-*   **api\_client** (`RuntimeClient`) – Object for connecting to the server.
-*   **credentials** ([`Credentials`](qiskit.providers.ibmq.credentials.Credentials "qiskit.providers.ibmq.credentials.credentials.Credentials")) – Account credentials.
-*   **job\_id** (`str`) – Job ID.
-*   **program\_id** (`str`) – ID of the program this job is for.
-*   **params** (`Optional`\[`Dict`]) – Job parameters.
-*   **creation\_date** (`Optional`\[`str`]) – Job creation date, in UTC.
-*   **user\_callback** (`Optional`\[`Callable`]) – User callback function.
-*   **result\_decoder** (`Type`\[[`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder")]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results.
-*   **image** (`Optional`\[`str`]) – Runtime image used for this job: image\_name:tag.
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-## Methods
+  ### backend
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeJob.backend" name="backend" signature="RuntimeJob.backend()">
+    Return the backend where this job was executed.
 
-### backend
+    **Return type**
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.backend" />
+    [`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")
 
-`RuntimeJob.backend()`
+    **Returns**
 
-Return the backend where this job was executed.
+    Backend used for the job.
+  </Function>
 
-**Return type**
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")
+  ### cancel
 
-**Returns**
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeJob.cancel" name="cancel" signature="RuntimeJob.cancel()">
+    Cancel the job.
 
-Backend used for the job.
+    **Raises**
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    *   **RuntimeInvalidStateError** – If the job is in a state that cannot be cancelled.
+    *   **QiskitRuntimeError** – If unable to cancel job.
 
-### cancel
+    **Return type**
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.cancel" />
+    `None`
+  </Function>
 
-`RuntimeJob.cancel()`
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-Cancel the job.
+  ### cancel\_result\_streaming
 
-**Raises**
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeJob.cancel_result_streaming" name="cancel_result_streaming" signature="RuntimeJob.cancel_result_streaming()">
+    Cancel result streaming.
 
-*   **RuntimeInvalidStateError** – If the job is in a state that cannot be cancelled.
-*   **QiskitRuntimeError** – If unable to cancel job.
+    **Return type**
 
-**Return type**
+    `None`
+  </Function>
 
-`None`
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+  ### error\_message
 
-### cancel\_result\_streaming
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeJob.error_message" name="error_message" signature="RuntimeJob.error_message()">
+    Returns the reason if the job failed.
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.cancel_result_streaming" />
+    **Return type**
 
-`RuntimeJob.cancel_result_streaming()`
+    `Optional`\[`str`]
 
-Cancel result streaming.
+    **Returns**
 
-**Return type**
+    Error message string or `None`.
+  </Function>
 
-`None`
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+  ### job\_id
 
-### error\_message
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeJob.job_id" name="job_id" signature="RuntimeJob.job_id()">
+    Return a unique ID identifying the job.
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.error_message" />
+    **Return type**
 
-`RuntimeJob.error_message()`
+    `str`
 
-Returns the reason if the job failed.
+    **Returns**
 
-**Return type**
+    Job ID.
+  </Function>
 
-`Optional`\[`str`]
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-**Returns**
+  ### logs
 
-Error message string or `None`.
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeJob.logs" name="logs" signature="RuntimeJob.logs()">
+    Return job logs.
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    <Admonition title="Note" type="note">
+      Job logs are only available after the job finishes.
+    </Admonition>
 
-### job\_id
+    **Return type**
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.job_id" />
+    `str`
 
-`RuntimeJob.job_id()`
+    **Returns**
 
-Return a unique ID identifying the job.
+    Job logs, including standard output and error.
 
-**Return type**
+    **Raises**
 
-`str`
+    **QiskitRuntimeError** – If a network error occurred.
+  </Function>
 
-**Returns**
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-Job ID.
+  ### result
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeJob.result" name="result" signature="RuntimeJob.result(timeout=None, wait=5, decoder=None)">
+    Return the results of the job.
 
-### logs
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.logs" />
+    *   **timeout** (`Optional`\[`float`]) – Number of seconds to wait for job.
+    *   **wait** (`float`) – Seconds between queries.
+    *   **decoder** (`Optional`\[`Type`\[[`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder")]]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results.
 
-`RuntimeJob.logs()`
+    **Return type**
 
-Return job logs.
+    `Any`
 
-<Admonition title="Note" type="note">
-  Job logs are only available after the job finishes.
-</Admonition>
+    **Returns**
 
-**Return type**
+    Runtime job result.
 
-`str`
+    **Raises**
 
-**Returns**
+    **RuntimeJobFailureError** – If the job failed.
+  </Function>
 
-Job logs, including standard output and error.
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-**Raises**
+  ### status
 
-**QiskitRuntimeError** – If a network error occurred.
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeJob.status" name="status" signature="RuntimeJob.status()">
+    Return the status of the job.
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    **Return type**
 
-### result
+    [`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.result" />
+    **Returns**
 
-`RuntimeJob.result(timeout=None, wait=5, decoder=None)`
+    Status of this job.
+  </Function>
 
-Return the results of the job.
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-**Parameters**
+  ### stream\_results
 
-*   **timeout** (`Optional`\[`float`]) – Number of seconds to wait for job.
-*   **wait** (`float`) – Seconds between queries.
-*   **decoder** (`Optional`\[`Type`\[[`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder")]]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results.
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeJob.stream_results" name="stream_results" signature="RuntimeJob.stream_results(callback, decoder=None)">
+    Start streaming job results.
 
-**Return type**
+    **Parameters**
 
-`Any`
+    *   **callback** (`Callable`) –
 
-**Returns**
+        Callback function to be invoked for any interim results. The callback function will receive 2 positional parameters:
 
-Runtime job result.
+        > 1.  Job ID
+        > 2.  Job interim result.
 
-**Raises**
+    *   **decoder** (`Optional`\[`Type`\[[`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder")]]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results.
 
-**RuntimeJobFailureError** – If the job failed.
+    **Raises**
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    **RuntimeInvalidStateError** – If a callback function is already streaming results or if the job already finished.
 
-### status
+    **Return type**
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.status" />
+    `None`
+  </Function>
 
-`RuntimeJob.status()`
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-Return the status of the job.
+  ### wait\_for\_final\_state
 
-**Return type**
+  <Function id="qiskit.providers.ibmq.runtime.RuntimeJob.wait_for_final_state" name="wait_for_final_state" signature="RuntimeJob.wait_for_final_state(timeout=None, wait=5)">
+    Poll the job status until it progresses to a final state such as `DONE` or `ERROR`.
 
-[`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")
+    **Parameters**
 
-**Returns**
+    *   **timeout** (`Optional`\[`float`]) – Seconds to wait for the job. If `None`, wait indefinitely.
+    *   **wait** (`float`) – Seconds between queries.
 
-Status of this job.
+    **Raises**
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    [**JobTimeoutError**](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not reach a final state before the specified timeout.
 
-### stream\_results
+    **Return type**
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.stream_results" />
+    `None`
+  </Function>
 
-`RuntimeJob.stream_results(callback, decoder=None)`
+  ## Attributes
 
-Start streaming job results.
+  ### creation\_date
 
-**Parameters**
+  <Attribute id="qiskit.providers.ibmq.runtime.RuntimeJob.creation_date" name="creation_date">
+    Job creation date in local time.
 
-*   **callback** (`Callable`) –
+    **Return type**
 
-    Callback function to be invoked for any interim results. The callback function will receive 2 positional parameters:
+    `Optional`\[`datetime`]
 
-    > 1.  Job ID
-    > 2.  Job interim result.
+    **Returns**
 
-*   **decoder** (`Optional`\[`Type`\[[`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder")]]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results.
+    The job creation date as a datetime object, in local time, or `None` if creation date is not available.
+  </Attribute>
 
-**Raises**
+  ### image
 
-**RuntimeInvalidStateError** – If a callback function is already streaming results or if the job already finished.
+  <Attribute id="qiskit.providers.ibmq.runtime.RuntimeJob.image" name="image">
+    Return the runtime image used for the job.
 
-**Return type**
+    **Returns**
 
-`None`
+    image\_name:tag or “” if the default image is used.
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    **Return type**
 
-### wait\_for\_final\_state
+    Runtime image
+  </Attribute>
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.wait_for_final_state" />
+  ### inputs
 
-`RuntimeJob.wait_for_final_state(timeout=None, wait=5)`
+  <Attribute id="qiskit.providers.ibmq.runtime.RuntimeJob.inputs" name="inputs">
+    Job input parameters.
 
-Poll the job status until it progresses to a final state such as `DONE` or `ERROR`.
+    **Return type**
 
-**Parameters**
+    `Dict`
 
-*   **timeout** (`Optional`\[`float`]) – Seconds to wait for the job. If `None`, wait indefinitely.
-*   **wait** (`float`) – Seconds between queries.
+    **Returns**
 
-**Raises**
+    Input parameters used in this job.
+  </Attribute>
 
-[**JobTimeoutError**](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not reach a final state before the specified timeout.
+  ### program\_id
 
-**Return type**
+  <Attribute id="qiskit.providers.ibmq.runtime.RuntimeJob.program_id" name="program_id">
+    Program ID.
 
-`None`
+    **Return type**
 
-## Attributes
+    `str`
 
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.creation_date" />
+    **Returns**
 
-### creation\_date
-
-Job creation date in local time.
-
-**Return type**
-
-`Optional`\[`datetime`]
-
-**Returns**
-
-The job creation date as a datetime object, in local time, or `None` if creation date is not available.
-
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.image" />
-
-### image
-
-Return the runtime image used for the job.
-
-**Returns**
-
-image\_name:tag or “” if the default image is used.
-
-**Return type**
-
-Runtime image
-
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.inputs" />
-
-### inputs
-
-Job input parameters.
-
-**Return type**
-
-`Dict`
-
-**Returns**
-
-Input parameters used in this job.
-
-<span id="qiskit.providers.ibmq.runtime.RuntimeJob.program_id" />
-
-### program\_id
-
-Program ID.
-
-**Return type**
-
-`str`
-
-**Returns**
-
-ID of the program this job is for.
+    ID of the program this job is for.
+  </Attribute>
+</Class>
 

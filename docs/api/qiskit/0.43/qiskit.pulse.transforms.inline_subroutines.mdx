@@ -10,27 +10,25 @@ python_api_name: qiskit.pulse.transforms.inline_subroutines
 
 # qiskit.pulse.transforms.inline\_subroutines
 
-<span id="qiskit.pulse.transforms.inline_subroutines" />
+<Function id="qiskit.pulse.transforms.inline_subroutines" name="inline_subroutines" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/canonicalization.py" signature="inline_subroutines(program)">
+  Recursively remove call instructions and inline the respective subroutine instructions.
 
-`inline_subroutines(program)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/canonicalization.py "view source code")
+  Assigned parameter values, which are stored in the parameter table, are also applied. The subroutine is copied before the parameter assignment to avoid mutation problem.
 
-Recursively remove call instructions and inline the respective subroutine instructions.
+  **Parameters**
 
-Assigned parameter values, which are stored in the parameter table, are also applied. The subroutine is copied before the parameter assignment to avoid mutation problem.
+  **program** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – A program which may contain the subroutine, i.e. `Call` instruction.
 
-**Parameters**
+  **Returns**
 
-**program** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – A program which may contain the subroutine, i.e. `Call` instruction.
+  A schedule without subroutine.
 
-**Returns**
+  **Raises**
 
-A schedule without subroutine.
+  [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When input program is not valid data format.
 
-**Raises**
+  **Return type**
 
-[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When input program is not valid data format.
-
-**Return type**
-
-[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule") | [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
+  [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule") | [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
+</Function>
 

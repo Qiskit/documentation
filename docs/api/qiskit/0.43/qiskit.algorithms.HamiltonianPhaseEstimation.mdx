@@ -8,85 +8,81 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimation
 
 # HamiltonianPhaseEstimation
 
-<span id="qiskit.algorithms.HamiltonianPhaseEstimation" />
+<Class id="qiskit.algorithms.HamiltonianPhaseEstimation" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py" signature="HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None, sampler=None)">
+  Bases: `object`
 
-`HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py "view source code")
+  Run the Quantum Phase Estimation algorithm to find the eigenvalues of a Hermitian operator.
 
-Bases: `object`
-
-Run the Quantum Phase Estimation algorithm to find the eigenvalues of a Hermitian operator.
-
-This class is nearly the same as [`PhaseEstimation`](qiskit.algorithms.PhaseEstimation "qiskit.algorithms.PhaseEstimation"), differing only in that the input in that class is a unitary operator, whereas here the input is a Hermitian operator from which a unitary will be obtained by scaling and exponentiating. The scaling is performed in order to prevent the phases from wrapping around $2\pi$. The problem of estimating eigenvalues $\lambda_j$ of the Hermitian operator $H$ is solved by running a circuit representing
+  This class is nearly the same as [`PhaseEstimation`](qiskit.algorithms.PhaseEstimation "qiskit.algorithms.PhaseEstimation"), differing only in that the input in that class is a unitary operator, whereas here the input is a Hermitian operator from which a unitary will be obtained by scaling and exponentiating. The scaling is performed in order to prevent the phases from wrapping around $2\pi$. The problem of estimating eigenvalues $\lambda_j$ of the Hermitian operator $H$ is solved by running a circuit representing
 
 $$
 \exp(i b H) |\psi\rangle = \sum_j \exp(i b \lambda_j) c_j |\lambda_j\rangle,
 $$
 
-where the input state is
+  where the input state is
 
 $$
 |\psi\rangle = \sum_j c_j |\lambda_j\rangle,
 $$
 
-and $\lambda_j$ are the eigenvalues of $H$.
+  and $\lambda_j$ are the eigenvalues of $H$.
 
-Here, $b$ is a scaling factor sufficiently large to map positive $\lambda$ to $[0,\pi)$ and negative $\lambda$ to $[\pi,2\pi)$. Each time the circuit is run, one measures a phase corresponding to $lambda_j$ with probability $|c_j|^2$.
+  Here, $b$ is a scaling factor sufficiently large to map positive $\lambda$ to $[0,\pi)$ and negative $\lambda$ to $[\pi,2\pi)$. Each time the circuit is run, one measures a phase corresponding to $lambda_j$ with probability $|c_j|^2$.
 
-If $H$ is a Pauli sum, the bound $b$ is computed from the sum of the absolute values of the coefficients of the terms. There is no way to reliably recover eigenvalues from phases very near the endpoints of these intervals. Because of this you should be aware that for degenerate cases, such as $H=Z$, the eigenvalues $\pm 1$ will be mapped to the same phase, $\pi$, and so cannot be distinguished. In this case, you need to specify a larger bound as an argument to the method `estimate`.
+  If $H$ is a Pauli sum, the bound $b$ is computed from the sum of the absolute values of the coefficients of the terms. There is no way to reliably recover eigenvalues from phases very near the endpoints of these intervals. Because of this you should be aware that for degenerate cases, such as $H=Z$, the eigenvalues $\pm 1$ will be mapped to the same phase, $\pi$, and so cannot be distinguished. In this case, you need to specify a larger bound as an argument to the method `estimate`.
 
-This class uses and works together with [`PhaseEstimationScale`](qiskit.algorithms.PhaseEstimationScale "qiskit.algorithms.PhaseEstimationScale") to manage scaling the Hamiltonian and the phases that are obtained by the QPE algorithm. This includes setting, or computing, a bound on the eigenvalues of the operator, using this bound to obtain a scale factor, scaling the operator, and shifting and scaling the measured phases to recover the eigenvalues.
+  This class uses and works together with [`PhaseEstimationScale`](qiskit.algorithms.PhaseEstimationScale "qiskit.algorithms.PhaseEstimationScale") to manage scaling the Hamiltonian and the phases that are obtained by the QPE algorithm. This includes setting, or computing, a bound on the eigenvalues of the operator, using this bound to obtain a scale factor, scaling the operator, and shifting and scaling the measured phases to recover the eigenvalues.
 
-Note that, although we speak of “evolving” the state according the Hamiltonian, in the present algorithm, we are not actually considering time evolution. Rather, the role of time is played by the scaling factor, which is chosen to best extract the eigenvalues of the Hamiltonian.
+  Note that, although we speak of “evolving” the state according the Hamiltonian, in the present algorithm, we are not actually considering time evolution. Rather, the role of time is played by the scaling factor, which is chosen to best extract the eigenvalues of the Hamiltonian.
 
-A few of the ideas in the algorithm may be found in Ref. \[1].
+  A few of the ideas in the algorithm may be found in Ref. \[1].
 
-**Reference:**
+  **Reference:**
 
-**\[1]: Quantum phase estimation of multiple eigenvalues for small-scale (noisy) experiments**
+  **\[1]: Quantum phase estimation of multiple eigenvalues for small-scale (noisy) experiments**
 
-T.E. O’Brien, B. Tarasinski, B.M. Terhal [arXiv:1809.09697](https://arxiv.org/abs/1809.09697)
+  T.E. O’Brien, B. Tarasinski, B.M. Terhal [arXiv:1809.09697](https://arxiv.org/abs/1809.09697)
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  `qiskit.algorithms.phase_estimators.hamiltonian_phase_estimation.HamiltonianPhaseEstimation.__init__()`’s argument `quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the `sampler` argument. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    `qiskit.algorithms.phase_estimators.hamiltonian_phase_estimation.HamiltonianPhaseEstimation.__init__()`’s argument `quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the `sampler` argument. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  </Admonition>
 
-**Parameters**
+  **Parameters**
 
-*   **num\_evaluation\_qubits** (*int*) – The number of qubits used in estimating the phase. The phase will be estimated as a binary string with this many bits.
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: The quantum instance on which the circuit will be run.
-*   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – The sampler primitive on which the circuit will be sampled.
+  *   **num\_evaluation\_qubits** (*int*) – The number of qubits used in estimating the phase. The phase will be estimated as a binary string with this many bits.
+  *   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: The quantum instance on which the circuit will be run.
+  *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – The sampler primitive on which the circuit will be sampled.
 
-## Methods
+  ## Methods
 
-<span id="qiskit-algorithms-hamiltonianphaseestimation-estimate" />
+  <span id="qiskit-algorithms-hamiltonianphaseestimation-estimate" />
 
-### estimate
+  ### estimate
 
-<span id="qiskit.algorithms.HamiltonianPhaseEstimation.estimate" />
+  <Function id="qiskit.algorithms.HamiltonianPhaseEstimation.estimate" name="estimate" signature="HamiltonianPhaseEstimation.estimate(hamiltonian, state_preparation=None, evolution=None, bound=None)">
+    Run the Hamiltonian phase estimation algorithm.
 
-`HamiltonianPhaseEstimation.estimate(hamiltonian, state_preparation=None, evolution=None, bound=None)`
+    **Parameters**
 
-Run the Hamiltonian phase estimation algorithm.
+    *   **hamiltonian** ([*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")  *|*[*MatrixOp*](qiskit.opflow.primitive_ops.MatrixOp "qiskit.opflow.primitive_ops.MatrixOp")  *|*[*SummedOp*](qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.SummedOp")  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – A Hermitian operator. If the algorithm is used with a `Sampler` primitive, the allowed types are `Pauli`, `SparsePauliOp`, and `PauliSumOp`. If the algorithm is used with a `QuantumInstance`, `PauliOp, ``MatrixOp`, `PauliSumOp`, and `SummedOp` types are allowed.
+    *   **state\_preparation** ([*StateFn*](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.StateFn")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") *| None*) – The `StateFn` to be prepared, whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
+    *   **evolution** ([*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")  *|*[*EvolutionBase*](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase") *| None*) – An evolution converter that generates a unitary from `hamiltonian`. If `None`, then the default `PauliTrotterEvolution` is used.
+    *   **bound** (*float | None*) – An upper bound on the absolute value of the eigenvalues of `hamiltonian`. If omitted, then `hamiltonian` must be a Pauli sum, or a `PauliOp`, in which case a bound will be computed. If `hamiltonian` is a `MatrixOp`, then `bound` may not be `None`. The tighter the bound, the higher the resolution of computed phases.
 
-**Parameters**
+    **Returns**
 
-*   **hamiltonian** ([*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")  *|*[*MatrixOp*](qiskit.opflow.primitive_ops.MatrixOp "qiskit.opflow.primitive_ops.MatrixOp")  *|*[*SummedOp*](qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.SummedOp")  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – A Hermitian operator. If the algorithm is used with a `Sampler` primitive, the allowed types are `Pauli`, `SparsePauliOp`, and `PauliSumOp`. If the algorithm is used with a `QuantumInstance`, `PauliOp, ``MatrixOp`, `PauliSumOp`, and `SummedOp` types are allowed.
-*   **state\_preparation** ([*StateFn*](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.StateFn")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") *| None*) – The `StateFn` to be prepared, whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
-*   **evolution** ([*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")  *|*[*EvolutionBase*](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase") *| None*) – An evolution converter that generates a unitary from `hamiltonian`. If `None`, then the default `PauliTrotterEvolution` is used.
-*   **bound** (*float | None*) – An upper bound on the absolute value of the eigenvalues of `hamiltonian`. If omitted, then `hamiltonian` must be a Pauli sum, or a `PauliOp`, in which case a bound will be computed. If `hamiltonian` is a `MatrixOp`, then `bound` may not be `None`. The tighter the bound, the higher the resolution of computed phases.
+    `HamiltonianPhaseEstimationResult` instance containing the result of the estimation and diagnostic information.
 
-**Returns**
+    **Raises**
 
-`HamiltonianPhaseEstimationResult` instance containing the result of the estimation and diagnostic information.
+    *   **TypeError** – If `evolution` is not of type `EvolutionSynthesis` when a `Sampler` is provided.
+    *   **TypeError** – If `hamiltonian` type is not `Pauli` or `SparsePauliOp` or `PauliSumOp` when a `Sampler` is provided.
+    *   **ValueError** – If `bound` is `None` and `hamiltonian` is not a Pauli sum, i.e. a `PauliSumOp` or a `SummedOp` whose terms are of type `PauliOp`.
+    *   **TypeError** – If `evolution` is not of type `EvolutionBase` when no `Sampler` is provided.
 
-**Raises**
+    **Return type**
 
-*   **TypeError** – If `evolution` is not of type `EvolutionSynthesis` when a `Sampler` is provided.
-*   **TypeError** – If `hamiltonian` type is not `Pauli` or `SparsePauliOp` or `PauliSumOp` when a `Sampler` is provided.
-*   **ValueError** – If `bound` is `None` and `hamiltonian` is not a Pauli sum, i.e. a `PauliSumOp` or a `SummedOp` whose terms are of type `PauliOp`.
-*   **TypeError** – If `evolution` is not of type `EvolutionBase` when no `Sampler` is provided.
-
-**Return type**
-
-[HamiltonianPhaseEstimationResult](qiskit.algorithms.HamiltonianPhaseEstimationResult "qiskit.algorithms.HamiltonianPhaseEstimationResult")
+    [HamiltonianPhaseEstimationResult](qiskit.algorithms.HamiltonianPhaseEstimationResult "qiskit.algorithms.HamiltonianPhaseEstimationResult")
+  </Function>
+</Class>
 

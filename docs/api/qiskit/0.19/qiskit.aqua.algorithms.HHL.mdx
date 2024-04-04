@@ -8,17 +8,14 @@ python_api_name: qiskit.aqua.algorithms.HHL
 
 # HHL
 
-<span id="qiskit.aqua.algorithms.HHL" />
+<Class id="qiskit.aqua.algorithms.HHL" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/linear_solvers/hhl.py" signature="HHL(matrix, vector, truncate_powerdim=False, truncate_hermitian=False, eigs=None, init_state=None, reciprocal=None, num_q=0, num_a=0, orig_size=None, quantum_instance=None)">
+  The HHL algorithm.
 
-`HHL(matrix, vector, truncate_powerdim=False, truncate_hermitian=False, eigs=None, init_state=None, reciprocal=None, num_q=0, num_a=0, orig_size=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
+  The HHL algorithm (after the author’s surnames Harrow-Hassidim-Lloyd) is a quantum algorithm to solve systems of linear equations $A\overrightarrow{x}=\overrightarrow{b}$. Using Quantum Phase Estimation, the linear system is transformed into diagonal form in which the matrix $A$ is easily invertible. The inversion is achieved by rotating an ancillary qubit by an angle $\arcsin{ \frac{C}{\lambda_\mathrm{i}}}$ around the y-axis where $\lambda_\mathrm{i}$ are the eigenvalues of $A$. After uncomputing the register storing the eigenvalues using the inverse QPE, one measures the ancillary qubit. A measurement of 1 indicates that the matrix inversion succeeded. This leaves the system in a state proportional to the solution vector $|x\rangle$. In many cases one is not interested in the single vector elements of $|x\rangle$ but only on certain properties. These are accessible by using problem-specific operators. Another use-case is the implementation in a larger quantum program.
 
-The HHL algorithm.
+  When using non-hermitian matrices and matrices with dimensions other than $2^{n}$ the must be converted to an hermitian matrix and next higher dimension $2^{n}$, respectively. The *truncate\_hermitian*, *truncate\_powerdim* flags and *orig\_size* are used to indicate conversion and the returned result of the HHL algorithm for expanded matrices will be truncated. The [`matrix_resize()`](qiskit.aqua.algorithms.HHL#matrix_resize "qiskit.aqua.algorithms.HHL.matrix_resize") method is provided for convenience to do this but any method of your choice can be used.
 
-The HHL algorithm (after the author’s surnames Harrow-Hassidim-Lloyd) is a quantum algorithm to solve systems of linear equations $A\overrightarrow{x}=\overrightarrow{b}$. Using Quantum Phase Estimation, the linear system is transformed into diagonal form in which the matrix $A$ is easily invertible. The inversion is achieved by rotating an ancillary qubit by an angle $\arcsin{ \frac{C}{\lambda_\mathrm{i}}}$ around the y-axis where $\lambda_\mathrm{i}$ are the eigenvalues of $A$. After uncomputing the register storing the eigenvalues using the inverse QPE, one measures the ancillary qubit. A measurement of 1 indicates that the matrix inversion succeeded. This leaves the system in a state proportional to the solution vector $|x\rangle$. In many cases one is not interested in the single vector elements of $|x\rangle$ but only on certain properties. These are accessible by using problem-specific operators. Another use-case is the implementation in a larger quantum program.
-
-When using non-hermitian matrices and matrices with dimensions other than $2^{n}$ the must be converted to an hermitian matrix and next higher dimension $2^{n}$, respectively. The *truncate\_hermitian*, *truncate\_powerdim* flags and *orig\_size* are used to indicate conversion and the returned result of the HHL algorithm for expanded matrices will be truncated. The [`matrix_resize()`](qiskit.aqua.algorithms.HHL#matrix_resize "qiskit.aqua.algorithms.HHL.matrix_resize") method is provided for convenience to do this but any method of your choice can be used.
-
-To further explain *truncate\_hermitian* indicates whether or not to truncate matrix and result vector to half the dimension by simply cutting off entries with other indices after the input matrix was expanded to be hermitian following
+  To further explain *truncate\_hermitian* indicates whether or not to truncate matrix and result vector to half the dimension by simply cutting off entries with other indices after the input matrix was expanded to be hermitian following
 
 $$
 \begin{split}\begin{pmatrix}
@@ -27,185 +24,172 @@ A & 0
 \end{pmatrix}\end{split}
 $$
 
-where the conjugate transpose of matrix $A$ is denoted by $A^\mathsf{H}$. The truncation of the result vector is done by simply cutting off entries of the upper half.
+  where the conjugate transpose of matrix $A$ is denoted by $A^\mathsf{H}$. The truncation of the result vector is done by simply cutting off entries of the upper half.
 
-*truncate\_powerdim* indicates whether to truncate matrix and result vector from dimension $2^{n}$ to dimension given by *orig\_size* by simply cutting off entries with larger indices.
+  *truncate\_powerdim* indicates whether to truncate matrix and result vector from dimension $2^{n}$ to dimension given by *orig\_size* by simply cutting off entries with larger indices.
 
-Running the algorithm will execute the circuit and return the result vector, measured (real hardware backend) or derived (qasm\_simulator) via state tomography or calculated from the statevector (statevector\_simulator).
+  Running the algorithm will execute the circuit and return the result vector, measured (real hardware backend) or derived (qasm\_simulator) via state tomography or calculated from the statevector (statevector\_simulator).
 
-See also [https://arxiv.org/abs/0811.3171](https://arxiv.org/abs/0811.3171)
+  See also [https://arxiv.org/abs/0811.3171](https://arxiv.org/abs/0811.3171)
 
-**Parameters**
+  **Parameters**
 
-*   **matrix** (`ndarray`) – The input matrix of linear system of equations
-*   **vector** (`ndarray`) – The input vector of linear system of equations
-*   **truncate\_powerdim** (`bool`) – Flag indicating expansion to 2\*\*n matrix to be truncated
-*   **truncate\_hermitian** (`bool`) – Flag indicating expansion to hermitian matrix to be truncated
-*   **eigs** (`Optional`\[[`Eigenvalues`](qiskit.aqua.components.eigs.Eigenvalues "qiskit.aqua.components.eigs.eigs.Eigenvalues")]) – The eigenvalue estimation instance
-*   **init\_state** (`Optional`\[[`InitialState`](qiskit.aqua.components.initial_states.InitialState "qiskit.aqua.components.initial_states.initial_state.InitialState")]) – The initial quantum state preparation
-*   **reciprocal** (`Optional`\[[`Reciprocal`](qiskit.aqua.components.reciprocals.Reciprocal "qiskit.aqua.components.reciprocals.reciprocal.Reciprocal")]) – The eigenvalue reciprocal and controlled rotation instance
-*   **num\_q** (`int`) – Number of qubits required for the matrix Operator instance
-*   **num\_a** (`int`) – Number of ancillary qubits for Eigenvalues instance
-*   **orig\_size** (`Optional`\[`int`]) – The original dimension of the problem (if truncate\_powerdim)
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – Quantum Instance or Backend
+  *   **matrix** (`ndarray`) – The input matrix of linear system of equations
+  *   **vector** (`ndarray`) – The input vector of linear system of equations
+  *   **truncate\_powerdim** (`bool`) – Flag indicating expansion to 2\*\*n matrix to be truncated
+  *   **truncate\_hermitian** (`bool`) – Flag indicating expansion to hermitian matrix to be truncated
+  *   **eigs** (`Optional`\[[`Eigenvalues`](qiskit.aqua.components.eigs.Eigenvalues "qiskit.aqua.components.eigs.eigs.Eigenvalues")]) – The eigenvalue estimation instance
+  *   **init\_state** (`Optional`\[[`InitialState`](qiskit.aqua.components.initial_states.InitialState "qiskit.aqua.components.initial_states.initial_state.InitialState")]) – The initial quantum state preparation
+  *   **reciprocal** (`Optional`\[[`Reciprocal`](qiskit.aqua.components.reciprocals.Reciprocal "qiskit.aqua.components.reciprocals.reciprocal.Reciprocal")]) – The eigenvalue reciprocal and controlled rotation instance
+  *   **num\_q** (`int`) – Number of qubits required for the matrix Operator instance
+  *   **num\_a** (`int`) – Number of ancillary qubits for Eigenvalues instance
+  *   **orig\_size** (`Optional`\[`int`]) – The original dimension of the problem (if truncate\_powerdim)
+  *   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – Quantum Instance or Backend
 
-**Raises**
+  **Raises**
 
-**ValueError** – Invalid input
+  **ValueError** – Invalid input
 
-## Attributes
+  ## Attributes
 
-### backend
+  ### backend
 
-<span id="qiskit.aqua.algorithms.HHL.backend" />
+  <Attribute id="qiskit.aqua.algorithms.HHL.backend" name="backend" signature="qiskit.providers.basebackend.BaseBackend">
+    Returns backend.
 
-`qiskit.providers.basebackend.BaseBackend`
+    **Return type**
 
-Returns backend.
+    [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
+  </Attribute>
 
-**Return type**
+  ### quantum\_instance
 
-[`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
+  <Attribute id="qiskit.aqua.algorithms.HHL.quantum_instance" name="quantum_instance" signature="Union[None, qiskit.aqua.quantum_instance.QuantumInstance]">
+    Returns quantum instance.
 
-### quantum\_instance
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.HHL.quantum_instance" />
+    `Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
+  </Attribute>
 
-`Union[None, qiskit.aqua.quantum_instance.QuantumInstance]`
+  ### random
 
-Returns quantum instance.
+  <Attribute id="qiskit.aqua.algorithms.HHL.random" name="random">
+    Return a numpy random.
+  </Attribute>
 
-**Return type**
+  ## Methods
 
-`Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
+  ### construct\_circuit
 
-### random
+  <Function id="qiskit.aqua.algorithms.HHL.construct_circuit" name="construct_circuit" signature="HHL.construct_circuit(measurement=False)">
+    Construct the HHL circuit.
 
-Return a numpy random.
+    **Parameters**
 
-## Methods
+    **measurement** (*bool*) – indicate whether measurement on ancillary qubit should be performed
 
-### construct\_circuit
+    **Returns**
 
-<span id="qiskit.aqua.algorithms.HHL.construct_circuit" />
+    the QuantumCircuit object for the constructed circuit
 
-`HHL.construct_circuit(measurement=False)`
+    **Return type**
 
-Construct the HHL circuit.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-**Parameters**
+  ### expand\_to\_hermitian
 
-**measurement** (*bool*) – indicate whether measurement on ancillary qubit should be performed
+  <Function id="qiskit.aqua.algorithms.HHL.expand_to_hermitian" name="expand_to_hermitian" signature="static HHL.expand_to_hermitian(matrix, vector)">
+    Expand a non-hermitian matrix A to a hermitian matrix by \[\[0, A.H], \[A, 0]] and expand vector b to \[b.conj, b].
 
-**Returns**
+    **Parameters**
 
-the QuantumCircuit object for the constructed circuit
+    *   **matrix** (*np.array*) – the input matrix
+    *   **vector** (*np.array*) – the input vector
 
-**Return type**
+    **Returns**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    the expanded matrix, the expanded vector
 
-### expand\_to\_hermitian
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.HHL.expand_to_hermitian" />
+    tuple(np.array, np.array)
+  </Function>
 
-`static HHL.expand_to_hermitian(matrix, vector)`
+  ### expand\_to\_powerdim
 
-Expand a non-hermitian matrix A to a hermitian matrix by \[\[0, A.H], \[A, 0]] and expand vector b to \[b.conj, b].
+  <Function id="qiskit.aqua.algorithms.HHL.expand_to_powerdim" name="expand_to_powerdim" signature="static HHL.expand_to_powerdim(matrix, vector)">
+    Expand a matrix to the next-larger 2\*\*n dimensional matrix with ones on the diagonal and zeros on the off-diagonal and expand the vector with zeros accordingly.
 
-**Parameters**
+    **Parameters**
 
-*   **matrix** (*np.array*) – the input matrix
-*   **vector** (*np.array*) – the input vector
+    *   **matrix** (*np.array*) – the input matrix
+    *   **vector** (*np.array*) – the input vector
 
-**Returns**
+    **Returns**
 
-the expanded matrix, the expanded vector
+    the expanded matrix, the expanded vector
 
-**Return type**
+    **Return type**
 
-tuple(np.array, np.array)
+    tuple(np.array, np.array)
+  </Function>
 
-### expand\_to\_powerdim
+  ### matrix\_resize
 
-<span id="qiskit.aqua.algorithms.HHL.expand_to_powerdim" />
+  <Function id="qiskit.aqua.algorithms.HHL.matrix_resize" name="matrix_resize" signature="static HHL.matrix_resize(matrix, vector)">
+    Resizes matrix if necessary
 
-`static HHL.expand_to_powerdim(matrix, vector)`
+    **Parameters**
 
-Expand a matrix to the next-larger 2\*\*n dimensional matrix with ones on the diagonal and zeros on the off-diagonal and expand the vector with zeros accordingly.
+    *   **matrix** (*np.array*) – the input matrix of linear system of equations
+    *   **vector** (*np.array*) – the input vector of linear system of equations
 
-**Parameters**
+    **Returns**
 
-*   **matrix** (*np.array*) – the input matrix
-*   **vector** (*np.array*) – the input vector
+    new matrix, vector, truncate\_powerdim, truncate\_hermitian
 
-**Returns**
+    **Return type**
 
-the expanded matrix, the expanded vector
+    tuple
 
-**Return type**
+    **Raises**
 
-tuple(np.array, np.array)
+    **ValueError** – invalid input
+  </Function>
 
-### matrix\_resize
+  ### run
 
-<span id="qiskit.aqua.algorithms.HHL.matrix_resize" />
+  <Function id="qiskit.aqua.algorithms.HHL.run" name="run" signature="HHL.run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-`static HHL.matrix_resize(matrix, vector)`
+    **Parameters**
 
-Resizes matrix if necessary
+    *   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-**Parameters**
+    **Returns**
 
-*   **matrix** (*np.array*) – the input matrix of linear system of equations
-*   **vector** (*np.array*) – the input vector of linear system of equations
+    results of an algorithm.
 
-**Returns**
+    **Return type**
 
-new matrix, vector, truncate\_powerdim, truncate\_hermitian
+    dict
 
-**Return type**
+    **Raises**
 
-tuple
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-**Raises**
+  ### set\_backend
 
-**ValueError** – invalid input
+  <Function id="qiskit.aqua.algorithms.HHL.set_backend" name="set_backend" signature="HHL.set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-### run
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.HHL.run" />
-
-`HHL.run(quantum_instance=None, **kwargs)`
-
-Execute the algorithm with selected backend.
-
-**Parameters**
-
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.HHL.set_backend" />
-
-`HHL.set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

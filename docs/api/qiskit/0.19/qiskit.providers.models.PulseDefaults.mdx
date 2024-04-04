@@ -8,74 +8,74 @@ python_api_name: qiskit.providers.models.PulseDefaults
 
 # PulseDefaults
 
-<span id="qiskit.providers.models.PulseDefaults" />
+<Class id="qiskit.providers.models.PulseDefaults" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/pulsedefaults.py" signature="PulseDefaults(qubit_freq_est, meas_freq_est, buffer, pulse_library, cmd_def, meas_kernel=None, discriminator=None, **kwargs)">
+  Description of default settings for Pulse systems. These are instructions or settings that may be good starting points for the Pulse user. The user may modify these defaults for custom scheduling.
 
-`PulseDefaults(qubit_freq_est, meas_freq_est, buffer, pulse_library, cmd_def, meas_kernel=None, discriminator=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/pulsedefaults.py "view source code")
+  Validate and reformat transport layer inputs to initialize.
 
-Description of default settings for Pulse systems. These are instructions or settings that may be good starting points for the Pulse user. The user may modify these defaults for custom scheduling.
+  **Parameters**
 
-Validate and reformat transport layer inputs to initialize.
+  *   **qubit\_freq\_est** (`List`\[`float`]) – Estimated qubit frequencies in GHz.
+  *   **meas\_freq\_est** (`List`\[`float`]) – Estimated measurement cavity frequencies in GHz.
+  *   **buffer** (`int`) – Default buffer time (in units of dt) between pulses.
+  *   **pulse\_library** (`List`\[[`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem "qiskit.qobj.pulse_qobj.PulseLibraryItem")]) – Pulse name and sample definitions.
+  *   **cmd\_def** (`List`\[[`Command`](qiskit.providers.models.Command "qiskit.providers.models.pulsedefaults.Command")]) – Operation name and definition in terms of Commands.
+  *   **meas\_kernel** (`Optional`\[`MeasurementKernel`]) – The measurement kernels
+  *   **discriminator** (`Optional`\[`Discriminator`]) – The discriminators
+  *   **\*\*kwargs** – Other attributes for the super class.
 
-**Parameters**
+  ## Attributes
 
-*   **qubit\_freq\_est** (`List`\[`float`]) – Estimated qubit frequencies in GHz.
-*   **meas\_freq\_est** (`List`\[`float`]) – Estimated measurement cavity frequencies in GHz.
-*   **buffer** (`int`) – Default buffer time (in units of dt) between pulses.
-*   **pulse\_library** (`List`\[[`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem "qiskit.qobj.pulse_qobj.PulseLibraryItem")]) – Pulse name and sample definitions.
-*   **cmd\_def** (`List`\[[`Command`](qiskit.providers.models.Command "qiskit.providers.models.pulsedefaults.Command")]) – Operation name and definition in terms of Commands.
-*   **meas\_kernel** (`Optional`\[`MeasurementKernel`]) – The measurement kernels
-*   **discriminator** (`Optional`\[`Discriminator`]) – The discriminators
-*   **\*\*kwargs** – Other attributes for the super class.
+  ### circuit\_instruction\_map
 
-## Attributes
+  <Attribute id="qiskit.providers.models.PulseDefaults.circuit_instruction_map" name="circuit_instruction_map">
+    Deprecated property, use `instruction_schedule_map` instead.
+  </Attribute>
 
-### circuit\_instruction\_map
+  ### meas\_freq\_est
 
-Deprecated property, use `instruction_schedule_map` instead.
+  <Attribute id="qiskit.providers.models.PulseDefaults.meas_freq_est">
+    Measurement frequencies in Hertz.
+  </Attribute>
 
-### meas\_freq\_est
+  ### qubit\_freq\_est
 
-Measurement frequencies in Hertz.
+  <Attribute id="qiskit.providers.models.PulseDefaults.qubit_freq_est">
+    Qubit frequencies in Hertz.
+  </Attribute>
 
-### qubit\_freq\_est
+  ## Methods
 
-Qubit frequencies in Hertz.
+  ### from\_dict
 
-## Methods
+  <Function id="qiskit.providers.models.PulseDefaults.from_dict" name="from_dict" signature="classmethod PulseDefaults.from_dict(data)">
+    Create a new PulseDefaults object from a dictionary.
 
-### from\_dict
+    **Parameters**
 
-<span id="qiskit.providers.models.PulseDefaults.from_dict" />
+    **data** (*dict*) – A dictionary representing the PulseDefaults to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.PulseDefaults#to_dict "qiskit.providers.models.PulseDefaults.to_dict").
 
-`classmethod PulseDefaults.from_dict(data)`
+    **Returns**
 
-Create a new PulseDefaults object from a dictionary.
+    The PulseDefaults from the input dictionary.
 
-**Parameters**
+    **Return type**
 
-**data** (*dict*) – A dictionary representing the PulseDefaults to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.PulseDefaults#to_dict "qiskit.providers.models.PulseDefaults.to_dict").
+    [PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+  </Function>
 
-**Returns**
+  ### to\_dict
 
-The PulseDefaults from the input dictionary.
+  <Function id="qiskit.providers.models.PulseDefaults.to_dict" name="to_dict" signature="PulseDefaults.to_dict()">
+    Return a dictionary format representation of the PulseDefaults.
 
-**Return type**
+    **Returns**
 
-[PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+    The dictionary form of the PulseDefaults.
 
-### to\_dict
+    **Return type**
 
-<span id="qiskit.providers.models.PulseDefaults.to_dict" />
-
-`PulseDefaults.to_dict()`
-
-Return a dictionary format representation of the PulseDefaults.
-
-**Returns**
-
-The dictionary form of the PulseDefaults.
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 

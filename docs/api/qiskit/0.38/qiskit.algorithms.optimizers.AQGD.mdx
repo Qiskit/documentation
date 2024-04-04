@@ -8,238 +8,222 @@ python_api_name: qiskit.algorithms.optimizers.AQGD
 
 # AQGD
 
-<span id="qiskit.algorithms.optimizers.AQGD" />
+<Class id="qiskit.algorithms.optimizers.AQGD" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/aqgd.py" signature="AQGD(maxiter=1000, eta=1.0, tol=1e-06, momentum=0.25, param_tol=1e-06, averaging=10)">
+  Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
-`AQGD(maxiter=1000, eta=1.0, tol=1e-06, momentum=0.25, param_tol=1e-06, averaging=10)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/aqgd.py "view source code")
+  Analytic Quantum Gradient Descent (AQGD) with Epochs optimizer. Performs gradient descent optimization with a momentum term, analytic gradients, and customized step length schedule for parameterized quantum gates, i.e. Pauli Rotations. See, for example:
 
-Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
+  *   K. Mitarai, M. Negoro, M. Kitagawa, and K. Fujii. (2018). Quantum circuit learning. Phys. Rev. A 98, 032309. [https://arxiv.org/abs/1803.00745](https://arxiv.org/abs/1803.00745)
+  *   Maria Schuld, Ville Bergholm, Christian Gogolin, Josh Izaac, Nathan Killoran. (2019). Evaluating analytic gradients on quantum hardware. Phys. Rev. A 99, 032331. [https://arxiv.org/abs/1811.11184](https://arxiv.org/abs/1811.11184)
 
-Analytic Quantum Gradient Descent (AQGD) with Epochs optimizer. Performs gradient descent optimization with a momentum term, analytic gradients, and customized step length schedule for parameterized quantum gates, i.e. Pauli Rotations. See, for example:
+  for further details on analytic gradients of parameterized quantum gates.
 
-*   K. Mitarai, M. Negoro, M. Kitagawa, and K. Fujii. (2018). Quantum circuit learning. Phys. Rev. A 98, 032309. [https://arxiv.org/abs/1803.00745](https://arxiv.org/abs/1803.00745)
-*   Maria Schuld, Ville Bergholm, Christian Gogolin, Josh Izaac, Nathan Killoran. (2019). Evaluating analytic gradients on quantum hardware. Phys. Rev. A 99, 032331. [https://arxiv.org/abs/1811.11184](https://arxiv.org/abs/1811.11184)
+  Gradients are computed “analytically” using the quantum circuit when evaluating the objective function.
 
-for further details on analytic gradients of parameterized quantum gates.
+  Performs Analytical Quantum Gradient Descent (AQGD) with Epochs.
 
-Gradients are computed “analytically” using the quantum circuit when evaluating the objective function.
+  **Parameters**
 
-Performs Analytical Quantum Gradient Descent (AQGD) with Epochs.
+  *   **maxiter** (`Union`\[`int`, `List`\[`int`]]) – Maximum number of iterations (full gradient steps)
+  *   **eta** (`Union`\[`float`, `List`\[`float`]]) – The coefficient of the gradient update. Increasing this value results in larger step sizes: param = previous\_param - eta \* deriv
+  *   **tol** (`float`) – Tolerance for change in windowed average of objective values. Convergence occurs when either objective tolerance is met OR parameter tolerance is met.
+  *   **momentum** (`Union`\[`float`, `List`\[`float`]]) – Bias towards the previous gradient momentum in current update. Must be within the bounds: \[0,1)
+  *   **param\_tol** (`float`) – Tolerance for change in norm of parameters.
+  *   **averaging** (`int`) – Length of window over which to average objective values for objective convergence criterion
 
-**Parameters**
+  **Raises**
 
-*   **maxiter** (`Union`\[`int`, `List`\[`int`]]) – Maximum number of iterations (full gradient steps)
-*   **eta** (`Union`\[`float`, `List`\[`float`]]) – The coefficient of the gradient update. Increasing this value results in larger step sizes: param = previous\_param - eta \* deriv
-*   **tol** (`float`) – Tolerance for change in windowed average of objective values. Convergence occurs when either objective tolerance is met OR parameter tolerance is met.
-*   **momentum** (`Union`\[`float`, `List`\[`float`]]) – Bias towards the previous gradient momentum in current update. Must be within the bounds: \[0,1)
-*   **param\_tol** (`float`) – Tolerance for change in norm of parameters.
-*   **averaging** (`int`) – Length of window over which to average objective values for objective convergence criterion
+  [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If the length of `maxiter`, momentum\`, and `eta` is not the same.
 
-**Raises**
+  ## Methods
 
-[**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If the length of `maxiter`, momentum\`, and `eta` is not the same.
+  ### get\_support\_level
 
-## Methods
+  <Function id="qiskit.algorithms.optimizers.AQGD.get_support_level" name="get_support_level" signature="AQGD.get_support_level()">
+    Support level dictionary
 
-### get\_support\_level
+    **Returns**
 
-<span id="qiskit.algorithms.optimizers.AQGD.get_support_level" />
+    **gradient, bounds and initial point**
 
-`AQGD.get_support_level()`
+    support information that is ignored/required.
 
-Support level dictionary
+    **Return type**
 
-**Returns**
+    Dict\[str, int]
+  </Function>
 
-**gradient, bounds and initial point**
+  ### gradient\_num\_diff
 
-support information that is ignored/required.
+  <Function id="qiskit.algorithms.optimizers.AQGD.gradient_num_diff" name="gradient_num_diff" signature="static AQGD.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-**Return type**
+    **Parameters**
 
-Dict\[str, int]
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped
 
-### gradient\_num\_diff
+    **Returns**
 
-<span id="qiskit.algorithms.optimizers.AQGD.gradient_num_diff" />
+    the gradient computed
 
-`static AQGD.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
+    **Return type**
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+    grad
+  </Function>
 
-**Parameters**
+  ### minimize
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped
+  <Function id="qiskit.algorithms.optimizers.AQGD.minimize" name="minimize" signature="AQGD.minimize(fun, x0, jac=None, bounds=None)">
+    Minimize the scalar function.
 
-**Returns**
+    **Parameters**
 
-the gradient computed
+    *   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
+    *   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
+    *   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
+    *   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
 
-**Return type**
+    **Return type**
 
-grad
+    [`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
 
-### minimize
+    **Returns**
 
-<span id="qiskit.algorithms.optimizers.AQGD.minimize" />
+    The result of the optimization, containing e.g. the result as attribute `x`.
+  </Function>
 
-`AQGD.minimize(fun, x0, jac=None, bounds=None)`
+  ### print\_options
 
-Minimize the scalar function.
+  <Function id="qiskit.algorithms.optimizers.AQGD.print_options" name="print_options" signature="AQGD.print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-**Parameters**
+  ### set\_max\_evals\_grouped
 
-*   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
-*   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
-*   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
-*   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+  <Function id="qiskit.algorithms.optimizers.AQGD.set_max_evals_grouped" name="set_max_evals_grouped" signature="AQGD.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-**Return type**
+  ### set\_options
 
-[`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
+  <Function id="qiskit.algorithms.optimizers.AQGD.set_options" name="set_options" signature="AQGD.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-**Returns**
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-The result of the optimization, containing e.g. the result as attribute `x`.
+    **Parameters**
 
-### print\_options
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.AQGD.print_options" />
+  ### wrap\_function
 
-`AQGD.print_options()`
+  <Function id="qiskit.algorithms.optimizers.AQGD.wrap_function" name="wrap_function" signature="static AQGD.wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-Print algorithm-specific options.
+    **Parameters**
 
-### set\_max\_evals\_grouped
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-<span id="qiskit.algorithms.optimizers.AQGD.set_max_evals_grouped" />
+    **Returns**
 
-`AQGD.set_max_evals_grouped(limit)`
+    wrapper
 
-Set max evals grouped
+    **Return type**
 
-### set\_options
+    function\_wrapper
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.AQGD.set_options" />
+  ## Attributes
 
-`AQGD.set_options(**kwargs)`
+  ### bounds\_support\_level
 
-Sets or updates values in the options dictionary.
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
+  ### gradient\_support\_level
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-**kwargs** (*dict*) – options, given as name=value.
+  ### initial\_point\_support\_level
 
-### wrap\_function
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.AQGD.wrap_function" />
+  ### is\_bounds\_ignored
 
-`static AQGD.wrap_function(function, args)`
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-Wrap the function to implicitly inject the args at the call of the function.
+  ### is\_bounds\_required
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
+  ### is\_bounds\_supported
 
-**Returns**
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-wrapper
+  ### is\_gradient\_ignored
 
-**Return type**
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-function\_wrapper
+  ### is\_gradient\_required
 
-## Attributes
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.AQGD.bounds_support_level" />
+  ### is\_gradient\_supported
 
-### bounds\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-Returns bounds support level
+  ### is\_initial\_point\_ignored
 
-<span id="qiskit.algorithms.optimizers.AQGD.gradient_support_level" />
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-### gradient\_support\_level
+  ### is\_initial\_point\_required
 
-Returns gradient support level
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.AQGD.initial_point_support_level" />
+  ### is\_initial\_point\_supported
 
-### initial\_point\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-Returns initial point support level
+  ### setting
 
-<span id="qiskit.algorithms.optimizers.AQGD.is_bounds_ignored" />
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.setting" name="setting">
+    Return setting
+  </Attribute>
 
-### is\_bounds\_ignored
+  ### settings
 
-Returns is bounds ignored
+  <Attribute id="qiskit.algorithms.optimizers.AQGD.settings" name="settings">
+    **Return type**
 
-<span id="qiskit.algorithms.optimizers.AQGD.is_bounds_required" />
-
-### is\_bounds\_required
-
-Returns is bounds required
-
-<span id="qiskit.algorithms.optimizers.AQGD.is_bounds_supported" />
-
-### is\_bounds\_supported
-
-Returns is bounds supported
-
-<span id="qiskit.algorithms.optimizers.AQGD.is_gradient_ignored" />
-
-### is\_gradient\_ignored
-
-Returns is gradient ignored
-
-<span id="qiskit.algorithms.optimizers.AQGD.is_gradient_required" />
-
-### is\_gradient\_required
-
-Returns is gradient required
-
-<span id="qiskit.algorithms.optimizers.AQGD.is_gradient_supported" />
-
-### is\_gradient\_supported
-
-Returns is gradient supported
-
-<span id="qiskit.algorithms.optimizers.AQGD.is_initial_point_ignored" />
-
-### is\_initial\_point\_ignored
-
-Returns is initial point ignored
-
-<span id="qiskit.algorithms.optimizers.AQGD.is_initial_point_required" />
-
-### is\_initial\_point\_required
-
-Returns is initial point required
-
-<span id="qiskit.algorithms.optimizers.AQGD.is_initial_point_supported" />
-
-### is\_initial\_point\_supported
-
-Returns is initial point supported
-
-<span id="qiskit.algorithms.optimizers.AQGD.setting" />
-
-### setting
-
-Return setting
-
-<span id="qiskit.algorithms.optimizers.AQGD.settings" />
-
-### settings
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
+    `Dict`\[`str`, `Any`]
+  </Attribute>
+</Class>
 

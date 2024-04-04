@@ -8,207 +8,197 @@ python_api_name: qiskit.circuit.library.HiddenLinearFunction
 
 # HiddenLinearFunction
 
-<span id="qiskit.circuit.library.HiddenLinearFunction" />
+<Class id="qiskit.circuit.library.HiddenLinearFunction" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/hidden_linear_function.py" signature="HiddenLinearFunction(adjacency_matrix)">
+  Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
-`HiddenLinearFunction(adjacency_matrix)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/hidden_linear_function.py "view source code")
+  Circuit to solve the hidden linear function problem.
 
-Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
+  The 2D Hidden Linear Function problem is determined by a 2D adjacency matrix A, where only elements that are nearest-neighbor on a grid have non-zero entries. Each row/column corresponds to one binary variable $x_i$.
 
-Circuit to solve the hidden linear function problem.
+  The hidden linear function problem is as follows:
 
-The 2D Hidden Linear Function problem is determined by a 2D adjacency matrix A, where only elements that are nearest-neighbor on a grid have non-zero entries. Each row/column corresponds to one binary variable $x_i$.
-
-The hidden linear function problem is as follows:
-
-Consider the quadratic form
+  Consider the quadratic form
 
 $$
 q(x) = \sum_{i,j=1}^{n}{x_i x_j} ~(\mathrm{mod}~ 4)
 $$
 
-and restrict $q(x)$ onto the nullspace of A. This results in a linear function.
+  and restrict $q(x)$ onto the nullspace of A. This results in a linear function.
 
 $$
 2 \sum_{i=1}^{n}{z_i x_i} ~(\mathrm{mod}~ 4)  \forall  x \in \mathrm{Ker}(A)
 $$
 
-and the goal is to recover this linear function (equivalently a vector $[z_0, ..., z_{n-1}]$). There can be multiple solutions.
+  and the goal is to recover this linear function (equivalently a vector $[z_0, ..., z_{n-1}]$). There can be multiple solutions.
 
-In \[1] it is shown that the present circuit solves this problem on a quantum computer in constant depth, whereas any corresponding solution on a classical computer would require circuits that grow logarithmically with $n$. Thus this circuit is an example of quantum advantage with shallow circuits.
+  In \[1] it is shown that the present circuit solves this problem on a quantum computer in constant depth, whereas any corresponding solution on a classical computer would require circuits that grow logarithmically with $n$. Thus this circuit is an example of quantum advantage with shallow circuits.
 
-**Reference Circuit:**
+  **Reference Circuit:**
 
->
+  >
 
-**Reference:**
+  **Reference:**
 
-\[1] S. Bravyi, D. Gosset, R. Koenig, Quantum Advantage with Shallow Circuits, 2017. [arXiv:1704.00690](https://arxiv.org/abs/1704.00690)
+  \[1] S. Bravyi, D. Gosset, R. Koenig, Quantum Advantage with Shallow Circuits, 2017. [arXiv:1704.00690](https://arxiv.org/abs/1704.00690)
 
-Create new HLF circuit.
+  Create new HLF circuit.
 
-**Parameters**
+  **Parameters**
 
-**adjacency\_matrix** (`Union`\[`List`\[`List`\[`int`]], `ndarray`]) – a symmetric n-by-n list of 0-1 lists. n will be the number of qubits.
+  **adjacency\_matrix** (`Union`\[`List`\[`List`\[`int`]], `ndarray`]) – a symmetric n-by-n list of 0-1 lists. n will be the number of qubits.
 
-**Raises**
+  **Raises**
 
-**CircuitError** – If A is not symmetric.
+  **CircuitError** – If A is not symmetric.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.ancillas" />
+  ### ancillas
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **Return type**
 
-**Return type**
+    `List`\[`AncillaQubit`]
+  </Attribute>
 
-`List`\[`AncillaQubit`]
+  ### calibrations
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.calibrations" />
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-### calibrations
+    **The custom pulse definition of a given gate is of the form**
 
-Return calibration dictionary.
+    \{‘gate\_name’: \{(qubits, params): schedule}}
 
-**The custom pulse definition of a given gate is of the form**
+    **Return type**
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+    `dict`
+  </Attribute>
 
-**Return type**
+  ### clbits
 
-`dict`
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.clbits" />
+    **Return type**
 
-### clbits
+    `List`\[`Clbit`]
+  </Attribute>
 
-Returns a list of classical bits in the order that the registers were added.
+  ### data
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.data" name="data">
+    Return the circuit data (instructions and context).
 
-`List`\[`Clbit`]
+    **Returns**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.data" />
+    a list-like object containing the tuples for the circuit’s data.
 
-### data
+    Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
-Return the circuit data (instructions and context).
+    **Return type**
 
-**Returns**
+    QuantumCircuitData
+  </Attribute>
 
-a list-like object containing the tuples for the circuit’s data.
+  ### extension\_lib
 
-Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-**Return type**
+  ### global\_phase
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.extension_lib" />
+    **Return type**
 
-### extension\_lib
+    `Union`\[`ParameterExpression`, `float`]
+  </Attribute>
 
-`= 'include "qelib1.inc";'`
+  ### header
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.global_phase" />
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-### global\_phase
+  ### instances
 
-Return the global phase of the circuit in radians.
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.instances" name="instances" attributeValue="= 9" />
 
-**Return type**
+  ### metadata
 
-`Union`\[`ParameterExpression`, `float`]
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.header" />
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-### header
+    **Return type**
 
-`= 'OPENQASM 2.0;'`
+    `dict`
+  </Attribute>
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.instances" />
+  ### num\_ancillas
 
-### instances
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-`= 9`
+    **Return type**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.metadata" />
+    `int`
+  </Attribute>
 
-### metadata
+  ### num\_clbits
 
-The user provided metadata associated with the circuit
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`dict`
+  ### num\_parameters
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_ancillas" />
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_parameters" name="num_parameters">
+    Convenience function to get the number of parameter objects in the circuit.
 
-### num\_ancillas
+    **Return type**
 
-Return the number of ancilla qubits.
+    `int`
+  </Attribute>
 
-**Return type**
+  ### num\_qubits
 
-`int`
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_qubits" name="num_qubits">
+    Return number of qubits.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_clbits" />
+    **Return type**
 
-### num\_clbits
+    `int`
+  </Attribute>
 
-Return number of classical bits.
+  ### parameters
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.parameters" name="parameters">
+    Convenience function to get the parameters defined in the parameter table.
 
-`int`
+    **Return type**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_parameters" />
+    `ParameterView`
+  </Attribute>
 
-### num\_parameters
+  ### prefix
 
-Convenience function to get the number of parameter objects in the circuit.
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-**Return type**
+  ### qubits
 
-`int`
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_qubits" />
+    **Return type**
 
-### num\_qubits
-
-Return number of qubits.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.parameters" />
-
-### parameters
-
-Convenience function to get the parameters defined in the parameter table.
-
-**Return type**
-
-`ParameterView`
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[`Qubit`]
+    `List`\[`Qubit`]
+  </Attribute>
+</Class>
 

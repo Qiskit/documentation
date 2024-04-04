@@ -8,50 +8,47 @@ python_api_name: qiskit.circuit.library.U3Gate
 
 # U3Gate
 
-<span id="qiskit.circuit.library.U3Gate" />
+<Class id="qiskit.circuit.library.U3Gate" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/u3.py" signature="U3Gate(theta, phi, lam, label=None)">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`U3Gate(theta, phi, lam, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/u3.py "view source code")
+  Generic single-qubit rotation gate with 3 Euler angles.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  <Admonition title="Warning" type="caution">
+    This gate is deprecated. Instead, the following replacements should be used
 
-Generic single-qubit rotation gate with 3 Euler angles.
+$$
+U3(\theta, \phi, \lambda) =  U(\theta, \phi, \lambda)
+$$
 
-<Admonition title="Warning" type="caution">
-  This gate is deprecated. Instead, the following replacements should be used
+    ```python
+    circuit = QuantumCircuit(1)
+    circuit.u(theta, phi, lambda)
+    ```
+  </Admonition>
 
-  $$
-  U3(\theta, \phi, \lambda) =  U(\theta, \phi, \lambda)
-  $$
+  **Circuit symbol:**
 
   ```python
-  circuit = QuantumCircuit(1)
-  circuit.u(theta, phi, lambda)
+       ┌───────────┐
+  q_0: ┤ U3(ϴ,φ,λ) ├
+       └───────────┘
   ```
-</Admonition>
 
-**Circuit symbol:**
-
-```python
-     ┌───────────┐
-q_0: ┤ U3(ϴ,φ,λ) ├
-     └───────────┘
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}U3(\theta, \phi, \lambda) =
-    \begin{pmatrix}
-        \cos\left(\th\right)          & -e^{i\lambda}\sin\left(\th\right) \\
-        e^{i\phi}\sin\left(\th\right) & e^{i(\phi+\lambda)}\cos\left(\th\right)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}U3(\theta, \phi, \lambda) =
+\begin{pmatrix}
+\cos\left(\th\right)          & -e^{i\lambda}\sin\left(\th\right) \\
+e^{i\phi}\sin\left(\th\right) & e^{i(\phi+\lambda)}\cos\left(\th\right)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
-<Admonition title="Note" type="note">
-  The matrix representation shown here differs from the [OpenQASM 2.0 specification](https://doi.org/10.48550/arXiv.1707.03429) by a global phase of $e^{i(\phi+\lambda)/2}$.
-</Admonition>
+  <Admonition title="Note" type="note">
+    The matrix representation shown here differs from the [OpenQASM 2.0 specification](https://doi.org/10.48550/arXiv.1707.03429) by a global phase of $e^{i(\phi+\lambda)/2}$.
+  </Admonition>
 
-**Examples:**
+  **Examples:**
 
 $$
 U3(\theta, \phi, \lambda) = e^{-i \frac{\pi + \theta}{2}} P(\phi + \pi) \sqrt{X}
@@ -66,105 +63,102 @@ $$
 U3(\theta, 0, 0) = RY(\theta)
 $$
 
-Create new U3 gate.
+  Create new U3 gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-<span id="qiskit-circuit-library-u3gate-control" />
+  <span id="qiskit-circuit-library-u3gate-control" />
 
-### control
+  ### control
 
-<span id="qiskit.circuit.library.U3Gate.control" />
+  <Function id="qiskit.circuit.library.U3Gate.control" name="control" signature="U3Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a (multi-)controlled-U3 gate.
 
-`U3Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    **Parameters**
 
-Return a (multi-)controlled-U3 gate.
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-**Parameters**
+    **Returns**
 
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+    controlled version of this gate.
 
-**Returns**
+    **Return type**
 
-controlled version of this gate.
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-**Return type**
+  <span id="qiskit-circuit-library-u3gate-inverse" />
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  ### inverse
 
-<span id="qiskit-circuit-library-u3gate-inverse" />
+  <Function id="qiskit.circuit.library.U3Gate.inverse" name="inverse" signature="U3Gate.inverse()">
+    Return inverted U3 gate.
 
-### inverse
+    $U3(\theta,\phi,\lambda)^{\dagger} =U3(-\theta,-\lambda,-\phi)$)
+  </Function>
 
-<span id="qiskit.circuit.library.U3Gate.inverse" />
+  ## Attributes
 
-`U3Gate.inverse()`
+  ### condition\_bits
 
-Return inverted U3 gate.
+  <Attribute id="qiskit.circuit.library.U3Gate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-$U3(\theta,\phi,\lambda)^{\dagger} =U3(-\theta,-\lambda,-\phi)$)
+  ### decompositions
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.U3Gate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.U3Gate.condition_bits" />
+  ### definition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.U3Gate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get Clbits in condition.
+  ### duration
 
-<span id="qiskit.circuit.library.U3Gate.decompositions" />
+  <Attribute id="qiskit.circuit.library.U3Gate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.U3Gate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.library.U3Gate.definition" />
+  ### name
 
-### definition
+  <Attribute id="qiskit.circuit.library.U3Gate.name" name="name">
+    Return the name.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.U3Gate.duration" />
+  <Attribute id="qiskit.circuit.library.U3Gate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### duration
+  ### num\_qubits
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.U3Gate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.U3Gate.label" />
+  ### params
 
-### label
+  <Attribute id="qiskit.circuit.library.U3Gate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Return instruction label
+  ### unit
 
-<span id="qiskit.circuit.library.U3Gate.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.U3Gate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.U3Gate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.U3Gate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.U3Gate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.U3Gate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

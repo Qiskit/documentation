@@ -8,57 +8,55 @@ python_api_name: qiskit.ignis.verification.calculate_1q_epc
 
 # calculate\_1q\_epc
 
-<span id="qiskit.ignis.verification.calculate_1q_epc" />
+<Function id="qiskit.ignis.verification.calculate_1q_epc" name="calculate_1q_epc" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py" signature="calculate_1q_epc(gate_per_cliff, epg_1q, qubit)">
+  Convert error per gate (EPG) into error per Clifford (EPC) of single qubit basis gates.
 
-`calculate_1q_epc(gate_per_cliff, epg_1q, qubit)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
-
-Convert error per gate (EPG) into error per Clifford (EPC) of single qubit basis gates.
-
-Given that we know the number of gates per Clifford $N_i$ and those EPGs, we can predict EPC of that RB sequence:
+  Given that we know the number of gates per Clifford $N_i$ and those EPGs, we can predict EPC of that RB sequence:
 
 $$
 EPC = 1 - \prod_i \left( 1 - EPG_i \right)^{N_i}
 $$
 
-To run this function, you need to know EPG of every single qubit basis gates. For example, when you prepare 1Q RB experiment with appropriate error model, you can define EPG of those basis gate set. Then you can estimate the EPC of prepared RB sequence without running experiment.
+  To run this function, you need to know EPG of every single qubit basis gates. For example, when you prepare 1Q RB experiment with appropriate error model, you can define EPG of those basis gate set. Then you can estimate the EPC of prepared RB sequence without running experiment.
 
-```python
-import qiskit.ignis.verification.randomized_benchmarking as rb
+  ```python
+  import qiskit.ignis.verification.randomized_benchmarking as rb
 
-# gate counts of your 1Q RB experiment
-gpc = {0: {'cx': 0, 'u1': 0.13, 'u2': 0.31, 'u3': 0.51}}
+  # gate counts of your 1Q RB experiment
+  gpc = {0: {'cx': 0, 'u1': 0.13, 'u2': 0.31, 'u3': 0.51}}
 
-# EPGs from error model
-epgs_q0 = {'u1': 0, 'u2': 0.001, 'u3': 0.002}
+  # EPGs from error model
+  epgs_q0 = {'u1': 0, 'u2': 0.001, 'u3': 0.002}
 
-# calculate 1Q EPC
-epc = rb.rb_utils.calculate_1q_epc(
-    gate_per_cliff=gpc,
-    epg_1q=epgs_q0,
-    qubit=0)
+  # calculate 1Q EPC
+  epc = rb.rb_utils.calculate_1q_epc(
+      gate_per_cliff=gpc,
+      epg_1q=epgs_q0,
+      qubit=0)
 
-print(epc)
-```
+  print(epc)
+  ```
 
-```python
-0.0013302908430798954
-```
+  ```python
+  0.0013302908430798954
+  ```
 
-**Parameters**
+  **Parameters**
 
-*   **gate\_per\_cliff** (`Dict`\[`int`, `Dict`\[`str`, `float`]]) – dictionary of gate per Clifford. see [`gates_per_clifford()`](qiskit.ignis.verification.gates_per_clifford "qiskit.ignis.verification.gates_per_clifford").
-*   **epg\_1q** (`Dict`\[`str`, `float`]) – EPG of single qubit gates estimated by error model.
-*   **qubit** (`int`) – index of qubit to calculate EPC.
+  *   **gate\_per\_cliff** (`Dict`\[`int`, `Dict`\[`str`, `float`]]) – dictionary of gate per Clifford. see [`gates_per_clifford()`](qiskit.ignis.verification.gates_per_clifford "qiskit.ignis.verification.gates_per_clifford").
+  *   **epg\_1q** (`Dict`\[`str`, `float`]) – EPG of single qubit gates estimated by error model.
+  *   **qubit** (`int`) – index of qubit to calculate EPC.
 
-**Return type**
+  **Return type**
 
-`float`
+  `float`
 
-**Returns**
+  **Returns**
 
-EPG of 2Q gate.
+  EPG of 2Q gate.
 
-**Raises**
+  **Raises**
 
-**QiskitError** – when specified `qubit` is not included in the gate count dictionary
+  **QiskitError** – when specified `qubit` is not included in the gate count dictionary
+</Function>
 

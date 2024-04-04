@@ -8,106 +8,94 @@ python_api_name: qiskit.transpiler.FlowController
 
 # qiskit.transpiler.FlowController
 
-<span id="qiskit.transpiler.FlowController" />
+<Class id="qiskit.transpiler.FlowController" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/runningpassmanager.py" signature="FlowController(passes, options, **partial_controller)">
+  Base class for multiple types of working list.
 
-`FlowController(passes, options, **partial_controller)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/runningpassmanager.py "view source code")
+  This class is a base class for multiple types of working list. When you iterate on it, it returns the next pass to run.
 
-Base class for multiple types of working list.
+  ### \_\_init\_\_
 
-This class is a base class for multiple types of working list. When you iterate on it, it returns the next pass to run.
+  <Function id="qiskit.transpiler.FlowController.__init__" name="__init__" signature="__init__(passes, options, **partial_controller)">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.transpiler.FlowController.__init__" />
+  |                                                                                                                                                         |                                                                                     |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.transpiler.FlowController.__init__ "qiskit.transpiler.FlowController.__init__")(passes, options, \*\*partial\_controller)          | Initialize self.                                                                    |
+  | [`add_flow_controller`](#qiskit.transpiler.FlowController.add_flow_controller "qiskit.transpiler.FlowController.add_flow_controller")(name, controller) | Adds a flow controller.                                                             |
+  | [`controller_factory`](#qiskit.transpiler.FlowController.controller_factory "qiskit.transpiler.FlowController.controller_factory")(passes, options, …)  | Constructs a flow controller based on the partially evaluated controller arguments. |
+  | [`dump_passes`](#qiskit.transpiler.FlowController.dump_passes "qiskit.transpiler.FlowController.dump_passes")()                                         | Fetches the passes added to this flow controller.                                   |
+  | [`remove_flow_controller`](#qiskit.transpiler.FlowController.remove_flow_controller "qiskit.transpiler.FlowController.remove_flow_controller")(name)    | Removes a flow controller.                                                          |
 
-`__init__(passes, options, **partial_controller)`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |                          |   |
+  | ------------------------ | - |
+  | `registered_controllers` |   |
 
-## Methods
+  ### add\_flow\_controller
 
-|                                                                                                                                                         |                                                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.transpiler.FlowController.__init__ "qiskit.transpiler.FlowController.__init__")(passes, options, \*\*partial\_controller)          | Initialize self.                                                                    |
-| [`add_flow_controller`](#qiskit.transpiler.FlowController.add_flow_controller "qiskit.transpiler.FlowController.add_flow_controller")(name, controller) | Adds a flow controller.                                                             |
-| [`controller_factory`](#qiskit.transpiler.FlowController.controller_factory "qiskit.transpiler.FlowController.controller_factory")(passes, options, …)  | Constructs a flow controller based on the partially evaluated controller arguments. |
-| [`dump_passes`](#qiskit.transpiler.FlowController.dump_passes "qiskit.transpiler.FlowController.dump_passes")()                                         | Fetches the passes added to this flow controller.                                   |
-| [`remove_flow_controller`](#qiskit.transpiler.FlowController.remove_flow_controller "qiskit.transpiler.FlowController.remove_flow_controller")(name)    | Removes a flow controller.                                                          |
+  <Function id="qiskit.transpiler.FlowController.add_flow_controller" name="add_flow_controller" signature="classmethod add_flow_controller(name, controller)">
+    Adds a flow controller.
 
-## Attributes
+    **Parameters**
 
-|                          |   |
-| ------------------------ | - |
-| `registered_controllers` |   |
+    *   **name** (*string*) – Name of the controller to add.
+    *   **controller** (*type(*[*FlowController*](#qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")*)*) – The class implementing a flow controller.
+  </Function>
 
-### add\_flow\_controller
+  ### controller\_factory
 
-<span id="qiskit.transpiler.FlowController.add_flow_controller" />
+  <Function id="qiskit.transpiler.FlowController.controller_factory" name="controller_factory" signature="classmethod controller_factory(passes, options, **partial_controller)">
+    Constructs a flow controller based on the partially evaluated controller arguments.
 
-`classmethod add_flow_controller(name, controller)`
+    **Parameters**
 
-Adds a flow controller.
+    *   **passes** (*list\[BasePass]*) – passes to add to the flow controller.
+    *   **options** (*dict*) – PassManager options.
+    *   **\*\*partial\_controller** (*dict*) – Partially evaluated controller arguments in the form \{name:partial}
 
-**Parameters**
+    **Raises**
 
-*   **name** (*string*) – Name of the controller to add.
-*   **controller** (*type(*[*FlowController*](#qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")*)*) – The class implementing a flow controller.
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When partial\_controller is not well-formed.
 
-### controller\_factory
+    **Returns**
 
-<span id="qiskit.transpiler.FlowController.controller_factory" />
+    A FlowController instance.
 
-`classmethod controller_factory(passes, options, **partial_controller)`
+    **Return type**
 
-Constructs a flow controller based on the partially evaluated controller arguments.
+    [FlowController](#qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")
+  </Function>
 
-**Parameters**
+  ### dump\_passes
 
-*   **passes** (*list\[BasePass]*) – passes to add to the flow controller.
-*   **options** (*dict*) – PassManager options.
-*   **\*\*partial\_controller** (*dict*) – Partially evaluated controller arguments in the form \{name:partial}
+  <Function id="qiskit.transpiler.FlowController.dump_passes" name="dump_passes" signature="dump_passes()">
+    Fetches the passes added to this flow controller.
 
-**Raises**
+    **Returns**
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When partial\_controller is not well-formed.
+    \{‘options’: self.options, ‘passes’: \[passes], ‘type’: type(self)}
 
-**Returns**
+    **Return type**
 
-A FlowController instance.
+    dict
+  </Function>
 
-**Return type**
+  ### remove\_flow\_controller
 
-[FlowController](#qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")
+  <Function id="qiskit.transpiler.FlowController.remove_flow_controller" name="remove_flow_controller" signature="classmethod remove_flow_controller(name)">
+    Removes a flow controller.
 
-### dump\_passes
+    **Parameters**
 
-<span id="qiskit.transpiler.FlowController.dump_passes" />
+    **name** (*string*) – Name of the controller to remove.
 
-`dump_passes()`
+    **Raises**
 
-Fetches the passes added to this flow controller.
-
-**Returns**
-
-\{‘options’: self.options, ‘passes’: \[passes], ‘type’: type(self)}
-
-**Return type**
-
-dict
-
-### remove\_flow\_controller
-
-<span id="qiskit.transpiler.FlowController.remove_flow_controller" />
-
-`classmethod remove_flow_controller(name)`
-
-Removes a flow controller.
-
-**Parameters**
-
-**name** (*string*) – Name of the controller to remove.
-
-**Raises**
-
-**KeyError** – If the controller to remove was not registered.
+    **KeyError** – If the controller to remove was not registered.
+  </Function>
+</Class>
 

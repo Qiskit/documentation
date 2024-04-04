@@ -8,111 +8,99 @@ python_api_name: qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCod
 
 # qiskit.aqua.components.multiclass\_extensions.ErrorCorrectingCode
 
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode" />
+<Class id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py" signature="ErrorCorrectingCode(code_size=4)">
+  The Error Correcting Code multiclass extension.
 
-`ErrorCorrectingCode(code_size=4)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py "view source code")
+  Error Correcting Code (ECC) is an ensemble method designed for the multiclass classification problem. As for the other multiclass methods, the task is to decide one label from $k > 2$ possible choices.
 
-The Error Correcting Code multiclass extension.
+  |       |           |       |       |       |       |       |
+  | ----- | --------- | ----- | ----- | ----- | ----- | ----- |
+  | Class | Code Word |       |       |       |       |       |
+  |       | $f_0$     | $f_1$ | $f_2$ | $f_3$ | $f_4$ | $f_5$ |
+  | 1     | 0         | 1     | 0     | 1     | 0     | 1     |
+  | 2     | 1         | 0     | 0     | 1     | 0     | 0     |
+  | 3     | 1         | 1     | 1     | 0     | 0     | 0     |
 
-Error Correcting Code (ECC) is an ensemble method designed for the multiclass classification problem. As for the other multiclass methods, the task is to decide one label from $k > 2$ possible choices.
+  The table above shows a 6-bit ECC for a 3-class problem. Each class is assigned a unique binary string of length 6. The string is also called a **codeword**. For example, class 2 has codeword `100100`. During training, one binary classifier is learned for each column. For example, for the first column, ECC builds a binary classifier to separate $\{2, 3\}$ from $\{1\}$. Thus, 6 binary classifiers are trained in this way. To classify a new data point $\mathbf{x}$, all 6 binary classifiers are evaluated to obtain a 6-bit string. Finally, we choose the class whose bitstring is closest to $\mathbf{x}$’s output string as the predicted label. This implementation of ECC uses the Euclidean distance.
 
-|       |           |       |       |       |       |       |
-| ----- | --------- | ----- | ----- | ----- | ----- | ----- |
-| Class | Code Word |       |       |       |       |       |
-|       | $f_0$     | $f_1$ | $f_2$ | $f_3$ | $f_4$ | $f_5$ |
-| 1     | 0         | 1     | 0     | 1     | 0     | 1     |
-| 2     | 1         | 0     | 0     | 1     | 0     | 0     |
-| 3     | 1         | 1     | 1     | 0     | 0     | 0     |
+  **Parameters**
 
-The table above shows a 6-bit ECC for a 3-class problem. Each class is assigned a unique binary string of length 6. The string is also called a **codeword**. For example, class 2 has codeword `100100`. During training, one binary classifier is learned for each column. For example, for the first column, ECC builds a binary classifier to separate $\{2, 3\}$ from $\{1\}$. Thus, 6 binary classifiers are trained in this way. To classify a new data point $\mathbf{x}$, all 6 binary classifiers are evaluated to obtain a 6-bit string. Finally, we choose the class whose bitstring is closest to $\mathbf{x}$’s output string as the predicted label. This implementation of ECC uses the Euclidean distance.
+  **code\_size** (`int`) – Size of error correcting code
 
-**Parameters**
+  ### \_\_init\_\_
 
-**code\_size** (`int`) – Size of error correcting code
+  <Function id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.__init__" name="__init__" signature="__init__(code_size=4)">
+    **Parameters**
 
-### \_\_init\_\_
+    **code\_size** (`int`) – Size of error correcting code
+  </Function>
 
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.__init__" />
+  ## Methods
 
-`__init__(code_size=4)`
+  |                                                                                                                                                                                                                |                                                                                                                                                                                                                                         |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.__init__ "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.__init__")(\[code\_size])                            | **type code\_size**`int`                                                                                                                                                                                                                |
+  | [`predict`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.predict "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.predict")(x)                                           | Applying multiple estimators for prediction.                                                                                                                                                                                            |
+  | [`set_estimator`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.set_estimator "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.set_estimator")(estimator\_cls\[, params]) | Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator |
+  | [`test`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test")(x, y)                                                 | Testing multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                  |
+  | [`train`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train")(x, y)                                              | Training multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                 |
 
-**Parameters**
+  ### predict
 
-**code\_size** (`int`) – Size of error correcting code
+  <Function id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.predict" name="predict" signature="predict(x)">
+    Applying multiple estimators for prediction.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                                                                |                                                                                                                                                                                                                                         |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.__init__ "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.__init__")(\[code\_size])                            | **type code\_size**`int`                                                                                                                                                                                                                |
-| [`predict`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.predict "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.predict")(x)                                           | Applying multiple estimators for prediction.                                                                                                                                                                                            |
-| [`set_estimator`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.set_estimator "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.set_estimator")(estimator\_cls\[, params]) | Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator |
-| [`test`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test")(x, y)                                                 | Testing multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                  |
-| [`train`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train")(x, y)                                              | Training multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                 |
+    **x** (*numpy.ndarray*) – NxD array
 
-### predict
+    **Returns**
 
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.predict" />
+    predicted labels, Nx1 array
 
-`predict(x)`
+    **Return type**
 
-Applying multiple estimators for prediction.
+    numpy.ndarray
+  </Function>
 
-**Parameters**
+  ### set\_estimator
 
-**x** (*numpy.ndarray*) – NxD array
+  <Function id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.set_estimator" name="set_estimator" signature="set_estimator(estimator_cls, params=None)">
+    Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
 
-**Returns**
+    **Return type**
 
-predicted labels, Nx1 array
+    `None`
+  </Function>
 
-**Return type**
+  ### test
 
-numpy.ndarray
+  <Function id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test" name="test" signature="test(x, y)">
+    Testing multiple estimators each for distinguishing a pair of classes.
 
-### set\_estimator
+    **Parameters**
 
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.set_estimator" />
+    *   **x** (*numpy.ndarray*) – input points
+    *   **y** (*numpy.ndarray*) – input labels
 
-`set_estimator(estimator_cls, params=None)`
+    **Returns**
 
-Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
+    accuracy
 
-**Return type**
+    **Return type**
 
-`None`
+    float
+  </Function>
 
-### test
+  ### train
 
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test" />
+  <Function id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train" name="train" signature="train(x, y)">
+    Training multiple estimators each for distinguishing a pair of classes.
 
-`test(x, y)`
+    **Parameters**
 
-Testing multiple estimators each for distinguishing a pair of classes.
-
-**Parameters**
-
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
-
-**Returns**
-
-accuracy
-
-**Return type**
-
-float
-
-### train
-
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train" />
-
-`train(x, y)`
-
-Training multiple estimators each for distinguishing a pair of classes.
-
-**Parameters**
-
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
+    *   **x** (*numpy.ndarray*) – input points
+    *   **y** (*numpy.ndarray*) – input labels
+  </Function>
+</Class>
 

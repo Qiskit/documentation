@@ -8,244 +8,234 @@ python_api_name: qiskit.circuit.library.IntegerComparator
 
 # IntegerComparator
 
-<span id="qiskit.circuit.library.IntegerComparator" />
+<Class id="qiskit.circuit.library.IntegerComparator" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/arithmetic/integer_comparator.py" signature="IntegerComparator(num_state_qubits=None, value=None, geq=True, name='cmp')">
+  Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 
-`IntegerComparator(num_state_qubits=None, value=None, geq=True, name='cmp')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/arithmetic/integer_comparator.py "view source code")
+  Integer Comparator.
 
-Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
-
-Integer Comparator.
-
-Operator compares basis states $|i\rangle_n$ against a classically given integer $L$ of fixed value and flips a target qubit if $i \geq L$ (or $<$ depending on the parameter `geq`):
+  Operator compares basis states $|i\rangle_n$ against a classically given integer $L$ of fixed value and flips a target qubit if $i \geq L$ (or $<$ depending on the parameter `geq`):
 
 $$
 |i\rangle_n |0\rangle \mapsto |i\rangle_n |i \geq L\rangle
 $$
 
-This operation is based on two’s complement implementation of binary subtraction but only uses carry bits and no actual result bits. If the most significant carry bit (the results bit) is 1, the $\geq$ condition is `True` otherwise it is `False`.
+  This operation is based on two’s complement implementation of binary subtraction but only uses carry bits and no actual result bits. If the most significant carry bit (the results bit) is 1, the $\geq$ condition is `True` otherwise it is `False`.
 
-Create a new fixed value comparator circuit.
+  Create a new fixed value comparator circuit.
 
-**Parameters**
+  **Parameters**
 
-*   **num\_state\_qubits** (`Optional`\[`int`]) – Number of state qubits. If this is set it will determine the number of qubits required for the circuit.
-*   **value** (`Optional`\[`int`]) – The fixed value to compare with.
-*   **geq** (`bool`) – If True, evaluate a `>=` condition, else `<`.
-*   **name** (`str`) – Name of the circuit.
+  *   **num\_state\_qubits** (`Optional`\[`int`]) – Number of state qubits. If this is set it will determine the number of qubits required for the circuit.
+  *   **value** (`Optional`\[`int`]) – The fixed value to compare with.
+  *   **geq** (`bool`) – If True, evaluate a `>=` condition, else `<`.
+  *   **name** (`str`) – Name of the circuit.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.IntegerComparator.ancillas" />
+  ### ancillas
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.IntegerComparator.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **Return type**
 
-**Return type**
+    `List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  </Attribute>
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  ### calibrations
 
-<span id="qiskit.circuit.library.IntegerComparator.calibrations" />
+  <Attribute id="qiskit.circuit.library.IntegerComparator.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-### calibrations
+    **The custom pulse definition of a given gate is of the form**
 
-Return calibration dictionary.
+    \{‘gate\_name’: \{(qubits, params): schedule}}
 
-**The custom pulse definition of a given gate is of the form**
+    **Return type**
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+    `dict`
+  </Attribute>
 
-**Return type**
+  ### clbits
 
-`dict`
+  <Attribute id="qiskit.circuit.library.IntegerComparator.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-<span id="qiskit.circuit.library.IntegerComparator.clbits" />
+    **Return type**
 
-### clbits
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-Returns a list of classical bits in the order that the registers were added.
+  ### data
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.IntegerComparator.data" name="data" />
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  ### extension\_lib
 
-<span id="qiskit.circuit.library.IntegerComparator.data" />
+  <Attribute id="qiskit.circuit.library.IntegerComparator.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-### data
+  ### geq
 
-<span id="qiskit.circuit.library.IntegerComparator.extension_lib" />
+  <Attribute id="qiskit.circuit.library.IntegerComparator.geq" name="geq">
+    Return whether the comparator compares greater or less equal.
 
-### extension\_lib
+    **Return type**
 
-`= 'include "qelib1.inc";'`
+    `bool`
 
-<span id="qiskit.circuit.library.IntegerComparator.geq" />
+    **Returns**
 
-### geq
+    True, if the comparator compares `>=`, False if `<`.
+  </Attribute>
 
-Return whether the comparator compares greater or less equal.
+  ### global\_phase
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.IntegerComparator.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-`bool`
+    **Return type**
 
-**Returns**
+    `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  </Attribute>
 
-True, if the comparator compares `>=`, False if `<`.
+  ### header
 
-<span id="qiskit.circuit.library.IntegerComparator.global_phase" />
+  <Attribute id="qiskit.circuit.library.IntegerComparator.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-### global\_phase
+  ### instances
 
-Return the global phase of the circuit in radians.
+  <Attribute id="qiskit.circuit.library.IntegerComparator.instances" name="instances" attributeValue="= 94" />
 
-**Return type**
+  ### metadata
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  <Attribute id="qiskit.circuit.library.IntegerComparator.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-<span id="qiskit.circuit.library.IntegerComparator.header" />
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-### header
+    **Return type**
 
-`= 'OPENQASM 2.0;'`
+    `dict`
+  </Attribute>
 
-<span id="qiskit.circuit.library.IntegerComparator.instances" />
+  ### num\_ancilla\_qubits
 
-### instances
+  <Attribute id="qiskit.circuit.library.IntegerComparator.num_ancilla_qubits" name="num_ancilla_qubits">
+    Deprecated. Use num\_ancillas instead.
+  </Attribute>
 
-`= 94`
+  ### num\_ancillas
 
-<span id="qiskit.circuit.library.IntegerComparator.metadata" />
+  <Attribute id="qiskit.circuit.library.IntegerComparator.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-### metadata
+    **Return type**
 
-The user provided metadata associated with the circuit
+    `int`
+  </Attribute>
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  ### num\_clbits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.IntegerComparator.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-`dict`
+    **Return type**
 
-<span id="qiskit.circuit.library.IntegerComparator.num_ancilla_qubits" />
+    `int`
+  </Attribute>
 
-### num\_ancilla\_qubits
+  ### num\_parameters
 
-Deprecated. Use num\_ancillas instead.
+  <Attribute id="qiskit.circuit.library.IntegerComparator.num_parameters" name="num_parameters">
+    **Return type**
 
-<span id="qiskit.circuit.library.IntegerComparator.num_ancillas" />
+    `int`
+  </Attribute>
 
-### num\_ancillas
+  ### num\_qubits
 
-Return the number of ancilla qubits.
+  <Attribute id="qiskit.circuit.library.IntegerComparator.num_qubits" name="num_qubits">
+    Return number of qubits.
 
-**Return type**
+    **Return type**
 
-`int`
+    `int`
+  </Attribute>
 
-<span id="qiskit.circuit.library.IntegerComparator.num_clbits" />
+  ### num\_state\_qubits
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.IntegerComparator.num_state_qubits" name="num_state_qubits">
+    The number of qubits encoding the state for the comparison.
 
-Return number of classical bits.
+    **Return type**
 
-**Return type**
+    `int`
 
-`int`
+    **Returns**
 
-<span id="qiskit.circuit.library.IntegerComparator.num_parameters" />
+    The number of state qubits.
+  </Attribute>
 
-### num\_parameters
+  ### op\_start\_times
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.IntegerComparator.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-`int`
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-<span id="qiskit.circuit.library.IntegerComparator.num_qubits" />
+    **Return type**
 
-### num\_qubits
+    `List`\[`int`]
 
-Return number of qubits.
+    **Returns**
 
-**Return type**
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-`int`
+    **Raises**
 
-<span id="qiskit.circuit.library.IntegerComparator.num_state_qubits" />
+    **AttributeError** – When circuit is not scheduled.
+  </Attribute>
 
-### num\_state\_qubits
+  ### parameters
 
-The number of qubits encoding the state for the comparison.
+  <Attribute id="qiskit.circuit.library.IntegerComparator.parameters" name="parameters">
+    **Return type**
 
-**Return type**
+    `ParameterView`
+  </Attribute>
 
-`int`
+  ### prefix
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.IntegerComparator.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-The number of state qubits.
+  ### qregs
 
-<span id="qiskit.circuit.library.IntegerComparator.op_start_times" />
+  <Attribute id="qiskit.circuit.library.IntegerComparator.qregs" name="qregs">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-### op\_start\_times
+  ### qubits
 
-Return a list of operation start times.
+  <Attribute id="qiskit.circuit.library.IntegerComparator.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    **Return type**
 
-**Return type**
+    `List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+  </Attribute>
 
-`List`\[`int`]
+  ### value
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.IntegerComparator.value" name="value">
+    The value to compare the qubit register to.
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    **Return type**
 
-**Raises**
+    `int`
 
-**AttributeError** – When circuit is not scheduled.
+    **Returns**
 
-<span id="qiskit.circuit.library.IntegerComparator.parameters" />
-
-### parameters
-
-**Return type**
-
-`ParameterView`
-
-<span id="qiskit.circuit.library.IntegerComparator.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.IntegerComparator.qregs" />
-
-### qregs
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.IntegerComparator.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
-
-<span id="qiskit.circuit.library.IntegerComparator.value" />
-
-### value
-
-The value to compare the qubit register to.
-
-**Return type**
-
-`int`
-
-**Returns**
-
-The value against which the value of the qubit register is compared.
+    The value against which the value of the qubit register is compared.
+  </Attribute>
+</Class>
 

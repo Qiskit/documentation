@@ -8,144 +8,142 @@ python_api_name: qiskit.compiler.transpile
 
 # qiskit.compiler.transpile
 
-<span id="qiskit.compiler.transpile" />
+<Function id="qiskit.compiler.transpile" name="transpile" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/compiler/transpiler.py" signature="transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=1.0, timing_constraints=None, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False)">
+  Transpile one or more circuits, according to some desired transpilation targets.
 
-`transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=1.0, timing_constraints=None, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/compiler/transpiler.py "view source code")
+  <Admonition title="Deprecated since version 0.23.0" type="danger">
+    Previously, all arguments accepted lists of the same length as `circuits`, which was used to specialize arguments for circuits at the corresponding indices. Support for using such argument lists is now deprecated and will be removed in the 0.25.0 release. If you need to use multiple values for an argument, you can use multiple [`transpile()`](#qiskit.compiler.transpile "qiskit.compiler.transpile") calls (and potentially [`parallel_map()`](qiskit.tools.parallel_map "qiskit.tools.parallel_map") to leverage multiprocessing if needed).
+  </Admonition>
 
-Transpile one or more circuits, according to some desired transpilation targets.
+  Transpilation is done in parallel using multiprocessing.
 
-<Admonition title="Deprecated since version 0.23.0" type="danger">
-  Previously, all arguments accepted lists of the same length as `circuits`, which was used to specialize arguments for circuits at the corresponding indices. Support for using such argument lists is now deprecated and will be removed in the 0.25.0 release. If you need to use multiple values for an argument, you can use multiple [`transpile()`](#qiskit.compiler.transpile "qiskit.compiler.transpile") calls (and potentially [`parallel_map()`](qiskit.tools.parallel_map "qiskit.tools.parallel_map") to leverage multiprocessing if needed).
-</Admonition>
+  **Parameters**
 
-Transpilation is done in parallel using multiprocessing.
+  *   **circuits** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – Circuit(s) to transpile
 
-**Parameters**
+  *   **backend** (`Optional`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")]) – If set, the transpiler will compile the input circuit to this target device. If any other option is explicitly set (e.g., `coupling_map`), it will override the backend’s.
 
-*   **circuits** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – Circuit(s) to transpile
+  *   **basis\_gates** (`Optional`\[`List`\[`str`]]) – List of basis gate names to unroll to (e.g: `['u1', 'u2', 'u3', 'cx']`). If `None`, do not unroll.
 
-*   **backend** (`Optional`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")]) – If set, the transpiler will compile the input circuit to this target device. If any other option is explicitly set (e.g., `coupling_map`), it will override the backend’s.
+  *   **inst\_map** (`Optional`\[`List`\[[`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")]]) – Mapping of unrolled gates to pulse schedules. If this is not provided, transpiler tries to get from the backend. If any user defined calibration is found in the map and this is used in a circuit, transpiler attaches the custom gate definition to the circuit. This enables one to flexibly override the low-level instruction implementation. This feature is available iff the backend supports the pulse gate experiment.
 
-*   **basis\_gates** (`Optional`\[`List`\[`str`]]) – List of basis gate names to unroll to (e.g: `['u1', 'u2', 'u3', 'cx']`). If `None`, do not unroll.
+  *   **coupling\_map** (`Union`\[[`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.coupling.CouplingMap"), `List`\[`List`\[`int`]], `None`]) –
 
-*   **inst\_map** (`Optional`\[`List`\[[`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")]]) – Mapping of unrolled gates to pulse schedules. If this is not provided, transpiler tries to get from the backend. If any user defined calibration is found in the map and this is used in a circuit, transpiler attaches the custom gate definition to the circuit. This enables one to flexibly override the low-level instruction implementation. This feature is available iff the backend supports the pulse gate experiment.
+      Directed coupling map (perhaps custom) to target in mapping. If the coupling map is symmetric, both directions need to be specified.
 
-*   **coupling\_map** (`Union`\[[`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.coupling.CouplingMap"), `List`\[`List`\[`int`]], `None`]) –
+      Multiple formats are supported:
 
-    Directed coupling map (perhaps custom) to target in mapping. If the coupling map is symmetric, both directions need to be specified.
+      1.  `CouplingMap` instance
+      2.  List, must be given as an adjacency matrix, where each entry specifies all directed two-qubit interactions supported by backend, e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
 
-    Multiple formats are supported:
+  *   **backend\_properties** (`Optional`\[[`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.backendproperties.BackendProperties")]) – properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc. Find a backend that provides this information with: `backend.properties()`
 
-    1.  `CouplingMap` instance
-    2.  List, must be given as an adjacency matrix, where each entry specifies all directed two-qubit interactions supported by backend, e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
+  *   **initial\_layout** (`Union`\[[`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.layout.Layout"), `Dict`, `List`, `None`]) –
 
-*   **backend\_properties** (`Optional`\[[`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.backendproperties.BackendProperties")]) – properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc. Find a backend that provides this information with: `backend.properties()`
+      Initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the coupling\_map constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler may permute qubits through swaps or other means. Multiple formats are supported:
 
-*   **initial\_layout** (`Union`\[[`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.layout.Layout"), `Dict`, `List`, `None`]) –
+      1.  `Layout` instance
 
-    Initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the coupling\_map constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler may permute qubits through swaps or other means. Multiple formats are supported:
+      2.  Dict \* virtual to physical:
 
-    1.  `Layout` instance
+          ```python
+          {qr[0]: 0,
+           qr[1]: 3,
+           qr[2]: 5}
+          ```
 
-    2.  Dict \* virtual to physical:
+          *   physical to virtual:
 
-        ```python
-        {qr[0]: 0,
-         qr[1]: 3,
-         qr[2]: 5}
-        ```
+              ```python
+              {0: qr[0],
+               3: qr[1],
+               5: qr[2]}
+              ```
 
-        *   physical to virtual:
+      3.  List
 
-            ```python
-            {0: qr[0],
-             3: qr[1],
-             5: qr[2]}
-            ```
+          *   virtual to physical:
 
-    3.  List
+              ```python
+              [0, 3, 5]  # virtual qubits are ordered (in addition to named)
+              ```
 
-        *   virtual to physical:
+          *   physical to virtual:
 
-            ```python
-            [0, 3, 5]  # virtual qubits are ordered (in addition to named)
-            ```
+              ```python
+              [qr[0], None, None, qr[1], None, qr[2]]
+              ```
 
-        *   physical to virtual:
+  *   **layout\_method** (`Optional`\[`str`]) – Name of layout selection pass (‘trivial’, ‘dense’, ‘noise\_adaptive’, ‘sabre’). This can also be the external plugin name to use for the `layout` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"layout"` for the `stage_name` argument.
 
-            ```python
-            [qr[0], None, None, qr[1], None, qr[2]]
-            ```
+  *   **routing\_method** (`Optional`\[`str`]) – Name of routing pass (‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’, ‘none’). Note This can also be the external plugin name to use for the `routing` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"routing"` for the `stage_name` argument.
 
-*   **layout\_method** (`Optional`\[`str`]) – Name of layout selection pass (‘trivial’, ‘dense’, ‘noise\_adaptive’, ‘sabre’). This can also be the external plugin name to use for the `layout` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"layout"` for the `stage_name` argument.
+  *   **translation\_method** (`Optional`\[`str`]) – Name of translation pass (‘unroller’, ‘translator’, ‘synthesis’) This can also be the external plugin name to use for the `translation` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"translation"` for the `stage_name` argument.
 
-*   **routing\_method** (`Optional`\[`str`]) – Name of routing pass (‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’, ‘none’). Note This can also be the external plugin name to use for the `routing` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"routing"` for the `stage_name` argument.
+  *   **scheduling\_method** (`Optional`\[`str`]) – Name of scheduling pass. \* `'as_soon_as_possible'`: Schedule instructions greedily, as early as possible on a qubit resource. (alias: `'asap'`) \* `'as_late_as_possible'`: Schedule instructions late, i.e. keeping qubits in the ground state when possible. (alias: `'alap'`) If `None`, no scheduling will be done. This can also be the external plugin name to use for the `scheduling` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"scheduling"` for the `stage_name` argument.
 
-*   **translation\_method** (`Optional`\[`str`]) – Name of translation pass (‘unroller’, ‘translator’, ‘synthesis’) This can also be the external plugin name to use for the `translation` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"translation"` for the `stage_name` argument.
+  *   **instruction\_durations** (`Union`\[`List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]], `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]]]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`]], [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.instruction_durations.InstructionDurations"), `None`]) – Durations of instructions. Applicable only if scheduling\_method is specified. The gate lengths defined in `backend.properties` are used as default. They are overwritten if this `instruction_durations` is specified. The format of `instruction_durations` must be as follows. The instruction\_durations must be given as a list of tuples \[(instruction\_name, qubits, duration, unit), …]. | \[(‘cx’, \[0, 1], 12.3, ‘ns’), (‘u3’, \[0], 4.56, ‘ns’)] | \[(‘cx’, \[0, 1], 1000), (‘u3’, \[0], 300)] If unit is omitted, the default is ‘dt’, which is a sample time depending on backend. If the time unit is ‘dt’, the duration must be an integer.
 
-*   **scheduling\_method** (`Optional`\[`str`]) – Name of scheduling pass. \* `'as_soon_as_possible'`: Schedule instructions greedily, as early as possible on a qubit resource. (alias: `'asap'`) \* `'as_late_as_possible'`: Schedule instructions late, i.e. keeping qubits in the ground state when possible. (alias: `'alap'`) If `None`, no scheduling will be done. This can also be the external plugin name to use for the `scheduling` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"scheduling"` for the `stage_name` argument.
+  *   **dt** (`Optional`\[`float`]) – Backend sample time (resolution) in seconds. If `None` (default), `backend.configuration().dt` is used.
 
-*   **instruction\_durations** (`Union`\[`List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]], `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]]]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`]], [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.instruction_durations.InstructionDurations"), `None`]) – Durations of instructions. Applicable only if scheduling\_method is specified. The gate lengths defined in `backend.properties` are used as default. They are overwritten if this `instruction_durations` is specified. The format of `instruction_durations` must be as follows. The instruction\_durations must be given as a list of tuples \[(instruction\_name, qubits, duration, unit), …]. | \[(‘cx’, \[0, 1], 12.3, ‘ns’), (‘u3’, \[0], 4.56, ‘ns’)] | \[(‘cx’, \[0, 1], 1000), (‘u3’, \[0], 300)] If unit is omitted, the default is ‘dt’, which is a sample time depending on backend. If the time unit is ‘dt’, the duration must be an integer.
+  *   **approximation\_degree** (*float*) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
 
-*   **dt** (`Optional`\[`float`]) – Backend sample time (resolution) in seconds. If `None` (default), `backend.configuration().dt` is used.
+  *   **timing\_constraints** (`Optional`\[`Dict`\[`str`, `int`]]) –
 
-*   **approximation\_degree** (*float*) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
+      An optional control hardware restriction on instruction time resolution. A quantum computer backend may report a set of restrictions, namely:
 
-*   **timing\_constraints** (`Optional`\[`Dict`\[`str`, `int`]]) –
+      *   granularity: An integer value representing minimum pulse gate resolution in units of `dt`. A user-defined pulse gate should have duration of a multiple of this granularity value.
+      *   min\_length: An integer value representing minimum pulse gate length in units of `dt`. A user-defined pulse gate should be longer than this length.
+      *   pulse\_alignment: An integer value representing a time resolution of gate instruction starting time. Gate instruction should start at time which is a multiple of the alignment value.
+      *   acquire\_alignment: An integer value representing a time resolution of measure instruction starting time. Measure instruction should start at time which is a multiple of the alignment value.
 
-    An optional control hardware restriction on instruction time resolution. A quantum computer backend may report a set of restrictions, namely:
+      This information will be provided by the backend configuration. If the backend doesn’t have any restriction on the instruction time allocation, then `timing_constraints` is None and no adjustment will be performed.
 
-    *   granularity: An integer value representing minimum pulse gate resolution in units of `dt`. A user-defined pulse gate should have duration of a multiple of this granularity value.
-    *   min\_length: An integer value representing minimum pulse gate length in units of `dt`. A user-defined pulse gate should be longer than this length.
-    *   pulse\_alignment: An integer value representing a time resolution of gate instruction starting time. Gate instruction should start at time which is a multiple of the alignment value.
-    *   acquire\_alignment: An integer value representing a time resolution of measure instruction starting time. Measure instruction should start at time which is a multiple of the alignment value.
+  *   **seed\_transpiler** (`Optional`\[`int`]) – Sets random seed for the stochastic parts of the transpiler
 
-    This information will be provided by the backend configuration. If the backend doesn’t have any restriction on the instruction time allocation, then `timing_constraints` is None and no adjustment will be performed.
+  *   **optimization\_level** (`Optional`\[`int`]) – How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer transpilation time. \* 0: no optimization \* 1: light optimization \* 2: heavy optimization \* 3: even heavier optimization If `None`, level 1 will be chosen as default.
 
-*   **seed\_transpiler** (`Optional`\[`int`]) – Sets random seed for the stochastic parts of the transpiler
+  *   **callback** (`Optional`\[`Callable`\[\[`BasePass`, [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit"), `float`, [`PropertySet`](qiskit.transpiler.PropertySet "qiskit.transpiler.propertyset.PropertySet"), `int`], `Any`]]) –
 
-*   **optimization\_level** (`Optional`\[`int`]) – How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer transpilation time. \* 0: no optimization \* 1: light optimization \* 2: heavy optimization \* 3: even heavier optimization If `None`, level 1 will be chosen as default.
+      A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments, | `pass_`: the pass being run. | `dag`: the dag output of the pass. | `time`: the time to execute the pass. | `property_set`: the property set. | `count`: the index for the pass execution. The exact arguments passed expose the internals of the pass manager, and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases, be sure to check that the arguments being passed are the same. To use the callback feature, define a function that will take in kwargs dict and access the variables. For example:
 
-*   **callback** (`Optional`\[`Callable`\[\[`BasePass`, [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit"), `float`, [`PropertySet`](qiskit.transpiler.PropertySet "qiskit.transpiler.propertyset.PropertySet"), `int`], `Any`]]) –
+      ```python
+      def callback_func(**kwargs):
+          pass_ = kwargs['pass_']
+          dag = kwargs['dag']
+          time = kwargs['time']
+          property_set = kwargs['property_set']
+          count = kwargs['count']
+          ...
+      transpile(circ, callback=callback_func)
+      ```
 
-    A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments, | `pass_`: the pass being run. | `dag`: the dag output of the pass. | `time`: the time to execute the pass. | `property_set`: the property set. | `count`: the index for the pass execution. The exact arguments passed expose the internals of the pass manager, and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases, be sure to check that the arguments being passed are the same. To use the callback feature, define a function that will take in kwargs dict and access the variables. For example:
+  *   **output\_name** (`Union`\[`str`, `List`\[`str`], `None`]) – A list with strings to identify the output circuits. The length of the list should be exactly the length of the `circuits` parameter.
 
-    ```python
-    def callback_func(**kwargs):
-        pass_ = kwargs['pass_']
-        dag = kwargs['dag']
-        time = kwargs['time']
-        property_set = kwargs['property_set']
-        count = kwargs['count']
-        ...
-    transpile(circ, callback=callback_func)
-    ```
+  *   **unitary\_synthesis\_method** (*str*) – The name of the unitary synthesis method to use. By default ‘default’ is used, which is the only method included with qiskit. If you have installed any unitary synthesis plugins you can use the name exported by the plugin.
 
-*   **output\_name** (`Union`\[`str`, `List`\[`str`], `None`]) – A list with strings to identify the output circuits. The length of the list should be exactly the length of the `circuits` parameter.
+  *   **unitary\_synthesis\_plugin\_config** (`Optional`\[`dict`]) – An optional configuration dictionary that will be passed directly to the unitary synthesis plugin. By default this setting will have no effect as the default unitary synthesis method does not take custom configuration. This should only be necessary when a unitary synthesis plugin is specified with the `unitary_synthesis` argument. As this is custom for each unitary synthesis plugin refer to the plugin documentation for how to use this option.
 
-*   **unitary\_synthesis\_method** (*str*) – The name of the unitary synthesis method to use. By default ‘default’ is used, which is the only method included with qiskit. If you have installed any unitary synthesis plugins you can use the name exported by the plugin.
+  *   **target** (`Optional`\[[`Target`](qiskit.transpiler.Target "qiskit.transpiler.target.Target")]) – A backend transpiler target. Normally this is specified as part of the `backend` argument, but if you have manually constructed a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object you can specify it manually here. This will override the target from `backend`.
 
-*   **unitary\_synthesis\_plugin\_config** (`Optional`\[`dict`]) – An optional configuration dictionary that will be passed directly to the unitary synthesis plugin. By default this setting will have no effect as the default unitary synthesis method does not take custom configuration. This should only be necessary when a unitary synthesis plugin is specified with the `unitary_synthesis` argument. As this is custom for each unitary synthesis plugin refer to the plugin documentation for how to use this option.
+  *   **hls\_config** (`Optional`\[`HLSConfig`]) – An optional configuration class `HLSConfig` that will be passed directly to `HighLevelSynthesis` transformation pass. This configuration class allows to specify for various high-level objects the lists of synthesis algorithms and their parameters.
 
-*   **target** (`Optional`\[[`Target`](qiskit.transpiler.Target "qiskit.transpiler.target.Target")]) – A backend transpiler target. Normally this is specified as part of the `backend` argument, but if you have manually constructed a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object you can specify it manually here. This will override the target from `backend`.
+  *   **init\_method** (`Optional`\[`str`]) – The plugin name to use for the `init` stage. By default an external plugin is not used. You can see a list of installed plugins by using [`list_stage_plugins()`](qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"init"` for the stage name argument.
 
-*   **hls\_config** (`Optional`\[`HLSConfig`]) – An optional configuration class `HLSConfig` that will be passed directly to `HighLevelSynthesis` transformation pass. This configuration class allows to specify for various high-level objects the lists of synthesis algorithms and their parameters.
+  *   **optimization\_method** (`Optional`\[`str`]) – The plugin name to use for the `optimization` stage. By default an external plugin is not used. You can see a list of installed plugins by using [`list_stage_plugins()`](qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"optimization"` for the `stage_name` argument.
 
-*   **init\_method** (`Optional`\[`str`]) – The plugin name to use for the `init` stage. By default an external plugin is not used. You can see a list of installed plugins by using [`list_stage_plugins()`](qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"init"` for the stage name argument.
+  *   **ignore\_backend\_supplied\_default\_methods** (`bool`) – If set to `True` any default methods specified by a backend will be ignored. Some backends specify alternative default methods to support custom compilation target-specific passes/plugins which support backend-specific compilation techniques. If you’d prefer that these defaults were not used this option is used to disable those backend-specific defaults.
 
-*   **optimization\_method** (`Optional`\[`str`]) – The plugin name to use for the `optimization` stage. By default an external plugin is not used. You can see a list of installed plugins by using [`list_stage_plugins()`](qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"optimization"` for the `stage_name` argument.
+  **Return type**
 
-*   **ignore\_backend\_supplied\_default\_methods** (`bool`) – If set to `True` any default methods specified by a backend will be ignored. Some backends specify alternative default methods to support custom compilation target-specific passes/plugins which support backend-specific compilation techniques. If you’d prefer that these defaults were not used this option is used to disable those backend-specific defaults.
+  `Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]
 
-**Return type**
+  **Returns**
 
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]
+  The transpiled circuit(s).
 
-**Returns**
+  **Raises**
 
-The transpiled circuit(s).
-
-**Raises**
-
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – in case of bad inputs to transpiler (like conflicting parameters) or errors in passes
+  [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – in case of bad inputs to transpiler (like conflicting parameters) or errors in passes
+</Function>
 

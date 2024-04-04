@@ -8,51 +8,49 @@ python_api_name: qiskit.visualization.plot_state_paulivec
 
 # qiskit.visualization.plot\_state\_paulivec
 
-<span id="qiskit.visualization.plot_state_paulivec" />
+<Function id="qiskit.visualization.plot_state_paulivec" name="plot_state_paulivec" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/visualization/state_visualization.py" signature="plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, rho=None)">
+  Plot the paulivec representation of a quantum state.
 
-`plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, rho=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/visualization/state_visualization.py "view source code")
+  Plot a bargraph of the mixed state rho over the pauli matrices
 
-Plot the paulivec representation of a quantum state.
+  **Parameters**
 
-Plot a bargraph of the mixed state rho over the pauli matrices
+  *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
+  *   **title** (*str*) – a string that represents the plot title
+  *   **figsize** (*tuple*) – Figure size in inches.
+  *   **color** (*list or str*) – Color of the expectation value bars.
+  *   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
 
-**Parameters**
+  **Returns**
 
-*   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
-*   **title** (*str*) – a string that represents the plot title
-*   **figsize** (*tuple*) – Figure size in inches.
-*   **color** (*list or str*) – Color of the expectation value bars.
-*   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
+  The matplotlib.Figure of the visualization if the `ax` kwarg is not set
 
-**Returns**
+  **Return type**
 
-The matplotlib.Figure of the visualization if the `ax` kwarg is not set
+  matplotlib.Figure
 
-**Return type**
+  **Raises**
 
-matplotlib.Figure
+  *   **ImportError** – Requires matplotlib.
+  *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
-**Raises**
+  **Example**
 
-*   **ImportError** – Requires matplotlib.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit.quantum_info import Statevector
+  from qiskit.visualization import plot_state_paulivec
+  %matplotlib inline
 
-**Example**
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0, 1)
 
-```python
-from qiskit import QuantumCircuit
-from qiskit.quantum_info import Statevector
-from qiskit.visualization import plot_state_paulivec
-%matplotlib inline
+  state = Statevector.from_instruction(qc)
+  plot_state_paulivec(state, color='midnightblue',
+       title="New PauliVec plot")
+  ```
 
-qc = QuantumCircuit(2)
-qc.h(0)
-qc.cx(0, 1)
-
-state = Statevector.from_instruction(qc)
-plot_state_paulivec(state, color='midnightblue',
-     title="New PauliVec plot")
-```
-
-![../\_images/qiskit.visualization.plot\_state\_paulivec\_0\_0.png](/images/api/qiskit/0.26/qiskit.visualization.plot_state_paulivec_0_0.png) ![../\_images/qiskit.visualization.plot\_state\_paulivec\_0\_1.png](/images/api/qiskit/0.26/qiskit.visualization.plot_state_paulivec_0_1.png)
+  ![../\_images/qiskit.visualization.plot\_state\_paulivec\_0\_0.png](/images/api/qiskit/0.26/qiskit.visualization.plot_state_paulivec_0_0.png) ![../\_images/qiskit.visualization.plot\_state\_paulivec\_0\_1.png](/images/api/qiskit/0.26/qiskit.visualization.plot_state_paulivec_0_1.png)
+</Function>
 

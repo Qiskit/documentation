@@ -8,43 +8,33 @@ python_api_name: qiskit_ibm_runtime.options.PecOptions
 
 # PecOptions
 
-<span id="qiskit_ibm_runtime.options.PecOptions" />
+<Class id="qiskit_ibm_runtime.options.PecOptions" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.22/qiskit_ibm_runtime/options/pec_options.py#L20-L41" signature="PecOptions(*args, **kwargs)">
+  Probabalistic error cancellation mitigation options.
 
-`PecOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.22/qiskit_ibm_runtime/options/pec_options.py#L20-L41 "view source code")
+  **Parameters**
 
-Probabalistic error cancellation mitigation options.
+  *   **max\_overhead** – The maximum circuit sampling overhead allowed, or `None` for no maximum. Default: 100.
 
-**Parameters**
+  *   **noise\_gain** –
 
-*   **max\_overhead** – The maximum circuit sampling overhead allowed, or `None` for no maximum. Default: 100.
+      The amount by which to scale the noise, where:
 
-*   **noise\_gain** –
+      *   A value of one corresponds to attempting to remove all of the noise.
+      *   A value greater than one corresponds to injecting noise.
+      *   A value between 0 and 1 corresponds to partially removing the noise.
 
-    The amount by which to scale the noise, where:
+      If “auto”, the value will be chosen automatically based on the input PUBs. Default: “auto”.
 
-    *   A value of one corresponds to attempting to remove all of the noise.
-    *   A value greater than one corresponds to injecting noise.
-    *   A value between 0 and 1 corresponds to partially removing the noise.
+  ## Attributes
 
-    If “auto”, the value will be chosen automatically based on the input PUBs. Default: “auto”.
+  ### max\_overhead
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.options.PecOptions.max_overhead" name="max_overhead" attributeTypeHint="UnsetType | float | None" attributeValue="= Unset" />
 
-<span id="qiskit_ibm_runtime.options.PecOptions.max_overhead" />
+  ### noise\_gain
 
-### max\_overhead
+  <Attribute id="qiskit_ibm_runtime.options.PecOptions.noise_gain" name="noise_gain" attributeTypeHint="UnsetType | float | Literal['auto']" attributeValue="= Unset" />
 
-`UnsetType | float | None`
-
-`= Unset`
-
-<span id="qiskit_ibm_runtime.options.PecOptions.noise_gain" />
-
-### noise\_gain
-
-`UnsetType | float | Literal['auto']`
-
-`= Unset`
-
-## Methods
+  ## Methods
+</Class>
 

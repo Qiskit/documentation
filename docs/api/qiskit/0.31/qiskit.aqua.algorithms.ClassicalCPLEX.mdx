@@ -8,54 +8,50 @@ python_api_name: qiskit.aqua.algorithms.ClassicalCPLEX
 
 # ClassicalCPLEX
 
-<span id="qiskit.aqua.algorithms.ClassicalCPLEX" />
+<Class id="qiskit.aqua.algorithms.ClassicalCPLEX" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/cplex/classical_cplex.py" signature="ClassicalCPLEX(operator, timelimit=600, thread=1, display=2)">
+  Bases: `qiskit.aqua.algorithms.classical_algorithm.ClassicalAlgorithm`
 
-`ClassicalCPLEX(operator, timelimit=600, thread=1, display=2)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/cplex/classical_cplex.py "view source code")
+  The Classical CPLEX algorithm (classical).
 
-Bases: `qiskit.aqua.algorithms.classical_algorithm.ClassicalAlgorithm`
+  This algorithm uses the IBM ILOG CPLEX Optimization Studio along with its separately installed Python API to solve optimization problems modeled as an Ising Hamiltonian.
 
-The Classical CPLEX algorithm (classical).
+  See these `installation instructions` if you need more information in that regard.
 
-This algorithm uses the IBM ILOG CPLEX Optimization Studio along with its separately installed Python API to solve optimization problems modeled as an Ising Hamiltonian.
+  **Parameters**
 
-See these `installation instructions` if you need more information in that regard.
+  *   **operator** (`WeightedPauliOperator`) – The Ising Hamiltonian as an Operator
+  *   **timelimit** (`int`) – A time limit in seconds for the execution
+  *   **thread** (`int`) – The number of threads that CPLEX uses. Setting this 0 lets CPLEX decide the number of threads to allocate, but this may not be ideal for small problems for which the default of 1 is more suitable.
+  *   **display** (`int`) – Decides what CPLEX reports to the screen and records in a log during mixed integer optimization. This value must be between 0 and 5 where the amount of information displayed increases with increasing values of this parameter.
 
-**Parameters**
+  ## Methods
 
-*   **operator** (`WeightedPauliOperator`) – The Ising Hamiltonian as an Operator
-*   **timelimit** (`int`) – A time limit in seconds for the execution
-*   **thread** (`int`) – The number of threads that CPLEX uses. Setting this 0 lets CPLEX decide the number of threads to allocate, but this may not be ideal for small problems for which the default of 1 is more suitable.
-*   **display** (`int`) – Decides what CPLEX reports to the screen and records in a log during mixed integer optimization. This value must be between 0 and 5 where the amount of information displayed increases with increasing values of this parameter.
+  ### run
 
-## Methods
+  <Function id="qiskit.aqua.algorithms.ClassicalCPLEX.run" name="run" signature="ClassicalCPLEX.run()">
+    Execute the classical algorithm.
 
-### run
+    **Returns**
 
-<span id="qiskit.aqua.algorithms.ClassicalCPLEX.run" />
+    results of an algorithm.
 
-`ClassicalCPLEX.run()`
+    **Return type**
 
-Execute the classical algorithm.
+    dict
+  </Function>
 
-**Returns**
+  ## Attributes
 
-results of an algorithm.
+  ### random
 
-**Return type**
+  <Attribute id="qiskit.aqua.algorithms.ClassicalCPLEX.random" name="random">
+    Return a numpy random.
+  </Attribute>
 
-dict
+  ### solution
 
-## Attributes
-
-<span id="qiskit.aqua.algorithms.ClassicalCPLEX.random" />
-
-### random
-
-Return a numpy random.
-
-<span id="qiskit.aqua.algorithms.ClassicalCPLEX.solution" />
-
-### solution
-
-return solution
+  <Attribute id="qiskit.aqua.algorithms.ClassicalCPLEX.solution" name="solution">
+    return solution
+  </Attribute>
+</Class>
 

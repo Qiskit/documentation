@@ -8,26 +8,24 @@ python_api_name: qiskit.pulse.transforms.add_implicit_acquires
 
 # qiskit.pulse.transforms.add\_implicit\_acquires
 
-<span id="qiskit.pulse.transforms.add_implicit_acquires" />
+<Function id="qiskit.pulse.transforms.add_implicit_acquires" name="add_implicit_acquires" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/transforms/canonicalization.py" signature="add_implicit_acquires(schedule, meas_map)">
+  Return a new schedule with implicit acquires from the measurement mapping replaced by explicit ones.
 
-`add_implicit_acquires(schedule, meas_map)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/transforms/canonicalization.py "view source code")
+  <Admonition title="Warning" type="caution">
+    Since new acquires are being added, Memory Slots will be set to match the qubit index. This may overwrite your specification.
+  </Admonition>
 
-Return a new schedule with implicit acquires from the measurement mapping replaced by explicit ones.
+  **Parameters**
 
-<Admonition title="Warning" type="caution">
-  Since new acquires are being added, Memory Slots will be set to match the qubit index. This may overwrite your specification.
-</Admonition>
+  *   **schedule** (`Union`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]) – Schedule to be aligned.
+  *   **meas\_map** (`List`\[`List`\[`int`]]) – List of lists of qubits that are measured together.
 
-**Parameters**
+  **Return type**
 
-*   **schedule** (`Union`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]) – Schedule to be aligned.
-*   **meas\_map** (`List`\[`List`\[`int`]]) – List of lists of qubits that are measured together.
+  [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 
-**Return type**
+  **Returns**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
-
-**Returns**
-
-A `Schedule` with the additional acquisition instructions.
+  A `Schedule` with the additional acquisition instructions.
+</Function>
 

@@ -8,265 +8,241 @@ python_api_name: qiskit.aqua.operators.legacy.MatrixOperator
 
 # MatrixOperator
 
-<span id="qiskit.aqua.operators.legacy.MatrixOperator" />
+<Class id="qiskit.aqua.operators.legacy.MatrixOperator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/matrix_operator.py" signature="MatrixOperator(matrix, basis=None, z2_symmetries=None, atol=1e-12, name=None)">
+  Bases: `qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator`
 
-`MatrixOperator(matrix, basis=None, z2_symmetries=None, atol=1e-12, name=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+  Operators relevant for quantum applications
 
-Bases: `qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator`
+  <Admonition title="Note" type="note">
+    For grouped paulis representation, all operations will always convert it to paulis and then convert it back. (It might be a performance issue.)
+  </Admonition>
 
-Operators relevant for quantum applications
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  For grouped paulis representation, all operations will always convert it to paulis and then convert it back. (It might be a performance issue.)
-</Admonition>
+  *   **matrix** (*numpy.ndarray or scipy.sparse.csr\_matrix*) – a 2-D sparse matrix represents operator (using CSR format internally)
+  *   **basis** (*list\[tuple(object, \[int])], optional*) – the grouping basis, each element is a tuple composed of the basis and the indices to paulis which are belonged to that group. e.g., if tpb basis is used, the object will be a pauli. by default, the group is equal to non-grouping, each pauli is its own basis.
+  *   **z2\_symmetries** ([*Z2Symmetries*](qiskit.aqua.operators.legacy.Z2Symmetries "qiskit.aqua.operators.legacy.Z2Symmetries")) – represent the Z2 symmetries
+  *   **atol** (*float*) – atol
+  *   **name** (*str*) – name
 
-**Parameters**
+  ## Methods
 
-*   **matrix** (*numpy.ndarray or scipy.sparse.csr\_matrix*) – a 2-D sparse matrix represents operator (using CSR format internally)
-*   **basis** (*list\[tuple(object, \[int])], optional*) – the grouping basis, each element is a tuple composed of the basis and the indices to paulis which are belonged to that group. e.g., if tpb basis is used, the object will be a pauli. by default, the group is equal to non-grouping, each pauli is its own basis.
-*   **z2\_symmetries** ([*Z2Symmetries*](qiskit.aqua.operators.legacy.Z2Symmetries "qiskit.aqua.operators.legacy.Z2Symmetries")) – represent the Z2 symmetries
-*   **atol** (*float*) – atol
-*   **name** (*str*) – name
+  ### add
 
-## Methods
+  <Function id="qiskit.aqua.operators.legacy.MatrixOperator.add" name="add" signature="MatrixOperator.add(other, copy=False)" />
 
-### add
+  ### chop
 
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.add" />
+  <Function id="qiskit.aqua.operators.legacy.MatrixOperator.chop" name="chop" signature="MatrixOperator.chop(threshold=None, copy=False)">
+    Eliminate the real and imagine part of coeff in each pauli by threshold. If pauli’s coeff is less then threshold in both real and imagine parts, the pauli is removed. To align the internal representations, all available representations are chopped. The chopped result is stored back to original property. Note: if coeff is real-only, the imag part is skipped.
 
-`MatrixOperator.add(other, copy=False)`
+    **Parameters**
 
-### chop
+    *   **threshold** (*float*) – threshold chops the paulis
+    *   **copy** (*bool*) – copy or self
 
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.chop" />
+    **Returns**
 
-`MatrixOperator.chop(threshold=None, copy=False)`
+    self or copy
 
-Eliminate the real and imagine part of coeff in each pauli by threshold. If pauli’s coeff is less then threshold in both real and imagine parts, the pauli is removed. To align the internal representations, all available representations are chopped. The chopped result is stored back to original property. Note: if coeff is real-only, the imag part is skipped.
+    **Return type**
 
-**Parameters**
+    [MatrixOperator](qiskit.aqua.operators.legacy.MatrixOperator "qiskit.aqua.operators.legacy.MatrixOperator")
+  </Function>
 
-*   **threshold** (*float*) – threshold chops the paulis
-*   **copy** (*bool*) – copy or self
+  ### construct\_evaluation\_circuit
 
-**Returns**
+  <Function id="qiskit.aqua.operators.legacy.MatrixOperator.construct_evaluation_circuit" name="construct_evaluation_circuit" signature="MatrixOperator.construct_evaluation_circuit(wave_function, statevector_mode=True, use_simulator_snapshot_mode=None, circuit_name_prefix='')">
+    Construct the circuits for evaluation.
 
-self or copy
+    **Parameters**
 
-**Return type**
+    *   **wave\_function** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit.
+    *   **statevector\_mode** (*bool*) – mode
+    *   **use\_simulator\_snapshot\_mode** (*bool*) – uses simulator operator mode
+    *   **circuit\_name\_prefix** (*str, optional*) – a prefix of circuit name
 
-[MatrixOperator](qiskit.aqua.operators.legacy.MatrixOperator "qiskit.aqua.operators.legacy.MatrixOperator")
+    **Returns**
 
-### construct\_evaluation\_circuit
+    **the circuits for computing the expectation of the operator over**
 
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.construct_evaluation_circuit" />
+    the wavefunction evaluation.
 
-`MatrixOperator.construct_evaluation_circuit(wave_function, statevector_mode=True, use_simulator_snapshot_mode=None, circuit_name_prefix='')`
+    **Return type**
 
-Construct the circuits for evaluation.
+    list\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+  </Function>
 
-**Parameters**
+  ### copy
 
-*   **wave\_function** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit.
-*   **statevector\_mode** (*bool*) – mode
-*   **use\_simulator\_snapshot\_mode** (*bool*) – uses simulator operator mode
-*   **circuit\_name\_prefix** (*str, optional*) – a prefix of circuit name
+  <Function id="qiskit.aqua.operators.legacy.MatrixOperator.copy" name="copy" signature="MatrixOperator.copy()">
+    Get a copy of self.
+  </Function>
 
-**Returns**
+  ### evaluate\_with\_result
 
-**the circuits for computing the expectation of the operator over**
+  <Function id="qiskit.aqua.operators.legacy.MatrixOperator.evaluate_with_result" name="evaluate_with_result" signature="MatrixOperator.evaluate_with_result(result, statevector_mode=True, use_simulator_snapshot_mode=None, circuit_name_prefix='')">
+    Use the executed result with operator to get the evaluated value.
 
-the wavefunction evaluation.
+    **Parameters**
 
-**Return type**
+    *   **result** (*qiskit.Result*) – the result from the backend
+    *   **statevector\_mode** (*bool*) – mode
+    *   **use\_simulator\_snapshot\_mode** (*bool*) – uses simulator operator mode
+    *   **circuit\_name\_prefix** (*str, optional*) – a prefix of circuit name
 
-list\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+    **Returns**
 
-### copy
+    the mean value float: the standard deviation
 
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.copy" />
+    **Return type**
 
-`MatrixOperator.copy()`
+    float
 
-Get a copy of self.
+    **Raises**
 
-### evaluate\_with\_result
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+  </Function>
 
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.evaluate_with_result" />
+  ### evaluate\_with\_statevector
 
-`MatrixOperator.evaluate_with_result(result, statevector_mode=True, use_simulator_snapshot_mode=None, circuit_name_prefix='')`
+  <Function id="qiskit.aqua.operators.legacy.MatrixOperator.evaluate_with_statevector" name="evaluate_with_statevector" signature="MatrixOperator.evaluate_with_statevector(quantum_state)">
+    **Parameters**
 
-Use the executed result with operator to get the evaluated value.
+    **quantum\_state** (*numpy.ndarray*) – quantum state
 
-**Parameters**
+    **Returns**
 
-*   **result** (*qiskit.Result*) – the result from the backend
-*   **statevector\_mode** (*bool*) – mode
-*   **use\_simulator\_snapshot\_mode** (*bool*) – uses simulator operator mode
-*   **circuit\_name\_prefix** (*str, optional*) – a prefix of circuit name
+    the mean value float: the standard deviation
 
-**Returns**
+    **Return type**
 
-the mean value float: the standard deviation
+    float
 
-**Return type**
+    **Raises**
 
-float
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+  </Function>
 
-**Raises**
+  ### evolve
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+  <Function id="qiskit.aqua.operators.legacy.MatrixOperator.evolve" name="evolve" signature="MatrixOperator.evolve(state_in, evo_time=0, num_time_slices=0, expansion_mode='trotter', expansion_order=1)">
+    Carry out the eoh evolution for the operator under supplied specifications.
 
-### evaluate\_with\_statevector
+    **Parameters**
 
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.evaluate_with_statevector" />
+    *   **state\_in** (*Union(list,numpy.array)*) – A vector representing the initial state for the evolution
+    *   **evo\_time** (*Union(complex, float)*) – The evolution time
+    *   **num\_time\_slices** (*int*) – The number of time slices for the expansion
+    *   **expansion\_mode** (*str*) – The mode under which the expansion is to be done. Currently support ‘trotter’, which follows the expansion as discussed in [http://science.sciencemag.org/content/273/5278/1073](http://science.sciencemag.org/content/273/5278/1073), and ‘suzuki’, which corresponds to the discussion in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf)
+    *   **expansion\_order** (*int*) – The order for suzuki expansion
 
-`MatrixOperator.evaluate_with_statevector(quantum_state)`
+    **Returns**
 
-**Parameters**
+    Return the matrix vector multiplication result.
 
-**quantum\_state** (*numpy.ndarray*) – quantum state
+    **Return type**
 
-**Returns**
+    numpy.array
 
-the mean value float: the standard deviation
+    **Raises**
 
-**Return type**
+    *   **ValueError** – Invalid arguments
+    *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+  </Function>
 
-float
+  ### is\_empty
 
-**Raises**
+  <Function id="qiskit.aqua.operators.legacy.MatrixOperator.is_empty" name="is_empty" signature="MatrixOperator.is_empty()">
+    Check Operator is empty or not.
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+    **Returns**
 
-### evolve
+    is empty?
 
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.evolve" />
+    **Return type**
 
-`MatrixOperator.evolve(state_in, evo_time=0, num_time_slices=0, expansion_mode='trotter', expansion_order=1)`
+    bool
+  </Function>
 
-Carry out the eoh evolution for the operator under supplied specifications.
+  ### print\_details
 
-**Parameters**
+  <Function id="qiskit.aqua.operators.legacy.MatrixOperator.print_details" name="print_details" signature="MatrixOperator.print_details()">
+    **Returns**
 
-*   **state\_in** (*Union(list,numpy.array)*) – A vector representing the initial state for the evolution
-*   **evo\_time** (*Union(complex, float)*) – The evolution time
-*   **num\_time\_slices** (*int*) – The number of time slices for the expansion
-*   **expansion\_mode** (*str*) – The mode under which the expansion is to be done. Currently support ‘trotter’, which follows the expansion as discussed in [http://science.sciencemag.org/content/273/5278/1073](http://science.sciencemag.org/content/273/5278/1073), and ‘suzuki’, which corresponds to the discussion in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf)
-*   **expansion\_order** (*int*) – The order for suzuki expansion
+    a formatted operator.
 
-**Returns**
+    **Return type**
 
-Return the matrix vector multiplication result.
+    str
+  </Function>
 
-**Return type**
+  ### sub
 
-numpy.array
+  <Function id="qiskit.aqua.operators.legacy.MatrixOperator.sub" name="sub" signature="MatrixOperator.sub(other, copy=False)" />
 
-**Raises**
+  ### to\_opflow
 
-*   **ValueError** – Invalid arguments
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+  <Function id="qiskit.aqua.operators.legacy.MatrixOperator.to_opflow" name="to_opflow" signature="MatrixOperator.to_opflow()">
+    to op flow
+  </Function>
 
-### is\_empty
+  ## Attributes
 
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.is_empty" />
+  ### atol
 
-`MatrixOperator.is_empty()`
+  <Attribute id="qiskit.aqua.operators.legacy.MatrixOperator.atol" name="atol">
+    return atol
+  </Attribute>
 
-Check Operator is empty or not.
+  ### basis
 
-**Returns**
+  <Attribute id="qiskit.aqua.operators.legacy.MatrixOperator.basis" name="basis">
+    returns basis
+  </Attribute>
 
-is empty?
+  ### dense\_matrix
 
-**Return type**
+  <Attribute id="qiskit.aqua.operators.legacy.MatrixOperator.dense_matrix" name="dense_matrix">
+    Getter of matrix in dense matrix form.
+  </Attribute>
 
-bool
+  ### dia\_matrix
 
-### print\_details
+  <Attribute id="qiskit.aqua.operators.legacy.MatrixOperator.dia_matrix" name="dia_matrix">
+    diagonal matrix
+  </Attribute>
 
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.print_details" />
+  ### matrix
 
-`MatrixOperator.print_details()`
+  <Attribute id="qiskit.aqua.operators.legacy.MatrixOperator.matrix" name="matrix">
+    Getter of matrix.
+  </Attribute>
 
-**Returns**
+  ### name
 
-a formatted operator.
+  <Attribute id="qiskit.aqua.operators.legacy.MatrixOperator.name" name="name">
+    returns name
+  </Attribute>
 
-**Return type**
+  ### num\_qubits
 
-str
+  <Attribute id="qiskit.aqua.operators.legacy.MatrixOperator.num_qubits" name="num_qubits">
+    number of qubits required for the operator.
 
-### sub
+    **Returns**
 
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.sub" />
+    number of qubits
 
-`MatrixOperator.sub(other, copy=False)`
+    **Return type**
 
-### to\_opflow
+    int
+  </Attribute>
 
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.to_opflow" />
+  ### z2\_symmetries
 
-`MatrixOperator.to_opflow()`
-
-to op flow
-
-## Attributes
-
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.atol" />
-
-### atol
-
-return atol
-
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.basis" />
-
-### basis
-
-returns basis
-
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.dense_matrix" />
-
-### dense\_matrix
-
-Getter of matrix in dense matrix form.
-
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.dia_matrix" />
-
-### dia\_matrix
-
-diagonal matrix
-
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.matrix" />
-
-### matrix
-
-Getter of matrix.
-
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.name" />
-
-### name
-
-returns name
-
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.num_qubits" />
-
-### num\_qubits
-
-number of qubits required for the operator.
-
-**Returns**
-
-number of qubits
-
-**Return type**
-
-int
-
-<span id="qiskit.aqua.operators.legacy.MatrixOperator.z2_symmetries" />
-
-### z2\_symmetries
-
-returns z2 symmetries
+  <Attribute id="qiskit.aqua.operators.legacy.MatrixOperator.z2_symmetries" name="z2_symmetries">
+    returns z2 symmetries
+  </Attribute>
+</Class>
 

@@ -8,74 +8,66 @@ python_api_name: qiskit.circuit.ClassicalRegister
 
 # ClassicalRegister
 
-<span id="qiskit.circuit.ClassicalRegister" />
+<Class id="qiskit.circuit.ClassicalRegister" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/classicalregister.py" signature="ClassicalRegister(size, name=None)">
+  Implement a classical register.
 
-`ClassicalRegister(size, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/classicalregister.py "view source code")
+  Create a new generic register.
 
-Implement a classical register.
+  ## Attributes
 
-Create a new generic register.
+  ### instances\_counter
 
-## Attributes
+  <Attribute id="qiskit.circuit.ClassicalRegister.instances_counter" signature="= count(0)" />
 
-### instances\_counter
+  ### name
 
-<span id="qiskit.circuit.ClassicalRegister.instances_counter" />
+  <Attribute id="qiskit.circuit.ClassicalRegister.name" name="name">
+    Get the register name.
+  </Attribute>
 
-`= count(0)`
+  ### prefix
 
-### name
+  <Attribute id="qiskit.circuit.ClassicalRegister.prefix" signature="= 'c'" />
 
-Get the register name.
+  ### size
 
-### prefix
+  <Attribute id="qiskit.circuit.ClassicalRegister.size" name="size">
+    Get the register size.
+  </Attribute>
 
-<span id="qiskit.circuit.ClassicalRegister.prefix" />
+  ## Methods
 
-`= 'c'`
+  ### \_\_getitem\_\_
 
-### size
+  <Function id="qiskit.circuit.ClassicalRegister.__getitem__" name="__getitem__" signature="ClassicalRegister.__getitem__(key)">
+    #### Arg:
 
-Get the register size.
+    bit\_type (Qubit or Clbit): a constructor type return element/s. key (int or slice or list): index of the clbit to be retrieved.
 
-## Methods
+    **Returns**
 
-### \_\_getitem\_\_
+    a Qubit or Clbit instance if key is int. If key is a slice, returns a list of these instances.
 
-<span id="qiskit.circuit.ClassicalRegister.__getitem__" />
+    **Return type**
 
-`ClassicalRegister.__getitem__(key)`
+    [Qubit](qiskit.circuit.Qubit "qiskit.circuit.Qubit") or [Clbit](qiskit.circuit.Clbit "qiskit.circuit.Clbit") or list([Qubit](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) or list([Clbit](qiskit.circuit.Clbit "qiskit.circuit.Clbit"))
 
-#### Arg:
+    **Raises**
 
-bit\_type (Qubit or Clbit): a constructor type return element/s. key (int or slice or list): index of the clbit to be retrieved.
+    *   **CircuitError** – if the key is not an integer.
+    *   **QiskitIndexError** – if the key is not in the range (0, self.size).
+  </Function>
 
-**Returns**
+  ### \_\_len\_\_
 
-a Qubit or Clbit instance if key is int. If key is a slice, returns a list of these instances.
+  <Function id="qiskit.circuit.ClassicalRegister.__len__" name="__len__" signature="ClassicalRegister.__len__()">
+    Return register size.
+  </Function>
 
-**Return type**
+  ### qasm
 
-[Qubit](qiskit.circuit.Qubit "qiskit.circuit.Qubit") or [Clbit](qiskit.circuit.Clbit "qiskit.circuit.Clbit") or list([Qubit](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) or list([Clbit](qiskit.circuit.Clbit "qiskit.circuit.Clbit"))
-
-**Raises**
-
-*   **CircuitError** – if the key is not an integer.
-*   **QiskitIndexError** – if the key is not in the range (0, self.size).
-
-### \_\_len\_\_
-
-<span id="qiskit.circuit.ClassicalRegister.__len__" />
-
-`ClassicalRegister.__len__()`
-
-Return register size.
-
-### qasm
-
-<span id="qiskit.circuit.ClassicalRegister.qasm" />
-
-`ClassicalRegister.qasm()`
-
-Return OPENQASM string for this register.
+  <Function id="qiskit.circuit.ClassicalRegister.qasm" name="qasm" signature="ClassicalRegister.qasm()">
+    Return OPENQASM string for this register.
+  </Function>
+</Class>
 

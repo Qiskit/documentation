@@ -8,65 +8,57 @@ python_api_name: qiskit.aqua.operators.evolutions.Trotter
 
 # Trotter
 
-<span id="qiskit.aqua.operators.evolutions.Trotter" />
+<Class id="qiskit.aqua.operators.evolutions.Trotter" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/trotterizations/trotter.py" signature="Trotter(reps=1)">
+  Simple Trotter expansion, composing the evolution circuits of each Operator in the sum together `reps` times and dividing the evolution time of each by `reps`.
 
-`Trotter(reps=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/trotterizations/trotter.py "view source code")
+  **Parameters**
 
-Simple Trotter expansion, composing the evolution circuits of each Operator in the sum together `reps` times and dividing the evolution time of each by `reps`.
+  **reps** (`int`) – The number of times to repeat the Trotterization circuit.
 
-**Parameters**
+  ## Attributes
 
-**reps** (`int`) – The number of times to repeat the Trotterization circuit.
+  ### order
 
-## Attributes
+  <Attribute id="qiskit.aqua.operators.evolutions.Trotter.order" name="order" signature="int">
+    returns order
 
-### order
+    **Return type**
 
-<span id="qiskit.aqua.operators.evolutions.Trotter.order" />
+    `int`
+  </Attribute>
 
-`int`
+  ### reps
 
-returns order
+  <Attribute id="qiskit.aqua.operators.evolutions.Trotter.reps" name="reps" signature="int">
+    The number of repetitions to use in the Trotterization, improving the approximation accuracy.
 
-**Return type**
+    **Return type**
 
-`int`
+    `int`
+  </Attribute>
 
-### reps
+  ## Methods
 
-<span id="qiskit.aqua.operators.evolutions.Trotter.reps" />
+  ### convert
 
-`int`
+  <Function id="qiskit.aqua.operators.evolutions.Trotter.convert" name="convert" signature="Trotter.convert(operator)">
+    Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 
-The number of repetitions to use in the Trotterization, improving the approximation accuracy.
+    **Parameters**
 
-**Return type**
+    **operator** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The `SummedOp` to evolve.
 
-`int`
+    **Return type**
 
-## Methods
+    [`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
 
-### convert
+    **Returns**
 
-<span id="qiskit.aqua.operators.evolutions.Trotter.convert" />
+    The Operator approximating op\_sum’s evolution.
 
-`Trotter.convert(operator)`
+    **Raises**
 
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
-
-**Parameters**
-
-**operator** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The `SummedOp` to evolve.
-
-**Return type**
-
-[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
-
-**Returns**
-
-The Operator approximating op\_sum’s evolution.
-
-**Raises**
-
-**TypeError** – A non-SummedOps Operator is passed into `convert`.
+    **TypeError** – A non-SummedOps Operator is passed into `convert`.
+  </Function>
+</Class>
 

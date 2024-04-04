@@ -8,238 +8,206 @@ python_api_name: qiskit.chemistry.QMolecule
 
 # QMolecule
 
-<span id="qiskit.chemistry.QMolecule" />
+<Class id="qiskit.chemistry.QMolecule" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/qmolecule.py" signature="QMolecule(filename=None)">
+  Bases: `object`
 
-`QMolecule(filename=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/qmolecule.py "view source code")
+  Molecule data class containing driver result.
 
-Bases: `object`
+  When one of the chemistry [`drivers`](qiskit.chemistry.drivers#module-qiskit.chemistry.drivers "qiskit.chemistry.drivers") is run and instance of this class is returned. This contains various properties that are made available in a consistent manner across the various drivers.
 
-Molecule data class containing driver result.
+  Note that values here, for the same input molecule to each driver, may be vary across the drivers underlying code implementation. Also some drivers may not provide certain fields such as dipole integrals in the case of [`PyQuanteDriver`](qiskit.chemistry.drivers.PyQuanteDriver "qiskit.chemistry.drivers.PyQuanteDriver").
 
-When one of the chemistry [`drivers`](qiskit.chemistry.drivers#module-qiskit.chemistry.drivers "qiskit.chemistry.drivers") is run and instance of this class is returned. This contains various properties that are made available in a consistent manner across the various drivers.
+  This class provides methods to save it and load it again from an HDF5 file
 
-Note that values here, for the same input molecule to each driver, may be vary across the drivers underlying code implementation. Also some drivers may not provide certain fields such as dipole integrals in the case of [`PyQuanteDriver`](qiskit.chemistry.drivers.PyQuanteDriver "qiskit.chemistry.drivers.PyQuanteDriver").
+  ## Methods
 
-This class provides methods to save it and load it again from an HDF5 file
+  ### Z
 
-## Methods
+  <Function id="qiskit.chemistry.QMolecule.Z" name="Z" signature="QMolecule.Z(natom)" />
 
-### Z
+  ### has\_dipole\_integrals
 
-<span id="qiskit.chemistry.QMolecule.Z" />
+  <Function id="qiskit.chemistry.QMolecule.has_dipole_integrals" name="has_dipole_integrals" signature="QMolecule.has_dipole_integrals()">
+    Check if dipole integrals are present.
+  </Function>
 
-`QMolecule.Z(natom)`
+  ### load
 
-### has\_dipole\_integrals
+  <Function id="qiskit.chemistry.QMolecule.load" name="load" signature="QMolecule.load()">
+    loads info saved.
+  </Function>
 
-<span id="qiskit.chemistry.QMolecule.has_dipole_integrals" />
+  ### log
 
-`QMolecule.has_dipole_integrals()`
+  <Function id="qiskit.chemistry.QMolecule.log" name="log" signature="QMolecule.log()">
+    log properties
+  </Function>
 
-Check if dipole integrals are present.
+  ### onee\_to\_spin
 
-### load
+  <Function id="qiskit.chemistry.QMolecule.onee_to_spin" name="onee_to_spin" signature="static QMolecule.onee_to_spin(mohij, mohij_b=None, threshold=1e-12)">
+    Convert one-body MO integrals to spin orbital basis
 
-<span id="qiskit.chemistry.QMolecule.load" />
+    Takes one body integrals in molecular orbital basis and returns integrals in spin orbitals ready for use as coefficients to one body terms 2nd quantized Hamiltonian.
 
-`QMolecule.load()`
+    **Parameters**
 
-loads info saved.
+    *   **mohij** (*numpy.ndarray*) – One body orbitals in molecular basis (Alpha)
+    *   **mohij\_b** (*numpy.ndarray*) – One body orbitals in molecular basis (Beta)
+    *   **threshold** (*float*) – Threshold value for assignments
 
-### log
+    **Returns**
 
-<span id="qiskit.chemistry.QMolecule.log" />
+    One body integrals in spin orbitals
 
-`QMolecule.log()`
+    **Return type**
 
-log properties
+    numpy.ndarray
+  </Function>
 
-### onee\_to\_spin
+  ### oneeints2mo
 
-<span id="qiskit.chemistry.QMolecule.onee_to_spin" />
+  <Function id="qiskit.chemistry.QMolecule.oneeints2mo" name="oneeints2mo" signature="static QMolecule.oneeints2mo(ints, moc)">
+    Converts one-body integrals from AO to MO basis
 
-`static QMolecule.onee_to_spin(mohij, mohij_b=None, threshold=1e-12)`
+    Returns one electron integrals in AO basis converted to given MO basis
 
-Convert one-body MO integrals to spin orbital basis
+    **Parameters**
 
-Takes one body integrals in molecular orbital basis and returns integrals in spin orbitals ready for use as coefficients to one body terms 2nd quantized Hamiltonian.
+    *   **ints** (*numpy.ndarray*) – N^2 one electron integrals in AO basis
+    *   **moc** (*numpy.ndarray*) – Molecular orbital coefficients
 
-**Parameters**
+    **Returns**
 
-*   **mohij** (*numpy.ndarray*) – One body orbitals in molecular basis (Alpha)
-*   **mohij\_b** (*numpy.ndarray*) – One body orbitals in molecular basis (Beta)
-*   **threshold** (*float*) – Threshold value for assignments
+    integrals in MO basis
 
-**Returns**
+    **Return type**
 
-One body integrals in spin orbitals
+    numpy.ndarray
+  </Function>
 
-**Return type**
+  ### remove\_file
 
-numpy.ndarray
+  <Function id="qiskit.chemistry.QMolecule.remove_file" name="remove_file" signature="QMolecule.remove_file(file_name=None)">
+    remove file
+  </Function>
 
-### oneeints2mo
+  ### save
 
-<span id="qiskit.chemistry.QMolecule.oneeints2mo" />
+  <Function id="qiskit.chemistry.QMolecule.save" name="save" signature="QMolecule.save(file_name=None)">
+    Saves the info from the driver.
+  </Function>
 
-`static QMolecule.oneeints2mo(ints, moc)`
+  ### twoe\_to\_spin
 
-Converts one-body integrals from AO to MO basis
+  <Function id="qiskit.chemistry.QMolecule.twoe_to_spin" name="twoe_to_spin" signature="static QMolecule.twoe_to_spin(mohijkl, mohijkl_bb=None, mohijkl_ba=None, threshold=1e-12)">
+    Convert two-body MO integrals to spin orbital basis
 
-Returns one electron integrals in AO basis converted to given MO basis
+    Takes two body integrals in molecular orbital basis and returns integrals in spin orbitals ready for use as coefficients to two body terms in 2nd quantized Hamiltonian.
 
-**Parameters**
+    **Parameters**
 
-*   **ints** (*numpy.ndarray*) – N^2 one electron integrals in AO basis
-*   **moc** (*numpy.ndarray*) – Molecular orbital coefficients
+    *   **mohijkl** (*numpy.ndarray*) – Two body orbitals in molecular basis (AlphaAlpha)
+    *   **mohijkl\_bb** (*numpy.ndarray*) – Two body orbitals in molecular basis (BetaBeta)
+    *   **mohijkl\_ba** (*numpy.ndarray*) – Two body orbitals in molecular basis (BetaAlpha)
+    *   **threshold** (*float*) – Threshold value for assignments
 
-**Returns**
+    **Returns**
 
-integrals in MO basis
+    Two body integrals in spin orbitals
 
-**Return type**
+    **Return type**
 
-numpy.ndarray
+    numpy.ndarray
+  </Function>
 
-### remove\_file
+  ### twoeints2mo
 
-<span id="qiskit.chemistry.QMolecule.remove_file" />
+  <Function id="qiskit.chemistry.QMolecule.twoeints2mo" name="twoeints2mo" signature="static QMolecule.twoeints2mo(ints, moc)">
+    Converts two-body integrals from AO to MO basis
 
-`QMolecule.remove_file(file_name=None)`
+    Returns two electron integrals in AO basis converted to given MO basis
 
-remove file
+    **Parameters**
 
-### save
+    *   **ints** (*numpy.ndarray*) – N^2 two electron integrals in AO basis
+    *   **moc** (*numpy.ndarray*) – Molecular orbital coefficients
 
-<span id="qiskit.chemistry.QMolecule.save" />
+    **Returns**
 
-`QMolecule.save(file_name=None)`
+    integrals in MO basis
 
-Saves the info from the driver.
+    **Return type**
 
-### twoe\_to\_spin
+    numpy.ndarray
+  </Function>
 
-<span id="qiskit.chemistry.QMolecule.twoe_to_spin" />
+  ### twoeints2mo\_general
 
-`static QMolecule.twoe_to_spin(mohijkl, mohijkl_bb=None, mohijkl_ba=None, threshold=1e-12)`
+  <Function id="qiskit.chemistry.QMolecule.twoeints2mo_general" name="twoeints2mo_general" signature="static QMolecule.twoeints2mo_general(ints, moc1, moc2, moc3, moc4)" />
 
-Convert two-body MO integrals to spin orbital basis
+  ## Attributes
 
-Takes two body integrals in molecular orbital basis and returns integrals in spin orbitals ready for use as coefficients to two body terms in 2nd quantized Hamiltonian.
+  ### BOHR
 
-**Parameters**
+  <Attribute id="qiskit.chemistry.QMolecule.BOHR" name="BOHR" attributeValue="= 0.52917721092" />
 
-*   **mohijkl** (*numpy.ndarray*) – Two body orbitals in molecular basis (AlphaAlpha)
-*   **mohijkl\_bb** (*numpy.ndarray*) – Two body orbitals in molecular basis (BetaBeta)
-*   **mohijkl\_ba** (*numpy.ndarray*) – Two body orbitals in molecular basis (BetaAlpha)
-*   **threshold** (*float*) – Threshold value for assignments
+  ### DEBYE
 
-**Returns**
+  <Attribute id="qiskit.chemistry.QMolecule.DEBYE" name="DEBYE" attributeValue="= 0.393430307" />
 
-Two body integrals in spin orbitals
+  ### QMOLECULE\_VERSION
 
-**Return type**
+  <Attribute id="qiskit.chemistry.QMolecule.QMOLECULE_VERSION" name="QMOLECULE_VERSION" attributeValue="= 2" />
 
-numpy.ndarray
+  ### core\_orbitals
 
-### twoeints2mo
+  <Attribute id="qiskit.chemistry.QMolecule.core_orbitals" name="core_orbitals">
+    Returns: A list of core orbital indices.
 
-<span id="qiskit.chemistry.QMolecule.twoeints2mo" />
+    **Return type**
 
-`static QMolecule.twoeints2mo(ints, moc)`
+    `List`\[`int`]
+  </Attribute>
 
-Converts two-body integrals from AO to MO basis
+  ### filename
 
-Returns two electron integrals in AO basis converted to given MO basis
+  <Attribute id="qiskit.chemistry.QMolecule.filename" name="filename">
+    returns temp file path
+  </Attribute>
 
-**Parameters**
+  ### one\_body\_integrals
 
-*   **ints** (*numpy.ndarray*) – N^2 two electron integrals in AO basis
-*   **moc** (*numpy.ndarray*) – Molecular orbital coefficients
+  <Attribute id="qiskit.chemistry.QMolecule.one_body_integrals" name="one_body_integrals">
+    Returns one body electron integrals.
+  </Attribute>
 
-**Returns**
+  ### symbols
 
-integrals in MO basis
+  <Attribute id="qiskit.chemistry.QMolecule.symbols" name="symbols" attributeValue="= ['_', 'H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og']" />
 
-**Return type**
+  ### two\_body\_integrals
 
-numpy.ndarray
+  <Attribute id="qiskit.chemistry.QMolecule.two_body_integrals" name="two_body_integrals">
+    Returns two body electron integrals.
+  </Attribute>
 
-### twoeints2mo\_general
+  ### x\_dipole\_integrals
 
-<span id="qiskit.chemistry.QMolecule.twoeints2mo_general" />
+  <Attribute id="qiskit.chemistry.QMolecule.x_dipole_integrals" name="x_dipole_integrals">
+    returns x\_dipole\_integrals
+  </Attribute>
 
-`static QMolecule.twoeints2mo_general(ints, moc1, moc2, moc3, moc4)`
+  ### y\_dipole\_integrals
 
-## Attributes
+  <Attribute id="qiskit.chemistry.QMolecule.y_dipole_integrals" name="y_dipole_integrals">
+    returns y\_dipole\_integrals
+  </Attribute>
 
-<span id="qiskit.chemistry.QMolecule.BOHR" />
+  ### z\_dipole\_integrals
 
-### BOHR
-
-`= 0.52917721092`
-
-<span id="qiskit.chemistry.QMolecule.DEBYE" />
-
-### DEBYE
-
-`= 0.393430307`
-
-<span id="qiskit.chemistry.QMolecule.QMOLECULE_VERSION" />
-
-### QMOLECULE\_VERSION
-
-`= 2`
-
-<span id="qiskit.chemistry.QMolecule.core_orbitals" />
-
-### core\_orbitals
-
-Returns: A list of core orbital indices.
-
-**Return type**
-
-`List`\[`int`]
-
-<span id="qiskit.chemistry.QMolecule.filename" />
-
-### filename
-
-returns temp file path
-
-<span id="qiskit.chemistry.QMolecule.one_body_integrals" />
-
-### one\_body\_integrals
-
-Returns one body electron integrals.
-
-<span id="qiskit.chemistry.QMolecule.symbols" />
-
-### symbols
-
-`= ['_', 'H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og']`
-
-<span id="qiskit.chemistry.QMolecule.two_body_integrals" />
-
-### two\_body\_integrals
-
-Returns two body electron integrals.
-
-<span id="qiskit.chemistry.QMolecule.x_dipole_integrals" />
-
-### x\_dipole\_integrals
-
-returns x\_dipole\_integrals
-
-<span id="qiskit.chemistry.QMolecule.y_dipole_integrals" />
-
-### y\_dipole\_integrals
-
-returns y\_dipole\_integrals
-
-<span id="qiskit.chemistry.QMolecule.z_dipole_integrals" />
-
-### z\_dipole\_integrals
-
-returns z\_dipole\_integrals
+  <Attribute id="qiskit.chemistry.QMolecule.z_dipole_integrals" name="z_dipole_integrals">
+    returns z\_dipole\_integrals
+  </Attribute>
+</Class>
 

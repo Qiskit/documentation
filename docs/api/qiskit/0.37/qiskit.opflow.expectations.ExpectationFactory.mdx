@@ -8,39 +8,35 @@ python_api_name: qiskit.opflow.expectations.ExpectationFactory
 
 # ExpectationFactory
 
-<span id="qiskit.opflow.expectations.ExpectationFactory" />
+<Class id="qiskit.opflow.expectations.ExpectationFactory" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/expectations/expectation_factory.py" signature="ExpectationFactory">
+  Bases: `object`
 
-`ExpectationFactory` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/expectations/expectation_factory.py "view source code")
+  A factory class for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value.
 
-Bases: `object`
+  ## Methods Defined Here
 
-A factory class for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value.
+  ### build
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.expectations.ExpectationFactory.build" name="build" signature="static ExpectationFactory.build(operator, backend=None, include_custom=True)">
+    A factory method for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value.
 
-### build
+    **Parameters**
 
-<span id="qiskit.opflow.expectations.ExpectationFactory.build" />
+    *   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator whose expectation value will be taken.
+    *   **backend** (`Union`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), `None`]) – The backend which will be used to sample the expectation value.
+    *   **include\_custom** (`bool`) – Whether the factory will include the (Aer) specific custom expectations if their behavior against the backend might not be as expected. For instance when using Aer qasm\_simulator with paulis the Aer snapshot can be used but the outcome lacks shot noise and hence does not intuitively behave overall as people might expect when choosing a qasm\_simulator. It is however fast as long as the more state vector like behavior is acceptable.
 
-`static ExpectationFactory.build(operator, backend=None, include_custom=True)`
+    **Return type**
 
-A factory method for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value.
+    [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
 
-**Parameters**
+    **Returns**
 
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator whose expectation value will be taken.
-*   **backend** (`Union`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), `None`]) – The backend which will be used to sample the expectation value.
-*   **include\_custom** (`bool`) – Whether the factory will include the (Aer) specific custom expectations if their behavior against the backend might not be as expected. For instance when using Aer qasm\_simulator with paulis the Aer snapshot can be used but the outcome lacks shot noise and hence does not intuitively behave overall as people might expect when choosing a qasm\_simulator. It is however fast as long as the more state vector like behavior is acceptable.
+    The expectation algorithm which best fits the Operator and backend.
 
-**Return type**
+    **Raises**
 
-[`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
-
-**Returns**
-
-The expectation algorithm which best fits the Operator and backend.
-
-**Raises**
-
-**ValueError** – If operator is not of a composition for which we know the best Expectation method.
+    **ValueError** – If operator is not of a composition for which we know the best Expectation method.
+  </Function>
+</Class>
 

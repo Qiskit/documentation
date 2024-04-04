@@ -8,85 +8,75 @@ python_api_name: qiskit.aqua.components.multiclass_extensions.OneAgainstRest
 
 # OneAgainstRest
 
-<span id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest" />
+<Class id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/one_against_rest.py" signature="OneAgainstRest">
+  Bases: `qiskit.aqua.components.multiclass_extensions.multiclass_extension.MulticlassExtension`
 
-`OneAgainstRest` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/one_against_rest.py "view source code")
+  The One Against Rest multiclass extension.
 
-Bases: `qiskit.aqua.components.multiclass_extensions.multiclass_extension.MulticlassExtension`
+  For an $n$-class problem, the **one-against-rest** method constructs $n$ SVM classifiers, with the $i$-th classifier separating class $i$ from all the remaining classes, $\forall i \in \{1, 2, \ldots, n\}$. When the $n$ classifiers are combined to make the final decision, the classifier that generates the highest value from its decision function is selected as the winner and the corresponding class label is returned.
 
-The One Against Rest multiclass extension.
+  ## Methods
 
-For an $n$-class problem, the **one-against-rest** method constructs $n$ SVM classifiers, with the $i$-th classifier separating class $i$ from all the remaining classes, $\forall i \in \{1, 2, \ldots, n\}$. When the $n$ classifiers are combined to make the final decision, the classifier that generates the highest value from its decision function is selected as the winner and the corresponding class label is returned.
+  ### predict
 
-## Methods
+  <Function id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest.predict" name="predict" signature="OneAgainstRest.predict(x)">
+    Applying multiple estimators for prediction.
 
-### predict
+    **Parameters**
 
-<span id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest.predict" />
+    **x** (*numpy.ndarray*) – NxD array
 
-`OneAgainstRest.predict(x)`
+    **Returns**
 
-Applying multiple estimators for prediction.
+    predicted labels, Nx1 array
 
-**Parameters**
+    **Return type**
 
-**x** (*numpy.ndarray*) – NxD array
+    numpy.ndarray
+  </Function>
 
-**Returns**
+  ### set\_estimator
 
-predicted labels, Nx1 array
+  <Function id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest.set_estimator" name="set_estimator" signature="OneAgainstRest.set_estimator(estimator_cls, params=None)">
+    Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
 
-**Return type**
+    **Return type**
 
-numpy.ndarray
+    `None`
+  </Function>
 
-### set\_estimator
+  ### test
 
-<span id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest.set_estimator" />
+  <Function id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest.test" name="test" signature="OneAgainstRest.test(x, y)">
+    Testing multiple estimators each for distinguishing a pair of classes.
 
-`OneAgainstRest.set_estimator(estimator_cls, params=None)`
+    **Parameters**
 
-Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
+    *   **x** (*numpy.ndarray*) – input points
+    *   **y** (*numpy.ndarray*) – input labels
 
-**Return type**
+    **Returns**
 
-`None`
+    accuracy
 
-### test
+    **Return type**
 
-<span id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest.test" />
+    float
+  </Function>
 
-`OneAgainstRest.test(x, y)`
+  ### train
 
-Testing multiple estimators each for distinguishing a pair of classes.
+  <Function id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest.train" name="train" signature="OneAgainstRest.train(x, y)">
+    Training multiple estimators each for distinguishing a pair of classes.
 
-**Parameters**
+    **Parameters**
 
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
+    *   **x** (*numpy.ndarray*) – input points
+    *   **y** (*numpy.ndarray*) – input labels
 
-**Returns**
+    **Raises**
 
-accuracy
-
-**Return type**
-
-float
-
-### train
-
-<span id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest.train" />
-
-`OneAgainstRest.train(x, y)`
-
-Training multiple estimators each for distinguishing a pair of classes.
-
-**Parameters**
-
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
-
-**Raises**
-
-**Exception** – given all data points are assigned to the same class, the prediction would be boring
+    **Exception** – given all data points are assigned to the same class, the prediction would be boring
+  </Function>
+</Class>
 

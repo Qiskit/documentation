@@ -8,61 +8,59 @@ python_api_name: qiskit.aqua.components.initial_states.Custom
 
 # Custom
 
-<span id="qiskit.aqua.components.initial_states.Custom" />
+<Class id="qiskit.aqua.components.initial_states.Custom" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/initial_states/custom.py" signature="Custom(num_qubits, state='zero', state_vector=None, circuit=None)">
+  The custom initial state.
 
-`Custom(num_qubits, state='zero', state_vector=None, circuit=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/initial_states/custom.py "view source code")
+  A custom initial state can be created with this component. It allows a state to be defined in the form of custom probability distribution with the *state\_vector*, or by providing a desired *circuit* to set the state.
 
-The custom initial state.
+  Also *state* can be used having a few pre-defined initial states for convenience:
 
-A custom initial state can be created with this component. It allows a state to be defined in the form of custom probability distribution with the *state\_vector*, or by providing a desired *circuit* to set the state.
+  *   ‘zero’: configures the state vector with the zero probability distribution, and is effectively equivalent to the [`Zero`](qiskit.aqua.components.initial_states.Zero "qiskit.aqua.components.initial_states.Zero") initial state.
+  *   ‘uniform’: This setting configures the state vector with the uniform probability distribution. All the qubits are set in superposition, each of them being initialized with a Hadamard gate, which means that a measurement will have equal probabilities to become $1$ or $0$.
+  *   ‘random’: This setting assigns the elements of the state vector according to a random probability distribution.
 
-Also *state* can be used having a few pre-defined initial states for convenience:
+  The custom initial state will be set from the *circuit*, the *state\_vector*, or *state*, in that order. For *state\_vector* the provided custom probability distribution will be internally normalized so the total probability represented is $1.0$.
 
-*   ‘zero’: configures the state vector with the zero probability distribution, and is effectively equivalent to the [`Zero`](qiskit.aqua.components.initial_states.Zero "qiskit.aqua.components.initial_states.Zero") initial state.
-*   ‘uniform’: This setting configures the state vector with the uniform probability distribution. All the qubits are set in superposition, each of them being initialized with a Hadamard gate, which means that a measurement will have equal probabilities to become $1$ or $0$.
-*   ‘random’: This setting assigns the elements of the state vector according to a random probability distribution.
+  **Parameters**
 
-The custom initial state will be set from the *circuit*, the *state\_vector*, or *state*, in that order. For *state\_vector* the provided custom probability distribution will be internally normalized so the total probability represented is $1.0$.
+  *   **num\_qubits** (`int`) – Number of qubits, has a minimum value of 1.
+  *   **state** (`str`) – Use a predefined state of (‘zero’ | ‘uniform’ | ‘random’)
+  *   **state\_vector** (`Union`\[`ndarray`, [`StateFn`](qiskit.aqua.operators.state_fns.StateFn "qiskit.aqua.operators.state_fns.state_fn.StateFn"), `None`]) – An optional vector of `complex` or `float` representing the state as a probability distribution which will be normalized to a total probability of 1 when initializing the qubits. The length of the vector must be $2^q$, where $q$ is the *num\_qubits* value. When provided takes precedence over *state*.
+  *   **circuit** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – A quantum circuit for the desired initial state. When provided takes precedence over both *state\_vector* and *state*.
 
-**Parameters**
+  **Raises**
 
-*   **num\_qubits** (`int`) – Number of qubits, has a minimum value of 1.
-*   **state** (`str`) – Use a predefined state of (‘zero’ | ‘uniform’ | ‘random’)
-*   **state\_vector** (`Union`\[`ndarray`, [`StateFn`](qiskit.aqua.operators.state_fns.StateFn "qiskit.aqua.operators.state_fns.state_fn.StateFn"), `None`]) – An optional vector of `complex` or `float` representing the state as a probability distribution which will be normalized to a total probability of 1 when initializing the qubits. The length of the vector must be $2^q$, where $q$ is the *num\_qubits* value. When provided takes precedence over *state*.
-*   **circuit** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – A quantum circuit for the desired initial state. When provided takes precedence over both *state\_vector* and *state*.
+  [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
 
-**Raises**
+  ## Attributes
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
+  ### bitstr
 
-## Attributes
+  <Attribute id="qiskit.aqua.components.initial_states.Custom.bitstr" name="bitstr" />
 
-### bitstr
+  ## Methods
 
-## Methods
+  ### construct\_circuit
 
-### construct\_circuit
+  <Function id="qiskit.aqua.components.initial_states.Custom.construct_circuit" name="construct_circuit" signature="Custom.construct_circuit(mode='circuit', register=None)">
+    Construct the statevector of desired initial state.
 
-<span id="qiskit.aqua.components.initial_states.Custom.construct_circuit" />
+    **Parameters**
 
-`Custom.construct_circuit(mode='circuit', register=None)`
+    *   **mode** – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
+    *   **register** – qubits for circuit construction.
 
-Construct the statevector of desired initial state.
+    **Returns**
 
-**Parameters**
+    statevector.
 
-*   **mode** – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
-*   **register** – qubits for circuit construction.
+    **Return type**
 
-**Returns**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
 
-statevector.
+    **Raises**
 
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+  </Function>
+</Class>
 

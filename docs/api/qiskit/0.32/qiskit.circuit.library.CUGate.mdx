@@ -8,169 +8,165 @@ python_api_name: qiskit.circuit.library.CUGate
 
 # CUGate
 
-<span id="qiskit.circuit.library.CUGate" />
+<Class id="qiskit.circuit.library.CUGate" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/u.py" signature="CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None)">
+  Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
-`CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/u.py "view source code")
+  Controlled-U gate (4-parameter two-qubit gate).
 
-Bases: `qiskit.circuit.controlledgate.ControlledGate`
+  This is a controlled version of the U gate (generic single qubit rotation), including a possible global phase $e^{i\gamma}$ of the U gate.
 
-Controlled-U gate (4-parameter two-qubit gate).
-
-This is a controlled version of the U gate (generic single qubit rotation), including a possible global phase $e^{i\gamma}$ of the U gate.
-
-**Circuit symbol:**
-
-```python
-q_0: ──────■──────
-     ┌─────┴──────┐
-q_1: ┤ U(ϴ,φ,λ,γ) ├
-     └────────────┘
-```
-
-**Matrix representation:**
-
-$$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CU(\theta, \phi, \lambda, \gamma)\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| +
-    e^{i\gamma} U(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
-    \begin{pmatrix}
-        1 & 0                           & 0 & 0 \\
-        0 & e^{i\gamma}\cos(\th)        & 0 & -e^{i(\gamma + \lambda)}\sin(\th) \\
-        0 & 0                           & 1 & 0 \\
-        0 & e^{i(\gamma+\phi)}\sin(\th) & 0 & e^{i(\gamma+\phi+\lambda)}\cos(\th)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
-$$
-
-<Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
+  **Circuit symbol:**
 
   ```python
-       ┌────────────┐
-  q_0: ┤ U(ϴ,φ,λ,γ) ├
-       └─────┬──────┘
-  q_1: ──────■───────
+  q_0: ──────■──────
+       ┌─────┴──────┐
+  q_1: ┤ U(ϴ,φ,λ,γ) ├
+       └────────────┘
   ```
 
-  $$
-  \begin{split}CU(\theta, \phi, \lambda, \gamma)\ q_1, q_0 =
-      |0\rangle\langle 0| \otimes I +
-      e^{i\gamma}|1\rangle\langle 1| \otimes U(\theta,\phi,\lambda) =
-      \begin{pmatrix}
-          1 & 0 & 0                             & 0 \\
-          0 & 1 & 0                             & 0 \\
-          0 & 0 & e^{i\gamma} \cos(\th)         & -e^{i(\gamma + \lambda)}\sin(\th) \\
-          0 & 0 & e^{i(\gamma + \phi)}\sin(\th) & e^{i(\gamma + \phi+\lambda)}\cos(\th)
-      \end{pmatrix}\end{split}
-  $$
-</Admonition>
+  **Matrix representation:**
 
-Create new CU gate.
+$$
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CU(\theta, \phi, \lambda, \gamma)\ q_0, q_1 =
+I \otimes |0\rangle\langle 0| +
+e^{i\gamma} U(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
+\begin{pmatrix}
+1 & 0                           & 0 & 0 \\
+0 & e^{i\gamma}\cos(\th)        & 0 & -e^{i(\gamma + \lambda)}\sin(\th) \\
+0 & 0                           & 1 & 0 \\
+0 & e^{i(\gamma+\phi)}\sin(\th) & 0 & e^{i(\gamma+\phi+\lambda)}\cos(\th)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
+$$
 
-## Methods Defined Here
+  <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
 
-### inverse
+    ```python
+         ┌────────────┐
+    q_0: ┤ U(ϴ,φ,λ,γ) ├
+         └─────┬──────┘
+    q_1: ──────■───────
+    ```
 
-<span id="qiskit.circuit.library.CUGate.inverse" />
+$$
+\begin{split}CU(\theta, \phi, \lambda, \gamma)\ q_1, q_0 =
+|0\rangle\langle 0| \otimes I +
+e^{i\gamma}|1\rangle\langle 1| \otimes U(\theta,\phi,\lambda) =
+\begin{pmatrix}
+1 & 0 & 0                             & 0 \\
+0 & 1 & 0                             & 0 \\
+0 & 0 & e^{i\gamma} \cos(\th)         & -e^{i(\gamma + \lambda)}\sin(\th) \\
+0 & 0 & e^{i(\gamma + \phi)}\sin(\th) & e^{i(\gamma + \phi+\lambda)}\cos(\th)
+\end{pmatrix}\end{split}
+$$
+  </Admonition>
 
-`CUGate.inverse()`
+  Create new CU gate.
 
-Return inverted CU gate.
+  ## Methods Defined Here
 
-$CU(\theta,\phi,\lambda,\gamma)^{\dagger} = CU(-\theta,-\phi,-\lambda,-\gamma)$)
+  ### inverse
 
-## Attributes
+  <Function id="qiskit.circuit.library.CUGate.inverse" name="inverse" signature="CUGate.inverse()">
+    Return inverted CU gate.
 
-<span id="qiskit.circuit.library.CUGate.ctrl_state" />
+    $CU(\theta,\phi,\lambda,\gamma)^{\dagger} = CU(-\theta,-\phi,-\lambda,-\gamma)$)
+  </Function>
 
-### ctrl\_state
+  ## Attributes
 
-Return the control state of the gate as a decimal integer.
+  ### ctrl\_state
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.CUGate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
 
-`int`
+    **Return type**
 
-<span id="qiskit.circuit.library.CUGate.decompositions" />
+    `int`
+  </Attribute>
 
-### decompositions
+  ### decompositions
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.CUGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CUGate.definition" />
+  ### definition
 
-### definition
+  <Attribute id="qiskit.circuit.library.CUGate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+    **Return type**
 
-**Return type**
+    `List`
+  </Attribute>
 
-`List`
+  ### duration
 
-<span id="qiskit.circuit.library.CUGate.duration" />
+  <Attribute id="qiskit.circuit.library.CUGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### duration
+  ### label
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.CUGate.label" name="label">
+    Return instruction label
 
-<span id="qiskit.circuit.library.CUGate.label" />
+    **Return type**
 
-### label
+    `str`
+  </Attribute>
 
-Return instruction label
+  ### name
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.CUGate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-`str`
+    > \<original\_name\_o\<ctrl\_state>
 
-<span id="qiskit.circuit.library.CUGate.name" />
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
 
-### name
+    **Return type**
 
-Get name of gate. If the gate has open controls the gate name will become:
+    `str`
+  </Attribute>
 
-> \<original\_name\_o\<ctrl\_state>
+  ### num\_ctrl\_qubits
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  <Attribute id="qiskit.circuit.library.CUGate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-**Return type**
+    **Returns**
 
-`str`
+    The number of control qubits for the gate.
 
-<span id="qiskit.circuit.library.CUGate.num_ctrl_qubits" />
+    **Return type**
 
-### num\_ctrl\_qubits
+    int
+  </Attribute>
 
-Get number of control qubits.
+  ### params
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.CUGate.params" name="params">
+    Get parameters from base\_gate.
 
-The number of control qubits for the gate.
+    **Returns**
 
-**Return type**
+    List of gate parameters.
 
-int
+    **Return type**
 
-<span id="qiskit.circuit.library.CUGate.params" />
+    list
 
-### params
+    **Raises**
 
-Get parameters from base\_gate.
+    **CircuitError** – Controlled gate does not define a base gate
+  </Attribute>
 
-**Returns**
+  ### unit
 
-List of gate parameters.
-
-**Return type**
-
-list
-
-**Raises**
-
-**CircuitError** – Controlled gate does not define a base gate
-
-<span id="qiskit.circuit.library.CUGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.CUGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

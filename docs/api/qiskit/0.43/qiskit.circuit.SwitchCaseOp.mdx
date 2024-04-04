@@ -8,366 +8,334 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
 # SwitchCaseOp
 
-<span id="qiskit.circuit.SwitchCaseOp" />
+<Class id="qiskit.circuit.SwitchCaseOp" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/controlflow/switch_case.py" signature="SwitchCaseOp(target, cases, *, label=None)">
+  Bases: [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
 
-`SwitchCaseOp(target, cases, *, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/controlflow/switch_case.py "view source code")
+  A circuit operation that executes one particular circuit block based on matching a given `target` against an ordered list of `values`. The special value `CASE_DEFAULT` can be used to represent a default condition.
 
-Bases: [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
+  This is the low-level interface for creating a switch-case statement; in general, the circuit method `QuantumCircuit.switch_case()` should be used as a context manager to access the builder interface. At the low level, you must ensure that all the circuit blocks contain equal numbers of qubits and clbits, and that the order the virtual bits of the containing circuit should be bound is the same for all blocks. This will likely mean that each circuit block is wider than its natural width, as each block must span the union of all the spaces covered by \_any\_ of the blocks.
 
-A circuit operation that executes one particular circuit block based on matching a given `target` against an ordered list of `values`. The special value `CASE_DEFAULT` can be used to represent a default condition.
+  **Parameters**
 
-This is the low-level interface for creating a switch-case statement; in general, the circuit method `QuantumCircuit.switch_case()` should be used as a context manager to access the builder interface. At the low level, you must ensure that all the circuit blocks contain equal numbers of qubits and clbits, and that the order the virtual bits of the containing circuit should be bound is the same for all blocks. This will likely mean that each circuit block is wider than its natural width, as each block must span the union of all the spaces covered by \_any\_ of the blocks.
+  *   **target** ([*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")  *|*[*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.classicalregister.ClassicalRegister")) – the runtime value to switch on.
+  *   **cases** (*Iterable\[Tuple\[Any,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]]*) – an ordered iterable of the corresponding value of the `target` and the circuit block that should be executed if this is matched. There is no fall-through between blocks, and the order matters.
 
-**Parameters**
+  Create a new instruction.
 
-*   **target** ([*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")  *|*[*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.classicalregister.ClassicalRegister")) – the runtime value to switch on.
-*   **cases** (*Iterable\[Tuple\[Any,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]]*) – an ordered iterable of the corresponding value of the `target` and the circuit block that should be executed if this is matched. There is no fall-through between blocks, and the order matters.
+  **Parameters**
 
-Create a new instruction.
+  *   **name** (*str*) – instruction name
+  *   **num\_qubits** (*int*) – instruction’s qubit width
+  *   **num\_clbits** (*int*) – instruction’s clbit width
+  *   **params** (*list\[int|float|complex|str|ndarray|list|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – list of parameters
+  *   **duration** (*int or float*) – instruction’s duration. it must be integer if `unit` is ‘dt’
+  *   **unit** (*str*) – time unit of duration
+  *   **label** (*str or None*) – An optional label for identifying the instruction.
 
-**Parameters**
+  **Raises**
 
-*   **name** (*str*) – instruction name
-*   **num\_qubits** (*int*) – instruction’s qubit width
-*   **num\_clbits** (*int*) – instruction’s clbit width
-*   **params** (*list\[int|float|complex|str|ndarray|list|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – list of parameters
-*   **duration** (*int or float*) – instruction’s duration. it must be integer if `unit` is ‘dt’
-*   **unit** (*str*) – time unit of duration
-*   **label** (*str or None*) – An optional label for identifying the instruction.
+  *   **CircuitError** – when the register is not in the correct format.
+  *   **TypeError** – when the optional label is provided, but it is not a string.
 
-**Raises**
+  ## Methods
 
-*   **CircuitError** – when the register is not in the correct format.
-*   **TypeError** – when the optional label is provided, but it is not a string.
+  <span id="qiskit-circuit-switchcaseop-add-decomposition" />
 
-## Methods
+  ### add\_decomposition
 
-<span id="qiskit-circuit-switchcaseop-add-decomposition" />
+  <Function id="qiskit.circuit.SwitchCaseOp.add_decomposition" name="add_decomposition" signature="SwitchCaseOp.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  <span id="qiskit-circuit-switchcaseop-assemble" />
 
-<span id="qiskit.circuit.SwitchCaseOp.add_decomposition" />
+  ### assemble
 
-`SwitchCaseOp.add_decomposition(decomposition)`
+  <Function id="qiskit.circuit.SwitchCaseOp.assemble" name="assemble" signature="SwitchCaseOp.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <span id="qiskit-circuit-switchcaseop-broadcast-arguments" />
 
-<span id="qiskit-circuit-switchcaseop-assemble" />
+  ### broadcast\_arguments
 
-### assemble
+  <Function id="qiskit.circuit.SwitchCaseOp.broadcast_arguments" name="broadcast_arguments" signature="SwitchCaseOp.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-<span id="qiskit.circuit.SwitchCaseOp.assemble" />
+    **Parameters**
 
-`SwitchCaseOp.assemble()`
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-Assemble a QasmQobjInstruction
+    **Yields**
 
-<span id="qiskit-circuit-switchcaseop-broadcast-arguments" />
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.circuit.SwitchCaseOp.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`SwitchCaseOp.broadcast_arguments(qargs, cargs)`
+  <span id="qiskit-circuit-switchcaseop-c-if" />
 
-Validation of the arguments.
+  ### c\_if
 
-**Parameters**
+  <Function id="qiskit.circuit.SwitchCaseOp.c_if" name="c_if" signature="SwitchCaseOp.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-**Yields**
+  <span id="qiskit-circuit-switchcaseop-cases" />
 
-*Tuple(List, List)* – A tuple with single arguments.
+  ### cases
 
-**Raises**
+  <Function id="qiskit.circuit.SwitchCaseOp.cases" name="cases" signature="SwitchCaseOp.cases()">
+    Return a lookup table from case labels to the circuit that would be executed in that case. This object is not generally suitable for creating a new [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") because any keys that point to the same object will not be grouped.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    <Admonition title="See also" type="note">
+      #### [`SwitchCaseOp.cases_specifier()`](qiskit.circuit.SwitchCaseOp#cases_specifier "qiskit.circuit.SwitchCaseOp.cases_specifier")
 
-<span id="qiskit-circuit-switchcaseop-c-if" />
+      An alternate method that produces its output in a suitable format for creating new [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") instances.
+    </Admonition>
+  </Function>
 
-### c\_if
+  <span id="qiskit-circuit-switchcaseop-cases-specifier" />
 
-<span id="qiskit.circuit.SwitchCaseOp.c_if" />
+  ### cases\_specifier
 
-`SwitchCaseOp.c_if(classical, val)`
+  <Function id="qiskit.circuit.SwitchCaseOp.cases_specifier" name="cases_specifier" signature="SwitchCaseOp.cases_specifier()">
+    Return an iterable where each element is a 2-tuple whose first element is a tuple of jump values, and whose second is the single circuit block that is associated with those values.
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    This is an abstract specification of the jump table suitable for creating new [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") instances.
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+    <Admonition title="See also" type="note">
+      #### [`SwitchCaseOp.cases()`](qiskit.circuit.SwitchCaseOp#cases "qiskit.circuit.SwitchCaseOp.cases")
 
-<span id="qiskit-circuit-switchcaseop-cases" />
+      Create a lookup table that you can use for your own purposes to jump from values to the circuit that would be executed.
+    </Admonition>
 
-### cases
+    **Return type**
 
-<span id="qiskit.circuit.SwitchCaseOp.cases" />
+    *Iterable*\[*Tuple*\[*Tuple*, [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]
+  </Function>
 
-`SwitchCaseOp.cases()`
+  <span id="qiskit-circuit-switchcaseop-copy" />
 
-Return a lookup table from case labels to the circuit that would be executed in that case. This object is not generally suitable for creating a new [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") because any keys that point to the same object will not be grouped.
+  ### copy
 
-<Admonition title="See also" type="note">
-  #### [`SwitchCaseOp.cases_specifier()`](qiskit.circuit.SwitchCaseOp#cases_specifier "qiskit.circuit.SwitchCaseOp.cases_specifier")
+  <Function id="qiskit.circuit.SwitchCaseOp.copy" name="copy" signature="SwitchCaseOp.copy(name=None)">
+    Copy of the instruction.
 
-  An alternate method that produces its output in a suitable format for creating new [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") instances.
-</Admonition>
+    **Parameters**
 
-<span id="qiskit-circuit-switchcaseop-cases-specifier" />
+    **name** (*str*) – name to be given to the copied circuit, if `None` then the name stays the same.
 
-### cases\_specifier
+    **Returns**
 
-<span id="qiskit.circuit.SwitchCaseOp.cases_specifier" />
+    a copy of the current instruction, with the name updated if it was provided
 
-`SwitchCaseOp.cases_specifier()`
+    **Return type**
 
-Return an iterable where each element is a 2-tuple whose first element is a tuple of jump values, and whose second is the single circuit block that is associated with those values.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-This is an abstract specification of the jump table suitable for creating new [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") instances.
+  <span id="qiskit-circuit-switchcaseop-inverse" />
 
-<Admonition title="See also" type="note">
-  #### [`SwitchCaseOp.cases()`](qiskit.circuit.SwitchCaseOp#cases "qiskit.circuit.SwitchCaseOp.cases")
+  ### inverse
 
-  Create a lookup table that you can use for your own purposes to jump from values to the circuit that would be executed.
-</Admonition>
+  <Function id="qiskit.circuit.SwitchCaseOp.inverse" name="inverse" signature="SwitchCaseOp.inverse()">
+    Invert this instruction.
 
-**Return type**
+    If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
 
-*Iterable*\[*Tuple*\[*Tuple*, [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
 
-<span id="qiskit-circuit-switchcaseop-copy" />
+    **Returns**
 
-### copy
+    a fresh instruction for the inverse
 
-<span id="qiskit.circuit.SwitchCaseOp.copy" />
+    **Return type**
 
-`SwitchCaseOp.copy(name=None)`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-Copy of the instruction.
+    **Raises**
 
-**Parameters**
+    **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
 
-**name** (*str*) – name to be given to the copied circuit, if `None` then the name stays the same.
+  <span id="qiskit-circuit-switchcaseop-is-parameterized" />
 
-**Returns**
+  ### is\_parameterized
 
-a copy of the current instruction, with the name updated if it was provided
+  <Function id="qiskit.circuit.SwitchCaseOp.is_parameterized" name="is_parameterized" signature="SwitchCaseOp.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-**Return type**
+  <span id="qiskit-circuit-switchcaseop-qasm" />
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### qasm
 
-<span id="qiskit-circuit-switchcaseop-inverse" />
+  <Function id="qiskit.circuit.SwitchCaseOp.qasm" name="qasm" signature="SwitchCaseOp.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-### inverse
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-<span id="qiskit.circuit.SwitchCaseOp.inverse" />
+  <span id="qiskit-circuit-switchcaseop-repeat" />
 
-`SwitchCaseOp.inverse()`
+  ### repeat
 
-Invert this instruction.
+  <Function id="qiskit.circuit.SwitchCaseOp.repeat" name="repeat" signature="SwitchCaseOp.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+    **Parameters**
 
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+    **n** (*int*) – Number of times to repeat the instruction
 
-**Returns**
+    **Returns**
 
-a fresh instruction for the inverse
+    Containing the definition.
 
-**Return type**
+    **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**Raises**
+    **Raises**
 
-**CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+    **CircuitError** – If n \< 1.
+  </Function>
 
-<span id="qiskit-circuit-switchcaseop-is-parameterized" />
+  <span id="qiskit-circuit-switchcaseop-replace-blocks" />
 
-### is\_parameterized
+  ### replace\_blocks
 
-<span id="qiskit.circuit.SwitchCaseOp.is_parameterized" />
+  <Function id="qiskit.circuit.SwitchCaseOp.replace_blocks" name="replace_blocks" signature="SwitchCaseOp.replace_blocks(blocks)">
+    Replace blocks and return new instruction. :param blocks: Tuple of QuantumCircuits to replace in instruction.
 
-`SwitchCaseOp.is_parameterized()`
+    **Returns**
 
-Return True .IFF. instruction is parameterized else False
+    New ControlFlowOp with replaced blocks.
 
-<span id="qiskit-circuit-switchcaseop-qasm" />
+    **Return type**
 
-### qasm
+    [*SwitchCaseOp*](qiskit.circuit.SwitchCaseOp "qiskit.circuit.controlflow.switch_case.SwitchCaseOp")
+  </Function>
 
-<span id="qiskit.circuit.SwitchCaseOp.qasm" />
+  <span id="qiskit-circuit-switchcaseop-reverse-ops" />
 
-`SwitchCaseOp.qasm()`
+  ### reverse\_ops
 
-Return a default OpenQASM string for the instruction.
+  <Function id="qiskit.circuit.SwitchCaseOp.reverse_ops" name="reverse_ops" signature="SwitchCaseOp.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-<span id="qiskit-circuit-switchcaseop-repeat" />
+    **Returns**
 
-### repeat
+    **a new instruction with**
 
-<span id="qiskit.circuit.SwitchCaseOp.repeat" />
+    sub-instructions reversed.
 
-`SwitchCaseOp.repeat(n)`
+    **Return type**
 
-Creates an instruction with gate repeated n amount of times.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**Parameters**
+  <span id="qiskit-circuit-switchcaseop-soft-compare" />
 
-**n** (*int*) – Number of times to repeat the instruction
+  ### soft\_compare
 
-**Returns**
+  <Function id="qiskit.circuit.SwitchCaseOp.soft_compare" name="soft_compare" signature="SwitchCaseOp.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-Containing the definition.
+    **Parameters**
 
-**Return type**
+    **other** (*instruction*) – other instruction.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Returns**
 
-**Raises**
+    are self and other equal up to parameter expressions.
 
-**CircuitError** – If n \< 1.
+    **Return type**
 
-<span id="qiskit-circuit-switchcaseop-replace-blocks" />
+    bool
+  </Function>
 
-### replace\_blocks
+  <span id="qiskit-circuit-switchcaseop-validate-parameter" />
 
-<span id="qiskit.circuit.SwitchCaseOp.replace_blocks" />
+  ### validate\_parameter
 
-`SwitchCaseOp.replace_blocks(blocks)`
+  <Function id="qiskit.circuit.SwitchCaseOp.validate_parameter" name="validate_parameter" signature="SwitchCaseOp.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-Replace blocks and return new instruction. :param blocks: Tuple of QuantumCircuits to replace in instruction.
+  ## Attributes
 
-**Returns**
+  ### blocks
 
-New ControlFlowOp with replaced blocks.
+  <Attribute id="qiskit.circuit.SwitchCaseOp.blocks" name="blocks" />
 
-**Return type**
+  ### condition\_bits
 
-[*SwitchCaseOp*](qiskit.circuit.SwitchCaseOp "qiskit.circuit.controlflow.switch_case.SwitchCaseOp")
+  <Attribute id="qiskit.circuit.SwitchCaseOp.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit-circuit-switchcaseop-reverse-ops" />
+  ### decompositions
 
-### reverse\_ops
+  <Attribute id="qiskit.circuit.SwitchCaseOp.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.SwitchCaseOp.reverse_ops" />
+  ### definition
 
-`SwitchCaseOp.reverse_ops()`
+  <Attribute id="qiskit.circuit.SwitchCaseOp.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### duration
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Attribute id="qiskit.circuit.SwitchCaseOp.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-**Returns**
+  ### label
 
-**a new instruction with**
+  <Attribute id="qiskit.circuit.SwitchCaseOp.label" name="label">
+    Return instruction label
+  </Attribute>
 
-sub-instructions reversed.
+  ### name
 
-**Return type**
+  <Attribute id="qiskit.circuit.SwitchCaseOp.name" name="name">
+    Return the name.
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### num\_clbits
 
-<span id="qiskit-circuit-switchcaseop-soft-compare" />
+  <Attribute id="qiskit.circuit.SwitchCaseOp.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### soft\_compare
+  ### num\_qubits
 
-<span id="qiskit.circuit.SwitchCaseOp.soft_compare" />
+  <Attribute id="qiskit.circuit.SwitchCaseOp.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-`SwitchCaseOp.soft_compare(other)`
+  ### params
 
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+  <Attribute id="qiskit.circuit.SwitchCaseOp.params" name="params">
+    return instruction params.
+  </Attribute>
 
-**Parameters**
+  ### unit
 
-**other** (*instruction*) – other instruction.
-
-**Returns**
-
-are self and other equal up to parameter expressions.
-
-**Return type**
-
-bool
-
-<span id="qiskit-circuit-switchcaseop-validate-parameter" />
-
-### validate\_parameter
-
-<span id="qiskit.circuit.SwitchCaseOp.validate_parameter" />
-
-`SwitchCaseOp.validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
-
-## Attributes
-
-<span id="qiskit.circuit.SwitchCaseOp.blocks" />
-
-### blocks
-
-<span id="qiskit.circuit.SwitchCaseOp.condition_bits" />
-
-### condition\_bits
-
-Get Clbits in condition.
-
-<span id="qiskit.circuit.SwitchCaseOp.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.circuit.SwitchCaseOp.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit.circuit.SwitchCaseOp.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit.circuit.SwitchCaseOp.label" />
-
-### label
-
-Return instruction label
-
-<span id="qiskit.circuit.SwitchCaseOp.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.SwitchCaseOp.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.SwitchCaseOp.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.SwitchCaseOp.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.SwitchCaseOp.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.SwitchCaseOp.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

@@ -8,187 +8,183 @@ python_api_name: qiskit.circuit.library.PauliEvolutionGate
 
 # PauliEvolutionGate
 
-<span id="qiskit.circuit.library.PauliEvolutionGate" />
+<Class id="qiskit.circuit.library.PauliEvolutionGate" github="https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py" signature="qiskit.circuit.library.PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`qiskit.circuit.library.PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py "view source code")
+  Time-evolution of an operator consisting of Paulis.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
-
-Time-evolution of an operator consisting of Paulis.
-
-For an operator $H$ consisting of Pauli terms and (real) evolution time $t$ this gate implements
+  For an operator $H$ consisting of Pauli terms and (real) evolution time $t$ this gate implements
 
 $$
 U(t) = e^{-itH}.
 $$
 
-This gate serves as a high-level definition of the evolution and can be synthesized into a circuit using different algorithms.
+  This gate serves as a high-level definition of the evolution and can be synthesized into a circuit using different algorithms.
 
-The evolution gates are related to the Pauli rotation gates by a factor of 2. For example the time evolution of the Pauli $X$ operator is connected to the Pauli $X$ rotation $R_X$ by
+  The evolution gates are related to the Pauli rotation gates by a factor of 2. For example the time evolution of the Pauli $X$ operator is connected to the Pauli $X$ rotation $R_X$ by
 
 $$
 U(t) = e^{-itX} = R_X(2t).
 $$
 
-**Examples:**
+  **Examples:**
 
-```python
-from qiskit.circuit import QuantumCircuit
-from qiskit.circuit.library import PauliEvolutionGate
-from qiskit.quantum_info import SparsePauliOp
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import PauliEvolutionGate
+  from qiskit.quantum_info import SparsePauliOp
 
-X = SparsePauliOp("X")
-Z = SparsePauliOp("Z")
+  X = SparsePauliOp("X")
+  Z = SparsePauliOp("Z")
 
-# build the evolution gate
-operator = (Z ^ Z) - 0.1 * (X ^ I)
-evo = PauliEvolutionGate(operator, time=0.2)
+  # build the evolution gate
+  operator = (Z ^ Z) - 0.1 * (X ^ I)
+  evo = PauliEvolutionGate(operator, time=0.2)
 
-# plug it into a circuit
-circuit = QuantumCircuit(2)
-circuit.append(evo, range(2))
-print(circuit.draw())
-```
+  # plug it into a circuit
+  circuit = QuantumCircuit(2)
+  circuit.append(evo, range(2))
+  print(circuit.draw())
+  ```
 
-The above will print (note that the `-0.1` coefficient is not printed!):
+  The above will print (note that the `-0.1` coefficient is not printed!):
 
-```python
-     ┌──────────────────────────┐
-q_0: ┤0                         ├
-     │  exp(-it (ZZ + XI))(0.2) │
-q_1: ┤1                         ├
-     └──────────────────────────┘
-```
+  ```python
+       ┌──────────────────────────┐
+  q_0: ┤0                         ├
+       │  exp(-it (ZZ + XI))(0.2) │
+  q_1: ┤1                         ├
+       └──────────────────────────┘
+  ```
 
-**References:**
+  **References:**
 
-\[1] G. Li et al. Paulihedral: A Generalized Block-Wise Compiler Optimization Framework For Quantum Simulation Kernels (2021). \[[arXiv:2109.03371](https://arxiv.org/abs/2109.03371)]
+  \[1] G. Li et al. Paulihedral: A Generalized Block-Wise Compiler Optimization Framework For Quantum Simulation Kernels (2021). \[[arXiv:2109.03371](https://arxiv.org/abs/2109.03371)]
 
-**Parameters**
+  **Parameters**
 
-*   **operator** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The operator to evolve. Can also be provided as list of non-commuting operators where the elements are sums of commuting operators. For example: `[XY + YX, ZZ + ZI + IZ, YY]`.
-*   **time** (*Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – The evolution time.
-*   **label** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – A label for the gate to display in visualizations. Per default, the label is set to `exp(-it <operators>)` where `<operators>` is the sum of the Paulis. Note that the label does not include any coefficients of the Paulis. See the class docstring for an example.
-*   **synthesis** (*Optional\[*[*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")*]*) – A synthesis strategy. If None, the default synthesis is the Lie-Trotter product formula with a single repetition.
+  *   **operator** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The operator to evolve. Can also be provided as list of non-commuting operators where the elements are sums of commuting operators. For example: `[XY + YX, ZZ + ZI + IZ, YY]`.
+  *   **time** (*Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – The evolution time.
+  *   **label** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – A label for the gate to display in visualizations. Per default, the label is set to `exp(-it <operators>)` where `<operators>` is the sum of the Paulis. Note that the label does not include any coefficients of the Paulis. See the class docstring for an example.
+  *   **synthesis** (*Optional\[*[*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")*]*) – A synthesis strategy. If None, the default synthesis is the Lie-Trotter product formula with a single repetition.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.base_class" />
+  ### base\_class
 
-### base\_class
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.PauliEvolutionGate.base_class "qiskit.circuit.library.PauliEvolutionGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.PauliEvolutionGate.base_class "qiskit.circuit.library.PauliEvolutionGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.condition" />
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-### condition
+  ### condition\_bits
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### decompositions
+  ### duration
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.definition" />
+  ### label
 
-### definition
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### mutable
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.duration" />
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-### duration
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-Get the duration.
+  ### name
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.label" />
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-### label
+  ### num\_clbits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.mutable" />
+  ### num\_qubits
 
-### mutable
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### params
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.name" />
+  ### time
 
-### name
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.time" name="time">
+    Return the evolution time as stored in the gate parameters.
 
-Return the name.
+    **Returns**
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.num_clbits" />
+    The evolution time.
+  </Attribute>
 
-### num\_clbits
+  ### unit
 
-Return the number of clbits.
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.num_qubits" />
+  ## Methods
 
-### num\_qubits
+  ### validate\_parameter
 
-Return the number of qubits.
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" name="validate_parameter" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.params" />
+    **Return type**
 
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.PauliEvolutionGate.time" />
-
-### time
-
-Return the evolution time as stored in the gate parameters.
-
-**Returns**
-
-The evolution time.
-
-<span id="qiskit.circuit.library.PauliEvolutionGate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### validate\_parameter
-
-<span id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Gate parameters should be int, float, or ParameterExpression
-
-**Return type**
-
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
+  </Function>
+</Class>
 

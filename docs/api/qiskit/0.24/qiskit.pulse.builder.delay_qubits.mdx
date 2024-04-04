@@ -10,31 +10,29 @@ python_api_name: qiskit.pulse.builder.delay_qubits
 
 # qiskit.pulse.builder.delay\_qubits
 
-<span id="qiskit.pulse.builder.delay_qubits" />
+<Function id="qiskit.pulse.builder.delay_qubits" name="delay_qubits" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py" signature="delay_qubits(duration, *qubits)">
+  Insert delays on all of the `channels.Channel`s that correspond to the input `qubits` at the same time.
 
-`delay_qubits(duration, *qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
+  Examples:
 
-Insert delays on all of the `channels.Channel`s that correspond to the input `qubits` at the same time.
+  ```python
+  from qiskit import pulse
+  from qiskit.test.mock import FakeOpenPulse3Q
 
-Examples:
+  backend = FakeOpenPulse3Q()
 
-```python
-from qiskit import pulse
-from qiskit.test.mock import FakeOpenPulse3Q
+  with pulse.build(backend) as pulse_prog:
+      # Delay for 100 cycles on qubits 0, 1 and 2.
+      regs = pulse.delay_qubits(100, 0, 1, 2)
+  ```
 
-backend = FakeOpenPulse3Q()
+  <Admonition title="Note" type="note">
+    Requires the active builder context to have a backend set.
+  </Admonition>
 
-with pulse.build(backend) as pulse_prog:
-    # Delay for 100 cycles on qubits 0, 1 and 2.
-    regs = pulse.delay_qubits(100, 0, 1, 2)
-```
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  Requires the active builder context to have a backend set.
-</Admonition>
-
-**Parameters**
-
-*   **duration** (`int`) – Duration to delay for.
-*   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – Physical qubits to delay on. Delays will be inserted based on the channels returned by `pulse.qubit_channels()`.
+  *   **duration** (`int`) – Duration to delay for.
+  *   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – Physical qubits to delay on. Delays will be inserted based on the channels returned by `pulse.qubit_channels()`.
+</Function>
 

@@ -10,22 +10,20 @@ python_api_name: qiskit.tools.backend_monitor
 
 # qiskit.tools.backend\_monitor
 
-<span id="qiskit.tools.backend_monitor" />
+<Function id="qiskit.tools.backend_monitor" name="backend_monitor" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/tools/monitor/overview.py" signature="backend_monitor(backend)">
+  Monitor a single IBMQ backend.
 
-`backend_monitor(backend)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/tools/monitor/overview.py "view source code")
+  **Parameters**
 
-Monitor a single IBMQ backend.
+  **backend** (*IBMQBackend*) – Backend to monitor.
 
-**Parameters**
+  **Raises**
 
-**backend** (*IBMQBackend*) – Backend to monitor.
+  *   **QiskitError** – Input is not a IBMQ backend.
+  *   **MissingOptionalLibraryError** – If qiskit-ibmq-provider is not installed
 
-**Raises**
+  Examples: .. code-block:: python
 
-*   **QiskitError** – Input is not a IBMQ backend.
-*   **MissingOptionalLibraryError** – If qiskit-ibmq-provider is not installed
-
-Examples: .. code-block:: python
-
-> from qiskit.providers.ibmq import IBMQ from qiskit.tools.monitor import backend\_monitor provider = IBMQ.get\_provider(hub=’ibm-q’) backend\_monitor(provider.backends.ibmq\_lima)
+  > from qiskit.providers.ibmq import IBMQ from qiskit.tools.monitor import backend\_monitor provider = IBMQ.get\_provider(hub=’ibm-q’) backend\_monitor(provider.backends.ibmq\_lima)
+</Function>
 

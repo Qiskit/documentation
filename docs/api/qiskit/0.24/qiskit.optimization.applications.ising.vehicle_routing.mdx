@@ -25,99 +25,91 @@ Converts vehicle routing instances into a list of Paulis, and provides some rela
 
 ### get\_operator
 
-<span id="qiskit.optimization.applications.ising.vehicle_routing.get_operator" />
+<Function id="qiskit.optimization.applications.ising.vehicle_routing.get_operator" name="get_operator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py" signature="get_operator(instance, n, K)">
+  Converts an instance of a vehicle routing problem into a list of Paulis.
 
-`get_operator(instance, n, K)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
+  **Parameters**
 
-Converts an instance of a vehicle routing problem into a list of Paulis.
+  *   **instance** (`ndarray`) – a customers-to-customers distance matrix.
+  *   **n** (`int`) – the number of customers.
+  *   **K** (`int`) – the number of vehicles available.
 
-**Parameters**
+  **Return type**
 
-*   **instance** (`ndarray`) – a customers-to-customers distance matrix.
-*   **n** (`int`) – the number of customers.
-*   **K** (`int`) – the number of vehicles available.
+  `WeightedPauliOperator`
 
-**Return type**
+  **Returns**
 
-`WeightedPauliOperator`
-
-**Returns**
-
-operator for the Hamiltonian.
+  operator for the Hamiltonian.
+</Function>
 
 ### get\_vehiclerouting\_cost
 
-<span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_cost" />
+<Function id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_cost" name="get_vehiclerouting_cost" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py" signature="get_vehiclerouting_cost(instance, n, K, x_sol)">
+  Computes the cost of a solution to an instance of a vehicle routing problem.
 
-`get_vehiclerouting_cost(instance, n, K, x_sol)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
+  **Parameters**
 
-Computes the cost of a solution to an instance of a vehicle routing problem.
+  *   **instance** (`ndarray`) – a customers-to-customers distance matrix.
+  *   **n** (`int`) – the number of customers.
+  *   **K** (`int`) – the number of vehicles available.
+  *   **x\_sol** (`ndarray`) – a solution, i.e., a path, in its binary representation.
 
-**Parameters**
+  **Return type**
 
-*   **instance** (`ndarray`) – a customers-to-customers distance matrix.
-*   **n** (`int`) – the number of customers.
-*   **K** (`int`) – the number of vehicles available.
-*   **x\_sol** (`ndarray`) – a solution, i.e., a path, in its binary representation.
+  `float`
 
-**Return type**
+  **Returns**
 
-`float`
-
-**Returns**
-
-objective function value.
+  objective function value.
+</Function>
 
 ### get\_vehiclerouting\_matrices
 
-<span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices" />
+<Function id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices" name="get_vehiclerouting_matrices" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py" signature="get_vehiclerouting_matrices(instance, n, K)">
+  **Constructs auxiliary matrices from a vehicle routing instance,**
 
-`get_vehiclerouting_matrices(instance, n, K)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
+  which represent the encoding into a binary quadratic program. This is used in the construction of the qubit ops and computation of the solution cost.
 
-**Constructs auxiliary matrices from a vehicle routing instance,**
+  **Parameters**
 
-which represent the encoding into a binary quadratic program. This is used in the construction of the qubit ops and computation of the solution cost.
+  *   **instance** (`ndarray`) – a customers-to-customers distance matrix.
+  *   **n** (`int`) – the number of customers.
+  *   **K** (`int`) – the number of vehicles available.
 
-**Parameters**
+  **Return type**
 
-*   **instance** (`ndarray`) – a customers-to-customers distance matrix.
-*   **n** (`int`) – the number of customers.
-*   **K** (`int`) – the number of vehicles available.
+  `Tuple`\[`ndarray`, `ndarray`, `float`]
 
-**Return type**
+  **Returns**
 
-`Tuple`\[`ndarray`, `ndarray`, `float`]
-
-**Returns**
-
-a matrix defining the interactions between variables. a matrix defining the contribution from the individual variables. the constant offset.
+  a matrix defining the interactions between variables. a matrix defining the contribution from the individual variables. the constant offset.
+</Function>
 
 ### get\_vehiclerouting\_solution
 
-<span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution" />
+<Function id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution" name="get_vehiclerouting_solution" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py" signature="get_vehiclerouting_solution(instance, n, K, result)">
+  **Tries to obtain a feasible solution (in vector form) of an instance**
 
-`get_vehiclerouting_solution(instance, n, K, result)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
+  of vehicle routing from the results dictionary.
 
-**Tries to obtain a feasible solution (in vector form) of an instance**
+  **Parameters**
 
-of vehicle routing from the results dictionary.
+  *   **instance** (`ndarray`) – a customers-to-customers distance matrix.
+  *   **n** (`int`) – the number of customers.
+  *   **K** (`int`) – the number of vehicles available.
+  *   **result** (`MinimumEigensolverResult`) – a result obtained by QAOA.run or VQE.run.
 
-**Parameters**
+  **Return type**
 
-*   **instance** (`ndarray`) – a customers-to-customers distance matrix.
-*   **n** (`int`) – the number of customers.
-*   **K** (`int`) – the number of vehicles available.
-*   **result** (`MinimumEigensolverResult`) – a result obtained by QAOA.run or VQE.run.
+  `ndarray`
 
-**Return type**
+  **Returns**
 
-`ndarray`
+  a solution, i.e., a path, in its binary representation.
 
-**Returns**
+  **#TODO: support statevector simulation, results should be a statevector or counts format, not**
 
-a solution, i.e., a path, in its binary representation.
-
-**#TODO: support statevector simulation, results should be a statevector or counts format, not**
-
-a result from algorithm run
+  a result from algorithm run
+</Function>
 

@@ -8,38 +8,36 @@ python_api_name: qiskit.pulse.builder.align_left
 
 # qiskit.pulse.builder.align\_left
 
-<span id="qiskit.pulse.builder.align_left" />
+<Function id="qiskit.pulse.builder.align_left" name="align_left" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py" signature="align_left()">
+  Left alignment pulse scheduling context.
 
-`align_left()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
+  Pulse instructions within this context are scheduled as early as possible by shifting them left to the earliest available time.
 
-Left alignment pulse scheduling context.
+  Examples:
 
-Pulse instructions within this context are scheduled as early as possible by shifting them left to the earliest available time.
+  ```python
+  from qiskit import pulse
 
-Examples:
+  d0 = pulse.DriveChannel(0)
+  d1 = pulse.DriveChannel(1)
 
-```python
-from qiskit import pulse
+  with pulse.build() as pulse_prog:
+      with pulse.align_left():
+          # this pulse will start at t=0
+          pulse.play(pulse.Constant(100, 1.0), d0)
+          # this pulse will start at t=0
+          pulse.play(pulse.Constant(20, 1.0), d1)
+  pulse_prog = pulse.transforms.block_to_schedule(pulse_prog)
 
-d0 = pulse.DriveChannel(0)
-d1 = pulse.DriveChannel(1)
+  assert pulse_prog.ch_start_time(d0) == pulse_prog.ch_start_time(d1)
+  ```
 
-with pulse.build() as pulse_prog:
-    with pulse.align_left():
-        # this pulse will start at t=0
-        pulse.play(pulse.Constant(100, 1.0), d0)
-        # this pulse will start at t=0
-        pulse.play(pulse.Constant(20, 1.0), d1)
-pulse_prog = pulse.transforms.block_to_schedule(pulse_prog)
+  **Yields**
 
-assert pulse_prog.ch_start_time(d0) == pulse_prog.ch_start_time(d1)
-```
+  None
 
-**Yields**
+  **Return type**
 
-None
-
-**Return type**
-
-`AbstractContextManager`\[`None`]
+  `AbstractContextManager`\[`None`]
+</Function>
 

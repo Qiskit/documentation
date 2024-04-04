@@ -8,55 +8,53 @@ python_api_name: qiskit.pulse.transforms.block_to_dag
 
 # qiskit.pulse.transforms.block\_to\_dag
 
-<span id="qiskit.pulse.transforms.block_to_dag" />
+<Function id="qiskit.pulse.transforms.block_to_dag" name="block_to_dag" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/transforms/dag.py" signature="block_to_dag(block)">
+  Convert schedule block instruction into DAG.
 
-`block_to_dag(block)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/transforms/dag.py "view source code")
+  `ScheduleBlock` can be represented as a DAG as needed. For example, equality of two programs are efficiently checked on DAG representation.
 
-Convert schedule block instruction into DAG.
+  ```python
+  with pulse.build() as sched1:
+      with pulse.align_left():
+          pulse.play(my_gaussian0, pulse.DriveChannel(0))
+          pulse.shift_phase(1.57, pulse.DriveChannel(2))
+          pulse.play(my_gaussian1, pulse.DriveChannel(1))
 
-`ScheduleBlock` can be represented as a DAG as needed. For example, equality of two programs are efficiently checked on DAG representation.
+  with pulse.build() as sched2:
+      with pulse.align_left():
+          pulse.shift_phase(1.57, pulse.DriveChannel(2))
+          pulse.play(my_gaussian1, pulse.DriveChannel(1))
+          pulse.play(my_gaussian0, pulse.DriveChannel(0))
+  ```
 
-```python
-with pulse.build() as sched1:
-    with pulse.align_left():
-        pulse.play(my_gaussian0, pulse.DriveChannel(0))
-        pulse.shift_phase(1.57, pulse.DriveChannel(2))
-        pulse.play(my_gaussian1, pulse.DriveChannel(1))
+  Here the `sched1 `` and ``sched2` are different implementations of the same program, but it is difficult to confirm on the list representation.
 
-with pulse.build() as sched2:
-    with pulse.align_left():
-        pulse.shift_phase(1.57, pulse.DriveChannel(2))
-        pulse.play(my_gaussian1, pulse.DriveChannel(1))
-        pulse.play(my_gaussian0, pulse.DriveChannel(0))
-```
+  Another example is instruction optimization.
 
-Here the `sched1 `` and ``sched2` are different implementations of the same program, but it is difficult to confirm on the list representation.
+  ```python
+  with pulse.build() as sched:
+      with pulse.align_left():
+          pulse.shift_phase(1.57, pulse.DriveChannel(1))
+          pulse.play(my_gaussian0, pulse.DriveChannel(0))
+          pulse.shift_phase(-1.57, pulse.DriveChannel(1))
+  ```
 
-Another example is instruction optimization.
+  In above program two `shift_phase` instructions can be cancelled out because they are consecutive on the same drive channel. This can be easily found on the DAG representation.
 
-```python
-with pulse.build() as sched:
-    with pulse.align_left():
-        pulse.shift_phase(1.57, pulse.DriveChannel(1))
-        pulse.play(my_gaussian0, pulse.DriveChannel(0))
-        pulse.shift_phase(-1.57, pulse.DriveChannel(1))
-```
+  **Parameters**
 
-In above program two `shift_phase` instructions can be cancelled out because they are consecutive on the same drive channel. This can be easily found on the DAG representation.
+  **block** (*"ScheduleBlock"*) – A schedule block to be converted.
 
-**Parameters**
+  **Return type**
 
-**block** (*"ScheduleBlock"*) – A schedule block to be converted.
+  `PyDAG`
 
-**Return type**
+  **Returns**
 
-`PyDAG`
+  Instructions in DAG representation.
 
-**Returns**
+  **Raises**
 
-Instructions in DAG representation.
-
-**Raises**
-
-[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When the context is invalid subclass.
+  [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When the context is invalid subclass.
+</Function>
 

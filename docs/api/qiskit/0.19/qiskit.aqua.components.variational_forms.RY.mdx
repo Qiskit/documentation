@@ -8,135 +8,139 @@ python_api_name: qiskit.aqua.components.variational_forms.RY
 
 # RY
 
-<span id="qiskit.aqua.components.variational_forms.RY" />
+<Class id="qiskit.aqua.components.variational_forms.RY" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/ry.py" signature="RY(num_qubits, depth=3, entangler_map=None, entanglement='full', initial_state=None, entanglement_gate='cz', skip_unentangled_qubits=False, skip_final_ry=False)">
+  DEPRECATED. The RY Variational Form.
 
-`RY(num_qubits, depth=3, entangler_map=None, entanglement='full', initial_state=None, entanglement_gate='cz', skip_unentangled_qubits=False, skip_final_ry=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/ry.py "view source code")
+  The RY trial wave function is layers of $y$ rotations with entanglements. When none of qubits are unentangled to other qubits the number of parameters and the entanglement gates themselves have no additional parameters, the number of optimizer parameters this form creates and uses is given by $q \times (d + 1)$, where $q$ is the total number of qubits and $d$ is the depth of the circuit.
 
-DEPRECATED. The RY Variational Form.
+  Nonetheless, in some cases, if an entangler\_map does not include all qubits, that is, some qubits are not entangled by other qubits. The number of parameters is reduced by $d \times q'$ where $q'$ is the number of unentangled qubits. This is because adding more parameters to the unentangled qubits only introduce overhead without bringing any benefit; furthermore, theoretically, applying multiple RY gates in a row can be reduced to a single RY gate with the summed rotation angles.
 
-The RY trial wave function is layers of $y$ rotations with entanglements. When none of qubits are unentangled to other qubits the number of parameters and the entanglement gates themselves have no additional parameters, the number of optimizer parameters this form creates and uses is given by $q \times (d + 1)$, where $q$ is the total number of qubits and $d$ is the depth of the circuit.
+  If the form uses entanglement gates with parameters (such as ‘crx’) the number of parameters increases by the number of entanglements. For instance with ‘linear’ or ‘sca’ entanglement the total number of parameters is $2q \times (d + 1/2)$. For ‘full’ entanglement an additional $q \times (q - 1)/2 \times d$ parameters, hence a total of $d \times q \times (q + 1) / 2 + q$. It is possible to skip the final layer or $y$ rotations by setting the argument skip\_final\_ry to True. Then the number of parameters in above formulae decreases by $q$.
 
-Nonetheless, in some cases, if an entangler\_map does not include all qubits, that is, some qubits are not entangled by other qubits. The number of parameters is reduced by $d \times q'$ where $q'$ is the number of unentangled qubits. This is because adding more parameters to the unentangled qubits only introduce overhead without bringing any benefit; furthermore, theoretically, applying multiple RY gates in a row can be reduced to a single RY gate with the summed rotation angles.
+  *   ‘full’ entanglement is each qubit is entangled with all the others.
+  *   ‘linear’ entanglement is qubit $i$ entangled with qubit $i + 1$, for all $i \in \{0, 1, ... , q - 2\}$, where $q$ is the total number of qubits.
+  *   ‘sca’ (shifted-circular-alternating) entanglement it is a generalized and modified version of the proposed circuit 14 in [Sim et al.](https://arxiv.org/abs/1905.10876). It consists of circular entanglement where the ‘long’ entanglement connecting the first with the last qubit is shifted by one each block. Furthermore the role of control and target qubits are swapped every block (therefore alternating).
 
-If the form uses entanglement gates with parameters (such as ‘crx’) the number of parameters increases by the number of entanglements. For instance with ‘linear’ or ‘sca’ entanglement the total number of parameters is $2q \times (d + 1/2)$. For ‘full’ entanglement an additional $q \times (q - 1)/2 \times d$ parameters, hence a total of $d \times q \times (q + 1) / 2 + q$. It is possible to skip the final layer or $y$ rotations by setting the argument skip\_final\_ry to True. Then the number of parameters in above formulae decreases by $q$.
+  The entanglement parameter can be overridden by an entangler\_map explicitly The entangler map is specified in the form of a list; where each element in the list is a list pair of a source qubit and a target qubit index. Indexes are integer values from $0$ to $q-1$, where $q$ is the total number of qubits, as in the following example:
 
-*   ‘full’ entanglement is each qubit is entangled with all the others.
-*   ‘linear’ entanglement is qubit $i$ entangled with qubit $i + 1$, for all $i \in \{0, 1, ... , q - 2\}$, where $q$ is the total number of qubits.
-*   ‘sca’ (shifted-circular-alternating) entanglement it is a generalized and modified version of the proposed circuit 14 in [Sim et al.](https://arxiv.org/abs/1905.10876). It consists of circular entanglement where the ‘long’ entanglement connecting the first with the last qubit is shifted by one each block. Furthermore the role of control and target qubits are swapped every block (therefore alternating).
+  > entangler\_map = \[\[0, 1], \[0, 2], \[1, 3]]
 
-The entanglement parameter can be overridden by an entangler\_map explicitly The entangler map is specified in the form of a list; where each element in the list is a list pair of a source qubit and a target qubit index. Indexes are integer values from $0$ to $q-1$, where $q$ is the total number of qubits, as in the following example:
+  **Parameters**
 
-> entangler\_map = \[\[0, 1], \[0, 2], \[1, 3]]
+  *   **num\_qubits** (`int`) – Number of qubits, has a minimum value of 1.
+  *   **depth** (`int`) – Number of rotation layers, has a minimum value of 1.
+  *   **entangler\_map** (`Optional`\[`List`\[`List`\[`int`]]]) – Describe the connectivity of qubits, each list pair describes \[source, target], or None for as defined by entanglement. Note that the order is the list is the order of applying the two-qubit gate.
+  *   **entanglement** (`str`) – (‘full’ | ‘linear’ | ‘sca’), overridden by ‘entangler\_map\` if its provided. ‘full’ is all-to-all entanglement, ‘linear’ is nearest-neighbor and ‘sca’ is a shifted-circular-alternating entanglement.
+  *   **initial\_state** (`Optional`\[[`InitialState`](qiskit.aqua.components.initial_states.InitialState "qiskit.aqua.components.initial_states.initial_state.InitialState")]) – An initial state object
+  *   **entanglement\_gate** (`str`) – (‘cz’ | ‘cx’ | ‘crx’)
+  *   **skip\_unentangled\_qubits** (`bool`) – Skip the qubits not in the entangler\_map
+  *   **skip\_final\_ry** (`bool`) – Skip the final layer of Y rotations
 
-**Parameters**
+  ## Attributes
 
-*   **num\_qubits** (`int`) – Number of qubits, has a minimum value of 1.
-*   **depth** (`int`) – Number of rotation layers, has a minimum value of 1.
-*   **entangler\_map** (`Optional`\[`List`\[`List`\[`int`]]]) – Describe the connectivity of qubits, each list pair describes \[source, target], or None for as defined by entanglement. Note that the order is the list is the order of applying the two-qubit gate.
-*   **entanglement** (`str`) – (‘full’ | ‘linear’ | ‘sca’), overridden by ‘entangler\_map\` if its provided. ‘full’ is all-to-all entanglement, ‘linear’ is nearest-neighbor and ‘sca’ is a shifted-circular-alternating entanglement.
-*   **initial\_state** (`Optional`\[[`InitialState`](qiskit.aqua.components.initial_states.InitialState "qiskit.aqua.components.initial_states.initial_state.InitialState")]) – An initial state object
-*   **entanglement\_gate** (`str`) – (‘cz’ | ‘cx’ | ‘crx’)
-*   **skip\_unentangled\_qubits** (`bool`) – Skip the qubits not in the entangler\_map
-*   **skip\_final\_ry** (`bool`) – Skip the final layer of Y rotations
+  ### num\_parameters
 
-## Attributes
+  <Attribute id="qiskit.aqua.components.variational_forms.RY.num_parameters" name="num_parameters">
+    Number of parameters of the variational form.
 
-### num\_parameters
+    **Returns**
 
-Number of parameters of the variational form.
+    An integer indicating the number of parameters.
 
-**Returns**
+    **Return type**
 
-An integer indicating the number of parameters.
+    int
+  </Attribute>
 
-**Return type**
+  ### num\_qubits
 
-int
+  <Attribute id="qiskit.aqua.components.variational_forms.RY.num_qubits" name="num_qubits">
+    Number of qubits of the variational form.
 
-### num\_qubits
+    **Returns**
 
-Number of qubits of the variational form.
+    An integer indicating the number of qubits.
 
-**Returns**
+    **Return type**
 
-An integer indicating the number of qubits.
+    int
+  </Attribute>
 
-**Return type**
+  ### parameter\_bounds
 
-int
+  <Attribute id="qiskit.aqua.components.variational_forms.RY.parameter_bounds" name="parameter_bounds">
+    Parameter bounds.
 
-### parameter\_bounds
+    **Returns**
 
-Parameter bounds.
+    A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
 
-**Returns**
+    **Return type**
 
-A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
+    list
+  </Attribute>
 
-**Return type**
+  ### preferred\_init\_points
 
-list
+  <Attribute id="qiskit.aqua.components.variational_forms.RY.preferred_init_points" name="preferred_init_points">
+    Return preferred init points.
 
-### preferred\_init\_points
+    If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
+  </Attribute>
 
-Return preferred init points.
+  ### setting
 
-If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
+  <Attribute id="qiskit.aqua.components.variational_forms.RY.setting" name="setting" />
 
-### setting
+  ### support\_parameterized\_circuit
 
-### support\_parameterized\_circuit
+  <Attribute id="qiskit.aqua.components.variational_forms.RY.support_parameterized_circuit" name="support_parameterized_circuit">
+    Whether or not the sub-class support parameterized circuit.
 
-Whether or not the sub-class support parameterized circuit.
+    **Returns**
 
-**Returns**
+    indicate the sub-class support parameterized circuit
 
-indicate the sub-class support parameterized circuit
+    **Return type**
 
-**Return type**
+    boolean
+  </Attribute>
 
-boolean
+  ## Methods
 
-## Methods
+  ### construct\_circuit
 
-### construct\_circuit
+  <Function id="qiskit.aqua.components.variational_forms.RY.construct_circuit" name="construct_circuit" signature="RY.construct_circuit(parameters, q=None)">
+    Construct the variational form, given its parameters.
 
-<span id="qiskit.aqua.components.variational_forms.RY.construct_circuit" />
+    **Parameters**
 
-`RY.construct_circuit(parameters, q=None)`
+    *   **parameters** (*Union(numpy.ndarray, list\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*],* [*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")*)*) – circuit parameters.
+    *   **q** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – Quantum Register for the circuit.
 
-Construct the variational form, given its parameters.
+    **Returns**
 
-**Parameters**
+    a quantum circuit with given parameters
 
-*   **parameters** (*Union(numpy.ndarray, list\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*],* [*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")*)*) – circuit parameters.
-*   **q** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – Quantum Register for the circuit.
+    **Return type**
 
-**Returns**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-a quantum circuit with given parameters
+    **Raises**
 
-**Return type**
+    **ValueError** – the number of parameters is incorrect.
+  </Function>
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  ### get\_entangler\_map
 
-**Raises**
+  <Function id="qiskit.aqua.components.variational_forms.RY.get_entangler_map" name="get_entangler_map" signature="static RY.get_entangler_map(map_type, num_qubits, offset=0)">
+    returns entangler map
+  </Function>
 
-**ValueError** – the number of parameters is incorrect.
+  ### validate\_entangler\_map
 
-### get\_entangler\_map
-
-<span id="qiskit.aqua.components.variational_forms.RY.get_entangler_map" />
-
-`static RY.get_entangler_map(map_type, num_qubits, offset=0)`
-
-returns entangler map
-
-### validate\_entangler\_map
-
-<span id="qiskit.aqua.components.variational_forms.RY.validate_entangler_map" />
-
-`static RY.validate_entangler_map(entangler_map, num_qubits)`
-
-validate entangler map
+  <Function id="qiskit.aqua.components.variational_forms.RY.validate_entangler_map" name="validate_entangler_map" signature="static RY.validate_entangler_map(entangler_map, num_qubits)">
+    validate entangler map
+  </Function>
+</Class>
 

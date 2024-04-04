@@ -8,84 +8,80 @@ python_api_name: qiskit.dagcircuit.DAGInNode
 
 # DAGInNode
 
-<span id="qiskit.dagcircuit.DAGInNode" />
+<Class id="qiskit.dagcircuit.DAGInNode" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/dagcircuit/dagnode.py" signature="DAGInNode(wire)">
+  Bases: `qiskit.dagcircuit.dagnode.DAGNode`
 
-`DAGInNode(wire)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/dagcircuit/dagnode.py "view source code")
+  Object to represent an incoming wire node in the DAGCircuit.
 
-Bases: `qiskit.dagcircuit.dagnode.DAGNode`
+  Create an incoming node
 
-Object to represent an incoming wire node in the DAGCircuit.
+  ## Methods
 
-Create an incoming node
+  ### semantic\_eq
 
-## Methods
+  <Function id="qiskit.dagcircuit.DAGInNode.semantic_eq" name="semantic_eq" signature="static DAGInNode.semantic_eq(node1, node2, bit_indices1=None, bit_indices2=None)">
+    Check if DAG nodes are considered equivalent, e.g., as a node\_match for nx.is\_isomorphic.
 
-### semantic\_eq
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGInNode.semantic_eq" />
+    *   **node1** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – A node to compare.
+    *   **node2** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – The other node to compare.
+    *   **bit\_indices1** (*dict*) – Dictionary mapping Bit instances to their index within the circuit containing node1
+    *   **bit\_indices2** (*dict*) – Dictionary mapping Bit instances to their index within the circuit containing node2
 
-`static DAGInNode.semantic_eq(node1, node2, bit_indices1=None, bit_indices2=None)`
+    **Returns**
 
-Check if DAG nodes are considered equivalent, e.g., as a node\_match for nx.is\_isomorphic.
+    If node1 == node2
 
-**Parameters**
+    **Return type**
 
-*   **node1** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – A node to compare.
-*   **node2** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – The other node to compare.
-*   **bit\_indices1** (*dict*) – Dictionary mapping Bit instances to their index within the circuit containing node1
-*   **bit\_indices2** (*dict*) – Dictionary mapping Bit instances to their index within the circuit containing node2
+    Bool
+  </Function>
 
-**Returns**
+  ## Attributes
 
-If node1 == node2
+  ### cargs
 
-**Return type**
+  <Attribute id="qiskit.dagcircuit.DAGInNode.cargs" name="cargs">
+    Returns list of Clbit, else an empty list.
+  </Attribute>
 
-Bool
+  ### condition
 
-## Attributes
+  <Attribute id="qiskit.dagcircuit.DAGInNode.condition" name="condition">
+    Returns the condition of the node.op
+  </Attribute>
 
-<span id="qiskit.dagcircuit.DAGInNode.cargs" />
+  ### name
 
-### cargs
+  <Attribute id="qiskit.dagcircuit.DAGInNode.name" name="name">
+    Returns the Instruction name corresponding to the op for this node
+  </Attribute>
 
-Returns list of Clbit, else an empty list.
+  ### op
 
-<span id="qiskit.dagcircuit.DAGInNode.condition" />
+  <Attribute id="qiskit.dagcircuit.DAGInNode.op" name="op">
+    Returns the Instruction object corresponding to the op for the node, else None
+  </Attribute>
 
-### condition
+  ### qargs
 
-Returns the condition of the node.op
+  <Attribute id="qiskit.dagcircuit.DAGInNode.qargs" name="qargs">
+    Returns list of Qubit, else an empty list.
+  </Attribute>
 
-<span id="qiskit.dagcircuit.DAGInNode.name" />
+  ### sort\_key
 
-### name
+  <Attribute id="qiskit.dagcircuit.DAGInNode.sort_key" name="sort_key" />
 
-Returns the Instruction name corresponding to the op for this node
+  ### type
 
-<span id="qiskit.dagcircuit.DAGInNode.op" />
+  <Attribute id="qiskit.dagcircuit.DAGInNode.type" name="type">
+    Returns the type object
+  </Attribute>
 
-### op
+  ### wire
 
-Returns the Instruction object corresponding to the op for the node, else None
-
-<span id="qiskit.dagcircuit.DAGInNode.qargs" />
-
-### qargs
-
-Returns list of Qubit, else an empty list.
-
-<span id="qiskit.dagcircuit.DAGInNode.sort_key" />
-
-### sort\_key
-
-<span id="qiskit.dagcircuit.DAGInNode.type" />
-
-### type
-
-Returns the type object
-
-<span id="qiskit.dagcircuit.DAGInNode.wire" />
-
-### wire
+  <Attribute id="qiskit.dagcircuit.DAGInNode.wire" name="wire" />
+</Class>
 

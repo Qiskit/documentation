@@ -44,31 +44,25 @@ assert XGate() is XGate()
 
 The public classes correspond to the standard classes [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") and [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"), respectively, and are subclasses of these.
 
-<span id="qiskit.circuit.singleton.SingletonInstruction" />
+<Class id="qiskit.circuit.singleton.SingletonInstruction" github="https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/singleton.py" signature="qiskit.circuit.singleton.SingletonInstruction(*args, _force_mutable=False, **kwargs)">
+  A base class to use for [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") objects that by default are singleton instances.
 
-`qiskit.circuit.singleton.SingletonInstruction(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/singleton.py "view source code")
+  This class should be used for instruction classes that have fixed definitions and do not contain any unique state. The canonical example of something like this is [`Measure`](qiskit.circuit.library.Measure "qiskit.circuit.library.Measure") which has an immutable definition and any instance of [`Measure`](qiskit.circuit.library.Measure "qiskit.circuit.library.Measure") is the same. Using singleton instructions as a base class for these types of gate classes provides a large advantage in the memory footprint of multiple instructions.
 
-A base class to use for [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") objects that by default are singleton instances.
+  The exception to be aware of with this class though are the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") attributes [`label`](qiskit.circuit.Instruction#label "qiskit.circuit.Instruction.label"), [`condition`](qiskit.circuit.Instruction#condition "qiskit.circuit.Instruction.condition"), [`duration`](qiskit.circuit.Instruction#duration "qiskit.circuit.Instruction.duration"), and [`unit`](qiskit.circuit.Instruction#unit "qiskit.circuit.Instruction.unit") which can be set differently for specific instances of gates. For [`SingletonInstruction`](#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction") usage to be sound setting these attributes is not available and they can only be set at creation time, or on an object that has been specifically made mutable using [`to_mutable()`](qiskit.circuit.Instruction#to_mutable "qiskit.circuit.Instruction.to_mutable"). If any of these attributes are used during creation, then instead of using a single shared global instance of the same gate a new separate instance will be created.
+</Class>
 
-This class should be used for instruction classes that have fixed definitions and do not contain any unique state. The canonical example of something like this is [`Measure`](qiskit.circuit.library.Measure "qiskit.circuit.library.Measure") which has an immutable definition and any instance of [`Measure`](qiskit.circuit.library.Measure "qiskit.circuit.library.Measure") is the same. Using singleton instructions as a base class for these types of gate classes provides a large advantage in the memory footprint of multiple instructions.
+<Class id="qiskit.circuit.singleton.SingletonGate" github="https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/singleton.py" signature="qiskit.circuit.singleton.SingletonGate(*args, _force_mutable=False, **kwargs)">
+  A base class to use for [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") objects that by default are singleton instances.
 
-The exception to be aware of with this class though are the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") attributes [`label`](qiskit.circuit.Instruction#label "qiskit.circuit.Instruction.label"), [`condition`](qiskit.circuit.Instruction#condition "qiskit.circuit.Instruction.condition"), [`duration`](qiskit.circuit.Instruction#duration "qiskit.circuit.Instruction.duration"), and [`unit`](qiskit.circuit.Instruction#unit "qiskit.circuit.Instruction.unit") which can be set differently for specific instances of gates. For [`SingletonInstruction`](#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction") usage to be sound setting these attributes is not available and they can only be set at creation time, or on an object that has been specifically made mutable using [`to_mutable()`](qiskit.circuit.Instruction#to_mutable "qiskit.circuit.Instruction.to_mutable"). If any of these attributes are used during creation, then instead of using a single shared global instance of the same gate a new separate instance will be created.
+  This class is very similar to [`SingletonInstruction`](#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction"), except implies unitary [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") semantics as well. The same caveats around setting attributes in that class apply here as well.
+</Class>
 
-<span id="qiskit.circuit.singleton.SingletonGate" />
+<Class id="qiskit.circuit.singleton.SingletonControlledGate" github="https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/singleton.py" signature="qiskit.circuit.singleton.SingletonControlledGate(*args, _force_mutable=False, **kwargs)">
+  A base class to use for [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") objects that by default are singleton instances
 
-`qiskit.circuit.singleton.SingletonGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/singleton.py "view source code")
-
-A base class to use for [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") objects that by default are singleton instances.
-
-This class is very similar to [`SingletonInstruction`](#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction"), except implies unitary [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") semantics as well. The same caveats around setting attributes in that class apply here as well.
-
-<span id="qiskit.circuit.singleton.SingletonControlledGate" />
-
-`qiskit.circuit.singleton.SingletonControlledGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/singleton.py "view source code")
-
-A base class to use for [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") objects that by default are singleton instances
-
-This class is very similar to [`SingletonInstruction`](#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction"), except implies unitary [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") semantics as well. The same caveats around setting attributes in that class apply here as well.
+  This class is very similar to [`SingletonInstruction`](#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction"), except implies unitary [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") semantics as well. The same caveats around setting attributes in that class apply here as well.
+</Class>
 
 When inheriting from one of these classes, the produced class will have an eagerly created singleton instance that will be returned whenever the class is constructed with arguments that have been defined to be singletons. Typically this will be the defaults. These instances are immutable; attempts to modify their properties will raise [`TypeError`](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)").
 
@@ -126,31 +120,29 @@ Subclasses of [`SingletonInstruction`](#qiskit.circuit.singleton.SingletonInstru
 
 ### \_singleton\_lookup\_key
 
-<span id="qiskit.circuit.singleton.SingletonInstruction._singleton_lookup_key" />
+<Function id="qiskit.circuit.singleton.SingletonInstruction._singleton_lookup_key" name="_singleton_lookup_key" signature="static SingletonInstruction._singleton_lookup_key(*_args, **_kwargs)">
+  Given the arguments to the constructor, return a key tuple that identifies the singleton instance to retrieve, or `None` if the arguments imply that a mutable object must be created.
 
-`static SingletonInstruction._singleton_lookup_key(*_args, **_kwargs)`
+  For performance, as a special case, this method will not be called if the class constructor was given zero arguments (e.g. the construction `XGate()` will not call this method, but `XGate(label=None)` will), and the default singleton will immediately be returned.
 
-Given the arguments to the constructor, return a key tuple that identifies the singleton instance to retrieve, or `None` if the arguments imply that a mutable object must be created.
+  This static method can (and probably should) be overridden by subclasses. The derived signature should match the class’s `__init__`; this method should then examine the arguments to determine whether it requires mutability, or what the cache key (if any) should be.
 
-For performance, as a special case, this method will not be called if the class constructor was given zero arguments (e.g. the construction `XGate()` will not call this method, but `XGate(label=None)` will), and the default singleton will immediately be returned.
+  The function should return either `None` or valid `dict` key (i.e. hashable and implements equality). Returning `None` means that the created instance must be mutable. No further singleton-based processing will be done, and the class creation will proceed as if there was no singleton handling. Otherwise, the returned key can be anything hashable and no special meaning is ascribed to it. Whenever this method returns the same key, the same singleton instance will be returned. We suggest that you use a tuple of the values of all arguments that can be set while maintaining the singleton nature.
 
-This static method can (and probably should) be overridden by subclasses. The derived signature should match the class’s `__init__`; this method should then examine the arguments to determine whether it requires mutability, or what the cache key (if any) should be.
+  Only keys that match the default arguments or arguments given to `additional_singletons` at class-creation time will actually return singletons; other values will return a standard mutable instance.
 
-The function should return either `None` or valid `dict` key (i.e. hashable and implements equality). Returning `None` means that the created instance must be mutable. No further singleton-based processing will be done, and the class creation will proceed as if there was no singleton handling. Otherwise, the returned key can be anything hashable and no special meaning is ascribed to it. Whenever this method returns the same key, the same singleton instance will be returned. We suggest that you use a tuple of the values of all arguments that can be set while maintaining the singleton nature.
+  <Admonition title="Note" type="note">
+    The singleton machinery will handle an unhashable return from this function gracefully by returning a mutable instance. Subclasses should ensure that their key is hashable in the happy path, but they do not need to manually verify that the user-supplied arguments are hashable. For example, it’s safe to implement this as:
 
-Only keys that match the default arguments or arguments given to `additional_singletons` at class-creation time will actually return singletons; other values will return a standard mutable instance.
+    ```python
+    @staticmethod
+    def _singleton_lookup_key(*args, **kwargs):
+        return None if kwargs else args
+    ```
 
-<Admonition title="Note" type="note">
-  The singleton machinery will handle an unhashable return from this function gracefully by returning a mutable instance. Subclasses should ensure that their key is hashable in the happy path, but they do not need to manually verify that the user-supplied arguments are hashable. For example, it’s safe to implement this as:
-
-  ```python
-  @staticmethod
-  def _singleton_lookup_key(*args, **kwargs):
-      return None if kwargs else args
-  ```
-
-  even though a user might give some unhashable type as one of the `args`.
-</Admonition>
+    even though a user might give some unhashable type as one of the `args`.
+  </Admonition>
+</Function>
 
 This is set by all Qiskit standard-library gates such that the `label` and similar keyword arguments are ignored in the key calculation if they are their defaults, or a mutable instance is returned if they are not.
 

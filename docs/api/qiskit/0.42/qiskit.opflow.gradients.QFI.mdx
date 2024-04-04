@@ -8,67 +8,63 @@ python_api_name: qiskit.opflow.gradients.QFI
 
 # QFI
 
-<span id="qiskit.opflow.gradients.QFI" />
+<Class id="qiskit.opflow.gradients.QFI" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/gradients/qfi.py" signature="QFI(qfi_method='lin_comb_full')">
+  Bases: [`qiskit.opflow.gradients.qfi_base.QFIBase`](qiskit.opflow.gradients.QFIBase "qiskit.opflow.gradients.qfi_base.QFIBase")
 
-`QFI(qfi_method='lin_comb_full')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/gradients/qfi.py "view source code")
+  Compute the Quantum Fisher Information (QFI).
 
-Bases: [`qiskit.opflow.gradients.qfi_base.QFIBase`](qiskit.opflow.gradients.QFIBase "qiskit.opflow.gradients.qfi_base.QFIBase")
-
-Compute the Quantum Fisher Information (QFI).
-
-Computes the QFI given a pure, parameterized quantum state, where QFI is:
+  Computes the QFI given a pure, parameterized quantum state, where QFI is:
 
 $$
 \mathrm{QFI}_{kl}= 4 \mathrm{Re}[\langle \partial_k \psi | \partial_l \psi \rangle
-    − \langle\partial_k \psi | \psi \rangle \langle\psi | \partial_l \psi \rangle].
+− \langle\partial_k \psi | \psi \rangle \langle\psi | \partial_l \psi \rangle].
 $$
 
-**Parameters**
+  **Parameters**
 
-**qfi\_method** (`Union`\[`str`, [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")]) – The method used to compute the state/probability gradient. Can be either a [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.CircuitQFI") instance or one of the following pre-defined strings `'lin_comb_full'`, `` 'overlap_diag'` `` or `` 'overlap_block_diag'` ``.
+  **qfi\_method** (`Union`\[`str`, [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")]) – The method used to compute the state/probability gradient. Can be either a [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.CircuitQFI") instance or one of the following pre-defined strings `'lin_comb_full'`, `` 'overlap_diag'` `` or `` 'overlap_block_diag'` ``.
 
-**Raises**
+  **Raises**
 
-**ValueError** – if `qfi_method` is neither a `CircuitQFI` object nor one of the predefined strings.
+  **ValueError** – if `qfi_method` is neither a `CircuitQFI` object nor one of the predefined strings.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-### convert
+  ### convert
 
-<span id="qiskit.opflow.gradients.QFI.convert" />
+  <Function id="qiskit.opflow.gradients.QFI.convert" name="convert" signature="QFI.convert(operator, params=None)">
+    **Parameters**
 
-`QFI.convert(operator, params=None)`
+    *   **operator** ([`CircuitStateFn`](qiskit.opflow.state_fns.CircuitStateFn "qiskit.opflow.state_fns.circuit_state_fn.CircuitStateFn")) – The operator corresponding to the quantum state |ψ(ω)〉for which we compute the QFI
+    *   **params** (`Union`\[[`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `None`]) – The parameters we are computing the QFI wrt: ω If not explicitly passed, they are inferred from the operator and sorted by name.
 
-**Parameters**
+    **Return type**
 
-*   **operator** ([`CircuitStateFn`](qiskit.opflow.state_fns.CircuitStateFn "qiskit.opflow.state_fns.circuit_state_fn.CircuitStateFn")) – The operator corresponding to the quantum state |ψ(ω)〉for which we compute the QFI
-*   **params** (`Union`\[[`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `None`]) – The parameters we are computing the QFI wrt: ω If not explicitly passed, they are inferred from the operator and sorted by name.
+    [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
 
-**Return type**
+    **Returns**
 
-[`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+    ListOp\[ListOp] where the operator at position k,l corresponds to QFI\_kl
 
-**Returns**
+    **Raises**
 
-ListOp\[ListOp] where the operator at position k,l corresponds to QFI\_kl
+    **ValueError** – If operator is not parameterized.
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**ValueError** – If operator is not parameterized.
+  ### qfi\_method
 
-## Attributes
+  <Attribute id="qiskit.opflow.gradients.QFI.qfi_method" name="qfi_method">
+    Returns `CircuitQFI`.
 
-<span id="qiskit.opflow.gradients.QFI.qfi_method" />
+    **Return type**
 
-### qfi\_method
+    [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")
 
-Returns `CircuitQFI`.
+    **Returns**
 
-**Return type**
-
-[`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")
-
-**Returns**
-
-`CircuitQFI`.
+    `CircuitQFI`.
+  </Attribute>
+</Class>
 

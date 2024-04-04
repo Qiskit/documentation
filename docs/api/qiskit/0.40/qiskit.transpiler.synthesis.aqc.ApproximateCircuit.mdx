@@ -8,279 +8,267 @@ python_api_name: qiskit.transpiler.synthesis.aqc.ApproximateCircuit
 
 # ApproximateCircuit
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit" />
+<Class id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/synthesis/aqc/approximate.py" signature="ApproximateCircuit(num_qubits, name=None)">
+  Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `abc.ABC`
 
-`ApproximateCircuit(num_qubits, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
+  A base class that represents an approximate circuit.
 
-Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `abc.ABC`
+  **Parameters**
 
-A base class that represents an approximate circuit.
+  *   **num\_qubits** (`int`) – number of qubit this circuit will span.
+  *   **name** (`Optional`\[`str`]) – a name of the circuit.
 
-**Parameters**
+  ## Methods Defined Here
 
-*   **num\_qubits** (`int`) – number of qubit this circuit will span.
-*   **name** (`Optional`\[`str`]) – a name of the circuit.
+  ### build
 
-## Methods Defined Here
+  <Function id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.build" name="build" signature="abstract ApproximateCircuit.build(thetas)">
+    #### Constructs this circuit out of the parameters(thetas). Parameter values must be set before
 
-### build
+    constructing the circuit.
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.build" />
+    **Parameters**
 
-`abstract ApproximateCircuit.build(thetas)`
+    **thetas** (`ndarray`) – a vector of parameters to be set in this circuit.
 
-#### Constructs this circuit out of the parameters(thetas). Parameter values must be set before
+    **Return type**
 
-constructing the circuit.
+    `None`
+  </Function>
 
-**Parameters**
+  ## Attributes
 
-**thetas** (`ndarray`) – a vector of parameters to be set in this circuit.
+  ### ancillas
 
-**Return type**
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-`None`
+    **Return type**
 
-## Attributes
+    `List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  </Attribute>
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.ancillas" />
+  ### calibrations
 
-### ancillas
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
 
-**Return type**
+    **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+    `dict`
+  </Attribute>
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.calibrations" />
+  ### clbits
 
-### calibrations
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-Return calibration dictionary.
+    **Return type**
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-**Return type**
+  ### data
 
-`dict`
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.data" name="data">
+    Return the circuit data (instructions and context).
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.clbits" />
+    **Returns**
 
-### clbits
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
-Returns a list of classical bits in the order that the registers were added.
+    **Return type**
 
-**Return type**
+    QuantumCircuitData
+  </Attribute>
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  ### extension\_lib
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.data" />
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-### data
+  ### global\_phase
 
-Return the circuit data (instructions and context).
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-**Returns**
+    **Return type**
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+    `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  </Attribute>
 
-**Return type**
+  ### header
 
-QuantumCircuitData
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.extension_lib" />
+  ### instances
 
-### extension\_lib
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.instances" name="instances" attributeValue="= 2754" />
 
-`= 'include "qelib1.inc";'`
+  ### metadata
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.global_phase" />
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-### global\_phase
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-Return the global phase of the circuit in radians.
+    **Return type**
 
-**Return type**
+    `dict`
+  </Attribute>
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  ### num\_ancillas
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.header" />
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-### header
+    **Return type**
 
-`= 'OPENQASM 2.0;'`
+    `int`
+  </Attribute>
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.instances" />
+  ### num\_clbits
 
-### instances
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-`= 2754`
+    **Return type**
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.metadata" />
+    `int`
+  </Attribute>
 
-### metadata
+  ### num\_parameters
 
-The user provided metadata associated with the circuit
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.num_parameters" name="num_parameters">
+    The number of parameter objects in the circuit.
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`dict`
+  ### num\_qubits
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.num_ancillas" />
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.num_qubits" name="num_qubits">
+    Return number of qubits.
 
-### num\_ancillas
+    **Return type**
 
-Return the number of ancilla qubits.
+    `int`
+  </Attribute>
 
-**Return type**
+  ### op\_start\_times
 
-`int`
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.num_clbits" />
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-### num\_clbits
+    **Return type**
 
-Return number of classical bits.
+    `List`\[`int`]
 
-**Return type**
+    **Returns**
 
-`int`
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.num_parameters" />
+    **Raises**
 
-### num\_parameters
+    **AttributeError** – When circuit is not scheduled.
+  </Attribute>
 
-The number of parameter objects in the circuit.
+  ### parameters
 
-**Return type**
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.parameters" name="parameters">
+    The parameters defined in the circuit.
 
-`int`
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.num_qubits" />
+    **Examples**
 
-### num\_qubits
+    The snippet below shows that insertion order of parameters does not matter.
 
-Return number of qubits.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
 
-**Return type**
+    Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
-`int`
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.op_start_times" />
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
-### op\_start\_times
+    ```python
+    ```
 
-Return a list of operation start times.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    **Return type**
 
-**Return type**
+    `ParameterView`
 
-`List`\[`int`]
+    **Returns**
 
-**Returns**
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+  ### prefix
 
-**Raises**
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-**AttributeError** – When circuit is not scheduled.
+  ### qubits
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.parameters" />
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-### parameters
+    **Return type**
 
-The parameters defined in the circuit.
+    `List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+  </Attribute>
 
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+  ### thetas
 
-**Examples**
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.thetas" name="thetas">
+    The property is not implemented and raises a `NotImplementedException` exception.
 
-The snippet below shows that insertion order of parameters does not matter.
+    **Return type**
 
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
->>> circuit = QuantumCircuit(1)
->>> circuit.rx(b, 0)
->>> circuit.rz(elephant, 0)
->>> circuit.ry(a, 0)
->>> circuit.parameters  # sorted alphabetically!
-ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
-```
+    `ndarray`
 
-Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+    **Returns**
 
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
->>> circuit = QuantumCircuit(1)
->>> circuit.u(*angles, 0)
->>> circuit.draw()
-   ┌─────────────────────────────┐
-q: ┤ U(angle_1,angle_2,angle_10) ├
-   └─────────────────────────────┘
->>> circuit.parameters
-ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
-```
-
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
->>> x = ParameterVector("x", 12)
->>> circuit = QuantumCircuit(1)
->>> for x_i in x:
-...     circuit.rx(x_i, 0)
->>> circuit.parameters
-ParameterView([
-    ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
-    ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
-    ..., ParameterVectorElement(x[11])
-])
-```
-
-**Return type**
-
-`ParameterView`
-
-**Returns**
-
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.thetas" />
-
-### thetas
-
-The property is not implemented and raises a `NotImplementedException` exception.
-
-**Return type**
-
-`ndarray`
-
-**Returns**
-
-a vector of parameters of this circuit.
+    a vector of parameters of this circuit.
+  </Attribute>
+</Class>
 

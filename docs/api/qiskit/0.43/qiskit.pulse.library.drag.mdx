@@ -10,36 +10,34 @@ python_api_name: qiskit.pulse.library.drag
 
 # qiskit.pulse.library.drag
 
-<span id="qiskit.pulse.library.drag" />
+<Function id="qiskit.pulse.library.drag" name="drag" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py" signature="drag(duration, amp, sigma, beta, name=None, zero_ends=True)">
+  Generates Y-only correction DRAG [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform") for standard nonlinear oscillator (SNO) \[1].
 
-`drag(duration, amp, sigma, beta, name=None, zero_ends=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py "view source code")
-
-Generates Y-only correction DRAG [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform") for standard nonlinear oscillator (SNO) \[1].
-
-For $A=$ `amp`, $\sigma=$ `sigma`, and $\beta=$ `beta`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
+  For $A=$ `amp`, $\sigma=$ `sigma`, and $\beta=$ `beta`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
 
 $$
 f(x) = g(x) + i \beta h(x),
 $$
 
-where $g(x)$ is the function sampled in [`gaussian()`](qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian"), and $h(x)$ is the function sampled in [`gaussian_deriv()`](qiskit.pulse.library.gaussian_deriv "qiskit.pulse.library.gaussian_deriv").
+  where $g(x)$ is the function sampled in [`gaussian()`](qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian"), and $h(x)$ is the function sampled in [`gaussian_deriv()`](qiskit.pulse.library.gaussian_deriv "qiskit.pulse.library.gaussian_deriv").
 
-If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`](qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian").
+  If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`](qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian").
 
-**References**
+  **References**
 
-1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. “Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator.” Phys. Rev. A 83, 012308 (2011).*](http://dx.doi.org/10.1103/PhysRevA.83.012308)
+  1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. “Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator.” Phys. Rev. A 83, 012308 (2011).*](http://dx.doi.org/10.1103/PhysRevA.83.012308)
 
-**Parameters**
+  **Parameters**
 
-*   **duration** (*int*) – Duration of pulse. Must be greater than zero.
-*   **amp** (*complex*) – Pulse amplitude at center `duration/2`.
-*   **sigma** (*float*) – Width (standard deviation) of pulse.
-*   **beta** (*float*) – Y correction amplitude. For the SNO this is $\beta=-\frac{\lambda_1^2}{4\Delta_2}$. Where $\lambda_1$ is the relative coupling strength between the first excited and second excited states and $\Delta_2$ is the detuning between the respective excited states.
-*   **name** (*str | None*) – Name of pulse.
-*   **zero\_ends** (*bool*) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
+  *   **duration** (*int*) – Duration of pulse. Must be greater than zero.
+  *   **amp** (*complex*) – Pulse amplitude at center `duration/2`.
+  *   **sigma** (*float*) – Width (standard deviation) of pulse.
+  *   **beta** (*float*) – Y correction amplitude. For the SNO this is $\beta=-\frac{\lambda_1^2}{4\Delta_2}$. Where $\lambda_1$ is the relative coupling strength between the first excited and second excited states and $\Delta_2$ is the detuning between the respective excited states.
+  *   **name** (*str | None*) – Name of pulse.
+  *   **zero\_ends** (*bool*) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
 
-**Return type**
+  **Return type**
 
-[*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+  [*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+</Function>
 

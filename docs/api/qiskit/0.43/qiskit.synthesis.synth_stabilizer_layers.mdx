@@ -10,50 +10,48 @@ python_api_name: qiskit.synthesis.synth_stabilizer_layers
 
 # qiskit.synthesis.synth\_stabilizer\_layers
 
-<span id="qiskit.synthesis.synth_stabilizer_layers" />
+<Function id="qiskit.synthesis.synth_stabilizer_layers" name="synth_stabilizer_layers" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/stabilizer/stabilizer_decompose.py" signature="synth_stabilizer_layers(stab, cz_synth_func=<function _default_cz_synth_func>, cz_func_reverse_qubits=False, validate=False)">
+  Synthesis of a stabilizer state into layers.
 
-`synth_stabilizer_layers(stab, cz_synth_func=<function _default_cz_synth_func>, cz_func_reverse_qubits=False, validate=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/stabilizer/stabilizer_decompose.py "view source code")
+  It provides a similar decomposition to the synthesis described in Lemma 8 of Bravyi and Maslov, without the initial Hadamard-free sub-circuit which do not affect the stabilizer state.
 
-Synthesis of a stabilizer state into layers.
+  For example, a 5-qubit stabilizer state is decomposed into the following layers:
 
-It provides a similar decomposition to the synthesis described in Lemma 8 of Bravyi and Maslov, without the initial Hadamard-free sub-circuit which do not affect the stabilizer state.
+  ```python
+       ┌─────┐┌─────┐┌─────┐┌─────┐┌────────┐
+  q_0: ┤0    ├┤0    ├┤0    ├┤0    ├┤0       ├
+       │     ││     ││     ││     ││        │
+  q_1: ┤1    ├┤1    ├┤1    ├┤1    ├┤1       ├
+       │     ││     ││     ││     ││        │
+  q_2: ┤2 H2 ├┤2 S1 ├┤2 CZ ├┤2 H1 ├┤2 Pauli ├
+       │     ││     ││     ││     ││        │
+  q_3: ┤3    ├┤3    ├┤3    ├┤3    ├┤3       ├
+       │     ││     ││     ││     ││        │
+  q_4: ┤4    ├┤4    ├┤4    ├┤4    ├┤4       ├
+       └─────┘└─────┘└─────┘└─────┘└────────┘
+  ```
 
-For example, a 5-qubit stabilizer state is decomposed into the following layers:
+  **Parameters**
 
-```python
-     ┌─────┐┌─────┐┌─────┐┌─────┐┌────────┐
-q_0: ┤0    ├┤0    ├┤0    ├┤0    ├┤0       ├
-     │     ││     ││     ││     ││        │
-q_1: ┤1    ├┤1    ├┤1    ├┤1    ├┤1       ├
-     │     ││     ││     ││     ││        │
-q_2: ┤2 H2 ├┤2 S1 ├┤2 CZ ├┤2 H1 ├┤2 Pauli ├
-     │     ││     ││     ││     ││        │
-q_3: ┤3    ├┤3    ├┤3    ├┤3    ├┤3       ├
-     │     ││     ││     ││     ││        │
-q_4: ┤4    ├┤4    ├┤4    ├┤4    ├┤4       ├
-     └─────┘└─────┘└─────┘└─────┘└────────┘
-```
+  *   **stab** ([*StabilizerState*](qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")) – a stabilizer state.
+  *   **cz\_synth\_func** (*Callable*) – a function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a QuantumCircuit.
+  *   **validate** (*Boolean*) – if True, validates the synthesis process.
+  *   **cz\_func\_reverse\_qubits** (*Boolean*) – True only if cz\_synth\_func is synth\_cz\_depth\_line\_mr, since this function returns a circuit that reverts the order of qubits.
 
-**Parameters**
+  **Returns**
 
-*   **stab** ([*StabilizerState*](qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")) – a stabilizer state.
-*   **cz\_synth\_func** (*Callable*) – a function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a QuantumCircuit.
-*   **validate** (*Boolean*) – if True, validates the synthesis process.
-*   **cz\_func\_reverse\_qubits** (*Boolean*) – True only if cz\_synth\_func is synth\_cz\_depth\_line\_mr, since this function returns a circuit that reverts the order of qubits.
+  a circuit implementation of the stabilizer state.
 
-**Returns**
+  **Return type**
 
-a circuit implementation of the stabilizer state.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  **QiskitError** – if the input is not a StabilizerState.
 
-**Raises**
+  ## Reference:
 
-**QiskitError** – if the input is not a StabilizerState.
-
-## Reference:
-
-1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+  1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+</Function>
 

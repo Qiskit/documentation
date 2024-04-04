@@ -10,39 +10,37 @@ python_api_name: qiskit.converters.circuit_to_dag
 
 # qiskit.converters.circuit\_to\_dag
 
-<span id="qiskit.converters.circuit_to_dag" />
+<Function id="qiskit.converters.circuit_to_dag" name="circuit_to_dag" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/converters/circuit_to_dag.py" signature="circuit_to_dag(circuit, copy_operations=True)">
+  Build a `DAGCircuit` object from a `QuantumCircuit`.
 
-`circuit_to_dag(circuit, copy_operations=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/converters/circuit_to_dag.py "view source code")
+  **Parameters**
 
-Build a `DAGCircuit` object from a `QuantumCircuit`.
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
+  *   **copy\_operations** (*bool*) – Deep copy the operation objects in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") for the output [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"). This should only be set to `False` if the input [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") will not be used anymore as the operations in the output [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be shared instances and modifications to operations in the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be reflected in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") (and vice versa).
 
-**Parameters**
+  **Returns**
 
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
-*   **copy\_operations** (*bool*) – Deep copy the operation objects in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") for the output [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"). This should only be set to `False` if the input [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") will not be used anymore as the operations in the output [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be shared instances and modifications to operations in the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be reflected in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") (and vice versa).
+  the DAG representing the input circuit.
 
-**Returns**
+  **Return type**
 
-the DAG representing the input circuit.
+  [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-**Return type**
+  **Example**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  ```python
+  from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+  from qiskit.dagcircuit import DAGCircuit
+  from qiskit.converters import circuit_to_dag
 
-**Example**
-
-```python
-from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
-from qiskit.dagcircuit import DAGCircuit
-from qiskit.converters import circuit_to_dag
-
-q = QuantumRegister(3, 'q')
-c = ClassicalRegister(3, 'c')
-circ = QuantumCircuit(q, c)
-circ.h(q[0])
-circ.cx(q[0], q[1])
-circ.measure(q[0], c[0])
-circ.rz(0.5, q[1]).c_if(c, 2)
-dag = circuit_to_dag(circ)
-```
+  q = QuantumRegister(3, 'q')
+  c = ClassicalRegister(3, 'c')
+  circ = QuantumCircuit(q, c)
+  circ.h(q[0])
+  circ.cx(q[0], q[1])
+  circ.measure(q[0], c[0])
+  circ.rz(0.5, q[1]).c_if(c, 2)
+  dag = circuit_to_dag(circ)
+  ```
+</Function>
 

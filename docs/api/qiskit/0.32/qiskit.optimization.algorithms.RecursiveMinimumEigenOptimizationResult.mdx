@@ -8,158 +8,156 @@ python_api_name: qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizatio
 
 # RecursiveMinimumEigenOptimizationResult
 
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult" />
+<Class id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py" signature="RecursiveMinimumEigenOptimizationResult(x, fval, variables, status, replacements, history)">
+  Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationResult`
 
-`RecursiveMinimumEigenOptimizationResult(x, fval, variables, status, replacements, history)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py "view source code")
+  Recursive Eigen Optimizer Result.
 
-Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationResult`
+  Constructs an instance of the result class.
 
-Recursive Eigen Optimizer Result.
+  **Parameters**
 
-Constructs an instance of the result class.
+  *   **x** (`Union`\[`List`\[`float`], `ndarray`]) – the optimal value found in the optimization.
+  *   **fval** (`float`) – the optimal function value.
+  *   **variables** (`List`\[`Variable`]) – the list of variables of the optimization problem.
+  *   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
+  *   **replacements** (`Dict`\[`str`, `Tuple`\[`str`, `int`]]) – a dictionary of substituted variables. Key is a variable being substituted, value is a tuple of substituting variable and a weight, either 1 or -1.
+  *   **history** (`Tuple`\[`List`\[`MinimumEigenOptimizationResult`], `OptimizationResult`]) – a tuple containing intermediate results. The first element is a list of `MinimumEigenOptimizerResult` obtained by invoking [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer") iteratively, the second element is an instance of `OptimizationResult` obtained at the last step via min\_num\_vars\_optimizer.
 
-**Parameters**
+  ## Attributes
 
-*   **x** (`Union`\[`List`\[`float`], `ndarray`]) – the optimal value found in the optimization.
-*   **fval** (`float`) – the optimal function value.
-*   **variables** (`List`\[`Variable`]) – the list of variables of the optimization problem.
-*   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
-*   **replacements** (`Dict`\[`str`, `Tuple`\[`str`, `int`]]) – a dictionary of substituted variables. Key is a variable being substituted, value is a tuple of substituting variable and a weight, either 1 or -1.
-*   **history** (`Tuple`\[`List`\[`MinimumEigenOptimizationResult`], `OptimizationResult`]) – a tuple containing intermediate results. The first element is a list of `MinimumEigenOptimizerResult` obtained by invoking [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer") iteratively, the second element is an instance of `OptimizationResult` obtained at the last step via min\_num\_vars\_optimizer.
+  ### fval
 
-## Attributes
+  <Attribute id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.fval" name="fval">
+    Returns the optimal function value.
 
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.fval" />
+    **Return type**
 
-### fval
+    `float`
 
-Returns the optimal function value.
+    **Returns**
 
-**Return type**
+    The function value corresponding to the optimal value found in the optimization.
+  </Attribute>
 
-`float`
+  ### history
 
-**Returns**
+  <Attribute id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.history" name="history">
+    Returns intermediate results. The first element is a list of `MinimumEigenOptimizerResult` obtained by invoking [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer") iteratively, the second element is an instance of `OptimizationResult` obtained at the last step via min\_num\_vars\_optimizer.
 
-The function value corresponding to the optimal value found in the optimization.
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.history" />
+    `Tuple`\[`List`\[`MinimumEigenOptimizationResult`], `OptimizationResult`]
+  </Attribute>
 
-### history
+  ### raw\_results
 
-Returns intermediate results. The first element is a list of `MinimumEigenOptimizerResult` obtained by invoking [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer") iteratively, the second element is an instance of `OptimizationResult` obtained at the last step via min\_num\_vars\_optimizer.
+  <Attribute id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.raw_results" name="raw_results">
+    Return the original results object from the optimization algorithm.
 
-**Return type**
+    Currently a dump for any leftovers.
 
-`Tuple`\[`List`\[`MinimumEigenOptimizationResult`], `OptimizationResult`]
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.raw_results" />
+    `Any`
 
-### raw\_results
+    **Returns**
 
-Return the original results object from the optimization algorithm.
+    Additional result information of the optimization algorithm.
+  </Attribute>
 
-Currently a dump for any leftovers.
+  ### replacements
 
-**Return type**
+  <Attribute id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.replacements" name="replacements">
+    Returns a dictionary of substituted variables. Key is a variable being substituted, value is a tuple of substituting variable and a weight, either 1 or -1.
 
-`Any`
+    **Return type**
 
-**Returns**
+    `Dict`\[`str`, `Tuple`\[`str`, `int`]]
+  </Attribute>
 
-Additional result information of the optimization algorithm.
+  ### samples
 
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.replacements" />
+  <Attribute id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.samples" name="samples">
+    Returns the list of solution samples
 
-### replacements
+    **Return type**
 
-Returns a dictionary of substituted variables. Key is a variable being substituted, value is a tuple of substituting variable and a weight, either 1 or -1.
+    `List`\[`SolutionSample`]
 
-**Return type**
+    **Returns**
 
-`Dict`\[`str`, `Tuple`\[`str`, `int`]]
+    The list of solution samples.
+  </Attribute>
 
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.samples" />
+  ### status
 
-### samples
+  <Attribute id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.status" name="status">
+    Returns the termination status of the optimization algorithm.
 
-Returns the list of solution samples
+    **Return type**
 
-**Return type**
+    `OptimizationResultStatus`
 
-`List`\[`SolutionSample`]
+    **Returns**
 
-**Returns**
+    The termination status of the algorithm.
+  </Attribute>
 
-The list of solution samples.
+  ### variable\_names
 
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.status" />
+  <Attribute id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.variable_names" name="variable_names">
+    Returns the list of variable names of the optimization problem.
 
-### status
+    **Return type**
 
-Returns the termination status of the optimization algorithm.
+    `List`\[`str`]
 
-**Return type**
+    **Returns**
 
-`OptimizationResultStatus`
+    The list of variable names of the optimization problem.
+  </Attribute>
 
-**Returns**
+  ### variables
 
-The termination status of the algorithm.
+  <Attribute id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.variables" name="variables">
+    Returns the list of variables of the optimization problem.
 
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.variable_names" />
+    **Return type**
 
-### variable\_names
+    `List`\[`Variable`]
 
-Returns the list of variable names of the optimization problem.
+    **Returns**
 
-**Return type**
+    The list of variables.
+  </Attribute>
 
-`List`\[`str`]
+  ### variables\_dict
 
-**Returns**
+  <Attribute id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.variables_dict" name="variables_dict">
+    Returns the optimal value as a dictionary of the variable name and corresponding value.
 
-The list of variable names of the optimization problem.
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.variables" />
+    `Dict`\[`str`, `float`]
 
-### variables
+    **Returns**
 
-Returns the list of variables of the optimization problem.
+    The optimal value as a dictionary of the variable name and corresponding value.
+  </Attribute>
 
-**Return type**
+  ### x
 
-`List`\[`Variable`]
+  <Attribute id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.x" name="x">
+    Returns the optimal value found in the optimization or None in case of FAILURE.
 
-**Returns**
+    **Return type**
 
-The list of variables.
+    `Optional`\[`ndarray`]
 
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.variables_dict" />
+    **Returns**
 
-### variables\_dict
-
-Returns the optimal value as a dictionary of the variable name and corresponding value.
-
-**Return type**
-
-`Dict`\[`str`, `float`]
-
-**Returns**
-
-The optimal value as a dictionary of the variable name and corresponding value.
-
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.x" />
-
-### x
-
-Returns the optimal value found in the optimization or None in case of FAILURE.
-
-**Return type**
-
-`Optional`\[`ndarray`]
-
-**Returns**
-
-The optimal value found in the optimization.
+    The optimal value found in the optimization.
+  </Attribute>
+</Class>
 

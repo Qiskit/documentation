@@ -8,53 +8,51 @@ python_api_name: qiskit.transpiler.passes.CXCancellation
 
 # CXCancellation
 
-<span id="qiskit.transpiler.passes.CXCancellation" />
+<Class id="qiskit.transpiler.passes.CXCancellation" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/optimization/cx_cancellation.py" signature="CXCancellation(*args, **kwargs)">
+  Cancel back-to-back cx gates in dag.
 
-`CXCancellation(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/optimization/cx_cancellation.py "view source code")
+  ## Attributes
 
-Cancel back-to-back cx gates in dag.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.CXCancellation.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-### is\_analysis\_pass
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-Check if the pass is an analysis pass.
+  ### is\_transformation\_pass
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  <Attribute id="qiskit.transpiler.passes.CXCancellation.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-### is\_transformation\_pass
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-Check if the pass is a transformation pass.
+  ## Methods
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.CXCancellation.name" name="name" signature="CXCancellation.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.CXCancellation.name" />
+  <Function id="qiskit.transpiler.passes.CXCancellation.run" name="run" signature="CXCancellation.run(dag)">
+    Run the CXCancellation pass on dag.
 
-`CXCancellation.name()`
+    **Parameters**
 
-Return the name of the pass.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the directed acyclic graph to run on.
 
-### run
+    **Returns**
 
-<span id="qiskit.transpiler.passes.CXCancellation.run" />
+    Transformed DAG.
 
-`CXCancellation.run(dag)`
+    **Return type**
 
-Run the CXCancellation pass on dag.
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the directed acyclic graph to run on.
-
-**Returns**
-
-Transformed DAG.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  </Function>
+</Class>
 

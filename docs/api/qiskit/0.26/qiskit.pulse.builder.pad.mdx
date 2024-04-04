@@ -8,37 +8,35 @@ python_api_name: qiskit.pulse.builder.pad
 
 # qiskit.pulse.builder.pad
 
-<span id="qiskit.pulse.builder.pad" />
+<Function id="qiskit.pulse.builder.pad" name="pad" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py" signature="pad(*chs)">
+  Pad all available timeslots with delays upon exiting context.
 
-`pad(*chs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
+  **Parameters**
 
-Pad all available timeslots with delays upon exiting context.
+  **chs** ([`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")) – Channels to pad with delays. Defaults to all channels in context if none are supplied.
 
-**Parameters**
+  Examples:
 
-**chs** ([`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")) – Channels to pad with delays. Defaults to all channels in context if none are supplied.
+  ```python
+  from qiskit import pulse
 
-Examples:
+  d0 = pulse.DriveChannel(0)
+  d1 = pulse.DriveChannel(1)
 
-```python
-from qiskit import pulse
+  with pulse.build() as pulse_prog:
+      with pulse.pad():
+          with pulse.align_right():
+              # this pulse will start at t=0
+              pulse.play(pulse.Constant(100, 1.0), d0)
+              # this pulse will start at t=80
+              # a delay will be inserted from t=0 to t=80
+              pulse.play(pulse.Constant(20, 1.0), d1)
+  assert pulse_prog.ch_start_time(d0) == pulse_prog.ch_start_time(d1)
+  assert pulse_prog.ch_stop_time(d0) == pulse_prog.ch_stop_time(d1)
+  ```
 
-d0 = pulse.DriveChannel(0)
-d1 = pulse.DriveChannel(1)
+  **Return type**
 
-with pulse.build() as pulse_prog:
-    with pulse.pad():
-        with pulse.align_right():
-            # this pulse will start at t=0
-            pulse.play(pulse.Constant(100, 1.0), d0)
-            # this pulse will start at t=80
-            # a delay will be inserted from t=0 to t=80
-            pulse.play(pulse.Constant(20, 1.0), d1)
-assert pulse_prog.ch_start_time(d0) == pulse_prog.ch_start_time(d1)
-assert pulse_prog.ch_stop_time(d0) == pulse_prog.ch_stop_time(d1)
-```
-
-**Return type**
-
-`AbstractContextManager`\[`None`]
+  `AbstractContextManager`\[`None`]
+</Function>
 

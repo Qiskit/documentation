@@ -8,197 +8,205 @@ python_api_name: qiskit.aqua.components.optimizers.DIRECT_L
 
 # DIRECT\_L
 
-<span id="qiskit.aqua.components.optimizers.DIRECT_L" />
+<Class id="qiskit.aqua.components.optimizers.DIRECT_L" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nlopts/direct_l.py" signature="DIRECT_L(max_evals=1000)">
+  DIviding RECTangles Locally-biased optimizer.
 
-`DIRECT_L(max_evals=1000)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nlopts/direct_l.py "view source code")
+  DIviding RECTangles (DIRECT) is a deterministic-search algorithms based on systematic division of the search domain into increasingly smaller hyper-rectangles. The DIRECT-L version is a “locally biased” variant of DIRECT that makes the algorithm more biased towards local search, so that it is more efficient for functions with few local minima.
 
-DIviding RECTangles Locally-biased optimizer.
+  NLopt global optimizer, derivative-free. For further detail, please refer to [http://nlopt.readthedocs.io/en/latest/NLopt\_Algorithms/#direct-and-direct-l](http://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/#direct-and-direct-l)
 
-DIviding RECTangles (DIRECT) is a deterministic-search algorithms based on systematic division of the search domain into increasingly smaller hyper-rectangles. The DIRECT-L version is a “locally biased” variant of DIRECT that makes the algorithm more biased towards local search, so that it is more efficient for functions with few local minima.
+  **Parameters**
 
-NLopt global optimizer, derivative-free. For further detail, please refer to [http://nlopt.readthedocs.io/en/latest/NLopt\_Algorithms/#direct-and-direct-l](http://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/#direct-and-direct-l)
+  **max\_evals** (`int`) – Maximum allowed number of function evaluations.
 
-**Parameters**
+  **Raises**
 
-**max\_evals** (`int`) – Maximum allowed number of function evaluations.
+  **NameError** – NLopt library not installed.
 
-**Raises**
+  ## Attributes
 
-**NameError** – NLopt library not installed.
+  ### bounds\_support\_level
 
-## Attributes
+  <Attribute id="qiskit.aqua.components.optimizers.DIRECT_L.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-### bounds\_support\_level
+  ### gradient\_support\_level
 
-Returns bounds support level
+  <Attribute id="qiskit.aqua.components.optimizers.DIRECT_L.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-### gradient\_support\_level
+  ### initial\_point\_support\_level
 
-Returns gradient support level
+  <Attribute id="qiskit.aqua.components.optimizers.DIRECT_L.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-### initial\_point\_support\_level
+  ### is\_bounds\_ignored
 
-Returns initial point support level
+  <Attribute id="qiskit.aqua.components.optimizers.DIRECT_L.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-### is\_bounds\_ignored
+  ### is\_bounds\_required
 
-Returns is bounds ignored
+  <Attribute id="qiskit.aqua.components.optimizers.DIRECT_L.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-### is\_bounds\_required
+  ### is\_bounds\_supported
 
-Returns is bounds required
+  <Attribute id="qiskit.aqua.components.optimizers.DIRECT_L.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-### is\_bounds\_supported
+  ### is\_gradient\_ignored
 
-Returns is bounds supported
+  <Attribute id="qiskit.aqua.components.optimizers.DIRECT_L.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-### is\_gradient\_ignored
+  ### is\_gradient\_required
 
-Returns is gradient ignored
+  <Attribute id="qiskit.aqua.components.optimizers.DIRECT_L.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-### is\_gradient\_required
+  ### is\_gradient\_supported
 
-Returns is gradient required
+  <Attribute id="qiskit.aqua.components.optimizers.DIRECT_L.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-### is\_gradient\_supported
+  ### is\_initial\_point\_ignored
 
-Returns is gradient supported
+  <Attribute id="qiskit.aqua.components.optimizers.DIRECT_L.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-### is\_initial\_point\_ignored
+  ### is\_initial\_point\_required
 
-Returns is initial point ignored
+  <Attribute id="qiskit.aqua.components.optimizers.DIRECT_L.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-### is\_initial\_point\_required
+  ### is\_initial\_point\_supported
 
-Returns is initial point required
+  <Attribute id="qiskit.aqua.components.optimizers.DIRECT_L.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-### is\_initial\_point\_supported
+  ### setting
 
-Returns is initial point supported
+  <Attribute id="qiskit.aqua.components.optimizers.DIRECT_L.setting" name="setting">
+    Return setting
+  </Attribute>
 
-### setting
+  ## Methods
 
-Return setting
+  ### get\_nlopt\_optimizer
 
-## Methods
+  <Function id="qiskit.aqua.components.optimizers.DIRECT_L.get_nlopt_optimizer" name="get_nlopt_optimizer" signature="DIRECT_L.get_nlopt_optimizer()">
+    Return NLopt optimizer type
 
-### get\_nlopt\_optimizer
+    **Return type**
 
-<span id="qiskit.aqua.components.optimizers.DIRECT_L.get_nlopt_optimizer" />
+    `NLoptOptimizerType`
+  </Function>
 
-`DIRECT_L.get_nlopt_optimizer()`
+  ### get\_support\_level
 
-Return NLopt optimizer type
+  <Function id="qiskit.aqua.components.optimizers.DIRECT_L.get_support_level" name="get_support_level" signature="DIRECT_L.get_support_level()">
+    return support level dictionary
+  </Function>
 
-**Return type**
+  ### gradient\_num\_diff
 
-`NLoptOptimizerType`
+  <Function id="qiskit.aqua.components.optimizers.DIRECT_L.gradient_num_diff" name="gradient_num_diff" signature="static DIRECT_L.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-### get\_support\_level
+    **Parameters**
 
-<span id="qiskit.aqua.components.optimizers.DIRECT_L.get_support_level" />
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped
 
-`DIRECT_L.get_support_level()`
+    **Returns**
 
-return support level dictionary
+    the gradient computed
 
-### gradient\_num\_diff
+    **Return type**
 
-<span id="qiskit.aqua.components.optimizers.DIRECT_L.gradient_num_diff" />
+    grad
+  </Function>
 
-`static DIRECT_L.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
+  ### optimize
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+  <Function id="qiskit.aqua.components.optimizers.DIRECT_L.optimize" name="optimize" signature="DIRECT_L.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)">
+    Perform optimization.
 
-**Parameters**
+    **Parameters**
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped
+    *   **num\_vars** (*int*) – Number of parameters to be optimized.
+    *   **objective\_function** (*callable*) – A function that computes the objective function.
+    *   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+    *   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
+    *   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
 
-**Returns**
+    **Returns**
 
-the gradient computed
+    **point, value, nfev**
 
-**Return type**
+    point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
 
-grad
+    **Raises**
 
-### optimize
+    **ValueError** – invalid input
+  </Function>
 
-<span id="qiskit.aqua.components.optimizers.DIRECT_L.optimize" />
+  ### print\_options
 
-`DIRECT_L.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
+  <Function id="qiskit.aqua.components.optimizers.DIRECT_L.print_options" name="print_options" signature="DIRECT_L.print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-Perform optimization.
+  ### set\_max\_evals\_grouped
 
-**Parameters**
+  <Function id="qiskit.aqua.components.optimizers.DIRECT_L.set_max_evals_grouped" name="set_max_evals_grouped" signature="DIRECT_L.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-*   **num\_vars** (*int*) – Number of parameters to be optimized.
-*   **objective\_function** (*callable*) – A function that computes the objective function.
-*   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
-*   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
-*   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
+  ### set\_options
 
-**Returns**
+  <Function id="qiskit.aqua.components.optimizers.DIRECT_L.set_options" name="set_options" signature="DIRECT_L.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-**point, value, nfev**
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
+    **Parameters**
 
-**Raises**
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-**ValueError** – invalid input
+  ### wrap\_function
 
-### print\_options
+  <Function id="qiskit.aqua.components.optimizers.DIRECT_L.wrap_function" name="wrap_function" signature="static DIRECT_L.wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-<span id="qiskit.aqua.components.optimizers.DIRECT_L.print_options" />
+    **Parameters**
 
-`DIRECT_L.print_options()`
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-Print algorithm-specific options.
+    **Returns**
 
-### set\_max\_evals\_grouped
+    wrapper
 
-<span id="qiskit.aqua.components.optimizers.DIRECT_L.set_max_evals_grouped" />
+    **Return type**
 
-`DIRECT_L.set_max_evals_grouped(limit)`
-
-Set max evals grouped
-
-### set\_options
-
-<span id="qiskit.aqua.components.optimizers.DIRECT_L.set_options" />
-
-`DIRECT_L.set_options(**kwargs)`
-
-Sets or updates values in the options dictionary.
-
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
-
-**Parameters**
-
-**kwargs** (*dict*) – options, given as name=value.
-
-### wrap\_function
-
-<span id="qiskit.aqua.components.optimizers.DIRECT_L.wrap_function" />
-
-`static DIRECT_L.wrap_function(function, args)`
-
-Wrap the function to implicitly inject the args at the call of the function.
-
-**Parameters**
-
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
-
-**Returns**
-
-wrapper
-
-**Return type**
-
-function\_wrapper
+    function\_wrapper
+  </Function>
+</Class>
 

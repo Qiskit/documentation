@@ -8,29 +8,27 @@ python_api_name: qiskit.pulse.library.square
 
 # qiskit.pulse.library.square
 
-<span id="qiskit.pulse.library.square" />
+<Function id="qiskit.pulse.library.square" name="square" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/library/discrete.py" signature="square(duration, amp, freq=None, phase=0, name=None)">
+  Generates square wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 
-`square(duration, amp, freq=None, phase=0, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/library/discrete.py "view source code")
-
-Generates square wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
-
-For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
+  For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
 $$
 f(x) = A \text{sign}\left[ \sin\left(\frac{2 \pi x}{T} + 2\phi\right) \right]
 $$
 
-with the convention $\text{sign}(0) = 1$.
+  with the convention $\text{sign}(0) = 1$.
 
-**Parameters**
+  **Parameters**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
-*   **freq** (`Optional`\[`float`]) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
-*   **phase** (`float`) – Pulse phase.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
+  *   **freq** (`Optional`\[`float`]) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
+  *   **phase** (`float`) – Pulse phase.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
 
-**Return type**
+  **Return type**
 
-[`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+  [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+</Function>
 

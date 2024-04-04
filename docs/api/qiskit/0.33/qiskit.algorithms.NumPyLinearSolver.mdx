@@ -8,57 +8,53 @@ python_api_name: qiskit.algorithms.NumPyLinearSolver
 
 # NumPyLinearSolver
 
-<span id="qiskit.algorithms.NumPyLinearSolver" />
+<Class id="qiskit.algorithms.NumPyLinearSolver" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/linear_solvers/numpy_linear_solver.py" signature="NumPyLinearSolver">
+  Bases: `qiskit.algorithms.linear_solvers.linear_solver.LinearSolver`
 
-`NumPyLinearSolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/linear_solvers/numpy_linear_solver.py "view source code")
+  The Numpy Linear Solver algorithm (classical).
 
-Bases: `qiskit.algorithms.linear_solvers.linear_solver.LinearSolver`
+  This linear system solver computes the exact value of the given observable(s) or the full solution vector if no observable is specified.
 
-The Numpy Linear Solver algorithm (classical).
+  **Examples**
 
-This linear system solver computes the exact value of the given observable(s) or the full solution vector if no observable is specified.
+  ```python
+  import numpy as np
+  from qiskit.algorithms import NumPyLinearSolver
+  from qiskit.algorithms.linear_solvers.matrices import TridiagonalToeplitz
+  from qiskit.algorithms.linear_solvers.observables import MatrixFunctional
 
-**Examples**
+  matrix = TridiagonalToeplitz(2, 1, 1 / 3, trotter_steps=2)
+  right_hand_side = [1.0, -2.1, 3.2, -4.3]
+  observable = MatrixFunctional(1, 1 / 2)
+  rhs = right_hand_side / np.linalg.norm(right_hand_side)
 
-```python
-import numpy as np
-from qiskit.algorithms import NumPyLinearSolver
-from qiskit.algorithms.linear_solvers.matrices import TridiagonalToeplitz
-from qiskit.algorithms.linear_solvers.observables import MatrixFunctional
+  np_solver = NumPyLinearSolver()
+  solution = np_solver.solve(matrix, rhs, observable)
+  result = solution.observable
+  ```
 
-matrix = TridiagonalToeplitz(2, 1, 1 / 3, trotter_steps=2)
-right_hand_side = [1.0, -2.1, 3.2, -4.3]
-observable = MatrixFunctional(1, 1 / 2)
-rhs = right_hand_side / np.linalg.norm(right_hand_side)
+  ## Methods
 
-np_solver = NumPyLinearSolver()
-solution = np_solver.solve(matrix, rhs, observable)
-result = solution.observable
-```
+  ### solve
 
-## Methods
+  <Function id="qiskit.algorithms.NumPyLinearSolver.solve" name="solve" signature="NumPyLinearSolver.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)">
+    Solve classically the linear system and compute the observable(s)
 
-### solve
+    **Parameters**
 
-<span id="qiskit.algorithms.NumPyLinearSolver.solve" />
+    *   **matrix** (`Union`\[`ndarray`, `QuantumCircuit`]) – The matrix specifying the system, i.e. A in Ax=b.
+    *   **vector** (`Union`\[`ndarray`, `QuantumCircuit`]) – The vector specifying the right hand side of the equation in Ax=b.
+    *   **observable** (`Union`\[`LinearSystemObservable`, `BaseOperator`, `List`\[`BaseOperator`], `None`]) – Optional information to be extracted from the solution. Default is the probability of success of the algorithm.
+    *   **observable\_circuit** (`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`], `None`]) – Optional circuit to be applied to the solution to extract information. Default is `None`.
+    *   **post\_processing** (`Optional`\[`Callable`\[\[`Union`\[`float`, `List`\[`float`]]], `Union`\[`float`, `List`\[`float`]]]]) – Optional function to compute the value of the observable. Default is the raw value of measuring the observable.
 
-`NumPyLinearSolver.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
+    **Return type**
 
-Solve classically the linear system and compute the observable(s)
+    `LinearSolverResult`
 
-**Parameters**
+    **Returns**
 
-*   **matrix** (`Union`\[`ndarray`, `QuantumCircuit`]) – The matrix specifying the system, i.e. A in Ax=b.
-*   **vector** (`Union`\[`ndarray`, `QuantumCircuit`]) – The vector specifying the right hand side of the equation in Ax=b.
-*   **observable** (`Union`\[`LinearSystemObservable`, `BaseOperator`, `List`\[`BaseOperator`], `None`]) – Optional information to be extracted from the solution. Default is the probability of success of the algorithm.
-*   **observable\_circuit** (`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`], `None`]) – Optional circuit to be applied to the solution to extract information. Default is `None`.
-*   **post\_processing** (`Optional`\[`Callable`\[\[`Union`\[`float`, `List`\[`float`]]], `Union`\[`float`, `List`\[`float`]]]]) – Optional function to compute the value of the observable. Default is the raw value of measuring the observable.
-
-**Return type**
-
-`LinearSolverResult`
-
-**Returns**
-
-The result of the linear system.
+    The result of the linear system.
+  </Function>
+</Class>
 

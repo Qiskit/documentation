@@ -8,186 +8,182 @@ python_api_name: qiskit.circuit.library.CSwapGate
 
 # CSwapGate
 
-<span id="qiskit.circuit.library.CSwapGate" />
+<Class id="qiskit.circuit.library.CSwapGate" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/swap.py" signature="qiskit.circuit.library.CSwapGate(label=None, ctrl_state=None)">
+  Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
-`qiskit.circuit.library.CSwapGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/swap.py "view source code")
+  Controlled-SWAP gate, also known as the Fredkin gate.
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cswap()`](qiskit.circuit.QuantumCircuit#cswap "qiskit.circuit.QuantumCircuit.cswap") and [`fredkin()`](qiskit.circuit.QuantumCircuit#fredkin "qiskit.circuit.QuantumCircuit.fredkin") methods.
 
-Controlled-SWAP gate, also known as the Fredkin gate.
-
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cswap()`](qiskit.circuit.QuantumCircuit#cswap "qiskit.circuit.QuantumCircuit.cswap") and [`fredkin()`](qiskit.circuit.QuantumCircuit#fredkin "qiskit.circuit.QuantumCircuit.fredkin") methods.
-
-**Circuit symbol:**
-
-```python
-q_0: ─■─
-      │
-q_1: ─X─
-      │
-q_2: ─X─
-```
-
-**Matrix representation:**
-
-$$
-\begin{split}CSWAP\ q_0, q_1, q_2 =
-    I \otimes I \otimes |0 \rangle \langle 0| +
-    SWAP \otimes |1 \rangle \langle 1| =
-    \begin{pmatrix}
-        1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
-        0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
-        0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
-        0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
-        0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
-        0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
-    \end{pmatrix}\end{split}
-$$
-
-<Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_2. Thus a textbook matrix for this gate will be:
+  **Circuit symbol:**
 
   ```python
-  q_0: ─X─
+  q_0: ─■─
         │
   q_1: ─X─
         │
-  q_2: ─■─
+  q_2: ─X─
   ```
 
-  $$
-  \begin{split}CSWAP\ q_2, q_1, q_0 =
-      |0 \rangle \langle 0| \otimes I \otimes I +
-      |1 \rangle \langle 1| \otimes SWAP =
-      \begin{pmatrix}
-          1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-          0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
-          0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
-          0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
-          0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
-          0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
-          0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
-          0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
-      \end{pmatrix}\end{split}
-  $$
-</Admonition>
+  **Matrix representation:**
 
-In the computational basis, this gate swaps the states of the two target qubits if the control qubit is in the $|1\rangle$ state.
+$$
+\begin{split}CSWAP\ q_0, q_1, q_2 =
+I \otimes I \otimes |0 \rangle \langle 0| +
+SWAP \otimes |1 \rangle \langle 1| =
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+\end{pmatrix}\end{split}
+$$
+
+  <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_2. Thus a textbook matrix for this gate will be:
+
+    ```python
+    q_0: ─X─
+          │
+    q_1: ─X─
+          │
+    q_2: ─■─
+    ```
+
+$$
+\begin{split}CSWAP\ q_2, q_1, q_0 =
+|0 \rangle \langle 0| \otimes I \otimes I +
+|1 \rangle \langle 1| \otimes SWAP =
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+\end{pmatrix}\end{split}
+$$
+  </Admonition>
+
+  In the computational basis, this gate swaps the states of the two target qubits if the control qubit is in the $|1\rangle$ state.
 
 $$
 |0, b, c\rangle \rightarrow |0, b, c\rangle
 |1, b, c\rangle \rightarrow |1, c, b\rangle
 $$
 
-Create new CSWAP gate.
+  Create new CSWAP gate.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.CSwapGate.condition_bits" />
+  ### condition\_bits
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.CSwapGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-Get Clbits in condition.
+  ### ctrl\_state
 
-<span id="qiskit.circuit.library.CSwapGate.ctrl_state" />
+  <Attribute id="qiskit.circuit.library.CSwapGate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
 
-### ctrl\_state
+  ### decompositions
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.CSwapGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CSwapGate.decompositions" />
+  ### definition
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.CSwapGate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### duration
 
-<span id="qiskit.circuit.library.CSwapGate.definition" />
+  <Attribute id="qiskit.circuit.library.CSwapGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### definition
+  ### label
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  <Attribute id="qiskit.circuit.library.CSwapGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.library.CSwapGate.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.circuit.library.CSwapGate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-Get the duration.
+    > \<original\_name\_o\<ctrl\_state>
 
-<span id="qiskit.circuit.library.CSwapGate.label" />
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
 
-### label
+  ### num\_clbits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.CSwapGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CSwapGate.name" />
+  ### num\_ctrl\_qubits
 
-### name
+  <Attribute id="qiskit.circuit.library.CSwapGate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-Get name of gate. If the gate has open controls the gate name will become:
+    **Returns**
 
-> \<original\_name\_o\<ctrl\_state>
+    The number of control qubits for the gate.
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+    **Return type**
 
-<span id="qiskit.circuit.library.CSwapGate.num_clbits" />
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Attribute>
 
-### num\_clbits
+  ### num\_qubits
 
-Return the number of clbits.
+  <Attribute id="qiskit.circuit.library.CSwapGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CSwapGate.num_ctrl_qubits" />
+  ### params
 
-### num\_ctrl\_qubits
+  <Attribute id="qiskit.circuit.library.CSwapGate.params" name="params">
+    Get parameters from base\_gate.
 
-Get number of control qubits.
+    **Returns**
 
-**Returns**
+    List of gate parameters.
 
-The number of control qubits for the gate.
+    **Return type**
 
-**Return type**
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    **Raises**
 
-<span id="qiskit.circuit.library.CSwapGate.num_qubits" />
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+  </Attribute>
 
-### num\_qubits
+  ### unit
 
-Return the number of qubits.
+  <Attribute id="qiskit.circuit.library.CSwapGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CSwapGate.params" />
+  ## Methods
 
-### params
+  ### inverse
 
-Get parameters from base\_gate.
-
-**Returns**
-
-List of gate parameters.
-
-**Return type**
-
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
-
-**Raises**
-
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
-
-<span id="qiskit.circuit.library.CSwapGate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### inverse
-
-<span id="qiskit.circuit.library.CSwapGate.inverse" />
-
-`inverse()`
-
-Return inverse CSwap gate (itself).
+  <Function id="qiskit.circuit.library.CSwapGate.inverse" name="inverse" signature="inverse()">
+    Return inverse CSwap gate (itself).
+  </Function>
+</Class>
 

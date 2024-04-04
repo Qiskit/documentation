@@ -8,60 +8,56 @@ python_api_name: qiskit.transpiler.passes.HLSConfig
 
 # HLSConfig
 
-<span id="qiskit.transpiler.passes.HLSConfig" />
+<Class id="qiskit.transpiler.passes.HLSConfig" github="https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/high_level_synthesis.py" signature="qiskit.transpiler.passes.HLSConfig(use_default_on_unspecified=True, **kwargs)">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.transpiler.passes.HLSConfig(use_default_on_unspecified=True, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
+  The high-level-synthesis config allows to specify a list of “methods” used by [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transformation pass to synthesize different types of higher-level objects.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  A higher-level object is an object of type [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") (e.g., [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") or [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")). Each object is referred to by its [`name`](qiskit.circuit.Operation#name "qiskit.circuit.Operation.name") field (e.g., `"clifford"` for [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") objects), and the applicable synthesis methods are tied to this name.
 
-The high-level-synthesis config allows to specify a list of “methods” used by [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transformation pass to synthesize different types of higher-level objects.
+  In the config, each method is specified in one of several ways:
 
-A higher-level object is an object of type [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") (e.g., [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") or [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")). Each object is referred to by its [`name`](qiskit.circuit.Operation#name "qiskit.circuit.Operation.name") field (e.g., `"clifford"` for [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") objects), and the applicable synthesis methods are tied to this name.
+  1.  a tuple consisting of the name of a known synthesis plugin and a dictionary providing additional arguments for the algorithm.
+  2.  a tuple consisting of an instance of [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin") and additional arguments for the algorithm.
+  3.  a single string of a known synthesis plugin
+  4.  a single instance of [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin").
 
-In the config, each method is specified in one of several ways:
+  The following example illustrates different ways how a config file can be created:
 
-1.  a tuple consisting of the name of a known synthesis plugin and a dictionary providing additional arguments for the algorithm.
-2.  a tuple consisting of an instance of [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin") and additional arguments for the algorithm.
-3.  a single string of a known synthesis plugin
-4.  a single instance of [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin").
+  ```python
+  from qiskit.transpiler.passes.synthesis.high_level_synthesis import HLSConfig
+  from qiskit.transpiler.passes.synthesis.high_level_synthesis import ACGSynthesisPermutation
 
-The following example illustrates different ways how a config file can be created:
+  # All the ways to specify hls_config are equivalent
+  hls_config = HLSConfig(permutation=[("acg", {})])
+  hls_config = HLSConfig(permutation=["acg"])
+  hls_config = HLSConfig(permutation=[(ACGSynthesisPermutation(), {})])
+  hls_config = HLSConfig(permutation=[ACGSynthesisPermutation()])
+  ```
 
-```python
-from qiskit.transpiler.passes.synthesis.high_level_synthesis import HLSConfig
-from qiskit.transpiler.passes.synthesis.high_level_synthesis import ACGSynthesisPermutation
+  The names of the synthesis plugins should be declared in `entry-points` table for `qiskit.synthesis` in `pyproject.toml`, in the form \<higher-level-object-name>.\<synthesis-method-name>.
 
-# All the ways to specify hls_config are equivalent
-hls_config = HLSConfig(permutation=[("acg", {})])
-hls_config = HLSConfig(permutation=["acg"])
-hls_config = HLSConfig(permutation=[(ACGSynthesisPermutation(), {})])
-hls_config = HLSConfig(permutation=[ACGSynthesisPermutation()])
-```
+  The standard higher-level-objects are recommended to have a synthesis method called “default”, which would be called automatically when synthesizing these objects, without having to explicitly set these methods in the config.
 
-The names of the synthesis plugins should be declared in `entry-points` table for `qiskit.synthesis` in `pyproject.toml`, in the form \<higher-level-object-name>.\<synthesis-method-name>.
+  To avoid synthesizing a given higher-level-object, one can give it an empty list of methods.
 
-The standard higher-level-objects are recommended to have a synthesis method called “default”, which would be called automatically when synthesizing these objects, without having to explicitly set these methods in the config.
+  For an explicit example of using such config files, refer to the documentation for [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
 
-To avoid synthesizing a given higher-level-object, one can give it an empty list of methods.
+  For an overview of the complete process of using high-level synthesis, see [High-level Synthesis Plugins](transpiler_synthesis_plugins#using-high-level-synthesis-plugins).
 
-For an explicit example of using such config files, refer to the documentation for [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
+  Creates a high-level-synthesis config.
 
-For an overview of the complete process of using high-level synthesis, see [High-level Synthesis Plugins](transpiler_synthesis_plugins#using-high-level-synthesis-plugins).
+  **Parameters**
 
-Creates a high-level-synthesis config.
+  *   **use\_default\_on\_unspecified** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, every higher-level-object without an explicitly specified list of methods will be synthesized using the “default” algorithm if it exists.
+  *   **kwargs** – a dictionary mapping higher-level-objects to lists of synthesis methods.
 
-**Parameters**
+  ## Methods
 
-*   **use\_default\_on\_unspecified** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, every higher-level-object without an explicitly specified list of methods will be synthesized using the “default” algorithm if it exists.
-*   **kwargs** – a dictionary mapping higher-level-objects to lists of synthesis methods.
+  ### set\_methods
 
-## Methods
-
-### set\_methods
-
-<span id="qiskit.transpiler.passes.HLSConfig.set_methods" />
-
-`set_methods(hls_name, hls_methods)`
-
-Sets the list of synthesis methods for a given higher-level-object. This overwrites the lists of methods if also set previously.
+  <Function id="qiskit.transpiler.passes.HLSConfig.set_methods" name="set_methods" signature="set_methods(hls_name, hls_methods)">
+    Sets the list of synthesis methods for a given higher-level-object. This overwrites the lists of methods if also set previously.
+  </Function>
+</Class>
 

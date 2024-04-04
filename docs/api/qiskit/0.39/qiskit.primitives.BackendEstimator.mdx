@@ -8,177 +8,167 @@ python_api_name: qiskit.primitives.BackendEstimator
 
 # BackendEstimator
 
-<span id="qiskit.primitives.BackendEstimator" />
+<Class id="qiskit.primitives.BackendEstimator" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/primitives/backend_estimator.py" signature="BackendEstimator(backend, options=None, abelian_grouping=True, bound_pass_manager=None, skip_transpilation=False)">
+  Bases: [`qiskit.primitives.base.base_estimator.BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base.base_estimator.BaseEstimator")
 
-`BackendEstimator(backend, options=None, abelian_grouping=True, bound_pass_manager=None, skip_transpilation=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/primitives/backend_estimator.py "view source code")
+  Evaluates expectation value using Pauli rotation gates.
 
-Bases: [`qiskit.primitives.base.base_estimator.BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base.base_estimator.BaseEstimator")
+  The [`BackendEstimator`](#qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator") class is a generic implementation of the [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") interface that is used to wrap a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") (or [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")) object in the [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") API. It facilitates using backends that do not provide a native [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") implementation in places that work with [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator"), such as algorithms in [`qiskit.algorithms`](algorithms#module-qiskit.algorithms "qiskit.algorithms") including [`VQE`](qiskit.algorithms.minimum_eigensolvers.VQE "qiskit.algorithms.minimum_eigensolvers.VQE"). However, if you’re using a provider that has a native implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
 
-Evaluates expectation value using Pauli rotation gates.
+  Initalize a new BackendEstimator instance
 
-The [`BackendEstimator`](#qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator") class is a generic implementation of the [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") interface that is used to wrap a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") (or [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")) object in the [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") API. It facilitates using backends that do not provide a native [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") implementation in places that work with [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator"), such as algorithms in [`qiskit.algorithms`](algorithms#module-qiskit.algorithms "qiskit.algorithms") including [`VQE`](qiskit.algorithms.minimum_eigensolvers.VQE "qiskit.algorithms.minimum_eigensolvers.VQE"). However, if you’re using a provider that has a native implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
+  **Parameters**
 
-Initalize a new BackendEstimator instance
+  *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – Required: the backend to run the primitive on
+  *   **options** (*dict | None*) – Default options.
+  *   **abelian\_grouping** (*bool*) – Whether the observable should be grouped into commuting
+  *   **bound\_pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") *| None*) – An optional pass manager to run after parameter binding.
+  *   **skip\_transpilation** (*bool*) – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this object is called.
 
-**Parameters**
+  ## Methods
 
-*   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – Required: the backend to run the primitive on
-*   **options** (*dict | None*) – Default options.
-*   **abelian\_grouping** (*bool*) – Whether the observable should be grouped into commuting
-*   **bound\_pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") *| None*) – An optional pass manager to run after parameter binding.
-*   **skip\_transpilation** (*bool*) – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this object is called.
+  ### close
 
-## Methods
+  <Function id="qiskit.primitives.BackendEstimator.close" name="close" signature="BackendEstimator.close()">
+    Close the session and free resources
+  </Function>
 
-### close
+  ### run
 
-<span id="qiskit.primitives.BackendEstimator.close" />
+  <Function id="qiskit.primitives.BackendEstimator.run" name="run" signature="BackendEstimator.run(circuits, observables, parameter_values=None, **run_options)">
+    Run the job of the estimation of expectation value(s).
 
-`BackendEstimator.close()`
+    `circuits`, `observables`, and `parameter_values` should have the same length. The i-th element of the result is the expectation of observable
 
-Close the session and free resources
+    ```python
+    obs = observables[i]
+    ```
 
-### run
+    for the state prepared by
 
-<span id="qiskit.primitives.BackendEstimator.run" />
+    ```python
+    circ = circuits[i]
+    ```
 
-`BackendEstimator.run(circuits, observables, parameter_values=None, **run_options)`
+    with bound parameters
 
-Run the job of the estimation of expectation value(s).
+    ```python
+    values = parameter_values[i].
+    ```
 
-`circuits`, `observables`, and `parameter_values` should have the same length. The i-th element of the result is the expectation of observable
+    **Parameters**
 
-```python
-obs = observables[i]
-```
+    *   **circuits** – one or more circuit objects.
+    *   **observables** – one or more observable objects.
+    *   **parameter\_values** – concrete parameters to be bound.
+    *   **run\_options** – runtime options used for circuit execution.
 
-for the state prepared by
+    **Returns**
 
-```python
-circ = circuits[i]
-```
+    The job object of EstimatorResult.
 
-with bound parameters
+    **Raises**
 
-```python
-values = parameter_values[i].
-```
+    *   **TypeError** – Invalid argument type given.
+    *   **ValueError** – Invalid argument values given.
+  </Function>
 
-**Parameters**
+  ### set\_options
 
-*   **circuits** – one or more circuit objects.
-*   **observables** – one or more observable objects.
-*   **parameter\_values** – concrete parameters to be bound.
-*   **run\_options** – runtime options used for circuit execution.
+  <Function id="qiskit.primitives.BackendEstimator.set_options" name="set_options" signature="BackendEstimator.set_options(**fields)">
+    Set options values for the estimator.
 
-**Returns**
+    **Parameters**
 
-The job object of EstimatorResult.
+    **\*\*fields** – The fields to update the options
+  </Function>
 
-**Raises**
+  ### set\_transpile\_options
 
-*   **TypeError** – Invalid argument type given.
-*   **ValueError** – Invalid argument values given.
+  <Function id="qiskit.primitives.BackendEstimator.set_transpile_options" name="set_transpile_options" signature="BackendEstimator.set_transpile_options(**fields)">
+    Set the transpiler options for transpiler. :param \*\*fields: The fields to update the options
+  </Function>
 
-### set\_options
+  ## Attributes
 
-<span id="qiskit.primitives.BackendEstimator.set_options" />
+  ### backend
 
-`BackendEstimator.set_options(**fields)`
+  <Attribute id="qiskit.primitives.BackendEstimator.backend" name="backend">
+    Returns: The backend which this estimator object based on
 
-Set options values for the estimator.
+    **Return type**
 
-**Parameters**
+    [BackendV1](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") | [BackendV2](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")
+  </Attribute>
 
-**\*\*fields** – The fields to update the options
+  ### circuits
 
-### set\_transpile\_options
+  <Attribute id="qiskit.primitives.BackendEstimator.circuits" name="circuits">
+    Quantum circuits that represents quantum states.
 
-<span id="qiskit.primitives.BackendEstimator.set_transpile_options" />
+    **Returns**
 
-`BackendEstimator.set_transpile_options(**fields)`
+    The quantum circuits.
+  </Attribute>
 
-Set the transpiler options for transpiler. :param \*\*fields: The fields to update the options
+  ### observables
 
-## Attributes
+  <Attribute id="qiskit.primitives.BackendEstimator.observables" name="observables">
+    Observables to be estimated.
 
-<span id="qiskit.primitives.BackendEstimator.backend" />
+    **Returns**
 
-### backend
+    The observables.
+  </Attribute>
 
-Returns: The backend which this estimator object based on
+  ### options
 
-**Return type**
+  <Attribute id="qiskit.primitives.BackendEstimator.options" name="options">
+    Return options values for the estimator.
 
-[BackendV1](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") | [BackendV2](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")
+    **Return type**
 
-<span id="qiskit.primitives.BackendEstimator.circuits" />
+    [`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
 
-### circuits
+    **Returns**
 
-Quantum circuits that represents quantum states.
+    options
+  </Attribute>
 
-**Returns**
+  ### parameters
 
-The quantum circuits.
+  <Attribute id="qiskit.primitives.BackendEstimator.parameters" name="parameters">
+    Parameters of the quantum circuits.
 
-<span id="qiskit.primitives.BackendEstimator.observables" />
+    **Returns**
 
-### observables
+    Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
+  </Attribute>
 
-Observables to be estimated.
+  ### preprocessed\_circuits
 
-**Returns**
+  <Attribute id="qiskit.primitives.BackendEstimator.preprocessed_circuits" name="preprocessed_circuits">
+    Transpiled quantum circuits produced by preprocessing :returns: List of the transpiled quantum circuit
+  </Attribute>
 
-The observables.
+  ### transpile\_options
 
-<span id="qiskit.primitives.BackendEstimator.options" />
+  <Attribute id="qiskit.primitives.BackendEstimator.transpile_options" name="transpile_options">
+    Return the transpiler options for transpiling the circuits.
 
-### options
+    **Return type**
 
-Return options values for the estimator.
+    [`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
+  </Attribute>
 
-**Return type**
+  ### transpiled\_circuits
 
-[`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
+  <Attribute id="qiskit.primitives.BackendEstimator.transpiled_circuits" name="transpiled_circuits">
+    Transpiled quantum circuits. :returns: List of the transpiled quantum circuit
 
-**Returns**
+    **Raises**
 
-options
-
-<span id="qiskit.primitives.BackendEstimator.parameters" />
-
-### parameters
-
-Parameters of the quantum circuits.
-
-**Returns**
-
-Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
-
-<span id="qiskit.primitives.BackendEstimator.preprocessed_circuits" />
-
-### preprocessed\_circuits
-
-Transpiled quantum circuits produced by preprocessing :returns: List of the transpiled quantum circuit
-
-<span id="qiskit.primitives.BackendEstimator.transpile_options" />
-
-### transpile\_options
-
-Return the transpiler options for transpiling the circuits.
-
-**Return type**
-
-[`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
-
-<span id="qiskit.primitives.BackendEstimator.transpiled_circuits" />
-
-### transpiled\_circuits
-
-Transpiled quantum circuits. :returns: List of the transpiled quantum circuit
-
-**Raises**
-
-**QiskitError** – if the instance has been closed.
+    **QiskitError** – if the instance has been closed.
+  </Attribute>
+</Class>
 

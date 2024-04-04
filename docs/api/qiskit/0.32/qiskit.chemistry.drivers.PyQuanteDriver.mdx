@@ -8,93 +8,89 @@ python_api_name: qiskit.chemistry.drivers.PyQuanteDriver
 
 # PyQuanteDriver
 
-<span id="qiskit.chemistry.drivers.PyQuanteDriver" />
+<Class id="qiskit.chemistry.drivers.PyQuanteDriver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/pyquanted/pyquantedriver.py" signature="PyQuanteDriver(atoms='H 0.0 0.0 0.0; H 0.0 0.0 0.735', units=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, multiplicity=1, basis=<BasisType.BSTO3G: 'sto3g'>, hf_method=<HFMethodType.RHF: 'rhf'>, tol=1e-08, maxiters=100, molecule=None)">
+  Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
 
-`PyQuanteDriver(atoms='H 0.0 0.0 0.0; H 0.0 0.0 0.735', units=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, multiplicity=1, basis=<BasisType.BSTO3G: 'sto3g'>, hf_method=<HFMethodType.RHF: 'rhf'>, tol=1e-08, maxiters=100, molecule=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/pyquanted/pyquantedriver.py "view source code")
+  Qiskit chemistry driver using the PyQuante2 library.
 
-Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
+  See [https://github.com/rpmuller/pyquante2](https://github.com/rpmuller/pyquante2)
 
-Qiskit chemistry driver using the PyQuante2 library.
+  **Parameters**
 
-See [https://github.com/rpmuller/pyquante2](https://github.com/rpmuller/pyquante2)
+  *   **atoms** (`Union`\[`str`, `List`\[`str`]]) – Atoms list or string separated by semicolons or line breaks. Each element in the list is an atom followed by position e.g. H 0.0 0.0 0.5. The preceding example shows the XYZ format for position but Z-Matrix format is supported too here.
+  *   **units** (`UnitsType`) – Angstrom or Bohr
+  *   **charge** (`int`) – Charge on the molecule
+  *   **multiplicity** (`int`) – Spin multiplicity (2S+1)
+  *   **basis** (`BasisType`) – Basis set; sto3g, 6-31g or 6-31g\*\*
+  *   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
+  *   **tol** (`float`) – Convergence tolerance see pyquante2.scf hamiltonians and iterators
+  *   **maxiters** (`int`) – Convergence max iterations see pyquante2.scf hamiltonians and iterators, has a min. value of 1.
+  *   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the atoms, units, charge and multiplicity parameters are all ignored as the Molecule instance now defines these instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
 
-**Parameters**
+  **Raises**
 
-*   **atoms** (`Union`\[`str`, `List`\[`str`]]) – Atoms list or string separated by semicolons or line breaks. Each element in the list is an atom followed by position e.g. H 0.0 0.0 0.5. The preceding example shows the XYZ format for position but Z-Matrix format is supported too here.
-*   **units** (`UnitsType`) – Angstrom or Bohr
-*   **charge** (`int`) – Charge on the molecule
-*   **multiplicity** (`int`) – Spin multiplicity (2S+1)
-*   **basis** (`BasisType`) – Basis set; sto3g, 6-31g or 6-31g\*\*
-*   **hf\_method** (`HFMethodType`) – Hartree-Fock Method type
-*   **tol** (`float`) – Convergence tolerance see pyquante2.scf hamiltonians and iterators
-*   **maxiters** (`int`) – Convergence max iterations see pyquante2.scf hamiltonians and iterators, has a min. value of 1.
-*   **molecule** (`Optional`\[`Molecule`]) – A driver independent Molecule definition instance may be provided. When a molecule is supplied the atoms, units, charge and multiplicity parameters are all ignored as the Molecule instance now defines these instead. The Molecule object is read when the driver is run and converted to the driver dependent configuration for the computation. This allows, for example, the Molecule geometry to be updated to compute different points.
+  [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
-**Raises**
+  ## Methods
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+  ### run
 
-## Methods
+  <Function id="qiskit.chemistry.drivers.PyQuanteDriver.run" name="run" signature="PyQuanteDriver.run()">
+    Runs driver to produce a QMolecule output.
 
-### run
+    **Return type**
 
-<span id="qiskit.chemistry.drivers.PyQuanteDriver.run" />
+    `QMolecule`
 
-`PyQuanteDriver.run()`
+    **Returns**
 
-Runs driver to produce a QMolecule output.
+    A QMolecule containing the molecular data.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`QMolecule`
+  ### basis
 
-**Returns**
+  <Attribute id="qiskit.chemistry.drivers.PyQuanteDriver.basis" name="basis">
+    return basis
 
-A QMolecule containing the molecular data.
+    **Return type**
 
-## Attributes
+    `str`
+  </Attribute>
 
-<span id="qiskit.chemistry.drivers.PyQuanteDriver.basis" />
+  ### hf\_method
 
-### basis
+  <Attribute id="qiskit.chemistry.drivers.PyQuanteDriver.hf_method" name="hf_method">
+    return Hartree-Fock method
 
-return basis
+    **Return type**
 
-**Return type**
+    `str`
+  </Attribute>
 
-`str`
+  ### molecule
 
-<span id="qiskit.chemistry.drivers.PyQuanteDriver.hf_method" />
+  <Attribute id="qiskit.chemistry.drivers.PyQuanteDriver.molecule" name="molecule">
+    return molecule
 
-### hf\_method
+    **Return type**
 
-return Hartree-Fock method
+    `Optional`\[`Molecule`]
+  </Attribute>
 
-**Return type**
+  ### supports\_molecule
 
-`str`
+  <Attribute id="qiskit.chemistry.drivers.PyQuanteDriver.supports_molecule" name="supports_molecule">
+    True for derived classes that support Molecule.
 
-<span id="qiskit.chemistry.drivers.PyQuanteDriver.molecule" />
+    **Return type**
 
-### molecule
+    `bool`
 
-return molecule
+    **Returns**
 
-**Return type**
-
-`Optional`\[`Molecule`]
-
-<span id="qiskit.chemistry.drivers.PyQuanteDriver.supports_molecule" />
-
-### supports\_molecule
-
-True for derived classes that support Molecule.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if Molecule is supported.
+    True if Molecule is supported.
+  </Attribute>
+</Class>
 

@@ -8,104 +8,96 @@ python_api_name: qiskit.algorithms.PhaseEstimation
 
 # qiskit.algorithms.PhaseEstimation
 
-<span id="qiskit.algorithms.PhaseEstimation" />
+<Class id="qiskit.algorithms.PhaseEstimation" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/phase_estimators/phase_estimation.py" signature="PhaseEstimation(num_evaluation_qubits, quantum_instance=None)">
+  Run the Quantum Phase Estimation (QPE) algorithm.
 
-`PhaseEstimation(num_evaluation_qubits, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
+  This runs QPE with a multi-qubit register for reading the phases \[1] of input states.
 
-Run the Quantum Phase Estimation (QPE) algorithm.
-
-This runs QPE with a multi-qubit register for reading the phases \[1] of input states.
-
-The algorithm takes as input a unitary $U$ and a state $|\psi\rangle$, which may be written
+  The algorithm takes as input a unitary $U$ and a state $|\psi\rangle$, which may be written
 
 $$
 |\psi\rangle = \sum_j c_j |\phi_j\rangle,
 $$
 
-where $|\phi_j\rangle$ are eigenstates of $U$. We prepare the quantum register in the state $|\psi\rangle$ then apply $U$ leaving the register in the state
+  where $|\phi_j\rangle$ are eigenstates of $U$. We prepare the quantum register in the state $|\psi\rangle$ then apply $U$ leaving the register in the state
 
 $$
 U|\psi\rangle = \sum_j \exp(i \phi_j) c_j |\phi_j\rangle.
 $$
 
-In the ideal case, one then measures the phase $\phi_j$ with probability $|c_j|^2$. In practice, many (or all) of the bit strings may be measured due to noise and the possibility that $\phi_j$ may not be representable exactly by the output register. In the latter case the probability for each eigenphase will be spread across bitstrings, with amplitudes that decrease with distance from the bitstring most closely approximating the eigenphase.
+  In the ideal case, one then measures the phase $\phi_j$ with probability $|c_j|^2$. In practice, many (or all) of the bit strings may be measured due to noise and the possibility that $\phi_j$ may not be representable exactly by the output register. In the latter case the probability for each eigenphase will be spread across bitstrings, with amplitudes that decrease with distance from the bitstring most closely approximating the eigenphase.
 
-The main inputs are the number of qubits in the phase-reading register, a state preparation circuit to prepare an input state, and either
+  The main inputs are the number of qubits in the phase-reading register, a state preparation circuit to prepare an input state, and either
 
-1.  A unitary that will act on the the input state, or
-2.  A quantum-phase-estimation circuit in which the unitary is already embedded.
+  1.  A unitary that will act on the the input state, or
+  2.  A quantum-phase-estimation circuit in which the unitary is already embedded.
 
-In case 1), an instance of `qiskit.circuit.PhaseEstimation`, a QPE circuit, containing the input unitary will be constructed. After construction, the QPE circuit is run on a backend via the run method, and the frequencies or counts of the phases represented by bitstrings are recorded. The results are returned as an instance of `PhaseEstimationResult`.
+  In case 1), an instance of `qiskit.circuit.PhaseEstimation`, a QPE circuit, containing the input unitary will be constructed. After construction, the QPE circuit is run on a backend via the run method, and the frequencies or counts of the phases represented by bitstrings are recorded. The results are returned as an instance of `PhaseEstimationResult`.
 
-**Reference:**
+  **Reference:**
 
-**\[1]: Michael A. Nielsen and Isaac L. Chuang. 2011.**
+  **\[1]: Michael A. Nielsen and Isaac L. Chuang. 2011.**
 
-Quantum Computation and Quantum Information: 10th Anniversary Edition (10th ed.). Cambridge University Press, New York, NY, USA.
+  Quantum Computation and Quantum Information: 10th Anniversary Edition (10th ed.). Cambridge University Press, New York, NY, USA.
 
-**Parameters**
+  **Parameters**
 
-*   **num\_evaluation\_qubits** (`int`) – The number of qubits used in estimating the phase. The phase will be estimated as a binary string with this many bits.
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `BaseBackend`, `Backend`, `None`]) – The quantum instance on which the circuit will be run.
+  *   **num\_evaluation\_qubits** (`int`) – The number of qubits used in estimating the phase. The phase will be estimated as a binary string with this many bits.
+  *   **quantum\_instance** (`Union`\[`QuantumInstance`, `BaseBackend`, `Backend`, `None`]) – The quantum instance on which the circuit will be run.
 
-### \_\_init\_\_
+  ### \_\_init\_\_
 
-<span id="qiskit.algorithms.PhaseEstimation.__init__" />
+  <Function id="qiskit.algorithms.PhaseEstimation.__init__" name="__init__" signature="__init__(num_evaluation_qubits, quantum_instance=None)">
+    **Parameters**
 
-`__init__(num_evaluation_qubits, quantum_instance=None)`
+    *   **num\_evaluation\_qubits** (`int`) – The number of qubits used in estimating the phase. The phase will be estimated as a binary string with this many bits.
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `BaseBackend`, `Backend`, `None`]) – The quantum instance on which the circuit will be run.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **num\_evaluation\_qubits** (`int`) – The number of qubits used in estimating the phase. The phase will be estimated as a binary string with this many bits.
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `BaseBackend`, `Backend`, `None`]) – The quantum instance on which the circuit will be run.
+  |                                                                                                                                                                   |                                                       |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.PhaseEstimation.__init__ "qiskit.algorithms.PhaseEstimation.__init__")(num\_evaluation\_qubits\[, …])                             | **type num\_evaluation\_qubits**`int`                 |
+  | [`construct_circuit`](#qiskit.algorithms.PhaseEstimation.construct_circuit "qiskit.algorithms.PhaseEstimation.construct_circuit")(unitary\[, state\_preparation]) | Return the circuit to be executed to estimate phases. |
+  | [`estimate`](#qiskit.algorithms.PhaseEstimation.estimate "qiskit.algorithms.PhaseEstimation.estimate")(\[unitary, state\_preparation, …])                         | Run the the phase estimation algorithm.               |
 
-## Methods
+  ### construct\_circuit
 
-|                                                                                                                                                                   |                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.PhaseEstimation.__init__ "qiskit.algorithms.PhaseEstimation.__init__")(num\_evaluation\_qubits\[, …])                             | **type num\_evaluation\_qubits**`int`                 |
-| [`construct_circuit`](#qiskit.algorithms.PhaseEstimation.construct_circuit "qiskit.algorithms.PhaseEstimation.construct_circuit")(unitary\[, state\_preparation]) | Return the circuit to be executed to estimate phases. |
-| [`estimate`](#qiskit.algorithms.PhaseEstimation.estimate "qiskit.algorithms.PhaseEstimation.estimate")(\[unitary, state\_preparation, …])                         | Run the the phase estimation algorithm.               |
+  <Function id="qiskit.algorithms.PhaseEstimation.construct_circuit" name="construct_circuit" signature="construct_circuit(unitary, state_preparation=None)">
+    Return the circuit to be executed to estimate phases.
 
-### construct\_circuit
+    This circuit includes as sub-circuits the core phase estimation circuit, with the addition of the state-preparation circuit and possibly measurement instructions.
 
-<span id="qiskit.algorithms.PhaseEstimation.construct_circuit" />
+    **Return type**
 
-`construct_circuit(unitary, state_preparation=None)`
+    `QuantumCircuit`
+  </Function>
 
-Return the circuit to be executed to estimate phases.
+  ### estimate
 
-This circuit includes as sub-circuits the core phase estimation circuit, with the addition of the state-preparation circuit and possibly measurement instructions.
+  <Function id="qiskit.algorithms.PhaseEstimation.estimate" name="estimate" signature="estimate(unitary=None, state_preparation=None, pe_circuit=None, num_unitary_qubits=None)">
+    Run the the phase estimation algorithm.
 
-**Return type**
+    **Parameters**
 
-`QuantumCircuit`
+    *   **unitary** (`Optional`\[`QuantumCircuit`]) – The circuit representing the unitary operator whose eigenvalues (via phase) will be measured. Exactly one of pe\_circuit and unitary must be passed.
+    *   **state\_preparation** (`Optional`\[`QuantumCircuit`]) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
+    *   **pe\_circuit** (`Optional`\[`QuantumCircuit`]) – The phase estimation circuit.
+    *   **num\_unitary\_qubits** (`Optional`\[`int`]) – Must agree with the number of qubits in the unitary in pe\_circuit if pe\_circuit is passed. This parameter will be set from unitary if unitary is passed.
 
-### estimate
+    **Raises**
 
-<span id="qiskit.algorithms.PhaseEstimation.estimate" />
+    *   **ValueError** – If both pe\_circuit and unitary are passed.
+    *   **ValueError** – If neither pe\_circuit nor unitary are passed.
 
-`estimate(unitary=None, state_preparation=None, pe_circuit=None, num_unitary_qubits=None)`
+    **Return type**
 
-Run the the phase estimation algorithm.
+    `PhaseEstimationResult`
 
-**Parameters**
+    **Returns**
 
-*   **unitary** (`Optional`\[`QuantumCircuit`]) – The circuit representing the unitary operator whose eigenvalues (via phase) will be measured. Exactly one of pe\_circuit and unitary must be passed.
-*   **state\_preparation** (`Optional`\[`QuantumCircuit`]) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
-*   **pe\_circuit** (`Optional`\[`QuantumCircuit`]) – The phase estimation circuit.
-*   **num\_unitary\_qubits** (`Optional`\[`int`]) – Must agree with the number of qubits in the unitary in pe\_circuit if pe\_circuit is passed. This parameter will be set from unitary if unitary is passed.
-
-**Raises**
-
-*   **ValueError** – If both pe\_circuit and unitary are passed.
-*   **ValueError** – If neither pe\_circuit nor unitary are passed.
-
-**Return type**
-
-`PhaseEstimationResult`
-
-**Returns**
-
-An instance of qiskit.algorithms.phase\_estimator\_result.PhaseEstimationResult.
+    An instance of qiskit.algorithms.phase\_estimator\_result.PhaseEstimationResult.
+  </Function>
+</Class>
 

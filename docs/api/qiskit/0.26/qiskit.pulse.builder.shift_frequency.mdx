@@ -8,26 +8,24 @@ python_api_name: qiskit.pulse.builder.shift_frequency
 
 # qiskit.pulse.builder.shift\_frequency
 
-<span id="qiskit.pulse.builder.shift_frequency" />
+<Function id="qiskit.pulse.builder.shift_frequency" name="shift_frequency" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py" signature="shift_frequency(frequency, channel, name=None)">
+  Shift the `frequency` of a pulse `channel`.
 
-`shift_frequency(frequency, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
+  Examples:
 
-Shift the `frequency` of a pulse `channel`.
+  ```python
+  from qiskit import pulse
 
-Examples:
+  d0 = pulse.DriveChannel(0)
 
-```python
-from qiskit import pulse
+  with pulse.build() as pulse_prog:
+      pulse.shift_frequency(1e9, d0)
+  ```
 
-d0 = pulse.DriveChannel(0)
+  **Parameters**
 
-with pulse.build() as pulse_prog:
-    pulse.shift_frequency(1e9, d0)
-```
-
-**Parameters**
-
-*   **frequency** (`float`) – Frequency in Hz to shift channel frequency by.
-*   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – Channel to shift frequency of.
-*   **name** (`Optional`\[`str`]) – Name of the instruction.
+  *   **frequency** (`float`) – Frequency in Hz to shift channel frequency by.
+  *   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – Channel to shift frequency of.
+  *   **name** (`Optional`\[`str`]) – Name of the instruction.
+</Function>
 

@@ -22,56 +22,54 @@ A helper function for calling a custom function with python `ProcessPoolExecutor
 
 ### parallel\_map
 
-<span id="qiskit.tools.parallel_map" />
+<Function id="qiskit.tools.parallel_map" name="parallel_map" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/tools/parallel.py" signature="qiskit.tools.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)">
+  Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
 
-`qiskit.tools.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/tools/parallel.py "view source code")
+  ```python
+  result = [task(value, *task_args, **task_kwargs) for value in values]
+  ```
 
-Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
+  On Windows this function defaults to a serial implementation to avoid the overhead from spawning processes in Windows.
 
-```python
-result = [task(value, *task_args, **task_kwargs) for value in values]
-```
+  **Parameters**
 
-On Windows this function defaults to a serial implementation to avoid the overhead from spawning processes in Windows.
+  *   **task** (*func*) – Function that is to be called for each value in `values`.
+  *   **values** (*array\_like*) – List or array of values for which the `task` function is to be evaluated.
+  *   **task\_args** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Optional additional arguments to the `task` function.
+  *   **task\_kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Optional additional keyword argument to the `task` function.
+  *   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of processes to spawn.
 
-**Parameters**
+  **Returns**
 
-*   **task** (*func*) – Function that is to be called for each value in `values`.
-*   **values** (*array\_like*) – List or array of values for which the `task` function is to be evaluated.
-*   **task\_args** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Optional additional arguments to the `task` function.
-*   **task\_kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Optional additional keyword argument to the `task` function.
-*   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of processes to spawn.
+  **The result list contains the value of**
 
-**Returns**
+  **`task(value, *task_args, **task_kwargs)` for**
 
-**The result list contains the value of**
+  each value in `values`.
 
-**`task(value, *task_args, **task_kwargs)` for**
+  **Return type**
 
-each value in `values`.
+  result
 
-**Return type**
+  **Raises**
 
-result
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If user interrupts via keyboard.
 
-**Raises**
+  **Events:**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If user interrupts via keyboard.
+  terra.parallel.start: The collection of parallel tasks are about to start. terra.parallel.update: One of the parallel task has finished. terra.parallel.finish: All the parallel tasks have finished.
 
-**Events:**
+  **Examples**
 
-terra.parallel.start: The collection of parallel tasks are about to start. terra.parallel.update: One of the parallel task has finished. terra.parallel.finish: All the parallel tasks have finished.
-
-**Examples**
-
-```python
-import time
-from qiskit.tools.parallel import parallel_map
-def func(_):
-        time.sleep(0.1)
-        return 0
-parallel_map(func, list(range(10)));
-```
+  ```python
+  import time
+  from qiskit.tools.parallel import parallel_map
+  def func(_):
+          time.sleep(0.1)
+          return 0
+  parallel_map(func, list(range(10)));
+  ```
+</Function>
 
 ## Monitoring
 
@@ -79,75 +77,69 @@ A helper module to get IBM backend information and submitted job status.
 
 ### job\_monitor
 
-<span id="qiskit.tools.job_monitor" />
+<Function id="qiskit.tools.job_monitor" name="job_monitor" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/tools/monitor/job_monitor.py" signature="qiskit.tools.job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>, line_discipline='\r')">
+  Monitor the status of a IBMQJob instance.
 
-`qiskit.tools.job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>, line_discipline='\r')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/tools/monitor/job_monitor.py "view source code")
+  **Parameters**
 
-Monitor the status of a IBMQJob instance.
+  *   **job** (*BaseJob*) – Job to monitor.
+  *   **interval** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time interval between status queries.
+  *   **quiet** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, do not print status messages.
+  *   **output** (*file*) – The file like object to write status messages to.
+  *   **sys.stdout.** (*By default this is*) –
+  *   **line\_discipline** (*string*) – character emitted at start of a line of job monitor output,
+  *   **r.** (*This defaults to*) –
 
-**Parameters**
+  **Examples**
 
-*   **job** (*BaseJob*) – Job to monitor.
-*   **interval** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time interval between status queries.
-*   **quiet** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, do not print status messages.
-*   **output** (*file*) – The file like object to write status messages to.
-*   **sys.stdout.** (*By default this is*) –
-*   **line\_discipline** (*string*) – character emitted at start of a line of job monitor output,
-*   **r.** (*This defaults to*) –
-
-**Examples**
-
-```python
-from qiskit import BasicAer, transpile
-from qiskit.circuit import QuantumCircuit
-from qiskit.tools.monitor import job_monitor
-sim_backend = BasicAer.get_backend("qasm_simulator")
-qc = QuantumCircuit(2, 2)
-qc.h(0)
-qc.cx(0, 1)
-qc.measure_all()
-tqc = transpile(qc, sim_backend)
-job_sim = sim_backend.run(tqc)
-job_monitor(job_sim)
-```
+  ```python
+  from qiskit import BasicAer, transpile
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.tools.monitor import job_monitor
+  sim_backend = BasicAer.get_backend("qasm_simulator")
+  qc = QuantumCircuit(2, 2)
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.measure_all()
+  tqc = transpile(qc, sim_backend)
+  job_sim = sim_backend.run(tqc)
+  job_monitor(job_sim)
+  ```
+</Function>
 
 ### backend\_monitor
 
-<span id="qiskit.tools.backend_monitor" />
+<Function id="qiskit.tools.backend_monitor" name="backend_monitor" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/tools/monitor/overview.py" signature="qiskit.tools.backend_monitor(backend)">
+  Monitor a single IBMQ backend.
 
-`qiskit.tools.backend_monitor(backend)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/tools/monitor/overview.py "view source code")
+  **Parameters**
 
-Monitor a single IBMQ backend.
+  **backend** (*IBMQBackend*) – Backend to monitor.
 
-**Parameters**
+  **Raises**
 
-**backend** (*IBMQBackend*) – Backend to monitor.
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – Input is not a IBMQ backend.
+  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If qiskit-ibmq-provider is not installed
 
-**Raises**
+  Examples: .. code-block:: python
 
-*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – Input is not a IBMQ backend.
-*   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If qiskit-ibmq-provider is not installed
-
-Examples: .. code-block:: python
-
-> from qiskit.providers.ibmq import IBMQ from qiskit.tools.monitor import backend\_monitor provider = IBMQ.get\_provider(hub=’ibm-q’) backend\_monitor(provider.backends.ibmq\_lima)
+  > from qiskit.providers.ibmq import IBMQ from qiskit.tools.monitor import backend\_monitor provider = IBMQ.get\_provider(hub=’ibm-q’) backend\_monitor(provider.backends.ibmq\_lima)
+</Function>
 
 ### backend\_overview
 
-<span id="qiskit.tools.backend_overview" />
+<Function id="qiskit.tools.backend_overview" name="backend_overview" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/tools/monitor/overview.py" signature="qiskit.tools.backend_overview()">
+  Gives overview information on all the IBMQ backends that are available.
 
-`qiskit.tools.backend_overview()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/tools/monitor/overview.py "view source code")
+  **Examples**
 
-Gives overview information on all the IBMQ backends that are available.
-
-**Examples**
-
-```python
-from qiskit.providers.ibmq import IBMQ
-from qiskit.tools.monitor import backend_overview
-provider = IBMQ.get_provider(hub='ibm-q')
-backend_overview()
-```
+  ```python
+  from qiskit.providers.ibmq import IBMQ
+  from qiskit.tools.monitor import backend_overview
+  provider = IBMQ.get_provider(hub='ibm-q')
+  backend_overview()
+  ```
+</Function>
 
 <span id="module-qiskit.tools.events" />
 
@@ -157,41 +149,39 @@ backend_overview()
 
 A helper component for publishing and subscribing to events.
 
-<span id="qiskit.tools.events.TextProgressBar" />
+<Class id="qiskit.tools.events.TextProgressBar" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/tools/events/progressbar.py" signature="qiskit.tools.events.TextProgressBar(output_handler=None)">
+  A simple text-based progress bar.
 
-`qiskit.tools.events.TextProgressBar(output_handler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/tools/events/progressbar.py "view source code")
+  **output\_handlerthe handler the progress bar should be written to, default**
 
-A simple text-based progress bar.
+  is sys.stdout, another option is sys.stderr
 
-**output\_handlerthe handler the progress bar should be written to, default**
+  **Examples**
 
-is sys.stdout, another option is sys.stderr
+  The progress bar can be used to track the progress of a parallel\_map.
 
-**Examples**
+  ```python
+  import numpy as np
+  import qiskit.tools.jupyter
+  from qiskit.tools.parallel import parallel_map
+  from qiskit.tools.events import TextProgressBar
 
-The progress bar can be used to track the progress of a parallel\_map.
+  TextProgressBar()
+  %qiskit_progress_bar -t text
+  parallel_map(np.sin, np.linspace(0,10,100));
+  ```
 
-```python
-import numpy as np
-import qiskit.tools.jupyter
-from qiskit.tools.parallel import parallel_map
-from qiskit.tools.events import TextProgressBar
+  And it can also be used individually.
 
-TextProgressBar()
-%qiskit_progress_bar -t text
-parallel_map(np.sin, np.linspace(0,10,100));
-```
+  ```python
+  from qiskit.tools.events import TextProgressBar
 
-And it can also be used individually.
-
-```python
-from qiskit.tools.events import TextProgressBar
-
-iterations = 100
-t = TextProgressBar()
-t.start(iterations=iterations)
-for i in range(iterations):
-    # step i of heavy calculation ...
-    t.update(i + 1)  # update progress bar
-```
+  iterations = 100
+  t = TextProgressBar()
+  t.start(iterations=iterations)
+  for i in range(iterations):
+      # step i of heavy calculation ...
+      t.update(i + 1)  # update progress bar
+  ```
+</Class>
 

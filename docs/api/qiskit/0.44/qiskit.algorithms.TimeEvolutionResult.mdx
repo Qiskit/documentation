@@ -8,72 +8,68 @@ python_api_name: qiskit.algorithms.TimeEvolutionResult
 
 # TimeEvolutionResult
 
-<span id="qiskit.algorithms.TimeEvolutionResult" />
+<Class id="qiskit.algorithms.TimeEvolutionResult" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/time_evolution_result.py" signature="qiskit.algorithms.TimeEvolutionResult(evolved_state, aux_ops_evaluated=None, observables=None, times=None)">
+  Bases: `AlgorithmResult`
 
-`qiskit.algorithms.TimeEvolutionResult(evolved_state, aux_ops_evaluated=None, observables=None, times=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/time_evolution_result.py "view source code")
+  Class for holding time evolution result.
 
-Bases: `AlgorithmResult`
+  ### evolved\_state
 
-Class for holding time evolution result.
+  <Attribute id="qiskit.algorithms.TimeEvolutionResult.evolved_state" name="evolved_state">
+    An evolved quantum state.
 
-<span id="qiskit.algorithms.TimeEvolutionResult.evolved_state" />
+    **Type**
 
-### evolved\_state
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")|[Statevector](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+  </Attribute>
 
-An evolved quantum state.
+  ### aux\_ops\_evaluated
 
-**Type**
+  <Attribute id="qiskit.algorithms.TimeEvolutionResult.aux_ops_evaluated" name="aux_ops_evaluated">
+    Optional list of observables for which expected values on an evolved state are calculated. These values are in fact tuples formatted as (mean, standard deviation).
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")|[Statevector](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+    **Type**
 
-<span id="qiskit.algorithms.TimeEvolutionResult.aux_ops_evaluated" />
+    ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"), [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")]] | None
+  </Attribute>
 
-### aux\_ops\_evaluated
+  ### observables
 
-Optional list of observables for which expected values on an evolved state are calculated. These values are in fact tuples formatted as (mean, standard deviation).
+  <Attribute id="qiskit.algorithms.TimeEvolutionResult.observables" name="observables">
+    Optional list of observables for which expected on an evolved state are calculated at each timestep. These values are in fact lists of tuples formatted as (mean, standard deviation).
 
-**Type**
+    **Type**
 
-ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"), [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")]] | None
+    ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[np.ndarray, np.ndarray]] | None
+  </Attribute>
 
-<span id="qiskit.algorithms.TimeEvolutionResult.observables" />
+  ### times
 
-### observables
+  <Attribute id="qiskit.algorithms.TimeEvolutionResult.times" name="times">
+    Optional list of times at which each observable has been evaluated.
 
-Optional list of observables for which expected on an evolved state are calculated at each timestep. These values are in fact lists of tuples formatted as (mean, standard deviation).
+    **Type**
 
-**Type**
+    np.array | None
+  </Attribute>
 
-ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[np.ndarray, np.ndarray]] | None
+  **Parameters**
 
-<span id="qiskit.algorithms.TimeEvolutionResult.times" />
+  *   **evolved\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – An evolved quantum state.
+  *   **aux\_ops\_evaluated** (*ListOrDict\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*]] | None*) – Optional list of observables for which expected values on an evolved state are calculated. These values are in fact tuples formatted as (mean, standard deviation).
+  *   **observables** (*ListOrDict\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[np.ndarray, np.ndarray]] | None*) – Optional list of observables for which expected values are calculated for each timestep. These values are in fact tuples formatted as (mean array, standard deviation array).
+  *   **times** (*np.ndarray | None*) – Optional list of times at which each observable has been evaluated.
 
-### times
+  ## Methods
 
-Optional list of times at which each observable has been evaluated.
+  ### combine
 
-**Type**
+  <Function id="qiskit.algorithms.TimeEvolutionResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
 
-np.array | None
+    **Raises**
 
-**Parameters**
-
-*   **evolved\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – An evolved quantum state.
-*   **aux\_ops\_evaluated** (*ListOrDict\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*]] | None*) – Optional list of observables for which expected values on an evolved state are calculated. These values are in fact tuples formatted as (mean, standard deviation).
-*   **observables** (*ListOrDict\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[np.ndarray, np.ndarray]] | None*) – Optional list of observables for which expected values are calculated for each timestep. These values are in fact tuples formatted as (mean array, standard deviation array).
-*   **times** (*np.ndarray | None*) – Optional list of times at which each observable has been evaluated.
-
-## Methods
-
-### combine
-
-<span id="qiskit.algorithms.TimeEvolutionResult.combine" />
-
-`combine(result)`
-
-Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
-
-**Raises**
-
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Argument is None
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Argument is None
+  </Function>
+</Class>
 

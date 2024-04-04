@@ -8,146 +8,142 @@ python_api_name: qiskit.ignis.verification.TomographyFitter
 
 # TomographyFitter
 
-<span id="qiskit.ignis.verification.TomographyFitter" />
+<Class id="qiskit.ignis.verification.TomographyFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/fitters/base_fitter.py" signature="TomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')">
+  Base maximum-likelihood estimate tomography fitter class
 
-`TomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
+  Initialize tomography fitter with experimental data.
 
-Base maximum-likelihood estimate tomography fitter class
+  **Parameters**
 
-Initialize tomography fitter with experimental data.
+  *   **result** ([`Result`](qiskit.result.Result "qiskit.result.result.Result")) – a Qiskit Result object obtained from executing tomography circuits.
+  *   **circuits** (`Union`\[`List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")], `List`\[`str`]]) – a list of circuits or circuit names to extract count information from the result object.
+  *   **meas\_basis** (`Union`\[`TomographyBasis`, `str`]) – (default: ‘Pauli’) A function to return measurement operators corresponding to measurement outcomes. See Additional Information.
+  *   **prep\_basis** (`Union`\[`TomographyBasis`, `str`]) – (default: ‘Pauli’) A function to return preparation operators. See Additional Information
 
-**Parameters**
+  ## Attributes
 
-*   **result** ([`Result`](qiskit.result.Result "qiskit.result.result.Result")) – a Qiskit Result object obtained from executing tomography circuits.
-*   **circuits** (`Union`\[`List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")], `List`\[`str`]]) – a list of circuits or circuit names to extract count information from the result object.
-*   **meas\_basis** (`Union`\[`TomographyBasis`, `str`]) – (default: ‘Pauli’) A function to return measurement operators corresponding to measurement outcomes. See Additional Information.
-*   **prep\_basis** (`Union`\[`TomographyBasis`, `str`]) – (default: ‘Pauli’) A function to return preparation operators. See Additional Information
+  ### data
 
-## Attributes
+  <Attribute id="qiskit.ignis.verification.TomographyFitter.data" name="data">
+    Return tomography data
+  </Attribute>
 
-### data
+  ### measure\_basis
 
-Return tomography data
+  <Attribute id="qiskit.ignis.verification.TomographyFitter.measure_basis" name="measure_basis">
+    Return the tomography measurement basis.
+  </Attribute>
 
-### measure\_basis
+  ### preparation\_basis
 
-Return the tomography measurement basis.
+  <Attribute id="qiskit.ignis.verification.TomographyFitter.preparation_basis" name="preparation_basis">
+    Return the tomography preparation basis.
+  </Attribute>
 
-### preparation\_basis
+  ## Methods
 
-Return the tomography preparation basis.
+  ### add\_data
 
-## Methods
+  <Function id="qiskit.ignis.verification.TomographyFitter.add_data" name="add_data" signature="TomographyFitter.add_data(result, circuits)">
+    Add tomography data from a Qiskit Result object.
 
-### add\_data
+    **Parameters**
 
-<span id="qiskit.ignis.verification.TomographyFitter.add_data" />
+    *   **result** ([*Result*](qiskit.result.Result "qiskit.result.Result")) – a Qiskit Result object obtained from executing tomography circuits.
+    *   **circuits** (*list*) – a list of circuits or circuit names to extract count information from the result object.
+  </Function>
 
-`TomographyFitter.add_data(result, circuits)`
+  ### fit
 
-Add tomography data from a Qiskit Result object.
+  <Function id="qiskit.ignis.verification.TomographyFitter.fit" name="fit" signature="TomographyFitter.fit(method='auto', standard_weights=True, beta=0.5, psd=True, trace=None, trace_preserving=False, **kwargs)">
+    Reconstruct a quantum state using CVXPY convex optimization.
 
-**Parameters**
+    > **Fitter method**
 
-*   **result** ([*Result*](qiskit.result.Result "qiskit.result.Result")) – a Qiskit Result object obtained from executing tomography circuits.
-*   **circuits** (*list*) – a list of circuits or circuit names to extract count information from the result object.
+    The `cvx` fitter method used CVXPY convex optimization package. The `lstsq` method uses least-squares fitting (linear inversion). The `auto` method will use ‘cvx’ if the CVXPY package is found on the system, otherwise it will default to ‘lstsq’.
 
-### fit
+    **Objective function**
 
-<span id="qiskit.ignis.verification.TomographyFitter.fit" />
+    This fitter solves the constrained least-squares minimization: minimize: $||a \cdot x - b ||_2$
 
-`TomographyFitter.fit(method='auto', standard_weights=True, beta=0.5, psd=True, trace=None, trace_preserving=False, **kwargs)`
+    subject to:
 
-Reconstruct a quantum state using CVXPY convex optimization.
+    > *   $x \succeq 0$
+    > *   $\text{trace}(x) = 1$
 
-> **Fitter method**
+    where:
 
-The `cvx` fitter method used CVXPY convex optimization package. The `lstsq` method uses least-squares fitting (linear inversion). The `auto` method will use ‘cvx’ if the CVXPY package is found on the system, otherwise it will default to ‘lstsq’.
+    > *   a is the matrix of measurement operators $a[i] = \text{vec}(M_i).H$
+    > *   b is the vector of expectation value data for each projector $b[i] \sim \text{Tr}[M_i.H \cdot x] = (a \cdot x)[i]$
+    > *   x is the vectorized density matrix to be fitted
 
-**Objective function**
+    **PSD constraint**
 
-This fitter solves the constrained least-squares minimization: minimize: $||a \cdot x - b ||_2$
+    The PSD keyword constrains the fitted matrix to be postive-semidefinite. For the `lstsq` fitter method the fitted matrix is rescaled using the method proposed in Reference \[1]. For the `cvx` fitter method the convex constraint makes the optimization problem a SDP. If PSD=False the fitted matrix will still be constrained to be Hermitian, but not PSD. In this case the optimization problem becomes a SOCP.
 
-subject to:
+    **Trace constraint**
 
-> *   $x \succeq 0$
-> *   $\text{trace}(x) = 1$
+    The trace keyword constrains the trace of the fitted matrix. If trace=None there will be no trace constraint on the fitted matrix. This constraint should not be used for process tomography and the trace preserving constraint should be used instead.
 
-where:
+    **CVXPY Solvers:**
 
-> *   a is the matrix of measurement operators $a[i] = \text{vec}(M_i).H$
-> *   b is the vector of expectation value data for each projector $b[i] \sim \text{Tr}[M_i.H \cdot x] = (a \cdot x)[i]$
-> *   x is the vectorized density matrix to be fitted
+    Various solvers can be called in CVXPY using the solver keyword argument. See the [CVXPY documentation](https://www.cvxpy.org/tutorial/advanced/index.html#solve-method-options) for more information on solvers.
 
-**PSD constraint**
+    References:
 
-The PSD keyword constrains the fitted matrix to be postive-semidefinite. For the `lstsq` fitter method the fitted matrix is rescaled using the method proposed in Reference \[1]. For the `cvx` fitter method the convex constraint makes the optimization problem a SDP. If PSD=False the fitted matrix will still be constrained to be Hermitian, but not PSD. In this case the optimization problem becomes a SOCP.
+    #### \[1] J Smolin, JM Gambetta, G Smith, Phys. Rev. Lett. 108, 070502
 
-**Trace constraint**
+    (2012). Open access: [arXiv:1106.5458](https://arxiv.org/abs/1106.5458) \[quant-ph].
 
-The trace keyword constrains the trace of the fitted matrix. If trace=None there will be no trace constraint on the fitted matrix. This constraint should not be used for process tomography and the trace preserving constraint should be used instead.
+    **Parameters**
 
-**CVXPY Solvers:**
+    *   **method** (`str`) – The fitter method ‘auto’, ‘cvx’ or ‘lstsq’.
+    *   **standard\_weights** (`bool`) – (default: True) Apply weights to tomography data based on count probability
+    *   **beta** (`float`) – hedging parameter for converting counts to probabilities
+    *   **psd** (`bool`) – Enforced the fitted matrix to be positive semidefinite.
+    *   **trace** (`Optional`\[`int`]) – trace constraint for the fitted matrix.
+    *   **trace\_preserving** (`bool`) – Enforce the fitted matrix to be trace preserving when fitting a Choi-matrix in quantum process tomography. Note this method does not apply for ‘lstsq’ fitter method.
+    *   **\*\*kwargs** – kwargs for fitter method.
 
-Various solvers can be called in CVXPY using the solver keyword argument. See the [CVXPY documentation](https://www.cvxpy.org/tutorial/advanced/index.html#solve-method-options) for more information on solvers.
+    **Raises**
 
-References:
+    **QiskitError** – In case the fitting method is unrecognized.
 
-#### \[1] J Smolin, JM Gambetta, G Smith, Phys. Rev. Lett. 108, 070502
+    **Return type**
 
-(2012). Open access: [arXiv:1106.5458](https://arxiv.org/abs/1106.5458) \[quant-ph].
+    `array`
 
-**Parameters**
+    **Returns**
 
-*   **method** (`str`) – The fitter method ‘auto’, ‘cvx’ or ‘lstsq’.
-*   **standard\_weights** (`bool`) – (default: True) Apply weights to tomography data based on count probability
-*   **beta** (`float`) – hedging parameter for converting counts to probabilities
-*   **psd** (`bool`) – Enforced the fitted matrix to be positive semidefinite.
-*   **trace** (`Optional`\[`int`]) – trace constraint for the fitted matrix.
-*   **trace\_preserving** (`bool`) – Enforce the fitted matrix to be trace preserving when fitting a Choi-matrix in quantum process tomography. Note this method does not apply for ‘lstsq’ fitter method.
-*   **\*\*kwargs** – kwargs for fitter method.
+    The fitted matrix rho that minimizes $||\text{basis_matrix} * \text{vec(rho)} - \text{data}||_2$.
+  </Function>
 
-**Raises**
+  ### set\_measure\_basis
 
-**QiskitError** – In case the fitting method is unrecognized.
+  <Function id="qiskit.ignis.verification.TomographyFitter.set_measure_basis" name="set_measure_basis" signature="TomographyFitter.set_measure_basis(basis)">
+    Set the measurement basis
 
-**Return type**
+    **Parameters**
 
-`array`
+    **basis** (`Union`\[`TomographyBasis`, `str`]) – measurement basis
 
-**Returns**
+    **Raises**
 
-The fitted matrix rho that minimizes $||\text{basis_matrix} * \text{vec(rho)} - \text{data}||_2$.
+    **QiskitError** – In case of invalid measurement or preparation basis.
+  </Function>
 
-### set\_measure\_basis
+  ### set\_preparation\_basis
 
-<span id="qiskit.ignis.verification.TomographyFitter.set_measure_basis" />
+  <Function id="qiskit.ignis.verification.TomographyFitter.set_preparation_basis" name="set_preparation_basis" signature="TomographyFitter.set_preparation_basis(basis)">
+    Set the preparation basis function
 
-`TomographyFitter.set_measure_basis(basis)`
+    **Parameters**
 
-Set the measurement basis
+    **basis** (`Union`\[`TomographyBasis`, `str`]) – preparation basis
 
-**Parameters**
+    **Raises**
 
-**basis** (`Union`\[`TomographyBasis`, `str`]) – measurement basis
-
-**Raises**
-
-**QiskitError** – In case of invalid measurement or preparation basis.
-
-### set\_preparation\_basis
-
-<span id="qiskit.ignis.verification.TomographyFitter.set_preparation_basis" />
-
-`TomographyFitter.set_preparation_basis(basis)`
-
-Set the preparation basis function
-
-**Parameters**
-
-**basis** (`Union`\[`TomographyBasis`, `str`]) – preparation basis
-
-**Raises**
-
-**QiskitError** – in case the basis has no preperation data
+    **QiskitError** – in case the basis has no preperation data
+  </Function>
+</Class>
 

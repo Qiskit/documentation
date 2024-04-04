@@ -8,365 +8,331 @@ python_api_name: qiskit.opflow.state_fns.CVaRMeasurement
 
 # CVaRMeasurement
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement" />
+<Class id="qiskit.opflow.state_fns.CVaRMeasurement" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/state_fns/cvar_measurement.py" signature="CVaRMeasurement(primitive=None, alpha=1.0, coeff=1.0)">
+  Bases: [`qiskit.opflow.state_fns.operator_state_fn.OperatorStateFn`](qiskit.opflow.state_fns.OperatorStateFn "qiskit.opflow.state_fns.operator_state_fn.OperatorStateFn")
 
-`CVaRMeasurement(primitive=None, alpha=1.0, coeff=1.0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/state_fns/cvar_measurement.py "view source code")
+  **A specialized measurement class to compute CVaR expectation values.**
 
-Bases: [`qiskit.opflow.state_fns.operator_state_fn.OperatorStateFn`](qiskit.opflow.state_fns.OperatorStateFn "qiskit.opflow.state_fns.operator_state_fn.OperatorStateFn")
+  See [https://arxiv.org/pdf/1907.04769.pdf](https://arxiv.org/pdf/1907.04769.pdf) for further details.
 
-**A specialized measurement class to compute CVaR expectation values.**
+  Used in `CVaRExpectation`, see there for more details.
 
-See [https://arxiv.org/pdf/1907.04769.pdf](https://arxiv.org/pdf/1907.04769.pdf) for further details.
+  **Parameters**
 
-Used in `CVaRExpectation`, see there for more details.
+  *   **primitive** (`Optional`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]) – The `OperatorBase` which defines the diagonal operator measurement.
+  *   **coeff** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – A coefficient by which to multiply the state function
+  *   **alpha** (`float`) – A real-valued parameter between 0 and 1 which specifies the fraction of observed samples to include when computing the objective value. alpha = 1 corresponds to a standard observable expectation value. alpha = 0 corresponds to only using the single sample with the lowest energy. alpha = 0.5 corresponds to ranking each observation by lowest energy and using the best
 
-**Parameters**
+  **Raises**
 
-*   **primitive** (`Optional`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]) – The `OperatorBase` which defines the diagonal operator measurement.
-*   **coeff** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – A coefficient by which to multiply the state function
-*   **alpha** (`float`) – A real-valued parameter between 0 and 1 which specifies the fraction of observed samples to include when computing the objective value. alpha = 1 corresponds to a standard observable expectation value. alpha = 0 corresponds to only using the single sample with the lowest energy. alpha = 0.5 corresponds to ranking each observation by lowest energy and using the best
+  *   **ValueError** – TODO remove that this raises an error
+  *   **ValueError** – If alpha is not in \[0, 1].
+  *   [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the primitive is not diagonal.
 
-**Raises**
+  ## Methods Defined Here
 
-*   **ValueError** – TODO remove that this raises an error
-*   **ValueError** – If alpha is not in \[0, 1].
-*   [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the primitive is not diagonal.
+  ### add
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.add" name="add" signature="CVaRMeasurement.add(other)">
+    Return Operator addition of self and other, overloaded by `+`.
 
-### add
+    **Parameters**
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.add" />
+    **other** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
 
-`CVaRMeasurement.add(other)`
+    **Return type**
 
-Return Operator addition of self and other, overloaded by `+`.
+    [`SummedOp`](qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.summed_op.SummedOp")
 
-**Parameters**
+    **Returns**
 
-**other** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
+    An `OperatorBase` equivalent to the sum of self and other.
+  </Function>
 
-**Return type**
+  ### adjoint
 
-[`SummedOp`](qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.summed_op.SummedOp")
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.adjoint" name="adjoint" signature="CVaRMeasurement.adjoint()">
+    The adjoint of a CVaRMeasurement is not defined.
 
-**Returns**
+    **Returns**
 
-An `OperatorBase` equivalent to the sum of self and other.
+    Does not return anything, raises an error.
 
-### adjoint
+    **Raises**
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.adjoint" />
+    [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – The adjoint of a CVaRMeasurement is not defined.
+  </Function>
 
-`CVaRMeasurement.adjoint()`
+  ### compute\_cvar
 
-The adjoint of a CVaRMeasurement is not defined.
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.compute_cvar" name="compute_cvar" signature="CVaRMeasurement.compute_cvar(energies, probabilities)">
+    Given the energies of each sampled measurement outcome (H\_i) as well as the sampling probability of each measurement outcome (p\_i, we can compute the CVaR. Note that the sampling probabilities serve as an alternative to knowing the counts of each observation and that the input energies are assumed to be sorted in increasing order.
 
-**Returns**
+    Consider the outcome with index j, such that only some of the samples with measurement outcome j will be used in computing CVaR. The CVaR calculation can then be separated into two parts. First we sum each of the energies for outcomes i \< j, weighted by the probability of observing that outcome (i.e the normalized counts). Second, we add the energy for outcome j, weighted by the difference (α - sum\_i\<j p\_i)
 
-Does not return anything, raises an error.
+    **Parameters**
 
-**Raises**
+    *   **energies** (`list`) – A list containing the energies (H\_i) of each sample measurement outcome, sorted in increasing order.
+    *   **probabilities** (`list`) – The sampling probabilities (p\_i) for each corresponding measurement outcome.
 
-[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – The adjoint of a CVaRMeasurement is not defined.
+    **Return type**
 
-### compute\_cvar
+    `complex`
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.compute_cvar" />
+    **Returns**
 
-`CVaRMeasurement.compute_cvar(energies, probabilities)`
+    **The CVaR of the diagonal observable specified by self.primitive and**
 
-Given the energies of each sampled measurement outcome (H\_i) as well as the sampling probability of each measurement outcome (p\_i, we can compute the CVaR. Note that the sampling probabilities serve as an alternative to knowing the counts of each observation and that the input energies are assumed to be sorted in increasing order.
+    the sampled quantum state described by the inputs (energies, probabilities). For index j (described above), the CVaR is computed as H\_j + 1/α \* (sum\_i\<j p\_i\*(H\_i - H\_j))
 
-Consider the outcome with index j, such that only some of the samples with measurement outcome j will be used in computing CVaR. The CVaR calculation can then be separated into two parts. First we sum each of the energies for outcomes i \< j, weighted by the probability of observing that outcome (i.e the normalized counts). Second, we add the energy for outcome j, weighted by the difference (α - sum\_i\<j p\_i)
+    **Raises**
 
-**Parameters**
+    **ValueError** – front isn’t a DictStateFn or VectorStateFn
+  </Function>
 
-*   **energies** (`list`) – A list containing the energies (H\_i) of each sample measurement outcome, sorted in increasing order.
-*   **probabilities** (`list`) – The sampling probabilities (p\_i) for each corresponding measurement outcome.
+  ### eval
 
-**Return type**
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.eval" name="eval" signature="CVaRMeasurement.eval(front=None)">
+    Given the energies of each sampled measurement outcome (H\_i) as well as the sampling probability of each measurement outcome (p\_i, we can compute the CVaR as H\_j + 1/α\*(sum\_i\<j p\_i\*(H\_i - H\_j)). Note that index j corresponds to the measurement outcome such that only some of the samples with measurement outcome j will be used in computing CVaR. Note also that the sampling probabilities serve as an alternative to knowing the counts of each observation.
 
-`complex`
+    This computation is broken up into two subroutines. One which evaluates each measurement outcome and determines the sampling probabilities of each. And one which carries out the above calculation. The computation is split up this way to enable a straightforward calculation of the variance of this estimator.
 
-**Returns**
+    **Parameters**
 
-**The CVaR of the diagonal observable specified by self.primitive and**
+    **front** (`Union`\[`str`, `dict`, `ndarray`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector"), `None`]) – A StateFn or primitive which specifies the results of evaluating a quantum state.
 
-the sampled quantum state described by the inputs (energies, probabilities). For index j (described above), the CVaR is computed as H\_j + 1/α \* (sum\_i\<j p\_i\*(H\_i - H\_j))
+    **Return type**
 
-**Raises**
+    `complex`
 
-**ValueError** – front isn’t a DictStateFn or VectorStateFn
+    **Returns**
 
-### eval
+    **The CVaR of the diagonal observable specified by self.primitive and**
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.eval" />
+    the sampled quantum state described by the inputs (energies, probabilities). For index j (described above), the CVaR is computed as H\_j + 1/α\*(sum\_i\<j p\_i\*(H\_i - H\_j))
+  </Function>
 
-`CVaRMeasurement.eval(front=None)`
+  ### eval\_variance
 
-Given the energies of each sampled measurement outcome (H\_i) as well as the sampling probability of each measurement outcome (p\_i, we can compute the CVaR as H\_j + 1/α\*(sum\_i\<j p\_i\*(H\_i - H\_j)). Note that index j corresponds to the measurement outcome such that only some of the samples with measurement outcome j will be used in computing CVaR. Note also that the sampling probabilities serve as an alternative to knowing the counts of each observation.
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.eval_variance" name="eval_variance" signature="CVaRMeasurement.eval_variance(front=None)">
+    Given the energies of each sampled measurement outcome (H\_i) as well as the sampling probability of each measurement outcome (p\_i, we can compute the variance of the CVaR estimator as H\_j^2 + 1/α \* (sum\_i\<j p\_i\*(H\_i^2 - H\_j^2)). This follows from the definition that Var\[X] = E\[X^2] - E\[X]^2. In this case, X = E\[\<bi|H|bi>], where H is the diagonal observable and bi corresponds to measurement outcome i. Given this, E\[X^2] = E\[\<bi|H|bi>^2]
 
-This computation is broken up into two subroutines. One which evaluates each measurement outcome and determines the sampling probabilities of each. And one which carries out the above calculation. The computation is split up this way to enable a straightforward calculation of the variance of this estimator.
+    **Parameters**
 
-**Parameters**
+    **front** (`Union`\[`str`, `dict`, `ndarray`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), `None`]) – A StateFn or primitive which specifies the results of evaluating a quantum state.
 
-**front** (`Union`\[`str`, `dict`, `ndarray`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector"), `None`]) – A StateFn or primitive which specifies the results of evaluating a quantum state.
+    **Return type**
 
-**Return type**
+    `complex`
 
-`complex`
+    **Returns**
 
-**Returns**
+    **The Var\[CVaR] of the diagonal observable specified by self.primitive**
 
-**The CVaR of the diagonal observable specified by self.primitive and**
+    and the sampled quantum state described by the inputs (energies, probabilities). For index j (described above), the CVaR is computed as H\_j^2 + 1/α\*(sum\_i\<j p\_i\*(H\_i^2 - H\_j^2))
+  </Function>
 
-the sampled quantum state described by the inputs (energies, probabilities). For index j (described above), the CVaR is computed as H\_j + 1/α\*(sum\_i\<j p\_i\*(H\_i - H\_j))
+  ### get\_outcome\_energies\_probabilities
 
-### eval\_variance
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.get_outcome_energies_probabilities" name="get_outcome_energies_probabilities" signature="CVaRMeasurement.get_outcome_energies_probabilities(front=None)">
+    In order to compute the CVaR of an observable expectation, we require the energies of each sampled measurement outcome as well as the sampling probability of each measurement outcome. Note that the counts for each measurement outcome will also suffice (and this is often how the CVaR is presented).
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.eval_variance" />
+    **Parameters**
 
-`CVaRMeasurement.eval_variance(front=None)`
+    **front** (`Union`\[`str`, `dict`, `ndarray`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector"), `None`]) – A StateFn or a primitive which defines a StateFn. This input holds the results of a sampled/simulated circuit.
 
-Given the energies of each sampled measurement outcome (H\_i) as well as the sampling probability of each measurement outcome (p\_i, we can compute the variance of the CVaR estimator as H\_j^2 + 1/α \* (sum\_i\<j p\_i\*(H\_i^2 - H\_j^2)). This follows from the definition that Var\[X] = E\[X^2] - E\[X]^2. In this case, X = E\[\<bi|H|bi>], where H is the diagonal observable and bi corresponds to measurement outcome i. Given this, E\[X^2] = E\[\<bi|H|bi>^2]
+    **Return type**
 
-**Parameters**
+    `Tuple`\[`list`, `list`]
 
-**front** (`Union`\[`str`, `dict`, `ndarray`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), `None`]) – A StateFn or primitive which specifies the results of evaluating a quantum state.
+    **Returns**
 
-**Return type**
+    **Two lists of equal length. energies contains the energy of each**
 
-`complex`
+    unique measurement outcome computed against the diagonal observable stored in self.primitive. probabilities contains the corresponding sampling probability for each measurement outcome in energies.
 
-**Returns**
+    **Raises**
 
-**The Var\[CVaR] of the diagonal observable specified by self.primitive**
+    **ValueError** – front isn’t a DictStateFn or VectorStateFn
+  </Function>
 
-and the sampled quantum state described by the inputs (energies, probabilities). For index j (described above), the CVaR is computed as H\_j^2 + 1/α\*(sum\_i\<j p\_i\*(H\_i^2 - H\_j^2))
+  ### mul
 
-### get\_outcome\_energies\_probabilities
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.mul" name="mul" signature="CVaRMeasurement.mul(scalar)">
+    Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.get_outcome_energies_probabilities" />
+    **Parameters**
 
-`CVaRMeasurement.get_outcome_energies_probabilities(front=None)`
+    **scalar** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
 
-In order to compute the CVaR of an observable expectation, we require the energies of each sampled measurement outcome as well as the sampling probability of each measurement outcome. Note that the counts for each measurement outcome will also suffice (and this is often how the CVaR is presented).
+    **Return type**
 
-**Parameters**
+    [`CVaRMeasurement`](qiskit.opflow.state_fns.CVaRMeasurement "qiskit.opflow.state_fns.cvar_measurement.CVaRMeasurement")
 
-**front** (`Union`\[`str`, `dict`, `ndarray`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector"), `None`]) – A StateFn or a primitive which defines a StateFn. This input holds the results of a sampled/simulated circuit.
+    **Returns**
 
-**Return type**
+    An `OperatorBase` equivalent to product of self and scalar.
+  </Function>
 
-`Tuple`\[`list`, `list`]
+  ### sample
 
-**Returns**
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.sample" name="sample" signature="CVaRMeasurement.sample(shots=1024, massive=False, reverse_endianness=False)">
+    Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
 
-**Two lists of equal length. energies contains the energy of each**
+    **Parameters**
 
-unique measurement outcome computed against the diagonal observable stored in self.primitive. probabilities contains the corresponding sampling probability for each measurement outcome in energies.
+    *   **shots** (`int`) – The number of samples to take to approximate the State function.
+    *   **massive** (`bool`) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
+    *   **reverse\_endianness** (`bool`) – Whether to reverse the endianness of the bitstrings in the return dict to match Terra’s big-endianness.
 
-**Raises**
+    **Returns**
 
-**ValueError** – front isn’t a DictStateFn or VectorStateFn
+    A dict containing pairs sampled strings from the State function and sampling frequency divided by shots.
+  </Function>
 
-### mul
+  ### tensor
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.mul" />
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.tensor" name="tensor" signature="CVaRMeasurement.tensor(other)">
+    Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, Plus.tensor(Zero) produces a |+⟩ on qubit 0 and a |0⟩ on qubit 1, or |+⟩⨂|0⟩, but would produce a QuantumCircuit like
 
-`CVaRMeasurement.mul(scalar)`
+    > |0⟩– |+⟩–
 
-Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
+    Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
 
-**Parameters**
+    **Parameters**
 
-**scalar** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
+    **other** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to tensor product with self.
 
-**Return type**
+    **Return type**
 
-[`CVaRMeasurement`](qiskit.opflow.state_fns.CVaRMeasurement "qiskit.opflow.state_fns.cvar_measurement.CVaRMeasurement")
+    `Union`\[[`OperatorStateFn`](qiskit.opflow.state_fns.OperatorStateFn "qiskit.opflow.state_fns.operator_state_fn.OperatorStateFn"), [`TensoredOp`](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.tensored_op.TensoredOp")]
 
-**Returns**
+    **Returns**
 
-An `OperatorBase` equivalent to product of self and scalar.
+    An `OperatorBase` equivalent to the tensor product of self and other.
+  </Function>
 
-### sample
+  ### to\_circuit\_op
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.sample" />
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.to_circuit_op" name="to_circuit_op" signature="CVaRMeasurement.to_circuit_op()">
+    Not defined.
+  </Function>
 
-`CVaRMeasurement.sample(shots=1024, massive=False, reverse_endianness=False)`
+  ### to\_density\_matrix
 
-Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.to_density_matrix" name="to_density_matrix" signature="CVaRMeasurement.to_density_matrix(massive=False)">
+    Not defined.
+  </Function>
 
-**Parameters**
+  ### to\_matrix
 
-*   **shots** (`int`) – The number of samples to take to approximate the State function.
-*   **massive** (`bool`) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
-*   **reverse\_endianness** (`bool`) – Whether to reverse the endianness of the bitstrings in the return dict to match Terra’s big-endianness.
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.to_matrix" name="to_matrix" signature="CVaRMeasurement.to_matrix(massive=False)">
+    Not defined.
+  </Function>
 
-**Returns**
+  ### to\_matrix\_op
 
-A dict containing pairs sampled strings from the State function and sampling frequency divided by shots.
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.to_matrix_op" name="to_matrix_op" signature="CVaRMeasurement.to_matrix_op(massive=False)">
+    Not defined.
+  </Function>
 
-### tensor
+  ### traverse
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.tensor" />
+  <Function id="qiskit.opflow.state_fns.CVaRMeasurement.traverse" name="traverse" signature="CVaRMeasurement.traverse(convert_fn, coeff=None)">
+    Apply the convert\_fn to the internal primitive if the primitive is an Operator (as in the case of `OperatorStateFn`). Otherwise do nothing. Used by converters.
 
-`CVaRMeasurement.tensor(other)`
+    **Parameters**
 
-Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, Plus.tensor(Zero) produces a |+⟩ on qubit 0 and a |0⟩ on qubit 1, or |+⟩⨂|0⟩, but would produce a QuantumCircuit like
+    *   **convert\_fn** (`Callable`) – The function to apply to the internal OperatorBase.
+    *   **coeff** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `None`]) – A coefficient to multiply by after applying convert\_fn. If it is None, self.coeff is used instead.
 
-> |0⟩– |+⟩–
+    **Return type**
 
-Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
+    [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 
-**Parameters**
+    **Returns**
 
-**other** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to tensor product with self.
+    The converted StateFn.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`Union`\[[`OperatorStateFn`](qiskit.opflow.state_fns.OperatorStateFn "qiskit.opflow.state_fns.operator_state_fn.OperatorStateFn"), [`TensoredOp`](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.tensored_op.TensoredOp")]
+  ### INDENTATION
 
-**Returns**
+  <Attribute id="qiskit.opflow.state_fns.CVaRMeasurement.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
 
-An `OperatorBase` equivalent to the tensor product of self and other.
+  ### alpha
 
-### to\_circuit\_op
+  <Attribute id="qiskit.opflow.state_fns.CVaRMeasurement.alpha" name="alpha">
+    **A real-valued parameter between 0 and 1 which specifies the**
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.to_circuit_op" />
+    fraction of observed samples to include when computing the objective value. alpha = 1 corresponds to a standard observable expectation value. alpha = 0 corresponds to only using the single sample with the lowest energy. alpha = 0.5 corresponds to ranking each observation by lowest energy and using the best half.
 
-`CVaRMeasurement.to_circuit_op()`
+    **Return type**
 
-Not defined.
+    `float`
 
-### to\_density\_matrix
+    **Returns**
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.to_density_matrix" />
+    The parameter alpha which was given at initialization
+  </Attribute>
 
-`CVaRMeasurement.to_density_matrix(massive=False)`
+  ### coeff
 
-Not defined.
+  <Attribute id="qiskit.opflow.state_fns.CVaRMeasurement.coeff" name="coeff">
+    A coefficient by which the state function is multiplied.
 
-### to\_matrix
+    **Return type**
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.to_matrix" />
+    `Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+  </Attribute>
 
-`CVaRMeasurement.to_matrix(massive=False)`
+  ### instance\_id
 
-Not defined.
+  <Attribute id="qiskit.opflow.state_fns.CVaRMeasurement.instance_id" name="instance_id">
+    Return the unique instance id.
 
-### to\_matrix\_op
+    **Return type**
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.to_matrix_op" />
+    `int`
+  </Attribute>
 
-`CVaRMeasurement.to_matrix_op(massive=False)`
+  ### is\_measurement
 
-Not defined.
+  <Attribute id="qiskit.opflow.state_fns.CVaRMeasurement.is_measurement" name="is_measurement">
+    Whether the StateFn object is a measurement Operator.
 
-### traverse
+    **Return type**
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.traverse" />
+    `bool`
+  </Attribute>
 
-`CVaRMeasurement.traverse(convert_fn, coeff=None)`
+  ### num\_qubits
 
-Apply the convert\_fn to the internal primitive if the primitive is an Operator (as in the case of `OperatorStateFn`). Otherwise do nothing. Used by converters.
+  <Attribute id="qiskit.opflow.state_fns.CVaRMeasurement.num_qubits" name="num_qubits">
+    **Return type**
 
-**Parameters**
+    `int`
+  </Attribute>
 
-*   **convert\_fn** (`Callable`) – The function to apply to the internal OperatorBase.
-*   **coeff** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `None`]) – A coefficient to multiply by after applying convert\_fn. If it is None, self.coeff is used instead.
+  ### parameters
 
-**Return type**
+  <Attribute id="qiskit.opflow.state_fns.CVaRMeasurement.parameters" name="parameters" />
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  ### primitive
 
-**Returns**
+  <Attribute id="qiskit.opflow.state_fns.CVaRMeasurement.primitive" name="primitive" attributeTypeHint="qiskit.opflow.operator_base.OperatorBase">
+    The primitive which defines the behavior of the underlying State function.
+  </Attribute>
 
-The converted StateFn.
+  ### settings
 
-## Attributes
+  <Attribute id="qiskit.opflow.state_fns.CVaRMeasurement.settings" name="settings">
+    Return settings.
 
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.INDENTATION" />
+    **Return type**
 
-### INDENTATION
-
-`= '  '`
-
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.alpha" />
-
-### alpha
-
-**A real-valued parameter between 0 and 1 which specifies the**
-
-fraction of observed samples to include when computing the objective value. alpha = 1 corresponds to a standard observable expectation value. alpha = 0 corresponds to only using the single sample with the lowest energy. alpha = 0.5 corresponds to ranking each observation by lowest energy and using the best half.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-The parameter alpha which was given at initialization
-
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.coeff" />
-
-### coeff
-
-A coefficient by which the state function is multiplied.
-
-**Return type**
-
-`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
-
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.instance_id" />
-
-### instance\_id
-
-Return the unique instance id.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.is_measurement" />
-
-### is\_measurement
-
-Whether the StateFn object is a measurement Operator.
-
-**Return type**
-
-`bool`
-
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.num_qubits" />
-
-### num\_qubits
-
-**Return type**
-
-`int`
-
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.parameters" />
-
-### parameters
-
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.primitive" />
-
-### primitive
-
-`qiskit.opflow.operator_base.OperatorBase`
-
-The primitive which defines the behavior of the underlying State function.
-
-<span id="qiskit.opflow.state_fns.CVaRMeasurement.settings" />
-
-### settings
-
-Return settings.
-
-**Return type**
-
-`Dict`
+    `Dict`
+  </Attribute>
+</Class>
 

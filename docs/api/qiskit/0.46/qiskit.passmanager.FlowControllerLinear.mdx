@@ -8,88 +8,80 @@ python_api_name: qiskit.passmanager.FlowControllerLinear
 
 # FlowControllerLinear
 
-<span id="qiskit.passmanager.FlowControllerLinear" />
+<Class id="qiskit.passmanager.FlowControllerLinear" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/passmanager/flow_controllers.py" signature="qiskit.passmanager.FlowControllerLinear(tasks=(), *, options=None)">
+  Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")
 
-`qiskit.passmanager.FlowControllerLinear(tasks=(), *, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/passmanager/flow_controllers.py "view source code")
+  A standard flow controller that runs tasks one after the other.
 
-Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")
+  Create new flow controller.
 
-A standard flow controller that runs tasks one after the other.
+  **Parameters**
 
-Create new flow controller.
+  **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any] | None*) – Option for this flow controller.
 
-**Parameters**
+  ## Attributes
 
-**options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any] | None*) – Option for this flow controller.
+  ### passes
 
-## Attributes
+  <Attribute id="qiskit.passmanager.FlowControllerLinear.passes" name="passes">
+    Alias of tasks for backward compatibility.
+  </Attribute>
 
-<span id="qiskit.passmanager.FlowControllerLinear.passes" />
+  ## Methods
 
-### passes
+  ### append
 
-Alias of tasks for backward compatibility.
+  <Function id="qiskit.passmanager.FlowControllerLinear.append" name="append" signature="append(passes)">
+    Add new task to pipeline.
 
-## Methods
+    <Admonition title="Deprecated since version 0.45.0" type="danger">
+      The method `qiskit.passmanager.flow_controllers.FlowControllerLinear.append()` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0 release. All tasks must be provided at construction time of the controller object.
+    </Admonition>
 
-### append
+    **Parameters**
 
-<span id="qiskit.passmanager.FlowControllerLinear.append" />
+    **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A new task or list of tasks to add.
+  </Function>
 
-`append(passes)`
+  ### execute
 
-Add new task to pipeline.
+  <Function id="qiskit.passmanager.FlowControllerLinear.execute" name="execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
 
-<Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.passmanager.flow_controllers.FlowControllerLinear.append()` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0 release. All tasks must be provided at construction time of the controller object.
-</Admonition>
+    **Parameters**
 
-**Parameters**
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
 
-**passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A new task or list of tasks to add.
+    **Returns**
 
-### execute
+    Optimized Qiskit IR and state of the workflow.
 
-<span id="qiskit.passmanager.FlowControllerLinear.execute" />
+    **Return type**
 
-`execute(passmanager_ir, state, callback=None)`
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
 
-Execute optimization task for input Qiskit IR.
+  ### iter\_tasks
 
-**Parameters**
+  <Function id="qiskit.passmanager.FlowControllerLinear.iter_tasks" name="iter_tasks" signature="iter_tasks(state)">
+    A custom logic to choose a next task to run.
 
-*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    Controller subclass can consume the state to build a proper task pipeline. The updated state after a task execution will be fed back in as the “return” value of any `yield` statements. This indicates the order of task execution is only determined at running time. This method is not allowed to mutate the given state object.
 
-**Returns**
+    **Parameters**
 
-Optimized Qiskit IR and state of the workflow.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – The state of the passmanager workflow at the beginning of this flow controller’s execution.
+    *   **state** – the state of pass manager after the execution of the last task that was yielded. The generator does not need to inspect this if it is irrelevant to its logic, nor update it.
 
-**Return type**
+    **Yields**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    *Task* – Next task to run.
 
-### iter\_tasks
+    **Return type**
 
-<span id="qiskit.passmanager.FlowControllerLinear.iter_tasks" />
-
-`iter_tasks(state)`
-
-A custom logic to choose a next task to run.
-
-Controller subclass can consume the state to build a proper task pipeline. The updated state after a task execution will be fed back in as the “return” value of any `yield` statements. This indicates the order of task execution is only determined at running time. This method is not allowed to mutate the given state object.
-
-**Parameters**
-
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – The state of the passmanager workflow at the beginning of this flow controller’s execution.
-*   **state** – the state of pass manager after the execution of the last task that was yielded. The generator does not need to inspect this if it is irrelevant to its logic, nor update it.
-
-**Yields**
-
-*Task* – Next task to run.
-
-**Return type**
-
-[*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[*Task*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState"), None]
+    [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[*Task*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState"), None]
+  </Function>
+</Class>
 

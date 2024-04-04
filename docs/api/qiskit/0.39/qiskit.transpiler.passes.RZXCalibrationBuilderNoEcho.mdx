@@ -8,147 +8,135 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
 # RZXCalibrationBuilderNoEcho
 
-<span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho" />
+<Class id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/calibration/rzx_builder.py" signature="RZXCalibrationBuilderNoEcho(instruction_schedule_map=None, qubit_channel_mapping=None, verbose=True)">
+  Bases: [`qiskit.transpiler.passes.calibration.rzx_builder.RZXCalibrationBuilder`](qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.calibration.rzx_builder.RZXCalibrationBuilder")
 
-`RZXCalibrationBuilderNoEcho(instruction_schedule_map=None, qubit_channel_mapping=None, verbose=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/calibration/rzx_builder.py "view source code")
+  Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate.
 
-Bases: [`qiskit.transpiler.passes.calibration.rzx_builder.RZXCalibrationBuilder`](qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.calibration.rzx_builder.RZXCalibrationBuilder")
+  The `RZXCalibrationBuilderNoEcho` is a variation of the [`RZXCalibrationBuilder`](qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.RZXCalibrationBuilder") pass that creates calibrations for the cross-resonance pulses without inserting the echo pulses in the pulse schedule. This enables exposing the echo in the cross-resonance sequence as gates so that the transpiler can simplify them. The `RZXCalibrationBuilderNoEcho` only supports the hardware-native direction of the CX gate.
 
-Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate.
+  Initializes a RZXGate calibration builder.
 
-The `RZXCalibrationBuilderNoEcho` is a variation of the [`RZXCalibrationBuilder`](qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.RZXCalibrationBuilder") pass that creates calibrations for the cross-resonance pulses without inserting the echo pulses in the pulse schedule. This enables exposing the echo in the cross-resonance sequence as gates so that the transpiler can simplify them. The `RZXCalibrationBuilderNoEcho` only supports the hardware-native direction of the CX gate.
+  **Parameters**
 
-Initializes a RZXGate calibration builder.
+  *   **instruction\_schedule\_map** (`Optional`\[[`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")]) – The `InstructionScheduleMap` object representing the default pulse calibrations for the target backend
+  *   **qubit\_channel\_mapping** (`Optional`\[`List`\[`List`\[`str`]]]) – The list mapping qubit indices to the list of channel names that apply on that qubit.
+  *   **verbose** (`bool`) – Set True to raise a user warning when RZX schedule cannot be built.
 
-**Parameters**
+  **Raises**
 
-*   **instruction\_schedule\_map** (`Optional`\[[`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")]) – The `InstructionScheduleMap` object representing the default pulse calibrations for the target backend
-*   **qubit\_channel\_mapping** (`Optional`\[`List`\[`List`\[`str`]]]) – The list mapping qubit indices to the list of channel names that apply on that qubit.
-*   **verbose** (`bool`) – Set True to raise a user warning when RZX schedule cannot be built.
+  **QiskitError** – Instruction schedule map is not provided.
 
-**Raises**
+  ## Methods
 
-**QiskitError** – Instruction schedule map is not provided.
+  ### get\_calibration
 
-## Methods
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.get_calibration" name="get_calibration" signature="RZXCalibrationBuilderNoEcho.get_calibration(node_op, qubits)">
+    Builds the calibration schedule for the RZXGate(theta) without echos.
 
-### get\_calibration
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.get_calibration" />
+    *   **node\_op** ([`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Instruction of the RZXGate(theta). I.e. params\[0] is theta.
+    *   **qubits** (`List`) – List of qubits for which to get the schedules. The first qubit is the control and the second is the target.
 
-`RZXCalibrationBuilderNoEcho.get_calibration(node_op, qubits)`
+    **Returns**
 
-Builds the calibration schedule for the RZXGate(theta) without echos.
+    The calibration schedule for the RZXGate(theta).
 
-**Parameters**
+    **Return type**
 
-*   **node\_op** ([`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Instruction of the RZXGate(theta). I.e. params\[0] is theta.
-*   **qubits** (`List`) – List of qubits for which to get the schedules. The first qubit is the control and the second is the target.
+    schedule
 
-**Returns**
+    **Raises**
 
-The calibration schedule for the RZXGate(theta).
+    *   **QiskitError** – if rotation angle is not assigned.
+    *   **QiskitError** – If the control and target qubits cannot be identified, or the backend does not natively support the specified direction of the cx.
+    *   **CalibrationNotAvailable** – RZX schedule cannot be built for input node.
+  </Function>
 
-**Return type**
+  ### name
 
-schedule
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.name" name="name" signature="RZXCalibrationBuilderNoEcho.name()">
+    Return the name of the pass.
+  </Function>
 
-**Raises**
+  ### rescale\_cr\_inst
 
-*   **QiskitError** – if rotation angle is not assigned.
-*   **QiskitError** – If the control and target qubits cannot be identified, or the backend does not natively support the specified direction of the cx.
-*   **CalibrationNotAvailable** – RZX schedule cannot be built for input node.
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.rescale_cr_inst" name="rescale_cr_inst" signature="static RZXCalibrationBuilderNoEcho.rescale_cr_inst(instruction, theta, sample_mult=16)">
+    **Parameters**
 
-### name
+    *   **instruction** ([`Play`](qiskit.pulse.instructions.Play "qiskit.pulse.instructions.play.Play")) – The instruction from which to create a new shortened or lengthened pulse.
+    *   **theta** (`float`) – desired angle, pi/2 is assumed to be the angle that the pulse in the given play instruction implements.
+    *   **sample\_mult** (`int`) – All pulses must be a multiple of sample\_mult.
 
-<span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.name" />
+    **Returns**
 
-`RZXCalibrationBuilderNoEcho.name()`
+    **The play instruction with the stretched compressed**
 
-Return the name of the pass.
+    GaussianSquare pulse.
 
-### rescale\_cr\_inst
+    **Return type**
 
-<span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.rescale_cr_inst" />
+    qiskit.pulse.Play
 
-`static RZXCalibrationBuilderNoEcho.rescale_cr_inst(instruction, theta, sample_mult=16)`
+    **Raises**
 
-**Parameters**
+    **QiskitError** – if rotation angle is not assigned.
+  </Function>
 
-*   **instruction** ([`Play`](qiskit.pulse.instructions.Play "qiskit.pulse.instructions.play.Play")) – The instruction from which to create a new shortened or lengthened pulse.
-*   **theta** (`float`) – desired angle, pi/2 is assumed to be the angle that the pulse in the given play instruction implements.
-*   **sample\_mult** (`int`) – All pulses must be a multiple of sample\_mult.
+  ### run
 
-**Returns**
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.run" name="run" signature="RZXCalibrationBuilderNoEcho.run(dag)">
+    Run the calibration adder pass on dag.
 
-**The play instruction with the stretched compressed**
+    **Parameters**
 
-GaussianSquare pulse.
+    **dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG to schedule.
 
-**Return type**
+    **Return type**
 
-qiskit.pulse.Play
+    [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
 
-**Raises**
+    **Returns**
 
-**QiskitError** – if rotation angle is not assigned.
+    A DAG with calibrations added to it.
+  </Function>
 
-### run
+  ### supported
 
-<span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.run" />
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.supported" name="supported" signature="RZXCalibrationBuilderNoEcho.supported(node_op, qubits)">
+    Determine if a given node supports the calibration.
 
-`RZXCalibrationBuilderNoEcho.run(dag)`
+    **Parameters**
 
-Run the calibration adder pass on dag.
+    *   **node\_op** ([`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Target instruction object.
+    *   **qubits** (`List`) – Integer qubit indices to check.
 
-**Parameters**
+    **Return type**
 
-**dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG to schedule.
+    `bool`
 
-**Return type**
+    **Returns**
 
-[`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+    Return `True` is calibration can be provided.
+  </Function>
 
-**Returns**
+  ## Attributes
 
-A DAG with calibrations added to it.
+  ### is\_analysis\_pass
 
-### supported
+  <Attribute id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.supported" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-`RZXCalibrationBuilderNoEcho.supported(node_op, qubits)`
+  ### is\_transformation\_pass
 
-Determine if a given node supports the calibration.
+  <Attribute id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-**Parameters**
-
-*   **node\_op** ([`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Target instruction object.
-*   **qubits** (`List`) – Integer qubit indices to check.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-Return `True` is calibration can be provided.
-
-## Attributes
-
-<span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

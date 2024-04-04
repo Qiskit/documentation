@@ -8,141 +8,133 @@ python_api_name: qiskit.chemistry.components.variational_forms.CHC
 
 # CHC
 
-<span id="qiskit.chemistry.components.variational_forms.CHC" />
+<Class id="qiskit.chemistry.components.variational_forms.CHC" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/chc.py" signature="CHC(num_qubits=None, reps=1, ladder=False, excitations=None, entanglement='full', initial_state=None)">
+  Bases: `qiskit.aqua.components.variational_forms.variational_form.VariationalForm`
 
-`CHC(num_qubits=None, reps=1, ladder=False, excitations=None, entanglement='full', initial_state=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/chc.py "view source code")
+  This trial wavefunction is the Compact Heuristic for Chemistry.
 
-Bases: `qiskit.aqua.components.variational_forms.variational_form.VariationalForm`
+  The trial wavefunction is as defined in Ollitrault Pauline J., Chemical science 11 (2020): 6842-6855. It aims at approximating the UCC Ansatz for a lower CNOT count.
 
-This trial wavefunction is the Compact Heuristic for Chemistry.
+  <Admonition title="Note" type="note">
+    It is not particle number conserving and the accuracy of the approximation decreases with the number of excitations.
+  </Admonition>
 
-The trial wavefunction is as defined in Ollitrault Pauline J., Chemical science 11 (2020): 6842-6855. It aims at approximating the UCC Ansatz for a lower CNOT count.
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  It is not particle number conserving and the accuracy of the approximation decreases with the number of excitations.
-</Admonition>
+  *   **num\_qubits** (`Optional`\[`int`]) – number of qubits
+  *   **reps** (`int`) – number of replica of basic module
+  *   **ladder** (`bool`) – use ladder of CNOTs between to indices in the entangling block
+  *   **excitations** (`Optional`\[`List`\[`List`\[`int`]]]) – indices corresponding to the excitations to include in the circuit
+  *   **entanglement** (`Union`\[`str`, `List`\[`int`]]) – physical connections between the qubits
+  *   **initial\_state** (`Union`\[`QuantumCircuit`, `InitialState`, `None`]) – an initial state to prepend to the variational form
 
-**Parameters**
+  ## Methods
 
-*   **num\_qubits** (`Optional`\[`int`]) – number of qubits
-*   **reps** (`int`) – number of replica of basic module
-*   **ladder** (`bool`) – use ladder of CNOTs between to indices in the entangling block
-*   **excitations** (`Optional`\[`List`\[`List`\[`int`]]]) – indices corresponding to the excitations to include in the circuit
-*   **entanglement** (`Union`\[`str`, `List`\[`int`]]) – physical connections between the qubits
-*   **initial\_state** (`Union`\[`QuantumCircuit`, `InitialState`, `None`]) – an initial state to prepend to the variational form
+  ### construct\_circuit
 
-## Methods
+  <Function id="qiskit.chemistry.components.variational_forms.CHC.construct_circuit" name="construct_circuit" signature="CHC.construct_circuit(parameters, q=None)">
+    Construct the variational form, given its parameters.
 
-### construct\_circuit
+    **Parameters**
 
-<span id="qiskit.chemistry.components.variational_forms.CHC.construct_circuit" />
+    *   **parameters** (`Union`\[`ndarray`, `List`\[`Parameter`], `ParameterVector`]) – circuit parameters
+    *   **q** (`Optional`\[`QuantumRegister`]) – Quantum Register for the circuit.
 
-`CHC.construct_circuit(parameters, q=None)`
+    **Returns**
 
-Construct the variational form, given its parameters.
+    a quantum circuit with given parameters
 
-**Parameters**
+    **Return type**
 
-*   **parameters** (`Union`\[`ndarray`, `List`\[`Parameter`], `ParameterVector`]) – circuit parameters
-*   **q** (`Optional`\[`QuantumRegister`]) – Quantum Register for the circuit.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Returns**
+    **Raises**
 
-a quantum circuit with given parameters
+    *   **ValueError** – the number of parameters is incorrect.
+    *   **ValueError** – if num\_qubits has not been set and is still None
+    *   **ValueError** – only supports single and double excitations at the moment.
+  </Function>
 
-**Return type**
+  ### get\_entangler\_map
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.chemistry.components.variational_forms.CHC.get_entangler_map" name="get_entangler_map" signature="static CHC.get_entangler_map(map_type, num_qubits, offset=0)">
+    returns entangler map
+  </Function>
 
-**Raises**
+  ### validate\_entangler\_map
 
-*   **ValueError** – the number of parameters is incorrect.
-*   **ValueError** – if num\_qubits has not been set and is still None
-*   **ValueError** – only supports single and double excitations at the moment.
+  <Function id="qiskit.chemistry.components.variational_forms.CHC.validate_entangler_map" name="validate_entangler_map" signature="static CHC.validate_entangler_map(entangler_map, num_qubits)">
+    validate entangler map
+  </Function>
 
-### get\_entangler\_map
+  ## Attributes
 
-<span id="qiskit.chemistry.components.variational_forms.CHC.get_entangler_map" />
+  ### num\_parameters
 
-`static CHC.get_entangler_map(map_type, num_qubits, offset=0)`
+  <Attribute id="qiskit.chemistry.components.variational_forms.CHC.num_parameters" name="num_parameters">
+    Number of parameters of the variational form.
 
-returns entangler map
+    **Returns**
 
-### validate\_entangler\_map
+    An integer indicating the number of parameters.
 
-<span id="qiskit.chemistry.components.variational_forms.CHC.validate_entangler_map" />
+    **Return type**
 
-`static CHC.validate_entangler_map(entangler_map, num_qubits)`
+    int
+  </Attribute>
 
-validate entangler map
+  ### num\_qubits
 
-## Attributes
+  <Attribute id="qiskit.chemistry.components.variational_forms.CHC.num_qubits" name="num_qubits">
+    Number of qubits of the variational form.
 
-<span id="qiskit.chemistry.components.variational_forms.CHC.num_parameters" />
+    **Returns**
 
-### num\_parameters
+    An integer indicating the number of qubits.
 
-Number of parameters of the variational form.
+    **Return type**
 
-**Returns**
+    int
+  </Attribute>
 
-An integer indicating the number of parameters.
+  ### parameter\_bounds
 
-**Return type**
+  <Attribute id="qiskit.chemistry.components.variational_forms.CHC.parameter_bounds" name="parameter_bounds">
+    Parameter bounds.
 
-int
+    **Returns**
 
-<span id="qiskit.chemistry.components.variational_forms.CHC.num_qubits" />
+    A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
 
-### num\_qubits
+    **Return type**
 
-Number of qubits of the variational form.
+    list
+  </Attribute>
 
-**Returns**
+  ### preferred\_init\_points
 
-An integer indicating the number of qubits.
+  <Attribute id="qiskit.chemistry.components.variational_forms.CHC.preferred_init_points" name="preferred_init_points">
+    Return preferred init points.
 
-**Return type**
+    If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
+  </Attribute>
 
-int
+  ### setting
 
-<span id="qiskit.chemistry.components.variational_forms.CHC.parameter_bounds" />
+  <Attribute id="qiskit.chemistry.components.variational_forms.CHC.setting" name="setting" />
 
-### parameter\_bounds
+  ### support\_parameterized\_circuit
 
-Parameter bounds.
+  <Attribute id="qiskit.chemistry.components.variational_forms.CHC.support_parameterized_circuit" name="support_parameterized_circuit">
+    Whether or not the sub-class support parameterized circuit.
 
-**Returns**
+    **Returns**
 
-A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
+    indicate the sub-class support parameterized circuit
 
-**Return type**
+    **Return type**
 
-list
-
-<span id="qiskit.chemistry.components.variational_forms.CHC.preferred_init_points" />
-
-### preferred\_init\_points
-
-Return preferred init points.
-
-If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
-
-<span id="qiskit.chemistry.components.variational_forms.CHC.setting" />
-
-### setting
-
-<span id="qiskit.chemistry.components.variational_forms.CHC.support_parameterized_circuit" />
-
-### support\_parameterized\_circuit
-
-Whether or not the sub-class support parameterized circuit.
-
-**Returns**
-
-indicate the sub-class support parameterized circuit
-
-**Return type**
-
-boolean
+    boolean
+  </Attribute>
+</Class>
 
