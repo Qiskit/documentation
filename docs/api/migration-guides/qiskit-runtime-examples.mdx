@@ -147,6 +147,7 @@ isa_observable = op.apply_layout(isa_state.layout)
   </TabItem>
 
   <TabItem value="backend.run" label="backend.run">
+This code block shows a legacy workflow that handles operators using `qiskit.opflow`. `qiskit.opflow` provided custom classes to represent operators and quantum states (`CircuitStateFn`, `PauliSumOp`), which were required to wrap the standard Qiskit objects. This extra step is not necessary in the updated workflow. Note that in this case we are not running the pass manager to transpile the circuit (and observable) to ISA. This operation had to be performed in the later step, also through custom wrappers that are no longer necessary. For more detailed instructions to migrate from `qiskit.opflow`, see the [Opflow migration guide](./qiskit-opflow-module).
 
 ``` python
 from qiskit import QuantumCircuit
@@ -195,22 +196,6 @@ opflow_state = CircuitStateFn(isa_state)
 ```
   </TabItem>
 </Tabs>
-
-
-<span id="legacy-opflow"></span>
-##### 1.a. Legacy only: Convert problem to opflow
-
-`qiskit.opflow` provided classes to represent operators
-and quantum states, so the problem defined above would be wrapped as:
-
-``` python
-from qiskit.opflow import CircuitStateFn, PauliSumOp
-
-opflow_op = PauliSumOp(op)
-opflow_state = CircuitStateFn(isa_state)
-```
-
-This step is not necessary when using the primitives. For instructions to migrate from `qiskit.opflow`, see the [Opflow migration guide](./qiskit-opflow-module).
 
 #### 2. Calculate expectation values
 
