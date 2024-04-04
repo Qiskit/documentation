@@ -26,10 +26,10 @@ max_circuits = 100
 jobs = []
 start_idx = 0
 
-with Batch(backend):
+with Batch(backend=backend):
     sampler = Sampler()    
     while start_idx < len(circuits):
         end_idx = start_idx + max_circuits  
-        jobs.append(sampler.run([circuits[start_idx:end_idx]]))
+        jobs.append(sampler.run(circuits[start_idx:end_idx]))
         start_idx = end_idx
 ```
