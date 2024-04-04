@@ -35,7 +35,7 @@ from qiskit import IBMQ
 # Define provider and backend
 provider = IBMQ.load_account()
 
-job = backend.run(circuit)
+job = backend.run(isa_circuit)
 result = job.result()
 ```
   </TabItem>
@@ -194,8 +194,12 @@ from qiskit import Aer
 bound_circuit = qc.bind_parameters(theta_values)
 bound_circuit.draw()
 
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(bound_circuit)
+
 backend = Aer.get_backend('aer_simulator')
-job = backend.run(bound_circuit)
+job = backend.run(isa_circuit)
 counts = job.result().get_counts()
 print(counts)
 ```
