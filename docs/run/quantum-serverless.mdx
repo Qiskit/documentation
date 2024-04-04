@@ -166,7 +166,7 @@ target_circuit = selector.optimized_circuit
 
 # Step 3: Execute the target circuit
 sampler = Sampler(backend=backend, options={"default_shots": 1024})
-job = sampler.run([(target_circuit,)])
+job = sampler.run([target_circuit])
 result = job.result()
     
 # Step 4: Postprocess the results
