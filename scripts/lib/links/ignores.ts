@@ -85,6 +85,10 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
   ],
   "docs/api/qiskit/qpy.mdx": _QPY_IGNORES,
   "docs/api/qiskit/dev/qpy.mdx": _QPY_IGNORES,
+  "docs/api/qiskit/dev/circuit.mdx": [
+    "#qiskit.circuit.SessionEquivalenceLibrary",
+    "#qiskit.circuit.StandardEquivalenceLibrary",
+  ],
   // Runtime
   "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#runtime",
@@ -187,6 +191,8 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
     "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-eval-condition",
     "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-serialize",
     "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation",
+    "/api/qiskit/dev/circuit#qiskit.circuit.SessionEquivalenceLibrary",
+    "/api/qiskit/dev/circuit#qiskit.circuit.StandardEquivalenceLibrary",
   ],
 };
 
