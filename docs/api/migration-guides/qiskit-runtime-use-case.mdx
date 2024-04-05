@@ -30,10 +30,10 @@ pub_result = result[0]
 
   <TabItem value="Legacy" label="backend.run">
 ``` python
-from qiskit import IBMQ
+from qiskit_ibm_provider import IBMProvider
 
 # Define provider and backend
-provider = IBMQ.load_account()
+provider = IBMProvider()
 
 job = backend.run(isa_circuit)
 result = job.result()
