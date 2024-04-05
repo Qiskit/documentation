@@ -23,6 +23,9 @@ The following example shows how you can divide up a long list of circuits into m
 from qiskit_ibm_runtime import SamplerV2 as Sampler, Batch
 
 max_circuits = 100
+all_partitioned_circuits = []
+for i in range(0, len(circuits), max_circuits):
+    all_partitioned_circuits.append(circuits[i : i + max_circuits])
 jobs = []
 start_idx = 0
 
