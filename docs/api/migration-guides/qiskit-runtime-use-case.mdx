@@ -52,6 +52,8 @@ All options that were available with `backend.run` are available in the Qiskit R
 ```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
+sampler = Sampler(backend)
+
 # You can use auto-complete to see and complete the options.
 sampler.options.default_shots = 1024
 ```
@@ -60,9 +62,12 @@ sampler.options.default_shots = 1024
 
   <TabItem value="Legacy" label="backend.run">
 ```python
-from qiskit import IBMQ
+from qiskit_ibm_provider import IBMProvider
 
-backend.run(circuit, shots=1024)
+provider = IBMProvider()
+backend = provider.get_backend("backend_name")
+
+backend.run(isa_circuit, shots=1024)
 ```
   </TabItem>
 </Tabs>
@@ -246,10 +251,9 @@ circuit.cx(0, 1)
 circuit.measure_all()
 
 # Define provider and simulator backend
-from qiskit import IBMQ
+from qiskit_ibm_provider import IBMProvider
 
-IBMQ.load_account() 
-provider = IBMQ.get_provider(hub="ibm-q", group="open", project="main")
+provider = IBMProvider()
 backend = provider.get_backend("ibmq_qasm_simulator")
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
