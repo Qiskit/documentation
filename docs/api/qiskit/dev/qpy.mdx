@@ -57,7 +57,7 @@ and then loading that file will return a list with all the circuits
 
 ### load
 
-<Function id="qiskit.qpy.load" name="load" github="https://github.com/qiskit/qiskit/tree/main/qiskit/qpy/interface.py" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None)">
+<Function id="qiskit.qpy.load" name="load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L210-L340" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None)">
   Load a QPY binary file
 
   This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from its contents. For example:
@@ -102,7 +102,7 @@ and then loading that file will return a list with all the circuits
 
 ### dump
 
-<Function id="qiskit.qpy.dump" name="dump" github="https://github.com/qiskit/qiskit/tree/main/qiskit/qpy/interface.py" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=True, version=11)">
+<Function id="qiskit.qpy.dump" name="dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L76-L207" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=True, version=11)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -166,13 +166,13 @@ These functions will raise a custom subclass of [`QiskitError`](exceptions#qiski
 
 ### QpyError
 
-<Class id="qiskit.qpy.QpyError" name="QpyError" github="https://github.com/qiskit/qiskit/tree/main/qiskit/qpy/exceptions.py" signature="qiskit.qpy.QpyError(*message)">
+<Class id="qiskit.qpy.QpyError" name="QpyError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/exceptions.py#L18-L28" signature="qiskit.qpy.QpyError(*message)">
   Errors raised by the qpy module.
 
   Set the error message.
 </Class>
 
-### QPY\_VERSION
+### qiskit.qpy.QPY\_VERSION
 
 <Attribute id="qiskit.qpy.QPY_VERSION" name="qiskit.qpy.QPY_VERSION">
   The current QPY format version as of this release. This is the default value of the `version` keyword argument on [`qpy.dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") and also the upper bound for accepted values for the same argument. This is also the upper bond on the versions supported by [`qpy.load()`](#qiskit.qpy.load "qiskit.qpy.load").
@@ -182,7 +182,7 @@ These functions will raise a custom subclass of [`QiskitError`](exceptions#qiski
   [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 </Attribute>
 
-### QPY\_COMPATIBILITY\_VERSION
+### qiskit.qpy.QPY\_COMPATIBILITY\_VERSION
 
 <Attribute id="qiskit.qpy.QPY_COMPATIBILITY_VERSION" name="qiskit.qpy.QPY_COMPATIBILITY_VERSION">
   The current minimum compatibility QPY format version. This is the minimum version that [`qpy.dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") will accept for the `version` keyword argument. [`qpy.load()`](#qiskit.qpy.load "qiskit.qpy.load") will be able to load all released format versions of QPY (up until `QPY_VERSION`).
@@ -202,7 +202,7 @@ If a feature being loaded is deprecated in the corresponding qiskit release, QPY
 
 ### QPYLoadingDeprecatedFeatureWarning
 
-<Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" name="QPYLoadingDeprecatedFeatureWarning" github="https://github.com/qiskit/qiskit/tree/main/qiskit/qpy/exceptions.py" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning">
+<Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" name="QPYLoadingDeprecatedFeatureWarning" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/exceptions.py#L31-L33" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning">
   Visible deprecation warning for QPY loading functions without a stable point in the call stack.
 </Class>
 
@@ -249,7 +249,7 @@ There is a circuit payload for each circuit (where the total number is dictated 
 
 ### Version 11
 
-Version 11 is identical to Version 10 except for the following. First, the names in the CUSTOM\_INSTRUCTION blocks have a suffix of the form `"_{uuid_hex}"` where `uuid_hex` is a uuid hexadecimal string such as returned by `UUID.hex`. For example: `"b3ecab5b4d6a4eb6bc2b2dbf18d83e1e"`. Second, it adds support for `AnnotatedOperation` objects. The base operation of an annotated operation is stored using the INSTRUCTION block, and an additional `type` value `'a'``is added to indicate that the custom instruction is an annotated operation. The list of modifiers are stored as instruction parameters using INSTRUCTION_PARAM, with an additional value ``'m'` is added to indicate that the parameter is of type `Modifier`. Each modifier is stored using the MODIFIER struct.
+Version 11 is identical to Version 10 except for the following. First, the names in the CUSTOM\_INSTRUCTION blocks have a suffix of the form `"_{uuid_hex}"` where `uuid_hex` is a uuid hexadecimal string such as returned by `UUID.hex`. For example: `"b3ecab5b4d6a4eb6bc2b2dbf18d83e1e"`. Second, it adds support for [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") objects. The base operation of an annotated operation is stored using the INSTRUCTION block, and an additional `type` value `'a'``is added to indicate that the custom instruction is an annotated operation. The list of modifiers are stored as instruction parameters using INSTRUCTION_PARAM, with an additional value ``'m'` is added to indicate that the parameter is of type `Modifier`. Each modifier is stored using the MODIFIER struct.
 
 <span id="modifier-qpy" />
 
@@ -266,7 +266,7 @@ struct {
 }
 ```
 
-This is sufficient to store different types of modifiers required for serializing objects of type `AnnotatedOperation`. The field `type` is either `'i'`, `'c'` or `'p'`, representing whether the modifier is respectively an inverse modifier, a control modifier or a power modifier. In the second case, the fields `num_ctrl_qubits` and `ctrl_state` specify the control logic of the base operation, and in the third case the field `power` represents the power of the base operation.
+This is sufficient to store different types of modifiers required for serializing objects of type [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"). The field `type` is either `'i'`, `'c'` or `'p'`, representing whether the modifier is respectively an inverse modifier, a control modifier or a power modifier. In the second case, the fields `num_ctrl_qubits` and `ctrl_state` specify the control logic of the base operation, and in the third case the field `power` represents the power of the base operation.
 
 <span id="qpy-version-10" />
 
@@ -352,10 +352,10 @@ A [`Type`](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit
 
 This represents a runtime variable of a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node. These are a type code, followed by a type-code-specific payload:
 
-| Python class                                                                               | Type code | Payload                                                                                                                         |
-| ------------------------------------------------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit")                                     | `C`       | One `uint32_t index` that is the index of the [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") in the containing circuit. |
-| [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") | `R`       | One `uint16_t reg_name_size`, followed by that many bytes of UTF-8 string data of the register name.                            |
+| Python class                                                                                       | Type code | Payload                                                                                                                                 |
+| -------------------------------------------------------------------------------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")                                     | `C`       | One `uint32_t index` that is the index of the [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") in the containing circuit. |
+| [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") | `R`       | One `uint16_t reg_name_size`, followed by that many bytes of UTF-8 string data of the register name.                                    |
 
 <span id="expr-value" />
 
@@ -392,7 +392,7 @@ where the only change is that a `uint8_t conditional_key` entry has replaced `_B
 | Value | Effects                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 0     | The instruction has its `.condition` field set to `None`. The `conditional_reg_name_size` and `conditional_value` fields should be ignored.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| 1     | The instruction has its `.condition` field set to a 2-tuple of either a [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") or a [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"), and a integer of value `conditional_value`. The INSTRUCTION payload, including its trailing data is parsed exactly as it would be in QPY versions less than 8.                                                                                                                                                                                                                                        |
+| 1     | The instruction has its `.condition` field set to a 2-tuple of either a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or a [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"), and a integer of value `conditional_value`. The INSTRUCTION payload, including its trailing data is parsed exactly as it would be in QPY versions less than 8.                                                                                                                                                                                                                        |
 | 2     | The instruction has its `.condition` field set to a [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node. The `conditional_reg_name_size` and `conditional_value` fields should be ignored. The data following the struct is followed (as in QPY versions less than 8) by `name_size` bytes of UTF-8 string data for the class name and `label_size` bytes of UTF-8 string data for the label (if any). Then, there is one INSTRUCTION\_PARAM, which will contain an EXPRESSION. After that, parsing continues with the INSTRUCTION\_ARG structs, as in previous versions of QPY. |
 
 <span id="changes-to-instruction-param" />
@@ -473,7 +473,7 @@ New type key character is added to the [SCHEDULE\_BLOCK\_OPERANDS](#qpy-schedule
 
 Note that this is the same encoding with the built-in Python string, however, the standard value encoding in QPY uses `s` type character for string data, which conflicts with the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse") in the scope of pulse instruction operands. A special type character `o` is reserved for the string data that appears in the pulse instruction operands.
 
-In addition, version 7 adds two new type keys to the INSTRUCTION\_PARM struct. `"d"` is followed by no data and represents the literal value [`CASE_DEFAULT`](circuit#qiskit.circuit.CASE_DEFAULT "qiskit.circuit.CASE_DEFAULT") for switch-statement support. `"R"` represents a [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") or [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit"), and is followed by the same format as the description of register or classical bit as used in the first element of [the condition of an INSTRUCTION field](#qpy-instructions).
+In addition, version 7 adds two new type keys to the INSTRUCTION\_PARM struct. `"d"` is followed by no data and represents the literal value [`CASE_DEFAULT`](circuit#qiskit.circuit.CASE_DEFAULT "qiskit.circuit.CASE_DEFAULT") for switch-statement support. `"R"` represents a [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") or [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit"), and is followed by the same format as the description of register or classical bit as used in the first element of [the condition of an INSTRUCTION field](#qpy-instructions).
 
 <span id="qpy-version-6" />
 
