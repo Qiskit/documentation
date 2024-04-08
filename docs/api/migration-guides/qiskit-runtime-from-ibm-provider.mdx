@@ -11,7 +11,7 @@ by using `qiskit_ibm_provider` to use `qiskit_ibm_runtime`.
 
 ## Save accounts
 
-Use the updated code to work save accounts.
+Use the updated code to save accounts.
 
 <Tabs>
   <TabItem value="updated" label="Runtime primitives">
@@ -56,8 +56,7 @@ Use the updated code to load accounts.
 
 <Tabs>
   <TabItem value="updated" label="Runtime primitives">
-The new syntax combines the functionality from `load_account()` and
-`get_provider()` in one statement. The `channel` input parameter is
+The `channel` input parameter is
 optional. If multiple accounts have been saved in one device and no
 `channel` is provided, the default is `"ibm_cloud"`.
 
@@ -72,7 +71,7 @@ service = QiskitRuntimeService(channel="ibm_quantum")
 
   <TabItem value="legacy" label="backend.run">
 ``` python
-IBMProvider.load_account()
+provider = IBMProvider()
 ```
   </TabItem>
 </Tabs>
@@ -84,8 +83,7 @@ Use the updated code to select a hub, group, and project.
 
 <Tabs>
   <TabItem value="updated" label="Runtime primitives">
-The new syntax combines the functionality from `load_account()` and
-`get_provider()` in one statement. When using the `ibm_quantum` channel,
+When using the `ibm_quantum` channel,
 the `hub`, `group`, and `project` are specified through the new
 `instance` keyword.
 
@@ -153,6 +151,7 @@ Change the import and run statements, instantiate the primitive, and make sure t
   <TabItem value="updated" label="Qiskit Runtime">
 ```python
 from qiskit import QuantumCircuit
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
  
 service = QiskitRuntimeService()
@@ -178,7 +177,7 @@ print(f" > Counts: {result[0].data.meas.get_counts()}")
 ```python
 from qiskit_ibm_provider import IBMProvider
 from qiskit import QuantumCircuit
-from qiskit.compiler import transpile, assemble
+from qiskit.compiler import transpile
 
 circuit = QuantumCircuit(2, 2)
 circuit.h(0)

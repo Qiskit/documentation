@@ -34,6 +34,7 @@ from qiskit_ibm_provider import IBMProvider
 
 # Define provider and backend
 provider = IBMProvider()
+backend = provider.get_backend("ibmq_qasm_simulator")
 
 job = backend.run(isa_circuit)
 result = job.result()
