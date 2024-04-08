@@ -143,9 +143,6 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
 isa_observable = op.apply_layout(isa_circuit.layout)
-
-
-
 ```
   </TabItem>
 
@@ -224,8 +221,10 @@ Note that the Estimator returns a list of values, as it can perform batched eval
 
 ``` python
 print(f">>> Expectation value: {pub_result.data.evs}")
->>> Expectation value: -0.8879899326312926
-
+```
+Output
+```text
+>>> Expectation value: [-0.8879899326312926]
 ```
   </TabItem>
 
