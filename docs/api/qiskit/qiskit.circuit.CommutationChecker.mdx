@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.CommutationChecker
 
 # CommutationChecker
 
-<Class id="qiskit.circuit.CommutationChecker" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/commutation_checker.py" signature="qiskit.circuit.CommutationChecker(standard_gate_commutations=None, cache_max_entries=1000000)">
+<Class id="qiskit.circuit.CommutationChecker" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/commutation_checker.py#L33-L183" signature="qiskit.circuit.CommutationChecker(standard_gate_commutations=None, cache_max_entries=1000000)">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
   This code is essentially copy-pasted from commutative\_analysis.py. This code cleverly hashes commutativity and non-commutativity results between DAG nodes and seems quite efficient for large Clifford circuits. They may be other possible efficiency improvements: using rule-based commutativity analysis, evicting from the cache less useful entries, etc.
@@ -17,7 +17,7 @@ python_api_name: qiskit.circuit.CommutationChecker
 
   ### check\_commutation\_entries
 
-  <Function id="qiskit.circuit.CommutationChecker.check_commutation_entries" name="check_commutation_entries" signature="check_commutation_entries(first_op, first_qargs, second_op, second_qargs)">
+  <Function id="qiskit.circuit.CommutationChecker.check_commutation_entries" name="check_commutation_entries" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/commutation_checker.py#L141-L183" signature="check_commutation_entries(first_op, first_qargs, second_op, second_qargs)">
     Returns stored commutation relation if any
 
     **Parameters**
@@ -38,13 +38,13 @@ python_api_name: qiskit.circuit.CommutationChecker
 
   ### clear\_cached\_commutations
 
-  <Function id="qiskit.circuit.CommutationChecker.clear_cached_commutations" name="clear_cached_commutations" signature="clear_cached_commutations()">
+  <Function id="qiskit.circuit.CommutationChecker.clear_cached_commutations" name="clear_cached_commutations" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/commutation_checker.py#L134-L139" signature="clear_cached_commutations()">
     Clears the dictionary holding cached commutations
   </Function>
 
   ### commute
 
-  <Function id="qiskit.circuit.CommutationChecker.commute" name="commute" signature="commute(op1, qargs1, cargs1, op2, qargs2, cargs2, max_num_qubits=3)">
+  <Function id="qiskit.circuit.CommutationChecker.commute" name="commute" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/commutation_checker.py#L56-L128" signature="commute(op1, qargs1, cargs1, op2, qargs2, cargs2, max_num_qubits=3)">
     Checks if two Operations commute. The return value of True means that the operations truly commute, and the return value of False means that either the operations do not commute or that the commutation check was skipped (for example, when the operations have conditions or have too many qubits).
 
     **Parameters**
@@ -68,7 +68,7 @@ python_api_name: qiskit.circuit.CommutationChecker
 
   ### num\_cached\_entries
 
-  <Function id="qiskit.circuit.CommutationChecker.num_cached_entries" name="num_cached_entries" signature="num_cached_entries()">
+  <Function id="qiskit.circuit.CommutationChecker.num_cached_entries" name="num_cached_entries" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/commutation_checker.py#L130-L132" signature="num_cached_entries()">
     Returns number of cached entries
   </Function>
 </Class>
