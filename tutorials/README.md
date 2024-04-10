@@ -1,0 +1,34 @@
+# Tutorials content
+
+This folder contains the content for our tutorials, which appear on [IBM
+Quantum Learning](https://learning.quantum.ibm.com/catalog/tutorials).
+
+## Deploying tutorials
+
+To deploy changes to tutorials, run the [Deploy
+tutorials](https://github.com/Qiskit/documentation/actions/workflows/deploy-tutorials.yml)
+workflow. This will push the notebooks on the main branch to the environment
+you select.
+
+## Adding new tutorials
+
+Each tutorial had its own folder, within that folder is the content notebook
+(named `notebook.ipynb`) and an optional `images` folder.
+
+To add a new tutorial to the learning platform, go to
+https://learning-api.quantum.ibm.com/admin/ and choose "Create item" (the blue
+`+` in the top-right corner). Enter all the information, but leave the content
+field blank. This will create the tutorial in "draft" mode.
+
+Once you've added the tutorial, copy the tutorial's URL relative to `content`
+(that is, the URL after `https://learning-api.quantum.ibm.com/admin/content/`).
+The copied URL should be of the form `tutorials/<UUID>`. Next, make a new entry
+in the `learning-api.conf.yaml` file in this folder. Set the `path` attribute
+to the name of the tutorial folder in this repo, and `urlProduction` to the
+tutorial ID you copied earlier.
+
+To push content from this repo to the learning platform, run the [Deploy
+tutorials](https://github.com/Qiskit/documentation/actions/workflows/deploy-tutorials.yml)
+workflow. This will push the content of **all** tutorials from the main branch.
+Once your content is uploaded, you can go back to the admin panel for that
+tutorial and publish the lesson to take it out of draft mode.
