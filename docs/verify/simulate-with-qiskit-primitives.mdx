@@ -195,6 +195,8 @@ instead of the number of `shots` used in the V1 interface.
   </TabItem>
 </Tabs>
 
+See more examples on the [Primitives examples](/run/primitives-examples#estimator-examples) page.
+
 ## Use the reference `Sampler`
 
 Similar to the Estimator, there are two reference implementations of `Sampler` in `qiskit.primitives`:
@@ -257,8 +259,14 @@ sampler = Sampler()
 <Tabs>
   <TabItem value="SamplerV2" label="StatevectorSampler (V2)">
     ```python
+    # Circuits and parameters must obey the Instruction Set Architecture (ISA) of a particular backend.
+    from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+
+    pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+    isa_circuit = pm.run(circuit)
+
     # execute 1 circuit with 3 parameter sets using Sampler V2
-    job = sampler_v2.run([(circuit, [vals1, vals2, vals3])])
+    job = sampler.run([(isa_circuit, [vals1, vals2, vals3])])
     counts = job.result()[0].data.meas.get_counts()
     ```
   V2 primitives accept multiple PUBs as inputs, and each PUB gets its own result.
@@ -266,8 +274,15 @@ sampler = Sampler()
   which was not always possible in the V1 interface:
 
     ```python
+    # Circuits and parameters must obey the Instruction Set Architecture (ISA) of a particular backend.
+    from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+
+    pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+    isa_circuit1 = pm.run(circuit1)
+    isa_circuit2 = pm.run(circuit2)
+
     # execute 2 circuits with 1 parameter set using Sampler V2
-    job = sampler_v2.run([(circuit1, vals1), (circuit2, vals1)])
+    job = sampler.run([(isa_circuit1, vals1), (isa_circuit2, vals1)])
     counts1 = job.result()
     counts2 = job.result()
     ```
@@ -280,7 +295,13 @@ sampler = Sampler()
     with the [`qiskit.providers.JobV1.result`](../api/qiskit/qiskit.providers.JobV1#result) method.
 
     ```python
-    job = sampler.run(qc)
+    # Circuits and parameters must obey the Instruction Set Architecture (ISA) of a particular backend.
+    from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+
+    pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+    isa_circuit = pm.run(circuit)
+
+    job = sampler.run(isa_circuit)
     result = job.result()
     print(result)
     ```
@@ -361,8 +382,14 @@ Negative quasi-probabilities may appear when using error mitigation techniques.
     ```
 
     ```python
+    # Circuits and parameters must obey the Instruction Set Architecture (ISA) of a particular backend.
+    from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+
+    pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+    isa_circuit = pm.run(circuit)
+
     # Run using V1 sampler
-    result = sampler_v1.run(circuit).result()
+    result = sampler_v1.run(isa_circuit).result()
     quasi_dist = result.quasi_dists[0]
     print(f"The quasi-probability distribution is: {quasi_dist}")
     ```
@@ -396,12 +423,19 @@ The new interface accepts a `shots` argument that can be defined at the "PUB lev
   <TabItem value="V2" label="StatevectorSampler (V2)">
 
     ```python
+    # Circuits and parameters must obey the Instruction Set Architecture (ISA) of a particular backend.
+    from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+
+    pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+    isa_circuit1 = pm.run(circuit1)
+    isa_circuit2 = pm.run(circuit2)
+
     # Sample two circuits at 128 shots each.
-    sampler_v2.run([circuit1, circuit2], shots=128)
+    sampler.run([isa_circuit1, isa_circuit2], shots=128)
     # Sample two circuits at different amounts of shots. The "None"s are necessary
     # as placeholders
     # for the lack of parameter values in this example.
-    sampler_v2.run([(circuit1, None, 123), (circuit2, None, 456)])
+    sampler.run([(isa_circuit1, None, 123), (isa_circuit2, None, 456)])
     ```
 
   </TabItem>
@@ -414,13 +448,20 @@ The new interface accepts a `shots` argument that can be defined at the "PUB lev
         - Modifying the [`Sampler`](../api/qiskit/qiskit.primitives.Sampler) options.
 
     ```python
-    job = sampler.run(qc, observable, shots=2048, seed=123)
+    # Circuits and parameters must obey the Instruction Set Architecture (ISA) of a particular backend.
+    from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+
+    pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+    isa_circuit = pm.run(circuit)
+
+    job = sampler.run(isa_circuit, observable, shots=2048, seed=123)
     result = job.result()
     print(result)
     ```
   </TabItem>
 </Tabs>
 
+See more examples on the [Primitives examples](/run/primitives-examples#sampler-examples) page.
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
