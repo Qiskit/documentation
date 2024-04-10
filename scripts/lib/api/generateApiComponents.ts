@@ -214,13 +214,14 @@ function prepareAttributeProps(
     colonIndex = text.length;
   }
 
-  $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
   // The attributes have the following shape: name [: type] [= value]
   const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
   const attributeTypeHint = text
     .slice(Math.min(colonIndex + 1, equalIndex), equalIndex)
     .trim();
   const attributeValue = text.slice(equalIndex, text.length).trim();
+
+  $(`<h3>${name}</h3>`).insertBefore($dl);
 
   return {
     id,
