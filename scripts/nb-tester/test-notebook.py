@@ -33,7 +33,7 @@ NOTEBOOKS_EXCLUDE = [
 NOTEBOOKS_THAT_SUBMIT_JOBS = [
     "docs/start/hello-world.ipynb",
     "docs/analyze/saving-and-retrieving.ipynb",
-    "tutorials/build-repitiion-codes/notebook.ipynb",
+    "tutorials/build-repitition-codes/notebook.ipynb",
     "tutorials/chsh-inequality/notebook.ipynb",
     "tutorials/grovers-algorithm/notebook.ipynb",
     "tutorials/quantum-approximate-optimization-algorithm/notebook.ipynb",
