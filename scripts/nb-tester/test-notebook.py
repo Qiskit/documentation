@@ -39,6 +39,7 @@ NOTEBOOKS_THAT_SUBMIT_JOBS = [
     "tutorials/quantum-approximate-optimization-algorithm/notebook.ipynb",
     "tutorials/repeat-until-success/notebook.ipynb",
     "tutorials/submitting-transpiled-circuits/notebook.ipynb",
+    "tutorials/variational-quantum-eigensolver/notebook.ipynb",
 ]
 
 
