@@ -25,7 +25,12 @@ Once you've added the tutorial, copy the tutorial's URL relative to `content`
 The copied URL should be of the form `tutorials/<UUID>`. Next, make a new entry
 in the `learning-api.conf.yaml` file in this folder. Set the `path` attribute
 to the name of the tutorial folder in this repo, and `urlProduction` to the
-tutorial ID you copied earlier.
+tutorial ID you copied earlier. Repeat the same process for the staging
+environment (https://learning-api-dev.quantum.ibm.com/admin/).
+
+Next, you will need to add the tutorial to our API token permissions. To do
+that, contact Abdón Rodríguez and ask to add the tutorial IDs to the
+Qiskit/documentation API keys.
 
 To push content from this repo to the learning platform, run the [Deploy
 tutorials](https://github.com/Qiskit/documentation/actions/workflows/deploy-tutorials.yml)
