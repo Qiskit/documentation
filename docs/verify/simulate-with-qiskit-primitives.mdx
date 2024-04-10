@@ -405,6 +405,15 @@ Negative quasi-probabilities may appear when using error mitigation techniques.
     circuit.measure_all()
     circuit.draw()
     ```
+    ```text
+                ┌───┐      ░ ┌─┐   
+      q_0: ┤ H ├──■───░─┤M├───
+            └───┘┌─┴─┐ ░ └╥┘┌─┐
+      q_1: ─────┤ X ├─░──╫─┤M├
+                └───┘ ░  ║ └╥┘
+    meas: 2/══════════════╩══╩═
+                          0  1 
+    ```
 
     ```python
     # Circuits and parameters must obey the Instruction Set Architecture (ISA) of a particular backend.
