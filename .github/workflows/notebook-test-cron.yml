@@ -29,7 +29,7 @@ jobs:
           instance: "client-enablement/documentation/qiskit-documenta"
 
       - name: Execute notebooks
-        timeout-minutes: 330
+        timeout-minutes: 350
         run: tox -- --write --only-submit-jobs
 
       - name: Detect changed notebooks
@@ -37,7 +37,7 @@ jobs:
         if: "!cancelled()"
         run: |
           echo "CHANGED_NOTEBOOKS<<EOF" >> $GITHUB_OUTPUT
-          echo "$(git diff --name-only)" >> $GITHUB_OUTPUT
+          git diff --name-only >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Upload executed notebooks
