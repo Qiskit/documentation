@@ -54,6 +54,20 @@ observable = SparsePauliOp(["II", "XX", "YY", "ZZ"], coeffs=[1, 1, -1, 1])
 # value(s) for the circuit parameter(s)
 parameter_values = [[0], [np.pi/6], [np.pi/2]]
 ```
+
+<Admonition type="tip" title="Transpile to ISA circuits and observables">
+  The Qiskit Runtime primitives workflow requires circuits and observables to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables). The reference primitives still accept abstract instructions, as they rely on local statevector simulations, but transpiling the circuit might still be beneficial in terms of circuit optimization. 
+
+  ```python
+  # Generate a pass manager without providing a backend
+  from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+
+  pm = generate_preset_pass_manager(optimization_level=1)
+  isa_circuit = pm.run(qc)
+  isa_observable = observable.apply_layout(isa_circuit.layout)
+  ```
+</Admonition>
+
 ### Initialize Estimator
 
 To use the Estimator V2 implementation, follow the instructions to instantiate a
