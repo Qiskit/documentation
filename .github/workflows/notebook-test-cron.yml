@@ -29,8 +29,8 @@ jobs:
           instance: "client-enablement/documentation/qiskit-documenta"
 
       - name: Execute notebooks
-        timeout-minutes: 10
-        run: tox -- --write
+        timeout-minutes: 330
+        run: tox -- --write --only-submit-jobs
 
       - name: Detect changed notebooks
         id: changed-notebooks
