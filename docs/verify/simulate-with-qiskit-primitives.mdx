@@ -321,10 +321,13 @@ sampler = Sampler()
     pub_result_2 = job.result()[1]
     print(f" > Result class: {type(pub_result)}")
     ```
+    ```text
+    > Result class: <class 'qiskit.primitives.containers.pub_result.PubResult'>
+    ```
   </TabItem>
 
   <TabItem value="SamplerV1" label="Sampler (V1)">
-      Run Sampler by calling the [`qiskit.primitives.Sampler.run`](../api/qiskit/qiskit.primitives.Sampler#run)
+    Run Sampler by calling the [`qiskit.primitives.Sampler.run`](../api/qiskit/qiskit.primitives.Sampler#run)
     method, which returns an instance of [`qiskit.providers.JobV1`](../api/qiskit/qiskit.providers.JobV1).
     You can get the results from the job (as a [`qiskit.primitives.SamplerResult`](../api/qiskit/qiskit.primitives.SamplerResult) object)
     with the [`qiskit.providers.JobV1.result`](../api/qiskit/qiskit.providers.JobV1#result) method.
@@ -381,7 +384,7 @@ compatibility with dynamic circuits.
     pm = generate_preset_pass_manager(optimization_level=1)
     isa_circuit = pm.run(circuit)
     # Run using V2 sampler
-    result = sampler_v2.run([circuit]).result()
+    result = sampler.run([circuit]).result()
     # Access result data for PUB 0
     data_pub = result[0].data
     # Access bitstring for the classical register "meas"
