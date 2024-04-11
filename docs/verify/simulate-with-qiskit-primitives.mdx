@@ -315,8 +315,8 @@ sampler = Sampler()
     pm = generate_preset_pass_manager(optimization_level=1)
     isa_circuit1 = pm.run(circuit1)
     isa_circuit2 = pm.run(circuit2)
-    # execute 2 circuits with 1 parameter set using Sampler V2
-    job = sampler.run([(isa_circuit1, vals1), (isa_circuit2, vals1)])
+    # execute 2 circuits using Sampler V2
+    job = sampler.run([(isa_circuit1), (isa_circuit2)])
     pub_result_1 = job.result()[0]
     pub_result_2 = job.result()[1]
     print(f" > Result class: {type(pub_result)}")
