@@ -251,7 +251,7 @@ Any quantum circuit passed to a Sampler **must** include measurements.
 </Admonition>
 
 <Admonition type="tip" title="Transpile to ISA circuits and observables">
-  The Qiskit Runtime primitives workflow requires circuits and observables to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables). The reference primitives still accept abstract instructions, as they rely on local statevector simulations, but transpiling the circuit might still be beneficial in terms of circuit optimization. 
+  The Qiskit Runtime primitives workflow requires circuits to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits). The reference primitives still accept abstract instructions, as they rely on local statevector simulations, but transpiling the circuit might still be beneficial in terms of circuit optimization. 
 
   ```python
   # Generate a pass manager without providing a backend
@@ -464,7 +464,7 @@ The new interface accepts a `shots` argument that can be defined at the "PUB lev
   <TabItem value="V2" label="StatevectorSampler (V2)">
 
   This example assumes you have defined two circuits.
-  
+
     ```python
     # Sample two circuits at 128 shots each.
     sampler.run([isa_circuit1, isa_circuit2], shots=128)
