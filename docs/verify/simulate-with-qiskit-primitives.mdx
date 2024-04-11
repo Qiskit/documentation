@@ -292,13 +292,13 @@ sampler = Sampler()
 <Tabs>
   <TabItem value="SamplerV2" label="StatevectorSampler (V2)">
     ```python
-   # execute 1 circuit with 3 parameter sets using Sampler V2
-    job = sampler.run([(isa_circuit, [vals1, vals2, vals3])])
+   # execute 1 circuit with Sampler V2
+    job = sampler.run([isa_circuit]) 
     pub_result = job.result()[0]
     print(f" > Result class: {type(pub_result)}")
     ```
     ```text
-    > Result class: <class 'qiskit.primitives.PubResult'>
+    > Result class: <class 'qiskit.primitives.containers.pub_result.PubResult'>
     ```
 
   V2 primitives accept multiple PUBs as inputs, and each PUB gets its own result.
