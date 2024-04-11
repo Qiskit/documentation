@@ -45,6 +45,9 @@ qc.draw("mpl", style="iqp")
 ![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/estimator-initialize.png "Initial QuantumCircuit")
 
 ```python
+from qiskit.quantum_info import SparsePauliOp
+import numpy as np
+
 # observable(s) whose expected values you want to compute
 observable = SparsePauliOp(["II", "XX", "YY", "ZZ"], coeffs=[1, 1, -1, 1])
 
