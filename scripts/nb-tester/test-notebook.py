@@ -25,7 +25,7 @@ import nbformat
 from qiskit_ibm_runtime import QiskitRuntimeService
 from squeaky import clean_notebook
 
-NOTEBOOKS_GLOB = "docs/**/*.ipynb"
+NOTEBOOKS_GLOB = "{tutorials,docs}/**/*.ipynb"
 NOTEBOOKS_EXCLUDE = [
     "docs/api/**",
     "**/.ipynb_checkpoints/**",
@@ -33,6 +33,13 @@ NOTEBOOKS_EXCLUDE = [
 NOTEBOOKS_THAT_SUBMIT_JOBS = [
     "docs/start/hello-world.ipynb",
     "docs/run/save-and-retrieve.ipynb",
+    "tutorials/build-repitition-codes/notebook.ipynb",
+    "tutorials/chsh-inequality/notebook.ipynb",
+    "tutorials/grovers-algorithm/notebook.ipynb",
+    "tutorials/quantum-approximate-optimization-algorithm/notebook.ipynb",
+    "tutorials/repeat-until-success/notebook.ipynb",
+    "tutorials/submitting-transpiled-circuits/notebook.ipynb",
+    "tutorials/variational-quantum-eigensolver/notebook.ipynb",
 ]
 
 
