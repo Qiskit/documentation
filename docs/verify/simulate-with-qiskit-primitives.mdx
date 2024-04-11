@@ -33,7 +33,6 @@ the circuit in the example is parametrized, but you can also run the Estimator o
 ```python
 from qiskit import QuantumCircuit
 from qiskit.circuit import Parameter
-from qiskit.quantum_info import SparsePauliOp
 
 # circuit for which you want to obtain the expected value
 qc = QuantumCircuit(2)
@@ -46,6 +45,7 @@ qc.draw("mpl", style="iqp")
 
 ```python
 # observable(s) whose expected values you want to compute
+from qiskit.quantum_info import SparsePauliOp
 observable = SparsePauliOp(["II", "XX", "YY", "ZZ"], coeffs=[1, 1, -1, 1])
 
 # value(s) for the circuit parameter(s)
