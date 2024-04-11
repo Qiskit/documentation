@@ -110,7 +110,7 @@ The output is now in the [`PubResult`](/api/qiskit/qiskit.primitives.PubResult) 
    order in which they were measured.  
 * Sampler V2 has convenience methods like `get_counts()` to help with migration.    
 * The Sampler V2 result objects organize data in terms of their **input circuits' classical register names**, for
-   compatibility with dynamic circuits.  By default, the classical register name is `meas`, as shown in the following example.  When defining your circuit, if you create one or more classical registers with a non-default name, you would use that name to get those results. You can find the classical register name by running `<circuit_name>.cregs`. For example, `qc.cregs`.
+   compatibility with dynamic circuits.  By default, the classical register name is `meas`, as shown in the following example.  When defining your circuit, if you create one or more classical registers with a non-default name, use that name to get the results. You can find the classical register name by running `<circuit_name>.cregs`. For example, `qc.cregs`.
 
        ```python
     # Define a quantum circuit with 2 qubits
@@ -860,6 +860,9 @@ print(f" > Expectation values job 2: {another_result.values}")
   print(f">>> Counts: {pub_result.data.meas.get_counts()}")
   print(f">>> Per-shot measurement: {pub_result.data.meas.get_counts()}")
   ```
+  <Admonition type="note">
+  You need the classical register name to get the results.  By default, it is named `meas` when you use `measure_all()`. When defining your circuit, if you create one or more classical registers with a non-default name, use that name to get the results. You can find the classical register name by running `<circuit_name>.cregs`. For example, `qc.cregs`.
+  </Admonition>
 
 ## Sampler full examples
 
