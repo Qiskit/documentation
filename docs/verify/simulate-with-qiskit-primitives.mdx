@@ -109,13 +109,7 @@ observable.
     with the [`qiskit.primitives.PrimitiveJob.result`](../api/qiskit/qiskit.primitives.PrimitiveJob#result) method.
 
 ```python
-# Circuits and parameters must obey the Instruction Set Architecture (ISA) of a particular backend.
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-
-pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
-isa_circuit = pm.run(qc)
-
-job = estimator.run([(isa_circuit, observable, parameter_values)])
+job = estimator.run([(isa_circuit, isa_observable, parameter_values)])
 result = job.result()
 print(f" > Result class: {type(result)}")
 ```
@@ -130,13 +124,10 @@ print(f" > Result class: {type(result)}")
     with the [`JobV1.result`](../api/qiskit/qiskit.providers.JobV1#result) method.
 
 ```python
-# Circuits and parameters must obey the Instruction Set Architecture (ISA) of a particular backend.
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(qc)
 
-job = estimator.run([isa_circuit]*3, [observable]*3, parameter_values)
+job = estimator.run([isa_circuit]*3, [isa_observable]*3, parameter_values)
 result = job.result()
 print(f" > Result class: {type(result)}")
 ```
