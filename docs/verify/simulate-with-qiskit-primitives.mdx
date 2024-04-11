@@ -44,12 +44,14 @@ qc.draw("mpl", style="iqp")
 ![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/estimator-initialize.png "Initial QuantumCircuit")
 
 ```python
+from qiskit.quantum_info import SparsePauliOp
+import numpy as np
+
 # observable(s) whose expected values you want to compute
 from qiskit.quantum_info import SparsePauliOp
 observable = SparsePauliOp(["II", "XX", "YY", "ZZ"], coeffs=[1, 1, -1, 1])
 
 # value(s) for the circuit parameter(s)
-import numpy as np
 parameter_values = [[0], [np.pi/6], [np.pi/2]]
 ```
 ### Initialize Estimator
@@ -88,7 +90,7 @@ observable.
 <Tabs>
   <TabItem value="EstimatorV2" label="StatevectorEstimator (V2)">
     Run the estimation by calling the [`StatevectorEstimator.run`](../api/qiskit/qiskit.primitives.StatevectorEstimator#run)
-    method, which returns an instance of a [PrimitiveJob](/api/qiskit/qiskit.primitives.PrimitiveJob) object. You can get the results from the
+    method, which returns an instance of a [`PrimitiveJob`](/api/qiskit/qiskit.primitives.PrimitiveJob) object. You can get the results from the
     job (as a [`qiskit.primitives.PrimitiveResult`](../api/qiskit/qiskit.primitives.PrimitiveResult) object)
     with the [`qiskit.primitives.PrimitiveResult.primitiveresult`](../api/qiskit/qiskit.primitives.PrimitiveResult#primitiveresult) method.
 
