@@ -25,7 +25,7 @@ import nbformat
 from qiskit_ibm_runtime import QiskitRuntimeService
 from squeaky import clean_notebook
 
-NOTEBOOKS_GLOB = "{tutorials,docs}/**/*.ipynb"
+NOTEBOOKS_GLOB = "[!.]*/**/*.ipynb"
 NOTEBOOKS_EXCLUDE = [
     "docs/api/**",
     "**/.ipynb_checkpoints/**",
@@ -181,7 +181,7 @@ def find_notebooks() -> list[Path]:
     Get paths to all notebooks in NOTEBOOKS_GLOB that are not excluded by
     NOTEBOOKS_EXCLUDE
     """
-    all_notebooks = Path(".").rglob(NOTEBOOKS_GLOB)
+    all_notebooks = Path(".").glob(NOTEBOOKS_GLOB)
     return [
         path
         for path in all_notebooks
