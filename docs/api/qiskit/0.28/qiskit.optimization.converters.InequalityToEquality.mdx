@@ -8,130 +8,120 @@ python_api_name: qiskit.optimization.converters.InequalityToEquality
 
 # qiskit.optimization.converters.InequalityToEquality
 
-<span id="qiskit.optimization.converters.InequalityToEquality" />
+<Class id="qiskit.optimization.converters.InequalityToEquality" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/inequality_to_equality.py" signature="InequalityToEquality(mode='auto')">
+  Convert inequality constraints into equality constraints by introducing slack variables.
 
-`InequalityToEquality(mode='auto')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/inequality_to_equality.py "view source code")
+  **Examples**
 
-Convert inequality constraints into equality constraints by introducing slack variables.
+  ```python
+  >>> from qiskit.optimization.problems import QuadraticProgram
+  >>> from qiskit.optimization.converters import InequalityToEquality
+  >>> problem = QuadraticProgram()
+  >>> # define a problem
+  >>> conv = InequalityToEquality()
+  >>> problem2 = conv.convert(problem)
+  ```
 
-**Examples**
+  **Parameters**
 
-```python
->>> from qiskit.optimization.problems import QuadraticProgram
->>> from qiskit.optimization.converters import InequalityToEquality
->>> problem = QuadraticProgram()
->>> # define a problem
->>> conv = InequalityToEquality()
->>> problem2 = conv.convert(problem)
-```
+  **mode** (`str`) –
 
-**Parameters**
+  To chose the type of slack variables. There are 3 options for mode.
 
-**mode** (`str`) –
+  *   ’integer’: All slack variables will be integer variables.
 
-To chose the type of slack variables. There are 3 options for mode.
+  *   ’continuous’: All slack variables will be continuous variables
 
-*   ’integer’: All slack variables will be integer variables.
+  *   **’auto’: Try to use integer variables but if it’s not possible,**
 
-*   ’continuous’: All slack variables will be continuous variables
+      use continuous variables
 
-*   **’auto’: Try to use integer variables but if it’s not possible,**
+  ### \_\_init\_\_
 
-    use continuous variables
+  <Function id="qiskit.optimization.converters.InequalityToEquality.__init__" name="__init__" signature="__init__(mode='auto')">
+    **Parameters**
 
-### \_\_init\_\_
+    **mode** (`str`) –
 
-<span id="qiskit.optimization.converters.InequalityToEquality.__init__" />
+    To chose the type of slack variables. There are 3 options for mode.
 
-`__init__(mode='auto')`
+    *   ’integer’: All slack variables will be integer variables.
 
-**Parameters**
+    *   ’continuous’: All slack variables will be continuous variables
 
-**mode** (`str`) –
+    *   **’auto’: Try to use integer variables but if it’s not possible,**
 
-To chose the type of slack variables. There are 3 options for mode.
+        use continuous variables
+  </Function>
 
-*   ’integer’: All slack variables will be integer variables.
+  ## Methods
 
-*   ’continuous’: All slack variables will be continuous variables
+  |                                                                                                                                                     |                                                                                        |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.optimization.converters.InequalityToEquality.__init__ "qiskit.optimization.converters.InequalityToEquality.__init__")(\[mode]) | **type mode**`str`                                                                     |
+  | [`convert`](#qiskit.optimization.converters.InequalityToEquality.convert "qiskit.optimization.converters.InequalityToEquality.convert")(problem)    | Convert a problem with inequality constraints into one with only equality constraints. |
+  | [`interpret`](#qiskit.optimization.converters.InequalityToEquality.interpret "qiskit.optimization.converters.InequalityToEquality.interpret")(x)    | Convert a result of a converted problem into that of the original problem.             |
 
-*   **’auto’: Try to use integer variables but if it’s not possible,**
+  ## Attributes
 
-    use continuous variables
+  |                                                                                                                                |                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
+  | [`mode`](#qiskit.optimization.converters.InequalityToEquality.mode "qiskit.optimization.converters.InequalityToEquality.mode") | Returns the mode of the converter |
 
-## Methods
+  ### convert
 
-|                                                                                                                                                     |                                                                                        |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.optimization.converters.InequalityToEquality.__init__ "qiskit.optimization.converters.InequalityToEquality.__init__")(\[mode]) | **type mode**`str`                                                                     |
-| [`convert`](#qiskit.optimization.converters.InequalityToEquality.convert "qiskit.optimization.converters.InequalityToEquality.convert")(problem)    | Convert a problem with inequality constraints into one with only equality constraints. |
-| [`interpret`](#qiskit.optimization.converters.InequalityToEquality.interpret "qiskit.optimization.converters.InequalityToEquality.interpret")(x)    | Convert a result of a converted problem into that of the original problem.             |
+  <Function id="qiskit.optimization.converters.InequalityToEquality.convert" name="convert" signature="convert(problem)">
+    Convert a problem with inequality constraints into one with only equality constraints.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                |                                   |
-| ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
-| [`mode`](#qiskit.optimization.converters.InequalityToEquality.mode "qiskit.optimization.converters.InequalityToEquality.mode") | Returns the mode of the converter |
+    **problem** (`QuadraticProgram`) – The problem to be solved, that may contain inequality constraints.
 
-### convert
+    **Return type**
 
-<span id="qiskit.optimization.converters.InequalityToEquality.convert" />
+    `QuadraticProgram`
 
-`convert(problem)`
+    **Returns**
 
-Convert a problem with inequality constraints into one with only equality constraints.
+    The converted problem, that contain only equality constraints.
 
-**Parameters**
+    **Raises**
 
-**problem** (`QuadraticProgram`) – The problem to be solved, that may contain inequality constraints.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If a variable type is not supported.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an unsupported mode is selected.
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an unsupported sense is specified.
+  </Function>
 
-**Return type**
+  ### interpret
 
-`QuadraticProgram`
+  <Function id="qiskit.optimization.converters.InequalityToEquality.interpret" name="interpret" signature="interpret(x)">
+    Convert a result of a converted problem into that of the original problem.
 
-**Returns**
+    **Parameters**
 
-The converted problem, that contain only equality constraints.
+    **x** (`Union`\[`ndarray`, `List`\[`float`]]) – The result of the converted problem or the given result in case of FAILURE.
 
-**Raises**
+    **Return type**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If a variable type is not supported.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an unsupported mode is selected.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an unsupported sense is specified.
+    `ndarray`
 
-### interpret
+    **Returns**
 
-<span id="qiskit.optimization.converters.InequalityToEquality.interpret" />
+    The result of the original problem.
+  </Function>
 
-`interpret(x)`
+  ### mode
 
-Convert a result of a converted problem into that of the original problem.
+  <Function id="qiskit.optimization.converters.InequalityToEquality.mode" name="mode" signature="property mode">
+    Returns the mode of the converter
 
-**Parameters**
+    **Return type**
 
-**x** (`Union`\[`ndarray`, `List`\[`float`]]) – The result of the converted problem or the given result in case of FAILURE.
+    `str`
 
-**Return type**
+    **Returns**
 
-`ndarray`
-
-**Returns**
-
-The result of the original problem.
-
-### mode
-
-<span id="qiskit.optimization.converters.InequalityToEquality.mode" />
-
-`property mode`
-
-Returns the mode of the converter
-
-**Return type**
-
-`str`
-
-**Returns**
-
-The mode of the converter used for additional slack variables
+    The mode of the converter used for additional slack variables
+  </Function>
+</Class>
 

@@ -8,65 +8,61 @@ python_api_name: qiskit.chemistry.algorithms.ExcitedStatesEigensolver
 
 # ExcitedStatesEigensolver
 
-<span id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver" />
+<Class id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/excited_states_eigensolver.py" signature="ExcitedStatesEigensolver(transformation, solver)">
+  Bases: `qiskit.chemistry.algorithms.excited_states_solvers.excited_states_solver.ExcitedStatesSolver`
 
-`ExcitedStatesEigensolver(transformation, solver)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/excited_states_eigensolver.py "view source code")
+  The calculation of excited states via an Eigensolver algorithm
 
-Bases: `qiskit.chemistry.algorithms.excited_states_solvers.excited_states_solver.ExcitedStatesSolver`
+  **Parameters**
 
-The calculation of excited states via an Eigensolver algorithm
+  *   **transformation** (`Transformation`) – Qubit Operator Transformation
+  *   **solver** (`Union`\[`Eigensolver`, `EigensolverFactory`]) – Minimum Eigensolver or MESFactory object.
 
-**Parameters**
+  ## Methods
 
-*   **transformation** (`Transformation`) – Qubit Operator Transformation
-*   **solver** (`Union`\[`Eigensolver`, `EigensolverFactory`]) – Minimum Eigensolver or MESFactory object.
+  ### solve
 
-## Methods
+  <Function id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver.solve" name="solve" signature="ExcitedStatesEigensolver.solve(driver, aux_operators=None)">
+    Compute Ground and Excited States properties.
 
-### solve
+    **Parameters**
 
-<span id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver.solve" />
+    *   **driver** (`BaseDriver`) – a chemistry driver object which defines the chemical problem that is to be solved by this calculation.
+    *   **aux\_operators** (`Optional`\[`List`\[`Any`]]) – Additional auxiliary operators to evaluate. Must be of type `FermionicOperator` if the qubit transformation is fermionic and of type `BosonicOperator` it is bosonic.
 
-`ExcitedStatesEigensolver.solve(driver, aux_operators=None)`
+    **Raises**
 
-Compute Ground and Excited States properties.
+    **NotImplementedError** – If an operator in `aux_operators` is not of type `FermionicOperator`.
 
-**Parameters**
+    **Return type**
 
-*   **driver** (`BaseDriver`) – a chemistry driver object which defines the chemical problem that is to be solved by this calculation.
-*   **aux\_operators** (`Optional`\[`List`\[`Any`]]) – Additional auxiliary operators to evaluate. Must be of type `FermionicOperator` if the qubit transformation is fermionic and of type `BosonicOperator` it is bosonic.
+    `Union`\[`ElectronicStructureResult`, `VibronicStructureResult`]
 
-**Raises**
+    **Returns**
 
-**NotImplementedError** – If an operator in `aux_operators` is not of type `FermionicOperator`.
+    An eigenstate result. Depending on the transformation this can be an electronic structure or bosonic result.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`Union`\[`ElectronicStructureResult`, `VibronicStructureResult`]
+  ### solver
 
-**Returns**
+  <Attribute id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver.solver" name="solver">
+    Returns the minimum eigensolver or factory.
 
-An eigenstate result. Depending on the transformation this can be an electronic structure or bosonic result.
+    **Return type**
 
-## Attributes
+    `Union`\[`Eigensolver`, `EigensolverFactory`]
+  </Attribute>
 
-<span id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver.solver" />
+  ### transformation
 
-### solver
+  <Attribute id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver.transformation" name="transformation">
+    Returns the transformation used to obtain a qubit operator from the molecule.
 
-Returns the minimum eigensolver or factory.
+    **Return type**
 
-**Return type**
-
-`Union`\[`Eigensolver`, `EigensolverFactory`]
-
-<span id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver.transformation" />
-
-### transformation
-
-Returns the transformation used to obtain a qubit operator from the molecule.
-
-**Return type**
-
-`Transformation`
+    `Transformation`
+  </Attribute>
+</Class>
 

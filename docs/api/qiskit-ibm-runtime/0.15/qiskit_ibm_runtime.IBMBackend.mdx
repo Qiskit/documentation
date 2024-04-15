@@ -8,704 +8,664 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
 # IBMBackend
 
-<span id="qiskit_ibm_runtime.IBMBackend" />
-
-`IBMBackend(configuration, service, api_client, instance=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.15/qiskit_ibm_runtime/ibm_backend.py "view source code")
-
-Backend class interfacing with an IBM Quantum backend.
-
-<Admonition title="Note" type="note">
-  *   You should not instantiate the `IBMBackend` class directly. Instead, use the methods provided by an [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService") instance to retrieve and handle backends.
-</Admonition>
-
-This class represents an IBM Quantum backend. Its attributes and methods provide information about the backend. For example, the [`status()`](#qiskit_ibm_runtime.IBMBackend.status "qiskit_ibm_runtime.IBMBackend.status") method returns a `BackendStatus` instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
-
-```python
-status = backend.status()
-is_operational = status.operational
-jobs_in_queue = status.pending_jobs
-```
-
-Here is list of attributes available on the `IBMBackend` class:
-
-> *   name: backend name.
->
-> *   backend\_version: backend version in the form X.Y.Z.
->
-> *   num\_qubits: number of qubits.
->
-> *   target: A `qiskit.transpiler.Target` object for the backend.
->
-> *   basis\_gates: list of basis gates names on the backend.
->
-> *   gates: list of basis gates on the backend.
->
-> *   local: backend is local or remote.
->
-> *   simulator: backend is a simulator.
->
-> *   conditional: backend supports conditional operations.
->
-> *   open\_pulse: backend supports open pulse.
->
-> *   memory: backend supports memory.
->
-> *   max\_shots: maximum number of shots supported.
->
-> *   coupling\_map (list): The coupling map for the device
->
-> *   supported\_instructions (List\[str]): Instructions supported by the backend.
->
-> *   dynamic\_reprate\_enabled (bool): whether delay between programs can be set dynamically (ie via `rep_delay`). Defaults to False.
->
-> *   rep\_delay\_range (List\[float]): 2d list defining supported range of repetition delays for backend in μs. First entry is lower end of the range, second entry is higher end of the range. Optional, but will be specified when `dynamic_reprate_enabled=True`.
->
-> *   default\_rep\_delay (float): Value of `rep_delay` if not specified by user and `dynamic_reprate_enabled=True`.
->
-> *   n\_uchannels: Number of u-channels.
->
-> *   u\_channel\_lo: U-channel relationship on device los.
->
-> *   meas\_levels: Supported measurement levels.
->
-> *   qubit\_lo\_range: Qubit lo ranges for each qubit with form (min, max) in GHz.
->
-> *   meas\_lo\_range: Measurement lo ranges for each qubit with form (min, max) in GHz.
->
-> *   dt: Qubit drive channel timestep in nanoseconds.
->
-> *   dtm: Measurement drive channel timestep in nanoseconds.
->
-> *   rep\_times: Supported repetition times (program execution time) for backend in μs.
->
-> *   meas\_kernels: Supported measurement kernels.
->
-> *   discriminators: Supported discriminators.
->
-> *   hamiltonian: An optional dictionary with fields characterizing the system hamiltonian.
->
-> *   channel\_bandwidth (list): Bandwidth of all channels (qubit, measurement, and U)
->
-> *   acquisition\_latency (list): Array of dimension n\_qubits x n\_registers. Latency (in units of dt) to write a measurement result from qubit n into register slot m.
->
-> *   conditional\_latency (list): Array of dimension n\_channels \[d->u->m] x n\_registers. Latency (in units of dt) to do a conditional operation on channel n from register slot m
->
-> *   meas\_map (list): Grouping of measurement which are multiplexed
->
-> *   max\_circuits (int): The maximum number of experiments per job
->
-> *   sample\_name (str): Sample name for the backend
->
-> *   n\_registers (int): Number of register slots available for feedback (if conditional is True)
->
-> *   register\_map (list): An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
->
-> *   configurable (bool): True if the backend is configurable, if the backend is a simulator
->
-> *   credits\_required (bool): True if backend requires credits to run a job.
->
-> *   online\_date (datetime): The date that the device went online
->
-> *   display\_name (str): Alternate name field for the backend
->
-> *   description (str): A description for the backend
->
-> *   tags (list): A list of string tags to describe the backend
->
-> *   version: version of `Backend` class (Ex: 1, 2)
->
-> *   channels: An optional dictionary containing information of each channel – their purpose, type, and qubits operated on.
->
-> *   parametric\_pulses (list): A list of pulse shapes which are supported on the backend. For example: `['gaussian', 'constant']`
->
-> *   processor\_type (dict): Processor type for this backend. A dictionary of the form `{"family": <str>, "revision": <str>, segment: <str>}` such as `{"family": "Canary", "revision": "1.0", segment: "A"}`.
->
->     > *   family: Processor family of this backend.
->     > *   revision: Revision version of this processor.
->     > *   segment: Segment this processor belongs to within a larger chip.
+<Class id="qiskit_ibm_runtime.IBMBackend" github="https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.15/qiskit_ibm_runtime/ibm_backend.py" signature="IBMBackend(configuration, service, api_client, instance=None)">
+  Backend class interfacing with an IBM Quantum backend.
+
+  <Admonition title="Note" type="note">
+    *   You should not instantiate the `IBMBackend` class directly. Instead, use the methods provided by an [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService") instance to retrieve and handle backends.
+  </Admonition>
+
+  This class represents an IBM Quantum backend. Its attributes and methods provide information about the backend. For example, the [`status()`](#qiskit_ibm_runtime.IBMBackend.status "qiskit_ibm_runtime.IBMBackend.status") method returns a `BackendStatus` instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
+
+  ```python
+  status = backend.status()
+  is_operational = status.operational
+  jobs_in_queue = status.pending_jobs
+  ```
+
+  Here is list of attributes available on the `IBMBackend` class:
+
+  > *   name: backend name.
+  >
+  > *   backend\_version: backend version in the form X.Y.Z.
+  >
+  > *   num\_qubits: number of qubits.
+  >
+  > *   target: A `qiskit.transpiler.Target` object for the backend.
+  >
+  > *   basis\_gates: list of basis gates names on the backend.
+  >
+  > *   gates: list of basis gates on the backend.
+  >
+  > *   local: backend is local or remote.
+  >
+  > *   simulator: backend is a simulator.
+  >
+  > *   conditional: backend supports conditional operations.
+  >
+  > *   open\_pulse: backend supports open pulse.
+  >
+  > *   memory: backend supports memory.
+  >
+  > *   max\_shots: maximum number of shots supported.
+  >
+  > *   coupling\_map (list): The coupling map for the device
+  >
+  > *   supported\_instructions (List\[str]): Instructions supported by the backend.
+  >
+  > *   dynamic\_reprate\_enabled (bool): whether delay between programs can be set dynamically (ie via `rep_delay`). Defaults to False.
+  >
+  > *   rep\_delay\_range (List\[float]): 2d list defining supported range of repetition delays for backend in μs. First entry is lower end of the range, second entry is higher end of the range. Optional, but will be specified when `dynamic_reprate_enabled=True`.
+  >
+  > *   default\_rep\_delay (float): Value of `rep_delay` if not specified by user and `dynamic_reprate_enabled=True`.
+  >
+  > *   n\_uchannels: Number of u-channels.
+  >
+  > *   u\_channel\_lo: U-channel relationship on device los.
+  >
+  > *   meas\_levels: Supported measurement levels.
+  >
+  > *   qubit\_lo\_range: Qubit lo ranges for each qubit with form (min, max) in GHz.
+  >
+  > *   meas\_lo\_range: Measurement lo ranges for each qubit with form (min, max) in GHz.
+  >
+  > *   dt: Qubit drive channel timestep in nanoseconds.
+  >
+  > *   dtm: Measurement drive channel timestep in nanoseconds.
+  >
+  > *   rep\_times: Supported repetition times (program execution time) for backend in μs.
+  >
+  > *   meas\_kernels: Supported measurement kernels.
+  >
+  > *   discriminators: Supported discriminators.
+  >
+  > *   hamiltonian: An optional dictionary with fields characterizing the system hamiltonian.
+  >
+  > *   channel\_bandwidth (list): Bandwidth of all channels (qubit, measurement, and U)
+  >
+  > *   acquisition\_latency (list): Array of dimension n\_qubits x n\_registers. Latency (in units of dt) to write a measurement result from qubit n into register slot m.
+  >
+  > *   conditional\_latency (list): Array of dimension n\_channels \[d->u->m] x n\_registers. Latency (in units of dt) to do a conditional operation on channel n from register slot m
+  >
+  > *   meas\_map (list): Grouping of measurement which are multiplexed
+  >
+  > *   max\_circuits (int): The maximum number of experiments per job
+  >
+  > *   sample\_name (str): Sample name for the backend
+  >
+  > *   n\_registers (int): Number of register slots available for feedback (if conditional is True)
+  >
+  > *   register\_map (list): An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
+  >
+  > *   configurable (bool): True if the backend is configurable, if the backend is a simulator
+  >
+  > *   credits\_required (bool): True if backend requires credits to run a job.
+  >
+  > *   online\_date (datetime): The date that the device went online
+  >
+  > *   display\_name (str): Alternate name field for the backend
+  >
+  > *   description (str): A description for the backend
+  >
+  > *   tags (list): A list of string tags to describe the backend
+  >
+  > *   version: version of `Backend` class (Ex: 1, 2)
+  >
+  > *   channels: An optional dictionary containing information of each channel – their purpose, type, and qubits operated on.
+  >
+  > *   parametric\_pulses (list): A list of pulse shapes which are supported on the backend. For example: `['gaussian', 'constant']`
+  >
+  > *   processor\_type (dict): Processor type for this backend. A dictionary of the form `{"family": <str>, "revision": <str>, segment: <str>}` such as `{"family": "Canary", "revision": "1.0", segment: "A"}`.
+  >
+  >     > *   family: Processor family of this backend.
+  >     > *   revision: Revision version of this processor.
+  >     > *   segment: Segment this processor belongs to within a larger chip.
 
-IBMBackend constructor.
+  IBMBackend constructor.
 
-**Parameters**
+  **Parameters**
 
-*   **configuration** (`Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]) – Backend configuration.
-*   **service** ([`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – Instance of QiskitRuntimeService.
-*   **api\_client** (`BaseBackendClient`) – IBM client used to communicate with the server.
+  *   **configuration** (`Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]) – Backend configuration.
+  *   **service** ([`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – Instance of QiskitRuntimeService.
+  *   **api\_client** (`BaseBackendClient`) – IBM client used to communicate with the server.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit_ibm_runtime.IBMBackend.coupling_map" />
+  ### coupling\_map
 
-### coupling\_map
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.coupling_map" name="coupling_map">
+    Return the `CouplingMap` object
+  </Attribute>
 
-Return the `CouplingMap` object
+  ### dt
 
-<span id="qiskit_ibm_runtime.IBMBackend.dt" />
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.dt" name="dt">
+    Return the system time resolution of input signals
 
-### dt
+    This is required to be implemented if the backend supports Pulse scheduling.
 
-Return the system time resolution of input signals
+    **Return type**
 
-This is required to be implemented if the backend supports Pulse scheduling.
+    `Optional`\[`float`]
 
-**Return type**
+    **Returns**
 
-`Optional`\[`float`]
+    The input signal timestep in seconds. If the backend doesn’t define `dt`, `None` will be returned.
+  </Attribute>
 
-**Returns**
+  ### dtm
 
-The input signal timestep in seconds. If the backend doesn’t define `dt`, `None` will be returned.
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.dtm" name="dtm">
+    Return the system time resolution of output signals
 
-<span id="qiskit_ibm_runtime.IBMBackend.dtm" />
+    **Returns**
 
-### dtm
+    The output signal timestep in seconds.
 
-Return the system time resolution of output signals
+    **Return type**
 
-**Returns**
+    dtm
+  </Attribute>
 
-The output signal timestep in seconds.
+  ### id\_warning\_issued
 
-**Return type**
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.id_warning_issued" name="id_warning_issued" attributeValue="= False" />
 
-dtm
+  ### instruction\_durations
 
-<span id="qiskit_ibm_runtime.IBMBackend.id_warning_issued" />
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.instruction_durations" name="instruction_durations">
+    Return the `InstructionDurations` object.
+  </Attribute>
 
-### id\_warning\_issued
+  ### instruction\_schedule\_map
 
-`= False`
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.instruction_schedule_map" name="instruction_schedule_map">
+    Return the `InstructionScheduleMap` for the instructions defined in this backend’s target.
+  </Attribute>
 
-<span id="qiskit_ibm_runtime.IBMBackend.instruction_durations" />
+  ### instructions
 
-### instruction\_durations
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.instructions" name="instructions">
+    A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
 
-Return the `InstructionDurations` object.
+    **Return type**
 
-<span id="qiskit_ibm_runtime.IBMBackend.instruction_schedule_map" />
+    `List`\[`Tuple`\[`Instruction`, `Tuple`\[`int`]]]
+  </Attribute>
 
-### instruction\_schedule\_map
+  ### max\_circuits
 
-Return the `InstructionScheduleMap` for the instructions defined in this backend’s target.
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.max_circuits" name="max_circuits">
+    The maximum number of circuits
 
-<span id="qiskit_ibm_runtime.IBMBackend.instructions" />
+    The maximum number of circuits (or Pulse schedules) that can be run in a single job. If there is no limit this will return None.
 
-### instructions
+    **Return type**
 
-A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
+    `int`
+  </Attribute>
 
-**Return type**
+  ### meas\_map
 
-`List`\[`Tuple`\[`Instruction`, `Tuple`\[`int`]]]
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.meas_map" name="meas_map">
+    Return the grouping of measurements which are multiplexed
 
-<span id="qiskit_ibm_runtime.IBMBackend.max_circuits" />
+    This is required to be implemented if the backend supports Pulse scheduling.
 
-### max\_circuits
+    **Returns**
 
-The maximum number of circuits
+    The grouping of measurements which are multiplexed
 
-The maximum number of circuits (or Pulse schedules) that can be run in a single job. If there is no limit this will return None.
+    **Return type**
 
-**Return type**
+    meas\_map
+  </Attribute>
 
-`int`
+  ### num\_qubits
 
-<span id="qiskit_ibm_runtime.IBMBackend.meas_map" />
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.num_qubits" name="num_qubits">
+    Return the number of qubits the backend has.
 
-### meas\_map
+    **Return type**
 
-Return the grouping of measurements which are multiplexed
+    `int`
+  </Attribute>
 
-This is required to be implemented if the backend supports Pulse scheduling.
+  ### operation\_names
 
-**Returns**
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.operation_names" name="operation_names">
+    A list of instruction names that the backend supports.
 
-The grouping of measurements which are multiplexed
+    **Return type**
 
-**Return type**
+    `List`\[`str`]
+  </Attribute>
 
-meas\_map
+  ### operations
 
-<span id="qiskit_ibm_runtime.IBMBackend.num_qubits" />
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.operations" name="operations">
+    A list of `Instruction` instances that the backend supports.
 
-### num\_qubits
+    **Return type**
 
-Return the number of qubits the backend has.
+    `List`\[`Instruction`]
+  </Attribute>
 
-**Return type**
+  ### options
 
-`int`
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit_ibm_runtime.IBMBackend.operation_names" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.IBMBackend.run "qiskit_ibm_runtime.IBMBackend.run") method.
+  </Attribute>
 
-### operation\_names
+  ### provider
 
-A list of instruction names that the backend supports.
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.provider" name="provider">
+    Return the backend Provider.
 
-**Return type**
+    **Returns**
 
-`List`\[`str`]
+    the Provider responsible for the backend.
 
-<span id="qiskit_ibm_runtime.IBMBackend.operations" />
+    **Return type**
 
-### operations
+    Provider
+  </Attribute>
 
-A list of `Instruction` instances that the backend supports.
+  ### service
 
-**Return type**
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.service" name="service">
+    Return the `service` object
 
-`List`\[`Instruction`]
+    **Returns**
 
-<span id="qiskit_ibm_runtime.IBMBackend.options" />
+    instance of QiskitRuntimeService
 
-### options
+    **Return type**
 
-Return the options for the backend
+    service
+  </Attribute>
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.IBMBackend.run "qiskit_ibm_runtime.IBMBackend.run") method.
+  ### session
 
-<span id="qiskit_ibm_runtime.IBMBackend.provider" />
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.session" name="session">
+    Return session
 
-### provider
+    **Return type**
 
-Return the backend Provider.
+    `Session`
+  </Attribute>
 
-**Returns**
+  ### target
 
-the Provider responsible for the backend.
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.target" name="target">
+    A `qiskit.transpiler.Target` object for the backend.
 
-**Return type**
+    **Return type**
 
-Provider
+    `Target`
 
-<span id="qiskit_ibm_runtime.IBMBackend.service" />
+    **Returns**
 
-### service
+    Target
+  </Attribute>
 
-Return the `service` object
+  ### version
 
-**Returns**
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.version" name="version" attributeValue="= 2" />
 
-instance of QiskitRuntimeService
+  ### name
 
-**Return type**
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.name" name="name">
+    Name of the backend.
+  </Attribute>
 
-service
+  ### description
 
-<span id="qiskit_ibm_runtime.IBMBackend.session" />
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.description" name="description">
+    Optional human-readable description.
+  </Attribute>
 
-### session
+  ### online\_date
 
-Return session
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.online_date" name="online_date">
+    Date that the backend came online.
+  </Attribute>
 
-**Return type**
+  ### backend\_version
 
-`Session`
+  <Attribute id="qiskit_ibm_runtime.IBMBackend.backend_version" name="backend_version">
+    Version of the backend being provided. This is not the same as `BackendV2.version`, which is the version of the `Backend` abstract interface.
+  </Attribute>
 
-<span id="qiskit_ibm_runtime.IBMBackend.target" />
+  ## Methods
 
-### target
+  ### \_\_call\_\_
 
-A `qiskit.transpiler.Target` object for the backend.
+  <Function id="qiskit_ibm_runtime.IBMBackend.__call__" name="__call__" signature="__call__()">
+    Call self as a function.
 
-**Return type**
+    **Return type**
 
-`Target`
+    [`IBMBackend`](#qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")
+  </Function>
 
-**Returns**
+  ### acquire\_channel
 
-Target
+  <Function id="qiskit_ibm_runtime.IBMBackend.acquire_channel" name="acquire_channel" signature="acquire_channel(qubit)">
+    Return the acquisition channel for the given qubit.
 
-<span id="qiskit_ibm_runtime.IBMBackend.version" />
+    **Returns**
 
-### version
+    The Qubit measurement acquisition line.
 
-`= 2`
+    **Return type**
 
-<span id="qiskit_ibm_runtime.IBMBackend.name" />
+    AcquireChannel
+  </Function>
 
-### name
+  ### cancel\_session
 
-Name of the backend.
+  <Function id="qiskit_ibm_runtime.IBMBackend.cancel_session" name="cancel_session" signature="cancel_session()">
+    Cancel session. All pending jobs will be cancelled.
 
-<span id="qiskit_ibm_runtime.IBMBackend.description" />
+    **Return type**
 
-### description
+    `None`
+  </Function>
 
-Optional human-readable description.
+  ### check\_faulty
 
-<span id="qiskit_ibm_runtime.IBMBackend.online_date" />
+  <Function id="qiskit_ibm_runtime.IBMBackend.check_faulty" name="check_faulty" signature="check_faulty(circuit)">
+    Check if the input circuit uses faulty qubits or edges.
 
-### online\_date
+    **Parameters**
 
-Date that the backend came online.
+    **circuit** (`QuantumCircuit`) – Circuit to check.
 
-<span id="qiskit_ibm_runtime.IBMBackend.backend_version" />
+    **Raises**
 
-### backend\_version
+    **ValueError** – If an instruction operating on a faulty qubit or edge is found.
 
-Version of the backend being provided. This is not the same as `BackendV2.version`, which is the version of the `Backend` abstract interface.
+    **Return type**
 
-## Methods
+    `None`
+  </Function>
 
-### \_\_call\_\_
+  ### close\_session
 
-<span id="qiskit_ibm_runtime.IBMBackend.__call__" />
+  <Function id="qiskit_ibm_runtime.IBMBackend.close_session" name="close_session" signature="close_session()">
+    Close the session so new jobs will no longer be accepted, but existing queued or running jobs will run to completion. The session will be terminated once there are no more pending jobs.
 
-`__call__()`
+    **Return type**
 
-Call self as a function.
+    `None`
+  </Function>
 
-**Return type**
+  ### configuration
 
-[`IBMBackend`](#qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")
+  <Function id="qiskit_ibm_runtime.IBMBackend.configuration" name="configuration" signature="configuration()">
+    Return the backend configuration.
 
-### acquire\_channel
+    Backend configuration contains fixed information about the backend, such as its name, number of qubits, basis gates, coupling map, quantum volume, etc.
 
-<span id="qiskit_ibm_runtime.IBMBackend.acquire_channel" />
+    The schema for backend configuration can be found in [Qiskit/ibm-quantum-schemas/backend\_configuration](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json).
 
-`acquire_channel(qubit)`
+    **Return type**
 
-Return the acquisition channel for the given qubit.
+    `Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]
 
-**Returns**
+    **Returns**
 
-The Qubit measurement acquisition line.
+    The configuration for the backend.
+  </Function>
 
-**Return type**
+  ### control\_channel
 
-AcquireChannel
+  <Function id="qiskit_ibm_runtime.IBMBackend.control_channel" name="control_channel" signature="control_channel(qubits)">
+    Return the secondary drive channel for the given qubit
 
-### cancel\_session
+    This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
 
-<span id="qiskit_ibm_runtime.IBMBackend.cancel_session" />
+    **Parameters**
 
-`cancel_session()`
+    **qubits** (`Iterable`\[`int`]) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
 
-Cancel session. All pending jobs will be cancelled.
+    **Returns**
 
-**Return type**
+    The Qubit measurement acquisition line.
 
-`None`
+    **Return type**
 
-### check\_faulty
+    List\[ControlChannel]
+  </Function>
 
-<span id="qiskit_ibm_runtime.IBMBackend.check_faulty" />
+  ### defaults
 
-`check_faulty(circuit)`
+  <Function id="qiskit_ibm_runtime.IBMBackend.defaults" name="defaults" signature="defaults(refresh=False)">
+    Return the pulse defaults for the backend.
 
-Check if the input circuit uses faulty qubits or edges.
+    The schema for default pulse configuration can be found in [Qiskit/ibm-quantum-schemas/default\_pulse\_configuration](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json).
 
-**Parameters**
+    **Parameters**
 
-**circuit** (`QuantumCircuit`) – Circuit to check.
+    **refresh** (`bool`) – If `True`, re-query the server for the backend pulse defaults. Otherwise, return a cached version.
 
-**Raises**
+    **Return type**
 
-**ValueError** – If an instruction operating on a faulty qubit or edge is found.
+    `Optional`\[`PulseDefaults`]
 
-**Return type**
+    **Returns**
 
-`None`
+    The backend pulse defaults or `None` if the backend does not support pulse.
+  </Function>
 
-### close\_session
+  ### drive\_channel
 
-<span id="qiskit_ibm_runtime.IBMBackend.close_session" />
+  <Function id="qiskit_ibm_runtime.IBMBackend.drive_channel" name="drive_channel" signature="drive_channel(qubit)">
+    Return the drive channel for the given qubit.
 
-`close_session()`
+    **Returns**
 
-Close the session so new jobs will no longer be accepted, but existing queued or running jobs will run to completion. The session will be terminated once there are no more pending jobs.
+    The Qubit drive channel
 
-**Return type**
+    **Return type**
 
-`None`
+    DriveChannel
+  </Function>
 
-### configuration
+  ### measure\_channel
 
-<span id="qiskit_ibm_runtime.IBMBackend.configuration" />
+  <Function id="qiskit_ibm_runtime.IBMBackend.measure_channel" name="measure_channel" signature="measure_channel(qubit)">
+    Return the measure stimulus channel for the given qubit.
 
-`configuration()`
+    **Returns**
 
-Return the backend configuration.
+    The Qubit measurement stimulus line
 
-Backend configuration contains fixed information about the backend, such as its name, number of qubits, basis gates, coupling map, quantum volume, etc.
+    **Return type**
 
-The schema for backend configuration can be found in [Qiskit/ibm-quantum-schemas/backend\_configuration](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json).
+    MeasureChannel
+  </Function>
 
-**Return type**
+  ### open\_session
 
-`Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]
+  <Function id="qiskit_ibm_runtime.IBMBackend.open_session" name="open_session" signature="open_session()">
+    Open session
 
-**Returns**
+    **Return type**
 
-The configuration for the backend.
+    `Session`
+  </Function>
 
-### control\_channel
+  ### properties
 
-<span id="qiskit_ibm_runtime.IBMBackend.control_channel" />
+  <Function id="qiskit_ibm_runtime.IBMBackend.properties" name="properties" signature="properties(refresh=False, datetime=None)">
+    Return the backend properties, subject to optional filtering.
 
-`control_channel(qubits)`
+    This data describes qubits properties (such as T1 and T2), gates properties (such as gate length and error), and other general properties of the backend.
 
-Return the secondary drive channel for the given qubit
+    The schema for backend properties can be found in [Qiskit/ibm-quantum-schemas/backend\_properties](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json).
 
-This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
+    **Parameters**
 
-**Parameters**
+    *   **refresh** (`bool`) – If `True`, re-query the server for the backend properties. Otherwise, return a cached version.
+    *   **datetime** (`Optional`\[`datetime`]) – By specifying datetime, this function returns an instance of the `BackendProperties` whose timestamp is closest to, but older than, the specified datetime. Note that this is only supported using `ibm_quantum` runtime.
 
-**qubits** (`Iterable`\[`int`]) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
+    **Return type**
 
-**Returns**
+    `Optional`\[`BackendProperties`]
 
-The Qubit measurement acquisition line.
+    **Returns**
 
-**Return type**
+    The backend properties or `None` if the backend properties are not currently available.
 
-List\[ControlChannel]
+    **Raises**
 
-### defaults
+    *   **TypeError** – If an input argument is not of the correct type.
+    *   **NotImplementedError** – If datetime is specified when cloud runtime is used.
+  </Function>
 
-<span id="qiskit_ibm_runtime.IBMBackend.defaults" />
+  ### qubit\_properties
 
-`defaults(refresh=False)`
+  <Function id="qiskit_ibm_runtime.IBMBackend.qubit_properties" name="qubit_properties" signature="qubit_properties(qubit)">
+    Return QubitProperties for a given qubit.
 
-Return the pulse defaults for the backend.
+    If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
 
-The schema for default pulse configuration can be found in [Qiskit/ibm-quantum-schemas/default\_pulse\_configuration](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json).
+    **Parameters**
 
-**Parameters**
+    **qubit** (`Union`\[`int`, `List`\[`int`]]) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
 
-**refresh** (`bool`) – If `True`, re-query the server for the backend pulse defaults. Otherwise, return a cached version.
+    **Return type**
 
-**Return type**
+    `Union`\[`QubitProperties`, `List`\[`QubitProperties`]]
 
-`Optional`\[`PulseDefaults`]
+    **Returns**
 
-**Returns**
+    The `QubitProperties` object for the specified qubit. If a list of qubits is provided a list will be returned. If properties are missing for a qubit this can be `None`.
 
-The backend pulse defaults or `None` if the backend does not support pulse.
+    **Raises**
 
-### drive\_channel
+    **NotImplementedError** – if the backend doesn’t support querying the qubit properties
+  </Function>
 
-<span id="qiskit_ibm_runtime.IBMBackend.drive_channel" />
+  ### run
 
-`drive_channel(qubit)`
+  <Function id="qiskit_ibm_runtime.IBMBackend.run" name="run" signature="run(circuits, dynamic=None, job_tags=None, init_circuit=None, init_num_resets=None, header=None, shots=None, memory=None, meas_level=None, meas_return=None, rep_delay=None, init_qubits=None, use_measure_esp=None, noise_model=None, seed_simulator=None, **run_config)">
+    Run on the backend. If a keyword specified here is also present in the `options` attribute/object, the value specified here will be used for this run.
 
-Return the drive channel for the given qubit.
+    **Parameters**
 
-**Returns**
+    *   **circuits** (`Union`\[`QuantumCircuit`, `str`, `List`\[`Union`\[`QuantumCircuit`, `str`]]]) – An individual or a list of `QuantumCircuit`.
 
-The Qubit drive channel
+    *   **dynamic** (`Optional`\[`bool`]) – Whether the circuit is dynamic (uses in-circuit conditionals)
 
-**Return type**
+    *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job. The tags can subsequently be used as a filter in the `jobs()` function call.
 
-DriveChannel
+    *   **init\_circuit** (`Optional`\[`QuantumCircuit`]) – A quantum circuit to execute for initializing qubits before each circuit. If specified, `init_num_resets` is ignored. Applicable only if `dynamic=True` is specified.
 
-### measure\_channel
+    *   **init\_num\_resets** (`Optional`\[`int`]) – The number of qubit resets to insert before each circuit execution.
 
-<span id="qiskit_ibm_runtime.IBMBackend.measure_channel" />
+    *   **or** (*The following parameters are applicable only if dynamic=False is specified*) –
 
-`measure_channel(qubit)`
+    *   **to.** (*defaulted*) –
 
-Return the measure stimulus channel for the given qubit.
+    *   **header** (`Optional`\[`Dict`]) – User input that will be attached to the job and will be copied to the corresponding result header. Headers do not affect the run. This replaces the old `Qobj` header.
 
-**Returns**
+    *   **shots** (`Union`\[`int`, `float`, `None`]) – Number of repetitions of each circuit, for sampling. Default: 4000 or `max_shots` from the backend configuration, whichever is smaller.
 
-The Qubit measurement stimulus line
+    *   **memory** (`Optional`\[`bool`]) – If `True`, per-shot measurement bitstrings are returned as well (provided the backend supports it). For OpenPulse jobs, only measurement level 2 supports this option.
 
-**Return type**
+    *   **meas\_level** (`Union`\[`int`, `MeasLevel`, `None`]) –
 
-MeasureChannel
+        Level of the measurement output for pulse experiments. See [OpenPulse specification](https://arxiv.org/pdf/1809.03452.pdf) for details:
 
-### open\_session
+        *   `0`, measurements of the raw signal (the measurement output pulse envelope)
+        *   `1`, measurement kernel is selected (a complex number obtained after applying the measurement kernel to the measurement output signal)
+        *   `2` (default), a discriminator is selected and the qubit state is stored (0 or 1)
 
-<span id="qiskit_ibm_runtime.IBMBackend.open_session" />
+    *   **meas\_return** (`Union`\[`str`, `MeasReturnType`, `None`]) –
 
-`open_session()`
+        Level of measurement data for the backend to return. For `meas_level` 0 and 1:
 
-Open session
+        *   `single` returns information from every shot.
+        *   `avg` returns average measurement output (averaged over number of shots).
 
-**Return type**
+    *   **rep\_delay** (`Optional`\[`float`]) – Delay between programs in seconds. Only supported on certain backends (if `backend.configuration().dynamic_reprate_enabled=True`). If supported, `rep_delay` must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is given by `backend.configuration().default_rep_delay`.
 
-`Session`
+    *   **init\_qubits** (`Optional`\[`bool`]) – Whether to reset the qubits to the ground state for each shot. Default: `True`.
 
-### properties
+    *   **use\_measure\_esp** (`Optional`\[`bool`]) – Whether to use excited state promoted (ESP) readout for measurements which are the terminal instruction to a qubit. ESP readout can offer higher fidelity than standard measurement sequences. See [here](https://arxiv.org/pdf/2008.08571.pdf). Default: `True` if backend supports ESP readout, else `False`. Backend support for ESP readout is determined by the flag `measure_esp_enabled` in `backend.configuration()`.
 
-<span id="qiskit_ibm_runtime.IBMBackend.properties" />
+    *   **noise\_model** (`Optional`\[`Any`]) – Noise model. (Simulators only)
 
-`properties(refresh=False, datetime=None)`
+    *   **seed\_simulator** (`Optional`\[`int`]) – Random seed to control sampling. (Simulators only)
 
-Return the backend properties, subject to optional filtering.
+    *   **\*\*run\_config** – Extra arguments used to configure the run.
 
-This data describes qubits properties (such as T1 and T2), gates properties (such as gate length and error), and other general properties of the backend.
+    **Return type**
 
-The schema for backend properties can be found in [Qiskit/ibm-quantum-schemas/backend\_properties](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json).
+    [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
 
-**Parameters**
+    **Returns**
 
-*   **refresh** (`bool`) – If `True`, re-query the server for the backend properties. Otherwise, return a cached version.
-*   **datetime** (`Optional`\[`datetime`]) – By specifying datetime, this function returns an instance of the `BackendProperties` whose timestamp is closest to, but older than, the specified datetime. Note that this is only supported using `ibm_quantum` runtime.
+    The job to be executed.
 
-**Return type**
+    **Raises**
 
-`Optional`\[`BackendProperties`]
+    *   **IBMBackendApiError** – If an unexpected error occurred while submitting the job.
 
-**Returns**
+    *   **IBMBackendApiProtocolError** – If an unexpected value received from the server.
 
-The backend properties or `None` if the backend properties are not currently available.
+    *   **IBMBackendValueError** –
 
-**Raises**
+        *   If an input parameter value is not valid. - If ESP readout is used and the backend does not support this.
+  </Function>
 
-*   **TypeError** – If an input argument is not of the correct type.
-*   **NotImplementedError** – If datetime is specified when cloud runtime is used.
+  ### set\_options
 
-### qubit\_properties
+  <Function id="qiskit_ibm_runtime.IBMBackend.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-<span id="qiskit_ibm_runtime.IBMBackend.qubit_properties" />
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-`qubit_properties(qubit)`
+    **Parameters**
 
-Return QubitProperties for a given qubit.
+    **fields** – The fields to update the options
 
-If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
+    **Raises**
 
-**Parameters**
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-**qubit** (`Union`\[`int`, `List`\[`int`]]) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
+  ### status
 
-**Return type**
+  <Function id="qiskit_ibm_runtime.IBMBackend.status" name="status" signature="status()">
+    Return the backend status.
 
-`Union`\[`QubitProperties`, `List`\[`QubitProperties`]]
+    <Admonition title="Note" type="note">
+      If the returned `BackendStatus` instance has `operational=True` but `status_msg="internal"`, then the backend is accepting jobs but not processing them.
+    </Admonition>
 
-**Returns**
+    **Return type**
 
-The `QubitProperties` object for the specified qubit. If a list of qubits is provided a list will be returned. If properties are missing for a qubit this can be `None`.
+    `BackendStatus`
 
-**Raises**
+    **Returns**
 
-**NotImplementedError** – if the backend doesn’t support querying the qubit properties
+    The status of the backend.
 
-### run
+    **Raises**
 
-<span id="qiskit_ibm_runtime.IBMBackend.run" />
+    **IBMBackendApiProtocolError** – If the status for the backend cannot be formatted properly.
+  </Function>
 
-`run(circuits, dynamic=None, job_tags=None, init_circuit=None, init_num_resets=None, header=None, shots=None, memory=None, meas_level=None, meas_return=None, rep_delay=None, init_qubits=None, use_measure_esp=None, noise_model=None, seed_simulator=None, **run_config)`
+  ### target\_history
 
-Run on the backend. If a keyword specified here is also present in the `options` attribute/object, the value specified here will be used for this run.
-
-**Parameters**
-
-*   **circuits** (`Union`\[`QuantumCircuit`, `str`, `List`\[`Union`\[`QuantumCircuit`, `str`]]]) – An individual or a list of `QuantumCircuit`.
-
-*   **dynamic** (`Optional`\[`bool`]) – Whether the circuit is dynamic (uses in-circuit conditionals)
-
-*   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job. The tags can subsequently be used as a filter in the `jobs()` function call.
-
-*   **init\_circuit** (`Optional`\[`QuantumCircuit`]) – A quantum circuit to execute for initializing qubits before each circuit. If specified, `init_num_resets` is ignored. Applicable only if `dynamic=True` is specified.
-
-*   **init\_num\_resets** (`Optional`\[`int`]) – The number of qubit resets to insert before each circuit execution.
-
-*   **or** (*The following parameters are applicable only if dynamic=False is specified*) –
-
-*   **to.** (*defaulted*) –
-
-*   **header** (`Optional`\[`Dict`]) – User input that will be attached to the job and will be copied to the corresponding result header. Headers do not affect the run. This replaces the old `Qobj` header.
-
-*   **shots** (`Union`\[`int`, `float`, `None`]) – Number of repetitions of each circuit, for sampling. Default: 4000 or `max_shots` from the backend configuration, whichever is smaller.
-
-*   **memory** (`Optional`\[`bool`]) – If `True`, per-shot measurement bitstrings are returned as well (provided the backend supports it). For OpenPulse jobs, only measurement level 2 supports this option.
-
-*   **meas\_level** (`Union`\[`int`, `MeasLevel`, `None`]) –
-
-    Level of the measurement output for pulse experiments. See [OpenPulse specification](https://arxiv.org/pdf/1809.03452.pdf) for details:
-
-    *   `0`, measurements of the raw signal (the measurement output pulse envelope)
-    *   `1`, measurement kernel is selected (a complex number obtained after applying the measurement kernel to the measurement output signal)
-    *   `2` (default), a discriminator is selected and the qubit state is stored (0 or 1)
-
-*   **meas\_return** (`Union`\[`str`, `MeasReturnType`, `None`]) –
-
-    Level of measurement data for the backend to return. For `meas_level` 0 and 1:
-
-    *   `single` returns information from every shot.
-    *   `avg` returns average measurement output (averaged over number of shots).
-
-*   **rep\_delay** (`Optional`\[`float`]) – Delay between programs in seconds. Only supported on certain backends (if `backend.configuration().dynamic_reprate_enabled=True`). If supported, `rep_delay` must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is given by `backend.configuration().default_rep_delay`.
-
-*   **init\_qubits** (`Optional`\[`bool`]) – Whether to reset the qubits to the ground state for each shot. Default: `True`.
-
-*   **use\_measure\_esp** (`Optional`\[`bool`]) – Whether to use excited state promoted (ESP) readout for measurements which are the terminal instruction to a qubit. ESP readout can offer higher fidelity than standard measurement sequences. See [here](https://arxiv.org/pdf/2008.08571.pdf). Default: `True` if backend supports ESP readout, else `False`. Backend support for ESP readout is determined by the flag `measure_esp_enabled` in `backend.configuration()`.
-
-*   **noise\_model** (`Optional`\[`Any`]) – Noise model. (Simulators only)
-
-*   **seed\_simulator** (`Optional`\[`int`]) – Random seed to control sampling. (Simulators only)
-
-*   **\*\*run\_config** – Extra arguments used to configure the run.
-
-**Return type**
-
-[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
-
-**Returns**
-
-The job to be executed.
-
-**Raises**
-
-*   **IBMBackendApiError** – If an unexpected error occurred while submitting the job.
-
-*   **IBMBackendApiProtocolError** – If an unexpected value received from the server.
-
-*   **IBMBackendValueError** –
-
-    *   If an input parameter value is not valid. - If ESP readout is used and the backend does not support this.
-
-### set\_options
-
-<span id="qiskit_ibm_runtime.IBMBackend.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit_ibm_runtime.IBMBackend.status" />
-
-`status()`
-
-Return the backend status.
-
-<Admonition title="Note" type="note">
-  If the returned `BackendStatus` instance has `operational=True` but `status_msg="internal"`, then the backend is accepting jobs but not processing them.
-</Admonition>
-
-**Return type**
-
-`BackendStatus`
-
-**Returns**
-
-The status of the backend.
-
-**Raises**
-
-**IBMBackendApiProtocolError** – If the status for the backend cannot be formatted properly.
-
-### target\_history
-
-<span id="qiskit_ibm_runtime.IBMBackend.target_history" />
-
-`target_history(datetime=None)`
-
-A `qiskit.transpiler.Target` object for the backend. :rtype: `Target` :returns: Target with properties found on datetime
+  <Function id="qiskit_ibm_runtime.IBMBackend.target_history" name="target_history" signature="target_history(datetime=None)">
+    A `qiskit.transpiler.Target` object for the backend. :rtype: `Target` :returns: Target with properties found on datetime
+  </Function>
+</Class>
 

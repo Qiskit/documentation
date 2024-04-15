@@ -8,95 +8,85 @@ python_api_name: qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCod
 
 # ErrorCorrectingCode
 
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode" />
+<Class id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py" signature="ErrorCorrectingCode(code_size=4)">
+  Bases: `qiskit.aqua.components.multiclass_extensions.multiclass_extension.MulticlassExtension`
 
-`ErrorCorrectingCode(code_size=4)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py "view source code")
+  The Error Correcting Code multiclass extension.
 
-Bases: `qiskit.aqua.components.multiclass_extensions.multiclass_extension.MulticlassExtension`
+  Error Correcting Code (ECC) is an ensemble method designed for the multiclass classification problem. As for the other multiclass methods, the task is to decide one label from $k > 2$ possible choices.
 
-The Error Correcting Code multiclass extension.
+  |       |           |       |       |       |       |       |
+  | ----- | --------- | ----- | ----- | ----- | ----- | ----- |
+  | Class | Code Word |       |       |       |       |       |
+  |       | $f_0$     | $f_1$ | $f_2$ | $f_3$ | $f_4$ | $f_5$ |
+  | 1     | 0         | 1     | 0     | 1     | 0     | 1     |
+  | 2     | 1         | 0     | 0     | 1     | 0     | 0     |
+  | 3     | 1         | 1     | 1     | 0     | 0     | 0     |
 
-Error Correcting Code (ECC) is an ensemble method designed for the multiclass classification problem. As for the other multiclass methods, the task is to decide one label from $k > 2$ possible choices.
+  The table above shows a 6-bit ECC for a 3-class problem. Each class is assigned a unique binary string of length 6. The string is also called a **codeword**. For example, class 2 has codeword `100100`. During training, one binary classifier is learned for each column. For example, for the first column, ECC builds a binary classifier to separate $\{2, 3\}$ from $\{1\}$. Thus, 6 binary classifiers are trained in this way. To classify a new data point $\mathbf{x}$, all 6 binary classifiers are evaluated to obtain a 6-bit string. Finally, we choose the class whose bitstring is closest to $\mathbf{x}$’s output string as the predicted label. This implementation of ECC uses the Euclidean distance.
 
-|       |           |       |       |       |       |       |
-| ----- | --------- | ----- | ----- | ----- | ----- | ----- |
-| Class | Code Word |       |       |       |       |       |
-|       | $f_0$     | $f_1$ | $f_2$ | $f_3$ | $f_4$ | $f_5$ |
-| 1     | 0         | 1     | 0     | 1     | 0     | 1     |
-| 2     | 1         | 0     | 0     | 1     | 0     | 0     |
-| 3     | 1         | 1     | 1     | 0     | 0     | 0     |
+  **Parameters**
 
-The table above shows a 6-bit ECC for a 3-class problem. Each class is assigned a unique binary string of length 6. The string is also called a **codeword**. For example, class 2 has codeword `100100`. During training, one binary classifier is learned for each column. For example, for the first column, ECC builds a binary classifier to separate $\{2, 3\}$ from $\{1\}$. Thus, 6 binary classifiers are trained in this way. To classify a new data point $\mathbf{x}$, all 6 binary classifiers are evaluated to obtain a 6-bit string. Finally, we choose the class whose bitstring is closest to $\mathbf{x}$’s output string as the predicted label. This implementation of ECC uses the Euclidean distance.
+  **code\_size** (`int`) – Size of error correcting code
 
-**Parameters**
+  ## Methods
 
-**code\_size** (`int`) – Size of error correcting code
+  ### predict
 
-## Methods
+  <Function id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.predict" name="predict" signature="ErrorCorrectingCode.predict(x)">
+    Applying multiple estimators for prediction.
 
-### predict
+    **Parameters**
 
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.predict" />
+    **x** (*numpy.ndarray*) – NxD array
 
-`ErrorCorrectingCode.predict(x)`
+    **Returns**
 
-Applying multiple estimators for prediction.
+    predicted labels, Nx1 array
 
-**Parameters**
+    **Return type**
 
-**x** (*numpy.ndarray*) – NxD array
+    numpy.ndarray
+  </Function>
 
-**Returns**
+  ### set\_estimator
 
-predicted labels, Nx1 array
+  <Function id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.set_estimator" name="set_estimator" signature="ErrorCorrectingCode.set_estimator(estimator_cls, params=None)">
+    Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
 
-**Return type**
+    **Return type**
 
-numpy.ndarray
+    `None`
+  </Function>
 
-### set\_estimator
+  ### test
 
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.set_estimator" />
+  <Function id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test" name="test" signature="ErrorCorrectingCode.test(x, y)">
+    Testing multiple estimators each for distinguishing a pair of classes.
 
-`ErrorCorrectingCode.set_estimator(estimator_cls, params=None)`
+    **Parameters**
 
-Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
+    *   **x** (*numpy.ndarray*) – input points
+    *   **y** (*numpy.ndarray*) – input labels
 
-**Return type**
+    **Returns**
 
-`None`
+    accuracy
 
-### test
+    **Return type**
 
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test" />
+    float
+  </Function>
 
-`ErrorCorrectingCode.test(x, y)`
+  ### train
 
-Testing multiple estimators each for distinguishing a pair of classes.
+  <Function id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train" name="train" signature="ErrorCorrectingCode.train(x, y)">
+    Training multiple estimators each for distinguishing a pair of classes.
 
-**Parameters**
+    **Parameters**
 
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
-
-**Returns**
-
-accuracy
-
-**Return type**
-
-float
-
-### train
-
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train" />
-
-`ErrorCorrectingCode.train(x, y)`
-
-Training multiple estimators each for distinguishing a pair of classes.
-
-**Parameters**
-
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
+    *   **x** (*numpy.ndarray*) – input points
+    *   **y** (*numpy.ndarray*) – input labels
+  </Function>
+</Class>
 

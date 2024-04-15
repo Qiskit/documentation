@@ -10,75 +10,65 @@ python_api_name: qiskit.ignis.verification.Plotter
 
 # qiskit.ignis.verification.Plotter
 
-<span id="qiskit.ignis.verification.Plotter" />
+<Class id="qiskit.ignis.verification.Plotter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/entanglement/analysis.py" signature="Plotter(label)">
+  Various plots of the ground state in MQC and PO experiments
 
-`Plotter(label)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/entanglement/analysis.py "view source code")
+  ### \_\_init\_\_
 
-Various plots of the ground state in MQC and PO experiments
+  <Function id="qiskit.ignis.verification.Plotter.__init__" name="__init__" signature="__init__(label)">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.ignis.verification.Plotter.__init__" />
+  |                                                                                                                                                         |                                                  |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+  | [`__init__`](#qiskit.ignis.verification.Plotter.__init__ "qiskit.ignis.verification.Plotter.__init__")(label)                                           | Initialize self.                                 |
+  | [`get_fourier_info`](#qiskit.ignis.verification.Plotter.get_fourier_info "qiskit.ignis.verification.Plotter.get_fourier_info")(qn, x, y, y\_m, p\_dict) | Get fourier trans.                               |
+  | [`sin_plotter`](#qiskit.ignis.verification.Plotter.sin_plotter "qiskit.ignis.verification.Plotter.sin_plotter")(x, y\[, y\_m])                          | Make sin plot of counts in both mqc and po exps. |
+  | [`title_maker`](#qiskit.ignis.verification.Plotter.title_maker "qiskit.ignis.verification.Plotter.title_maker")()                                       | Make title depending on type of exp.             |
 
-`__init__(label)`
+  ### get\_fourier\_info
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.ignis.verification.Plotter.get_fourier_info" name="get_fourier_info" signature="get_fourier_info(qn, x, y, y_m, p_dict)">
+    Get fourier trans. data/plot of both mqc and po exps. :type qn: `int` :param qn: Number of qubits :type x: `array` :param x: Phase series :type y: `array` :param y: Counts series :type y\_m: `array` :param y\_m: Mitigated counts series :type p\_dict: `Dict` :param p\_dict: probabilities dictionary
 
-## Methods
+    **Return type**
 
-|                                                                                                                                                         |                                                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| [`__init__`](#qiskit.ignis.verification.Plotter.__init__ "qiskit.ignis.verification.Plotter.__init__")(label)                                           | Initialize self.                                 |
-| [`get_fourier_info`](#qiskit.ignis.verification.Plotter.get_fourier_info "qiskit.ignis.verification.Plotter.get_fourier_info")(qn, x, y, y\_m, p\_dict) | Get fourier trans.                               |
-| [`sin_plotter`](#qiskit.ignis.verification.Plotter.sin_plotter "qiskit.ignis.verification.Plotter.sin_plotter")(x, y\[, y\_m])                          | Make sin plot of counts in both mqc and po exps. |
-| [`title_maker`](#qiskit.ignis.verification.Plotter.title_maker "qiskit.ignis.verification.Plotter.title_maker")()                                       | Make title depending on type of exp.             |
+    `Dict`
 
-### get\_fourier\_info
+    **Returns**
 
-<span id="qiskit.ignis.verification.Plotter.get_fourier_info" />
+    The fourier transform data
 
-`get_fourier_info(qn, x, y, y_m, p_dict)`
+    **Raises**
 
-Get fourier trans. data/plot of both mqc and po exps. :type qn: `int` :param qn: Number of qubits :type x: `array` :param x: Phase series :type y: `array` :param y: Counts series :type y\_m: `array` :param y\_m: Mitigated counts series :type p\_dict: `Dict` :param p\_dict: probabilities dictionary
+    *   **ImportError** – If matplotlib is not present
+    *   **Exception** – If y\_m or p\_dict are not provided
+  </Function>
 
-**Return type**
+  ### sin\_plotter
 
-`Dict`
+  <Function id="qiskit.ignis.verification.Plotter.sin_plotter" name="sin_plotter" signature="sin_plotter(x, y, y_m=None)">
+    Make sin plot of counts in both mqc and po exps. :type x: `array` :param x: Phase series :type y: `array` :param y: Counts series :type y\_m: `Optional`\[`array`] :param y\_m: Mitigated counts series
 
-**Returns**
+    **Raises**
 
-The fourier transform data
+    **ImportError** – If matplotlib is not present
+  </Function>
 
-**Raises**
+  ### title\_maker
 
-*   **ImportError** – If matplotlib is not present
-*   **Exception** – If y\_m or p\_dict are not provided
+  <Function id="qiskit.ignis.verification.Plotter.title_maker" name="title_maker" signature="title_maker()">
+    Make title depending on type of exp.
 
-### sin\_plotter
+    **Return type**
 
-<span id="qiskit.ignis.verification.Plotter.sin_plotter" />
+    `Tuple`\[`str`, `str`]
 
-`sin_plotter(x, y, y_m=None)`
+    **Returns**
 
-Make sin plot of counts in both mqc and po exps. :type x: `array` :param x: Phase series :type y: `array` :param y: Counts series :type y\_m: `Optional`\[`array`] :param y\_m: Mitigated counts series
-
-**Raises**
-
-**ImportError** – If matplotlib is not present
-
-### title\_maker
-
-<span id="qiskit.ignis.verification.Plotter.title_maker" />
-
-`title_maker()`
-
-Make title depending on type of exp.
-
-**Return type**
-
-`Tuple`\[`str`, `str`]
-
-**Returns**
-
-The title strings
+    The title strings
+  </Function>
+</Class>
 

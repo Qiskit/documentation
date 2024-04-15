@@ -8,48 +8,46 @@ python_api_name: qiskit.circuit.Clbit
 
 # Clbit
 
-<span id="qiskit.circuit.Clbit" />
+<Class id="qiskit.circuit.Clbit" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/classicalregister.py" signature="qiskit.circuit.Clbit(register=None, index=None)">
+  Bases: [`Bit`](qiskit.circuit.Bit "qiskit.circuit.bit.Bit")
 
-`qiskit.circuit.Clbit(register=None, index=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/classicalregister.py "view source code")
+  Implement a classical bit.
 
-Bases: [`Bit`](qiskit.circuit.Bit "qiskit.circuit.bit.Bit")
+  Creates a classical bit.
 
-Implement a classical bit.
+  **Parameters**
 
-Creates a classical bit.
+  *   **register** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")) – Optional. A classical register containing the bit.
+  *   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The index of the bit in its containing register.
 
-**Parameters**
+  **Raises**
 
-*   **register** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")) – Optional. A classical register containing the bit.
-*   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The index of the bit in its containing register.
+  [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the provided register is not a valid [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")
 
-**Raises**
+  ## Attributes
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the provided register is not a valid [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")
+  ### index
 
-## Attributes
+  <Attribute id="qiskit.circuit.Clbit.index" name="index">
+    Get the index of an old-style bit in the register that owns it.
 
-<span id="qiskit.circuit.Clbit.index" />
+    In modern Qiskit Terra (version 0.17+), bits are the fundamental object and registers are aliases to collections of bits. A bit can be in many registers depending on the circuit, so a single containing register is no longer a property of a bit. It is an error to access this attribute on bits that were not constructed as “owned” by a register.
 
-### index
+    <Admonition title="Deprecated since version 0.17" type="danger">
+      The property `qiskit.circuit.bit.Bit.index` is deprecated as of qiskit-terra 0.17. It will be removed no earlier than 3 months after the release date. Instead, use `find_bit()` to find all the containing registers within a circuit and the index of the bit within the circuit.
+    </Admonition>
+  </Attribute>
 
-Get the index of an old-style bit in the register that owns it.
+  ### register
 
-In modern Qiskit Terra (version 0.17+), bits are the fundamental object and registers are aliases to collections of bits. A bit can be in many registers depending on the circuit, so a single containing register is no longer a property of a bit. It is an error to access this attribute on bits that were not constructed as “owned” by a register.
+  <Attribute id="qiskit.circuit.Clbit.register" name="register">
+    Get the register of an old-style bit.
 
-<Admonition title="Deprecated since version 0.17" type="danger">
-  The property `qiskit.circuit.bit.Bit.index` is deprecated as of qiskit-terra 0.17. It will be removed no earlier than 3 months after the release date. Instead, use `find_bit()` to find all the containing registers within a circuit and the index of the bit within the circuit.
-</Admonition>
+    In modern Qiskit Terra (version 0.17+), bits are the fundamental object and registers are aliases to collections of bits. A bit can be in many registers depending on the circuit, so a single containing register is no longer a property of a bit. It is an error to access this attribute on bits that were not constructed as “owned” by a register.
 
-<span id="qiskit.circuit.Clbit.register" />
-
-### register
-
-Get the register of an old-style bit.
-
-In modern Qiskit Terra (version 0.17+), bits are the fundamental object and registers are aliases to collections of bits. A bit can be in many registers depending on the circuit, so a single containing register is no longer a property of a bit. It is an error to access this attribute on bits that were not constructed as “owned” by a register.
-
-<Admonition title="Deprecated since version 0.17" type="danger">
-  The property `qiskit.circuit.bit.Bit.register` is deprecated as of qiskit-terra 0.17. It will be removed no earlier than 3 months after the release date. Instead, use `find_bit()` to find all the containing registers within a circuit and the index of the bit within the circuit.
-</Admonition>
+    <Admonition title="Deprecated since version 0.17" type="danger">
+      The property `qiskit.circuit.bit.Bit.register` is deprecated as of qiskit-terra 0.17. It will be removed no earlier than 3 months after the release date. Instead, use `find_bit()` to find all the containing registers within a circuit and the index of the bit within the circuit.
+    </Admonition>
+  </Attribute>
+</Class>
 

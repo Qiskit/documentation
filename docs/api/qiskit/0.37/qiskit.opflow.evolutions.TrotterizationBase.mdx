@@ -8,49 +8,45 @@ python_api_name: qiskit.opflow.evolutions.TrotterizationBase
 
 # TrotterizationBase
 
-<span id="qiskit.opflow.evolutions.TrotterizationBase" />
+<Class id="qiskit.opflow.evolutions.TrotterizationBase" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/evolutions/trotterizations/trotterization_base.py" signature="TrotterizationBase(reps=1)">
+  Bases: [`qiskit.opflow.evolutions.evolution_base.EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.evolution_base.EvolutionBase")
 
-`TrotterizationBase(reps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/evolutions/trotterizations/trotterization_base.py "view source code")
+  A base for Trotterization methods, algorithms for approximating exponentiations of operator sums by compositions of exponentiations.
 
-Bases: [`qiskit.opflow.evolutions.evolution_base.EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.evolution_base.EvolutionBase")
+  ## Methods Defined Here
 
-A base for Trotterization methods, algorithms for approximating exponentiations of operator sums by compositions of exponentiations.
+  ### convert
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.evolutions.TrotterizationBase.convert" name="convert" signature="abstract TrotterizationBase.convert(operator)">
+    Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 
-### convert
+    **Parameters**
 
-<span id="qiskit.opflow.evolutions.TrotterizationBase.convert" />
+    **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
 
-`abstract TrotterizationBase.convert(operator)`
+    **Return type**
 
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
+    [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 
-**Parameters**
+    **Returns**
 
-**operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
+    The Operator approximating op\_sum’s evolution.
 
-**Return type**
+    **Raises**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    **TypeError** – A non-SummedOps Operator is passed into `convert`.
+  </Function>
 
-**Returns**
+  ## Attributes
 
-The Operator approximating op\_sum’s evolution.
+  ### reps
 
-**Raises**
+  <Attribute id="qiskit.opflow.evolutions.TrotterizationBase.reps" name="reps">
+    The number of repetitions to use in the Trotterization, improving the approximation accuracy.
 
-**TypeError** – A non-SummedOps Operator is passed into `convert`.
+    **Return type**
 
-## Attributes
-
-<span id="qiskit.opflow.evolutions.TrotterizationBase.reps" />
-
-### reps
-
-The number of repetitions to use in the Trotterization, improving the approximation accuracy.
-
-**Return type**
-
-`int`
+    `int`
+  </Attribute>
+</Class>
 

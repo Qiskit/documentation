@@ -8,315 +8,295 @@ python_api_name: qiskit.algorithms.optimizers.UMDA
 
 # UMDA
 
-<span id="qiskit.algorithms.optimizers.UMDA" />
+<Class id="qiskit.algorithms.optimizers.UMDA" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/umda.py" signature="UMDA(maxiter=100, size_gen=20, alpha=0.5)">
+  Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
-`UMDA(maxiter=100, size_gen=20, alpha=0.5)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/umda.py "view source code")
+  Continuous Univariate Marginal Distribution Algorithm (UMDA).
 
-Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
+  UMDA \[1] is a specific type of Estimation of Distribution Algorithm (EDA) where new individuals are sampled from univariate normal distributions and are updated in each iteration of the algorithm by the best individuals found in the previous iteration.
 
-Continuous Univariate Marginal Distribution Algorithm (UMDA).
+  <Admonition title="See also" type="note">
+    This original implementation of the UDMA optimizer for Qiskit was inspired by my (Vicente P. Soloviev) work on the EDAspy Python package \[2].
+  </Admonition>
 
-UMDA \[1] is a specific type of Estimation of Distribution Algorithm (EDA) where new individuals are sampled from univariate normal distributions and are updated in each iteration of the algorithm by the best individuals found in the previous iteration.
+  EDAs are stochastic search algorithms and belong to the family of the evolutionary algorithms. The main difference is that EDAs have a probabilistic model which is updated in each iteration from the best individuals of previous generations (elite selection). Depending on the complexity of the probabilistic model, EDAs can be classified in different ways. In this case, UMDA is a univariate EDA as the embedded probabilistic model is univariate.
 
-<Admonition title="See also" type="note">
-  This original implementation of the UDMA optimizer for Qiskit was inspired by my (Vicente P. Soloviev) work on the EDAspy Python package \[2].
-</Admonition>
+  UMDA has been compared to some of the already implemented algorithms in Qiskit library to optimize the parameters of variational algorithms such as QAOA or VQE and competitive results have been obtained \[1]. UMDA seems to provide very good solutions for those circuits in which the number of layers is not big.
 
-EDAs are stochastic search algorithms and belong to the family of the evolutionary algorithms. The main difference is that EDAs have a probabilistic model which is updated in each iteration from the best individuals of previous generations (elite selection). Depending on the complexity of the probabilistic model, EDAs can be classified in different ways. In this case, UMDA is a univariate EDA as the embedded probabilistic model is univariate.
+  The optimization process can be personalized depending on the paremeters chosen in the initialization. The main parameter is the population size. The bigger it is, the final result will be better. However, this increases the complexity of the algorithm and the runtime will be much heavier. In the work \[1] different experiments have been performed where population size has been set to 20 - 30.
 
-UMDA has been compared to some of the already implemented algorithms in Qiskit library to optimize the parameters of variational algorithms such as QAOA or VQE and competitive results have been obtained \[1]. UMDA seems to provide very good solutions for those circuits in which the number of layers is not big.
+  <Admonition title="Note" type="note">
+    The UMDA implementation has more parameters but these have default values for the initialization for better understanding of the user. For example, `lpha` parameter has been set to 0.5 and is the percentage of the population which is selected in each iteration to update the probabilistic model.
+  </Admonition>
 
-The optimization process can be personalized depending on the paremeters chosen in the initialization. The main parameter is the population size. The bigger it is, the final result will be better. However, this increases the complexity of the algorithm and the runtime will be much heavier. In the work \[1] different experiments have been performed where population size has been set to 20 - 30.
+  **Example**
 
-<Admonition title="Note" type="note">
-  The UMDA implementation has more parameters but these have default values for the initialization for better understanding of the user. For example, `lpha` parameter has been set to 0.5 and is the percentage of the population which is selected in each iteration to update the probabilistic model.
-</Admonition>
+  This short example runs UMDA to optimize the parameters of a variational algorithm. Here we will use the same operator as used in the algorithms introduction, which was originally computed by Qiskit Nature for an H2 molecule. The minimum energy of the H2 Hamiltonian can be found quite easily so we are able to set maxiters to a small value.
 
-**Example**
+  ```python
+  from qiskit.opflow import X, Z, I
+  from qiskit import Aer
+  from qiskit.algorithms.optimizers import UMDA
+  from qiskit.algorithms import QAOA
+  from qiskit.utils import QuantumInstance
 
-This short example runs UMDA to optimize the parameters of a variational algorithm. Here we will use the same operator as used in the algorithms introduction, which was originally computed by Qiskit Nature for an H2 molecule. The minimum energy of the H2 Hamiltonian can be found quite easily so we are able to set maxiters to a small value.
 
-```python
-from qiskit.opflow import X, Z, I
-from qiskit import Aer
-from qiskit.algorithms.optimizers import UMDA
-from qiskit.algorithms import QAOA
-from qiskit.utils import QuantumInstance
+  H2_op = (-1.052373245772859 * I ^ I) +             (0.39793742484318045 * I ^ Z) +             (-0.39793742484318045 * Z ^ I) +             (-0.01128010425623538 * Z ^ Z) +             (0.18093119978423156 * X ^ X)
 
+  p = 2  # Toy example: 2 layers with 2 parameters in each layer: 4 variables
 
-H2_op = (-1.052373245772859 * I ^ I) +             (0.39793742484318045 * I ^ Z) +             (-0.39793742484318045 * Z ^ I) +             (-0.01128010425623538 * Z ^ Z) +             (0.18093119978423156 * X ^ X)
+  opt = UMDA(maxiter=100, size_gen=20)
 
-p = 2  # Toy example: 2 layers with 2 parameters in each layer: 4 variables
+  backend = Aer.get_backend('statevector_simulator')
+  vqe = QAOA(opt,
+             quantum_instance=QuantumInstance(backend=backend),
+             reps=p)
 
-opt = UMDA(maxiter=100, size_gen=20)
+  result = vqe.compute_minimum_eigenvalue(operator=H2_op)
+  ```
 
-backend = Aer.get_backend('statevector_simulator')
-vqe = QAOA(opt,
-           quantum_instance=QuantumInstance(backend=backend),
-           reps=p)
+  If it is desired to modify the percentage of individuals considered to update the probabilistic model, then this code can be used. Here for example we set the 60% instead of the 50% predefined.
 
-result = vqe.compute_minimum_eigenvalue(operator=H2_op)
-```
+  ```python
+  opt = UMDA(maxiter=100, size_gen=20, alpha = 0.6)
 
-If it is desired to modify the percentage of individuals considered to update the probabilistic model, then this code can be used. Here for example we set the 60% instead of the 50% predefined.
+  backend = Aer.get_backend('statevector_simulator')
+  vqe = QAOA(opt,
+             quantum_instance=QuantumInstance(backend=backend),
+             reps=p)
 
-```python
-opt = UMDA(maxiter=100, size_gen=20, alpha = 0.6)
+  result = vqe.compute_minimum_eigenvalue(operator=qubit_op)
+  ```
 
-backend = Aer.get_backend('statevector_simulator')
-vqe = QAOA(opt,
-           quantum_instance=QuantumInstance(backend=backend),
-           reps=p)
+  **References**
 
-result = vqe.compute_minimum_eigenvalue(operator=qubit_op)
-```
+  \[1]: Vicente P. Soloviev, Pedro Larrañaga and Concha Bielza (2022, July). Quantum Parametric Circuit Optimization with Estimation of Distribution Algorithms. In 2022 The Genetic and Evolutionary Computation Conference (GECCO). DOI: [https://doi.org/10.1145/3520304.3533963](https://doi.org/10.1145/3520304.3533963)
 
-**References**
+  \[2]: Vicente P. Soloviev. Python package EDAspy. [https://github.com/VicentePerezSoloviev/EDAspy](https://github.com/VicentePerezSoloviev/EDAspy).
 
-\[1]: Vicente P. Soloviev, Pedro Larrañaga and Concha Bielza (2022, July). Quantum Parametric Circuit Optimization with Estimation of Distribution Algorithms. In 2022 The Genetic and Evolutionary Computation Conference (GECCO). DOI: [https://doi.org/10.1145/3520304.3533963](https://doi.org/10.1145/3520304.3533963)
+  **Parameters**
 
-\[2]: Vicente P. Soloviev. Python package EDAspy. [https://github.com/VicentePerezSoloviev/EDAspy](https://github.com/VicentePerezSoloviev/EDAspy).
+  *   **maxiter** (`int`) – Maximum number of iterations.
+  *   **size\_gen** (`int`) – Population size of each generation.
+  *   **alpha** (`float`) – Percentage (0, 1] of the population to be selected as elite selection.
 
-**Parameters**
+  ## Methods
 
-*   **maxiter** (`int`) – Maximum number of iterations.
-*   **size\_gen** (`int`) – Population size of each generation.
-*   **alpha** (`float`) – Percentage (0, 1] of the population to be selected as elite selection.
+  ### get\_support\_level
 
-## Methods
+  <Function id="qiskit.algorithms.optimizers.UMDA.get_support_level" name="get_support_level" signature="UMDA.get_support_level()">
+    Get the support level dictionary.
+  </Function>
 
-### get\_support\_level
+  ### gradient\_num\_diff
 
-<span id="qiskit.algorithms.optimizers.UMDA.get_support_level" />
+  <Function id="qiskit.algorithms.optimizers.UMDA.gradient_num_diff" name="gradient_num_diff" signature="static UMDA.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-`UMDA.get_support_level()`
+    **Parameters**
 
-Get the support level dictionary.
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped, defaults to 1 (i.e. no batching).
 
-### gradient\_num\_diff
+    **Returns**
 
-<span id="qiskit.algorithms.optimizers.UMDA.gradient_num_diff" />
+    the gradient computed
 
-`static UMDA.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)`
+    **Return type**
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+    grad
+  </Function>
 
-**Parameters**
+  ### minimize
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped, defaults to 1 (i.e. no batching).
+  <Function id="qiskit.algorithms.optimizers.UMDA.minimize" name="minimize" signature="UMDA.minimize(fun, x0, jac=None, bounds=None)">
+    Minimize the scalar function.
 
-**Returns**
+    **Parameters**
 
-the gradient computed
+    *   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
+    *   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
+    *   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
+    *   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
 
-**Return type**
+    **Return type**
 
-grad
+    [`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
 
-### minimize
+    **Returns**
 
-<span id="qiskit.algorithms.optimizers.UMDA.minimize" />
+    The result of the optimization, containing e.g. the result as attribute `x`.
+  </Function>
 
-`UMDA.minimize(fun, x0, jac=None, bounds=None)`
+  ### print\_options
 
-Minimize the scalar function.
+  <Function id="qiskit.algorithms.optimizers.UMDA.print_options" name="print_options" signature="UMDA.print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-**Parameters**
+  ### set\_max\_evals\_grouped
 
-*   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
-*   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
-*   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
-*   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+  <Function id="qiskit.algorithms.optimizers.UMDA.set_max_evals_grouped" name="set_max_evals_grouped" signature="UMDA.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-**Return type**
+  ### set\_options
 
-[`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
+  <Function id="qiskit.algorithms.optimizers.UMDA.set_options" name="set_options" signature="UMDA.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-**Returns**
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-The result of the optimization, containing e.g. the result as attribute `x`.
+    **Parameters**
 
-### print\_options
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.UMDA.print_options" />
+  ### wrap\_function
 
-`UMDA.print_options()`
+  <Function id="qiskit.algorithms.optimizers.UMDA.wrap_function" name="wrap_function" signature="static UMDA.wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-Print algorithm-specific options.
+    **Parameters**
 
-### set\_max\_evals\_grouped
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-<span id="qiskit.algorithms.optimizers.UMDA.set_max_evals_grouped" />
+    **Returns**
 
-`UMDA.set_max_evals_grouped(limit)`
+    wrapper
 
-Set max evals grouped
+    **Return type**
 
-### set\_options
+    function\_wrapper
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.UMDA.set_options" />
+  ## Attributes
 
-`UMDA.set_options(**kwargs)`
+  ### ELITE\_FACTOR
 
-Sets or updates values in the options dictionary.
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.ELITE_FACTOR" name="ELITE_FACTOR" attributeValue="= 0.4" />
 
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
+  ### STD\_BOUND
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.STD_BOUND" name="STD_BOUND" attributeValue="= 0.3" />
 
-**kwargs** (*dict*) – options, given as name=value.
+  ### alpha
 
-### wrap\_function
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.alpha" name="alpha">
+    Returns the alpha parameter value (percentage of population selected to update probabilistic model)
 
-<span id="qiskit.algorithms.optimizers.UMDA.wrap_function" />
+    **Return type**
 
-`static UMDA.wrap_function(function, args)`
+    `float`
+  </Attribute>
 
-Wrap the function to implicitly inject the args at the call of the function.
+  ### bounds\_support\_level
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
+  ### gradient\_support\_level
 
-**Returns**
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-wrapper
+  ### initial\_point\_support\_level
 
-**Return type**
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-function\_wrapper
+  ### is\_bounds\_ignored
 
-## Attributes
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.UMDA.ELITE_FACTOR" />
+  ### is\_bounds\_required
 
-### ELITE\_FACTOR
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-`= 0.4`
+  ### is\_bounds\_supported
 
-<span id="qiskit.algorithms.optimizers.UMDA.STD_BOUND" />
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-### STD\_BOUND
+  ### is\_gradient\_ignored
 
-`= 0.3`
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.UMDA.alpha" />
+  ### is\_gradient\_required
 
-### alpha
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-Returns the alpha parameter value (percentage of population selected to update probabilistic model)
+  ### is\_gradient\_supported
 
-**Return type**
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-`float`
+  ### is\_initial\_point\_ignored
 
-<span id="qiskit.algorithms.optimizers.UMDA.bounds_support_level" />
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-### bounds\_support\_level
+  ### is\_initial\_point\_required
 
-Returns bounds support level
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.UMDA.gradient_support_level" />
+  ### is\_initial\_point\_supported
 
-### gradient\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-Returns gradient support level
+  ### maxiter
 
-<span id="qiskit.algorithms.optimizers.UMDA.initial_point_support_level" />
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.maxiter" name="maxiter">
+    Returns the maximum number of iterations
 
-### initial\_point\_support\_level
+    **Return type**
 
-Returns initial point support level
+    `int`
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.UMDA.is_bounds_ignored" />
+  ### setting
 
-### is\_bounds\_ignored
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.setting" name="setting">
+    Return setting
+  </Attribute>
 
-Returns is bounds ignored
+  ### settings
 
-<span id="qiskit.algorithms.optimizers.UMDA.is_bounds_required" />
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.settings" name="settings">
+    **Return type**
 
-### is\_bounds\_required
+    `Dict`\[`str`, `Any`]
+  </Attribute>
 
-Returns is bounds required
+  ### size\_gen
 
-<span id="qiskit.algorithms.optimizers.UMDA.is_bounds_supported" />
+  <Attribute id="qiskit.algorithms.optimizers.UMDA.size_gen" name="size_gen">
+    Returns the size of the generations (number of individuals per generation)
 
-### is\_bounds\_supported
+    **Return type**
 
-Returns is bounds supported
-
-<span id="qiskit.algorithms.optimizers.UMDA.is_gradient_ignored" />
-
-### is\_gradient\_ignored
-
-Returns is gradient ignored
-
-<span id="qiskit.algorithms.optimizers.UMDA.is_gradient_required" />
-
-### is\_gradient\_required
-
-Returns is gradient required
-
-<span id="qiskit.algorithms.optimizers.UMDA.is_gradient_supported" />
-
-### is\_gradient\_supported
-
-Returns is gradient supported
-
-<span id="qiskit.algorithms.optimizers.UMDA.is_initial_point_ignored" />
-
-### is\_initial\_point\_ignored
-
-Returns is initial point ignored
-
-<span id="qiskit.algorithms.optimizers.UMDA.is_initial_point_required" />
-
-### is\_initial\_point\_required
-
-Returns is initial point required
-
-<span id="qiskit.algorithms.optimizers.UMDA.is_initial_point_supported" />
-
-### is\_initial\_point\_supported
-
-Returns is initial point supported
-
-<span id="qiskit.algorithms.optimizers.UMDA.maxiter" />
-
-### maxiter
-
-Returns the maximum number of iterations
-
-**Return type**
-
-`int`
-
-<span id="qiskit.algorithms.optimizers.UMDA.setting" />
-
-### setting
-
-Return setting
-
-<span id="qiskit.algorithms.optimizers.UMDA.settings" />
-
-### settings
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
-
-<span id="qiskit.algorithms.optimizers.UMDA.size_gen" />
-
-### size\_gen
-
-Returns the size of the generations (number of individuals per generation)
-
-**Return type**
-
-`int`
+    `int`
+  </Attribute>
+</Class>
 

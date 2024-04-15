@@ -8,42 +8,38 @@ python_api_name: qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter
 
 # ExpvalMeasMitigatorFitter
 
-<span id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter" />
+<Class id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/fitter.py" signature="ExpvalMeasMitigatorFitter(result, metadata)">
+  Bases: `object`
 
-`ExpvalMeasMitigatorFitter(result, metadata)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/fitter.py "view source code")
+  Expectation value measurement error mitigator calibration fitter.
 
-Bases: `object`
+  See [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") for additional documentation.
 
-Expectation value measurement error mitigator calibration fitter.
+  Fit a measurement error mitigator object from experiment data.
 
-See [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") for additional documentation.
+  **Parameters**
 
-Fit a measurement error mitigator object from experiment data.
+  *   **result** (`Result`) – Qiskit result object.
+  *   **metadata** (`List`\[`Dict`\[`str`, `any`]]) – mitigation generator metadata.
 
-**Parameters**
+  ## Methods
 
-*   **result** (`Result`) – Qiskit result object.
-*   **metadata** (`List`\[`Dict`\[`str`, `any`]]) – mitigation generator metadata.
+  ### fit
 
-## Methods
+  <Function id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.fit" name="fit" signature="ExpvalMeasMitigatorFitter.fit(method=None, generators=None)">
+    Fit and return the Mitigator object from the calibration data.
 
-### fit
+    **Return type**
 
-<span id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.fit" />
+    `Union`\[`CompleteExpvalMeasMitigator`, `TensoredExpvalMeasMitigator`, `CTMPExpvalMeasMitigator`]
+  </Function>
 
-`ExpvalMeasMitigatorFitter.fit(method=None, generators=None)`
+  ## Attributes
 
-Fit and return the Mitigator object from the calibration data.
+  ### mitigator
 
-**Return type**
-
-`Union`\[`CompleteExpvalMeasMitigator`, `TensoredExpvalMeasMitigator`, `CTMPExpvalMeasMitigator`]
-
-## Attributes
-
-<span id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.mitigator" />
-
-### mitigator
-
-Return the fitted mitigator object
+  <Attribute id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.mitigator" name="mitigator">
+    Return the fitted mitigator object
+  </Attribute>
+</Class>
 

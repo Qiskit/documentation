@@ -12,7 +12,7 @@ Batch mode can shorten processing time if all jobs can be provided at the outset
 -  There is minimal delay between jobs, which can help avoid drift. 
 
 <Admonition type="note">
-    When batching, jobs are not guaranteed to run in the order they are submitted.
+    When batching, jobs are not guaranteed to run in the order they are submitted. Also, while your batch jobs will run as closely together as possible, they don't get exclusive access to the backend. Therefore, your batch jobs might run in parallel with other users' jobs if there is enough processing capacity on the system. Additionally, system calibration jobs could run between the batched jobs.
 </Admonition>
 
 ![This diagram illustrates jobs submitted in a batch.  It shows five jobs, numbered 0 through 4, in a queue. The jobs are a mix of Estimator and Sampler.](/images/run/batch.png 'Figure 1: Batch execution')
@@ -24,31 +24,18 @@ There are multiple ways you can reconfigure your jobs to take advantage of the p
 The following example shows how you can divide up a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
 
 ```python
-jobs = []
-with Batch(backend) as batch:
-    estimator = Estimator(batch)
-    # calls within this context are part of the batch.
-    for obs_set in observable_sets:
-        jobs.append(estimator.run(circuits, observables=obs_set))
-```
-
-<span id="divide"></span>
-## Example: Divide a 500-circuit job into five 100-circuit jobs and run them in batch
-
-You can run multiple jobs in parallel by submitting multiple jobs in batch execution mode. 
-
-```python
-from qiskit_ibm_runtime import Batch, SamplerV2 as Sampler
+from qiskit_ibm_runtime import SamplerV2 as Sampler, Batch
 
 max_circuits = 100
+all_partitioned_circuits = []
+for i in range(0, len(circuits), max_circuits):
+    all_partitioned_circuits.append(circuits[i : i + max_circuits])
 jobs = []
 start_idx = 0
 
-with Batch(backend):
+with Batch(backend=backend):
     sampler = Sampler()    
-    while start_idx < len(circuits):
-        end_idx = start_idx + max_circuits  
-        jobs.append(sampler.run([(circuits[start_ids:end_idx],)]))
-        start_idx = end_idx
+    for partitioned_circuits in all_partitioned_circuits:
+        job = sampler.run(partitioned_circuits)
+        jobs.append(job)
 ```
-

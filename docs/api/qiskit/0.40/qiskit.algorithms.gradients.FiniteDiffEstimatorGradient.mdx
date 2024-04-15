@@ -8,104 +8,98 @@ python_api_name: qiskit.algorithms.gradients.FiniteDiffEstimatorGradient
 
 # FiniteDiffEstimatorGradient
 
-<span id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient" />
+<Class id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/gradients/finite_diff_estimator_gradient.py" signature="FiniteDiffEstimatorGradient(estimator, epsilon, options=None, *, method='central')">
+  Bases: [`qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient")
 
-`FiniteDiffEstimatorGradient(estimator, epsilon, options=None, *, method='central')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/gradients/finite_diff_estimator_gradient.py "view source code")
+  Compute the gradients of the expectation values by finite difference method \[1].
 
-Bases: [`qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient")
+  **Reference:** \[1] [Finite difference method](https://en.wikipedia.org/wiki/Finite_difference_method)
 
-Compute the gradients of the expectation values by finite difference method \[1].
+  **Parameters**
 
-**Reference:** \[1] [Finite difference method](https://en.wikipedia.org/wiki/Finite_difference_method)
+  *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator used to compute the gradients.
 
-**Parameters**
+  *   **epsilon** (*float*) – The offset size for the finite difference gradients.
 
-*   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator used to compute the gradients.
+  *   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
 
-*   **epsilon** (*float*) – The offset size for the finite difference gradients.
+  *   **method** (*Literal\[('central', 'forward', 'backward')]*) –
 
-*   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+      The computation method of the gradients.
 
-*   **method** (*Literal\[('central', 'forward', 'backward')]*) –
+      > *   `central` computes $\frac{f(x+e)-f(x-e)}{2e}$,
+      > *   `forward` computes $\frac{f(x+e) - f(x)}{e}$,
+      > *   `backward` computes $\frac{f(x)-f(x-e)}{e}$
 
-    The computation method of the gradients.
+      where $e$ is epsilon.
 
-    > *   `central` computes $\frac{f(x+e)-f(x-e)}{2e}$,
-    > *   `forward` computes $\frac{f(x+e) - f(x)}{e}$,
-    > *   `backward` computes $\frac{f(x)-f(x-e)}{e}$
+  **Raises**
 
-    where $e$ is epsilon.
+  *   **ValueError** – If `epsilon` is not positive.
+  *   **TypeError** – If `method` is invalid.
 
-**Raises**
+  ## Methods
 
-*   **ValueError** – If `epsilon` is not positive.
-*   **TypeError** – If `method` is invalid.
+  ### run
 
-## Methods
+  <Function id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.run" name="run" signature="FiniteDiffEstimatorGradient.run(circuits, observables, parameter_values, parameters=None, **options)">
+    Run the job of the estimator gradient on the given circuits.
 
-### run
+    **Parameters**
 
-<span id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.run" />
+    *   **circuits** – The list of quantum circuits to compute the gradients.
+    *   **observables** – The list of observables.
+    *   **parameter\_values** – The list of parameter values to be bound to the circuit.
+    *   **parameters** – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated.
+    *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
 
-`FiniteDiffEstimatorGradient.run(circuits, observables, parameter_values, parameters=None, **options)`
+    **Returns**
 
-Run the job of the estimator gradient on the given circuits.
+    The job object of the gradients of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`. The j-th element of the i-th result corresponds to the gradient of the i-th circuit with respect to the j-th parameter.
 
-**Parameters**
+    **Raises**
 
-*   **circuits** – The list of quantum circuits to compute the gradients.
-*   **observables** – The list of observables.
-*   **parameter\_values** – The list of parameter values to be bound to the circuit.
-*   **parameters** – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated.
-*   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+    **ValueError** – Invalid arguments are given.
+  </Function>
 
-**Returns**
+  ### update\_default\_options
 
-The job object of the gradients of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`. The j-th element of the i-th result corresponds to the gradient of the i-th circuit with respect to the j-th parameter.
+  <Function id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.update_default_options" name="update_default_options" signature="FiniteDiffEstimatorGradient.update_default_options(**options)">
+    Update the gradient’s default options setting.
 
-**Raises**
+    **Parameters**
 
-**ValueError** – Invalid arguments are given.
+    **\*\*options** – The fields to update the default options.
+  </Function>
 
-### update\_default\_options
+  ## Attributes
 
-<span id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.update_default_options" />
+  ### derivative\_type
 
-`FiniteDiffEstimatorGradient.update_default_options(**options)`
+  <Attribute id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.derivative_type" name="derivative_type">
+    Return the derivative type (real, imaginary or complex).
 
-Update the gradient’s default options setting.
+    **Return type**
 
-**Parameters**
+    [`DerivativeType`](qiskit.algorithms.gradients.DerivativeType "qiskit.algorithms.gradients.utils.DerivativeType")
 
-**\*\*options** – The fields to update the default options.
+    **Returns**
 
-## Attributes
+    The derivative type.
+  </Attribute>
 
-<span id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.derivative_type" />
+  ### options
 
-### derivative\_type
+  <Attribute id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.options" name="options">
+    Return the union of estimator options setting and gradient default options, where, if the same field is set in both, the gradient’s default options override the primitive’s default setting.
 
-Return the derivative type (real, imaginary or complex).
+    **Return type**
 
-**Return type**
+    [`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
 
-[`DerivativeType`](qiskit.algorithms.gradients.DerivativeType "qiskit.algorithms.gradients.utils.DerivativeType")
+    **Returns**
 
-**Returns**
-
-The derivative type.
-
-<span id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.options" />
-
-### options
-
-Return the union of estimator options setting and gradient default options, where, if the same field is set in both, the gradient’s default options override the primitive’s default setting.
-
-**Return type**
-
-[`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
-
-**Returns**
-
-The gradient default + estimator options.
+    The gradient default + estimator options.
+  </Attribute>
+</Class>
 

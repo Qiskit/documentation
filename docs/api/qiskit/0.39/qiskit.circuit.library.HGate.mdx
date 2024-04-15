@@ -8,139 +8,133 @@ python_api_name: qiskit.circuit.library.HGate
 
 # HGate
 
-<span id="qiskit.circuit.library.HGate" />
+<Class id="qiskit.circuit.library.HGate" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/h.py" signature="HGate(label=None)">
+  Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`HGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/h.py "view source code")
+  Single-qubit Hadamard gate.
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  This gate is a pi rotation about the X+Z axis, and has the effect of changing computation basis from $|0\rangle,|1\rangle$ to $|+\rangle,|-\rangle$ and vice-versa.
 
-Single-qubit Hadamard gate.
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`h()`](qiskit.circuit.QuantumCircuit#h "qiskit.circuit.QuantumCircuit.h") method.
 
-This gate is a pi rotation about the X+Z axis, and has the effect of changing computation basis from $|0\rangle,|1\rangle$ to $|+\rangle,|-\rangle$ and vice-versa.
+  **Circuit symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`h()`](qiskit.circuit.QuantumCircuit#h "qiskit.circuit.QuantumCircuit.h") method.
+  ```python
+       ┌───┐
+  q_0: ┤ H ├
+       └───┘
+  ```
 
-**Circuit symbol:**
-
-```python
-     ┌───┐
-q_0: ┤ H ├
-     └───┘
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 \begin{split}H = \frac{1}{\sqrt{2}}
-    \begin{pmatrix}
-        1 & 1 \\
-        1 & -1
-    \end{pmatrix}\end{split}
+\begin{pmatrix}
+1 & 1 \\
+1 & -1
+\end{pmatrix}\end{split}
 $$
 
-Create new H gate.
+  Create new H gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-### control
+  ### control
 
-<span id="qiskit.circuit.library.HGate.control" />
+  <Function id="qiskit.circuit.library.HGate.control" name="control" signature="HGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a (multi-)controlled-H gate.
 
-`HGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    One control qubit returns a CH gate.
 
-Return a (multi-)controlled-H gate.
+    **Parameters**
 
-One control qubit returns a CH gate.
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-**Parameters**
+    **Returns**
 
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+    controlled version of this gate.
 
-**Returns**
+    **Return type**
 
-controlled version of this gate.
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-**Return type**
+  ### inverse
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  <Function id="qiskit.circuit.library.HGate.inverse" name="inverse" signature="HGate.inverse()">
+    Return inverted H gate (itself).
+  </Function>
 
-### inverse
+  ## Attributes
 
-<span id="qiskit.circuit.library.HGate.inverse" />
+  ### condition\_bits
 
-`HGate.inverse()`
+  <Attribute id="qiskit.circuit.library.HGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-Return inverted H gate (itself).
+    **Return type**
 
-## Attributes
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-<span id="qiskit.circuit.library.HGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.HGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.HGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  ### duration
 
-<span id="qiskit.circuit.library.HGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.HGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.HGate.label" name="label">
+    Return instruction label
 
-<span id="qiskit.circuit.library.HGate.definition" />
+    **Return type**
 
-### definition
+    `str`
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### name
 
-<span id="qiskit.circuit.library.HGate.duration" />
+  <Attribute id="qiskit.circuit.library.HGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-### duration
+  ### num\_clbits
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.HGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.HGate.label" />
+  ### num\_qubits
 
-### label
+  <Attribute id="qiskit.circuit.library.HGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Return instruction label
+  ### params
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.HGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-`str`
+  ### unit
 
-<span id="qiskit.circuit.library.HGate.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.HGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.HGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.HGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.HGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.HGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

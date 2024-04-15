@@ -8,176 +8,174 @@ python_api_name: qiskit.optimization.algorithms.OptimizationResult
 
 # OptimizationResult
 
-<span id="qiskit.optimization.algorithms.OptimizationResult" />
+<Class id="qiskit.optimization.algorithms.OptimizationResult" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py" signature="OptimizationResult(x, fval, variables, status, raw_results=None, samples=None)">
+  Bases: `object`
 
-`OptimizationResult(x, fval, variables, status, raw_results=None, samples=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
+  A base class for optimization results.
 
-Bases: `object`
+  The optimization algorithms return an object of the type `OptimizationResult` with the information about the solution obtained.
 
-A base class for optimization results.
+  `OptimizationResult` allows users to get the value of a variable by specifying an index or a name as follows.
 
-The optimization algorithms return an object of the type `OptimizationResult` with the information about the solution obtained.
+  **Examples**
 
-`OptimizationResult` allows users to get the value of a variable by specifying an index or a name as follows.
+  ```python
+  >>> from qiskit.optimization import QuadraticProgram
+  >>> from qiskit.optimization.algorithms import CplexOptimizer
+  >>> problem = QuadraticProgram()
+  >>> _ = problem.binary_var('x1')
+  >>> _ = problem.binary_var('x2')
+  >>> _ = problem.binary_var('x3')
+  >>> problem.minimize(linear={'x1': 1, 'x2': -2, 'x3': 3})
+  >>> print([var.name for var in problem.variables])
+  ['x1', 'x2', 'x3']
+  >>> optimizer = CplexOptimizer()
+  >>> result = optimizer.solve(problem)
+  >>> print(result.variable_names)
+  ['x1', 'x2', 'x3']
+  >>> print(result.x)
+  [0. 1. 0.]
+  >>> print(result[1])
+  1.0
+  >>> print(result['x1'])
+  0.0
+  >>> print(result.fval)
+  -2.0
+  >>> print(result.variables_dict)
+  {'x1': 0.0, 'x2': 1.0, 'x3': 0.0}
+  ```
 
-**Examples**
+  <Admonition title="Note" type="note">
+    The order of variables should be equal to that of the problem solved by optimization algorithms. Optimization algorithms and converters of `QuadraticProgram` should maintain the order when generating a new `OptimizationResult` object.
+  </Admonition>
 
-```python
->>> from qiskit.optimization import QuadraticProgram
->>> from qiskit.optimization.algorithms import CplexOptimizer
->>> problem = QuadraticProgram()
->>> _ = problem.binary_var('x1')
->>> _ = problem.binary_var('x2')
->>> _ = problem.binary_var('x3')
->>> problem.minimize(linear={'x1': 1, 'x2': -2, 'x3': 3})
->>> print([var.name for var in problem.variables])
-['x1', 'x2', 'x3']
->>> optimizer = CplexOptimizer()
->>> result = optimizer.solve(problem)
->>> print(result.variable_names)
-['x1', 'x2', 'x3']
->>> print(result.x)
-[0. 1. 0.]
->>> print(result[1])
-1.0
->>> print(result['x1'])
-0.0
->>> print(result.fval)
--2.0
->>> print(result.variables_dict)
-{'x1': 0.0, 'x2': 1.0, 'x3': 0.0}
-```
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  The order of variables should be equal to that of the problem solved by optimization algorithms. Optimization algorithms and converters of `QuadraticProgram` should maintain the order when generating a new `OptimizationResult` object.
-</Admonition>
+  *   **x** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – the optimal value found in the optimization, or possibly None in case of FAILURE.
+  *   **fval** (`float`) – the optimal function value.
+  *   **variables** (`List`\[`Variable`]) – the list of variables of the optimization problem.
+  *   **raw\_results** (`Optional`\[`Any`]) – the original results object from the optimization algorithm.
+  *   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
+  *   **samples** (`Optional`\[`List`\[`SolutionSample`]]) – the solution samples.
 
-**Parameters**
+  **Raises**
 
-*   **x** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – the optimal value found in the optimization, or possibly None in case of FAILURE.
-*   **fval** (`float`) – the optimal function value.
-*   **variables** (`List`\[`Variable`]) – the list of variables of the optimization problem.
-*   **raw\_results** (`Optional`\[`Any`]) – the original results object from the optimization algorithm.
-*   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
-*   **samples** (`Optional`\[`List`\[`SolutionSample`]]) – the solution samples.
+  [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if sizes of `x` and `variables` do not match.
 
-**Raises**
+  ## Attributes
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if sizes of `x` and `variables` do not match.
+  ### fval
 
-## Attributes
+  <Attribute id="qiskit.optimization.algorithms.OptimizationResult.fval" name="fval">
+    Returns the optimal function value.
 
-<span id="qiskit.optimization.algorithms.OptimizationResult.fval" />
+    **Return type**
 
-### fval
+    `float`
 
-Returns the optimal function value.
+    **Returns**
 
-**Return type**
+    The function value corresponding to the optimal value found in the optimization.
+  </Attribute>
 
-`float`
+  ### raw\_results
 
-**Returns**
+  <Attribute id="qiskit.optimization.algorithms.OptimizationResult.raw_results" name="raw_results">
+    Return the original results object from the optimization algorithm.
 
-The function value corresponding to the optimal value found in the optimization.
+    Currently a dump for any leftovers.
 
-<span id="qiskit.optimization.algorithms.OptimizationResult.raw_results" />
+    **Return type**
 
-### raw\_results
+    `Any`
 
-Return the original results object from the optimization algorithm.
+    **Returns**
 
-Currently a dump for any leftovers.
+    Additional result information of the optimization algorithm.
+  </Attribute>
 
-**Return type**
+  ### samples
 
-`Any`
+  <Attribute id="qiskit.optimization.algorithms.OptimizationResult.samples" name="samples">
+    Returns the list of solution samples
 
-**Returns**
+    **Return type**
 
-Additional result information of the optimization algorithm.
+    `List`\[`SolutionSample`]
 
-<span id="qiskit.optimization.algorithms.OptimizationResult.samples" />
+    **Returns**
 
-### samples
+    The list of solution samples.
+  </Attribute>
 
-Returns the list of solution samples
+  ### status
 
-**Return type**
+  <Attribute id="qiskit.optimization.algorithms.OptimizationResult.status" name="status">
+    Returns the termination status of the optimization algorithm.
 
-`List`\[`SolutionSample`]
+    **Return type**
 
-**Returns**
+    `OptimizationResultStatus`
 
-The list of solution samples.
+    **Returns**
 
-<span id="qiskit.optimization.algorithms.OptimizationResult.status" />
+    The termination status of the algorithm.
+  </Attribute>
 
-### status
+  ### variable\_names
 
-Returns the termination status of the optimization algorithm.
+  <Attribute id="qiskit.optimization.algorithms.OptimizationResult.variable_names" name="variable_names">
+    Returns the list of variable names of the optimization problem.
 
-**Return type**
+    **Return type**
 
-`OptimizationResultStatus`
+    `List`\[`str`]
 
-**Returns**
+    **Returns**
 
-The termination status of the algorithm.
+    The list of variable names of the optimization problem.
+  </Attribute>
 
-<span id="qiskit.optimization.algorithms.OptimizationResult.variable_names" />
+  ### variables
 
-### variable\_names
+  <Attribute id="qiskit.optimization.algorithms.OptimizationResult.variables" name="variables">
+    Returns the list of variables of the optimization problem.
 
-Returns the list of variable names of the optimization problem.
+    **Return type**
 
-**Return type**
+    `List`\[`Variable`]
 
-`List`\[`str`]
+    **Returns**
 
-**Returns**
+    The list of variables.
+  </Attribute>
 
-The list of variable names of the optimization problem.
+  ### variables\_dict
 
-<span id="qiskit.optimization.algorithms.OptimizationResult.variables" />
+  <Attribute id="qiskit.optimization.algorithms.OptimizationResult.variables_dict" name="variables_dict">
+    Returns the optimal value as a dictionary of the variable name and corresponding value.
 
-### variables
+    **Return type**
 
-Returns the list of variables of the optimization problem.
+    `Dict`\[`str`, `float`]
 
-**Return type**
+    **Returns**
 
-`List`\[`Variable`]
+    The optimal value as a dictionary of the variable name and corresponding value.
+  </Attribute>
 
-**Returns**
+  ### x
 
-The list of variables.
+  <Attribute id="qiskit.optimization.algorithms.OptimizationResult.x" name="x">
+    Returns the optimal value found in the optimization or None in case of FAILURE.
 
-<span id="qiskit.optimization.algorithms.OptimizationResult.variables_dict" />
+    **Return type**
 
-### variables\_dict
+    `Optional`\[`ndarray`]
 
-Returns the optimal value as a dictionary of the variable name and corresponding value.
+    **Returns**
 
-**Return type**
-
-`Dict`\[`str`, `float`]
-
-**Returns**
-
-The optimal value as a dictionary of the variable name and corresponding value.
-
-<span id="qiskit.optimization.algorithms.OptimizationResult.x" />
-
-### x
-
-Returns the optimal value found in the optimization or None in case of FAILURE.
-
-**Return type**
-
-`Optional`\[`ndarray`]
-
-**Returns**
-
-The optimal value found in the optimization.
+    The optimal value found in the optimization.
+  </Attribute>
+</Class>
 

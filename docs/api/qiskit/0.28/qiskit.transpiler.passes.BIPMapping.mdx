@@ -8,153 +8,141 @@ python_api_name: qiskit.transpiler.passes.BIPMapping
 
 # qiskit.transpiler.passes.BIPMapping
 
-<span id="qiskit.transpiler.passes.BIPMapping" />
+<Class id="qiskit.transpiler.passes.BIPMapping" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/routing/bip_mapping.py" signature="BIPMapping(*args, **kwargs)">
+  Map a DAGCircuit onto a given `coupling_map`, allocating qubits and adding swap gates.
 
-`BIPMapping(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/routing/bip_mapping.py "view source code")
+  The BIP mapper tries to find the best layout and routing at once by solving a BIP (binary integer programming) problem as described in \[1].
 
-Map a DAGCircuit onto a given `coupling_map`, allocating qubits and adding swap gates.
+  The BIP problem represents the layer-by-layer mapping of 2-qubit gates, assuming all the gates in a layer can be run on the `coupling_map`. In the problem, the variables $w$ represent the layout of qubits for each layer and the variables $x$ represent which pair of qubits should be swapped in between layers. Based on the values in the solution of the BIP problem, the mapped circuit will be constructed.
 
-The BIP mapper tries to find the best layout and routing at once by solving a BIP (binary integer programming) problem as described in \[1].
+  The BIP mapper depends on `docplex` to represent the BIP problem and CPLEX (`cplex`) to solve it. Those packages can be installed with `pip install qiskit-terra[bip-mapper]`. Since the free version of CPLEX can solve only small BIP problems, i.e. mapping of circuits with less than about 5 qubits, the paid version of CPLEX may be needed to map larger circuits.
 
-The BIP problem represents the layer-by-layer mapping of 2-qubit gates, assuming all the gates in a layer can be run on the `coupling_map`. In the problem, the variables $w$ represent the layout of qubits for each layer and the variables $x$ represent which pair of qubits should be swapped in between layers. Based on the values in the solution of the BIP problem, the mapped circuit will be constructed.
+  If you want to fix physical qubits to be used in the mapping (e.g. running Quantum Volume circuits), you need to supply `coupling_map` which contains only the qubits to be used. Please do not use `initial_layout` for that purpose because the BIP mapper gracefully ignores `initial_layout` (and tries to determines its best layout).
 
-The BIP mapper depends on `docplex` to represent the BIP problem and CPLEX (`cplex`) to solve it. Those packages can be installed with `pip install qiskit-terra[bip-mapper]`. Since the free version of CPLEX can solve only small BIP problems, i.e. mapping of circuits with less than about 5 qubits, the paid version of CPLEX may be needed to map larger circuits.
+  <Admonition title="Warning" type="caution">
+    The BIP mapper does not scale very well with respect to the number of qubits or gates. For example, it would not work with `coupling_map` beyond 10 qubits because the BIP solver (CPLEX) could not find any solution within the default time limit.
+  </Admonition>
 
-If you want to fix physical qubits to be used in the mapping (e.g. running Quantum Volume circuits), you need to supply `coupling_map` which contains only the qubits to be used. Please do not use `initial_layout` for that purpose because the BIP mapper gracefully ignores `initial_layout` (and tries to determines its best layout).
+  **References:**
 
-<Admonition title="Warning" type="caution">
-  The BIP mapper does not scale very well with respect to the number of qubits or gates. For example, it would not work with `coupling_map` beyond 10 qubits because the BIP solver (CPLEX) could not find any solution within the default time limit.
-</Admonition>
+  \[1] G. Nannicini et al. “Optimal qubit assignment and routing via integer programming.” [arXiv:2106.06446](https://arxiv.org/abs/2106.06446)
 
-**References:**
+  BIPMapping initializer.
 
-\[1] G. Nannicini et al. “Optimal qubit assignment and routing via integer programming.” [arXiv:2106.06446](https://arxiv.org/abs/2106.06446)
+  **Parameters**
 
-BIPMapping initializer.
+  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
 
-**Parameters**
+  *   **objective** (*str*) –
 
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
+      Type of objective function:
 
-*   **objective** (*str*) –
+      *   `'error_rate'`: \[NotImplemented] Predicted error rate of the circuit
+      *   `'depth'`: \[Default] Depth (number of time-steps) of the circuit
+      *   `'balanced'`: \[NotImplemented] Weighted sum of `'error_rate'` and `'depth'`
 
-    Type of objective function:
+  *   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Backend properties object
 
-    *   `'error_rate'`: \[NotImplemented] Predicted error rate of the circuit
-    *   `'depth'`: \[Default] Depth (number of time-steps) of the circuit
-    *   `'balanced'`: \[NotImplemented] Weighted sum of `'error_rate'` and `'depth'`
+  *   **time\_limit** (*float*) – Time limit for solving BIP in seconds
 
-*   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Backend properties object
+  *   **threads** (*int*) – Number of threads to be allowed for CPLEX to solve BIP
 
-*   **time\_limit** (*float*) – Time limit for solving BIP in seconds
+  *   **max\_swaps\_inbetween\_layers** (*int*) – Number of swaps allowed in between layers. If None, automatically set. Large value could decrease the probability to build infeasible BIP problem but also could reduce the chance of finding a feasible solution within the `time_limit`.
 
-*   **threads** (*int*) – Number of threads to be allowed for CPLEX to solve BIP
+  **Raises**
 
-*   **max\_swaps\_inbetween\_layers** (*int*) – Number of swaps allowed in between layers. If None, automatically set. Large value could decrease the probability to build infeasible BIP problem but also could reduce the chance of finding a feasible solution within the `time_limit`.
+  [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – if cplex or docplex are not installed.
 
-**Raises**
+  ### \_\_init\_\_
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – if cplex or docplex are not installed.
+  <Function id="qiskit.transpiler.passes.BIPMapping.__init__" name="__init__" signature="__init__(coupling_map, objective='depth', backend_prop=None, time_limit=30, threads=None, max_swaps_inbetween_layers=None)">
+    BIPMapping initializer.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.BIPMapping.__init__" />
+    *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
 
-`__init__(coupling_map, objective='depth', backend_prop=None, time_limit=30, threads=None, max_swaps_inbetween_layers=None)`
+    *   **objective** (*str*) –
 
-BIPMapping initializer.
+        Type of objective function:
 
-**Parameters**
+        *   `'error_rate'`: \[NotImplemented] Predicted error rate of the circuit
+        *   `'depth'`: \[Default] Depth (number of time-steps) of the circuit
+        *   `'balanced'`: \[NotImplemented] Weighted sum of `'error_rate'` and `'depth'`
 
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
+    *   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Backend properties object
 
-*   **objective** (*str*) –
+    *   **time\_limit** (*float*) – Time limit for solving BIP in seconds
 
-    Type of objective function:
+    *   **threads** (*int*) – Number of threads to be allowed for CPLEX to solve BIP
 
-    *   `'error_rate'`: \[NotImplemented] Predicted error rate of the circuit
-    *   `'depth'`: \[Default] Depth (number of time-steps) of the circuit
-    *   `'balanced'`: \[NotImplemented] Weighted sum of `'error_rate'` and `'depth'`
+    *   **max\_swaps\_inbetween\_layers** (*int*) – Number of swaps allowed in between layers. If None, automatically set. Large value could decrease the probability to build infeasible BIP problem but also could reduce the chance of finding a feasible solution within the `time_limit`.
 
-*   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Backend properties object
+    **Raises**
 
-*   **time\_limit** (*float*) – Time limit for solving BIP in seconds
+    [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – if cplex or docplex are not installed.
+  </Function>
 
-*   **threads** (*int*) – Number of threads to be allowed for CPLEX to solve BIP
+  ## Methods
 
-*   **max\_swaps\_inbetween\_layers** (*int*) – Number of swaps allowed in between layers. If None, automatically set. Large value could decrease the probability to build infeasible BIP problem but also could reduce the chance of finding a feasible solution within the `time_limit`.
+  |                                                                                                                                            |                                                                                                                                                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.transpiler.passes.BIPMapping.__init__ "qiskit.transpiler.passes.BIPMapping.__init__")(coupling\_map\[, objective, …]) | BIPMapping initializer.                                                                                                                                           |
+  | [`name`](#qiskit.transpiler.passes.BIPMapping.name "qiskit.transpiler.passes.BIPMapping.name")()                                           | Return the name of the pass.                                                                                                                                      |
+  | [`run`](#qiskit.transpiler.passes.BIPMapping.run "qiskit.transpiler.passes.BIPMapping.run")(dag)                                           | Run the BIPMapping pass on dag, assuming the number of virtual qubits (defined in dag) and the number of physical qubits (defined in coupling\_map) are the same. |
 
-**Raises**
+  ## Attributes
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – if cplex or docplex are not installed.
+  |                                                                                                                                                      |                                             |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+  | [`is_analysis_pass`](#qiskit.transpiler.passes.BIPMapping.is_analysis_pass "qiskit.transpiler.passes.BIPMapping.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
+  | [`is_transformation_pass`](#qiskit.transpiler.passes.BIPMapping.is_transformation_pass "qiskit.transpiler.passes.BIPMapping.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-## Methods
+  ### is\_analysis\_pass
 
-|                                                                                                                                            |                                                                                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.transpiler.passes.BIPMapping.__init__ "qiskit.transpiler.passes.BIPMapping.__init__")(coupling\_map\[, objective, …]) | BIPMapping initializer.                                                                                                                                           |
-| [`name`](#qiskit.transpiler.passes.BIPMapping.name "qiskit.transpiler.passes.BIPMapping.name")()                                           | Return the name of the pass.                                                                                                                                      |
-| [`run`](#qiskit.transpiler.passes.BIPMapping.run "qiskit.transpiler.passes.BIPMapping.run")(dag)                                           | Run the BIPMapping pass on dag, assuming the number of virtual qubits (defined in dag) and the number of physical qubits (defined in coupling\_map) are the same. |
+  <Function id="qiskit.transpiler.passes.BIPMapping.is_analysis_pass" name="is_analysis_pass" signature="property is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-## Attributes
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Function>
 
-|                                                                                                                                                      |                                             |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| [`is_analysis_pass`](#qiskit.transpiler.passes.BIPMapping.is_analysis_pass "qiskit.transpiler.passes.BIPMapping.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
-| [`is_transformation_pass`](#qiskit.transpiler.passes.BIPMapping.is_transformation_pass "qiskit.transpiler.passes.BIPMapping.is_transformation_pass") | Check if the pass is a transformation pass. |
+  ### is\_transformation\_pass
 
-### is\_analysis\_pass
+  <Function id="qiskit.transpiler.passes.BIPMapping.is_transformation_pass" name="is_transformation_pass" signature="property is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-<span id="qiskit.transpiler.passes.BIPMapping.is_analysis_pass" />
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Function>
 
-`property is_analysis_pass`
+  ### name
 
-Check if the pass is an analysis pass.
+  <Function id="qiskit.transpiler.passes.BIPMapping.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  ### run
 
-### is\_transformation\_pass
+  <Function id="qiskit.transpiler.passes.BIPMapping.run" name="run" signature="run(dag)">
+    Run the BIPMapping pass on dag, assuming the number of virtual qubits (defined in dag) and the number of physical qubits (defined in coupling\_map) are the same.
 
-<span id="qiskit.transpiler.passes.BIPMapping.is_transformation_pass" />
+    **Parameters**
 
-`property is_transformation_pass`
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to map.
 
-Check if the pass is a transformation pass.
+    **Returns**
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    **A mapped DAG. If there is no 2q-gate in DAG or it fails to map,**
 
-### name
+    returns the original dag.
 
-<span id="qiskit.transpiler.passes.BIPMapping.name" />
+    **Return type**
 
-`name()`
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-Return the name of the pass.
+    **Raises**
 
-### run
-
-<span id="qiskit.transpiler.passes.BIPMapping.run" />
-
-`run(dag)`
-
-Run the BIPMapping pass on dag, assuming the number of virtual qubits (defined in dag) and the number of physical qubits (defined in coupling\_map) are the same.
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to map.
-
-**Returns**
-
-**A mapped DAG. If there is no 2q-gate in DAG or it fails to map,**
-
-returns the original dag.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-**Raises**
-
-*   [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the number of virtual and physical qubits are not the same.
-*   **AssertionError** – if the final layout is not valid.
+    *   [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the number of virtual and physical qubits are not the same.
+    *   **AssertionError** – if the final layout is not valid.
+  </Function>
+</Class>
 

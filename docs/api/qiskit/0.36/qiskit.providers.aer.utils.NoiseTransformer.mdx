@@ -8,382 +8,346 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
 # NoiseTransformer
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer" />
+<Class id="qiskit.providers.aer.utils.NoiseTransformer" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/utils/noise_transformation.py" signature="NoiseTransformer">
+  Bases: `object`
 
-`NoiseTransformer` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/utils/noise_transformation.py "view source code")
+  \[Deprecated] Transforms one quantum channel to another based on a specified criteria.
 
-Bases: `object`
+  ## Methods
 
-\[Deprecated] Transforms one quantum channel to another based on a specified criteria.
+  ### channel\_matrix\_representation
 
-## Methods
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.channel_matrix_representation" name="channel_matrix_representation" signature="NoiseTransformer.channel_matrix_representation(operators)">
+    We convert the operators to a matrix by applying the channel to the four basis elements of the 2x2 matrix space representing density operators; this is standard linear algebra
 
-### channel\_matrix\_representation
+    **Parameters**
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.channel_matrix_representation" />
+    **operators** (*list*) – The list of operators to transform into a Matrix
 
-`NoiseTransformer.channel_matrix_representation(operators)`
+    **Returns**
 
-We convert the operators to a matrix by applying the channel to the four basis elements of the 2x2 matrix space representing density operators; this is standard linear algebra
+    The matrx representation of the operators
 
-**Parameters**
+    **Return type**
 
-**operators** (*list*) – The list of operators to transform into a Matrix
+    sympy.Matrix
+  </Function>
 
-**Returns**
+  ### compute\_P
 
-The matrx representation of the operators
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.compute_P" name="compute_P" signature="NoiseTransformer.compute_P(As)">
+    This method creates the matrix P in the f(x) = 1/2(x\*P\*x)+q\*x representation of the objective function :param As: list of symbolic matrices repersenting the channel matrices :type As: list
 
-**Return type**
+    **Returns**
 
-sympy.Matrix
+    The matrix P for the description of the quadaric program
 
-### compute\_P
+    **Return type**
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.compute_P" />
+    matrix
+  </Function>
 
-`NoiseTransformer.compute_P(As)`
+  ### compute\_channel\_operation
 
-This method creates the matrix P in the f(x) = 1/2(x\*P\*x)+q\*x representation of the objective function :param As: list of symbolic matrices repersenting the channel matrices :type As: list
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.compute_channel_operation" name="compute_channel_operation" signature="static NoiseTransformer.compute_channel_operation(rho, operators)">
+    Given a quantum state’s density function rho, the effect of the channel on this state is: rho -> sum\_\{i=1}^n E\_i \* rho \* E\_i^dagger
 
-**Returns**
+    **Parameters**
 
-The matrix P for the description of the quadaric program
+    *   **rho** (*number*) – Density function
+    *   **operators** (*list*) – List of operators
 
-**Return type**
+    **Returns**
 
-matrix
+    The result of applying the list of operators
 
-### compute\_channel\_operation
+    **Return type**
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.compute_channel_operation" />
+    number
+  </Function>
 
-`static NoiseTransformer.compute_channel_operation(rho, operators)`
+  ### compute\_q
 
-Given a quantum state’s density function rho, the effect of the channel on this state is: rho -> sum\_\{i=1}^n E\_i \* rho \* E\_i^dagger
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.compute_q" name="compute_q" signature="NoiseTransformer.compute_q(As, C)">
+    This method creates the vector q for the f(x) = 1/2(x\*P\*x)+q\*x representation of the objective function :param As: list of symbolic matrices repersenting the quadratic program :type As: list :param C: matrix representing the the constant channel matrix :type C: matrix
 
-**Parameters**
+    **Returns**
 
-*   **rho** (*number*) – Density function
-*   **operators** (*list*) – List of operators
+    The vector q for the description of the quadaric program
 
-**Returns**
+    **Return type**
 
-The result of applying the list of operators
+    list
+  </Function>
 
-**Return type**
+  ### fidelity
 
-number
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.fidelity" name="fidelity" signature="static NoiseTransformer.fidelity(channel)">
+    Calculates channel fidelity
+  </Function>
 
-### compute\_q
+  ### flatten\_matrix
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.compute_q" />
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.flatten_matrix" name="flatten_matrix" signature="static NoiseTransformer.flatten_matrix(m)">
+    **Parameters**
 
-`NoiseTransformer.compute_q(As, C)`
+    **m** (*Matrix*) – The matrix to flatten
 
-This method creates the vector q for the f(x) = 1/2(x\*P\*x)+q\*x representation of the objective function :param As: list of symbolic matrices repersenting the quadratic program :type As: list :param C: matrix representing the the constant channel matrix :type C: matrix
+    **Returns**
 
-**Returns**
+    A row vector repesenting the flattened matrix
 
-The vector q for the description of the quadaric program
+    **Return type**
 
-**Return type**
+    list
+  </Function>
 
-list
+  ### generate\_channel\_matrices
 
-### fidelity
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.generate_channel_matrices" name="generate_channel_matrices" signature="NoiseTransformer.generate_channel_matrices(transform_channel_operators_list)">
+    Generate symbolic channel matrices.
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.fidelity" />
+    Generates a list of 4x4 symbolic matrices describing the channel defined from the given operators. The identity matrix is assumed to be the first element in the list:
 
-`static NoiseTransformer.fidelity(channel)`
+    ```python
+    [(I, ), (A1, B1, ...), (A2, B2, ...), ..., (An, Bn, ...)]
+    ```
 
-Calculates channel fidelity
+    E.g. for a Pauli channel, the matrices are:
 
-### flatten\_matrix
+    ```python
+    [(I,), (X,), (Y,), (Z,)]
+    ```
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.flatten_matrix" />
+    For relaxation they are:
 
-`static NoiseTransformer.flatten_matrix(m)`
+    ```python
+    [(I, ), (|0><0|, |0><1|), |1><0|, |1><1|)]
+    ```
 
-**Parameters**
+    We consider this input to symbolically represent a channel in the following manner: define indeterminates $x_0, x_1, ..., x_n$ which are meant to represent probabilities such that $x_i \ge 0$ and $x0 = 1-(x_1 + ... + x_n)$.
 
-**m** (*Matrix*) – The matrix to flatten
+    Now consider the quantum channel defined via the Kraus operators ${\sqrt(x_0)I, \sqrt(x_1) A_1, \sqrt(x1) B_1, ..., \sqrt(x_m)A_n, \sqrt(x_n) B_n, ...}$ This is the channel C symbolically represented by the operators.
 
-**Returns**
+    **Parameters**
 
-A row vector repesenting the flattened matrix
+    **transform\_channel\_operators\_list** (*list*) – A list of tuples of matrices which represent Kraus operators.
 
-**Return type**
+    **Returns**
 
-list
+    A list of 4x4 complex matrices `([D1, D2, ..., Dn], E)` such that the matrix $x_1 D_1 + ... + x_n D_n + E$ represents the operation of the channel C on the density operator. we find it easier to work with this representation of C when performing the combinatorial optimization.
 
-### generate\_channel\_matrices
+    **Return type**
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.generate_channel_matrices" />
+    list
+  </Function>
 
-`NoiseTransformer.generate_channel_matrices(transform_channel_operators_list)`
+  ### generate\_channel\_quadratic\_programming\_matrices
 
-Generate symbolic channel matrices.
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.generate_channel_quadratic_programming_matrices" name="generate_channel_quadratic_programming_matrices" signature="NoiseTransformer.generate_channel_quadratic_programming_matrices(channel, symbols)">
+    Generate matrices for quadratic program.
 
-Generates a list of 4x4 symbolic matrices describing the channel defined from the given operators. The identity matrix is assumed to be the first element in the list:
+    **Parameters**
 
-```python
-[(I, ), (A1, B1, ...), (A2, B2, ...), ..., (An, Bn, ...)]
-```
+    *   **channel** (*Matrix*) – a 4x4 symbolic matrix
+    *   **symbols** (*list*) – the symbols x1, …, xn which may occur in the matrix
 
-E.g. for a Pauli channel, the matrices are:
+    **Returns**
 
-```python
-[(I,), (X,), (Y,), (Z,)]
-```
+    A list of 4x4 complex matrices (\[D1, D2, …, Dn], E) such that: channel == x1\*D1 + … + xn\*Dn + E
 
-For relaxation they are:
+    **Return type**
 
-```python
-[(I, ), (|0><0|, |0><1|), |1><0|, |1><1|)]
-```
+    list
+  </Function>
 
-We consider this input to symbolically represent a channel in the following manner: define indeterminates $x_0, x_1, ..., x_n$ which are meant to represent probabilities such that $x_i \ge 0$ and $x0 = 1-(x_1 + ... + x_n)$.
+  ### get\_const\_matrix\_from\_channel
 
-Now consider the quantum channel defined via the Kraus operators ${\sqrt(x_0)I, \sqrt(x_1) A_1, \sqrt(x1) B_1, ..., \sqrt(x_m)A_n, \sqrt(x_n) B_n, ...}$ This is the channel C symbolically represented by the operators.
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.get_const_matrix_from_channel" name="get_const_matrix_from_channel" signature="static NoiseTransformer.get_const_matrix_from_channel(channel, symbols)">
+    Extract the numeric constant matrix.
 
-**Parameters**
+    **Parameters**
 
-**transform\_channel\_operators\_list** (*list*) – A list of tuples of matrices which represent Kraus operators.
+    *   **channel** (*matrix*) – a 4x4 symbolic matrix.
+    *   **symbols** (*list*) – The full list \[x1, …, xn] of symbols used in the matrix.
 
-**Returns**
+    **Returns**
 
-A list of 4x4 complex matrices `([D1, D2, ..., Dn], E)` such that the matrix $x_1 D_1 + ... + x_n D_n + E$ represents the operation of the channel C on the density operator. we find it easier to work with this representation of C when performing the combinatorial optimization.
+    a 4x4 numeric matrix.
 
-**Return type**
+    **Return type**
 
-list
+    matrix
 
-### generate\_channel\_quadratic\_programming\_matrices
+    #### Additional Information:
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.generate_channel_quadratic_programming_matrices" />
+    Each entry of the 4x4 symbolic input channel matrix is assumed to be a polynomial of the form a1x1 + … + anxn + c. The corresponding entry in the output numeric matrix is c.
+  </Function>
 
-`NoiseTransformer.generate_channel_quadratic_programming_matrices(channel, symbols)`
+  ### get\_matrix\_from\_channel
 
-Generate matrices for quadratic program.
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.get_matrix_from_channel" name="get_matrix_from_channel" signature="static NoiseTransformer.get_matrix_from_channel(channel, symbol)">
+    Extract the numeric parameter matrix.
 
-**Parameters**
+    **Parameters**
 
-*   **channel** (*Matrix*) – a 4x4 symbolic matrix
-*   **symbols** (*list*) – the symbols x1, …, xn which may occur in the matrix
+    *   **channel** (*matrix*) – a 4x4 symbolic matrix.
+    *   **symbol** (*list*) – a symbol xi
 
-**Returns**
+    **Returns**
 
-A list of 4x4 complex matrices (\[D1, D2, …, Dn], E) such that: channel == x1\*D1 + … + xn\*Dn + E
+    a 4x4 numeric matrix.
 
-**Return type**
+    **Return type**
 
-list
+    matrix
 
-### get\_const\_matrix\_from\_channel
+    #### Additional Information:
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.get_const_matrix_from_channel" />
+    Each entry of the 4x4 symbolic input channel matrix is assumed to be a polynomial of the form a1x1 + … + anxn + c. The corresponding entry in the output numeric matrix is ai.
+  </Function>
 
-`static NoiseTransformer.get_const_matrix_from_channel(channel, symbols)`
+  ### operator\_circuit
 
-Extract the numeric constant matrix.
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.operator_circuit" name="operator_circuit" signature="NoiseTransformer.operator_circuit(operator)">
+    Converts an operator representation to noise circuit.
 
-**Parameters**
+    **Parameters**
 
-*   **channel** (*matrix*) – a 4x4 symbolic matrix.
-*   **symbols** (*list*) – The full list \[x1, …, xn] of symbols used in the matrix.
+    **operator** (*operator*) – operator representation. Can be a noise circuit or a matrix or a list of matrices.
 
-**Returns**
+    **Returns**
 
-a 4x4 numeric matrix.
+    The operator, converted to noise circuit representation.
 
-**Return type**
+    **Return type**
 
-matrix
+    List
+  </Function>
 
-#### Additional Information:
+  ### operator\_matrix
 
-Each entry of the 4x4 symbolic input channel matrix is assumed to be a polynomial of the form a1x1 + … + anxn + c. The corresponding entry in the output numeric matrix is c.
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.operator_matrix" name="operator_matrix" signature="NoiseTransformer.operator_matrix(operator)">
+    Converts an operator representation to Kraus matrix representation
 
-### get\_matrix\_from\_channel
+    **Parameters**
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.get_matrix_from_channel" />
+    **operator** (*operator*) – operator representation. Can be a noise circuit or a matrix or a list of matrices.
 
-`static NoiseTransformer.get_matrix_from_channel(channel, symbol)`
+    **Returns**
 
-Extract the numeric parameter matrix.
+    the operator, converted to Kraus representation.
 
-**Parameters**
+    **Return type**
 
-*   **channel** (*matrix*) – a 4x4 symbolic matrix.
-*   **symbol** (*list*) – a symbol xi
+    [Kraus](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
+  </Function>
 
-**Returns**
+  ### prepare\_channel\_operator\_list
 
-a 4x4 numeric matrix.
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.prepare_channel_operator_list" name="prepare_channel_operator_list" signature="static NoiseTransformer.prepare_channel_operator_list(ops_list)">
+    Prepares a list of channel operators.
 
-**Return type**
+    **Parameters**
 
-matrix
+    **ops\_list** (*List*) – The list of operators to prepare
 
-#### Additional Information:
+    **Returns**
 
-Each entry of the 4x4 symbolic input channel matrix is assumed to be a polynomial of the form a1x1 + … + anxn + c. The corresponding entry in the output numeric matrix is ai.
+    The channel operator list
 
-### operator\_circuit
+    **Return type**
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.operator_circuit" />
+    List
+  </Function>
 
-`NoiseTransformer.operator_circuit(operator)`
+  ### prepare\_honesty\_constraint
 
-Converts an operator representation to noise circuit.
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.prepare_honesty_constraint" name="prepare_honesty_constraint" signature="NoiseTransformer.prepare_honesty_constraint(transform_channel_operators_list)">
+    Prepares the honesty constraint.
 
-**Parameters**
+    **Parameters**
 
-**operator** (*operator*) – operator representation. Can be a noise circuit or a matrix or a list of matrices.
+    *   **transform\_channel\_operators\_list** (*list*) – A list of tuples of matrices which represent
+    *   **operators.** ([*Kraus*](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")) –
+  </Function>
 
-**Returns**
+  ### solve\_quadratic\_program
 
-The operator, converted to noise circuit representation.
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.solve_quadratic_program" name="solve_quadratic_program" signature="NoiseTransformer.solve_quadratic_program(P, q)">
+    Solve the quadratic program optimization problem.
 
-**Return type**
+    This function solved the quadratic program to minimize the objective function f(x) = 1/2(x\*P\*x)+q\*x subject to the additional constraints Gx \<= h
 
-List
+    Where P, q are given and G,h are computed to ensure that x represents a probability vector and subject to honesty constraints if required :param P: A matrix representing the P component of the objective function :type P: matrix :param q: A vector representing the q component of the objective function :type q: list
 
-### operator\_matrix
+    **Returns**
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.operator_matrix" />
+    The solution of the quadratic program (represents probabilities)
 
-`NoiseTransformer.operator_matrix(operator)`
+    **Return type**
 
-Converts an operator representation to Kraus matrix representation
+    list
 
-**Parameters**
+    #### Additional information:
 
-**operator** (*operator*) – operator representation. Can be a noise circuit or a matrix or a list of matrices.
+    This method is the only place in the code where we rely on the cvxpy library should we consider another library, only this method needs to change.
+  </Function>
 
-**Returns**
+  ### transform\_by\_given\_channel
 
-the operator, converted to Kraus representation.
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.transform_by_given_channel" name="transform_by_given_channel" signature="NoiseTransformer.transform_by_given_channel(channel_matrices, const_channel_matrix)">
+    Transform by by quantum channels.
 
-**Return type**
+    This method creates objective function representing the Hilbert-Schmidt norm of the matrix (A-B) obtained as the difference of the input noise channel and the output channel we wish to determine.
 
-[Kraus](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
+    This function is represented by a matrix P and a vector q, such that f(x) = 1/2(x\*P\*x)+q\*x where x is the vector we wish to minimize, where x represents probabilities for the noise operators that construct the output channel
 
-### prepare\_channel\_operator\_list
+    **Parameters**
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.prepare_channel_operator_list" />
+    *   **channel\_matrices** (*list*) – A list of 4x4 symbolic matrices
+    *   **const\_channel\_matrix** (*matrix*) – a 4x4 constant matrix
 
-`static NoiseTransformer.prepare_channel_operator_list(ops_list)`
+    **Returns**
 
-Prepares a list of channel operators.
+    a list of the optimal probabilities for the channel matrices, determined by the quadratic program solver
 
-**Parameters**
+    **Return type**
 
-**ops\_list** (*List*) – The list of operators to prepare
+    list
+  </Function>
 
-**Returns**
+  ### transform\_by\_operator\_list
 
-The channel operator list
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.transform_by_operator_list" name="transform_by_operator_list" signature="NoiseTransformer.transform_by_operator_list(transform_channel_operators, noise_kraus_operators)">
+    Transform input Kraus operators.
 
-**Return type**
+    Allows approximating a set of input Kraus operators as in terms of a different set of Kraus matrices.
 
-List
+    For example, setting $[X, Y, Z]$ allows approximating by a Pauli channel, and $[(|0 \langle\rangle 0|, |0\langle\rangle 1|), |1\langle\rangle 0|, |1 \langle\rangle 1|)]$ represents the relaxation channel
 
-### prepare\_honesty\_constraint
+    In the case the input is a list $[A_1, A_2, ..., A_n]$ of transform matrices and $[E_0, E_1, ..., E_m]$ of noise Kraus operators, the output is a list $[p_1, p_2, ..., p_n]$ of probabilities such that:
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.prepare_honesty_constraint" />
+    1.  $p_i \ge 0$
+    2.  $p_1 + ... + p_n \le 1$
+    3.  $[\sqrt(p_1) A_1, \sqrt(p_2) A_2, ..., \sqrt(p_n) A_n, \sqrt(1-(p_1 + ... + p_n))I]$ is a list of Kraus operators that define the output channel (which is “close” to the input channel given by $[E_0, ..., E_m]$.)
 
-`NoiseTransformer.prepare_honesty_constraint(transform_channel_operators_list)`
+    This channel can be thought of as choosing the operator $A_i$ in probability $p_i$ and applying this operator to the quantum state.
 
-Prepares the honesty constraint.
+    More generally, if the input is a list of tuples (not necessarily of the same size): $[(A_1, B_1, ...), (A_2, B_2, ...), ..., (A_n, B_n, ...)]$ then the output is still a list $[p_1, p_2, ..., p_n]$ and now the output channel is defined by the operators: $[\sqrt(p_1)A1, \sqrt(p_1)B_1, ..., \sqrt(p_n)A_n, \sqrt(p_n)B_n, ..., \sqrt(1-(p_1 + ... + p_n))I]$
 
-**Parameters**
+    **Parameters**
 
-*   **transform\_channel\_operators\_list** (*list*) – A list of tuples of matrices which represent
-*   **operators.** ([*Kraus*](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")) –
+    *   **noise\_kraus\_operators** (*List*) – a list of matrices (Kraus operators) for the input channel.
+    *   **transform\_channel\_operators** (*List*) – a list of matrices or tuples of matrices representing Kraus operators that can construct the output channel.
 
-### solve\_quadratic\_program
+    **Returns**
 
-<span id="qiskit.providers.aer.utils.NoiseTransformer.solve_quadratic_program" />
+    A list of amplitudes that define the output channel.
 
-`NoiseTransformer.solve_quadratic_program(P, q)`
+    **Return type**
 
-Solve the quadratic program optimization problem.
-
-This function solved the quadratic program to minimize the objective function f(x) = 1/2(x\*P\*x)+q\*x subject to the additional constraints Gx \<= h
-
-Where P, q are given and G,h are computed to ensure that x represents a probability vector and subject to honesty constraints if required :param P: A matrix representing the P component of the objective function :type P: matrix :param q: A vector representing the q component of the objective function :type q: list
-
-**Returns**
-
-The solution of the quadratic program (represents probabilities)
-
-**Return type**
-
-list
-
-#### Additional information:
-
-This method is the only place in the code where we rely on the cvxpy library should we consider another library, only this method needs to change.
-
-### transform\_by\_given\_channel
-
-<span id="qiskit.providers.aer.utils.NoiseTransformer.transform_by_given_channel" />
-
-`NoiseTransformer.transform_by_given_channel(channel_matrices, const_channel_matrix)`
-
-Transform by by quantum channels.
-
-This method creates objective function representing the Hilbert-Schmidt norm of the matrix (A-B) obtained as the difference of the input noise channel and the output channel we wish to determine.
-
-This function is represented by a matrix P and a vector q, such that f(x) = 1/2(x\*P\*x)+q\*x where x is the vector we wish to minimize, where x represents probabilities for the noise operators that construct the output channel
-
-**Parameters**
-
-*   **channel\_matrices** (*list*) – A list of 4x4 symbolic matrices
-*   **const\_channel\_matrix** (*matrix*) – a 4x4 constant matrix
-
-**Returns**
-
-a list of the optimal probabilities for the channel matrices, determined by the quadratic program solver
-
-**Return type**
-
-list
-
-### transform\_by\_operator\_list
-
-<span id="qiskit.providers.aer.utils.NoiseTransformer.transform_by_operator_list" />
-
-`NoiseTransformer.transform_by_operator_list(transform_channel_operators, noise_kraus_operators)`
-
-Transform input Kraus operators.
-
-Allows approximating a set of input Kraus operators as in terms of a different set of Kraus matrices.
-
-For example, setting $[X, Y, Z]$ allows approximating by a Pauli channel, and $[(|0 \langle\rangle 0|, |0\langle\rangle 1|), |1\langle\rangle 0|, |1 \langle\rangle 1|)]$ represents the relaxation channel
-
-In the case the input is a list $[A_1, A_2, ..., A_n]$ of transform matrices and $[E_0, E_1, ..., E_m]$ of noise Kraus operators, the output is a list $[p_1, p_2, ..., p_n]$ of probabilities such that:
-
-1.  $p_i \ge 0$
-2.  $p_1 + ... + p_n \le 1$
-3.  $[\sqrt(p_1) A_1, \sqrt(p_2) A_2, ..., \sqrt(p_n) A_n, \sqrt(1-(p_1 + ... + p_n))I]$ is a list of Kraus operators that define the output channel (which is “close” to the input channel given by $[E_0, ..., E_m]$.)
-
-This channel can be thought of as choosing the operator $A_i$ in probability $p_i$ and applying this operator to the quantum state.
-
-More generally, if the input is a list of tuples (not necessarily of the same size): $[(A_1, B_1, ...), (A_2, B_2, ...), ..., (A_n, B_n, ...)]$ then the output is still a list $[p_1, p_2, ..., p_n]$ and now the output channel is defined by the operators: $[\sqrt(p_1)A1, \sqrt(p_1)B_1, ..., \sqrt(p_n)A_n, \sqrt(p_n)B_n, ..., \sqrt(1-(p_1 + ... + p_n))I]$
-
-**Parameters**
-
-*   **noise\_kraus\_operators** (*List*) – a list of matrices (Kraus operators) for the input channel.
-*   **transform\_channel\_operators** (*List*) – a list of matrices or tuples of matrices representing Kraus operators that can construct the output channel.
-
-**Returns**
-
-A list of amplitudes that define the output channel.
-
-**Return type**
-
-List
+    List
+  </Function>
+</Class>
 

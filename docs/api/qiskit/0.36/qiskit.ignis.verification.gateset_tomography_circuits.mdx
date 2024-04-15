@@ -8,50 +8,48 @@ python_api_name: qiskit.ignis.verification.gateset_tomography_circuits
 
 # qiskit.ignis.verification.gateset\_tomography\_circuits
 
-<span id="qiskit.ignis.verification.gateset_tomography_circuits" />
+<Function id="qiskit.ignis.verification.gateset_tomography_circuits" name="gateset_tomography_circuits" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/tomography/basis/circuits.py" signature="gateset_tomography_circuits(measured_qubits=None, gateset_basis='default')">
+  Return a list of quantum gate set tomography (GST) circuits.
 
-`gateset_tomography_circuits(measured_qubits=None, gateset_basis='default')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/tomography/basis/circuits.py "view source code")
+  The circuits are fully constructed from the data given in gateset\_basis. Note that currently this is only implemented for the single-qubits.
 
-Return a list of quantum gate set tomography (GST) circuits.
+  **Parameters**
 
-The circuits are fully constructed from the data given in gateset\_basis. Note that currently this is only implemented for the single-qubits.
+  *   **measured\_qubits** (`Optional`\[`List`\[`int`]]) – The qubits to perform GST. If None GST will be performed on qubit-0.
+  *   **gateset\_basis** (`Union`\[`str`, `GateSetBasis`]) – The gateset and SPAM data.
 
-**Parameters**
+  **Return type**
 
-*   **measured\_qubits** (`Optional`\[`List`\[`int`]]) – The qubits to perform GST. If None GST will be performed on qubit-0.
-*   **gateset\_basis** (`Union`\[`str`, `GateSetBasis`]) – The gateset and SPAM data.
+  `List`\[`QuantumCircuit`]
 
-**Return type**
+  **Returns**
 
-`List`\[`QuantumCircuit`]
+  A list of QuantumCircuit objects containing the original circuit with state preparation circuits prepended, and measurement circuits appended.
 
-**Returns**
+  **Raises**
 
-A list of QuantumCircuit objects containing the original circuit with state preparation circuits prepended, and measurement circuits appended.
+  **QiskitError** – If called for more than 1 measured qubit.
 
-**Raises**
+  ## Additional Information:
 
-**QiskitError** – If called for more than 1 measured qubit.
+  Gate set tomography is performed on a gate set (G0, G1,…,Gm) with the additional information of SPAM circuits (F0,F1,…,Fn) that are constructed from the gates in the gate set.
 
-## Additional Information:
+  In gate set tomography, we assume a single initial state rho and a single POVM measurement operator E. The SPAM circuits now provide us with a complete set of initial state F\_j|rho> and measurements \<E|F\_i.
 
-Gate set tomography is performed on a gate set (G0, G1,…,Gm) with the additional information of SPAM circuits (F0,F1,…,Fn) that are constructed from the gates in the gate set.
+  We perform three types of experiments:
 
-In gate set tomography, we assume a single initial state rho and a single POVM measurement operator E. The SPAM circuits now provide us with a complete set of initial state F\_j|rho> and measurements \<E|F\_i.
+  1.  ## $\langle E | F_i G_k F_j |\rho \rangle$ for 1 \<= i,j \<= n
 
-We perform three types of experiments:
+      and 1 \<= k \<= m: This experiment enables us to obtain data on the gate G\_k
 
-1.  ## $\langle E | F_i G_k F_j |\rho \rangle$ for 1 \<= i,j \<= n
+  2.  ## $\langle E | F_i F_j |\rho \rangle$ for 1 \<= i,j \<= n:
 
-    and 1 \<= k \<= m: This experiment enables us to obtain data on the gate G\_k
+      This experiment enables us to obtain the Gram matrix required to “invert” the results of experiments of type 1 in order to reconstruct (a matrix similar to) the gate G\_k
 
-2.  ## $\langle E | F_i F_j |\rho \rangle$ for 1 \<= i,j \<= n:
+  3.  ## $\langle E | F_j |\rho \rangle$ for 1 \<= j \<= n:
 
-    This experiment enables us to obtain the Gram matrix required to “invert” the results of experiments of type 1 in order to reconstruct (a matrix similar to) the gate G\_k
+      This experiment enables us to reconstruct \<E| and rho
 
-3.  ## $\langle E | F_j |\rho \rangle$ for 1 \<= j \<= n:
-
-    This experiment enables us to reconstruct \<E| and rho
-
-The result of this method is the set of all the circuits needed for these experiments, suitably labeled with a tuple of the corresponding gate/SPAM labels
+  The result of this method is the set of all the circuits needed for these experiments, suitably labeled with a tuple of the corresponding gate/SPAM labels
+</Function>
 

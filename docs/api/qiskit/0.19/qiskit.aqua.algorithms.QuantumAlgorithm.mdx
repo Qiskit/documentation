@@ -8,80 +8,72 @@ python_api_name: qiskit.aqua.algorithms.QuantumAlgorithm
 
 # QuantumAlgorithm
 
-<span id="qiskit.aqua.algorithms.QuantumAlgorithm" />
+<Class id="qiskit.aqua.algorithms.QuantumAlgorithm" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/quantum_algorithm.py" signature="QuantumAlgorithm(quantum_instance)">
+  Base class for Quantum Algorithms.
 
-`QuantumAlgorithm(quantum_instance)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/quantum_algorithm.py "view source code")
+  This method should initialize the module and use an exception if a component of the module is available.
 
-Base class for Quantum Algorithms.
+  ## Attributes
 
-This method should initialize the module and use an exception if a component of the module is available.
+  ### backend
 
-## Attributes
+  <Attribute id="qiskit.aqua.algorithms.QuantumAlgorithm.backend" name="backend" signature="qiskit.providers.basebackend.BaseBackend">
+    Returns backend.
 
-### backend
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.QuantumAlgorithm.backend" />
+    [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
+  </Attribute>
 
-`qiskit.providers.basebackend.BaseBackend`
+  ### quantum\_instance
 
-Returns backend.
+  <Attribute id="qiskit.aqua.algorithms.QuantumAlgorithm.quantum_instance" name="quantum_instance" signature="Union[None, qiskit.aqua.quantum_instance.QuantumInstance]">
+    Returns quantum instance.
 
-**Return type**
+    **Return type**
 
-[`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
+    `Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
+  </Attribute>
 
-### quantum\_instance
+  ### random
 
-<span id="qiskit.aqua.algorithms.QuantumAlgorithm.quantum_instance" />
+  <Attribute id="qiskit.aqua.algorithms.QuantumAlgorithm.random" name="random">
+    Return a numpy random.
+  </Attribute>
 
-`Union[None, qiskit.aqua.quantum_instance.QuantumInstance]`
+  ## Methods
 
-Returns quantum instance.
+  ### run
 
-**Return type**
+  <Function id="qiskit.aqua.algorithms.QuantumAlgorithm.run" name="run" signature="QuantumAlgorithm.run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-`Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
+    **Parameters**
 
-### random
+    *   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-Return a numpy random.
+    **Returns**
 
-## Methods
+    results of an algorithm.
 
-### run
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.QuantumAlgorithm.run" />
+    dict
 
-`QuantumAlgorithm.run(quantum_instance=None, **kwargs)`
+    **Raises**
 
-Execute the algorithm with selected backend.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-**Parameters**
+  ### set\_backend
 
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
+  <Function id="qiskit.aqua.algorithms.QuantumAlgorithm.set_backend" name="set_backend" signature="QuantumAlgorithm.set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-**Returns**
+    **Return type**
 
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.QuantumAlgorithm.set_backend" />
-
-`QuantumAlgorithm.set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

@@ -8,187 +8,183 @@ python_api_name: qiskit.circuit.library.CRYGate
 
 # CRYGate
 
-<span id="qiskit.circuit.library.CRYGate" />
+<Class id="qiskit.circuit.library.CRYGate" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/ry.py" signature="CRYGate(theta, label=None, ctrl_state=None)">
+  Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
-`CRYGate(theta, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/ry.py "view source code")
+  Controlled-RY gate.
 
-Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cry()`](qiskit.circuit.QuantumCircuit#cry "qiskit.circuit.QuantumCircuit.cry") method.
 
-Controlled-RY gate.
-
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cry()`](qiskit.circuit.QuantumCircuit#cry "qiskit.circuit.QuantumCircuit.cry") method.
-
-**Circuit symbol:**
-
-```python
-q_0: ────■────
-     ┌───┴───┐
-q_1: ┤ Ry(ϴ) ├
-     └───────┘
-```
-
-**Matrix representation:**
-
-$$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| + RY(\theta) \otimes |1\rangle\langle 1| =
-    \begin{pmatrix}
-        1 & 0         & 0 & 0 \\
-        0 & \cos{\th} & 0 & -\sin{\th} \\
-        0 & 0         & 1 & 0 \\
-        0 & \sin{\th} & 0 & \cos{\th}
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
-$$
-
-<Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
+  **Circuit symbol:**
 
   ```python
-       ┌───────┐
-  q_0: ┤ Ry(ϴ) ├
-       └───┬───┘
-  q_1: ────■────
+  q_0: ────■────
+       ┌───┴───┐
+  q_1: ┤ Ry(ϴ) ├
+       └───────┘
   ```
 
-  $$
-   \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_1, q_0 =
-  |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RY(\theta) =
-      \begin{pmatrix}
-          1 & 0 & 0 & 0 \\
-          0 & 1 & 0 & 0 \\
-          0 & 0 & \cos{\th} & -\sin{\th} \\
-          0 & 0 & \sin{\th} & \cos{\th}
-      \end{pmatrix}\end{split}\end{aligned}\end{align} 
-  $$
-</Admonition>
+  **Matrix representation:**
 
-Create new CRY gate.
+$$
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_0, q_1 =
+I \otimes |0\rangle\langle 0| + RY(\theta) \otimes |1\rangle\langle 1| =
+\begin{pmatrix}
+1 & 0         & 0 & 0 \\
+0 & \cos{\th} & 0 & -\sin{\th} \\
+0 & 0         & 1 & 0 \\
+0 & \sin{\th} & 0 & \cos{\th}
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
+$$
 
-## Methods Defined Here
+  <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
 
-### inverse
+    ```python
+         ┌───────┐
+    q_0: ┤ Ry(ϴ) ├
+         └───┬───┘
+    q_1: ────■────
+    ```
 
-<span id="qiskit.circuit.library.CRYGate.inverse" />
+$$
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_1, q_0 =
+|0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RY(\theta) =
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & \cos{\th} & -\sin{\th} \\
+0 & 0 & \sin{\th} & \cos{\th}
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
+$$
+  </Admonition>
 
-`CRYGate.inverse()`
+  Create new CRY gate.
 
-Return inverse CRY gate (i.e. with the negative rotation angle).
+  ## Methods Defined Here
 
-## Attributes
+  ### inverse
 
-<span id="qiskit.circuit.library.CRYGate.condition_bits" />
+  <Function id="qiskit.circuit.library.CRYGate.inverse" name="inverse" signature="CRYGate.inverse()">
+    Return inverse CRY gate (i.e. with the negative rotation angle).
+  </Function>
 
-### condition\_bits
+  ## Attributes
 
-Get Clbits in condition.
+  ### condition\_bits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.CRYGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+    **Return type**
 
-<span id="qiskit.circuit.library.CRYGate.ctrl_state" />
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-### ctrl\_state
+  ### ctrl\_state
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.CRYGate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
 
-**Return type**
+    **Return type**
 
-`int`
+    `int`
+  </Attribute>
 
-<span id="qiskit.circuit.library.CRYGate.decompositions" />
+  ### decompositions
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.CRYGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### definition
 
-<span id="qiskit.circuit.library.CRYGate.definition" />
+  <Attribute id="qiskit.circuit.library.CRYGate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
 
-### definition
+    **Return type**
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+    `List`
+  </Attribute>
 
-**Return type**
+  ### duration
 
-`List`
+  <Attribute id="qiskit.circuit.library.CRYGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CRYGate.duration" />
+  ### label
 
-### duration
+  <Attribute id="qiskit.circuit.library.CRYGate.label" name="label">
+    Return instruction label
 
-Get the duration.
+    **Return type**
 
-<span id="qiskit.circuit.library.CRYGate.label" />
+    `str`
+  </Attribute>
 
-### label
+  ### name
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.CRYGate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-**Return type**
+    > \<original\_name\_o\<ctrl\_state>
 
-`str`
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
 
-<span id="qiskit.circuit.library.CRYGate.name" />
+    **Return type**
 
-### name
+    `str`
+  </Attribute>
 
-Get name of gate. If the gate has open controls the gate name will become:
+  ### num\_clbits
 
-> \<original\_name\_o\<ctrl\_state>
+  <Attribute id="qiskit.circuit.library.CRYGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  ### num\_ctrl\_qubits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.CRYGate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-`str`
+    **Returns**
 
-<span id="qiskit.circuit.library.CRYGate.num_clbits" />
+    The number of control qubits for the gate.
 
-### num\_clbits
+    **Return type**
 
-Return the number of clbits.
+    int
+  </Attribute>
 
-<span id="qiskit.circuit.library.CRYGate.num_ctrl_qubits" />
+  ### num\_qubits
 
-### num\_ctrl\_qubits
+  <Attribute id="qiskit.circuit.library.CRYGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Get number of control qubits.
+  ### params
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.CRYGate.params" name="params">
+    Get parameters from base\_gate.
 
-The number of control qubits for the gate.
+    **Returns**
 
-**Return type**
+    List of gate parameters.
 
-int
+    **Return type**
 
-<span id="qiskit.circuit.library.CRYGate.num_qubits" />
+    list
 
-### num\_qubits
+    **Raises**
 
-Return the number of qubits.
+    **CircuitError** – Controlled gate does not define a base gate
+  </Attribute>
 
-<span id="qiskit.circuit.library.CRYGate.params" />
+  ### unit
 
-### params
-
-Get parameters from base\_gate.
-
-**Returns**
-
-List of gate parameters.
-
-**Return type**
-
-list
-
-**Raises**
-
-**CircuitError** – Controlled gate does not define a base gate
-
-<span id="qiskit.circuit.library.CRYGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.CRYGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

@@ -8,111 +8,105 @@ python_api_name: qiskit.chemistry.MP2Info
 
 # MP2Info
 
-<span id="qiskit.chemistry.MP2Info" />
+<Class id="qiskit.chemistry.MP2Info" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/mp2info.py" signature="MP2Info(qmolecule, threshold=1e-12)">
+  Bases: `object`
 
-`MP2Info(qmolecule, threshold=1e-12)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/mp2info.py "view source code")
+  A utility class for Moller-Plesset 2nd order (MP2) information
 
-Bases: `object`
+  Each double excitation given by \[i,a,j,b] has a coefficient computed using
 
-A utility class for Moller-Plesset 2nd order (MP2) information
+  coeff = -(2 \* Tiajb - Tibja)/(oe\[b] + oe\[a] - oe\[i] - oe\[j])
 
-Each double excitation given by \[i,a,j,b] has a coefficient computed using
+  where oe\[] is the orbital energy
 
-coeff = -(2 \* Tiajb - Tibja)/(oe\[b] + oe\[a] - oe\[i] - oe\[j])
+  and an energy delta given by
 
-where oe\[] is the orbital energy
+  e\_delta = coeff \* Tiajb
 
-and an energy delta given by
+  All the computations are done using the molecule orbitals but the indexes used in the excitation information passed in and out are in the block spin orbital numbering as normally used by the chemistry module.
 
-e\_delta = coeff \* Tiajb
+  A utility class for MP2 info
 
-All the computations are done using the molecule orbitals but the indexes used in the excitation information passed in and out are in the block spin orbital numbering as normally used by the chemistry module.
+  **Parameters**
 
-A utility class for MP2 info
+  *   **qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – QMolecule from chemistry driver
+  *   **threshold** (*float*) – Computed coefficients and energy deltas will be set to zero if their value is below this threshold
 
-**Parameters**
+  ## Methods
 
-*   **qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – QMolecule from chemistry driver
-*   **threshold** (*float*) – Computed coefficients and energy deltas will be set to zero if their value is below this threshold
+  ### mp2\_get\_term\_info
 
-## Methods
+  <Function id="qiskit.chemistry.MP2Info.mp2_get_term_info" name="mp2_get_term_info" signature="MP2Info.mp2_get_term_info(excitation_list, freeze_core=False, orbital_reduction=None)">
+    With a reduced active space the set of used excitations can be less than allowing all available excitations. Given a (sub)set of excitations in the space this will return a list of correlation coefficients and a list of correlation energies ordered as per the excitation list provided.
 
-### mp2\_get\_term\_info
+    **Parameters**
 
-<span id="qiskit.chemistry.MP2Info.mp2_get_term_info" />
+    *   **excitation\_list** (*list*) – A list of excitations for which to get the coeff and e\_delta
+    *   **freeze\_core** (*bool*) – Whether core orbitals are frozen or not
+    *   **orbital\_reduction** (*list*) – An optional list of ints indicating removed orbitals
 
-`MP2Info.mp2_get_term_info(excitation_list, freeze_core=False, orbital_reduction=None)`
+    **Returns**
 
-With a reduced active space the set of used excitations can be less than allowing all available excitations. Given a (sub)set of excitations in the space this will return a list of correlation coefficients and a list of correlation energies ordered as per the excitation list provided.
+    List of coefficients and list of energy deltas
 
-**Parameters**
+    **Return type**
 
-*   **excitation\_list** (*list*) – A list of excitations for which to get the coeff and e\_delta
-*   **freeze\_core** (*bool*) – Whether core orbitals are frozen or not
-*   **orbital\_reduction** (*list*) – An optional list of ints indicating removed orbitals
+    Tuple(list, list)
 
-**Returns**
+    **Raises**
 
-List of coefficients and list of energy deltas
+    **ValueError** – Excitation not present in mp2 terms
+  </Function>
 
-**Return type**
+  ### mp2\_terms
 
-Tuple(list, list)
+  <Function id="qiskit.chemistry.MP2Info.mp2_terms" name="mp2_terms" signature="MP2Info.mp2_terms(freeze_core=False, orbital_reduction=None)">
+    Gets the set of MP2 terms for the molecule taking into account index adjustments due to frozen core and/or other orbital reduction
 
-**Raises**
+    **Parameters**
 
-**ValueError** – Excitation not present in mp2 terms
+    *   **freeze\_core** (*bool*) – Whether core orbitals are frozen or not
+    *   **orbital\_reduction** (*list*) – An optional list of ints indicating removed orbitals
 
-### mp2\_terms
+    **Returns**
 
-<span id="qiskit.chemistry.MP2Info.mp2_terms" />
+    **A dictionary of excitations where the key is a string in the form**
 
-`MP2Info.mp2_terms(freeze_core=False, orbital_reduction=None)`
+    from\_to\_from\_to e.g. 0\_4\_6\_10 and the value is a tuple of (coeff, e\_delta)
 
-Gets the set of MP2 terms for the molecule taking into account index adjustments due to frozen core and/or other orbital reduction
+    **Return type**
 
-**Parameters**
+    dict
+  </Function>
 
-*   **freeze\_core** (*bool*) – Whether core orbitals are frozen or not
-*   **orbital\_reduction** (*list*) – An optional list of ints indicating removed orbitals
+  ## Attributes
 
-**Returns**
+  ### mp2\_delta
 
-**A dictionary of excitations where the key is a string in the form**
+  <Attribute id="qiskit.chemistry.MP2Info.mp2_delta" name="mp2_delta">
+    Get the MP2 delta energy correction for the molecule
 
-from\_to\_from\_to e.g. 0\_4\_6\_10 and the value is a tuple of (coeff, e\_delta)
+    **Returns**
 
-**Return type**
+    The MP2 delta energy
 
-dict
+    **Return type**
 
-## Attributes
+    float
+  </Attribute>
 
-<span id="qiskit.chemistry.MP2Info.mp2_delta" />
+  ### mp2\_energy
 
-### mp2\_delta
+  <Attribute id="qiskit.chemistry.MP2Info.mp2_energy" name="mp2_energy">
+    Get the MP2 energy for the molecule
 
-Get the MP2 delta energy correction for the molecule
+    **Returns**
 
-**Returns**
+    The MP2 energy
 
-The MP2 delta energy
+    **Return type**
 
-**Return type**
-
-float
-
-<span id="qiskit.chemistry.MP2Info.mp2_energy" />
-
-### mp2\_energy
-
-Get the MP2 energy for the molecule
-
-**Returns**
-
-The MP2 energy
-
-**Return type**
-
-float
+    float
+  </Attribute>
+</Class>
 

@@ -8,136 +8,124 @@ python_api_name: qiskit.passmanager.BasePassManager
 
 # BasePassManager
 
-<span id="qiskit.passmanager.BasePassManager" />
+<Class id="qiskit.passmanager.BasePassManager" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/passmanager.py#L33-L267" signature="qiskit.passmanager.BasePassManager(tasks=(), max_iteration=1000)">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-`qiskit.passmanager.BasePassManager(tasks=(), max_iteration=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/passmanager.py "view source code")
+  Pass manager base class.
 
-Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  Initialize an empty pass manager object.
 
-Pass manager base class.
+  **Parameters**
 
-Initialize an empty pass manager object.
+  *   **tasks** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A pass set to be added to the pass manager schedule.
+  *   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of iterations the schedule will be looped if the condition is not met.
 
-**Parameters**
+  ## Methods
 
-*   **tasks** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A pass set to be added to the pass manager schedule.
-*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of iterations the schedule will be looped if the condition is not met.
+  ### append
 
-## Methods
+  <Function id="qiskit.passmanager.BasePassManager.append" name="append" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/passmanager.py#L57-L74" signature="append(tasks)">
+    Append tasks to the schedule of passes.
 
-### append
+    **Parameters**
 
-<span id="qiskit.passmanager.BasePassManager.append" />
+    **tasks** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A set of pass manager tasks to be added to schedule.
 
-`append(tasks)`
+    **Raises**
 
-Append tasks to the schedule of passes.
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – When any element of tasks is not a subclass of passmanager Task.
+  </Function>
 
-**Parameters**
+  ### remove
 
-**tasks** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A set of pass manager tasks to be added to schedule.
+  <Function id="qiskit.passmanager.BasePassManager.remove" name="remove" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/passmanager.py#L96-L108" signature="remove(index)">
+    Removes a particular pass in the scheduler.
 
-**Raises**
+    **Parameters**
 
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – When any element of tasks is not a subclass of passmanager Task.
+    **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Pass index to remove, based on the position in `passes()`.
 
-### remove
+    **Raises**
 
-<span id="qiskit.passmanager.BasePassManager.remove" />
+    [**PassManagerError**](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.PassManagerError") – If the index is not found.
+  </Function>
 
-`remove(index)`
+  ### replace
 
-Removes a particular pass in the scheduler.
+  <Function id="qiskit.passmanager.BasePassManager.replace" name="replace" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/passmanager.py#L76-L94" signature="replace(index, tasks)">
+    Replace a particular pass in the scheduler.
 
-**Parameters**
+    **Parameters**
 
-**index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Pass index to remove, based on the position in `passes()`.
+    *   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Task index to replace, based on the position in `tasks()`
+    *   **tasks** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A set of pass manager tasks to be added to schedule.
 
-**Raises**
+    **Raises**
 
-[**PassManagerError**](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.PassManagerError") – If the index is not found.
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – When any element of tasks is not a subclass of passmanager Task.
+    *   [**PassManagerError**](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.PassManagerError") – If the index is not found.
+  </Function>
 
-### replace
+  ### run
 
-<span id="qiskit.passmanager.BasePassManager.replace" />
+  <Function id="qiskit.passmanager.BasePassManager.run" name="run" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/passmanager.py#L172-L251" signature="run(in_programs, callback=None, num_processes=None, **kwargs)">
+    Run all the passes on the specified `in_programs`.
 
-`replace(index, tasks)`
+    **Parameters**
 
-Replace a particular pass in the scheduler.
+    *   **in\_programs** (*Any |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Any]*) – Input programs to transform via all the registered passes. A single input object cannot be a Python builtin list object. A list object is considered as multiple input objects to optimize.
 
-**Parameters**
+    *   **callback** (*Callable*) –
 
-*   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Task index to replace, based on the position in `tasks()`
-*   **tasks** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A set of pass manager tasks to be added to schedule.
+        A callback function that will be called after each pass execution. The function will be called with 4 keyword arguments:
 
-**Raises**
+        ```python
+        task (GenericPass): the pass being run
+        passmanager_ir (Any): depending on pass manager subclass
+        property_set (PropertySet): the property set
+        running_time (float): the time to execute the pass
+        count (int): the index for the pass execution
+        ```
 
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – When any element of tasks is not a subclass of passmanager Task.
-*   [**PassManagerError**](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.PassManagerError") – If the index is not found.
+        The exact arguments pass expose the internals of the pass manager and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases be sure to check that the arguments being passed are the same.
 
-### run
+        To use the callback feature you define a function that will take in kwargs dict and access the variables. For example:
 
-<span id="qiskit.passmanager.BasePassManager.run" />
+        ```python
+        def callback_func(**kwargs):
+            task = kwargs['task']
+            passmanager_ir = kwargs['passmanager_ir']
+            property_set = kwargs['property_set']
+            running_time = kwargs['running_time']
+            count = kwargs['count']
+            ...
+        ```
 
-`run(in_programs, callback=None, num_processes=None, **kwargs)`
+    *   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of parallel processes to launch if parallel execution is enabled. This argument overrides `num_processes` in the user configuration file, and the `QISKIT_NUM_PROCS` environment variable. If set to `None` the system default or local user configuration will be used.
 
-Run all the passes on the specified `in_programs`.
+    *   **kwargs** – Arbitrary arguments passed to the compiler frontend and backend.
 
-**Parameters**
+    **Returns**
 
-*   **in\_programs** (*Any |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Any]*) – Input programs to transform via all the registered passes. A single input object cannot be a Python builtin list object. A list object is considered as multiple input objects to optimize.
+    The transformed program(s).
 
-*   **callback** (*Callable*) –
+    **Return type**
 
-    A callback function that will be called after each pass execution. The function will be called with 4 keyword arguments:
+    Any
+  </Function>
 
-    ```python
-    task (GenericPass): the pass being run
-    passmanager_ir (Any): depending on pass manager subclass
-    property_set (PropertySet): the property set
-    running_time (float): the time to execute the pass
-    count (int): the index for the pass execution
-    ```
+  ### to\_flow\_controller
 
-    The exact arguments pass expose the internals of the pass manager and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases be sure to check that the arguments being passed are the same.
+  <Function id="qiskit.passmanager.BasePassManager.to_flow_controller" name="to_flow_controller" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/passmanager.py#L253-L261" signature="to_flow_controller()">
+    Linearize this manager into a single [`FlowControllerLinear`](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.FlowControllerLinear"), so that it can be nested inside another pass manager.
 
-    To use the callback feature you define a function that will take in kwargs dict and access the variables. For example:
+    **Returns**
 
-    ```python
-    def callback_func(**kwargs):
-        task = kwargs['task']
-        passmanager_ir = kwargs['passmanager_ir']
-        property_set = kwargs['property_set']
-        running_time = kwargs['running_time']
-        count = kwargs['count']
-        ...
-    ```
+    A linearized pass manager.
 
-*   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of parallel processes to launch if parallel execution is enabled. This argument overrides `num_processes` in the user configuration file, and the `QISKIT_NUM_PROCS` environment variable. If set to `None` the system default or local user configuration will be used.
+    **Return type**
 
-*   **kwargs** – Arbitrary arguments passed to the compiler frontend and backend.
-
-**Returns**
-
-The transformed program(s).
-
-**Return type**
-
-Any
-
-### to\_flow\_controller
-
-<span id="qiskit.passmanager.BasePassManager.to_flow_controller" />
-
-`to_flow_controller()`
-
-Linearize this manager into a single [`FlowControllerLinear`](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.FlowControllerLinear"), so that it can be nested inside another pass manager.
-
-**Returns**
-
-A linearized pass manager.
-
-**Return type**
-
-[*FlowControllerLinear*](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.flow_controllers.FlowControllerLinear")
+    [*FlowControllerLinear*](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.flow_controllers.FlowControllerLinear")
+  </Function>
+</Class>
 

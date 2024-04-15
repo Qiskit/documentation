@@ -1,0 +1,90 @@
+---
+title: options
+description: API reference for qiskit_ibm_runtime.options
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_ibm_runtime.options
+---
+
+<span id="primitive-options-qiskit-ibm-runtime-options" />
+
+<span id="module-qiskit_ibm_runtime.options" />
+
+# Primitive options
+
+<span id="module-qiskit_ibm_runtime.options" />
+
+`qiskit_ibm_runtime.options`
+
+Options that can be passed to the primitives.
+
+**V2 Primitives**
+
+`SamplerV2` and `EstimatorV2` each have their own options. You can use the `options` attribute to set the options. For example:
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+estimator = EstimatorV2(backend=backend)
+estimator.options.resilience_level = 1
+```
+
+You can also use the `update()` method to do bulk update. For example:
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+estimator = EstimatorV2(backend=backend)
+estimator.options.update(resilience_level=1)
+```
+
+Refer to [`SamplerOptions`](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ibm_runtime.options.SamplerOptions") and [`EstimatorOptions`](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.EstimatorOptions") for V2 Sampler and V2 Estimator options, respectively.
+
+<Admonition title="Note" type="note">
+  If an option is not specified, the server default value is used. The default values are subject to change. See the [API Reference](/api/qiskit-ibm-runtime/options) for the most up-to-date default values.
+</Admonition>
+
+**V1 Primitives**
+
+The [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.Options") class encapsulates all the options you can specify when invoking a V1 primitive. It includes frequently used options, such as `optimization_level` and `resilience_level` as well as sub-categories, such as `transpilation` and `execution`. You can use auto-complete to easily find the options inside each sub-category, for example:
+
+```python
+from qiskit_ibm_runtime.options import Options
+
+options = Options()
+options.transpilation.initial_layout = [0, 1, 2, 3]  # This an be done using auto-complete
+```
+
+You can also pass dictionaries to each sub-category, for example:
+
+```python
+from qiskit_ibm_runtime.options import Options
+
+options = Options(transpilation={"initial_layout": [0, 1, 2, 3]})
+```
+
+## Classes
+
+|                                                                                                                                                                      |                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [`EstimatorOptions`](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.EstimatorOptions")(\*args, \*\*kwargs)                                  | Options for V2 Estimator.                            |
+| [`SamplerOptions`](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ibm_runtime.options.SamplerOptions")(\*args, \*\*kwargs)                                        | Options for V2 Sampler.                              |
+| [`DynamicalDecouplingOptions`](qiskit_ibm_runtime.options.DynamicalDecouplingOptions "qiskit_ibm_runtime.options.DynamicalDecouplingOptions")(\*args, \*\*kwargs)    | Options for dynamical decoupling (DD).               |
+| [`ResilienceOptionsV2`](qiskit_ibm_runtime.options.ResilienceOptionsV2 "qiskit_ibm_runtime.options.ResilienceOptionsV2")(\*args, \*\*kwargs)                         | Resilience options for V2 Estimator.                 |
+| [`LayerNoiseLearningOptions`](qiskit_ibm_runtime.options.LayerNoiseLearningOptions "qiskit_ibm_runtime.options.LayerNoiseLearningOptions")(\*args, \*\*kwargs)       | Options for learning layer noise.                    |
+| [`MeasureNoiseLearningOptions`](qiskit_ibm_runtime.options.MeasureNoiseLearningOptions "qiskit_ibm_runtime.options.MeasureNoiseLearningOptions")(\*args, \*\*kwargs) | Options for measurement noise learning.              |
+| [`PecOptions`](qiskit_ibm_runtime.options.PecOptions "qiskit_ibm_runtime.options.PecOptions")(\*args, \*\*kwargs)                                                    | Probabalistic error cancellation mitigation options. |
+| [`ZneOptions`](qiskit_ibm_runtime.options.ZneOptions "qiskit_ibm_runtime.options.ZneOptions")(\*args, \*\*kwargs)                                                    | Zero noise extrapolation mitigation options.         |
+| [`TwirlingOptions`](qiskit_ibm_runtime.options.TwirlingOptions "qiskit_ibm_runtime.options.TwirlingOptions")(\*args, \*\*kwargs)                                     | Twirling options.                                    |
+| [`ExecutionOptionsV2`](qiskit_ibm_runtime.options.ExecutionOptionsV2 "qiskit_ibm_runtime.options.ExecutionOptionsV2")(\*args, \*\*kwargs)                            | Execution options for V2 primitives.                 |
+| [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.Options")(\[optimization\_level, ...])                                                    | Options for the primitives, used by V1 primitives.   |
+| [`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.TranspilationOptions")(\*args, \*\*kwargs)                      | Transpilation options.                               |
+| [`ResilienceOptions`](qiskit_ibm_runtime.options.ResilienceOptions "qiskit_ibm_runtime.options.ResilienceOptions")(\*args, \*\*kwargs)                               | Resilience options for V1 primitives.                |
+| [`ExecutionOptions`](qiskit_ibm_runtime.options.ExecutionOptions "qiskit_ibm_runtime.options.ExecutionOptions")(\*args, \*\*kwargs)                                  | Execution options for V1 primitives.                 |
+| [`EnvironmentOptions`](qiskit_ibm_runtime.options.EnvironmentOptions "qiskit_ibm_runtime.options.EnvironmentOptions")(\*args, \*\*kwargs)                            | Options related to the execution environment.        |
+| [`SimulatorOptions`](qiskit_ibm_runtime.options.SimulatorOptions "qiskit_ibm_runtime.options.SimulatorOptions")(\*args, \*\*kwargs)                                  | Simulator options.                                   |
+

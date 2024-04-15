@@ -8,135 +8,129 @@ python_api_name: qiskit.optimization.problems.QuadraticObjective
 
 # QuadraticObjective
 
-<span id="qiskit.optimization.problems.QuadraticObjective" />
+<Class id="qiskit.optimization.problems.QuadraticObjective" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_objective.py" signature="QuadraticObjective(quadratic_program, constant=0.0, linear=None, quadratic=None, sense=<ObjSense.MINIMIZE: 1>)">
+  Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
 
-`QuadraticObjective(quadratic_program, constant=0.0, linear=None, quadratic=None, sense=<ObjSense.MINIMIZE: 1>)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_objective.py "view source code")
+  Representation of quadratic objective function of the form: constant + linear \* x + x \* quadratic \* x.
 
-Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
+  Constructs a quadratic objective function.
 
-Representation of quadratic objective function of the form: constant + linear \* x + x \* quadratic \* x.
+  **Parameters**
 
-Constructs a quadratic objective function.
+  *   **quadratic\_program** (`Any`) – The parent quadratic program.
+  *   **constant** (`float`) – The constant offset of the objective.
+  *   **linear** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`], `None`]) – The coefficients of the linear part of the objective.
+  *   **quadratic** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`], `None`]) – The coefficients of the quadratic part of the objective.
+  *   **sense** (`ObjSense`) – The optimization sense of the objective.
 
-**Parameters**
+  ## Methods
 
-*   **quadratic\_program** (`Any`) – The parent quadratic program.
-*   **constant** (`float`) – The constant offset of the objective.
-*   **linear** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`], `None`]) – The coefficients of the linear part of the objective.
-*   **quadratic** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`], `None`]) – The coefficients of the quadratic part of the objective.
-*   **sense** (`ObjSense`) – The optimization sense of the objective.
+  ### evaluate
 
-## Methods
+  <Function id="qiskit.optimization.problems.QuadraticObjective.evaluate" name="evaluate" signature="QuadraticObjective.evaluate(x)">
+    Evaluate the quadratic objective for given variable values.
 
-### evaluate
+    **Parameters**
 
-<span id="qiskit.optimization.problems.QuadraticObjective.evaluate" />
+    **x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
 
-`QuadraticObjective.evaluate(x)`
+    **Return type**
 
-Evaluate the quadratic objective for given variable values.
+    `float`
 
-**Parameters**
+    **Returns**
 
-**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
+    The value of the quadratic objective given the variable values.
+  </Function>
 
-**Return type**
+  ### evaluate\_gradient
 
-`float`
+  <Function id="qiskit.optimization.problems.QuadraticObjective.evaluate_gradient" name="evaluate_gradient" signature="QuadraticObjective.evaluate_gradient(x)">
+    Evaluate the gradient of the quadratic objective for given variable values.
 
-**Returns**
+    **Parameters**
 
-The value of the quadratic objective given the variable values.
+    **x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
 
-### evaluate\_gradient
+    **Return type**
 
-<span id="qiskit.optimization.problems.QuadraticObjective.evaluate_gradient" />
+    `ndarray`
 
-`QuadraticObjective.evaluate_gradient(x)`
+    **Returns**
 
-Evaluate the gradient of the quadratic objective for given variable values.
+    The value of the gradient of the quadratic objective given the variable values.
+  </Function>
 
-**Parameters**
+  ## Attributes
 
-**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
+  ### constant
 
-**Return type**
+  <Attribute id="qiskit.optimization.problems.QuadraticObjective.constant" name="constant">
+    Returns the constant part of the objective function.
 
-`ndarray`
+    **Return type**
 
-**Returns**
+    `float`
 
-The value of the gradient of the quadratic objective given the variable values.
+    **Returns**
 
-## Attributes
+    The constant part of the objective function.
+  </Attribute>
 
-<span id="qiskit.optimization.problems.QuadraticObjective.constant" />
+  ### linear
 
-### constant
+  <Attribute id="qiskit.optimization.problems.QuadraticObjective.linear" name="linear">
+    Returns the linear part of the objective function.
 
-Returns the constant part of the objective function.
+    **Return type**
 
-**Return type**
+    `LinearExpression`
 
-`float`
+    **Returns**
 
-**Returns**
+    The linear part of the objective function.
+  </Attribute>
 
-The constant part of the objective function.
+  ### quadratic
 
-<span id="qiskit.optimization.problems.QuadraticObjective.linear" />
+  <Attribute id="qiskit.optimization.problems.QuadraticObjective.quadratic" name="quadratic">
+    Returns the quadratic part of the objective function.
 
-### linear
+    **Return type**
 
-Returns the linear part of the objective function.
+    `QuadraticExpression`
 
-**Return type**
+    **Returns**
 
-`LinearExpression`
+    The quadratic part of the objective function.
+  </Attribute>
 
-**Returns**
+  ### quadratic\_program
 
-The linear part of the objective function.
+  <Attribute id="qiskit.optimization.problems.QuadraticObjective.quadratic_program" name="quadratic_program">
+    Returns the parent QuadraticProgram.
 
-<span id="qiskit.optimization.problems.QuadraticObjective.quadratic" />
+    **Return type**
 
-### quadratic
+    `Any`
 
-Returns the quadratic part of the objective function.
+    **Returns**
 
-**Return type**
+    The parent QuadraticProgram.
+  </Attribute>
 
-`QuadraticExpression`
+  ### sense
 
-**Returns**
+  <Attribute id="qiskit.optimization.problems.QuadraticObjective.sense" name="sense">
+    Returns the sense of the objective function.
 
-The quadratic part of the objective function.
+    **Return type**
 
-<span id="qiskit.optimization.problems.QuadraticObjective.quadratic_program" />
+    `ObjSense`
 
-### quadratic\_program
+    **Returns**
 
-Returns the parent QuadraticProgram.
-
-**Return type**
-
-`Any`
-
-**Returns**
-
-The parent QuadraticProgram.
-
-<span id="qiskit.optimization.problems.QuadraticObjective.sense" />
-
-### sense
-
-Returns the sense of the objective function.
-
-**Return type**
-
-`ObjSense`
-
-**Returns**
-
-The sense of the objective function.
+    The sense of the objective function.
+  </Attribute>
+</Class>
 

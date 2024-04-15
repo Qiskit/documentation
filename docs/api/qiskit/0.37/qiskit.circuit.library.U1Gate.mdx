@@ -8,161 +8,155 @@ python_api_name: qiskit.circuit.library.U1Gate
 
 # U1Gate
 
-<span id="qiskit.circuit.library.U1Gate" />
+<Class id="qiskit.circuit.library.U1Gate" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/u1.py" signature="U1Gate(theta, label=None)">
+  Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`U1Gate(theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/u1.py "view source code")
+  Single-qubit rotation about the Z axis.
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  This is a diagonal gate. It can be implemented virtually in hardware via framechanges (i.e. at zero error and duration).
 
-Single-qubit rotation about the Z axis.
+  **Circuit symbol:**
 
-This is a diagonal gate. It can be implemented virtually in hardware via framechanges (i.e. at zero error and duration).
+  ```python
+       ┌───────┐
+  q_0: ┤ U1(λ) ├
+       └───────┘
+  ```
 
-**Circuit symbol:**
-
-```python
-     ┌───────┐
-q_0: ┤ U1(λ) ├
-     └───────┘
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 \begin{split}U1(\lambda) =
-    \begin{pmatrix}
-        1 & 0 \\
-        0 & e^{i\lambda}
-    \end{pmatrix}\end{split}
+\begin{pmatrix}
+1 & 0 \\
+0 & e^{i\lambda}
+\end{pmatrix}\end{split}
 $$
 
-**Examples:**
-
-> $$
-> U1(\lambda = \pi) = Z
-> $$
->
-> $$
-> U1(\lambda = \pi/2) = S
-> $$
->
-> $$
-> U1(\lambda = \pi/4) = T
-> $$
-
-<Admonition title="See also" type="note">
-  `RZGate`: This gate is equivalent to RZ up to a phase factor.
+  **Examples:**
 
   > $$
-  > U1(\lambda) = e^{i{\lambda}/2} RZ(\lambda)
+  > U1(\lambda = \pi) = Z
+  > $$
+  >
+  > $$
+  > U1(\lambda = \pi/2) = S
+  > $$
+  >
+  > $$
+  > U1(\lambda = \pi/4) = T
   > $$
 
-  `U3Gate`: U3 is a generalization of U2 that covers all single-qubit rotations, using two X90 pulses.
+  <Admonition title="See also" type="note">
+    `RZGate`: This gate is equivalent to RZ up to a phase factor.
 
-  Reference for virtual Z gate implementation: [1612.00858](https://arxiv.org/abs/1612.00858)
-</Admonition>
+    > $$
+    > U1(\lambda) = e^{i{\lambda}/2} RZ(\lambda)
+    > $$
 
-Create new U1 gate.
+    `U3Gate`: U3 is a generalization of U2 that covers all single-qubit rotations, using two X90 pulses.
 
-## Methods Defined Here
+    Reference for virtual Z gate implementation: [1612.00858](https://arxiv.org/abs/1612.00858)
+  </Admonition>
 
-### control
+  Create new U1 gate.
 
-<span id="qiskit.circuit.library.U1Gate.control" />
+  ## Methods Defined Here
 
-`U1Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+  ### control
 
-Return a (multi-)controlled-U1 gate.
+  <Function id="qiskit.circuit.library.U1Gate.control" name="control" signature="U1Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a (multi-)controlled-U1 gate.
 
-**Parameters**
+    **Parameters**
 
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-**Returns**
+    **Returns**
 
-controlled version of this gate.
+    controlled version of this gate.
 
-**Return type**
+    **Return type**
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-### inverse
+  ### inverse
 
-<span id="qiskit.circuit.library.U1Gate.inverse" />
+  <Function id="qiskit.circuit.library.U1Gate.inverse" name="inverse" signature="U1Gate.inverse()">
+    Return inverted U1 gate ($U1(\lambda){\dagger} = U1(-\lambda)$)
+  </Function>
 
-`U1Gate.inverse()`
+  ## Attributes
 
-Return inverted U1 gate ($U1(\lambda){\dagger} = U1(-\lambda)$)
+  ### condition\_bits
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.U1Gate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-<span id="qiskit.circuit.library.U1Gate.condition_bits" />
+    **Return type**
 
-### condition\_bits
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-Get Clbits in condition.
+  ### decompositions
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.U1Gate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  ### definition
 
-<span id="qiskit.circuit.library.U1Gate.decompositions" />
+  <Attribute id="qiskit.circuit.library.U1Gate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### decompositions
+  ### duration
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.U1Gate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.U1Gate.definition" />
+  ### label
 
-### definition
+  <Attribute id="qiskit.circuit.library.U1Gate.label" name="label">
+    Return instruction label
 
-Return definition in terms of other basic gates.
+    **Return type**
 
-<span id="qiskit.circuit.library.U1Gate.duration" />
+    `str`
+  </Attribute>
 
-### duration
+  ### name
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.U1Gate.name" name="name">
+    Return the name.
+  </Attribute>
 
-<span id="qiskit.circuit.library.U1Gate.label" />
+  ### num\_clbits
 
-### label
+  <Attribute id="qiskit.circuit.library.U1Gate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Return instruction label
+  ### num\_qubits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.U1Gate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-`str`
+  ### params
 
-<span id="qiskit.circuit.library.U1Gate.name" />
+  <Attribute id="qiskit.circuit.library.U1Gate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### name
+  ### unit
 
-Return the name.
-
-<span id="qiskit.circuit.library.U1Gate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.U1Gate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.U1Gate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.U1Gate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.U1Gate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

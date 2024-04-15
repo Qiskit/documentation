@@ -8,59 +8,53 @@ python_api_name: qiskit.providers.BaseProvider
 
 # BaseProvider
 
-<span id="qiskit.providers.BaseProvider" />
+<Class id="qiskit.providers.BaseProvider" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/baseprovider.py" signature="BaseProvider(*args, **kwargs)">
+  Base class for a Backend Provider.
 
-`BaseProvider(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/baseprovider.py "view source code")
+  ## Methods
 
-Base class for a Backend Provider.
+  ### backends
 
-## Methods
+  <Function id="qiskit.providers.BaseProvider.backends" name="backends" signature="abstract BaseProvider.backends(name=None, **kwargs)">
+    Return a list of backends matching the specified filtering.
 
-### backends
+    **Parameters**
 
-<span id="qiskit.providers.BaseProvider.backends" />
+    *   **name** (*str*) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-`abstract BaseProvider.backends(name=None, **kwargs)`
+    **Returns**
 
-Return a list of backends matching the specified filtering.
+    **a list of Backends that match the filtering**
 
-**Parameters**
+    criteria.
 
-*   **name** (*str*) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
+    **Return type**
 
-**Returns**
+    list\[[BaseBackend](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")]
+  </Function>
 
-**a list of Backends that match the filtering**
+  ### get\_backend
 
-criteria.
+  <Function id="qiskit.providers.BaseProvider.get_backend" name="get_backend" signature="BaseProvider.get_backend(name=None, **kwargs)">
+    Return a single backend matching the specified filtering.
 
-**Return type**
+    **Parameters**
 
-list\[[BaseBackend](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")]
+    *   **name** (*str*) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-### get\_backend
+    **Returns**
 
-<span id="qiskit.providers.BaseProvider.get_backend" />
+    a backend matching the filtering.
 
-`BaseProvider.get_backend(name=None, **kwargs)`
+    **Return type**
 
-Return a single backend matching the specified filtering.
+    [BaseBackend](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")
 
-**Parameters**
+    **Raises**
 
-*   **name** (*str*) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
-
-**Returns**
-
-a backend matching the filtering.
-
-**Return type**
-
-[BaseBackend](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")
-
-**Raises**
-
-[**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+    [**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+  </Function>
+</Class>
 

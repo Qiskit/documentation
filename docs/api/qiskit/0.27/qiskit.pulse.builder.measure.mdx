@@ -8,58 +8,56 @@ python_api_name: qiskit.pulse.builder.measure
 
 # qiskit.pulse.builder.measure
 
-<span id="qiskit.pulse.builder.measure" />
+<Function id="qiskit.pulse.builder.measure" name="measure" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py" signature="measure(qubits, registers=None)">
+  Measure a qubit within the currently active builder context.
 
-`measure(qubits, registers=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
+  At the pulse level a measurement is composed of both a stimulus pulse and an acquisition instruction which tells the systems measurement unit to acquire data and process it. We provide this measurement macro to automate the process for you, but if desired full control is still available with [`acquire()`](qiskit.pulse.builder.acquire "qiskit.pulse.builder.acquire") and [`play()`](qiskit.pulse.builder.play "qiskit.pulse.builder.play").
 
-Measure a qubit within the currently active builder context.
+  To use the measurement it is as simple as specifying the qubit you wish to measure:
 
-At the pulse level a measurement is composed of both a stimulus pulse and an acquisition instruction which tells the systems measurement unit to acquire data and process it. We provide this measurement macro to automate the process for you, but if desired full control is still available with [`acquire()`](qiskit.pulse.builder.acquire "qiskit.pulse.builder.acquire") and [`play()`](qiskit.pulse.builder.play "qiskit.pulse.builder.play").
+  ```python
+  from qiskit import pulse
+  from qiskit.test.mock import FakeOpenPulse2Q
 
-To use the measurement it is as simple as specifying the qubit you wish to measure:
+  backend = FakeOpenPulse2Q()
 
-```python
-from qiskit import pulse
-from qiskit.test.mock import FakeOpenPulse2Q
+  qubit = 0
 
-backend = FakeOpenPulse2Q()
+  with pulse.build(backend) as pulse_prog:
+      # Do something to the qubit.
+      qubit_drive_chan = pulse.drive_channel(0)
+      pulse.play(pulse.Constant(100, 1.0), qubit_drive_chan)
+      # Measure the qubit.
+      reg = pulse.measure(qubit)
+  ```
 
-qubit = 0
+  For now it is not possible to do much with the handle to `reg` but in the future we will support using this handle to a result register to build up ones program. It is also possible to supply this register:
 
-with pulse.build(backend) as pulse_prog:
-    # Do something to the qubit.
-    qubit_drive_chan = pulse.drive_channel(0)
-    pulse.play(pulse.Constant(100, 1.0), qubit_drive_chan)
-    # Measure the qubit.
-    reg = pulse.measure(qubit)
-```
+  ```python
+  with pulse.build(backend) as pulse_prog:
+      pulse.play(pulse.Constant(100, 1.0), qubit_drive_chan)
+      # Measure the qubit.
+      mem0 = pulse.MemorySlot(0)
+      reg = pulse.measure(qubit, mem0)
 
-For now it is not possible to do much with the handle to `reg` but in the future we will support using this handle to a result register to build up ones program. It is also possible to supply this register:
+  assert reg == mem0
+  ```
 
-```python
-with pulse.build(backend) as pulse_prog:
-    pulse.play(pulse.Constant(100, 1.0), qubit_drive_chan)
-    # Measure the qubit.
-    mem0 = pulse.MemorySlot(0)
-    reg = pulse.measure(qubit, mem0)
+  <Admonition title="Note" type="note">
+    Requires the active builder context to have a backend set.
+  </Admonition>
 
-assert reg == mem0
-```
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  Requires the active builder context to have a backend set.
-</Admonition>
+  *   **qubits** (`Union`\[`List`\[`int`], `int`]) – Physical qubit to measure.
+  *   **registers** (`Union`\[`List`\[`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")])], `NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")]), `None`]) – Register to store result in. If not selected the current behavior is to return the `MemorySlot` with the same index as `qubit`. This register will be returned.
 
-**Parameters**
+  **Return type**
 
-*   **qubits** (`Union`\[`List`\[`int`], `int`]) – Physical qubit to measure.
-*   **registers** (`Union`\[`List`\[`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")])], `NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")]), `None`]) – Register to store result in. If not selected the current behavior is to return the `MemorySlot` with the same index as `qubit`. This register will be returned.
+  `Union`\[`List`\[`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")])], `NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")])]
 
-**Return type**
+  **Returns**
 
-`Union`\[`List`\[`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")])], `NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")])]
-
-**Returns**
-
-The `register` the qubit measurement result will be stored in.
+  The `register` the qubit measurement result will be stored in.
+</Function>
 

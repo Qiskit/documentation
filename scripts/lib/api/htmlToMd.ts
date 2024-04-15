@@ -27,7 +27,7 @@ import { Emphasis, Root, Content } from "mdast";
 import { processHtml } from "./processHtml";
 import { HtmlToMdResult } from "./HtmlToMdResult";
 import { Metadata } from "./Metadata";
-import { removePrefix, removeSuffix } from "../stringUtils";
+import { removePrefix, removeSuffix, capitalize } from "../stringUtils";
 import { remarkStringifyOptions } from "./commonParserConfig";
 
 export async function sphinxHtmlToMarkdown(options: {
@@ -37,7 +37,7 @@ export async function sphinxHtmlToMarkdown(options: {
   determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
 }): Promise<HtmlToMdResult> {
-  const processedHtml = processHtml(options);
+  const processedHtml = await processHtml(options);
   const markdown = await generateMarkdownFile(
     processedHtml.html,
     processedHtml.meta,
@@ -122,6 +122,15 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
       }
 
       return defaultHandlers.div(h, node);
+    },
+    class(h, node: any): any {
+      return buildApiComponent(h, node);
+    },
+    function(h, node: any): any {
+      return buildApiComponent(h, node);
+    },
+    attribute(h, node: any): any {
+      return buildApiComponent(h, node);
     },
   };
 
@@ -300,4 +309,65 @@ function buildMathExpression(node: any, type: "math" | "inlineMath"): any {
     value = value.substring(prefix.length, value.length - sufix.length);
   }
   return { type: type, value };
+}
+
+function buildApiComponent(h: H, node: any): any {
+  const componentName = capitalize(node.tagName);
+
+  const hastTree = {
+    type: "mdxJsxFlowElement",
+    name: componentName,
+    attributes: [],
+    children: all(h, node),
+  };
+
+  maybeAddAttribute(hastTree, "id", node.properties.id);
+  maybeAddAttribute(hastTree, "name", node.properties.name);
+  maybeAddAttribute(
+    hastTree,
+    "attributeTypeHint",
+    node.properties.attributetypehint,
+  );
+  maybeAddAttribute(hastTree, "attributeValue", node.properties.attributevalue);
+  maybeAddExpressionAttribute(
+    hastTree,
+    "isDedicatedPage",
+    node.properties.isdedicatedpage,
+  );
+  maybeAddAttribute(hastTree, "github", node.properties.github);
+  maybeAddAttribute(hastTree, "signature", node.properties.signature);
+  maybeAddExpressionAttribute(
+    hastTree,
+    "extraSignatures",
+    node.properties.extrasignatures,
+  );
+
+  return hastTree;
+}
+
+function maybeAddAttribute(hastTree: any, name: string, value: string): void {
+  if (value && value.trim() && value != "undefined") {
+    hastTree.attributes.push({
+      type: "mdxJsxAttribute",
+      name,
+      value,
+    });
+  }
+}
+
+function maybeAddExpressionAttribute(
+  hastTree: any,
+  name: string,
+  value: string,
+): void {
+  if (value && value != "undefined" && value != "[]") {
+    hastTree.attributes.push({
+      type: "mdxJsxAttribute",
+      name,
+      value: {
+        type: "mdxJsxAttributeValueExpression",
+        value,
+      },
+    });
+  }
 }

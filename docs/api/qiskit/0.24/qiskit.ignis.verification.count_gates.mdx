@@ -10,31 +10,29 @@ python_api_name: qiskit.ignis.verification.count_gates
 
 # qiskit.ignis.verification.count\_gates
 
-<span id="qiskit.ignis.verification.count_gates" />
+<Function id="qiskit.ignis.verification.count_gates" name="count_gates" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py" signature="count_gates(qobj, basis, qubits)">
+  Take a compiled qobj and output the number of gates in each circuit.
 
-`count_gates(qobj, basis, qubits)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
+  **Parameters**
 
-Take a compiled qobj and output the number of gates in each circuit.
+  *   **qobj** (*QasmQObj*) – compiled qobj.
+  *   **basis** (*list*) – gates basis for the qobj.
+  *   **qubits** (*list*) – qubits to count over.
 
-**Parameters**
+  **Returns**
 
-*   **qobj** (*QasmQObj*) – compiled qobj.
-*   **basis** (*list*) – gates basis for the qobj.
-*   **qubits** (*list*) – qubits to count over.
+  n x l x m list of number of gates.
 
-**Returns**
+  > *   n: number of circuits,
+  > *   l: number of qubits,
+  > *   m: number of gates in basis.
 
-n x l x m list of number of gates.
+  **Return type**
 
-> *   n: number of circuits,
-> *   l: number of qubits,
-> *   m: number of gates in basis.
+  list
 
-**Return type**
+  ## Additional Information:
 
-list
-
-## Additional Information:
-
-nQ gates are counted in each qubit’s set of gates.
+  nQ gates are counted in each qubit’s set of gates.
+</Function>
 

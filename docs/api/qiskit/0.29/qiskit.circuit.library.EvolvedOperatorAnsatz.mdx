@@ -8,186 +8,176 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
 
 # EvolvedOperatorAnsatz
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz" />
+<Class id="qiskit.circuit.library.EvolvedOperatorAnsatz" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/evolved_operator_ansatz.py" signature="EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', initial_state=None)">
+  Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 
-`EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', initial_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/evolved_operator_ansatz.py "view source code")
+  The evolved operator ansatz.
 
-Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
+  **Parameters**
 
-The evolved operator ansatz.
+  *   **operators** (*Optional\[Union\[*[*OperatorBase*](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase")*,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*, list]*) – The operators to evolve. If a circuit is passed, we assume it implements an already evolved operator and thus the circuit is not evolved again. Can be a single operator (circuit) or a list of operators (and circuits).
+  *   **reps** (`int`) – The number of times to repeat the evolved operators.
+  *   **evolution** (*Optional\[*[*EvolutionBase*](qiskit.aqua.operators.evolutions.EvolutionBase "qiskit.aqua.operators.evolutions.EvolutionBase")*]*) – An opflow converter object to construct the evolution. Defaults to Trotterization.
+  *   **insert\_barriers** (`bool`) – Whether to insert barriers in between each evolution.
+  *   **name** (`str`) – The name of the circuit.
+  *   **initial\_state** (`Optional`\[`QuantumCircuit`]) – A QuantumCircuit object to prepend to the circuit.
 
-**Parameters**
+  ## Attributes
 
-*   **operators** (*Optional\[Union\[*[*OperatorBase*](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase")*,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*, list]*) – The operators to evolve. If a circuit is passed, we assume it implements an already evolved operator and thus the circuit is not evolved again. Can be a single operator (circuit) or a list of operators (and circuits).
-*   **reps** (`int`) – The number of times to repeat the evolved operators.
-*   **evolution** (*Optional\[*[*EvolutionBase*](qiskit.aqua.operators.evolutions.EvolutionBase "qiskit.aqua.operators.evolutions.EvolutionBase")*]*) – An opflow converter object to construct the evolution. Defaults to Trotterization.
-*   **insert\_barriers** (`bool`) – Whether to insert barriers in between each evolution.
-*   **name** (`str`) – The name of the circuit.
-*   **initial\_state** (`Optional`\[`QuantumCircuit`]) – A QuantumCircuit object to prepend to the circuit.
+  ### ancillas
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.ancillas" />
+  ### calibrations
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **The custom pulse definition of a given gate is of the form**
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.calibrations" />
+    \{‘gate\_name’: \{(qubits, params): schedule}}
+  </Attribute>
 
-### calibrations
+  ### clbits
 
-Return calibration dictionary.
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-**The custom pulse definition of a given gate is of the form**
+  ### data
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.data" name="data" />
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.clbits" />
+  ### evolution
 
-### clbits
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.evolution" name="evolution">
+    The evolution converter used to compute the evolution.
 
-Returns a list of classical bits in the order that the registers were added.
+    **Returns**
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.data" />
+    The evolution converter used to compute the evolution.
 
-### data
+    **Return type**
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.evolution" />
+    [EvolutionBase](qiskit.aqua.operators.evolutions.EvolutionBase "qiskit.aqua.operators.evolutions.EvolutionBase")
+  </Attribute>
 
-### evolution
+  ### extension\_lib
 
-The evolution converter used to compute the evolution.
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-**Returns**
+  ### global\_phase
 
-The evolution converter used to compute the evolution.
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
+  </Attribute>
 
-**Return type**
+  ### header
 
-[EvolutionBase](qiskit.aqua.operators.evolutions.EvolutionBase "qiskit.aqua.operators.evolutions.EvolutionBase")
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.extension_lib" />
+  ### initial\_state
 
-### extension\_lib
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.initial_state" name="initial_state">
+    The initial state.
 
-`= 'include "qelib1.inc";'`
+    **Return type**
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.global_phase" />
+    `QuantumCircuit`
+  </Attribute>
 
-### global\_phase
+  ### instances
 
-Return the global phase of the circuit in radians.
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.instances" name="instances" attributeValue="= 16" />
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.header" />
+  ### metadata
 
-### header
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-`= 'OPENQASM 2.0;'`
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.initial_state" />
+  ### num\_ancillas
 
-### initial\_state
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-The initial state.
+  ### num\_clbits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-`QuantumCircuit`
+  ### num\_parameters
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.instances" />
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_parameters" name="num_parameters">
+    **Return type**
 
-### instances
+    `int`
+  </Attribute>
 
-`= 16`
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.metadata" />
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-### metadata
+  ### operators
 
-The user provided metadata associated with the circuit
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.operators" name="operators">
+    The operators that are evolved in this circuit.
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    **Returns**
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_ancillas" />
+    The operators to be evolved (and circuits) contained in this ansatz.
 
-### num\_ancillas
+    **Return type**
 
-Return the number of ancilla qubits.
+    list
+  </Attribute>
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_clbits" />
+  ### parameters
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.parameters" name="parameters">
+    **Return type**
 
-Return number of classical bits.
+    `ParameterView`
+  </Attribute>
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_parameters" />
+  ### preferred\_init\_points
 
-### num\_parameters
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.preferred_init_points" name="preferred_init_points">
+    Getter of preferred initial points based on the given initial state.
+  </Attribute>
 
-**Return type**
+  ### prefix
 
-`int`
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_qubits" />
+  ### qregs
 
-### num\_qubits
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.qregs" name="qregs">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-Return number of qubits.
+  ### qubits
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.operators" />
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
 
-### operators
+  ### reps
 
-The operators that are evolved in this circuit.
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.reps" name="reps">
+    The number of times the evolved operators are repeated.
 
-**Returns**
+    **Return type**
 
-The operators to be evolved (and circuits) contained in this ansatz.
-
-**Return type**
-
-list
-
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.parameters" />
-
-### parameters
-
-**Return type**
-
-`ParameterView`
-
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.preferred_init_points" />
-
-### preferred\_init\_points
-
-Getter of preferred initial points based on the given initial state.
-
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.qregs" />
-
-### qregs
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.reps" />
-
-### reps
-
-The number of times the evolved operators are repeated.
-
-**Return type**
-
-`int`
+    `int`
+  </Attribute>
+</Class>
 

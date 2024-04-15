@@ -8,163 +8,159 @@ python_api_name: qiskit.circuit.library.CYGate
 
 # CYGate
 
-<span id="qiskit.circuit.library.CYGate" />
+<Class id="qiskit.circuit.library.CYGate" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/y.py" signature="CYGate(label=None, ctrl_state=None)">
+  Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
-`CYGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/y.py "view source code")
+  Controlled-Y gate.
 
-Bases: `qiskit.circuit.controlledgate.ControlledGate`
+  **Circuit symbol:**
 
-Controlled-Y gate.
+  ```python
+  q_0: ──■──
+       ┌─┴─┐
+  q_1: ┤ Y ├
+       └───┘
+  ```
 
-**Circuit symbol:**
-
-```python
-q_0: ──■──
-     ┌─┴─┐
-q_1: ┤ Y ├
-     └───┘
-```
-
-**Matrix representation:**
+  **Matrix representation:**
 
 $$
 \begin{split}CY\ q_0, q_1 =
 I \otimes |0 \rangle\langle 0| + Y \otimes |1 \rangle\langle 1|  =
-    \begin{pmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & 0 & 0 & -i \\
-        0 & 0 & 1 & 0 \\
-        0 & i & 0 & 0
-    \end{pmatrix}\end{split}
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & -i \\
+0 & 0 & 1 & 0 \\
+0 & i & 0 & 0
+\end{pmatrix}\end{split}
 $$
 
-<Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
+  <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
 
-  ```python
-       ┌───┐
-  q_0: ┤ Y ├
-       └─┬─┘
-  q_1: ──■──
-  ```
+    ```python
+         ┌───┐
+    q_0: ┤ Y ├
+         └─┬─┘
+    q_1: ──■──
+    ```
 
-  $$
-  \begin{split}CY\ q_1, q_0 =
-      |0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes Y =
-      \begin{pmatrix}
-          1 & 0 & 0 & 0 \\
-          0 & 1 & 0 & 0 \\
-          0 & 0 & 0 & -i \\
-          0 & 0 & i & 0
-      \end{pmatrix}\end{split}
-  $$
-</Admonition>
+$$
+\begin{split}CY\ q_1, q_0 =
+|0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes Y =
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & -i \\
+0 & 0 & i & 0
+\end{pmatrix}\end{split}
+$$
+  </Admonition>
 
-Create new CY gate.
+  Create new CY gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-### inverse
+  ### inverse
 
-<span id="qiskit.circuit.library.CYGate.inverse" />
+  <Function id="qiskit.circuit.library.CYGate.inverse" name="inverse" signature="CYGate.inverse()">
+    Return inverted CY gate (itself).
+  </Function>
 
-`CYGate.inverse()`
+  ## Attributes
 
-Return inverted CY gate (itself).
+  ### ctrl\_state
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.CYGate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
 
-<span id="qiskit.circuit.library.CYGate.ctrl_state" />
+    **Return type**
 
-### ctrl\_state
+    `int`
+  </Attribute>
 
-Return the control state of the gate as a decimal integer.
+  ### decompositions
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.CYGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-`int`
+  ### definition
 
-<span id="qiskit.circuit.library.CYGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.CYGate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
 
-### decompositions
+    **Return type**
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+    `List`
+  </Attribute>
 
-<span id="qiskit.circuit.library.CYGate.definition" />
+  ### duration
 
-### definition
+  <Attribute id="qiskit.circuit.library.CYGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  ### label
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.CYGate.label" name="label">
+    Return instruction label
 
-`List`
+    **Return type**
 
-<span id="qiskit.circuit.library.CYGate.duration" />
+    `str`
+  </Attribute>
 
-### duration
+  ### name
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.CYGate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-<span id="qiskit.circuit.library.CYGate.label" />
+    > \<original\_name\_o\<ctrl\_state>
 
-### label
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
 
-Return instruction label
+    **Return type**
 
-**Return type**
+    `str`
+  </Attribute>
 
-`str`
+  ### num\_ctrl\_qubits
 
-<span id="qiskit.circuit.library.CYGate.name" />
+  <Attribute id="qiskit.circuit.library.CYGate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-### name
+    **Returns**
 
-Get name of gate. If the gate has open controls the gate name will become:
+    The number of control qubits for the gate.
 
-> \<original\_name\_o\<ctrl\_state>
+    **Return type**
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+    int
+  </Attribute>
 
-**Return type**
+  ### params
 
-`str`
+  <Attribute id="qiskit.circuit.library.CYGate.params" name="params">
+    Get parameters from base\_gate.
 
-<span id="qiskit.circuit.library.CYGate.num_ctrl_qubits" />
+    **Returns**
 
-### num\_ctrl\_qubits
+    List of gate parameters.
 
-Get number of control qubits.
+    **Return type**
 
-**Returns**
+    list
 
-The number of control qubits for the gate.
+    **Raises**
 
-**Return type**
+    **CircuitError** – Controlled gate does not define a base gate
+  </Attribute>
 
-int
+  ### unit
 
-<span id="qiskit.circuit.library.CYGate.params" />
-
-### params
-
-Get parameters from base\_gate.
-
-**Returns**
-
-List of gate parameters.
-
-**Return type**
-
-list
-
-**Raises**
-
-**CircuitError** – Controlled gate does not define a base gate
-
-<span id="qiskit.circuit.library.CYGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.CYGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

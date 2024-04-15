@@ -10,48 +10,46 @@ python_api_name: qiskit.qpy.load
 
 # qiskit.qpy.load
 
-<span id="qiskit.qpy.load" />
+<Function id="qiskit.qpy.load" name="load" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qpy/interface.py" signature="load(file_obj, metadata_deserializer=None)">
+  Load a QPY binary file
 
-`load(file_obj, metadata_deserializer=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qpy/interface.py "view source code")
+  This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from its contents. For example:
 
-Load a QPY binary file
+  ```python
+  from qiskit import qpy
 
-This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from its contents. For example:
+  with open('bell.qpy', 'rb') as fd:
+      circuits = qpy.load(fd)
+  ```
 
-```python
-from qiskit import qpy
+  or with a gzip compressed file:
 
-with open('bell.qpy', 'rb') as fd:
-    circuits = qpy.load(fd)
-```
+  ```python
+  import gzip
+  from qiskit import qpy
 
-or with a gzip compressed file:
+  with gzip.open('bell.qpy.gz', 'rb') as fd:
+      circuits = qpy.load(fd)
+  ```
 
-```python
-import gzip
-from qiskit import qpy
+  which will read the contents of the qpy and return a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from the file.
 
-with gzip.open('bell.qpy.gz', 'rb') as fd:
-    circuits = qpy.load(fd)
-```
+  **Parameters**
 
-which will read the contents of the qpy and return a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from the file.
+  *   **file\_obj** (*BinaryIO*) – A file like object that contains the QPY binary data for a circuit or pulse schedule.
+  *   **metadata\_deserializer** (*Type\[JSONDecoder] | None*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
 
-**Parameters**
+  **Returns**
 
-*   **file\_obj** (*BinaryIO*) – A file like object that contains the QPY binary data for a circuit or pulse schedule.
-*   **metadata\_deserializer** (*Type\[JSONDecoder] | None*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
+  The list of Qiskit programs contained in the QPY data. A list is always returned, even if there is only 1 program in the QPY data.
 
-**Returns**
+  **Raises**
 
-The list of Qiskit programs contained in the QPY data. A list is always returned, even if there is only 1 program in the QPY data.
+  *   **QiskitError** – if `file_obj` is not a valid QPY file
+  *   **TypeError** – When invalid data type is loaded.
 
-**Raises**
+  **Return type**
 
-*   **QiskitError** – if `file_obj` is not a valid QPY file
-*   **TypeError** – When invalid data type is loaded.
-
-**Return type**
-
-*List*\[[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
+  *List*\[[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
+</Function>
 

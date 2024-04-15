@@ -8,191 +8,177 @@ python_api_name: qiskit.providers.aer.extensions.SnapshotStabilizer
 
 # SnapshotStabilizer
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer" />
+<Class id="qiskit.providers.aer.extensions.SnapshotStabilizer" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/extensions/snapshot_stabilizer.py" signature="SnapshotStabilizer(label, num_qubits=0)">
+  Snapshot instruction for stabilizer method of Qasm simulator.
 
-`SnapshotStabilizer(label, num_qubits=0)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/extensions/snapshot_stabilizer.py "view source code")
+  Create a stabilizer state snapshot instruction.
 
-Snapshot instruction for stabilizer method of Qasm simulator.
+  **Parameters**
 
-Create a stabilizer state snapshot instruction.
+  *   **label** (*str*) – the snapshot label.
+  *   **num\_qubits** (*int*) – the instruction barrier size \[Default: 0].
 
-**Parameters**
+  **Raises**
 
-*   **label** (*str*) – the snapshot label.
-*   **num\_qubits** (*int*) – the instruction barrier size \[Default: 0].
+  **ExtensionError** – if snapshot is invalid.
 
-**Raises**
+  **Additional Information:**
 
-**ExtensionError** – if snapshot is invalid.
+  This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
 
-**Additional Information:**
+  ## Attributes
 
-This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+  ### decompositions
 
-## Attributes
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### decompositions
+  ### definition
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### definition
+  ### label
 
-Return definition in terms of other basic gates.
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.label" name="label">
+    Return snapshot label
+  </Attribute>
 
-### label
+  ### params
 
-Return snapshot label
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### params
+  ### snapshot\_type
 
-return instruction params.
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.snapshot_type" name="snapshot_type">
+    Return snapshot type
+  </Attribute>
 
-### snapshot\_type
+  ## Methods
 
-Return snapshot type
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.add_decomposition" name="add_decomposition" signature="SnapshotStabilizer.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.add_decomposition" />
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.assemble" name="assemble" signature="SnapshotStabilizer.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-`SnapshotStabilizer.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.broadcast_arguments" name="broadcast_arguments" signature="SnapshotStabilizer.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`SnapshotStabilizer.assemble()`
+    **Yields**
 
-Assemble a QasmQobjInstruction
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`SnapshotStabilizer.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.c_if" name="c_if" signature="SnapshotStabilizer.c_if(classical, val)">
+    Add classical condition on register classical and value val.
+  </Function>
 
-**Parameters**
+  ### copy
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.copy" name="copy" signature="SnapshotStabilizer.copy(name=None)">
+    Copy of the instruction.
 
-**Yields**
+    **Parameters**
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**Raises**
+    **Returns**
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **a copy of the current instruction, with the name**
 
-### c\_if
+    updated if it was provided
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.c_if" />
+    **Return type**
 
-`SnapshotStabilizer.c_if(classical, val)`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Add classical condition on register classical and value val.
+  ### define\_snapshot\_register
 
-### copy
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.define_snapshot_register" name="define_snapshot_register" signature="static SnapshotStabilizer.define_snapshot_register(circuit, label, qubits=None)">
+    Defines qubits to snapshot for all snapshot methods
+  </Function>
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.copy" />
+  ### inverse
 
-`SnapshotStabilizer.copy(name=None)`
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.inverse" name="inverse" signature="SnapshotStabilizer.inverse()">
+    Special case. Return self.
+  </Function>
 
-Copy of the instruction.
+  ### is\_parameterized
 
-**Parameters**
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.is_parameterized" name="is_parameterized" signature="SnapshotStabilizer.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+  ### mirror
 
-**Returns**
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.mirror" name="mirror" signature="SnapshotStabilizer.mirror()">
+    For a composite instruction, reverse the order of sub-gates.
 
-**a copy of the current instruction, with the name**
+    This is done by recursively mirroring all sub-instructions. It does not invert any gate.
 
-updated if it was provided
+    **Returns**
 
-**Return type**
+    a fresh gate with sub-gates reversed
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Return type**
 
-### define\_snapshot\_register
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.define_snapshot_register" />
+  ### qasm
 
-`static SnapshotStabilizer.define_snapshot_register(circuit, label, qubits=None)`
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.qasm" name="qasm" signature="SnapshotStabilizer.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-Defines qubits to snapshot for all snapshot methods
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-### inverse
+  ### repeat
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.inverse" />
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.repeat" name="repeat" signature="SnapshotStabilizer.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-`SnapshotStabilizer.inverse()`
+    **Parameters**
 
-Special case. Return self.
+    **n** (*int*) – Number of times to repeat the instruction
 
-### is\_parameterized
+    **Returns**
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.is_parameterized" />
+    Containing the definition.
 
-`SnapshotStabilizer.is_parameterized()`
+    **Return type**
 
-Return True .IFF. instruction is parameterized else False
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-### mirror
+    **Raises**
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.mirror" />
-
-`SnapshotStabilizer.mirror()`
-
-For a composite instruction, reverse the order of sub-gates.
-
-This is done by recursively mirroring all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-a fresh gate with sub-gates reversed
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### qasm
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.qasm" />
-
-`SnapshotStabilizer.qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.repeat" />
-
-`SnapshotStabilizer.repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
+    **CircuitError** – If n \< 1.
+  </Function>
+</Class>
 

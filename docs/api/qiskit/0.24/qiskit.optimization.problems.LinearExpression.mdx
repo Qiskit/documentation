@@ -10,158 +10,142 @@ python_api_name: qiskit.optimization.problems.LinearExpression
 
 # qiskit.optimization.problems.LinearExpression
 
-<span id="qiskit.optimization.problems.LinearExpression" />
+<Class id="qiskit.optimization.problems.LinearExpression" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/problems/linear_expression.py" signature="LinearExpression(quadratic_program, coefficients)">
+  Representation of a linear expression by its coefficients.
 
-`LinearExpression(quadratic_program, coefficients)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/problems/linear_expression.py "view source code")
+  Creates a new linear expression.
 
-Representation of a linear expression by its coefficients.
+  The linear expression can be defined via an array, a list, a sparse matrix, or a dictionary that uses variable names or indices as keys and stores the values internally as a dok\_matrix.
 
-Creates a new linear expression.
+  **Parameters**
 
-The linear expression can be defined via an array, a list, a sparse matrix, or a dictionary that uses variable names or indices as keys and stores the values internally as a dok\_matrix.
+  *   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
+  *   **coefficients** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`]]) – The (sparse) representation of the coefficients.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
-*   **coefficients** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`]]) – The (sparse) representation of the coefficients.
+  <Function id="qiskit.optimization.problems.LinearExpression.__init__" name="__init__" signature="__init__(quadratic_program, coefficients)">
+    Creates a new linear expression.
 
-### \_\_init\_\_
+    The linear expression can be defined via an array, a list, a sparse matrix, or a dictionary that uses variable names or indices as keys and stores the values internally as a dok\_matrix.
 
-<span id="qiskit.optimization.problems.LinearExpression.__init__" />
+    **Parameters**
 
-`__init__(quadratic_program, coefficients)`
+    *   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
+    *   **coefficients** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`]]) – The (sparse) representation of the coefficients.
+  </Function>
 
-Creates a new linear expression.
+  ## Methods
 
-The linear expression can be defined via an array, a list, a sparse matrix, or a dictionary that uses variable names or indices as keys and stores the values internally as a dok\_matrix.
+  |                                                                                                                                                                  |                                                                                                                  |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.optimization.problems.LinearExpression.__init__ "qiskit.optimization.problems.LinearExpression.__init__")(quadratic\_program, coefficients) | Creates a new linear expression.                                                                                 |
+  | [`evaluate`](#qiskit.optimization.problems.LinearExpression.evaluate "qiskit.optimization.problems.LinearExpression.evaluate")(x)                                | Evaluate the linear expression for given variables.                                                              |
+  | [`evaluate_gradient`](#qiskit.optimization.problems.LinearExpression.evaluate_gradient "qiskit.optimization.problems.LinearExpression.evaluate_gradient")(x)     | Evaluate the gradient of the linear expression for given variables.                                              |
+  | [`to_array`](#qiskit.optimization.problems.LinearExpression.to_array "qiskit.optimization.problems.LinearExpression.to_array")()                                 | Returns the coefficients of the linear expression as array.                                                      |
+  | [`to_dict`](#qiskit.optimization.problems.LinearExpression.to_dict "qiskit.optimization.problems.LinearExpression.to_dict")(\[use\_name])                        | Returns the coefficients of the linear expression as dictionary, either using variable names or indices as keys. |
 
-**Parameters**
+  ## Attributes
 
-*   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
-*   **coefficients** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`]]) – The (sparse) representation of the coefficients.
+  |                                                                                                                                                           |                                                    |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+  | [`coefficients`](#qiskit.optimization.problems.LinearExpression.coefficients "qiskit.optimization.problems.LinearExpression.coefficients")                | Returns the coefficients of the linear expression. |
+  | [`quadratic_program`](#qiskit.optimization.problems.LinearExpression.quadratic_program "qiskit.optimization.problems.LinearExpression.quadratic_program") | Returns the parent QuadraticProgram.               |
 
-## Methods
+  ### coefficients
 
-|                                                                                                                                                                  |                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.optimization.problems.LinearExpression.__init__ "qiskit.optimization.problems.LinearExpression.__init__")(quadratic\_program, coefficients) | Creates a new linear expression.                                                                                 |
-| [`evaluate`](#qiskit.optimization.problems.LinearExpression.evaluate "qiskit.optimization.problems.LinearExpression.evaluate")(x)                                | Evaluate the linear expression for given variables.                                                              |
-| [`evaluate_gradient`](#qiskit.optimization.problems.LinearExpression.evaluate_gradient "qiskit.optimization.problems.LinearExpression.evaluate_gradient")(x)     | Evaluate the gradient of the linear expression for given variables.                                              |
-| [`to_array`](#qiskit.optimization.problems.LinearExpression.to_array "qiskit.optimization.problems.LinearExpression.to_array")()                                 | Returns the coefficients of the linear expression as array.                                                      |
-| [`to_dict`](#qiskit.optimization.problems.LinearExpression.to_dict "qiskit.optimization.problems.LinearExpression.to_dict")(\[use\_name])                        | Returns the coefficients of the linear expression as dictionary, either using variable names or indices as keys. |
+  <Function id="qiskit.optimization.problems.LinearExpression.coefficients" name="coefficients" signature="property coefficients">
+    Returns the coefficients of the linear expression.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                                           |                                                    |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| [`coefficients`](#qiskit.optimization.problems.LinearExpression.coefficients "qiskit.optimization.problems.LinearExpression.coefficients")                | Returns the coefficients of the linear expression. |
-| [`quadratic_program`](#qiskit.optimization.problems.LinearExpression.quadratic_program "qiskit.optimization.problems.LinearExpression.quadratic_program") | Returns the parent QuadraticProgram.               |
+    `dok_matrix`
 
-### coefficients
+    **Returns**
 
-<span id="qiskit.optimization.problems.LinearExpression.coefficients" />
+    The coefficients of the linear expression.
+  </Function>
 
-`property coefficients`
+  ### evaluate
 
-Returns the coefficients of the linear expression.
+  <Function id="qiskit.optimization.problems.LinearExpression.evaluate" name="evaluate" signature="evaluate(x)">
+    Evaluate the linear expression for given variables.
 
-**Return type**
+    **Parameters**
 
-`dok_matrix`
+    **x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
 
-**Returns**
+    **Return type**
 
-The coefficients of the linear expression.
+    `float`
 
-### evaluate
+    **Returns**
 
-<span id="qiskit.optimization.problems.LinearExpression.evaluate" />
+    The value of the linear expression given the variable values.
+  </Function>
 
-`evaluate(x)`
+  ### evaluate\_gradient
 
-Evaluate the linear expression for given variables.
+  <Function id="qiskit.optimization.problems.LinearExpression.evaluate_gradient" name="evaluate_gradient" signature="evaluate_gradient(x)">
+    Evaluate the gradient of the linear expression for given variables.
 
-**Parameters**
+    **Parameters**
 
-**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
+    **x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
 
-**Return type**
+    **Return type**
 
-`float`
+    `ndarray`
 
-**Returns**
+    **Returns**
 
-The value of the linear expression given the variable values.
+    The value of the gradient of the linear expression given the variable values.
+  </Function>
 
-### evaluate\_gradient
+  ### quadratic\_program
 
-<span id="qiskit.optimization.problems.LinearExpression.evaluate_gradient" />
+  <Function id="qiskit.optimization.problems.LinearExpression.quadratic_program" name="quadratic_program" signature="property quadratic_program">
+    Returns the parent QuadraticProgram.
 
-`evaluate_gradient(x)`
+    **Return type**
 
-Evaluate the gradient of the linear expression for given variables.
+    `Any`
 
-**Parameters**
+    **Returns**
 
-**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
+    The parent QuadraticProgram.
+  </Function>
 
-**Return type**
+  ### to\_array
 
-`ndarray`
+  <Function id="qiskit.optimization.problems.LinearExpression.to_array" name="to_array" signature="to_array()">
+    Returns the coefficients of the linear expression as array.
 
-**Returns**
+    **Return type**
 
-The value of the gradient of the linear expression given the variable values.
+    `ndarray`
 
-### quadratic\_program
+    **Returns**
 
-<span id="qiskit.optimization.problems.LinearExpression.quadratic_program" />
+    An array with the coefficients corresponding to the linear expression.
+  </Function>
 
-`property quadratic_program`
+  ### to\_dict
 
-Returns the parent QuadraticProgram.
+  <Function id="qiskit.optimization.problems.LinearExpression.to_dict" name="to_dict" signature="to_dict(use_name=False)">
+    Returns the coefficients of the linear expression as dictionary, either using variable names or indices as keys.
 
-**Return type**
+    **Parameters**
 
-`Any`
+    **use\_name** (`bool`) – Determines whether to use index or names to refer to variables.
 
-**Returns**
+    **Return type**
 
-The parent QuadraticProgram.
+    `Dict`\[`Union`\[`int`, `str`], `float`]
 
-### to\_array
+    **Returns**
 
-<span id="qiskit.optimization.problems.LinearExpression.to_array" />
-
-`to_array()`
-
-Returns the coefficients of the linear expression as array.
-
-**Return type**
-
-`ndarray`
-
-**Returns**
-
-An array with the coefficients corresponding to the linear expression.
-
-### to\_dict
-
-<span id="qiskit.optimization.problems.LinearExpression.to_dict" />
-
-`to_dict(use_name=False)`
-
-Returns the coefficients of the linear expression as dictionary, either using variable names or indices as keys.
-
-**Parameters**
-
-**use\_name** (`bool`) – Determines whether to use index or names to refer to variables.
-
-**Return type**
-
-`Dict`\[`Union`\[`int`, `str`], `float`]
-
-**Returns**
-
-An dictionary with the coefficients corresponding to the linear expression.
+    An dictionary with the coefficients corresponding to the linear expression.
+  </Function>
+</Class>
 

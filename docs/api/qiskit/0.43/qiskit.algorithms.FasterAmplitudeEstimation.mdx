@@ -8,126 +8,120 @@ python_api_name: qiskit.algorithms.FasterAmplitudeEstimation
 
 # FasterAmplitudeEstimation
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimation" />
+<Class id="qiskit.algorithms.FasterAmplitudeEstimation" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/fae.py" signature="FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None, sampler=None)">
+  Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
-`FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
+  The Faster Amplitude Estimation algorithm.
 
-Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
+  The Faster Amplitude Estimation (FAE) \[1] algorithm is a variant of Quantum Amplitude Estimation (QAE), where the Quantum Phase Estimation (QPE) by an iterative Grover search, similar to \[2].
 
-The Faster Amplitude Estimation algorithm.
+  Due to the iterative version of the QPE, this algorithm does not require any additional qubits, as the originally proposed QAE \[3] and thus the resulting circuits are less complex.
 
-The Faster Amplitude Estimation (FAE) \[1] algorithm is a variant of Quantum Amplitude Estimation (QAE), where the Quantum Phase Estimation (QPE) by an iterative Grover search, similar to \[2].
+  **References**
 
-Due to the iterative version of the QPE, this algorithm does not require any additional qubits, as the originally proposed QAE \[3] and thus the resulting circuits are less complex.
+  **\[1]: K. Nakaji. Faster Amplitude Estimation, 2020;**
 
-**References**
+  [arXiv:2002.02417](https://arxiv.org/pdf/2003.02417.pdf)
 
-**\[1]: K. Nakaji. Faster Amplitude Estimation, 2020;**
+  **\[2]: D. Grinko et al. Iterative Amplitude Estimation, 2019;**
 
-[arXiv:2002.02417](https://arxiv.org/pdf/2003.02417.pdf)
+  [arXiv:1912.05559](http://arxiv.org/abs/1912.05559)
 
-**\[2]: D. Grinko et al. Iterative Amplitude Estimation, 2019;**
+  **\[3]: G. Brassard et al. Quantum Amplitude Amplification and Estimation, 2000;**
 
-[arXiv:1912.05559](http://arxiv.org/abs/1912.05559)
+  [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055)
 
-**\[3]: G. Brassard et al. Quantum Amplitude Amplification and Estimation, 2000;**
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    `qiskit.algorithms.amplitude_estimators.fae.FasterAmplitudeEstimation.__init__()`’s argument `quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the `sampler` argument. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  </Admonition>
 
-[arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055)
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  `qiskit.algorithms.amplitude_estimators.fae.FasterAmplitudeEstimation.__init__()`’s argument `quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the `sampler` argument. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+  *   **delta** (*float*) – The probability that the true value is outside of the final confidence interval.
+  *   **maxiter** (*int*) – The number of iterations, the maximal power of Q is 2 \*\* (maxiter - 1).
+  *   **rescale** (*bool*) – Whether to rescale the problem passed to estimate.
+  *   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: The quantum instance or backend to run the circuits.
+  *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – A sampler primitive to evaluate the circuits.
 
-**Parameters**
+  <Admonition title="Note" type="note">
+    This algorithm overwrites the number of shots set in the `quantum_instance` argument, but will reset them to the initial number after running.
+  </Admonition>
 
-*   **delta** (*float*) – The probability that the true value is outside of the final confidence interval.
-*   **maxiter** (*int*) – The number of iterations, the maximal power of Q is 2 \*\* (maxiter - 1).
-*   **rescale** (*bool*) – Whether to rescale the problem passed to estimate.
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: The quantum instance or backend to run the circuits.
-*   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – A sampler primitive to evaluate the circuits.
+  ## Methods
 
-<Admonition title="Note" type="note">
-  This algorithm overwrites the number of shots set in the `quantum_instance` argument, but will reset them to the initial number after running.
-</Admonition>
+  <span id="qiskit-algorithms-fasteramplitudeestimation-construct-circuit" />
 
-## Methods
+  ### construct\_circuit
 
-<span id="qiskit-algorithms-fasteramplitudeestimation-construct-circuit" />
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit" name="construct_circuit" signature="FasterAmplitudeEstimation.construct_circuit(estimation_problem, k, measurement=False)">
+    Construct the circuit $Q^k X |0\rangle>$.
 
-### construct\_circuit
+    The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit" />
+    **Parameters**
 
-`FasterAmplitudeEstimation.construct_circuit(estimation_problem, k, measurement=False)`
+    *   **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.EstimationProblem")) – The estimation problem for which to construct the circuit.
+    *   **k** (*int*) – The power of the Q operator.
+    *   **measurement** (*bool*) – Boolean flag to indicate if measurements should be included in the circuits.
 
-Construct the circuit $Q^k X |0\rangle>$.
+    **Returns**
 
-The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
+    The circuit $Q^k X |0\rangle$.
 
-**Parameters**
+    **Return type**
 
-*   **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.EstimationProblem")) – The estimation problem for which to construct the circuit.
-*   **k** (*int*) – The power of the Q operator.
-*   **measurement** (*bool*) – Boolean flag to indicate if measurements should be included in the circuits.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | tuple\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), list\[int]]
+  </Function>
 
-**Returns**
+  <span id="qiskit-algorithms-fasteramplitudeestimation-estimate" />
 
-The circuit $Q^k X |0\rangle$.
+  ### estimate
 
-**Return type**
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimation.estimate" name="estimate" signature="FasterAmplitudeEstimation.estimate(estimation_problem)">
+    Run the amplitude estimation algorithm on provided estimation problem.
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | tuple\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), list\[int]]
+    **Parameters**
 
-<span id="qiskit-algorithms-fasteramplitudeestimation-estimate" />
+    **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem.
 
-### estimate
+    **Returns**
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimation.estimate" />
+    An amplitude estimation results object.
 
-`FasterAmplitudeEstimation.estimate(estimation_problem)`
+    **Raises**
 
-Run the amplitude estimation algorithm on provided estimation problem.
+    *   **ValueError** – A quantum instance or Sampler must be provided.
+    *   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – Sampler run error.
 
-**Parameters**
+    **Return type**
 
-**estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem.
+    [FasterAmplitudeEstimationResult](qiskit.algorithms.FasterAmplitudeEstimationResult "qiskit.algorithms.FasterAmplitudeEstimationResult")
+  </Function>
 
-**Returns**
+  ## Attributes
 
-An amplitude estimation results object.
+  ### quantum\_instance
 
-**Raises**
+  <Attribute id="qiskit.algorithms.FasterAmplitudeEstimation.quantum_instance" name="quantum_instance">
+    Deprecated. Get the quantum instance.
 
-*   **ValueError** – A quantum instance or Sampler must be provided.
-*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – Sampler run error.
+    <Admonition title="Deprecated since version 0.24.0" type="danger">
+      The property `qiskit.algorithms.amplitude_estimators.fae.FasterAmplitudeEstimation.quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+    </Admonition>
 
-**Return type**
+    **Returns**
 
-[FasterAmplitudeEstimationResult](qiskit.algorithms.FasterAmplitudeEstimationResult "qiskit.algorithms.FasterAmplitudeEstimationResult")
+    The quantum instance used to run this algorithm.
+  </Attribute>
 
-## Attributes
+  ### sampler
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimation.quantum_instance" />
+  <Attribute id="qiskit.algorithms.FasterAmplitudeEstimation.sampler" name="sampler">
+    Get the sampler primitive.
 
-### quantum\_instance
+    **Returns**
 
-Deprecated. Get the quantum instance.
-
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The property `qiskit.algorithms.amplitude_estimators.fae.FasterAmplitudeEstimation.quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
-
-**Returns**
-
-The quantum instance used to run this algorithm.
-
-<span id="qiskit.algorithms.FasterAmplitudeEstimation.sampler" />
-
-### sampler
-
-Get the sampler primitive.
-
-**Returns**
-
-The sampler primitive to evaluate the circuits.
+    The sampler primitive to evaluate the circuits.
+  </Attribute>
+</Class>
 

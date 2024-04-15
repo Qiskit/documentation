@@ -8,1019 +8,883 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
 # DAGCircuit
 
-<span id="qiskit.dagcircuit.DAGCircuit" />
+<Class id="qiskit.dagcircuit.DAGCircuit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L57-L2125" signature="qiskit.dagcircuit.DAGCircuit">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.dagcircuit.DAGCircuit` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py "view source code")
+  Quantum circuit as a directed acyclic graph.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  There are 3 types of nodes in the graph: inputs, outputs, and operations. The nodes are connected by directed edges that correspond to qubits and bits.
 
-Quantum circuit as a directed acyclic graph.
+  Create an empty circuit.
 
-There are 3 types of nodes in the graph: inputs, outputs, and operations. The nodes are connected by directed edges that correspond to qubits and bits.
+  ## Attributes
 
-Create an empty circuit.
+  ### calibrations
 
-## Attributes
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-<span id="qiskit.dagcircuit.DAGCircuit.calibrations" />
+    **The custom pulse definition of a given gate is of the form**
 
-### calibrations
+    \{‘gate\_name’: \{(qubits, params): schedule}}
+  </Attribute>
 
-Return calibration dictionary.
+  ### global\_phase
 
-**The custom pulse definition of a given gate is of the form**
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.global_phase" name="global_phase">
+    Return the global phase of the circuit.
+  </Attribute>
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+  ### node\_counter
 
-<span id="qiskit.dagcircuit.DAGCircuit.global_phase" />
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.node_counter" name="node_counter">
+    Returns the number of nodes in the dag.
+  </Attribute>
 
-### global\_phase
+  ### wires
 
-Return the global phase of the circuit.
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.wires" name="wires">
+    Return a list of the wires in order.
+  </Attribute>
 
-<span id="qiskit.dagcircuit.DAGCircuit.node_counter" />
+  ## Methods
 
-### node\_counter
+  ### add\_calibration
 
-Returns the number of nodes in the dag.
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_calibration" name="add_calibration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L175-L213" signature="add_calibration(gate, qubits, schedule, params=None)">
+    Register a low-level, custom pulse definition for the given gate.
 
-<span id="qiskit.dagcircuit.DAGCircuit.wires" />
+    **Parameters**
 
-### wires
+    *   **gate** (*Union\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Gate information.
+    *   **qubits** (*Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, Tuple\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – List of qubits to be measured.
+    *   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
+    *   **params** (*Optional\[List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
 
-Return a list of the wires in order.
+    **Raises**
 
-## Methods
+    [**Exception**](https://docs.python.org/3/library/exceptions.html#Exception "(in Python v3.12)") – if the gate is of type string and params is None.
+  </Function>
 
-### add\_calibration
+  ### add\_clbits
 
-<span id="qiskit.dagcircuit.DAGCircuit.add_calibration" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_clbits" name="add_clbits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L250-L262" signature="add_clbits(clbits)">
+    Add individual clbit wires.
+  </Function>
 
-`add_calibration(gate, qubits, schedule, params=None)`
+  ### add\_creg
 
-Register a low-level, custom pulse definition for the given gate.
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_creg" name="add_creg" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L282-L298" signature="add_creg(creg)">
+    Add all wires in a classical register.
+  </Function>
 
-**Parameters**
+  ### add\_qreg
 
-*   **gate** (*Union\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Gate information.
-*   **qubits** (*Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, Tuple\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – List of qubits to be measured.
-*   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
-*   **params** (*Optional\[List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_qreg" name="add_qreg" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L264-L280" signature="add_qreg(qreg)">
+    Add all wires in a quantum register.
+  </Function>
 
-**Raises**
+  ### add\_qubits
 
-[**Exception**](https://docs.python.org/3/library/exceptions.html#Exception "(in Python v3.12)") – if the gate is of type string and params is None.
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_qubits" name="add_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L236-L248" signature="add_qubits(qubits)">
+    Add individual qubit wires.
+  </Function>
 
-### add\_clbits
+  ### ancestors
 
-<span id="qiskit.dagcircuit.DAGCircuit.add_clbits" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.ancestors" name="ancestors" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1713-L1715" signature="ancestors(node)">
+    Returns set of the ancestors of a node as DAGOpNodes and DAGInNodes.
+  </Function>
 
-`add_clbits(clbits)`
+  ### apply\_operation\_back
 
-Add individual clbit wires.
+  <Function id="qiskit.dagcircuit.DAGCircuit.apply_operation_back" name="apply_operation_back" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L644-L695" signature="apply_operation_back(op, qargs=(), cargs=(), *, check=True)">
+    Apply an operation to the output of the circuit.
 
-### add\_creg
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGCircuit.add_creg" />
+    *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – the operation associated with the DAG node
+    *   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
+    *   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
+    *   **check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), this function will enforce that the [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") data-structure invariants are maintained (all `qargs` are [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")s, all are in the DAG, etc). If `False`, the caller *must* uphold these invariants itself, but the cost of several checks will be skipped. This is most useful when building a new DAG from a source of known-good nodes.
 
-`add_creg(creg)`
+    **Returns**
 
-Add all wires in a classical register.
+    the node for the op that was added to the dag
 
-### add\_qreg
+    **Return type**
 
-<span id="qiskit.dagcircuit.DAGCircuit.add_qreg" />
+    [DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")
 
-`add_qreg(qreg)`
+    **Raises**
 
-Add all wires in a quantum register.
+    [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if a leaf node is connected to multiple outputs
+  </Function>
 
-### add\_qubits
+  ### apply\_operation\_front
 
-<span id="qiskit.dagcircuit.DAGCircuit.add_qubits" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.apply_operation_front" name="apply_operation_front" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L697-L747" signature="apply_operation_front(op, qargs=(), cargs=(), *, check=True)">
+    Apply an operation to the input of the circuit.
 
-`add_qubits(qubits)`
+    **Parameters**
 
-Add individual qubit wires.
+    *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – the operation associated with the DAG node
+    *   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
+    *   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
+    *   **check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), this function will enforce that the [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") data-structure invariants are maintained (all `qargs` are [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")s, all are in the DAG, etc). If `False`, the caller *must* uphold these invariants itself, but the cost of several checks will be skipped. This is most useful when building a new DAG from a source of known-good nodes.
 
-### ancestors
+    **Returns**
 
-<span id="qiskit.dagcircuit.DAGCircuit.ancestors" />
+    the node for the op that was added to the dag
 
-`ancestors(node)`
+    **Return type**
 
-Returns set of the ancestors of a node as DAGOpNodes and DAGInNodes.
+    [DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")
 
-### apply\_operation\_back
+    **Raises**
 
-<span id="qiskit.dagcircuit.DAGCircuit.apply_operation_back" />
+    [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if initial nodes connected to multiple out edges
+  </Function>
 
-`apply_operation_back(op, qargs=(), cargs=(), *, check=True)`
+  ### bfs\_successors
 
-Apply an operation to the output of the circuit.
+  <Function id="qiskit.dagcircuit.DAGCircuit.bfs_successors" name="bfs_successors" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1721-L1726" signature="bfs_successors(node)">
+    Returns an iterator of tuples of (DAGNode, \[DAGNodes]) where the DAGNode is the current node and \[DAGNode] is its successors in BFS order.
+  </Function>
 
-**Parameters**
+  ### classical\_predecessors
 
-*   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – the operation associated with the DAG node
-*   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
-*   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
-*   **check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), this function will enforce that the [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") data-structure invariants are maintained (all `qargs` are [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit")s, all are in the DAG, etc). If `False`, the caller *must* uphold these invariants itself, but the cost of several checks will be skipped. This is most useful when building a new DAG from a source of known-good nodes.
+  <Function id="qiskit.dagcircuit.DAGCircuit.classical_predecessors" name="classical_predecessors" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1704-L1711" signature="classical_predecessors(node)">
+    Returns iterator of the predecessors of a node that are connected by a classical edge as DAGOpNodes and DAGInNodes.
+  </Function>
 
-**Returns**
+  ### classical\_successors
 
-the node for the op that was added to the dag
+  <Function id="qiskit.dagcircuit.DAGCircuit.classical_successors" name="classical_successors" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1737-L1744" signature="classical_successors(node)">
+    Returns iterator of the successors of a node that are connected by a classical edge as DAGOpNodes and DAGInNodes.
+  </Function>
 
-**Return type**
+  ### collect\_1q\_runs
 
-[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")
+  <Function id="qiskit.dagcircuit.DAGCircuit.collect_1q_runs" name="collect_1q_runs" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1915-L1929" signature="collect_1q_runs()">
+    Return a set of non-conditional runs of 1q “op” nodes.
 
-**Raises**
+    **Return type**
 
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if a leaf node is connected to multiple outputs
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.dagcircuit.dagnode.DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.dagnode.DAGOpNode")]]
+  </Function>
 
-### apply\_operation\_front
+  ### collect\_2q\_runs
 
-<span id="qiskit.dagcircuit.DAGCircuit.apply_operation_front" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.collect_2q_runs" name="collect_2q_runs" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1931-L1955" signature="collect_2q_runs()">
+    Return a set of non-conditional runs of 2q “op” nodes.
+  </Function>
 
-`apply_operation_front(op, qargs=(), cargs=(), *, check=True)`
+  ### collect\_runs
 
-Apply an operation to the input of the circuit.
+  <Function id="qiskit.dagcircuit.DAGCircuit.collect_runs" name="collect_runs" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1892-L1913" signature="collect_runs(namelist)">
+    Return a set of non-conditional runs of “op” nodes with the given names.
 
-**Parameters**
+    For example, “… h q\[0]; cx q\[0],q\[1]; cx q\[0],q\[1]; h q\[1]; ..” would produce the tuple of cx nodes as an element of the set returned from a call to collect\_runs(\[“cx”]). If instead the cx nodes were “cx q\[0],q\[1]; cx q\[1],q\[0];”, the method would still return the pair in a tuple. The namelist can contain names that are not in the circuit’s basis.
 
-*   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – the operation associated with the DAG node
-*   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
-*   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
-*   **check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), this function will enforce that the [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") data-structure invariants are maintained (all `qargs` are [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit")s, all are in the DAG, etc). If `False`, the caller *must* uphold these invariants itself, but the cost of several checks will be skipped. This is most useful when building a new DAG from a source of known-good nodes.
+    Nodes must have only one successor to continue the run.
+  </Function>
 
-**Returns**
+  ### compose
 
-the node for the op that was added to the dag
+  <Function id="qiskit.dagcircuit.DAGCircuit.compose" name="compose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L749-L867" signature="compose(other, qubits=None, clbits=None, front=False, inplace=True)">
+    Compose the `other` circuit onto the output of this circuit.
 
-**Return type**
+    A subset of input wires of `other` are mapped to a subset of output wires of this circuit.
 
-[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")
+    `other` can be narrower or of equal width to `self`.
 
-**Raises**
+    **Parameters**
 
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if initial nodes connected to multiple out edges
+    *   **other** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit to compose with self
+    *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – qubits of self to compose onto.
+    *   **clbits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – clbits of self to compose onto.
+    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, front composition will be performed (not implemented yet)
+    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, modify the object. Otherwise return composed circuit.
 
-### bfs\_successors
+    **Returns**
 
-<span id="qiskit.dagcircuit.DAGCircuit.bfs_successors" />
+    the composed dag (returns None if inplace==True).
 
-`bfs_successors(node)`
+    **Return type**
 
-Returns an iterator of tuples of (DAGNode, \[DAGNodes]) where the DAGNode is the current node and \[DAGNode] is its successors in BFS order.
+    [DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-### classical\_predecessors
+    **Raises**
 
-<span id="qiskit.dagcircuit.DAGCircuit.classical_predecessors" />
+    [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if `other` is wider or there are duplicate edge mappings.
+  </Function>
 
-`classical_predecessors(node)`
+  ### copy\_empty\_like
 
-Returns iterator of the predecessors of a node that are connected by a classical edge as DAGOpNodes and DAGInNodes.
+  <Function id="qiskit.dagcircuit.DAGCircuit.copy_empty_like" name="copy_empty_like" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L614-L642" signature="copy_empty_like()">
+    Return a copy of self with the same structure but empty.
 
-### classical\_successors
+    **That structure includes:**
 
-<span id="qiskit.dagcircuit.DAGCircuit.classical_successors" />
+    *   name and other metadata
+    *   global phase
+    *   duration
+    *   all the qubits and clbits, including the registers.
 
-`classical_successors(node)`
+    **Returns**
 
-Returns iterator of the successors of a node that are connected by a classical edge as DAGOpNodes and DAGInNodes.
+    An empty copy of self.
 
-### collect\_1q\_runs
+    **Return type**
 
-<span id="qiskit.dagcircuit.DAGCircuit.collect_1q_runs" />
+    [DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  </Function>
 
-`collect_1q_runs()`
+  ### count\_ops
 
-Return a set of non-conditional runs of 1q “op” nodes.
+  <Function id="qiskit.dagcircuit.DAGCircuit.count_ops" name="count_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1991-L2017" signature="count_ops(*, recurse=True)">
+    Count the occurrences of operation names.
 
-### collect\_2q\_runs
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGCircuit.collect_2q_runs" />
+    **recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` (default), then recurse into control-flow operations. In all cases, this counts only the number of times the operation appears in any possible block; both branches of if-elses are counted, and for- and while-loop blocks are only counted once.
 
-`collect_2q_runs()`
+    **Returns**
 
-Return a set of non-conditional runs of 2q “op” nodes.
+    a mapping of operation names to the number of times it appears.
 
-### collect\_runs
+    **Return type**
 
-<span id="qiskit.dagcircuit.DAGCircuit.collect_runs" />
+    Mapping\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
+  </Function>
 
-`collect_runs(namelist)`
+  ### count\_ops\_longest\_path
 
-Return a set of non-conditional runs of “op” nodes with the given names.
+  <Function id="qiskit.dagcircuit.DAGCircuit.count_ops_longest_path" name="count_ops_longest_path" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L2019-L2033" signature="count_ops_longest_path()">
+    Count the occurrences of operation names on the longest path.
 
-For example, “… h q\[0]; cx q\[0],q\[1]; cx q\[0],q\[1]; h q\[1]; ..” would produce the tuple of cx nodes as an element of the set returned from a call to collect\_runs(\[“cx”]). If instead the cx nodes were “cx q\[0],q\[1]; cx q\[1],q\[0];”, the method would still return the pair in a tuple. The namelist can contain names that are not in the circuit’s basis.
+    Returns a dictionary of counts keyed on the operation name.
+  </Function>
 
-Nodes must have only one successor to continue the run.
+  ### depth
 
-### compose
+  <Function id="qiskit.dagcircuit.DAGCircuit.depth" name="depth" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L955-L1005" signature="depth(*, recurse=False)">
+    Return the circuit depth. If there is control flow present, this count may only be an estimate, as the complete control-flow path cannot be statically known.
 
-<span id="qiskit.dagcircuit.DAGCircuit.compose" />
+    **Parameters**
 
-`compose(other, qubits=None, clbits=None, front=False, inplace=True)`
+    **recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True`, then recurse into control-flow operations. For loops with known-length iterators are counted as if the loop had been manually unrolled (*i.e.* with each iteration of the loop body written out explicitly). If-else blocks take the longer case of the two branches. While loops are counted as if the loop body runs once only. Defaults to `False` and raises [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") if any control flow is present, to avoid silently returning a nonsensical number.
 
-Compose the `other` circuit onto the output of this circuit.
+    **Returns**
 
-A subset of input wires of `other` are mapped to a subset of output wires of this circuit.
+    the circuit depth
 
-`other` can be narrower or of equal width to `self`.
+    **Return type**
 
-**Parameters**
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
-*   **other** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit to compose with self
-*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – qubits of self to compose onto.
-*   **clbits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – clbits of self to compose onto.
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, front composition will be performed (not implemented yet)
-*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, modify the object. Otherwise return composed circuit.
+    **Raises**
 
-**Returns**
+    *   [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if not a directed acyclic graph
+    *   [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if unknown control flow is present in a recursive call, or any control flow is present in a non-recursive call.
+  </Function>
 
-the composed dag (returns None if inplace==True).
+  ### descendants
 
-**Return type**
+  <Function id="qiskit.dagcircuit.DAGCircuit.descendants" name="descendants" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1717-L1719" signature="descendants(node)">
+    Returns set of the descendants of a node as DAGOpNodes and DAGOutNodes.
+  </Function>
 
-[DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  ### draw
 
-**Raises**
+  <Function id="qiskit.dagcircuit.DAGCircuit.draw" name="draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L2101-L2125" signature="draw(scale=0.7, filename=None, style='color')">
+    Draws the dag circuit.
 
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if `other` is wider or there are duplicate edge mappings.
+    This function needs [Graphviz](https://www.graphviz.org/) to be installed. Graphviz is not a python package and can’t be pip installed (the `graphviz` package on PyPI is a Python interface library for Graphviz and does not actually install Graphviz). You can refer to [the Graphviz documentation](https://www.graphviz.org/download/) on how to install it.
 
-### copy\_empty\_like
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGCircuit.copy_empty_like" />
+    *   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – scaling factor
+    *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – file path to save image to (format inferred from name)
+    *   **style** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – ‘plain’: B\&W graph; ‘color’ (default): color input/output/op nodes
 
-`copy_empty_like()`
+    **Returns**
 
-Return a copy of self with the same structure but empty.
+    if in Jupyter notebook and not saving to file, otherwise None.
 
-**That structure includes:**
+    **Return type**
 
-*   name and other metadata
-*   global phase
-*   duration
-*   all the qubits and clbits, including the registers.
+    Ipython.display.Image
+  </Function>
 
-**Returns**
+  ### edges
 
-An empty copy of self.
+  <Function id="qiskit.dagcircuit.DAGCircuit.edges" name="edges" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1594-L1617" signature="edges(nodes=None)">
+    Iterator for edge values and source and dest node
 
-**Return type**
+    This works by returning the output edges from the specified nodes. If no nodes are specified all edges from the graph are returned.
 
-[DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+    **Parameters**
 
-### count\_ops
+    **nodes** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*, or* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")*|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*, or* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – Either a list of nodes or a single input node. If none is specified, all edges are returned from the graph.
 
-<span id="qiskit.dagcircuit.DAGCircuit.count_ops" />
+    **Yields**
 
-`count_ops(*, recurse=True)`
+    *edge* –
 
-Count the occurrences of operation names.
+    **the edge in the same format as out\_edges the tuple**
 
-**Parameters**
+    (source node, destination node, edge data)
+  </Function>
 
-**recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` (default), then recurse into control-flow operations. In all cases, this counts only the number of times the operation appears in any possible block; both branches of if-elses are counted, and for- and while-loop blocks are only counted once.
+  ### find\_bit
 
-**Returns**
+  <Function id="qiskit.dagcircuit.DAGCircuit.find_bit" name="find_bit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L325-L355" signature="find_bit(bit)">
+    Finds locations in the circuit, by mapping the Qubit and Clbit to positional index BitLocations is defined as: BitLocations = namedtuple(“BitLocations”, (“index”, “registers”))
 
-a mapping of operation names to the number of times it appears.
+    **Parameters**
 
-**Return type**
+    **bit** ([*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")) – The bit to locate.
 
-Mapping\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
+    **Returns**
 
-### count\_ops\_longest\_path
+    **A 2-tuple. The first element (`index`)**
 
-<span id="qiskit.dagcircuit.DAGCircuit.count_ops_longest_path" />
+    contains the index at which the `Bit` can be found (in either `qubits`, `clbits`, depending on its type). The second element (`registers`) is a list of `(register, index)` pairs with an entry for each `Register` in the circuit which contains the `Bit` (and the index in the `Register` at which it can be found).
 
-`count_ops_longest_path()`
+    **Return type**
 
-Count the occurrences of operation names on the longest path.
+    namedtuple(int, List\[Tuple(Register, int)])
 
-Returns a dictionary of counts keyed on the operation name.
+    **Raises:**
 
-### depth
+    DAGCircuitError: If the supplied `Bit` was of an unknown type. DAGCircuitError: If the supplied `Bit` could not be found on the circuit.
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.depth" />
+  ### front\_layer
 
-`depth(*, recurse=False)`
+  <Function id="qiskit.dagcircuit.DAGCircuit.front_layer" name="front_layer" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1795-L1805" signature="front_layer()">
+    Return a list of op nodes in the first layer of this dag.
+  </Function>
 
-Return the circuit depth. If there is control flow present, this count may only be an estimate, as the complete control-flow path cannot be statically known.
+  ### gate\_nodes
 
-**Parameters**
+  <Function id="qiskit.dagcircuit.DAGCircuit.gate_nodes" name="gate_nodes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1639-L1649" signature="gate_nodes()">
+    Get the list of gate nodes in the dag.
 
-**recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True`, then recurse into control-flow operations. For loops with known-length iterators are counted as if the loop had been manually unrolled (*i.e.* with each iteration of the loop body written out explicitly). If-else blocks take the longer case of the two branches. While loops are counted as if the loop body runs once only. Defaults to `False` and raises [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") if any control flow is present, to avoid silently returning a nonsensical number.
+    **Returns**
 
-**Returns**
+    the list of DAGOpNodes that represent gates.
 
-the circuit depth
+    **Return type**
 
-**Return type**
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")]
+  </Function>
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  ### has\_calibration\_for
 
-**Raises**
+  <Function id="qiskit.dagcircuit.DAGCircuit.has_calibration_for" name="has_calibration_for" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L215-L229" signature="has_calibration_for(node)">
+    Return True if the dag has a calibration defined for the node operation. In this case, the operation does not need to be translated to the device basis.
+  </Function>
 
-*   [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if not a directed acyclic graph
-*   [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if unknown control flow is present in a recursive call, or any control flow is present in a non-recursive call.
+  ### idle\_wires
 
-### descendants
+  <Function id="qiskit.dagcircuit.DAGCircuit.idle_wires" name="idle_wires" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L884-L909" signature="idle_wires(ignore=None)">
+    Return idle wires.
 
-<span id="qiskit.dagcircuit.DAGCircuit.descendants" />
+    **Parameters**
 
-`descendants(node)`
+    **ignore** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*)*) – List of node names to ignore. Default: \[]
 
-Returns set of the descendants of a node as DAGOpNodes and DAGOutNodes.
+    **Yields**
 
-### draw
+    *Bit* – Bit in idle wire.
 
-<span id="qiskit.dagcircuit.DAGCircuit.draw" />
+    **Raises**
 
-`draw(scale=0.7, filename=None, style='color')`
+    [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – If the DAG is invalid
+  </Function>
 
-Draws the dag circuit.
+  ### is\_predecessor
 
-This function needs [Graphviz](https://www.graphviz.org/) to be installed. Graphviz is not a python package and can’t be pip installed (the `graphviz` package on PyPI is a Python interface library for Graphviz and does not actually install Graphviz). You can refer to [the Graphviz documentation](https://www.graphviz.org/download/) on how to install it.
+  <Function id="qiskit.dagcircuit.DAGCircuit.is_predecessor" name="is_predecessor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1691-L1693" signature="is_predecessor(node, node_pred)">
+    Checks if a second node is in the predecessors of node.
+  </Function>
 
-**Parameters**
+  ### is\_successor
 
-*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – scaling factor
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – file path to save image to (format inferred from name)
-*   **style** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – ‘plain’: B\&W graph; ‘color’ (default): color input/output/op nodes
+  <Function id="qiskit.dagcircuit.DAGCircuit.is_successor" name="is_successor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1687-L1689" signature="is_successor(node, node_succ)">
+    Checks if a second node is in the successors of node.
+  </Function>
 
-**Returns**
+  ### layers
 
-if in Jupyter notebook and not saving to file, otherwise None.
+  <Function id="qiskit.dagcircuit.DAGCircuit.layers" name="layers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1807-L1861" signature="layers()">
+    Yield a shallow view on a layer of this DAGCircuit for all d layers of this circuit.
 
-**Return type**
+    A layer is a circuit whose gates act on disjoint qubits, i.e., a layer has depth 1. The total number of layers equals the circuit depth d. The layers are indexed from 0 to d-1 with the earliest layer at index 0. The layers are constructed using a greedy algorithm. Each returned layer is a dict containing \{“graph”: circuit graph, “partition”: list of qubit lists}.
 
-Ipython.display.Image
+    The returned layer contains new (but semantically equivalent) DAGOpNodes, DAGInNodes, and DAGOutNodes. These are not the same as nodes of the original dag, but are equivalent via DAGNode.semantic\_eq(node1, node2).
 
-### edges
+    TODO: Gates that use the same cbits will end up in different layers as this is currently implemented. This may not be the desired behavior.
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.edges" />
+  ### longest\_path
 
-`edges(nodes=None)`
+  <Function id="qiskit.dagcircuit.DAGCircuit.longest_path" name="longest_path" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1675-L1677" signature="longest_path()">
+    Returns the longest path in the dag as a list of DAGOpNodes, DAGInNodes, and DAGOutNodes.
+  </Function>
 
-Iterator for edge values and source and dest node
+  ### multi\_qubit\_ops
 
-This works by returning the output edges from the specified nodes. If no nodes are specified all edges from the graph are returned.
+  <Function id="qiskit.dagcircuit.DAGCircuit.multi_qubit_ops" name="multi_qubit_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1667-L1673" signature="multi_qubit_ops()">
+    Get list of 3+ qubit operations. Ignore directives like snapshot and barrier.
+  </Function>
 
-**Parameters**
+  ### multigraph\_layers
 
-**nodes** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*, or* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")*|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*, or* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – Either a list of nodes or a single input node. If none is specified, all edges are returned from the graph.
+  <Function id="qiskit.dagcircuit.DAGCircuit.multigraph_layers" name="multigraph_layers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1887-L1890" signature="multigraph_layers()">
+    Yield layers of the multigraph.
+  </Function>
 
-**Yields**
+  ### named\_nodes
 
-*edge* –
+  <Function id="qiskit.dagcircuit.DAGCircuit.named_nodes" name="named_nodes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1651-L1657" signature="named_nodes(*names)">
+    Get the set of “op” nodes with the given name.
+  </Function>
 
-**the edge in the same format as out\_edges the tuple**
+  ### node
 
-(source node, destination node, edge data)
+  <Function id="qiskit.dagcircuit.DAGCircuit.node" name="node" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1575-L1584" signature="node(node_id)">
+    Get the node in the dag.
 
-### find\_bit
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGCircuit.find_bit" />
+    **node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Node identifier.
 
-`find_bit(bit)`
+    **Returns**
 
-Finds locations in the circuit, by mapping the Qubit and Clbit to positional index BitLocations is defined as: BitLocations = namedtuple(“BitLocations”, (“index”, “registers”))
+    the node.
 
-**Parameters**
+    **Return type**
 
-**bit** ([*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")) – The bit to locate.
+    node
+  </Function>
 
-**Returns**
+  ### nodes
 
-**A 2-tuple. The first element (`index`)**
+  <Function id="qiskit.dagcircuit.DAGCircuit.nodes" name="nodes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1586-L1592" signature="nodes()">
+    Iterator for node values.
 
-contains the index at which the `Bit` can be found (in either `qubits`, `clbits`, depending on its type). The second element (`registers`) is a list of `(register, index)` pairs with an entry for each `Register` in the circuit which contains the `Bit` (and the index in the `Register` at which it can be found).
+    **Yields**
 
-**Return type**
+    *node* – the node.
+  </Function>
 
-namedtuple(int, List\[Tuple(Register, int)])
+  ### nodes\_on\_wire
 
-**Raises:**
+  <Function id="qiskit.dagcircuit.DAGCircuit.nodes_on_wire" name="nodes_on_wire" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1957-L1989" signature="nodes_on_wire(wire, only_ops=False)">
+    Iterator for nodes that affect a given wire.
 
-DAGCircuitError: If the supplied `Bit` was of an unknown type. DAGCircuitError: If the supplied `Bit` could not be found on the circuit.
+    **Parameters**
 
-### front\_layer
+    *   **wire** ([*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")) – the wire to be looked at.
+    *   **only\_ops** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if only the ops nodes are wanted; otherwise, all nodes are returned.
 
-<span id="qiskit.dagcircuit.DAGCircuit.front_layer" />
+    **Yields**
 
-`front_layer()`
+    *Iterator* – the successive nodes on the given wire
 
-Return a list of op nodes in the first layer of this dag.
+    **Raises**
 
-### gate\_nodes
+    [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if the given wire doesn’t exist in the DAG
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.gate_nodes" />
+  ### num\_clbits
 
-`gate_nodes()`
+  <Function id="qiskit.dagcircuit.DAGCircuit.num_clbits" name="num_clbits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1025-L1027" signature="num_clbits()">
+    Return the total number of classical bits used by the circuit.
+  </Function>
 
-Get the list of gate nodes in the dag.
+  ### num\_qubits
 
-**Returns**
+  <Function id="qiskit.dagcircuit.DAGCircuit.num_qubits" name="num_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1017-L1023" signature="num_qubits()">
+    Return the total number of qubits used by the circuit. num\_qubits() replaces former use of width(). DAGCircuit.width() now returns qubits + clbits for consistency with Circuit.width() \[qiskit-terra #2564].
+  </Function>
 
-the list of DAGOpNodes that represent gates.
+  ### num\_tensor\_factors
 
-**Return type**
+  <Function id="qiskit.dagcircuit.DAGCircuit.num_tensor_factors" name="num_tensor_factors" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1029-L1031" signature="num_tensor_factors()">
+    Compute how many components the circuit can decompose into.
+  </Function>
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")]
+  ### op\_nodes
 
-### has\_calibration\_for
+  <Function id="qiskit.dagcircuit.DAGCircuit.op_nodes" name="op_nodes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1619-L1637" signature="op_nodes(op=None, include_directives=True)">
+    Get the list of “op” nodes in the dag.
 
-<span id="qiskit.dagcircuit.DAGCircuit.has_calibration_for" />
+    **Parameters**
 
-`has_calibration_for(node)`
+    *   **op** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")) – [`qiskit.circuit.Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") subclass op nodes to return. If None, return all op nodes.
+    *   **include\_directives** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – include barrier, snapshot etc.
 
-Return True if the dag has a calibration defined for the node operation. In this case, the operation does not need to be translated to the device basis.
+    **Returns**
 
-### idle\_wires
+    the list of node ids containing the given op.
 
-<span id="qiskit.dagcircuit.DAGCircuit.idle_wires" />
+    **Return type**
 
-`idle_wires(ignore=None)`
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")]
+  </Function>
 
-Return idle wires.
+  ### predecessors
 
-**Parameters**
+  <Function id="qiskit.dagcircuit.DAGCircuit.predecessors" name="predecessors" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1683-L1685" signature="predecessors(node)">
+    Returns iterator of the predecessors of a node as DAGOpNodes and DAGInNodes.
+  </Function>
 
-**ignore** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*)*) – List of node names to ignore. Default: \[]
+  ### properties
 
-**Yields**
+  <Function id="qiskit.dagcircuit.DAGCircuit.properties" name="properties" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L2088-L2099" signature="properties()">
+    Return a dictionary of circuit properties.
+  </Function>
 
-*Bit* – Bit in idle wire.
+  ### quantum\_causal\_cone
 
-**Raises**
+  <Function id="qiskit.dagcircuit.DAGCircuit.quantum_causal_cone" name="quantum_causal_cone" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L2035-L2086" signature="quantum_causal_cone(qubit)">
+    Returns causal cone of a qubit.
 
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – If the DAG is invalid
+    A qubit’s causal cone is the set of qubits that can influence the output of that qubit through interactions, whether through multi-qubit gates or operations. Knowing the causal cone of a qubit can be useful when debugging faulty circuits, as it can help identify which wire(s) may be causing the problem.
 
-### is\_predecessor
+    This method does not consider any classical data dependency in the `DAGCircuit`, classical bit wires are ignored for the purposes of building the causal cone.
 
-<span id="qiskit.dagcircuit.DAGCircuit.is_predecessor" />
+    **Parameters**
 
-`is_predecessor(node, node_pred)`
+    **qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The output qubit for which we want to find the causal cone.
 
-Checks if a second node is in the predecessors of node.
+    **Returns**
 
-### is\_successor
+    The set of qubits whose interactions affect `qubit`.
 
-<span id="qiskit.dagcircuit.DAGCircuit.is_successor" />
+    **Return type**
 
-`is_successor(node, node_succ)`
+    Set\[[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")]
+  </Function>
 
-Checks if a second node is in the successors of node.
+  ### quantum\_predecessors
 
-### layers
+  <Function id="qiskit.dagcircuit.DAGCircuit.quantum_predecessors" name="quantum_predecessors" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1695-L1702" signature="quantum_predecessors(node)">
+    Returns iterator of the predecessors of a node that are connected by a quantum edge as DAGOpNodes and DAGInNodes.
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.layers" />
+  ### quantum\_successors
 
-`layers()`
+  <Function id="qiskit.dagcircuit.DAGCircuit.quantum_successors" name="quantum_successors" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1728-L1735" signature="quantum_successors(node)">
+    Returns iterator of the successors of a node that are connected by a quantum edge as Opnodes and DAGOutNodes.
+  </Function>
 
-Yield a shallow view on a layer of this DAGCircuit for all d layers of this circuit.
+  ### remove\_all\_ops\_named
 
-A layer is a circuit whose gates act on disjoint qubits, i.e., a layer has depth 1. The total number of layers equals the circuit depth d. The layers are indexed from 0 to d-1 with the earliest layer at index 0. The layers are constructed using a greedy algorithm. Each returned layer is a dict containing \{“graph”: circuit graph, “partition”: list of qubit lists}.
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_all_ops_named" name="remove_all_ops_named" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L231-L234" signature="remove_all_ops_named(opname)">
+    Remove all operation nodes with the given name.
+  </Function>
 
-The returned layer contains new (but semantically equivalent) DAGOpNodes, DAGInNodes, and DAGOutNodes. These are not the same as nodes of the original dag, but are equivalent via DAGNode.semantic\_eq(node1, node2).
+  ### remove\_ancestors\_of
 
-TODO: Gates that use the same cbits will end up in different layers as this is currently implemented. This may not be the desired behavior.
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_ancestors_of" name="remove_ancestors_of" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1762-L1770" signature="remove_ancestors_of(node)">
+    Remove all of the ancestor operation nodes of node.
+  </Function>
 
-### longest\_path
+  ### remove\_clbits
 
-<span id="qiskit.dagcircuit.DAGCircuit.longest_path" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_clbits" name="remove_clbits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L357-L395" signature="remove_clbits(*clbits)">
+    Remove classical bits from the circuit. All bits MUST be idle. Any registers with references to at least one of the specified bits will also be removed.
 
-`longest_path()`
+    **Parameters**
 
-Returns the longest path in the dag as a list of DAGOpNodes, DAGInNodes, and DAGOutNodes.
+    **clbits** (*List\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – The bits to remove.
 
-### multi\_qubit\_ops
+    **Raises**
 
-<span id="qiskit.dagcircuit.DAGCircuit.multi_qubit_ops" />
+    [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – a clbit is not a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit"), is not in the circuit, or is not idle.
+  </Function>
 
-`multi_qubit_ops()`
+  ### remove\_cregs
 
-Get list of 3+ qubit operations. Ignore directives like snapshot and barrier.
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_cregs" name="remove_cregs" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L397-L421" signature="remove_cregs(*cregs)">
+    Remove classical registers from the circuit, leaving underlying bits in place.
 
-### multigraph\_layers
+    **Raises**
 
-<span id="qiskit.dagcircuit.DAGCircuit.multigraph_layers" />
+    *   [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – a creg is not a ClassicalRegister, or is not in
+    *   **the circuit.** –
+  </Function>
 
-`multigraph_layers()`
+  ### remove\_descendants\_of
 
-Yield layers of the multigraph.
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_descendants_of" name="remove_descendants_of" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1772-L1777" signature="remove_descendants_of(node)">
+    Remove all of the descendant operation nodes of node.
+  </Function>
 
-### named\_nodes
+  ### remove\_nonancestors\_of
 
-<span id="qiskit.dagcircuit.DAGCircuit.named_nodes" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_nonancestors_of" name="remove_nonancestors_of" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1779-L1785" signature="remove_nonancestors_of(node)">
+    Remove all of the non-ancestors operation nodes of node.
+  </Function>
 
-`named_nodes(*names)`
+  ### remove\_nondescendants\_of
 
-Get the set of “op” nodes with the given name.
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_nondescendants_of" name="remove_nondescendants_of" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1787-L1793" signature="remove_nondescendants_of(node)">
+    Remove all of the non-descendants operation nodes of node.
+  </Function>
 
-### node
+  ### remove\_op\_node
 
-<span id="qiskit.dagcircuit.DAGCircuit.node" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_op_node" name="remove_op_node" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1746-L1760" signature="remove_op_node(node)">
+    Remove an operation node n.
 
-`node(node_id)`
+    Add edges from predecessors to successors.
+  </Function>
 
-Get the node in the dag.
+  ### remove\_qregs
 
-**Parameters**
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_qregs" name="remove_qregs" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L463-L487" signature="remove_qregs(*qregs)">
+    Remove classical registers from the circuit, leaving underlying bits in place.
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Node identifier.
+    **Raises**
 
-**Returns**
+    *   [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – a qreg is not a QuantumRegister, or is not in
+    *   **the circuit.** –
+  </Function>
 
-the node.
+  ### remove\_qubits
 
-**Return type**
+  <Function id="qiskit.dagcircuit.DAGCircuit.remove_qubits" name="remove_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L423-L461" signature="remove_qubits(*qubits)">
+    Remove quantum bits from the circuit. All bits MUST be idle. Any registers with references to at least one of the specified bits will also be removed.
 
-node
+    **Parameters**
 
-### nodes
+    **qubits** (*List\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – The bits to remove.
 
-<span id="qiskit.dagcircuit.DAGCircuit.nodes" />
+    **Raises**
 
-`nodes()`
+    [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – a qubit is not a [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit"), is not in the circuit, or is not idle.
+  </Function>
 
-Iterator for node values.
+  ### replace\_block\_with\_op
 
-**Yields**
+  <Function id="qiskit.dagcircuit.DAGCircuit.replace_block_with_op" name="replace_block_with_op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1113-L1193" signature="replace_block_with_op(node_block, op, wire_pos_map, cycle_check=True)">
+    Replace a block of nodes with a single node.
 
-*node* – the node.
+    This is used to consolidate a block of DAGOpNodes into a single operation. A typical example is a block of gates being consolidated into a single `UnitaryGate` representing the unitary matrix of the block.
 
-### nodes\_on\_wire
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGCircuit.nodes_on_wire" />
+    *   **node\_block** (*List\[*[*DAGNode*](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")*]*) – A list of dag nodes that represents the node block to be replaced
+    *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The operation to replace the block with
+    *   **wire\_pos\_map** (*Dict\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The dictionary mapping the bits to their positions in the output `qargs` or `cargs`. This is necessary to reconstruct the arg order over multiple gates in the combined single op node. If a [`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit") is not in the dictionary, it will not be added to the args; this can be useful when dealing with control-flow operations that have inherent bits in their `condition` or `target` fields.
+    *   **cycle\_check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to True this method will check that replacing the provided `node_block` with a single node would introduce a cycle (which would invalidate the `DAGCircuit`) and will raise a `DAGCircuitError` if a cycle would be introduced. This checking comes with a run time penalty. If you can guarantee that your input `node_block` is a contiguous block and won’t introduce a cycle when it’s contracted to a single node, this can be set to `False` to improve the runtime performance of this method.
 
-`nodes_on_wire(wire, only_ops=False)`
+    **Raises**
 
-Iterator for nodes that affect a given wire.
+    [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if `cycle_check` is set to `True` and replacing the specified block introduces a cycle or if `node_block` is empty.
 
-**Parameters**
+    **Returns**
 
-*   **wire** ([*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")) – the wire to be looked at.
-*   **only\_ops** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if only the ops nodes are wanted; otherwise, all nodes are returned.
+    The op node that replaces the block.
 
-**Yields**
+    **Return type**
 
-*Iterator* – the successive nodes on the given wire
+    [DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")
+  </Function>
 
-**Raises**
+  ### reverse\_ops
 
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if the given wire doesn’t exist in the DAG
+  <Function id="qiskit.dagcircuit.DAGCircuit.reverse_ops" name="reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L869-L882" signature="reverse_ops()">
+    Reverse the operations in the `self` circuit.
 
-### num\_clbits
+    **Returns**
 
-<span id="qiskit.dagcircuit.DAGCircuit.num_clbits" />
+    the reversed dag.
 
-`num_clbits()`
+    **Return type**
 
-Return the total number of classical bits used by the circuit.
+    [DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  </Function>
 
-### num\_qubits
+  ### separable\_circuits
 
-<span id="qiskit.dagcircuit.DAGCircuit.num_qubits" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.separable_circuits" name="separable_circuits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1494-L1544" signature="separable_circuits(remove_idle_qubits=False)">
+    Decompose the circuit into sets of qubits with no gates connecting them.
 
-`num_qubits()`
+    **Parameters**
 
-Return the total number of qubits used by the circuit. num\_qubits() replaces former use of width(). DAGCircuit.width() now returns qubits + clbits for consistency with Circuit.width() \[qiskit-terra #2564].
+    **remove\_idle\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Flag denoting whether to remove idle qubits from the separated circuits. If `False`, each output circuit will contain the same number of qubits as `self`.
 
-### num\_tensor\_factors
+    **Returns**
 
-<span id="qiskit.dagcircuit.DAGCircuit.num_tensor_factors" />
+    **The circuits resulting from separating `self` into sets**
 
-`num_tensor_factors()`
+    of disconnected qubits
 
-Compute how many components the circuit can decompose into.
+    **Return type**
 
-### op\_nodes
+    List\[[DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")]
 
-<span id="qiskit.dagcircuit.DAGCircuit.op_nodes" />
+    Each [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") instance returned by this method will contain the same number of clbits as `self`. The global phase information in `self` will not be maintained in the subcircuits returned by this method.
+  </Function>
 
-`op_nodes(op=None, include_directives=True)`
+  ### serial\_layers
 
-Get the list of “op” nodes in the dag.
+  <Function id="qiskit.dagcircuit.DAGCircuit.serial_layers" name="serial_layers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1863-L1885" signature="serial_layers()">
+    Yield a layer for all gates of this circuit.
 
-**Parameters**
+    A serial layer is a circuit with one gate. The layers have the same structure as in layers().
+  </Function>
 
-*   **op** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")) – [`qiskit.circuit.Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") subclass op nodes to return. If None, return all op nodes.
-*   **include\_directives** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – include barrier, snapshot etc.
+  ### size
 
-**Returns**
+  <Function id="qiskit.dagcircuit.DAGCircuit.size" name="size" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L911-L953" signature="size(*, recurse=False)">
+    Return the number of operations. If there is control flow present, this count may only be an estimate, as the complete control-flow path cannot be statically known.
 
-the list of node ids containing the given op.
+    **Parameters**
 
-**Return type**
+    **recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True`, then recurse into control-flow operations. For loops with known-length iterators are counted unrolled. If-else blocks sum both of the two branches. While loops are counted as if the loop body runs once only. Defaults to `False` and raises [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") if any control flow is present, to avoid silently returning a mostly meaningless number.
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")]
+    **Returns**
 
-### predecessors
+    the circuit size
 
-<span id="qiskit.dagcircuit.DAGCircuit.predecessors" />
+    **Return type**
 
-`predecessors(node)`
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
-Returns iterator of the predecessors of a node as DAGOpNodes and DAGInNodes.
+    **Raises**
 
-### properties
+    [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if an unknown [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") is present in a call with `recurse=True`, or any control flow is present in a non-recursive call.
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.properties" />
+  ### substitute\_node
 
-`properties()`
+  <Function id="qiskit.dagcircuit.DAGCircuit.substitute_node" name="substitute_node" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1404-L1492" signature="substitute_node(node, op, inplace=False, propagate_condition=True)">
+    Replace an DAGOpNode with a single operation. qargs, cargs and conditions for the new operation will be inferred from the node to be replaced. The new operation will be checked to match the shape of the replaced operation.
 
-Return a dictionary of circuit properties.
+    **Parameters**
 
-### quantum\_causal\_cone
+    *   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")) – Node to be replaced
+    *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The [`qiskit.circuit.Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") instance to be added to the DAG
+    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional, default False. If True, existing DAG node will be modified to include op. Otherwise, a new DAG node will be used.
+    *   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional, default True. If True, a condition on the `node` to be replaced will be applied to the new `op`. This is the legacy behaviour. If either node is a control-flow operation, this will be ignored. If the `op` already has a condition, [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") is raised.
 
-<span id="qiskit.dagcircuit.DAGCircuit.quantum_causal_cone" />
+    **Returns**
 
-`quantum_causal_cone(qubit)`
+    the new node containing the added operation.
 
-Returns causal cone of a qubit.
+    **Return type**
 
-A qubit’s causal cone is the set of qubits that can influence the output of that qubit through interactions, whether through multi-qubit gates or operations. Knowing the causal cone of a qubit can be useful when debugging faulty circuits, as it can help identify which wire(s) may be causing the problem.
+    [DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")
 
-This method does not consider any classical data dependency in the `DAGCircuit`, classical bit wires are ignored for the purposes of building the causal cone.
+    **Raises**
 
-**Parameters**
+    *   [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – If replacement operation was incompatible with
+    *   **location**\*\* of \*\***target node.** –
+  </Function>
 
-**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The output qubit for which we want to find the causal cone.
+  ### substitute\_node\_with\_dag
 
-**Returns**
+  <Function id="qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag" name="substitute_node_with_dag" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1195-L1402" signature="substitute_node_with_dag(node, input_dag, wires=None, propagate_condition=True)">
+    Replace one node with dag.
 
-The set of qubits whose interactions affect `qubit`.
+    **Parameters**
 
-**Return type**
+    *   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")) – node to substitute
+    *   **input\_dag** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit that will substitute the node
+    *   **wires** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*] | Dict\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – gives an order for (qu)bits in the input circuit. If a list, then the bits refer to those in the `input_dag`, and the order gets matched to the node wires by qargs first, then cargs, then conditions. If a dictionary, then a mapping of bits in the `input_dag` to those that the `node` acts on.
+    *   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), then any `condition` attribute on the operation within `node` is propagated to each node in the `input_dag`. If `False`, then the `input_dag` is assumed to faithfully implement suitable conditional logic already. This is ignored for [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")s (i.e. treated as if it is `False`); replacements of those must already fulfill the same conditional logic or this function would be close to useless for them.
 
-Set\[[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")]
+    **Returns**
 
-### quantum\_predecessors
+    maps node IDs from input\_dag to their new node incarnations in self.
 
-<span id="qiskit.dagcircuit.DAGCircuit.quantum_predecessors" />
+    **Return type**
 
-`quantum_predecessors(node)`
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
-Returns iterator of the predecessors of a node that are connected by a quantum edge as DAGOpNodes and DAGInNodes.
+    **Raises**
 
-### quantum\_successors
+    [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if met with unexpected predecessor/successors
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.quantum_successors" />
+  ### successors
 
-`quantum_successors(node)`
+  <Function id="qiskit.dagcircuit.DAGCircuit.successors" name="successors" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1679-L1681" signature="successors(node)">
+    Returns iterator of the successors of a node as DAGOpNodes and DAGOutNodes.
+  </Function>
 
-Returns iterator of the successors of a node that are connected by a quantum edge as Opnodes and DAGOutNodes.
+  ### swap\_nodes
 
-### remove\_all\_ops\_named
+  <Function id="qiskit.dagcircuit.DAGCircuit.swap_nodes" name="swap_nodes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1546-L1573" signature="swap_nodes(node1, node2)">
+    Swap connected nodes e.g. due to commutation.
 
-<span id="qiskit.dagcircuit.DAGCircuit.remove_all_ops_named" />
+    **Parameters**
 
-`remove_all_ops_named(opname)`
+    *   **node1** (*OpNode*) – predecessor node
+    *   **node2** (*OpNode*) – successor node
 
-Remove all operation nodes with the given name.
+    **Raises**
 
-### remove\_ancestors\_of
+    [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if either node is not an OpNode or nodes are not connected
+  </Function>
 
-<span id="qiskit.dagcircuit.DAGCircuit.remove_ancestors_of" />
+  ### topological\_nodes
 
-`remove_ancestors_of(node)`
+  <Function id="qiskit.dagcircuit.DAGCircuit.topological_nodes" name="topological_nodes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1074-L1094" signature="topological_nodes(key=None)">
+    Yield nodes in topological order.
 
-Remove all of the ancestor operation nodes of node.
+    **Parameters**
 
-### remove\_clbits
+    **key** (*Callable*) – A callable which will take a DAGNode object and return a string sort key. If not specified the `sort_key` attribute will be used as the sort key for each node.
 
-<span id="qiskit.dagcircuit.DAGCircuit.remove_clbits" />
+    **Returns**
 
-`remove_clbits(*clbits)`
+    node in topological order
 
-Remove classical bits from the circuit. All bits MUST be idle. Any registers with references to at least one of the specified bits will also be removed.
+    **Return type**
 
-**Parameters**
+    generator([DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode"), [DAGInNode](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode"), or [DAGOutNode](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode"))
+  </Function>
 
-**clbits** (*List\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – The bits to remove.
+  ### topological\_op\_nodes
 
-**Raises**
+  <Function id="qiskit.dagcircuit.DAGCircuit.topological_op_nodes" name="topological_op_nodes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1096-L1111" signature="topological_op_nodes(key=None)">
+    Yield op nodes in topological order.
 
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – a clbit is not a [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit"), is not in the circuit, or is not idle.
+    Allowed to pass in specific key to break ties in top order
 
-### remove\_cregs
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGCircuit.remove_cregs" />
+    **key** (*Callable*) – A callable which will take a DAGNode object and return a string sort key. If not specified the `sort_key` attribute will be used as the sort key for each node.
 
-`remove_cregs(*cregs)`
+    **Returns**
 
-Remove classical registers from the circuit, leaving underlying bits in place.
+    op node in topological order
 
-**Raises**
+    **Return type**
 
-*   [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – a creg is not a ClassicalRegister, or is not in
-*   **the circuit.** –
+    generator([DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode"))
+  </Function>
 
-### remove\_descendants\_of
+  ### two\_qubit\_ops
 
-<span id="qiskit.dagcircuit.DAGCircuit.remove_descendants_of" />
+  <Function id="qiskit.dagcircuit.DAGCircuit.two_qubit_ops" name="two_qubit_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1659-L1665" signature="two_qubit_ops()">
+    Get list of 2 qubit operations. Ignore directives like snapshot and barrier.
+  </Function>
 
-`remove_descendants_of(node)`
+  ### width
 
-Remove all of the descendant operation nodes of node.
-
-### remove\_nonancestors\_of
-
-<span id="qiskit.dagcircuit.DAGCircuit.remove_nonancestors_of" />
-
-`remove_nonancestors_of(node)`
-
-Remove all of the non-ancestors operation nodes of node.
-
-### remove\_nondescendants\_of
-
-<span id="qiskit.dagcircuit.DAGCircuit.remove_nondescendants_of" />
-
-`remove_nondescendants_of(node)`
-
-Remove all of the non-descendants operation nodes of node.
-
-### remove\_op\_node
-
-<span id="qiskit.dagcircuit.DAGCircuit.remove_op_node" />
-
-`remove_op_node(node)`
-
-Remove an operation node n.
-
-Add edges from predecessors to successors.
-
-### remove\_qregs
-
-<span id="qiskit.dagcircuit.DAGCircuit.remove_qregs" />
-
-`remove_qregs(*qregs)`
-
-Remove classical registers from the circuit, leaving underlying bits in place.
-
-**Raises**
-
-*   [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – a qreg is not a QuantumRegister, or is not in
-*   **the circuit.** –
-
-### remove\_qubits
-
-<span id="qiskit.dagcircuit.DAGCircuit.remove_qubits" />
-
-`remove_qubits(*qubits)`
-
-Remove quantum bits from the circuit. All bits MUST be idle. Any registers with references to at least one of the specified bits will also be removed.
-
-**Parameters**
-
-**qubits** (*List\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – The bits to remove.
-
-**Raises**
-
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – a qubit is not a [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit"), is not in the circuit, or is not idle.
-
-### replace\_block\_with\_op
-
-<span id="qiskit.dagcircuit.DAGCircuit.replace_block_with_op" />
-
-`replace_block_with_op(node_block, op, wire_pos_map, cycle_check=True)`
-
-Replace a block of nodes with a single node.
-
-This is used to consolidate a block of DAGOpNodes into a single operation. A typical example is a block of gates being consolidated into a single `UnitaryGate` representing the unitary matrix of the block.
-
-**Parameters**
-
-*   **node\_block** (*List\[*[*DAGNode*](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")*]*) – A list of dag nodes that represents the node block to be replaced
-*   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The operation to replace the block with
-*   **wire\_pos\_map** (*Dict\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The dictionary mapping the bits to their positions in the output `qargs` or `cargs`. This is necessary to reconstruct the arg order over multiple gates in the combined single op node. If a [`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit") is not in the dictionary, it will not be added to the args; this can be useful when dealing with control-flow operations that have inherent bits in their `condition` or `target` fields.
-*   **cycle\_check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to True this method will check that replacing the provided `node_block` with a single node would introduce a cycle (which would invalidate the `DAGCircuit`) and will raise a `DAGCircuitError` if a cycle would be introduced. This checking comes with a run time penalty. If you can guarantee that your input `node_block` is a contiguous block and won’t introduce a cycle when it’s contracted to a single node, this can be set to `False` to improve the runtime performance of this method.
-
-**Raises**
-
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if `cycle_check` is set to `True` and replacing the specified block introduces a cycle or if `node_block` is empty.
-
-**Returns**
-
-The op node that replaces the block.
-
-**Return type**
-
-[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")
-
-### reverse\_ops
-
-<span id="qiskit.dagcircuit.DAGCircuit.reverse_ops" />
-
-`reverse_ops()`
-
-Reverse the operations in the `self` circuit.
-
-**Returns**
-
-the reversed dag.
-
-**Return type**
-
-[DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-### separable\_circuits
-
-<span id="qiskit.dagcircuit.DAGCircuit.separable_circuits" />
-
-`separable_circuits(remove_idle_qubits=False)`
-
-Decompose the circuit into sets of qubits with no gates connecting them.
-
-**Parameters**
-
-**remove\_idle\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Flag denoting whether to remove idle qubits from the separated circuits. If `False`, each output circuit will contain the same number of qubits as `self`.
-
-**Returns**
-
-**The circuits resulting from separating `self` into sets**
-
-of disconnected qubits
-
-**Return type**
-
-List\[[DAGCircuit](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")]
-
-Each [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") instance returned by this method will contain the same number of clbits as `self`. The global phase information in `self` will not be maintained in the subcircuits returned by this method.
-
-### serial\_layers
-
-<span id="qiskit.dagcircuit.DAGCircuit.serial_layers" />
-
-`serial_layers()`
-
-Yield a layer for all gates of this circuit.
-
-A serial layer is a circuit with one gate. The layers have the same structure as in layers().
-
-### size
-
-<span id="qiskit.dagcircuit.DAGCircuit.size" />
-
-`size(*, recurse=False)`
-
-Return the number of operations. If there is control flow present, this count may only be an estimate, as the complete control-flow path cannot be statically known.
-
-**Parameters**
-
-**recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True`, then recurse into control-flow operations. For loops with known-length iterators are counted unrolled. If-else blocks sum both of the two branches. While loops are counted as if the loop body runs once only. Defaults to `False` and raises [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") if any control flow is present, to avoid silently returning a mostly meaningless number.
-
-**Returns**
-
-the circuit size
-
-**Return type**
-
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
-
-**Raises**
-
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if an unknown [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") is present in a call with `recurse=True`, or any control flow is present in a non-recursive call.
-
-### substitute\_node
-
-<span id="qiskit.dagcircuit.DAGCircuit.substitute_node" />
-
-`substitute_node(node, op, inplace=False, propagate_condition=True)`
-
-Replace an DAGOpNode with a single operation. qargs, cargs and conditions for the new operation will be inferred from the node to be replaced. The new operation will be checked to match the shape of the replaced operation.
-
-**Parameters**
-
-*   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")) – Node to be replaced
-*   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The [`qiskit.circuit.Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") instance to be added to the DAG
-*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional, default False. If True, existing DAG node will be modified to include op. Otherwise, a new DAG node will be used.
-*   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional, default True. If True, a condition on the `node` to be replaced will be applied to the new `op`. This is the legacy behaviour. If either node is a control-flow operation, this will be ignored. If the `op` already has a condition, [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") is raised.
-
-**Returns**
-
-the new node containing the added operation.
-
-**Return type**
-
-[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")
-
-**Raises**
-
-*   [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – If replacement operation was incompatible with
-*   **location**\*\* of \*\***target node.** –
-
-### substitute\_node\_with\_dag
-
-<span id="qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag" />
-
-`substitute_node_with_dag(node, input_dag, wires=None, propagate_condition=True)`
-
-Replace one node with dag.
-
-**Parameters**
-
-*   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")) – node to substitute
-*   **input\_dag** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit that will substitute the node
-*   **wires** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*] | Dict\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – gives an order for (qu)bits in the input circuit. If a list, then the bits refer to those in the `input_dag`, and the order gets matched to the node wires by qargs first, then cargs, then conditions. If a dictionary, then a mapping of bits in the `input_dag` to those that the `node` acts on.
-*   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), then any `condition` attribute on the operation within `node` is propagated to each node in the `input_dag`. If `False`, then the `input_dag` is assumed to faithfully implement suitable conditional logic already. This is ignored for [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")s (i.e. treated as if it is `False`); replacements of those must already fulfill the same conditional logic or this function would be close to useless for them.
-
-**Returns**
-
-maps node IDs from input\_dag to their new node incarnations in self.
-
-**Return type**
-
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
-
-**Raises**
-
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if met with unexpected predecessor/successors
-
-### successors
-
-<span id="qiskit.dagcircuit.DAGCircuit.successors" />
-
-`successors(node)`
-
-Returns iterator of the successors of a node as DAGOpNodes and DAGOutNodes.
-
-### swap\_nodes
-
-<span id="qiskit.dagcircuit.DAGCircuit.swap_nodes" />
-
-`swap_nodes(node1, node2)`
-
-Swap connected nodes e.g. due to commutation.
-
-**Parameters**
-
-*   **node1** (*OpNode*) – predecessor node
-*   **node2** (*OpNode*) – successor node
-
-**Raises**
-
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if either node is not an OpNode or nodes are not connected
-
-### topological\_nodes
-
-<span id="qiskit.dagcircuit.DAGCircuit.topological_nodes" />
-
-`topological_nodes(key=None)`
-
-Yield nodes in topological order.
-
-**Parameters**
-
-**key** (*Callable*) – A callable which will take a DAGNode object and return a string sort key. If not specified the `sort_key` attribute will be used as the sort key for each node.
-
-**Returns**
-
-node in topological order
-
-**Return type**
-
-generator([DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode"), [DAGInNode](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode"), or [DAGOutNode](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode"))
-
-### topological\_op\_nodes
-
-<span id="qiskit.dagcircuit.DAGCircuit.topological_op_nodes" />
-
-`topological_op_nodes(key=None)`
-
-Yield op nodes in topological order.
-
-Allowed to pass in specific key to break ties in top order
-
-**Parameters**
-
-**key** (*Callable*) – A callable which will take a DAGNode object and return a string sort key. If not specified the `sort_key` attribute will be used as the sort key for each node.
-
-**Returns**
-
-op node in topological order
-
-**Return type**
-
-generator([DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode"))
-
-### two\_qubit\_ops
-
-<span id="qiskit.dagcircuit.DAGCircuit.two_qubit_ops" />
-
-`two_qubit_ops()`
-
-Get list of 2 qubit operations. Ignore directives like snapshot and barrier.
-
-### width
-
-<span id="qiskit.dagcircuit.DAGCircuit.width" />
-
-`width()`
-
-Return the total number of qubits + clbits used by the circuit. This function formerly returned the number of qubits by the calculation return len(self.\_wires) - self.num\_clbits() but was changed by issue #2564 to return number of qubits + clbits with the new function DAGCircuit.num\_qubits replacing the former semantic of DAGCircuit.width().
+  <Function id="qiskit.dagcircuit.DAGCircuit.width" name="width" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagcircuit.py#L1007-L1015" signature="width()">
+    Return the total number of qubits + clbits used by the circuit. This function formerly returned the number of qubits by the calculation return len(self.\_wires) - self.num\_clbits() but was changed by issue #2564 to return number of qubits + clbits with the new function DAGCircuit.num\_qubits replacing the former semantic of DAGCircuit.width().
+  </Function>
+</Class>
 

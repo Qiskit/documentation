@@ -8,168 +8,142 @@ python_api_name: qiskit.providers.fake_provider.FakeJohannesburg
 
 # FakeJohannesburg
 
-<span id="qiskit.providers.fake_provider.FakeJohannesburg" />
+<Class id="qiskit.providers.fake_provider.FakeJohannesburg" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/johannesburg/fake_johannesburg.py" signature="FakeJohannesburg">
+  Bases: `qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend`
 
-`FakeJohannesburg` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/johannesburg/fake_johannesburg.py "view source code")
+  A fake Johannesburg backend.
 
-Bases: `qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend`
+  ```python
+  00 ↔ 01 ↔ 02 ↔ 03 ↔ 04
+   ↕                   ↕
+  05 ↔ 06 ↔ 07 ↔ 08 ↔ 09
+   ↕         ↕         ↕
+  10 ↔ 11 ↔ 12 ↔ 13 ↔ 14
+   ↕                   ↕
+  15 ↔ 16 ↔ 17 ↔ 18 ↔ 19
+  ```
 
-A fake Johannesburg backend.
+  FakeBackend initializer.
 
-```python
-00 ↔ 01 ↔ 02 ↔ 03 ↔ 04
- ↕                   ↕
-05 ↔ 06 ↔ 07 ↔ 08 ↔ 09
- ↕         ↕         ↕
-10 ↔ 11 ↔ 12 ↔ 13 ↔ 14
- ↕                   ↕
-15 ↔ 16 ↔ 17 ↔ 18 ↔ 19
-```
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+  *   **time\_alive** (*int*) – time to wait before returning result
 
-**Parameters**
+  ## Methods
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **time\_alive** (*int*) – time to wait before returning result
+  ### configuration
 
-## Methods
+  <Function id="qiskit.providers.fake_provider.FakeJohannesburg.configuration" name="configuration" signature="FakeJohannesburg.configuration()">
+    Return the backend configuration.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeJohannesburg.configuration" />
+    the configuration for the backend.
 
-`FakeJohannesburg.configuration()`
+    **Return type**
 
-Return the backend configuration.
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-**Returns**
+  ### name
 
-the configuration for the backend.
+  <Function id="qiskit.providers.fake_provider.FakeJohannesburg.name" name="name" signature="FakeJohannesburg.name()">
+    Return the backend name.
 
-**Return type**
+    **Returns**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    the name of the backend.
 
-### name
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeJohannesburg.name" />
+    str
+  </Function>
 
-`FakeJohannesburg.name()`
+  ### properties
 
-Return the backend name.
+  <Function id="qiskit.providers.fake_provider.FakeJohannesburg.properties" name="properties" signature="FakeJohannesburg.properties()">
+    Returns a snapshot of device properties
+  </Function>
 
-**Returns**
+  ### provider
 
-the name of the backend.
+  <Function id="qiskit.providers.fake_provider.FakeJohannesburg.provider" name="provider" signature="FakeJohannesburg.provider()">
+    Return the backend Provider.
 
-**Return type**
+    **Returns**
 
-str
+    the Provider responsible for the backend.
 
-### properties
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeJohannesburg.properties" />
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-`FakeJohannesburg.properties()`
+  ### run
 
-Returns a snapshot of device properties
+  <Function id="qiskit.providers.fake_provider.FakeJohannesburg.run" name="run" signature="FakeJohannesburg.run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-### provider
+  ### set\_options
 
-<span id="qiskit.providers.fake_provider.FakeJohannesburg.provider" />
+  <Function id="qiskit.providers.fake_provider.FakeJohannesburg.set_options" name="set_options" signature="FakeJohannesburg.set_options(**fields)">
+    Set the options fields for the backend
 
-`FakeJohannesburg.provider()`
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-Return the backend Provider.
+    **Parameters**
 
-**Returns**
+    **fields** – The fields to update the options
 
-the Provider responsible for the backend.
+    **Raises**
 
-**Return type**
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  ### status
 
-### run
+  <Function id="qiskit.providers.fake_provider.FakeJohannesburg.status" name="status" signature="FakeJohannesburg.status()">
+    Return the backend status.
 
-<span id="qiskit.providers.fake_provider.FakeJohannesburg.run" />
+    **Returns**
 
-`FakeJohannesburg.run(run_input, **kwargs)`
+    the status of the backend.
 
-Main job in simulator
+    **Return type**
 
-### set\_options
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-<span id="qiskit.providers.fake_provider.FakeJohannesburg.set_options" />
+  ## Attributes
 
-`FakeJohannesburg.set_options(**fields)`
+  ### backend\_name
 
-Set the options fields for the backend
+  <Attribute id="qiskit.providers.fake_provider.FakeJohannesburg.backend_name" name="backend_name" attributeValue="= 'fake_johannesburg'" />
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+  ### conf\_filename
 
-**Parameters**
+  <Attribute id="qiskit.providers.fake_provider.FakeJohannesburg.conf_filename" name="conf_filename" attributeValue="= 'conf_johannesburg.json'" />
 
-**fields** – The fields to update the options
+  ### dirname
 
-**Raises**
+  <Attribute id="qiskit.providers.fake_provider.FakeJohannesburg.dirname" name="dirname" attributeValue="= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends/johannesburg'" />
 
-**AttributeError** – If the field passed in is not part of the options
+  ### options
 
-### status
+  <Attribute id="qiskit.providers.fake_provider.FakeJohannesburg.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit.providers.fake_provider.FakeJohannesburg.status" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeJohannesburg#run "qiskit.providers.fake_provider.FakeJohannesburg.run") method.
+  </Attribute>
 
-`FakeJohannesburg.status()`
+  ### props\_filename
 
-Return the backend status.
+  <Attribute id="qiskit.providers.fake_provider.FakeJohannesburg.props_filename" name="props_filename" attributeValue="= 'props_johannesburg.json'" />
 
-**Returns**
+  ### version
 
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.fake_provider.FakeJohannesburg.backend_name" />
-
-### backend\_name
-
-`= 'fake_johannesburg'`
-
-<span id="qiskit.providers.fake_provider.FakeJohannesburg.conf_filename" />
-
-### conf\_filename
-
-`= 'conf_johannesburg.json'`
-
-<span id="qiskit.providers.fake_provider.FakeJohannesburg.dirname" />
-
-### dirname
-
-`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends/johannesburg'`
-
-<span id="qiskit.providers.fake_provider.FakeJohannesburg.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeJohannesburg#run "qiskit.providers.fake_provider.FakeJohannesburg.run") method.
-
-<span id="qiskit.providers.fake_provider.FakeJohannesburg.props_filename" />
-
-### props\_filename
-
-`= 'props_johannesburg.json'`
-
-<span id="qiskit.providers.fake_provider.FakeJohannesburg.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.fake_provider.FakeJohannesburg.version" name="version" attributeValue="= 1" />
+</Class>
 

@@ -8,43 +8,39 @@ python_api_name: qiskit.opflow.converters.DictToCircuitSum
 
 # DictToCircuitSum
 
-<span id="qiskit.opflow.converters.DictToCircuitSum" />
+<Class id="qiskit.opflow.converters.DictToCircuitSum" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/converters/dict_to_circuit_sum.py" signature="qiskit.opflow.converters.DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)">
+  Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
-`qiskit.opflow.converters.DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/converters/dict_to_circuit_sum.py "view source code")
+  Deprecated: Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitStateFns` or sums thereof. The behavior of this class can be mostly replicated by calling `to_circuit_op` on an Operator, but with the added control of choosing whether to convert only `DictStateFns` or `VectorStateFns`, rather than both.
 
-Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.converters.dict_to_circuit_sum.DictToCircuitSum` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Deprecated: Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitStateFns` or sums thereof. The behavior of this class can be mostly replicated by calling `to_circuit_op` on an Operator, but with the added control of choosing whether to convert only `DictStateFns` or `VectorStateFns`, rather than both.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.converters.dict_to_circuit_sum.DictToCircuitSum` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  *   **traverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to recurse down into Operators with internal sub-operators for conversion.
+  *   **convert\_dicts** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to convert VectorStateFn.
+  *   **convert\_vectors** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to convert DictStateFns.
 
-**Parameters**
+  ## Methods
 
-*   **traverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to recurse down into Operators with internal sub-operators for conversion.
-*   **convert\_dicts** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to convert VectorStateFn.
-*   **convert\_vectors** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to convert DictStateFns.
+  ### convert
 
-## Methods
+  <Function id="qiskit.opflow.converters.DictToCircuitSum.convert" name="convert" signature="convert(operator)">
+    Convert the Operator to `CircuitStateFns`, recursively if `traverse` is True.
 
-### convert
+    **Parameters**
 
-<span id="qiskit.opflow.converters.DictToCircuitSum.convert" />
+    **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator to convert
 
-`convert(operator)`
+    **Returns**
 
-Convert the Operator to `CircuitStateFns`, recursively if `traverse` is True.
+    The converted Operator.
 
-**Parameters**
+    **Return type**
 
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator to convert
-
-**Returns**
-
-The converted Operator.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
+</Class>
 

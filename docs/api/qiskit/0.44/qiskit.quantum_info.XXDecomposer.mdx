@@ -8,34 +8,30 @@ python_api_name: qiskit.quantum_info.XXDecomposer
 
 # XXDecomposer
 
-<span id="qiskit.quantum_info.XXDecomposer" />
+<Class id="qiskit.quantum_info.XXDecomposer" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/synthesis/xx_decompose/decomposer.py" signature="qiskit.quantum_info.XXDecomposer(basis_fidelity=1.0, euler_basis='U', embodiments=None, backup_optimizer=None)">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.quantum_info.XXDecomposer(basis_fidelity=1.0, euler_basis='U', embodiments=None, backup_optimizer=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/synthesis/xx_decompose/decomposer.py "view source code")
+  A class for optimal decomposition of 2-qubit unitaries into 2-qubit basis gates of XX type (i.e., each locally equivalent to CAN(alpha, 0, 0) for a possibly varying alpha).
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  **Parameters**
 
-A class for optimal decomposition of 2-qubit unitaries into 2-qubit basis gates of XX type (i.e., each locally equivalent to CAN(alpha, 0, 0) for a possibly varying alpha).
+  *   **basis\_fidelity** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – available strengths and fidelity of each. Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or (2) a single float f, interpreted as \{pi: f, pi/2: f/2, pi/3: f/3}.
+  *   **euler\_basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Basis string provided to OneQubitEulerDecomposer for 1Q synthesis. Defaults to “U”.
+  *   **embodiments** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – A dictionary mapping interaction strengths alpha to native circuits which embody the gate CAN(alpha, 0, 0). Strengths are taken so that pi/2 represents the class of a full CX.
+  *   **backup\_optimizer** (*Callable\[...,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – If supplied, defers synthesis to this callable when XXDecomposer has no efficient decomposition of its own. Useful for special cases involving 2 or 3 applications of XX(pi/2), in which case standard synthesis methods provide lower 1Q gate count.
 
-**Parameters**
+  <Admonition title="Note" type="note">
+    If `embodiments` is not passed, or if an entry is missing, it will be populated as needed using the method `_default_embodiment`.
+  </Admonition>
 
-*   **basis\_fidelity** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – available strengths and fidelity of each. Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or (2) a single float f, interpreted as \{pi: f, pi/2: f/2, pi/3: f/3}.
-*   **euler\_basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Basis string provided to OneQubitEulerDecomposer for 1Q synthesis. Defaults to “U”.
-*   **embodiments** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – A dictionary mapping interaction strengths alpha to native circuits which embody the gate CAN(alpha, 0, 0). Strengths are taken so that pi/2 represents the class of a full CX.
-*   **backup\_optimizer** (*Callable\[...,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – If supplied, defers synthesis to this callable when XXDecomposer has no efficient decomposition of its own. Useful for special cases involving 2 or 3 applications of XX(pi/2), in which case standard synthesis methods provide lower 1Q gate count.
+  ## Methods
 
-<Admonition title="Note" type="note">
-  If `embodiments` is not passed, or if an entry is missing, it will be populated as needed using the method `_default_embodiment`.
-</Admonition>
+  ### num\_basis\_gates
 
-## Methods
+  <Function id="qiskit.quantum_info.XXDecomposer.num_basis_gates" name="num_basis_gates" signature="num_basis_gates(unitary)">
+    Counts the number of gates that would be emitted during re-synthesis.
 
-### num\_basis\_gates
-
-<span id="qiskit.quantum_info.XXDecomposer.num_basis_gates" />
-
-`num_basis_gates(unitary)`
-
-Counts the number of gates that would be emitted during re-synthesis.
-
-NOTE: Used by ConsolidateBlocks.
+    NOTE: Used by ConsolidateBlocks.
+  </Function>
+</Class>
 

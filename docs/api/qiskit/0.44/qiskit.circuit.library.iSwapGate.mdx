@@ -8,138 +8,134 @@ python_api_name: qiskit.circuit.library.iSwapGate
 
 # iSwapGate
 
-<span id="qiskit.circuit.library.iSwapGate" />
+<Class id="qiskit.circuit.library.iSwapGate" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/iswap.py" signature="qiskit.circuit.library.iSwapGate(label=None)">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`qiskit.circuit.library.iSwapGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/iswap.py "view source code")
+  iSWAP gate.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  A 2-qubit XX+YY interaction. This is a Clifford and symmetric gate. Its action is to swap two qubit states and phase the $|01\rangle$ and $|10\rangle$ amplitudes by i.
 
-iSWAP gate.
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`iswap()`](qiskit.circuit.QuantumCircuit#iswap "qiskit.circuit.QuantumCircuit.iswap") method.
 
-A 2-qubit XX+YY interaction. This is a Clifford and symmetric gate. Its action is to swap two qubit states and phase the $|01\rangle$ and $|10\rangle$ amplitudes by i.
+  **Circuit Symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`iswap()`](qiskit.circuit.QuantumCircuit#iswap "qiskit.circuit.QuantumCircuit.iswap") method.
+  ```python
+  q_0: ─⨂─
+        │
+  q_1: ─⨂─
+  ```
 
-**Circuit Symbol:**
+  **Reference Implementation:**
 
-```python
-q_0: ─⨂─
-      │
-q_1: ─⨂─
-```
+  ```python
+       ┌───┐┌───┐     ┌───┐
+  q_0: ┤ S ├┤ H ├──■──┤ X ├─────
+       ├───┤└───┘┌─┴─┐└─┬─┘┌───┐
+  q_1: ┤ S ├─────┤ X ├──■──┤ H ├
+       └───┘     └───┘     └───┘
+  ```
 
-**Reference Implementation:**
-
-```python
-     ┌───┐┌───┐     ┌───┐
-q_0: ┤ S ├┤ H ├──■──┤ X ├─────
-     ├───┤└───┘┌─┴─┐└─┬─┘┌───┐
-q_1: ┤ S ├─────┤ X ├──■──┤ H ├
-     └───┘     └───┘     └───┘
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 \begin{split}iSWAP = R_{XX+YY}\left(-\frac{\pi}{2}\right)
-  = \exp\left(i \frac{\pi}{4} \left(X{\otimes}X+Y{\otimes}Y\right)\right) =
-    \begin{pmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & 0 & i & 0 \\
-        0 & i & 0 & 0 \\
-        0 & 0 & 0 & 1
-    \end{pmatrix}\end{split}
+= \exp\left(i \frac{\pi}{4} \left(X{\otimes}X+Y{\otimes}Y\right)\right) =
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0 & i & 0 \\
+0 & i & 0 & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}\end{split}
 $$
 
-This gate is equivalent to a SWAP up to a diagonal.
+  This gate is equivalent to a SWAP up to a diagonal.
 
 $$
 \begin{split}iSWAP =
-   \begin{pmatrix}
-       1 & 0 & 0 & 0 \\
-       0 & 0 & 1 & 0 \\
-       0 & 1 & 0 & 0 \\
-       0 & 0 & 0 & 1
-   \end{pmatrix}
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}
 .  \begin{pmatrix}
-       1 & 0 & 0 & 0 \\
-       0 & i & 0 & 0 \\
-       0 & 0 & i & 0 \\
-       0 & 0 & 0 & 1
-   \end{pmatrix}\end{split}
+1 & 0 & 0 & 0 \\
+0 & i & 0 & 0 \\
+0 & 0 & i & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}\end{split}
 $$
 
-Create new iSwap gate.
+  Create new iSwap gate.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.iSwapGate.condition_bits" />
+  ### condition\_bits
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.iSwapGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-Get Clbits in condition.
+  ### decompositions
 
-<span id="qiskit.circuit.library.iSwapGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.iSwapGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### decompositions
+  ### definition
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.iSwapGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.circuit.library.iSwapGate.definition" />
+  ### duration
 
-### definition
+  <Attribute id="qiskit.circuit.library.iSwapGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### label
 
-<span id="qiskit.circuit.library.iSwapGate.duration" />
+  <Attribute id="qiskit.circuit.library.iSwapGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-### duration
+  ### name
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.iSwapGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-<span id="qiskit.circuit.library.iSwapGate.label" />
+  ### num\_clbits
 
-### label
+  <Attribute id="qiskit.circuit.library.iSwapGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Return instruction label
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.iSwapGate.name" />
+  <Attribute id="qiskit.circuit.library.iSwapGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-### name
+  ### params
 
-Return the name.
+  <Attribute id="qiskit.circuit.library.iSwapGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.iSwapGate.num_clbits" />
+  ### unit
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.iSwapGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-Return the number of clbits.
+  ## Methods
 
-<span id="qiskit.circuit.library.iSwapGate.num_qubits" />
+  ### power
 
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.iSwapGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.iSwapGate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### power
-
-<span id="qiskit.circuit.library.iSwapGate.power" />
-
-`power(exponent)`
-
-Raise gate to a power.
+  <Function id="qiskit.circuit.library.iSwapGate.power" name="power" signature="power(exponent)">
+    Raise gate to a power.
+  </Function>
+</Class>
 

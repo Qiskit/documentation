@@ -8,221 +8,205 @@ python_api_name: qiskit.pulse.instructions.Delay
 
 # Delay
 
-<span id="qiskit.pulse.instructions.Delay" />
+<Class id="qiskit.pulse.instructions.Delay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/instructions/delay.py#L21-L69" signature="qiskit.pulse.instructions.Delay(duration, channel, name=None)">
+  Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 
-`qiskit.pulse.instructions.Delay(duration, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/instructions/delay.py "view source code")
+  A blocking instruction with no other effect. The delay is used for aligning and scheduling other instructions.
 
-Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
+  **Example**
 
-A blocking instruction with no other effect. The delay is used for aligning and scheduling other instructions.
+  To schedule an instruction at time = 10, on a channel assigned to the variable `channel`, the following could be used:
 
-**Example**
+  ```python
+  sched = Schedule(name="Delay instruction example")
+  sched += Delay(10, channel)
+  sched += Gaussian(duration, amp, sigma, channel)
+  ```
 
-To schedule an instruction at time = 10, on a channel assigned to the variable `channel`, the following could be used:
+  The `channel` will output no signal from time=0 up until time=10.
 
-```python
-sched = Schedule(name="Delay instruction example")
-sched += Delay(10, channel)
-sched += Gaussian(duration, amp, sigma, channel)
-```
+  Create a new delay instruction.
 
-The `channel` will output no signal from time=0 up until time=10.
+  No other instruction may be scheduled within a `Delay`.
 
-Create a new delay instruction.
+  **Parameters**
 
-No other instruction may be scheduled within a `Delay`.
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Length of time of the delay in terms of dt.
+  *   **channel** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – The channel that will have the delay.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the delay for display purposes.
 
-**Parameters**
+  ## Attributes
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Length of time of the delay in terms of dt.
-*   **channel** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – The channel that will have the delay.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the delay for display purposes.
+  ### channel
 
-## Attributes
+  <Attribute id="qiskit.pulse.instructions.Delay.channel" name="channel">
+    Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.Delay.channel" />
+  ### channels
 
-### channel
+  <Attribute id="qiskit.pulse.instructions.Delay.channels" name="channels">
+    Returns the channels that this schedule uses.
+  </Attribute>
 
-Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+  ### duration
 
-<span id="qiskit.pulse.instructions.Delay.channels" />
+  <Attribute id="qiskit.pulse.instructions.Delay.duration" name="duration">
+    Duration of this instruction.
+  </Attribute>
 
-### channels
+  ### id
 
-Returns the channels that this schedule uses.
+  <Attribute id="qiskit.pulse.instructions.Delay.id" name="id">
+    Unique identifier for this instruction.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.Delay.duration" />
+  ### instructions
 
-### duration
+  <Attribute id="qiskit.pulse.instructions.Delay.instructions" name="instructions">
+    Iterable for getting instructions from Schedule tree.
+  </Attribute>
 
-Duration of this instruction.
+  ### name
 
-<span id="qiskit.pulse.instructions.Delay.id" />
+  <Attribute id="qiskit.pulse.instructions.Delay.name" name="name">
+    Name of this instruction.
+  </Attribute>
 
-### id
+  ### operands
 
-Unique identifier for this instruction.
+  <Attribute id="qiskit.pulse.instructions.Delay.operands" name="operands">
+    Return instruction operands.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.Delay.instructions" />
+  ### parameters
 
-### instructions
+  <Attribute id="qiskit.pulse.instructions.Delay.parameters" name="parameters">
+    Parameters which determine the instruction behavior.
+  </Attribute>
 
-Iterable for getting instructions from Schedule tree.
+  ### start\_time
 
-<span id="qiskit.pulse.instructions.Delay.name" />
+  <Attribute id="qiskit.pulse.instructions.Delay.start_time" name="start_time">
+    Relative begin time of this instruction.
+  </Attribute>
 
-### name
+  ### stop\_time
 
-Name of this instruction.
+  <Attribute id="qiskit.pulse.instructions.Delay.stop_time" name="stop_time">
+    Relative end time of this instruction.
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.Delay.operands" />
+  ## Methods
 
-### operands
+  ### append
 
-Return instruction operands.
+  <Function id="qiskit.pulse.instructions.Delay.append" name="append" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/instructions/instruction.py#L185-L198" signature="append(schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
-<span id="qiskit.pulse.instructions.Delay.parameters" />
+    **Parameters**
 
-### parameters
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
 
-Parameters which determine the instruction behavior.
+    **Returns**
 
-<span id="qiskit.pulse.instructions.Delay.start_time" />
+    A new schedule with `schedule` a this instruction at t=0.
 
-### start\_time
+    **Return type**
 
-Relative begin time of this instruction.
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-<span id="qiskit.pulse.instructions.Delay.stop_time" />
+  ### ch\_duration
 
-### stop\_time
+  <Function id="qiskit.pulse.instructions.Delay.ch_duration" name="ch_duration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/instructions/instruction.py#L112-L118" signature="ch_duration(*channels)">
+    Return duration of the supplied channels in this Instruction.
 
-Relative end time of this instruction.
+    **Parameters**
 
-## Methods
+    **\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
 
-### append
+    **Return type**
 
-<span id="qiskit.pulse.instructions.Delay.append" />
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Function>
 
-`append(schedule, name=None)`
+  ### ch\_start\_time
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+  <Function id="qiskit.pulse.instructions.Delay.ch_start_time" name="ch_start_time" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/instructions/instruction.py#L120-L127" signature="ch_start_time(*channels)">
+    Return minimum start time for supplied channels.
 
-**Parameters**
+    **Parameters**
 
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
+    **\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
 
-**Returns**
+    **Return type**
 
-A new schedule with `schedule` a this instruction at t=0.
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Function>
 
-**Return type**
+  ### ch\_stop\_time
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  <Function id="qiskit.pulse.instructions.Delay.ch_stop_time" name="ch_stop_time" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/instructions/instruction.py#L129-L137" signature="ch_stop_time(*channels)">
+    Return maximum start time for supplied channels.
 
-### ch\_duration
+    **Parameters**
 
-<span id="qiskit.pulse.instructions.Delay.ch_duration" />
+    **\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
 
-`ch_duration(*channels)`
+    **Return type**
 
-Return duration of the supplied channels in this Instruction.
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Function>
 
-**Parameters**
+  ### insert
 
-**\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
+  <Function id="qiskit.pulse.instructions.Delay.insert" name="insert" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/instructions/instruction.py#L167-L183" signature="insert(start_time, schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
-**Return type**
+    **Parameters**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    *   **start\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to insert the schedule schedule
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
 
-### ch\_start\_time
+    **Returns**
 
-<span id="qiskit.pulse.instructions.Delay.ch_start_time" />
+    A new schedule with `schedule` inserted with this instruction at t=0.
 
-`ch_start_time(*channels)`
+    **Return type**
 
-Return minimum start time for supplied channels.
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-**Parameters**
+  ### is\_parameterized
 
-**\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
+  <Function id="qiskit.pulse.instructions.Delay.is_parameterized" name="is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/instructions/instruction.py#L219-L221" signature="is_parameterized()">
+    Return True iff the instruction is parameterized.
 
-**Return type**
+    **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-### ch\_stop\_time
+  ### shift
 
-<span id="qiskit.pulse.instructions.Delay.ch_stop_time" />
+  <Function id="qiskit.pulse.instructions.Delay.shift" name="shift" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/instructions/instruction.py#L151-L165" signature="shift(time, name=None)">
+    Return a new schedule shifted forward by time.
 
-`ch_stop_time(*channels)`
+    **Parameters**
 
-Return maximum start time for supplied channels.
+    *   **time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to shift by
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
 
-**Parameters**
+    **Returns**
 
-**\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
+    The shifted schedule.
 
-**Return type**
+    **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
-
-### insert
-
-<span id="qiskit.pulse.instructions.Delay.insert" />
-
-`insert(start_time, schedule, name=None)`
-
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
-
-**Parameters**
-
-*   **start\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to insert the schedule schedule
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
-
-**Returns**
-
-A new schedule with `schedule` inserted with this instruction at t=0.
-
-**Return type**
-
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
-
-### is\_parameterized
-
-<span id="qiskit.pulse.instructions.Delay.is_parameterized" />
-
-`is_parameterized()`
-
-Return True iff the instruction is parameterized.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
-
-### shift
-
-<span id="qiskit.pulse.instructions.Delay.shift" />
-
-`shift(time, name=None)`
-
-Return a new schedule shifted forward by time.
-
-**Parameters**
-
-*   **time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to shift by
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
-
-**Returns**
-
-The shifted schedule.
-
-**Return type**
-
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
+</Class>
 

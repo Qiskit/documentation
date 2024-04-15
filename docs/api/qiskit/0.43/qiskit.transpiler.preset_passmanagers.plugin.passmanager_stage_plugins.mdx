@@ -10,48 +10,46 @@ python_api_name: qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_
 
 # qiskit.transpiler.preset\_passmanagers.plugin.passmanager\_stage\_plugins
 
-<span id="qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins" />
+<Function id="qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins" name="passmanager_stage_plugins" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/plugin.py" signature="passmanager_stage_plugins(stage)">
+  Return a dict with, for each stage name, the class type of the plugin.
 
-`passmanager_stage_plugins(stage)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
+  This function is useful for getting more information about a plugin:
 
-Return a dict with, for each stage name, the class type of the plugin.
+  ```python
+  from qiskit.transpiler.preset_passmanagers.plugin import passmanager_stage_plugins
+  routing_plugins = passmanager_stage_plugins('routing')
+  basic_plugin = routing_plugins['basic']
+  help(basic_plugin)
+  ```
 
-This function is useful for getting more information about a plugin:
+  ```python
+  Help on BasicSwapPassManager in module ...preset_passmanagers.builtin_plugins object:
 
-```python
-from qiskit.transpiler.preset_passmanagers.plugin import passmanager_stage_plugins
-routing_plugins = passmanager_stage_plugins('routing')
-basic_plugin = routing_plugins['basic']
-help(basic_plugin)
-```
+  class BasicSwapPassManager(...preset_passmanagers.plugin.PassManagerStagePlugin)
+   |  Plugin class for routing stage with :class:`~.BasicSwap`
+   |
+   |  Method resolution order:
+   |      BasicSwapPassManager
+   |      ...preset_passmanagers.plugin.PassManagerStagePlugin
+   |      abc.ABC
+   |      builtins.object
+   ...
+  ```
 
-```python
-Help on BasicSwapPassManager in module ...preset_passmanagers.builtin_plugins object:
+  **Parameters**
 
-class BasicSwapPassManager(...preset_passmanagers.plugin.PassManagerStagePlugin)
- |  Plugin class for routing stage with :class:`~.BasicSwap`
- |
- |  Method resolution order:
- |      BasicSwapPassManager
- |      ...preset_passmanagers.plugin.PassManagerStagePlugin
- |      abc.ABC
- |      builtins.object
- ...
-```
+  **stage** (*str*) – The stage name to get
 
-**Parameters**
+  **Returns**
 
-**stage** (*str*) – The stage name to get
+  the key is the name of the plugin and the value is the class type for each.
 
-**Returns**
+  **Return type**
 
-the key is the name of the plugin and the value is the class type for each.
+  dict
 
-**Return type**
+  **Raises**
 
-dict
-
-**Raises**
-
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If an invalid stage name is specified.
+  [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If an invalid stage name is specified.
+</Function>
 

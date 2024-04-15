@@ -10,67 +10,65 @@ python_api_name: qiskit.pulse.builder.barrier
 
 # qiskit.pulse.builder.barrier
 
-<span id="qiskit.pulse.builder.barrier" />
+<Function id="qiskit.pulse.builder.barrier" name="barrier" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py" signature="barrier(*channels_or_qubits)">
+  Barrier directive for a set of channels and qubits.
 
-`barrier(*channels_or_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
+  This directive prevents the compiler from moving instructions across the barrier. Consider the case where we want to enforce that one pulse happens after another on separate channels, this can be done with:
 
-Barrier directive for a set of channels and qubits.
+  ```python
+  from qiskit import pulse
+  from qiskit.test.mock import FakeOpenPulse2Q
 
-This directive prevents the compiler from moving instructions across the barrier. Consider the case where we want to enforce that one pulse happens after another on separate channels, this can be done with:
+  backend = FakeOpenPulse2Q()
 
-```python
-from qiskit import pulse
-from qiskit.test.mock import FakeOpenPulse2Q
+  d0 = pulse.DriveChannel(0)
+  d1 = pulse.DriveChannel(1)
 
-backend = FakeOpenPulse2Q()
+  with pulse.build(backend) as barrier_pulse_prog:
+      pulse.play(pulse.Constant(10, 1.0), d0)
+      pulse.barrier(d0, d1)
+      pulse.play(pulse.Constant(10, 1.0), d1)
+  ```
 
-d0 = pulse.DriveChannel(0)
-d1 = pulse.DriveChannel(1)
+  Of course this could have been accomplished with:
 
-with pulse.build(backend) as barrier_pulse_prog:
-    pulse.play(pulse.Constant(10, 1.0), d0)
-    pulse.barrier(d0, d1)
-    pulse.play(pulse.Constant(10, 1.0), d1)
-```
+  ```python
+  from qiskit.pulse import transforms
 
-Of course this could have been accomplished with:
+  with pulse.build(backend) as aligned_pulse_prog:
+      with pulse.align_sequential():
+          pulse.play(pulse.Constant(10, 1.0), d0)
+          pulse.play(pulse.Constant(10, 1.0), d1)
 
-```python
-from qiskit.pulse import transforms
+  barrier_pulse_prog = transforms.remove_directives(barrier_pulse_prog)
+  assert barrier_pulse_prog == aligned_pulse_prog
+  ```
 
-with pulse.build(backend) as aligned_pulse_prog:
-    with pulse.align_sequential():
-        pulse.play(pulse.Constant(10, 1.0), d0)
-        pulse.play(pulse.Constant(10, 1.0), d1)
+  The barrier allows the pulse compiler to take care of more advanced scheduling aligment operations across channels. For example in the case where we are calling an outside circuit or schedule and want to align a pulse at the end of one call:
 
-barrier_pulse_prog = transforms.remove_directives(barrier_pulse_prog)
-assert barrier_pulse_prog == aligned_pulse_prog
-```
+  ```python
+  import math
 
-The barrier allows the pulse compiler to take care of more advanced scheduling aligment operations across channels. For example in the case where we are calling an outside circuit or schedule and want to align a pulse at the end of one call:
+  d0 = pulse.DriveChannel(0)
 
-```python
-import math
+  with pulse.build(backend) as pulse_prog:
+      with pulse.align_right():
+          pulse.x(1)
+          # Barrier qubit 1 and d0.
+          pulse.barrier(1, d0)
+          # Due to barrier this will play before the gate on qubit 1.
+          pulse.play(pulse.Constant(10, 1.0), d0)
+          # This will end at the same time as the pulse above due to
+          # the barrier.
+          pulse.x(1)
+  ```
 
-d0 = pulse.DriveChannel(0)
+  <Admonition title="Note" type="note">
+    Requires the active builder context to have a backend set if qubits are barriered on.
+  </Admonition>
 
-with pulse.build(backend) as pulse_prog:
-    with pulse.align_right():
-        pulse.x(1)
-        # Barrier qubit 1 and d0.
-        pulse.barrier(1, d0)
-        # Due to barrier this will play before the gate on qubit 1.
-        pulse.play(pulse.Constant(10, 1.0), d0)
-        # This will end at the same time as the pulse above due to
-        # the barrier.
-        pulse.x(1)
-```
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  Requires the active builder context to have a backend set if qubits are barriered on.
-</Admonition>
-
-**Parameters**
-
-**channels\_or\_qubits** (`Union`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"), `int`]) – Channels or qubits to barrier.
+  **channels\_or\_qubits** (`Union`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"), `int`]) – Channels or qubits to barrier.
+</Function>
 

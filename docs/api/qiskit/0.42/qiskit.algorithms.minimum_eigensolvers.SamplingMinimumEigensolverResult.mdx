@@ -8,71 +8,67 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolv
 
 # SamplingMinimumEigensolverResult
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult" />
+<Class id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/sampling_mes.py" signature="SamplingMinimumEigensolverResult">
+  Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 
-`SamplingMinimumEigensolverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/sampling_mes.py "view source code")
+  Sampling Minimum Eigensolver Result.
 
-Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
+  In contrast to the result of a `MinimumEigenSolver`, this result also contains the best measurement of the overall optimization and the samples of the final state.
 
-Sampling Minimum Eigensolver Result.
+  ## Methods
 
-In contrast to the result of a `MinimumEigenSolver`, this result also contains the best measurement of the overall optimization and the samples of the final state.
+  ### combine
 
-## Methods
+  <Function id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.combine" name="combine" signature="SamplingMinimumEigensolverResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-### combine
+    **Raises**
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.combine" />
+    **TypeError** – Argument is None
 
-`SamplingMinimumEigensolverResult.combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    `None`
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**TypeError** – Argument is None
+  ### aux\_operators\_evaluated
 
-**Return type**
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.aux_operators_evaluated" name="aux_operators_evaluated">
+    Return aux operator expectation values and metadata.
 
-`None`
+    These are formatted as (mean, metadata).
+  </Attribute>
 
-## Attributes
+  ### best\_measurement
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.aux_operators_evaluated" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.best_measurement" name="best_measurement">
+    Return the best measurement over the entire optimization.
 
-### aux\_operators\_evaluated
+    Possesses keys: `state`, `bitstring`, `value`, `probability`.
+  </Attribute>
 
-Return aux operator expectation values and metadata.
+  ### eigenstate
 
-These are formatted as (mean, metadata).
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.eigenstate" name="eigenstate">
+    Return the quasi-distribution sampled from the final state.
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.best_measurement" />
+    The ansatz is sampled when parameterized with the optimal parameters that where obtained computing the minimum eigenvalue. The keys represent a measured classical value and the value is a float for the quasi-probability of that result.
 
-### best\_measurement
+    **Return type**
 
-Return the best measurement over the entire optimization.
+    [QuasiDistribution](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution") | None
+  </Attribute>
 
-Possesses keys: `state`, `bitstring`, `value`, `probability`.
+  ### eigenvalue
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.eigenstate" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.eigenvalue" name="eigenvalue">
+    Return the approximation to the eigenvalue.
 
-### eigenstate
+    **Return type**
 
-Return the quasi-distribution sampled from the final state.
-
-The ansatz is sampled when parameterized with the optimal parameters that where obtained computing the minimum eigenvalue. The keys represent a measured classical value and the value is a float for the quasi-probability of that result.
-
-**Return type**
-
-[QuasiDistribution](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution") | None
-
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult.eigenvalue" />
-
-### eigenvalue
-
-Return the approximation to the eigenvalue.
-
-**Return type**
-
-complex | None
+    complex | None
+  </Attribute>
+</Class>
 

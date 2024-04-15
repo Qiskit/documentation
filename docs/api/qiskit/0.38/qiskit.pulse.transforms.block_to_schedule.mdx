@@ -8,30 +8,28 @@ python_api_name: qiskit.pulse.transforms.block_to_schedule
 
 # qiskit.pulse.transforms.block\_to\_schedule
 
-<span id="qiskit.pulse.transforms.block_to_schedule" />
+<Function id="qiskit.pulse.transforms.block_to_schedule" name="block_to_schedule" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/transforms/canonicalization.py" signature="block_to_schedule(block)">
+  Convert `ScheduleBlock` to `Schedule`.
 
-`block_to_schedule(block)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/transforms/canonicalization.py "view source code")
+  **Parameters**
 
-Convert `ScheduleBlock` to `Schedule`.
+  **block** ([`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – A `ScheduleBlock` to convert.
 
-**Parameters**
+  **Return type**
 
-**block** ([`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – A `ScheduleBlock` to convert.
+  [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 
-**Return type**
+  **Returns**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+  Scheduled pulse program.
 
-**Returns**
+  **Raises**
 
-Scheduled pulse program.
+  *   **UnassignedDurationError** – When any instruction duration is not assigned.
+  *   [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When the alignment context duration is shorter than the schedule duration.
 
-**Raises**
-
-*   **UnassignedDurationError** – When any instruction duration is not assigned.
-*   [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When the alignment context duration is shorter than the schedule duration.
-
-<Admonition title="Note" type="note">
-  This transform may insert barriers in between contexts.
-</Admonition>
+  <Admonition title="Note" type="note">
+    This transform may insert barriers in between contexts.
+  </Admonition>
+</Function>
 

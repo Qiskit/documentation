@@ -8,38 +8,34 @@ python_api_name: qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlu
 
 # HighLevelSynthesisPlugin
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin" />
+<Class id="qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/plugin.py" signature="HighLevelSynthesisPlugin">
+  Bases: `abc.ABC`
 
-`HighLevelSynthesisPlugin` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
+  Abstract high-level synthesis plugin class.
 
-Bases: `abc.ABC`
+  This abstract class defines the interface for high-level synthesis plugins.
 
-Abstract high-level synthesis plugin class.
+  ## Methods
 
-This abstract class defines the interface for high-level synthesis plugins.
+  ### run
 
-## Methods
+  <Function id="qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin.run" name="run" signature="abstract HighLevelSynthesisPlugin.run(high_level_object, **options)">
+    Run synthesis for the given Operation.
 
-### run
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin.run" />
+    *   **high\_level\_object** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The Operation to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object
+    *   **options** – The optional kwargs.
 
-`abstract HighLevelSynthesisPlugin.run(high_level_object, **options)`
+    **Returns**
 
-Run synthesis for the given Operation.
+    **The quantum circuit representation of the Operation**
 
-**Parameters**
+    when successful, and `None` otherwise.
 
-*   **high\_level\_object** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The Operation to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object
-*   **options** – The optional kwargs.
+    **Return type**
 
-**Returns**
-
-**The quantum circuit representation of the Operation**
-
-when successful, and `None` otherwise.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+</Class>
 

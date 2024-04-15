@@ -8,77 +8,69 @@ python_api_name: qiskit.optimization.algorithms.OptimizationAlgorithm
 
 # OptimizationAlgorithm
 
-<span id="qiskit.optimization.algorithms.OptimizationAlgorithm" />
+<Class id="qiskit.optimization.algorithms.OptimizationAlgorithm" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/optimization_algorithm.py" signature="OptimizationAlgorithm">
+  An abstract class for optimization algorithms in Qiskit’s optimization module.
 
-`OptimizationAlgorithm` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
+  ## Methods
 
-An abstract class for optimization algorithms in Qiskit’s optimization module.
+  ### get\_compatibility\_msg
 
-## Methods
+  <Function id="qiskit.optimization.algorithms.OptimizationAlgorithm.get_compatibility_msg" name="get_compatibility_msg" signature="abstract OptimizationAlgorithm.get_compatibility_msg(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
 
-### get\_compatibility\_msg
+    **Parameters**
 
-<span id="qiskit.optimization.algorithms.OptimizationAlgorithm.get_compatibility_msg" />
+    **problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
 
-`abstract OptimizationAlgorithm.get_compatibility_msg(problem)`
+    **Return type**
 
-Checks whether a given problem can be solved with the optimizer implementing this method.
+    `str`
 
-**Parameters**
+    **Returns**
 
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
+    Returns the incompatibility message. If the message is empty no issues were found.
+  </Function>
 
-**Return type**
+  ### is\_compatible
 
-`str`
+  <Function id="qiskit.optimization.algorithms.OptimizationAlgorithm.is_compatible" name="is_compatible" signature="OptimizationAlgorithm.is_compatible(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
 
-**Returns**
+    **Parameters**
 
-Returns the incompatibility message. If the message is empty no issues were found.
+    **problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
 
-### is\_compatible
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.OptimizationAlgorithm.is_compatible" />
+    `bool`
 
-`OptimizationAlgorithm.is_compatible(problem)`
+    **Returns**
 
-Checks whether a given problem can be solved with the optimizer implementing this method.
+    Returns True if the problem is compatible, False otherwise.
+  </Function>
 
-**Parameters**
+  ### solve
 
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
+  <Function id="qiskit.optimization.algorithms.OptimizationAlgorithm.solve" name="solve" signature="abstract OptimizationAlgorithm.solve(problem)">
+    Tries to solves the given problem using the optimizer.
 
-**Return type**
+    Runs the optimizer to try to solve the optimization problem.
 
-`bool`
+    **Parameters**
 
-**Returns**
+    **problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved.
 
-Returns True if the problem is compatible, False otherwise.
+    **Return type**
 
-### solve
+    `OptimizationResult`
 
-<span id="qiskit.optimization.algorithms.OptimizationAlgorithm.solve" />
+    **Returns**
 
-`abstract OptimizationAlgorithm.solve(problem)`
+    The result of the optimizer applied to the problem.
 
-Tries to solves the given problem using the optimizer.
+    **Raises**
 
-Runs the optimizer to try to solve the optimization problem.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved.
-
-**Return type**
-
-`OptimizationResult`
-
-**Returns**
-
-The result of the optimizer applied to the problem.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+  </Function>
+</Class>
 

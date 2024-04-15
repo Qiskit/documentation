@@ -8,191 +8,185 @@ python_api_name: qiskit.aqua.algorithms.AmplitudeEstimation
 
 # AmplitudeEstimation
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation" />
+<Class id="qiskit.aqua.algorithms.AmplitudeEstimation" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_estimators/ae.py" signature="AmplitudeEstimation(num_eval_qubits, a_factory=None, q_factory=None, i_objective=None, iqft=None, quantum_instance=None)">
+  The Quantum Phase Estimation-based Amplitude Estimation algorithm.
 
-`AmplitudeEstimation(num_eval_qubits, a_factory=None, q_factory=None, i_objective=None, iqft=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
+  This class implements the original Quantum Amplitude Estimation (QAE) algorithm, introduced by [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055). This (original) version uses quantum phase estimation along with a set of m ancilla qubits to find an estimate, that is restricted to the grid
 
-The Quantum Phase Estimation-based Amplitude Estimation algorithm.
+  > \{sin^2(pi y / 2^m) : y = 0, …, 2^\{m-1}}.
 
-This class implements the original Quantum Amplitude Estimation (QAE) algorithm, introduced by [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055). This (original) version uses quantum phase estimation along with a set of m ancilla qubits to find an estimate, that is restricted to the grid
+  Using a maximum likelihood post processing, this grid constraint can be circumvented. This improved estimator is implemented as well, see [https://arxiv.org/abs/1912.05559](https://arxiv.org/abs/1912.05559) Appendix A for more detail.
 
-> \{sin^2(pi y / 2^m) : y = 0, …, 2^\{m-1}}.
+  **Parameters**
 
-Using a maximum likelihood post processing, this grid constraint can be circumvented. This improved estimator is implemented as well, see [https://arxiv.org/abs/1912.05559](https://arxiv.org/abs/1912.05559) Appendix A for more detail.
+  *   **num\_eval\_qubits** (`int`) – Number of evaluation qubits, has a min. value of 1.
+  *   **a\_factory** (`Optional`\[[`CircuitFactory`](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.circuit_factory.CircuitFactory")]) – The CircuitFactory subclass object representing the problem unitary.
+  *   **q\_factory** (`Optional`\[[`CircuitFactory`](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.circuit_factory.CircuitFactory")]) – The CircuitFactory subclass object representing an amplitude estimation sample (based on a\_factory).
+  *   **i\_objective** (`Optional`\[`int`]) – The index of the objective qubit, i.e. the qubit marking ‘good’ solutions with the state |1> and ‘bad’ solutions with the state |0>.
+  *   **iqft** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`IQFT`](qiskit.aqua.components.iqfts.IQFT "qiskit.aqua.components.iqfts.iqft.IQFT"), `None`]) – The Inverse Quantum Fourier Transform component, defaults to using a standard IQFT when None
+  *   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – Quantum Instance or Backend
 
-**Parameters**
+  ## Attributes
 
-*   **num\_eval\_qubits** (`int`) – Number of evaluation qubits, has a min. value of 1.
-*   **a\_factory** (`Optional`\[[`CircuitFactory`](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.circuit_factory.CircuitFactory")]) – The CircuitFactory subclass object representing the problem unitary.
-*   **q\_factory** (`Optional`\[[`CircuitFactory`](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.circuit_factory.CircuitFactory")]) – The CircuitFactory subclass object representing an amplitude estimation sample (based on a\_factory).
-*   **i\_objective** (`Optional`\[`int`]) – The index of the objective qubit, i.e. the qubit marking ‘good’ solutions with the state |1> and ‘bad’ solutions with the state |0>.
-*   **iqft** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`IQFT`](qiskit.aqua.components.iqfts.IQFT "qiskit.aqua.components.iqfts.iqft.IQFT"), `None`]) – The Inverse Quantum Fourier Transform component, defaults to using a standard IQFT when None
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – Quantum Instance or Backend
+  ### a\_factory
 
-## Attributes
+  <Attribute id="qiskit.aqua.algorithms.AmplitudeEstimation.a_factory" name="a_factory">
+    Get the A operator encoding the amplitude a that’s approximated, i.e.
 
-### a\_factory
+    > A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
 
-Get the A operator encoding the amplitude a that’s approximated, i.e.
+    see the original Brassard paper ([https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)) for more detail.
 
-> A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
+    **Returns**
 
-see the original Brassard paper ([https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)) for more detail.
+    the A operator as CircuitFactory
 
-**Returns**
+    **Return type**
 
-the A operator as CircuitFactory
+    [CircuitFactory](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
+  </Attribute>
 
-**Return type**
+  ### backend
 
-[CircuitFactory](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
+  <Attribute id="qiskit.aqua.algorithms.AmplitudeEstimation.backend" name="backend" signature="qiskit.providers.basebackend.BaseBackend">
+    Returns backend.
 
-### backend
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.backend" />
+    [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
+  </Attribute>
 
-`qiskit.providers.basebackend.BaseBackend`
+  ### i\_objective
 
-Returns backend.
+  <Attribute id="qiskit.aqua.algorithms.AmplitudeEstimation.i_objective" name="i_objective">
+    Get the index of the objective qubit. The objective qubit marks the |psi\_0> state (called ‘bad states’ in [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)) with |0> and |psi\_1> (‘good’ states) with |1>. If the A operator performs the mapping
 
-**Return type**
+    > A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
 
-[`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
+    then, the objective qubit is the last one (which is either |0> or |1>).
 
-### i\_objective
+    If the objective qubit (i\_objective) is not set, we check if the Q operator (q\_factory) is set and return the index specified there. If the q\_factory is not defined, the index equals the number of qubits of the A operator (a\_factory) minus one. If also the a\_factory is not set, return None.
 
-Get the index of the objective qubit. The objective qubit marks the |psi\_0> state (called ‘bad states’ in [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)) with |0> and |psi\_1> (‘good’ states) with |1>. If the A operator performs the mapping
+    **Returns**
 
-> A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
+    the index of the objective qubit
 
-then, the objective qubit is the last one (which is either |0> or |1>).
+    **Return type**
 
-If the objective qubit (i\_objective) is not set, we check if the Q operator (q\_factory) is set and return the index specified there. If the q\_factory is not defined, the index equals the number of qubits of the A operator (a\_factory) minus one. If also the a\_factory is not set, return None.
+    int
+  </Attribute>
 
-**Returns**
+  ### q\_factory
 
-the index of the objective qubit
+  <Attribute id="qiskit.aqua.algorithms.AmplitudeEstimation.q_factory" name="q_factory">
+    Get the Q operator, or Grover-operator for the Amplitude Estimation algorithm, i.e.
 
-**Return type**
+    > Q = -A S\_0 A^\{-1} S\_psi0,
 
-int
+    where S\_0 reflects about the |0>\_n state and S\_psi0 reflects about |psi\_0>\_n. See [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055) for more detail.
 
-### q\_factory
+    If the Q operator is not set, we try to build it from the A operator. If neither the A operator is set, None is returned.
 
-Get the Q operator, or Grover-operator for the Amplitude Estimation algorithm, i.e.
+    **Returns**
 
-> Q = -A S\_0 A^\{-1} S\_psi0,
+    returns the current Q factory of the algorithm
 
-where S\_0 reflects about the |0>\_n state and S\_psi0 reflects about |psi\_0>\_n. See [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055) for more detail.
+    **Return type**
 
-If the Q operator is not set, we try to build it from the A operator. If neither the A operator is set, None is returned.
+    QFactory
+  </Attribute>
 
-**Returns**
+  ### quantum\_instance
 
-returns the current Q factory of the algorithm
+  <Attribute id="qiskit.aqua.algorithms.AmplitudeEstimation.quantum_instance" name="quantum_instance" signature="Union[None, qiskit.aqua.quantum_instance.QuantumInstance]">
+    Returns quantum instance.
 
-**Return type**
+    **Return type**
 
-QFactory
+    `Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
+  </Attribute>
 
-### quantum\_instance
+  ### random
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.quantum_instance" />
+  <Attribute id="qiskit.aqua.algorithms.AmplitudeEstimation.random" name="random">
+    Return a numpy random.
+  </Attribute>
 
-`Union[None, qiskit.aqua.quantum_instance.QuantumInstance]`
+  ## Methods
 
-Returns quantum instance.
+  ### confidence\_interval
 
-**Return type**
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.confidence_interval" name="confidence_interval" signature="AmplitudeEstimation.confidence_interval(alpha, kind='likelihood_ratio')">
+    Compute the (1 - alpha) confidence interval.
 
-`Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
+    **Parameters**
 
-### random
+    *   **alpha** (`float`) – Confidence level: compute the (1 - alpha) confidence interval.
+    *   **kind** (`str`) – The method to compute the confidence interval, can be ‘fisher’, ‘observed\_fisher’ or ‘likelihood\_ratio’ (default)
 
-Return a numpy random.
+    **Return type**
 
-## Methods
+    `List`\[`float`]
 
-### confidence\_interval
+    **Returns**
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.confidence_interval" />
+    The (1 - alpha) confidence interval of the specified kind.
 
-`AmplitudeEstimation.confidence_interval(alpha, kind='likelihood_ratio')`
+    **Raises**
 
-Compute the (1 - alpha) confidence interval.
+    *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If ‘mle’ is not in self.\_ret.keys() (i.e. run was not called yet).
+    *   **NotImplementedError** – If the confidence interval method kind is not implemented.
+  </Function>
 
-**Parameters**
+  ### construct\_circuit
 
-*   **alpha** (`float`) – Confidence level: compute the (1 - alpha) confidence interval.
-*   **kind** (`str`) – The method to compute the confidence interval, can be ‘fisher’, ‘observed\_fisher’ or ‘likelihood\_ratio’ (default)
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.construct_circuit" name="construct_circuit" signature="AmplitudeEstimation.construct_circuit(measurement=False)">
+    Construct the Amplitude Estimation quantum circuit.
 
-**Return type**
+    **Parameters**
 
-`List`\[`float`]
+    **measurement** (`bool`) – Boolean flag to indicate if measurements should be included in the circuit.
 
-**Returns**
+    **Return type**
 
-The (1 - alpha) confidence interval of the specified kind.
+    [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
-**Raises**
+    **Returns**
 
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If ‘mle’ is not in self.\_ret.keys() (i.e. run was not called yet).
-*   **NotImplementedError** – If the confidence interval method kind is not implemented.
+    The QuantumCircuit object for the constructed circuit.
+  </Function>
 
-### construct\_circuit
+  ### run
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.construct_circuit" />
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.run" name="run" signature="AmplitudeEstimation.run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-`AmplitudeEstimation.construct_circuit(measurement=False)`
+    **Parameters**
 
-Construct the Amplitude Estimation quantum circuit.
+    *   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-**Parameters**
+    **Returns**
 
-**measurement** (`bool`) – Boolean flag to indicate if measurements should be included in the circuit.
+    results of an algorithm.
 
-**Return type**
+    **Return type**
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+    dict
 
-**Returns**
+    **Raises**
 
-The QuantumCircuit object for the constructed circuit.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-### run
+  ### set\_backend
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.run" />
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.set_backend" name="set_backend" signature="AmplitudeEstimation.set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-`AmplitudeEstimation.run(quantum_instance=None, **kwargs)`
+    **Return type**
 
-Execute the algorithm with selected backend.
-
-**Parameters**
-
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.set_backend" />
-
-`AmplitudeEstimation.set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

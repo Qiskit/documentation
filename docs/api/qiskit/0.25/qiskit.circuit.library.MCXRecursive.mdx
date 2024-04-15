@@ -8,474 +8,416 @@ python_api_name: qiskit.circuit.library.MCXRecursive
 
 # qiskit.circuit.library.MCXRecursive
 
-<span id="qiskit.circuit.library.MCXRecursive" />
+<Class id="qiskit.circuit.library.MCXRecursive" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/x.py" signature="MCXRecursive(num_ctrl_qubits=None, label=None, ctrl_state=None)">
+  Implement the multi-controlled X gate using recursion.
+
+  Using a single ancilla qubit, the multi-controlled X gate is recursively split onto four sub-registers. This is done until we reach the 3- or 4-controlled X gate since for these we have a concrete implementation that do not require ancillas.
+
+  Create new MCX gate.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.circuit.library.MCXRecursive.__init__" name="__init__" signature="__init__(num_ctrl_qubits, label=None, ctrl_state=None)">
+    Create new MCX gate.
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                                  |                                                                          |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.circuit.library.MCXRecursive.__init__ "qiskit.circuit.library.MCXRecursive.__init__")(num\_ctrl\_qubits\[, label, ctrl\_state])                             | Create new MCX gate.                                                     |
+  | [`add_decomposition`](#qiskit.circuit.library.MCXRecursive.add_decomposition "qiskit.circuit.library.MCXRecursive.add_decomposition")(decomposition)                             | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
+  | [`assemble`](#qiskit.circuit.library.MCXRecursive.assemble "qiskit.circuit.library.MCXRecursive.assemble")()                                                                     | Assemble a QasmQobjInstruction                                           |
+  | [`broadcast_arguments`](#qiskit.circuit.library.MCXRecursive.broadcast_arguments "qiskit.circuit.library.MCXRecursive.broadcast_arguments")(qargs, cargs)                        | Validation and handling of the arguments and its relationship.           |
+  | [`c_if`](#qiskit.circuit.library.MCXRecursive.c_if "qiskit.circuit.library.MCXRecursive.c_if")(classical, val)                                                                   | Add classical condition on register classical and value val.             |
+  | [`control`](#qiskit.circuit.library.MCXRecursive.control "qiskit.circuit.library.MCXRecursive.control")(\[num\_ctrl\_qubits, label, ctrl\_state])                                | Return a multi-controlled-X gate with more control lines.                |
+  | [`copy`](#qiskit.circuit.library.MCXRecursive.copy "qiskit.circuit.library.MCXRecursive.copy")(\[name])                                                                          | Copy of the instruction.                                                 |
+  | [`get_num_ancilla_qubits`](#qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits "qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits")(num\_ctrl\_qubits\[, mode]) | Get the number of required ancilla qubits.                               |
+  | [`inverse`](#qiskit.circuit.library.MCXRecursive.inverse "qiskit.circuit.library.MCXRecursive.inverse")()                                                                        | Invert this gate.                                                        |
+  | [`is_parameterized`](#qiskit.circuit.library.MCXRecursive.is_parameterized "qiskit.circuit.library.MCXRecursive.is_parameterized")()                                             | Return True .IFF.                                                        |
+  | [`mirror`](#qiskit.circuit.library.MCXRecursive.mirror "qiskit.circuit.library.MCXRecursive.mirror")()                                                                           | DEPRECATED: use instruction.reverse\_ops().                              |
+  | [`power`](#qiskit.circuit.library.MCXRecursive.power "qiskit.circuit.library.MCXRecursive.power")(exponent)                                                                      | Creates a unitary gate as gate^exponent.                                 |
+  | [`qasm`](#qiskit.circuit.library.MCXRecursive.qasm "qiskit.circuit.library.MCXRecursive.qasm")()                                                                                 | Return a default OpenQASM string for the instruction.                    |
+  | [`repeat`](#qiskit.circuit.library.MCXRecursive.repeat "qiskit.circuit.library.MCXRecursive.repeat")(n)                                                                          | Creates an instruction with gate repeated n amount of times.             |
+  | [`reverse_ops`](#qiskit.circuit.library.MCXRecursive.reverse_ops "qiskit.circuit.library.MCXRecursive.reverse_ops")()                                                            | For a composite instruction, reverse the order of sub-instructions.      |
+  | [`soft_compare`](#qiskit.circuit.library.MCXRecursive.soft_compare "qiskit.circuit.library.MCXRecursive.soft_compare")(other)                                                    | Soft comparison between gates.                                           |
+  | [`to_matrix`](#qiskit.circuit.library.MCXRecursive.to_matrix "qiskit.circuit.library.MCXRecursive.to_matrix")()                                                                  | Return a Numpy.array for the gate unitary matrix.                        |
+  | [`validate_parameter`](#qiskit.circuit.library.MCXRecursive.validate_parameter "qiskit.circuit.library.MCXRecursive.validate_parameter")(parameter)                              | Gate parameters should be int, float, or ParameterExpression             |
 
-`MCXRecursive(num_ctrl_qubits=None, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/x.py "view source code")
+  ## Attributes
 
-Implement the multi-controlled X gate using recursion.
+  |                                                                                                                                          |                                                                               |
+  | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+  | [`ctrl_state`](#qiskit.circuit.library.MCXRecursive.ctrl_state "qiskit.circuit.library.MCXRecursive.ctrl_state")                         | Return the control state of the gate as a decimal integer.                    |
+  | [`decompositions`](#qiskit.circuit.library.MCXRecursive.decompositions "qiskit.circuit.library.MCXRecursive.decompositions")             | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
+  | [`definition`](#qiskit.circuit.library.MCXRecursive.definition "qiskit.circuit.library.MCXRecursive.definition")                         | Return definition in terms of other basic gates.                              |
+  | [`duration`](#qiskit.circuit.library.MCXRecursive.duration "qiskit.circuit.library.MCXRecursive.duration")                               | Get the duration.                                                             |
+  | [`label`](#qiskit.circuit.library.MCXRecursive.label "qiskit.circuit.library.MCXRecursive.label")                                        | Return gate label                                                             |
+  | [`name`](#qiskit.circuit.library.MCXRecursive.name "qiskit.circuit.library.MCXRecursive.name")                                           | Get name of gate.                                                             |
+  | [`num_ancilla_qubits`](#qiskit.circuit.library.MCXRecursive.num_ancilla_qubits "qiskit.circuit.library.MCXRecursive.num_ancilla_qubits") | The number of ancilla qubits.                                                 |
+  | [`num_ctrl_qubits`](#qiskit.circuit.library.MCXRecursive.num_ctrl_qubits "qiskit.circuit.library.MCXRecursive.num_ctrl_qubits")          | Get number of control qubits.                                                 |
+  | [`params`](#qiskit.circuit.library.MCXRecursive.params "qiskit.circuit.library.MCXRecursive.params")                                     | Get parameters from base\_gate.                                               |
+  | [`unit`](#qiskit.circuit.library.MCXRecursive.unit "qiskit.circuit.library.MCXRecursive.unit")                                           | Get the time unit of duration.                                                |
 
-Using a single ancilla qubit, the multi-controlled X gate is recursively split onto four sub-registers. This is done until we reach the 3- or 4-controlled X gate since for these we have a concrete implementation that do not require ancillas.
+  ### add\_decomposition
 
-Create new MCX gate.
+  <Function id="qiskit.circuit.library.MCXRecursive.add_decomposition" name="add_decomposition" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### \_\_init\_\_
+  ### assemble
 
-<span id="qiskit.circuit.library.MCXRecursive.__init__" />
+  <Function id="qiskit.circuit.library.MCXRecursive.assemble" name="assemble" signature="assemble()">
+    Assemble a QasmQobjInstruction
 
-`__init__(num_ctrl_qubits, label=None, ctrl_state=None)`
+    **Return type**
 
-Create new MCX gate.
+    `Instruction`
+  </Function>
 
-## Methods
+  ### broadcast\_arguments
 
-|                                                                                                                                                                                  |                                                                          |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.circuit.library.MCXRecursive.__init__ "qiskit.circuit.library.MCXRecursive.__init__")(num\_ctrl\_qubits\[, label, ctrl\_state])                             | Create new MCX gate.                                                     |
-| [`add_decomposition`](#qiskit.circuit.library.MCXRecursive.add_decomposition "qiskit.circuit.library.MCXRecursive.add_decomposition")(decomposition)                             | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
-| [`assemble`](#qiskit.circuit.library.MCXRecursive.assemble "qiskit.circuit.library.MCXRecursive.assemble")()                                                                     | Assemble a QasmQobjInstruction                                           |
-| [`broadcast_arguments`](#qiskit.circuit.library.MCXRecursive.broadcast_arguments "qiskit.circuit.library.MCXRecursive.broadcast_arguments")(qargs, cargs)                        | Validation and handling of the arguments and its relationship.           |
-| [`c_if`](#qiskit.circuit.library.MCXRecursive.c_if "qiskit.circuit.library.MCXRecursive.c_if")(classical, val)                                                                   | Add classical condition on register classical and value val.             |
-| [`control`](#qiskit.circuit.library.MCXRecursive.control "qiskit.circuit.library.MCXRecursive.control")(\[num\_ctrl\_qubits, label, ctrl\_state])                                | Return a multi-controlled-X gate with more control lines.                |
-| [`copy`](#qiskit.circuit.library.MCXRecursive.copy "qiskit.circuit.library.MCXRecursive.copy")(\[name])                                                                          | Copy of the instruction.                                                 |
-| [`get_num_ancilla_qubits`](#qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits "qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits")(num\_ctrl\_qubits\[, mode]) | Get the number of required ancilla qubits.                               |
-| [`inverse`](#qiskit.circuit.library.MCXRecursive.inverse "qiskit.circuit.library.MCXRecursive.inverse")()                                                                        | Invert this gate.                                                        |
-| [`is_parameterized`](#qiskit.circuit.library.MCXRecursive.is_parameterized "qiskit.circuit.library.MCXRecursive.is_parameterized")()                                             | Return True .IFF.                                                        |
-| [`mirror`](#qiskit.circuit.library.MCXRecursive.mirror "qiskit.circuit.library.MCXRecursive.mirror")()                                                                           | DEPRECATED: use instruction.reverse\_ops().                              |
-| [`power`](#qiskit.circuit.library.MCXRecursive.power "qiskit.circuit.library.MCXRecursive.power")(exponent)                                                                      | Creates a unitary gate as gate^exponent.                                 |
-| [`qasm`](#qiskit.circuit.library.MCXRecursive.qasm "qiskit.circuit.library.MCXRecursive.qasm")()                                                                                 | Return a default OpenQASM string for the instruction.                    |
-| [`repeat`](#qiskit.circuit.library.MCXRecursive.repeat "qiskit.circuit.library.MCXRecursive.repeat")(n)                                                                          | Creates an instruction with gate repeated n amount of times.             |
-| [`reverse_ops`](#qiskit.circuit.library.MCXRecursive.reverse_ops "qiskit.circuit.library.MCXRecursive.reverse_ops")()                                                            | For a composite instruction, reverse the order of sub-instructions.      |
-| [`soft_compare`](#qiskit.circuit.library.MCXRecursive.soft_compare "qiskit.circuit.library.MCXRecursive.soft_compare")(other)                                                    | Soft comparison between gates.                                           |
-| [`to_matrix`](#qiskit.circuit.library.MCXRecursive.to_matrix "qiskit.circuit.library.MCXRecursive.to_matrix")()                                                                  | Return a Numpy.array for the gate unitary matrix.                        |
-| [`validate_parameter`](#qiskit.circuit.library.MCXRecursive.validate_parameter "qiskit.circuit.library.MCXRecursive.validate_parameter")(parameter)                              | Gate parameters should be int, float, or ParameterExpression             |
+  <Function id="qiskit.circuit.library.MCXRecursive.broadcast_arguments" name="broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-## Attributes
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-|                                                                                                                                          |                                                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`ctrl_state`](#qiskit.circuit.library.MCXRecursive.ctrl_state "qiskit.circuit.library.MCXRecursive.ctrl_state")                         | Return the control state of the gate as a decimal integer.                    |
-| [`decompositions`](#qiskit.circuit.library.MCXRecursive.decompositions "qiskit.circuit.library.MCXRecursive.decompositions")             | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
-| [`definition`](#qiskit.circuit.library.MCXRecursive.definition "qiskit.circuit.library.MCXRecursive.definition")                         | Return definition in terms of other basic gates.                              |
-| [`duration`](#qiskit.circuit.library.MCXRecursive.duration "qiskit.circuit.library.MCXRecursive.duration")                               | Get the duration.                                                             |
-| [`label`](#qiskit.circuit.library.MCXRecursive.label "qiskit.circuit.library.MCXRecursive.label")                                        | Return gate label                                                             |
-| [`name`](#qiskit.circuit.library.MCXRecursive.name "qiskit.circuit.library.MCXRecursive.name")                                           | Get name of gate.                                                             |
-| [`num_ancilla_qubits`](#qiskit.circuit.library.MCXRecursive.num_ancilla_qubits "qiskit.circuit.library.MCXRecursive.num_ancilla_qubits") | The number of ancilla qubits.                                                 |
-| [`num_ctrl_qubits`](#qiskit.circuit.library.MCXRecursive.num_ctrl_qubits "qiskit.circuit.library.MCXRecursive.num_ctrl_qubits")          | Get number of control qubits.                                                 |
-| [`params`](#qiskit.circuit.library.MCXRecursive.params "qiskit.circuit.library.MCXRecursive.params")                                     | Get parameters from base\_gate.                                               |
-| [`unit`](#qiskit.circuit.library.MCXRecursive.unit "qiskit.circuit.library.MCXRecursive.unit")                                           | Get the time unit of duration.                                                |
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-### add\_decomposition
+    The general broadcasting rules are:
 
-<span id="qiskit.circuit.library.MCXRecursive.add_decomposition" />
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-`add_decomposition(decomposition)`
+    **Parameters**
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    *   **qargs** (`List`) – List of quantum bit arguments.
+    *   **cargs** (`List`) – List of classical bit arguments.
 
-### assemble
+    **Return type**
 
-<span id="qiskit.circuit.library.MCXRecursive.assemble" />
+    `Tuple`\[`List`, `List`]
 
-`assemble()`
+    **Returns**
 
-Assemble a QasmQobjInstruction
+    A tuple with single arguments.
 
-**Return type**
+    **Raises**
 
-`Instruction`
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-### broadcast\_arguments
+  ### c\_if
 
-<span id="qiskit.circuit.library.MCXRecursive.broadcast_arguments" />
+  <Function id="qiskit.circuit.library.MCXRecursive.c_if" name="c_if" signature="c_if(classical, val)">
+    Add classical condition on register classical and value val.
+  </Function>
 
-`broadcast_arguments(qargs, cargs)`
+  ### control
 
-Validation and handling of the arguments and its relationship.
+  <Function id="qiskit.circuit.library.MCXRecursive.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a multi-controlled-X gate with more control lines.
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+    **Parameters**
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-The general broadcasting rules are:
+    **Returns**
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+    controlled version of this gate.
 
-**Parameters**
+    **Return type**
 
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-**Return type**
+  ### copy
 
-`Tuple`\[`List`, `List`]
+  <Function id="qiskit.circuit.library.MCXRecursive.copy" name="copy" signature="copy(name=None)">
+    Copy of the instruction.
 
-**Returns**
+    **Parameters**
 
-A tuple with single arguments.
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**Raises**
+    **Returns**
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **a copy of the current instruction, with the name**
 
-### c\_if
+    updated if it was provided
 
-<span id="qiskit.circuit.library.MCXRecursive.c_if" />
+    **Return type**
 
-`c_if(classical, val)`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Add classical condition on register classical and value val.
+  ### ctrl\_state
 
-### control
+  <Function id="qiskit.circuit.library.MCXRecursive.ctrl_state" name="ctrl_state" signature="property ctrl_state">
+    Return the control state of the gate as a decimal integer.
 
-<span id="qiskit.circuit.library.MCXRecursive.control" />
+    **Return type**
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    `int`
+  </Function>
 
-Return a multi-controlled-X gate with more control lines.
+  ### decompositions
 
-**Parameters**
+  <Function id="qiskit.circuit.library.MCXRecursive.decompositions" name="decompositions" signature="property decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Function>
 
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+  ### definition
 
-**Returns**
+  <Function id="qiskit.circuit.library.MCXRecursive.definition" name="definition" signature="property definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
 
-controlled version of this gate.
+    **Return type**
 
-**Return type**
+    `List`
+  </Function>
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  ### duration
 
-### copy
+  <Function id="qiskit.circuit.library.MCXRecursive.duration" name="duration" signature="property duration">
+    Get the duration.
+  </Function>
 
-<span id="qiskit.circuit.library.MCXRecursive.copy" />
+  ### get\_num\_ancilla\_qubits
 
-`copy(name=None)`
+  <Function id="qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits" name="get_num_ancilla_qubits" signature="static get_num_ancilla_qubits(num_ctrl_qubits, mode='recursion')">
+    Get the number of required ancilla qubits.
+  </Function>
 
-Copy of the instruction.
+  ### inverse
 
-**Parameters**
+  <Function id="qiskit.circuit.library.MCXRecursive.inverse" name="inverse" signature="inverse()">
+    Invert this gate. The MCX is its own inverse.
+  </Function>
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+  ### is\_parameterized
 
-**Returns**
+  <Function id="qiskit.circuit.library.MCXRecursive.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-**a copy of the current instruction, with the name**
+  ### label
 
-updated if it was provided
+  <Function id="qiskit.circuit.library.MCXRecursive.label" name="label" signature="property label">
+    Return gate label
 
-**Return type**
+    **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    `str`
+  </Function>
 
-### ctrl\_state
+  ### mirror
 
-<span id="qiskit.circuit.library.MCXRecursive.ctrl_state" />
+  <Function id="qiskit.circuit.library.MCXRecursive.mirror" name="mirror" signature="mirror()">
+    DEPRECATED: use instruction.reverse\_ops().
 
-`property ctrl_state`
+    **Returns**
 
-Return the control state of the gate as a decimal integer.
+    **a new instruction with sub-instructions**
 
-**Return type**
+    reversed.
 
-`int`
+    **Return type**
 
-### decompositions
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<span id="qiskit.circuit.library.MCXRecursive.decompositions" />
+  ### name
 
-`property decompositions`
+  <Function id="qiskit.circuit.library.MCXRecursive.name" name="name" signature="property name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+    > \<original\_name\_o\<ctrl\_state>
 
-### definition
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
 
-<span id="qiskit.circuit.library.MCXRecursive.definition" />
+    **Return type**
 
-`property definition`
+    `str`
+  </Function>
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  ### num\_ancilla\_qubits
 
-**Return type**
+  <Function id="qiskit.circuit.library.MCXRecursive.num_ancilla_qubits" name="num_ancilla_qubits" signature="property num_ancilla_qubits">
+    The number of ancilla qubits.
+  </Function>
 
-`List`
+  ### num\_ctrl\_qubits
 
-### duration
+  <Function id="qiskit.circuit.library.MCXRecursive.num_ctrl_qubits" name="num_ctrl_qubits" signature="property num_ctrl_qubits">
+    Get number of control qubits.
 
-<span id="qiskit.circuit.library.MCXRecursive.duration" />
+    **Returns**
 
-`property duration`
+    The number of control qubits for the gate.
 
-Get the duration.
+    **Return type**
 
-### get\_num\_ancilla\_qubits
+    int
+  </Function>
 
-<span id="qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits" />
+  ### params
 
-`static get_num_ancilla_qubits(num_ctrl_qubits, mode='recursion')`
+  <Function id="qiskit.circuit.library.MCXRecursive.params" name="params" signature="property params">
+    Get parameters from base\_gate.
 
-Get the number of required ancilla qubits.
+    **Returns**
 
-### inverse
+    List of gate parameters.
 
-<span id="qiskit.circuit.library.MCXRecursive.inverse" />
+    **Return type**
 
-`inverse()`
+    list
 
-Invert this gate. The MCX is its own inverse.
+    **Raises**
 
-### is\_parameterized
+    **CircuitError** – Controlled gate does not define a base gate
+  </Function>
 
-<span id="qiskit.circuit.library.MCXRecursive.is_parameterized" />
+  ### power
 
-`is_parameterized()`
+  <Function id="qiskit.circuit.library.MCXRecursive.power" name="power" signature="power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-Return True .IFF. instruction is parameterized else False
+    **Parameters**
 
-### label
+    **exponent** (*float*) – Gate^exponent
 
-<span id="qiskit.circuit.library.MCXRecursive.label" />
+    **Returns**
 
-`property label`
+    To which to\_matrix is self.to\_matrix^exponent.
 
-Return gate label
+    **Return type**
 
-**Return type**
+    [qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-`str`
+    **Raises**
 
-### mirror
+    **CircuitError** – If Gate is not unitary
+  </Function>
 
-<span id="qiskit.circuit.library.MCXRecursive.mirror" />
+  ### qasm
 
-`mirror()`
+  <Function id="qiskit.circuit.library.MCXRecursive.qasm" name="qasm" signature="qasm()">
+    Return a default OpenQASM string for the instruction.
 
-DEPRECATED: use instruction.reverse\_ops().
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-**Returns**
+  ### repeat
 
-**a new instruction with sub-instructions**
+  <Function id="qiskit.circuit.library.MCXRecursive.repeat" name="repeat" signature="repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-reversed.
+    **Parameters**
 
-**Return type**
+    **n** (*int*) – Number of times to repeat the instruction
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Returns**
 
-### name
+    Containing the definition.
 
-<span id="qiskit.circuit.library.MCXRecursive.name" />
+    **Return type**
 
-`property name`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-Get name of gate. If the gate has open controls the gate name will become:
+    **Raises**
 
-> \<original\_name\_o\<ctrl\_state>
+    **CircuitError** – If n \< 1.
+  </Function>
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  ### reverse\_ops
 
-**Return type**
+  <Function id="qiskit.circuit.library.MCXRecursive.reverse_ops" name="reverse_ops" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-`str`
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-### num\_ancilla\_qubits
+    **Returns**
 
-<span id="qiskit.circuit.library.MCXRecursive.num_ancilla_qubits" />
+    **a new instruction with**
 
-`property num_ancilla_qubits`
+    sub-instructions reversed.
 
-The number of ancilla qubits.
+    **Return type**
 
-### num\_ctrl\_qubits
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<span id="qiskit.circuit.library.MCXRecursive.num_ctrl_qubits" />
+  ### soft\_compare
 
-`property num_ctrl_qubits`
+  <Function id="qiskit.circuit.library.MCXRecursive.soft_compare" name="soft_compare" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-Get number of control qubits.
+    **Parameters**
 
-**Returns**
+    **other** (*instruction*) – other instruction.
 
-The number of control qubits for the gate.
+    **Returns**
 
-**Return type**
+    are self and other equal up to parameter expressions.
 
-int
+    **Return type**
 
-### params
+    bool
+  </Function>
 
-<span id="qiskit.circuit.library.MCXRecursive.params" />
+  ### to\_matrix
 
-`property params`
+  <Function id="qiskit.circuit.library.MCXRecursive.to_matrix" name="to_matrix" signature="to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
 
-Get parameters from base\_gate.
+    **Returns**
 
-**Returns**
+    if the Gate subclass has a matrix definition.
 
-List of gate parameters.
+    **Return type**
 
-**Return type**
+    np.ndarray
 
-list
+    **Raises**
 
-**Raises**
+    **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+  </Function>
 
-**CircuitError** – Controlled gate does not define a base gate
+  ### unit
 
-### power
+  <Function id="qiskit.circuit.library.MCXRecursive.unit" name="unit" signature="property unit">
+    Get the time unit of duration.
+  </Function>
 
-<span id="qiskit.circuit.library.MCXRecursive.power" />
+  ### validate\_parameter
 
-`power(exponent)`
-
-Creates a unitary gate as gate^exponent.
-
-**Parameters**
-
-**exponent** (*float*) – Gate^exponent
-
-**Returns**
-
-To which to\_matrix is self.to\_matrix^exponent.
-
-**Return type**
-
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
-
-**Raises**
-
-**CircuitError** – If Gate is not unitary
-
-### qasm
-
-<span id="qiskit.circuit.library.MCXRecursive.qasm" />
-
-`qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.circuit.library.MCXRecursive.repeat" />
-
-`repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### reverse\_ops
-
-<span id="qiskit.circuit.library.MCXRecursive.reverse_ops" />
-
-`reverse_ops()`
-
-For a composite instruction, reverse the order of sub-instructions.
-
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-**a new instruction with**
-
-sub-instructions reversed.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### soft\_compare
-
-<span id="qiskit.circuit.library.MCXRecursive.soft_compare" />
-
-`soft_compare(other)`
-
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
-
-**Parameters**
-
-**other** (*instruction*) – other instruction.
-
-**Returns**
-
-are self and other equal up to parameter expressions.
-
-**Return type**
-
-bool
-
-### to\_matrix
-
-<span id="qiskit.circuit.library.MCXRecursive.to_matrix" />
-
-`to_matrix()`
-
-Return a Numpy.array for the gate unitary matrix.
-
-**Returns**
-
-if the Gate subclass has a matrix definition.
-
-**Return type**
-
-np.ndarray
-
-**Raises**
-
-**CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
-
-### unit
-
-<span id="qiskit.circuit.library.MCXRecursive.unit" />
-
-`property unit`
-
-Get the time unit of duration.
-
-### validate\_parameter
-
-<span id="qiskit.circuit.library.MCXRecursive.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Gate parameters should be int, float, or ParameterExpression
+  <Function id="qiskit.circuit.library.MCXRecursive.validate_parameter" name="validate_parameter" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
+</Class>
 

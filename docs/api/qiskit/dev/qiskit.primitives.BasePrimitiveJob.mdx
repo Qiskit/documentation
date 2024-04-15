@@ -8,112 +8,94 @@ python_api_name: qiskit.primitives.BasePrimitiveJob
 
 # BasePrimitiveJob
 
-<span id="qiskit.primitives.BasePrimitiveJob" />
+<Class id="qiskit.primitives.BasePrimitiveJob" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/base/base_primitive_job.py#L26-L78" signature="qiskit.primitives.BasePrimitiveJob(job_id, **kwargs)">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)"), [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.12)")\[`ResultT`, `StatusT`]
 
-`qiskit.primitives.BasePrimitiveJob(job_id, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/base/base_primitive_job.py "view source code")
+  Primitive job abstract base class.
 
-Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)"), [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.12)")\[`ResultT`, `StatusT`]
+  Initializes the primitive job.
 
-Primitive job abstract base class.
+  **Parameters**
 
-Initializes the primitive job.
+  *   **job\_id** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A unique id in the context of the primitive used to run the job.
+  *   **kwargs** – Any key value metadata to associate with this job.
 
-**Parameters**
+  ## Methods
 
-*   **job\_id** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A unique id in the context of the primitive used to run the job.
-*   **kwargs** – Any key value metadata to associate with this job.
+  ### cancel
 
-## Methods
+  <Function id="qiskit.primitives.BasePrimitiveJob.cancel" name="cancel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/base/base_primitive_job.py#L75-L78" signature="abstract cancel()">
+    Attempt to cancel the job.
+  </Function>
 
-### cancel
+  ### cancelled
 
-<span id="qiskit.primitives.BasePrimitiveJob.cancel" />
+  <Function id="qiskit.primitives.BasePrimitiveJob.cancelled" name="cancelled" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/base/base_primitive_job.py#L63-L66" signature="abstract cancelled()">
+    Return whether the job has been cancelled.
 
-`abstract cancel()`
+    **Return type**
 
-Attempt to cancel the job.
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-### cancelled
+  ### done
 
-<span id="qiskit.primitives.BasePrimitiveJob.cancelled" />
+  <Function id="qiskit.primitives.BasePrimitiveJob.done" name="done" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/base/base_primitive_job.py#L53-L56" signature="abstract done()">
+    Return whether the job has successfully run.
 
-`abstract cancelled()`
+    **Return type**
 
-Return whether the job has been cancelled.
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-**Return type**
+  ### in\_final\_state
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  <Function id="qiskit.primitives.BasePrimitiveJob.in_final_state" name="in_final_state" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/base/base_primitive_job.py#L68-L73" signature="abstract in_final_state()">
+    Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
-### done
+    **Return type**
 
-<span id="qiskit.primitives.BasePrimitiveJob.done" />
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-`abstract done()`
+  ### job\_id
 
-Return whether the job has successfully run.
+  <Function id="qiskit.primitives.BasePrimitiveJob.job_id" name="job_id" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/base/base_primitive_job.py#L39-L41" signature="job_id()">
+    Return a unique id identifying the job.
 
-**Return type**
+    **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-### in\_final\_state
+  ### result
 
-<span id="qiskit.primitives.BasePrimitiveJob.in_final_state" />
+  <Function id="qiskit.primitives.BasePrimitiveJob.result" name="result" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/base/base_primitive_job.py#L43-L46" signature="abstract result()">
+    Return the results of the job.
 
-`abstract in_final_state()`
+    **Return type**
 
-Return whether the job is in a final job state such as `DONE` or `ERROR`.
+    *ResultT*
+  </Function>
 
-**Return type**
+  ### running
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  <Function id="qiskit.primitives.BasePrimitiveJob.running" name="running" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/base/base_primitive_job.py#L58-L61" signature="abstract running()">
+    Return whether the job is actively running.
 
-### job\_id
+    **Return type**
 
-<span id="qiskit.primitives.BasePrimitiveJob.job_id" />
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-`job_id()`
+  ### status
 
-Return a unique id identifying the job.
+  <Function id="qiskit.primitives.BasePrimitiveJob.status" name="status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/base/base_primitive_job.py#L48-L51" signature="abstract status()">
+    Return the status of the job.
 
-**Return type**
+    **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
-
-### result
-
-<span id="qiskit.primitives.BasePrimitiveJob.result" />
-
-`abstract result()`
-
-Return the results of the job.
-
-**Return type**
-
-*ResultT*
-
-### running
-
-<span id="qiskit.primitives.BasePrimitiveJob.running" />
-
-`abstract running()`
-
-Return whether the job is actively running.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
-
-### status
-
-<span id="qiskit.primitives.BasePrimitiveJob.status" />
-
-`abstract status()`
-
-Return the status of the job.
-
-**Return type**
-
-*StatusT*
+    *StatusT*
+  </Function>
+</Class>
 

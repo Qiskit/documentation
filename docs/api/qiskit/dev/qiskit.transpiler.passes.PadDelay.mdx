@@ -8,142 +8,132 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
 # PadDelay
 
-<span id="qiskit.transpiler.passes.PadDelay" />
+<Class id="qiskit.transpiler.passes.PadDelay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/padding/pad_delay.py#L23-L79" signature="qiskit.transpiler.passes.PadDelay(*args, **kwargs)">
+  Bases: `BasePadding`
 
-`qiskit.transpiler.passes.PadDelay(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/padding/pad_delay.py "view source code")
+  Padding idle time with Delay instructions.
 
-Bases: `BasePadding`
+  Consecutive delays will be merged in the output of this pass.
 
-Padding idle time with Delay instructions.
+  ```python
+  durations = InstructionDurations([("x", None, 160), ("cx", None, 800)])
 
-Consecutive delays will be merged in the output of this pass.
+  qc = QuantumCircuit(2)
+  qc.delay(100, 0)
+  qc.x(1)
+  qc.cx(0, 1)
+  ```
 
-```python
-durations = InstructionDurations([("x", None, 160), ("cx", None, 800)])
+  The ASAP-scheduled circuit output may become
 
-qc = QuantumCircuit(2)
-qc.delay(100, 0)
-qc.x(1)
-qc.cx(0, 1)
-```
+  ```python
+       ┌────────────────┐
+  q_0: ┤ Delay(160[dt]) ├──■──
+       └─────┬───┬──────┘┌─┴─┐
+  q_1: ──────┤ X ├───────┤ X ├
+             └───┘       └───┘
+  ```
 
-The ASAP-scheduled circuit output may become
+  Note that the additional idle time of 60dt on the `q_0` wire coming from the duration difference between `Delay` of 100dt (`q_0`) and `XGate` of 160 dt (`q_1`) is absorbed in the delay instruction on the `q_0` wire, i.e. in total 160 dt.
 
-```python
-     ┌────────────────┐
-q_0: ┤ Delay(160[dt]) ├──■──
-     └─────┬───┬──────┘┌─┴─┐
-q_1: ──────┤ X ├───────┤ X ├
-           └───┘       └───┘
-```
+  See `BasePadding` pass for details.
 
-Note that the additional idle time of 60dt on the `q_0` wire coming from the duration difference between `Delay` of 100dt (`q_0`) and `XGate` of 160 dt (`q_1`) is absorbed in the delay instruction on the `q_0` wire, i.e. in total 160 dt.
+  Create new padding delay pass.
 
-See `BasePadding` pass for details.
+  **Parameters**
 
-Create new padding delay pass.
+  *   **fill\_very\_end** – Set `True` to fill the end of circuit with delay.
+  *   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend. If it is supplied and does not support delay instruction on a qubit, padding passes do not pad any idle time of the qubit.
 
-**Parameters**
+  ## Attributes
 
-*   **fill\_very\_end** – Set `True` to fill the end of circuit with delay.
-*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend. If it is supplied and does not support delay instruction on a qubit, padding passes do not pad any idle time of the qubit.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.PadDelay.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.PadDelay.is_analysis_pass" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### is\_analysis\_pass
+  ### is\_transformation\_pass
 
-Check if the pass is an analysis pass.
+  <Attribute id="qiskit.transpiler.passes.PadDelay.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.PadDelay.is_transformation_pass" />
+  ## Methods
 
-### is\_transformation\_pass
+  ### execute
 
-Check if the pass is a transformation pass.
+  <Function id="qiskit.transpiler.passes.PadDelay.execute" name="execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    **Parameters**
 
-## Methods
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
 
-### execute
+    **Returns**
 
-<span id="qiskit.transpiler.passes.PadDelay.execute" />
+    Optimized Qiskit IR and state of the workflow.
 
-`execute(passmanager_ir, state, callback=None)`
+    **Return type**
 
-Execute optimization task for input Qiskit IR.
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
 
-**Parameters**
+  ### name
 
-*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+  <Function id="qiskit.transpiler.passes.PadDelay.name" name="name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
 
-**Returns**
+    **Return type**
 
-Optimized Qiskit IR and state of the workflow.
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-**Return type**
+  ### run
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  <Function id="qiskit.transpiler.passes.PadDelay.run" name="run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/padding/base_padding.py#L71-L166" signature="run(dag)">
+    Run the padding pass on `dag`.
 
-### name
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.PadDelay.name" />
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG to be checked.
 
-`name()`
+    **Returns**
 
-Name of the pass.
+    DAG with idle time filled with instructions.
 
-**Return type**
+    **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-### run
+    **Raises**
 
-<span id="qiskit.transpiler.passes.PadDelay.run" />
+    [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When a particular node is not scheduled, likely some transform pass is inserted before this node is called.
+  </Function>
 
-`run(dag)`
+  ### update\_status
 
-Run the padding pass on `dag`.
+  <Function id="qiskit.transpiler.passes.PadDelay.update_status" name="update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+    Update workflow status.
 
-**Parameters**
+    **Parameters**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG to be checked.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
 
-**Returns**
+    **Returns**
 
-DAG with idle time filled with instructions.
+    Updated pass manager state.
 
-**Return type**
+    **Return type**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-**Raises**
-
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When a particular node is not scheduled, likely some transform pass is inserted before this node is called.
-
-### update\_status
-
-<span id="qiskit.transpiler.passes.PadDelay.update_status" />
-
-`update_status(state, run_state)`
-
-Update workflow status.
-
-**Parameters**
-
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
-*   **run\_state** (*RunState*) – Completion status of current task.
-
-**Returns**
-
-Updated pass manager state.
-
-**Return type**
-
-[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
 

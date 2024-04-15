@@ -8,31 +8,29 @@ python_api_name: qiskit.aqua.utils.random_non_hermitian
 
 # random\_non\_hermitian
 
-<span id="qiskit.aqua.utils.random_non_hermitian" />
+<Function id="qiskit.aqua.utils.random_non_hermitian" name="random_non_hermitian" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/random_matrix_generator.py" signature="random_non_hermitian(N, M=None, sings=None, K=None, srange=None, sparsity=None, trunc=None)">
+  Generate random (sparse) matrix with given properties (singular values). Sparsity is achieved by truncating Pauli matrices. Sparsity settings alternate the singular values due to truncation.
 
-`random_non_hermitian(N, M=None, sings=None, K=None, srange=None, sparsity=None, trunc=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/random_matrix_generator.py "view source code")
+  **Parameters**
 
-Generate random (sparse) matrix with given properties (singular values). Sparsity is achieved by truncating Pauli matrices. Sparsity settings alternate the singular values due to truncation.
+  *   **N** (*int*) – size of matrix
+  *   **M** (*int*) – size of matrix
+  *   **sings** (*Union(list, tuple, np.ndarray)*) – list of N singular values. Overrides K, srange.
+  *   **K** (*Union(float, list, tuple)*) – condition number. Either use only condition number K or list/tuple of (K, lmin). Where lmin specifies the smallest singular value.
+  *   **srange** (*Union(list, tuple, nd.ndarray)*) – \[min, max] list for singular value range, min >= 0. (default=\[0, 1]).
+  *   **sparsity** (*float*) – sparsity of matrix. Overrides trunc.
+  *   **trunc** (*int*) – limit of Pauli matrices.
 
-**Parameters**
+  **Returns**
 
-*   **N** (*int*) – size of matrix
-*   **M** (*int*) – size of matrix
-*   **sings** (*Union(list, tuple, np.ndarray)*) – list of N singular values. Overrides K, srange.
-*   **K** (*Union(float, list, tuple)*) – condition number. Either use only condition number K or list/tuple of (K, lmin). Where lmin specifies the smallest singular value.
-*   **srange** (*Union(list, tuple, nd.ndarray)*) – \[min, max] list for singular value range, min >= 0. (default=\[0, 1]).
-*   **sparsity** (*float*) – sparsity of matrix. Overrides trunc.
-*   **trunc** (*int*) – limit of Pauli matrices.
+  random matrix
 
-**Returns**
+  **Return type**
 
-random matrix
+  np.ndarray
 
-**Return type**
+  **Raises:**
 
-np.ndarray
-
-**Raises:**
-
-ValueError: invalid matrix
+  ValueError: invalid matrix
+</Function>
 

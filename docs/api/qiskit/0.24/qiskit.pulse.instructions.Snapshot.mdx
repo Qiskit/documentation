@@ -10,395 +10,347 @@ python_api_name: qiskit.pulse.instructions.Snapshot
 
 # qiskit.pulse.instructions.Snapshot
 
-<span id="qiskit.pulse.instructions.Snapshot" />
+<Class id="qiskit.pulse.instructions.Snapshot" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/snapshot.py" signature="Snapshot(label, snapshot_type='statevector', name=None)">
+  An instruction targeted for simulators, to capture a moment in the simulation.
 
-`Snapshot(label, snapshot_type='statevector', name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/snapshot.py "view source code")
+  Create new snapshot.
 
-An instruction targeted for simulators, to capture a moment in the simulation.
+  **Parameters**
 
-Create new snapshot.
+  *   **label** (`str`) – Snapshot label which is used to identify the snapshot in the output.
+  *   **snapshot\_type** (`str`) – Type of snapshot, e.g., “state” (take a snapshot of the quantum state). The types of snapshots offered are defined by the simulator used.
+  *   **name** (`Optional`\[`str`]) – Snapshot name which defaults to `label`. This parameter is only for display purposes and is not taken into account during comparison.
 
-**Parameters**
+  **Raises**
 
-*   **label** (`str`) – Snapshot label which is used to identify the snapshot in the output.
-*   **snapshot\_type** (`str`) – Type of snapshot, e.g., “state” (take a snapshot of the quantum state). The types of snapshots offered are defined by the simulator used.
-*   **name** (`Optional`\[`str`]) – Snapshot name which defaults to `label`. This parameter is only for display purposes and is not taken into account during comparison.
+  [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If snapshot label is invalid.
 
-**Raises**
+  ### \_\_init\_\_
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If snapshot label is invalid.
+  <Function id="qiskit.pulse.instructions.Snapshot.__init__" name="__init__" signature="__init__(label, snapshot_type='statevector', name=None)">
+    Create new snapshot.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.pulse.instructions.Snapshot.__init__" />
+    *   **label** (`str`) – Snapshot label which is used to identify the snapshot in the output.
+    *   **snapshot\_type** (`str`) – Type of snapshot, e.g., “state” (take a snapshot of the quantum state). The types of snapshots offered are defined by the simulator used.
+    *   **name** (`Optional`\[`str`]) – Snapshot name which defaults to `label`. This parameter is only for display purposes and is not taken into account during comparison.
 
-`__init__(label, snapshot_type='statevector', name=None)`
+    **Raises**
 
-Create new snapshot.
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If snapshot label is invalid.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **label** (`str`) – Snapshot label which is used to identify the snapshot in the output.
-*   **snapshot\_type** (`str`) – Type of snapshot, e.g., “state” (take a snapshot of the quantum state). The types of snapshots offered are defined by the simulator used.
-*   **name** (`Optional`\[`str`]) – Snapshot name which defaults to `label`. This parameter is only for display purposes and is not taken into account during comparison.
+  |                                                                                                                                                  |                                                                                                                                                                               |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.pulse.instructions.Snapshot.__init__ "qiskit.pulse.instructions.Snapshot.__init__")(label\[, snapshot\_type, name])         | Create new snapshot.                                                                                                                                                          |
+  | [`append`](#qiskit.pulse.instructions.Snapshot.append "qiskit.pulse.instructions.Snapshot.append")(schedule\[, name])                            | Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`. |
+  | [`assign_parameters`](#qiskit.pulse.instructions.Snapshot.assign_parameters "qiskit.pulse.instructions.Snapshot.assign_parameters")(value\_dict) | Modify and return self with parameters assigned according to the input.                                                                                                       |
+  | [`ch_duration`](#qiskit.pulse.instructions.Snapshot.ch_duration "qiskit.pulse.instructions.Snapshot.ch_duration")(\*channels)                    | Return duration of the supplied channels in this Instruction.                                                                                                                 |
+  | [`ch_start_time`](#qiskit.pulse.instructions.Snapshot.ch_start_time "qiskit.pulse.instructions.Snapshot.ch_start_time")(\*channels)              | Return minimum start time for supplied channels.                                                                                                                              |
+  | [`ch_stop_time`](#qiskit.pulse.instructions.Snapshot.ch_stop_time "qiskit.pulse.instructions.Snapshot.ch_stop_time")(\*channels)                 | Return maximum start time for supplied channels.                                                                                                                              |
+  | [`draw`](#qiskit.pulse.instructions.Snapshot.draw "qiskit.pulse.instructions.Snapshot.draw")(\[dt, style, filename, interp\_method, …])          | Plot the instruction.                                                                                                                                                         |
+  | [`flatten`](#qiskit.pulse.instructions.Snapshot.flatten "qiskit.pulse.instructions.Snapshot.flatten")()                                          | Return itself as already single instruction.                                                                                                                                  |
+  | [`insert`](#qiskit.pulse.instructions.Snapshot.insert "qiskit.pulse.instructions.Snapshot.insert")(start\_time, schedule\[, name])               | Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.                                              |
+  | [`shift`](#qiskit.pulse.instructions.Snapshot.shift "qiskit.pulse.instructions.Snapshot.shift")(time\[, name])                                   | Return a new schedule shifted forward by time.                                                                                                                                |
 
-**Raises**
+  ## Attributes
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If snapshot label is invalid.
+  |                                                                                                                      |                                                                                                                                                              |
+  | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | [`channel`](#qiskit.pulse.instructions.Snapshot.channel "qiskit.pulse.instructions.Snapshot.channel")                | Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on; trivially, a `SnapshotChannel`. |
+  | [`channels`](#qiskit.pulse.instructions.Snapshot.channels "qiskit.pulse.instructions.Snapshot.channels")             | Returns channels that this schedule uses.                                                                                                                    |
+  | [`command`](#qiskit.pulse.instructions.Snapshot.command "qiskit.pulse.instructions.Snapshot.command")                | The associated command.                                                                                                                                      |
+  | [`duration`](#qiskit.pulse.instructions.Snapshot.duration "qiskit.pulse.instructions.Snapshot.duration")             | Duration of this instruction.                                                                                                                                |
+  | [`id`](#qiskit.pulse.instructions.Snapshot.id "qiskit.pulse.instructions.Snapshot.id")                               | Unique identifier for this instruction.                                                                                                                      |
+  | [`instructions`](#qiskit.pulse.instructions.Snapshot.instructions "qiskit.pulse.instructions.Snapshot.instructions") | Iterable for getting instructions from Schedule tree.                                                                                                        |
+  | [`label`](#qiskit.pulse.instructions.Snapshot.label "qiskit.pulse.instructions.Snapshot.label")                      | Label of snapshot.                                                                                                                                           |
+  | [`name`](#qiskit.pulse.instructions.Snapshot.name "qiskit.pulse.instructions.Snapshot.name")                         | Name of this instruction.                                                                                                                                    |
+  | [`operands`](#qiskit.pulse.instructions.Snapshot.operands "qiskit.pulse.instructions.Snapshot.operands")             | Return instruction operands.                                                                                                                                 |
+  | [`start_time`](#qiskit.pulse.instructions.Snapshot.start_time "qiskit.pulse.instructions.Snapshot.start_time")       | Relative begin time of this instruction.                                                                                                                     |
+  | [`stop_time`](#qiskit.pulse.instructions.Snapshot.stop_time "qiskit.pulse.instructions.Snapshot.stop_time")          | Relative end time of this instruction.                                                                                                                       |
+  | [`timeslots`](#qiskit.pulse.instructions.Snapshot.timeslots "qiskit.pulse.instructions.Snapshot.timeslots")          | Occupied time slots by this instruction.                                                                                                                     |
+  | [`type`](#qiskit.pulse.instructions.Snapshot.type "qiskit.pulse.instructions.Snapshot.type")                         | Type of snapshot.                                                                                                                                            |
 
-## Methods
+  ### append
 
-|                                                                                                                                                  |                                                                                                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.pulse.instructions.Snapshot.__init__ "qiskit.pulse.instructions.Snapshot.__init__")(label\[, snapshot\_type, name])         | Create new snapshot.                                                                                                                                                          |
-| [`append`](#qiskit.pulse.instructions.Snapshot.append "qiskit.pulse.instructions.Snapshot.append")(schedule\[, name])                            | Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`. |
-| [`assign_parameters`](#qiskit.pulse.instructions.Snapshot.assign_parameters "qiskit.pulse.instructions.Snapshot.assign_parameters")(value\_dict) | Modify and return self with parameters assigned according to the input.                                                                                                       |
-| [`ch_duration`](#qiskit.pulse.instructions.Snapshot.ch_duration "qiskit.pulse.instructions.Snapshot.ch_duration")(\*channels)                    | Return duration of the supplied channels in this Instruction.                                                                                                                 |
-| [`ch_start_time`](#qiskit.pulse.instructions.Snapshot.ch_start_time "qiskit.pulse.instructions.Snapshot.ch_start_time")(\*channels)              | Return minimum start time for supplied channels.                                                                                                                              |
-| [`ch_stop_time`](#qiskit.pulse.instructions.Snapshot.ch_stop_time "qiskit.pulse.instructions.Snapshot.ch_stop_time")(\*channels)                 | Return maximum start time for supplied channels.                                                                                                                              |
-| [`draw`](#qiskit.pulse.instructions.Snapshot.draw "qiskit.pulse.instructions.Snapshot.draw")(\[dt, style, filename, interp\_method, …])          | Plot the instruction.                                                                                                                                                         |
-| [`flatten`](#qiskit.pulse.instructions.Snapshot.flatten "qiskit.pulse.instructions.Snapshot.flatten")()                                          | Return itself as already single instruction.                                                                                                                                  |
-| [`insert`](#qiskit.pulse.instructions.Snapshot.insert "qiskit.pulse.instructions.Snapshot.insert")(start\_time, schedule\[, name])               | Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.                                              |
-| [`shift`](#qiskit.pulse.instructions.Snapshot.shift "qiskit.pulse.instructions.Snapshot.shift")(time\[, name])                                   | Return a new schedule shifted forward by time.                                                                                                                                |
+  <Function id="qiskit.pulse.instructions.Snapshot.append" name="append" signature="append(schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                      |                                                                                                                                                              |
-| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`channel`](#qiskit.pulse.instructions.Snapshot.channel "qiskit.pulse.instructions.Snapshot.channel")                | Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on; trivially, a `SnapshotChannel`. |
-| [`channels`](#qiskit.pulse.instructions.Snapshot.channels "qiskit.pulse.instructions.Snapshot.channels")             | Returns channels that this schedule uses.                                                                                                                    |
-| [`command`](#qiskit.pulse.instructions.Snapshot.command "qiskit.pulse.instructions.Snapshot.command")                | The associated command.                                                                                                                                      |
-| [`duration`](#qiskit.pulse.instructions.Snapshot.duration "qiskit.pulse.instructions.Snapshot.duration")             | Duration of this instruction.                                                                                                                                |
-| [`id`](#qiskit.pulse.instructions.Snapshot.id "qiskit.pulse.instructions.Snapshot.id")                               | Unique identifier for this instruction.                                                                                                                      |
-| [`instructions`](#qiskit.pulse.instructions.Snapshot.instructions "qiskit.pulse.instructions.Snapshot.instructions") | Iterable for getting instructions from Schedule tree.                                                                                                        |
-| [`label`](#qiskit.pulse.instructions.Snapshot.label "qiskit.pulse.instructions.Snapshot.label")                      | Label of snapshot.                                                                                                                                           |
-| [`name`](#qiskit.pulse.instructions.Snapshot.name "qiskit.pulse.instructions.Snapshot.name")                         | Name of this instruction.                                                                                                                                    |
-| [`operands`](#qiskit.pulse.instructions.Snapshot.operands "qiskit.pulse.instructions.Snapshot.operands")             | Return instruction operands.                                                                                                                                 |
-| [`start_time`](#qiskit.pulse.instructions.Snapshot.start_time "qiskit.pulse.instructions.Snapshot.start_time")       | Relative begin time of this instruction.                                                                                                                     |
-| [`stop_time`](#qiskit.pulse.instructions.Snapshot.stop_time "qiskit.pulse.instructions.Snapshot.stop_time")          | Relative end time of this instruction.                                                                                                                       |
-| [`timeslots`](#qiskit.pulse.instructions.Snapshot.timeslots "qiskit.pulse.instructions.Snapshot.timeslots")          | Occupied time slots by this instruction.                                                                                                                     |
-| [`type`](#qiskit.pulse.instructions.Snapshot.type "qiskit.pulse.instructions.Snapshot.type")                         | Type of snapshot.                                                                                                                                            |
+    *   **schedule** (`ScheduleComponent`) – schedule to be appended
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-### append
+    **Return type**
 
-<span id="qiskit.pulse.instructions.Snapshot.append" />
+    `Schedule`
+  </Function>
 
-`append(schedule, name=None)`
+  ### assign\_parameters
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+  <Function id="qiskit.pulse.instructions.Snapshot.assign_parameters" name="assign_parameters" signature="assign_parameters(value_dict)">
+    Modify and return self with parameters assigned according to the input.
 
-**Parameters**
+    **Parameters**
 
-*   **schedule** (`ScheduleComponent`) – schedule to be appended
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
+    **value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`, `int`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
 
-**Return type**
+    **Return type**
 
-`Schedule`
+    `Instruction`
 
-### assign\_parameters
+    **Returns**
 
-<span id="qiskit.pulse.instructions.Snapshot.assign_parameters" />
+    Self with updated parameters.
+  </Function>
 
-`assign_parameters(value_dict)`
+  ### ch\_duration
 
-Modify and return self with parameters assigned according to the input.
+  <Function id="qiskit.pulse.instructions.Snapshot.ch_duration" name="ch_duration" signature="ch_duration(*channels)">
+    Return duration of the supplied channels in this Instruction.
 
-**Parameters**
+    **Parameters**
 
-**value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`, `int`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
+    **\*channels** – Supplied channels
 
-**Return type**
+    **Return type**
 
-`Instruction`
+    `int`
+  </Function>
 
-**Returns**
+  ### ch\_start\_time
 
-Self with updated parameters.
+  <Function id="qiskit.pulse.instructions.Snapshot.ch_start_time" name="ch_start_time" signature="ch_start_time(*channels)">
+    Return minimum start time for supplied channels.
 
-### ch\_duration
+    **Parameters**
 
-<span id="qiskit.pulse.instructions.Snapshot.ch_duration" />
+    **\*channels** – Supplied channels
 
-`ch_duration(*channels)`
+    **Return type**
 
-Return duration of the supplied channels in this Instruction.
+    `int`
+  </Function>
 
-**Parameters**
+  ### ch\_stop\_time
 
-**\*channels** – Supplied channels
+  <Function id="qiskit.pulse.instructions.Snapshot.ch_stop_time" name="ch_stop_time" signature="ch_stop_time(*channels)">
+    Return maximum start time for supplied channels.
 
-**Return type**
+    **Parameters**
 
-`int`
+    **\*channels** – Supplied channels
 
-### ch\_start\_time
+    **Return type**
 
-<span id="qiskit.pulse.instructions.Snapshot.ch_start_time" />
+    `int`
+  </Function>
 
-`ch_start_time(*channels)`
+  ### channel
 
-Return minimum start time for supplied channels.
+  <Function id="qiskit.pulse.instructions.Snapshot.channel" name="channel" signature="property channel">
+    Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on; trivially, a `SnapshotChannel`.
 
-**Parameters**
+    **Return type**
 
-**\*channels** – Supplied channels
+    [`SnapshotChannel`](qiskit.pulse.channels#snapshotchannel "qiskit.pulse.channels.SnapshotChannel")
+  </Function>
 
-**Return type**
+  ### channels
 
-`int`
+  <Function id="qiskit.pulse.instructions.Snapshot.channels" name="channels" signature="property channels">
+    Returns channels that this schedule uses.
 
-### ch\_stop\_time
+    **Return type**
 
-<span id="qiskit.pulse.instructions.Snapshot.ch_stop_time" />
+    `Tuple`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
+  </Function>
 
-`ch_stop_time(*channels)`
+  ### command
 
-Return maximum start time for supplied channels.
+  <Function id="qiskit.pulse.instructions.Snapshot.command" name="command" signature="property command">
+    The associated command. Commands are deprecated, so this method will be deprecated shortly.
 
-**Parameters**
+    **Returns**
 
-**\*channels** – Supplied channels
+    The deprecated command if available.
 
-**Return type**
+    **Return type**
 
-`int`
+    [Command](qiskit.providers.models.Command "qiskit.providers.models.Command")
+  </Function>
 
-### channel
+  ### draw
 
-<span id="qiskit.pulse.instructions.Snapshot.channel" />
+  <Function id="qiskit.pulse.instructions.Snapshot.draw" name="draw" signature="draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)">
+    Plot the instruction.
 
-`property channel`
+    **Parameters**
 
-Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on; trivially, a `SnapshotChannel`.
+    *   **dt** (`float`) – Time interval of samples
+    *   **style** (*Optional\[*[*SchedStyle*](qiskit.visualization.pulse.qcstyle#schedstyle "qiskit.visualization.pulse.qcstyle.SchedStyle")*]*) – A style sheet to configure plot appearance
+    *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
+    *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
+    *   **scale** (`float`) – Relative visual scaling of waveform amplitudes
+    *   **plot\_all** (`bool`) – Plot empty channels
+    *   **plot\_range** (`Optional`\[`Tuple`\[`float`]]) – A tuple of time range to plot
+    *   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
+    *   **table** (`bool`) – Draw event table for supported instructions
+    *   **label** (`bool`) – Label individual instructions
+    *   **framechange** (`bool`) – Add framechange indicators
+    *   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
 
-**Return type**
+    **Returns**
 
-[`SnapshotChannel`](qiskit.pulse.channels#snapshotchannel "qiskit.pulse.channels.SnapshotChannel")
+    A matplotlib figure object of the pulse schedule
 
-### channels
+    **Return type**
 
-<span id="qiskit.pulse.instructions.Snapshot.channels" />
+    matplotlib.figure
+  </Function>
 
-`property channels`
+  ### duration
 
-Returns channels that this schedule uses.
+  <Function id="qiskit.pulse.instructions.Snapshot.duration" name="duration" signature="property duration">
+    Duration of this instruction.
 
-**Return type**
+    **Return type**
 
-`Tuple`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
+    `int`
+  </Function>
 
-### command
+  ### flatten
 
-<span id="qiskit.pulse.instructions.Snapshot.command" />
+  <Function id="qiskit.pulse.instructions.Snapshot.flatten" name="flatten" signature="flatten()">
+    Return itself as already single instruction.
 
-`property command`
+    **Return type**
 
-The associated command. Commands are deprecated, so this method will be deprecated shortly.
+    `Instruction`
+  </Function>
 
-**Returns**
+  ### id
 
-The deprecated command if available.
+  <Function id="qiskit.pulse.instructions.Snapshot.id" name="id" signature="property id">
+    Unique identifier for this instruction.
 
-**Return type**
+    **Return type**
 
-[Command](qiskit.providers.models.Command "qiskit.providers.models.Command")
+    `int`
+  </Function>
 
-### draw
+  ### insert
 
-<span id="qiskit.pulse.instructions.Snapshot.draw" />
+  <Function id="qiskit.pulse.instructions.Snapshot.insert" name="insert" signature="insert(start_time, schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
-`draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
+    **Parameters**
 
-Plot the instruction.
+    *   **start\_time** (`int`) – Time to insert the schedule schedule
+    *   **schedule** (`ScheduleComponent`) – Schedule to insert
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-**Parameters**
+    **Return type**
 
-*   **dt** (`float`) – Time interval of samples
-*   **style** (*Optional\[*[*SchedStyle*](qiskit.visualization.pulse.qcstyle#schedstyle "qiskit.visualization.pulse.qcstyle.SchedStyle")*]*) – A style sheet to configure plot appearance
-*   **filename** (`Optional`\[`str`]) – Name required to save pulse image
-*   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
-*   **scale** (`float`) – Relative visual scaling of waveform amplitudes
-*   **plot\_all** (`bool`) – Plot empty channels
-*   **plot\_range** (`Optional`\[`Tuple`\[`float`]]) – A tuple of time range to plot
-*   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
-*   **table** (`bool`) – Draw event table for supported instructions
-*   **label** (`bool`) – Label individual instructions
-*   **framechange** (`bool`) – Add framechange indicators
-*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
+    `Schedule`
+  </Function>
 
-**Returns**
+  ### instructions
 
-A matplotlib figure object of the pulse schedule
+  <Function id="qiskit.pulse.instructions.Snapshot.instructions" name="instructions" signature="property instructions">
+    Iterable for getting instructions from Schedule tree.
 
-**Return type**
+    **Return type**
 
-matplotlib.figure
+    `Tuple`\[`Tuple`\[`int`, `Instruction`]]
+  </Function>
 
-### duration
+  ### label
 
-<span id="qiskit.pulse.instructions.Snapshot.duration" />
+  <Function id="qiskit.pulse.instructions.Snapshot.label" name="label" signature="property label">
+    Label of snapshot.
 
-`property duration`
+    **Return type**
 
-Duration of this instruction.
+    `str`
+  </Function>
 
-**Return type**
+  ### name
 
-`int`
+  <Function id="qiskit.pulse.instructions.Snapshot.name" name="name" signature="property name">
+    Name of this instruction.
 
-### flatten
+    **Return type**
 
-<span id="qiskit.pulse.instructions.Snapshot.flatten" />
+    `str`
+  </Function>
 
-`flatten()`
+  ### operands
 
-Return itself as already single instruction.
+  <Function id="qiskit.pulse.instructions.Snapshot.operands" name="operands" signature="property operands">
+    Return instruction operands.
 
-**Return type**
+    **Return type**
 
-`Instruction`
+    `Tuple`
+  </Function>
 
-### id
+  ### shift
 
-<span id="qiskit.pulse.instructions.Snapshot.id" />
+  <Function id="qiskit.pulse.instructions.Snapshot.shift" name="shift" signature="shift(time, name=None)">
+    Return a new schedule shifted forward by time.
 
-`property id`
+    **Parameters**
 
-Unique identifier for this instruction.
+    *   **time** (`int`) – Time to shift by
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-**Return type**
+    **Return type**
 
-`int`
+    `Schedule`
+  </Function>
 
-### insert
+  ### start\_time
 
-<span id="qiskit.pulse.instructions.Snapshot.insert" />
+  <Function id="qiskit.pulse.instructions.Snapshot.start_time" name="start_time" signature="property start_time">
+    Relative begin time of this instruction.
 
-`insert(start_time, schedule, name=None)`
+    **Return type**
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
+    `int`
+  </Function>
 
-**Parameters**
+  ### stop\_time
 
-*   **start\_time** (`int`) – Time to insert the schedule schedule
-*   **schedule** (`ScheduleComponent`) – Schedule to insert
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
+  <Function id="qiskit.pulse.instructions.Snapshot.stop_time" name="stop_time" signature="property stop_time">
+    Relative end time of this instruction.
 
-**Return type**
+    **Return type**
 
-`Schedule`
+    `int`
+  </Function>
 
-### instructions
+  ### timeslots
 
-<span id="qiskit.pulse.instructions.Snapshot.instructions" />
+  <Function id="qiskit.pulse.instructions.Snapshot.timeslots" name="timeslots" signature="property timeslots">
+    Occupied time slots by this instruction.
 
-`property instructions`
+    **Return type**
 
-Iterable for getting instructions from Schedule tree.
+    `Dict`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"), `List`\[`Tuple`\[`int`, `int`]]]
+  </Function>
 
-**Return type**
+  ### type
 
-`Tuple`\[`Tuple`\[`int`, `Instruction`]]
+  <Function id="qiskit.pulse.instructions.Snapshot.type" name="type" signature="property type">
+    Type of snapshot.
 
-### label
+    **Return type**
 
-<span id="qiskit.pulse.instructions.Snapshot.label" />
-
-`property label`
-
-Label of snapshot.
-
-**Return type**
-
-`str`
-
-### name
-
-<span id="qiskit.pulse.instructions.Snapshot.name" />
-
-`property name`
-
-Name of this instruction.
-
-**Return type**
-
-`str`
-
-### operands
-
-<span id="qiskit.pulse.instructions.Snapshot.operands" />
-
-`property operands`
-
-Return instruction operands.
-
-**Return type**
-
-`Tuple`
-
-### shift
-
-<span id="qiskit.pulse.instructions.Snapshot.shift" />
-
-`shift(time, name=None)`
-
-Return a new schedule shifted forward by time.
-
-**Parameters**
-
-*   **time** (`int`) – Time to shift by
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
-
-**Return type**
-
-`Schedule`
-
-### start\_time
-
-<span id="qiskit.pulse.instructions.Snapshot.start_time" />
-
-`property start_time`
-
-Relative begin time of this instruction.
-
-**Return type**
-
-`int`
-
-### stop\_time
-
-<span id="qiskit.pulse.instructions.Snapshot.stop_time" />
-
-`property stop_time`
-
-Relative end time of this instruction.
-
-**Return type**
-
-`int`
-
-### timeslots
-
-<span id="qiskit.pulse.instructions.Snapshot.timeslots" />
-
-`property timeslots`
-
-Occupied time slots by this instruction.
-
-**Return type**
-
-`Dict`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"), `List`\[`Tuple`\[`int`, `int`]]]
-
-### type
-
-<span id="qiskit.pulse.instructions.Snapshot.type" />
-
-`property type`
-
-Type of snapshot.
-
-**Return type**
-
-`str`
+    `str`
+  </Function>
+</Class>
 

@@ -8,57 +8,51 @@ python_api_name: qiskit.opflow.expectations.ExpectationBase
 
 # ExpectationBase
 
-<span id="qiskit.opflow.expectations.ExpectationBase" />
+<Class id="qiskit.opflow.expectations.ExpectationBase" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/expectation_base.py" signature="qiskit.opflow.expectations.ExpectationBase">
+  Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
-`qiskit.opflow.expectations.ExpectationBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/expectation_base.py "view source code")
+  Deprecated: A base for Expectation value converters. Expectations are converters which enable the computation of the expectation value of an Observable with respect to some state function. They traverse an Operator tree, replacing OperatorStateFn measurements with equivalent measurements which are more amenable to computation on quantum or classical hardware. For example, if one would like to measure the expectation value of an Operator `o` expressed as a sum of Paulis with respect to some state function, but only has access to diagonal measurements on Quantum hardware, we can create a measurement \~StateFn(o), use a `PauliExpectation` to convert it to a diagonal measurement and circuit pre-rotations to a append to the state, and sample this circuit on Quantum hardware with a CircuitSampler. All in all, this would be: `my_sampler.convert(my_expect.convert(~StateFn(o)) @ my_state).eval()`.
 
-Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.expectations.expectation_base.ExpectationBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Deprecated: A base for Expectation value converters. Expectations are converters which enable the computation of the expectation value of an Observable with respect to some state function. They traverse an Operator tree, replacing OperatorStateFn measurements with equivalent measurements which are more amenable to computation on quantum or classical hardware. For example, if one would like to measure the expectation value of an Operator `o` expressed as a sum of Paulis with respect to some state function, but only has access to diagonal measurements on Quantum hardware, we can create a measurement \~StateFn(o), use a `PauliExpectation` to convert it to a diagonal measurement and circuit pre-rotations to a append to the state, and sample this circuit on Quantum hardware with a CircuitSampler. All in all, this would be: `my_sampler.convert(my_expect.convert(~StateFn(o)) @ my_state).eval()`.
+  ## Methods
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.expectations.expectation_base.ExpectationBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  ### compute\_variance
 
-## Methods
+  <Function id="qiskit.opflow.expectations.ExpectationBase.compute_variance" name="compute_variance" signature="abstract compute_variance(exp_op)">
+    Compute the variance of the expectation estimator.
 
-### compute\_variance
+    **Parameters**
 
-<span id="qiskit.opflow.expectations.ExpectationBase.compute_variance" />
+    **exp\_op** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The full expectation value Operator after sampling.
 
-`abstract compute_variance(exp_op)`
+    **Returns**
 
-Compute the variance of the expectation estimator.
+    The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation.
 
-**Parameters**
+    **Return type**
 
-**exp\_op** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The full expectation value Operator after sampling.
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") | [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
+  </Function>
 
-**Returns**
+  ### convert
 
-The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation.
+  <Function id="qiskit.opflow.expectations.ExpectationBase.convert" name="convert" signature="abstract convert(operator)">
+    Accept an Operator and return a new Operator with the measurements replaced by alternate methods to compute the expectation value.
 
-**Return type**
+    **Parameters**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") | [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
+    **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator to convert.
 
-### convert
+    **Returns**
 
-<span id="qiskit.opflow.expectations.ExpectationBase.convert" />
+    The converted operator.
 
-`abstract convert(operator)`
+    **Return type**
 
-Accept an Operator and return a new Operator with the measurements replaced by alternate methods to compute the expectation value.
-
-**Parameters**
-
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator to convert.
-
-**Returns**
-
-The converted operator.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
+</Class>
 

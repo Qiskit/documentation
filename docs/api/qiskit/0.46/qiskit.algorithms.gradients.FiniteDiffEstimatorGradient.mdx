@@ -8,100 +8,94 @@ python_api_name: qiskit.algorithms.gradients.FiniteDiffEstimatorGradient
 
 # FiniteDiffEstimatorGradient
 
-<span id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient" />
+<Class id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/gradients/finite_diff/finite_diff_estimator_gradient.py" signature="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient(estimator, epsilon, options=None, *, method='central')">
+  Bases: [`BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base.base_estimator_gradient.BaseEstimatorGradient")
 
-`qiskit.algorithms.gradients.FiniteDiffEstimatorGradient(estimator, epsilon, options=None, *, method='central')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/gradients/finite_diff/finite_diff_estimator_gradient.py "view source code")
+  Compute the gradients of the expectation values by finite difference method \[1].
 
-Bases: [`BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base.base_estimator_gradient.BaseEstimatorGradient")
+  **Reference:** \[1] [Finite difference method](https://en.wikipedia.org/wiki/Finite_difference_method)
 
-Compute the gradients of the expectation values by finite difference method \[1].
+  **Parameters**
 
-**Reference:** \[1] [Finite difference method](https://en.wikipedia.org/wiki/Finite_difference_method)
+  *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator used to compute the gradients.
 
-**Parameters**
+  *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The offset size for the finite difference gradients.
 
-*   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator used to compute the gradients.
+  *   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
 
-*   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The offset size for the finite difference gradients.
+  *   **method** (*Literal\['central', 'forward', 'backward']*) –
 
-*   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+      The computation method of the gradients.
 
-*   **method** (*Literal\['central', 'forward', 'backward']*) –
+      > *   `central` computes $\frac{f(x+e)-f(x-e)}{2e}$,
+      > *   `forward` computes $\frac{f(x+e) - f(x)}{e}$,
+      > *   `backward` computes $\frac{f(x)-f(x-e)}{e}$
 
-    The computation method of the gradients.
+      where $e$ is epsilon.
 
-    > *   `central` computes $\frac{f(x+e)-f(x-e)}{2e}$,
-    > *   `forward` computes $\frac{f(x+e) - f(x)}{e}$,
-    > *   `backward` computes $\frac{f(x)-f(x-e)}{e}$
+  **Raises**
 
-    where $e$ is epsilon.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `epsilon` is not positive.
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If `method` is invalid.
 
-**Raises**
+  ## Attributes
 
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `epsilon` is not positive.
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If `method` is invalid.
+  ### derivative\_type
 
-## Attributes
+  <Attribute id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.derivative_type" name="derivative_type">
+    Return the derivative type (real, imaginary or complex).
 
-<span id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.derivative_type" />
+    **Returns**
 
-### derivative\_type
+    The derivative type.
+  </Attribute>
 
-Return the derivative type (real, imaginary or complex).
+  ### options
 
-**Returns**
+  <Attribute id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.options" name="options">
+    Return the union of estimator options setting and gradient default options, where, if the same field is set in both, the gradient’s default options override the primitive’s default setting.
 
-The derivative type.
+    **Returns**
 
-<span id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.options" />
+    The gradient default + estimator options.
+  </Attribute>
 
-### options
+  ## Methods
 
-Return the union of estimator options setting and gradient default options, where, if the same field is set in both, the gradient’s default options override the primitive’s default setting.
+  ### run
 
-**Returns**
+  <Function id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.run" name="run" signature="run(circuits, observables, parameter_values, parameters=None, **options)">
+    Run the job of the estimator gradient on the given circuits.
 
-The gradient default + estimator options.
+    **Parameters**
 
-## Methods
+    *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the gradients.
+    *   **observables** (*Sequence\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*]*) – The list of observables.
+    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – The list of parameter values to be bound to the circuit.
+    *   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated. None in the sequence means that the gradients of all parameters in the corresponding circuit are calculated.
+    *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
 
-### run
+    **Returns**
 
-<span id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.run" />
+    The job object of the gradients of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`. The j-th element of the i-th result corresponds to the gradient of the i-th circuit with respect to the j-th parameter.
 
-`run(circuits, observables, parameter_values, parameters=None, **options)`
+    **Raises**
 
-Run the job of the estimator gradient on the given circuits.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid arguments are given.
 
-**Parameters**
+    **Return type**
 
-*   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the gradients.
-*   **observables** (*Sequence\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*]*) – The list of observables.
-*   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – The list of parameter values to be bound to the circuit.
-*   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated. None in the sequence means that the gradients of all parameters in the corresponding circuit are calculated.
-*   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+    [AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
+  </Function>
 
-**Returns**
+  ### update\_default\_options
 
-The job object of the gradients of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`. The j-th element of the i-th result corresponds to the gradient of the i-th circuit with respect to the j-th parameter.
+  <Function id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.update_default_options" name="update_default_options" signature="update_default_options(**options)">
+    Update the gradient’s default options setting.
 
-**Raises**
+    **Parameters**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid arguments are given.
-
-**Return type**
-
-[AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
-
-### update\_default\_options
-
-<span id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient.update_default_options" />
-
-`update_default_options(**options)`
-
-Update the gradient’s default options setting.
-
-**Parameters**
-
-**\*\*options** – The fields to update the default options.
+    **\*\*options** – The fields to update the default options.
+  </Function>
+</Class>
 

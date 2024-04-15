@@ -8,199 +8,193 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
 # MCPhaseGate
 
-<span id="qiskit.circuit.library.MCPhaseGate" />
+<Class id="qiskit.circuit.library.MCPhaseGate" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/p.py" signature="qiskit.circuit.library.MCPhaseGate(lam, num_ctrl_qubits, label=None, *, duration=None, unit='dt', _base_label=None)">
+  Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
-`qiskit.circuit.library.MCPhaseGate(lam, num_ctrl_qubits, label=None, *, duration=None, unit='dt', _base_label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/p.py "view source code")
+  Multi-controlled-Phase gate.
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+  This is a diagonal and symmetric gate that induces a phase on the state of the target qubit, depending on the state of the control qubits.
 
-Multi-controlled-Phase gate.
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`mcp()`](qiskit.circuit.QuantumCircuit#mcp "qiskit.circuit.QuantumCircuit.mcp") method.
 
-This is a diagonal and symmetric gate that induces a phase on the state of the target qubit, depending on the state of the control qubits.
+  **Circuit symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`mcp()`](qiskit.circuit.QuantumCircuit#mcp "qiskit.circuit.QuantumCircuit.mcp") method.
+  ```python
+      q_0: ───■────
+              │
+              .
+              │
+  q_(n-1): ───■────
+           ┌──┴───┐
+      q_n: ┤ P(λ) ├
+           └──────┘
+  ```
 
-**Circuit symbol:**
+  <Admonition title="See also" type="note">
+    `CPhaseGate`: The singly-controlled-version of this gate.
+  </Admonition>
 
-```python
-    q_0: ───■────
-            │
-            .
-            │
-q_(n-1): ───■────
-         ┌──┴───┐
-    q_n: ┤ P(λ) ├
-         └──────┘
-```
+  Create new MCPhase gate.
 
-<Admonition title="See also" type="note">
-  `CPhaseGate`: The singly-controlled-version of this gate.
-</Admonition>
+  ## Attributes
 
-Create new MCPhase gate.
+  ### base\_class
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-<span id="qiskit.circuit.library.MCPhaseGate.base_class" />
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.MCPhaseGate.base_class "qiskit.circuit.library.MCPhaseGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-### base\_class
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.MCPhaseGate.base_class "qiskit.circuit.library.MCPhaseGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### condition
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition\_bits
 
-<span id="qiskit.circuit.library.MCPhaseGate.condition" />
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### condition
+  ### ctrl\_state
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCPhaseGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-<span id="qiskit.circuit.library.MCPhaseGate.ctrl_state" />
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  </Attribute>
 
-### ctrl\_state
+  ### duration
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCPhaseGate.decompositions" />
+  ### label
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### mutable
 
-<span id="qiskit.circuit.library.MCPhaseGate.definition" />
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-### definition
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  ### name
 
-<span id="qiskit.circuit.library.MCPhaseGate.duration" />
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-### duration
+    > \<original\_name\_o\<ctrl\_state>
 
-Get the duration.
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
 
-<span id="qiskit.circuit.library.MCPhaseGate.label" />
+  ### num\_clbits
 
-### label
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Return instruction label
+  ### num\_ctrl\_qubits
 
-<span id="qiskit.circuit.library.MCPhaseGate.mutable" />
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-### mutable
+    **Returns**
 
-Is this instance is a mutable unique instance or not.
+    The number of control qubits for the gate.
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+    **Return type**
 
-<span id="qiskit.circuit.library.MCPhaseGate.name" />
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Attribute>
 
-### name
+  ### num\_qubits
 
-Get name of gate. If the gate has open controls the gate name will become:
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-> \<original\_name\_o\<ctrl\_state>
+  ### params
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.params" name="params">
+    Get parameters from base\_gate.
 
-<span id="qiskit.circuit.library.MCPhaseGate.num_clbits" />
+    **Returns**
 
-### num\_clbits
+    List of gate parameters.
 
-Return the number of clbits.
+    **Return type**
 
-<span id="qiskit.circuit.library.MCPhaseGate.num_ctrl_qubits" />
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
-### num\_ctrl\_qubits
+    **Raises**
 
-Get number of control qubits.
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+  </Attribute>
 
-**Returns**
+  ### unit
 
-The number of control qubits for the gate.
+  <Attribute id="qiskit.circuit.library.MCPhaseGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-**Return type**
+  ## Methods
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  ### control
 
-<span id="qiskit.circuit.library.MCPhaseGate.num_qubits" />
+  <Function id="qiskit.circuit.library.MCPhaseGate.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Controlled version of this gate.
 
-### num\_qubits
+    **Parameters**
 
-Return the number of qubits.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-<span id="qiskit.circuit.library.MCPhaseGate.params" />
+    **Returns**
 
-### params
+    controlled version of this gate.
 
-Get parameters from base\_gate.
+    **Return type**
 
-**Returns**
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-List of gate parameters.
+  ### inverse
 
-**Return type**
-
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
-
-**Raises**
-
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
-
-<span id="qiskit.circuit.library.MCPhaseGate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### control
-
-<span id="qiskit.circuit.library.MCPhaseGate.control" />
-
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
-
-Controlled version of this gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.MCPhaseGate.inverse" />
-
-`inverse()`
-
-Return inverted MCU1 gate ($MCU1(\lambda)^{\dagger} = MCU1(-\lambda)$)
+  <Function id="qiskit.circuit.library.MCPhaseGate.inverse" name="inverse" signature="inverse()">
+    Return inverted MCU1 gate ($MCU1(\lambda)^{\dagger} = MCU1(-\lambda)$)
+  </Function>
+</Class>
 

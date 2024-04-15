@@ -10,301 +10,259 @@ python_api_name: qiskit.transpiler.CouplingMap
 
 # qiskit.transpiler.CouplingMap
 
-<span id="qiskit.transpiler.CouplingMap" />
+<Class id="qiskit.transpiler.CouplingMap" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/coupling.py" signature="CouplingMap(couplinglist=None, description=None)">
+  Directed graph specifying fixed coupling.
 
-`CouplingMap(couplinglist=None, description=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/coupling.py "view source code")
+  Nodes correspond to physical qubits (integers) and directed edges correspond to permitted CNOT gates
 
-Directed graph specifying fixed coupling.
+  Create coupling graph. By default, the generated coupling has no nodes.
 
-Nodes correspond to physical qubits (integers) and directed edges correspond to permitted CNOT gates
+  **Parameters**
 
-Create coupling graph. By default, the generated coupling has no nodes.
+  *   **couplinglist** (*list or None*) – An initial coupling graph, specified as an adjacency list containing couplings, e.g. \[\[0,1], \[0,2], \[1,2]].
+  *   **description** (*str*) – A string to describe the coupling map.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **couplinglist** (*list or None*) – An initial coupling graph, specified as an adjacency list containing couplings, e.g. \[\[0,1], \[0,2], \[1,2]].
-*   **description** (*str*) – A string to describe the coupling map.
+  <Function id="qiskit.transpiler.CouplingMap.__init__" name="__init__" signature="__init__(couplinglist=None, description=None)">
+    Create coupling graph. By default, the generated coupling has no nodes.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.transpiler.CouplingMap.__init__" />
+    *   **couplinglist** (*list or None*) – An initial coupling graph, specified as an adjacency list containing couplings, e.g. \[\[0,1], \[0,2], \[1,2]].
+    *   **description** (*str*) – A string to describe the coupling map.
+  </Function>
 
-`__init__(couplinglist=None, description=None)`
+  ## Methods
 
-Create coupling graph. By default, the generated coupling has no nodes.
+  |                                                                                                                                                                     |                                                                                                    |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.transpiler.CouplingMap.__init__ "qiskit.transpiler.CouplingMap.__init__")(\[couplinglist, description])                                        | Create coupling graph.                                                                             |
+  | [`add_edge`](#qiskit.transpiler.CouplingMap.add_edge "qiskit.transpiler.CouplingMap.add_edge")(src, dst)                                                            | Add directed edge to coupling graph.                                                               |
+  | [`add_physical_qubit`](#qiskit.transpiler.CouplingMap.add_physical_qubit "qiskit.transpiler.CouplingMap.add_physical_qubit")(physical\_qubit)                       | Add a physical qubit to the coupling graph as a node.                                              |
+  | [`distance`](#qiskit.transpiler.CouplingMap.distance "qiskit.transpiler.CouplingMap.distance")(physical\_qubit1, physical\_qubit2)                                  | Returns the undirected distance between physical\_qubit1 and physical\_qubit2.                     |
+  | [`draw`](#qiskit.transpiler.CouplingMap.draw "qiskit.transpiler.CouplingMap.draw")()                                                                                | Draws the coupling map.                                                                            |
+  | [`from_full`](#qiskit.transpiler.CouplingMap.from_full "qiskit.transpiler.CouplingMap.from_full")(num\_qubits\[, bidirectional])                                    | Return a fully connected coupling map on n qubits.                                                 |
+  | [`from_grid`](#qiskit.transpiler.CouplingMap.from_grid "qiskit.transpiler.CouplingMap.from_grid")(num\_rows, num\_columns\[, bidirectional])                        | Return qubits connected on a grid of num\_rows x num\_columns.                                     |
+  | [`from_line`](#qiskit.transpiler.CouplingMap.from_line "qiskit.transpiler.CouplingMap.from_line")(num\_qubits\[, bidirectional])                                    | Return a fully connected coupling map on n qubits.                                                 |
+  | [`from_ring`](#qiskit.transpiler.CouplingMap.from_ring "qiskit.transpiler.CouplingMap.from_ring")(num\_qubits\[, bidirectional])                                    | Return a fully connected coupling map on n qubits.                                                 |
+  | [`get_edges`](#qiskit.transpiler.CouplingMap.get_edges "qiskit.transpiler.CouplingMap.get_edges")()                                                                 | Gets the list of edges in the coupling graph.                                                      |
+  | [`is_connected`](#qiskit.transpiler.CouplingMap.is_connected "qiskit.transpiler.CouplingMap.is_connected")()                                                        | Test if the graph is connected.                                                                    |
+  | [`largest_connected_component`](#qiskit.transpiler.CouplingMap.largest_connected_component "qiskit.transpiler.CouplingMap.largest_connected_component")()           | Return a set of qubits in the largest connected component.                                         |
+  | [`make_symmetric`](#qiskit.transpiler.CouplingMap.make_symmetric "qiskit.transpiler.CouplingMap.make_symmetric")()                                                  | Convert uni-directional edges into bi-directional.                                                 |
+  | [`neighbors`](#qiskit.transpiler.CouplingMap.neighbors "qiskit.transpiler.CouplingMap.neighbors")(physical\_qubit)                                                  | Return the nearest neighbors of a physical qubit.                                                  |
+  | [`reduce`](#qiskit.transpiler.CouplingMap.reduce "qiskit.transpiler.CouplingMap.reduce")(mapping)                                                                   | Returns a reduced coupling map that corresponds to the subgraph of qubits selected in the mapping. |
+  | [`shortest_undirected_path`](#qiskit.transpiler.CouplingMap.shortest_undirected_path "qiskit.transpiler.CouplingMap.shortest_undirected_path")(physical\_qubit1, …) | Returns the shortest undirected path between physical\_qubit1 and physical\_qubit2.                |
+  | [`size`](#qiskit.transpiler.CouplingMap.size "qiskit.transpiler.CouplingMap.size")()                                                                                | Return the number of physical qubits in this graph.                                                |
+  | [`subgraph`](#qiskit.transpiler.CouplingMap.subgraph "qiskit.transpiler.CouplingMap.subgraph")(nodelist)                                                            | Return a CouplingMap object for a subgraph of self.                                                |
 
-**Parameters**
+  ## Attributes
 
-*   **couplinglist** (*list or None*) – An initial coupling graph, specified as an adjacency list containing couplings, e.g. \[\[0,1], \[0,2], \[1,2]].
-*   **description** (*str*) – A string to describe the coupling map.
+  |                                                                                                                     |                                           |
+  | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+  | [`is_symmetric`](#qiskit.transpiler.CouplingMap.is_symmetric "qiskit.transpiler.CouplingMap.is_symmetric")          | Test if the graph is symmetric.           |
+  | [`physical_qubits`](#qiskit.transpiler.CouplingMap.physical_qubits "qiskit.transpiler.CouplingMap.physical_qubits") | Returns a sorted list of physical\_qubits |
 
-## Methods
+  ### add\_edge
 
-|                                                                                                                                                                     |                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.transpiler.CouplingMap.__init__ "qiskit.transpiler.CouplingMap.__init__")(\[couplinglist, description])                                        | Create coupling graph.                                                                             |
-| [`add_edge`](#qiskit.transpiler.CouplingMap.add_edge "qiskit.transpiler.CouplingMap.add_edge")(src, dst)                                                            | Add directed edge to coupling graph.                                                               |
-| [`add_physical_qubit`](#qiskit.transpiler.CouplingMap.add_physical_qubit "qiskit.transpiler.CouplingMap.add_physical_qubit")(physical\_qubit)                       | Add a physical qubit to the coupling graph as a node.                                              |
-| [`distance`](#qiskit.transpiler.CouplingMap.distance "qiskit.transpiler.CouplingMap.distance")(physical\_qubit1, physical\_qubit2)                                  | Returns the undirected distance between physical\_qubit1 and physical\_qubit2.                     |
-| [`draw`](#qiskit.transpiler.CouplingMap.draw "qiskit.transpiler.CouplingMap.draw")()                                                                                | Draws the coupling map.                                                                            |
-| [`from_full`](#qiskit.transpiler.CouplingMap.from_full "qiskit.transpiler.CouplingMap.from_full")(num\_qubits\[, bidirectional])                                    | Return a fully connected coupling map on n qubits.                                                 |
-| [`from_grid`](#qiskit.transpiler.CouplingMap.from_grid "qiskit.transpiler.CouplingMap.from_grid")(num\_rows, num\_columns\[, bidirectional])                        | Return qubits connected on a grid of num\_rows x num\_columns.                                     |
-| [`from_line`](#qiskit.transpiler.CouplingMap.from_line "qiskit.transpiler.CouplingMap.from_line")(num\_qubits\[, bidirectional])                                    | Return a fully connected coupling map on n qubits.                                                 |
-| [`from_ring`](#qiskit.transpiler.CouplingMap.from_ring "qiskit.transpiler.CouplingMap.from_ring")(num\_qubits\[, bidirectional])                                    | Return a fully connected coupling map on n qubits.                                                 |
-| [`get_edges`](#qiskit.transpiler.CouplingMap.get_edges "qiskit.transpiler.CouplingMap.get_edges")()                                                                 | Gets the list of edges in the coupling graph.                                                      |
-| [`is_connected`](#qiskit.transpiler.CouplingMap.is_connected "qiskit.transpiler.CouplingMap.is_connected")()                                                        | Test if the graph is connected.                                                                    |
-| [`largest_connected_component`](#qiskit.transpiler.CouplingMap.largest_connected_component "qiskit.transpiler.CouplingMap.largest_connected_component")()           | Return a set of qubits in the largest connected component.                                         |
-| [`make_symmetric`](#qiskit.transpiler.CouplingMap.make_symmetric "qiskit.transpiler.CouplingMap.make_symmetric")()                                                  | Convert uni-directional edges into bi-directional.                                                 |
-| [`neighbors`](#qiskit.transpiler.CouplingMap.neighbors "qiskit.transpiler.CouplingMap.neighbors")(physical\_qubit)                                                  | Return the nearest neighbors of a physical qubit.                                                  |
-| [`reduce`](#qiskit.transpiler.CouplingMap.reduce "qiskit.transpiler.CouplingMap.reduce")(mapping)                                                                   | Returns a reduced coupling map that corresponds to the subgraph of qubits selected in the mapping. |
-| [`shortest_undirected_path`](#qiskit.transpiler.CouplingMap.shortest_undirected_path "qiskit.transpiler.CouplingMap.shortest_undirected_path")(physical\_qubit1, …) | Returns the shortest undirected path between physical\_qubit1 and physical\_qubit2.                |
-| [`size`](#qiskit.transpiler.CouplingMap.size "qiskit.transpiler.CouplingMap.size")()                                                                                | Return the number of physical qubits in this graph.                                                |
-| [`subgraph`](#qiskit.transpiler.CouplingMap.subgraph "qiskit.transpiler.CouplingMap.subgraph")(nodelist)                                                            | Return a CouplingMap object for a subgraph of self.                                                |
+  <Function id="qiskit.transpiler.CouplingMap.add_edge" name="add_edge" signature="add_edge(src, dst)">
+    Add directed edge to coupling graph.
 
-## Attributes
+    src (int): source physical qubit dst (int): destination physical qubit
+  </Function>
 
-|                                                                                                                     |                                           |
-| ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| [`is_symmetric`](#qiskit.transpiler.CouplingMap.is_symmetric "qiskit.transpiler.CouplingMap.is_symmetric")          | Test if the graph is symmetric.           |
-| [`physical_qubits`](#qiskit.transpiler.CouplingMap.physical_qubits "qiskit.transpiler.CouplingMap.physical_qubits") | Returns a sorted list of physical\_qubits |
+  ### add\_physical\_qubit
 
-### add\_edge
+  <Function id="qiskit.transpiler.CouplingMap.add_physical_qubit" name="add_physical_qubit" signature="add_physical_qubit(physical_qubit)">
+    Add a physical qubit to the coupling graph as a node.
 
-<span id="qiskit.transpiler.CouplingMap.add_edge" />
+    physical\_qubit (int): An integer representing a physical qubit.
 
-`add_edge(src, dst)`
+    **Raises**
 
-Add directed edge to coupling graph.
+    **CouplingError** – if trying to add duplicate qubit
+  </Function>
 
-src (int): source physical qubit dst (int): destination physical qubit
+  ### distance
 
-### add\_physical\_qubit
+  <Function id="qiskit.transpiler.CouplingMap.distance" name="distance" signature="distance(physical_qubit1, physical_qubit2)">
+    Returns the undirected distance between physical\_qubit1 and physical\_qubit2.
 
-<span id="qiskit.transpiler.CouplingMap.add_physical_qubit" />
+    **Parameters**
 
-`add_physical_qubit(physical_qubit)`
+    *   **physical\_qubit1** (*int*) – A physical qubit
+    *   **physical\_qubit2** (*int*) – Another physical qubit
 
-Add a physical qubit to the coupling graph as a node.
+    **Returns**
 
-physical\_qubit (int): An integer representing a physical qubit.
+    The undirected distance
 
-**Raises**
+    **Return type**
 
-**CouplingError** – if trying to add duplicate qubit
+    int
 
-### distance
+    **Raises**
 
-<span id="qiskit.transpiler.CouplingMap.distance" />
+    **CouplingError** – if the qubits do not exist in the CouplingMap
+  </Function>
 
-`distance(physical_qubit1, physical_qubit2)`
+  ### draw
 
-Returns the undirected distance between physical\_qubit1 and physical\_qubit2.
+  <Function id="qiskit.transpiler.CouplingMap.draw" name="draw" signature="draw()">
+    Draws the coupling map.
 
-**Parameters**
+    This function needs [pydot](https://github.com/erocarrera/pydot), which in turn needs [Graphviz](https://www.graphviz.org/) to be installed. Additionally, [pillow](https://python-pillow.org/) will need to be installed.
 
-*   **physical\_qubit1** (*int*) – A physical qubit
-*   **physical\_qubit2** (*int*) – Another physical qubit
+    **Returns**
 
-**Returns**
+    Drawn coupling map.
 
-The undirected distance
+    **Return type**
 
-**Return type**
+    PIL.Image
 
-int
+    **Raises**
 
-**Raises**
+    **ImportError** – when pydot or pillow are not installed.
+  </Function>
 
-**CouplingError** – if the qubits do not exist in the CouplingMap
+  ### from\_full
 
-### draw
+  <Function id="qiskit.transpiler.CouplingMap.from_full" name="from_full" signature="classmethod from_full(num_qubits, bidirectional=True)">
+    Return a fully connected coupling map on n qubits.
+  </Function>
 
-<span id="qiskit.transpiler.CouplingMap.draw" />
+  ### from\_grid
 
-`draw()`
+  <Function id="qiskit.transpiler.CouplingMap.from_grid" name="from_grid" signature="classmethod from_grid(num_rows, num_columns, bidirectional=True)">
+    Return qubits connected on a grid of num\_rows x num\_columns.
+  </Function>
 
-Draws the coupling map.
+  ### from\_line
 
-This function needs [pydot](https://github.com/erocarrera/pydot), which in turn needs [Graphviz](https://www.graphviz.org/) to be installed. Additionally, [pillow](https://python-pillow.org/) will need to be installed.
+  <Function id="qiskit.transpiler.CouplingMap.from_line" name="from_line" signature="classmethod from_line(num_qubits, bidirectional=True)">
+    Return a fully connected coupling map on n qubits.
+  </Function>
 
-**Returns**
+  ### from\_ring
 
-Drawn coupling map.
+  <Function id="qiskit.transpiler.CouplingMap.from_ring" name="from_ring" signature="classmethod from_ring(num_qubits, bidirectional=True)">
+    Return a fully connected coupling map on n qubits.
+  </Function>
 
-**Return type**
+  ### get\_edges
 
-PIL.Image
+  <Function id="qiskit.transpiler.CouplingMap.get_edges" name="get_edges" signature="get_edges()">
+    Gets the list of edges in the coupling graph.
 
-**Raises**
+    **Returns**
 
-**ImportError** – when pydot or pillow are not installed.
+    Each edge is a pair of physical qubits.
 
-### from\_full
+    **Return type**
 
-<span id="qiskit.transpiler.CouplingMap.from_full" />
+    Tuple(int,int)
+  </Function>
 
-`classmethod from_full(num_qubits, bidirectional=True)`
+  ### is\_connected
 
-Return a fully connected coupling map on n qubits.
+  <Function id="qiskit.transpiler.CouplingMap.is_connected" name="is_connected" signature="is_connected()">
+    Test if the graph is connected.
 
-### from\_grid
+    Return True if connected, False otherwise
+  </Function>
 
-<span id="qiskit.transpiler.CouplingMap.from_grid" />
+  ### is\_symmetric
 
-`classmethod from_grid(num_rows, num_columns, bidirectional=True)`
+  <Function id="qiskit.transpiler.CouplingMap.is_symmetric" name="is_symmetric" signature="property is_symmetric">
+    Test if the graph is symmetric.
 
-Return qubits connected on a grid of num\_rows x num\_columns.
+    Return True if symmetric, False otherwise
+  </Function>
 
-### from\_line
+  ### largest\_connected\_component
 
-<span id="qiskit.transpiler.CouplingMap.from_line" />
+  <Function id="qiskit.transpiler.CouplingMap.largest_connected_component" name="largest_connected_component" signature="largest_connected_component()">
+    Return a set of qubits in the largest connected component.
+  </Function>
 
-`classmethod from_line(num_qubits, bidirectional=True)`
+  ### make\_symmetric
 
-Return a fully connected coupling map on n qubits.
+  <Function id="qiskit.transpiler.CouplingMap.make_symmetric" name="make_symmetric" signature="make_symmetric()">
+    Convert uni-directional edges into bi-directional.
+  </Function>
 
-### from\_ring
+  ### neighbors
 
-<span id="qiskit.transpiler.CouplingMap.from_ring" />
+  <Function id="qiskit.transpiler.CouplingMap.neighbors" name="neighbors" signature="neighbors(physical_qubit)">
+    Return the nearest neighbors of a physical qubit.
 
-`classmethod from_ring(num_qubits, bidirectional=True)`
+    Directionality matters, i.e. a neighbor must be reachable by going one hop in the direction of an edge.
+  </Function>
 
-Return a fully connected coupling map on n qubits.
+  ### physical\_qubits
 
-### get\_edges
+  <Function id="qiskit.transpiler.CouplingMap.physical_qubits" name="physical_qubits" signature="property physical_qubits">
+    Returns a sorted list of physical\_qubits
+  </Function>
 
-<span id="qiskit.transpiler.CouplingMap.get_edges" />
+  ### reduce
 
-`get_edges()`
+  <Function id="qiskit.transpiler.CouplingMap.reduce" name="reduce" signature="reduce(mapping)">
+    Returns a reduced coupling map that corresponds to the subgraph of qubits selected in the mapping.
 
-Gets the list of edges in the coupling graph.
+    **Parameters**
 
-**Returns**
+    **mapping** (*list*) – A mapping of reduced qubits to device qubits.
 
-Each edge is a pair of physical qubits.
+    **Returns**
 
-**Return type**
+    A reduced coupling\_map for the selected qubits.
 
-Tuple(int,int)
+    **Return type**
 
-### is\_connected
+    [CouplingMap](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")
 
-<span id="qiskit.transpiler.CouplingMap.is_connected" />
+    **Raises**
 
-`is_connected()`
+    **CouplingError** – Reduced coupling map must be connected.
+  </Function>
 
-Test if the graph is connected.
+  ### shortest\_undirected\_path
 
-Return True if connected, False otherwise
+  <Function id="qiskit.transpiler.CouplingMap.shortest_undirected_path" name="shortest_undirected_path" signature="shortest_undirected_path(physical_qubit1, physical_qubit2)">
+    Returns the shortest undirected path between physical\_qubit1 and physical\_qubit2.
 
-### is\_symmetric
+    **Parameters**
 
-<span id="qiskit.transpiler.CouplingMap.is_symmetric" />
+    *   **physical\_qubit1** (*int*) – A physical qubit
+    *   **physical\_qubit2** (*int*) – Another physical qubit
 
-`property is_symmetric`
+    **Returns**
 
-Test if the graph is symmetric.
+    The shortest undirected path
 
-Return True if symmetric, False otherwise
+    **Return type**
 
-### largest\_connected\_component
+    List
 
-<span id="qiskit.transpiler.CouplingMap.largest_connected_component" />
+    **Raises**
 
-`largest_connected_component()`
+    **CouplingError** – When there is no path between physical\_qubit1, physical\_qubit2.
+  </Function>
 
-Return a set of qubits in the largest connected component.
+  ### size
 
-### make\_symmetric
+  <Function id="qiskit.transpiler.CouplingMap.size" name="size" signature="size()">
+    Return the number of physical qubits in this graph.
+  </Function>
 
-<span id="qiskit.transpiler.CouplingMap.make_symmetric" />
+  ### subgraph
 
-`make_symmetric()`
+  <Function id="qiskit.transpiler.CouplingMap.subgraph" name="subgraph" signature="subgraph(nodelist)">
+    Return a CouplingMap object for a subgraph of self.
 
-Convert uni-directional edges into bi-directional.
-
-### neighbors
-
-<span id="qiskit.transpiler.CouplingMap.neighbors" />
-
-`neighbors(physical_qubit)`
-
-Return the nearest neighbors of a physical qubit.
-
-Directionality matters, i.e. a neighbor must be reachable by going one hop in the direction of an edge.
-
-### physical\_qubits
-
-<span id="qiskit.transpiler.CouplingMap.physical_qubits" />
-
-`property physical_qubits`
-
-Returns a sorted list of physical\_qubits
-
-### reduce
-
-<span id="qiskit.transpiler.CouplingMap.reduce" />
-
-`reduce(mapping)`
-
-Returns a reduced coupling map that corresponds to the subgraph of qubits selected in the mapping.
-
-**Parameters**
-
-**mapping** (*list*) – A mapping of reduced qubits to device qubits.
-
-**Returns**
-
-A reduced coupling\_map for the selected qubits.
-
-**Return type**
-
-[CouplingMap](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")
-
-**Raises**
-
-**CouplingError** – Reduced coupling map must be connected.
-
-### shortest\_undirected\_path
-
-<span id="qiskit.transpiler.CouplingMap.shortest_undirected_path" />
-
-`shortest_undirected_path(physical_qubit1, physical_qubit2)`
-
-Returns the shortest undirected path between physical\_qubit1 and physical\_qubit2.
-
-**Parameters**
-
-*   **physical\_qubit1** (*int*) – A physical qubit
-*   **physical\_qubit2** (*int*) – Another physical qubit
-
-**Returns**
-
-The shortest undirected path
-
-**Return type**
-
-List
-
-**Raises**
-
-**CouplingError** – When there is no path between physical\_qubit1, physical\_qubit2.
-
-### size
-
-<span id="qiskit.transpiler.CouplingMap.size" />
-
-`size()`
-
-Return the number of physical qubits in this graph.
-
-### subgraph
-
-<span id="qiskit.transpiler.CouplingMap.subgraph" />
-
-`subgraph(nodelist)`
-
-Return a CouplingMap object for a subgraph of self.
-
-nodelist (list): list of integer node labels
+    nodelist (list): list of integer node labels
+  </Function>
+</Class>
 

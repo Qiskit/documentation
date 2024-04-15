@@ -8,46 +8,42 @@ python_api_name: qiskit.optimization.converters.QuadraticProgramToNegativeValueO
 
 # QuadraticProgramToNegativeValueOracle
 
-<span id="qiskit.optimization.converters.QuadraticProgramToNegativeValueOracle" />
+<Class id="qiskit.optimization.converters.QuadraticProgramToNegativeValueOracle" github="https://github.com/qiskit-community/qiskit-aqua/tree/0.7.3/qiskit/optimization/converters/quadratic_program_to_negative_value_oracle.py" signature="QuadraticProgramToNegativeValueOracle(num_value_qubits, measurement=False)">
+  Converts an optimization problem (QUBO) to a negative value oracle.
 
-`QuadraticProgramToNegativeValueOracle(num_value_qubits, measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/0.7.3/qiskit/optimization/converters/quadratic_program_to_negative_value_oracle.py "view source code")
+  In addition, a state preparation operator is generated from the coefficients and constant of a QUBO, which can be used to encode the function into a quantum state. In conjunction, this oracle and operator can be used to flag the negative values of a QUBO encoded in a quantum state.
 
-Converts an optimization problem (QUBO) to a negative value oracle.
+  The construction of the oracle is discussed in \[1].
 
-In addition, a state preparation operator is generated from the coefficients and constant of a QUBO, which can be used to encode the function into a quantum state. In conjunction, this oracle and operator can be used to flag the negative values of a QUBO encoded in a quantum state.
+  **References**
 
-The construction of the oracle is discussed in \[1].
+  **\[1]: Gilliam et al., Grover Adaptive Search for Constrained Polynomial Binary Optimization.**
 
-**References**
+  arxiv:1912.04088.
 
-**\[1]: Gilliam et al., Grover Adaptive Search for Constrained Polynomial Binary Optimization.**
+  **Parameters**
 
-arxiv:1912.04088.
+  *   **num\_value\_qubits** (`int`) – The number of qubits required to represent the output.
+  *   **measurement** (`bool`) – Whether the A operator contains measurements.
 
-**Parameters**
+  ## Methods
 
-*   **num\_value\_qubits** (`int`) – The number of qubits required to represent the output.
-*   **measurement** (`bool`) – Whether the A operator contains measurements.
+  ### encode
 
-## Methods
+  <Function id="qiskit.optimization.converters.QuadraticProgramToNegativeValueOracle.encode" name="encode" signature="QuadraticProgramToNegativeValueOracle.encode(problem)">
+    A helper function that converts a QUBO into an oracle that recognizes negative numbers.
 
-### encode
+    **Parameters**
 
-<span id="qiskit.optimization.converters.QuadraticProgramToNegativeValueOracle.encode" />
+    **problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved.
 
-`QuadraticProgramToNegativeValueOracle.encode(problem)`
+    **Return type**
 
-A helper function that converts a QUBO into an oracle that recognizes negative numbers.
+    `Tuple`\[[`Custom`](qiskit.aqua.components.initial_states.Custom "qiskit.aqua.components.initial_states.custom.Custom"), [`CustomCircuitOracle`](qiskit.aqua.components.oracles.CustomCircuitOracle "qiskit.aqua.components.oracles.custom_circuit_oracle.CustomCircuitOracle"), `Dict`\[`Union`\[`int`, `Tuple`\[`int`, `int`]], `int`]]
 
-**Parameters**
+    **Returns**
 
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved.
-
-**Return type**
-
-`Tuple`\[[`Custom`](qiskit.aqua.components.initial_states.Custom "qiskit.aqua.components.initial_states.custom.Custom"), [`CustomCircuitOracle`](qiskit.aqua.components.oracles.CustomCircuitOracle "qiskit.aqua.components.oracles.custom_circuit_oracle.CustomCircuitOracle"), `Dict`\[`Union`\[`int`, `Tuple`\[`int`, `int`]], `int`]]
-
-**Returns**
-
-A state preparation operator A, an oracle O that recognizes negative numbers, and a dictionary representation of the function coefficients, where the key -1 represents the constant.
+    A state preparation operator A, an oracle O that recognizes negative numbers, and a dictionary representation of the function coefficients, where the key -1 represents the constant.
+  </Function>
+</Class>
 

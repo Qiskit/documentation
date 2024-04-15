@@ -8,32 +8,30 @@ python_api_name: qiskit.quantum_info.purity
 
 # purity
 
-<span id="qiskit.quantum_info.purity" />
+<Function id="qiskit.quantum_info.purity" name="purity" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/states/measures.py" signature="purity(state, validate=True)">
+  Calculate the purity of a quantum state.
 
-`purity(state, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/states/measures.py "view source code")
+  The purity of a density matrix $\rho$ is
 
-Calculate the purity of a quantum state.
+  ..code:
 
-The purity of a density matrix $\rho$ is
+  > text\{Purity}(rho) = Tr\[rho^2]
 
-..code:
+  **Parameters**
 
-> text\{Purity}(rho) = Tr\[rho^2]
+  *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a quantum state.
+  *   **validate** (*bool*) – check if input state is valid \[Default: True]
 
-**Parameters**
+  **Returns**
 
-*   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a quantum state.
-*   **validate** (*bool*) – check if input state is valid \[Default: True]
+  the purity $Tr[\rho^2]$.
 
-**Returns**
+  **Return type**
 
-the purity $Tr[\rho^2]$.
+  float
 
-**Return type**
+  **Raises**
 
-float
-
-**Raises**
-
-**QiskitError** – if the input isn’t a valid quantum state.
+  **QiskitError** – if the input isn’t a valid quantum state.
+</Function>
 

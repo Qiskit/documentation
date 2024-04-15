@@ -8,107 +8,99 @@ python_api_name: qiskit.aqua.algorithms.EOH
 
 # EOH
 
-<span id="qiskit.aqua.algorithms.EOH" />
+<Class id="qiskit.aqua.algorithms.EOH" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/eoh.py" signature="EOH(operator, initial_state, evo_operator, evo_time=1, num_time_slices=1, expansion_mode='trotter', expansion_order=1, quantum_instance=None)">
+  Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
 
-`EOH(operator, initial_state, evo_operator, evo_time=1, num_time_slices=1, expansion_mode='trotter', expansion_order=1, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/eoh.py "view source code")
+  The Quantum EOH (Evolution of Hamiltonian) algorithm.
 
-Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
+  EOH provides the lower-level building blocks for simulating universal quantum systems. For any given quantum system that can be decomposed into local interactions (for example, a global hamiltonian as the weighted sum of several Pauli spin operators), the local interactions can then be used to approximate the global quantum system via, for example, Lloyd’s method or Trotter-Suzuki decomposition.
 
-The Quantum EOH (Evolution of Hamiltonian) algorithm.
+  **Parameters**
 
-EOH provides the lower-level building blocks for simulating universal quantum systems. For any given quantum system that can be decomposed into local interactions (for example, a global hamiltonian as the weighted sum of several Pauli spin operators), the local interactions can then be used to approximate the global quantum system via, for example, Lloyd’s method or Trotter-Suzuki decomposition.
+  *   **operator** (`LegacyBaseOperator`) – Operator to evaluate
+  *   **initial\_state** (`Union`\[`InitialState`, `QuantumCircuit`]) – Initial state for evolution
+  *   **evo\_operator** (`LegacyBaseOperator`) – Operator to evolve
+  *   **evo\_time** (`float`) – Evolution time, has min value of 0
+  *   **num\_time\_slices** (`int`) – Number of time slices, has minimum value of 1
+  *   **expansion\_mode** (`str`) – Either `"trotter"` (Lloyd’s method) or `"suzuki"` (for Trotter-Suzuki expansion)
+  *   **expansion\_order** (`int`) – The Trotter-Suzuki expansion order.
+  *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
 
-**Parameters**
+  ## Methods
 
-*   **operator** (`LegacyBaseOperator`) – Operator to evaluate
-*   **initial\_state** (`Union`\[`InitialState`, `QuantumCircuit`]) – Initial state for evolution
-*   **evo\_operator** (`LegacyBaseOperator`) – Operator to evolve
-*   **evo\_time** (`float`) – Evolution time, has min value of 0
-*   **num\_time\_slices** (`int`) – Number of time slices, has minimum value of 1
-*   **expansion\_mode** (`str`) – Either `"trotter"` (Lloyd’s method) or `"suzuki"` (for Trotter-Suzuki expansion)
-*   **expansion\_order** (`int`) – The Trotter-Suzuki expansion order.
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
+  ### construct\_circuit
 
-## Methods
+  <Function id="qiskit.aqua.algorithms.EOH.construct_circuit" name="construct_circuit" signature="EOH.construct_circuit()">
+    Construct the circuit.
 
-### construct\_circuit
+    **Returns**
 
-<span id="qiskit.aqua.algorithms.EOH.construct_circuit" />
+    the circuit.
 
-`EOH.construct_circuit()`
+    **Return type**
 
-Construct the circuit.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-**Returns**
+  ### run
 
-the circuit.
+  <Function id="qiskit.aqua.algorithms.EOH.run" name="run" signature="EOH.run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-**Return type**
+    **Parameters**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-### run
+    **Returns**
 
-<span id="qiskit.aqua.algorithms.EOH.run" />
+    results of an algorithm.
 
-`EOH.run(quantum_instance=None, **kwargs)`
+    **Return type**
 
-Execute the algorithm with selected backend.
+    dict
 
-**Parameters**
+    **Raises**
 
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-**Returns**
+  ### set\_backend
 
-results of an algorithm.
+  <Function id="qiskit.aqua.algorithms.EOH.set_backend" name="set_backend" signature="EOH.set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-**Return type**
+    **Return type**
 
-dict
+    `None`
+  </Function>
 
-**Raises**
+  ## Attributes
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  ### backend
 
-### set\_backend
+  <Attribute id="qiskit.aqua.algorithms.EOH.backend" name="backend">
+    Returns backend.
 
-<span id="qiskit.aqua.algorithms.EOH.set_backend" />
+    **Return type**
 
-`EOH.set_backend(backend, **kwargs)`
+    `Union`\[`Backend`, `BaseBackend`]
+  </Attribute>
 
-Sets backend with configuration.
+  ### quantum\_instance
 
-**Return type**
+  <Attribute id="qiskit.aqua.algorithms.EOH.quantum_instance" name="quantum_instance">
+    Returns quantum instance.
 
-`None`
+    **Return type**
 
-## Attributes
+    `Optional`\[`QuantumInstance`]
+  </Attribute>
 
-<span id="qiskit.aqua.algorithms.EOH.backend" />
+  ### random
 
-### backend
-
-Returns backend.
-
-**Return type**
-
-`Union`\[`Backend`, `BaseBackend`]
-
-<span id="qiskit.aqua.algorithms.EOH.quantum_instance" />
-
-### quantum\_instance
-
-Returns quantum instance.
-
-**Return type**
-
-`Optional`\[`QuantumInstance`]
-
-<span id="qiskit.aqua.algorithms.EOH.random" />
-
-### random
-
-Return a numpy random.
+  <Attribute id="qiskit.aqua.algorithms.EOH.random" name="random">
+    Return a numpy random.
+  </Attribute>
+</Class>
 

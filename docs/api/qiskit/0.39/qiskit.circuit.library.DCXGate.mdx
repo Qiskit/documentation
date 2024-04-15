@@ -8,107 +8,105 @@ python_api_name: qiskit.circuit.library.DCXGate
 
 # DCXGate
 
-<span id="qiskit.circuit.library.DCXGate" />
+<Class id="qiskit.circuit.library.DCXGate" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/dcx.py" signature="DCXGate">
+  Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`DCXGate` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/dcx.py "view source code")
+  Double-CNOT gate.
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  A 2-qubit Clifford gate consisting of two back-to-back CNOTs with alternate controls.
 
-Double-CNOT gate.
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`dcx()`](qiskit.circuit.QuantumCircuit#dcx "qiskit.circuit.QuantumCircuit.dcx") method.
 
-A 2-qubit Clifford gate consisting of two back-to-back CNOTs with alternate controls.
+  ```python
+            ┌───┐
+  q_0: ──■──┤ X ├
+       ┌─┴─┐└─┬─┘
+  q_1: ┤ X ├──■──
+       └───┘
+  ```
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`dcx()`](qiskit.circuit.QuantumCircuit#dcx "qiskit.circuit.QuantumCircuit.dcx") method.
-
-```python
-          ┌───┐
-q_0: ──■──┤ X ├
-     ┌─┴─┐└─┬─┘
-q_1: ┤ X ├──■──
-     └───┘
-```
-
-This is a classical logic gate, equivalent to a CNOT-SWAP (CNS) sequence, and locally equivalent to an iSWAP.
+  This is a classical logic gate, equivalent to a CNOT-SWAP (CNS) sequence, and locally equivalent to an iSWAP.
 
 $$
 \begin{split}DCX\ q_0, q_1 =
-    \begin{pmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & 0 & 0 & 1 \\
-        0 & 1 & 0 & 0 \\
-        0 & 0 & 1 & 0
-    \end{pmatrix}\end{split}
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0
+\end{pmatrix}\end{split}
 $$
 
-Create new DCX gate.
+  Create new DCX gate.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.DCXGate.condition_bits" />
+  ### condition\_bits
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.DCXGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-Get Clbits in condition.
+    **Return type**
 
-**Return type**
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  ### decompositions
 
-<span id="qiskit.circuit.library.DCXGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.DCXGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### decompositions
+  ### definition
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.DCXGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.circuit.library.DCXGate.definition" />
+  ### duration
 
-### definition
+  <Attribute id="qiskit.circuit.library.DCXGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### label
 
-<span id="qiskit.circuit.library.DCXGate.duration" />
+  <Attribute id="qiskit.circuit.library.DCXGate.label" name="label">
+    Return instruction label
 
-### duration
+    **Return type**
 
-Get the duration.
+    `str`
+  </Attribute>
 
-<span id="qiskit.circuit.library.DCXGate.label" />
+  ### name
 
-### label
+  <Attribute id="qiskit.circuit.library.DCXGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-Return instruction label
+  ### num\_clbits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.DCXGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-`str`
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.DCXGate.name" />
+  <Attribute id="qiskit.circuit.library.DCXGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-### name
+  ### params
 
-Return the name.
+  <Attribute id="qiskit.circuit.library.DCXGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.DCXGate.num_clbits" />
+  ### unit
 
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.DCXGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.DCXGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.DCXGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.DCXGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

@@ -8,120 +8,114 @@ python_api_name: qiskit.opflow.gradients.NaturalGradient
 
 # NaturalGradient
 
-<span id="qiskit.opflow.gradients.NaturalGradient" />
+<Class id="qiskit.opflow.gradients.NaturalGradient" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/gradients/natural_gradient.py" signature="NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)">
+  Bases: [`qiskit.opflow.gradients.gradient_base.GradientBase`](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.gradient_base.GradientBase")
 
-`NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/gradients/natural_gradient.py "view source code")
+  Convert an operator expression to the first-order gradient.
 
-Bases: [`qiskit.opflow.gradients.gradient_base.GradientBase`](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.gradient_base.GradientBase")
+  Given an ill-posed inverse problem
 
-Convert an operator expression to the first-order gradient.
+  > x = arg min\{||Ax-C||^2} (1)
 
-Given an ill-posed inverse problem
+  one can use regularization schemes can be used to stabilize the system and find a numerical solution
 
-> x = arg min\{||Ax-C||^2} (1)
+  > x\_lambda = arg min\{||Ax-C||^2 + lambda\*R(x)} (2)
 
-one can use regularization schemes can be used to stabilize the system and find a numerical solution
+  where R(x) represents the penalization term.
 
-> x\_lambda = arg min\{||Ax-C||^2 + lambda\*R(x)} (2)
+  **Parameters**
 
-where R(x) represents the penalization term.
+  *   **grad\_method** (`Union`\[`str`, [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")]) – The method used to compute the state gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`.
+  *   **qfi\_method** (`Union`\[`str`, [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")]) – The method used to compute the QFI. Can be either `'lin_comb_full'` or `'overlap_block_diag'` or `'overlap_diag'`.
+  *   **regularization** (`Optional`\[`str`]) – Use the following regularization with a least square method to solve the underlying system of linear equations Can be either None or `'ridge'` or `'lasso'` or `'perturb_diag'` `'ridge'` and `'lasso'` use an automatic optimal parameter search If regularization is None but the metric is ill-conditioned or singular then a least square solver is used without regularization
+  *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
 
-**Parameters**
+  ## Methods Defined Here
 
-*   **grad\_method** (`Union`\[`str`, [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")]) – The method used to compute the state gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`.
-*   **qfi\_method** (`Union`\[`str`, [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")]) – The method used to compute the QFI. Can be either `'lin_comb_full'` or `'overlap_block_diag'` or `'overlap_diag'`.
-*   **regularization** (`Optional`\[`str`]) – Use the following regularization with a least square method to solve the underlying system of linear equations Can be either None or `'ridge'` or `'lasso'` or `'perturb_diag'` `'ridge'` and `'lasso'` use an automatic optimal parameter search If regularization is None but the metric is ill-conditioned or singular then a least square solver is used without regularization
-*   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
+  ### convert
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.gradients.NaturalGradient.convert" name="convert" signature="NaturalGradient.convert(operator, params=None)">
+    **Parameters**
 
-### convert
+    *   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator we are taking the gradient of.
+    *   **params** (`Union`\[[`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `None`]) – The parameters we are taking the gradient with respect to. If not explicitly passed, they are inferred from the operator and sorted by name.
 
-<span id="qiskit.opflow.gradients.NaturalGradient.convert" />
+    **Return type**
 
-`NaturalGradient.convert(operator, params=None)`
+    [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 
-**Parameters**
+    **Returns**
 
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator we are taking the gradient of.
-*   **params** (`Union`\[[`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `None`]) – The parameters we are taking the gradient with respect to. If not explicitly passed, they are inferred from the operator and sorted by name.
+    An operator whose evaluation yields the NaturalGradient.
 
-**Return type**
+    **Raises**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    *   **TypeError** – If `operator` does not represent an expectation value or the quantum state is not `CircuitStateFn`.
+    *   **ValueError** – If `params` contains a parameter not present in `operator`.
+    *   **ValueError** – If `operator` is not parameterized.
+  </Function>
 
-**Returns**
+  ### nat\_grad\_combo\_fn
 
-An operator whose evaluation yields the NaturalGradient.
+  <Function id="qiskit.opflow.gradients.NaturalGradient.nat_grad_combo_fn" name="nat_grad_combo_fn" signature="static NaturalGradient.nat_grad_combo_fn(x, regularization=None)">
+    Natural Gradient Function Implementation.
 
-**Raises**
+    **Parameters**
 
-*   **TypeError** – If `operator` does not represent an expectation value or the quantum state is not `CircuitStateFn`.
-*   **ValueError** – If `params` contains a parameter not present in `operator`.
-*   **ValueError** – If `operator` is not parameterized.
+    *   **x** (`tuple`) – Iterable consisting of Gradient, Quantum Fisher Information.
+    *   **regularization** (`Optional`\[`str`]) – Regularization method.
 
-### nat\_grad\_combo\_fn
+    **Return type**
 
-<span id="qiskit.opflow.gradients.NaturalGradient.nat_grad_combo_fn" />
+    `ndarray`
 
-`static NaturalGradient.nat_grad_combo_fn(x, regularization=None)`
+    **Returns**
 
-Natural Gradient Function Implementation.
+    Natural Gradient.
 
-**Parameters**
+    **Raises**
 
-*   **x** (`tuple`) – Iterable consisting of Gradient, Quantum Fisher Information.
-*   **regularization** (`Optional`\[`str`]) – Regularization method.
+    **ValueError** – If the gradient has imaginary components that are non-negligible.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`ndarray`
+  ### grad\_method
 
-**Returns**
+  <Attribute id="qiskit.opflow.gradients.NaturalGradient.grad_method" name="grad_method">
+    Returns `CircuitGradient`.
 
-Natural Gradient.
+    **Return type**
 
-**Raises**
+    [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")
 
-**ValueError** – If the gradient has imaginary components that are non-negligible.
+    **Returns**
 
-## Attributes
+    `CircuitGradient`.
+  </Attribute>
 
-<span id="qiskit.opflow.gradients.NaturalGradient.grad_method" />
+  ### qfi\_method
 
-### grad\_method
+  <Attribute id="qiskit.opflow.gradients.NaturalGradient.qfi_method" name="qfi_method">
+    Returns `CircuitQFI`.
 
-Returns `CircuitGradient`.
+    Returns: `CircuitQFI`.
 
-**Return type**
+    **Return type**
 
-[`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")
+    [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")
+  </Attribute>
 
-**Returns**
+  ### regularization
 
-`CircuitGradient`.
+  <Attribute id="qiskit.opflow.gradients.NaturalGradient.regularization" name="regularization">
+    Returns the regularization option.
 
-<span id="qiskit.opflow.gradients.NaturalGradient.qfi_method" />
+    Returns: the regularization option.
 
-### qfi\_method
+    **Return type**
 
-Returns `CircuitQFI`.
-
-Returns: `CircuitQFI`.
-
-**Return type**
-
-[`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")
-
-<span id="qiskit.opflow.gradients.NaturalGradient.regularization" />
-
-### regularization
-
-Returns the regularization option.
-
-Returns: the regularization option.
-
-**Return type**
-
-`Optional`\[`str`]
+    `Optional`\[`str`]
+  </Attribute>
+</Class>
 

@@ -8,434 +8,394 @@ python_api_name: qiskit.quantum_info.SuperOp
 
 # SuperOp
 
-<span id="qiskit.quantum_info.SuperOp" />
+<Class id="qiskit.quantum_info.SuperOp" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/superop.py" signature="SuperOp(data, input_dims=None, output_dims=None)">
+  Superoperator representation of a quantum channel.
 
-`SuperOp(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/superop.py "view source code")
-
-Superoperator representation of a quantum channel.
-
-The Superoperator representation of a quantum channel $\mathcal{E}$ is a matrix $S$ such that the evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ is given by
+  The Superoperator representation of a quantum channel $\mathcal{E}$ is a matrix $S$ such that the evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ is given by
 
 $$
 |\mathcal{E}(\rho)\rangle\!\rangle = S |\rho\rangle\!\rangle
 $$
 
-where the double-ket notation $|A\rangle\!\rangle$ denotes a vector formed by stacking the columns of the matrix $A$ *(column-vectorization)*.
+  where the double-ket notation $|A\rangle\!\rangle$ denotes a vector formed by stacking the columns of the matrix $A$ *(column-vectorization)*.
 
-See reference \[1] for further details.
+  See reference \[1] for further details.
 
-**References**
+  **References**
 
-1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
+  1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
 
-Initialize a quantum channel Superoperator operator.
+  Initialize a quantum channel Superoperator operator.
 
-**Parameters**
+  **Parameters**
 
-*   **or** (*data (*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Instruction or BaseOperator or matrix): data to initialize superoperator.
-*   **input\_dims** (*tuple*) – the input subsystem dimensions. \[Default: None]
-*   **output\_dims** (*tuple*) – the output subsystem dimensions. \[Default: None]
+  *   **or** (*data (*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Instruction or BaseOperator or matrix): data to initialize superoperator.
+  *   **input\_dims** (*tuple*) – the input subsystem dimensions. \[Default: None]
+  *   **output\_dims** (*tuple*) – the output subsystem dimensions. \[Default: None]
 
-**Raises**
+  **Raises**
 
-**QiskitError** – if input data cannot be initialized as a superoperator.
+  **QiskitError** – if input data cannot be initialized as a superoperator.
 
-**Additional Information:**
+  **Additional Information:**
 
-If the input or output dimensions are None, they will be automatically determined from the input data. If the input data is a Numpy array of shape (4\*\*N, 4\*\*N) qubit systems will be used. If the input operator is not an N-qubit operator, it will assign a single subsystem with dimension specified by the shape of the input.
+  If the input or output dimensions are None, they will be automatically determined from the input data. If the input data is a Numpy array of shape (4\*\*N, 4\*\*N) qubit systems will be used. If the input operator is not an N-qubit operator, it will assign a single subsystem with dimension specified by the shape of the input.
 
-## Attributes
+  ## Attributes
 
-### atol
+  ### atol
 
-The default absolute tolerance parameter for float comparisons.
+  <Attribute id="qiskit.quantum_info.SuperOp.atol" name="atol">
+    The default absolute tolerance parameter for float comparisons.
+  </Attribute>
 
-### data
+  ### data
 
-Return data.
+  <Attribute id="qiskit.quantum_info.SuperOp.data" name="data">
+    Return data.
+  </Attribute>
 
-### dim
+  ### dim
 
-Return tuple (input\_shape, output\_shape).
+  <Attribute id="qiskit.quantum_info.SuperOp.dim" name="dim">
+    Return tuple (input\_shape, output\_shape).
+  </Attribute>
 
-### num\_qubits
+  ### num\_qubits
 
-Return the number of qubits if a N-qubit operator or None otherwise.
+  <Attribute id="qiskit.quantum_info.SuperOp.num_qubits" name="num_qubits">
+    Return the number of qubits if a N-qubit operator or None otherwise.
+  </Attribute>
 
-### qargs
+  ### qargs
 
-Return the qargs for the operator.
+  <Attribute id="qiskit.quantum_info.SuperOp.qargs" name="qargs">
+    Return the qargs for the operator.
+  </Attribute>
 
-### rtol
+  ### rtol
 
-The relative tolerance parameter for float comparisons.
+  <Attribute id="qiskit.quantum_info.SuperOp.rtol" name="rtol">
+    The relative tolerance parameter for float comparisons.
+  </Attribute>
 
-## Methods
+  ## Methods
 
-### \_\_call\_\_
+  ### \_\_call\_\_
 
-<span id="qiskit.quantum_info.SuperOp.__call__" />
+  <Function id="qiskit.quantum_info.SuperOp.__call__" name="__call__" signature="SuperOp.__call__(qargs)">
+    Return a clone with qargs set
+  </Function>
 
-`SuperOp.__call__(qargs)`
+  ### \_\_mul\_\_
 
-Return a clone with qargs set
+  <Function id="qiskit.quantum_info.SuperOp.__mul__" name="__mul__" signature="SuperOp.__mul__(other)" />
 
-### \_\_mul\_\_
+  ### add
 
-<span id="qiskit.quantum_info.SuperOp.__mul__" />
+  <Function id="qiskit.quantum_info.SuperOp.add" name="add" signature="SuperOp.add(other)">
+    Return the linear operator self + other.
 
-`SuperOp.__mul__(other)`
+    DEPRECATED: use `operator + other` instead.
 
-### add
+    **Parameters**
 
-<span id="qiskit.quantum_info.SuperOp.add" />
+    **other** (*BaseOperator*) – an operator object.
 
-`SuperOp.add(other)`
+    **Returns**
 
-Return the linear operator self + other.
+    the operator self + other.
 
-DEPRECATED: use `operator + other` instead.
+    **Return type**
 
-**Parameters**
+    BaseOperator
+  </Function>
 
-**other** (*BaseOperator*) – an operator object.
+  ### adjoint
 
-**Returns**
+  <Function id="qiskit.quantum_info.SuperOp.adjoint" name="adjoint" signature="SuperOp.adjoint()">
+    Return the adjoint of the operator.
+  </Function>
 
-the operator self + other.
+  ### compose
 
-**Return type**
+  <Function id="qiskit.quantum_info.SuperOp.compose" name="compose" signature="SuperOp.compose(other, qargs=None, front=False)">
+    Return the composed quantum channel self @ other.
 
-BaseOperator
+    **Parameters**
 
-### adjoint
+    *   **other** (*QuantumChannel*) – a quantum channel.
+    *   **qargs** (*list or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems \[default: None].
+    *   **front** (*bool*) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
-<span id="qiskit.quantum_info.SuperOp.adjoint" />
+    **Returns**
 
-`SuperOp.adjoint()`
+    The quantum channel self @ other.
 
-Return the adjoint of the operator.
+    **Return type**
 
-### compose
+    [SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
 
-<span id="qiskit.quantum_info.SuperOp.compose" />
+    **Raises**
 
-`SuperOp.compose(other, qargs=None, front=False)`
+    **QiskitError** – if other has incompatible dimensions.
 
-Return the composed quantum channel self @ other.
+    #### Additional Information:
 
-**Parameters**
+    Composition (`@`) is defined as left matrix multiplication for [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") matrices. That is that `A @ B` is equal to `B * A`. Setting `front=True` returns right matrix multiplication `A * B` and is equivalent to the [`dot()`](qiskit.quantum_info.SuperOp#dot "qiskit.quantum_info.SuperOp.dot") method.
+  </Function>
 
-*   **other** (*QuantumChannel*) – a quantum channel.
-*   **qargs** (*list or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems \[default: None].
-*   **front** (*bool*) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+  ### conjugate
 
-**Returns**
+  <Function id="qiskit.quantum_info.SuperOp.conjugate" name="conjugate" signature="SuperOp.conjugate()">
+    Return the conjugate of the QuantumChannel.
+  </Function>
 
-The quantum channel self @ other.
+  ### copy
 
-**Return type**
+  <Function id="qiskit.quantum_info.SuperOp.copy" name="copy" signature="SuperOp.copy()">
+    Make a deep copy of current operator.
+  </Function>
 
-[SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
+  ### dot
 
-**Raises**
+  <Function id="qiskit.quantum_info.SuperOp.dot" name="dot" signature="SuperOp.dot(other, qargs=None)">
+    Return the right multiplied operator self \* other.
 
-**QiskitError** – if other has incompatible dimensions.
+    **Parameters**
 
-#### Additional Information:
+    *   **other** (*BaseOperator*) – an operator object.
+    *   **qargs** (*list or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems \[default: None].
 
-Composition (`@`) is defined as left matrix multiplication for [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") matrices. That is that `A @ B` is equal to `B * A`. Setting `front=True` returns right matrix multiplication `A * B` and is equivalent to the [`dot()`](qiskit.quantum_info.SuperOp#dot "qiskit.quantum_info.SuperOp.dot") method.
+    **Returns**
 
-### conjugate
+    The operator self \* other.
 
-<span id="qiskit.quantum_info.SuperOp.conjugate" />
+    **Return type**
 
-`SuperOp.conjugate()`
+    BaseOperator
 
-Return the conjugate of the QuantumChannel.
+    **Raises**
 
-### copy
+    **QiskitError** – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
+  </Function>
 
-<span id="qiskit.quantum_info.SuperOp.copy" />
+  ### expand
 
-`SuperOp.copy()`
+  <Function id="qiskit.quantum_info.SuperOp.expand" name="expand" signature="SuperOp.expand(other)">
+    Return the tensor product channel other ⊗ self.
 
-Make a deep copy of current operator.
+    **Parameters**
 
-### dot
+    **other** (*QuantumChannel*) – a quantum channel.
 
-<span id="qiskit.quantum_info.SuperOp.dot" />
+    **Returns**
 
-`SuperOp.dot(other, qargs=None)`
+    the tensor product channel other ⊗ self as a SuperOp object.
 
-Return the right multiplied operator self \* other.
+    **Return type**
 
-**Parameters**
+    [SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
 
-*   **other** (*BaseOperator*) – an operator object.
-*   **qargs** (*list or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems \[default: None].
+    **Raises**
 
-**Returns**
+    **QiskitError** – if other cannot be converted to a channel.
+  </Function>
 
-The operator self \* other.
+  ### input\_dims
 
-**Return type**
+  <Function id="qiskit.quantum_info.SuperOp.input_dims" name="input_dims" signature="SuperOp.input_dims(qargs=None)">
+    Return tuple of input dimension for specified subsystems.
+  </Function>
 
-BaseOperator
+  ### is\_cp
 
-**Raises**
+  <Function id="qiskit.quantum_info.SuperOp.is_cp" name="is_cp" signature="SuperOp.is_cp(atol=None, rtol=None)">
+    Test if Choi-matrix is completely-positive (CP)
+  </Function>
 
-**QiskitError** – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
+  ### is\_cptp
 
-### expand
+  <Function id="qiskit.quantum_info.SuperOp.is_cptp" name="is_cptp" signature="SuperOp.is_cptp(atol=None, rtol=None)">
+    Return True if completely-positive trace-preserving (CPTP).
+  </Function>
 
-<span id="qiskit.quantum_info.SuperOp.expand" />
+  ### is\_tp
 
-`SuperOp.expand(other)`
+  <Function id="qiskit.quantum_info.SuperOp.is_tp" name="is_tp" signature="SuperOp.is_tp(atol=None, rtol=None)">
+    Test if a channel is completely-positive (CP)
+  </Function>
 
-Return the tensor product channel other ⊗ self.
+  ### is\_unitary
 
-**Parameters**
+  <Function id="qiskit.quantum_info.SuperOp.is_unitary" name="is_unitary" signature="SuperOp.is_unitary(atol=None, rtol=None)">
+    Return True if QuantumChannel is a unitary channel.
+  </Function>
 
-**other** (*QuantumChannel*) – a quantum channel.
+  ### multiply
 
-**Returns**
+  <Function id="qiskit.quantum_info.SuperOp.multiply" name="multiply" signature="SuperOp.multiply(other)">
+    Return the linear operator other \* self.
 
-the tensor product channel other ⊗ self as a SuperOp object.
+    DEPRECATED: use `other * operator` instead.
 
-**Return type**
+    **Parameters**
 
-[SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
+    **other** (*complex*) – a complex number.
 
-**Raises**
+    **Returns**
 
-**QiskitError** – if other cannot be converted to a channel.
+    the linear operator other \* self.
 
-### input\_dims
+    **Return type**
 
-<span id="qiskit.quantum_info.SuperOp.input_dims" />
+    BaseOperator
 
-`SuperOp.input_dims(qargs=None)`
+    **Raises**
 
-Return tuple of input dimension for specified subsystems.
+    **NotImplementedError** – if subclass does not support multiplication.
+  </Function>
 
-### is\_cp
+  ### output\_dims
 
-<span id="qiskit.quantum_info.SuperOp.is_cp" />
+  <Function id="qiskit.quantum_info.SuperOp.output_dims" name="output_dims" signature="SuperOp.output_dims(qargs=None)">
+    Return tuple of output dimension for specified subsystems.
+  </Function>
 
-`SuperOp.is_cp(atol=None, rtol=None)`
+  ### power
 
-Test if Choi-matrix is completely-positive (CP)
+  <Function id="qiskit.quantum_info.SuperOp.power" name="power" signature="SuperOp.power(n)">
+    Return the compose of a QuantumChannel with itself n times.
 
-### is\_cptp
+    **Parameters**
 
-<span id="qiskit.quantum_info.SuperOp.is_cptp" />
+    **n** (*int*) – compute the matrix power of the superoperator matrix.
 
-`SuperOp.is_cptp(atol=None, rtol=None)`
+    **Returns**
 
-Return True if completely-positive trace-preserving (CPTP).
+    the n-times composition channel as a SuperOp object.
 
-### is\_tp
+    **Return type**
 
-<span id="qiskit.quantum_info.SuperOp.is_tp" />
+    [SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
 
-`SuperOp.is_tp(atol=None, rtol=None)`
+    **Raises**
 
-Test if a channel is completely-positive (CP)
+    **QiskitError** – if the input and output dimensions of the QuantumChannel are not equal, or the power is not an integer.
+  </Function>
 
-### is\_unitary
+  ### reshape
 
-<span id="qiskit.quantum_info.SuperOp.is_unitary" />
+  <Function id="qiskit.quantum_info.SuperOp.reshape" name="reshape" signature="SuperOp.reshape(input_dims=None, output_dims=None)">
+    Return a shallow copy with reshaped input and output subsystem dimensions.
 
-`SuperOp.is_unitary(atol=None, rtol=None)`
+    #### Arg:
 
-Return True if QuantumChannel is a unitary channel.
+    #### input\_dims (None or tuple): new subsystem input dimensions.
 
-### multiply
+    If None the original input dims will be preserved \[Default: None].
 
-<span id="qiskit.quantum_info.SuperOp.multiply" />
+    #### output\_dims (None or tuple): new subsystem output dimensions.
 
-`SuperOp.multiply(other)`
+    If None the original output dims will be preserved \[Default: None].
 
-Return the linear operator other \* self.
+    **Returns**
 
-DEPRECATED: use `other * operator` instead.
+    returns self with reshaped input and output dimensions.
 
-**Parameters**
+    **Return type**
 
-**other** (*complex*) – a complex number.
+    BaseOperator
 
-**Returns**
+    **Raises**
 
-the linear operator other \* self.
+    **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  </Function>
 
-**Return type**
+  ### set\_atol
 
-BaseOperator
+  <Function id="qiskit.quantum_info.SuperOp.set_atol" name="set_atol" signature="classmethod SuperOp.set_atol(value)">
+    Set the class default absolute tolerance parameter for float comparisons.
+  </Function>
 
-**Raises**
+  ### set\_rtol
 
-**NotImplementedError** – if subclass does not support multiplication.
+  <Function id="qiskit.quantum_info.SuperOp.set_rtol" name="set_rtol" signature="classmethod SuperOp.set_rtol(value)">
+    Set the class default relative tolerance parameter for float comparisons.
+  </Function>
 
-### output\_dims
+  ### subtract
 
-<span id="qiskit.quantum_info.SuperOp.output_dims" />
+  <Function id="qiskit.quantum_info.SuperOp.subtract" name="subtract" signature="SuperOp.subtract(other)">
+    Return the linear operator self - other.
 
-`SuperOp.output_dims(qargs=None)`
+    DEPRECATED: use `operator - other` instead.
 
-Return tuple of output dimension for specified subsystems.
+    **Parameters**
 
-### power
+    **other** (*BaseOperator*) – an operator object.
 
-<span id="qiskit.quantum_info.SuperOp.power" />
+    **Returns**
 
-`SuperOp.power(n)`
+    the operator self - other.
 
-Return the compose of a QuantumChannel with itself n times.
+    **Return type**
 
-**Parameters**
+    BaseOperator
+  </Function>
 
-**n** (*int*) – compute the matrix power of the superoperator matrix.
+  ### tensor
 
-**Returns**
+  <Function id="qiskit.quantum_info.SuperOp.tensor" name="tensor" signature="SuperOp.tensor(other)">
+    Return the tensor product channel self ⊗ other.
 
-the n-times composition channel as a SuperOp object.
+    **Parameters**
 
-**Return type**
+    **other** (*QuantumChannel*) – a quantum channel.
 
-[SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
+    **Returns**
 
-**Raises**
+    the tensor product channel self ⊗ other as a SuperOp object.
 
-**QiskitError** – if the input and output dimensions of the QuantumChannel are not equal, or the power is not an integer.
+    **Return type**
 
-### reshape
+    [SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
 
-<span id="qiskit.quantum_info.SuperOp.reshape" />
+    **Raises**
 
-`SuperOp.reshape(input_dims=None, output_dims=None)`
+    **QiskitError** – if other cannot be converted to a channel.
+  </Function>
 
-Return a shallow copy with reshaped input and output subsystem dimensions.
+  ### to\_instruction
 
-#### Arg:
+  <Function id="qiskit.quantum_info.SuperOp.to_instruction" name="to_instruction" signature="SuperOp.to_instruction()">
+    Convert to a Kraus or UnitaryGate circuit instruction.
 
-#### input\_dims (None or tuple): new subsystem input dimensions.
+    If the channel is unitary it will be added as a unitary gate, otherwise it will be added as a kraus simulator instruction.
 
-If None the original input dims will be preserved \[Default: None].
+    **Returns**
 
-#### output\_dims (None or tuple): new subsystem output dimensions.
+    A kraus instruction for the channel.
 
-If None the original output dims will be preserved \[Default: None].
+    **Return type**
 
-**Returns**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-returns self with reshaped input and output dimensions.
+    **Raises**
 
-**Return type**
+    **QiskitError** – if input data is not an N-qubit CPTP quantum channel.
+  </Function>
 
-BaseOperator
+  ### to\_operator
 
-**Raises**
+  <Function id="qiskit.quantum_info.SuperOp.to_operator" name="to_operator" signature="SuperOp.to_operator()">
+    Try to convert channel to a unitary representation Operator.
+  </Function>
 
-**QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  ### transpose
 
-### set\_atol
-
-<span id="qiskit.quantum_info.SuperOp.set_atol" />
-
-`classmethod SuperOp.set_atol(value)`
-
-Set the class default absolute tolerance parameter for float comparisons.
-
-### set\_rtol
-
-<span id="qiskit.quantum_info.SuperOp.set_rtol" />
-
-`classmethod SuperOp.set_rtol(value)`
-
-Set the class default relative tolerance parameter for float comparisons.
-
-### subtract
-
-<span id="qiskit.quantum_info.SuperOp.subtract" />
-
-`SuperOp.subtract(other)`
-
-Return the linear operator self - other.
-
-DEPRECATED: use `operator - other` instead.
-
-**Parameters**
-
-**other** (*BaseOperator*) – an operator object.
-
-**Returns**
-
-the operator self - other.
-
-**Return type**
-
-BaseOperator
-
-### tensor
-
-<span id="qiskit.quantum_info.SuperOp.tensor" />
-
-`SuperOp.tensor(other)`
-
-Return the tensor product channel self ⊗ other.
-
-**Parameters**
-
-**other** (*QuantumChannel*) – a quantum channel.
-
-**Returns**
-
-the tensor product channel self ⊗ other as a SuperOp object.
-
-**Return type**
-
-[SuperOp](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")
-
-**Raises**
-
-**QiskitError** – if other cannot be converted to a channel.
-
-### to\_instruction
-
-<span id="qiskit.quantum_info.SuperOp.to_instruction" />
-
-`SuperOp.to_instruction()`
-
-Convert to a Kraus or UnitaryGate circuit instruction.
-
-If the channel is unitary it will be added as a unitary gate, otherwise it will be added as a kraus simulator instruction.
-
-**Returns**
-
-A kraus instruction for the channel.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**QiskitError** – if input data is not an N-qubit CPTP quantum channel.
-
-### to\_operator
-
-<span id="qiskit.quantum_info.SuperOp.to_operator" />
-
-`SuperOp.to_operator()`
-
-Try to convert channel to a unitary representation Operator.
-
-### transpose
-
-<span id="qiskit.quantum_info.SuperOp.transpose" />
-
-`SuperOp.transpose()`
-
-Return the transpose of the QuantumChannel.
+  <Function id="qiskit.quantum_info.SuperOp.transpose" name="transpose" signature="SuperOp.transpose()">
+    Return the transpose of the QuantumChannel.
+  </Function>
+</Class>
 

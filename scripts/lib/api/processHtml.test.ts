@@ -10,7 +10,6 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { CheerioAPI, Cheerio, load as cheerioLoad } from "cheerio";
 import { describe, expect, test } from "@jest/globals";
 
 import {
@@ -26,37 +25,14 @@ import {
   removeMatplotlibFigCaptions,
   replaceViewcodeLinksWithGitHub,
   convertRubricsToHeaders,
-  prepareGitHubLink,
   processMembersAndSetMeta,
 } from "./processHtml";
 import { Metadata } from "./Metadata";
-
-class Doc {
-  readonly $: CheerioAPI;
-  readonly $main: Cheerio<any>;
-
-  constructor($: CheerioAPI, $main: Cheerio<any>) {
-    this.$ = $;
-    this.$main = $main;
-  }
-
-  static load(html: string): Doc {
-    const $ = cheerioLoad(`<div role="main">${html}</div>`);
-    return new Doc($, $("[role='main']"));
-  }
-
-  html(): string {
-    return this.$main.html()!.trim();
-  }
-
-  expectHtml(expected: string): void {
-    expect(this.html()).toEqual(expected.trim());
-  }
-}
+import { CheerioDoc } from "../testUtils";
 
 describe("loadImages()", () => {
   test("normal file", () => {
-    const doc = Doc.load(
+    const doc = CheerioDoc.load(
       `<img src="../_static/logo.png" alt="Logo"><img src="../_static/images/view-page-source-icon.svg">`,
     );
     const images = loadImages(doc.$, doc.$main, "/my-images", false);
@@ -76,7 +52,7 @@ describe("loadImages()", () => {
   });
 
   test("release note", () => {
-    const doc = Doc.load(
+    const doc = CheerioDoc.load(
       `<img src="../_static/images/view-page-source-icon.svg">`,
     );
     const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true);
@@ -91,7 +67,7 @@ describe("loadImages()", () => {
 });
 
 test("handleSphinxDesignCards()", () => {
-  const doc = Doc.load(`
+  const doc = CheerioDoc.load(`
     <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-fade-in-slide-down">
     <summary class="sd-summary-title sd-card-header">
         Account initialization
@@ -143,13 +119,13 @@ test("handleSphinxDesignCards()", () => {
 });
 
 test("renameAllH1s()", () => {
-  const doc = Doc.load(`<h1>Release Notes!!!</h1><h2>0.45.0</h2>`);
+  const doc = CheerioDoc.load(`<h1>Release Notes!!!</h1><h2>0.45.0</h2>`);
   renameAllH1s(doc.$, "New Title");
   doc.expectHtml(`<h1>New Title</h1><h2>0.45.0</h2>`);
 });
 
 test("removeHtmlExtensionsInRelativeLinks()", () => {
-  const doc = Doc.load(
+  const doc = CheerioDoc.load(
     `<a href="https://ibm.com"></a><a href="../foo.html"></a><a href="../img.svg"></a>`,
   );
   removeHtmlExtensionsInRelativeLinks(doc.$, doc.$main);
@@ -159,7 +135,7 @@ test("removeHtmlExtensionsInRelativeLinks()", () => {
 });
 
 test("removeDownloadSourceCode()", () => {
-  const doc = Doc.load(
+  const doc = CheerioDoc.load(
     `<p>(<a class="reference download internal" download="" href="../_downloads/878087bb6064f5d5f4c00d6f8a12319d/converters-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
       <figure class="align-default">
       <img alt="../_images/converters-1.png" class="plot-directive" src="../_images/converters-1.png" />
@@ -174,7 +150,7 @@ test("removeDownloadSourceCode()", () => {
 });
 
 test("removePermalinks()", () => {
-  const doc = Doc.load(`<a title="okay">Link</a>
+  const doc = CheerioDoc.load(`<a title="okay">Link</a>
     <a title="Permalink to this headline">Link</a>
     <a title="Permalink to this heading">Link</a>
     <a title="Permalink to this definition">Link</a>
@@ -185,7 +161,7 @@ test("removePermalinks()", () => {
 });
 
 test("removeColonSpans()", () => {
-  const doc = Doc.load(
+  const doc = CheerioDoc.load(
     `<dt class="field-odd">Parameters<span class="colon">:</span></dt>`,
   );
   removeColonSpans(doc.$main);
@@ -194,7 +170,7 @@ test("removeColonSpans()", () => {
 
 describe("removeMatplotlibFigCaptions()", () => {
   test("removes <figcaption>", () => {
-    const doc = Doc.load(`
+    const doc = CheerioDoc.load(`
     <figure class="align-default" id="id1">
       <img alt="../_images/fake_provider-1_00.png" class="plot-directive" src="../_images/fake_provider-1_00.png" />
       <figcaption>
@@ -230,7 +206,7 @@ describe("removeMatplotlibFigCaptions()", () => {
   });
 
   test("removes <div>", () => {
-    const doc = Doc.load(`
+    const doc = CheerioDoc.load(`
     <div class="figure align-default" id="id1">
       <img alt="../_images/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png" class="plot-directive" src="../_images/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png" />
       <p class="caption">
@@ -276,14 +252,14 @@ describe("removeMatplotlibFigCaptions()", () => {
       <p>My caption</p>
     </div>
   `;
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     removeMatplotlibFigCaptions(doc.$main);
     doc.expectHtml(html);
   });
 });
 
 test("addLanguageClassToCodeBlocks()", () => {
-  const doc1 = Doc.load(`<p><strong>Circuit symbol:</strong></p>
+  const doc1 = CheerioDoc.load(`<p><strong>Circuit symbol:</strong></p>
     <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     ┌──────────┐
     q_0: ┤ U(ϴ,φ,λ) ├
         └──────────┘
@@ -301,7 +277,7 @@ test("addLanguageClassToCodeBlocks()", () => {
     </code></pre></div>
     </div>`);
 
-  const doc2 = Doc.load(`<div class="highlight-default notranslate">
+  const doc2 = CheerioDoc.load(`<div class="highlight-default notranslate">
       <div class="highlight">
       <pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_runtime.options</span> <span class="kn">import</span> <span class="n">Options</span>
 
@@ -324,7 +300,7 @@ test("addLanguageClassToCodeBlocks()", () => {
 
 test("replaceSourceLinksWithGitHub()", () => {
   // Assumes that removeHtmlExtensionsInRelativeLinks() has already removed .html from the URL.
-  const doc = Doc.load(
+  const doc = CheerioDoc.load(
     `<a href="../_modules/my_quantum_project/my_file#IBMBackend"></a>
     <a class="reference external" href="https://github.com/Qiskit/qiskit/blob/stable/1.0/qiskit/utils/deprecation.py#L24-L101"></a>
     <a href="#my_quantum_project.IBMBackend"></a>`,
@@ -343,7 +319,7 @@ test("replaceSourceLinksWithGitHub()", () => {
 });
 
 test("convertRubricsToHeaders()", () => {
-  const doc = Doc.load(`<p class="rubric">Example</p>
+  const doc = CheerioDoc.load(`<p class="rubric">Example</p>
     <p class="rubric">Examples</p>
     <p class="rubric">References</p>
     <p class="rubric">Reference</p>
@@ -366,7 +342,7 @@ describe("maybeSetModuleMetadata()", () => {
   test("not a module", () => {
     const html = `<h1>Hello</h1>`;
     const meta: Metadata = {};
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     maybeSetModuleMetadata(doc.$, doc.$main, meta);
     doc.expectHtml(html);
     expect(meta).toEqual({});
@@ -374,7 +350,7 @@ describe("maybeSetModuleMetadata()", () => {
 
   const checkModuleFound = (html: string, name: string): void => {
     const meta: Metadata = {};
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     maybeSetModuleMetadata(doc.$, doc.$main, meta);
     doc.expectHtml(html);
     expect(meta).toEqual({
@@ -406,64 +382,8 @@ describe("maybeSetModuleMetadata()", () => {
   });
 });
 
-describe("prepareGitHubLink()", () => {
-  test("no link", () => {
-    const html = `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`;
-    const doc = Doc.load(html);
-    const result = prepareGitHubLink(doc.$main, false);
-    expect(result).toEqual("");
-    doc.expectHtml(html);
-  });
-
-  test("link from sphinx.ext.viewcode", () => {
-    const doc = Doc.load(
-      `<span class="pre">None</span><span class="sig-paren">)</span><a class="reference internal" href="https://ibm.com/my_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
-    );
-    const result = prepareGitHubLink(doc.$main, false);
-    expect(result).toEqual(
-      ` <a href="https://ibm.com/my_link" title="view source code">GitHub</a>`,
-    );
-    doc.expectHtml(
-      `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
-    );
-  });
-
-  test("link from sphinx.ext.linkcode", () => {
-    const doc = Doc.load(
-      `<span class="pre">None</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Qiskit/qiskit/blob/stable/1.0/qiskit/utils/deprecation.py#L24-L101"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
-    );
-    const result = prepareGitHubLink(doc.$main, false);
-    expect(result).toEqual(
-      ` <a href="https://github.com/Qiskit/qiskit/blob/stable/1.0/qiskit/utils/deprecation.py#L24-L101" title="view source code">GitHub</a>`,
-    );
-    doc.expectHtml(
-      `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
-    );
-  });
-
-  test("method link only used when it has line numbers", () => {
-    const withLinesDoc = Doc.load(
-      `<span class="sig-paren">)</span><a class="reference external" href="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py#L91-L117"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.run" title="Link to this definition">¶</a>`,
-    );
-    const withoutLinesDoc = Doc.load(
-      `<span class="sig-paren">)</span><a class="reference external" href="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.run" title="Link to this definition">¶</a>`,
-    );
-    const withLinesResult = prepareGitHubLink(withLinesDoc.$main, true);
-    const withoutLinesResult = prepareGitHubLink(withoutLinesDoc.$main, true);
-
-    expect(withLinesResult).toEqual(
-      ` <a href="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py#L91-L117" title="view source code">GitHub</a>`,
-    );
-    expect(withoutLinesResult).toEqual("");
-
-    const strippedHtml = `<span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.run" title="Link to this definition">¶</a>`;
-    withLinesDoc.expectHtml(strippedHtml);
-    withoutLinesDoc.expectHtml(strippedHtml);
-  });
-});
-
 describe("processMembersAndSetMeta()", () => {
-  test("function with added heading", () => {
+  test("function with added heading", async () => {
     const html = `<h1>Circuit Converters</h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="qiskit.converters.circuit_to_dag">
@@ -476,12 +396,12 @@ describe("processMembersAndSetMeta()", () => {
 <li><p><strong>copy_operations</strong> – Deep copy the operation objects in the QuantumCircuit for the output DAGCircuit.</p></li>
 </ul>
 </dd>`;
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     const meta: Metadata = {};
-    processMembersAndSetMeta(doc.$, doc.$main, meta);
+    await processMembersAndSetMeta(doc.$, doc.$main, meta);
     doc.expectHtml(`      <h1>Circuit Converters</h1>
-<div><h3>circuit_to_dag</h3><span class="target" id="qiskit.converters.circuit_to_dag"><p><code>
-<span class="sig-prename descclassname"><span class="pre">qiskit.converters.</span></span><span class="sig-name descname"><span class="pre">circuit_to_dag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy_operations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clbit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#qiskit.converters.circuit_to_dag" title="Permalink to this definition">¶</a></code> <a href="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" title="view source code">GitHub</a></p>
+<h3>circuit_to_dag</h3><div><function id="qiskit.converters.circuit_to_dag" name="circuit_to_dag" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" signature="qiskit.converters.circuit_to_dag(circuit, copy_operations=True, *, qubit_order=None, clbit_order=None)¶" extrasignatures="[]">
+  
 <div><p>Build a <a class="reference internal" href="../stubs/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit" title="qiskit.dagcircuit.DAGCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">DAGCircuit</span></code></a> object from a <a class="reference internal" href="../stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="qiskit.circuit.QuantumCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumCircuit</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -489,14 +409,15 @@ describe("processMembersAndSetMeta()", () => {
 <li><p><strong>circuit</strong> – the input circuit.</p></li>
 <li><p><strong>copy_operations</strong> – Deep copy the operation objects in the QuantumCircuit for the output DAGCircuit.</p></li>
 </ul>
-</dd></dl></div></span></div>`);
+</dd></dl></div>
+</function></div>`);
     expect(meta).toEqual({
       apiType: "function",
       apiName: "qiskit.converters.circuit_to_dag",
     });
   });
 
-  test("function without added heading", () => {
+  test("function without added heading", async () => {
     const html = `<h1>least_busy</h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="qiskit_ibm_provider.least_busy">
@@ -523,12 +444,12 @@ backends may not have this attribute.</p>
 </dl>
 </dd></dl>
 `;
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     const meta: Metadata = {};
-    processMembersAndSetMeta(doc.$, doc.$main, meta);
+    await processMembersAndSetMeta(doc.$, doc.$main, meta);
     doc.expectHtml(`<h1>least_busy</h1>
-<div><span class=\"target\" id=\"qiskit_ibm_provider.least_busy\"><p><code>
-<span class=\"sig-name descname\"><span class=\"pre\">least_busy</span></span><span class=\"sig-paren\">(</span><em class=\"sig-param\"><span class=\"n\"><span class=\"pre\">backends</span></span></em><span class=\"sig-paren\">)</span><a class=\"headerlink\" href=\"#qiskit_ibm_provider.least_busy\" title=\"Link to this definition\">¶</a></code> <a href=\"../_modules/qiskit_ibm_provider.html#least_busy\" title=\"view source code\">GitHub</a></p>
+<div><function id="qiskit_ibm_provider.least_busy" name="least_busy" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="true" github="../_modules/qiskit_ibm_provider.html#least_busy" signature="least_busy(backends)¶" extrasignatures="[]">
+  
 <div><p>Return the least busy backend from a list.</p>
 <p>Return the least busy available backend for those that
 have a <code class=\"docutils literal notranslate\"><span class=\"pre\">pending_jobs</span></code> in their <code class=\"docutils literal notranslate\"><span class=\"pre\">status</span></code>. Note that local
@@ -549,14 +470,15 @@ backends may not have this attribute.</p>
     does not have the <code class=\"docutils literal notranslate\"><span class=\"pre\">pending_jobs</span></code> attribute in its status.</p>
 </dd>
 </dl>
-</div></span></div>`);
+</div>
+</function></div>`);
     expect(meta).toEqual({
       apiType: "function",
       apiName: "qiskit_ibm_provider.least_busy",
     });
   });
 
-  test("exception with added heading", () => {
+  test("exception with added heading", async () => {
     const html = `<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">
 <h1>Top-level exceptions (<a class="reference internal" href="#module-qiskit.exceptions" title="qiskit.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.exceptions</span></code></a>)<a class="headerlink" href="#top-level-exceptions-qiskit-exceptions" title="Permalink to this heading">¶</a></h1>
 <p>All Qiskit-related errors raised by Qiskit are subclasses of the base:</p>
@@ -566,7 +488,6 @@ backends may not have this attribute.</p>
 <dd><p>Base class for errors raised by Qiskit.</p>
 <p>Set the error message.</p>
 </dd></dl>
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Errors that are just general programming errors, such as incorrect typing, may still raise
@@ -583,18 +504,18 @@ minimal install.  You can read more about those, and ways to check for their pre
 particular error, which subclasses both <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a> and the Python built-in <code class="docutils literal notranslate"><span class="pre">ImportError</span></code>.</p>
 </section>
 `;
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     const meta: Metadata = {};
-    processMembersAndSetMeta(doc.$, doc.$main, meta);
+    await processMembersAndSetMeta(doc.$, doc.$main, meta);
     doc.expectHtml(`<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">
 <h1>Top-level exceptions (<a class="reference internal" href="#module-qiskit.exceptions" title="qiskit.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.exceptions</span></code></a>)<a class="headerlink" href="#top-level-exceptions-qiskit-exceptions" title="Permalink to this heading">¶</a></h1>
 <p>All Qiskit-related errors raised by Qiskit are subclasses of the base:</p>
-<div><h3>QiskitError</h3><span class="target" id="qiskit.exceptions.QiskitError"><p><code>
-<span class="sig-prename descclassname"><span class="pre">qiskit.exceptions.</span></span><span class="sig-name descname"><span class="pre">QiskitError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#qiskit.exceptions.QiskitError" title="Permalink to this definition">¶</a></code> <a href="../_modules/qiskit/exceptions.html#QiskitError" title="view source code">GitHub</a></p>
+<h3>QiskitError</h3><div><class id="qiskit.exceptions.QiskitError" name="QiskitError" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/exceptions.html#QiskitError" signature="qiskit.exceptions.QiskitError(*message)¶" extrasignatures="[]">
+  
 <div><p>Base class for errors raised by Qiskit.</p>
 <p>Set the error message.</p>
-</div></span></div>
-
+</div>
+</class></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Errors that are just general programming errors, such as incorrect typing, may still raise

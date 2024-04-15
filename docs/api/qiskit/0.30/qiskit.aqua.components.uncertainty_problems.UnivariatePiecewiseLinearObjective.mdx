@@ -8,165 +8,137 @@ python_api_name: qiskit.aqua.components.uncertainty_problems.UnivariatePiecewise
 
 # UnivariatePiecewiseLinearObjective
 
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective" />
+<Class id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py" signature="UnivariatePiecewiseLinearObjective(num_state_qubits, min_state_value, max_state_value, breakpoints, slopes, offsets, f_min, f_max, c_approx, i_state=None, i_objective=None)">
+  Bases: `qiskit.aqua.utils.circuit_factory.CircuitFactory`
 
-`UnivariatePiecewiseLinearObjective(num_state_qubits, min_state_value, max_state_value, breakpoints, slopes, offsets, f_min, f_max, c_approx, i_state=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
+  Univariate Piecewise Linear Objective Function.
 
-Bases: `qiskit.aqua.utils.circuit_factory.CircuitFactory`
-
-Univariate Piecewise Linear Objective Function.
-
-This objective function applies controlled Y-rotation to the target qubit, where the control qubits represent integer value, and rotation approximates a piecewise linear function of the amplitude f:
+  This objective function applies controlled Y-rotation to the target qubit, where the control qubits represent integer value, and rotation approximates a piecewise linear function of the amplitude f:
 
 $$
 |x\rangle |0\rangle \mapsto |x\rangle (\sqrt(1 - f(x))|0\rangle + sqrt(f(x))|1\rangle )
 $$
 
-**Parameters**
+  **Parameters**
 
-*   **num\_state\_qubits** (`int`) – number of qubits to represent the state
-*   **min\_state\_value** (`float`) – lower bound of values to be represented by state qubits
-*   **max\_state\_value** (`float`) – upper bound of values to be represented by state qubits
-*   **breakpoints** (`Union`\[`List`\[`float`], `ndarray`]) – breakpoints of piecewise linear function
-*   **slopes** (`Union`\[`List`\[`float`], `ndarray`]) – slopes of linear segments
-*   **offsets** (`Union`\[`List`\[`float`], `ndarray`]) – offset of linear segments
-*   **f\_min** (`float`) – minimal value of resulting function (required for normalization of amplitude)
-*   **f\_max** (`float`) – maximal value of resulting function (required for normalization of amplitude)
-*   **c\_approx** (`float`) – approximating factor (linear segments are approximated by contracting rotation around pi/4, where sin^2() is locally linear)
-*   **i\_state** (`Optional`\[`List`\[`int`]]) – indices of qubits that represent the state
-*   **i\_objective** (`Optional`\[`int`]) – index of target qubit to apply the rotation to
+  *   **num\_state\_qubits** (`int`) – number of qubits to represent the state
+  *   **min\_state\_value** (`float`) – lower bound of values to be represented by state qubits
+  *   **max\_state\_value** (`float`) – upper bound of values to be represented by state qubits
+  *   **breakpoints** (`Union`\[`List`\[`float`], `ndarray`]) – breakpoints of piecewise linear function
+  *   **slopes** (`Union`\[`List`\[`float`], `ndarray`]) – slopes of linear segments
+  *   **offsets** (`Union`\[`List`\[`float`], `ndarray`]) – offset of linear segments
+  *   **f\_min** (`float`) – minimal value of resulting function (required for normalization of amplitude)
+  *   **f\_max** (`float`) – maximal value of resulting function (required for normalization of amplitude)
+  *   **c\_approx** (`float`) – approximating factor (linear segments are approximated by contracting rotation around pi/4, where sin^2() is locally linear)
+  *   **i\_state** (`Optional`\[`List`\[`int`]]) – indices of qubits that represent the state
+  *   **i\_objective** (`Optional`\[`int`]) – index of target qubit to apply the rotation to
 
-## Methods
+  ## Methods
 
-### build
+  ### build
 
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build" />
+  <Function id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build" name="build" signature="UnivariatePiecewiseLinearObjective.build(qc, q, q_ancillas=None, params=None)" />
 
-`UnivariatePiecewiseLinearObjective.build(qc, q, q_ancillas=None, params=None)`
+  ### build\_controlled
 
-### build\_controlled
+  <Function id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_controlled" name="build_controlled" signature="UnivariatePiecewiseLinearObjective.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds corresponding controlled sub-circuit to given circuit
 
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_controlled" />
+    **Parameters**
 
-`UnivariatePiecewiseLinearObjective.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-Adds corresponding controlled sub-circuit to given circuit
+  ### build\_controlled\_inverse
 
-**Parameters**
+  <Function id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_controlled_inverse" name="build_controlled_inverse" signature="UnivariatePiecewiseLinearObjective.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled inverse of corresponding sub-circuit to given circuit
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+    **Parameters**
 
-### build\_controlled\_inverse
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_controlled_inverse" />
+  ### build\_controlled\_inverse\_power
 
-`UnivariatePiecewiseLinearObjective.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_controlled_inverse_power" name="build_controlled_inverse_power" signature="UnivariatePiecewiseLinearObjective.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-Adds controlled inverse of corresponding sub-circuit to given circuit
+  ### build\_controlled\_power
 
-**Parameters**
+  <Function id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_controlled_power" name="build_controlled_power" signature="UnivariatePiecewiseLinearObjective.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  ### build\_inverse
 
-### build\_controlled\_inverse\_power
+  <Function id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_inverse" name="build_inverse" signature="UnivariatePiecewiseLinearObjective.build_inverse(qc, q, q_ancillas=None)">
+    Adds inverse of corresponding sub-circuit to given circuit
 
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_controlled_inverse_power" />
+    **Parameters**
 
-`UnivariatePiecewiseLinearObjective.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  </Function>
 
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ### build\_inverse\_power
 
-### build\_controlled\_power
+  <Function id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_inverse_power" name="build_inverse_power" signature="UnivariatePiecewiseLinearObjective.build_inverse_power(qc, q, power, q_ancillas=None)">
+    Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_controlled_power" />
+  ### build\_power
 
-`UnivariatePiecewiseLinearObjective.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_power" name="build_power" signature="UnivariatePiecewiseLinearObjective.build_power(qc, q, power, q_ancillas=None)">
+    Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ### get\_num\_qubits
 
-### build\_inverse
+  <Function id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.get_num_qubits" name="get_num_qubits" signature="UnivariatePiecewiseLinearObjective.get_num_qubits()">
+    returns number of qubits
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_inverse" />
+  ### get\_num\_qubits\_controlled
 
-`UnivariatePiecewiseLinearObjective.build_inverse(qc, q, q_ancillas=None)`
+  <Function id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.get_num_qubits_controlled" name="get_num_qubits_controlled" signature="UnivariatePiecewiseLinearObjective.get_num_qubits_controlled()">
+    returns number of qubits controlled
+  </Function>
 
-Adds inverse of corresponding sub-circuit to given circuit
+  ### required\_ancillas
 
-**Parameters**
+  <Function id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.required_ancillas" name="required_ancillas" signature="UnivariatePiecewiseLinearObjective.required_ancillas()">
+    requires ancillas
+  </Function>
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  ### required\_ancillas\_controlled
 
-### build\_inverse\_power
+  <Function id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.required_ancillas_controlled" name="required_ancillas_controlled" signature="UnivariatePiecewiseLinearObjective.required_ancillas_controlled()">
+    returns required ancillas controlled
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_inverse_power" />
+  ### value\_to\_estimation
 
-`UnivariatePiecewiseLinearObjective.build_inverse_power(qc, q, power, q_ancillas=None)`
+  <Function id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.value_to_estimation" name="value_to_estimation" signature="UnivariatePiecewiseLinearObjective.value_to_estimation(value)">
+    value to estimation
+  </Function>
 
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ## Attributes
 
-### build\_power
+  ### num\_target\_qubits
 
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build_power" />
-
-`UnivariatePiecewiseLinearObjective.build_power(qc, q, power, q_ancillas=None)`
-
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### get\_num\_qubits
-
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.get_num_qubits" />
-
-`UnivariatePiecewiseLinearObjective.get_num_qubits()`
-
-returns number of qubits
-
-### get\_num\_qubits\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.get_num_qubits_controlled" />
-
-`UnivariatePiecewiseLinearObjective.get_num_qubits_controlled()`
-
-returns number of qubits controlled
-
-### required\_ancillas
-
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.required_ancillas" />
-
-`UnivariatePiecewiseLinearObjective.required_ancillas()`
-
-requires ancillas
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.required_ancillas_controlled" />
-
-`UnivariatePiecewiseLinearObjective.required_ancillas_controlled()`
-
-returns required ancillas controlled
-
-### value\_to\_estimation
-
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.value_to_estimation" />
-
-`UnivariatePiecewiseLinearObjective.value_to_estimation(value)`
-
-value to estimation
-
-## Attributes
-
-<span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.num_target_qubits" />
-
-### num\_target\_qubits
-
-Returns the number of target qubits
+  <Attribute id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.num_target_qubits" name="num_target_qubits">
+    Returns the number of target qubits
+  </Attribute>
+</Class>
 

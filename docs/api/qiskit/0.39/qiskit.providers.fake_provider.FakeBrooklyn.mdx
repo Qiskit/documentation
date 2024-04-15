@@ -8,172 +8,142 @@ python_api_name: qiskit.providers.fake_provider.FakeBrooklyn
 
 # FakeBrooklyn
 
-<span id="qiskit.providers.fake_provider.FakeBrooklyn" />
+<Class id="qiskit.providers.fake_provider.FakeBrooklyn" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/brooklyn/fake_brooklyn.py" signature="FakeBrooklyn">
+  Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 
-`FakeBrooklyn` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/brooklyn/fake_brooklyn.py "view source code")
+  A fake Brooklyn backend.
 
-Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
+  FakeBackend initializer.
 
-A fake Brooklyn backend.
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+  *   **time\_alive** (*int*) – time to wait before returning result
 
-**Parameters**
+  ## Methods
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **time\_alive** (*int*) – time to wait before returning result
+  ### configuration
 
-## Methods
+  <Function id="qiskit.providers.fake_provider.FakeBrooklyn.configuration" name="configuration" signature="FakeBrooklyn.configuration()">
+    Return the backend configuration.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.configuration" />
+    the configuration for the backend.
 
-`FakeBrooklyn.configuration()`
+    **Return type**
 
-Return the backend configuration.
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-**Returns**
+  ### defaults
 
-the configuration for the backend.
+  <Function id="qiskit.providers.fake_provider.FakeBrooklyn.defaults" name="defaults" signature="FakeBrooklyn.defaults()">
+    Returns a snapshot of device defaults
+  </Function>
 
-**Return type**
+  ### name
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  <Function id="qiskit.providers.fake_provider.FakeBrooklyn.name" name="name" signature="FakeBrooklyn.name()">
+    Return the backend name.
 
-### defaults
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.defaults" />
+    the name of the backend.
 
-`FakeBrooklyn.defaults()`
+    **Return type**
 
-Returns a snapshot of device defaults
+    str
+  </Function>
 
-### name
+  ### properties
 
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.name" />
+  <Function id="qiskit.providers.fake_provider.FakeBrooklyn.properties" name="properties" signature="FakeBrooklyn.properties()">
+    Returns a snapshot of device properties
+  </Function>
 
-`FakeBrooklyn.name()`
+  ### provider
 
-Return the backend name.
+  <Function id="qiskit.providers.fake_provider.FakeBrooklyn.provider" name="provider" signature="FakeBrooklyn.provider()">
+    Return the backend Provider.
 
-**Returns**
+    **Returns**
 
-the name of the backend.
+    the Provider responsible for the backend.
 
-**Return type**
+    **Return type**
 
-str
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-### properties
+  ### run
 
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.properties" />
+  <Function id="qiskit.providers.fake_provider.FakeBrooklyn.run" name="run" signature="FakeBrooklyn.run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-`FakeBrooklyn.properties()`
+  ### set\_options
 
-Returns a snapshot of device properties
+  <Function id="qiskit.providers.fake_provider.FakeBrooklyn.set_options" name="set_options" signature="FakeBrooklyn.set_options(**fields)">
+    Set the options fields for the backend
 
-### provider
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.provider" />
+    **Parameters**
 
-`FakeBrooklyn.provider()`
+    **fields** – The fields to update the options
 
-Return the backend Provider.
+    **Raises**
 
-**Returns**
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-the Provider responsible for the backend.
+  ### status
 
-**Return type**
+  <Function id="qiskit.providers.fake_provider.FakeBrooklyn.status" name="status" signature="FakeBrooklyn.status()">
+    Return the backend status.
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    **Returns**
 
-### run
+    the status of the backend.
 
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.run" />
+    **Return type**
 
-`FakeBrooklyn.run(run_input, **kwargs)`
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-Main job in simulator
+  ## Attributes
 
-### set\_options
+  ### backend\_name
 
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.set_options" />
+  <Attribute id="qiskit.providers.fake_provider.FakeBrooklyn.backend_name" name="backend_name" attributeValue="= 'fake_brooklyn'" />
 
-`FakeBrooklyn.set_options(**fields)`
+  ### conf\_filename
 
-Set the options fields for the backend
+  <Attribute id="qiskit.providers.fake_provider.FakeBrooklyn.conf_filename" name="conf_filename" attributeValue="= 'conf_brooklyn.json'" />
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+  ### defs\_filename
 
-**Parameters**
+  <Attribute id="qiskit.providers.fake_provider.FakeBrooklyn.defs_filename" name="defs_filename" attributeValue="= 'defs_brooklyn.json'" />
 
-**fields** – The fields to update the options
+  ### dirname
 
-**Raises**
+  <Attribute id="qiskit.providers.fake_provider.FakeBrooklyn.dirname" name="dirname" attributeValue="= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends/brooklyn'" />
 
-**AttributeError** – If the field passed in is not part of the options
+  ### options
 
-### status
+  <Attribute id="qiskit.providers.fake_provider.FakeBrooklyn.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.status" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeBrooklyn#run "qiskit.providers.fake_provider.FakeBrooklyn.run") method.
+  </Attribute>
 
-`FakeBrooklyn.status()`
+  ### props\_filename
 
-Return the backend status.
+  <Attribute id="qiskit.providers.fake_provider.FakeBrooklyn.props_filename" name="props_filename" attributeValue="= 'props_brooklyn.json'" />
 
-**Returns**
+  ### version
 
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.backend_name" />
-
-### backend\_name
-
-`= 'fake_brooklyn'`
-
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.conf_filename" />
-
-### conf\_filename
-
-`= 'conf_brooklyn.json'`
-
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.defs_filename" />
-
-### defs\_filename
-
-`= 'defs_brooklyn.json'`
-
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.dirname" />
-
-### dirname
-
-`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends/brooklyn'`
-
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeBrooklyn#run "qiskit.providers.fake_provider.FakeBrooklyn.run") method.
-
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.props_filename" />
-
-### props\_filename
-
-`= 'props_brooklyn.json'`
-
-<span id="qiskit.providers.fake_provider.FakeBrooklyn.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.fake_provider.FakeBrooklyn.version" name="version" attributeValue="= 1" />
+</Class>
 

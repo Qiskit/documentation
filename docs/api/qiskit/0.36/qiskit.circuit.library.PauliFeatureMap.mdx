@@ -8,465 +8,451 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
 # PauliFeatureMap
 
-<span id="qiskit.circuit.library.PauliFeatureMap" />
+<Class id="qiskit.circuit.library.PauliFeatureMap" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/data_preparation/pauli_feature_map.py" signature="PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')">
+  Bases: `qiskit.circuit.library.n_local.n_local.NLocal`
 
-`PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+  The Pauli Expansion circuit.
 
-Bases: `qiskit.circuit.library.n_local.n_local.NLocal`
-
-The Pauli Expansion circuit.
-
-The Pauli Expansion circuit is a data encoding circuit that transforms input data $\vec{x} \in \mathbb{R}^n$ as
+  The Pauli Expansion circuit is a data encoding circuit that transforms input data $\vec{x} \in \mathbb{R}^n$ as
 
 $$
 U_{\Phi(\vec{x})}=\exp\left(i\sum_{S\subseteq [n]}
 \phi_S(\vec{x})\prod_{i\in S} P_i\right)
 $$
 
-The circuit contains `reps` repetitions of this transformation. The variable $P_i \in \{ I, X, Y, Z \}$ denotes the Pauli matrices. The index $S$ describes connectivities between different qubits or datapoints: $S \in \{\binom{n}{k}\ combinations,\ k = 1,... n \}$. Per default the data-mapping $\phi_S$ is
+  The circuit contains `reps` repetitions of this transformation. The variable $P_i \in \{ I, X, Y, Z \}$ denotes the Pauli matrices. The index $S$ describes connectivities between different qubits or datapoints: $S \in \{\binom{n}{k}\ combinations,\ k = 1,... n \}$. Per default the data-mapping $\phi_S$ is
 
 $$
 \begin{split}\phi_S(\vec{x}) = \begin{cases}
-    x_0 \text{ if } k = 1 \\
-    \prod_{j \in S} (\pi - x_j) \text{ otherwise }
-    \end{cases}\end{split}
+x_0 \text{ if } k = 1 \\
+\prod_{j \in S} (\pi - x_j) \text{ otherwise }
+\end{cases}\end{split}
 $$
 
-For example, if the Pauli strings are chosen to be $P_0 = Z$ and $P_{0,1} = YY$ on 2 qubits and with 1 repetition using the default data-mapping, the Pauli evolution feature map is represented by:
+  For example, if the Pauli strings are chosen to be $P_0 = Z$ and $P_{0,1} = YY$ on 2 qubits and with 1 repetition using the default data-mapping, the Pauli evolution feature map is represented by:
+
+  ```python
+  ┌───┐┌──────────────┐┌──────────┐                                             ┌───────────┐
+  ┤ H ├┤ U1(2.0*x[0]) ├┤ RX(pi/2) ├──■───────────────────────────────────────■──┤ RX(-pi/2) ├
+  ├───┤├──────────────┤├──────────┤┌─┴─┐┌─────────────────────────────────┐┌─┴─┐├───────────┤
+  ┤ H ├┤ U1(2.0*x[1]) ├┤ RX(pi/2) ├┤ X ├┤ U1(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├┤ RX(-pi/2) ├
+  └───┘└──────────────┘└──────────┘└───┘└─────────────────────────────────┘└───┘└───────────┘
+  ```
 
-```python
-┌───┐┌──────────────┐┌──────────┐                                             ┌───────────┐
-┤ H ├┤ U1(2.0*x[0]) ├┤ RX(pi/2) ├──■───────────────────────────────────────■──┤ RX(-pi/2) ├
-├───┤├──────────────┤├──────────┤┌─┴─┐┌─────────────────────────────────┐┌─┴─┐├───────────┤
-┤ H ├┤ U1(2.0*x[1]) ├┤ RX(pi/2) ├┤ X ├┤ U1(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├┤ RX(-pi/2) ├
-└───┘└──────────────┘└──────────┘└───┘└─────────────────────────────────┘└───┘└───────────┘
-```
+  Please refer to [`ZFeatureMap`](qiskit.circuit.library.ZFeatureMap "qiskit.circuit.library.ZFeatureMap") for the case $k = 1$, $P_0 = Z$ and to [`ZZFeatureMap`](qiskit.circuit.library.ZZFeatureMap "qiskit.circuit.library.ZZFeatureMap") for the case $k = 2$, $P_0 = Z$ and $P_{0,1} = ZZ$.
 
-Please refer to [`ZFeatureMap`](qiskit.circuit.library.ZFeatureMap "qiskit.circuit.library.ZFeatureMap") for the case $k = 1$, $P_0 = Z$ and to [`ZZFeatureMap`](qiskit.circuit.library.ZZFeatureMap "qiskit.circuit.library.ZZFeatureMap") for the case $k = 2$, $P_0 = Z$ and $P_{0,1} = ZZ$.
+  **Examples**
 
-**Examples**
+  ```python
+  >>> prep = PauliFeatureMap(2, reps=1, paulis=['ZZ'])
+  >>> print(prep)
+       ┌───┐
+  q_0: ┤ H ├──■───────────────────────────────────────■──
+       ├───┤┌─┴─┐┌─────────────────────────────────┐┌─┴─┐
+  q_1: ┤ H ├┤ X ├┤ U1(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├
+       └───┘└───┘└─────────────────────────────────┘└───┘
+  ```
 
-```python
->>> prep = PauliFeatureMap(2, reps=1, paulis=['ZZ'])
->>> print(prep)
-     ┌───┐
-q_0: ┤ H ├──■───────────────────────────────────────■──
-     ├───┤┌─┴─┐┌─────────────────────────────────┐┌─┴─┐
-q_1: ┤ H ├┤ X ├┤ U1(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├
-     └───┘└───┘└─────────────────────────────────┘└───┘
-```
+  ```python
+  >>> prep = PauliFeatureMap(2, reps=1, paulis=['Z', 'XX'])
+  >>> print(prep)
+       ┌───┐┌──────────────┐┌───┐                                             ┌───┐
+  q_0: ┤ H ├┤ U1(2.0*x[0]) ├┤ H ├──■───────────────────────────────────────■──┤ H ├
+       ├───┤├──────────────┤├───┤┌─┴─┐┌─────────────────────────────────┐┌─┴─┐├───┤
+  q_1: ┤ H ├┤ U1(2.0*x[1]) ├┤ H ├┤ X ├┤ U1(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├┤ H ├
+       └───┘└──────────────┘└───┘└───┘└─────────────────────────────────┘└───┘└───┘
+  ```
 
-```python
->>> prep = PauliFeatureMap(2, reps=1, paulis=['Z', 'XX'])
->>> print(prep)
-     ┌───┐┌──────────────┐┌───┐                                             ┌───┐
-q_0: ┤ H ├┤ U1(2.0*x[0]) ├┤ H ├──■───────────────────────────────────────■──┤ H ├
-     ├───┤├──────────────┤├───┤┌─┴─┐┌─────────────────────────────────┐┌─┴─┐├───┤
-q_1: ┤ H ├┤ U1(2.0*x[1]) ├┤ H ├┤ X ├┤ U1(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├┤ H ├
-     └───┘└──────────────┘└───┘└───┘└─────────────────────────────────┘└───┘└───┘
-```
+  ```python
+  >>> prep = PauliFeatureMap(2, reps=1, paulis=['ZY'])
+  >>> print(prep)
+       ┌───┐┌──────────┐                                             ┌───────────┐
+  q_0: ┤ H ├┤ RX(pi/2) ├──■───────────────────────────────────────■──┤ RX(-pi/2) ├
+       ├───┤└──────────┘┌─┴─┐┌─────────────────────────────────┐┌─┴─┐└───────────┘
+  q_1: ┤ H ├────────────┤ X ├┤ U1(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├─────────────
+       └───┘            └───┘└─────────────────────────────────┘└───┘
+  ```
 
-```python
->>> prep = PauliFeatureMap(2, reps=1, paulis=['ZY'])
->>> print(prep)
-     ┌───┐┌──────────┐                                             ┌───────────┐
-q_0: ┤ H ├┤ RX(pi/2) ├──■───────────────────────────────────────■──┤ RX(-pi/2) ├
-     ├───┤└──────────┘┌─┴─┐┌─────────────────────────────────┐┌─┴─┐└───────────┘
-q_1: ┤ H ├────────────┤ X ├┤ U1(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├─────────────
-     └───┘            └───┘└─────────────────────────────────┘└───┘
-```
+  ```python
+  >>> from qiskit.circuit.library import EfficientSU2
+  >>> prep = PauliFeatureMap(3, reps=3, paulis=['Z', 'YY', 'ZXZ'])
+  >>> wavefunction = EfficientSU2(3)
+  >>> classifier = prep.compose(wavefunction
+  >>> classifier.num_parameters
+  27
+  >>> classifier.count_ops()
+  OrderedDict([('cx', 39), ('rx', 36), ('u1', 21), ('h', 15), ('ry', 12), ('rz', 12)])
+  ```
 
-```python
->>> from qiskit.circuit.library import EfficientSU2
->>> prep = PauliFeatureMap(3, reps=3, paulis=['Z', 'YY', 'ZXZ'])
->>> wavefunction = EfficientSU2(3)
->>> classifier = prep.compose(wavefunction
->>> classifier.num_parameters
-27
->>> classifier.count_ops()
-OrderedDict([('cx', 39), ('rx', 36), ('u1', 21), ('h', 15), ('ry', 12), ('rz', 12)])
-```
+  **References**
 
-**References**
+  **\[1]: Havlicek et al. (2018), Supervised learning with quantum enhanced feature spaces.**
 
-**\[1]: Havlicek et al. (2018), Supervised learning with quantum enhanced feature spaces.**
+  [arXiv:1804.11326](https://arxiv.org/abs/1804.11326)
 
-[arXiv:1804.11326](https://arxiv.org/abs/1804.11326)
+  Create a new Pauli expansion circuit.
 
-Create a new Pauli expansion circuit.
+  **Parameters**
 
-**Parameters**
+  *   **feature\_dimension** (`Optional`\[`int`]) – Number of qubits in the circuit.
+  *   **reps** (`int`) – The number of repeated circuits.
+  *   **entanglement** (`Union`\[`str`, `List`\[`List`\[`int`]], `Callable`\[\[`int`], `List`\[`int`]]]) – Specifies the entanglement structure. Refer to [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.NLocal") for detail.
+  *   **alpha** (`float`) – The Pauli rotation factor, multiplicative to the pauli rotations
+  *   **paulis** (`Optional`\[`List`\[`str`]]) – A list of strings for to-be-used paulis. If None are provided, `['Z', 'ZZ']` will be used.
+  *   **data\_map\_func** (`Optional`\[`Callable`\[\[`ndarray`], `float`]]) – A mapping function for data x which can be supplied to override the default mapping from `self_product()`.
+  *   **parameter\_prefix** (`str`) – The prefix used if default parameters are generated.
+  *   **insert\_barriers** (`bool`) – If True, barriers are inserted in between the evolution instructions and hadamard layers.
 
-*   **feature\_dimension** (`Optional`\[`int`]) – Number of qubits in the circuit.
-*   **reps** (`int`) – The number of repeated circuits.
-*   **entanglement** (`Union`\[`str`, `List`\[`List`\[`int`]], `Callable`\[\[`int`], `List`\[`int`]]]) – Specifies the entanglement structure. Refer to [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.NLocal") for detail.
-*   **alpha** (`float`) – The Pauli rotation factor, multiplicative to the pauli rotations
-*   **paulis** (`Optional`\[`List`\[`str`]]) – A list of strings for to-be-used paulis. If None are provided, `['Z', 'ZZ']` will be used.
-*   **data\_map\_func** (`Optional`\[`Callable`\[\[`ndarray`], `float`]]) – A mapping function for data x which can be supplied to override the default mapping from `self_product()`.
-*   **parameter\_prefix** (`str`) – The prefix used if default parameters are generated.
-*   **insert\_barriers** (`bool`) – If True, barriers are inserted in between the evolution instructions and hadamard layers.
+  ## Methods Defined Here
 
-## Methods Defined Here
+  ### pauli\_block
 
-### pauli\_block
+  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_block" name="pauli_block" signature="PauliFeatureMap.pauli_block(pauli_string)">
+    Get the Pauli block for the feature map circuit.
+  </Function>
 
-<span id="qiskit.circuit.library.PauliFeatureMap.pauli_block" />
+  ### pauli\_evolution
 
-`PauliFeatureMap.pauli_block(pauli_string)`
+  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" name="pauli_evolution" signature="PauliFeatureMap.pauli_evolution(pauli_string, time)">
+    Get the evolution block for the given pauli string.
+  </Function>
 
-Get the Pauli block for the feature map circuit.
+  ## Attributes
 
-### pauli\_evolution
+  ### alpha
 
-<span id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" />
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.alpha" name="alpha">
+    The Pauli rotation factor (alpha).
 
-`PauliFeatureMap.pauli_evolution(pauli_string, time)`
+    **Return type**
 
-Get the evolution block for the given pauli string.
+    `float`
 
-## Attributes
+    **Returns**
 
-<span id="qiskit.circuit.library.PauliFeatureMap.alpha" />
+    The Pauli rotation factor.
+  </Attribute>
 
-### alpha
+  ### ancillas
 
-The Pauli rotation factor (alpha).
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-**Return type**
+    **Return type**
 
-`float`
+    `List`\[`AncillaQubit`]
+  </Attribute>
 
-**Returns**
+  ### calibrations
 
-The Pauli rotation factor.
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-<span id="qiskit.circuit.library.PauliFeatureMap.ancillas" />
+    **The custom pulse definition of a given gate is of the form**
 
-### ancillas
+    \{‘gate\_name’: \{(qubits, params): schedule}}
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **Return type**
 
-**Return type**
+    `dict`
+  </Attribute>
 
-`List`\[`AncillaQubit`]
+  ### clbits
 
-<span id="qiskit.circuit.library.PauliFeatureMap.calibrations" />
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-### calibrations
+    **Return type**
 
-Return calibration dictionary.
+    `List`\[`Clbit`]
+  </Attribute>
 
-**The custom pulse definition of a given gate is of the form**
+  ### data
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.data" name="data" />
 
-**Return type**
+  ### entanglement
 
-`dict`
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.entanglement" name="entanglement">
+    Get the entanglement strategy.
 
-<span id="qiskit.circuit.library.PauliFeatureMap.clbits" />
+    **Return type**
 
-### clbits
+    `Union`\[`str`, `List`\[`str`], `List`\[`List`\[`str`]], `List`\[`int`], `List`\[`List`\[`int`]], `List`\[`List`\[`List`\[`int`]]], `List`\[`List`\[`List`\[`List`\[`int`]]]], `Callable`\[\[`int`], `str`], `Callable`\[\[`int`], `List`\[`List`\[`int`]]]]
 
-Returns a list of classical bits in the order that the registers were added.
+    **Returns**
 
-**Return type**
+    The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
+  </Attribute>
 
-`List`\[`Clbit`]
+  ### entanglement\_blocks
 
-<span id="qiskit.circuit.library.PauliFeatureMap.data" />
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.entanglement_blocks" name="entanglement_blocks" />
 
-### data
+  ### extension\_lib
 
-<span id="qiskit.circuit.library.PauliFeatureMap.entanglement" />
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-### entanglement
+  ### feature\_dimension
 
-Get the entanglement strategy.
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.feature_dimension" name="feature_dimension">
+    Returns the feature dimension (which is equal to the number of qubits).
 
-**Return type**
+    **Return type**
 
-`Union`\[`str`, `List`\[`str`], `List`\[`List`\[`str`]], `List`\[`int`], `List`\[`List`\[`int`]], `List`\[`List`\[`List`\[`int`]]], `List`\[`List`\[`List`\[`List`\[`int`]]]], `Callable`\[\[`int`], `str`], `Callable`\[\[`int`], `List`\[`List`\[`int`]]]]
+    `int`
 
-**Returns**
+    **Returns**
 
-The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
+    The feature dimension of this feature map.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliFeatureMap.entanglement_blocks" />
+  ### global\_phase
 
-### entanglement\_blocks
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-<span id="qiskit.circuit.library.PauliFeatureMap.extension_lib" />
+    **Return type**
 
-### extension\_lib
+    `Union`\[`ParameterExpression`, `float`]
+  </Attribute>
 
-`= 'include "qelib1.inc";'`
+  ### header
 
-<span id="qiskit.circuit.library.PauliFeatureMap.feature_dimension" />
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-### feature\_dimension
+  ### initial\_state
 
-Returns the feature dimension (which is equal to the number of qubits).
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.initial_state" name="initial_state">
+    Return the initial state that is added in front of the n-local circuit.
 
-**Return type**
+    **Return type**
 
-`int`
+    `Any`
 
-**Returns**
+    **Returns**
 
-The feature dimension of this feature map.
+    The initial state.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliFeatureMap.global_phase" />
+  ### insert\_barriers
 
-### global\_phase
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.insert_barriers" name="insert_barriers">
+    If barriers are inserted in between the layers or not.
 
-Return the global phase of the circuit in radians.
+    **Return type**
 
-**Return type**
+    `bool`
 
-`Union`\[`ParameterExpression`, `float`]
+    **Returns**
 
-<span id="qiskit.circuit.library.PauliFeatureMap.header" />
+    True, if barriers are inserted in between the layers, False if not.
+  </Attribute>
 
-### header
+  ### instances
 
-`= 'OPENQASM 2.0;'`
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.instances" name="instances" attributeValue="= 9" />
 
-<span id="qiskit.circuit.library.PauliFeatureMap.initial_state" />
+  ### metadata
 
-### initial\_state
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-Return the initial state that is added in front of the n-local circuit.
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-**Return type**
+    **Return type**
 
-`Any`
+    `dict`
+  </Attribute>
 
-**Returns**
+  ### num\_ancillas
 
-The initial state.
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-<span id="qiskit.circuit.library.PauliFeatureMap.insert_barriers" />
+    **Return type**
 
-### insert\_barriers
+    `int`
+  </Attribute>
 
-If barriers are inserted in between the layers or not.
+  ### num\_clbits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-`bool`
+    **Return type**
 
-**Returns**
+    `int`
+  </Attribute>
 
-True, if barriers are inserted in between the layers, False if not.
+  ### num\_layers
 
-<span id="qiskit.circuit.library.PauliFeatureMap.instances" />
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.num_layers" name="num_layers">
+    Return the number of layers in the n-local circuit.
 
-### instances
+    **Return type**
 
-`= 9`
+    `int`
 
-<span id="qiskit.circuit.library.PauliFeatureMap.metadata" />
+    **Returns**
 
-### metadata
+    The number of layers in the circuit.
+  </Attribute>
 
-The user provided metadata associated with the circuit
+  ### num\_parameters
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.num_parameters" name="num_parameters">
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`dict`
+  ### num\_parameters\_settable
 
-<span id="qiskit.circuit.library.PauliFeatureMap.num_ancillas" />
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.num_parameters_settable" name="num_parameters_settable">
+    The number of distinct parameters.
+  </Attribute>
 
-### num\_ancillas
+  ### num\_qubits
 
-Return the number of ancilla qubits.
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.num_qubits" name="num_qubits">
+    Returns the number of qubits in this circuit.
 
-**Return type**
+    **Return type**
 
-`int`
+    `int`
 
-<span id="qiskit.circuit.library.PauliFeatureMap.num_clbits" />
+    **Returns**
 
-### num\_clbits
+    The number of qubits.
+  </Attribute>
 
-Return number of classical bits.
+  ### ordered\_parameters
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.ordered_parameters" name="ordered_parameters">
+    The parameters used in the underlying circuit.
 
-`int`
+    This includes float values and duplicates.
 
-<span id="qiskit.circuit.library.PauliFeatureMap.num_layers" />
+    **Examples**
 
-### num\_layers
+    ```python
+    >>> # prepare circuit ...
+    >>> print(nlocal)
+         ┌───────┐┌──────────┐┌──────────┐┌──────────┐
+    q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
+         └───────┘└──────────┘└──────────┘└──────────┘
+    >>> nlocal.parameters
+    {Parameter(θ[1]), Parameter(θ[3])}
+    >>> nlocal.ordered_parameters
+    [1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
+    ```
 
-Return the number of layers in the n-local circuit.
+    **Return type**
 
-**Return type**
+    `List`\[`Parameter`]
 
-`int`
+    **Returns**
 
-**Returns**
+    The parameters objects used in the circuit.
+  </Attribute>
 
-The number of layers in the circuit.
+  ### parameter\_bounds
 
-<span id="qiskit.circuit.library.PauliFeatureMap.num_parameters" />
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.parameter_bounds" name="parameter_bounds">
+    The parameter bounds for the unbound parameters in the circuit.
 
-### num\_parameters
+    **Return type**
 
-**Return type**
+    `Optional`\[`List`\[`Tuple`\[`float`, `float`]]]
 
-`int`
+    **Returns**
 
-<span id="qiskit.circuit.library.PauliFeatureMap.num_parameters_settable" />
+    A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
+  </Attribute>
 
-### num\_parameters\_settable
+  ### parameters
 
-The number of distinct parameters.
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.parameters" name="parameters">
+    **Return type**
 
-<span id="qiskit.circuit.library.PauliFeatureMap.num_qubits" />
+    `ParameterView`
+  </Attribute>
 
-### num\_qubits
+  ### paulis
 
-Returns the number of qubits in this circuit.
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.paulis" name="paulis">
+    The Pauli strings used in the entanglement of the qubits.
 
-**Return type**
+    **Return type**
 
-`int`
+    `List`\[`str`]
 
-**Returns**
+    **Returns**
 
-The number of qubits.
+    The Pauli strings as list.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliFeatureMap.ordered_parameters" />
+  ### preferred\_init\_points
 
-### ordered\_parameters
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.preferred_init_points" name="preferred_init_points">
+    The initial points for the parameters. Can be stored as initial guess in optimization.
 
-The parameters used in the underlying circuit.
+    **Return type**
 
-This includes float values and duplicates.
+    `Optional`\[`List`\[`float`]]
 
-**Examples**
+    **Returns**
 
-```python
->>> # prepare circuit ...
->>> print(nlocal)
-     ┌───────┐┌──────────┐┌──────────┐┌──────────┐
-q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
-     └───────┘└──────────┘└──────────┘└──────────┘
->>> nlocal.parameters
-{Parameter(θ[1]), Parameter(θ[3])}
->>> nlocal.ordered_parameters
-[1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
-```
+    The initial values for the parameters, or None, if none have been set.
+  </Attribute>
 
-**Return type**
+  ### prefix
 
-`List`\[`Parameter`]
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-**Returns**
+  ### qregs
 
-The parameters objects used in the circuit.
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.qregs" name="qregs">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliFeatureMap.parameter_bounds" />
+  ### qubits
 
-### parameter\_bounds
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-The parameter bounds for the unbound parameters in the circuit.
+    **Return type**
 
-**Return type**
+    `List`\[`Qubit`]
+  </Attribute>
 
-`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]
+  ### reps
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.reps" name="reps">
+    The number of times rotation and entanglement block are repeated.
 
-A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
+    **Return type**
 
-<span id="qiskit.circuit.library.PauliFeatureMap.parameters" />
+    `int`
 
-### parameters
+    **Returns**
 
-**Return type**
+    The number of repetitions.
+  </Attribute>
 
-`ParameterView`
+  ### rotation\_blocks
 
-<span id="qiskit.circuit.library.PauliFeatureMap.paulis" />
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.rotation_blocks" name="rotation_blocks">
+    The blocks in the rotation layers.
 
-### paulis
+    **Return type**
 
-The Pauli strings used in the entanglement of the qubits.
+    `List`\[`Instruction`]
 
-**Return type**
+    **Returns**
 
-`List`\[`str`]
-
-**Returns**
-
-The Pauli strings as list.
-
-<span id="qiskit.circuit.library.PauliFeatureMap.preferred_init_points" />
-
-### preferred\_init\_points
-
-The initial points for the parameters. Can be stored as initial guess in optimization.
-
-**Return type**
-
-`Optional`\[`List`\[`float`]]
-
-**Returns**
-
-The initial values for the parameters, or None, if none have been set.
-
-<span id="qiskit.circuit.library.PauliFeatureMap.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.PauliFeatureMap.qregs" />
-
-### qregs
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.PauliFeatureMap.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[`Qubit`]
-
-<span id="qiskit.circuit.library.PauliFeatureMap.reps" />
-
-### reps
-
-The number of times rotation and entanglement block are repeated.
-
-**Return type**
-
-`int`
-
-**Returns**
-
-The number of repetitions.
-
-<span id="qiskit.circuit.library.PauliFeatureMap.rotation_blocks" />
-
-### rotation\_blocks
-
-The blocks in the rotation layers.
-
-**Return type**
-
-`List`\[`Instruction`]
-
-**Returns**
-
-The blocks in the rotation layers.
+    The blocks in the rotation layers.
+  </Attribute>
+</Class>
 

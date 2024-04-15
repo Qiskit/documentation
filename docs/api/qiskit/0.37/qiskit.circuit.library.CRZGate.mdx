@@ -8,193 +8,189 @@ python_api_name: qiskit.circuit.library.CRZGate
 
 # CRZGate
 
-<span id="qiskit.circuit.library.CRZGate" />
+<Class id="qiskit.circuit.library.CRZGate" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/rz.py" signature="CRZGate(theta, label=None, ctrl_state=None)">
+  Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
-`CRZGate(theta, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/rz.py "view source code")
+  Controlled-RZ gate.
 
-Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+  This is a diagonal but non-symmetric gate that induces a phase on the state of the target qubit, depending on the control state.
 
-Controlled-RZ gate.
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`crz()`](qiskit.circuit.QuantumCircuit#crz "qiskit.circuit.QuantumCircuit.crz") method.
 
-This is a diagonal but non-symmetric gate that induces a phase on the state of the target qubit, depending on the control state.
+  **Circuit symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`crz()`](qiskit.circuit.QuantumCircuit#crz "qiskit.circuit.QuantumCircuit.crz") method.
+  ```python
+  q_0: ────■────
+       ┌───┴───┐
+  q_1: ┤ Rz(λ) ├
+       └───────┘
+  ```
 
-**Circuit symbol:**
-
-```python
-q_0: ────■────
-     ┌───┴───┐
-q_1: ┤ Rz(λ) ├
-     └───────┘
-```
-
-**Matrix representation:**
+  **Matrix representation:**
 
 $$
 \begin{split}CRZ(\lambda)\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| + RZ(\lambda) \otimes |1\rangle\langle 1| =
-    \begin{pmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & e^{-i\frac{\lambda}{2}} & 0 & 0 \\
-        0 & 0 & 1 & 0 \\
-        0 & 0 & 0 & e^{i\frac{\lambda}{2}}
-    \end{pmatrix}\end{split}
+I \otimes |0\rangle\langle 0| + RZ(\lambda) \otimes |1\rangle\langle 1| =
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & e^{-i\frac{\lambda}{2}} & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & e^{i\frac{\lambda}{2}}
+\end{pmatrix}\end{split}
 $$
 
-<Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
+  <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
 
-  ```python
-       ┌───────┐
-  q_0: ┤ Rz(λ) ├
-       └───┬───┘
-  q_1: ────■────
-  ```
+    ```python
+         ┌───────┐
+    q_0: ┤ Rz(λ) ├
+         └───┬───┘
+    q_1: ────■────
+    ```
 
-  $$
-  \begin{split}CRZ(\lambda)\ q_1, q_0 =
-      |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RZ(\lambda) =
-      \begin{pmatrix}
-          1 & 0 & 0 & 0 \\
-          0 & 1 & 0 & 0 \\
-          0 & 0 & e^{-i\frac{\lambda}{2}} & 0 \\
-          0 & 0 & 0 & e^{i\frac{\lambda}{2}}
-      \end{pmatrix}\end{split}
-  $$
-</Admonition>
+$$
+\begin{split}CRZ(\lambda)\ q_1, q_0 =
+|0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RZ(\lambda) =
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & e^{-i\frac{\lambda}{2}} & 0 \\
+0 & 0 & 0 & e^{i\frac{\lambda}{2}}
+\end{pmatrix}\end{split}
+$$
+  </Admonition>
 
-<Admonition title="See also" type="note">
-  `CU1Gate`: Due to the global phase difference in the matrix definitions of U1 and RZ, CU1 and CRZ are different gates with a relative phase difference.
-</Admonition>
+  <Admonition title="See also" type="note">
+    `CU1Gate`: Due to the global phase difference in the matrix definitions of U1 and RZ, CU1 and CRZ are different gates with a relative phase difference.
+  </Admonition>
 
-Create new CRZ gate.
+  Create new CRZ gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-### inverse
+  ### inverse
 
-<span id="qiskit.circuit.library.CRZGate.inverse" />
+  <Function id="qiskit.circuit.library.CRZGate.inverse" name="inverse" signature="CRZGate.inverse()">
+    Return inverse CRZ gate (i.e. with the negative rotation angle).
+  </Function>
 
-`CRZGate.inverse()`
+  ## Attributes
 
-Return inverse CRZ gate (i.e. with the negative rotation angle).
+  ### condition\_bits
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.CRZGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-<span id="qiskit.circuit.library.CRZGate.condition_bits" />
+    **Return type**
 
-### condition\_bits
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-Get Clbits in condition.
+  ### ctrl\_state
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.CRZGate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+    **Return type**
 
-<span id="qiskit.circuit.library.CRZGate.ctrl_state" />
+    `int`
+  </Attribute>
 
-### ctrl\_state
+  ### decompositions
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.CRZGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-**Return type**
+  ### definition
 
-`int`
+  <Attribute id="qiskit.circuit.library.CRZGate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
 
-<span id="qiskit.circuit.library.CRZGate.decompositions" />
+    **Return type**
 
-### decompositions
+    `List`
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### duration
 
-<span id="qiskit.circuit.library.CRZGate.definition" />
+  <Attribute id="qiskit.circuit.library.CRZGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### definition
+  ### label
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  <Attribute id="qiskit.circuit.library.CRZGate.label" name="label">
+    Return instruction label
 
-**Return type**
+    **Return type**
 
-`List`
+    `str`
+  </Attribute>
 
-<span id="qiskit.circuit.library.CRZGate.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.circuit.library.CRZGate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-Get the duration.
+    > \<original\_name\_o\<ctrl\_state>
 
-<span id="qiskit.circuit.library.CRZGate.label" />
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
 
-### label
+    **Return type**
 
-Return instruction label
+    `str`
+  </Attribute>
 
-**Return type**
+  ### num\_clbits
 
-`str`
+  <Attribute id="qiskit.circuit.library.CRZGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CRZGate.name" />
+  ### num\_ctrl\_qubits
 
-### name
+  <Attribute id="qiskit.circuit.library.CRZGate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-Get name of gate. If the gate has open controls the gate name will become:
+    **Returns**
 
-> \<original\_name\_o\<ctrl\_state>
+    The number of control qubits for the gate.
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+    **Return type**
 
-**Return type**
+    int
+  </Attribute>
 
-`str`
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.CRZGate.num_clbits" />
+  <Attribute id="qiskit.circuit.library.CRZGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-### num\_clbits
+  ### params
 
-Return the number of clbits.
+  <Attribute id="qiskit.circuit.library.CRZGate.params" name="params">
+    Get parameters from base\_gate.
 
-<span id="qiskit.circuit.library.CRZGate.num_ctrl_qubits" />
+    **Returns**
 
-### num\_ctrl\_qubits
+    List of gate parameters.
 
-Get number of control qubits.
+    **Return type**
 
-**Returns**
+    list
 
-The number of control qubits for the gate.
+    **Raises**
 
-**Return type**
+    **CircuitError** – Controlled gate does not define a base gate
+  </Attribute>
 
-int
+  ### unit
 
-<span id="qiskit.circuit.library.CRZGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.CRZGate.params" />
-
-### params
-
-Get parameters from base\_gate.
-
-**Returns**
-
-List of gate parameters.
-
-**Return type**
-
-list
-
-**Raises**
-
-**CircuitError** – Controlled gate does not define a base gate
-
-<span id="qiskit.circuit.library.CRZGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.CRZGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

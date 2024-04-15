@@ -8,255 +8,245 @@ python_api_name: qiskit.circuit.library.ExactReciprocal
 
 # ExactReciprocal
 
-<span id="qiskit.circuit.library.ExactReciprocal" />
+<Class id="qiskit.circuit.library.ExactReciprocal" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/exact_reciprocal.py" signature="ExactReciprocal(num_state_qubits, scaling, neg_vals=False, name='1/x')">
+  Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
-`ExactReciprocal(num_state_qubits, scaling, neg_vals=False, name='1/x')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/exact_reciprocal.py "view source code")
-
-Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
-
-Exact reciprocal
+  Exact reciprocal
 
 $$
 |x\rangle |0\rangle \mapsto \cos(1/x)|x\rangle|0\rangle + \sin(1/x)|x\rangle |1\rangle
 $$
 
-**Parameters**
+  **Parameters**
 
-*   **num\_state\_qubits** (`int`) – The number of qubits representing the value to invert.
-*   **scaling** (`float`) – Scaling factor $s$ of the reciprocal function, i.e. to compute $s / x$.
-*   **neg\_vals** (`bool`) – Whether $x$ might represent negative values. In this case the first qubit is the sign, with $|1\rangle$ for negative and $|0\rangle$ for positive. For the negative case it is assumed that the remaining string represents $1 - x$. This is because $e^{-2 \pi i x} = e^{2 \pi i (1 - x)}$ for $x \in [0,1)$.
-*   **name** (`str`) – The name of the object.
+  *   **num\_state\_qubits** (`int`) – The number of qubits representing the value to invert.
+  *   **scaling** (`float`) – Scaling factor $s$ of the reciprocal function, i.e. to compute $s / x$.
+  *   **neg\_vals** (`bool`) – Whether $x$ might represent negative values. In this case the first qubit is the sign, with $|1\rangle$ for negative and $|0\rangle$ for positive. For the negative case it is assumed that the remaining string represents $1 - x$. This is because $e^{-2 \pi i x} = e^{2 \pi i (1 - x)}$ for $x \in [0,1)$.
+  *   **name** (`str`) – The name of the object.
 
-<Admonition title="Note" type="note">
-  It is assumed that the binary string $x$ represents a number \< 1.
-</Admonition>
+  <Admonition title="Note" type="note">
+    It is assumed that the binary string $x$ represents a number \< 1.
+  </Admonition>
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.ExactReciprocal.ancillas" />
+  ### ancillas
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **Return type**
 
-**Return type**
+    `List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  </Attribute>
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  ### calibrations
 
-<span id="qiskit.circuit.library.ExactReciprocal.calibrations" />
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-### calibrations
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
 
-Return calibration dictionary.
+    **Return type**
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+    `dict`
+  </Attribute>
 
-**Return type**
+  ### clbits
 
-`dict`
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-<span id="qiskit.circuit.library.ExactReciprocal.clbits" />
+    **Return type**
 
-### clbits
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-Returns a list of classical bits in the order that the registers were added.
+  ### data
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.data" name="data">
+    Return the circuit data (instructions and context).
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+    **Returns**
 
-<span id="qiskit.circuit.library.ExactReciprocal.data" />
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
-### data
+    **Return type**
 
-Return the circuit data (instructions and context).
+    QuantumCircuitData
+  </Attribute>
 
-**Returns**
+  ### extension\_lib
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-**Return type**
+  ### global\_phase
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-<span id="qiskit.circuit.library.ExactReciprocal.extension_lib" />
+    **Return type**
 
-### extension\_lib
+    `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  </Attribute>
 
-`= 'include "qelib1.inc";'`
+  ### header
 
-<span id="qiskit.circuit.library.ExactReciprocal.global_phase" />
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-### global\_phase
+  ### instances
 
-Return the global phase of the circuit in radians.
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.instances" name="instances" attributeValue="= 2051" />
 
-**Return type**
+  ### metadata
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-<span id="qiskit.circuit.library.ExactReciprocal.header" />
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-### header
+    **Return type**
 
-`= 'OPENQASM 2.0;'`
+    `dict`
+  </Attribute>
 
-<span id="qiskit.circuit.library.ExactReciprocal.instances" />
+  ### num\_ancillas
 
-### instances
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-`= 2051`
+    **Return type**
 
-<span id="qiskit.circuit.library.ExactReciprocal.metadata" />
+    `int`
+  </Attribute>
 
-### metadata
+  ### num\_clbits
 
-The user provided metadata associated with the circuit
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`dict`
+  ### num\_parameters
 
-<span id="qiskit.circuit.library.ExactReciprocal.num_ancillas" />
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.num_parameters" name="num_parameters">
+    The number of parameter objects in the circuit.
 
-### num\_ancillas
+    **Return type**
 
-Return the number of ancilla qubits.
+    `int`
+  </Attribute>
 
-**Return type**
+  ### num\_qubits
 
-`int`
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.num_qubits" name="num_qubits">
+    Return number of qubits.
 
-<span id="qiskit.circuit.library.ExactReciprocal.num_clbits" />
+    **Return type**
 
-### num\_clbits
+    `int`
+  </Attribute>
 
-Return number of classical bits.
+  ### op\_start\_times
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-`int`
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-<span id="qiskit.circuit.library.ExactReciprocal.num_parameters" />
+    **Return type**
 
-### num\_parameters
+    `List`\[`int`]
 
-The number of parameter objects in the circuit.
+    **Returns**
 
-**Return type**
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-`int`
+    **Raises**
 
-<span id="qiskit.circuit.library.ExactReciprocal.num_qubits" />
+    **AttributeError** – When circuit is not scheduled.
+  </Attribute>
 
-### num\_qubits
+  ### parameters
 
-Return number of qubits.
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.parameters" name="parameters">
+    The parameters defined in the circuit.
 
-**Return type**
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-`int`
+    **Examples**
 
-<span id="qiskit.circuit.library.ExactReciprocal.op_start_times" />
+    The snippet below shows that insertion order of parameters does not matter.
 
-### op\_start\_times
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
 
-Return a list of operation start times.
+    Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
 
-**Return type**
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
-`List`\[`int`]
+    ```python
+    ```
 
-**Returns**
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    **Return type**
 
-**Raises**
+    `ParameterView`
 
-**AttributeError** – When circuit is not scheduled.
+    **Returns**
 
-<span id="qiskit.circuit.library.ExactReciprocal.parameters" />
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
-### parameters
+  ### prefix
 
-The parameters defined in the circuit.
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+  ### qubits
 
-**Examples**
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-The snippet below shows that insertion order of parameters does not matter.
+    **Return type**
 
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
->>> circuit = QuantumCircuit(1)
->>> circuit.rx(b, 0)
->>> circuit.rz(elephant, 0)
->>> circuit.ry(a, 0)
->>> circuit.parameters  # sorted alphabetically!
-ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
-```
-
-Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
->>> circuit = QuantumCircuit(1)
->>> circuit.u(*angles, 0)
->>> circuit.draw()
-   ┌─────────────────────────────┐
-q: ┤ U(angle_1,angle_2,angle_10) ├
-   └─────────────────────────────┘
->>> circuit.parameters
-ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
-```
-
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
->>> x = ParameterVector("x", 12)
->>> circuit = QuantumCircuit(1)
->>> for x_i in x:
-...     circuit.rx(x_i, 0)
->>> circuit.parameters
-ParameterView([
-    ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
-    ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
-    ..., ParameterVectorElement(x[11])
-])
-```
-
-**Return type**
-
-`ParameterView`
-
-**Returns**
-
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
-
-<span id="qiskit.circuit.library.ExactReciprocal.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.ExactReciprocal.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+    `List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+  </Attribute>
+</Class>
 

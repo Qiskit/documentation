@@ -8,257 +8,239 @@ python_api_name: qiskit.algorithms.optimizers.GradientDescent
 
 # GradientDescent
 
-<span id="qiskit.algorithms.optimizers.GradientDescent" />
+<Class id="qiskit.algorithms.optimizers.GradientDescent" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/optimizers/gradient_descent.py" signature="GradientDescent(maxiter=100, learning_rate=0.01, tol=1e-07, callback=None, perturbation=None)">
+  Bases: `qiskit.algorithms.optimizers.optimizer.Optimizer`
 
-`GradientDescent(maxiter=100, learning_rate=0.01, tol=1e-07, callback=None, perturbation=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+  The gradient descent minimization routine.
 
-Bases: `qiskit.algorithms.optimizers.optimizer.Optimizer`
-
-The gradient descent minimization routine.
-
-For a function $f$ and an initial point $\vec\theta_0$, the standard (or “vanilla”) gradient descent method is an iterative scheme to find the minimum $\vec\theta^*$ of $f$ by updating the parameters in the direction of the negative gradient of $f$
+  For a function $f$ and an initial point $\vec\theta_0$, the standard (or “vanilla”) gradient descent method is an iterative scheme to find the minimum $\vec\theta^*$ of $f$ by updating the parameters in the direction of the negative gradient of $f$
 
 $$
 \vec\theta_{n+1} = \vec\theta_{n} - \vec\eta\nabla f(\vec\theta_{n}),
 $$
 
-for a small learning rate $\eta > 0$.
+  for a small learning rate $\eta > 0$.
 
-You can either provide the analytic gradient $\vec\nabla f$ as `gradient_function` in the `optimize` method, or, if you do not provide it, use a finite difference approximation of the gradient. To adapt the size of the perturbation in the finite difference gradients, set the `perturbation` property in the initializer.
+  You can either provide the analytic gradient $\vec\nabla f$ as `gradient_function` in the `optimize` method, or, if you do not provide it, use a finite difference approximation of the gradient. To adapt the size of the perturbation in the finite difference gradients, set the `perturbation` property in the initializer.
 
-This optimizer supports a callback function. If provided in the initializer, the optimizer will call the callback in each iteration with the following information in this order: current number of function values, current parameters, current function value, norm of current gradient.
+  This optimizer supports a callback function. If provided in the initializer, the optimizer will call the callback in each iteration with the following information in this order: current number of function values, current parameters, current function value, norm of current gradient.
 
-**Examples**
+  **Examples**
 
-A minimum example that will use finite difference gradients with a default perturbation of 0.01 and a default learning rate of 0.01.
+  A minimum example that will use finite difference gradients with a default perturbation of 0.01 and a default learning rate of 0.01.
 
-An example where the learning rate is an iterator and we supply the analytic gradient. Note how much faster this convergences (i.e. less `nfevs`) compared to the previous example.
+  An example where the learning rate is an iterator and we supply the analytic gradient. Note how much faster this convergences (i.e. less `nfevs`) compared to the previous example.
 
-**Parameters**
+  **Parameters**
 
-*   **maxiter** (`int`) – The maximum number of iterations.
-*   **learning\_rate** (`Union`\[`float`, `Callable`\[\[], `Iterator`]]) – A constant or generator yielding learning rates for the parameter updates. See the docstring for an example.
-*   **tol** (`float`) – If the norm of the parameter update is smaller than this threshold, the optimizer is converged.
-*   **perturbation** (`Optional`\[`float`]) – If no gradient is passed to `GradientDescent.optimize` the gradient is approximated with a symmetric finite difference scheme with `perturbation` perturbation in both directions (defaults to 1e-2 if required). Ignored if a gradient callable is passed to `GradientDescent.optimize`.
+  *   **maxiter** (`int`) – The maximum number of iterations.
+  *   **learning\_rate** (`Union`\[`float`, `Callable`\[\[], `Iterator`]]) – A constant or generator yielding learning rates for the parameter updates. See the docstring for an example.
+  *   **tol** (`float`) – If the norm of the parameter update is smaller than this threshold, the optimizer is converged.
+  *   **perturbation** (`Optional`\[`float`]) – If no gradient is passed to `GradientDescent.optimize` the gradient is approximated with a symmetric finite difference scheme with `perturbation` perturbation in both directions (defaults to 1e-2 if required). Ignored if a gradient callable is passed to `GradientDescent.optimize`.
 
-## Methods
+  ## Methods
 
-### get\_support\_level
+  ### get\_support\_level
 
-<span id="qiskit.algorithms.optimizers.GradientDescent.get_support_level" />
+  <Function id="qiskit.algorithms.optimizers.GradientDescent.get_support_level" name="get_support_level" signature="GradientDescent.get_support_level()">
+    Get the support level dictionary.
+  </Function>
 
-`GradientDescent.get_support_level()`
+  ### gradient\_num\_diff
 
-Get the support level dictionary.
+  <Function id="qiskit.algorithms.optimizers.GradientDescent.gradient_num_diff" name="gradient_num_diff" signature="static GradientDescent.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-### gradient\_num\_diff
+    **Parameters**
 
-<span id="qiskit.algorithms.optimizers.GradientDescent.gradient_num_diff" />
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped
 
-`static GradientDescent.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
+    **Returns**
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+    the gradient computed
 
-**Parameters**
+    **Return type**
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped
+    grad
+  </Function>
 
-**Returns**
+  ### minimize
 
-the gradient computed
+  <Function id="qiskit.algorithms.optimizers.GradientDescent.minimize" name="minimize" signature="GradientDescent.minimize(fun, x0, jac=None, bounds=None)">
+    Minimize the scalar function.
 
-**Return type**
+    **Parameters**
 
-grad
+    *   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
+    *   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
+    *   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
+    *   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
 
-### minimize
+    **Return type**
 
-<span id="qiskit.algorithms.optimizers.GradientDescent.minimize" />
+    `OptimizerResult`
 
-`GradientDescent.minimize(fun, x0, jac=None, bounds=None)`
+    **Returns**
 
-Minimize the scalar function.
+    The result of the optimization, containing e.g. the result as attribute `x`.
+  </Function>
 
-**Parameters**
+  ### optimize
 
-*   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
-*   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
-*   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
-*   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+  <Function id="qiskit.algorithms.optimizers.GradientDescent.optimize" name="optimize" signature="GradientDescent.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)">
+    Perform optimization.
 
-**Return type**
+    **Parameters**
 
-`OptimizerResult`
+    *   **num\_vars** (*int*) – Number of parameters to be optimized.
+    *   **objective\_function** (*callable*) – A function that computes the objective function.
+    *   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+    *   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
+    *   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
 
-**Returns**
+    **Returns**
 
-The result of the optimization, containing e.g. the result as attribute `x`.
+    **point, value, nfev**
 
-### optimize
+    point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
 
-<span id="qiskit.algorithms.optimizers.GradientDescent.optimize" />
+    **Raises**
 
-`GradientDescent.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
+    **ValueError** – invalid input
+  </Function>
 
-Perform optimization.
+  ### print\_options
 
-**Parameters**
+  <Function id="qiskit.algorithms.optimizers.GradientDescent.print_options" name="print_options" signature="GradientDescent.print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-*   **num\_vars** (*int*) – Number of parameters to be optimized.
-*   **objective\_function** (*callable*) – A function that computes the objective function.
-*   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
-*   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
-*   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
+  ### set\_max\_evals\_grouped
 
-**Returns**
+  <Function id="qiskit.algorithms.optimizers.GradientDescent.set_max_evals_grouped" name="set_max_evals_grouped" signature="GradientDescent.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-**point, value, nfev**
+  ### set\_options
 
-point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
+  <Function id="qiskit.algorithms.optimizers.GradientDescent.set_options" name="set_options" signature="GradientDescent.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-**Raises**
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-**ValueError** – invalid input
+    **Parameters**
 
-### print\_options
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.GradientDescent.print_options" />
+  ### wrap\_function
 
-`GradientDescent.print_options()`
+  <Function id="qiskit.algorithms.optimizers.GradientDescent.wrap_function" name="wrap_function" signature="static GradientDescent.wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-Print algorithm-specific options.
+    **Parameters**
 
-### set\_max\_evals\_grouped
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-<span id="qiskit.algorithms.optimizers.GradientDescent.set_max_evals_grouped" />
+    **Returns**
 
-`GradientDescent.set_max_evals_grouped(limit)`
+    wrapper
 
-Set max evals grouped
+    **Return type**
 
-### set\_options
+    function\_wrapper
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.GradientDescent.set_options" />
+  ## Attributes
 
-`GradientDescent.set_options(**kwargs)`
+  ### bounds\_support\_level
 
-Sets or updates values in the options dictionary.
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
+  ### gradient\_support\_level
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-**kwargs** (*dict*) – options, given as name=value.
+  ### initial\_point\_support\_level
 
-### wrap\_function
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.GradientDescent.wrap_function" />
+  ### is\_bounds\_ignored
 
-`static GradientDescent.wrap_function(function, args)`
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-Wrap the function to implicitly inject the args at the call of the function.
+  ### is\_bounds\_required
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
+  ### is\_bounds\_supported
 
-**Returns**
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-wrapper
+  ### is\_gradient\_ignored
 
-**Return type**
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-function\_wrapper
+  ### is\_gradient\_required
 
-## Attributes
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.GradientDescent.bounds_support_level" />
+  ### is\_gradient\_supported
 
-### bounds\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-Returns bounds support level
+  ### is\_initial\_point\_ignored
 
-<span id="qiskit.algorithms.optimizers.GradientDescent.gradient_support_level" />
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-### gradient\_support\_level
+  ### is\_initial\_point\_required
 
-Returns gradient support level
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.GradientDescent.initial_point_support_level" />
+  ### is\_initial\_point\_supported
 
-### initial\_point\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-Returns initial point support level
+  ### setting
 
-<span id="qiskit.algorithms.optimizers.GradientDescent.is_bounds_ignored" />
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.setting" name="setting">
+    Return setting
+  </Attribute>
 
-### is\_bounds\_ignored
+  ### settings
 
-Returns is bounds ignored
+  <Attribute id="qiskit.algorithms.optimizers.GradientDescent.settings" name="settings">
+    **Return type**
 
-<span id="qiskit.algorithms.optimizers.GradientDescent.is_bounds_required" />
-
-### is\_bounds\_required
-
-Returns is bounds required
-
-<span id="qiskit.algorithms.optimizers.GradientDescent.is_bounds_supported" />
-
-### is\_bounds\_supported
-
-Returns is bounds supported
-
-<span id="qiskit.algorithms.optimizers.GradientDescent.is_gradient_ignored" />
-
-### is\_gradient\_ignored
-
-Returns is gradient ignored
-
-<span id="qiskit.algorithms.optimizers.GradientDescent.is_gradient_required" />
-
-### is\_gradient\_required
-
-Returns is gradient required
-
-<span id="qiskit.algorithms.optimizers.GradientDescent.is_gradient_supported" />
-
-### is\_gradient\_supported
-
-Returns is gradient supported
-
-<span id="qiskit.algorithms.optimizers.GradientDescent.is_initial_point_ignored" />
-
-### is\_initial\_point\_ignored
-
-Returns is initial point ignored
-
-<span id="qiskit.algorithms.optimizers.GradientDescent.is_initial_point_required" />
-
-### is\_initial\_point\_required
-
-Returns is initial point required
-
-<span id="qiskit.algorithms.optimizers.GradientDescent.is_initial_point_supported" />
-
-### is\_initial\_point\_supported
-
-Returns is initial point supported
-
-<span id="qiskit.algorithms.optimizers.GradientDescent.setting" />
-
-### setting
-
-Return setting
-
-<span id="qiskit.algorithms.optimizers.GradientDescent.settings" />
-
-### settings
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
+    `Dict`\[`str`, `Any`]
+  </Attribute>
+</Class>
 

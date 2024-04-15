@@ -8,25 +8,23 @@ python_api_name: qiskit.synthesis.synth_permutation_acg
 
 # qiskit.synthesis.synth\_permutation\_acg
 
-<span id="qiskit.synthesis.synth_permutation_acg" />
+<Function id="qiskit.synthesis.synth_permutation_acg" name="synth_permutation_acg" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/permutation/permutation_full.py" signature="synth_permutation_acg(pattern)">
+  Synthesize a permutation circuit for a fully-connected architecture using the Alon, Chung, Graham method.
 
-`synth_permutation_acg(pattern)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/permutation/permutation_full.py "view source code")
+  This produces a quantum circuit of depth 2 (measured in the number of SWAPs).
 
-Synthesize a permutation circuit for a fully-connected architecture using the Alon, Chung, Graham method.
+  This implementation is based on the Theorem 2 in the paper “Routing Permutations on Graphs Via Matchings” (1993), available at [https://www.cs.tau.ac.il/\~nogaa/PDFS/r.pdf](https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf).
 
-This produces a quantum circuit of depth 2 (measured in the number of SWAPs).
+  **Parameters**
 
-This implementation is based on the Theorem 2 in the paper “Routing Permutations on Graphs Via Matchings” (1993), available at [https://www.cs.tau.ac.il/\~nogaa/PDFS/r.pdf](https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf).
+  **pattern** (*Union\[list\[int], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
 
-**Parameters**
+  **Returns**
 
-**pattern** (*Union\[list\[int], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
+  the synthesized quantum circuit.
 
-**Returns**
+  **Return type**
 
-the synthesized quantum circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+</Function>
 

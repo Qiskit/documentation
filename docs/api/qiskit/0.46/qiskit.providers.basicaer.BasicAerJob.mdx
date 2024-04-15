@@ -8,173 +8,147 @@ python_api_name: qiskit.providers.basicaer.BasicAerJob
 
 # BasicAerJob
 
-<span id="qiskit.providers.basicaer.BasicAerJob" />
+<Class id="qiskit.providers.basicaer.BasicAerJob" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/basicaer/basicaerjob.py" signature="qiskit.providers.basicaer.BasicAerJob(backend, job_id, result)">
+  Bases: [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.job.JobV1")
 
-`qiskit.providers.basicaer.BasicAerJob(backend, job_id, result)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/basicaer/basicaerjob.py "view source code")
+  BasicAerJob class.
 
-Bases: [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.job.JobV1")
+  <Admonition title="Deprecated since version 0.46.0" type="danger">
+    The class `qiskit.providers.basicaer.basicaerjob.BasicAerJob` is deprecated as of qiskit 0.46.0. It will be removed in Qiskit 1.0.0. The qiskit.providers.basicaer module has been superseded by qiskit.providers.basic\_provider, and all its classes have been renamed to follow a new naming convention. Use the new qiskit.providers.basic\_provider.BasicProviderJob class instead.
+  </Admonition>
 
-BasicAerJob class.
+  ## Attributes
 
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The class `qiskit.providers.basicaer.basicaerjob.BasicAerJob` is deprecated as of qiskit 0.46.0. It will be removed in Qiskit 1.0.0. The qiskit.providers.basicaer module has been superseded by qiskit.providers.basic\_provider, and all its classes have been renamed to follow a new naming convention. Use the new qiskit.providers.basic\_provider.BasicProviderJob class instead.
-</Admonition>
+  ### version
 
-## Attributes
+  <Attribute id="qiskit.providers.basicaer.BasicAerJob.version" name="version" attributeValue="= 1" />
 
-<span id="qiskit.providers.basicaer.BasicAerJob.version" />
+  ## Methods
 
-### version
+  ### backend
 
-`= 1`
+  <Function id="qiskit.providers.basicaer.BasicAerJob.backend" name="backend" signature="backend()">
+    Return the instance of the backend used for this job.
+  </Function>
 
-## Methods
+  ### cancel
 
-### backend
+  <Function id="qiskit.providers.basicaer.BasicAerJob.cancel" name="cancel" signature="cancel()">
+    Attempt to cancel the job.
+  </Function>
 
-<span id="qiskit.providers.basicaer.BasicAerJob.backend" />
+  ### cancelled
 
-`backend()`
+  <Function id="qiskit.providers.basicaer.BasicAerJob.cancelled" name="cancelled" signature="cancelled()">
+    Return whether the job has been cancelled.
 
-Return the instance of the backend used for this job.
+    **Return type**
 
-### cancel
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-<span id="qiskit.providers.basicaer.BasicAerJob.cancel" />
+  ### done
 
-`cancel()`
+  <Function id="qiskit.providers.basicaer.BasicAerJob.done" name="done" signature="done()">
+    Return whether the job has successfully run.
 
-Attempt to cancel the job.
+    **Return type**
 
-### cancelled
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-<span id="qiskit.providers.basicaer.BasicAerJob.cancelled" />
+  ### in\_final\_state
 
-`cancelled()`
+  <Function id="qiskit.providers.basicaer.BasicAerJob.in_final_state" name="in_final_state" signature="in_final_state()">
+    Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
-Return whether the job has been cancelled.
+    **Return type**
 
-**Return type**
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  ### job\_id
 
-### done
+  <Function id="qiskit.providers.basicaer.BasicAerJob.job_id" name="job_id" signature="job_id()">
+    Return a unique id identifying the job.
 
-<span id="qiskit.providers.basicaer.BasicAerJob.done" />
+    **Return type**
 
-`done()`
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-Return whether the job has successfully run.
+  ### result
 
-**Return type**
+  <Function id="qiskit.providers.basicaer.BasicAerJob.result" name="result" signature="result(timeout=None)">
+    Get job result .
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    **Returns**
 
-### in\_final\_state
+    Result object
 
-<span id="qiskit.providers.basicaer.BasicAerJob.in_final_state" />
+    **Return type**
 
-`in_final_state()`
+    [qiskit.result.Result](qiskit.result.Result "qiskit.result.Result")
+  </Function>
 
-Return whether the job is in a final job state such as `DONE` or `ERROR`.
+  ### running
 
-**Return type**
+  <Function id="qiskit.providers.basicaer.BasicAerJob.running" name="running" signature="running()">
+    Return whether the job is actively running.
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    **Return type**
 
-### job\_id
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-<span id="qiskit.providers.basicaer.BasicAerJob.job_id" />
+  ### status
 
-`job_id()`
+  <Function id="qiskit.providers.basicaer.BasicAerJob.status" name="status" signature="status()">
+    Gets the status of the job by querying the Python’s future
 
-Return a unique id identifying the job.
+    **Returns**
 
-**Return type**
+    The current JobStatus
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    **Return type**
 
-### result
+    [qiskit.providers.JobStatus](qiskit.providers.JobStatus "qiskit.providers.JobStatus")
+  </Function>
 
-<span id="qiskit.providers.basicaer.BasicAerJob.result" />
+  ### submit
 
-`result(timeout=None)`
+  <Function id="qiskit.providers.basicaer.BasicAerJob.submit" name="submit" signature="submit()">
+    Submit the job to the backend for execution.
 
-Get job result .
+    **Raises**
 
-**Returns**
+    [**JobError**](providers#qiskit.providers.JobError "qiskit.providers.JobError") – if trying to re-submit the job.
+  </Function>
 
-Result object
+  ### wait\_for\_final\_state
 
-**Return type**
+  <Function id="qiskit.providers.basicaer.BasicAerJob.wait_for_final_state" name="wait_for_final_state" signature="wait_for_final_state(timeout=None, wait=5, callback=None)">
+    Poll the job status until it progresses to a final state such as `DONE` or `ERROR`.
 
-[qiskit.result.Result](qiskit.result.Result "qiskit.result.Result")
+    **Parameters**
 
-### running
+    *   **timeout** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – Seconds to wait for the job. If `None`, wait indefinitely.
 
-<span id="qiskit.providers.basicaer.BasicAerJob.running" />
+    *   **wait** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Seconds between queries.
 
-`running()`
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)") *| None*) –
 
-Return whether the job is actively running.
+        Callback function invoked after each query. The following positional arguments are provided to the callback function:
 
-**Return type**
+        *   job\_id: Job ID
+        *   job\_status: Status of the job from the last query
+        *   job: This BaseJob instance
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+        Note: different subclass might provide different arguments to the callback function.
 
-### status
+    **Raises**
 
-<span id="qiskit.providers.basicaer.BasicAerJob.status" />
-
-`status()`
-
-Gets the status of the job by querying the Python’s future
-
-**Returns**
-
-The current JobStatus
-
-**Return type**
-
-[qiskit.providers.JobStatus](qiskit.providers.JobStatus "qiskit.providers.JobStatus")
-
-### submit
-
-<span id="qiskit.providers.basicaer.BasicAerJob.submit" />
-
-`submit()`
-
-Submit the job to the backend for execution.
-
-**Raises**
-
-[**JobError**](providers#qiskit.providers.JobError "qiskit.providers.JobError") – if trying to re-submit the job.
-
-### wait\_for\_final\_state
-
-<span id="qiskit.providers.basicaer.BasicAerJob.wait_for_final_state" />
-
-`wait_for_final_state(timeout=None, wait=5, callback=None)`
-
-Poll the job status until it progresses to a final state such as `DONE` or `ERROR`.
-
-**Parameters**
-
-*   **timeout** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – Seconds to wait for the job. If `None`, wait indefinitely.
-
-*   **wait** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Seconds between queries.
-
-*   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)") *| None*) –
-
-    Callback function invoked after each query. The following positional arguments are provided to the callback function:
-
-    *   job\_id: Job ID
-    *   job\_status: Status of the job from the last query
-    *   job: This BaseJob instance
-
-    Note: different subclass might provide different arguments to the callback function.
-
-**Raises**
-
-[**JobTimeoutError**](providers#qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not reach a final state before the specified timeout.
+    [**JobTimeoutError**](providers#qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not reach a final state before the specified timeout.
+  </Function>
+</Class>
 

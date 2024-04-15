@@ -8,58 +8,56 @@ python_api_name: qiskit.visualization.dag_drawer
 
 # qiskit.visualization.dag\_drawer
 
-<span id="qiskit.visualization.dag_drawer" />
+<Function id="qiskit.visualization.dag_drawer" name="dag_drawer" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/visualization/dag_visualization.py" signature="dag_drawer(dag, scale=0.7, filename=None, style='color')">
+  Plot the directed acyclic graph (dag) to represent operation dependencies in a quantum circuit.
 
-`dag_drawer(dag, scale=0.7, filename=None, style='color')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/visualization/dag_visualization.py "view source code")
+  Note this function leverages [pydot](https://github.com/erocarrera/pydot) to generate the graph, which means that having [Graphviz](https://www.graphviz.org/) installed on your system is required for this to work.
 
-Plot the directed acyclic graph (dag) to represent operation dependencies in a quantum circuit.
+  The current release of Graphviz can be downloaded here: \<[https://graphviz.gitlab.io/download/](https://graphviz.gitlab.io/download/)>. Download the version of the software that matches your environment and follow the instructions to install Graph Visualization Software (Graphviz) on your operating system.
 
-Note this function leverages [pydot](https://github.com/erocarrera/pydot) to generate the graph, which means that having [Graphviz](https://www.graphviz.org/) installed on your system is required for this to work.
+  **Parameters**
 
-The current release of Graphviz can be downloaded here: \<[https://graphviz.gitlab.io/download/](https://graphviz.gitlab.io/download/)>. Download the version of the software that matches your environment and follow the instructions to install Graph Visualization Software (Graphviz) on your operating system.
+  *   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – The dag to draw.
+  *   **scale** (*float*) – scaling factor
+  *   **filename** (*str*) – file path to save image to (format inferred from name)
+  *   **style** (*str*) – ‘plain’: B\&W graph ‘color’ (default): color input/output/op nodes
 
-**Parameters**
+  **Returns**
 
-*   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – The dag to draw.
-*   **scale** (*float*) – scaling factor
-*   **filename** (*str*) – file path to save image to (format inferred from name)
-*   **style** (*str*) – ‘plain’: B\&W graph ‘color’ (default): color input/output/op nodes
+  **if in Jupyter notebook and not saving to file,**
 
-**Returns**
+  otherwise None.
 
-**if in Jupyter notebook and not saving to file,**
+  **Return type**
 
-otherwise None.
+  PIL.Image
 
-**Return type**
+  **Raises**
 
-PIL.Image
+  *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when style is not recognized.
+  *   **ImportError** – when pydot or pillow are not installed.
 
-**Raises**
+  **Example**
 
-*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when style is not recognized.
-*   **ImportError** – when pydot or pillow are not installed.
+  ```python
+  %matplotlib inline
+  from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+  from qiskit.dagcircuit import DAGCircuit
+  from qiskit.converters import circuit_to_dag
+  from qiskit.visualization import dag_drawer
 
-**Example**
+  q = QuantumRegister(3, 'q')
+  c = ClassicalRegister(3, 'c')
+  circ = QuantumCircuit(q, c)
+  circ.h(q[0])
+  circ.cx(q[0], q[1])
+  circ.measure(q[0], c[0])
+  circ.rz(0.5, q[1]).c_if(c, 2)
 
-```python
-%matplotlib inline
-from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
-from qiskit.dagcircuit import DAGCircuit
-from qiskit.converters import circuit_to_dag
-from qiskit.visualization import dag_drawer
+  dag = circuit_to_dag(circ)
+  dag_drawer(dag)
+  ```
 
-q = QuantumRegister(3, 'q')
-c = ClassicalRegister(3, 'c')
-circ = QuantumCircuit(q, c)
-circ.h(q[0])
-circ.cx(q[0], q[1])
-circ.measure(q[0], c[0])
-circ.rz(0.5, q[1]).c_if(c, 2)
-
-dag = circuit_to_dag(circ)
-dag_drawer(dag)
-```
-
-![../\_images/qiskit.visualization.dag\_drawer\_0\_0.png](/images/api/qiskit/0.25/qiskit.visualization.dag_drawer_0_0.png)
+  ![../\_images/qiskit.visualization.dag\_drawer\_0\_0.png](/images/api/qiskit/0.25/qiskit.visualization.dag_drawer_0_0.png)
+</Function>
 

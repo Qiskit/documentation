@@ -8,27 +8,25 @@ python_api_name: qiskit.synthesis.generate_basic_approximations
 
 # qiskit.synthesis.generate\_basic\_approximations
 
-<span id="qiskit.synthesis.generate_basic_approximations" />
+<Function id="qiskit.synthesis.generate_basic_approximations" name="generate_basic_approximations" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/discrete_basis/generate_basis_approximations.py" signature="generate_basic_approximations(basis_gates, depth, filename=None)">
+  Generates a list of `GateSequence``s with the gates in ``basic_gates`.
 
-`generate_basic_approximations(basis_gates, depth, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/discrete_basis/generate_basis_approximations.py "view source code")
+  **Parameters**
 
-Generates a list of `GateSequence``s with the gates in ``basic_gates`.
+  *   **basis\_gates** (*list\[str |* [*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The gates from which to create the sequences of gates.
+  *   **depth** (*int*) – The maximum depth of the approximations.
+  *   **filename** (*str | None*) – If provided, the basic approximations are stored in this file.
 
-**Parameters**
+  **Return type**
 
-*   **basis\_gates** (*list\[str |* [*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The gates from which to create the sequences of gates.
-*   **depth** (*int*) – The maximum depth of the approximations.
-*   **filename** (*str | None*) – If provided, the basic approximations are stored in this file.
+  list\[GateSequence]
 
-**Return type**
+  **Returns**
 
-list\[GateSequence]
+  List of `GateSequences` using the gates in `basic_gates`.
 
-**Returns**
+  **Raises**
 
-List of `GateSequences` using the gates in `basic_gates`.
-
-**Raises**
-
-**ValueError** – If `basis_gates` contains an invalid gate identifier.
+  **ValueError** – If `basis_gates` contains an invalid gate identifier.
+</Function>
 

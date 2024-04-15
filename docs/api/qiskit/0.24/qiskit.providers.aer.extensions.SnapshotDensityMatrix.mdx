@@ -10,295 +10,251 @@ python_api_name: qiskit.providers.aer.extensions.SnapshotDensityMatrix
 
 # qiskit.providers.aer.extensions.SnapshotDensityMatrix
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix" />
+<Class id="qiskit.providers.aer.extensions.SnapshotDensityMatrix" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/extensions/snapshot_density_matrix.py" signature="SnapshotDensityMatrix(label, num_qubits)">
+  Snapshot instruction for density matrix method of Qasm simulator.
 
-`SnapshotDensityMatrix(label, num_qubits)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/extensions/snapshot_density_matrix.py "view source code")
+  Create a density matrix state snapshot instruction.
 
-Snapshot instruction for density matrix method of Qasm simulator.
+  **Parameters**
 
-Create a density matrix state snapshot instruction.
+  *   **label** (*str*) – the snapshot label.
+  *   **num\_qubits** (*int*) – the number of qubits to snapshot.
 
-**Parameters**
+  **Raises**
 
-*   **label** (*str*) – the snapshot label.
-*   **num\_qubits** (*int*) – the number of qubits to snapshot.
+  **ExtensionError** – if snapshot is invalid.
 
-**Raises**
+  ### \_\_init\_\_
 
-**ExtensionError** – if snapshot is invalid.
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.__init__" name="__init__" signature="__init__(label, num_qubits)">
+    Create a density matrix state snapshot instruction.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.__init__" />
+    *   **label** (*str*) – the snapshot label.
+    *   **num\_qubits** (*int*) – the number of qubits to snapshot.
 
-`__init__(label, num_qubits)`
+    **Raises**
 
-Create a density matrix state snapshot instruction.
+    **ExtensionError** – if snapshot is invalid.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **label** (*str*) – the snapshot label.
-*   **num\_qubits** (*int*) – the number of qubits to snapshot.
+  |                                                                                                                                                                                                                      |                                                                          |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.__init__ "qiskit.providers.aer.extensions.SnapshotDensityMatrix.__init__")(label, num\_qubits)                                                   | Create a density matrix state snapshot instruction.                      |
+  | [`add_decomposition`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.add_decomposition "qiskit.providers.aer.extensions.SnapshotDensityMatrix.add_decomposition")(decomposition)                             | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
+  | [`assemble`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.assemble "qiskit.providers.aer.extensions.SnapshotDensityMatrix.assemble")()                                                                     | Assemble a QasmQobjInstruction                                           |
+  | [`broadcast_arguments`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.broadcast_arguments "qiskit.providers.aer.extensions.SnapshotDensityMatrix.broadcast_arguments")(qargs, cargs)                        | Validation of the arguments.                                             |
+  | [`c_if`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.c_if "qiskit.providers.aer.extensions.SnapshotDensityMatrix.c_if")(classical, val)                                                                   | Add classical condition on register classical and value val.             |
+  | [`copy`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.copy "qiskit.providers.aer.extensions.SnapshotDensityMatrix.copy")(\[name])                                                                          | Copy of the instruction.                                                 |
+  | [`define_snapshot_register`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.define_snapshot_register "qiskit.providers.aer.extensions.SnapshotDensityMatrix.define_snapshot_register")(circuit\[, label, …]) | Defines qubits to snapshot for all snapshot methods                      |
+  | [`inverse`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.inverse "qiskit.providers.aer.extensions.SnapshotDensityMatrix.inverse")()                                                                        | Special case.                                                            |
+  | [`is_parameterized`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.is_parameterized "qiskit.providers.aer.extensions.SnapshotDensityMatrix.is_parameterized")()                                             | Return True .IFF.                                                        |
+  | [`mirror`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.mirror "qiskit.providers.aer.extensions.SnapshotDensityMatrix.mirror")()                                                                           | DEPRECATED: use instruction.reverse\_ops().                              |
+  | [`qasm`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.qasm "qiskit.providers.aer.extensions.SnapshotDensityMatrix.qasm")()                                                                                 | Return a default OpenQASM string for the instruction.                    |
+  | [`repeat`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.repeat "qiskit.providers.aer.extensions.SnapshotDensityMatrix.repeat")(n)                                                                          | Creates an instruction with gate repeated n amount of times.             |
+  | [`reverse_ops`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.reverse_ops "qiskit.providers.aer.extensions.SnapshotDensityMatrix.reverse_ops")()                                                            | For a composite instruction, reverse the order of sub-instructions.      |
+  | [`validate_parameter`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.validate_parameter "qiskit.providers.aer.extensions.SnapshotDensityMatrix.validate_parameter")(parameter)                              | Instruction parameters has no validation or normalization.               |
 
-**Raises**
+  ## Attributes
 
-**ExtensionError** – if snapshot is invalid.
+  |                                                                                                                                                                  |                                                                               |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+  | [`decompositions`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.decompositions "qiskit.providers.aer.extensions.SnapshotDensityMatrix.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
+  | [`definition`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.definition "qiskit.providers.aer.extensions.SnapshotDensityMatrix.definition")             | Return definition in terms of other basic gates.                              |
+  | [`duration`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.duration "qiskit.providers.aer.extensions.SnapshotDensityMatrix.duration")                   | Get the duration.                                                             |
+  | [`label`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.label "qiskit.providers.aer.extensions.SnapshotDensityMatrix.label")                            | Return snapshot label                                                         |
+  | [`params`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.params "qiskit.providers.aer.extensions.SnapshotDensityMatrix.params")                         | return instruction params.                                                    |
+  | [`snapshot_type`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.snapshot_type "qiskit.providers.aer.extensions.SnapshotDensityMatrix.snapshot_type")    | Return snapshot type                                                          |
+  | [`unit`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.unit "qiskit.providers.aer.extensions.SnapshotDensityMatrix.unit")                               | Get the time unit of duration.                                                |
 
-## Methods
+  ### add\_decomposition
 
-|                                                                                                                                                                                                                      |                                                                          |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.__init__ "qiskit.providers.aer.extensions.SnapshotDensityMatrix.__init__")(label, num\_qubits)                                                   | Create a density matrix state snapshot instruction.                      |
-| [`add_decomposition`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.add_decomposition "qiskit.providers.aer.extensions.SnapshotDensityMatrix.add_decomposition")(decomposition)                             | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
-| [`assemble`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.assemble "qiskit.providers.aer.extensions.SnapshotDensityMatrix.assemble")()                                                                     | Assemble a QasmQobjInstruction                                           |
-| [`broadcast_arguments`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.broadcast_arguments "qiskit.providers.aer.extensions.SnapshotDensityMatrix.broadcast_arguments")(qargs, cargs)                        | Validation of the arguments.                                             |
-| [`c_if`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.c_if "qiskit.providers.aer.extensions.SnapshotDensityMatrix.c_if")(classical, val)                                                                   | Add classical condition on register classical and value val.             |
-| [`copy`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.copy "qiskit.providers.aer.extensions.SnapshotDensityMatrix.copy")(\[name])                                                                          | Copy of the instruction.                                                 |
-| [`define_snapshot_register`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.define_snapshot_register "qiskit.providers.aer.extensions.SnapshotDensityMatrix.define_snapshot_register")(circuit\[, label, …]) | Defines qubits to snapshot for all snapshot methods                      |
-| [`inverse`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.inverse "qiskit.providers.aer.extensions.SnapshotDensityMatrix.inverse")()                                                                        | Special case.                                                            |
-| [`is_parameterized`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.is_parameterized "qiskit.providers.aer.extensions.SnapshotDensityMatrix.is_parameterized")()                                             | Return True .IFF.                                                        |
-| [`mirror`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.mirror "qiskit.providers.aer.extensions.SnapshotDensityMatrix.mirror")()                                                                           | DEPRECATED: use instruction.reverse\_ops().                              |
-| [`qasm`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.qasm "qiskit.providers.aer.extensions.SnapshotDensityMatrix.qasm")()                                                                                 | Return a default OpenQASM string for the instruction.                    |
-| [`repeat`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.repeat "qiskit.providers.aer.extensions.SnapshotDensityMatrix.repeat")(n)                                                                          | Creates an instruction with gate repeated n amount of times.             |
-| [`reverse_ops`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.reverse_ops "qiskit.providers.aer.extensions.SnapshotDensityMatrix.reverse_ops")()                                                            | For a composite instruction, reverse the order of sub-instructions.      |
-| [`validate_parameter`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.validate_parameter "qiskit.providers.aer.extensions.SnapshotDensityMatrix.validate_parameter")(parameter)                              | Instruction parameters has no validation or normalization.               |
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.add_decomposition" name="add_decomposition" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-## Attributes
+  ### assemble
 
-|                                                                                                                                                                  |                                                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`decompositions`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.decompositions "qiskit.providers.aer.extensions.SnapshotDensityMatrix.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
-| [`definition`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.definition "qiskit.providers.aer.extensions.SnapshotDensityMatrix.definition")             | Return definition in terms of other basic gates.                              |
-| [`duration`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.duration "qiskit.providers.aer.extensions.SnapshotDensityMatrix.duration")                   | Get the duration.                                                             |
-| [`label`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.label "qiskit.providers.aer.extensions.SnapshotDensityMatrix.label")                            | Return snapshot label                                                         |
-| [`params`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.params "qiskit.providers.aer.extensions.SnapshotDensityMatrix.params")                         | return instruction params.                                                    |
-| [`snapshot_type`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.snapshot_type "qiskit.providers.aer.extensions.SnapshotDensityMatrix.snapshot_type")    | Return snapshot type                                                          |
-| [`unit`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.unit "qiskit.providers.aer.extensions.SnapshotDensityMatrix.unit")                               | Get the time unit of duration.                                                |
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.assemble" name="assemble" signature="assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-### add\_decomposition
+  ### broadcast\_arguments
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.add_decomposition" />
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.broadcast_arguments" name="broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-`add_decomposition(decomposition)`
+    **Parameters**
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-### assemble
+    **Yields**
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.assemble" />
+    *Tuple(List, List)* – A tuple with single arguments.
 
-`assemble()`
+    **Raises**
 
-Assemble a QasmQobjInstruction
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-### broadcast\_arguments
+  ### c\_if
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.broadcast_arguments" />
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.c_if" name="c_if" signature="c_if(classical, val)">
+    Add classical condition on register classical and value val.
+  </Function>
 
-`broadcast_arguments(qargs, cargs)`
+  ### copy
 
-Validation of the arguments.
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.copy" name="copy" signature="copy(name=None)">
+    Copy of the instruction.
 
-**Parameters**
+    **Parameters**
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**Yields**
+    **Returns**
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **a copy of the current instruction, with the name**
 
-**Raises**
+    updated if it was provided
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Return type**
 
-### c\_if
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.c_if" />
+  ### decompositions
 
-`c_if(classical, val)`
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.decompositions" name="decompositions" signature="property decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Function>
 
-Add classical condition on register classical and value val.
+  ### define\_snapshot\_register
 
-### copy
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.define_snapshot_register" name="define_snapshot_register" signature="static define_snapshot_register(circuit, label=None, qubits=None)">
+    Defines qubits to snapshot for all snapshot methods
+  </Function>
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.copy" />
+  ### definition
 
-`copy(name=None)`
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.definition" name="definition" signature="property definition">
+    Return definition in terms of other basic gates.
+  </Function>
 
-Copy of the instruction.
+  ### duration
 
-**Parameters**
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.duration" name="duration" signature="property duration">
+    Get the duration.
+  </Function>
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+  ### inverse
 
-**Returns**
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.inverse" name="inverse" signature="inverse()">
+    Special case. Return self.
+  </Function>
 
-**a copy of the current instruction, with the name**
+  ### is\_parameterized
 
-updated if it was provided
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-**Return type**
+  ### label
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.label" name="label" signature="property label">
+    Return snapshot label
+  </Function>
 
-### decompositions
+  ### mirror
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.decompositions" />
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.mirror" name="mirror" signature="mirror()">
+    DEPRECATED: use instruction.reverse\_ops().
 
-`property decompositions`
+    **Returns**
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+    **a new instruction with sub-instructions**
 
-### define\_snapshot\_register
+    reversed.
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.define_snapshot_register" />
+    **Return type**
 
-`static define_snapshot_register(circuit, label=None, qubits=None)`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Defines qubits to snapshot for all snapshot methods
+  ### params
 
-### definition
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.params" name="params" signature="property params">
+    return instruction params.
+  </Function>
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.definition" />
+  ### qasm
 
-`property definition`
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.qasm" name="qasm" signature="qasm()">
+    Return a default OpenQASM string for the instruction.
 
-Return definition in terms of other basic gates.
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-### duration
+  ### repeat
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.duration" />
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.repeat" name="repeat" signature="repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-`property duration`
+    **Parameters**
 
-Get the duration.
+    **n** (*int*) – Number of times to repeat the instruction
 
-### inverse
+    **Returns**
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.inverse" />
+    Containing the definition.
 
-`inverse()`
+    **Return type**
 
-Special case. Return self.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-### is\_parameterized
+    **Raises**
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.is_parameterized" />
+    **CircuitError** – If n \< 1.
+  </Function>
 
-`is_parameterized()`
+  ### reverse\_ops
 
-Return True .IFF. instruction is parameterized else False
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.reverse_ops" name="reverse_ops" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-### label
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.label" />
+    **Returns**
 
-`property label`
+    **a new instruction with**
 
-Return snapshot label
+    sub-instructions reversed.
 
-### mirror
+    **Return type**
 
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.mirror" />
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-`mirror()`
+  ### snapshot\_type
 
-DEPRECATED: use instruction.reverse\_ops().
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.snapshot_type" name="snapshot_type" signature="property snapshot_type">
+    Return snapshot type
+  </Function>
 
-**Returns**
+  ### unit
 
-**a new instruction with sub-instructions**
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.unit" name="unit" signature="property unit">
+    Get the time unit of duration.
+  </Function>
 
-reversed.
+  ### validate\_parameter
 
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### params
-
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.params" />
-
-`property params`
-
-return instruction params.
-
-### qasm
-
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.qasm" />
-
-`qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.repeat" />
-
-`repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### reverse\_ops
-
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.reverse_ops" />
-
-`reverse_ops()`
-
-For a composite instruction, reverse the order of sub-instructions.
-
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-**a new instruction with**
-
-sub-instructions reversed.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### snapshot\_type
-
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.snapshot_type" />
-
-`property snapshot_type`
-
-Return snapshot type
-
-### unit
-
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.unit" />
-
-`property unit`
-
-Get the time unit of duration.
-
-### validate\_parameter
-
-<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
+  <Function id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.validate_parameter" name="validate_parameter" signature="validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
+</Class>
 

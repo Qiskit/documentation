@@ -10,31 +10,29 @@ python_api_name: qiskit.result.marginal_counts
 
 # qiskit.result.marginal\_counts
 
-<span id="qiskit.result.marginal_counts" />
+<Function id="qiskit.result.marginal_counts" name="marginal_counts" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/result/utils.py" signature="marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)">
+  Marginalize counts from an experiment over some indices of interest.
 
-`marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/result/utils.py "view source code")
+  **Parameters**
 
-Marginalize counts from an experiment over some indices of interest.
+  *   **result** (*dict |* [*Result*](qiskit.result.Result "qiskit.result.result.Result")) – result to be marginalized (a Result object or a dict(str, int) of counts).
+  *   **indices** (*List\[int] | None*) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
+  *   **inplace** (*bool*) – Default: False. Operates on the original Result argument if True, leading to loss of original Job Result. It has no effect if `result` is a dict.
+  *   **format\_marginal** (*bool*) – Default: False. If True, takes the output of marginalize and formats it with placeholders between cregs and for non-indices.
+  *   **marginalize\_memory** (*bool | None*) – If True, then also marginalize the memory field (if present). If False, remove the memory field from the result. If None, leave the memory field as is.
 
-**Parameters**
+  **Returns**
 
-*   **result** (*dict |* [*Result*](qiskit.result.Result "qiskit.result.result.Result")) – result to be marginalized (a Result object or a dict(str, int) of counts).
-*   **indices** (*List\[int] | None*) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
-*   **inplace** (*bool*) – Default: False. Operates on the original Result argument if True, leading to loss of original Job Result. It has no effect if `result` is a dict.
-*   **format\_marginal** (*bool*) – Default: False. If True, takes the output of marginalize and formats it with placeholders between cregs and for non-indices.
-*   **marginalize\_memory** (*bool | None*) – If True, then also marginalize the memory field (if present). If False, remove the memory field from the result. If None, leave the memory field as is.
+  **A Result object or a dictionary with**
 
-**Returns**
+  the observed counts, marginalized to only account for frequency of observations of bits of interest.
 
-**A Result object or a dictionary with**
+  **Return type**
 
-the observed counts, marginalized to only account for frequency of observations of bits of interest.
+  [Result](qiskit.result.Result "qiskit.result.Result") or dict(str, int)
 
-**Return type**
+  **Raises**
 
-[Result](qiskit.result.Result "qiskit.result.Result") or dict(str, int)
-
-**Raises**
-
-**QiskitError** – in case of invalid indices to marginalize over.
+  **QiskitError** – in case of invalid indices to marginalize over.
+</Function>
 

@@ -8,171 +8,167 @@ python_api_name: qiskit.circuit.library.CU3Gate
 
 # CU3Gate
 
-<span id="qiskit.circuit.library.CU3Gate" />
+<Class id="qiskit.circuit.library.CU3Gate" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/u3.py" signature="qiskit.circuit.library.CU3Gate(theta, phi, lam, label=None, ctrl_state=None)">
+  Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
-`qiskit.circuit.library.CU3Gate(theta, phi, lam, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/u3.py "view source code")
+  Controlled-U3 gate (3-parameter two-qubit gate).
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+  This is a controlled version of the U3 gate (generic single qubit rotation). It is restricted to 3 parameters, and so cannot cover generic two-qubit controlled gates).
 
-Controlled-U3 gate (3-parameter two-qubit gate).
-
-This is a controlled version of the U3 gate (generic single qubit rotation). It is restricted to 3 parameters, and so cannot cover generic two-qubit controlled gates).
-
-**Circuit symbol:**
-
-```python
-q_0: ──────■──────
-     ┌─────┴─────┐
-q_1: ┤ U3(ϴ,φ,λ) ├
-     └───────────┘
-```
-
-**Matrix representation:**
-
-$$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CU3(\theta, \phi, \lambda)\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| +
-    U3(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
-    \begin{pmatrix}
-        1 & 0                   & 0 & 0 \\
-        0 & \cos(\th)           & 0 & -e^{i\lambda}\sin(\th) \\
-        0 & 0                   & 1 & 0 \\
-        0 & e^{i\phi}\sin(\th)  & 0 & e^{i(\phi+\lambda)}\cos(\th)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
-$$
-
-<Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
+  **Circuit symbol:**
 
   ```python
-       ┌───────────┐
-  q_0: ┤ U3(ϴ,φ,λ) ├
-       └─────┬─────┘
-  q_1: ──────■──────
+  q_0: ──────■──────
+       ┌─────┴─────┐
+  q_1: ┤ U3(ϴ,φ,λ) ├
+       └───────────┘
   ```
 
-  $$
-  \begin{split}CU3(\theta, \phi, \lambda)\ q_1, q_0 =
-      |0\rangle\langle 0| \otimes I +
-      |1\rangle\langle 1| \otimes U3(\theta,\phi,\lambda) =
-      \begin{pmatrix}
-          1 & 0   & 0                  & 0 \\
-          0 & 1   & 0                  & 0 \\
-          0 & 0   & \cos(\th)          & -e^{i\lambda}\sin(\th) \\
-          0 & 0   & e^{i\phi}\sin(\th) & e^{i(\phi+\lambda)}\cos(\th)
-      \end{pmatrix}\end{split}
-  $$
-</Admonition>
+  **Matrix representation:**
 
-Create new CU3 gate.
+$$
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CU3(\theta, \phi, \lambda)\ q_0, q_1 =
+I \otimes |0\rangle\langle 0| +
+U3(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
+\begin{pmatrix}
+1 & 0                   & 0 & 0 \\
+0 & \cos(\th)           & 0 & -e^{i\lambda}\sin(\th) \\
+0 & 0                   & 1 & 0 \\
+0 & e^{i\phi}\sin(\th)  & 0 & e^{i(\phi+\lambda)}\cos(\th)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
+$$
 
-## Attributes
+  <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
 
-<span id="qiskit.circuit.library.CU3Gate.condition_bits" />
+    ```python
+         ┌───────────┐
+    q_0: ┤ U3(ϴ,φ,λ) ├
+         └─────┬─────┘
+    q_1: ──────■──────
+    ```
 
-### condition\_bits
+$$
+\begin{split}CU3(\theta, \phi, \lambda)\ q_1, q_0 =
+|0\rangle\langle 0| \otimes I +
+|1\rangle\langle 1| \otimes U3(\theta,\phi,\lambda) =
+\begin{pmatrix}
+1 & 0   & 0                  & 0 \\
+0 & 1   & 0                  & 0 \\
+0 & 0   & \cos(\th)          & -e^{i\lambda}\sin(\th) \\
+0 & 0   & e^{i\phi}\sin(\th) & e^{i(\phi+\lambda)}\cos(\th)
+\end{pmatrix}\end{split}
+$$
+  </Admonition>
 
-Get Clbits in condition.
+  Create new CU3 gate.
 
-<span id="qiskit.circuit.library.CU3Gate.ctrl_state" />
+  ## Attributes
 
-### ctrl\_state
+  ### condition\_bits
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.CU3Gate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CU3Gate.decompositions" />
+  ### ctrl\_state
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.CU3Gate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### decompositions
 
-<span id="qiskit.circuit.library.CU3Gate.definition" />
+  <Attribute id="qiskit.circuit.library.CU3Gate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### definition
+  ### definition
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  <Attribute id="qiskit.circuit.library.CU3Gate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CU3Gate.duration" />
+  ### duration
 
-### duration
+  <Attribute id="qiskit.circuit.library.CU3Gate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Get the duration.
+  ### label
 
-<span id="qiskit.circuit.library.CU3Gate.label" />
+  <Attribute id="qiskit.circuit.library.CU3Gate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-### label
+  ### name
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.CU3Gate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-<span id="qiskit.circuit.library.CU3Gate.name" />
+    > \<original\_name\_o\<ctrl\_state>
 
-### name
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
 
-Get name of gate. If the gate has open controls the gate name will become:
+  ### num\_clbits
 
-> \<original\_name\_o\<ctrl\_state>
+  <Attribute id="qiskit.circuit.library.CU3Gate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  ### num\_ctrl\_qubits
 
-<span id="qiskit.circuit.library.CU3Gate.num_clbits" />
+  <Attribute id="qiskit.circuit.library.CU3Gate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-### num\_clbits
+    **Returns**
 
-Return the number of clbits.
+    The number of control qubits for the gate.
 
-<span id="qiskit.circuit.library.CU3Gate.num_ctrl_qubits" />
+    **Return type**
 
-### num\_ctrl\_qubits
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Attribute>
 
-Get number of control qubits.
+  ### num\_qubits
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.CU3Gate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-The number of control qubits for the gate.
+  ### params
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.CU3Gate.params" name="params">
+    Get parameters from base\_gate.
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    **Returns**
 
-<span id="qiskit.circuit.library.CU3Gate.num_qubits" />
+    List of gate parameters.
 
-### num\_qubits
+    **Return type**
 
-Return the number of qubits.
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
-<span id="qiskit.circuit.library.CU3Gate.params" />
+    **Raises**
 
-### params
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+  </Attribute>
 
-Get parameters from base\_gate.
+  ### unit
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.CU3Gate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-List of gate parameters.
+  ## Methods
 
-**Return type**
+  ### inverse
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
+  <Function id="qiskit.circuit.library.CU3Gate.inverse" name="inverse" signature="inverse()">
+    Return inverted CU3 gate.
 
-**Raises**
-
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
-
-<span id="qiskit.circuit.library.CU3Gate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### inverse
-
-<span id="qiskit.circuit.library.CU3Gate.inverse" />
-
-`inverse()`
-
-Return inverted CU3 gate.
-
-$CU3(\theta,\phi,\lambda)^{\dagger} =CU3(-\theta,-\phi,-\lambda)$)
+    $CU3(\theta,\phi,\lambda)^{\dagger} =CU3(-\theta,-\phi,-\lambda)$)
+  </Function>
+</Class>
 

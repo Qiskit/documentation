@@ -8,46 +8,44 @@ python_api_name: qiskit.visualization.plot_state_qsphere
 
 # plot\_state\_qsphere
 
-<span id="qiskit.visualization.plot_state_qsphere" />
+<Function id="qiskit.visualization.plot_state_qsphere" name="plot_state_qsphere" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/state_visualization.py" signature="plot_state_qsphere(rho, figsize=None, ax=None)">
+  Plot the qsphere representation of a quantum state. Here, the size of the points is proportional to the probability of the corresponding term in the state and the color represents the phase.
 
-`plot_state_qsphere(rho, figsize=None, ax=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/state_visualization.py "view source code")
+  **Parameters**
 
-Plot the qsphere representation of a quantum state. Here, the size of the points is proportional to the probability of the corresponding term in the state and the color represents the phase.
+  *   **rho** (*ndarray*) – State vector or density matrix representation. of quantum state.
+  *   **figsize** (*tuple*) – Figure size in inches.
+  *   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
 
-**Parameters**
+  **Returns**
 
-*   **rho** (*ndarray*) – State vector or density matrix representation. of quantum state.
-*   **figsize** (*tuple*) – Figure size in inches.
-*   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
+  A matplotlib figure instance if the `ax` kwag is not set
 
-**Returns**
+  **Return type**
 
-A matplotlib figure instance if the `ax` kwag is not set
+  Figure
 
-**Return type**
+  **Raises**
 
-Figure
+  **ImportError** – Requires matplotlib.
 
-**Raises**
+  **Example**
 
-**ImportError** – Requires matplotlib.
+  ```python
+  from qiskit import QuantumCircuit, BasicAer, execute
+  from qiskit.visualization import plot_state_qsphere
+  %matplotlib inline
 
-**Example**
+  qc = QuantumCircuit(2, 2)
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.measure([0, 1], [0, 1])
 
-```python
-from qiskit import QuantumCircuit, BasicAer, execute
-from qiskit.visualization import plot_state_qsphere
-%matplotlib inline
+  backend = BasicAer.get_backend('statevector_simulator')
+  job = execute(qc, backend).result()
+  plot_state_qsphere(job.get_statevector(qc))
+  ```
 
-qc = QuantumCircuit(2, 2)
-qc.h(0)
-qc.cx(0, 1)
-qc.measure([0, 1], [0, 1])
-
-backend = BasicAer.get_backend('statevector_simulator')
-job = execute(qc, backend).result()
-plot_state_qsphere(job.get_statevector(qc))
-```
-
-![../\_images/qiskit.visualization.plot\_state\_qsphere\_0\_2.png](/images/api/qiskit/0.19/qiskit.visualization.plot_state_qsphere_0_2.png) ![../\_images/qiskit.visualization.plot\_state\_qsphere\_0\_3.png](/images/api/qiskit/0.19/qiskit.visualization.plot_state_qsphere_0_3.png)
+  ![../\_images/qiskit.visualization.plot\_state\_qsphere\_0\_2.png](/images/api/qiskit/0.19/qiskit.visualization.plot_state_qsphere_0_2.png) ![../\_images/qiskit.visualization.plot\_state\_qsphere\_0\_3.png](/images/api/qiskit/0.19/qiskit.visualization.plot_state_qsphere_0_3.png)
+</Function>
 

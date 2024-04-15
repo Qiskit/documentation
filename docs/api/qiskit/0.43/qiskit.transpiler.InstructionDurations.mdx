@@ -8,121 +8,111 @@ python_api_name: qiskit.transpiler.InstructionDurations
 
 # InstructionDurations
 
-<span id="qiskit.transpiler.InstructionDurations" />
+<Class id="qiskit.transpiler.InstructionDurations" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/instruction_durations.py" signature="InstructionDurations(instruction_durations=None, dt=None)">
+  Bases: `object`
 
-`InstructionDurations(instruction_durations=None, dt=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/instruction_durations.py "view source code")
+  Helper class to provide durations of instructions for scheduling.
 
-Bases: `object`
+  It stores durations (gate lengths) and dt to be used at the scheduling stage of transpiling. It can be constructed from `backend` or `instruction_durations`, which is an argument of `transpile()`. The duration of an instruction depends on the instruction (given by name), the qubits, and optionally the parameters of the instruction. Note that these fields are used as keys in dictionaries that are used to retrieve the instruction durations. Therefore, users must use the exact same parameter value to retrieve an instruction duration as the value with which it was added.
 
-Helper class to provide durations of instructions for scheduling.
+  ## Methods
 
-It stores durations (gate lengths) and dt to be used at the scheduling stage of transpiling. It can be constructed from `backend` or `instruction_durations`, which is an argument of `transpile()`. The duration of an instruction depends on the instruction (given by name), the qubits, and optionally the parameters of the instruction. Note that these fields are used as keys in dictionaries that are used to retrieve the instruction durations. Therefore, users must use the exact same parameter value to retrieve an instruction duration as the value with which it was added.
+  <span id="qiskit-transpiler-instructiondurations-from-backend" />
 
-## Methods
+  ### from\_backend
 
-<span id="qiskit-transpiler-instructiondurations-from-backend" />
+  <Function id="qiskit.transpiler.InstructionDurations.from_backend" name="from_backend" signature="classmethod InstructionDurations.from_backend(backend)">
+    Construct an [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") object from the backend.
 
-### from\_backend
+    **Parameters**
 
-<span id="qiskit.transpiler.InstructionDurations.from_backend" />
+    **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.backend.Backend")) – backend from which durations (gate lengths) and dt are extracted.
 
-`classmethod InstructionDurations.from_backend(backend)`
+    **Returns**
 
-Construct an [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") object from the backend.
+    The InstructionDurations constructed from backend.
 
-**Parameters**
+    **Return type**
 
-**backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.backend.Backend")) – backend from which durations (gate lengths) and dt are extracted.
+    [InstructionDurations](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")
 
-**Returns**
+    **Raises**
 
-The InstructionDurations constructed from backend.
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If dt and dtm is different in the backend.
+  </Function>
 
-**Return type**
+  <span id="qiskit-transpiler-instructiondurations-get" />
 
-[InstructionDurations](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")
+  ### get
 
-**Raises**
+  <Function id="qiskit.transpiler.InstructionDurations.get" name="get" signature="InstructionDurations.get(inst, qubits, unit='dt', parameters=None)">
+    Get the duration of the instruction with the name, qubits, and parameters.
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If dt and dtm is different in the backend.
+    Some instructions may have a parameter dependent duration.
 
-<span id="qiskit-transpiler-instructiondurations-get" />
+    <Admonition title="Deprecated since version 0.19.0" type="danger">
+      Using a Qubit or List\[Qubit] for the `qubits` argument to InstructionDurations.get() is deprecated as of qiskit-terra 0.19.0. It will be removed no earlier than 3 months after the release date. Instead, use an integer for the qubit index.
+    </Admonition>
 
-### get
+    **Parameters**
 
-<span id="qiskit.transpiler.InstructionDurations.get" />
+    *   **inst** (*str |* [*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – An instruction or its name to be queried.
+    *   **qubits** (*int | List\[int] |* [*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit") *| List\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")*]*) – Qubits or its indices that the instruction acts on.
+    *   **unit** (*str*) – The unit of duration to be returned. It must be ‘s’ or ‘dt’.
+    *   **parameters** (*List\[float] | None*) – The value of the parameters of the desired instruction.
 
-`InstructionDurations.get(inst, qubits, unit='dt', parameters=None)`
+    **Returns**
 
-Get the duration of the instruction with the name, qubits, and parameters.
+    The duration of the instruction on the qubits.
 
-Some instructions may have a parameter dependent duration.
+    **Return type**
 
-<Admonition title="Deprecated since version 0.19.0" type="danger">
-  Using a Qubit or List\[Qubit] for the `qubits` argument to InstructionDurations.get() is deprecated as of qiskit-terra 0.19.0. It will be removed no earlier than 3 months after the release date. Instead, use an integer for the qubit index.
-</Admonition>
+    float|int
 
-**Parameters**
+    **Raises**
 
-*   **inst** (*str |* [*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – An instruction or its name to be queried.
-*   **qubits** (*int | List\[int] |* [*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit") *| List\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")*]*) – Qubits or its indices that the instruction acts on.
-*   **unit** (*str*) – The unit of duration to be returned. It must be ‘s’ or ‘dt’.
-*   **parameters** (*List\[float] | None*) – The value of the parameters of the desired instruction.
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – No duration is defined for the instruction.
+  </Function>
 
-**Returns**
+  <span id="qiskit-transpiler-instructiondurations-units-used" />
 
-The duration of the instruction on the qubits.
+  ### units\_used
 
-**Return type**
+  <Function id="qiskit.transpiler.InstructionDurations.units_used" name="units_used" signature="InstructionDurations.units_used()">
+    Get the set of all units used in this instruction durations.
 
-float|int
+    **Returns**
 
-**Raises**
+    Set of units used in this instruction durations.
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – No duration is defined for the instruction.
+    **Return type**
 
-<span id="qiskit-transpiler-instructiondurations-units-used" />
+    *Set*\[str]
+  </Function>
 
-### units\_used
+  <span id="qiskit-transpiler-instructiondurations-update" />
 
-<span id="qiskit.transpiler.InstructionDurations.units_used" />
+  ### update
 
-`InstructionDurations.units_used()`
+  <Function id="qiskit.transpiler.InstructionDurations.update" name="update" signature="InstructionDurations.update(inst_durations, dt=None)">
+    Update self with inst\_durations (inst\_durations overwrite self).
 
-Get the set of all units used in this instruction durations.
+    **Parameters**
 
-**Returns**
+    *   **inst\_durations** (*List\[Tuple\[str, Iterable\[int] | None, float, Iterable\[float] | None, str]] | List\[Tuple\[str, Iterable\[int] | None, float, Iterable\[float] | None]] | List\[Tuple\[str, Iterable\[int] | None, float, str]] | List\[Tuple\[str, Iterable\[int] | None, float]] |* [*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.instruction_durations.InstructionDurations") *| None*) – Instruction durations to be merged into self (overwriting self).
+    *   **dt** (*float | None*) – Sampling duration in seconds of the target backend.
 
-Set of units used in this instruction durations.
+    **Returns**
 
-**Return type**
+    The updated InstructionDurations.
 
-*Set*\[str]
+    **Return type**
 
-<span id="qiskit-transpiler-instructiondurations-update" />
+    [InstructionDurations](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")
 
-### update
+    **Raises**
 
-<span id="qiskit.transpiler.InstructionDurations.update" />
-
-`InstructionDurations.update(inst_durations, dt=None)`
-
-Update self with inst\_durations (inst\_durations overwrite self).
-
-**Parameters**
-
-*   **inst\_durations** (*List\[Tuple\[str, Iterable\[int] | None, float, Iterable\[float] | None, str]] | List\[Tuple\[str, Iterable\[int] | None, float, Iterable\[float] | None]] | List\[Tuple\[str, Iterable\[int] | None, float, str]] | List\[Tuple\[str, Iterable\[int] | None, float]] |* [*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.instruction_durations.InstructionDurations") *| None*) – Instruction durations to be merged into self (overwriting self).
-*   **dt** (*float | None*) – Sampling duration in seconds of the target backend.
-
-**Returns**
-
-The updated InstructionDurations.
-
-**Return type**
-
-[InstructionDurations](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")
-
-**Raises**
-
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If the format of instruction\_durations is invalid.
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If the format of instruction\_durations is invalid.
+  </Function>
+</Class>
 

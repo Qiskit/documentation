@@ -8,36 +8,30 @@ python_api_name: qiskit.primitives.EstimatorResult
 
 # EstimatorResult
 
-<span id="qiskit.primitives.EstimatorResult" />
+<Class id="qiskit.primitives.EstimatorResult" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/base/estimator_result.py#L27-L46" signature="qiskit.primitives.EstimatorResult(values, metadata)">
+  Bases: `_BasePrimitiveResult`
 
-`qiskit.primitives.EstimatorResult(values, metadata)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/base/estimator_result.py "view source code")
+  Result of Estimator.
 
-Bases: `_BasePrimitiveResult`
+  ```python
+  result = estimator.run(circuits, observables, params).result()
+  ```
 
-Result of Estimator.
+  where the i-th elements of `result` correspond to the circuit and observable given by `circuits[i]`, `observables[i]`, and the parameter values bounds by `params[i]`. For example, `results.values[i]` gives the expectation value, and `result.metadata[i]` is a metadata dictionary for this circuit and parameters.
 
-```python
-result = estimator.run(circuits, observables, params).result()
-```
+  **Parameters**
 
-where the i-th elements of `result` correspond to the circuit and observable given by `circuits[i]`, `observables[i]`, and the parameter values bounds by `params[i]`. For example, `results.values[i]` gives the expectation value, and `result.metadata[i]` is a metadata dictionary for this circuit and parameters.
+  *   **values** (*np.ndarray*) – The array of the expectation values.
+  *   **metadata** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*]*) – List of the metadata.
 
-**Parameters**
+  ## Attributes
 
-*   **values** (*np.ndarray*) – The array of the expectation values.
-*   **metadata** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*]*) – List of the metadata.
+  ### values
 
-## Attributes
+  <Attribute id="qiskit.primitives.EstimatorResult.values" name="values" attributeTypeHint="np.ndarray[Any, np.dtype[np.float64]]" />
 
-<span id="qiskit.primitives.EstimatorResult.values" />
+  ### metadata
 
-### values
-
-`np.ndarray[Any, np.dtype[np.float64]]`
-
-<span id="qiskit.primitives.EstimatorResult.metadata" />
-
-### metadata
-
-`list[dict[str, Any]]`
+  <Attribute id="qiskit.primitives.EstimatorResult.metadata" name="metadata" attributeTypeHint="list[dict[str, Any]]" />
+</Class>
 

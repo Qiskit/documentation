@@ -8,193 +8,181 @@ python_api_name: qiskit.aqua.components.uncertainty_models.MultivariateVariation
 
 # MultivariateVariationalDistribution
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution" />
+<Class id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_models/multivariate_variational_distribution.py" signature="MultivariateVariationalDistribution(num_qubits, var_form, params, low=None, high=None)">
+  The Multivariate Variational Distribution.
 
-`MultivariateVariationalDistribution(num_qubits, var_form, params, low=None, high=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_models/multivariate_variational_distribution.py "view source code")
+  **Parameters**
 
-The Multivariate Variational Distribution.
+  *   **num\_qubits** (`Union`\[`List`\[`int`], `ndarray`]) – List with the number of qubits per dimension
+  *   **var\_form** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.variational_form.VariationalForm")]) – Variational form
+  *   **params** (`Union`\[`List`\[`float`], `ndarray`]) – Parameters for variational form
+  *   **low** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – List with the lower bounds per dimension, set to 0 for each dimension if None
+  *   **high** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – List with the upper bounds per dimension, set to 1 for each dimension if None
 
-**Parameters**
+  ## Attributes
 
-*   **num\_qubits** (`Union`\[`List`\[`int`], `ndarray`]) – List with the number of qubits per dimension
-*   **var\_form** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.variational_form.VariationalForm")]) – Variational form
-*   **params** (`Union`\[`List`\[`float`], `ndarray`]) – Parameters for variational form
-*   **low** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – List with the lower bounds per dimension, set to 0 for each dimension if None
-*   **high** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – List with the upper bounds per dimension, set to 1 for each dimension if None
+  ### dimension
 
-## Attributes
+  <Attribute id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.dimension" name="dimension">
+    returns dimensions
+  </Attribute>
 
-### dimension
+  ### high
 
-returns dimensions
+  <Attribute id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.high" name="high">
+    returns high
+  </Attribute>
 
-### high
+  ### low
 
-returns high
+  <Attribute id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.low" name="low">
+    returns low
+  </Attribute>
 
-### low
+  ### num\_qubits
 
-returns low
+  <Attribute id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.num_qubits" name="num_qubits">
+    returns num qubits
+  </Attribute>
 
-### num\_qubits
+  ### num\_target\_qubits
 
-returns num qubits
+  <Attribute id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.num_target_qubits" name="num_target_qubits">
+    Returns the number of target qubits
+  </Attribute>
 
-### num\_target\_qubits
+  ### num\_values
 
-Returns the number of target qubits
+  <Attribute id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.num_values" name="num_values">
+    returns number of values
+  </Attribute>
 
-### num\_values
+  ### probabilities
 
-returns number of values
+  <Attribute id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.probabilities" name="probabilities">
+    returns probabilities
+  </Attribute>
 
-### probabilities
+  ### probabilities\_vector
 
-returns probabilities
+  <Attribute id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.probabilities_vector" name="probabilities_vector">
+    returns probabilities vector
+  </Attribute>
 
-### probabilities\_vector
+  ### values
 
-returns probabilities vector
+  <Attribute id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.values" name="values">
+    returns values
+  </Attribute>
 
-### values
+  ## Methods
 
-returns values
+  ### build
 
-## Methods
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build" name="build" signature="MultivariateVariationalDistribution.build(qc, q, q_ancillas=None, params=None)" />
 
-### build
+  ### build\_controlled
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build" />
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_controlled" name="build_controlled" signature="MultivariateVariationalDistribution.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds corresponding controlled sub-circuit to given circuit
 
-`MultivariateVariationalDistribution.build(qc, q, q_ancillas=None, params=None)`
+    **Parameters**
 
-### build\_controlled
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_controlled" />
+  ### build\_controlled\_inverse
 
-`MultivariateVariationalDistribution.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_controlled_inverse" name="build_controlled_inverse" signature="MultivariateVariationalDistribution.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled inverse of corresponding sub-circuit to given circuit
 
-Adds corresponding controlled sub-circuit to given circuit
+    **Parameters**
 
-**Parameters**
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  ### build\_controlled\_inverse\_power
 
-### build\_controlled\_inverse
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_controlled_inverse_power" name="build_controlled_inverse_power" signature="MultivariateVariationalDistribution.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_controlled_inverse" />
+  ### build\_controlled\_power
 
-`MultivariateVariationalDistribution.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_controlled_power" name="build_controlled_power" signature="MultivariateVariationalDistribution.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-Adds controlled inverse of corresponding sub-circuit to given circuit
+  ### build\_inverse
 
-**Parameters**
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_inverse" name="build_inverse" signature="MultivariateVariationalDistribution.build_inverse(qc, q, q_ancillas=None)">
+    Adds inverse of corresponding sub-circuit to given circuit
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+    **Parameters**
 
-### build\_controlled\_inverse\_power
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_controlled_inverse_power" />
+  ### build\_inverse\_power
 
-`MultivariateVariationalDistribution.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_inverse_power" name="build_inverse_power" signature="MultivariateVariationalDistribution.build_inverse_power(qc, q, power, q_ancillas=None)">
+    Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ### build\_power
 
-### build\_controlled\_power
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_power" name="build_power" signature="MultivariateVariationalDistribution.build_power(qc, q, power, q_ancillas=None)">
+    Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_controlled_power" />
+  ### get\_num\_qubits
 
-`MultivariateVariationalDistribution.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.get_num_qubits" name="get_num_qubits" signature="MultivariateVariationalDistribution.get_num_qubits()">
+    returns number of qubits
+  </Function>
 
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  ### get\_num\_qubits\_controlled
 
-### build\_inverse
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.get_num_qubits_controlled" name="get_num_qubits_controlled" signature="MultivariateVariationalDistribution.get_num_qubits_controlled()">
+    returns number of qubits controlled
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_inverse" />
+  ### pdf\_to\_probabilities
 
-`MultivariateVariationalDistribution.build_inverse(qc, q, q_ancillas=None)`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.pdf_to_probabilities" name="pdf_to_probabilities" signature="static MultivariateVariationalDistribution.pdf_to_probabilities(pdf, low, high, num_values)">
+    pdf to probabilities
+  </Function>
 
-Adds inverse of corresponding sub-circuit to given circuit
+  ### required\_ancillas
 
-**Parameters**
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.required_ancillas" name="required_ancillas" signature="MultivariateVariationalDistribution.required_ancillas()">
+    returns required ancillas
+  </Function>
 
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  ### required\_ancillas\_controlled
 
-### build\_inverse\_power
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.required_ancillas_controlled" name="required_ancillas_controlled" signature="MultivariateVariationalDistribution.required_ancillas_controlled()">
+    returns required ancillas controlled
+  </Function>
 
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_inverse_power" />
+  ### set\_probabilities
 
-`MultivariateVariationalDistribution.build_inverse_power(qc, q, power, q_ancillas=None)`
+  <Function id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.set_probabilities" name="set_probabilities" signature="MultivariateVariationalDistribution.set_probabilities(quantum_instance)">
+    Set Probabilities
 
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+    **Parameters**
 
-### build\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build_power" />
-
-`MultivariateVariationalDistribution.build_power(qc, q, power, q_ancillas=None)`
-
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### get\_num\_qubits
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.get_num_qubits" />
-
-`MultivariateVariationalDistribution.get_num_qubits()`
-
-returns number of qubits
-
-### get\_num\_qubits\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.get_num_qubits_controlled" />
-
-`MultivariateVariationalDistribution.get_num_qubits_controlled()`
-
-returns number of qubits controlled
-
-### pdf\_to\_probabilities
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.pdf_to_probabilities" />
-
-`static MultivariateVariationalDistribution.pdf_to_probabilities(pdf, low, high, num_values)`
-
-pdf to probabilities
-
-### required\_ancillas
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.required_ancillas" />
-
-`MultivariateVariationalDistribution.required_ancillas()`
-
-returns required ancillas
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.required_ancillas_controlled" />
-
-`MultivariateVariationalDistribution.required_ancillas_controlled()`
-
-returns required ancillas controlled
-
-### set\_probabilities
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.set_probabilities" />
-
-`MultivariateVariationalDistribution.set_probabilities(quantum_instance)`
-
-Set Probabilities
-
-**Parameters**
-
-**quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Quantum Instance
+    **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Quantum Instance
+  </Function>
+</Class>
 

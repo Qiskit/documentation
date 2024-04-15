@@ -8,241 +8,223 @@ python_api_name: qiskit.primitives.BitArray
 
 # BitArray
 
-<span id="qiskit.primitives.BitArray" />
+<Class id="qiskit.primitives.BitArray" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bit_array.py#L40-L349" signature="qiskit.primitives.BitArray(array, num_bits)">
+  Bases: `ShapedMixin`
 
-`qiskit.primitives.BitArray(array, num_bits)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/containers/bit_array.py "view source code")
+  Stores an array of bit values.
 
-Bases: `ShapedMixin`
+  This object contains a single, contiguous block of data that represents an array of bitstrings. The last axis is over packed bits, the second last axis is over shots, and the preceding axes correspond to the shape of the pub that was executed to sample these bits.
 
-Stores an array of bit values.
+  **Parameters**
 
-This object contains a single, contiguous block of data that represents an array of bitstrings. The last axis is over packed bits, the second last axis is over shots, and the preceding axes correspond to the shape of the pub that was executed to sample these bits.
+  *   **array** (*NDArray\[np.uint8]*) – The `uint8` data array.
+  *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – How many bit are in each outcome.
 
-**Parameters**
+  **Raises**
 
-*   **array** (*NDArray\[np.uint8]*) – The `uint8` data array.
-*   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – How many bit are in each outcome.
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If the input is not a NumPy array with type `numpy.uint8`.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the input array has fewer than two axes, or the size of the last axis is not the smallest number of bytes that can contain `num_bits`.
 
-**Raises**
+  ## Attributes
 
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If the input is not a NumPy array with type `numpy.uint8`.
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the input array has fewer than two axes, or the size of the last axis is not the smallest number of bytes that can contain `num_bits`.
+  ### array
 
-## Attributes
+  <Attribute id="qiskit.primitives.BitArray.array" name="array">
+    The raw NumPy array of data.
+  </Attribute>
 
-<span id="qiskit.primitives.BitArray.array" />
+  ### ndim
 
-### array
+  <Attribute id="qiskit.primitives.BitArray.ndim" name="ndim" />
 
-The raw NumPy array of data.
+  ### num\_bits
 
-<span id="qiskit.primitives.BitArray.ndim" />
+  <Attribute id="qiskit.primitives.BitArray.num_bits" name="num_bits">
+    The number of bits in the register that this array stores data for.
 
-### ndim
+    For example, a `ClassicalRegister(5, "meas")` would result in `num_bits=5`.
+  </Attribute>
 
-<span id="qiskit.primitives.BitArray.num_bits" />
+  ### num\_shots
 
-### num\_bits
+  <Attribute id="qiskit.primitives.BitArray.num_shots" name="num_shots">
+    The number of shots sampled from the register in each configuration.
 
-The number of bits in the register that this array stores data for.
+    More precisely, the length of the second last axis of [`array`](#qiskit.primitives.BitArray.array "qiskit.primitives.BitArray.array").
+  </Attribute>
 
-For example, a `ClassicalRegister(5, "meas")` would result in `num_bits=5`.
+  ### shape
 
-<span id="qiskit.primitives.BitArray.num_shots" />
+  <Attribute id="qiskit.primitives.BitArray.shape" name="shape" />
 
-### num\_shots
+  ### size
 
-The number of shots sampled from the register in each configuration.
+  <Attribute id="qiskit.primitives.BitArray.size" name="size" />
 
-More precisely, the length of the second last axis of [`array`](#qiskit.primitives.BitArray.array "qiskit.primitives.BitArray.array").
+  ## Methods
 
-<span id="qiskit.primitives.BitArray.shape" />
+  ### bitcount
 
-### shape
+  <Function id="qiskit.primitives.BitArray.bitcount" name="bitcount" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bit_array.py#L153-L159" signature="bitcount()">
+    Compute the number of ones appearing in the binary representation of each shot.
 
-<span id="qiskit.primitives.BitArray.size" />
+    **Returns**
 
-### size
+    A `numpy.uint64`-array with shape `(*shape, num_shots)`.
 
-## Methods
+    **Return type**
 
-### bitcount
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v1.26)")\[*uint64*]]
+  </Function>
 
-<span id="qiskit.primitives.BitArray.bitcount" />
+  ### from\_bool\_array
 
-`bitcount()`
+  <Function id="qiskit.primitives.BitArray.from_bool_array" name="from_bool_array" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bit_array.py#L161-L192" signature="static from_bool_array(array, order='big')">
+    Construct a new bit array from an array of bools.
 
-Compute the number of ones appearing in the binary representation of each shot.
+    **Parameters**
 
-**Returns**
+    *   **array** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*,* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v1.26)")*\[*[*bool\_*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool_ "(in NumPy v1.26)")*]]*) – The array to convert, with “bitstrings” along the last axis.
+    *   **order** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal "(in Python v3.12)")*\['big', 'little']*) – One of `"big"` or `"little"`, indicating whether `array[..., 0]` correspond to the most significant bits or the least significant bits of each bitstring, respectively.
 
-A `numpy.uint64`-array with shape `(*shape, num_shots)`.
+    **Returns**
 
-**Return type**
+    A new bit array.
 
-[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v1.26)")\[*uint64*]]
+    **Return type**
 
-### from\_bool\_array
+    [*BitArray*](#qiskit.primitives.BitArray "qiskit.primitives.containers.bit_array.BitArray")
+  </Function>
 
-<span id="qiskit.primitives.BitArray.from_bool_array" />
+  ### from\_counts
 
-`static from_bool_array(array, order='big')`
+  <Function id="qiskit.primitives.BitArray.from_counts" name="from_counts" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bit_array.py#L194-L235" signature="static from_counts(counts, num_bits=None)">
+    Construct a new bit array from one or more `Counts`-like objects.
 
-Construct a new bit array from an array of bools.
+    The `counts` can have keys that are (uniformly) integers, hexstrings, or bitstrings. Their values represent numbers of occurrences of that value.
 
-**Parameters**
+    **Parameters**
 
-*   **array** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*,* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v1.26)")*\[*[*bool\_*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool_ "(in NumPy v1.26)")*]]*) – The array to convert, with “bitstrings” along the last axis.
-*   **order** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal "(in Python v3.12)")*\['big', 'little']*) – One of `"big"` or `"little"`, indicating whether `array[..., 0]` correspond to the most significant bits or the least significant bits of each bitstring, respectively.
+    *   **counts** (*Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | Iterable\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – One or more counts-like mappings with the same number of shots.
+    *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The desired number of bits per shot. If unset, the biggest value found sets this value.
 
-**Returns**
+    **Returns**
 
-A new bit array.
+    A new bit array with shape `()` for single input counts, or `(N,)` for an iterable of $N$ counts.
 
-**Return type**
+    **Raises**
 
-[*BitArray*](#qiskit.primitives.BitArray "qiskit.primitives.containers.bit_array.BitArray")
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If different mappings have different numbers of shots.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If no counts dictionaries are supplied.
 
-### from\_counts
+    **Return type**
 
-<span id="qiskit.primitives.BitArray.from_counts" />
+    [BitArray](#qiskit.primitives.BitArray "qiskit.primitives.BitArray")
+  </Function>
 
-`static from_counts(counts, num_bits=None)`
+  ### from\_samples
 
-Construct a new bit array from one or more `Counts`-like objects.
+  <Function id="qiskit.primitives.BitArray.from_samples" name="from_samples" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bit_array.py#L237-L278" signature="static from_samples(samples, num_bits=None)">
+    Construct a new bit array from an iterable of bitstrings, hexstrings, or integers.
 
-The `counts` can have keys that are (uniformly) integers, hexstrings, or bitstrings. Their values represent numbers of occurrences of that value.
+    All samples are assumed to be integers if the first one is. Strings are all assumed to be bitstrings whenever the first string doesn’t start with `"0x"`.
 
-**Parameters**
+    Consider pairing this method with [`reshape()`](#qiskit.primitives.BitArray.reshape "qiskit.primitives.BitArray.reshape") if your samples represent nested data.
 
-*   **counts** (*Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | Iterable\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – One or more counts-like mappings with the same number of shots.
-*   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The desired number of bits per shot. If unset, the biggest value found sets this value.
+    **Parameters**
 
-**Returns**
+    *   **samples** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – A list of bitstrings, a list of integers, or a list of hexstrings.
+    *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The desired number of bits per sample. If unset, the biggest sample provided is used to determine this value.
 
-A new bit array with shape `()` for single input counts, or `(N,)` for an iterable of $N$ counts.
+    **Returns**
 
-**Raises**
+    A new bit array.
 
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If different mappings have different numbers of shots.
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If no counts dictionaries are supplied.
+    **Raises**
 
-**Return type**
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If no strings are given.
 
-[BitArray](#qiskit.primitives.BitArray "qiskit.primitives.BitArray")
+    **Return type**
 
-### from\_samples
+    [BitArray](#qiskit.primitives.BitArray "qiskit.primitives.BitArray")
+  </Function>
 
-<span id="qiskit.primitives.BitArray.from_samples" />
+  ### get\_bitstrings
 
-`static from_samples(samples, num_bits=None)`
+  <Function id="qiskit.primitives.BitArray.get_bitstrings" name="get_bitstrings" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bit_array.py#L308-L321" signature="get_bitstrings(loc=None)">
+    Return a list of bitstrings.
 
-Construct a new bit array from an iterable of bitstrings, hexstrings, or integers.
+    **Parameters**
 
-All samples are assumed to be integers if the first one is. Strings are all assumed to be bitstrings whenever the first string doesn’t start with `"0x"`.
+    **loc** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, ...] | None*) – Which entry of this array to return a dictionary for. If `None`, counts from all positions in this array are unioned together.
 
-Consider pairing this method with [`reshape()`](#qiskit.primitives.BitArray.reshape "qiskit.primitives.BitArray.reshape") if your samples represent nested data.
+    **Returns**
 
-**Parameters**
+    A list of bitstrings.
 
-*   **samples** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – A list of bitstrings, a list of integers, or a list of hexstrings.
-*   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The desired number of bits per sample. If unset, the biggest sample provided is used to determine this value.
+    **Return type**
 
-**Returns**
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
+  </Function>
 
-A new bit array.
+  ### get\_counts
 
-**Raises**
+  <Function id="qiskit.primitives.BitArray.get_counts" name="get_counts" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bit_array.py#L280-L292" signature="get_counts(loc=None)">
+    Return a counts dictionary with bitstring keys.
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If no strings are given.
+    **Parameters**
 
-**Return type**
+    **loc** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, ...] | None*) – Which entry of this array to return a dictionary for. If `None`, counts from all positions in this array are unioned together.
 
-[BitArray](#qiskit.primitives.BitArray "qiskit.primitives.BitArray")
+    **Returns**
 
-### get\_bitstrings
+    A dictionary mapping bitstrings to the number of occurrences of that bitstring.
 
-<span id="qiskit.primitives.BitArray.get_bitstrings" />
+    **Return type**
 
-`get_bitstrings(loc=None)`
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
+  </Function>
 
-Return a list of bitstrings.
+  ### get\_int\_counts
 
-**Parameters**
+  <Function id="qiskit.primitives.BitArray.get_int_counts" name="get_int_counts" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bit_array.py#L294-L306" signature="get_int_counts(loc=None)">
+    Return a counts dictionary, where bitstrings are stored as `int`s.
 
-**loc** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, ...] | None*) – Which entry of this array to return a dictionary for. If `None`, counts from all positions in this array are unioned together.
+    **Parameters**
 
-**Returns**
+    **loc** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, ...] | None*) – Which entry of this array to return a dictionary for. If `None`, counts from all positions in this array are unioned together.
 
-A list of bitstrings.
+    **Returns**
 
-**Return type**
+    A dictionary mapping `ints` to the number of occurrences of that `int`.
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
+    **Return type**
 
-### get\_counts
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
+  </Function>
 
-<span id="qiskit.primitives.BitArray.get_counts" />
+  ### reshape
 
-`get_counts(loc=None)`
+  <Function id="qiskit.primitives.BitArray.reshape" name="reshape" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bit_array.py#L323-L349" signature="reshape(*shape)">
+    Return a new reshaped bit array.
 
-Return a counts dictionary with bitstring keys.
+    The [`num_shots`](#qiskit.primitives.BitArray.num_shots "qiskit.primitives.BitArray.num_shots") axis is either included or excluded from the reshaping procedure depending on which picture the new shape is compatible with. For example, for a bit array with shape `(20, 5)` and `64` shots, a reshape to `(100,)` would leave the number of shots intact, whereas a reshape to `(200, 32)` would change the number of shots to `32`.
 
-**Parameters**
+    **Parameters**
 
-**loc** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, ...] | None*) – Which entry of this array to return a dictionary for. If `None`, counts from all positions in this array are unioned together.
+    **\*shape** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| Iterable\[ShapeInput]]*) – The new desired shape.
 
-**Returns**
+    **Returns**
 
-A dictionary mapping bitstrings to the number of occurrences of that bitstring.
+    A new bit array.
 
-**Return type**
+    **Raises**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the size corresponding to your new shape is not equal to either [`size`](#qiskit.primitives.BitArray.size "qiskit.primitives.BitArray.size"), or the product of [`size`](#qiskit.primitives.BitArray.size "qiskit.primitives.BitArray.size") and [`num_shots`](#qiskit.primitives.BitArray.num_shots "qiskit.primitives.BitArray.num_shots").
 
-### get\_int\_counts
+    **Return type**
 
-<span id="qiskit.primitives.BitArray.get_int_counts" />
-
-`get_int_counts(loc=None)`
-
-Return a counts dictionary, where bitstrings are stored as `int`s.
-
-**Parameters**
-
-**loc** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, ...] | None*) – Which entry of this array to return a dictionary for. If `None`, counts from all positions in this array are unioned together.
-
-**Returns**
-
-A dictionary mapping `ints` to the number of occurrences of that `int`.
-
-**Return type**
-
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
-
-### reshape
-
-<span id="qiskit.primitives.BitArray.reshape" />
-
-`reshape(*shape)`
-
-Return a new reshaped bit array.
-
-The [`num_shots`](#qiskit.primitives.BitArray.num_shots "qiskit.primitives.BitArray.num_shots") axis is either included or excluded from the reshaping procedure depending on which picture the new shape is compatible with. For example, for a bit array with shape `(20, 5)` and `64` shots, a reshape to `(100,)` would leave the number of shots intact, whereas a reshape to `(200, 32)` would change the number of shots to `32`.
-
-**Parameters**
-
-**\*shape** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| Iterable\[ShapeInput]]*) – The new desired shape.
-
-**Returns**
-
-A new bit array.
-
-**Raises**
-
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the size corresponding to your new shape is not equal to either [`size`](#qiskit.primitives.BitArray.size "qiskit.primitives.BitArray.size"), or the product of [`size`](#qiskit.primitives.BitArray.size "qiskit.primitives.BitArray.size") and [`num_shots`](#qiskit.primitives.BitArray.num_shots "qiskit.primitives.BitArray.num_shots").
-
-**Return type**
-
-[*BitArray*](#qiskit.primitives.BitArray "qiskit.primitives.containers.bit_array.BitArray")
+    [*BitArray*](#qiskit.primitives.BitArray "qiskit.primitives.containers.bit_array.BitArray")
+  </Function>
+</Class>
 

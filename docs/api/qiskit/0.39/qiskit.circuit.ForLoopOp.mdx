@@ -8,320 +8,292 @@ python_api_name: qiskit.circuit.ForLoopOp
 
 # ForLoopOp
 
-<span id="qiskit.circuit.ForLoopOp" />
+<Class id="qiskit.circuit.ForLoopOp" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/controlflow/for_loop.py" signature="ForLoopOp(indexset, loop_parameter, body, label=None)">
+  Bases: [`qiskit.circuit.controlflow.control_flow.ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
 
-`ForLoopOp(indexset, loop_parameter, body, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/controlflow/for_loop.py "view source code")
+  A circuit operation which repeatedly executes a subcircuit (`body`) parameterized by a parameter `loop_parameter` through the set of integer values provided in `indexset`.
 
-Bases: [`qiskit.circuit.controlflow.control_flow.ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
+  **Parameters**
 
-A circuit operation which repeatedly executes a subcircuit (`body`) parameterized by a parameter `loop_parameter` through the set of integer values provided in `indexset`.
+  *   **indexset** (`Iterable`\[`int`]) – A collection of integers to loop over.
+  *   **loop\_parameter** (`Optional`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]) – The placeholder parameterizing `body` to which the values from `indexset` will be assigned.
+  *   **body** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The loop body to be repeatedly executed.
+  *   **label** (`Optional`\[`str`]) – An optional label for identifying the instruction.
 
-**Parameters**
+  **Circuit symbol:**
 
-*   **indexset** (`Iterable`\[`int`]) – A collection of integers to loop over.
-*   **loop\_parameter** (`Optional`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]) – The placeholder parameterizing `body` to which the values from `indexset` will be assigned.
-*   **body** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The loop body to be repeatedly executed.
-*   **label** (`Optional`\[`str`]) – An optional label for identifying the instruction.
+  ```python
+       ┌───────────┐
+  q_0: ┤0          ├
+       │           │
+  q_1: ┤1          ├
+       │  for_loop │
+  q_2: ┤2          ├
+       │           │
+  c_0: ╡0          ╞
+       └───────────┘
+  ```
 
-**Circuit symbol:**
+  Create a new instruction.
 
-```python
-     ┌───────────┐
-q_0: ┤0          ├
-     │           │
-q_1: ┤1          ├
-     │  for_loop │
-q_2: ┤2          ├
-     │           │
-c_0: ╡0          ╞
-     └───────────┘
-```
+  **Parameters**
 
-Create a new instruction.
+  *   **name** (*str*) – instruction name
+  *   **num\_qubits** (*int*) – instruction’s qubit width
+  *   **num\_clbits** (*int*) – instruction’s clbit width
+  *   **params** (*list\[int|float|complex|str|ndarray|list|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – list of parameters
+  *   **duration** (*int or float*) – instruction’s duration. it must be integer if `unit` is ‘dt’
+  *   **unit** (*str*) – time unit of duration
+  *   **label** (*str or None*) – An optional label for identifying the instruction.
 
-**Parameters**
+  **Raises**
 
-*   **name** (*str*) – instruction name
-*   **num\_qubits** (*int*) – instruction’s qubit width
-*   **num\_clbits** (*int*) – instruction’s clbit width
-*   **params** (*list\[int|float|complex|str|ndarray|list|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – list of parameters
-*   **duration** (*int or float*) – instruction’s duration. it must be integer if `unit` is ‘dt’
-*   **unit** (*str*) – time unit of duration
-*   **label** (*str or None*) – An optional label for identifying the instruction.
+  *   **CircuitError** – when the register is not in the correct format.
+  *   **TypeError** – when the optional label is provided, but it is not a string.
 
-**Raises**
+  ## Methods
 
-*   **CircuitError** – when the register is not in the correct format.
-*   **TypeError** – when the optional label is provided, but it is not a string.
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.circuit.ForLoopOp.add_decomposition" name="add_decomposition" signature="ForLoopOp.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.circuit.ForLoopOp.add_decomposition" />
+  <Function id="qiskit.circuit.ForLoopOp.assemble" name="assemble" signature="ForLoopOp.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-`ForLoopOp.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.circuit.ForLoopOp.broadcast_arguments" name="broadcast_arguments" signature="ForLoopOp.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.circuit.ForLoopOp.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`ForLoopOp.assemble()`
+    **Yields**
 
-Assemble a QasmQobjInstruction
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.circuit.ForLoopOp.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`ForLoopOp.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit.circuit.ForLoopOp.c_if" name="c_if" signature="ForLoopOp.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-**Parameters**
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  ### copy
 
-**Yields**
+  <Function id="qiskit.circuit.ForLoopOp.copy" name="copy" signature="ForLoopOp.copy(name=None)">
+    Copy of the instruction.
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **Parameters**
 
-**Raises**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Returns**
 
-### c\_if
+    **a copy of the current instruction, with the name**
 
-<span id="qiskit.circuit.ForLoopOp.c_if" />
+    updated if it was provided
 
-`ForLoopOp.c_if(classical, val)`
+    **Return type**
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  ### inverse
 
-### copy
+  <Function id="qiskit.circuit.ForLoopOp.inverse" name="inverse" signature="ForLoopOp.inverse()">
+    Invert this instruction.
 
-<span id="qiskit.circuit.ForLoopOp.copy" />
+    If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
 
-`ForLoopOp.copy(name=None)`
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
 
-Copy of the instruction.
+    **Returns**
 
-**Parameters**
+    a fresh instruction for the inverse
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    **Return type**
 
-**Returns**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**a copy of the current instruction, with the name**
+    **Raises**
 
-updated if it was provided
+    **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
 
-**Return type**
+  ### is\_parameterized
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit.circuit.ForLoopOp.is_parameterized" name="is_parameterized" signature="ForLoopOp.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-### inverse
+  ### qasm
 
-<span id="qiskit.circuit.ForLoopOp.inverse" />
+  <Function id="qiskit.circuit.ForLoopOp.qasm" name="qasm" signature="ForLoopOp.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-`ForLoopOp.inverse()`
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-Invert this instruction.
+  ### repeat
 
-If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+  <Function id="qiskit.circuit.ForLoopOp.repeat" name="repeat" signature="ForLoopOp.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+    **Parameters**
 
-**Returns**
+    **n** (*int*) – Number of times to repeat the instruction
 
-a fresh instruction for the inverse
+    **Returns**
 
-**Return type**
+    Containing the definition.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Return type**
 
-**Raises**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+    **Raises**
 
-### is\_parameterized
+    **CircuitError** – If n \< 1.
+  </Function>
 
-<span id="qiskit.circuit.ForLoopOp.is_parameterized" />
+  ### replace\_blocks
 
-`ForLoopOp.is_parameterized()`
+  <Function id="qiskit.circuit.ForLoopOp.replace_blocks" name="replace_blocks" signature="ForLoopOp.replace_blocks(blocks)">
+    Replace blocks and return new instruction. :param blocks: Tuple of QuantumCircuits to replace in instruction.
 
-Return True .IFF. instruction is parameterized else False
+    **Returns**
 
-### qasm
+    New ControlFlowOp with replaced blocks.
+  </Function>
 
-<span id="qiskit.circuit.ForLoopOp.qasm" />
+  ### reverse\_ops
 
-`ForLoopOp.qasm()`
+  <Function id="qiskit.circuit.ForLoopOp.reverse_ops" name="reverse_ops" signature="ForLoopOp.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-Return a default OpenQASM string for the instruction.
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+    **Returns**
 
-### repeat
+    **a new instruction with**
 
-<span id="qiskit.circuit.ForLoopOp.repeat" />
+    sub-instructions reversed.
 
-`ForLoopOp.repeat(n)`
+    **Return type**
 
-Creates an instruction with gate repeated n amount of times.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**Parameters**
+  ### soft\_compare
 
-**n** (*int*) – Number of times to repeat the instruction
+  <Function id="qiskit.circuit.ForLoopOp.soft_compare" name="soft_compare" signature="ForLoopOp.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-**Returns**
+    **Parameters**
 
-Containing the definition.
+    **other** (*instruction*) – other instruction.
 
-**Return type**
+    **Returns**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    are self and other equal up to parameter expressions.
 
-**Raises**
+    **Return type**
 
-**CircuitError** – If n \< 1.
+    bool
+  </Function>
 
-### replace\_blocks
+  ### validate\_parameter
 
-<span id="qiskit.circuit.ForLoopOp.replace_blocks" />
+  <Function id="qiskit.circuit.ForLoopOp.validate_parameter" name="validate_parameter" signature="ForLoopOp.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-`ForLoopOp.replace_blocks(blocks)`
+  ## Attributes
 
-Replace blocks and return new instruction. :param blocks: Tuple of QuantumCircuits to replace in instruction.
+  ### blocks
 
-**Returns**
+  <Attribute id="qiskit.circuit.ForLoopOp.blocks" name="blocks" />
 
-New ControlFlowOp with replaced blocks.
+  ### condition\_bits
 
-### reverse\_ops
+  <Attribute id="qiskit.circuit.ForLoopOp.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-<span id="qiskit.circuit.ForLoopOp.reverse_ops" />
+    **Return type**
 
-`ForLoopOp.reverse_ops()`
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### decompositions
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Attribute id="qiskit.circuit.ForLoopOp.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-**Returns**
+  ### definition
 
-**a new instruction with**
+  <Attribute id="qiskit.circuit.ForLoopOp.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-sub-instructions reversed.
+  ### duration
 
-**Return type**
+  <Attribute id="qiskit.circuit.ForLoopOp.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### label
 
-### soft\_compare
+  <Attribute id="qiskit.circuit.ForLoopOp.label" name="label">
+    Return instruction label
 
-<span id="qiskit.circuit.ForLoopOp.soft_compare" />
+    **Return type**
 
-`ForLoopOp.soft_compare(other)`
+    `str`
+  </Attribute>
 
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+  ### name
 
-**Parameters**
+  <Attribute id="qiskit.circuit.ForLoopOp.name" name="name">
+    Return the name.
+  </Attribute>
 
-**other** (*instruction*) – other instruction.
+  ### num\_clbits
 
-**Returns**
+  <Attribute id="qiskit.circuit.ForLoopOp.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-are self and other equal up to parameter expressions.
+  ### num\_qubits
 
-**Return type**
+  <Attribute id="qiskit.circuit.ForLoopOp.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-bool
+  ### params
 
-### validate\_parameter
+  <Attribute id="qiskit.circuit.ForLoopOp.params" name="params" />
 
-<span id="qiskit.circuit.ForLoopOp.validate_parameter" />
+  ### unit
 
-`ForLoopOp.validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
-
-## Attributes
-
-<span id="qiskit.circuit.ForLoopOp.blocks" />
-
-### blocks
-
-<span id="qiskit.circuit.ForLoopOp.condition_bits" />
-
-### condition\_bits
-
-Get Clbits in condition.
-
-**Return type**
-
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
-
-<span id="qiskit.circuit.ForLoopOp.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.circuit.ForLoopOp.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit.circuit.ForLoopOp.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit.circuit.ForLoopOp.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.ForLoopOp.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.ForLoopOp.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.ForLoopOp.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.ForLoopOp.params" />
-
-### params
-
-<span id="qiskit.circuit.ForLoopOp.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.ForLoopOp.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

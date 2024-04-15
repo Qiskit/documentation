@@ -8,57 +8,55 @@ python_api_name: qiskit.transpiler.passes.CheckCXDirection
 
 # CheckCXDirection
 
-<span id="qiskit.transpiler.passes.CheckCXDirection" />
+<Class id="qiskit.transpiler.passes.CheckCXDirection" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/utils/check_cx_direction.py" signature="CheckCXDirection(*args, **kwargs)">
+  Check if the CNOTs follow the right direction with respect to the coupling map.
 
-`CheckCXDirection(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/utils/check_cx_direction.py "view source code")
+  This pass checks if the CNOTs (or any other 2Q) in the DAG follow the right direction with respect to the coupling map.
 
-Check if the CNOTs follow the right direction with respect to the coupling map.
+  CheckCXDirection initializer.
 
-This pass checks if the CNOTs (or any other 2Q) in the DAG follow the right direction with respect to the coupling map.
+  Checks if the CNOTs in DAGCircuit are in the allowed direction with respect to coupling\_map.
 
-CheckCXDirection initializer.
+  **Parameters**
 
-Checks if the CNOTs in DAGCircuit are in the allowed direction with respect to coupling\_map.
+  **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
 
-**Parameters**
+  ## Attributes
 
-**coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.CheckCXDirection.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-### is\_analysis\_pass
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-Check if the pass is an analysis pass.
+  ### is\_transformation\_pass
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  <Attribute id="qiskit.transpiler.passes.CheckCXDirection.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-### is\_transformation\_pass
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-Check if the pass is a transformation pass.
+  ## Methods
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.CheckCXDirection.name" name="name" signature="CheckCXDirection.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.CheckCXDirection.name" />
+  <Function id="qiskit.transpiler.passes.CheckCXDirection.run" name="run" signature="CheckCXDirection.run(dag)">
+    Run the CheckCXDirection pass on dag.
 
-`CheckCXDirection.name()`
+    If dag is mapped and the direction is correct the property is\_direction\_mapped is set to True (or to False otherwise).
 
-Return the name of the pass.
+    **Parameters**
 
-### run
-
-<span id="qiskit.transpiler.passes.CheckCXDirection.run" />
-
-`CheckCXDirection.run(dag)`
-
-Run the CheckCXDirection pass on dag.
-
-If dag is mapped and the direction is correct the property is\_direction\_mapped is set to True (or to False otherwise).
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to check.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to check.
+  </Function>
+</Class>
 

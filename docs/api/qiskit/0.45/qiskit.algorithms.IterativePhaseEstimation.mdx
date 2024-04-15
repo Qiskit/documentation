@@ -8,85 +8,79 @@ python_api_name: qiskit.algorithms.IterativePhaseEstimation
 
 # IterativePhaseEstimation
 
-<span id="qiskit.algorithms.IterativePhaseEstimation" />
+<Class id="qiskit.algorithms.IterativePhaseEstimation" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/phase_estimators/ipe.py" signature="qiskit.algorithms.IterativePhaseEstimation(num_iterations, quantum_instance=None, sampler=None)">
+  Bases: `PhaseEstimator`
 
-`qiskit.algorithms.IterativePhaseEstimation(num_iterations, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/phase_estimators/ipe.py "view source code")
+  Run the Iterative quantum phase estimation (QPE) algorithm.
 
-Bases: `PhaseEstimator`
+  Given a unitary circuit and a circuit preparing an eigenstate, return the phase of the eigenvalue as a number in $[0,1)$ using the iterative phase estimation algorithm.
 
-Run the Iterative quantum phase estimation (QPE) algorithm.
+  **\[1]: Dobsicek et al. (2006), Arbitrary accuracy iterative phase estimation algorithm as a two**
 
-Given a unitary circuit and a circuit preparing an eigenstate, return the phase of the eigenvalue as a number in $[0,1)$ using the iterative phase estimation algorithm.
+  qubit benchmark, [arxiv/quant-ph/0610214](https://arxiv.org/abs/quant-ph/0610214)
 
-**\[1]: Dobsicek et al. (2006), Arbitrary accuracy iterative phase estimation algorithm as a two**
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    `qiskit.algorithms.phase_estimators.ipe.IterativePhaseEstimation.__init__()`’s argument `quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the `sampler` argument. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  </Admonition>
 
-qubit benchmark, [arxiv/quant-ph/0610214](https://arxiv.org/abs/quant-ph/0610214)
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  `qiskit.algorithms.phase_estimators.ipe.IterativePhaseEstimation.__init__()`’s argument `quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the `sampler` argument. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+  *   **num\_iterations** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of iterations (rounds) of the phase estimation to run.
+  *   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: The quantum instance on which the circuit will be run.
+  *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – The sampler primitive on which the circuit will be sampled.
 
-**Parameters**
+  **Raises**
 
-*   **num\_iterations** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of iterations (rounds) of the phase estimation to run.
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: The quantum instance on which the circuit will be run.
-*   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – The sampler primitive on which the circuit will be sampled.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if num\_iterations is not greater than zero.
+  *   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If neither sampler nor quantum instance is provided.
 
-**Raises**
+  ## Methods
 
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if num\_iterations is not greater than zero.
-*   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If neither sampler nor quantum instance is provided.
+  ### construct\_circuit
 
-## Methods
+  <Function id="qiskit.algorithms.IterativePhaseEstimation.construct_circuit" name="construct_circuit" signature="construct_circuit(unitary, state_preparation, k, omega=0.0, measurement=False)">
+    Construct the kth iteration Quantum Phase Estimation circuit.
 
-### construct\_circuit
+    For details of parameters, see Fig. 2 in [https://arxiv.org/pdf/quant-ph/0610214.pdf](https://arxiv.org/pdf/quant-ph/0610214.pdf).
 
-<span id="qiskit.algorithms.IterativePhaseEstimation.construct_circuit" />
+    **Parameters**
 
-`construct_circuit(unitary, state_preparation, k, omega=0.0, measurement=False)`
+    *   **unitary** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit representing the unitary operator whose eigenvalue (via phase) will be measured.
+    *   **state\_preparation** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
+    *   **k** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the iteration idx.
+    *   **omega** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the feedback angle.
+    *   **measurement** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Boolean flag to indicate if measurement should be included in the circuit.
 
-Construct the kth iteration Quantum Phase Estimation circuit.
+    **Returns**
 
-For details of parameters, see Fig. 2 in [https://arxiv.org/pdf/quant-ph/0610214.pdf](https://arxiv.org/pdf/quant-ph/0610214.pdf).
+    the quantum circuit per iteration
 
-**Parameters**
+    **Return type**
 
-*   **unitary** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit representing the unitary operator whose eigenvalue (via phase) will be measured.
-*   **state\_preparation** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
-*   **k** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the iteration idx.
-*   **omega** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the feedback angle.
-*   **measurement** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Boolean flag to indicate if measurement should be included in the circuit.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-**Returns**
+  ### estimate
 
-the quantum circuit per iteration
+  <Function id="qiskit.algorithms.IterativePhaseEstimation.estimate" name="estimate" signature="estimate(unitary, state_preparation)">
+    Estimate the eigenphase of the input unitary and initial-state pair.
 
-**Return type**
+    **Parameters**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    *   **unitary** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit representing the unitary operator whose eigenvalue (via phase) will be measured.
+    *   **state\_preparation** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
 
-### estimate
+    **Returns**
 
-<span id="qiskit.algorithms.IterativePhaseEstimation.estimate" />
+    Estimated phase in an IterativePhaseEstimationResult object.
 
-`estimate(unitary, state_preparation)`
+    **Raises**
 
-Estimate the eigenphase of the input unitary and initial-state pair.
+    [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If neither sampler nor quantum instance is provided.
 
-**Parameters**
+    **Return type**
 
-*   **unitary** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit representing the unitary operator whose eigenvalue (via phase) will be measured.
-*   **state\_preparation** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
-
-**Returns**
-
-Estimated phase in an IterativePhaseEstimationResult object.
-
-**Raises**
-
-[**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If neither sampler nor quantum instance is provided.
-
-**Return type**
-
-*IterativePhaseEstimationResult*
+    *IterativePhaseEstimationResult*
+  </Function>
+</Class>
 

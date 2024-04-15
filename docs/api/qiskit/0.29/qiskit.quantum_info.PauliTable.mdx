@@ -8,776 +8,724 @@ python_api_name: qiskit.quantum_info.PauliTable
 
 # PauliTable
 
-<span id="qiskit.quantum_info.PauliTable" />
+<Class id="qiskit.quantum_info.PauliTable" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/symplectic/pauli_table.py" signature="PauliTable(data)">
+  Bases: `qiskit.quantum_info.operators.base_operator.BaseOperator`, `qiskit.quantum_info.operators.mixins.adjoint.AdjointMixin`
 
-`PauliTable(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
+  Symplectic representation of a list Pauli matrices.
 
-Bases: `qiskit.quantum_info.operators.base_operator.BaseOperator`, `qiskit.quantum_info.operators.mixins.adjoint.AdjointMixin`
+  **Symplectic Representation**
 
-Symplectic representation of a list Pauli matrices.
+  The symplectic representation of a single-qubit Pauli matrix is a pair of boolean values $[x, z]$ such that the Pauli matrix is given by $P = (-i)^{z * x} \sigma_z^z.\sigma_x^x$. The correspondence between labels, symplectic representation, and matrices for single-qubit Paulis are shown in Table 1.
 
-**Symplectic Representation**
+  | Label | Symplectic | Matrix                                          |
+  | ----- | ---------- | ----------------------------------------------- |
+  | `"I"` | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$  |
+  | `"X"` | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$  |
+  | `"Y"` | $[1, 1]$   | $\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$ |
+  | `"Z"` | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ |
 
-The symplectic representation of a single-qubit Pauli matrix is a pair of boolean values $[x, z]$ such that the Pauli matrix is given by $P = (-i)^{z * x} \sigma_z^z.\sigma_x^x$. The correspondence between labels, symplectic representation, and matrices for single-qubit Paulis are shown in Table 1.
-
-| Label | Symplectic | Matrix                                          |
-| ----- | ---------- | ----------------------------------------------- |
-| `"I"` | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$  |
-| `"X"` | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$  |
-| `"Y"` | $[1, 1]$   | $\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$ |
-| `"Z"` | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ |
-
-The full Pauli table is a M x 2N boolean matrix:
+  The full Pauli table is a M x 2N boolean matrix:
 
 $$
 \begin{split}\left(\begin{array}{ccc|ccc}
-    x_{0,0} & ... & x_{0,N-1} & z_{0,0} & ... & z_{0,N-1}  \\
-    x_{1,0} & ... & x_{1,N-1} & z_{1,0} & ... & z_{1,N-1}  \\
-    \vdots & \ddots & \vdots & \vdots & \ddots & \vdots  \\
-    x_{M-1,0} & ... & x_{M-1,N-1} & z_{M-1,0} & ... & z_{M-1,N-1}
+x_{0,0} & ... & x_{0,N-1} & z_{0,0} & ... & z_{0,N-1}  \\
+x_{1,0} & ... & x_{1,N-1} & z_{1,0} & ... & z_{1,N-1}  \\
+\vdots & \ddots & \vdots & \vdots & \ddots & \vdots  \\
+x_{M-1,0} & ... & x_{M-1,N-1} & z_{M-1,0} & ... & z_{M-1,N-1}
 \end{array}\right)\end{split}
 $$
 
-where each row is a block vector $[X_i, Z_i]$ with $X = [x_{i,0}, ..., x_{i,N-1}]$, $Z = [z_{i,0}, ..., z_{i,N-1}]$ is the symplectic representation of an N-qubit Pauli. This representation is based on reference \[1].
+  where each row is a block vector $[X_i, Z_i]$ with $X = [x_{i,0}, ..., x_{i,N-1}]$, $Z = [z_{i,0}, ..., z_{i,N-1}]$ is the symplectic representation of an N-qubit Pauli. This representation is based on reference \[1].
 
-PauliTable’s can be created from a list of labels using [`from_labels()`](qiskit.quantum_info.PauliTable#from_labels "qiskit.quantum_info.PauliTable.from_labels"), and converted to a list of labels or a list of matrices using [`to_labels()`](qiskit.quantum_info.PauliTable#to_labels "qiskit.quantum_info.PauliTable.to_labels") and [`to_matrix()`](qiskit.quantum_info.PauliTable#to_matrix "qiskit.quantum_info.PauliTable.to_matrix") respectively.
+  PauliTable’s can be created from a list of labels using [`from_labels()`](qiskit.quantum_info.PauliTable#from_labels "qiskit.quantum_info.PauliTable.from_labels"), and converted to a list of labels or a list of matrices using [`to_labels()`](qiskit.quantum_info.PauliTable#to_labels "qiskit.quantum_info.PauliTable.to_labels") and [`to_matrix()`](qiskit.quantum_info.PauliTable#to_matrix "qiskit.quantum_info.PauliTable.to_matrix") respectively.
 
-**Group Product**
+  **Group Product**
 
-The Pauli’s in the Pauli table do not represent the full Pauli as they are restricted to having +1 phase. The dot-product for the Pauli’s is defined to discard any phase obtained from matrix multiplication so that we have $X.Z = Z.X = Y$, etc. This means that for the PauliTable class the operator methods [`compose()`](qiskit.quantum_info.PauliTable#compose "qiskit.quantum_info.PauliTable.compose") and [`dot()`](qiskit.quantum_info.PauliTable#dot "qiskit.quantum_info.PauliTable.dot") are equivalent.
+  The Pauli’s in the Pauli table do not represent the full Pauli as they are restricted to having +1 phase. The dot-product for the Pauli’s is defined to discard any phase obtained from matrix multiplication so that we have $X.Z = Z.X = Y$, etc. This means that for the PauliTable class the operator methods [`compose()`](qiskit.quantum_info.PauliTable#compose "qiskit.quantum_info.PauliTable.compose") and [`dot()`](qiskit.quantum_info.PauliTable#dot "qiskit.quantum_info.PauliTable.dot") are equivalent.
 
-| A.B   | I | X | Y | Z |
-| ----- | - | - | - | - |
-| **I** | I | X | Y | Z |
-| **X** | X | I | Z | Y |
-| **Y** | Y | Z | I | X |
-| **Z** | Z | Y | X | I |
+  | A.B   | I | X | Y | Z |
+  | ----- | - | - | - | - |
+  | **I** | I | X | Y | Z |
+  | **X** | X | I | Z | Y |
+  | **Y** | Y | Z | I | X |
+  | **Z** | Z | Y | X | I |
 
-**Qubit Ordering**
+  **Qubit Ordering**
 
-The qubits are ordered in the table such the least significant qubit \[x\_\{i, 0}, z\_\{i, 0}] is the first element of each of the $X_i, Z_i$ vector blocks. This is the opposite order to position in string labels or matrix tensor products where the least significant qubit is the right-most string character. For example Pauli `"ZX"` has `"X"` on qubit-0 and `"Z"` on qubit 1, and would have symplectic vectors $x=[1, 0]$, $z=[0, 1]$.
+  The qubits are ordered in the table such the least significant qubit \[x\_\{i, 0}, z\_\{i, 0}] is the first element of each of the $X_i, Z_i$ vector blocks. This is the opposite order to position in string labels or matrix tensor products where the least significant qubit is the right-most string character. For example Pauli `"ZX"` has `"X"` on qubit-0 and `"Z"` on qubit 1, and would have symplectic vectors $x=[1, 0]$, $z=[0, 1]$.
 
-**Data Access**
+  **Data Access**
 
-Subsets of rows can be accessed using the list access `[]` operator and will return a table view of part of the PauliTable. The underlying Numpy array can be directly accessed using the [`array`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array") property, and the sub-arrays for only the X or Z blocks can be accessed using the [`X`](#qiskit.quantum_info.PauliTable.X "qiskit.quantum_info.PauliTable.X") and [`Z`](#qiskit.quantum_info.PauliTable.Z "qiskit.quantum_info.PauliTable.Z") properties respectively.
+  Subsets of rows can be accessed using the list access `[]` operator and will return a table view of part of the PauliTable. The underlying Numpy array can be directly accessed using the [`array`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array") property, and the sub-arrays for only the X or Z blocks can be accessed using the [`X`](#qiskit.quantum_info.PauliTable.X "qiskit.quantum_info.PauliTable.X") and [`Z`](#qiskit.quantum_info.PauliTable.Z "qiskit.quantum_info.PauliTable.Z") properties respectively.
 
-**Iteration**
+  **Iteration**
 
-Rows in the Pauli table can be iterated over like a list. Iteration can also be done using the label or matrix representation of each row using the [`label_iter()`](qiskit.quantum_info.PauliTable#label_iter "qiskit.quantum_info.PauliTable.label_iter") and [`matrix_iter()`](qiskit.quantum_info.PauliTable#matrix_iter "qiskit.quantum_info.PauliTable.matrix_iter") methods.
+  Rows in the Pauli table can be iterated over like a list. Iteration can also be done using the label or matrix representation of each row using the [`label_iter()`](qiskit.quantum_info.PauliTable#label_iter "qiskit.quantum_info.PauliTable.label_iter") and [`matrix_iter()`](qiskit.quantum_info.PauliTable#matrix_iter "qiskit.quantum_info.PauliTable.matrix_iter") methods.
 
-**References**
+  **References**
 
-1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
+  1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 
-Initialize the PauliTable.
+  Initialize the PauliTable.
 
-**Parameters**
+  **Parameters**
 
-**data** (*array or str or* [*ScalarOp*](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")  *or*[*PauliTable*](#qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – input data.
+  **data** (*array or str or* [*ScalarOp*](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")  *or*[*PauliTable*](#qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – input data.
 
-**Raises**
+  **Raises**
 
-**QiskitError** – if input array is invalid shape.
+  **QiskitError** – if input array is invalid shape.
 
-**Additional Information:**
+  **Additional Information:**
 
-The input array is not copied so multiple Pauli tables can share the same underlying array.
+  The input array is not copied so multiple Pauli tables can share the same underlying array.
 
-## Methods
+  ## Methods
 
-### adjoint
+  ### adjoint
 
-<span id="qiskit.quantum_info.PauliTable.adjoint" />
+  <Function id="qiskit.quantum_info.PauliTable.adjoint" name="adjoint" signature="PauliTable.adjoint()">
+    Return the adjoint of the Operator.
+  </Function>
 
-`PauliTable.adjoint()`
+  ### anticommutes\_with\_all
 
-Return the adjoint of the Operator.
+  <Function id="qiskit.quantum_info.PauliTable.anticommutes_with_all" name="anticommutes_with_all" signature="PauliTable.anticommutes_with_all(other)">
+    Return indexes of rows that commute other.
 
-### anticommutes\_with\_all
+    If other is a multi-row Pauli table the returned vector indexes rows of the current PauliTable that anti-commute with *all* Pauli’s in other. If no rows satisfy the condition the returned array will be empty.
 
-<span id="qiskit.quantum_info.PauliTable.anticommutes_with_all" />
+    **Parameters**
 
-`PauliTable.anticommutes_with_all(other)`
+    **other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – a single Pauli or multi-row PauliTable.
 
-Return indexes of rows that commute other.
+    **Returns**
 
-If other is a multi-row Pauli table the returned vector indexes rows of the current PauliTable that anti-commute with *all* Pauli’s in other. If no rows satisfy the condition the returned array will be empty.
+    index array of the anti-commuting rows.
 
-**Parameters**
+    **Return type**
 
-**other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – a single Pauli or multi-row PauliTable.
+    array
+  </Function>
 
-**Returns**
+  ### argsort
 
-index array of the anti-commuting rows.
+  <Function id="qiskit.quantum_info.PauliTable.argsort" name="argsort" signature="PauliTable.argsort(weight=False)">
+    Return indices for sorting the rows of the table.
 
-**Return type**
+    The default sort method is lexicographic sorting by qubit number. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Pauli, where the set of all Pauli’s of a given weight are still ordered lexicographically.
 
-array
+    **Parameters**
 
-### argsort
+    **weight** (*bool*) – optionally sort by weight if True (Default: False).
 
-<span id="qiskit.quantum_info.PauliTable.argsort" />
+    **Returns**
 
-`PauliTable.argsort(weight=False)`
+    the indices for sorting the table.
 
-Return indices for sorting the rows of the table.
+    **Return type**
 
-The default sort method is lexicographic sorting by qubit number. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Pauli, where the set of all Pauli’s of a given weight are still ordered lexicographically.
+    array
+  </Function>
 
-**Parameters**
+  ### commutes
 
-**weight** (*bool*) – optionally sort by weight if True (Default: False).
+  <Function id="qiskit.quantum_info.PauliTable.commutes" name="commutes" signature="PauliTable.commutes(pauli)">
+    Return list of commutation properties for each row with a Pauli.
 
-**Returns**
+    The returned vector is the same length as the size of the table and contains True for rows that commute with the Pauli, and False for the rows that anti-commute.
 
-the indices for sorting the table.
+    **Parameters**
 
-**Return type**
+    **pauli** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – a single Pauli row.
 
-array
+    **Returns**
 
-### commutes
+    The boolean vector of which rows commute or anti-commute.
 
-<span id="qiskit.quantum_info.PauliTable.commutes" />
+    **Return type**
 
-`PauliTable.commutes(pauli)`
+    array
 
-Return list of commutation properties for each row with a Pauli.
+    **Raises**
 
-The returned vector is the same length as the size of the table and contains True for rows that commute with the Pauli, and False for the rows that anti-commute.
+    **QiskitError** – if input is not a single Pauli row.
+  </Function>
 
-**Parameters**
+  ### commutes\_with\_all
 
-**pauli** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – a single Pauli row.
+  <Function id="qiskit.quantum_info.PauliTable.commutes_with_all" name="commutes_with_all" signature="PauliTable.commutes_with_all(other)">
+    Return indexes of rows that commute other.
 
-**Returns**
+    If other is a multi-row Pauli table the returned vector indexes rows of the current PauliTable that commute with *all* Pauli’s in other. If no rows satisfy the condition the returned array will be empty.
 
-The boolean vector of which rows commute or anti-commute.
+    **Parameters**
 
-**Return type**
+    **other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – a single Pauli or multi-row PauliTable.
 
-array
+    **Returns**
 
-**Raises**
+    index array of the commuting rows.
 
-**QiskitError** – if input is not a single Pauli row.
+    **Return type**
 
-### commutes\_with\_all
+    array
+  </Function>
 
-<span id="qiskit.quantum_info.PauliTable.commutes_with_all" />
+  ### compose
 
-`PauliTable.commutes_with_all(other)`
+  <Function id="qiskit.quantum_info.PauliTable.compose" name="compose" signature="PauliTable.compose(other, qargs=None, front=True)">
+    Return the compose output product of two tables.
 
-Return indexes of rows that commute other.
+    This returns the combination of the dot product of all Paulis in the current table with all Pauli’s in the other table and discards the complex phase from the product. Note that for PauliTables this method is equivalent to [`dot()`](qiskit.quantum_info.PauliTable#dot "qiskit.quantum_info.PauliTable.dot") and hence the `front` kwarg does not change the output.
 
-If other is a multi-row Pauli table the returned vector indexes rows of the current PauliTable that commute with *all* Pauli’s in other. If no rows satisfy the condition the returned array will be empty.
+    **Example**
 
-**Parameters**
+    ```python
+    from qiskit.quantum_info.operators import PauliTable
 
-**other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – a single Pauli or multi-row PauliTable.
+    current = PauliTable.from_labels(['I', 'X'])
+    other =  PauliTable.from_labels(['Y', 'Z'])
+    print(current.compose(other))
+    ```
 
-**Returns**
+    ```python
+    PauliTable: ['Y', 'Z', 'Z', 'Y']
+    ```
 
-index array of the commuting rows.
+    **Parameters**
 
-**Return type**
+    *   **other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – another PauliTable.
+    *   **qargs** (*None or list*) – qubits to apply dot product on (Default: None).
+    *   **front** (*bool*) – If True use dot composition method \[default: False].
 
-array
+    **Returns**
 
-### compose
+    the compose outer product table.
 
-<span id="qiskit.quantum_info.PauliTable.compose" />
+    **Return type**
 
-`PauliTable.compose(other, qargs=None, front=True)`
+    [PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
 
-Return the compose output product of two tables.
+    **Raises**
 
-This returns the combination of the dot product of all Paulis in the current table with all Pauli’s in the other table and discards the complex phase from the product. Note that for PauliTables this method is equivalent to [`dot()`](qiskit.quantum_info.PauliTable#dot "qiskit.quantum_info.PauliTable.dot") and hence the `front` kwarg does not change the output.
+    **QiskitError** – if other cannot be converted to a PauliTable.
+  </Function>
 
-**Example**
+  ### conjugate
 
-```python
-from qiskit.quantum_info.operators import PauliTable
+  <Function id="qiskit.quantum_info.PauliTable.conjugate" name="conjugate" signature="PauliTable.conjugate()">
+    Not implemented.
+  </Function>
 
-current = PauliTable.from_labels(['I', 'X'])
-other =  PauliTable.from_labels(['Y', 'Z'])
-print(current.compose(other))
-```
+  ### copy
 
-```python
-PauliTable: ['Y', 'Z', 'Z', 'Y']
-```
+  <Function id="qiskit.quantum_info.PauliTable.copy" name="copy" signature="PauliTable.copy()">
+    Make a deep copy of current operator.
+  </Function>
 
-**Parameters**
+  ### delete
 
-*   **other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – another PauliTable.
-*   **qargs** (*None or list*) – qubits to apply dot product on (Default: None).
-*   **front** (*bool*) – If True use dot composition method \[default: False].
+  <Function id="qiskit.quantum_info.PauliTable.delete" name="delete" signature="PauliTable.delete(ind, qubit=False)">
+    Return a copy with Pauli rows deleted from table.
 
-**Returns**
+    When deleting qubits the qubit index is the same as the column index of the underlying [`X`](qiskit.quantum_info.PauliTable#x "qiskit.quantum_info.PauliTable.X") and [`Z`](qiskit.quantum_info.PauliTable#z "qiskit.quantum_info.PauliTable.Z") arrays.
 
-the compose outer product table.
+    **Parameters**
 
-**Return type**
+    *   **ind** (*int or list*) – index(es) to delete.
+    *   **qubit** (*bool*) – if True delete qubit columns, otherwise delete Pauli rows (Default: False).
 
-[PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+    **Returns**
 
-**Raises**
+    the resulting table with the entries removed.
 
-**QiskitError** – if other cannot be converted to a PauliTable.
+    **Return type**
 
-### conjugate
+    [PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
 
-<span id="qiskit.quantum_info.PauliTable.conjugate" />
+    **Raises**
 
-`PauliTable.conjugate()`
+    **QiskitError** – if ind is out of bounds for the array size or number of qubits.
+  </Function>
 
-Not implemented.
+  ### dot
 
-### copy
+  <Function id="qiskit.quantum_info.PauliTable.dot" name="dot" signature="PauliTable.dot(other, qargs=None)">
+    Return the dot output product of two tables.
 
-<span id="qiskit.quantum_info.PauliTable.copy" />
+    This returns the combination of the dot product of all Paulis in the current table with all Pauli’s in the other table and discards the complex phase from the product. Note that for PauliTables this method is equivalent to [`compose()`](qiskit.quantum_info.PauliTable#compose "qiskit.quantum_info.PauliTable.compose").
 
-`PauliTable.copy()`
+    **Example**
 
-Make a deep copy of current operator.
+    ```python
+    from qiskit.quantum_info.operators import PauliTable
 
-### delete
+    current = PauliTable.from_labels(['I', 'X'])
+    other =  PauliTable.from_labels(['Y', 'Z'])
+    print(current.dot(other))
+    ```
 
-<span id="qiskit.quantum_info.PauliTable.delete" />
+    ```python
+    PauliTable: ['Y', 'Z', 'Z', 'Y']
+    ```
 
-`PauliTable.delete(ind, qubit=False)`
+    **Parameters**
 
-Return a copy with Pauli rows deleted from table.
+    *   **other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – another PauliTable.
+    *   **qargs** (*None or list*) – qubits to apply dot product on (Default: None).
 
-When deleting qubits the qubit index is the same as the column index of the underlying [`X`](qiskit.quantum_info.PauliTable#x "qiskit.quantum_info.PauliTable.X") and [`Z`](qiskit.quantum_info.PauliTable#z "qiskit.quantum_info.PauliTable.Z") arrays.
+    **Returns**
 
-**Parameters**
+    the dot outer product table.
 
-*   **ind** (*int or list*) – index(es) to delete.
-*   **qubit** (*bool*) – if True delete qubit columns, otherwise delete Pauli rows (Default: False).
+    **Return type**
 
-**Returns**
+    [PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
 
-the resulting table with the entries removed.
+    **Raises**
 
-**Return type**
+    **QiskitError** – if other cannot be converted to a PauliTable.
+  </Function>
 
-[PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+  ### expand
 
-**Raises**
+  <Function id="qiskit.quantum_info.PauliTable.expand" name="expand" signature="PauliTable.expand(other)">
+    Return the expand output product of two tables.
 
-**QiskitError** – if ind is out of bounds for the array size or number of qubits.
+    This returns the combination of the tensor product of all Paulis in the other table with all Pauli’s in the current table, with the current tables qubits being the least-significant in the returned table. This is the opposite tensor order to [`tensor()`](qiskit.quantum_info.PauliTable#tensor "qiskit.quantum_info.PauliTable.tensor").
 
-### dot
+    **Example**
 
-<span id="qiskit.quantum_info.PauliTable.dot" />
+    ```python
+    from qiskit.quantum_info.operators import PauliTable
 
-`PauliTable.dot(other, qargs=None)`
+    current = PauliTable.from_labels(['I', 'X'])
+    other =  PauliTable.from_labels(['Y', 'Z'])
+    print(current.expand(other))
+    ```
 
-Return the dot output product of two tables.
+    ```python
+    PauliTable: ['YI', 'YX', 'ZI', 'ZX']
+    ```
 
-This returns the combination of the dot product of all Paulis in the current table with all Pauli’s in the other table and discards the complex phase from the product. Note that for PauliTables this method is equivalent to [`compose()`](qiskit.quantum_info.PauliTable#compose "qiskit.quantum_info.PauliTable.compose").
+    **Parameters**
 
-**Example**
+    **other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – another PauliTable.
 
-```python
-from qiskit.quantum_info.operators import PauliTable
+    **Returns**
 
-current = PauliTable.from_labels(['I', 'X'])
-other =  PauliTable.from_labels(['Y', 'Z'])
-print(current.dot(other))
-```
+    the expand outer product table.
 
-```python
-PauliTable: ['Y', 'Z', 'Z', 'Y']
-```
+    **Return type**
 
-**Parameters**
+    [PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
 
-*   **other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – another PauliTable.
-*   **qargs** (*None or list*) – qubits to apply dot product on (Default: None).
+    **Raises**
 
-**Returns**
+    **QiskitError** – if other cannot be converted to a PauliTable.
+  </Function>
 
-the dot outer product table.
+  ### from\_labels
 
-**Return type**
+  <Function id="qiskit.quantum_info.PauliTable.from_labels" name="from_labels" signature="classmethod PauliTable.from_labels(labels)">
+    Construct a PauliTable from a list of Pauli strings.
 
-[PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+    **Parameters**
 
-**Raises**
+    **labels** (*list*) – Pauli string label(es).
 
-**QiskitError** – if other cannot be converted to a PauliTable.
+    **Returns**
 
-### expand
+    the constructed PauliTable.
 
-<span id="qiskit.quantum_info.PauliTable.expand" />
+    **Return type**
 
-`PauliTable.expand(other)`
+    [PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
 
-Return the expand output product of two tables.
+    **Raises**
 
-This returns the combination of the tensor product of all Paulis in the other table with all Pauli’s in the current table, with the current tables qubits being the least-significant in the returned table. This is the opposite tensor order to [`tensor()`](qiskit.quantum_info.PauliTable#tensor "qiskit.quantum_info.PauliTable.tensor").
+    *   **QiskitError** – If the input list is empty or contains invalid
+    *   **Pauli strings.** –
+  </Function>
 
-**Example**
+  ### input\_dims
 
-```python
-from qiskit.quantum_info.operators import PauliTable
+  <Function id="qiskit.quantum_info.PauliTable.input_dims" name="input_dims" signature="PauliTable.input_dims(qargs=None)">
+    Return tuple of input dimension for specified subsystems.
+  </Function>
 
-current = PauliTable.from_labels(['I', 'X'])
-other =  PauliTable.from_labels(['Y', 'Z'])
-print(current.expand(other))
-```
+  ### insert
 
-```python
-PauliTable: ['YI', 'YX', 'ZI', 'ZX']
-```
+  <Function id="qiskit.quantum_info.PauliTable.insert" name="insert" signature="PauliTable.insert(ind, value, qubit=False)">
+    Insert Pauli’s into the table.
 
-**Parameters**
+    When inserting qubits the qubit index is the same as the column index of the underlying [`X`](qiskit.quantum_info.PauliTable#x "qiskit.quantum_info.PauliTable.X") and [`Z`](qiskit.quantum_info.PauliTable#z "qiskit.quantum_info.PauliTable.Z") arrays.
 
-**other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – another PauliTable.
+    **Parameters**
 
-**Returns**
+    *   **ind** (*int*) – index to insert at.
+    *   **value** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – values to insert.
+    *   **qubit** (*bool*) – if True delete qubit columns, otherwise delete Pauli rows (Default: False).
 
-the expand outer product table.
+    **Returns**
 
-**Return type**
+    the resulting table with the entries inserted.
 
-[PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+    **Return type**
 
-**Raises**
+    [PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
 
-**QiskitError** – if other cannot be converted to a PauliTable.
+    **Raises**
 
-### from\_labels
+    **QiskitError** – if the insertion index is invalid.
+  </Function>
 
-<span id="qiskit.quantum_info.PauliTable.from_labels" />
+  ### label\_iter
 
-`classmethod PauliTable.from_labels(labels)`
+  <Function id="qiskit.quantum_info.PauliTable.label_iter" name="label_iter" signature="PauliTable.label_iter()">
+    Return a label representation iterator.
 
-Construct a PauliTable from a list of Pauli strings.
+    This is a lazy iterator that converts each row into the string label only as it is used. To convert the entire table to labels use the [`to_labels()`](qiskit.quantum_info.PauliTable#to_labels "qiskit.quantum_info.PauliTable.to_labels") method.
 
-**Parameters**
+    **Returns**
 
-**labels** (*list*) – Pauli string label(es).
+    label iterator object for the PauliTable.
 
-**Returns**
+    **Return type**
 
-the constructed PauliTable.
+    LabelIterator
+  </Function>
 
-**Return type**
+  ### matrix\_iter
 
-[PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+  <Function id="qiskit.quantum_info.PauliTable.matrix_iter" name="matrix_iter" signature="PauliTable.matrix_iter(sparse=False)">
+    Return a matrix representation iterator.
 
-**Raises**
+    This is a lazy iterator that converts each row into the Pauli matrix representation only as it is used. To convert the entire table to matrices use the [`to_matrix()`](qiskit.quantum_info.PauliTable#to_matrix "qiskit.quantum_info.PauliTable.to_matrix") method.
 
-*   **QiskitError** – If the input list is empty or contains invalid
-*   **Pauli strings.** –
+    **Parameters**
 
-### input\_dims
+    **sparse** (*bool*) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
 
-<span id="qiskit.quantum_info.PauliTable.input_dims" />
+    **Returns**
 
-`PauliTable.input_dims(qargs=None)`
+    matrix iterator object for the PauliTable.
 
-Return tuple of input dimension for specified subsystems.
+    **Return type**
 
-### insert
+    MatrixIterator
+  </Function>
 
-<span id="qiskit.quantum_info.PauliTable.insert" />
+  ### output\_dims
 
-`PauliTable.insert(ind, value, qubit=False)`
+  <Function id="qiskit.quantum_info.PauliTable.output_dims" name="output_dims" signature="PauliTable.output_dims(qargs=None)">
+    Return tuple of output dimension for specified subsystems.
+  </Function>
 
-Insert Pauli’s into the table.
+  ### power
 
-When inserting qubits the qubit index is the same as the column index of the underlying [`X`](qiskit.quantum_info.PauliTable#x "qiskit.quantum_info.PauliTable.X") and [`Z`](qiskit.quantum_info.PauliTable#z "qiskit.quantum_info.PauliTable.Z") arrays.
+  <Function id="qiskit.quantum_info.PauliTable.power" name="power" signature="PauliTable.power(n)">
+    Return the compose of a operator with itself n times.
 
-**Parameters**
+    **Parameters**
 
-*   **ind** (*int*) – index to insert at.
-*   **value** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – values to insert.
-*   **qubit** (*bool*) – if True delete qubit columns, otherwise delete Pauli rows (Default: False).
+    **n** (*int*) – the number of times to compose with self (n>0).
 
-**Returns**
+    **Returns**
 
-the resulting table with the entries inserted.
+    the n-times composed operator.
 
-**Return type**
+    **Return type**
 
-[PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+    [Pauli](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
-**Raises**
+    **Raises**
 
-**QiskitError** – if the insertion index is invalid.
+    **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
+  </Function>
 
-### label\_iter
+  ### reshape
 
-<span id="qiskit.quantum_info.PauliTable.label_iter" />
+  <Function id="qiskit.quantum_info.PauliTable.reshape" name="reshape" signature="PauliTable.reshape(input_dims=None, output_dims=None, num_qubits=None)">
+    Return a shallow copy with reshaped input and output subsystem dimensions.
 
-`PauliTable.label_iter()`
+    **Parameters**
 
-Return a label representation iterator.
+    *   **input\_dims** (*None or tuple*) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+    *   **output\_dims** (*None or tuple*) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+    *   **num\_qubits** (*None or int*) – reshape to an N-qubit operator \[Default: None].
 
-This is a lazy iterator that converts each row into the string label only as it is used. To convert the entire table to labels use the [`to_labels()`](qiskit.quantum_info.PauliTable#to_labels "qiskit.quantum_info.PauliTable.to_labels") method.
+    **Returns**
 
-**Returns**
+    returns self with reshaped input and output dimensions.
 
-label iterator object for the PauliTable.
+    **Return type**
 
-**Return type**
+    BaseOperator
 
-LabelIterator
+    **Raises**
 
-### matrix\_iter
+    **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  </Function>
 
-<span id="qiskit.quantum_info.PauliTable.matrix_iter" />
+  ### sort
 
-`PauliTable.matrix_iter(sparse=False)`
+  <Function id="qiskit.quantum_info.PauliTable.sort" name="sort" signature="PauliTable.sort(weight=False)">
+    Sort the rows of the table.
 
-Return a matrix representation iterator.
+    The default sort method is lexicographic sorting by qubit number. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Pauli, where the set of all Pauli’s of a given weight are still ordered lexicographically.
 
-This is a lazy iterator that converts each row into the Pauli matrix representation only as it is used. To convert the entire table to matrices use the [`to_matrix()`](qiskit.quantum_info.PauliTable#to_matrix "qiskit.quantum_info.PauliTable.to_matrix") method.
+    **Example**
 
-**Parameters**
+    Consider sorting all a random ordering of all 2-qubit Paulis
 
-**sparse** (*bool*) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
+    ```python
+    from numpy.random import shuffle
+    from qiskit.quantum_info.operators import PauliTable
 
-**Returns**
+    # 2-qubit labels
+    labels = ['II', 'IX', 'IY', 'IZ', 'XI', 'XX', 'XY', 'XZ',
+              'YI', 'YX', 'YY', 'YZ', 'ZI', 'ZX', 'ZY', 'ZZ']
+    # Shuffle Labels
+    shuffle(labels)
+    pt = PauliTable.from_labels(labels)
+    print('Initial Ordering')
+    print(pt)
 
-matrix iterator object for the PauliTable.
+    # Lexicographic Ordering
+    srt = pt.sort()
+    print('Lexicographically sorted')
+    print(srt)
 
-**Return type**
+    # Weight Ordering
+    srt = pt.sort(weight=True)
+    print('Weight sorted')
+    print(srt)
+    ```
 
-MatrixIterator
+    ```python
+    Initial Ordering
+    PauliTable: ['XX', 'YZ', 'YI', 'XI', 'ZX', 'IX', 'II', 'IY', 'XY', 'IZ', 'YY', 'YX', 'ZY', 'XZ', 'ZZ', 'ZI']
+    Lexicographically sorted
+    PauliTable: ['II', 'IX', 'IY', 'IZ', 'XI', 'XX', 'XY', 'XZ', 'YI', 'YX', 'YY', 'YZ', 'ZI', 'ZX', 'ZY', 'ZZ']
+    Weight sorted
+    PauliTable: ['II', 'IX', 'IY', 'IZ', 'XI', 'YI', 'ZI', 'XX', 'XY', 'XZ', 'YX', 'YY', 'YZ', 'ZX', 'ZY', 'ZZ']
+    ```
 
-### output\_dims
+    **Parameters**
 
-<span id="qiskit.quantum_info.PauliTable.output_dims" />
+    **weight** (*bool*) – optionally sort by weight if True (Default: False).
 
-`PauliTable.output_dims(qargs=None)`
+    **Returns**
 
-Return tuple of output dimension for specified subsystems.
+    a sorted copy of the original table.
 
-### power
+    **Return type**
 
-<span id="qiskit.quantum_info.PauliTable.power" />
+    [PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+  </Function>
 
-`PauliTable.power(n)`
+  ### tensor
 
-Return the compose of a operator with itself n times.
+  <Function id="qiskit.quantum_info.PauliTable.tensor" name="tensor" signature="PauliTable.tensor(other)">
+    Return the tensor output product of two tables.
 
-**Parameters**
+    This returns the combination of the tensor product of all Paulis in the current table with all Pauli’s in the other table, with the other tables qubits being the least-significant in the returned table. This is the opposite tensor order to [`expand()`](qiskit.quantum_info.PauliTable#expand "qiskit.quantum_info.PauliTable.expand").
 
-**n** (*int*) – the number of times to compose with self (n>0).
+    **Example**
 
-**Returns**
+    ```python
+    from qiskit.quantum_info.operators import PauliTable
 
-the n-times composed operator.
+    current = PauliTable.from_labels(['I', 'X'])
+    other =  PauliTable.from_labels(['Y', 'Z'])
+    print(current.tensor(other))
+    ```
 
-**Return type**
+    ```python
+    PauliTable: ['IY', 'IZ', 'XY', 'XZ']
+    ```
 
-[Pauli](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+    **Parameters**
 
-**Raises**
+    **other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – another PauliTable.
 
-**QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
+    **Returns**
 
-### reshape
+    the tensor outer product table.
 
-<span id="qiskit.quantum_info.PauliTable.reshape" />
+    **Return type**
 
-`PauliTable.reshape(input_dims=None, output_dims=None, num_qubits=None)`
+    [PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
 
-Return a shallow copy with reshaped input and output subsystem dimensions.
+    **Raises**
 
-**Parameters**
+    **QiskitError** – if other cannot be converted to a PauliTable.
+  </Function>
 
-*   **input\_dims** (*None or tuple*) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-*   **output\_dims** (*None or tuple*) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-*   **num\_qubits** (*None or int*) – reshape to an N-qubit operator \[Default: None].
+  ### to\_labels
 
-**Returns**
+  <Function id="qiskit.quantum_info.PauliTable.to_labels" name="to_labels" signature="PauliTable.to_labels(array=False)">
+    Convert a PauliTable to a list Pauli string labels.
 
-returns self with reshaped input and output dimensions.
+    For large PauliTables converting using the `array=True` kwarg will be more efficient since it allocates memory for the full Numpy array of labels in advance.
 
-**Return type**
+    | Label | Symplectic | Matrix                                          |
+    | ----- | ---------- | ----------------------------------------------- |
+    | `"I"` | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$  |
+    | `"X"` | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$  |
+    | `"Y"` | $[1, 1]$   | $\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$ |
+    | `"Z"` | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ |
 
-BaseOperator
+    **Parameters**
 
-**Raises**
+    **array** (*bool*) – return a Numpy array if True, otherwise return a list (Default: False).
 
-**QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+    **Returns**
 
-### sort
+    The rows of the PauliTable in label form.
 
-<span id="qiskit.quantum_info.PauliTable.sort" />
+    **Return type**
 
-`PauliTable.sort(weight=False)`
+    list or array
+  </Function>
 
-Sort the rows of the table.
+  ### to\_matrix
 
-The default sort method is lexicographic sorting by qubit number. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Pauli, where the set of all Pauli’s of a given weight are still ordered lexicographically.
+  <Function id="qiskit.quantum_info.PauliTable.to_matrix" name="to_matrix" signature="PauliTable.to_matrix(sparse=False, array=False)">
+    Convert to a list or array of Pauli matrices.
 
-**Example**
+    For large PauliTables converting using the `array=True` kwarg will be more efficient since it allocates memory a full rank-3 Numpy array of matrices in advance.
 
-Consider sorting all a random ordering of all 2-qubit Paulis
+    | Label | Symplectic | Matrix                                          |
+    | ----- | ---------- | ----------------------------------------------- |
+    | `"I"` | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$  |
+    | `"X"` | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$  |
+    | `"Y"` | $[1, 1]$   | $\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$ |
+    | `"Z"` | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ |
 
-```python
-from numpy.random import shuffle
-from qiskit.quantum_info.operators import PauliTable
+    **Parameters**
 
-# 2-qubit labels
-labels = ['II', 'IX', 'IY', 'IZ', 'XI', 'XX', 'XY', 'XZ',
-          'YI', 'YX', 'YY', 'YZ', 'ZI', 'ZX', 'ZY', 'ZZ']
-# Shuffle Labels
-shuffle(labels)
-pt = PauliTable.from_labels(labels)
-print('Initial Ordering')
-print(pt)
+    *   **sparse** (*bool*) – if True return sparse CSR matrices, otherwise return dense Numpy arrays (Default: False).
+    *   **array** (*bool*) – return as rank-3 numpy array if True, otherwise return a list of Numpy arrays (Default: False).
 
-# Lexicographic Ordering
-srt = pt.sort()
-print('Lexicographically sorted')
-print(srt)
+    **Returns**
 
-# Weight Ordering
-srt = pt.sort(weight=True)
-print('Weight sorted')
-print(srt)
-```
+    A list of dense Pauli matrices if array=False and sparse=False. list: A list of sparse Pauli matrices if array=False and sparse=True. array: A dense rank-3 array of Pauli matrices if array=True.
 
-```python
-Initial Ordering
-PauliTable: ['XX', 'YZ', 'YI', 'XI', 'ZX', 'IX', 'II', 'IY', 'XY', 'IZ', 'YY', 'YX', 'ZY', 'XZ', 'ZZ', 'ZI']
-Lexicographically sorted
-PauliTable: ['II', 'IX', 'IY', 'IZ', 'XI', 'XX', 'XY', 'XZ', 'YI', 'YX', 'YY', 'YZ', 'ZI', 'ZX', 'ZY', 'ZZ']
-Weight sorted
-PauliTable: ['II', 'IX', 'IY', 'IZ', 'XI', 'YI', 'ZI', 'XX', 'XY', 'XZ', 'YX', 'YY', 'YZ', 'ZX', 'ZY', 'ZZ']
-```
+    **Return type**
 
-**Parameters**
+    list
+  </Function>
 
-**weight** (*bool*) – optionally sort by weight if True (Default: False).
+  ### transpose
 
-**Returns**
+  <Function id="qiskit.quantum_info.PauliTable.transpose" name="transpose" signature="PauliTable.transpose()">
+    Not implemented.
+  </Function>
 
-a sorted copy of the original table.
+  ### unique
 
-**Return type**
+  <Function id="qiskit.quantum_info.PauliTable.unique" name="unique" signature="PauliTable.unique(return_index=False, return_counts=False)">
+    Return unique Paulis from the table.
 
-[PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+    **Example**
 
-### tensor
+    ```python
+    from qiskit.quantum_info.operators import PauliTable
 
-<span id="qiskit.quantum_info.PauliTable.tensor" />
+    pt = PauliTable.from_labels(['X', 'Y', 'X', 'I', 'I', 'Z', 'X', 'Z'])
+    unique = pt.unique()
+    print(unique)
+    ```
 
-`PauliTable.tensor(other)`
+    ```python
+    PauliTable: ['X', 'Y', 'I', 'Z']
+    ```
 
-Return the tensor output product of two tables.
+    **Parameters**
 
-This returns the combination of the tensor product of all Paulis in the current table with all Pauli’s in the other table, with the other tables qubits being the least-significant in the returned table. This is the opposite tensor order to [`expand()`](qiskit.quantum_info.PauliTable#expand "qiskit.quantum_info.PauliTable.expand").
+    *   **return\_index** (*bool*) – If True, also return the indices that result in the unique array. (Default: False)
+    *   **return\_counts** (*bool*) – If True, also return the number of times each unique item appears in the table.
 
-**Example**
+    **Returns**
 
-```python
-from qiskit.quantum_info.operators import PauliTable
+    **unique**
 
-current = PauliTable.from_labels(['I', 'X'])
-other =  PauliTable.from_labels(['Y', 'Z'])
-print(current.tensor(other))
-```
+    the table of the unique rows.
 
-```python
-PauliTable: ['IY', 'IZ', 'XY', 'XZ']
-```
+    **unique\_indices: np.ndarray, optional**
 
-**Parameters**
+    The indices of the first occurrences of the unique values in the original array. Only provided if `return_index` is True.
 
-**other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – another PauliTable.
+    **unique\_counts: np.array, optional**
 
-**Returns**
+    The number of times each of the unique values comes up in the original array. Only provided if `return_counts` is True.
 
-the tensor outer product table.
+    **Return type**
 
-**Return type**
+    [PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+  </Function>
 
-[PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+  ## Attributes
 
-**Raises**
+  ### X
 
-**QiskitError** – if other cannot be converted to a PauliTable.
+  <Attribute id="qiskit.quantum_info.PauliTable.X" name="X">
+    The X block of the [`array`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array").
+  </Attribute>
 
-### to\_labels
+  ### Z
 
-<span id="qiskit.quantum_info.PauliTable.to_labels" />
+  <Attribute id="qiskit.quantum_info.PauliTable.Z" name="Z">
+    The Z block of the [`array`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array").
+  </Attribute>
 
-`PauliTable.to_labels(array=False)`
+  ### array
 
-Convert a PauliTable to a list Pauli string labels.
+  <Attribute id="qiskit.quantum_info.PauliTable.array" name="array">
+    The underlying boolean array.
+  </Attribute>
 
-For large PauliTables converting using the `array=True` kwarg will be more efficient since it allocates memory for the full Numpy array of labels in advance.
+  ### dim
 
-| Label | Symplectic | Matrix                                          |
-| ----- | ---------- | ----------------------------------------------- |
-| `"I"` | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$  |
-| `"X"` | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$  |
-| `"Y"` | $[1, 1]$   | $\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$ |
-| `"Z"` | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ |
+  <Attribute id="qiskit.quantum_info.PauliTable.dim" name="dim">
+    Return tuple (input\_shape, output\_shape).
+  </Attribute>
 
-**Parameters**
+  ### num\_qubits
 
-**array** (*bool*) – return a Numpy array if True, otherwise return a list (Default: False).
+  <Attribute id="qiskit.quantum_info.PauliTable.num_qubits" name="num_qubits">
+    Return the number of qubits if a N-qubit operator or None otherwise.
+  </Attribute>
 
-**Returns**
+  ### qargs
 
-The rows of the PauliTable in label form.
+  <Attribute id="qiskit.quantum_info.PauliTable.qargs" name="qargs">
+    Return the qargs for the operator.
+  </Attribute>
 
-**Return type**
+  ### settings
 
-list or array
+  <Attribute id="qiskit.quantum_info.PauliTable.settings" name="settings">
+    Return settings.
 
-### to\_matrix
+    **Return type**
 
-<span id="qiskit.quantum_info.PauliTable.to_matrix" />
+    `Dict`
+  </Attribute>
 
-`PauliTable.to_matrix(sparse=False, array=False)`
+  ### shape
 
-Convert to a list or array of Pauli matrices.
+  <Attribute id="qiskit.quantum_info.PauliTable.shape" name="shape">
+    The full shape of the [`array()`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array")
+  </Attribute>
 
-For large PauliTables converting using the `array=True` kwarg will be more efficient since it allocates memory a full rank-3 Numpy array of matrices in advance.
+  ### size
 
-| Label | Symplectic | Matrix                                          |
-| ----- | ---------- | ----------------------------------------------- |
-| `"I"` | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$  |
-| `"X"` | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$  |
-| `"Y"` | $[1, 1]$   | $\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$ |
-| `"Z"` | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ |
-
-**Parameters**
-
-*   **sparse** (*bool*) – if True return sparse CSR matrices, otherwise return dense Numpy arrays (Default: False).
-*   **array** (*bool*) – return as rank-3 numpy array if True, otherwise return a list of Numpy arrays (Default: False).
-
-**Returns**
-
-A list of dense Pauli matrices if array=False and sparse=False. list: A list of sparse Pauli matrices if array=False and sparse=True. array: A dense rank-3 array of Pauli matrices if array=True.
-
-**Return type**
-
-list
-
-### transpose
-
-<span id="qiskit.quantum_info.PauliTable.transpose" />
-
-`PauliTable.transpose()`
-
-Not implemented.
-
-### unique
-
-<span id="qiskit.quantum_info.PauliTable.unique" />
-
-`PauliTable.unique(return_index=False, return_counts=False)`
-
-Return unique Paulis from the table.
-
-**Example**
-
-```python
-from qiskit.quantum_info.operators import PauliTable
-
-pt = PauliTable.from_labels(['X', 'Y', 'X', 'I', 'I', 'Z', 'X', 'Z'])
-unique = pt.unique()
-print(unique)
-```
-
-```python
-PauliTable: ['X', 'Y', 'I', 'Z']
-```
-
-**Parameters**
-
-*   **return\_index** (*bool*) – If True, also return the indices that result in the unique array. (Default: False)
-*   **return\_counts** (*bool*) – If True, also return the number of times each unique item appears in the table.
-
-**Returns**
-
-**unique**
-
-the table of the unique rows.
-
-**unique\_indices: np.ndarray, optional**
-
-The indices of the first occurrences of the unique values in the original array. Only provided if `return_index` is True.
-
-**unique\_counts: np.array, optional**
-
-The number of times each of the unique values comes up in the original array. Only provided if `return_counts` is True.
-
-**Return type**
-
-[PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
-
-## Attributes
-
-<span id="qiskit.quantum_info.PauliTable.X" />
-
-### X
-
-The X block of the [`array`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array").
-
-<span id="qiskit.quantum_info.PauliTable.Z" />
-
-### Z
-
-The Z block of the [`array`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array").
-
-<span id="qiskit.quantum_info.PauliTable.array" />
-
-### array
-
-The underlying boolean array.
-
-<span id="qiskit.quantum_info.PauliTable.dim" />
-
-### dim
-
-Return tuple (input\_shape, output\_shape).
-
-<span id="qiskit.quantum_info.PauliTable.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits if a N-qubit operator or None otherwise.
-
-<span id="qiskit.quantum_info.PauliTable.qargs" />
-
-### qargs
-
-Return the qargs for the operator.
-
-<span id="qiskit.quantum_info.PauliTable.settings" />
-
-### settings
-
-Return settings.
-
-**Return type**
-
-`Dict`
-
-<span id="qiskit.quantum_info.PauliTable.shape" />
-
-### shape
-
-The full shape of the [`array()`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array")
-
-<span id="qiskit.quantum_info.PauliTable.size" />
-
-### size
-
-The number of Pauli rows in the table.
+  <Attribute id="qiskit.quantum_info.PauliTable.size" name="size">
+    The number of Pauli rows in the table.
+  </Attribute>
+</Class>
 

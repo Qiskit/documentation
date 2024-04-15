@@ -8,29 +8,27 @@ python_api_name: qiskit.pulse.builder.acquire_channel
 
 # qiskit.pulse.builder.acquire\_channel
 
-<span id="qiskit.pulse.builder.acquire_channel" />
+<Function id="qiskit.pulse.builder.acquire_channel" name="acquire_channel" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py" signature="acquire_channel(qubit)">
+  Return `AcquireChannel` for `qubit` on the active builder backend.
 
-`acquire_channel(qubit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
+  Examples:
 
-Return `AcquireChannel` for `qubit` on the active builder backend.
+  ```python
+  from qiskit import pulse
+  from qiskit.test.mock import FakeOpenPulse2Q
 
-Examples:
+  backend = FakeOpenPulse2Q()
 
-```python
-from qiskit import pulse
-from qiskit.test.mock import FakeOpenPulse2Q
+  with pulse.build(backend):
+      assert pulse.acquire_channel(0) == pulse.AcquireChannel(0)
+  ```
 
-backend = FakeOpenPulse2Q()
+  <Admonition title="Note" type="note">
+    Requires the active builder context to have a backend set.
+  </Admonition>
 
-with pulse.build(backend):
-    assert pulse.acquire_channel(0) == pulse.AcquireChannel(0)
-```
+  **Return type**
 
-<Admonition title="Note" type="note">
-  Requires the active builder context to have a backend set.
-</Admonition>
-
-**Return type**
-
-`AcquireChannel`
+  `AcquireChannel`
+</Function>
 

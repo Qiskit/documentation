@@ -8,49 +8,45 @@ python_api_name: qiskit.chemistry.components.bosonic_bases.HarmonicBasis
 
 # HarmonicBasis
 
-<span id="qiskit.chemistry.components.bosonic_bases.HarmonicBasis" />
+<Class id="qiskit.chemistry.components.bosonic_bases.HarmonicBasis" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/bosonic_bases/harmonic_basis.py" signature="HarmonicBasis(watson_hamiltonian, basis, truncation_order=3)">
+  Bases: `qiskit.chemistry.components.bosonic_bases.bosonic_basis.BosonicBasis`
 
-`HarmonicBasis(watson_hamiltonian, basis, truncation_order=3)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/bosonic_bases/harmonic_basis.py "view source code")
+  Basis in which the Watson Hamiltonian is expressed.
 
-Bases: `qiskit.chemistry.components.bosonic_bases.bosonic_basis.BosonicBasis`
+  This class uses the Hermite polynomials (eigenstates of the harmonic oscillator) as a modal basis for the expression of the Watson Hamiltonian or any bosonic operator.
 
-Basis in which the Watson Hamiltonian is expressed.
+  **References**
 
-This class uses the Hermite polynomials (eigenstates of the harmonic oscillator) as a modal basis for the expression of the Watson Hamiltonian or any bosonic operator.
+  \[1] Ollitrault Pauline J., Chemical science 11 (2020): 6842-6855.
 
-**References**
+  **Parameters**
 
-\[1] Ollitrault Pauline J., Chemical science 11 (2020): 6842-6855.
+  *   **watson\_hamiltonian** (`WatsonHamiltonian`) – A `WatsonHamiltonian` object which contains the hamiltonian information.
+  *   **basis** (`List`\[`int`]) – Is a list defining the number of modals per mode. E.g. for a 3 modes system with 4 modals per mode `basis = [4, 4, 4]`.
+  *   **truncation\_order** (`int`) – where is the Hamiltonian expansion truncation (1 for having only 1-body terms, 2 for having on 1- and 2-body terms…)
 
-**Parameters**
+  ## Methods
 
-*   **watson\_hamiltonian** (`WatsonHamiltonian`) – A `WatsonHamiltonian` object which contains the hamiltonian information.
-*   **basis** (`List`\[`int`]) – Is a list defining the number of modals per mode. E.g. for a 3 modes system with 4 modals per mode `basis = [4, 4, 4]`.
-*   **truncation\_order** (`int`) – where is the Hamiltonian expansion truncation (1 for having only 1-body terms, 2 for having on 1- and 2-body terms…)
+  ### convert
 
-## Methods
+  <Function id="qiskit.chemistry.components.bosonic_bases.HarmonicBasis.convert" name="convert" signature="HarmonicBasis.convert(threshold=1e-06)">
+    This prepares an array object representing a bosonic hamiltonian expressed in the harmonic basis. This object can directly be given to the BosonicOperator class to be mapped to a qubit hamiltonian.
 
-### convert
+    **Parameters**
 
-<span id="qiskit.chemistry.components.bosonic_bases.HarmonicBasis.convert" />
+    **threshold** (`float`) – the matrix elements of value below this threshold are discarded
 
-`HarmonicBasis.convert(threshold=1e-06)`
+    **Return type**
 
-This prepares an array object representing a bosonic hamiltonian expressed in the harmonic basis. This object can directly be given to the BosonicOperator class to be mapped to a qubit hamiltonian.
+    `List`\[`List`\[`Tuple`\[`List`\[`List`\[`int`]], `float`]]]
 
-**Parameters**
+    **Returns**
 
-**threshold** (`float`) – the matrix elements of value below this threshold are discarded
+    List of modes for input to creation of a bosonic hamiltonian in the harmonic basis
 
-**Return type**
+    **Raises**
 
-`List`\[`List`\[`Tuple`\[`List`\[`List`\[`int`]], `float`]]]
-
-**Returns**
-
-List of modes for input to creation of a bosonic hamiltonian in the harmonic basis
-
-**Raises**
-
-**ValueError** – If problem with order value from computed modes
+    **ValueError** – If problem with order value from computed modes
+  </Function>
+</Class>
 

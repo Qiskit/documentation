@@ -8,180 +8,170 @@ python_api_name: qiskit.circuit.library.LinearFunction
 
 # LinearFunction
 
-<span id="qiskit.circuit.library.LinearFunction" />
+<Class id="qiskit.circuit.library.LinearFunction" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/linear_function.py" signature="LinearFunction(linear, validate_input=False)">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`LinearFunction(linear, validate_input=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
+  A linear reversible circuit on n qubits.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  Internally, a linear function acting on n qubits is represented as a n x n matrix of 0s and 1s in numpy array format.
 
-A linear reversible circuit on n qubits.
+  A linear function can be synthesized into CX and SWAP gates using the Patel–Markov–Hayes algorithm, as implemented in `cnot_synth()` based on reference \[1].
 
-Internally, a linear function acting on n qubits is represented as a n x n matrix of 0s and 1s in numpy array format.
+  For efficiency, the internal n x n matrix is stored in the format expected by cnot\_synth, which is the big-endian (and not the little-endian) bit-ordering convention.
 
-A linear function can be synthesized into CX and SWAP gates using the Patel–Markov–Hayes algorithm, as implemented in `cnot_synth()` based on reference \[1].
+  **Example:** the circuit
 
-For efficiency, the internal n x n matrix is stored in the format expected by cnot\_synth, which is the big-endian (and not the little-endian) bit-ordering convention.
+  ```python
+  q_0: ──■──
+       ┌─┴─┐
+  q_1: ┤ X ├
+       └───┘
+  q_2: ─────
+  ```
 
-**Example:** the circuit
-
-```python
-q_0: ──■──
-     ┌─┴─┐
-q_1: ┤ X ├
-     └───┘
-q_2: ─────
-```
-
-is represented by a 3x3 linear matrix
+  is represented by a 3x3 linear matrix
 
 $$
 \begin{split}\begin{pmatrix}
-    1 & 0 & 0 \\
-    1 & 1 & 0 \\
-    0 & 0 & 1
+1 & 0 & 0 \\
+1 & 1 & 0 \\
+0 & 0 & 1
 \end{pmatrix}\end{split}
 $$
 
-**References:**
+  **References:**
 
-\[1] Ketan N. Patel, Igor L. Markov, and John P. Hayes, Optimal synthesis of linear reversible circuits, Quantum Inf. Comput. 8(3) (2008). [Online at umich.edu.](https://web.eecs.umich.edu/~imarkov/pubs/jour/qic08-cnot.pdf)
+  \[1] Ketan N. Patel, Igor L. Markov, and John P. Hayes, Optimal synthesis of linear reversible circuits, Quantum Inf. Comput. 8(3) (2008). [Online at umich.edu.](https://web.eecs.umich.edu/~imarkov/pubs/jour/qic08-cnot.pdf)
 
-Create a new linear function.
+  Create a new linear function.
 
-**Parameters**
+  **Parameters**
 
-*   **linear** (*list\[list] or ndarray\[bool] or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – either an n x n matrix, describing the linear function, or a quantum circuit composed of linear gates only (currently supported gates are CX and SWAP).
-*   **validate\_input** (*bool | None*) – if True, performs more expensive input validation checks, such as checking that a given n x n matrix is invertible.
+  *   **linear** (*list\[list] or ndarray\[bool] or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – either an n x n matrix, describing the linear function, or a quantum circuit composed of linear gates only (currently supported gates are CX and SWAP).
+  *   **validate\_input** (*bool | None*) – if True, performs more expensive input validation checks, such as checking that a given n x n matrix is invertible.
 
-**Raises**
+  **Raises**
 
-**CircuitError** – if the input is invalid: either a matrix is non \{square, invertible}, or a quantum circuit contains non-linear gates.
+  **CircuitError** – if the input is invalid: either a matrix is non \{square, invertible}, or a quantum circuit contains non-linear gates.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-<span id="qiskit-circuit-library-linearfunction-is-permutation" />
+  <span id="qiskit-circuit-library-linearfunction-is-permutation" />
 
-### is\_permutation
+  ### is\_permutation
 
-<span id="qiskit.circuit.library.LinearFunction.is_permutation" />
+  <Function id="qiskit.circuit.library.LinearFunction.is_permutation" name="is_permutation" signature="LinearFunction.is_permutation()">
+    Returns whether this linear function is a permutation, that is whether every row and every column of the n x n matrix has exactly one 1.
 
-`LinearFunction.is_permutation()`
+    **Return type**
 
-Returns whether this linear function is a permutation, that is whether every row and every column of the n x n matrix has exactly one 1.
+    bool
+  </Function>
 
-**Return type**
+  <span id="qiskit-circuit-library-linearfunction-permutation-pattern" />
 
-bool
+  ### permutation\_pattern
 
-<span id="qiskit-circuit-library-linearfunction-permutation-pattern" />
+  <Function id="qiskit.circuit.library.LinearFunction.permutation_pattern" name="permutation_pattern" signature="LinearFunction.permutation_pattern()">
+    This method first checks if a linear function is a permutation and raises a qiskit.circuit.exceptions.CircuitError if not. In the case that this linear function is a permutation, returns the permutation pattern.
+  </Function>
 
-### permutation\_pattern
+  <span id="qiskit-circuit-library-linearfunction-synthesize" />
 
-<span id="qiskit.circuit.library.LinearFunction.permutation_pattern" />
+  ### synthesize
 
-`LinearFunction.permutation_pattern()`
+  <Function id="qiskit.circuit.library.LinearFunction.synthesize" name="synthesize" signature="LinearFunction.synthesize()">
+    Synthesizes the linear function into a quantum circuit.
 
-This method first checks if a linear function is a permutation and raises a qiskit.circuit.exceptions.CircuitError if not. In the case that this linear function is a permutation, returns the permutation pattern.
+    **Returns**
 
-<span id="qiskit-circuit-library-linearfunction-synthesize" />
+    A circuit implementing the evolution.
 
-### synthesize
+    **Return type**
 
-<span id="qiskit.circuit.library.LinearFunction.synthesize" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-`LinearFunction.synthesize()`
+  <span id="qiskit-circuit-library-linearfunction-validate-parameter" />
 
-Synthesizes the linear function into a quantum circuit.
+  ### validate\_parameter
 
-**Returns**
+  <Function id="qiskit.circuit.library.LinearFunction.validate_parameter" name="validate_parameter" signature="LinearFunction.validate_parameter(parameter)">
+    Parameter validation
+  </Function>
 
-A circuit implementing the evolution.
+  ## Attributes
 
-**Return type**
+  ### condition\_bits
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Attribute id="qiskit.circuit.library.LinearFunction.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit-circuit-library-linearfunction-validate-parameter" />
+  ### decompositions
 
-### validate\_parameter
+  <Attribute id="qiskit.circuit.library.LinearFunction.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.LinearFunction.validate_parameter" />
+  ### definition
 
-`LinearFunction.validate_parameter(parameter)`
+  <Attribute id="qiskit.circuit.library.LinearFunction.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Parameter validation
+  ### duration
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.LinearFunction.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.LinearFunction.condition_bits" />
+  ### label
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.LinearFunction.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Get Clbits in condition.
+  ### linear
 
-<span id="qiskit.circuit.library.LinearFunction.decompositions" />
+  <Attribute id="qiskit.circuit.library.LinearFunction.linear" name="linear">
+    Returns the n x n matrix representing this linear function
+  </Attribute>
 
-### decompositions
+  ### name
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.LinearFunction.name" name="name">
+    Return the name.
+  </Attribute>
 
-<span id="qiskit.circuit.library.LinearFunction.definition" />
+  ### num\_clbits
 
-### definition
+  <Attribute id="qiskit.circuit.library.LinearFunction.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.LinearFunction.duration" />
+  <Attribute id="qiskit.circuit.library.LinearFunction.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-### duration
+  ### original\_circuit
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.LinearFunction.original_circuit" name="original_circuit">
+    Returns the original circuit used to construct this linear function (including None, when the linear function is not constructed from a circuit).
+  </Attribute>
 
-<span id="qiskit.circuit.library.LinearFunction.label" />
+  ### params
 
-### label
+  <Attribute id="qiskit.circuit.library.LinearFunction.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Return instruction label
+  ### unit
 
-<span id="qiskit.circuit.library.LinearFunction.linear" />
-
-### linear
-
-Returns the n x n matrix representing this linear function
-
-<span id="qiskit.circuit.library.LinearFunction.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.LinearFunction.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.LinearFunction.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.LinearFunction.original_circuit" />
-
-### original\_circuit
-
-Returns the original circuit used to construct this linear function (including None, when the linear function is not constructed from a circuit).
-
-<span id="qiskit.circuit.library.LinearFunction.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.LinearFunction.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.LinearFunction.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

@@ -10,111 +10,99 @@ python_api_name: qiskit.aqua.components.neural_networks.DiscriminativeNetwork
 
 # qiskit.aqua.components.neural\_networks.DiscriminativeNetwork
 
-<span id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork" />
+<Class id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/neural_networks/discriminative_network.py" signature="DiscriminativeNetwork">
+  Base class for discriminative Quantum or Classical Neural Networks.
 
-`DiscriminativeNetwork` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/neural_networks/discriminative_network.py "view source code")
+  This method should initialize the module but raise an exception if a required component of the module is not available.
 
-Base class for discriminative Quantum or Classical Neural Networks.
+  ### \_\_init\_\_
 
-This method should initialize the module but raise an exception if a required component of the module is not available.
+  <Function id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.__init__" name="__init__" signature="abstract __init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.__init__" />
+  |                                                                                                                                                                                   |                                                                                                        |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.__init__ "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.__init__")()                    | Initialize self.                                                                                       |
+  | [`get_label`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.get_label "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.get_label")(x)                | Apply quantum/classical neural network to the given input sample and compute the respective data label |
+  | [`loss`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.loss "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.loss")(x, y\[, weights])                | Loss function used for optimization                                                                    |
+  | [`set_seed`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.set_seed "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.set_seed")(seed)                | Set seed.                                                                                              |
+  | [`train`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.train "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.train")(data, weights\[, penalty, …]) | Perform one training step w\.r.t to the discriminator’s parameters                                     |
 
-`abstract __init__()`
+  ### get\_label
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.get_label" name="get_label" signature="abstract get_label(x)">
+    Apply quantum/classical neural network to the given input sample and compute the respective data label
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                                   |                                                                                                        |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.__init__ "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.__init__")()                    | Initialize self.                                                                                       |
-| [`get_label`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.get_label "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.get_label")(x)                | Apply quantum/classical neural network to the given input sample and compute the respective data label |
-| [`loss`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.loss "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.loss")(x, y\[, weights])                | Loss function used for optimization                                                                    |
-| [`set_seed`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.set_seed "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.set_seed")(seed)                | Set seed.                                                                                              |
-| [`train`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.train "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.train")(data, weights\[, penalty, …]) | Perform one training step w\.r.t to the discriminator’s parameters                                     |
+    **x** (*Discriminator*) – input, i.e. data sample.
 
-### get\_label
+    **Raises**
 
-<span id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.get_label" />
+    **NotImplementedError** – not implemented
+  </Function>
 
-`abstract get_label(x)`
+  ### loss
 
-Apply quantum/classical neural network to the given input sample and compute the respective data label
+  <Function id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.loss" name="loss" signature="abstract loss(x, y, weights=None)">
+    Loss function used for optimization
 
-**Parameters**
+    **Parameters**
 
-**x** (*Discriminator*) – input, i.e. data sample.
+    *   **x** (*Discriminator*) – output.
+    *   **y** (*Label*) – the data point
+    *   **weights** (*numpy.ndarray*) – Data weights.
 
-**Raises**
+    **Returns**
 
-**NotImplementedError** – not implemented
+    Loss w\.r.t to the generated data points.
 
-### loss
+    **Raises**
 
-<span id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.loss" />
+    **NotImplementedError** – not implemented
+  </Function>
 
-`abstract loss(x, y, weights=None)`
+  ### set\_seed
 
-Loss function used for optimization
+  <Function id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.set_seed" name="set_seed" signature="abstract set_seed(seed)">
+    Set seed.
 
-**Parameters**
+    **Parameters**
 
-*   **x** (*Discriminator*) – output.
-*   **y** (*Label*) – the data point
-*   **weights** (*numpy.ndarray*) – Data weights.
+    **seed** (*int*) – seed
 
-**Returns**
+    **Raises**
 
-Loss w\.r.t to the generated data points.
+    **NotImplementedError** – not implemented
+  </Function>
 
-**Raises**
+  ### train
 
-**NotImplementedError** – not implemented
+  <Function id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.train" name="train" signature="abstract train(data, weights, penalty=False, quantum_instance=None, shots=None)">
+    Perform one training step w\.r.t to the discriminator’s parameters
 
-### set\_seed
+    **Parameters**
 
-<span id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.set_seed" />
+    *   **data** (*numpy.ndarray*) – Data batch.
+    *   **weights** (*numpy.ndarray*) – Data sample weights.
+    *   **penalty** (*bool*) – Indicate whether or not penalty function is applied to the loss function. Ignored if no penalty function defined.
+    *   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – used to run Quantum network. Ignored for a classical network.
+    *   **shots** (*int*) – Number of shots for hardware or qasm execution. Ignored for classical network
 
-`abstract set_seed(seed)`
+    **Returns**
 
-Set seed.
+    with Discriminator loss and updated parameters.
 
-**Parameters**
+    **Return type**
 
-**seed** (*int*) – seed
+    dict
 
-**Raises**
+    **Raises**
 
-**NotImplementedError** – not implemented
-
-### train
-
-<span id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.train" />
-
-`abstract train(data, weights, penalty=False, quantum_instance=None, shots=None)`
-
-Perform one training step w\.r.t to the discriminator’s parameters
-
-**Parameters**
-
-*   **data** (*numpy.ndarray*) – Data batch.
-*   **weights** (*numpy.ndarray*) – Data sample weights.
-*   **penalty** (*bool*) – Indicate whether or not penalty function is applied to the loss function. Ignored if no penalty function defined.
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – used to run Quantum network. Ignored for a classical network.
-*   **shots** (*int*) – Number of shots for hardware or qasm execution. Ignored for classical network
-
-**Returns**
-
-with Discriminator loss and updated parameters.
-
-**Return type**
-
-dict
-
-**Raises**
-
-**NotImplementedError** – not implemented
+    **NotImplementedError** – not implemented
+  </Function>
+</Class>
 

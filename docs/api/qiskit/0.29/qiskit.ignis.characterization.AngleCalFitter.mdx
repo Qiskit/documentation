@@ -8,195 +8,185 @@ python_api_name: qiskit.ignis.characterization.AngleCalFitter
 
 # AngleCalFitter
 
-<span id="qiskit.ignis.characterization.AngleCalFitter" />
+<Class id="qiskit.ignis.characterization.AngleCalFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/gates/fitters.py" signature="AngleCalFitter(backend_result, xdata, qubits, fit_p0, fit_bounds)">
+  Bases: `qiskit.ignis.characterization.fitters.BaseGateFitter`
 
-`AngleCalFitter(backend_result, xdata, qubits, fit_p0, fit_bounds)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/gates/fitters.py "view source code")
+  Amplitude error fitter
 
-Bases: `qiskit.ignis.characterization.fitters.BaseGateFitter`
+  See BaseFitter \_\_init\_\_
 
-Amplitude error fitter
+  ## Methods
 
-See BaseFitter \_\_init\_\_
+  ### add\_data
 
-## Methods
+  <Function id="qiskit.ignis.characterization.AngleCalFitter.add_data" name="add_data" signature="AngleCalFitter.add_data(results, recalc=True, refit=True)">
+    Add new execution results to previous execution results
 
-### add\_data
+    **Parameters**
 
-<span id="qiskit.ignis.characterization.AngleCalFitter.add_data" />
+    *   **results** (`Union`\[`Result`, `List`\[`Result`]]) – new execution results
+    *   **recalc** (`bool`) – whether tp recalculate the data
+    *   **refit** (`bool`) – whether to refit the data
+  </Function>
 
-`AngleCalFitter.add_data(results, recalc=True, refit=True)`
+  ### angle\_err
 
-Add new execution results to previous execution results
+  <Function id="qiskit.ignis.characterization.AngleCalFitter.angle_err" name="angle_err" signature="AngleCalFitter.angle_err(qind=- 1)">
+    Return the gate angle error
 
-**Parameters**
+    **Parameters**
 
-*   **results** (`Union`\[`Result`, `List`\[`Result`]]) – new execution results
-*   **recalc** (`bool`) – whether tp recalculate the data
-*   **refit** (`bool`) – whether to refit the data
+    **qind** (*int*) – qubit index to return (-1 return all)
 
-### angle\_err
+    **Returns**
 
-<span id="qiskit.ignis.characterization.AngleCalFitter.angle_err" />
+    a list of errors
 
-`AngleCalFitter.angle_err(qind=- 1)`
+    **Return type**
 
-Return the gate angle error
+    list
+  </Function>
 
-**Parameters**
+  ### fit\_data
 
-**qind** (*int*) – qubit index to return (-1 return all)
+  <Function id="qiskit.ignis.characterization.AngleCalFitter.fit_data" name="fit_data" signature="AngleCalFitter.fit_data(qid=- 1, p0=None, bounds=None, series=None)">
+    Fit the curve.
 
-**Returns**
+    Compute self.\_params and self.\_params\_err
 
-a list of errors
+    **Parameters**
 
-**Return type**
+    *   **qid** (`int`) – qubit for fitting. If -1 fit for all the qubits
+    *   **p0** (`Optional`\[`List`\[`float`]]) – initial guess, equivalent to p0 in scipy.optimize
+    *   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
+    *   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
+  </Function>
 
-list
+  ### plot
 
-### fit\_data
+  <Function id="qiskit.ignis.characterization.AngleCalFitter.plot" name="plot" signature="AngleCalFitter.plot(qind, series='0', ax=None, show_plot=False)">
+    Plot err data.
 
-<span id="qiskit.ignis.characterization.AngleCalFitter.fit_data" />
+    **Parameters**
 
-`AngleCalFitter.fit_data(qid=- 1, p0=None, bounds=None, series=None)`
+    *   **qind** (*int*) – qubit index to plot
+    *   **series** (*str*) – the series to plot
+    *   **ax** (*Axes*) – plot axes
+    *   **show\_plot** (*bool*) – call plt.show()
 
-Fit the curve.
+    **Returns**
 
-Compute self.\_params and self.\_params\_err
+    The axes object
 
-**Parameters**
+    **Return type**
 
-*   **qid** (`int`) – qubit for fitting. If -1 fit for all the qubits
-*   **p0** (`Optional`\[`List`\[`float`]]) – initial guess, equivalent to p0 in scipy.optimize
-*   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
-*   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
+    Axes
 
-### plot
+    **Raises**
 
-<span id="qiskit.ignis.characterization.AngleCalFitter.plot" />
+    **ImportError** – if matplotlib is not installed
+  </Function>
 
-`AngleCalFitter.plot(qind, series='0', ax=None, show_plot=False)`
+  ## Attributes
 
-Plot err data.
+  ### backend\_result
 
-**Parameters**
+  <Attribute id="qiskit.ignis.characterization.AngleCalFitter.backend_result" name="backend_result">
+    Return the execution results
 
-*   **qind** (*int*) – qubit index to plot
-*   **series** (*str*) – the series to plot
-*   **ax** (*Axes*) – plot axes
-*   **show\_plot** (*bool*) – call plt.show()
+    **Return type**
 
-**Returns**
+    `Union`\[`Result`, `List`\[`Result`]]
+  </Attribute>
 
-The axes object
+  ### description
 
-**Return type**
+  <Attribute id="qiskit.ignis.characterization.AngleCalFitter.description" name="description">
+    Return the fitter’s purpose, e.g. ‘T1’
 
-Axes
+    **Return type**
 
-**Raises**
+    `str`
+  </Attribute>
 
-**ImportError** – if matplotlib is not installed
+  ### fit\_fun
 
-## Attributes
+  <Attribute id="qiskit.ignis.characterization.AngleCalFitter.fit_fun" name="fit_fun">
+    Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 
-<span id="qiskit.ignis.characterization.AngleCalFitter.backend_result" />
+    **Return type**
 
-### backend\_result
+    `Callable`
+  </Attribute>
 
-Return the execution results
+  ### measured\_qubits
 
-**Return type**
+  <Attribute id="qiskit.ignis.characterization.AngleCalFitter.measured_qubits" name="measured_qubits">
+    Return the indices of the qubits to be characterized
 
-`Union`\[`Result`, `List`\[`Result`]]
+    **Return type**
 
-<span id="qiskit.ignis.characterization.AngleCalFitter.description" />
+    `List`\[`int`]
+  </Attribute>
 
-### description
+  ### params
 
-Return the fitter’s purpose, e.g. ‘T1’
+  <Attribute id="qiskit.ignis.characterization.AngleCalFitter.params" name="params">
+    Return the fit function parameters that were calculated by curve\_fit
 
-**Return type**
+    **Return type**
 
-`str`
+    `List`\[`float`]
+  </Attribute>
 
-<span id="qiskit.ignis.characterization.AngleCalFitter.fit_fun" />
+  ### params\_err
 
-### fit\_fun
+  <Attribute id="qiskit.ignis.characterization.AngleCalFitter.params_err" name="params_err">
+    Return the error of the fit function parameters
 
-Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
+    **Return type**
 
-**Return type**
+    `List`\[`float`]
+  </Attribute>
 
-`Callable`
+  ### series
 
-<span id="qiskit.ignis.characterization.AngleCalFitter.measured_qubits" />
+  <Attribute id="qiskit.ignis.characterization.AngleCalFitter.series" name="series">
+    Return the list of series for the data
 
-### measured\_qubits
+    **Return type**
 
-Return the indices of the qubits to be characterized
+    `Optional`\[`List`\[`str`]]
+  </Attribute>
 
-**Return type**
+  ### xdata
 
-`List`\[`int`]
+  <Attribute id="qiskit.ignis.characterization.AngleCalFitter.xdata" name="xdata">
+    Return the data points on the x-axis, the independenet parameter which is fit against
 
-<span id="qiskit.ignis.characterization.AngleCalFitter.params" />
+    **Return type**
 
-### params
+    `Union`\[`List`\[`float`], `array`]
+  </Attribute>
 
-Return the fit function parameters that were calculated by curve\_fit
+  ### ydata
 
-**Return type**
+  <Attribute id="qiskit.ignis.characterization.AngleCalFitter.ydata" name="ydata">
+    Return the data points on the y-axis
 
-`List`\[`float`]
+    The data points are returning in the form of a list of dictionaries:
 
-<span id="qiskit.ignis.characterization.AngleCalFitter.params_err" />
+    > *   **ydata\[i]\[‘mean’] is a list, where item**
+    >
+    >     no. j is the probability of success of qubit i for a circuit that lasts xdata\[j].
+    >
+    > *   **ydata\[i]\[‘std’] is a list, where ydata\[‘std’]\[j] is the**
+    >
+    >     standard deviation of the success of qubit i.
 
-### params\_err
+    **Return type**
 
-Return the error of the fit function parameters
-
-**Return type**
-
-`List`\[`float`]
-
-<span id="qiskit.ignis.characterization.AngleCalFitter.series" />
-
-### series
-
-Return the list of series for the data
-
-**Return type**
-
-`Optional`\[`List`\[`str`]]
-
-<span id="qiskit.ignis.characterization.AngleCalFitter.xdata" />
-
-### xdata
-
-Return the data points on the x-axis, the independenet parameter which is fit against
-
-**Return type**
-
-`Union`\[`List`\[`float`], `array`]
-
-<span id="qiskit.ignis.characterization.AngleCalFitter.ydata" />
-
-### ydata
-
-Return the data points on the y-axis
-
-The data points are returning in the form of a list of dictionaries:
-
-> *   **ydata\[i]\[‘mean’] is a list, where item**
->
->     no. j is the probability of success of qubit i for a circuit that lasts xdata\[j].
->
-> *   **ydata\[i]\[‘std’] is a list, where ydata\[‘std’]\[j] is the**
->
->     standard deviation of the success of qubit i.
-
-**Return type**
-
-`List`\[`Dict`]
+    `List`\[`Dict`]
+  </Attribute>
+</Class>
 

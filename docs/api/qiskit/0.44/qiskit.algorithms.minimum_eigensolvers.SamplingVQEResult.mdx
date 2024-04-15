@@ -8,105 +8,101 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult
 
 # SamplingVQEResult
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult" />
+<Class id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/minimum_eigensolvers/sampling_vqe.py" signature="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult">
+  Bases: `VariationalResult`, [`SamplingMinimumEigensolverResult`](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.sampling_mes.SamplingMinimumEigensolverResult")
 
-`qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/minimum_eigensolvers/sampling_vqe.py "view source code")
+  VQE Result.
 
-Bases: `VariationalResult`, [`SamplingMinimumEigensolverResult`](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.sampling_mes.SamplingMinimumEigensolverResult")
+  ## Attributes
 
-VQE Result.
+  ### aux\_operators\_evaluated
 
-## Attributes
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.aux_operators_evaluated" name="aux_operators_evaluated">
+    Return aux operator expectation values and metadata.
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.aux_operators_evaluated" />
+    These are formatted as (mean, metadata).
+  </Attribute>
 
-### aux\_operators\_evaluated
+  ### best\_measurement
 
-Return aux operator expectation values and metadata.
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.best_measurement" name="best_measurement">
+    Return the best measurement over the entire optimization.
 
-These are formatted as (mean, metadata).
+    Possesses keys: `state`, `bitstring`, `value`, `probability`.
+  </Attribute>
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.best_measurement" />
+  ### cost\_function\_evals
 
-### best\_measurement
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.cost_function_evals" name="cost_function_evals">
+    Returns number of cost optimizer evaluations
+  </Attribute>
 
-Return the best measurement over the entire optimization.
+  ### eigenstate
 
-Possesses keys: `state`, `bitstring`, `value`, `probability`.
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.eigenstate" name="eigenstate">
+    Return the quasi-distribution sampled from the final state.
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.cost_function_evals" />
+    The ansatz is sampled when parameterized with the optimal parameters that where obtained computing the minimum eigenvalue. The keys represent a measured classical value and the value is a float for the quasi-probability of that result.
+  </Attribute>
 
-### cost\_function\_evals
+  ### eigenvalue
 
-Returns number of cost optimizer evaluations
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.eigenvalue" name="eigenvalue">
+    Return the approximation to the eigenvalue.
+  </Attribute>
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.eigenstate" />
+  ### optimal\_circuit
 
-### eigenstate
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimal_circuit" name="optimal_circuit">
+    The optimal circuits. Along with the optimal parameters, these can be used to retrieve the minimum eigenstate.
+  </Attribute>
 
-Return the quasi-distribution sampled from the final state.
+  ### optimal\_parameters
 
-The ansatz is sampled when parameterized with the optimal parameters that where obtained computing the minimum eigenvalue. The keys represent a measured classical value and the value is a float for the quasi-probability of that result.
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimal_parameters" name="optimal_parameters">
+    Returns the optimal parameters in a dictionary
+  </Attribute>
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.eigenvalue" />
+  ### optimal\_point
 
-### eigenvalue
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimal_point" name="optimal_point">
+    Returns optimal point
+  </Attribute>
 
-Return the approximation to the eigenvalue.
+  ### optimal\_value
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimal_circuit" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimal_value" name="optimal_value">
+    Returns optimal value
+  </Attribute>
 
-### optimal\_circuit
+  ### optimizer\_evals
 
-The optimal circuits. Along with the optimal parameters, these can be used to retrieve the minimum eigenstate.
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimizer_evals" name="optimizer_evals">
+    Returns number of optimizer evaluations
+  </Attribute>
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimal_parameters" />
+  ### optimizer\_result
 
-### optimal\_parameters
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimizer_result" name="optimizer_result">
+    Returns the optimizer result
+  </Attribute>
 
-Returns the optimal parameters in a dictionary
+  ### optimizer\_time
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimal_point" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimizer_time" name="optimizer_time">
+    Returns time taken for optimization
+  </Attribute>
 
-### optimal\_point
+  ## Methods
 
-Returns optimal point
+  ### combine
 
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimal_value" />
+  <Function id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
 
-### optimal\_value
+    **Raises**
 
-Returns optimal value
-
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimizer_evals" />
-
-### optimizer\_evals
-
-Returns number of optimizer evaluations
-
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimizer_result" />
-
-### optimizer\_result
-
-Returns the optimizer result
-
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.optimizer_time" />
-
-### optimizer\_time
-
-Returns time taken for optimization
-
-## Methods
-
-### combine
-
-<span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult.combine" />
-
-`combine(result)`
-
-Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
-
-**Raises**
-
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Argument is None
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Argument is None
+  </Function>
+</Class>
 

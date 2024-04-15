@@ -8,71 +8,65 @@ python_api_name: qiskit.pulse.transforms.AlignEquispaced
 
 # AlignEquispaced
 
-<span id="qiskit.pulse.transforms.AlignEquispaced" />
+<Class id="qiskit.pulse.transforms.AlignEquispaced" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/transforms/alignments.py" signature="AlignEquispaced(duration)">
+  Bases: [`qiskit.pulse.transforms.alignments.AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
-`AlignEquispaced(duration)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/transforms/alignments.py "view source code")
+  Align instructions with equispaced interval within a specified duration.
 
-Bases: [`qiskit.pulse.transforms.alignments.AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+  Instructions played on different channels are also arranged in a sequence. This alignment is convenient to create dynamical decoupling sequences such as PDD.
 
-Align instructions with equispaced interval within a specified duration.
+  Create new equispaced context.
 
-Instructions played on different channels are also arranged in a sequence. This alignment is convenient to create dynamical decoupling sequences such as PDD.
+  **Parameters**
 
-Create new equispaced context.
+  **duration** (`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
 
-**Parameters**
+  ## Methods
 
-**duration** (`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
+  ### align
 
-## Methods
+  <Function id="qiskit.pulse.transforms.AlignEquispaced.align" name="align" signature="AlignEquispaced.align(schedule)">
+    Reallocate instructions according to the policy.
 
-### align
+    Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
 
-<span id="qiskit.pulse.transforms.AlignEquispaced.align" />
+    **Parameters**
 
-`AlignEquispaced.align(schedule)`
+    **schedule** ([`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
 
-Reallocate instructions according to the policy.
+    **Return type**
 
-Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
+    [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 
-**Parameters**
+    **Returns**
 
-**schedule** ([`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
+    Schedule with reallocated instructions.
+  </Function>
 
-**Return type**
+  ### to\_dict
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+  <Function id="qiskit.pulse.transforms.AlignEquispaced.to_dict" name="to_dict" signature="AlignEquispaced.to_dict()">
+    Returns dictionary to represent this alignment.
 
-**Returns**
+    **Return type**
 
-Schedule with reallocated instructions.
+    `Dict`\[`str`, `Any`]
+  </Function>
 
-### to\_dict
+  ## Attributes
 
-<span id="qiskit.pulse.transforms.AlignEquispaced.to_dict" />
+  ### duration
 
-`AlignEquispaced.to_dict()`
+  <Attribute id="qiskit.pulse.transforms.AlignEquispaced.duration" name="duration">
+    Return context duration.
+  </Attribute>
 
-Returns dictionary to represent this alignment.
+  ### is\_sequential
 
-**Return type**
+  <Attribute id="qiskit.pulse.transforms.AlignEquispaced.is_sequential" name="is_sequential">
+    **Return type**
 
-`Dict`\[`str`, `Any`]
-
-## Attributes
-
-<span id="qiskit.pulse.transforms.AlignEquispaced.duration" />
-
-### duration
-
-Return context duration.
-
-<span id="qiskit.pulse.transforms.AlignEquispaced.is_sequential" />
-
-### is\_sequential
-
-**Return type**
-
-`bool`
+    `bool`
+  </Attribute>
+</Class>
 

@@ -8,191 +8,151 @@ python_api_name: qiskit.chemistry.core.MolecularExcitedStatesResult
 
 # MolecularExcitedStatesResult
 
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult" />
+<Class id="qiskit.chemistry.core.MolecularExcitedStatesResult" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/core/chemistry_operator.py" signature="MolecularExcitedStatesResult(a_dict=None)">
+  Molecular Excited States Result
 
-`MolecularExcitedStatesResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/core/chemistry_operator.py "view source code")
+  Energies are in Hartree and dipole moments in A.U unless otherwise stated.
 
-Molecular Excited States Result
+  ## Attributes
 
-Energies are in Hartree and dipole moments in A.U unless otherwise stated.
+  ### algorithm\_result
 
-## Attributes
+  <Attribute id="qiskit.chemistry.core.MolecularExcitedStatesResult.algorithm_result" name="algorithm_result" signature="qiskit.aqua.algorithms.algorithm_result.AlgorithmResult">
+    Returns raw algorithm result
 
-### algorithm\_result
+    **Return type**
 
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.algorithm_result" />
+    `AlgorithmResult`
+  </Attribute>
 
-`qiskit.aqua.algorithms.algorithm_result.AlgorithmResult`
+  ### energies
 
-Returns raw algorithm result
+  <Attribute id="qiskit.chemistry.core.MolecularExcitedStatesResult.energies" name="energies" signature="Tuple">
+    Returns ground state energy
 
-**Return type**
+    **Return type**
 
-`AlgorithmResult`
+    `Tuple`
+  </Attribute>
 
-### energies
+  ### hartree\_fock\_energy
 
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.energies" />
+  <Attribute id="qiskit.chemistry.core.MolecularExcitedStatesResult.hartree_fock_energy" name="hartree_fock_energy" signature="float">
+    Returns Hartree-Fock energy
 
-`Tuple`
+    **Return type**
 
-Returns ground state energy
+    `float`
+  </Attribute>
 
-**Return type**
+  ### nuclear\_dipole\_moment
 
-`Tuple`
+  <Attribute id="qiskit.chemistry.core.MolecularExcitedStatesResult.nuclear_dipole_moment" name="nuclear_dipole_moment" signature="Optional[Tuple[Optional[float], Optional[float], Optional[float]]]">
+    Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
 
-### hartree\_fock\_energy
+    **Return type**
 
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.hartree_fock_energy" />
+    `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  </Attribute>
 
-`float`
+  ### nuclear\_repulsion\_energy
 
-Returns Hartree-Fock energy
+  <Attribute id="qiskit.chemistry.core.MolecularExcitedStatesResult.nuclear_repulsion_energy" name="nuclear_repulsion_energy" signature="Optional[float]">
+    Returns nuclear repulsion energy when available from driver
 
-**Return type**
+    **Return type**
 
-`float`
+    `Optional`\[`float`]
+  </Attribute>
 
-### nuclear\_dipole\_moment
+  ## Methods
 
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.nuclear_dipole_moment" />
+  ### \_\_getitem\_\_
 
-`Optional[Tuple[Optional[float], Optional[float], Optional[float]]]`
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.__getitem__" name="__getitem__" signature="MolecularExcitedStatesResult.__getitem__(key)" />
 
-Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
+  ### \_\_len\_\_
 
-**Return type**
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.__len__" name="__len__" signature="MolecularExcitedStatesResult.__len__()" />
 
-`Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  ### clear
 
-### nuclear\_repulsion\_energy
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.clear" name="clear" signature="MolecularExcitedStatesResult.clear()">
+    **Return type**
 
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.nuclear_repulsion_energy" />
+    `None`
+  </Function>
 
-`Optional[float]`
+  ### combine
 
-Returns nuclear repulsion energy when available from driver
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.combine" name="combine" signature="MolecularExcitedStatesResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-**Return type**
+    **Raises**
 
-`Optional`\[`float`]
+    **TypeError** – Argument is None
 
-## Methods
+    **Return type**
 
-### \_\_getitem\_\_
+    `None`
+  </Function>
 
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.__getitem__" />
+  ### copy
 
-`MolecularExcitedStatesResult.__getitem__(key)`
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.copy" name="copy" signature="MolecularExcitedStatesResult.copy()" />
 
-### \_\_len\_\_
+  ### fromkeys
 
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.__len__" />
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.fromkeys" name="fromkeys" signature="classmethod MolecularExcitedStatesResult.fromkeys(iterable, value=None)" />
 
-`MolecularExcitedStatesResult.__len__()`
+  ### get
 
-### clear
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.get" name="get" signature="MolecularExcitedStatesResult.get(k[, d]) → D[k] if k in D, else d.  d defaults to None." />
 
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.clear" />
+  ### items
 
-`MolecularExcitedStatesResult.clear()`
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.items" name="items" signature="MolecularExcitedStatesResult.items() → a set-like object providing a view on D’s items" />
 
-**Return type**
+  ### keys
 
-`None`
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.keys" name="keys" signature="MolecularExcitedStatesResult.keys() → a set-like object providing a view on D’s keys" />
 
-### combine
+  ### pop
 
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.combine" />
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.pop" name="pop" signature="MolecularExcitedStatesResult.pop(key, default=None)">
+    If key is not found, d is returned if given, otherwise KeyError is raised.
 
-`MolecularExcitedStatesResult.combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    `object`
+  </Function>
 
-**Raises**
+  ### popitem
 
-**TypeError** – Argument is None
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.popitem" name="popitem" signature="MolecularExcitedStatesResult.popitem()">
+    as a 2-tuple; but raise KeyError if D is empty.
 
-**Return type**
+    **Return type**
 
-`None`
+    `Tuple`\[`object`, `object`]
+  </Function>
 
-### copy
+  ### setdefault
 
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.copy" />
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.setdefault" name="setdefault" signature="MolecularExcitedStatesResult.setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D" />
 
-`MolecularExcitedStatesResult.copy()`
+  ### update
 
-### fromkeys
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.update" name="update" signature="MolecularExcitedStatesResult.update(*args, **kwargs)">
+    If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
 
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.fromkeys" />
+    **Return type**
 
-`classmethod MolecularExcitedStatesResult.fromkeys(iterable, value=None)`
+    `None`
+  </Function>
 
-### get
+  ### values
 
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.get" />
-
-`MolecularExcitedStatesResult.get(k[, d]) → D[k] if k in D, else d.  d defaults to None.`
-
-### items
-
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.items" />
-
-`MolecularExcitedStatesResult.items() → a set-like object providing a view on D’s items`
-
-### keys
-
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.keys" />
-
-`MolecularExcitedStatesResult.keys() → a set-like object providing a view on D’s keys`
-
-### pop
-
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.pop" />
-
-`MolecularExcitedStatesResult.pop(key, default=None)`
-
-If key is not found, d is returned if given, otherwise KeyError is raised.
-
-**Return type**
-
-`object`
-
-### popitem
-
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.popitem" />
-
-`MolecularExcitedStatesResult.popitem()`
-
-as a 2-tuple; but raise KeyError if D is empty.
-
-**Return type**
-
-`Tuple`\[`object`, `object`]
-
-### setdefault
-
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.setdefault" />
-
-`MolecularExcitedStatesResult.setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
-
-### update
-
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.update" />
-
-`MolecularExcitedStatesResult.update(*args, **kwargs)`
-
-If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
-
-**Return type**
-
-`None`
-
-### values
-
-<span id="qiskit.chemistry.core.MolecularExcitedStatesResult.values" />
-
-`MolecularExcitedStatesResult.values() → an object providing a view on D’s values`
+  <Function id="qiskit.chemistry.core.MolecularExcitedStatesResult.values" name="values" signature="MolecularExcitedStatesResult.values() → an object providing a view on D’s values" />
+</Class>
 

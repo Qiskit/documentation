@@ -8,67 +8,55 @@ python_api_name: qiskit.circuit.CircuitInstruction
 
 # CircuitInstruction
 
-<span id="qiskit.circuit.CircuitInstruction" />
+<Class id="qiskit.circuit.CircuitInstruction" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/quantumcircuitdata.py" signature="CircuitInstruction(operation, qubits=(), clbits=())">
+  Bases: `object`
 
-`CircuitInstruction(operation, qubits=(), clbits=())` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/quantumcircuitdata.py "view source code")
+  A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), comprised of the [`operation`](#qiskit.circuit.CircuitInstruction.operation "qiskit.circuit.CircuitInstruction.operation") and various operands.
 
-Bases: `object`
+  <Admonition title="Warning" type="caution">
+    This is a lightweight internal class and there is minimal error checking; you must respect the type hints when using it. It is the user’s responsibility to ensure that direct mutations of the object do not invalidate the types, nor the restrictions placed on it by its context. Typically this will mean, for example, that [`qubits`](#qiskit.circuit.CircuitInstruction.qubits "qiskit.circuit.CircuitInstruction.qubits") must be a sequence of distinct items, with no duplicates.
+  </Admonition>
 
-A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), comprised of the [`operation`](#qiskit.circuit.CircuitInstruction.operation "qiskit.circuit.CircuitInstruction.operation") and various operands.
+  ## Methods
 
-<Admonition title="Warning" type="caution">
-  This is a lightweight internal class and there is minimal error checking; you must respect the type hints when using it. It is the user’s responsibility to ensure that direct mutations of the object do not invalidate the types, nor the restrictions placed on it by its context. Typically this will mean, for example, that [`qubits`](#qiskit.circuit.CircuitInstruction.qubits "qiskit.circuit.CircuitInstruction.qubits") must be a sequence of distinct items, with no duplicates.
-</Admonition>
+  ### copy
 
-## Methods
+  <Function id="qiskit.circuit.CircuitInstruction.copy" name="copy" signature="CircuitInstruction.copy()">
+    Return a shallow copy of the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction").
 
-### copy
+    **Return type**
 
-<span id="qiskit.circuit.CircuitInstruction.copy" />
+    [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.quantumcircuitdata.CircuitInstruction")
+  </Function>
 
-`CircuitInstruction.copy()`
+  ### replace
 
-Return a shallow copy of the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction").
+  <Function id="qiskit.circuit.CircuitInstruction.replace" name="replace" signature="CircuitInstruction.replace(operation=None, qubits=None, clbits=None)">
+    Return a new [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") with the given fields replaced.
 
-**Return type**
+    **Return type**
 
-[`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.quantumcircuitdata.CircuitInstruction")
+    [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.quantumcircuitdata.CircuitInstruction")
+  </Function>
 
-### replace
+  ## Attributes
 
-<span id="qiskit.circuit.CircuitInstruction.replace" />
+  ### operation
 
-`CircuitInstruction.replace(operation=None, qubits=None, clbits=None)`
+  <Attribute id="qiskit.circuit.CircuitInstruction.operation" name="operation" attributeTypeHint="qiskit.circuit.instruction.Instruction">
+    The logical operation that this instruction represents an execution of.
+  </Attribute>
 
-Return a new [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") with the given fields replaced.
+  ### qubits
 
-**Return type**
+  <Attribute id="qiskit.circuit.CircuitInstruction.qubits" name="qubits" attributeTypeHint="Tuple[qiskit.circuit.quantumregister.Qubit, ...]">
+    A sequence of the qubits that the operation is applied to.
+  </Attribute>
 
-[`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.quantumcircuitdata.CircuitInstruction")
+  ### clbits
 
-## Attributes
-
-<span id="qiskit.circuit.CircuitInstruction.operation" />
-
-### operation
-
-`qiskit.circuit.instruction.Instruction`
-
-The logical operation that this instruction represents an execution of.
-
-<span id="qiskit.circuit.CircuitInstruction.qubits" />
-
-### qubits
-
-`Tuple[qiskit.circuit.quantumregister.Qubit, ...]`
-
-A sequence of the qubits that the operation is applied to.
-
-<span id="qiskit.circuit.CircuitInstruction.clbits" />
-
-### clbits
-
-`Tuple[qiskit.circuit.classicalregister.Clbit, ...]`
-
-A sequence of the classical bits that this operation reads from or writes to.
+  <Attribute id="qiskit.circuit.CircuitInstruction.clbits" name="clbits" attributeTypeHint="Tuple[qiskit.circuit.classicalregister.Clbit, ...]">
+    A sequence of the classical bits that this operation reads from or writes to.
+  </Attribute>
+</Class>
 

@@ -8,214 +8,192 @@ python_api_name: qiskit.pulse.library.Constant
 
 # qiskit.pulse.library.Constant
 
-<span id="qiskit.pulse.library.Constant" />
-
-`Constant(duration, amp, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/library/parametric_pulses.py "view source code")
-
-A simple constant pulse, with an amplitude value and a duration:
+<Class id="qiskit.pulse.library.Constant" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/library/parametric_pulses.py" signature="Constant(duration, amp, name=None)">
+  A simple constant pulse, with an amplitude value and a duration:
 
 $$
 f(x) = amp    ,  0 <= x < duration
 f(x) = 0      ,  elsewhere
 $$
 
-Initialize the constant-valued pulse.
+  Initialize the constant-valued pulse.
 
-**Parameters**
+  **Parameters**
 
-*   **duration** (`Union`\[`int`, `ParameterExpression`]) – Pulse length in terms of the the sampling period dt.
-*   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the constant square pulse.
-*   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
+  *   **duration** (`Union`\[`int`, `ParameterExpression`]) – Pulse length in terms of the the sampling period dt.
+  *   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the constant square pulse.
+  *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 
-### \_\_init\_\_
+  ### \_\_init\_\_
 
-<span id="qiskit.pulse.library.Constant.__init__" />
+  <Function id="qiskit.pulse.library.Constant.__init__" name="__init__" signature="__init__(duration, amp, name=None)">
+    Initialize the constant-valued pulse.
 
-`__init__(duration, amp, name=None)`
+    **Parameters**
 
-Initialize the constant-valued pulse.
+    *   **duration** (`Union`\[`int`, `ParameterExpression`]) – Pulse length in terms of the the sampling period dt.
+    *   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the constant square pulse.
+    *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **duration** (`Union`\[`int`, `ParameterExpression`]) – Pulse length in terms of the the sampling period dt.
-*   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the constant square pulse.
-*   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
+  |                                                                                                                                        |                                                                                                                                |
+  | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.pulse.library.Constant.__init__ "qiskit.pulse.library.Constant.__init__")(duration, amp\[, name])                 | Initialize the constant-valued pulse.                                                                                          |
+  | [`assign`](#qiskit.pulse.library.Constant.assign "qiskit.pulse.library.Constant.assign")(parameter, value)                             | Assign one parameter to a value, which can either be numeric or another parameter expression.                                  |
+  | [`assign_parameters`](#qiskit.pulse.library.Constant.assign_parameters "qiskit.pulse.library.Constant.assign_parameters")(value\_dict) | Return a new ParametricPulse with parameters assigned.                                                                         |
+  | [`draw`](#qiskit.pulse.library.Constant.draw "qiskit.pulse.library.Constant.draw")(\[dt, style, filename, interp\_method, …])          | Plot the interpolated envelope of pulse.                                                                                       |
+  | [`get_waveform`](#qiskit.pulse.library.Constant.get_waveform "qiskit.pulse.library.Constant.get_waveform")()                           | Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains. |
+  | [`is_parameterized`](#qiskit.pulse.library.Constant.is_parameterized "qiskit.pulse.library.Constant.is_parameterized")()               | Return True iff the instruction is parameterized.                                                                              |
+  | [`validate_parameters`](#qiskit.pulse.library.Constant.validate_parameters "qiskit.pulse.library.Constant.validate_parameters")()      | Validate parameters.                                                                                                           |
 
-## Methods
+  ## Attributes
 
-|                                                                                                                                        |                                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.pulse.library.Constant.__init__ "qiskit.pulse.library.Constant.__init__")(duration, amp\[, name])                 | Initialize the constant-valued pulse.                                                                                          |
-| [`assign`](#qiskit.pulse.library.Constant.assign "qiskit.pulse.library.Constant.assign")(parameter, value)                             | Assign one parameter to a value, which can either be numeric or another parameter expression.                                  |
-| [`assign_parameters`](#qiskit.pulse.library.Constant.assign_parameters "qiskit.pulse.library.Constant.assign_parameters")(value\_dict) | Return a new ParametricPulse with parameters assigned.                                                                         |
-| [`draw`](#qiskit.pulse.library.Constant.draw "qiskit.pulse.library.Constant.draw")(\[dt, style, filename, interp\_method, …])          | Plot the interpolated envelope of pulse.                                                                                       |
-| [`get_waveform`](#qiskit.pulse.library.Constant.get_waveform "qiskit.pulse.library.Constant.get_waveform")()                           | Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains. |
-| [`is_parameterized`](#qiskit.pulse.library.Constant.is_parameterized "qiskit.pulse.library.Constant.is_parameterized")()               | Return True iff the instruction is parameterized.                                                                              |
-| [`validate_parameters`](#qiskit.pulse.library.Constant.validate_parameters "qiskit.pulse.library.Constant.validate_parameters")()      | Validate parameters.                                                                                                           |
+  |                                                                                                      |                                                        |
+  | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+  | [`amp`](#qiskit.pulse.library.Constant.amp "qiskit.pulse.library.Constant.amp")                      | The constant value amplitude.                          |
+  | [`id`](#qiskit.pulse.library.Constant.id "qiskit.pulse.library.Constant.id")                         | Unique identifier for this pulse.                      |
+  | [`parameters`](#qiskit.pulse.library.Constant.parameters "qiskit.pulse.library.Constant.parameters") | Return a dictionary containing the pulse’s parameters. |
 
-## Attributes
+  ### amp
 
-|                                                                                                      |                                                        |
-| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| [`amp`](#qiskit.pulse.library.Constant.amp "qiskit.pulse.library.Constant.amp")                      | The constant value amplitude.                          |
-| [`id`](#qiskit.pulse.library.Constant.id "qiskit.pulse.library.Constant.id")                         | Unique identifier for this pulse.                      |
-| [`parameters`](#qiskit.pulse.library.Constant.parameters "qiskit.pulse.library.Constant.parameters") | Return a dictionary containing the pulse’s parameters. |
+  <Function id="qiskit.pulse.library.Constant.amp" name="amp" signature="property amp">
+    The constant value amplitude.
 
-### amp
+    **Return type**
 
-<span id="qiskit.pulse.library.Constant.amp" />
+    `Union`\[`complex`, `ParameterExpression`]
+  </Function>
 
-`property amp`
+  ### assign
 
-The constant value amplitude.
+  <Function id="qiskit.pulse.library.Constant.assign" name="assign" signature="assign(parameter, value)">
+    Assign one parameter to a value, which can either be numeric or another parameter expression.
 
-**Return type**
+    **Return type**
 
-`Union`\[`complex`, `ParameterExpression`]
+    `ParametricPulse`
+  </Function>
 
-### assign
+  ### assign\_parameters
 
-<span id="qiskit.pulse.library.Constant.assign" />
+  <Function id="qiskit.pulse.library.Constant.assign_parameters" name="assign_parameters" signature="assign_parameters(value_dict)">
+    Return a new ParametricPulse with parameters assigned.
 
-`assign(parameter, value)`
+    **Parameters**
 
-Assign one parameter to a value, which can either be numeric or another parameter expression.
+    **value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`, `int`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
 
-**Return type**
+    **Return type**
 
-`ParametricPulse`
+    `ParametricPulse`
 
-### assign\_parameters
+    **Returns**
 
-<span id="qiskit.pulse.library.Constant.assign_parameters" />
+    New pulse with updated parameters.
+  </Function>
 
-`assign_parameters(value_dict)`
+  ### draw
 
-Return a new ParametricPulse with parameters assigned.
+  <Function id="qiskit.pulse.library.Constant.draw" name="draw" signature="draw(dt=None, style=None, filename=None, interp_method=None, scale=None, interactive=None, draw_title=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)">
+    Plot the interpolated envelope of pulse.
 
-**Parameters**
+    **Parameters**
 
-**value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`, `int`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
+    *   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXStandard\`, :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXSimple\`, and :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXDebugging\` for details of preset stylesheets.
 
-**Return type**
+    *   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
-`ParametricPulse`
+    *   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
-**Returns**
+    *   **time\_unit** (`str`) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
 
-New pulse with updated parameters.
+    *   **show\_waveform\_info** (`bool`) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
 
-### draw
+    *   **plotter** (`str`) –
 
-<span id="qiskit.pulse.library.Constant.draw" />
+        Name of plotter API to generate an output image. One of following APIs should be specified:
 
-`draw(dt=None, style=None, filename=None, interp_method=None, scale=None, interactive=None, draw_title=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)`
+        ```python
+        mpl2d: Matplotlib API for 2D image generation.
+            Matplotlib API to generate 2D image. Charts are placed along y axis with
+            vertical offset. This API takes matplotlib.axes.Axes as `axis` input.
+        ```
 
-Plot the interpolated envelope of pulse.
+        axis and style kwargs may depend on the plotter.
 
-**Parameters**
+    *   **axis** (`Optional`\[`Any`]) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
 
-*   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXStandard\`, :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXSimple\`, and :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXDebugging\` for details of preset stylesheets.
+    *   **dt** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
 
-*   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+    *   **filename** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer. To save output image, you can call .savefig method with returned Matplotlib Figure object.
 
-*   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
+    *   **interp\_method** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
 
-*   **time\_unit** (`str`) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
+    *   **scale** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
 
-*   **show\_waveform\_info** (`bool`) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
+    *   **interactive** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
 
-*   **plotter** (`str`) –
+    *   **draw\_title** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
 
-    Name of plotter API to generate an output image. One of following APIs should be specified:
+    **Returns**
 
-    ```python
-    mpl2d: Matplotlib API for 2D image generation.
-        Matplotlib API to generate 2D image. Charts are placed along y axis with
-        vertical offset. This API takes matplotlib.axes.Axes as `axis` input.
-    ```
+    Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
+  </Function>
 
-    axis and style kwargs may depend on the plotter.
+  ### get\_waveform
 
-*   **axis** (`Optional`\[`Any`]) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
+  <Function id="qiskit.pulse.library.Constant.get_waveform" name="get_waveform" signature="get_waveform()">
+    Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
-*   **dt** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
+    **Return type**
 
-*   **filename** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer. To save output image, you can call .savefig method with returned Matplotlib Figure object.
+    `Waveform`
+  </Function>
 
-*   **interp\_method** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
+  ### id
 
-*   **scale** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
+  <Function id="qiskit.pulse.library.Constant.id" name="id" signature="property id">
+    Unique identifier for this pulse.
 
-*   **interactive** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
+    **Return type**
 
-*   **draw\_title** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
+    `int`
+  </Function>
 
-**Returns**
+  ### is\_parameterized
 
-Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
+  <Function id="qiskit.pulse.library.Constant.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the instruction is parameterized.
 
-### get\_waveform
+    **Return type**
 
-<span id="qiskit.pulse.library.Constant.get_waveform" />
+    `bool`
+  </Function>
 
-`get_waveform()`
+  ### parameters
 
-Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
+  <Function id="qiskit.pulse.library.Constant.parameters" name="parameters" signature="property parameters">
+    Return a dictionary containing the pulse’s parameters.
 
-**Return type**
+    **Return type**
 
-`Waveform`
+    `Dict`\[`str`, `Any`]
+  </Function>
 
-### id
+  ### validate\_parameters
 
-<span id="qiskit.pulse.library.Constant.id" />
+  <Function id="qiskit.pulse.library.Constant.validate_parameters" name="validate_parameters" signature="validate_parameters()">
+    Validate parameters.
 
-`property id`
+    **Raises**
 
-Unique identifier for this pulse.
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
 
-**Return type**
+    **Return type**
 
-`int`
-
-### is\_parameterized
-
-<span id="qiskit.pulse.library.Constant.is_parameterized" />
-
-`is_parameterized()`
-
-Return True iff the instruction is parameterized.
-
-**Return type**
-
-`bool`
-
-### parameters
-
-<span id="qiskit.pulse.library.Constant.parameters" />
-
-`property parameters`
-
-Return a dictionary containing the pulse’s parameters.
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
-
-### validate\_parameters
-
-<span id="qiskit.pulse.library.Constant.validate_parameters" />
-
-`validate_parameters()`
-
-Validate parameters.
-
-**Raises**
-
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

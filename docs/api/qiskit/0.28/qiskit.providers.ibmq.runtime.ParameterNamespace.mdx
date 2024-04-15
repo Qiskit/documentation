@@ -8,74 +8,66 @@ python_api_name: qiskit.providers.ibmq.runtime.ParameterNamespace
 
 # qiskit.providers.ibmq.runtime.ParameterNamespace
 
-<span id="qiskit.providers.ibmq.runtime.ParameterNamespace" />
+<Class id="qiskit.providers.ibmq.runtime.ParameterNamespace" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runtime/runtime_program.py" signature="ParameterNamespace(params)">
+  A namespace for program parameters with validation.
 
-`ParameterNamespace(params)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runtime/runtime_program.py "view source code")
+  This class provides a namespace for program parameters with auto-completion and validation support.
 
-A namespace for program parameters with validation.
+  ParameterNamespace constructor.
 
-This class provides a namespace for program parameters with auto-completion and validation support.
+  **Parameters**
 
-ParameterNamespace constructor.
+  **params** (`List`\[`ProgramParameter`]) – The program’s input parameters.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**params** (`List`\[`ProgramParameter`]) – The program’s input parameters.
+  <Function id="qiskit.providers.ibmq.runtime.ParameterNamespace.__init__" name="__init__" signature="__init__(params)">
+    ParameterNamespace constructor.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.runtime.ParameterNamespace.__init__" />
+    **params** (`List`\[`ProgramParameter`]) – The program’s input parameters.
+  </Function>
 
-`__init__(params)`
+  ## Methods
 
-ParameterNamespace constructor.
+  |                                                                                                                                              |                                 |
+  | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+  | [`__init__`](#qiskit.providers.ibmq.runtime.ParameterNamespace.__init__ "qiskit.providers.ibmq.runtime.ParameterNamespace.__init__")(params) | ParameterNamespace constructor. |
+  | [`validate`](#qiskit.providers.ibmq.runtime.ParameterNamespace.validate "qiskit.providers.ibmq.runtime.ParameterNamespace.validate")()       | Validate program input values.  |
 
-**Parameters**
+  ## Attributes
 
-**params** (`List`\[`ProgramParameter`]) – The program’s input parameters.
+  |                                                                                                                                      |                                |
+  | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------ |
+  | [`metadata`](#qiskit.providers.ibmq.runtime.ParameterNamespace.metadata "qiskit.providers.ibmq.runtime.ParameterNamespace.metadata") | Returns the parameter metadata |
 
-## Methods
+  ### metadata
 
-|                                                                                                                                              |                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`__init__`](#qiskit.providers.ibmq.runtime.ParameterNamespace.__init__ "qiskit.providers.ibmq.runtime.ParameterNamespace.__init__")(params) | ParameterNamespace constructor. |
-| [`validate`](#qiskit.providers.ibmq.runtime.ParameterNamespace.validate "qiskit.providers.ibmq.runtime.ParameterNamespace.validate")()       | Validate program input values.  |
+  <Function id="qiskit.providers.ibmq.runtime.ParameterNamespace.metadata" name="metadata" signature="property metadata">
+    Returns the parameter metadata
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                      |                                |
-| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------ |
-| [`metadata`](#qiskit.providers.ibmq.runtime.ParameterNamespace.metadata "qiskit.providers.ibmq.runtime.ParameterNamespace.metadata") | Returns the parameter metadata |
+    `List`\[`ProgramParameter`]
+  </Function>
 
-### metadata
+  ### validate
 
-<span id="qiskit.providers.ibmq.runtime.ParameterNamespace.metadata" />
+  <Function id="qiskit.providers.ibmq.runtime.ParameterNamespace.validate" name="validate" signature="validate()">
+    Validate program input values.
 
-`property metadata`
+    <Admonition title="Note" type="note">
+      This method only verifies that required parameters have values. It does not fail the validation if the namepsace has extraneous parameters.
+    </Admonition>
 
-Returns the parameter metadata
+    **Raises**
 
-**Return type**
+    **IBMQInputValueError if validation fails** –
 
-`List`\[`ProgramParameter`]
+    **Return type**
 
-### validate
-
-<span id="qiskit.providers.ibmq.runtime.ParameterNamespace.validate" />
-
-`validate()`
-
-Validate program input values.
-
-<Admonition title="Note" type="note">
-  This method only verifies that required parameters have values. It does not fail the validation if the namepsace has extraneous parameters.
-</Admonition>
-
-**Raises**
-
-**IBMQInputValueError if validation fails** –
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

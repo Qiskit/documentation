@@ -8,214 +8,198 @@ python_api_name: qiskit.algorithms.optimizers.Optimizer
 
 # Optimizer
 
-<span id="qiskit.algorithms.optimizers.Optimizer" />
+<Class id="qiskit.algorithms.optimizers.Optimizer" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/optimizer.py" signature="qiskit.algorithms.optimizers.Optimizer">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-`qiskit.algorithms.optimizers.Optimizer` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/optimizer.py "view source code")
+  Base class for optimization algorithm.
 
-Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  Initialize the optimization algorithm, setting the support level for \_gradient\_support\_level, \_bound\_support\_level, \_initial\_point\_support\_level, and empty options.
 
-Base class for optimization algorithm.
+  ## Attributes
 
-Initialize the optimization algorithm, setting the support level for \_gradient\_support\_level, \_bound\_support\_level, \_initial\_point\_support\_level, and empty options.
+  ### bounds\_support\_level
 
-## Attributes
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.Optimizer.bounds_support_level" />
+  ### gradient\_support\_level
 
-### bounds\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-Returns bounds support level
+  ### initial\_point\_support\_level
 
-<span id="qiskit.algorithms.optimizers.Optimizer.gradient_support_level" />
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-### gradient\_support\_level
+  ### is\_bounds\_ignored
 
-Returns gradient support level
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.Optimizer.initial_point_support_level" />
+  ### is\_bounds\_required
 
-### initial\_point\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-Returns initial point support level
+  ### is\_bounds\_supported
 
-<span id="qiskit.algorithms.optimizers.Optimizer.is_bounds_ignored" />
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-### is\_bounds\_ignored
+  ### is\_gradient\_ignored
 
-Returns is bounds ignored
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.Optimizer.is_bounds_required" />
+  ### is\_gradient\_required
 
-### is\_bounds\_required
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-Returns is bounds required
+  ### is\_gradient\_supported
 
-<span id="qiskit.algorithms.optimizers.Optimizer.is_bounds_supported" />
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-### is\_bounds\_supported
+  ### is\_initial\_point\_ignored
 
-Returns is bounds supported
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.Optimizer.is_gradient_ignored" />
+  ### is\_initial\_point\_required
 
-### is\_gradient\_ignored
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-Returns is gradient ignored
+  ### is\_initial\_point\_supported
 
-<span id="qiskit.algorithms.optimizers.Optimizer.is_gradient_required" />
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-### is\_gradient\_required
+  ### setting
 
-Returns is gradient required
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.setting" name="setting">
+    Return setting
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.Optimizer.is_gradient_supported" />
+  ### settings
 
-### is\_gradient\_supported
+  <Attribute id="qiskit.algorithms.optimizers.Optimizer.settings" name="settings">
+    The optimizer settings in a dictionary format.
 
-Returns is gradient supported
+    The settings can for instance be used for JSON-serialization (if all settings are serializable, which e.g. doesn’t hold per default for callables), such that the optimizer object can be reconstructed as
 
-<span id="qiskit.algorithms.optimizers.Optimizer.is_initial_point_ignored" />
+    ```python
+    settings = optimizer.settings
+    # JSON serialize and send to another server
+    optimizer = OptimizerClass(**settings)
+    ```
+  </Attribute>
 
-### is\_initial\_point\_ignored
+  ## Methods
 
-Returns is initial point ignored
+  ### get\_support\_level
 
-<span id="qiskit.algorithms.optimizers.Optimizer.is_initial_point_required" />
+  <Function id="qiskit.algorithms.optimizers.Optimizer.get_support_level" name="get_support_level" signature="abstract get_support_level()">
+    Return support level dictionary
+  </Function>
 
-### is\_initial\_point\_required
+  ### gradient\_num\_diff
 
-Returns is initial point required
+  <Function id="qiskit.algorithms.optimizers.Optimizer.gradient_num_diff" name="gradient_num_diff" signature="static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-<span id="qiskit.algorithms.optimizers.Optimizer.is_initial_point_supported" />
+    **Parameters**
 
-### is\_initial\_point\_supported
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max evals grouped, defaults to 1 (i.e. no batching).
 
-Returns is initial point supported
+    **Returns**
 
-<span id="qiskit.algorithms.optimizers.Optimizer.setting" />
+    the gradient computed
 
-### setting
+    **Return type**
 
-Return setting
+    grad
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.Optimizer.settings" />
+  ### minimize
 
-### settings
+  <Function id="qiskit.algorithms.optimizers.Optimizer.minimize" name="minimize" signature="abstract minimize(fun, x0, jac=None, bounds=None)">
+    Minimize the scalar function.
 
-The optimizer settings in a dictionary format.
+    **Parameters**
 
-The settings can for instance be used for JSON-serialization (if all settings are serializable, which e.g. doesn’t hold per default for callables), such that the optimizer object can be reconstructed as
+    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The scalar function to minimize.
+    *   **x0** (*POINT*) – The initial point for the minimization.
+    *   **jac** (*Callable\[\[POINT], POINT] | None*) – The gradient of the scalar function `fun`.
+    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
 
-```python
-settings = optimizer.settings
-# JSON serialize and send to another server
-optimizer = OptimizerClass(**settings)
-```
+    **Returns**
 
-## Methods
+    The result of the optimization, containing e.g. the result as attribute `x`.
 
-### get\_support\_level
+    **Return type**
 
-<span id="qiskit.algorithms.optimizers.Optimizer.get_support_level" />
+    [OptimizerResult](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.OptimizerResult")
+  </Function>
 
-`abstract get_support_level()`
+  ### print\_options
 
-Return support level dictionary
+  <Function id="qiskit.algorithms.optimizers.Optimizer.print_options" name="print_options" signature="print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-### gradient\_num\_diff
+  ### set\_max\_evals\_grouped
 
-<span id="qiskit.algorithms.optimizers.Optimizer.gradient_num_diff" />
+  <Function id="qiskit.algorithms.optimizers.Optimizer.set_max_evals_grouped" name="set_max_evals_grouped" signature="set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-`static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)`
+  ### set\_options
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+  <Function id="qiskit.algorithms.optimizers.Optimizer.set_options" name="set_options" signature="set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-**Parameters**
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max evals grouped, defaults to 1 (i.e. no batching).
+    **Parameters**
 
-**Returns**
+    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – options, given as name=value.
+  </Function>
 
-the gradient computed
+  ### wrap\_function
 
-**Return type**
+  <Function id="qiskit.algorithms.optimizers.Optimizer.wrap_function" name="wrap_function" signature="static wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-grad
+    **Parameters**
 
-### minimize
+    *   **function** (*func*) – the target function
+    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the args to be injected
 
-<span id="qiskit.algorithms.optimizers.Optimizer.minimize" />
+    **Returns**
 
-`abstract minimize(fun, x0, jac=None, bounds=None)`
+    wrapper
 
-Minimize the scalar function.
+    **Return type**
 
-**Parameters**
-
-*   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The scalar function to minimize.
-*   **x0** (*POINT*) – The initial point for the minimization.
-*   **jac** (*Callable\[\[POINT], POINT] | None*) – The gradient of the scalar function `fun`.
-*   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
-
-**Returns**
-
-The result of the optimization, containing e.g. the result as attribute `x`.
-
-**Return type**
-
-[OptimizerResult](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.OptimizerResult")
-
-### print\_options
-
-<span id="qiskit.algorithms.optimizers.Optimizer.print_options" />
-
-`print_options()`
-
-Print algorithm-specific options.
-
-### set\_max\_evals\_grouped
-
-<span id="qiskit.algorithms.optimizers.Optimizer.set_max_evals_grouped" />
-
-`set_max_evals_grouped(limit)`
-
-Set max evals grouped
-
-### set\_options
-
-<span id="qiskit.algorithms.optimizers.Optimizer.set_options" />
-
-`set_options(**kwargs)`
-
-Sets or updates values in the options dictionary.
-
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
-
-**Parameters**
-
-**kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – options, given as name=value.
-
-### wrap\_function
-
-<span id="qiskit.algorithms.optimizers.Optimizer.wrap_function" />
-
-`static wrap_function(function, args)`
-
-Wrap the function to implicitly inject the args at the call of the function.
-
-**Parameters**
-
-*   **function** (*func*) – the target function
-*   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the args to be injected
-
-**Returns**
-
-wrapper
-
-**Return type**
-
-function\_wrapper
+    function\_wrapper
+  </Function>
+</Class>
 

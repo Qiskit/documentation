@@ -8,117 +8,109 @@ python_api_name: qiskit.algorithms.gradients.LinCombQGT
 
 # LinCombQGT
 
-<span id="qiskit.algorithms.gradients.LinCombQGT" />
+<Class id="qiskit.algorithms.gradients.LinCombQGT" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/gradients/lin_comb/lin_comb_qgt.py" signature="qiskit.algorithms.gradients.LinCombQGT(estimator, phase_fix=True, derivative_type=DerivativeType.COMPLEX, options=None)">
+  Bases: [`BaseQGT`](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.base.base_qgt.BaseQGT")
 
-`qiskit.algorithms.gradients.LinCombQGT(estimator, phase_fix=True, derivative_type=DerivativeType.COMPLEX, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/gradients/lin_comb/lin_comb_qgt.py "view source code")
+  Computes the Quantum Geometric Tensor (QGT) given a pure, parameterized quantum state.
 
-Bases: [`BaseQGT`](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.base.base_qgt.BaseQGT")
+  This method employs a linear combination of unitaries \[1].
 
-Computes the Quantum Geometric Tensor (QGT) given a pure, parameterized quantum state.
+  **Reference:**
 
-This method employs a linear combination of unitaries \[1].
+  > **\[1]: Schuld et al., “Evaluating analytic gradients on quantum hardware” (2018).**
+  >
+  > [arXiv:1811.11184](https://arxiv.org/pdf/1811.11184.pdf)
 
-**Reference:**
+  **Parameters**
 
-> **\[1]: Schuld et al., “Evaluating analytic gradients on quantum hardware” (2018).**
->
-> [arXiv:1811.11184](https://arxiv.org/pdf/1811.11184.pdf)
+  *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator used to compute the QGT.
 
-**Parameters**
+  *   **phase\_fix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to calculate the second term (phase fix) of the QGT, which is $\langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle$. Default to `True`.
 
-*   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator used to compute the QGT.
+  *   **derivative\_type** (*DerivativeType*) –
 
-*   **phase\_fix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to calculate the second term (phase fix) of the QGT, which is $\langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle$. Default to `True`.
+      The type of derivative. Can be either `DerivativeType.REAL` `DerivativeType.IMAG`, or `DerivativeType.COMPLEX`. Defaults to `DerivativeType.REAL`.
 
-*   **derivative\_type** (*DerivativeType*) –
+      *   `DerivativeType.REAL` computes
 
-    The type of derivative. Can be either `DerivativeType.REAL` `DerivativeType.IMAG`, or `DerivativeType.COMPLEX`. Defaults to `DerivativeType.REAL`.
+$$
+\mathrm{Re(QGT)}_{ij}= \mathrm{Re}[\langle \partial_i \psi | \partial_j \psi \rangle
+- \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
+$$
 
-    *   `DerivativeType.REAL` computes
+      *   `DerivativeType.IMAG` computes
 
-    $$
-    \mathrm{Re(QGT)}_{ij}= \mathrm{Re}[\langle \partial_i \psi | \partial_j \psi \rangle
-        - \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
-    $$
+$$
+\mathrm{Re(QGT)}_{ij}= \mathrm{Im}[\langle \partial_i \psi | \partial_j \psi \rangle
+- \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
+$$
 
-    *   `DerivativeType.IMAG` computes
+      *   `DerivativeType.COMPLEX` computes
 
-    $$
-    \mathrm{Re(QGT)}_{ij}= \mathrm{Im}[\langle \partial_i \psi | \partial_j \psi \rangle
-        - \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
-    $$
+$$
+\mathrm{QGT}_{ij}= [\langle \partial_i \psi | \partial_j \psi \rangle
+- \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
+$$
 
-    *   `DerivativeType.COMPLEX` computes
+  *   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Backend runtime options used for circuit execution. The order of priority is: options in `run` method > QGT’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
 
-    $$
-    \mathrm{QGT}_{ij}= [\langle \partial_i \psi | \partial_j \psi \rangle
-        - \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
-    $$
+  ## Attributes
 
-*   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Backend runtime options used for circuit execution. The order of priority is: options in `run` method > QGT’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
+  ### SUPPORTED\_GATES
 
-## Attributes
+  <Attribute id="qiskit.algorithms.gradients.LinCombQGT.SUPPORTED_GATES" name="SUPPORTED_GATES" attributeValue="= ['rx', 'ry', 'rz', 'rzx', 'rzz', 'ryy', 'rxx', 'cx', 'cy', 'cz', 'ccx', 'swap', 'iswap', 'h', 't', 's', 'sdg', 'x', 'y', 'z']" />
 
-<span id="qiskit.algorithms.gradients.LinCombQGT.SUPPORTED_GATES" />
+  ### derivative\_type
 
-### SUPPORTED\_GATES
+  <Attribute id="qiskit.algorithms.gradients.LinCombQGT.derivative_type" name="derivative_type">
+    The derivative type.
+  </Attribute>
 
-`= ['rx', 'ry', 'rz', 'rzx', 'rzz', 'ryy', 'rxx', 'cx', 'cy', 'cz', 'ccx', 'swap', 'iswap', 'h', 't', 's', 'sdg', 'x', 'y', 'z']`
+  ### options
 
-<span id="qiskit.algorithms.gradients.LinCombQGT.derivative_type" />
+  <Attribute id="qiskit.algorithms.gradients.LinCombQGT.options" name="options">
+    Return the union of estimator options setting and QGT default options, where, if the same field is set in both, the QGT’s default options override the primitive’s default setting.
 
-### derivative\_type
+    **Returns**
 
-The derivative type.
+    The QGT default + estimator options.
+  </Attribute>
 
-<span id="qiskit.algorithms.gradients.LinCombQGT.options" />
+  ## Methods
 
-### options
+  ### run
 
-Return the union of estimator options setting and QGT default options, where, if the same field is set in both, the QGT’s default options override the primitive’s default setting.
+  <Function id="qiskit.algorithms.gradients.LinCombQGT.run" name="run" signature="run(circuits, parameter_values, parameters=None, **options)">
+    Run the job of the QGTs on the given circuits.
 
-**Returns**
+    **Parameters**
 
-The QGT default + estimator options.
+    *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the QGTs.
+    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – The list of parameter values to be bound to the circuit.
+    *   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the QGTs of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the QGTs of all parameters in each circuit are calculated.
+    *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > QGT’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
 
-## Methods
+    **Returns**
 
-### run
+    The job object of the QGTs of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`.
 
-<span id="qiskit.algorithms.gradients.LinCombQGT.run" />
+    **Raises**
 
-`run(circuits, parameter_values, parameters=None, **options)`
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid arguments are given.
 
-Run the job of the QGTs on the given circuits.
+    **Return type**
 
-**Parameters**
+    [AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
+  </Function>
 
-*   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the QGTs.
-*   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – The list of parameter values to be bound to the circuit.
-*   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the QGTs of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the QGTs of all parameters in each circuit are calculated.
-*   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > QGT’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
+  ### update\_default\_options
 
-**Returns**
+  <Function id="qiskit.algorithms.gradients.LinCombQGT.update_default_options" name="update_default_options" signature="update_default_options(**options)">
+    Update the gradient’s default options setting.
 
-The job object of the QGTs of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`.
+    **Parameters**
 
-**Raises**
-
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid arguments are given.
-
-**Return type**
-
-[AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
-
-### update\_default\_options
-
-<span id="qiskit.algorithms.gradients.LinCombQGT.update_default_options" />
-
-`update_default_options(**options)`
-
-Update the gradient’s default options setting.
-
-**Parameters**
-
-**\*\*options** – The fields to update the default options.
+    **\*\*options** – The fields to update the default options.
+  </Function>
+</Class>
 

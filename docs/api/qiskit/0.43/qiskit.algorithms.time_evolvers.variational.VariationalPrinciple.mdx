@@ -8,90 +8,84 @@ python_api_name: qiskit.algorithms.time_evolvers.variational.VariationalPrincipl
 
 # VariationalPrinciple
 
-<span id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple" />
+<Class id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/time_evolvers/variational/variational_principles/variational_principle.py" signature="VariationalPrinciple(qgt, gradient)">
+  Bases: `ABC`
 
-`VariationalPrinciple(qgt, gradient)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/time_evolvers/variational/variational_principles/variational_principle.py "view source code")
+  A Variational Principle class. It determines the time propagation of parameters in a quantum state provided as a parametrized quantum circuit (ansatz).
 
-Bases: `ABC`
+  ### qgt
 
-A Variational Principle class. It determines the time propagation of parameters in a quantum state provided as a parametrized quantum circuit (ansatz).
+  <Attribute id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.qgt" name="qgt">
+    Instance of a class used to compute the GQT.
 
-<span id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.qgt" />
+    **Type**
 
-### qgt
+    [BaseQGT](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.BaseQGT")
+  </Attribute>
 
-Instance of a class used to compute the GQT.
+  ### gradient
 
-**Type**
+  <Attribute id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.gradient" name="gradient">
+    Instance of a class used to compute the state gradient.
 
-[BaseQGT](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.BaseQGT")
+    **Type**
 
-<span id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.gradient" />
+    [BaseEstimatorGradient](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.BaseEstimatorGradient")
+  </Attribute>
 
-### gradient
+  **Parameters**
 
-Instance of a class used to compute the state gradient.
+  *   **qgt** ([*BaseQGT*](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.BaseQGT")) – Instance of a class used to compute the GQT.
+  *   **gradient** ([*BaseEstimatorGradient*](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.BaseEstimatorGradient")) – Instance of a class used to compute the state gradient.
 
-**Type**
+  ## Methods Defined Here
 
-[BaseEstimatorGradient](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.BaseEstimatorGradient")
+  <span id="qiskit-algorithms-time-evolvers-variational-variationalprinciple-evolution-gradient" />
 
-**Parameters**
+  ### evolution\_gradient
 
-*   **qgt** ([*BaseQGT*](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.BaseQGT")) – Instance of a class used to compute the GQT.
-*   **gradient** ([*BaseEstimatorGradient*](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.BaseEstimatorGradient")) – Instance of a class used to compute the state gradient.
+  <Function id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.evolution_gradient" name="evolution_gradient" signature="abstract VariationalPrinciple.evolution_gradient(hamiltonian, ansatz, param_values, gradient_params=None)">
+    Calculates an evolution gradient according to the rules of this variational principle.
 
-## Methods Defined Here
+    **Parameters**
 
-<span id="qiskit-algorithms-time-evolvers-variational-variationalprinciple-evolution-gradient" />
+    *   **hamiltonian** (*BaseOperator*) – Operator used for Variational Quantum Time Evolution.
+    *   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Quantum state in the form of a parametrized quantum circuit.
+    *   **param\_values** (*Sequence\[float]*) – Values of parameters to be bound.
+    *   **gradient\_params** (*Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None*) – List of parameters with respect to which gradients should be computed. If `None` given, gradients w\.r.t. all parameters will be computed.
 
-### evolution\_gradient
+    **Returns**
 
-<span id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.evolution_gradient" />
+    An evolution gradient.
 
-`abstract VariationalPrinciple.evolution_gradient(hamiltonian, ansatz, param_values, gradient_params=None)`
+    **Return type**
 
-Calculates an evolution gradient according to the rules of this variational principle.
+    np.ndarray
+  </Function>
 
-**Parameters**
+  <span id="qiskit-algorithms-time-evolvers-variational-variationalprinciple-metric-tensor" />
 
-*   **hamiltonian** (*BaseOperator*) – Operator used for Variational Quantum Time Evolution.
-*   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Quantum state in the form of a parametrized quantum circuit.
-*   **param\_values** (*Sequence\[float]*) – Values of parameters to be bound.
-*   **gradient\_params** (*Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None*) – List of parameters with respect to which gradients should be computed. If `None` given, gradients w\.r.t. all parameters will be computed.
+  ### metric\_tensor
 
-**Returns**
+  <Function id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.metric_tensor" name="metric_tensor" signature="VariationalPrinciple.metric_tensor(ansatz, param_values)">
+    Calculates a metric tensor according to the rules of this variational principle.
 
-An evolution gradient.
+    **Parameters**
 
-**Return type**
+    *   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Quantum state in the form of a parametrized quantum circuit.
+    *   **param\_values** (*Sequence\[float]*) – Values of parameters to be bound.
 
-np.ndarray
+    **Returns**
 
-<span id="qiskit-algorithms-time-evolvers-variational-variationalprinciple-metric-tensor" />
+    Metric tensor.
 
-### metric\_tensor
+    **Raises**
 
-<span id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.metric_tensor" />
+    [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a QFI job fails.
 
-`VariationalPrinciple.metric_tensor(ansatz, param_values)`
+    **Return type**
 
-Calculates a metric tensor according to the rules of this variational principle.
-
-**Parameters**
-
-*   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Quantum state in the form of a parametrized quantum circuit.
-*   **param\_values** (*Sequence\[float]*) – Values of parameters to be bound.
-
-**Returns**
-
-Metric tensor.
-
-**Raises**
-
-[**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a QFI job fails.
-
-**Return type**
-
-Sequence\[float]
+    Sequence\[float]
+  </Function>
+</Class>
 

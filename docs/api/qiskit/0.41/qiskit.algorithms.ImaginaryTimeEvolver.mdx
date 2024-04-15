@@ -8,35 +8,31 @@ python_api_name: qiskit.algorithms.ImaginaryTimeEvolver
 
 # ImaginaryTimeEvolver
 
-<span id="qiskit.algorithms.ImaginaryTimeEvolver" />
+<Class id="qiskit.algorithms.ImaginaryTimeEvolver" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/imaginary_time_evolver.py" signature="ImaginaryTimeEvolver">
+  Bases: `abc.ABC`
 
-`ImaginaryTimeEvolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/imaginary_time_evolver.py "view source code")
+  Interface for Quantum Imaginary Time Evolution.
 
-Bases: `abc.ABC`
+  ## Methods
 
-Interface for Quantum Imaginary Time Evolution.
+  ### evolve
 
-## Methods
+  <Function id="qiskit.algorithms.ImaginaryTimeEvolver.evolve" name="evolve" signature="abstract ImaginaryTimeEvolver.evolve(evolution_problem)">
+    Perform imaginary time evolution $\exp(-\tau H)|\Psi\rangle$.
 
-### evolve
+    Evolves an initial state $|\Psi\rangle$ for an imaginary time $\tau$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
-<span id="qiskit.algorithms.ImaginaryTimeEvolver.evolve" />
+    **Parameters**
 
-`abstract ImaginaryTimeEvolver.evolve(evolution_problem)`
+    **evolution\_problem** ([`TimeEvolutionProblem`](qiskit.algorithms.TimeEvolutionProblem "qiskit.algorithms.time_evolvers.time_evolution_problem.TimeEvolutionProblem")) – The definition of the evolution problem.
 
-Perform imaginary time evolution $\exp(-\tau H)|\Psi\rangle$.
+    **Return type**
 
-Evolves an initial state $|\Psi\rangle$ for an imaginary time $\tau$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+    [`TimeEvolutionResult`](qiskit.algorithms.TimeEvolutionResult "qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult")
 
-**Parameters**
+    **Returns**
 
-**evolution\_problem** ([`TimeEvolutionProblem`](qiskit.algorithms.TimeEvolutionProblem "qiskit.algorithms.time_evolvers.time_evolution_problem.TimeEvolutionProblem")) – The definition of the evolution problem.
-
-**Return type**
-
-[`TimeEvolutionResult`](qiskit.algorithms.TimeEvolutionResult "qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult")
-
-**Returns**
-
-Evolution result which includes an evolved quantum state.
+    Evolution result which includes an evolved quantum state.
+  </Function>
+</Class>
 

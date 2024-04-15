@@ -8,92 +8,86 @@ python_api_name: qiskit.opflow.gradients.Gradient
 
 # Gradient
 
-<span id="qiskit.opflow.gradients.Gradient" />
+<Class id="qiskit.opflow.gradients.Gradient" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/gradients/gradient.py" signature="Gradient(grad_method='param_shift', **kwargs)">
+  Bases: [`qiskit.opflow.gradients.gradient_base.GradientBase`](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.gradient_base.GradientBase")
 
-`Gradient(grad_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/gradients/gradient.py "view source code")
+  Convert an operator expression to the first-order gradient.
 
-Bases: [`qiskit.opflow.gradients.gradient_base.GradientBase`](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.gradient_base.GradientBase")
+  **Parameters**
 
-Convert an operator expression to the first-order gradient.
+  *   **grad\_method** (`Union`\[`str`, [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
+  *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
 
-**Parameters**
+  **Raises**
 
-*   **grad\_method** (`Union`\[`str`, [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
-*   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
+  **ValueError** – If method != `fin_diff` and `epsilon` is not None.
 
-**Raises**
+  ## Methods Defined Here
 
-**ValueError** – If method != `fin_diff` and `epsilon` is not None.
+  ### convert
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.gradients.Gradient.convert" name="convert" signature="Gradient.convert(operator, params=None)">
+    **Parameters**
 
-### convert
+    *   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator we are taking the gradient of.
+    *   **params** (`Union`\[[`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `None`]) – The parameters we are taking the gradient with respect to. If not explicitly passed, they are inferred from the operator and sorted by name.
 
-<span id="qiskit.opflow.gradients.Gradient.convert" />
+    **Return type**
 
-`Gradient.convert(operator, params=None)`
+    [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 
-**Parameters**
+    **Returns**
 
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator we are taking the gradient of.
-*   **params** (`Union`\[[`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `None`]) – The parameters we are taking the gradient with respect to. If not explicitly passed, they are inferred from the operator and sorted by name.
+    An operator whose evaluation yields the Gradient.
 
-**Return type**
+    **Raises**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    *   **ValueError** – If `params` contains a parameter not present in `operator`.
+    *   **ValueError** – If `operator` is not parameterized.
+  </Function>
 
-**Returns**
+  ### get\_gradient
 
-An operator whose evaluation yields the Gradient.
+  <Function id="qiskit.opflow.gradients.Gradient.get_gradient" name="get_gradient" signature="Gradient.get_gradient(operator, params)">
+    Get the gradient for the given operator w\.r.t. the given parameters
 
-**Raises**
+    **Parameters**
 
-*   **ValueError** – If `params` contains a parameter not present in `operator`.
-*   **ValueError** – If `operator` is not parameterized.
+    *   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Operator w\.r.t. which we take the gradient.
+    *   **params** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]]) – Parameters w\.r.t. which we compute the gradient.
 
-### get\_gradient
+    **Return type**
 
-<span id="qiskit.opflow.gradients.Gradient.get_gradient" />
+    [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 
-`Gradient.get_gradient(operator, params)`
+    **Returns**
 
-Get the gradient for the given operator w\.r.t. the given parameters
+    Operator which represents the gradient w\.r.t. the given params.
 
-**Parameters**
+    **Raises**
 
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Operator w\.r.t. which we take the gradient.
-*   **params** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]]) – Parameters w\.r.t. which we compute the gradient.
+    *   **ValueError** – If `params` contains a parameter not present in `operator`.
+    *   [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the coefficient of the operator could not be reduced to 1.
+    *   [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the differentiation of a combo\_fn requires JAX but the package is not installed.
+    *   **TypeError** – If the operator does not include a StateFn given by a quantum circuit
+    *   **Exception** – Unintended code is reached
+    *   **MissingOptionalLibraryError** – jax not installed
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  ### grad\_method
 
-**Returns**
+  <Attribute id="qiskit.opflow.gradients.Gradient.grad_method" name="grad_method">
+    Returns `CircuitGradient`.
 
-Operator which represents the gradient w\.r.t. the given params.
+    **Return type**
 
-**Raises**
+    [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")
 
-*   **ValueError** – If `params` contains a parameter not present in `operator`.
-*   [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the coefficient of the operator could not be reduced to 1.
-*   [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If the differentiation of a combo\_fn requires JAX but the package is not installed.
-*   **TypeError** – If the operator does not include a StateFn given by a quantum circuit
-*   **Exception** – Unintended code is reached
-*   **MissingOptionalLibraryError** – jax not installed
+    **Returns**
 
-## Attributes
-
-<span id="qiskit.opflow.gradients.Gradient.grad_method" />
-
-### grad\_method
-
-Returns `CircuitGradient`.
-
-**Return type**
-
-[`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")
-
-**Returns**
-
-`CircuitGradient`.
+    `CircuitGradient`.
+  </Attribute>
+</Class>
 

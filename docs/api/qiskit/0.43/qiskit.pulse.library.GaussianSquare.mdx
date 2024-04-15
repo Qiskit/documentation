@@ -8,66 +8,62 @@ python_api_name: qiskit.pulse.library.GaussianSquare
 
 # GaussianSquare
 
-<span id="qiskit.pulse.library.GaussianSquare" />
+<Class id="qiskit.pulse.library.GaussianSquare" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/symbolic_pulses.py" signature="GaussianSquare(duration, amp, sigma, width=None, angle=None, risefall_sigma_ratio=None, name=None, limit_amplitude=None)">
+  Bases: `object`
 
-`GaussianSquare(duration, amp, sigma, width=None, angle=None, risefall_sigma_ratio=None, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/symbolic_pulses.py "view source code")
+  A square pulse with a Gaussian shaped risefall on both sides lifted such that its first sample is zero.
 
-Bases: `object`
+  Exactly one of the `risefall_sigma_ratio` and `width` parameters has to be specified.
 
-A square pulse with a Gaussian shaped risefall on both sides lifted such that its first sample is zero.
-
-Exactly one of the `risefall_sigma_ratio` and `width` parameters has to be specified.
-
-If `risefall_sigma_ratio` is not None and `width` is None:
+  If `risefall_sigma_ratio` is not None and `width` is None:
 
 $$
 \begin{split}\text{risefall} &= \text{risefall_sigma_ratio} \times \text{sigma}\\
 \text{width} &= \text{duration} - 2 \times \text{risefall}\end{split}
 $$
 
-If `width` is not None and `risefall_sigma_ratio` is None:
+  If `width` is not None and `risefall_sigma_ratio` is None:
 
 $$
 \text{risefall} = \frac{\text{duration} - \text{width}}{2}
 $$
 
-In both cases, the lifted gaussian square pulse $f'(x)$ is defined as:
+  In both cases, the lifted gaussian square pulse $f'(x)$ is defined as:
 
 $$
 \begin{split}f'(x) &= \begin{cases}            \exp\biggl(-\frac12 \frac{(x - \text{risefall})^2}{\text{sigma}^2}\biggr)                & x < \text{risefall}\\
-    1                & \text{risefall} \le x < \text{risefall} + \text{width}\\
-    \exp\biggl(-\frac12                    \frac{{\bigl(x - (\text{risefall} + \text{width})\bigr)}^2}                          {\text{sigma}^2}                    \biggr)                & \text{risefall} + \text{width} \le x        \end{cases}\\
+1                & \text{risefall} \le x < \text{risefall} + \text{width}\\
+\exp\biggl(-\frac12                    \frac{{\bigl(x - (\text{risefall} + \text{width})\bigr)}^2}                          {\text{sigma}^2}                    \biggr)                & \text{risefall} + \text{width} \le x        \end{cases}\\
 f(x) &= \text{A} \times \frac{f'(x) - f'(-1)}{1-f'(-1)},            \quad 0 \le x < \text{duration}\end{split}
 $$
 
-where $f'(x)$ is the gaussian square waveform without lifting or amplitude scaling, and $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
+  where $f'(x)$ is the gaussian square waveform without lifting or amplitude scaling, and $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
 
-Create new pulse instance.
+  Create new pulse instance.
 
-**Parameters**
+  **Parameters**
 
-*   **duration** – Pulse length in terms of the sampling period dt.
-*   **amp** – The magnitude of the amplitude of the Gaussian and square pulse. Complex amp support will be deprecated.
-*   **sigma** – A measure of how wide or narrow the Gaussian risefall is; see the class docstring for more details.
-*   **width** – The duration of the embedded square pulse.
-*   **angle** – The angle of the complex amplitude of the pulse. Default value 0.
-*   **risefall\_sigma\_ratio** – The ratio of each risefall duration to sigma.
-*   **name** – Display name for this pulse envelope.
-*   **limit\_amplitude** – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+  *   **duration** – Pulse length in terms of the sampling period dt.
+  *   **amp** – The magnitude of the amplitude of the Gaussian and square pulse. Complex amp support will be deprecated.
+  *   **sigma** – A measure of how wide or narrow the Gaussian risefall is; see the class docstring for more details.
+  *   **width** – The duration of the embedded square pulse.
+  *   **angle** – The angle of the complex amplitude of the pulse. Default value 0.
+  *   **risefall\_sigma\_ratio** – The ratio of each risefall duration to sigma.
+  *   **name** – Display name for this pulse envelope.
+  *   **limit\_amplitude** – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 
-**Returns**
+  **Returns**
 
-ScalableSymbolicPulse instance.
+  ScalableSymbolicPulse instance.
 
-**Raises**
+  **Raises**
 
-[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When width and risefall\_sigma\_ratio are both empty or both non-empty.
+  [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When width and risefall\_sigma\_ratio are both empty or both non-empty.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.pulse.library.GaussianSquare.alias" />
+  ### alias
 
-### alias
-
-`= 'GaussianSquare'`
+  <Attribute id="qiskit.pulse.library.GaussianSquare.alias" name="alias" attributeValue="= 'GaussianSquare'" />
+</Class>
 

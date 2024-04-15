@@ -8,490 +8,442 @@ python_api_name: qiskit.aqua.operators.state_fns.StateFn
 
 # StateFn
 
-<span id="qiskit.aqua.operators.state_fns.StateFn" />
+<Class id="qiskit.aqua.operators.state_fns.StateFn" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/state_fn.py" signature="StateFn(primitive=None, coeff=1.0, is_measurement=False)">
+  Bases: `qiskit.aqua.operators.operator_base.OperatorBase`
 
-`StateFn(primitive=None, coeff=1.0, is_measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/state_fn.py "view source code")
+  A class for representing state functions and measurements.
 
-Bases: `qiskit.aqua.operators.operator_base.OperatorBase`
+  State functions are defined to be complex functions over a single binary string (as compared to an operator, which is defined as a function over two binary strings, or a function taking a binary function to another binary function). This function may be called by the eval() method.
 
-A class for representing state functions and measurements.
+  Measurements are defined to be functionals over StateFns, taking them to real values. Generally, this real value is interpreted to represent the probability of some classical state (binary string) being observed from a probabilistic or quantum system represented by a StateFn. This leads to the equivalent definition, which is that a measurement m is a function over binary strings producing StateFns, such that the probability of measuring a given binary string b from a system with StateFn f is equal to the inner product between f and m(b).
 
-State functions are defined to be complex functions over a single binary string (as compared to an operator, which is defined as a function over two binary strings, or a function taking a binary function to another binary function). This function may be called by the eval() method.
+  NOTE: State functions here are not restricted to wave functions, as there is no requirement of normalization.
 
-Measurements are defined to be functionals over StateFns, taking them to real values. Generally, this real value is interpreted to represent the probability of some classical state (binary string) being observed from a probabilistic or quantum system represented by a StateFn. This leads to the equivalent definition, which is that a measurement m is a function over binary strings producing StateFns, such that the probability of measuring a given binary string b from a system with StateFn f is equal to the inner product between f and m(b).
+  **Parameters**
 
-NOTE: State functions here are not restricted to wave functions, as there is no requirement of normalization.
+  *   **primitive** (`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]) – The primitive which defines the behavior of the underlying State function.
+  *   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – A coefficient by which the state function is multiplied.
+  *   **is\_measurement** (`bool`) – Whether the StateFn is a measurement operator
 
-**Parameters**
+  ## Methods
 
-*   **primitive** (`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]) – The primitive which defines the behavior of the underlying State function.
-*   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – A coefficient by which the state function is multiplied.
-*   **is\_measurement** (`bool`) – Whether the StateFn is a measurement operator
+  ### add
 
-## Methods
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.add" name="add" signature="StateFn.add(other)">
+    Return Operator addition of self and other, overloaded by `+`.
 
-### add
+    **Parameters**
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.add" />
+    **other** (`OperatorBase`) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
 
-`StateFn.add(other)`
+    **Return type**
 
-Return Operator addition of self and other, overloaded by `+`.
+    `OperatorBase`
 
-**Parameters**
+    **Returns**
 
-**other** (`OperatorBase`) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
+    An `OperatorBase` equivalent to the sum of self and other.
+  </Function>
 
-**Return type**
+  ### adjoint
 
-`OperatorBase`
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.adjoint" name="adjoint" signature="StateFn.adjoint()">
+    Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
-**Returns**
+    **Return type**
 
-An `OperatorBase` equivalent to the sum of self and other.
+    `OperatorBase`
 
-### adjoint
+    **Returns**
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.adjoint" />
+    An `OperatorBase` equivalent to the adjoint of self.
+  </Function>
 
-`StateFn.adjoint()`
+  ### assign\_parameters
 
-Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.assign_parameters" name="assign_parameters" signature="StateFn.assign_parameters(param_dict)">
+    Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
 
-**Return type**
+    **Parameters**
 
-`OperatorBase`
+    **param\_dict** (`dict`) – The dictionary of `Parameters` to replace, and values or lists of values by which to replace them.
 
-**Returns**
+    **Return type**
 
-An `OperatorBase` equivalent to the adjoint of self.
+    `OperatorBase`
 
-### assign\_parameters
+    **Returns**
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.assign_parameters" />
+    The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
+  </Function>
 
-`StateFn.assign_parameters(param_dict)`
+  ### bind\_parameters
 
-Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.bind_parameters" name="bind_parameters" signature="StateFn.bind_parameters(param_dict)">
+    Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).
 
-**Parameters**
+    **Return type**
 
-**param\_dict** (`dict`) – The dictionary of `Parameters` to replace, and values or lists of values by which to replace them.
+    `OperatorBase`
+  </Function>
 
-**Return type**
+  ### compose
 
-`OperatorBase`
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.compose" name="compose" signature="StateFn.compose(other, permutation=None, front=False)">
+    Composition (Linear algebra-style: A\@B(x) = A(B(x))) is not well defined for states in the binary function model, but is well defined for measurements.
 
-**Returns**
+    **Parameters**
 
-The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
+    *   **other** (`OperatorBase`) – The Operator to compose with self.
+    *   **permutation** (`Optional`\[`List`\[`int`]]) – `List[int]` which defines permutation on other operator.
+    *   **front** (`bool`) – If front==True, return `other.compose(self)`.
 
-### bind\_parameters
+    **Return type**
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.bind_parameters" />
+    `OperatorBase`
 
-`StateFn.bind_parameters(param_dict)`
+    **Returns**
 
-Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).
+    An Operator equivalent to the function composition of self and other.
 
-**Return type**
+    **Raises**
 
-`OperatorBase`
+    **ValueError** – If self is not a measurement, it cannot be composed from the right.
+  </Function>
 
-### compose
+  ### equals
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.compose" />
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.equals" name="equals" signature="StateFn.equals(other)">
+    Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
-`StateFn.compose(other, permutation=None, front=False)`
+    **Parameters**
 
-Composition (Linear algebra-style: A\@B(x) = A(B(x))) is not well defined for states in the binary function model, but is well defined for measurements.
+    **other** (`OperatorBase`) – The `OperatorBase` to compare to self.
 
-**Parameters**
+    **Return type**
 
-*   **other** (`OperatorBase`) – The Operator to compose with self.
-*   **permutation** (`Optional`\[`List`\[`int`]]) – `List[int]` which defines permutation on other operator.
-*   **front** (`bool`) – If front==True, return `other.compose(self)`.
+    `bool`
 
-**Return type**
+    **Returns**
 
-`OperatorBase`
+    A bool equal to the equality of self and other.
+  </Function>
 
-**Returns**
+  ### eval
 
-An Operator equivalent to the function composition of self and other.
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.eval" name="eval" signature="StateFn.eval(front=None)">
+    Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
-**Raises**
+    If `front` is None, the matrix-representation of the operator is returned.
 
-**ValueError** – If self is not a measurement, it cannot be composed from the right.
+    **Parameters**
 
-### equals
+    **front** (`Union`\[`str`, `Dict`\[`str`, `complex`], `ndarray`, `OperatorBase`, `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function, or None.
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.equals" />
+    **Return type**
 
-`StateFn.equals(other)`
+    `Union`\[`OperatorBase`, `float`, `complex`]
 
-Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
+    **Returns**
 
-**Parameters**
+    The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
+  </Function>
 
-**other** (`OperatorBase`) – The `OperatorBase` to compare to self.
+  ### mul
 
-**Return type**
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.mul" name="mul" signature="StateFn.mul(scalar)">
+    Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
 
-`bool`
+    **Parameters**
 
-**Returns**
+    **scalar** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
 
-A bool equal to the equality of self and other.
+    **Return type**
 
-### eval
+    `OperatorBase`
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.eval" />
+    **Returns**
 
-`StateFn.eval(front=None)`
+    An `OperatorBase` equivalent to product of self and scalar.
+  </Function>
 
-Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
+  ### neg
 
-If `front` is None, the matrix-representation of the operator is returned.
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.neg" name="neg" signature="StateFn.neg()">
+    Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.
 
-**Parameters**
+    **Return type**
 
-**front** (`Union`\[`str`, `Dict`\[`str`, `complex`], `ndarray`, `OperatorBase`, `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function, or None.
+    `OperatorBase`
 
-**Return type**
+    **Returns**
 
-`Union`\[`OperatorBase`, `float`, `complex`]
+    An `OperatorBase` equivalent to the negation of self.
+  </Function>
 
-**Returns**
+  ### permute
 
-The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.permute" name="permute" signature="StateFn.permute(permutation)">
+    Permute the qubits of the state function.
 
-### mul
+    **Parameters**
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.mul" />
+    **permutation** (`List`\[`int`]) – A list defining where each qubit should be permuted. The qubit at index j of the circuit should be permuted to position permutation\[j].
 
-`StateFn.mul(scalar)`
+    **Return type**
 
-Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
+    `OperatorBase`
 
-**Parameters**
+    **Returns**
 
-**scalar** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`]) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
+    A new StateFn containing the permuted primitive.
+  </Function>
 
-**Return type**
+  ### power
 
-`OperatorBase`
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.power" name="power" signature="StateFn.power(exponent)">
+    Compose with Self Multiple Times, undefined for StateFns.
 
-**Returns**
+    **Parameters**
 
-An `OperatorBase` equivalent to product of self and scalar.
+    **exponent** (`int`) – The number of times to compose self with self.
 
-### neg
+    **Raises**
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.neg" />
+    **ValueError** – This function is not defined for StateFns.
 
-`StateFn.neg()`
+    **Return type**
 
-Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.
+    `OperatorBase`
+  </Function>
 
-**Return type**
+  ### primitive\_strings
 
-`OperatorBase`
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.primitive_strings" name="primitive_strings" signature="StateFn.primitive_strings()">
+    Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
-**Returns**
+    **Return type**
 
-An `OperatorBase` equivalent to the negation of self.
+    `Set`\[`str`]
 
-### permute
+    **Returns**
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.permute" />
+    A set of strings describing the primitives contained within the Operator.
+  </Function>
 
-`StateFn.permute(permutation)`
+  ### reduce
 
-Permute the qubits of the state function.
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.reduce" name="reduce" signature="StateFn.reduce()">
+    Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
-**Parameters**
+    **Return type**
 
-**permutation** (`List`\[`int`]) – A list defining where each qubit should be permuted. The qubit at index j of the circuit should be permuted to position permutation\[j].
+    `OperatorBase`
 
-**Return type**
+    **Returns**
 
-`OperatorBase`
+    The reduced `OperatorBase`.
+  </Function>
 
-**Returns**
+  ### sample
 
-A new StateFn containing the permuted primitive.
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.sample" name="sample" signature="StateFn.sample(shots=1024, massive=False, reverse_endianness=False)">
+    Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
 
-### power
+    **Parameters**
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.power" />
+    *   **shots** (`int`) – The number of samples to take to approximate the State function.
+    *   **massive** (`bool`) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
+    *   **reverse\_endianness** (`bool`) – Whether to reverse the endianness of the bitstrings in the return dict to match Terra’s big-endianness.
 
-`StateFn.power(exponent)`
+    **Return type**
 
-Compose with Self Multiple Times, undefined for StateFns.
+    `Dict`\[`str`, `Union`\[`int`, `float`]]
 
-**Parameters**
+    **Returns**
 
-**exponent** (`int`) – The number of times to compose self with self.
+    A dict containing pairs sampled strings from the State function and sampling frequency divided by shots.
+  </Function>
 
-**Raises**
+  ### tensor
 
-**ValueError** – This function is not defined for StateFns.
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.tensor" name="tensor" signature="StateFn.tensor(other)">
+    Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, Plus.tensor(Zero) produces a |+⟩ on qubit 0 and a |0⟩ on qubit 1, or |+⟩⨂|0⟩, but would produce a QuantumCircuit like
 
-**Return type**
+    > |0⟩– |+⟩–
 
-`OperatorBase`
+    Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
 
-### primitive\_strings
+    **Parameters**
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.primitive_strings" />
+    **other** (`OperatorBase`) – The `OperatorBase` to tensor product with self.
 
-`StateFn.primitive_strings()`
+    **Return type**
 
-Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
+    `OperatorBase`
 
-**Return type**
+    **Returns**
 
-`Set`\[`str`]
+    An `OperatorBase` equivalent to the tensor product of self and other.
+  </Function>
 
-**Returns**
+  ### tensorpower
 
-A set of strings describing the primitives contained within the Operator.
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.tensorpower" name="tensorpower" signature="StateFn.tensorpower(other)">
+    Return tensor product with self multiple times, overloaded by `^`.
 
-### reduce
+    **Parameters**
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.reduce" />
+    **other** (`int`) – The int number of times to tensor product self with itself via `tensorpower`.
 
-`StateFn.reduce()`
+    **Return type**
 
-Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
+    `Union`\[`OperatorBase`, `int`]
 
-**Return type**
+    **Returns**
 
-`OperatorBase`
+    An `OperatorBase` equivalent to the tensorpower of self by other.
+  </Function>
 
-**Returns**
+  ### to\_density\_matrix
 
-The reduced `OperatorBase`.
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.to_density_matrix" name="to_density_matrix" signature="StateFn.to_density_matrix(massive=False)">
+    Return matrix representing product of StateFn evaluated on pairs of basis states. Overridden by child classes.
 
-### sample
+    **Parameters**
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.sample" />
+    **massive** (`bool`) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
 
-`StateFn.sample(shots=1024, massive=False, reverse_endianness=False)`
+    **Return type**
 
-Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
+    `ndarray`
 
-**Parameters**
+    **Returns**
 
-*   **shots** (`int`) – The number of samples to take to approximate the State function.
-*   **massive** (`bool`) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
-*   **reverse\_endianness** (`bool`) – Whether to reverse the endianness of the bitstrings in the return dict to match Terra’s big-endianness.
+    The NumPy array representing the density matrix of the State function.
 
-**Return type**
+    **Raises**
 
-`Dict`\[`str`, `Union`\[`int`, `float`]]
+    **ValueError** – If massive is set to False, and exponentially large computation is needed.
+  </Function>
 
-**Returns**
+  ### to\_legacy\_op
 
-A dict containing pairs sampled strings from the State function and sampling frequency divided by shots.
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.to_legacy_op" name="to_legacy_op" signature="StateFn.to_legacy_op(massive=False)">
+    Attempt to return the Legacy Operator representation of the Operator. If self is a `SummedOp` of `PauliOps`, will attempt to convert to `WeightedPauliOperator`, and otherwise will simply convert to `MatrixOp` and then to `MatrixOperator`. The Legacy Operators cannot represent `StateFns` or proper `ListOps` (meaning not one of the `ListOp` subclasses), so an error will be thrown if this method is called on such an Operator. Also, Legacy Operators cannot represent unbound Parameter coeffs, so an error will be thrown if any are present in self.
 
-### tensor
+    Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.tensor" />
+    **Return type**
 
-`StateFn.tensor(other)`
+    `LegacyBaseOperator`
 
-Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, Plus.tensor(Zero) produces a |+⟩ on qubit 0 and a |0⟩ on qubit 1, or |+⟩⨂|0⟩, but would produce a QuantumCircuit like
+    **Returns**
 
-> |0⟩– |+⟩–
+    The `LegacyBaseOperator` representing this Operator.
 
-Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
+    **Raises**
 
-**Parameters**
+    **TypeError** – self is an Operator which cannot be represented by a `LegacyBaseOperator`, such as `StateFn`, proper (non-subclass) `ListOp`, or an Operator with an unbound coeff Parameter.
+  </Function>
 
-**other** (`OperatorBase`) – The `OperatorBase` to tensor product with self.
+  ### to\_matrix
 
-**Return type**
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.to_matrix" name="to_matrix" signature="StateFn.to_matrix(massive=False)">
+    Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
-`OperatorBase`
+    **Return type**
 
-**Returns**
+    `ndarray`
 
-An `OperatorBase` equivalent to the tensor product of self and other.
+    **Returns**
 
-### tensorpower
+    The NumPy `ndarray` equivalent to this Operator.
+  </Function>
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.tensorpower" />
+  ### to\_matrix\_op
 
-`StateFn.tensorpower(other)`
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.to_matrix_op" name="to_matrix_op" signature="StateFn.to_matrix_op(massive=False)">
+    Return a `VectorStateFn` for this `StateFn`.
 
-Return tensor product with self multiple times, overloaded by `^`.
+    **Parameters**
 
-**Parameters**
+    **massive** (`bool`) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
 
-**other** (`int`) – The int number of times to tensor product self with itself via `tensorpower`.
+    **Return type**
 
-**Return type**
+    `OperatorBase`
 
-`Union`\[`OperatorBase`, `int`]
+    **Returns**
 
-**Returns**
+    A VectorStateFn equivalent to self.
+  </Function>
 
-An `OperatorBase` equivalent to the tensorpower of self by other.
+  ### traverse
 
-### to\_density\_matrix
+  <Function id="qiskit.aqua.operators.state_fns.StateFn.traverse" name="traverse" signature="StateFn.traverse(convert_fn, coeff=None)">
+    Apply the convert\_fn to the internal primitive if the primitive is an Operator (as in the case of `OperatorStateFn`). Otherwise do nothing. Used by converters.
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.to_density_matrix" />
+    **Parameters**
 
-`StateFn.to_density_matrix(massive=False)`
+    *   **convert\_fn** (`Callable`) – The function to apply to the internal OperatorBase.
+    *   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`, `None`]) – A coefficient to multiply by after applying convert\_fn. If it is None, self.coeff is used instead.
 
-Return matrix representing product of StateFn evaluated on pairs of basis states. Overridden by child classes.
+    **Return type**
 
-**Parameters**
+    `OperatorBase`
 
-**massive** (`bool`) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
+    **Returns**
 
-**Return type**
+    The converted StateFn.
+  </Function>
 
-`ndarray`
+  ## Attributes
 
-**Returns**
+  ### ENABLE\_DEPRECATION
 
-The NumPy array representing the density matrix of the State function.
+  <Attribute id="qiskit.aqua.operators.state_fns.StateFn.ENABLE_DEPRECATION" name="ENABLE_DEPRECATION" attributeValue="= True" />
 
-**Raises**
+  ### INDENTATION
 
-**ValueError** – If massive is set to False, and exponentially large computation is needed.
+  <Attribute id="qiskit.aqua.operators.state_fns.StateFn.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
 
-### to\_legacy\_op
+  ### coeff
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.to_legacy_op" />
+  <Attribute id="qiskit.aqua.operators.state_fns.StateFn.coeff" name="coeff">
+    A coefficient by which the state function is multiplied.
 
-`StateFn.to_legacy_op(massive=False)`
+    **Return type**
 
-Attempt to return the Legacy Operator representation of the Operator. If self is a `SummedOp` of `PauliOps`, will attempt to convert to `WeightedPauliOperator`, and otherwise will simply convert to `MatrixOp` and then to `MatrixOperator`. The Legacy Operators cannot represent `StateFns` or proper `ListOps` (meaning not one of the `ListOp` subclasses), so an error will be thrown if this method is called on such an Operator. Also, Legacy Operators cannot represent unbound Parameter coeffs, so an error will be thrown if any are present in self.
+    `Union`\[`int`, `float`, `complex`, `ParameterExpression`]
+  </Attribute>
 
-Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
+  ### is\_measurement
 
-**Return type**
+  <Attribute id="qiskit.aqua.operators.state_fns.StateFn.is_measurement" name="is_measurement">
+    Whether the StateFn object is a measurement Operator.
 
-`LegacyBaseOperator`
+    **Return type**
 
-**Returns**
+    `bool`
+  </Attribute>
 
-The `LegacyBaseOperator` representing this Operator.
+  ### num\_qubits
 
-**Raises**
+  <Attribute id="qiskit.aqua.operators.state_fns.StateFn.num_qubits" name="num_qubits">
+    **Return type**
 
-**TypeError** – self is an Operator which cannot be represented by a `LegacyBaseOperator`, such as `StateFn`, proper (non-subclass) `ListOp`, or an Operator with an unbound coeff Parameter.
+    `int`
+  </Attribute>
 
-### to\_matrix
+  ### parameters
 
-<span id="qiskit.aqua.operators.state_fns.StateFn.to_matrix" />
+  <Attribute id="qiskit.aqua.operators.state_fns.StateFn.parameters" name="parameters" />
 
-`StateFn.to_matrix(massive=False)`
+  ### primitive
 
-Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
-
-**Return type**
-
-`ndarray`
-
-**Returns**
-
-The NumPy `ndarray` equivalent to this Operator.
-
-### to\_matrix\_op
-
-<span id="qiskit.aqua.operators.state_fns.StateFn.to_matrix_op" />
-
-`StateFn.to_matrix_op(massive=False)`
-
-Return a `VectorStateFn` for this `StateFn`.
-
-**Parameters**
-
-**massive** (`bool`) – Whether to allow large conversions, e.g. creating a matrix representing over 16 qubits.
-
-**Return type**
-
-`OperatorBase`
-
-**Returns**
-
-A VectorStateFn equivalent to self.
-
-### traverse
-
-<span id="qiskit.aqua.operators.state_fns.StateFn.traverse" />
-
-`StateFn.traverse(convert_fn, coeff=None)`
-
-Apply the convert\_fn to the internal primitive if the primitive is an Operator (as in the case of `OperatorStateFn`). Otherwise do nothing. Used by converters.
-
-**Parameters**
-
-*   **convert\_fn** (`Callable`) – The function to apply to the internal OperatorBase.
-*   **coeff** (`Union`\[`int`, `float`, `complex`, `ParameterExpression`, `None`]) – A coefficient to multiply by after applying convert\_fn. If it is None, self.coeff is used instead.
-
-**Return type**
-
-`OperatorBase`
-
-**Returns**
-
-The converted StateFn.
-
-## Attributes
-
-<span id="qiskit.aqua.operators.state_fns.StateFn.ENABLE_DEPRECATION" />
-
-### ENABLE\_DEPRECATION
-
-`= True`
-
-<span id="qiskit.aqua.operators.state_fns.StateFn.INDENTATION" />
-
-### INDENTATION
-
-`= ' '`
-
-<span id="qiskit.aqua.operators.state_fns.StateFn.coeff" />
-
-### coeff
-
-A coefficient by which the state function is multiplied.
-
-**Return type**
-
-`Union`\[`int`, `float`, `complex`, `ParameterExpression`]
-
-<span id="qiskit.aqua.operators.state_fns.StateFn.is_measurement" />
-
-### is\_measurement
-
-Whether the StateFn object is a measurement Operator.
-
-**Return type**
-
-`bool`
-
-<span id="qiskit.aqua.operators.state_fns.StateFn.num_qubits" />
-
-### num\_qubits
-
-**Return type**
-
-`int`
-
-<span id="qiskit.aqua.operators.state_fns.StateFn.parameters" />
-
-### parameters
-
-<span id="qiskit.aqua.operators.state_fns.StateFn.primitive" />
-
-### primitive
-
-The primitive which defines the behavior of the underlying State function.
+  <Attribute id="qiskit.aqua.operators.state_fns.StateFn.primitive" name="primitive">
+    The primitive which defines the behavior of the underlying State function.
+  </Attribute>
+</Class>
 

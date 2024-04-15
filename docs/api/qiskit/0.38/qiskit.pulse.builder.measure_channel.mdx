@@ -8,29 +8,27 @@ python_api_name: qiskit.pulse.builder.measure_channel
 
 # qiskit.pulse.builder.measure\_channel
 
-<span id="qiskit.pulse.builder.measure_channel" />
+<Function id="qiskit.pulse.builder.measure_channel" name="measure_channel" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/builder.py" signature="measure_channel(qubit)">
+  Return `MeasureChannel` for `qubit` on the active builder backend.
 
-`measure_channel(qubit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/builder.py "view source code")
+  Examples:
 
-Return `MeasureChannel` for `qubit` on the active builder backend.
+  ```python
+  from qiskit import pulse
+  from qiskit.providers.fake_provider import FakeOpenPulse2Q
 
-Examples:
+  backend = FakeOpenPulse2Q()
 
-```python
-from qiskit import pulse
-from qiskit.providers.fake_provider import FakeOpenPulse2Q
+  with pulse.build(backend):
+      assert pulse.measure_channel(0) == pulse.MeasureChannel(0)
+  ```
 
-backend = FakeOpenPulse2Q()
+  <Admonition title="Note" type="note">
+    Requires the active builder context to have a backend set.
+  </Admonition>
 
-with pulse.build(backend):
-    assert pulse.measure_channel(0) == pulse.MeasureChannel(0)
-```
+  **Return type**
 
-<Admonition title="Note" type="note">
-  Requires the active builder context to have a backend set.
-</Admonition>
-
-**Return type**
-
-[`MeasureChannel`](qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")
+  [`MeasureChannel`](qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")
+</Function>
 

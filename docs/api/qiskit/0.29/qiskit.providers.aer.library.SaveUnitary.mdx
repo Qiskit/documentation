@@ -8,250 +8,222 @@ python_api_name: qiskit.providers.aer.library.SaveUnitary
 
 # SaveUnitary
 
-<span id="qiskit.providers.aer.library.SaveUnitary" />
+<Class id="qiskit.providers.aer.library.SaveUnitary" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_unitary.py" signature="SaveUnitary(num_qubits, label='unitary', pershot=False)">
+  Bases: `qiskit.providers.aer.library.save_instructions.save_data.SaveSingleData`
 
-`SaveUnitary(num_qubits, label='unitary', pershot=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_unitary.py "view source code")
+  Save Unitary
 
-Bases: `qiskit.providers.aer.library.save_instructions.save_data.SaveSingleData`
+  Create new instruction to save the unitary simulator state.
 
-Save Unitary
+  **Parameters**
 
-Create new instruction to save the unitary simulator state.
+  *   **num\_qubits** (*int*) – the number of qubits of the
+  *   **label** (*str*) – the key for retrieving saved data from results.
+  *   **pershot** (*bool*) – if True save a list of unitaries for each shot of the simulation rather than a single statevector \[Default: False].
 
-**Parameters**
+  <Admonition title="Note" type="note">
+    This save instruction must always be performed on the full width of qubits in a circuit, otherwise an exception will be raised during simulation.
+  </Admonition>
 
-*   **num\_qubits** (*int*) – the number of qubits of the
-*   **label** (*str*) – the key for retrieving saved data from results.
-*   **pershot** (*bool*) – if True save a list of unitaries for each shot of the simulation rather than a single statevector \[Default: False].
+  ## Methods
 
-<Admonition title="Note" type="note">
-  This save instruction must always be performed on the full width of qubits in a circuit, otherwise an exception will be raised during simulation.
-</Admonition>
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.providers.aer.library.SaveUnitary.add_decomposition" name="add_decomposition" signature="SaveUnitary.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.providers.aer.library.SaveUnitary.add_decomposition" />
+  <Function id="qiskit.providers.aer.library.SaveUnitary.assemble" name="assemble" signature="SaveUnitary.assemble()">
+    Return the QasmQobjInstruction for the intructions.
+  </Function>
 
-`SaveUnitary.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.providers.aer.library.SaveUnitary.broadcast_arguments" name="broadcast_arguments" signature="SaveUnitary.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.providers.aer.library.SaveUnitary.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`SaveUnitary.assemble()`
+    **Yields**
 
-Return the QasmQobjInstruction for the intructions.
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.providers.aer.library.SaveUnitary.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`SaveUnitary.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit.providers.aer.library.SaveUnitary.c_if" name="c_if" signature="SaveUnitary.c_if(classical, val)">
+    Add classical condition on register or cbit classical and value val.
+  </Function>
 
-**Parameters**
+  ### copy
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  <Function id="qiskit.providers.aer.library.SaveUnitary.copy" name="copy" signature="SaveUnitary.copy(name=None)">
+    Copy of the instruction.
 
-**Yields**
+    **Parameters**
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**Raises**
+    **Returns**
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **a copy of the current instruction, with the name**
 
-### c\_if
+    updated if it was provided
 
-<span id="qiskit.providers.aer.library.SaveUnitary.c_if" />
+    **Return type**
 
-`SaveUnitary.c_if(classical, val)`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Add classical condition on register or cbit classical and value val.
+  ### inverse
 
-### copy
+  <Function id="qiskit.providers.aer.library.SaveUnitary.inverse" name="inverse" signature="SaveUnitary.inverse()">
+    Special case. Return self.
+  </Function>
 
-<span id="qiskit.providers.aer.library.SaveUnitary.copy" />
+  ### is\_parameterized
 
-`SaveUnitary.copy(name=None)`
+  <Function id="qiskit.providers.aer.library.SaveUnitary.is_parameterized" name="is_parameterized" signature="SaveUnitary.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-Copy of the instruction.
+  ### mirror
 
-**Parameters**
+  <Function id="qiskit.providers.aer.library.SaveUnitary.mirror" name="mirror" signature="SaveUnitary.mirror()">
+    DEPRECATED: use instruction.reverse\_ops().
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    **Returns**
 
-**Returns**
+    **a new instruction with sub-instructions**
 
-**a copy of the current instruction, with the name**
+    reversed.
 
-updated if it was provided
+    **Return type**
 
-**Return type**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### qasm
 
-### inverse
+  <Function id="qiskit.providers.aer.library.SaveUnitary.qasm" name="qasm" signature="SaveUnitary.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-<span id="qiskit.providers.aer.library.SaveUnitary.inverse" />
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-`SaveUnitary.inverse()`
+  ### repeat
 
-Special case. Return self.
+  <Function id="qiskit.providers.aer.library.SaveUnitary.repeat" name="repeat" signature="SaveUnitary.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-### is\_parameterized
+    **Parameters**
 
-<span id="qiskit.providers.aer.library.SaveUnitary.is_parameterized" />
+    **n** (*int*) – Number of times to repeat the instruction
 
-`SaveUnitary.is_parameterized()`
+    **Returns**
 
-Return True .IFF. instruction is parameterized else False
+    Containing the definition.
 
-### mirror
+    **Return type**
 
-<span id="qiskit.providers.aer.library.SaveUnitary.mirror" />
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-`SaveUnitary.mirror()`
+    **Raises**
 
-DEPRECATED: use instruction.reverse\_ops().
+    **CircuitError** – If n \< 1.
+  </Function>
 
-**Returns**
+  ### reverse\_ops
 
-**a new instruction with sub-instructions**
+  <Function id="qiskit.providers.aer.library.SaveUnitary.reverse_ops" name="reverse_ops" signature="SaveUnitary.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-reversed.
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-**Return type**
+    **Returns**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **a new instruction with**
 
-### qasm
+    sub-instructions reversed.
 
-<span id="qiskit.providers.aer.library.SaveUnitary.qasm" />
+    **Return type**
 
-`SaveUnitary.qasm()`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Return a default OpenQASM string for the instruction.
+  ### soft\_compare
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  <Function id="qiskit.providers.aer.library.SaveUnitary.soft_compare" name="soft_compare" signature="SaveUnitary.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-### repeat
+    **Parameters**
 
-<span id="qiskit.providers.aer.library.SaveUnitary.repeat" />
+    **other** (*instruction*) – other instruction.
 
-`SaveUnitary.repeat(n)`
+    **Returns**
 
-Creates an instruction with gate repeated n amount of times.
+    are self and other equal up to parameter expressions.
 
-**Parameters**
+    **Return type**
 
-**n** (*int*) – Number of times to repeat the instruction
+    bool
+  </Function>
 
-**Returns**
+  ### validate\_parameter
 
-Containing the definition.
+  <Function id="qiskit.providers.aer.library.SaveUnitary.validate_parameter" name="validate_parameter" signature="SaveUnitary.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### decompositions
 
-**Raises**
+  <Attribute id="qiskit.providers.aer.library.SaveUnitary.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-**CircuitError** – If n \< 1.
+  ### definition
 
-### reverse\_ops
+  <Attribute id="qiskit.providers.aer.library.SaveUnitary.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.providers.aer.library.SaveUnitary.reverse_ops" />
+  ### duration
 
-`SaveUnitary.reverse_ops()`
+  <Attribute id="qiskit.providers.aer.library.SaveUnitary.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### label
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Attribute id="qiskit.providers.aer.library.SaveUnitary.label" name="label">
+    Return instruction label
 
-**Returns**
+    **Return type**
 
-**a new instruction with**
+    `str`
+  </Attribute>
 
-sub-instructions reversed.
+  ### params
 
-**Return type**
+  <Attribute id="qiskit.providers.aer.library.SaveUnitary.params" name="params">
+    return instruction params.
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### unit
 
-### soft\_compare
-
-<span id="qiskit.providers.aer.library.SaveUnitary.soft_compare" />
-
-`SaveUnitary.soft_compare(other)`
-
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
-
-**Parameters**
-
-**other** (*instruction*) – other instruction.
-
-**Returns**
-
-are self and other equal up to parameter expressions.
-
-**Return type**
-
-bool
-
-### validate\_parameter
-
-<span id="qiskit.providers.aer.library.SaveUnitary.validate_parameter" />
-
-`SaveUnitary.validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
-
-## Attributes
-
-<span id="qiskit.providers.aer.library.SaveUnitary.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.providers.aer.library.SaveUnitary.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit.providers.aer.library.SaveUnitary.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit.providers.aer.library.SaveUnitary.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.providers.aer.library.SaveUnitary.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.providers.aer.library.SaveUnitary.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.providers.aer.library.SaveUnitary.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

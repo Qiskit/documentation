@@ -24,106 +24,98 @@ The most straightforward scheduling methods: scheduling **as early** or **as lat
 | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
 | [`CircuitPulseDef`](#qiskit.scheduler.methods.basic.CircuitPulseDef "qiskit.scheduler.methods.basic.CircuitPulseDef")(schedule, qubits) | Create new instance of CircuitPulseDef(schedule, qubits) |
 
-<span id="qiskit.scheduler.methods.basic.CircuitPulseDef" />
+<Class id="qiskit.scheduler.methods.basic.CircuitPulseDef" signature="CircuitPulseDef(schedule, qubits)">
+  Create new instance of CircuitPulseDef(schedule, qubits)
 
-`CircuitPulseDef(schedule, qubits)`
+  ### count
 
-Create new instance of CircuitPulseDef(schedule, qubits)
+  <Function id="qiskit.scheduler.methods.basic.CircuitPulseDef.count" name="count" signature="count(value, /)">
+    Return number of occurrences of value.
+  </Function>
 
-### count
+  ### index
 
-<span id="qiskit.scheduler.methods.basic.CircuitPulseDef.count" />
+  <Function id="qiskit.scheduler.methods.basic.CircuitPulseDef.index" name="index" signature="index(value, start=0, stop=9223372036854775807, /)">
+    Return first index of value.
 
-`count(value, /)`
+    Raises ValueError if the value is not present.
+  </Function>
 
-Return number of occurrences of value.
+  <Attribute id="qiskit.scheduler.methods.basic.CircuitPulseDef.qubits" name="qubits">
+    Alias for field number 1
+  </Attribute>
 
-### index
-
-<span id="qiskit.scheduler.methods.basic.CircuitPulseDef.index" />
-
-`index(value, start=0, stop=9223372036854775807, /)`
-
-Return first index of value.
-
-Raises ValueError if the value is not present.
-
-Alias for field number 1
-
-Alias for field number 0
+  <Attribute id="qiskit.scheduler.methods.basic.CircuitPulseDef.schedule" name="schedule">
+    Alias for field number 0
+  </Attribute>
+</Class>
 
 ### as\_late\_as\_possible
 
-<span id="qiskit.scheduler.methods.basic.as_late_as_possible" />
+<Function id="qiskit.scheduler.methods.basic.as_late_as_possible" name="as_late_as_possible" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py" signature="as_late_as_possible(circuit, schedule_config)">
+  Return the pulse Schedule which implements the input circuit using an “as late as possible” (alap) scheduling policy.
 
-`as_late_as_possible(circuit, schedule_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py "view source code")
+  Circuit instructions are first each mapped to equivalent pulse Schedules according to the command definition given by the schedule\_config. Then, this circuit instruction-equivalent Schedule is appended at the latest time that it can be without allowing unnecessary time between instructions or allowing instructions with common qubits to overlap.
 
-Return the pulse Schedule which implements the input circuit using an “as late as possible” (alap) scheduling policy.
+  This method should improves the outcome fidelity over ASAP scheduling, because we may maximize the time that the qubit remains in the ground state.
 
-Circuit instructions are first each mapped to equivalent pulse Schedules according to the command definition given by the schedule\_config. Then, this circuit instruction-equivalent Schedule is appended at the latest time that it can be without allowing unnecessary time between instructions or allowing instructions with common qubits to overlap.
+  **Parameters**
 
-This method should improves the outcome fidelity over ASAP scheduling, because we may maximize the time that the qubit remains in the ground state.
+  *   **circuit** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The quantum circuit to translate.
+  *   **schedule\_config** ([`ScheduleConfig`](qiskit.scheduler.ScheduleConfig "qiskit.scheduler.config.ScheduleConfig")) – Backend specific parameters used for building the Schedule.
 
-**Parameters**
+  **Return type**
 
-*   **circuit** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The quantum circuit to translate.
-*   **schedule\_config** ([`ScheduleConfig`](qiskit.scheduler.ScheduleConfig "qiskit.scheduler.config.ScheduleConfig")) – Backend specific parameters used for building the Schedule.
+  [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 
-**Return type**
+  **Returns**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
-
-**Returns**
-
-A schedule corresponding to the input `circuit` with pulses occurring as late as possible.
+  A schedule corresponding to the input `circuit` with pulses occurring as late as possible.
+</Function>
 
 ### as\_soon\_as\_possible
 
-<span id="qiskit.scheduler.methods.basic.as_soon_as_possible" />
+<Function id="qiskit.scheduler.methods.basic.as_soon_as_possible" name="as_soon_as_possible" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py" signature="as_soon_as_possible(circuit, schedule_config)">
+  Return the pulse Schedule which implements the input circuit using an “as soon as possible” (asap) scheduling policy.
 
-`as_soon_as_possible(circuit, schedule_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py "view source code")
+  Circuit instructions are first each mapped to equivalent pulse Schedules according to the command definition given by the schedule\_config. Then, this circuit instruction-equivalent Schedule is appended at the earliest time at which all qubits involved in the instruction are available.
 
-Return the pulse Schedule which implements the input circuit using an “as soon as possible” (asap) scheduling policy.
+  **Parameters**
 
-Circuit instructions are first each mapped to equivalent pulse Schedules according to the command definition given by the schedule\_config. Then, this circuit instruction-equivalent Schedule is appended at the earliest time at which all qubits involved in the instruction are available.
+  *   **circuit** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The quantum circuit to translate.
+  *   **schedule\_config** ([`ScheduleConfig`](qiskit.scheduler.ScheduleConfig "qiskit.scheduler.config.ScheduleConfig")) – Backend specific parameters used for building the Schedule.
 
-**Parameters**
+  **Return type**
 
-*   **circuit** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The quantum circuit to translate.
-*   **schedule\_config** ([`ScheduleConfig`](qiskit.scheduler.ScheduleConfig "qiskit.scheduler.config.ScheduleConfig")) – Backend specific parameters used for building the Schedule.
+  [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 
-**Return type**
+  **Returns**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
-
-**Returns**
-
-A schedule corresponding to the input `circuit` with pulses occurring as early as possible.
+  A schedule corresponding to the input `circuit` with pulses occurring as early as possible.
+</Function>
 
 ### translate\_gates\_to\_pulse\_defs
 
-<span id="qiskit.scheduler.methods.basic.translate_gates_to_pulse_defs" />
+<Function id="qiskit.scheduler.methods.basic.translate_gates_to_pulse_defs" name="translate_gates_to_pulse_defs" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py" signature="translate_gates_to_pulse_defs(circuit, schedule_config)">
+  Return a list of Schedules and the qubits they operate on, for each element encountered in th input circuit.
 
-`translate_gates_to_pulse_defs(circuit, schedule_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py "view source code")
+  Without concern for the final schedule, extract and return a list of Schedules and the qubits they operate on, for each element encountered in the input circuit. Measures are grouped when possible, so `qc.measure(q0, c0)` or `qc.measure(q1, c1)` will generate a synchronous measurement pulse.
 
-Return a list of Schedules and the qubits they operate on, for each element encountered in th input circuit.
+  **Parameters**
 
-Without concern for the final schedule, extract and return a list of Schedules and the qubits they operate on, for each element encountered in the input circuit. Measures are grouped when possible, so `qc.measure(q0, c0)` or `qc.measure(q1, c1)` will generate a synchronous measurement pulse.
+  *   **circuit** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The quantum circuit to translate.
+  *   **schedule\_config** ([`ScheduleConfig`](qiskit.scheduler.ScheduleConfig "qiskit.scheduler.config.ScheduleConfig")) – Backend specific parameters used for building the Schedule.
 
-**Parameters**
+  **Returns**
 
-*   **circuit** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The quantum circuit to translate.
-*   **schedule\_config** ([`ScheduleConfig`](qiskit.scheduler.ScheduleConfig "qiskit.scheduler.config.ScheduleConfig")) – Backend specific parameters used for building the Schedule.
+  the pulse definition for each circuit element.
 
-**Returns**
+  **Return type**
 
-the pulse definition for each circuit element.
+  A list of CircuitPulseDefs
 
-**Return type**
+  **Raises**
 
-A list of CircuitPulseDefs
-
-**Raises**
-
-**QiskitError** – If circuit uses a command that isn’t defined in config.inst\_map.
+  **QiskitError** – If circuit uses a command that isn’t defined in config.inst\_map.
+</Function>
 

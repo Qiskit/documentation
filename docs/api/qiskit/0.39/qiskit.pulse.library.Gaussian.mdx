@@ -8,40 +8,36 @@ python_api_name: qiskit.pulse.library.Gaussian
 
 # Gaussian
 
-<span id="qiskit.pulse.library.Gaussian" />
+<Class id="qiskit.pulse.library.Gaussian" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/library/symbolic_pulses.py" signature="Gaussian(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, qiskit.circuit.parameterexpression.ParameterExpression], sigma: Union[float, qiskit.circuit.parameterexpression.ParameterExpression], name: Optional[str] = None, limit_amplitude: Optional[bool] = None)">
+  Bases: `object`
 
-`Gaussian(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, qiskit.circuit.parameterexpression.ParameterExpression], sigma: Union[float, qiskit.circuit.parameterexpression.ParameterExpression], name: Optional[str] = None, limit_amplitude: Optional[bool] = None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/library/symbolic_pulses.py "view source code")
-
-Bases: `object`
-
-A lifted and truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):
+  A lifted and truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):
 
 $$
 \begin{split}f'(x) &= \exp\Bigl( -\frac12 \frac{{(x - \text{duration}/2)}^2}{\text{sigma}^2} \Bigr)\\
 f(x) &= \text{amp} \times \frac{f'(x) - f'(-1)}{1-f'(-1)}, \quad 0 \le x < \text{duration}\end{split}
 $$
 
-where $f'(x)$ is the gaussian waveform without lifting or amplitude scaling.
+  where $f'(x)$ is the gaussian waveform without lifting or amplitude scaling.
 
-Create new pulse instance.
+  Create new pulse instance.
 
-**Parameters**
+  **Parameters**
 
-*   **duration** – Pulse length in terms of the sampling period dt.
-*   **amp** – The amplitude of the Gaussian envelope.
-*   **sigma** – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
-*   **name** – Display name for this pulse envelope.
-*   **limit\_amplitude** – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+  *   **duration** – Pulse length in terms of the sampling period dt.
+  *   **amp** – The amplitude of the Gaussian envelope.
+  *   **sigma** – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
+  *   **name** – Display name for this pulse envelope.
+  *   **limit\_amplitude** – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 
-**Returns**
+  **Returns**
 
-SymbolicPulse instance.
+  SymbolicPulse instance.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.pulse.library.Gaussian.alias" />
+  ### alias
 
-### alias
-
-`= 'Gaussian'`
+  <Attribute id="qiskit.pulse.library.Gaussian.alias" name="alias" attributeValue="= 'Gaussian'" />
+</Class>
 

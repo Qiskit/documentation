@@ -8,188 +8,158 @@ python_api_name: qiskit.result.QuasiDistribution
 
 # QuasiDistribution
 
-<span id="qiskit.result.QuasiDistribution" />
+<Class id="qiskit.result.QuasiDistribution" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/result/distributions/quasi.py" signature="QuasiDistribution(data, shots=None, stddev_upper_bound=None)">
+  Bases: `dict`
 
-`QuasiDistribution(data, shots=None, stddev_upper_bound=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/result/distributions/quasi.py "view source code")
+  A dict-like class for representing quasi-probabilities.
 
-Bases: `dict`
+  Builds a quasiprobability distribution object.
 
-A dict-like class for representing quasi-probabilities.
+  **Parameters**
 
-Builds a quasiprobability distribution object.
+  *   **data** (*dict*) –
 
-**Parameters**
+      Input quasiprobability data. Where the keys represent a measured classical value and the value is a float for the quasiprobability of that result. The keys can be one of several formats:
 
-*   **data** (*dict*) –
+      > *   A hexadecimal string of the form `"0x4a"`
+      > *   A bit string e.g. `'0b1011'` or `"01011"`
+      > *   An integer
 
-    Input quasiprobability data. Where the keys represent a measured classical value and the value is a float for the quasiprobability of that result. The keys can be one of several formats:
+  *   **shots** (*int*) – Number of shots the distribution was derived from.
 
-    > *   A hexadecimal string of the form `"0x4a"`
-    > *   A bit string e.g. `'0b1011'` or `"01011"`
-    > *   An integer
+  *   **stddev\_upper\_bound** (*float*) – An upper bound for the standard deviation
 
-*   **shots** (*int*) – Number of shots the distribution was derived from.
+  **Raises**
 
-*   **stddev\_upper\_bound** (*float*) – An upper bound for the standard deviation
+  *   **TypeError** – If the input keys are not a string or int
+  *   **ValueError** – If the string format of the keys is incorrect
 
-**Raises**
+  ## Methods
 
-*   **TypeError** – If the input keys are not a string or int
-*   **ValueError** – If the string format of the keys is incorrect
+  ### binary\_probabilities
 
-## Methods
+  <Function id="qiskit.result.QuasiDistribution.binary_probabilities" name="binary_probabilities" signature="QuasiDistribution.binary_probabilities(num_bits=None)">
+    Build a quasi-probabilities dictionary with binary string keys
 
-### binary\_probabilities
+    **Parameters**
 
-<span id="qiskit.result.QuasiDistribution.binary_probabilities" />
+    **num\_bits** (*int*) – number of bits in the binary bitstrings (leading zeros will be padded). If None, a default value will be used. If keys are given as integers or strings with binary or hex prefix, the default value will be derived from the largest key present. If keys are given as bitstrings without prefix, the default value will be derived from the largest key length.
 
-`QuasiDistribution.binary_probabilities(num_bits=None)`
+    **Returns**
 
-Build a quasi-probabilities dictionary with binary string keys
+    **A dictionary where the keys are binary strings in the format**
 
-**Parameters**
+    `"0110"`
 
-**num\_bits** (*int*) – number of bits in the binary bitstrings (leading zeros will be padded). If None, a default value will be used. If keys are given as integers or strings with binary or hex prefix, the default value will be derived from the largest key present. If keys are given as bitstrings without prefix, the default value will be derived from the largest key length.
+    **Return type**
 
-**Returns**
+    dict
+  </Function>
 
-**A dictionary where the keys are binary strings in the format**
+  ### clear
 
-`"0110"`
+  <Function id="qiskit.result.QuasiDistribution.clear" name="clear" signature="QuasiDistribution.clear() → None.  Remove all items from D." />
 
-**Return type**
+  ### copy
 
-dict
+  <Function id="qiskit.result.QuasiDistribution.copy" name="copy" signature="QuasiDistribution.copy() → a shallow copy of D" />
 
-### clear
+  ### fromkeys
 
-<span id="qiskit.result.QuasiDistribution.clear" />
+  <Function id="qiskit.result.QuasiDistribution.fromkeys" name="fromkeys" signature="QuasiDistribution.fromkeys(value=None, /)">
+    Create a new dictionary with keys from iterable and values set to value.
+  </Function>
 
-`QuasiDistribution.clear() → None.  Remove all items from D.`
+  ### get
 
-### copy
+  <Function id="qiskit.result.QuasiDistribution.get" name="get" signature="QuasiDistribution.get(key, default=None, /)">
+    Return the value for key if key is in the dictionary, else default.
+  </Function>
 
-<span id="qiskit.result.QuasiDistribution.copy" />
+  ### hex\_probabilities
 
-`QuasiDistribution.copy() → a shallow copy of D`
+  <Function id="qiskit.result.QuasiDistribution.hex_probabilities" name="hex_probabilities" signature="QuasiDistribution.hex_probabilities()">
+    Build a quasi-probabilities dictionary with hexadecimal string keys
 
-### fromkeys
+    **Returns**
 
-<span id="qiskit.result.QuasiDistribution.fromkeys" />
+    **A dictionary where the keys are hexadecimal strings in the**
 
-`QuasiDistribution.fromkeys(value=None, /)`
+    format `"0x1a"`
 
-Create a new dictionary with keys from iterable and values set to value.
+    **Return type**
 
-### get
+    dict
+  </Function>
 
-<span id="qiskit.result.QuasiDistribution.get" />
+  ### items
 
-`QuasiDistribution.get(key, default=None, /)`
+  <Function id="qiskit.result.QuasiDistribution.items" name="items" signature="QuasiDistribution.items() → a set-like object providing a view on D's items" />
 
-Return the value for key if key is in the dictionary, else default.
+  ### keys
 
-### hex\_probabilities
+  <Function id="qiskit.result.QuasiDistribution.keys" name="keys" signature="QuasiDistribution.keys() → a set-like object providing a view on D's keys" />
 
-<span id="qiskit.result.QuasiDistribution.hex_probabilities" />
+  ### nearest\_probability\_distribution
 
-`QuasiDistribution.hex_probabilities()`
+  <Function id="qiskit.result.QuasiDistribution.nearest_probability_distribution" name="nearest_probability_distribution" signature="QuasiDistribution.nearest_probability_distribution(return_distance=False)">
+    Takes a quasiprobability distribution and maps it to the closest probability distribution as defined by the L2-norm.
 
-Build a quasi-probabilities dictionary with hexadecimal string keys
+    **Parameters**
 
-**Returns**
+    **return\_distance** (*bool*) – Return the L2 distance between distributions.
 
-**A dictionary where the keys are hexadecimal strings in the**
+    **Returns**
 
-format `"0x1a"`
+    Nearest probability distribution. float: Euclidean (L2) distance of distributions.
 
-**Return type**
+    **Return type**
 
-dict
+    [ProbDistribution](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")
 
-### items
+    **Notes**
 
-<span id="qiskit.result.QuasiDistribution.items" />
+    Method from Smolin et al., Phys. Rev. Lett. 108, 070502 (2012).
+  </Function>
 
-`QuasiDistribution.items() → a set-like object providing a view on D's items`
+  ### pop
 
-### keys
+  <Function id="qiskit.result.QuasiDistribution.pop" name="pop" signature="QuasiDistribution.pop(k[, d]) → v, remove specified key and return the corresponding value.">
+    If key is not found, d is returned if given, otherwise KeyError is raised
+  </Function>
 
-<span id="qiskit.result.QuasiDistribution.keys" />
+  ### popitem
 
-`QuasiDistribution.keys() → a set-like object providing a view on D's keys`
+  <Function id="qiskit.result.QuasiDistribution.popitem" name="popitem" signature="QuasiDistribution.popitem()">
+    Remove and return a (key, value) pair as a 2-tuple.
 
-### nearest\_probability\_distribution
+    Pairs are returned in LIFO (last-in, first-out) order. Raises KeyError if the dict is empty.
+  </Function>
 
-<span id="qiskit.result.QuasiDistribution.nearest_probability_distribution" />
+  ### setdefault
 
-`QuasiDistribution.nearest_probability_distribution(return_distance=False)`
+  <Function id="qiskit.result.QuasiDistribution.setdefault" name="setdefault" signature="QuasiDistribution.setdefault(key, default=None, /)">
+    Insert key with a value of default if key is not in the dictionary.
 
-Takes a quasiprobability distribution and maps it to the closest probability distribution as defined by the L2-norm.
+    Return the value for key if key is in the dictionary, else default.
+  </Function>
 
-**Parameters**
+  ### update
 
-**return\_distance** (*bool*) – Return the L2 distance between distributions.
+  <Function id="qiskit.result.QuasiDistribution.update" name="update" signature="QuasiDistribution.update([E, ]**F) → None.  Update D from dict/iterable E and F.">
+    If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
+  </Function>
 
-**Returns**
+  ### values
 
-Nearest probability distribution. float: Euclidean (L2) distance of distributions.
+  <Function id="qiskit.result.QuasiDistribution.values" name="values" signature="QuasiDistribution.values() → an object providing a view on D's values" />
 
-**Return type**
+  ## Attributes
 
-[ProbDistribution](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")
+  ### stddev\_upper\_bound
 
-**Notes**
-
-Method from Smolin et al., Phys. Rev. Lett. 108, 070502 (2012).
-
-### pop
-
-<span id="qiskit.result.QuasiDistribution.pop" />
-
-`QuasiDistribution.pop(k[, d]) → v, remove specified key and return the corresponding value.`
-
-If key is not found, d is returned if given, otherwise KeyError is raised
-
-### popitem
-
-<span id="qiskit.result.QuasiDistribution.popitem" />
-
-`QuasiDistribution.popitem()`
-
-Remove and return a (key, value) pair as a 2-tuple.
-
-Pairs are returned in LIFO (last-in, first-out) order. Raises KeyError if the dict is empty.
-
-### setdefault
-
-<span id="qiskit.result.QuasiDistribution.setdefault" />
-
-`QuasiDistribution.setdefault(key, default=None, /)`
-
-Insert key with a value of default if key is not in the dictionary.
-
-Return the value for key if key is in the dictionary, else default.
-
-### update
-
-<span id="qiskit.result.QuasiDistribution.update" />
-
-`QuasiDistribution.update([E, ]**F) → None.  Update D from dict/iterable E and F.`
-
-If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
-
-### values
-
-<span id="qiskit.result.QuasiDistribution.values" />
-
-`QuasiDistribution.values() → an object providing a view on D's values`
-
-## Attributes
-
-<span id="qiskit.result.QuasiDistribution.stddev_upper_bound" />
-
-### stddev\_upper\_bound
-
-Return an upper bound on standard deviation of expval estimator.
+  <Attribute id="qiskit.result.QuasiDistribution.stddev_upper_bound" name="stddev_upper_bound">
+    Return an upper bound on standard deviation of expval estimator.
+  </Attribute>
+</Class>
 

@@ -8,177 +8,171 @@ python_api_name: qiskit.circuit.library.RZXGate
 
 # RZXGate
 
-<span id="qiskit.circuit.library.RZXGate" />
+<Class id="qiskit.circuit.library.RZXGate" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/rzx.py" signature="qiskit.circuit.library.RZXGate(theta, label=None)">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`qiskit.circuit.library.RZXGate(theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/rzx.py "view source code")
+  A parametric 2-qubit $Z \otimes X$ interaction (rotation about ZX).
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  This gate is maximally entangling at $\theta = \pi/2$.
 
-A parametric 2-qubit $Z \otimes X$ interaction (rotation about ZX).
+  The cross-resonance gate (CR) for superconducting qubits implements a ZX interaction (however other terms are also present in an experiment).
 
-This gate is maximally entangling at $\theta = \pi/2$.
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rzx()`](qiskit.circuit.QuantumCircuit#rzx "qiskit.circuit.QuantumCircuit.rzx") method.
 
-The cross-resonance gate (CR) for superconducting qubits implements a ZX interaction (however other terms are also present in an experiment).
-
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rzx()`](qiskit.circuit.QuantumCircuit#rzx "qiskit.circuit.QuantumCircuit.rzx") method.
-
-**Circuit Symbol:**
-
-```python
-     ┌─────────┐
-q_0: ┤0        ├
-     │  Rzx(θ) │
-q_1: ┤1        ├
-     └─────────┘
-```
-
-**Matrix Representation:**
-
-$$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZX}(\theta)\ q_0, q_1 = \exp\left(-i \frac{\theta}{2} X{\otimes}Z\right) =
-    \begin{pmatrix}
-        \cos\left(\th\right)   & 0          & -i\sin\left(\th\right)  & 0          \\
-        0           & \cos\left(\th\right)  & 0            & i\sin\left(\th\right) \\
-        -i\sin\left(\th\right) & 0          & \cos\left(\th\right)    & 0          \\
-        0           & i\sin\left(\th\right) & 0            & \cos\left(\th\right)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
-$$
-
-<Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in the $X \otimes Z$ tensor order. Instead, if we apply it on (q\_1, q\_0), the matrix will be $Z \otimes X$:
+  **Circuit Symbol:**
 
   ```python
        ┌─────────┐
-  q_0: ┤1        ├
+  q_0: ┤0        ├
        │  Rzx(θ) │
-  q_1: ┤0        ├
+  q_1: ┤1        ├
        └─────────┘
   ```
 
-  $$
-   \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZX}(\theta)\ q_1, q_0 = exp(-i \frac{\theta}{2} Z{\otimes}X) =
-      \begin{pmatrix}
-          \cos(\th)   & -i\sin(\th) & 0           & 0          \\
-          -i\sin(\th) & \cos(\th)   & 0           & 0          \\
-          0           & 0           & \cos(\th)   & i\sin(\th) \\
-          0           & 0           & i\sin(\th)  & \cos(\th)
-      \end{pmatrix}\end{split}\end{aligned}\end{align} 
-  $$
+  **Matrix Representation:**
 
-  This is a direct sum of RX rotations, so this gate is equivalent to a uniformly controlled (multiplexed) RX gate:
+$$
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZX}(\theta)\ q_0, q_1 = \exp\left(-i \frac{\theta}{2} X{\otimes}Z\right) =
+\begin{pmatrix}
+\cos\left(\th\right)   & 0          & -i\sin\left(\th\right)  & 0          \\
+0           & \cos\left(\th\right)  & 0            & i\sin\left(\th\right) \\
+-i\sin\left(\th\right) & 0          & \cos\left(\th\right)    & 0          \\
+0           & i\sin\left(\th\right) & 0            & \cos\left(\th\right)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
+$$
 
-  $$
-  \begin{split}R_{ZX}(\theta)\ q_1, q_0 =
-      \begin{pmatrix}
-          RX(\theta) & 0 \\
-          0 & RX(-\theta)
-      \end{pmatrix}\end{split}
-  $$
-</Admonition>
+  <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in the $X \otimes Z$ tensor order. Instead, if we apply it on (q\_1, q\_0), the matrix will be $Z \otimes X$:
 
-**Examples:**
+    ```python
+         ┌─────────┐
+    q_0: ┤1        ├
+         │  Rzx(θ) │
+    q_1: ┤0        ├
+         └─────────┘
+    ```
 
-> $$
-> R_{ZX}(\theta = 0) = I
-> $$
->
-> $$
-> R_{ZX}(\theta = 2\pi) = -I
-> $$
->
-> $$
-> R_{ZX}(\theta = \pi) = -i Z \otimes X
-> $$
->
-> $$
-> \begin{split}RZX(\theta = \frac{\pi}{2}) = \frac{1}{\sqrt{2}}
->                         \begin{pmatrix}
->                             1  & 0 & -i & 0 \\
->                             0  & 1 & 0  & i \\
->                             -i & 0 & 1  & 0 \\
->                             0  & i & 0  & 1
->                         \end{pmatrix}\end{split}
-> $$
+$$
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZX}(\theta)\ q_1, q_0 = exp(-i \frac{\theta}{2} Z{\otimes}X) =
+\begin{pmatrix}
+\cos(\th)   & -i\sin(\th) & 0           & 0          \\
+-i\sin(\th) & \cos(\th)   & 0           & 0          \\
+0           & 0           & \cos(\th)   & i\sin(\th) \\
+0           & 0           & i\sin(\th)  & \cos(\th)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
+$$
 
-Create new RZX gate.
+    This is a direct sum of RX rotations, so this gate is equivalent to a uniformly controlled (multiplexed) RX gate:
 
-## Attributes
+$$
+\begin{split}R_{ZX}(\theta)\ q_1, q_0 =
+\begin{pmatrix}
+RX(\theta) & 0 \\
+0 & RX(-\theta)
+\end{pmatrix}\end{split}
+$$
+  </Admonition>
 
-<span id="qiskit.circuit.library.RZXGate.condition_bits" />
+  **Examples:**
 
-### condition\_bits
+  > $$
+  > R_{ZX}(\theta = 0) = I
+  > $$
+  >
+  > $$
+  > R_{ZX}(\theta = 2\pi) = -I
+  > $$
+  >
+  > $$
+  > R_{ZX}(\theta = \pi) = -i Z \otimes X
+  > $$
+  >
+  > $$
+  > \begin{split}RZX(\theta = \frac{\pi}{2}) = \frac{1}{\sqrt{2}}
+  >                         \begin{pmatrix}
+  >                             1  & 0 & -i & 0 \\
+  >                             0  & 1 & 0  & i \\
+  >                             -i & 0 & 1  & 0 \\
+  >                             0  & i & 0  & 1
+  >                         \end{pmatrix}\end{split}
+  > $$
 
-Get Clbits in condition.
+  Create new RZX gate.
 
-<span id="qiskit.circuit.library.RZXGate.decompositions" />
+  ## Attributes
 
-### decompositions
+  ### condition\_bits
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.RZXGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RZXGate.definition" />
+  ### decompositions
 
-### definition
+  <Attribute id="qiskit.circuit.library.RZXGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### definition
 
-<span id="qiskit.circuit.library.RZXGate.duration" />
+  <Attribute id="qiskit.circuit.library.RZXGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### duration
+  ### duration
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.RZXGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RZXGate.label" />
+  ### label
 
-### label
+  <Attribute id="qiskit.circuit.library.RZXGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Return instruction label
+  ### name
 
-<span id="qiskit.circuit.library.RZXGate.name" />
+  <Attribute id="qiskit.circuit.library.RZXGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-### name
+  ### num\_clbits
 
-Return the name.
+  <Attribute id="qiskit.circuit.library.RZXGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RZXGate.num_clbits" />
+  ### num\_qubits
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.RZXGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Return the number of clbits.
+  ### params
 
-<span id="qiskit.circuit.library.RZXGate.num_qubits" />
+  <Attribute id="qiskit.circuit.library.RZXGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### num\_qubits
+  ### unit
 
-Return the number of qubits.
+  <Attribute id="qiskit.circuit.library.RZXGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RZXGate.params" />
+  ## Methods
 
-### params
+  ### inverse
 
-return instruction params.
+  <Function id="qiskit.circuit.library.RZXGate.inverse" name="inverse" signature="inverse()">
+    Return inverse RZX gate (i.e. with the negative rotation angle).
+  </Function>
 
-<span id="qiskit.circuit.library.RZXGate.unit" />
+  ### power
 
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### inverse
-
-<span id="qiskit.circuit.library.RZXGate.inverse" />
-
-`inverse()`
-
-Return inverse RZX gate (i.e. with the negative rotation angle).
-
-### power
-
-<span id="qiskit.circuit.library.RZXGate.power" />
-
-`power(exponent)`
-
-Raise gate to a power.
+  <Function id="qiskit.circuit.library.RZXGate.power" name="power" signature="power(exponent)">
+    Raise gate to a power.
+  </Function>
+</Class>
 

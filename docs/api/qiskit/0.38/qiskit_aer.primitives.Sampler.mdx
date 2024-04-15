@@ -8,65 +8,61 @@ python_api_name: qiskit_aer.primitives.Sampler
 
 # Sampler
 
-<span id="qiskit_aer.primitives.Sampler" />
+<Class id="qiskit_aer.primitives.Sampler" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/primitives/sampler.py" signature="Sampler(circuits: Iterable[QuantumCircuit] | QuantumCircuit, *args, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)">
+  Bases: [`qiskit.primitives.base_sampler.BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.base_sampler.BaseSampler")
 
-`Sampler(circuits: Iterable[QuantumCircuit] | QuantumCircuit, *args, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/primitives/sampler.py "view source code")
+  Aer implementation of Sampler class.
 
-Bases: [`qiskit.primitives.base_sampler.BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.base_sampler.BaseSampler")
+  **Run Options**
 
-Aer implementation of Sampler class.
+  *   **shots** (None or int) – The number of shots. If None, it calculates the probabilities exactly. Otherwise, it samples from multinomial distributions.
+  *   **seed** (int) – Set a fixed seed for `seed_simulator`. If shots is None, this option is ignored.
 
-**Run Options**
+  <Admonition title="Note" type="note">
+    Precedence of seeding is as follows:
 
-*   **shots** (None or int) – The number of shots. If None, it calculates the probabilities exactly. Otherwise, it samples from multinomial distributions.
-*   **seed** (int) – Set a fixed seed for `seed_simulator`. If shots is None, this option is ignored.
+    1.  `seed_simulator` in runtime (i.e. in `__call__()`)
+    2.  `seed` in runtime (i.e. in `__call__()`)
+    3.  `seed_simulator` of `backend_options`.
+    4.  default.
+  </Admonition>
 
-<Admonition title="Note" type="note">
-  Precedence of seeding is as follows:
+  **Parameters**
 
-  1.  `seed_simulator` in runtime (i.e. in `__call__()`)
-  2.  `seed` in runtime (i.e. in `__call__()`)
-  3.  `seed_simulator` of `backend_options`.
-  4.  default.
-</Admonition>
+  *   **circuits** – Circuits to be executed.
+  *   **parameters** – Parameters of each of the quantum circuits. Defaults to `[circ.parameters for circ in circuits]`.
+  *   **backend\_options** – Options passed to AerSimulator.
+  *   **transpile\_options** – Options passed to transpile.
+  *   **skip\_transpilation** – if True, transpilation is skipped.
 
-**Parameters**
+  ## Methods
 
-*   **circuits** – Circuits to be executed.
-*   **parameters** – Parameters of each of the quantum circuits. Defaults to `[circ.parameters for circ in circuits]`.
-*   **backend\_options** – Options passed to AerSimulator.
-*   **transpile\_options** – Options passed to transpile.
-*   **skip\_transpilation** – if True, transpilation is skipped.
+  ### close
 
-## Methods
+  <Function id="qiskit_aer.primitives.Sampler.close" name="close" signature="Sampler.close()">
+    Close the session and free resources
+  </Function>
 
-### close
+  ## Attributes
 
-<span id="qiskit_aer.primitives.Sampler.close" />
+  ### circuits
 
-`Sampler.close()`
+  <Attribute id="qiskit_aer.primitives.Sampler.circuits" name="circuits">
+    Quantum circuits to be sampled.
 
-Close the session and free resources
+    **Returns**
 
-## Attributes
+    The quantum circuits to be sampled.
+  </Attribute>
 
-<span id="qiskit_aer.primitives.Sampler.circuits" />
+  ### parameters
 
-### circuits
+  <Attribute id="qiskit_aer.primitives.Sampler.parameters" name="parameters">
+    Parameters of quantum circuits.
 
-Quantum circuits to be sampled.
+    **Returns**
 
-**Returns**
-
-The quantum circuits to be sampled.
-
-<span id="qiskit_aer.primitives.Sampler.parameters" />
-
-### parameters
-
-Parameters of quantum circuits.
-
-**Returns**
-
-List of the parameters in each quantum circuit.
+    List of the parameters in each quantum circuit.
+  </Attribute>
+</Class>
 

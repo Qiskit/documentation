@@ -8,173 +8,169 @@ python_api_name: qiskit.circuit.library.iSwapGate
 
 # iSwapGate
 
-<span id="qiskit.circuit.library.iSwapGate" />
+<Class id="qiskit.circuit.library.iSwapGate" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/iswap.py" signature="qiskit.circuit.library.iSwapGate(*args, _force_mutable=False, **kwargs)">
+  Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
-`qiskit.circuit.library.iSwapGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/iswap.py "view source code")
+  iSWAP gate.
 
-Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
+  A 2-qubit XX+YY interaction. This is a Clifford and symmetric gate. Its action is to swap two qubit states and phase the $|01\rangle$ and $|10\rangle$ amplitudes by i.
 
-iSWAP gate.
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`iswap()`](qiskit.circuit.QuantumCircuit#iswap "qiskit.circuit.QuantumCircuit.iswap") method.
 
-A 2-qubit XX+YY interaction. This is a Clifford and symmetric gate. Its action is to swap two qubit states and phase the $|01\rangle$ and $|10\rangle$ amplitudes by i.
+  **Circuit Symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`iswap()`](qiskit.circuit.QuantumCircuit#iswap "qiskit.circuit.QuantumCircuit.iswap") method.
+  ```python
+  q_0: ─⨂─
+        │
+  q_1: ─⨂─
+  ```
 
-**Circuit Symbol:**
+  **Reference Implementation:**
 
-```python
-q_0: ─⨂─
-      │
-q_1: ─⨂─
-```
+  ```python
+       ┌───┐┌───┐     ┌───┐
+  q_0: ┤ S ├┤ H ├──■──┤ X ├─────
+       ├───┤└───┘┌─┴─┐└─┬─┘┌───┐
+  q_1: ┤ S ├─────┤ X ├──■──┤ H ├
+       └───┘     └───┘     └───┘
+  ```
 
-**Reference Implementation:**
-
-```python
-     ┌───┐┌───┐     ┌───┐
-q_0: ┤ S ├┤ H ├──■──┤ X ├─────
-     ├───┤└───┘┌─┴─┐└─┬─┘┌───┐
-q_1: ┤ S ├─────┤ X ├──■──┤ H ├
-     └───┘     └───┘     └───┘
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 iSWAP = R_{XX+YY}\left(-\frac{\pi}{2}\right)
-  = \exp\left(i \frac{\pi}{4} \left(X{\otimes}X+Y{\otimes}Y\right)\right) =
-    \begin{pmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & 0 & i & 0 \\
-        0 & i & 0 & 0 \\
-        0 & 0 & 0 & 1
-    \end{pmatrix}
+= \exp\left(i \frac{\pi}{4} \left(X{\otimes}X+Y{\otimes}Y\right)\right) =
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0 & i & 0 \\
+0 & i & 0 & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}
 $$
 
-This gate is equivalent to a SWAP up to a diagonal.
+  This gate is equivalent to a SWAP up to a diagonal.
 
 $$
 iSWAP =
-   \begin{pmatrix}
-       1 & 0 & 0 & 0 \\
-       0 & 0 & 1 & 0 \\
-       0 & 1 & 0 & 0 \\
-       0 & 0 & 0 & 1
-   \end{pmatrix}
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}
 .  \begin{pmatrix}
-       1 & 0 & 0 & 0 \\
-       0 & i & 0 & 0 \\
-       0 & 0 & i & 0 \\
-       0 & 0 & 0 & 1
-   \end{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & i & 0 & 0 \\
+0 & 0 & i & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}
 $$
 
-Create new iSwap gate.
+  Create new iSwap gate.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.iSwapGate.base_class" />
+  ### base\_class
 
-### base\_class
+  <Attribute id="qiskit.circuit.library.iSwapGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.iSwapGate.base_class "qiskit.circuit.library.iSwapGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.iSwapGate.base_class "qiskit.circuit.library.iSwapGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition
 
-<span id="qiskit.circuit.library.iSwapGate.condition" />
+  <Attribute id="qiskit.circuit.library.iSwapGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-### condition
+  ### condition\_bits
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.iSwapGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.iSwapGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.iSwapGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-<span id="qiskit.circuit.library.iSwapGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.iSwapGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### decompositions
+  ### duration
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.iSwapGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.iSwapGate.definition" />
+  ### label
 
-### definition
+  <Attribute id="qiskit.circuit.library.iSwapGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### mutable
 
-<span id="qiskit.circuit.library.iSwapGate.duration" />
+  <Attribute id="qiskit.circuit.library.iSwapGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-### duration
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-Get the duration.
+  ### name
 
-<span id="qiskit.circuit.library.iSwapGate.label" />
+  <Attribute id="qiskit.circuit.library.iSwapGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-### label
+  ### num\_clbits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.iSwapGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.iSwapGate.mutable" />
+  ### num\_qubits
 
-### mutable
+  <Attribute id="qiskit.circuit.library.iSwapGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### params
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.library.iSwapGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.iSwapGate.name" />
+  ### unit
 
-### name
+  <Attribute id="qiskit.circuit.library.iSwapGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-Return the name.
+  ## Methods
 
-<span id="qiskit.circuit.library.iSwapGate.num_clbits" />
+  ### power
 
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.iSwapGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.iSwapGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.iSwapGate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### power
-
-<span id="qiskit.circuit.library.iSwapGate.power" />
-
-`power(exponent)`
-
-Raise gate to a power.
+  <Function id="qiskit.circuit.library.iSwapGate.power" name="power" signature="power(exponent)">
+    Raise gate to a power.
+  </Function>
+</Class>
 

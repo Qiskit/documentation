@@ -8,362 +8,336 @@ python_api_name: qiskit.pulse.instructions.Call
 
 # Call
 
-<span id="qiskit.pulse.instructions.Call" />
+<Class id="qiskit.pulse.instructions.Call" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/call.py" signature="Call(subroutine, value_dict=None, name=None)">
+  Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
-`Call(subroutine, value_dict=None, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/call.py "view source code")
+  Pulse `Call` instruction.
 
-Bases: `qiskit.pulse.instructions.instruction.Instruction`
+  The `Call` instruction represents the calling of a referenced subroutine (schedule). It enables code reuse both within the pulse representation and hardware (if supported).
 
-Pulse `Call` instruction.
+  Define new subroutine.
 
-The `Call` instruction represents the calling of a referenced subroutine (schedule). It enables code reuse both within the pulse representation and hardware (if supported).
+  <Admonition title="Note" type="note">
+    Inline subroutine is mutable. This requires special care for modification.
+  </Admonition>
 
-Define new subroutine.
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  Inline subroutine is mutable. This requires special care for modification.
-</Admonition>
+  *   **subroutine** (*Union\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")*,* [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")*]*) – A program subroutine to be referred to.
+  *   **value\_dict** (`Optional`\[`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]]) – Mapping of parameter object to assigned value.
+  *   **name** (`Optional`\[`str`]) – Unique ID of this subroutine. If not provided, this is generated based on the subroutine name.
 
-**Parameters**
+  **Raises**
 
-*   **subroutine** (*Union\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")*,* [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")*]*) – A program subroutine to be referred to.
-*   **value\_dict** (`Optional`\[`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]]) – Mapping of parameter object to assigned value.
-*   **name** (`Optional`\[`str`]) – Unique ID of this subroutine. If not provided, this is generated based on the subroutine name.
+  [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If subroutine is not valid data format.
 
-**Raises**
+  ## Methods
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If subroutine is not valid data format.
+  ### append
 
-## Methods
+  <Function id="qiskit.pulse.instructions.Call.append" name="append" signature="Call.append(schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
-### append
+    **Parameters**
 
-<span id="qiskit.pulse.instructions.Call.append" />
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-`Call.append(schedule, name=None)`
+    **Returns**
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+    A new schedule with `schedule` a this instruction at t=0.
 
-**Parameters**
+    **Return type**
 
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-**Returns**
+  ### assign\_parameters
 
-A new schedule with `schedule` a this instruction at t=0.
+  <Function id="qiskit.pulse.instructions.Call.assign_parameters" name="assign_parameters" signature="Call.assign_parameters(value_dict)">
+    Store parameters which will be later assigned to the subroutine.
 
-**Return type**
+    Parameter values are not immediately assigned. The subroutine with parameters assigned according to the populated parameter table will be generated only when `inline_subroutines()` function is applied to this instruction. Note that parameter assignment logic creates a copy of subroutine to avoid the mutation problem. This function is usually applied by the Qiskit compiler when the program is submitted to the backend.
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+    **Parameters**
 
-### assign\_parameters
+    **value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
 
-<span id="qiskit.pulse.instructions.Call.assign_parameters" />
+    **Return type**
 
-`Call.assign_parameters(value_dict)`
+    `Call`
 
-Store parameters which will be later assigned to the subroutine.
+    **Returns**
 
-Parameter values are not immediately assigned. The subroutine with parameters assigned according to the populated parameter table will be generated only when `inline_subroutines()` function is applied to this instruction. Note that parameter assignment logic creates a copy of subroutine to avoid the mutation problem. This function is usually applied by the Qiskit compiler when the program is submitted to the backend.
+    Self with updated parameters.
+  </Function>
 
-**Parameters**
+  ### assigned\_subroutine
 
-**value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
+  <Function id="qiskit.pulse.instructions.Call.assigned_subroutine" name="assigned_subroutine" signature="Call.assigned_subroutine()">
+    Returns this subroutine with the parameters assigned.
 
-**Return type**
+    <Admonition title="Note" type="note">
+      This function may be often called internally for class equality check despite its overhead of parameter assignment. The subroutine with parameter assigned is cached based on `.argument` hash. Once this argument is updated, new assigned instance will be returned. Note that this update is not mutable operation.
+    </Admonition>
 
-`Call`
+    **Returns**
 
-**Returns**
+    Attached program.
 
-Self with updated parameters.
+    **Return type**
 
-### assigned\_subroutine
+    program (Union\[[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule"), [ScheduleBlock](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")])
+  </Function>
 
-<span id="qiskit.pulse.instructions.Call.assigned_subroutine" />
+  ### ch\_duration
 
-`Call.assigned_subroutine()`
+  <Function id="qiskit.pulse.instructions.Call.ch_duration" name="ch_duration" signature="Call.ch_duration(*channels)">
+    Return duration of the supplied channels in this Instruction.
 
-Returns this subroutine with the parameters assigned.
+    **Parameters**
 
-<Admonition title="Note" type="note">
-  This function may be often called internally for class equality check despite its overhead of parameter assignment. The subroutine with parameter assigned is cached based on `.argument` hash. Once this argument is updated, new assigned instance will be returned. Note that this update is not mutable operation.
-</Admonition>
+    **\*channels** – Supplied channels
 
-**Returns**
+    **Return type**
 
-Attached program.
+    `int`
+  </Function>
 
-**Return type**
+  ### ch\_start\_time
 
-program (Union\[[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule"), [ScheduleBlock](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")])
+  <Function id="qiskit.pulse.instructions.Call.ch_start_time" name="ch_start_time" signature="Call.ch_start_time(*channels)">
+    Return minimum start time for supplied channels.
 
-### ch\_duration
+    **Parameters**
 
-<span id="qiskit.pulse.instructions.Call.ch_duration" />
+    **\*channels** – Supplied channels
 
-`Call.ch_duration(*channels)`
+    **Return type**
 
-Return duration of the supplied channels in this Instruction.
+    `int`
+  </Function>
 
-**Parameters**
+  ### ch\_stop\_time
 
-**\*channels** – Supplied channels
+  <Function id="qiskit.pulse.instructions.Call.ch_stop_time" name="ch_stop_time" signature="Call.ch_stop_time(*channels)">
+    Return maximum start time for supplied channels.
 
-**Return type**
+    **Parameters**
 
-`int`
+    **\*channels** – Supplied channels
 
-### ch\_start\_time
+    **Return type**
 
-<span id="qiskit.pulse.instructions.Call.ch_start_time" />
+    `int`
+  </Function>
 
-`Call.ch_start_time(*channels)`
+  ### draw
 
-Return minimum start time for supplied channels.
+  <Function id="qiskit.pulse.instructions.Call.draw" name="draw" signature="Call.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)">
+    Plot the instruction.
 
-**Parameters**
+    **Parameters**
 
-**\*channels** – Supplied channels
+    *   **dt** (`float`) – Time interval of samples
+    *   **style** (*Optional\[SchedStyle]*) – A style sheet to configure plot appearance
+    *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
+    *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
+    *   **scale** (`float`) – Relative visual scaling of waveform amplitudes
+    *   **plot\_all** (`bool`) – Plot empty channels
+    *   **plot\_range** (`Optional`\[`Tuple`\[`float`]]) – A tuple of time range to plot
+    *   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
+    *   **table** (`bool`) – Draw event table for supported instructions
+    *   **label** (`bool`) – Label individual instructions
+    *   **framechange** (`bool`) – Add framechange indicators
+    *   **channels** (`Optional`\[`List`\[`Channel`]]) – A list of channel names to plot
 
-**Return type**
+    **Returns**
 
-`int`
+    A matplotlib figure object of the pulse schedule
 
-### ch\_stop\_time
+    **Return type**
 
-<span id="qiskit.pulse.instructions.Call.ch_stop_time" />
+    matplotlib.figure
+  </Function>
 
-`Call.ch_stop_time(*channels)`
+  ### flatten
 
-Return maximum start time for supplied channels.
+  <Function id="qiskit.pulse.instructions.Call.flatten" name="flatten" signature="Call.flatten()">
+    Return itself as already single instruction.
 
-**Parameters**
+    **Return type**
 
-**\*channels** – Supplied channels
+    `Instruction`
+  </Function>
 
-**Return type**
+  ### insert
 
-`int`
+  <Function id="qiskit.pulse.instructions.Call.insert" name="insert" signature="Call.insert(start_time, schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
-### draw
+    **Parameters**
 
-<span id="qiskit.pulse.instructions.Call.draw" />
+    *   **start\_time** (`int`) – Time to insert the schedule schedule
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-`Call.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
+    **Returns**
 
-Plot the instruction.
+    A new schedule with `schedule` inserted with this instruction at t=0.
 
-**Parameters**
+    **Return type**
 
-*   **dt** (`float`) – Time interval of samples
-*   **style** (*Optional\[SchedStyle]*) – A style sheet to configure plot appearance
-*   **filename** (`Optional`\[`str`]) – Name required to save pulse image
-*   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
-*   **scale** (`float`) – Relative visual scaling of waveform amplitudes
-*   **plot\_all** (`bool`) – Plot empty channels
-*   **plot\_range** (`Optional`\[`Tuple`\[`float`]]) – A tuple of time range to plot
-*   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
-*   **table** (`bool`) – Draw event table for supported instructions
-*   **label** (`bool`) – Label individual instructions
-*   **framechange** (`bool`) – Add framechange indicators
-*   **channels** (`Optional`\[`List`\[`Channel`]]) – A list of channel names to plot
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-**Returns**
+  ### is\_parameterized
 
-A matplotlib figure object of the pulse schedule
+  <Function id="qiskit.pulse.instructions.Call.is_parameterized" name="is_parameterized" signature="Call.is_parameterized()">
+    Return True iff the instruction is parameterized.
 
-**Return type**
+    **Return type**
 
-matplotlib.figure
+    `bool`
+  </Function>
 
-### flatten
+  ### shift
 
-<span id="qiskit.pulse.instructions.Call.flatten" />
+  <Function id="qiskit.pulse.instructions.Call.shift" name="shift" signature="Call.shift(time, name=None)">
+    Return a new schedule shifted forward by time.
 
-`Call.flatten()`
+    **Parameters**
 
-Return itself as already single instruction.
+    *   **time** (`int`) – Time to shift by
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-**Return type**
+    **Returns**
 
-`Instruction`
+    The shifted schedule.
 
-### insert
+    **Return type**
 
-<span id="qiskit.pulse.instructions.Call.insert" />
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-`Call.insert(start_time, schedule, name=None)`
+  ## Attributes
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
+  ### arguments
 
-**Parameters**
+  <Attribute id="qiskit.pulse.instructions.Call.arguments" name="arguments">
+    Parameters dictionary to be assigned to subroutine.
 
-*   **start\_time** (`int`) – Time to insert the schedule schedule
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
+    **Return type**
 
-**Returns**
+    `Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]
+  </Attribute>
 
-A new schedule with `schedule` inserted with this instruction at t=0.
+  ### channels
 
-**Return type**
+  <Attribute id="qiskit.pulse.instructions.Call.channels" name="channels">
+    Returns the channels that this schedule uses.
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+    **Return type**
 
-### is\_parameterized
+    `Tuple`\[`Channel`]
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.Call.is_parameterized" />
+  ### duration
 
-`Call.is_parameterized()`
+  <Attribute id="qiskit.pulse.instructions.Call.duration" name="duration">
+    Duration of this instruction.
 
-Return True iff the instruction is parameterized.
+    **Return type**
 
-**Return type**
+    `Union`\[`int`, `ParameterExpression`]
+  </Attribute>
 
-`bool`
+  ### id
 
-### shift
+  <Attribute id="qiskit.pulse.instructions.Call.id" name="id">
+    Unique identifier for this instruction.
 
-<span id="qiskit.pulse.instructions.Call.shift" />
+    **Return type**
 
-`Call.shift(time, name=None)`
+    `int`
+  </Attribute>
 
-Return a new schedule shifted forward by time.
+  ### instructions
 
-**Parameters**
+  <Attribute id="qiskit.pulse.instructions.Call.instructions" name="instructions">
+    Iterable for getting instructions from Schedule tree.
 
-*   **time** (`int`) – Time to shift by
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
+    **Return type**
 
-**Returns**
+    `Tuple`\[`Tuple`\[`int`, `Instruction`]]
+  </Attribute>
 
-The shifted schedule.
+  ### name
 
-**Return type**
+  <Attribute id="qiskit.pulse.instructions.Call.name" name="name">
+    Name of this instruction.
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+    **Return type**
 
-## Attributes
+    `str`
+  </Attribute>
 
-<span id="qiskit.pulse.instructions.Call.arguments" />
+  ### operands
 
-### arguments
+  <Attribute id="qiskit.pulse.instructions.Call.operands" name="operands">
+    Return instruction operands.
 
-Parameters dictionary to be assigned to subroutine.
+    **Return type**
 
-**Return type**
+    `Tuple`
+  </Attribute>
 
-`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]
+  ### parameters
 
-<span id="qiskit.pulse.instructions.Call.channels" />
+  <Attribute id="qiskit.pulse.instructions.Call.parameters" name="parameters">
+    Unassigned parameters which determine the instruction behavior.
 
-### channels
+    **Return type**
 
-Returns the channels that this schedule uses.
+    `Set`
+  </Attribute>
 
-**Return type**
+  ### prefix
 
-`Tuple`\[`Channel`]
+  <Attribute id="qiskit.pulse.instructions.Call.prefix" name="prefix" attributeValue="= 'call'" />
 
-<span id="qiskit.pulse.instructions.Call.duration" />
+  ### start\_time
 
-### duration
+  <Attribute id="qiskit.pulse.instructions.Call.start_time" name="start_time">
+    Relative begin time of this instruction.
 
-Duration of this instruction.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`Union`\[`int`, `ParameterExpression`]
+  ### stop\_time
 
-<span id="qiskit.pulse.instructions.Call.id" />
+  <Attribute id="qiskit.pulse.instructions.Call.stop_time" name="stop_time">
+    Relative end time of this instruction.
 
-### id
+    **Return type**
 
-Unique identifier for this instruction.
+    `int`
+  </Attribute>
 
-**Return type**
+  ### subroutine
 
-`int`
+  <Attribute id="qiskit.pulse.instructions.Call.subroutine" name="subroutine">
+    Return attached subroutine.
 
-<span id="qiskit.pulse.instructions.Call.instructions" />
+    **Returns**
 
-### instructions
+    The program referenced by the call.
 
-Iterable for getting instructions from Schedule tree.
+    **Return type**
 
-**Return type**
-
-`Tuple`\[`Tuple`\[`int`, `Instruction`]]
-
-<span id="qiskit.pulse.instructions.Call.name" />
-
-### name
-
-Name of this instruction.
-
-**Return type**
-
-`str`
-
-<span id="qiskit.pulse.instructions.Call.operands" />
-
-### operands
-
-Return instruction operands.
-
-**Return type**
-
-`Tuple`
-
-<span id="qiskit.pulse.instructions.Call.parameters" />
-
-### parameters
-
-Unassigned parameters which determine the instruction behavior.
-
-**Return type**
-
-`Set`
-
-<span id="qiskit.pulse.instructions.Call.prefix" />
-
-### prefix
-
-`= 'call'`
-
-<span id="qiskit.pulse.instructions.Call.start_time" />
-
-### start\_time
-
-Relative begin time of this instruction.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.pulse.instructions.Call.stop_time" />
-
-### stop\_time
-
-Relative end time of this instruction.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.pulse.instructions.Call.subroutine" />
-
-### subroutine
-
-Return attached subroutine.
-
-**Returns**
-
-The program referenced by the call.
-
-**Return type**
-
-program (Union\[[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule"), [ScheduleBlock](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")])
+    program (Union\[[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule"), [ScheduleBlock](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")])
+  </Attribute>
+</Class>
 

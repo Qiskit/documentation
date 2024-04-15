@@ -8,48 +8,46 @@ python_api_name: qiskit.circuit.qpy_serialization.load
 
 # qiskit.circuit.qpy\_serialization.load
 
-<span id="qiskit.circuit.qpy_serialization.load" />
+<Function id="qiskit.circuit.qpy_serialization.load" name="load" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/qpy_serialization.py" signature="load(file_obj)">
+  Load a QPY binary file
 
-`load(file_obj)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/qpy_serialization.py "view source code")
+  This function is used to load a serialized QPY circuit file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
 
-Load a QPY binary file
+  ```python
+  from qiskit.circuit import qpy_serialization
 
-This function is used to load a serialized QPY circuit file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
+  with open('bell.qpy', 'rb') as fd:
+      circuits = qpy_serialization.load(fd)
+  ```
 
-```python
-from qiskit.circuit import qpy_serialization
+  or with a gzip compressed file:
 
-with open('bell.qpy', 'rb') as fd:
-    circuits = qpy_serialization.load(fd)
-```
+  ```python
+  import gzip
+  from qiskit.circuit import qpy_serialization
 
-or with a gzip compressed file:
+  with gzip.open('bell.qpy.gz', 'rb') as fd:
+      circuits = qpy_serialization.load(fd)
+  ```
 
-```python
-import gzip
-from qiskit.circuit import qpy_serialization
+  which will read the contents of the qpy and return a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from the file.
 
-with gzip.open('bell.qpy.gz', 'rb') as fd:
-    circuits = qpy_serialization.load(fd)
-```
+  **Parameters**
 
-which will read the contents of the qpy and return a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from the file.
+  **file\_obj** (*File*) – A file like object that contains the QPY binary data for a circuit
 
-**Parameters**
+  **Returns**
 
-**file\_obj** (*File*) – A file like object that contains the QPY binary data for a circuit
+  **List of `QuantumCircuit`**
 
-**Returns**
+  The list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects contained in the QPY data. A list is always returned, even if there is only 1 circuit in the QPY data.
 
-**List of `QuantumCircuit`**
+  **Return type**
 
-The list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects contained in the QPY data. A list is always returned, even if there is only 1 circuit in the QPY data.
+  list
 
-**Return type**
+  **Raises**
 
-list
-
-**Raises**
-
-**QiskitError** – if `file_obj` is not a valid QPY file
+  **QiskitError** – if `file_obj` is not a valid QPY file
+</Function>
 

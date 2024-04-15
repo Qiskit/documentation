@@ -8,53 +8,49 @@ python_api_name: qiskit.synthesis.EvolutionSynthesis
 
 # EvolutionSynthesis
 
-<span id="qiskit.synthesis.EvolutionSynthesis" />
+<Class id="qiskit.synthesis.EvolutionSynthesis" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/synthesis/evolution/evolution_synthesis.py" signature="EvolutionSynthesis">
+  Bases: `abc.ABC`
 
-`EvolutionSynthesis` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/synthesis/evolution/evolution_synthesis.py "view source code")
+  Interface for evolution synthesis algorithms.
 
-Bases: `abc.ABC`
+  ## Methods
 
-Interface for evolution synthesis algorithms.
+  ### synthesize
 
-## Methods
+  <Function id="qiskit.synthesis.EvolutionSynthesis.synthesize" name="synthesize" signature="abstract EvolutionSynthesis.synthesize(evolution)">
+    Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
 
-### synthesize
+    **Parameters**
 
-<span id="qiskit.synthesis.EvolutionSynthesis.synthesize" />
+    **evolution** ([*PauliEvolutionGate*](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")) – The evolution gate to synthesize.
 
-`abstract EvolutionSynthesis.synthesize(evolution)`
+    **Returns**
 
-Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
+    A circuit implementing the evolution.
 
-**Parameters**
+    **Return type**
 
-**evolution** ([*PauliEvolutionGate*](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")) – The evolution gate to synthesize.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-**Returns**
+  ## Attributes
 
-A circuit implementing the evolution.
+  ### settings
 
-**Return type**
+  <Attribute id="qiskit.synthesis.EvolutionSynthesis.settings" name="settings">
+    Return the settings in a dictionary, which can be used to reconstruct the object.
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **Return type**
 
-## Attributes
+    `Dict`\[`str`, `Any`]
 
-<span id="qiskit.synthesis.EvolutionSynthesis.settings" />
+    **Returns**
 
-### settings
+    A dictionary containing the settings of this product formula.
 
-Return the settings in a dictionary, which can be used to reconstruct the object.
+    **Raises**
 
-**Return type**
-
-`Dict`\[`str`, `Any`]
-
-**Returns**
-
-A dictionary containing the settings of this product formula.
-
-**Raises**
-
-**NotImplementedError** – The interface does not implement this method.
+    **NotImplementedError** – The interface does not implement this method.
+  </Attribute>
+</Class>
 
