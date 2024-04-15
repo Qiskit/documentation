@@ -8,37 +8,33 @@ python_api_name: qiskit.aqua.operators.evolutions.EvolutionFactory
 
 # EvolutionFactory
 
-<span id="qiskit.aqua.operators.evolutions.EvolutionFactory" />
+<Class id="qiskit.aqua.operators.evolutions.EvolutionFactory" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/evolution_factory.py" signature="EvolutionFactory">
+  Bases: `object`
 
-`EvolutionFactory` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/evolution_factory.py "view source code")
+  A factory class for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
 
-Bases: `object`
+  ## Methods
 
-A factory class for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
+  ### build
 
-## Methods
+  <Function id="qiskit.aqua.operators.evolutions.EvolutionFactory.build" name="build" signature="static EvolutionFactory.build(operator=None)">
+    A factory method for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
 
-### build
+    **Parameters**
 
-<span id="qiskit.aqua.operators.evolutions.EvolutionFactory.build" />
+    **operator** (`Optional`\[`OperatorBase`]) – the Operator being evolved
 
-`static EvolutionFactory.build(operator=None)`
+    **Returns**
 
-A factory method for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
+    the `EvolutionBase` best suited to evolve operator.
 
-**Parameters**
+    **Return type**
 
-**operator** (`Optional`\[`OperatorBase`]) – the Operator being evolved
+    [EvolutionBase](qiskit.aqua.operators.evolutions.EvolutionBase "qiskit.aqua.operators.evolutions.EvolutionBase")
 
-**Returns**
+    **Raises**
 
-the `EvolutionBase` best suited to evolve operator.
-
-**Return type**
-
-[EvolutionBase](qiskit.aqua.operators.evolutions.EvolutionBase "qiskit.aqua.operators.evolutions.EvolutionBase")
-
-**Raises**
-
-**ValueError** – If operator is not of a composition for which we know the best Evolution method.
+    **ValueError** – If operator is not of a composition for which we know the best Evolution method.
+  </Function>
+</Class>
 

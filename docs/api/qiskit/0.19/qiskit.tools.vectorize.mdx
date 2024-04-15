@@ -8,39 +8,37 @@ python_api_name: qiskit.tools.vectorize
 
 # vectorize
 
-<span id="qiskit.tools.vectorize" />
+<Function id="qiskit.tools.vectorize" name="vectorize" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py" signature="vectorize(density_matrix, method='col')">
+  Flatten an operator to a vector in a specified basis.
 
-`vectorize(density_matrix, method='col')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+  **Parameters**
 
-Flatten an operator to a vector in a specified basis.
+  *   **density\_matrix** (*ndarray*) – a density matrix.
 
-**Parameters**
+  *   **method** (*str*) –
 
-*   **density\_matrix** (*ndarray*) – a density matrix.
+      the method of vectorization. Allowed values are:
 
-*   **method** (*str*) –
+      *   ’col’ (default) flattens to column-major vector.
 
-    the method of vectorization. Allowed values are:
+      *   ’row’ flattens to row-major vector.
 
-    *   ’col’ (default) flattens to column-major vector.
+      *   ’pauli’ flattens in the n-qubit Pauli basis.
 
-    *   ’row’ flattens to row-major vector.
+      *   **’pauli-weights’: flattens in the n-qubit Pauli basis ordered by**
 
-    *   ’pauli’ flattens in the n-qubit Pauli basis.
+          weight.
 
-    *   **’pauli-weights’: flattens in the n-qubit Pauli basis ordered by**
+  **Returns**
 
-        weight.
+  the resulting vector.
 
-**Returns**
+  **Return type**
 
-the resulting vector.
+  ndarray
 
-**Return type**
+  **Raises**
 
-ndarray
-
-**Raises**
-
-**Exception** – if input state is not a n-qubit state
+  **Exception** – if input state is not a n-qubit state
+</Function>
 

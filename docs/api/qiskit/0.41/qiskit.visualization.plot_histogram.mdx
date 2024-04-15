@@ -8,71 +8,69 @@ python_api_name: qiskit.visualization.plot_histogram
 
 # qiskit.visualization.plot\_histogram
 
-<span id="qiskit.visualization.plot_histogram" />
+<Function id="qiskit.visualization.plot_histogram" name="plot_histogram" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/visualization/counts_visualization.py" signature="plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)">
+  Plot a histogram of input counts data.
 
-`plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/visualization/counts_visualization.py "view source code")
+  **Parameters**
 
-Plot a histogram of input counts data.
+  *   **data** (*list or dict*) – This is either a list of dictionaries or a single dict containing the values to represent (ex \{‘001’: 130})
+  *   **figsize** (*tuple*) – Figure size in inches.
+  *   **color** (*list or str*) – String or list of strings for histogram bar colors.
+  *   **number\_to\_keep** (*int*) – The number of terms to plot per dataset. The rest is made into a single bar called ‘rest’. If multiple datasets are given, the `number_to_keep` applies to each dataset individually, which may result in more bars than `number_to_keep + 1`. The `number_to_keep` applies to the total values, rather than the x-axis sort.
+  *   **sort** (*string*) – Could be ‘asc’, ‘desc’, ‘hamming’, ‘value’, or ‘value\_desc’. If set to ‘value’ or ‘value\_desc’ the x axis will be sorted by the number of counts for each bitstring. Defaults to ‘asc’.
+  *   **target\_string** (*str*) – Target string if ‘sort’ is a distance measure.
+  *   **legend** (*list*) – A list of strings to use for labels of the data. The number of entries must match the length of data (if data is a list or 1 if it’s a dict)
+  *   **bar\_labels** (*bool*) – Label each bar in histogram with counts value.
+  *   **title** (*str*) – A string to use for the plot title
+  *   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
+  *   **filename** (*str*) – file path to save image to.
 
-**Parameters**
+  **Returns**
 
-*   **data** (*list or dict*) – This is either a list of dictionaries or a single dict containing the values to represent (ex \{‘001’: 130})
-*   **figsize** (*tuple*) – Figure size in inches.
-*   **color** (*list or str*) – String or list of strings for histogram bar colors.
-*   **number\_to\_keep** (*int*) – The number of terms to plot per dataset. The rest is made into a single bar called ‘rest’. If multiple datasets are given, the `number_to_keep` applies to each dataset individually, which may result in more bars than `number_to_keep + 1`. The `number_to_keep` applies to the total values, rather than the x-axis sort.
-*   **sort** (*string*) – Could be ‘asc’, ‘desc’, ‘hamming’, ‘value’, or ‘value\_desc’. If set to ‘value’ or ‘value\_desc’ the x axis will be sorted by the number of counts for each bitstring. Defaults to ‘asc’.
-*   **target\_string** (*str*) – Target string if ‘sort’ is a distance measure.
-*   **legend** (*list*) – A list of strings to use for labels of the data. The number of entries must match the length of data (if data is a list or 1 if it’s a dict)
-*   **bar\_labels** (*bool*) – Label each bar in histogram with counts value.
-*   **title** (*str*) – A string to use for the plot title
-*   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
-*   **filename** (*str*) – file path to save image to.
+  A figure for the rendered histogram, if the `ax` kwarg is not set.
 
-**Returns**
+  **Return type**
 
-A figure for the rendered histogram, if the `ax` kwarg is not set.
+  matplotlib.Figure
 
-**Return type**
+  **Raises**
 
-matplotlib.Figure
+  *   **MissingOptionalLibraryError** – Matplotlib not available.
+  *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When legend is provided and the length doesn’t match the input data.
+  *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – Input must be Counts or a dict
 
-**Raises**
+  **Examples**
 
-*   **MissingOptionalLibraryError** – Matplotlib not available.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When legend is provided and the length doesn’t match the input data.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – Input must be Counts or a dict
+  ```python
+  # Plot two counts in the same figure with legends and colors specified.
 
-**Examples**
+  from qiskit.visualization import plot_histogram
 
-```python
-# Plot two counts in the same figure with legends and colors specified.
+  counts1 = {'00': 525, '11': 499}
+  counts2 = {'00': 511, '11': 514}
 
-from qiskit.visualization import plot_histogram
+  legend = ['First execution', 'Second execution']
 
-counts1 = {'00': 525, '11': 499}
-counts2 = {'00': 511, '11': 514}
+  plot_histogram([counts1, counts2], legend=legend, color=['crimson','midnightblue'],
+                  title="New Histogram")
 
-legend = ['First execution', 'Second execution']
+  # You can sort the bitstrings using different methods.
 
-plot_histogram([counts1, counts2], legend=legend, color=['crimson','midnightblue'],
-                title="New Histogram")
+  counts = {'001': 596, '011': 211, '010': 50, '000': 117, '101': 33, '111': 8,
+          '100': 6, '110': 3}
 
-# You can sort the bitstrings using different methods.
+  # Sort by the counts in descending order
+  hist1 = plot_histogram(counts, sort='value_desc')
 
-counts = {'001': 596, '011': 211, '010': 50, '000': 117, '101': 33, '111': 8,
-        '100': 6, '110': 3}
+  # Sort by the hamming distance (the number of bit flips to change from
+  # one bitstring to the other) from a target string.
+  hist2 = plot_histogram(counts, sort='hamming', target_string='001')
+  ```
 
-# Sort by the counts in descending order
-hist1 = plot_histogram(counts, sort='value_desc')
+  ![../\_images/qiskit-visualization-plot\_histogram-1\_00.png](/images/api/qiskit/0.41/qiskit-visualization-plot_histogram-1_00.png)
 
-# Sort by the hamming distance (the number of bit flips to change from
-# one bitstring to the other) from a target string.
-hist2 = plot_histogram(counts, sort='hamming', target_string='001')
-```
+  ![../\_images/qiskit-visualization-plot\_histogram-1\_01.png](/images/api/qiskit/0.41/qiskit-visualization-plot_histogram-1_01.png)
 
-![../\_images/qiskit-visualization-plot\_histogram-1\_00.png](/images/api/qiskit/0.41/qiskit-visualization-plot_histogram-1_00.png)
-
-![../\_images/qiskit-visualization-plot\_histogram-1\_01.png](/images/api/qiskit/0.41/qiskit-visualization-plot_histogram-1_01.png)
-
-![../\_images/qiskit-visualization-plot\_histogram-1\_02.png](/images/api/qiskit/0.41/qiskit-visualization-plot_histogram-1_02.png)
+  ![../\_images/qiskit-visualization-plot\_histogram-1\_02.png](/images/api/qiskit/0.41/qiskit-visualization-plot_histogram-1_02.png)
+</Function>
 

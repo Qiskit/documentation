@@ -8,30 +8,28 @@ python_api_name: qiskit.ignis.verification.expectation_counts
 
 # expectation\_counts
 
-<span id="qiskit.ignis.verification.expectation_counts" />
+<Function id="qiskit.ignis.verification.expectation_counts" name="expectation_counts" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/data.py" signature="expectation_counts(counts)">
+  Converts count dict to an expectation counts dict.
 
-`expectation_counts(counts)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/data.py "view source code")
+  The returned dictionary is also a counts dictionary but the keys correspond to the which subsystems the operators are acting on and the counts are the un-normalized expectation values. The counts can be converted to expectation values by dividing by the value of the all ‘0’s entry. The ‘0’s key is the expectation value of the identity operator, and its value is equal to the number of shots.
 
-Converts count dict to an expectation counts dict.
+  **Parameters**
 
-The returned dictionary is also a counts dictionary but the keys correspond to the which subsystems the operators are acting on and the counts are the un-normalized expectation values. The counts can be converted to expectation values by dividing by the value of the all ‘0’s entry. The ‘0’s key is the expectation value of the identity operator, and its value is equal to the number of shots.
+  **counts** (`Dict`\[`str`, `int`]) – a counts dictionary.
 
-**Parameters**
+  **Return type**
 
-**counts** (`Dict`\[`str`, `int`]) – a counts dictionary.
+  `Dict`\[`str`, `int`]
 
-**Return type**
+  **Returns**
 
-`Dict`\[`str`, `int`]
+  A new counts dictionary where the counts are un-normalized expectation values for the subsystem measurement operators.
 
-**Returns**
+  Consider a input counts dictionary for s shots of measurement of the two-qubit operator XZ (X on qubit-1, Z on qubit-0). The dictionary returned will have keys corresponding to:
 
-A new counts dictionary where the counts are un-normalized expectation values for the subsystem measurement operators.
-
-Consider a input counts dictionary for s shots of measurement of the two-qubit operator XZ (X on qubit-1, Z on qubit-0). The dictionary returned will have keys corresponding to:
-
-> *   `00`: $s * <II>$,
-> *   `01`: $s * <IZ>$,
-> *   `10`: $s * <XI>$,
-> *   `11`: $s * <XZ>$
+  > *   `00`: $s * <II>$,
+  > *   `01`: $s * <IZ>$,
+  > *   `10`: $s * <XI>$,
+  > *   `11`: $s * <XZ>$
+</Function>
 

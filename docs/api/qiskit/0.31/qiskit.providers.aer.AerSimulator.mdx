@@ -8,364 +8,334 @@ python_api_name: qiskit.providers.aer.AerSimulator
 
 # AerSimulator
 
-<span id="qiskit.providers.aer.AerSimulator" />
+<Class id="qiskit.providers.aer.AerSimulator" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/backends/aer_simulator.py" signature="AerSimulator(configuration=None, properties=None, provider=None, **backend_options)">
+  Bases: `qiskit.providers.aer.backends.aerbackend.AerBackend`
 
-`AerSimulator(configuration=None, properties=None, provider=None, **backend_options)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+  Noisy quantum circuit simulator backend.
 
-Bases: `qiskit.providers.aer.backends.aerbackend.AerBackend`
+  **Configurable Options**
 
-Noisy quantum circuit simulator backend.
+  The AerSimulator supports multiple simulation methods and configurable options for each simulation method. These may be set using the appropriate kwargs during initialization. They can also be set of updated using the [`set_options()`](qiskit.providers.aer.AerSimulator#set_options "qiskit.providers.aer.AerSimulator.set_options") method.
 
-**Configurable Options**
+  Run-time options may also be specified as kwargs using the [`run()`](qiskit.providers.aer.AerSimulator#run "qiskit.providers.aer.AerSimulator.run") method. These will not be stored in the backend and will only apply to that execution. They will also override any previously set options.
 
-The AerSimulator supports multiple simulation methods and configurable options for each simulation method. These may be set using the appropriate kwargs during initialization. They can also be set of updated using the [`set_options()`](qiskit.providers.aer.AerSimulator#set_options "qiskit.providers.aer.AerSimulator.set_options") method.
+  For example, to configure a density matrix simulator with a custom noise model to use for every execution
 
-Run-time options may also be specified as kwargs using the [`run()`](qiskit.providers.aer.AerSimulator#run "qiskit.providers.aer.AerSimulator.run") method. These will not be stored in the backend and will only apply to that execution. They will also override any previously set options.
+  ```python
+  noise_model = NoiseModel.from_backend(backend)
+  backend = AerSimulator(method='density_matrix',
+                          noise_model=noise_model)
+  ```
 
-For example, to configure a density matrix simulator with a custom noise model to use for every execution
+  **Simulating an IBMQ Backend**
 
-```python
-noise_model = NoiseModel.from_backend(backend)
-backend = AerSimulator(method='density_matrix',
-                        noise_model=noise_model)
-```
+  The simulator can be automatically configured to mimic an IBMQ backend using the [`from_backend()`](qiskit.providers.aer.AerSimulator#from_backend "qiskit.providers.aer.AerSimulator.from_backend") method. This will configure the simulator to use the basic device `NoiseModel` for that backend, and the same basis gates and coupling map.
 
-**Simulating an IBMQ Backend**
+  ```python
+  backend = AerSimulator.from_backend(backend)
+  ```
 
-The simulator can be automatically configured to mimic an IBMQ backend using the [`from_backend()`](qiskit.providers.aer.AerSimulator#from_backend "qiskit.providers.aer.AerSimulator.from_backend") method. This will configure the simulator to use the basic device `NoiseModel` for that backend, and the same basis gates and coupling map.
+  **Returning the Final State**
 
-```python
-backend = AerSimulator.from_backend(backend)
-```
+  The final state of the simulator can be saved to the returned `Result` object by appending the [`save_state()`](qiskit.providers.aer.library.save_state "qiskit.providers.aer.library.save_state") instruction to a quantum circuit. The format of the final state will depend on the simulation method used. Additional simulation data may also be saved using the other save instructions in `qiskit.provider.aer.library`.
 
-**Returning the Final State**
+  **Simulation Method Option**
 
-The final state of the simulator can be saved to the returned `Result` object by appending the [`save_state()`](qiskit.providers.aer.library.save_state "qiskit.providers.aer.library.save_state") instruction to a quantum circuit. The format of the final state will depend on the simulation method used. Additional simulation data may also be saved using the other save instructions in `qiskit.provider.aer.library`.
+  The simulation method is set using the `method` kwarg. A list supported simulation methods can be returned using [`available_methods()`](qiskit.providers.aer.AerSimulator#available_methods "qiskit.providers.aer.AerSimulator.available_methods"), these are
 
-**Simulation Method Option**
+  *   `"automatic"`: Default simulation method. Select the simulation method automatically based on the circuit and noise model.
+  *   `"statevector"`: A dense statevector simulation that can sample measurement outcomes from *ideal* circuits with all measurements at end of the circuit. For noisy simulations each shot samples a randomly sampled noisy circuit from the noise model.
+  *   `"density_matrix"`: A dense density matrix simulation that may sample measurement outcomes from *noisy* circuits with all measurements at end of the circuit.
+  *   `"stabilizer"`: An efficient Clifford stabilizer state simulator that can simulate noisy Clifford circuits if all errors in the noise model are also Clifford errors.
+  *   `"extended_stabilizer"`: An approximate simulated for Clifford + T circuits based on a state decomposition into ranked-stabilizer state. The number of terms grows with the number of non-Clifford (T) gates.
+  *   `"matrix_product_state"`: A tensor-network statevector simulator that uses a Matrix Product State (MPS) representation for the state. This can be done either with or without truncation of the MPS bond dimensions depending on the simulator options. The default behaviour is no truncation.
+  *   `"unitary"`: A dense unitary matrix simulation of an ideal circuit. This simulates the unitary matrix of the circuit itself rather than the evolution of an initial quantum state. This method can only simulate gates, it does not support measurement, reset, or noise.
+  *   `"superop"`: A dense superoperator matrix simulation of an ideal or noisy circuit. This simulates the superoperator matrix of the circuit itself rather than the evolution of an initial quantum state. This method can simulate ideal and noisy gates, and reset, but does not support measurement.
 
-The simulation method is set using the `method` kwarg. A list supported simulation methods can be returned using [`available_methods()`](qiskit.providers.aer.AerSimulator#available_methods "qiskit.providers.aer.AerSimulator.available_methods"), these are
+  **GPU Simulation**
 
-*   `"automatic"`: Default simulation method. Select the simulation method automatically based on the circuit and noise model.
-*   `"statevector"`: A dense statevector simulation that can sample measurement outcomes from *ideal* circuits with all measurements at end of the circuit. For noisy simulations each shot samples a randomly sampled noisy circuit from the noise model.
-*   `"density_matrix"`: A dense density matrix simulation that may sample measurement outcomes from *noisy* circuits with all measurements at end of the circuit.
-*   `"stabilizer"`: An efficient Clifford stabilizer state simulator that can simulate noisy Clifford circuits if all errors in the noise model are also Clifford errors.
-*   `"extended_stabilizer"`: An approximate simulated for Clifford + T circuits based on a state decomposition into ranked-stabilizer state. The number of terms grows with the number of non-Clifford (T) gates.
-*   `"matrix_product_state"`: A tensor-network statevector simulator that uses a Matrix Product State (MPS) representation for the state. This can be done either with or without truncation of the MPS bond dimensions depending on the simulator options. The default behaviour is no truncation.
-*   `"unitary"`: A dense unitary matrix simulation of an ideal circuit. This simulates the unitary matrix of the circuit itself rather than the evolution of an initial quantum state. This method can only simulate gates, it does not support measurement, reset, or noise.
-*   `"superop"`: A dense superoperator matrix simulation of an ideal or noisy circuit. This simulates the superoperator matrix of the circuit itself rather than the evolution of an initial quantum state. This method can simulate ideal and noisy gates, and reset, but does not support measurement.
+  By default all simulation methods run on the CPU, however select methods also support running on a GPU if qiskit-aer was installed with GPU support on a compatible NVidia GPU and CUDA version.
 
-**GPU Simulation**
+  | Method                    | GPU Supported |
+  | ------------------------- | ------------- |
+  | `automatic`               | Sometimes     |
+  | `statevector`             | Yes           |
+  | `density_matrix`          | Yes           |
+  | `stabilizer`              | No            |
+  | “matrix\_product\_state\` | No            |
+  | `extended_stabilizer`     | No            |
+  | `unitary`                 | Yes           |
+  | `superop`                 | No            |
 
-By default all simulation methods run on the CPU, however select methods also support running on a GPU if qiskit-aer was installed with GPU support on a compatible NVidia GPU and CUDA version.
+  Running a GPU simulation is done using `device="GPU"` kwarg during initialization or with [`set_options()`](qiskit.providers.aer.AerSimulator#set_options "qiskit.providers.aer.AerSimulator.set_options"). The list of supported devices for the current system can be returned using [`available_devices()`](qiskit.providers.aer.AerSimulator#available_devices "qiskit.providers.aer.AerSimulator.available_devices").
 
-| Method                    | GPU Supported |
-| ------------------------- | ------------- |
-| `automatic`               | Sometimes     |
-| `statevector`             | Yes           |
-| `density_matrix`          | Yes           |
-| `stabilizer`              | No            |
-| “matrix\_product\_state\` | No            |
-| `extended_stabilizer`     | No            |
-| `unitary`                 | Yes           |
-| `superop`                 | No            |
+  **Additional Backend Options**
 
-Running a GPU simulation is done using `device="GPU"` kwarg during initialization or with [`set_options()`](qiskit.providers.aer.AerSimulator#set_options "qiskit.providers.aer.AerSimulator.set_options"). The list of supported devices for the current system can be returned using [`available_devices()`](qiskit.providers.aer.AerSimulator#available_devices "qiskit.providers.aer.AerSimulator.available_devices").
+  The following simulator specific backend options are supported
 
-**Additional Backend Options**
+  *   `method` (str): Set the simulation method (Default: `"automatic"`). Use [`available_methods()`](qiskit.providers.aer.AerSimulator#available_methods "qiskit.providers.aer.AerSimulator.available_methods") to return a list of all availabe methods.
+  *   `device` (str): Set the simulation device (Default: `"CPU"`). Use [`available_devices()`](qiskit.providers.aer.AerSimulator#available_devices "qiskit.providers.aer.AerSimulator.available_devices") to return a list of devices supported on the current system.
+  *   `precision` (str): Set the floating point precision for certain simulation methods to either `"single"` or `"double"` precision (default: `"double"`).
+  *   `executor` (futures.Executor or None): Set a custom executor for asynchronous running of simulation jobs (Default: None).
+  *   `max_job_size` (int or None): If the number of run circuits exceeds this value simulation will be run as a set of of sub-jobs on the executor. If `None` simulation of all circuits are submitted to the executor as a single job (Default: None).
+  *   `enable_truncation` (bool): If set to True this removes unnecessary qubits which do not affect the simulation outcome from the simulated circuits (Default: True).
+  *   `zero_threshold` (double): Sets the threshold for truncating small values to zero in the result data (Default: 1e-10).
+  *   `validation_threshold` (double): Sets the threshold for checking if initial states are valid (Default: 1e-8).
+  *   `max_parallel_threads` (int): Sets the maximum number of CPU cores used by OpenMP for parallelization. If set to 0 the maximum will be set to the number of CPU cores (Default: 0).
+  *   `max_parallel_experiments` (int): Sets the maximum number of qobj experiments that may be executed in parallel up to the max\_parallel\_threads value. If set to 1 parallel circuit execution will be disabled. If set to 0 the maximum will be automatically set to max\_parallel\_threads (Default: 1).
+  *   `max_parallel_shots` (int): Sets the maximum number of shots that may be executed in parallel during each experiment execution, up to the max\_parallel\_threads value. If set to 1 parallel shot execution will be disabled. If set to 0 the maximum will be automatically set to max\_parallel\_threads. Note that this cannot be enabled at the same time as parallel experiment execution (Default: 0).
+  *   `max_memory_mb` (int): Sets the maximum size of memory to store a state vector. If a state vector needs more, an error is thrown. In general, a state vector of n-qubits uses 2^n complex values (16 Bytes). If set to 0, the maximum will be automatically set to the system memory size (Default: 0).
 
-The following simulator specific backend options are supported
+  These backend options only apply when using the `"statevector"` simulation method:
 
-*   `method` (str): Set the simulation method (Default: `"automatic"`). Use [`available_methods()`](qiskit.providers.aer.AerSimulator#available_methods "qiskit.providers.aer.AerSimulator.available_methods") to return a list of all availabe methods.
-*   `device` (str): Set the simulation device (Default: `"CPU"`). Use [`available_devices()`](qiskit.providers.aer.AerSimulator#available_devices "qiskit.providers.aer.AerSimulator.available_devices") to return a list of devices supported on the current system.
-*   `precision` (str): Set the floating point precision for certain simulation methods to either `"single"` or `"double"` precision (default: `"double"`).
-*   `executor` (futures.Executor or None): Set a custom executor for asynchronous running of simulation jobs (Default: None).
-*   `max_job_size` (int or None): If the number of run circuits exceeds this value simulation will be run as a set of of sub-jobs on the executor. If `None` simulation of all circuits are submitted to the executor as a single job (Default: None).
-*   `enable_truncation` (bool): If set to True this removes unnecessary qubits which do not affect the simulation outcome from the simulated circuits (Default: True).
-*   `zero_threshold` (double): Sets the threshold for truncating small values to zero in the result data (Default: 1e-10).
-*   `validation_threshold` (double): Sets the threshold for checking if initial states are valid (Default: 1e-8).
-*   `max_parallel_threads` (int): Sets the maximum number of CPU cores used by OpenMP for parallelization. If set to 0 the maximum will be set to the number of CPU cores (Default: 0).
-*   `max_parallel_experiments` (int): Sets the maximum number of qobj experiments that may be executed in parallel up to the max\_parallel\_threads value. If set to 1 parallel circuit execution will be disabled. If set to 0 the maximum will be automatically set to max\_parallel\_threads (Default: 1).
-*   `max_parallel_shots` (int): Sets the maximum number of shots that may be executed in parallel during each experiment execution, up to the max\_parallel\_threads value. If set to 1 parallel shot execution will be disabled. If set to 0 the maximum will be automatically set to max\_parallel\_threads. Note that this cannot be enabled at the same time as parallel experiment execution (Default: 0).
-*   `max_memory_mb` (int): Sets the maximum size of memory to store a state vector. If a state vector needs more, an error is thrown. In general, a state vector of n-qubits uses 2^n complex values (16 Bytes). If set to 0, the maximum will be automatically set to the system memory size (Default: 0).
+  *   `statevector_parallel_threshold` (int): Sets the threshold that the number of qubits must be greater than to enable OpenMP parallelization for matrix multiplication during execution of an experiment. If parallel circuit or shot execution is enabled this will only use unallocated CPU cores up to max\_parallel\_threads. Note that setting this too low can reduce performance (Default: 14).
+  *   `statevector_sample_measure_opt` (int): Sets the threshold that the number of qubits must be greater than to enable a large qubit optimized implementation of measurement sampling. Note that setting this two low can reduce performance (Default: 10)
 
-These backend options only apply when using the `"statevector"` simulation method:
+  These backend options only apply when using the `"stabilizer"` simulation method:
 
-*   `statevector_parallel_threshold` (int): Sets the threshold that the number of qubits must be greater than to enable OpenMP parallelization for matrix multiplication during execution of an experiment. If parallel circuit or shot execution is enabled this will only use unallocated CPU cores up to max\_parallel\_threads. Note that setting this too low can reduce performance (Default: 14).
-*   `statevector_sample_measure_opt` (int): Sets the threshold that the number of qubits must be greater than to enable a large qubit optimized implementation of measurement sampling. Note that setting this two low can reduce performance (Default: 10)
+  *   `stabilizer_max_snapshot_probabilities` (int): set the maximum qubit number for the \~qiskit.providers.aer.extensions.SnapshotProbabilities instruction (Default: 32).
 
-These backend options only apply when using the `"stabilizer"` simulation method:
+  These backend options only apply when using the `"extended_stabilizer"` simulation method:
 
-*   `stabilizer_max_snapshot_probabilities` (int): set the maximum qubit number for the \~qiskit.providers.aer.extensions.SnapshotProbabilities instruction (Default: 32).
+  *   `extended_stabilizer_sampling_method` (string): Choose how to simulate measurements on qubits. The performance of the simulator depends significantly on this choice. In the following, let n be the number of qubits in the circuit, m the number of qubits measured, and S be the number of shots (Default: resampled\_metropolis).
 
-These backend options only apply when using the `"extended_stabilizer"` simulation method:
+      *   `"metropolis"`: Use a Monte-Carlo method to sample many output strings from the simulator at once. To be accurate, this method requires that all the possible output strings have a non-zero probability. It will give inaccurate results on cases where the circuit has many zero-probability outcomes. This method has an overall runtime that scales as n^\{2} + (S-1)n.
+      *   `"resampled_metropolis"`: A variant of the metropolis method, where the Monte-Carlo method is reinitialised for every shot. This gives better results for circuits where some outcomes have zero probability, but will still fail if the output distribution is sparse. The overall runtime scales as Sn^\{2}.
+      *   `"norm_estimation"`: An alternative sampling method using random state inner products to estimate outcome probabilites. This method requires twice as much memory, and significantly longer runtimes, but gives accurate results on circuits with sparse output distributions. The overall runtime scales as Sn^\{3}m^\{3}.
 
-*   `extended_stabilizer_sampling_method` (string): Choose how to simulate measurements on qubits. The performance of the simulator depends significantly on this choice. In the following, let n be the number of qubits in the circuit, m the number of qubits measured, and S be the number of shots (Default: resampled\_metropolis).
+  *   `extended_stabilizer_metropolis_mixing_time` (int): Set how long the monte-carlo method runs before performing measurements. If the output distribution is strongly peaked, this can be decreased alongside setting extended\_stabilizer\_disable\_measurement\_opt to True (Default: 5000).
 
-    *   `"metropolis"`: Use a Monte-Carlo method to sample many output strings from the simulator at once. To be accurate, this method requires that all the possible output strings have a non-zero probability. It will give inaccurate results on cases where the circuit has many zero-probability outcomes. This method has an overall runtime that scales as n^\{2} + (S-1)n.
-    *   `"resampled_metropolis"`: A variant of the metropolis method, where the Monte-Carlo method is reinitialised for every shot. This gives better results for circuits where some outcomes have zero probability, but will still fail if the output distribution is sparse. The overall runtime scales as Sn^\{2}.
-    *   `"norm_estimation"`: An alternative sampling method using random state inner products to estimate outcome probabilites. This method requires twice as much memory, and significantly longer runtimes, but gives accurate results on circuits with sparse output distributions. The overall runtime scales as Sn^\{3}m^\{3}.
+  *   `"extended_stabilizer_approximation_error"` (double): Set the error in the approximation for the extended\_stabilizer method. A smaller error needs more memory and computational time (Default: 0.05).
 
-*   `extended_stabilizer_metropolis_mixing_time` (int): Set how long the monte-carlo method runs before performing measurements. If the output distribution is strongly peaked, this can be decreased alongside setting extended\_stabilizer\_disable\_measurement\_opt to True (Default: 5000).
+  *   `extended_stabilizer_norm_estimation_samples` (int): The default number of samples for the norm estimation sampler. The method will use the default, or 4m^\{2} samples where m is the number of qubits to be measured, whichever is larger (Default: 100).
 
-*   `"extended_stabilizer_approximation_error"` (double): Set the error in the approximation for the extended\_stabilizer method. A smaller error needs more memory and computational time (Default: 0.05).
+  *   `extended_stabilizer_norm_estimation_repetitions` (int): The number of times to repeat the norm estimation. The median of these reptitions is used to estimate and sample output strings (Default: 3).
 
-*   `extended_stabilizer_norm_estimation_samples` (int): The default number of samples for the norm estimation sampler. The method will use the default, or 4m^\{2} samples where m is the number of qubits to be measured, whichever is larger (Default: 100).
+  *   `extended_stabilizer_parallel_threshold` (int): Set the minimum size of the extended stabilizer decomposition before we enable OpenMP parallelization. If parallel circuit or shot execution is enabled this will only use unallocated CPU cores up to max\_parallel\_threads (Default: 100).
 
-*   `extended_stabilizer_norm_estimation_repetitions` (int): The number of times to repeat the norm estimation. The median of these reptitions is used to estimate and sample output strings (Default: 3).
+  *   `extended_stabilizer_probabilities_snapshot_samples` (int): If using the metropolis or resampled\_metropolis sampling method, set the number of samples used to estimate probabilities in a probabilities snapshot (Default: 3000).
 
-*   `extended_stabilizer_parallel_threshold` (int): Set the minimum size of the extended stabilizer decomposition before we enable OpenMP parallelization. If parallel circuit or shot execution is enabled this will only use unallocated CPU cores up to max\_parallel\_threads (Default: 100).
+  These backend options only apply when using the `"matrix_product_state"` simulation method:
 
-*   `extended_stabilizer_probabilities_snapshot_samples` (int): If using the metropolis or resampled\_metropolis sampling method, set the number of samples used to estimate probabilities in a probabilities snapshot (Default: 3000).
+  *   `matrix_product_state_max_bond_dimension` (int): Sets a limit on the number of Schmidt coefficients retained at the end of the svd algorithm. Coefficients beyond this limit will be discarded. (Default: None, i.e., no limit on the bond dimension).
 
-These backend options only apply when using the `"matrix_product_state"` simulation method:
+  *   `matrix_product_state_truncation_threshold` (double): Discard the smallest coefficients for which the sum of their squares is smaller than this threshold. (Default: 1e-16).
 
-*   `matrix_product_state_max_bond_dimension` (int): Sets a limit on the number of Schmidt coefficients retained at the end of the svd algorithm. Coefficients beyond this limit will be discarded. (Default: None, i.e., no limit on the bond dimension).
+  *   `mps_sample_measure_algorithm` (str): Choose which algorithm to use for `"sample_measure"` (Default: “mps\_apply\_measure”).
 
-*   `matrix_product_state_truncation_threshold` (double): Discard the smallest coefficients for which the sum of their squares is smaller than this threshold. (Default: 1e-16).
+      *   `"mps_probabilities"`: This method first constructs the probability vector and then generates a sample per shot. It is more efficient for a large number of shots and a small number of qubits, with complexity O(2^n \* n \* D^2) to create the vector and O(1) per shot, where n is the number of qubits and D is the bond dimension.
+      *   `"mps_apply_measure"`: This method creates a copy of the mps structure and measures directly on it. It is more efficient for a small number of shots, and a large number of qubits, with complexity around O(n \* D^2) per shot.
 
-*   `mps_sample_measure_algorithm` (str): Choose which algorithm to use for `"sample_measure"` (Default: “mps\_apply\_measure”).
+  *   `mps_log_data` (str): if True, output logging data of the MPS structure: bond dimensions and values discarded during approximation. (Default: False)
 
-    *   `"mps_probabilities"`: This method first constructs the probability vector and then generates a sample per shot. It is more efficient for a large number of shots and a small number of qubits, with complexity O(2^n \* n \* D^2) to create the vector and O(1) per shot, where n is the number of qubits and D is the bond dimension.
-    *   `"mps_apply_measure"`: This method creates a copy of the mps structure and measures directly on it. It is more efficient for a small number of shots, and a large number of qubits, with complexity around O(n \* D^2) per shot.
+  These backend options apply in circuit optimization passes:
 
-*   `mps_log_data` (str): if True, output logging data of the MPS structure: bond dimensions and values discarded during approximation. (Default: False)
+  *   `fusion_enable` (bool): Enable fusion optimization in circuit optimization passes \[Default: True]
+  *   `fusion_verbose` (bool): Output gates generated in fusion optimization into metadata \[Default: False]
+  *   `fusion_max_qubit` (int): Maximum number of qubits for a operation generated in a fusion optimization \[Default: 5]
+  *   `fusion_threshold` (int): Threshold that number of qubits must be greater than or equal to enable fusion optimization \[Default: 14]
 
-These backend options apply in circuit optimization passes:
+  Aer class for backends.
 
-*   `fusion_enable` (bool): Enable fusion optimization in circuit optimization passes \[Default: True]
-*   `fusion_verbose` (bool): Output gates generated in fusion optimization into metadata \[Default: False]
-*   `fusion_max_qubit` (int): Maximum number of qubits for a operation generated in a fusion optimization \[Default: 5]
-*   `fusion_threshold` (int): Threshold that number of qubits must be greater than or equal to enable fusion optimization \[Default: 14]
+  This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
 
-Aer class for backends.
+  **Parameters**
 
-This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
+  *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
+  *   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
+  *   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
+  *   **backend\_options** (*dict or None*) – Optional set custom backend options.
 
-**Parameters**
+  **Raises**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
-*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
-*   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
-*   **backend\_options** (*dict or None*) – Optional set custom backend options.
+  [**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
 
-**Raises**
+  ## Methods
 
-[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
+  ### available\_devices
 
-## Methods
+  <Function id="qiskit.providers.aer.AerSimulator.available_devices" name="available_devices" signature="AerSimulator.available_devices()">
+    Return the available simulation methods.
+  </Function>
 
-### available\_devices
+  ### available\_methods
 
-<span id="qiskit.providers.aer.AerSimulator.available_devices" />
+  <Function id="qiskit.providers.aer.AerSimulator.available_methods" name="available_methods" signature="AerSimulator.available_methods()">
+    Return the available simulation methods.
+  </Function>
 
-`AerSimulator.available_devices()`
+  ### clear\_options
 
-Return the available simulation methods.
+  <Function id="qiskit.providers.aer.AerSimulator.clear_options" name="clear_options" signature="AerSimulator.clear_options()">
+    Reset the simulator options to default values.
+  </Function>
 
-### available\_methods
+  ### configuration
 
-<span id="qiskit.providers.aer.AerSimulator.available_methods" />
+  <Function id="qiskit.providers.aer.AerSimulator.configuration" name="configuration" signature="AerSimulator.configuration()">
+    Return the simulator backend configuration.
 
-`AerSimulator.available_methods()`
+    **Returns**
 
-Return the available simulation methods.
+    the configuration for the backend.
 
-### clear\_options
+    **Return type**
 
-<span id="qiskit.providers.aer.AerSimulator.clear_options" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-`AerSimulator.clear_options()`
+  ### defaults
 
-Reset the simulator options to default values.
+  <Function id="qiskit.providers.aer.AerSimulator.defaults" name="defaults" signature="AerSimulator.defaults()">
+    Return the simulator backend pulse defaults.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.aer.AerSimulator.configuration" />
+    **The backend pulse defaults or `None` if the**
 
-`AerSimulator.configuration()`
+    backend does not support pulse.
 
-Return the simulator backend configuration.
+    **Return type**
 
-**Returns**
+    [PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+  </Function>
 
-the configuration for the backend.
+  ### from\_backend
 
-**Return type**
+  <Function id="qiskit.providers.aer.AerSimulator.from_backend" name="from_backend" signature="classmethod AerSimulator.from_backend(backend, **options)">
+    Initialize simulator from backend.
+  </Function>
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  ### name
 
-### defaults
+  <Function id="qiskit.providers.aer.AerSimulator.name" name="name" signature="AerSimulator.name()">
+    Format backend name string for simulator
+  </Function>
 
-<span id="qiskit.providers.aer.AerSimulator.defaults" />
+  ### properties
 
-`AerSimulator.defaults()`
+  <Function id="qiskit.providers.aer.AerSimulator.properties" name="properties" signature="AerSimulator.properties()">
+    Return the simulator backend properties if set.
 
-Return the simulator backend pulse defaults.
+    **Returns**
 
-**Returns**
+    **The backend properties or `None` if the**
 
-**The backend pulse defaults or `None` if the**
+    backend does not have properties set.
 
-backend does not support pulse.
+    **Return type**
 
-**Return type**
+    [BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+  </Function>
 
-[PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+  ### provider
 
-### from\_backend
+  <Function id="qiskit.providers.aer.AerSimulator.provider" name="provider" signature="AerSimulator.provider()">
+    Return the backend Provider.
 
-<span id="qiskit.providers.aer.AerSimulator.from_backend" />
+    **Returns**
 
-`classmethod AerSimulator.from_backend(backend, **options)`
+    the Provider responsible for the backend.
 
-Initialize simulator from backend.
+    **Return type**
 
-### name
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-<span id="qiskit.providers.aer.AerSimulator.name" />
+  ### run
 
-`AerSimulator.name()`
+  <Function id="qiskit.providers.aer.AerSimulator.run" name="run" signature="AerSimulator.run(circuits, validate=False, parameter_binds=None, **run_options)">
+    Run a qobj on the backend.
 
-Format backend name string for simulator
+    **Parameters**
 
-### properties
+    *   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list*) – The QuantumCircuit (or list of QuantumCircuit objects) to run
+    *   **validate** (*bool*) – validate the Qobj before running (default: False).
+    *   **parameter\_binds** (*list*) – A list of parameter binding dictionaries. See additional information (default: None).
+    *   **run\_options** (*kwargs*) – additional run time backend options.
 
-<span id="qiskit.providers.aer.AerSimulator.properties" />
+    **Returns**
 
-`AerSimulator.properties()`
+    The simulation job.
 
-Return the simulator backend properties if set.
+    **Return type**
 
-**Returns**
+    [AerJob](qiskit.providers.aer.jobs.AerJob "qiskit.providers.aer.jobs.AerJob")
 
-**The backend properties or `None` if the**
+    **Raises**
 
-backend does not have properties set.
+    [**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – If `parameter_binds` is specified with a qobj input or has a length mismatch with the number of circuits.
 
-**Return type**
+    #### Additional Information:
 
-[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+    *   Each parameter binding dictionary is of the form:
 
-### provider
+        ```python
+        {
+            param_a: [val_1, val_2],
+            param_b: [val_3, val_1],
+        }
+        ```
 
-<span id="qiskit.providers.aer.AerSimulator.provider" />
+        for all parameters in that circuit. The length of the value list must be the same for all parameters, and the number of parameter dictionaries in the list must match the length of `circuits` (if `circuits` is a single `QuantumCircuit` object it should a list of length 1).
 
-`AerSimulator.provider()`
+    *   kwarg options specified in `run_options` will temporarily override any set options of the same name for the current run.
 
-Return the backend Provider.
+    **Raises**
 
-**Returns**
+    **ValueError** – if run is not implemented
+  </Function>
 
-the Provider responsible for the backend.
+  ### set\_option
 
-**Return type**
+  <Function id="qiskit.providers.aer.AerSimulator.set_option" name="set_option" signature="AerSimulator.set_option(key, value)">
+    Special handling for setting backend options.
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    This method should be extended by sub classes to update special option values.
 
-### run
+    **Parameters**
 
-<span id="qiskit.providers.aer.AerSimulator.run" />
+    *   **key** (*str*) – key to update
+    *   **value** (*any*) – value to update.
 
-`AerSimulator.run(circuits, validate=False, parameter_binds=None, **run_options)`
+    **Raises**
 
-Run a qobj on the backend.
+    [**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if key is ‘method’ and val isn’t in available methods.
+  </Function>
 
-**Parameters**
+  ### set\_options
 
-*   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list*) – The QuantumCircuit (or list of QuantumCircuit objects) to run
-*   **validate** (*bool*) – validate the Qobj before running (default: False).
-*   **parameter\_binds** (*list*) – A list of parameter binding dictionaries. See additional information (default: None).
-*   **run\_options** (*kwargs*) – additional run time backend options.
+  <Function id="qiskit.providers.aer.AerSimulator.set_options" name="set_options" signature="AerSimulator.set_options(**fields)">
+    Set the simulator options
+  </Function>
 
-**Returns**
+  ### status
 
-The simulation job.
+  <Function id="qiskit.providers.aer.AerSimulator.status" name="status" signature="AerSimulator.status()">
+    Return backend status.
 
-**Return type**
+    **Returns**
 
-[AerJob](qiskit.providers.aer.jobs.AerJob "qiskit.providers.aer.jobs.AerJob")
+    the status of the backend.
 
-**Raises**
+    **Return type**
 
-[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – If `parameter_binds` is specified with a qobj input or has a length mismatch with the number of circuits.
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-#### Additional Information:
+  ## Attributes
 
-*   Each parameter binding dictionary is of the form:
+  ### options
 
-    ```python
-    {
-        param_a: [val_1, val_2],
-        param_b: [val_3, val_1],
-    }
-    ```
+  <Attribute id="qiskit.providers.aer.AerSimulator.options" name="options">
+    Return the options for the backend
 
-    for all parameters in that circuit. The length of the value list must be the same for all parameters, and the number of parameter dictionaries in the list must match the length of `circuits` (if `circuits` is a single `QuantumCircuit` object it should a list of length 1).
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.aer.AerSimulator#run "qiskit.providers.aer.AerSimulator.run") method.
+  </Attribute>
 
-*   kwarg options specified in `run_options` will temporarily override any set options of the same name for the current run.
+  ### version
 
-**Raises**
-
-**ValueError** – if run is not implemented
-
-### set\_option
-
-<span id="qiskit.providers.aer.AerSimulator.set_option" />
-
-`AerSimulator.set_option(key, value)`
-
-Special handling for setting backend options.
-
-This method should be extended by sub classes to update special option values.
-
-**Parameters**
-
-*   **key** (*str*) – key to update
-*   **value** (*any*) – value to update.
-
-**Raises**
-
-[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if key is ‘method’ and val isn’t in available methods.
-
-### set\_options
-
-<span id="qiskit.providers.aer.AerSimulator.set_options" />
-
-`AerSimulator.set_options(**fields)`
-
-Set the simulator options
-
-### status
-
-<span id="qiskit.providers.aer.AerSimulator.status" />
-
-`AerSimulator.status()`
-
-Return backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.aer.AerSimulator.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.aer.AerSimulator#run "qiskit.providers.aer.AerSimulator.run") method.
-
-<span id="qiskit.providers.aer.AerSimulator.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.aer.AerSimulator.version" name="version" attributeValue="= 1" />
+</Class>
 

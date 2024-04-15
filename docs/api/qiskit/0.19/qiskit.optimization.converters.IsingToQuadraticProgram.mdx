@@ -8,41 +8,37 @@ python_api_name: qiskit.optimization.converters.IsingToQuadraticProgram
 
 # IsingToQuadraticProgram
 
-<span id="qiskit.optimization.converters.IsingToQuadraticProgram" />
+<Class id="qiskit.optimization.converters.IsingToQuadraticProgram" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/ising_to_quadratic_program.py" signature="IsingToQuadraticProgram(linear=False)">
+  Convert a qubit operator into a quadratic program
 
-`IsingToQuadraticProgram(linear=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/ising_to_quadratic_program.py "view source code")
+  **Parameters**
 
-Convert a qubit operator into a quadratic program
+  **linear** (`bool`) – If linear is True, $x^2$ is treated as a linear term since $x^2 = x$ for $x \in \{0,1\}$. Else, $x^2$ is treat as a quadratic term. The default value is False.
 
-**Parameters**
+  ## Methods
 
-**linear** (`bool`) – If linear is True, $x^2$ is treated as a linear term since $x^2 = x$ for $x \in \{0,1\}$. Else, $x^2$ is treat as a quadratic term. The default value is False.
+  ### encode
 
-## Methods
+  <Function id="qiskit.optimization.converters.IsingToQuadraticProgram.encode" name="encode" signature="IsingToQuadraticProgram.encode(qubit_op, offset=0.0)">
+    Convert a qubit operator and a shift value into a quadratic program
 
-### encode
+    **Parameters**
 
-<span id="qiskit.optimization.converters.IsingToQuadraticProgram.encode" />
+    *   **qubit\_op** ([`WeightedPauliOperator`](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.weighted_pauli_operator.WeightedPauliOperator")) – The qubit operator to be converted into a [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")
+    *   **offset** (`float`) – The shift value of the qubit operator
 
-`IsingToQuadraticProgram.encode(qubit_op, offset=0.0)`
+    **Return type**
 
-Convert a qubit operator and a shift value into a quadratic program
+    [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")
 
-**Parameters**
+    **Returns**
 
-*   **qubit\_op** ([`WeightedPauliOperator`](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.weighted_pauli_operator.WeightedPauliOperator")) – The qubit operator to be converted into a [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")
-*   **offset** (`float`) – The shift value of the qubit operator
+    QuadraticProgram converted from the input qubit operator and the shift value
 
-**Return type**
+    **Raises**
 
-[`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")
-
-**Returns**
-
-QuadraticProgram converted from the input qubit operator and the shift value
-
-**Raises**
-
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If there are Pauli Xs in any Pauli term
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If there are more than 2 Pauli Zs in any Pauli term
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If there are Pauli Xs in any Pauli term
+    *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If there are more than 2 Pauli Zs in any Pauli term
+  </Function>
+</Class>
 

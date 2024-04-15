@@ -8,96 +8,84 @@ python_api_name: qiskit.ignis.verification.RepetitionCode
 
 # RepetitionCode
 
-<span id="qiskit.ignis.verification.RepetitionCode" />
+<Class id="qiskit.ignis.verification.RepetitionCode" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py" signature="RepetitionCode(d, T=0)">
+  Bases: `object`
 
-`RepetitionCode(d, T=0)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py "view source code")
+  Implementation of a distance d repetition code, implemented over T syndrome measurement rounds.
 
-Bases: `object`
+  Creates the circuits corresponding to a logical 0 and 1 encoded using a repetition code.
 
-Implementation of a distance d repetition code, implemented over T syndrome measurement rounds.
+  **Parameters**
 
-Creates the circuits corresponding to a logical 0 and 1 encoded using a repetition code.
+  *   **d** (*int*) – Number of code qubits (and hence repetitions) used.
+  *   **T** (*int*) – Number of rounds of ancilla-assisted syndrome measurement.
 
-**Parameters**
+  **Additional information:**
 
-*   **d** (*int*) – Number of code qubits (and hence repetitions) used.
-*   **T** (*int*) – Number of rounds of ancilla-assisted syndrome measurement.
+  No measurements are added to the circuit if T=0. Otherwise T rounds are added, followed by measurement of the code qubits (corresponding to a logical measurement and final syndrome measurement round).
 
-**Additional information:**
+  ## Methods
 
-No measurements are added to the circuit if T=0. Otherwise T rounds are added, followed by measurement of the code qubits (corresponding to a logical measurement and final syndrome measurement round).
+  ### get\_circuit\_list
 
-## Methods
+  <Function id="qiskit.ignis.verification.RepetitionCode.get_circuit_list" name="get_circuit_list" signature="RepetitionCode.get_circuit_list()">
+    **Returns**
 
-### get\_circuit\_list
+    self.circuit as a list, with circuit\_list\[0] = circuit\[‘0’] circuit\_list\[1] = circuit\[‘1’]
 
-<span id="qiskit.ignis.verification.RepetitionCode.get_circuit_list" />
+    **Return type**
 
-`RepetitionCode.get_circuit_list()`
+    circuit\_list
+  </Function>
 
-**Returns**
+  ### process\_results
 
-self.circuit as a list, with circuit\_list\[0] = circuit\[‘0’] circuit\_list\[1] = circuit\[‘1’]
+  <Function id="qiskit.ignis.verification.RepetitionCode.process_results" name="process_results" signature="RepetitionCode.process_results(raw_results)">
+    **Parameters**
 
-**Return type**
+    **raw\_results** (*dict*) – A dictionary whose keys are logical values, and whose values are standard counts dictionaries, (as obtained from the get\_counts method of a `qiskit.Result` object).
 
-circuit\_list
+    **Returns**
 
-### process\_results
+    **Dictionary with the same structure as the input, but with**
 
-<span id="qiskit.ignis.verification.RepetitionCode.process_results" />
+    the bit strings used as keys in the counts dictionaries converted to the form required by the decoder.
 
-`RepetitionCode.process_results(raw_results)`
+    **Return type**
 
-**Parameters**
+    results
 
-**raw\_results** (*dict*) – A dictionary whose keys are logical values, and whose values are standard counts dictionaries, (as obtained from the get\_counts method of a `qiskit.Result` object).
+    #### Additional information:
 
-**Returns**
+    The circuits must be executed outside of this class, so that their is full freedom to compile, choose a backend, use a noise model, etc. The results from these executions should then be used to create the input for this method.
+  </Function>
 
-**Dictionary with the same structure as the input, but with**
+  ### readout
 
-the bit strings used as keys in the counts dictionaries converted to the form required by the decoder.
+  <Function id="qiskit.ignis.verification.RepetitionCode.readout" name="readout" signature="RepetitionCode.readout()">
+    Readout of all code qubits, which corresponds to a logical measurement as well as allowing for a measurement of the syndrome to be inferred.
+  </Function>
 
-**Return type**
+  ### syndrome\_measurement
 
-results
+  <Function id="qiskit.ignis.verification.RepetitionCode.syndrome_measurement" name="syndrome_measurement" signature="RepetitionCode.syndrome_measurement(reset=True, barrier=False)">
+    Application of a syndrome measurement round.
 
-#### Additional information:
+    **Parameters**
 
-The circuits must be executed outside of this class, so that their is full freedom to compile, choose a backend, use a noise model, etc. The results from these executions should then be used to create the input for this method.
+    *   **reset** (*bool*) – If set to true add a boolean at the end of each round
+    *   **barrier** (*bool*) – Boolean denoting whether to include a barrier at the end.
+  </Function>
 
-### readout
+  ### x
 
-<span id="qiskit.ignis.verification.RepetitionCode.readout" />
+  <Function id="qiskit.ignis.verification.RepetitionCode.x" name="x" signature="RepetitionCode.x(logs=('0', '1'), barrier=False)">
+    Applies a logical x to the circuits for the given logical values.
 
-`RepetitionCode.readout()`
+    **Parameters**
 
-Readout of all code qubits, which corresponds to a logical measurement as well as allowing for a measurement of the syndrome to be inferred.
-
-### syndrome\_measurement
-
-<span id="qiskit.ignis.verification.RepetitionCode.syndrome_measurement" />
-
-`RepetitionCode.syndrome_measurement(reset=True, barrier=False)`
-
-Application of a syndrome measurement round.
-
-**Parameters**
-
-*   **reset** (*bool*) – If set to true add a boolean at the end of each round
-*   **barrier** (*bool*) – Boolean denoting whether to include a barrier at the end.
-
-### x
-
-<span id="qiskit.ignis.verification.RepetitionCode.x" />
-
-`RepetitionCode.x(logs=('0', '1'), barrier=False)`
-
-Applies a logical x to the circuits for the given logical values.
-
-**Parameters**
-
-*   **logs** (*list or tuple*) – List or tuple of logical values expressed as strings.
-*   **barrier** (*bool*) – Boolean denoting whether to include a barrier at the end.
+    *   **logs** (*list or tuple*) – List or tuple of logical values expressed as strings.
+    *   **barrier** (*bool*) – Boolean denoting whether to include a barrier at the end.
+  </Function>
+</Class>
 

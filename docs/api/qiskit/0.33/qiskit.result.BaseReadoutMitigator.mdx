@@ -8,62 +8,56 @@ python_api_name: qiskit.result.BaseReadoutMitigator
 
 # BaseReadoutMitigator
 
-<span id="qiskit.result.BaseReadoutMitigator" />
+<Class id="qiskit.result.BaseReadoutMitigator" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/result/mitigation/base_readout_mitigator.py" signature="BaseReadoutMitigator">
+  Bases: `abc.ABC`
 
-`BaseReadoutMitigator` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/result/mitigation/base_readout_mitigator.py "view source code")
+  Base readout error mitigator class.
 
-Bases: `abc.ABC`
+  ## Methods
 
-Base readout error mitigator class.
+  ### expectation\_value
 
-## Methods
+  <Function id="qiskit.result.BaseReadoutMitigator.expectation_value" name="expectation_value" signature="abstract BaseReadoutMitigator.expectation_value(data, diagonal, qubits=None, clbits=None, shots=None)">
+    Calculate the expectation value of a diagonal Hermitian operator.
 
-### expectation\_value
+    **Parameters**
 
-<span id="qiskit.result.BaseReadoutMitigator.expectation_value" />
+    *   **data** (`Counts`) – Counts object to be mitigated.
+    *   **diagonal** (`Union`\[`Callable`, `dict`, `str`, `ndarray`]) – the diagonal operator. This may either be specified as a string containing I,Z,0,1 characters, or as a real valued 1D array\_like object supplying the full diagonal, or as a dictionary, or as Callable.
+    *   **qubits** (`Optional`\[`Iterable`\[`int`]]) – the physical qubits measured to obtain the counts clbits. If None these are assumed to be qubits \[0, …, N-1] for N-bit counts.
+    *   **clbits** (`Optional`\[`List`\[`int`]]) – Optional, marginalize counts to just these bits.
+    *   **shots** (`Optional`\[`int`]) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
 
-`abstract BaseReadoutMitigator.expectation_value(data, diagonal, qubits=None, clbits=None, shots=None)`
+    **Return type**
 
-Calculate the expectation value of a diagonal Hermitian operator.
+    `Tuple`\[`float`, `float`]
 
-**Parameters**
+    **Returns**
 
-*   **data** (`Counts`) – Counts object to be mitigated.
-*   **diagonal** (`Union`\[`Callable`, `dict`, `str`, `ndarray`]) – the diagonal operator. This may either be specified as a string containing I,Z,0,1 characters, or as a real valued 1D array\_like object supplying the full diagonal, or as a dictionary, or as Callable.
-*   **qubits** (`Optional`\[`Iterable`\[`int`]]) – the physical qubits measured to obtain the counts clbits. If None these are assumed to be qubits \[0, …, N-1] for N-bit counts.
-*   **clbits** (`Optional`\[`List`\[`int`]]) – Optional, marginalize counts to just these bits.
-*   **shots** (`Optional`\[`int`]) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
+    The mean and an upper bound of the standard deviation of operator expectation value calculated from the current counts.
+  </Function>
 
-**Return type**
+  ### quasi\_probabilities
 
-`Tuple`\[`float`, `float`]
+  <Function id="qiskit.result.BaseReadoutMitigator.quasi_probabilities" name="quasi_probabilities" signature="abstract BaseReadoutMitigator.quasi_probabilities(data, qubits=None, clbits=None, shots=None)">
+    Convert counts to a dictionary of quasi-probabilities
 
-**Returns**
+    **Parameters**
 
-The mean and an upper bound of the standard deviation of operator expectation value calculated from the current counts.
+    *   **data** (`Counts`) – Counts to be mitigated.
+    *   **qubits** (`Optional`\[`Iterable`\[`int`]]) – the physical qubits measured to obtain the counts clbits. If None these are assumed to be qubits \[0, …, N-1] for N-bit counts.
+    *   **clbits** (`Optional`\[`List`\[`int`]]) – Optional, marginalize counts to just these bits.
+    *   **shots** (`Optional`\[`int`]) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
 
-### quasi\_probabilities
+    **Returns**
 
-<span id="qiskit.result.BaseReadoutMitigator.quasi_probabilities" />
+    **A dictionary containing pairs of \[output, mean] where “output”**
 
-`abstract BaseReadoutMitigator.quasi_probabilities(data, qubits=None, clbits=None, shots=None)`
+    is the key in the dictionaries, which is the length-N bitstring of a measured standard basis state, and “mean” is the mean of non-zero quasi-probability estimates.
 
-Convert counts to a dictionary of quasi-probabilities
+    **Return type**
 
-**Parameters**
-
-*   **data** (`Counts`) – Counts to be mitigated.
-*   **qubits** (`Optional`\[`Iterable`\[`int`]]) – the physical qubits measured to obtain the counts clbits. If None these are assumed to be qubits \[0, …, N-1] for N-bit counts.
-*   **clbits** (`Optional`\[`List`\[`int`]]) – Optional, marginalize counts to just these bits.
-*   **shots** (`Optional`\[`int`]) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
-
-**Returns**
-
-**A dictionary containing pairs of \[output, mean] where “output”**
-
-is the key in the dictionaries, which is the length-N bitstring of a measured standard basis state, and “mean” is the mean of non-zero quasi-probability estimates.
-
-**Return type**
-
-QuasiDistibution
+    QuasiDistibution
+  </Function>
+</Class>
 

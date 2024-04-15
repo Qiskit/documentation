@@ -8,205 +8,195 @@ python_api_name: qiskit.circuit.library.GMS
 
 # GMS
 
-<span id="qiskit.circuit.library.GMS" />
+<Class id="qiskit.circuit.library.GMS" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/generalized_gates/gms.py" signature="GMS(num_qubits, theta)">
+  Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
-`GMS(num_qubits, theta)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/generalized_gates/gms.py "view source code")
+  Global Mølmer–Sørensen gate.
 
-Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
+  **Circuit symbol:**
 
-Global Mølmer–Sørensen gate.
+  ```python
+       ┌───────────┐
+  q_0: ┤0          ├
+       │           │
+  q_1: ┤1   GMS    ├
+       │           │
+  q_2: ┤2          ├
+       └───────────┘
+  ```
 
-**Circuit symbol:**
+  **Expanded Circuit:**
 
-```python
-     ┌───────────┐
-q_0: ┤0          ├
-     │           │
-q_1: ┤1   GMS    ├
-     │           │
-q_2: ┤2          ├
-     └───────────┘
-```
+  The Mølmer–Sørensen gate is native to ion-trap systems. The global MS can be applied to multiple ions to entangle multiple qubits simultaneously \[1].
 
-**Expanded Circuit:**
-
-The Mølmer–Sørensen gate is native to ion-trap systems. The global MS can be applied to multiple ions to entangle multiple qubits simultaneously \[1].
-
-In the two-qubit case, this is equivalent to an XX(theta) interaction, and is thus reduced to the RXXGate. The global MS gate is a sum of XX interactions on all pairs \[2].
+  In the two-qubit case, this is equivalent to an XX(theta) interaction, and is thus reduced to the RXXGate. The global MS gate is a sum of XX interactions on all pairs \[2].
 
 $$
 GMS(\chi_{12}, \chi_{13}, ..., \chi_{n-1 n}) =
 exp(-i \sum_{i=1}^{n} \sum_{j=i+1}^{n} X{\otimes}X \frac{\chi_{ij}}{2})
 $$
 
-**References:**
+  **References:**
 
-\[1] Sørensen, A. and Mølmer, K., Multi-particle entanglement of hot trapped ions. Physical Review Letters. 82 (9): 1835–1838. [arXiv:9810040](https://arxiv.org/abs/quant-ph/9810040)
+  \[1] Sørensen, A. and Mølmer, K., Multi-particle entanglement of hot trapped ions. Physical Review Letters. 82 (9): 1835–1838. [arXiv:9810040](https://arxiv.org/abs/quant-ph/9810040)
 
-\[2] Maslov, D. and Nam, Y., Use of global interactions in efficient quantum circuit constructions. New Journal of Physics, 20(3), p.033018. [arXiv:1707.06356](https://arxiv.org/abs/1707.06356)
+  \[2] Maslov, D. and Nam, Y., Use of global interactions in efficient quantum circuit constructions. New Journal of Physics, 20(3), p.033018. [arXiv:1707.06356](https://arxiv.org/abs/1707.06356)
 
-Create a new Global Mølmer–Sørensen (GMS) gate.
+  Create a new Global Mølmer–Sørensen (GMS) gate.
 
-**Parameters**
+  **Parameters**
 
-*   **num\_qubits** (`int`) – width of gate.
-*   **theta** (`Union`\[`List`\[`List`\[`float`]], `ndarray`]) – a num\_qubits x num\_qubits symmetric matrix of interaction angles for each qubit pair. The upper triangle is considered.
+  *   **num\_qubits** (`int`) – width of gate.
+  *   **theta** (`Union`\[`List`\[`List`\[`float`]], `ndarray`]) – a num\_qubits x num\_qubits symmetric matrix of interaction angles for each qubit pair. The upper triangle is considered.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.GMS.ancillas" />
+  ### ancillas
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.GMS.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **Return type**
 
-**Return type**
+    `List`\[`AncillaQubit`]
+  </Attribute>
 
-`List`\[`AncillaQubit`]
+  ### calibrations
 
-<span id="qiskit.circuit.library.GMS.calibrations" />
+  <Attribute id="qiskit.circuit.library.GMS.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-### calibrations
+    **The custom pulse definition of a given gate is of the form**
 
-Return calibration dictionary.
+    \{‘gate\_name’: \{(qubits, params): schedule}}
 
-**The custom pulse definition of a given gate is of the form**
+    **Return type**
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+    `dict`
+  </Attribute>
 
-**Return type**
+  ### clbits
 
-`dict`
+  <Attribute id="qiskit.circuit.library.GMS.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-<span id="qiskit.circuit.library.GMS.clbits" />
+    **Return type**
 
-### clbits
+    `List`\[`Clbit`]
+  </Attribute>
 
-Returns a list of classical bits in the order that the registers were added.
+  ### data
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.GMS.data" name="data">
+    Return the circuit data (instructions and context).
 
-`List`\[`Clbit`]
+    **Returns**
 
-<span id="qiskit.circuit.library.GMS.data" />
+    a list-like object containing the tuples for the circuit’s data.
 
-### data
+    Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
-Return the circuit data (instructions and context).
+    **Return type**
 
-**Returns**
+    QuantumCircuitData
+  </Attribute>
 
-a list-like object containing the tuples for the circuit’s data.
+  ### extension\_lib
 
-Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
+  <Attribute id="qiskit.circuit.library.GMS.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-**Return type**
+  ### global\_phase
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.GMS.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-<span id="qiskit.circuit.library.GMS.extension_lib" />
+    **Return type**
 
-### extension\_lib
+    `Union`\[`ParameterExpression`, `float`]
+  </Attribute>
 
-`= 'include "qelib1.inc";'`
+  ### header
 
-<span id="qiskit.circuit.library.GMS.global_phase" />
+  <Attribute id="qiskit.circuit.library.GMS.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-### global\_phase
+  ### instances
 
-Return the global phase of the circuit in radians.
+  <Attribute id="qiskit.circuit.library.GMS.instances" name="instances" attributeValue="= 9" />
 
-**Return type**
+  ### metadata
 
-`Union`\[`ParameterExpression`, `float`]
+  <Attribute id="qiskit.circuit.library.GMS.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-<span id="qiskit.circuit.library.GMS.header" />
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-### header
+    **Return type**
 
-`= 'OPENQASM 2.0;'`
+    `dict`
+  </Attribute>
 
-<span id="qiskit.circuit.library.GMS.instances" />
+  ### num\_ancillas
 
-### instances
+  <Attribute id="qiskit.circuit.library.GMS.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-`= 9`
+    **Return type**
 
-<span id="qiskit.circuit.library.GMS.metadata" />
+    `int`
+  </Attribute>
 
-### metadata
+  ### num\_clbits
 
-The user provided metadata associated with the circuit
+  <Attribute id="qiskit.circuit.library.GMS.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`dict`
+  ### num\_parameters
 
-<span id="qiskit.circuit.library.GMS.num_ancillas" />
+  <Attribute id="qiskit.circuit.library.GMS.num_parameters" name="num_parameters">
+    Convenience function to get the number of parameter objects in the circuit.
 
-### num\_ancillas
+    **Return type**
 
-Return the number of ancilla qubits.
+    `int`
+  </Attribute>
 
-**Return type**
+  ### num\_qubits
 
-`int`
+  <Attribute id="qiskit.circuit.library.GMS.num_qubits" name="num_qubits">
+    Return number of qubits.
 
-<span id="qiskit.circuit.library.GMS.num_clbits" />
+    **Return type**
 
-### num\_clbits
+    `int`
+  </Attribute>
 
-Return number of classical bits.
+  ### parameters
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.GMS.parameters" name="parameters">
+    Convenience function to get the parameters defined in the parameter table.
 
-`int`
+    **Return type**
 
-<span id="qiskit.circuit.library.GMS.num_parameters" />
+    `ParameterView`
+  </Attribute>
 
-### num\_parameters
+  ### prefix
 
-Convenience function to get the number of parameter objects in the circuit.
+  <Attribute id="qiskit.circuit.library.GMS.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-**Return type**
+  ### qubits
 
-`int`
+  <Attribute id="qiskit.circuit.library.GMS.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-<span id="qiskit.circuit.library.GMS.num_qubits" />
+    **Return type**
 
-### num\_qubits
-
-Return number of qubits.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.circuit.library.GMS.parameters" />
-
-### parameters
-
-Convenience function to get the parameters defined in the parameter table.
-
-**Return type**
-
-`ParameterView`
-
-<span id="qiskit.circuit.library.GMS.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.GMS.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[`Qubit`]
+    `List`\[`Qubit`]
+  </Attribute>
+</Class>
 

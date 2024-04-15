@@ -8,365 +8,323 @@ python_api_name: qiskit.providers.aer.noise.QuantumError
 
 # qiskit.providers.aer.noise.QuantumError
 
-<span id="qiskit.providers.aer.noise.QuantumError" />
+<Class id="qiskit.providers.aer.noise.QuantumError" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/noise/errors/quantum_error.py" signature="QuantumError(noise_ops, number_of_qubits=None, standard_gates=True, atol=1e-08)">
+  Quantum error class for Qiskit Aer noise model
 
-`QuantumError(noise_ops, number_of_qubits=None, standard_gates=True, atol=1e-08)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
+  **WARNING: The init interface for this class is not finalized and may**
 
-Quantum error class for Qiskit Aer noise model
+  change in future releases. For maximum backwards compatibility use the QuantumError generating functions in the noise.errors module.
 
-**WARNING: The init interface for this class is not finalized and may**
+  Create a quantum error for a noise model.
 
-change in future releases. For maximum backwards compatibility use the QuantumError generating functions in the noise.errors module.
+  Noise ops may either be specified as list of Kraus operators for a general CPTP map, or as a list of `(circuit, p)` pairs where `circuit` is a qobj circuit for the noise, and `p` is the probability of the error circuit. If the input is Kraus operators they will be converted to the circuit format, with checks applied for determining if any Kraus operators are unitary matrices.
 
-Create a quantum error for a noise model.
+  **Example**
 
-Noise ops may either be specified as list of Kraus operators for a general CPTP map, or as a list of `(circuit, p)` pairs where `circuit` is a qobj circuit for the noise, and `p` is the probability of the error circuit. If the input is Kraus operators they will be converted to the circuit format, with checks applied for determining if any Kraus operators are unitary matrices.
+  An example noise\_ops for a bit-flip error with error probability `p = 0.1` is:
 
-**Example**
+  ```python
+  noise_ops = [([{"name": "id", "qubits": 0}], 0.9),
+               ([{"name": "x", "qubits": 0}], 0.1)]
+  ```
 
-An example noise\_ops for a bit-flip error with error probability `p = 0.1` is:
+  The same error represented as a Kraus channel can be input as:
 
-```python
-noise_ops = [([{"name": "id", "qubits": 0}], 0.9),
-             ([{"name": "x", "qubits": 0}], 0.1)]
-```
+  ```python
+  noise_ops = [np.sqrt(0.9) * np.array([[1, 0], [0, 1]]),
+               np.sqrt(0.1) * np.array([[0, 1], [1, 0]])]
+  ```
 
-The same error represented as a Kraus channel can be input as:
+  **Parameters**
 
-```python
-noise_ops = [np.sqrt(0.9) * np.array([[1, 0], [0, 1]]),
-             np.sqrt(0.1) * np.array([[0, 1], [1, 0]])]
-```
+  *   **noise\_ops** (*list*) – A list of noise ops. See additional information.
+  *   **number\_of\_qubits** (*int*) – specify the number of qubits for the error. If None this will be determined automatically (default None).
+  *   **standard\_gates** (*bool*) – Check if input matrices are standard gates.
+  *   **atol** (*double*) – Threshold for testing if probabilities are equal to 0 or 1 (Default: 1e-8).
 
-**Parameters**
+  **Raises**
 
-*   **noise\_ops** (*list*) – A list of noise ops. See additional information.
-*   **number\_of\_qubits** (*int*) – specify the number of qubits for the error. If None this will be determined automatically (default None).
-*   **standard\_gates** (*bool*) – Check if input matrices are standard gates.
-*   **atol** (*double*) – Threshold for testing if probabilities are equal to 0 or 1 (Default: 1e-8).
+  **NoiseError** – If input noise\_ops are not a CPTP map.
 
-**Raises**
+  ### \_\_init\_\_
 
-**NoiseError** – If input noise\_ops are not a CPTP map.
+  <Function id="qiskit.providers.aer.noise.QuantumError.__init__" name="__init__" signature="__init__(noise_ops, number_of_qubits=None, standard_gates=True, atol=1e-08)">
+    Create a quantum error for a noise model.
 
-### \_\_init\_\_
+    Noise ops may either be specified as list of Kraus operators for a general CPTP map, or as a list of `(circuit, p)` pairs where `circuit` is a qobj circuit for the noise, and `p` is the probability of the error circuit. If the input is Kraus operators they will be converted to the circuit format, with checks applied for determining if any Kraus operators are unitary matrices.
 
-<span id="qiskit.providers.aer.noise.QuantumError.__init__" />
+    **Example**
 
-`__init__(noise_ops, number_of_qubits=None, standard_gates=True, atol=1e-08)`
+    An example noise\_ops for a bit-flip error with error probability `p = 0.1` is:
 
-Create a quantum error for a noise model.
+    ```python
+    noise_ops = [([{"name": "id", "qubits": 0}], 0.9),
+                 ([{"name": "x", "qubits": 0}], 0.1)]
+    ```
 
-Noise ops may either be specified as list of Kraus operators for a general CPTP map, or as a list of `(circuit, p)` pairs where `circuit` is a qobj circuit for the noise, and `p` is the probability of the error circuit. If the input is Kraus operators they will be converted to the circuit format, with checks applied for determining if any Kraus operators are unitary matrices.
+    The same error represented as a Kraus channel can be input as:
 
-**Example**
+    ```python
+    noise_ops = [np.sqrt(0.9) * np.array([[1, 0], [0, 1]]),
+                 np.sqrt(0.1) * np.array([[0, 1], [1, 0]])]
+    ```
 
-An example noise\_ops for a bit-flip error with error probability `p = 0.1` is:
+    **Parameters**
 
-```python
-noise_ops = [([{"name": "id", "qubits": 0}], 0.9),
-             ([{"name": "x", "qubits": 0}], 0.1)]
-```
+    *   **noise\_ops** (*list*) – A list of noise ops. See additional information.
+    *   **number\_of\_qubits** (*int*) – specify the number of qubits for the error. If None this will be determined automatically (default None).
+    *   **standard\_gates** (*bool*) – Check if input matrices are standard gates.
+    *   **atol** (*double*) – Threshold for testing if probabilities are equal to 0 or 1 (Default: 1e-8).
 
-The same error represented as a Kraus channel can be input as:
+    **Raises**
 
-```python
-noise_ops = [np.sqrt(0.9) * np.array([[1, 0], [0, 1]]),
-             np.sqrt(0.1) * np.array([[0, 1], [1, 0]])]
-```
+    **NoiseError** – If input noise\_ops are not a CPTP map.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **noise\_ops** (*list*) – A list of noise ops. See additional information.
-*   **number\_of\_qubits** (*int*) – specify the number of qubits for the error. If None this will be determined automatically (default None).
-*   **standard\_gates** (*bool*) – Check if input matrices are standard gates.
-*   **atol** (*double*) – Threshold for testing if probabilities are equal to 0 or 1 (Default: 1e-8).
+  |                                                                                                                                                          |                                                                           |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.providers.aer.noise.QuantumError.__init__ "qiskit.providers.aer.noise.QuantumError.__init__")(noise\_ops\[, number\_of\_qubits, …]) | Create a quantum error for a noise model.                                 |
+  | [`compose`](#qiskit.providers.aer.noise.QuantumError.compose "qiskit.providers.aer.noise.QuantumError.compose")(other\[, front])                         | Return the composition error channel other \* self.                       |
+  | [`copy`](#qiskit.providers.aer.noise.QuantumError.copy "qiskit.providers.aer.noise.QuantumError.copy")()                                                 | Make a copy of current QuantumError.                                      |
+  | [`dot`](#qiskit.providers.aer.noise.QuantumError.dot "qiskit.providers.aer.noise.QuantumError.dot")(other)                                               | Return the composition error channel self \* other.                       |
+  | [`error_term`](#qiskit.providers.aer.noise.QuantumError.error_term "qiskit.providers.aer.noise.QuantumError.error_term")(position)                       | Return a single term from the error.                                      |
+  | [`expand`](#qiskit.providers.aer.noise.QuantumError.expand "qiskit.providers.aer.noise.QuantumError.expand")(other)                                      | Return the tensor product quantum error channel self ⊗ other.             |
+  | [`ideal`](#qiskit.providers.aer.noise.QuantumError.ideal "qiskit.providers.aer.noise.QuantumError.ideal")()                                              | Return True if current error object is an identity                        |
+  | [`power`](#qiskit.providers.aer.noise.QuantumError.power "qiskit.providers.aer.noise.QuantumError.power")(n)                                             | Return the compose of a error channel with itself n times.                |
+  | [`set_atol`](#qiskit.providers.aer.noise.QuantumError.set_atol "qiskit.providers.aer.noise.QuantumError.set_atol")(value)                                | Set the class default absolute tolerance parameter for float comparisons. |
+  | [`set_rtol`](#qiskit.providers.aer.noise.QuantumError.set_rtol "qiskit.providers.aer.noise.QuantumError.set_rtol")(value)                                | Set the class default relative tolerance parameter for float comparisons. |
+  | [`tensor`](#qiskit.providers.aer.noise.QuantumError.tensor "qiskit.providers.aer.noise.QuantumError.tensor")(other)                                      | Return the tensor product quantum error channel self ⊗ other.             |
+  | [`to_dict`](#qiskit.providers.aer.noise.QuantumError.to_dict "qiskit.providers.aer.noise.QuantumError.to_dict")()                                        | Return the current error as a dictionary.                                 |
+  | [`to_instruction`](#qiskit.providers.aer.noise.QuantumError.to_instruction "qiskit.providers.aer.noise.QuantumError.to_instruction")()                   | Convert the QuantumError to a circuit Instruction.                        |
+  | [`to_quantumchannel`](#qiskit.providers.aer.noise.QuantumError.to_quantumchannel "qiskit.providers.aer.noise.QuantumError.to_quantumchannel")()          | Convert the QuantumError to a SuperOp quantum channel.                    |
 
-**Raises**
+  ## Attributes
 
-**NoiseError** – If input noise\_ops are not a CPTP map.
+  |                                                                                                                                            |                                                                 |
+  | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- |
+  | [`atol`](#qiskit.providers.aer.noise.QuantumError.atol "qiskit.providers.aer.noise.QuantumError.atol")                                     | The default absolute tolerance parameter for float comparisons. |
+  | [`circuits`](#qiskit.providers.aer.noise.QuantumError.circuits "qiskit.providers.aer.noise.QuantumError.circuits")                         | Return the list of error circuits.                              |
+  | [`number_of_qubits`](#qiskit.providers.aer.noise.QuantumError.number_of_qubits "qiskit.providers.aer.noise.QuantumError.number_of_qubits") | Return the number of qubits for the error.                      |
+  | [`probabilities`](#qiskit.providers.aer.noise.QuantumError.probabilities "qiskit.providers.aer.noise.QuantumError.probabilities")          | Return the list of error probabilities.                         |
+  | [`rtol`](#qiskit.providers.aer.noise.QuantumError.rtol "qiskit.providers.aer.noise.QuantumError.rtol")                                     | The relative tolerance parameter for float comparisons.         |
+  | [`size`](#qiskit.providers.aer.noise.QuantumError.size "qiskit.providers.aer.noise.QuantumError.size")                                     | Return the number of error circuit.                             |
 
-## Methods
+  ### atol
 
-|                                                                                                                                                          |                                                                           |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.providers.aer.noise.QuantumError.__init__ "qiskit.providers.aer.noise.QuantumError.__init__")(noise\_ops\[, number\_of\_qubits, …]) | Create a quantum error for a noise model.                                 |
-| [`compose`](#qiskit.providers.aer.noise.QuantumError.compose "qiskit.providers.aer.noise.QuantumError.compose")(other\[, front])                         | Return the composition error channel other \* self.                       |
-| [`copy`](#qiskit.providers.aer.noise.QuantumError.copy "qiskit.providers.aer.noise.QuantumError.copy")()                                                 | Make a copy of current QuantumError.                                      |
-| [`dot`](#qiskit.providers.aer.noise.QuantumError.dot "qiskit.providers.aer.noise.QuantumError.dot")(other)                                               | Return the composition error channel self \* other.                       |
-| [`error_term`](#qiskit.providers.aer.noise.QuantumError.error_term "qiskit.providers.aer.noise.QuantumError.error_term")(position)                       | Return a single term from the error.                                      |
-| [`expand`](#qiskit.providers.aer.noise.QuantumError.expand "qiskit.providers.aer.noise.QuantumError.expand")(other)                                      | Return the tensor product quantum error channel self ⊗ other.             |
-| [`ideal`](#qiskit.providers.aer.noise.QuantumError.ideal "qiskit.providers.aer.noise.QuantumError.ideal")()                                              | Return True if current error object is an identity                        |
-| [`power`](#qiskit.providers.aer.noise.QuantumError.power "qiskit.providers.aer.noise.QuantumError.power")(n)                                             | Return the compose of a error channel with itself n times.                |
-| [`set_atol`](#qiskit.providers.aer.noise.QuantumError.set_atol "qiskit.providers.aer.noise.QuantumError.set_atol")(value)                                | Set the class default absolute tolerance parameter for float comparisons. |
-| [`set_rtol`](#qiskit.providers.aer.noise.QuantumError.set_rtol "qiskit.providers.aer.noise.QuantumError.set_rtol")(value)                                | Set the class default relative tolerance parameter for float comparisons. |
-| [`tensor`](#qiskit.providers.aer.noise.QuantumError.tensor "qiskit.providers.aer.noise.QuantumError.tensor")(other)                                      | Return the tensor product quantum error channel self ⊗ other.             |
-| [`to_dict`](#qiskit.providers.aer.noise.QuantumError.to_dict "qiskit.providers.aer.noise.QuantumError.to_dict")()                                        | Return the current error as a dictionary.                                 |
-| [`to_instruction`](#qiskit.providers.aer.noise.QuantumError.to_instruction "qiskit.providers.aer.noise.QuantumError.to_instruction")()                   | Convert the QuantumError to a circuit Instruction.                        |
-| [`to_quantumchannel`](#qiskit.providers.aer.noise.QuantumError.to_quantumchannel "qiskit.providers.aer.noise.QuantumError.to_quantumchannel")()          | Convert the QuantumError to a SuperOp quantum channel.                    |
+  <Function id="qiskit.providers.aer.noise.QuantumError.atol" name="atol" signature="property atol">
+    The default absolute tolerance parameter for float comparisons.
+  </Function>
 
-## Attributes
+  ### circuits
 
-|                                                                                                                                            |                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- |
-| [`atol`](#qiskit.providers.aer.noise.QuantumError.atol "qiskit.providers.aer.noise.QuantumError.atol")                                     | The default absolute tolerance parameter for float comparisons. |
-| [`circuits`](#qiskit.providers.aer.noise.QuantumError.circuits "qiskit.providers.aer.noise.QuantumError.circuits")                         | Return the list of error circuits.                              |
-| [`number_of_qubits`](#qiskit.providers.aer.noise.QuantumError.number_of_qubits "qiskit.providers.aer.noise.QuantumError.number_of_qubits") | Return the number of qubits for the error.                      |
-| [`probabilities`](#qiskit.providers.aer.noise.QuantumError.probabilities "qiskit.providers.aer.noise.QuantumError.probabilities")          | Return the list of error probabilities.                         |
-| [`rtol`](#qiskit.providers.aer.noise.QuantumError.rtol "qiskit.providers.aer.noise.QuantumError.rtol")                                     | The relative tolerance parameter for float comparisons.         |
-| [`size`](#qiskit.providers.aer.noise.QuantumError.size "qiskit.providers.aer.noise.QuantumError.size")                                     | Return the number of error circuit.                             |
+  <Function id="qiskit.providers.aer.noise.QuantumError.circuits" name="circuits" signature="property circuits">
+    Return the list of error circuits.
+  </Function>
 
-### atol
+  ### compose
 
-<span id="qiskit.providers.aer.noise.QuantumError.atol" />
+  <Function id="qiskit.providers.aer.noise.QuantumError.compose" name="compose" signature="compose(other, front=False)">
+    Return the composition error channel other \* self.
 
-`property atol`
+    Note that for front=True this is equivalent to the [`QuantumError.dot()`](#qiskit.providers.aer.noise.QuantumError.dot "qiskit.providers.aer.noise.QuantumError.dot") method.
 
-The default absolute tolerance parameter for float comparisons.
+    **Parameters**
 
-### circuits
+    *   **other** ([*QuantumError*](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – a quantum error channel.
+    *   **front** (*bool*) – If True return the reverse order composation self \* other instead \[default: False].
 
-<span id="qiskit.providers.aer.noise.QuantumError.circuits" />
+    **Returns**
 
-`property circuits`
+    The composition error channel.
 
-Return the list of error circuits.
+    **Return type**
 
-### compose
+    [QuantumError](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
-<span id="qiskit.providers.aer.noise.QuantumError.compose" />
+    **Raises**
 
-`compose(other, front=False)`
+    *   **NoiseError** – if other cannot be converted into a QuantumError,
+    *   **or has incompatible dimensions.** –
+  </Function>
 
-Return the composition error channel other \* self.
+  ### copy
 
-Note that for front=True this is equivalent to the [`QuantumError.dot()`](#qiskit.providers.aer.noise.QuantumError.dot "qiskit.providers.aer.noise.QuantumError.dot") method.
+  <Function id="qiskit.providers.aer.noise.QuantumError.copy" name="copy" signature="copy()">
+    Make a copy of current QuantumError.
+  </Function>
 
-**Parameters**
+  ### dot
 
-*   **other** ([*QuantumError*](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – a quantum error channel.
-*   **front** (*bool*) – If True return the reverse order composation self \* other instead \[default: False].
+  <Function id="qiskit.providers.aer.noise.QuantumError.dot" name="dot" signature="dot(other)">
+    Return the composition error channel self \* other.
 
-**Returns**
+    **Parameters**
 
-The composition error channel.
+    **other** ([*QuantumError*](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – a quantum error channel.
 
-**Return type**
+    **Returns**
 
-[QuantumError](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+    The composition error channel.
 
-**Raises**
+    **Return type**
 
-*   **NoiseError** – if other cannot be converted into a QuantumError,
-*   **or has incompatible dimensions.** –
+    [QuantumError](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
-### copy
+    **Raises**
 
-<span id="qiskit.providers.aer.noise.QuantumError.copy" />
+    *   **NoiseError** – if other cannot be converted into a QuantumError,
+    *   **or has incompatible dimensions.** –
+  </Function>
 
-`copy()`
+  ### error\_term
 
-Make a copy of current QuantumError.
+  <Function id="qiskit.providers.aer.noise.QuantumError.error_term" name="error_term" signature="error_term(position)">
+    Return a single term from the error.
 
-### dot
+    **Parameters**
 
-<span id="qiskit.providers.aer.noise.QuantumError.dot" />
+    **position** (*int*) – the position of the error term.
 
-`dot(other)`
+    **Returns**
 
-Return the composition error channel self \* other.
+    A pair (p, circuit) for error term at position \< size where p is the probability of the error term, and circuit is the list of qobj instructions for the error term.
 
-**Parameters**
+    **Return type**
 
-**other** ([*QuantumError*](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – a quantum error channel.
+    tuple
 
-**Returns**
+    **Raises**
 
-The composition error channel.
+    *   **NoiseError** – If the position is greater than the size of
+    *   **the quantum error.** –
+  </Function>
 
-**Return type**
+  ### expand
 
-[QuantumError](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+  <Function id="qiskit.providers.aer.noise.QuantumError.expand" name="expand" signature="expand(other)">
+    Return the tensor product quantum error channel self ⊗ other.
 
-**Raises**
+    **Parameters**
 
-*   **NoiseError** – if other cannot be converted into a QuantumError,
-*   **or has incompatible dimensions.** –
+    **other** ([*QuantumError*](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – a quantum error channel.
 
-### error\_term
+    **Returns**
 
-<span id="qiskit.providers.aer.noise.QuantumError.error_term" />
+    the tensor product error channel other ⊗ self.
 
-`error_term(position)`
+    **Return type**
 
-Return a single term from the error.
+    [QuantumError](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
-**Parameters**
+    **Raises**
 
-**position** (*int*) – the position of the error term.
+    **NoiseError** – if other cannot be converted to a QuantumError.
+  </Function>
 
-**Returns**
+  ### ideal
 
-A pair (p, circuit) for error term at position \< size where p is the probability of the error term, and circuit is the list of qobj instructions for the error term.
+  <Function id="qiskit.providers.aer.noise.QuantumError.ideal" name="ideal" signature="ideal()">
+    Return True if current error object is an identity
+  </Function>
 
-**Return type**
+  ### number\_of\_qubits
 
-tuple
+  <Function id="qiskit.providers.aer.noise.QuantumError.number_of_qubits" name="number_of_qubits" signature="property number_of_qubits">
+    Return the number of qubits for the error.
+  </Function>
 
-**Raises**
+  ### power
 
-*   **NoiseError** – If the position is greater than the size of
-*   **the quantum error.** –
+  <Function id="qiskit.providers.aer.noise.QuantumError.power" name="power" signature="power(n)">
+    Return the compose of a error channel with itself n times.
 
-### expand
+    **Parameters**
 
-<span id="qiskit.providers.aer.noise.QuantumError.expand" />
+    **n** (*int*) – the number of times to compose with self (n>0).
 
-`expand(other)`
+    **Returns**
 
-Return the tensor product quantum error channel self ⊗ other.
+    the n-times composition error channel.
 
-**Parameters**
+    **Return type**
 
-**other** ([*QuantumError*](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – a quantum error channel.
+    [QuantumError](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
-**Returns**
+    **Raises**
 
-the tensor product error channel other ⊗ self.
+    **NoiseError** – if the power is not a positive integer.
+  </Function>
 
-**Return type**
+  ### probabilities
 
-[QuantumError](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+  <Function id="qiskit.providers.aer.noise.QuantumError.probabilities" name="probabilities" signature="property probabilities">
+    Return the list of error probabilities.
+  </Function>
 
-**Raises**
+  ### rtol
 
-**NoiseError** – if other cannot be converted to a QuantumError.
+  <Function id="qiskit.providers.aer.noise.QuantumError.rtol" name="rtol" signature="property rtol">
+    The relative tolerance parameter for float comparisons.
+  </Function>
 
-### ideal
+  ### set\_atol
 
-<span id="qiskit.providers.aer.noise.QuantumError.ideal" />
+  <Function id="qiskit.providers.aer.noise.QuantumError.set_atol" name="set_atol" signature="classmethod set_atol(value)">
+    Set the class default absolute tolerance parameter for float comparisons.
+  </Function>
 
-`ideal()`
+  ### set\_rtol
 
-Return True if current error object is an identity
+  <Function id="qiskit.providers.aer.noise.QuantumError.set_rtol" name="set_rtol" signature="classmethod set_rtol(value)">
+    Set the class default relative tolerance parameter for float comparisons.
+  </Function>
 
-### number\_of\_qubits
+  ### size
 
-<span id="qiskit.providers.aer.noise.QuantumError.number_of_qubits" />
+  <Function id="qiskit.providers.aer.noise.QuantumError.size" name="size" signature="property size">
+    Return the number of error circuit.
+  </Function>
 
-`property number_of_qubits`
+  ### tensor
 
-Return the number of qubits for the error.
+  <Function id="qiskit.providers.aer.noise.QuantumError.tensor" name="tensor" signature="tensor(other)">
+    Return the tensor product quantum error channel self ⊗ other.
 
-### power
+    **Parameters**
 
-<span id="qiskit.providers.aer.noise.QuantumError.power" />
+    **other** ([*QuantumError*](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – a quantum error channel.
 
-`power(n)`
+    **Returns**
 
-Return the compose of a error channel with itself n times.
+    the tensor product error channel self ⊗ other.
 
-**Parameters**
+    **Return type**
 
-**n** (*int*) – the number of times to compose with self (n>0).
+    [QuantumError](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
-**Returns**
+    **Raises**
 
-the n-times composition error channel.
+    **NoiseError** – if other cannot be converted to a QuantumError.
+  </Function>
 
-**Return type**
+  ### to\_dict
 
-[QuantumError](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+  <Function id="qiskit.providers.aer.noise.QuantumError.to_dict" name="to_dict" signature="to_dict()">
+    Return the current error as a dictionary.
+  </Function>
 
-**Raises**
+  ### to\_instruction
 
-**NoiseError** – if the power is not a positive integer.
+  <Function id="qiskit.providers.aer.noise.QuantumError.to_instruction" name="to_instruction" signature="to_instruction()">
+    Convert the QuantumError to a circuit Instruction.
+  </Function>
 
-### probabilities
+  ### to\_quantumchannel
 
-<span id="qiskit.providers.aer.noise.QuantumError.probabilities" />
-
-`property probabilities`
-
-Return the list of error probabilities.
-
-### rtol
-
-<span id="qiskit.providers.aer.noise.QuantumError.rtol" />
-
-`property rtol`
-
-The relative tolerance parameter for float comparisons.
-
-### set\_atol
-
-<span id="qiskit.providers.aer.noise.QuantumError.set_atol" />
-
-`classmethod set_atol(value)`
-
-Set the class default absolute tolerance parameter for float comparisons.
-
-### set\_rtol
-
-<span id="qiskit.providers.aer.noise.QuantumError.set_rtol" />
-
-`classmethod set_rtol(value)`
-
-Set the class default relative tolerance parameter for float comparisons.
-
-### size
-
-<span id="qiskit.providers.aer.noise.QuantumError.size" />
-
-`property size`
-
-Return the number of error circuit.
-
-### tensor
-
-<span id="qiskit.providers.aer.noise.QuantumError.tensor" />
-
-`tensor(other)`
-
-Return the tensor product quantum error channel self ⊗ other.
-
-**Parameters**
-
-**other** ([*QuantumError*](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – a quantum error channel.
-
-**Returns**
-
-the tensor product error channel self ⊗ other.
-
-**Return type**
-
-[QuantumError](#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
-
-**Raises**
-
-**NoiseError** – if other cannot be converted to a QuantumError.
-
-### to\_dict
-
-<span id="qiskit.providers.aer.noise.QuantumError.to_dict" />
-
-`to_dict()`
-
-Return the current error as a dictionary.
-
-### to\_instruction
-
-<span id="qiskit.providers.aer.noise.QuantumError.to_instruction" />
-
-`to_instruction()`
-
-Convert the QuantumError to a circuit Instruction.
-
-### to\_quantumchannel
-
-<span id="qiskit.providers.aer.noise.QuantumError.to_quantumchannel" />
-
-`to_quantumchannel()`
-
-Convert the QuantumError to a SuperOp quantum channel.
+  <Function id="qiskit.providers.aer.noise.QuantumError.to_quantumchannel" name="to_quantumchannel" signature="to_quantumchannel()">
+    Convert the QuantumError to a SuperOp quantum channel.
+  </Function>
+</Class>
 

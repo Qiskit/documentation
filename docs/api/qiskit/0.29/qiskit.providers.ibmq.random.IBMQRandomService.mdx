@@ -8,63 +8,57 @@ python_api_name: qiskit.providers.ibmq.random.IBMQRandomService
 
 # IBMQRandomService
 
-<span id="qiskit.providers.ibmq.random.IBMQRandomService" />
+<Class id="qiskit.providers.ibmq.random.IBMQRandomService" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/random/ibmqrandomservice.py" signature="IBMQRandomService(provider)">
+  Bases: `object`
 
-`IBMQRandomService(provider)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/random/ibmqrandomservice.py "view source code")
+  Random number services for an IBM Quantum Experience account provider.
 
-Bases: `object`
+  Represent a namespace for random number services available to this provider. An instance of this class is used as an attribute to the [`AccountProvider`](qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.AccountProvider") class. This allows a convenient way to query for all services or to access a specific one:
 
-Random number services for an IBM Quantum Experience account provider.
+  ```python
+  random_services = provider.random.services()
+  extractor = provider.random.get_extractor('cqc_extractor')
+  extractor = provider.random.cqc_extractor  # Short hand for above.
+  ```
 
-Represent a namespace for random number services available to this provider. An instance of this class is used as an attribute to the [`AccountProvider`](qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.AccountProvider") class. This allows a convenient way to query for all services or to access a specific one:
+  IBMQRandomService constructor.
 
-```python
-random_services = provider.random.services()
-extractor = provider.random.get_extractor('cqc_extractor')
-extractor = provider.random.cqc_extractor  # Short hand for above.
-```
+  **Parameters**
 
-IBMQRandomService constructor.
+  **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
 
-**Parameters**
+  ## Methods
 
-**provider** (`AccountProvider`) – IBM Quantum Experience account provider.
+  ### get\_service
 
-## Methods
+  <Function id="qiskit.providers.ibmq.random.IBMQRandomService.get_service" name="get_service" signature="IBMQRandomService.get_service(name)">
+    Return the random number service with the given name.
 
-### get\_service
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.random.IBMQRandomService.get_service" />
+    **name** (`str`) – Name of the service.
 
-`IBMQRandomService.get_service(name)`
+    **Return type**
 
-Return the random number service with the given name.
+    `BaseRandomService`
 
-**Parameters**
+    **Returns**
 
-**name** (`str`) – Name of the service.
+    Service with the given name.
 
-**Return type**
+    **Raises**
 
-`BaseRandomService`
+    [**IBMQError**](qiskit.providers.ibmq.IBMQError "qiskit.providers.ibmq.IBMQError") – If the service cannot be found.
+  </Function>
 
-**Returns**
+  ### services
 
-Service with the given name.
+  <Function id="qiskit.providers.ibmq.random.IBMQRandomService.services" name="services" signature="IBMQRandomService.services()">
+    Return all random number services available to this account.
 
-**Raises**
+    **Return type**
 
-[**IBMQError**](qiskit.providers.ibmq.IBMQError "qiskit.providers.ibmq.IBMQError") – If the service cannot be found.
-
-### services
-
-<span id="qiskit.providers.ibmq.random.IBMQRandomService.services" />
-
-`IBMQRandomService.services()`
-
-Return all random number services available to this account.
-
-**Return type**
-
-`List`\[`BaseRandomService`]
+    `List`\[`BaseRandomService`]
+  </Function>
+</Class>
 

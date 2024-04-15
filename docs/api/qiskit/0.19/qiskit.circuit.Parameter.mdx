@@ -8,76 +8,72 @@ python_api_name: qiskit.circuit.Parameter
 
 # Parameter
 
-<span id="qiskit.circuit.Parameter" />
+<Class id="qiskit.circuit.Parameter" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parameter.py" signature="Parameter(_, uuid=None)">
+  Parameter Class for variable parameters.
 
-`Parameter(_, uuid=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parameter.py "view source code")
+  Create a new ParameterExpression.
 
-Parameter Class for variable parameters.
+  Not intended to be called directly, but to be instantiated via operations on other Parameter or ParameterExpression objects.
 
-Create a new ParameterExpression.
+  **Parameters**
 
-Not intended to be called directly, but to be instantiated via operations on other Parameter or ParameterExpression objects.
+  *   **symbol\_map** (*dict*) – Mapping of Parameter instances to the sympy.Symbol serving as their placeholder in expr.
+  *   **expr** (*sympy.Expr*) – Expression of sympy.Symbols.
 
-**Parameters**
+  ## Attributes
 
-*   **symbol\_map** (*dict*) – Mapping of Parameter instances to the sympy.Symbol serving as their placeholder in expr.
-*   **expr** (*sympy.Expr*) – Expression of sympy.Symbols.
+  ### name
 
-## Attributes
+  <Attribute id="qiskit.circuit.Parameter.name" name="name">
+    Returns the name of the Parameter.
+  </Attribute>
 
-### name
+  ### parameters
 
-Returns the name of the Parameter.
+  <Attribute id="qiskit.circuit.Parameter.parameters" name="parameters">
+    Returns a set of the unbound Parameters in the expression.
+  </Attribute>
 
-### parameters
+  ## Methods
 
-Returns a set of the unbound Parameters in the expression.
+  ### \_\_mul\_\_
 
-## Methods
+  <Function id="qiskit.circuit.Parameter.__mul__" name="__mul__" signature="Parameter.__mul__(other)" />
 
-### \_\_mul\_\_
+  ### bind
 
-<span id="qiskit.circuit.Parameter.__mul__" />
+  <Function id="qiskit.circuit.Parameter.bind" name="bind" signature="Parameter.bind(parameter_values)">
+    Binds the provided set of parameters to their corresponding values.
 
-`Parameter.__mul__(other)`
+    **Parameters**
 
-### bind
+    **parameter\_values** (*dict*) – Mapping of Parameter instances to the numeric value to which they will be bound.
 
-<span id="qiskit.circuit.Parameter.bind" />
+    **Raises**
 
-`Parameter.bind(parameter_values)`
+    *   **CircuitError** –
 
-Binds the provided set of parameters to their corresponding values.
+        *   If parameter\_values contains Parameters outside those in self. - If a non-numeric value is passed in parameter\_values.
 
-**Parameters**
+    *   **ZeroDivisionError** –
 
-**parameter\_values** (*dict*) – Mapping of Parameter instances to the numeric value to which they will be bound.
+        *   If binding the provided values requires division by zero.
 
-**Raises**
+    **Returns**
 
-*   **CircuitError** –
+    **a new expression parameterized by any parameters**
 
-    *   If parameter\_values contains Parameters outside those in self. - If a non-numeric value is passed in parameter\_values.
+    which were not bound by parameter\_values.
 
-*   **ZeroDivisionError** –
+    **Return type**
 
-    *   If binding the provided values requires division by zero.
+    [ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+  </Function>
 
-**Returns**
+  ### subs
 
-**a new expression parameterized by any parameters**
-
-which were not bound by parameter\_values.
-
-**Return type**
-
-[ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
-
-### subs
-
-<span id="qiskit.circuit.Parameter.subs" />
-
-`Parameter.subs(parameter_map)`
-
-Substitute self with the corresponding parameter in parameter\_map.
+  <Function id="qiskit.circuit.Parameter.subs" name="subs" signature="Parameter.subs(parameter_map)">
+    Substitute self with the corresponding parameter in parameter\_map.
+  </Function>
+</Class>
 

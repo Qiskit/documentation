@@ -8,30 +8,28 @@ python_api_name: qiskit.converters.circuit_to_gate
 
 # qiskit.converters.circuit\_to\_gate
 
-<span id="qiskit.converters.circuit_to_gate" />
+<Function id="qiskit.converters.circuit_to_gate" name="circuit_to_gate" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/converters/circuit_to_gate.py" signature="circuit_to_gate(circuit, parameter_map=None, equivalence_library=None, label=None)">
+  Build a `Gate` object from a `QuantumCircuit`.
 
-`circuit_to_gate(circuit, parameter_map=None, equivalence_library=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/converters/circuit_to_gate.py "view source code")
+  The gate is anonymous (not tied to a named quantum register), and so can be inserted into another circuit. The gate will have the same string name as the circuit.
 
-Build a `Gate` object from a `QuantumCircuit`.
+  **Parameters**
 
-The gate is anonymous (not tied to a named quantum register), and so can be inserted into another circuit. The gate will have the same string name as the circuit.
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
+  *   **parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If None, existing circuit parameters will also parameterize the Gate.
+  *   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – Optional equivalence library where the converted gate will be registered.
+  *   **label** (*str*) – Optional gate label.
 
-**Parameters**
+  **Raises**
 
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
-*   **parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If None, existing circuit parameters will also parameterize the Gate.
-*   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – Optional equivalence library where the converted gate will be registered.
-*   **label** (*str*) – Optional gate label.
+  **QiskitError** – if circuit is non-unitary or if parameter\_map is not compatible with circuit
 
-**Raises**
+  **Returns**
 
-**QiskitError** – if circuit is non-unitary or if parameter\_map is not compatible with circuit
+  a Gate equivalent to the action of the input circuit. Upon decomposition, this gate will yield the components comprising the original circuit.
 
-**Returns**
+  **Return type**
 
-a Gate equivalent to the action of the input circuit. Upon decomposition, this gate will yield the components comprising the original circuit.
-
-**Return type**
-
-[Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
+  [Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
+</Function>
 

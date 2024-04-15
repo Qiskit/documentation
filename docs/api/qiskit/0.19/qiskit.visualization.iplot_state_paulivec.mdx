@@ -8,35 +8,33 @@ python_api_name: qiskit.visualization.iplot_state_paulivec
 
 # iplot\_state\_paulivec
 
-<span id="qiskit.visualization.iplot_state_paulivec" />
+<Function id="qiskit.visualization.iplot_state_paulivec" name="iplot_state_paulivec" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/interactive/iplot_paulivec.py" signature="iplot_state_paulivec(rho, figsize=None, slider=False, show_legend=False)">
+  Create a paulivec representation.
 
-`iplot_state_paulivec(rho, figsize=None, slider=False, show_legend=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/interactive/iplot_paulivec.py "view source code")
+  Graphical representation of the input array.
 
-Create a paulivec representation.
+  **Parameters**
 
-Graphical representation of the input array.
+  *   **rho** (*array*) – State vector or density matrix.
+  *   **figsize** (*tuple*) – Figure size in pixels.
+  *   **slider** (*bool*) – activate slider
+  *   **show\_legend** (*bool*) – show legend of graph content
 
-**Parameters**
+  **Example**
 
-*   **rho** (*array*) – State vector or density matrix.
-*   **figsize** (*tuple*) – Figure size in pixels.
-*   **slider** (*bool*) – activate slider
-*   **show\_legend** (*bool*) – show legend of graph content
+  ```python
+  from qiskit import QuantumCircuit, BasicAer, execute
+  from qiskit.visualization import iplot_state_paulivec
+  %matplotlib inline
 
-**Example**
+  qc = QuantumCircuit(2, 2)
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.measure([0, 1], [0, 1])
 
-```python
-from qiskit import QuantumCircuit, BasicAer, execute
-from qiskit.visualization import iplot_state_paulivec
-%matplotlib inline
-
-qc = QuantumCircuit(2, 2)
-qc.h(0)
-qc.cx(0, 1)
-qc.measure([0, 1], [0, 1])
-
-backend = BasicAer.get_backend('statevector_simulator')
-job = execute(qc, backend).result()
-iplot_state_paulivec(job.get_statevector(qc))
-```
+  backend = BasicAer.get_backend('statevector_simulator')
+  job = execute(qc, backend).result()
+  iplot_state_paulivec(job.get_statevector(qc))
+  ```
+</Function>
 

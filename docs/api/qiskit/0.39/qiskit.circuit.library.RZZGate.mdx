@@ -8,151 +8,147 @@ python_api_name: qiskit.circuit.library.RZZGate
 
 # RZZGate
 
-<span id="qiskit.circuit.library.RZZGate" />
+<Class id="qiskit.circuit.library.RZZGate" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/rzz.py" signature="RZZGate(theta, label=None)">
+  Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`RZZGate(theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/rzz.py "view source code")
+  A parametric 2-qubit $Z \otimes Z$ interaction (rotation about ZZ).
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  This gate is symmetric, and is maximally entangling at $\theta = \pi/2$.
 
-A parametric 2-qubit $Z \otimes Z$ interaction (rotation about ZZ).
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rzz()`](qiskit.circuit.QuantumCircuit#rzz "qiskit.circuit.QuantumCircuit.rzz") method.
 
-This gate is symmetric, and is maximally entangling at $\theta = \pi/2$.
+  **Circuit Symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rzz()`](qiskit.circuit.QuantumCircuit#rzz "qiskit.circuit.QuantumCircuit.rzz") method.
+  ```python
+  q_0: ───■────
+          │zz(θ)
+  q_1: ───■────
+  ```
 
-**Circuit Symbol:**
-
-```python
-q_0: ───■────
-        │zz(θ)
-q_1: ───■────
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZZ}(\theta) = \exp\left(-i \th Z{\otimes}Z\right) =
-    \begin{pmatrix}
-        e^{-i \th} & 0 & 0 & 0 \\
-        0 & e^{i \th} & 0 & 0 \\
-        0 & 0 & e^{i \th} & 0 \\
-        0 & 0 & 0 & e^{-i \th}
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZZ}(\theta) = \exp\left(-i \th Z{\otimes}Z\right) =
+\begin{pmatrix}
+e^{-i \th} & 0 & 0 & 0 \\
+0 & e^{i \th} & 0 & 0 \\
+0 & 0 & e^{i \th} & 0 \\
+0 & 0 & 0 & e^{-i \th}
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
-This is a direct sum of RZ rotations, so this gate is equivalent to a uniformly controlled (multiplexed) RZ gate:
+  This is a direct sum of RZ rotations, so this gate is equivalent to a uniformly controlled (multiplexed) RZ gate:
 
 $$
 \begin{split}R_{ZZ}(\theta) =
-    \begin{pmatrix}
-        RZ(\theta) & 0 \\
-        0 & RZ(-\theta)
-    \end{pmatrix}\end{split}
+\begin{pmatrix}
+RZ(\theta) & 0 \\
+0 & RZ(-\theta)
+\end{pmatrix}\end{split}
 $$
 
-**Examples:**
+  **Examples:**
 
-> $$
-> R_{ZZ}(\theta = 0) = I
-> $$
->
-> $$
-> R_{ZZ}(\theta = 2\pi) = -I
-> $$
->
-> $$
-> R_{ZZ}(\theta = \pi) = - Z \otimes Z
-> $$
->
-> $$
-> \begin{split}R_{ZZ}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
->                         \begin{pmatrix}
->                             1-i & 0 & 0 & 0 \\
->                             0 & 1+i & 0 & 0 \\
->                             0 & 0 & 1+i & 0 \\
->                             0 & 0 & 0 & 1-i
->                         \end{pmatrix}\end{split}
-> $$
+  > $$
+  > R_{ZZ}(\theta = 0) = I
+  > $$
+  >
+  > $$
+  > R_{ZZ}(\theta = 2\pi) = -I
+  > $$
+  >
+  > $$
+  > R_{ZZ}(\theta = \pi) = - Z \otimes Z
+  > $$
+  >
+  > $$
+  > \begin{split}R_{ZZ}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
+  >                         \begin{pmatrix}
+  >                             1-i & 0 & 0 & 0 \\
+  >                             0 & 1+i & 0 & 0 \\
+  >                             0 & 0 & 1+i & 0 \\
+  >                             0 & 0 & 0 & 1-i
+  >                         \end{pmatrix}\end{split}
+  > $$
 
-Create new RZZ gate.
+  Create new RZZ gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-### inverse
+  ### inverse
 
-<span id="qiskit.circuit.library.RZZGate.inverse" />
+  <Function id="qiskit.circuit.library.RZZGate.inverse" name="inverse" signature="RZZGate.inverse()">
+    Return inverse RZZ gate (i.e. with the negative rotation angle).
+  </Function>
 
-`RZZGate.inverse()`
+  ## Attributes
 
-Return inverse RZZ gate (i.e. with the negative rotation angle).
+  ### condition\_bits
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.RZZGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-<span id="qiskit.circuit.library.RZZGate.condition_bits" />
+    **Return type**
 
-### condition\_bits
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-Get Clbits in condition.
+  ### decompositions
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.RZZGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  ### definition
 
-<span id="qiskit.circuit.library.RZZGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.RZZGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### decompositions
+  ### duration
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.RZZGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RZZGate.definition" />
+  ### label
 
-### definition
+  <Attribute id="qiskit.circuit.library.RZZGate.label" name="label">
+    Return instruction label
 
-Return definition in terms of other basic gates.
+    **Return type**
 
-<span id="qiskit.circuit.library.RZZGate.duration" />
+    `str`
+  </Attribute>
 
-### duration
+  ### name
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.RZZGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RZZGate.label" />
+  ### num\_clbits
 
-### label
+  <Attribute id="qiskit.circuit.library.RZZGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Return instruction label
+  ### num\_qubits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.RZZGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-`str`
+  ### params
 
-<span id="qiskit.circuit.library.RZZGate.name" />
+  <Attribute id="qiskit.circuit.library.RZZGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### name
+  ### unit
 
-Return the name.
-
-<span id="qiskit.circuit.library.RZZGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.RZZGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.RZZGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.RZZGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.RZZGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

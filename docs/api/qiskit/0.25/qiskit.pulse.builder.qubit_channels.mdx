@@ -8,37 +8,35 @@ python_api_name: qiskit.pulse.builder.qubit_channels
 
 # qiskit.pulse.builder.qubit\_channels
 
-<span id="qiskit.pulse.builder.qubit_channels" />
+<Function id="qiskit.pulse.builder.qubit_channels" name="qubit_channels" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py" signature="qubit_channels(qubit)">
+  Returns the set of channels associated with a qubit.
 
-`qubit_channels(qubit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
+  Examples:
 
-Returns the set of channels associated with a qubit.
+  ```python
+  from qiskit import pulse
+  from qiskit.test.mock import FakeOpenPulse2Q
 
-Examples:
+  backend = FakeOpenPulse2Q()
 
-```python
-from qiskit import pulse
-from qiskit.test.mock import FakeOpenPulse2Q
+  with pulse.build(backend):
+      print(pulse.qubit_channels(0))
+  ```
 
-backend = FakeOpenPulse2Q()
+  ```python
+  {MeasureChannel(0), AcquireChannel(0), DriveChannel(0), ControlChannel(1), ControlChannel(0)}
+  ```
 
-with pulse.build(backend):
-    print(pulse.qubit_channels(0))
-```
+  <Admonition title="Note" type="note">
+    Requires the active builder context to have a backend set.
+  </Admonition>
 
-```python
-{MeasureChannel(0), AcquireChannel(0), DriveChannel(0), ControlChannel(1), ControlChannel(0)}
-```
+  <Admonition title="Note" type="note">
+    A channel may still be associated with another qubit in this list such as in the case where significant crosstalk exists.
+  </Admonition>
 
-<Admonition title="Note" type="note">
-  Requires the active builder context to have a backend set.
-</Admonition>
+  **Return type**
 
-<Admonition title="Note" type="note">
-  A channel may still be associated with another qubit in this list such as in the case where significant crosstalk exists.
-</Admonition>
-
-**Return type**
-
-`Set`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
+  `Set`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
+</Function>
 

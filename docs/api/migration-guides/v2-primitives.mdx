@@ -90,12 +90,15 @@ Sampler V2 example that uses shots in `run()`:
 
 ```python
 # Sample two circuits at 128 shots each.
-sampler.run([(circuit1,), (circuit2,)], shots=128)
+sampler.run([circuit1, circuit2], shots=128)
 
-# Sample two circuits at different amounts of shots. The "None"s are necessary
-# as placeholders
+# Sample two circuits at different amounts of shots.
+# The "None"s are necessary as placeholders
 # for the lack of parameter values in this example.
-sampler.run([(circuit1, None, 123), (circuit2, None, 456)])
+sampler.run([
+  (circuit1, None, 123),
+  (circuit2, None, 456),
+])
 ```
 
 #### Output
@@ -226,7 +229,7 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
 sampler = Sampler(backend)
-job = sampler.run([(isa_circuit,)])
+job = sampler.run([isa_circuit])
 result = job.result()
 # Get results for the first (and only) PUB
 pub_result = result[0]
@@ -886,7 +889,7 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
  
 sampler = Sampler(backend)
-job = sampler.run([(isa_circuit,)])
+job = sampler.run([isa_circuit])
 result = job.result()
 ```  
   </TabItem>
@@ -1109,8 +1112,8 @@ backend = service.least_busy(operational=True, simulator=False, min_num_qubits=1
  
 with Session(service=service, backend=backend) as session: 
     sampler = Sampler(session=session) 
-    job = sampler.run([(isa_circuit)]) 
-    another_job = sampler.run([(another_isa_circuit)]) 
+    job = sampler.run([isa_circuit]) 
+    another_job = sampler.run([another_isa_circuit]) 
     result = job.result()
     another_result = another_job.result() 
  

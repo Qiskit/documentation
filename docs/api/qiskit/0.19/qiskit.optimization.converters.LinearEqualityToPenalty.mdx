@@ -8,37 +8,33 @@ python_api_name: qiskit.optimization.converters.LinearEqualityToPenalty
 
 # LinearEqualityToPenalty
 
-<span id="qiskit.optimization.converters.LinearEqualityToPenalty" />
+<Class id="qiskit.optimization.converters.LinearEqualityToPenalty" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/linear_equality_to_penalty.py" signature="LinearEqualityToPenalty">
+  Convert a problem with only equality constraints to unconstrained with penalty terms.
 
-`LinearEqualityToPenalty` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/linear_equality_to_penalty.py "view source code")
+  ## Methods
 
-Convert a problem with only equality constraints to unconstrained with penalty terms.
+  ### encode
 
-## Methods
+  <Function id="qiskit.optimization.converters.LinearEqualityToPenalty.encode" name="encode" signature="LinearEqualityToPenalty.encode(op, penalty_factor=100000.0, name=None)">
+    Convert a problem with equality constraints into an unconstrained problem.
 
-### encode
+    **Parameters**
 
-<span id="qiskit.optimization.converters.LinearEqualityToPenalty.encode" />
+    *   **op** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved, that does not contain inequality constraints.
+    *   **penalty\_factor** (`float`) – Penalty terms in the objective function is multiplied with this factor.
+    *   **name** (`Optional`\[`str`]) – The name of the converted problem.
 
-`LinearEqualityToPenalty.encode(op, penalty_factor=100000.0, name=None)`
+    **Return type**
 
-Convert a problem with equality constraints into an unconstrained problem.
+    [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")
 
-**Parameters**
+    **Returns**
 
-*   **op** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved, that does not contain inequality constraints.
-*   **penalty\_factor** (`float`) – Penalty terms in the objective function is multiplied with this factor.
-*   **name** (`Optional`\[`str`]) – The name of the converted problem.
+    The converted problem, that is an unconstrained problem.
 
-**Return type**
+    **Raises**
 
-[`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")
-
-**Returns**
-
-The converted problem, that is an unconstrained problem.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an inequality constraint exists.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an inequality constraint exists.
+  </Function>
+</Class>
 

@@ -8,28 +8,26 @@ python_api_name: qiskit.providers.aer.noise.mixed_unitary_error
 
 # qiskit.providers.aer.noise.mixed\_unitary\_error
 
-<span id="qiskit.providers.aer.noise.mixed_unitary_error" />
+<Function id="qiskit.providers.aer.noise.mixed_unitary_error" name="mixed_unitary_error" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/standard_errors.py" signature="mixed_unitary_error(noise_ops, standard_gates=None)">
+  Return a mixed unitary quantum error channel.
 
-`mixed_unitary_error(noise_ops, standard_gates=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/standard_errors.py "view source code")
+  The input should be a list of pairs `(U[j], p[j])`, where `U[j]` is a unitary matrix and `p[j]` is a probability. All probabilities must sum to 1 for the input ops to be valid.
 
-Return a mixed unitary quantum error channel.
+  **Parameters**
 
-The input should be a list of pairs `(U[j], p[j])`, where `U[j]` is a unitary matrix and `p[j]` is a probability. All probabilities must sum to 1 for the input ops to be valid.
+  *   **noise\_ops** (*list\[pair\[matrix, double]]*) – unitary error matrices.
+  *   **standard\_gates** (*bool*) – DEPRECATED, Check if input matrices are standard gates.
 
-**Parameters**
+  **Returns**
 
-*   **noise\_ops** (*list\[pair\[matrix, double]]*) – unitary error matrices.
-*   **standard\_gates** (*bool*) – DEPRECATED, Check if input matrices are standard gates.
+  The quantum error object.
 
-**Returns**
+  **Return type**
 
-The quantum error object.
+  [QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
-**Return type**
+  **Raises**
 
-[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
-
-**Raises**
-
-**NoiseError** – if error parameters are invalid.
+  **NoiseError** – if error parameters are invalid.
+</Function>
 

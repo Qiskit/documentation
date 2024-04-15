@@ -8,46 +8,44 @@ python_api_name: qiskit.aqua.components.initial_states.Zero
 
 # Zero
 
-<span id="qiskit.aqua.components.initial_states.Zero" />
+<Class id="qiskit.aqua.components.initial_states.Zero" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/initial_states/zero.py" signature="Zero(num_qubits)">
+  The zero (null/vacuum) state.
 
-`Zero(num_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/initial_states/zero.py "view source code")
+  This is suitable for those situations in which the all-zeros state is the desired state. This is the case for a *vacuum state* in physics or chemistry
 
-The zero (null/vacuum) state.
+  **Parameters**
 
-This is suitable for those situations in which the all-zeros state is the desired state. This is the case for a *vacuum state* in physics or chemistry
+  **num\_qubits** (`int`) – Number of qubits, has a minimum value of 1.
 
-**Parameters**
+  ## Attributes
 
-**num\_qubits** (`int`) – Number of qubits, has a minimum value of 1.
+  ### bitstr
 
-## Attributes
+  <Attribute id="qiskit.aqua.components.initial_states.Zero.bitstr" name="bitstr" />
 
-### bitstr
+  ## Methods
 
-## Methods
+  ### construct\_circuit
 
-### construct\_circuit
+  <Function id="qiskit.aqua.components.initial_states.Zero.construct_circuit" name="construct_circuit" signature="Zero.construct_circuit(mode='circuit', register=None)">
+    Construct the statevector of desired initial state.
 
-<span id="qiskit.aqua.components.initial_states.Zero.construct_circuit" />
+    **Parameters**
 
-`Zero.construct_circuit(mode='circuit', register=None)`
+    *   **mode** – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
+    *   **register** – qubits for circuit construction.
 
-Construct the statevector of desired initial state.
+    **Returns**
 
-**Parameters**
+    statevector.
 
-*   **mode** – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
-*   **register** – qubits for circuit construction.
+    **Return type**
 
-**Returns**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
 
-statevector.
+    **Raises**
 
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+  </Function>
+</Class>
 

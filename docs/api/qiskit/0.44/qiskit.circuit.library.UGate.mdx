@@ -8,39 +8,36 @@ python_api_name: qiskit.circuit.library.UGate
 
 # UGate
 
-<span id="qiskit.circuit.library.UGate" />
+<Class id="qiskit.circuit.library.UGate" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/u.py" signature="qiskit.circuit.library.UGate(theta, phi, lam, label=None)">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`qiskit.circuit.library.UGate(theta, phi, lam, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/u.py "view source code")
+  Generic single-qubit rotation gate with 3 Euler angles.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`u()`](qiskit.circuit.QuantumCircuit#u "qiskit.circuit.QuantumCircuit.u") method.
 
-Generic single-qubit rotation gate with 3 Euler angles.
+  **Circuit symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`u()`](qiskit.circuit.QuantumCircuit#u "qiskit.circuit.QuantumCircuit.u") method.
+  ```python
+       ┌──────────┐
+  q_0: ┤ U(ϴ,φ,λ) ├
+       └──────────┘
+  ```
 
-**Circuit symbol:**
-
-```python
-     ┌──────────┐
-q_0: ┤ U(ϴ,φ,λ) ├
-     └──────────┘
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}U(\theta, \phi, \lambda) =
-    \begin{pmatrix}
-        \cos\left(\th\right)          & -e^{i\lambda}\sin\left(\th\right) \\
-        e^{i\phi}\sin\left(\th\right) & e^{i(\phi+\lambda)}\cos\left(\th\right)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}U(\theta, \phi, \lambda) =
+\begin{pmatrix}
+\cos\left(\th\right)          & -e^{i\lambda}\sin\left(\th\right) \\
+e^{i\phi}\sin\left(\th\right) & e^{i(\phi+\lambda)}\cos\left(\th\right)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
-<Admonition title="Note" type="note">
-  The matrix representation shown here is the same as in the [OpenQASM 3.0 specification](https://openqasm.com/language/gates.html#built-in-gates), which differs from the [OpenQASM 2.0 specification](https://doi.org/10.48550/arXiv.1707.03429) by a global phase of $e^{i(\phi+\lambda)/2}$.
-</Admonition>
+  <Admonition title="Note" type="note">
+    The matrix representation shown here is the same as in the [OpenQASM 3.0 specification](https://openqasm.com/language/gates.html#built-in-gates), which differs from the [OpenQASM 2.0 specification](https://doi.org/10.48550/arXiv.1707.03429) by a global phase of $e^{i(\phi+\lambda)/2}$.
+  </Admonition>
 
-**Examples:**
+  **Examples:**
 
 $$
 U\left(\theta, -\frac{\pi}{2}, \frac{\pi}{2}\right) = RX(\theta)
@@ -50,101 +47,98 @@ $$
 U(\theta, 0, 0) = RY(\theta)
 $$
 
-Create new U gate.
+  Create new U gate.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.UGate.condition_bits" />
+  ### condition\_bits
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.UGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-Get Clbits in condition.
+  ### decompositions
 
-<span id="qiskit.circuit.library.UGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.UGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### decompositions
+  ### definition
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.UGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.circuit.library.UGate.definition" />
+  ### duration
 
-### definition
+  <Attribute id="qiskit.circuit.library.UGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### label
 
-<span id="qiskit.circuit.library.UGate.duration" />
+  <Attribute id="qiskit.circuit.library.UGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-### duration
+  ### name
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.UGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-<span id="qiskit.circuit.library.UGate.label" />
+  ### num\_clbits
 
-### label
+  <Attribute id="qiskit.circuit.library.UGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Return instruction label
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.UGate.name" />
+  <Attribute id="qiskit.circuit.library.UGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-### name
+  ### params
 
-Return the name.
+  <Attribute id="qiskit.circuit.library.UGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.UGate.num_clbits" />
+  ### unit
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.UGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-Return the number of clbits.
+  ## Methods
 
-<span id="qiskit.circuit.library.UGate.num_qubits" />
+  ### control
 
-### num\_qubits
+  <Function id="qiskit.circuit.library.UGate.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a (multi-)controlled-U gate.
 
-Return the number of qubits.
+    **Parameters**
 
-<span id="qiskit.circuit.library.UGate.params" />
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-### params
+    **Returns**
 
-return instruction params.
+    controlled version of this gate.
 
-<span id="qiskit.circuit.library.UGate.unit" />
+    **Return type**
 
-### unit
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-Get the time unit of duration.
+  ### inverse
 
-## Methods
+  <Function id="qiskit.circuit.library.UGate.inverse" name="inverse" signature="inverse()">
+    Return inverted U gate.
 
-### control
-
-<span id="qiskit.circuit.library.UGate.control" />
-
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
-
-Return a (multi-)controlled-U gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.UGate.inverse" />
-
-`inverse()`
-
-Return inverted U gate.
-
-$U(\theta,\phi,\lambda)^{\dagger} =U(-\theta,-\lambda,-\phi)$)
+    $U(\theta,\phi,\lambda)^{\dagger} =U(-\theta,-\lambda,-\phi)$)
+  </Function>
+</Class>
 

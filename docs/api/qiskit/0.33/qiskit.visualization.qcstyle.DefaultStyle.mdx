@@ -8,154 +8,152 @@ python_api_name: qiskit.visualization.qcstyle.DefaultStyle
 
 # DefaultStyle
 
-<span id="qiskit.visualization.qcstyle.DefaultStyle" />
+<Class id="qiskit.visualization.qcstyle.DefaultStyle" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/visualization/qcstyle.py" signature="DefaultStyle">
+  Bases: `object`
 
-`DefaultStyle` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/visualization/qcstyle.py "view source code")
+  Creates a Default Style dictionary
 
-Bases: `object`
+  **Style Dict Details**
 
-Creates a Default Style dictionary
+  The style dict contains numerous options that define the style of the output circuit visualization. The style dict is used by the mpl or latex output. The options available in the style dict are defined below:
 
-**Style Dict Details**
+  **name (str): the name of the style. The name can be set to `iqx`,**
 
-The style dict contains numerous options that define the style of the output circuit visualization. The style dict is used by the mpl or latex output. The options available in the style dict are defined below:
+  `bw`, `default`, or the name of a user-created json file. This overrides the setting in the user config file (usually `~/.qiskit/settings.conf`).
 
-**name (str): the name of the style. The name can be set to `iqx`,**
+  **textcolor (str): the color code to use for all text not inside a gate.**
 
-`bw`, `default`, or the name of a user-created json file. This overrides the setting in the user config file (usually `~/.qiskit/settings.conf`).
+  Defaults to `#000000`
 
-**textcolor (str): the color code to use for all text not inside a gate.**
+  **subtextcolor (str): the color code to use for subtext. Defaults to**
 
-Defaults to `#000000`
+  `#000000`
 
-**subtextcolor (str): the color code to use for subtext. Defaults to**
+  **linecolor (str): the color code to use for lines. Defaults to**
 
-`#000000`
+  `#000000`
 
-**linecolor (str): the color code to use for lines. Defaults to**
+  **creglinecolor (str): the color code to use for classical register**
 
-`#000000`
+  lines. Defaults to `#778899`
 
-**creglinecolor (str): the color code to use for classical register**
+  **gatetextcolor (str): the color code to use for gate text. Defaults to**
 
-lines. Defaults to `#778899`
+  `#000000`
 
-**gatetextcolor (str): the color code to use for gate text. Defaults to**
+  **gatefacecolor (str): the color code to use for a gate if no color**
 
-`#000000`
+  specified in the ‘displaycolor’ dict. Defaults to `#BB8BFF`
 
-**gatefacecolor (str): the color code to use for a gate if no color**
+  **barrierfacecolor (str): the color code to use for barriers. Defaults to**
 
-specified in the ‘displaycolor’ dict. Defaults to `#BB8BFF`
+  `#BDBDBD`
 
-**barrierfacecolor (str): the color code to use for barriers. Defaults to**
+  **backgroundcolor (str): the color code to use for the background.**
 
-`#BDBDBD`
+  Defaults to `#FFFFFF`
 
-**backgroundcolor (str): the color code to use for the background.**
+  **edgecolor (str): the color code to use for gate edges when using the**
 
-Defaults to `#FFFFFF`
+  bw style. Defaults to `#000000`.
 
-**edgecolor (str): the color code to use for gate edges when using the**
+  fontsize (int): the font size to use for text. Defaults to 13.
 
-bw style. Defaults to `#000000`.
+  subfontsize (int): the font size to use for subtext. Defaults to 8.
 
-fontsize (int): the font size to use for text. Defaults to 13.
+  **showindex (bool): if set to True, show the index numbers at the top.**
 
-subfontsize (int): the font size to use for subtext. Defaults to 8.
+  Defaults to False.
 
-**showindex (bool): if set to True, show the index numbers at the top.**
+  **figwidth (int): the maximum width (in inches) for the output figure.**
 
-Defaults to False.
+  If set to -1, the maximum displayable width will be used. Defaults to -1.
 
-**figwidth (int): the maximum width (in inches) for the output figure.**
+  dpi (int): the DPI to use for the output image. Defaults to 150.
 
-If set to -1, the maximum displayable width will be used. Defaults to -1.
+  **margin (list): a list of margin values to adjust spacing around output**
 
-dpi (int): the DPI to use for the output image. Defaults to 150.
+  image. Takes a list of 4 ints: \[x left, x right, y bottom, y top]. Defaults to \[2.0, 0.1, 0.1, 0.3].
 
-**margin (list): a list of margin values to adjust spacing around output**
+  **creglinestyle (str): The style of line to use for classical registers.**
 
-image. Takes a list of 4 ints: \[x left, x right, y bottom, y top]. Defaults to \[2.0, 0.1, 0.1, 0.3].
+  Choices are `solid`, `doublet`, or any valid matplotlib linestyle kwarg value. Defaults to `doublet`.
 
-**creglinestyle (str): The style of line to use for classical registers.**
+  **displaytext (dict): a dictionary of the text to use for certain element**
 
-Choices are `solid`, `doublet`, or any valid matplotlib linestyle kwarg value. Defaults to `doublet`.
+  types in the output visualization. These items allow the use of LaTeX formatting for gate names. The ‘displaytext’ dict can contain any number of elements. User created names and labels may be used as keys, which allow these to have Latex formatting. The default values are (default.json):
 
-**displaytext (dict): a dictionary of the text to use for certain element**
+  ```python
+  {
+      'u1': 'U_1',
+      'u2': 'U_2',
+      'u3': 'U_3',
+      'sdg': 'S^\dagger',
+      'sx': '\sqrt{X}',
+      'sxdg': '\sqrt{X}^\dagger',
+      't': 'T',
+      'tdg': 'T^\dagger',
+      'dcx': 'Dcx',
+      'iswap': 'Iswap',
+      'ms': 'MS',
+      'rx': 'R_X',
+      'ry': 'R_Y',
+      'rz': 'R_Z',
+      'rxx': 'R_{XX}',
+      'ryy': 'R_{YY}',
+      'rzx': 'R_{ZX}',
+      'rzz': 'ZZ',
+      'reset': '\left|0\right\rangle',
+      'initialize': '|\psi\rangle'
+  }
+  ```
 
-types in the output visualization. These items allow the use of LaTeX formatting for gate names. The ‘displaytext’ dict can contain any number of elements. User created names and labels may be used as keys, which allow these to have Latex formatting. The default values are (default.json):
+  **displaycolor (dict): the color codes to use for each circuit element in**
 
-```python
-{
-    'u1': 'U_1',
-    'u2': 'U_2',
-    'u3': 'U_3',
-    'sdg': 'S^\dagger',
-    'sx': '\sqrt{X}',
-    'sxdg': '\sqrt{X}^\dagger',
-    't': 'T',
-    'tdg': 'T^\dagger',
-    'dcx': 'Dcx',
-    'iswap': 'Iswap',
-    'ms': 'MS',
-    'rx': 'R_X',
-    'ry': 'R_Y',
-    'rz': 'R_Z',
-    'rxx': 'R_{XX}',
-    'ryy': 'R_{YY}',
-    'rzx': 'R_{ZX}',
-    'rzz': 'ZZ',
-    'reset': '\left|0\right\rangle',
-    'initialize': '|\psi\rangle'
-}
-```
+  the form (gate\_color, text\_color). Colors can also be entered without the text color, such as ‘u1’: ‘#FA74A6’, in which case the text color will always be gatetextcolor. The displaycolor dict can contain any number of elements. User names and labels may be used as keys, which allows for custom colors for user-created gates. The default values are (default.json):
 
-**displaycolor (dict): the color codes to use for each circuit element in**
-
-the form (gate\_color, text\_color). Colors can also be entered without the text color, such as ‘u1’: ‘#FA74A6’, in which case the text color will always be gatetextcolor. The displaycolor dict can contain any number of elements. User names and labels may be used as keys, which allows for custom colors for user-created gates. The default values are (default.json):
-
-```python
-{
-    'u1': ('#FA74A6', '#000000'),
-    'u2': ('#FA74A6', '#000000'),
-    'u3': ('#FA74A6', '#000000'),
-    'id': ('#05BAB6', '#000000'),
-    'u': ('#BB8BFF', '#000000'),
-    'p': ('#BB8BFF', '#000000'),
-    'x': ('#05BAB6', '#000000'),
-    'y': ('#05BAB6', '#000000'),
-    'z': ('#05BAB6', '#000000'),
-    'h': ('#6FA4FF', '#000000'),
-    'cx': ('#6FA4FF', '#000000'),
-    'ccx': ('#BB8BFF', '#000000'),
-    'mcx': ('#BB8BFF', '#000000'),
-    'mcx_gray': ('#BB8BFF', '#000000'),
-    'cy': ('#6FA4FF', '#000000'),
-    'cz': ('#6FA4FF', '#000000'),
-    'swap': ('#6FA4FF', '#000000'),
-    'cswap': ('#BB8BFF', '#000000'),
-    'ccswap': ('#BB8BFF', '#000000'),
-    'dcx': ('#6FA4FF', '#000000'),
-    'cdcx': ('#BB8BFF', '#000000'),
-    'ccdcx': ('#BB8BFF', '#000000'),
-    'iswap': ('#6FA4FF', '#000000'),
-    's': ('#6FA4FF', '#000000'),
-    'sdg': ('#6FA4FF', '#000000'),
-    't': ('#BB8BFF', '#000000'),
-    'tdg': ('#BB8BFF', '#000000'),
-    'sx': ('#6FA4FF', '#000000'),
-    'sxdg': ('#6FA4FF', '#000000')
-    'r': ('#BB8BFF', '#000000'),
-    'rx': ('#BB8BFF', '#000000'),
-    'ry': ('#BB8BFF', '#000000'),
-    'rz': ('#BB8BFF', '#000000'),
-    'rxx': ('#BB8BFF', '#000000'),
-    'ryy': ('#BB8BFF', '#000000'),
-    'rzx': ('#BB8BFF', '#000000'),
-    'reset': ('#000000', '#FFFFFF'),
-    'target': ('#FFFFFF', '#FFFFFF'),
-    'measure': ('#000000', '#FFFFFF'),
-}
-```
+  ```python
+  {
+      'u1': ('#FA74A6', '#000000'),
+      'u2': ('#FA74A6', '#000000'),
+      'u3': ('#FA74A6', '#000000'),
+      'id': ('#05BAB6', '#000000'),
+      'u': ('#BB8BFF', '#000000'),
+      'p': ('#BB8BFF', '#000000'),
+      'x': ('#05BAB6', '#000000'),
+      'y': ('#05BAB6', '#000000'),
+      'z': ('#05BAB6', '#000000'),
+      'h': ('#6FA4FF', '#000000'),
+      'cx': ('#6FA4FF', '#000000'),
+      'ccx': ('#BB8BFF', '#000000'),
+      'mcx': ('#BB8BFF', '#000000'),
+      'mcx_gray': ('#BB8BFF', '#000000'),
+      'cy': ('#6FA4FF', '#000000'),
+      'cz': ('#6FA4FF', '#000000'),
+      'swap': ('#6FA4FF', '#000000'),
+      'cswap': ('#BB8BFF', '#000000'),
+      'ccswap': ('#BB8BFF', '#000000'),
+      'dcx': ('#6FA4FF', '#000000'),
+      'cdcx': ('#BB8BFF', '#000000'),
+      'ccdcx': ('#BB8BFF', '#000000'),
+      'iswap': ('#6FA4FF', '#000000'),
+      's': ('#6FA4FF', '#000000'),
+      'sdg': ('#6FA4FF', '#000000'),
+      't': ('#BB8BFF', '#000000'),
+      'tdg': ('#BB8BFF', '#000000'),
+      'sx': ('#6FA4FF', '#000000'),
+      'sxdg': ('#6FA4FF', '#000000')
+      'r': ('#BB8BFF', '#000000'),
+      'rx': ('#BB8BFF', '#000000'),
+      'ry': ('#BB8BFF', '#000000'),
+      'rz': ('#BB8BFF', '#000000'),
+      'rxx': ('#BB8BFF', '#000000'),
+      'ryy': ('#BB8BFF', '#000000'),
+      'rzx': ('#BB8BFF', '#000000'),
+      'reset': ('#000000', '#FFFFFF'),
+      'target': ('#FFFFFF', '#FFFFFF'),
+      'measure': ('#000000', '#FFFFFF'),
+  }
+  ```
+</Class>
 

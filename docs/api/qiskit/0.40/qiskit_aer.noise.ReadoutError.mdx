@@ -8,247 +8,223 @@ python_api_name: qiskit_aer.noise.ReadoutError
 
 # ReadoutError
 
-<span id="qiskit_aer.noise.ReadoutError" />
+<Class id="qiskit_aer.noise.ReadoutError" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py" signature="ReadoutError(probabilities, atol=1e-08)">
+  Bases: `object`
 
-`ReadoutError(probabilities, atol=1e-08)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
+  Readout error class for Qiskit Aer noise model.
 
-Bases: `object`
+  Create a readout error for a noise model.
 
-Readout error class for Qiskit Aer noise model.
+  For an N-qubit readout error probabilities are entered as vectors:
 
-Create a readout error for a noise model.
+  ```python
+  probabilities[m] = [P(0|m), P(1|m), ..., P(2 ** N - 1|m)]
+  ```
 
-For an N-qubit readout error probabilities are entered as vectors:
+  where `P(n|m)` is the probability of recording a noisy measurement outcome as `n` given the true ideal measurement outcome was `m`, where `n` and `m` are integer representations of bit-strings.
 
-```python
-probabilities[m] = [P(0|m), P(1|m), ..., P(2 ** N - 1|m)]
-```
+  **Example: 1-qubit**
 
-where `P(n|m)` is the probability of recording a noisy measurement outcome as `n` given the true ideal measurement outcome was `m`, where `n` and `m` are integer representations of bit-strings.
+  ```python
+  probabilities[0] = [P("0"|"0"), P("1"|"0")]
+  probabilities[1] = [P("0"|"1"), P("1"|"1")]
+  ```
 
-**Example: 1-qubit**
+  **Example: 2-qubit**
 
-```python
-probabilities[0] = [P("0"|"0"), P("1"|"0")]
-probabilities[1] = [P("0"|"1"), P("1"|"1")]
-```
+  ```python
+  probabilities[0] = [P("00"|"00"), P("01"|"00"), P("10"|"00"), P("11"|"00")]
+  probabilities[1] = [P("00"|"01"), P("01"|"01"), P("10"|"01"), P("11"|"01")]
+  probabilities[2] = [P("00"|"10"), P("01"|"10"), P("10"|"10"), P("11"|"10")]
+  probabilities[3] = [P("00"|"11"), P("01"|"11"), P("10"|"11"), P("11"|"11")]
+  ```
 
-**Example: 2-qubit**
+  **Parameters**
 
-```python
-probabilities[0] = [P("00"|"00"), P("01"|"00"), P("10"|"00"), P("11"|"00")]
-probabilities[1] = [P("00"|"01"), P("01"|"01"), P("10"|"01"), P("11"|"01")]
-probabilities[2] = [P("00"|"10"), P("01"|"10"), P("10"|"10"), P("11"|"10")]
-probabilities[3] = [P("00"|"11"), P("01"|"11"), P("10"|"11"), P("11"|"11")]
-```
+  *   **probabilities** (*matrix*) – List of outcome assignment probabilities.
+  *   **atol** (*double*) – Threshold for checking probabilities are normalized (Default: 1e-8).
 
-**Parameters**
+  **Raises**
 
-*   **probabilities** (*matrix*) – List of outcome assignment probabilities.
-*   **atol** (*double*) – Threshold for checking probabilities are normalized (Default: 1e-8).
+  **NoiseError** – if an invalid argument is provided
 
-**Raises**
+  ## Methods
 
-**NoiseError** – if an invalid argument is provided
+  ### compose
 
-## Methods
+  <Function id="qiskit_aer.noise.ReadoutError.compose" name="compose" signature="ReadoutError.compose(other, front=False)">
+    Return the composition readout error other \* self.
 
-### compose
+    Note that for front=True this is equivalent to the [`ReadoutError.dot()`](qiskit_aer.noise.ReadoutError#dot "qiskit_aer.noise.ReadoutError.dot") method.
 
-<span id="qiskit_aer.noise.ReadoutError.compose" />
+    **Parameters**
 
-`ReadoutError.compose(other, front=False)`
+    *   **other** ([*ReadoutError*](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")) – a readout error.
+    *   **front** (*bool*) – If True return the reverse order composation self \* other instead \[default: False].
 
-Return the composition readout error other \* self.
+    **Returns**
 
-Note that for front=True this is equivalent to the [`ReadoutError.dot()`](qiskit_aer.noise.ReadoutError#dot "qiskit_aer.noise.ReadoutError.dot") method.
+    The composition readout error.
 
-**Parameters**
+    **Return type**
 
-*   **other** ([*ReadoutError*](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")) – a readout error.
-*   **front** (*bool*) – If True return the reverse order composation self \* other instead \[default: False].
+    [ReadoutError](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")
 
-**Returns**
+    **Raises**
 
-The composition readout error.
+    *   **NoiseError** – if other is not a ReadoutError or has incompatible
+    *   **dimensions.** –
+  </Function>
 
-**Return type**
+  ### copy
 
-[ReadoutError](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")
+  <Function id="qiskit_aer.noise.ReadoutError.copy" name="copy" signature="ReadoutError.copy()">
+    Make a copy of current ReadoutError.
+  </Function>
 
-**Raises**
+  ### dot
 
-*   **NoiseError** – if other is not a ReadoutError or has incompatible
-*   **dimensions.** –
+  <Function id="qiskit_aer.noise.ReadoutError.dot" name="dot" signature="ReadoutError.dot(other)">
+    Return the composition readout error self \* other.
 
-### copy
+    **Parameters**
 
-<span id="qiskit_aer.noise.ReadoutError.copy" />
+    **other** ([*ReadoutError*](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")) – a readout error.
 
-`ReadoutError.copy()`
+    **Returns**
 
-Make a copy of current ReadoutError.
+    The composition readout error.
 
-### dot
+    **Return type**
 
-<span id="qiskit_aer.noise.ReadoutError.dot" />
+    [ReadoutError](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")
 
-`ReadoutError.dot(other)`
+    **Raises**
 
-Return the composition readout error self \* other.
+    *   **NoiseError** – if other is not a ReadoutError or has incompatible
+    *   **dimensions.** –
+  </Function>
 
-**Parameters**
+  ### expand
 
-**other** ([*ReadoutError*](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")) – a readout error.
+  <Function id="qiskit_aer.noise.ReadoutError.expand" name="expand" signature="ReadoutError.expand(other)">
+    Return the tensor product readout error self ⊗ other.
 
-**Returns**
+    **Parameters**
 
-The composition readout error.
+    **other** ([*ReadoutError*](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")) – a readout error.
 
-**Return type**
+    **Returns**
 
-[ReadoutError](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")
+    the tensor product readout error other ⊗ self.
 
-**Raises**
+    **Return type**
 
-*   **NoiseError** – if other is not a ReadoutError or has incompatible
-*   **dimensions.** –
+    [ReadoutError](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")
 
-### expand
+    **Raises**
 
-<span id="qiskit_aer.noise.ReadoutError.expand" />
+    **NoiseError** – if other is not a ReadoutError.
+  </Function>
 
-`ReadoutError.expand(other)`
+  ### ideal
 
-Return the tensor product readout error self ⊗ other.
+  <Function id="qiskit_aer.noise.ReadoutError.ideal" name="ideal" signature="ReadoutError.ideal()">
+    Return True if current error object is an identity
+  </Function>
 
-**Parameters**
+  ### power
 
-**other** ([*ReadoutError*](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")) – a readout error.
+  <Function id="qiskit_aer.noise.ReadoutError.power" name="power" signature="ReadoutError.power(n)">
+    Return the compose of the readout error with itself n times.
 
-**Returns**
+    **Parameters**
 
-the tensor product readout error other ⊗ self.
+    **n** (*int*) – the number of times to compose with self (n>0).
 
-**Return type**
+    **Returns**
 
-[ReadoutError](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")
+    the n-times composition channel.
 
-**Raises**
+    **Return type**
 
-**NoiseError** – if other is not a ReadoutError.
+    [ReadoutError](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")
 
-### ideal
+    **Raises**
 
-<span id="qiskit_aer.noise.ReadoutError.ideal" />
+    **NoiseError** – if the power is not a positive integer.
+  </Function>
 
-`ReadoutError.ideal()`
+  ### set\_atol
 
-Return True if current error object is an identity
+  <Function id="qiskit_aer.noise.ReadoutError.set_atol" name="set_atol" signature="classmethod ReadoutError.set_atol(value)">
+    Set the class default absolute tolerance parameter for float comparisons.
+  </Function>
 
-### power
+  ### set\_rtol
 
-<span id="qiskit_aer.noise.ReadoutError.power" />
+  <Function id="qiskit_aer.noise.ReadoutError.set_rtol" name="set_rtol" signature="classmethod ReadoutError.set_rtol(value)">
+    Set the class default relative tolerance parameter for float comparisons.
+  </Function>
 
-`ReadoutError.power(n)`
+  ### tensor
 
-Return the compose of the readout error with itself n times.
+  <Function id="qiskit_aer.noise.ReadoutError.tensor" name="tensor" signature="ReadoutError.tensor(other)">
+    Return the tensor product readout error self ⊗ other.
 
-**Parameters**
+    **Parameters**
 
-**n** (*int*) – the number of times to compose with self (n>0).
+    **other** ([*ReadoutError*](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")) – a readout error.
 
-**Returns**
+    **Returns**
 
-the n-times composition channel.
+    the tensor product readout error self ⊗ other.
 
-**Return type**
+    **Return type**
 
-[ReadoutError](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")
+    [ReadoutError](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")
 
-**Raises**
+    **Raises**
 
-**NoiseError** – if the power is not a positive integer.
+    **NoiseError** – if other is not a ReadoutError.
+  </Function>
 
-### set\_atol
+  ### to\_dict
 
-<span id="qiskit_aer.noise.ReadoutError.set_atol" />
+  <Function id="qiskit_aer.noise.ReadoutError.to_dict" name="to_dict" signature="ReadoutError.to_dict()">
+    Return the current error as a dictionary.
+  </Function>
 
-`classmethod ReadoutError.set_atol(value)`
+  ### to\_instruction
 
-Set the class default absolute tolerance parameter for float comparisons.
+  <Function id="qiskit_aer.noise.ReadoutError.to_instruction" name="to_instruction" signature="ReadoutError.to_instruction()">
+    Convert the ReadoutError to a circuit Instruction.
+  </Function>
 
-### set\_rtol
+  ## Attributes
 
-<span id="qiskit_aer.noise.ReadoutError.set_rtol" />
+  ### atol
 
-`classmethod ReadoutError.set_rtol(value)`
+  <Attribute id="qiskit_aer.noise.ReadoutError.atol" name="atol">
+    The default absolute tolerance parameter for float comparisons.
+  </Attribute>
 
-Set the class default relative tolerance parameter for float comparisons.
+  ### number\_of\_qubits
 
-### tensor
+  <Attribute id="qiskit_aer.noise.ReadoutError.number_of_qubits" name="number_of_qubits">
+    Return the number of qubits for the error.
+  </Attribute>
 
-<span id="qiskit_aer.noise.ReadoutError.tensor" />
+  ### probabilities
 
-`ReadoutError.tensor(other)`
+  <Attribute id="qiskit_aer.noise.ReadoutError.probabilities" name="probabilities">
+    Return the readout error probabilities matrix.
+  </Attribute>
 
-Return the tensor product readout error self ⊗ other.
+  ### rtol
 
-**Parameters**
-
-**other** ([*ReadoutError*](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")) – a readout error.
-
-**Returns**
-
-the tensor product readout error self ⊗ other.
-
-**Return type**
-
-[ReadoutError](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")
-
-**Raises**
-
-**NoiseError** – if other is not a ReadoutError.
-
-### to\_dict
-
-<span id="qiskit_aer.noise.ReadoutError.to_dict" />
-
-`ReadoutError.to_dict()`
-
-Return the current error as a dictionary.
-
-### to\_instruction
-
-<span id="qiskit_aer.noise.ReadoutError.to_instruction" />
-
-`ReadoutError.to_instruction()`
-
-Convert the ReadoutError to a circuit Instruction.
-
-## Attributes
-
-<span id="qiskit_aer.noise.ReadoutError.atol" />
-
-### atol
-
-The default absolute tolerance parameter for float comparisons.
-
-<span id="qiskit_aer.noise.ReadoutError.number_of_qubits" />
-
-### number\_of\_qubits
-
-Return the number of qubits for the error.
-
-<span id="qiskit_aer.noise.ReadoutError.probabilities" />
-
-### probabilities
-
-Return the readout error probabilities matrix.
-
-<span id="qiskit_aer.noise.ReadoutError.rtol" />
-
-### rtol
-
-The relative tolerance parameter for float comparisons.
+  <Attribute id="qiskit_aer.noise.ReadoutError.rtol" name="rtol">
+    The relative tolerance parameter for float comparisons.
+  </Attribute>
+</Class>
 

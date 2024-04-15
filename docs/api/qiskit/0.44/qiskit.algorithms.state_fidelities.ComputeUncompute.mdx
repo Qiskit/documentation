@@ -8,110 +8,102 @@ python_api_name: qiskit.algorithms.state_fidelities.ComputeUncompute
 
 # ComputeUncompute
 
-<span id="qiskit.algorithms.state_fidelities.ComputeUncompute" />
+<Class id="qiskit.algorithms.state_fidelities.ComputeUncompute" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/state_fidelities/compute_uncompute.py" signature="qiskit.algorithms.state_fidelities.ComputeUncompute(sampler, options=None, local=False)">
+  Bases: [`BaseStateFidelity`](qiskit.algorithms.state_fidelities.BaseStateFidelity "qiskit.algorithms.state_fidelities.base_state_fidelity.BaseStateFidelity")
 
-`qiskit.algorithms.state_fidelities.ComputeUncompute(sampler, options=None, local=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/state_fidelities/compute_uncompute.py "view source code")
-
-Bases: [`BaseStateFidelity`](qiskit.algorithms.state_fidelities.BaseStateFidelity "qiskit.algorithms.state_fidelities.base_state_fidelity.BaseStateFidelity")
-
-This class leverages the sampler primitive to calculate the state fidelity of two quantum circuits following the compute-uncompute method (see \[1] for further reference). The fidelity can be defined as the state overlap.
+  This class leverages the sampler primitive to calculate the state fidelity of two quantum circuits following the compute-uncompute method (see \[1] for further reference). The fidelity can be defined as the state overlap.
 
 $$
 |\langle\psi(x)|\phi(y)\rangle|^2
 $$
 
-where $x$ and $y$ are optional parametrizations of the states $\psi$ and $\phi$ prepared by the circuits `circuit_1` and `circuit_2`, respectively.
+  where $x$ and $y$ are optional parametrizations of the states $\psi$ and $\phi$ prepared by the circuits `circuit_1` and `circuit_2`, respectively.
 
-**Reference:** \[1] Havlíček, V., Córcoles, A. D., Temme, K., Harrow, A. W., Kandala, A., Chow, J. M., & Gambetta, J. M. (2019). Supervised learning with quantum-enhanced feature spaces. Nature, 567(7747), 209-212. [arXiv:1804.11326v2 \[quant-ph\]](https://arxiv.org/pdf/1804.11326.pdf)
+  **Reference:** \[1] Havlíček, V., Córcoles, A. D., Temme, K., Harrow, A. W., Kandala, A., Chow, J. M., & Gambetta, J. M. (2019). Supervised learning with quantum-enhanced feature spaces. Nature, 567(7747), 209-212. [arXiv:1804.11326v2 \[quant-ph\]](https://arxiv.org/pdf/1804.11326.pdf)
 
-**Parameters**
+  **Parameters**
 
-*   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")) – Sampler primitive instance.
+  *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")) – Sampler primitive instance.
 
-*   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > fidelity’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
+  *   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > fidelity’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
 
-*   **local** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
+  *   **local** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
 
-    If set to `True`, the fidelity is averaged over single-qubit projectors
+      If set to `True`, the fidelity is averaged over single-qubit projectors
 
-    $$
-    \hat{O} = \frac{1}{N}\sum_{i=1}^N|0_i\rangle\langle 0_i|,
-    $$
+$$
+\hat{O} = \frac{1}{N}\sum_{i=1}^N|0_i\rangle\langle 0_i|,
+$$
 
-    instead of the global projector $|0\rangle\langle 0|^{\otimes n}$. This coincides with the standard (global) fidelity in the limit of the fidelity approaching 1. Might be used to increase the variance to improve trainability in algorithms such as `PVQD`.
+      instead of the global projector $|0\rangle\langle 0|^{\otimes n}$. This coincides with the standard (global) fidelity in the limit of the fidelity approaching 1. Might be used to increase the variance to improve trainability in algorithms such as `PVQD`.
 
-**Raises**
+  **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the sampler is not an instance of `BaseSampler`.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the sampler is not an instance of `BaseSampler`.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.algorithms.state_fidelities.ComputeUncompute.options" />
+  ### options
 
-### options
+  <Attribute id="qiskit.algorithms.state_fidelities.ComputeUncompute.options" name="options">
+    Return the union of estimator options setting and fidelity default options, where, if the same field is set in both, the fidelity’s default options override the primitive’s default setting.
 
-Return the union of estimator options setting and fidelity default options, where, if the same field is set in both, the fidelity’s default options override the primitive’s default setting.
+    **Returns**
 
-**Returns**
+    The fidelity default + estimator options.
+  </Attribute>
 
-The fidelity default + estimator options.
+  ## Methods
 
-## Methods
+  ### create\_fidelity\_circuit
 
-### create\_fidelity\_circuit
+  <Function id="qiskit.algorithms.state_fidelities.ComputeUncompute.create_fidelity_circuit" name="create_fidelity_circuit" signature="create_fidelity_circuit(circuit_1, circuit_2)">
+    Combines `circuit_1` and `circuit_2` to create the fidelity circuit following the compute-uncompute method.
 
-<span id="qiskit.algorithms.state_fidelities.ComputeUncompute.create_fidelity_circuit" />
+    **Parameters**
 
-`create_fidelity_circuit(circuit_1, circuit_2)`
+    *   **circuit\_1** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – (Parametrized) quantum circuit.
+    *   **circuit\_2** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – (Parametrized) quantum circuit.
 
-Combines `circuit_1` and `circuit_2` to create the fidelity circuit following the compute-uncompute method.
+    **Returns**
 
-**Parameters**
+    The fidelity quantum circuit corresponding to circuit\_1 and circuit\_2.
 
-*   **circuit\_1** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – (Parametrized) quantum circuit.
-*   **circuit\_2** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – (Parametrized) quantum circuit.
+    **Return type**
 
-**Returns**
+    [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  </Function>
 
-The fidelity quantum circuit corresponding to circuit\_1 and circuit\_2.
+  ### run
 
-**Return type**
+  <Function id="qiskit.algorithms.state_fidelities.ComputeUncompute.run" name="run" signature="run(circuits_1, circuits_2, values_1=None, values_2=None, **options)">
+    Runs asynchronously the state overlap (fidelity) calculation between two (parametrized) circuits (first and second) for a specific set of parameter values (first and second). This calculation depends on the particular fidelity method implementation.
 
-[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+    **Parameters**
 
-### run
+    *   **circuits\_1** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $|\psi\rangle$.
+    *   **circuits\_2** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $|\phi\rangle$.
+    *   **values\_1** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Numerical parameters to be bound to the first set of circuits.
+    *   **values\_2** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Numerical parameters to be bound to the second set of circuits.
+    *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > fidelity’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
 
-<span id="qiskit.algorithms.state_fidelities.ComputeUncompute.run" />
+    **Returns**
 
-`run(circuits_1, circuits_2, values_1=None, values_2=None, **options)`
+    Primitive job for the fidelity calculation. The job’s result is an instance of `StateFidelityResult`.
 
-Runs asynchronously the state overlap (fidelity) calculation between two (parametrized) circuits (first and second) for a specific set of parameter values (first and second). This calculation depends on the particular fidelity method implementation.
+    **Return type**
 
-**Parameters**
+    [AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
+  </Function>
 
-*   **circuits\_1** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $|\psi\rangle$.
-*   **circuits\_2** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $|\phi\rangle$.
-*   **values\_1** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Numerical parameters to be bound to the first set of circuits.
-*   **values\_2** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Numerical parameters to be bound to the second set of circuits.
-*   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > fidelity’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
+  ### update\_default\_options
 
-**Returns**
+  <Function id="qiskit.algorithms.state_fidelities.ComputeUncompute.update_default_options" name="update_default_options" signature="update_default_options(**options)">
+    Update the fidelity’s default options setting.
 
-Primitive job for the fidelity calculation. The job’s result is an instance of `StateFidelityResult`.
+    **Parameters**
 
-**Return type**
-
-[AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
-
-### update\_default\_options
-
-<span id="qiskit.algorithms.state_fidelities.ComputeUncompute.update_default_options" />
-
-`update_default_options(**options)`
-
-Update the fidelity’s default options setting.
-
-**Parameters**
-
-**\*\*options** – The fields to update the default options.
+    **\*\*options** – The fields to update the default options.
+  </Function>
+</Class>
 

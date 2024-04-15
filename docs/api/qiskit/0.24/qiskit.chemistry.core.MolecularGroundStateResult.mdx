@@ -10,455 +10,381 @@ python_api_name: qiskit.chemistry.core.MolecularGroundStateResult
 
 # qiskit.chemistry.core.MolecularGroundStateResult
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult" />
+<Class id="qiskit.chemistry.core.MolecularGroundStateResult" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/core/chemistry_operator.py" signature="MolecularGroundStateResult(a_dict=None)">
+  Molecular Ground State Energy Result.
+
+  Energies are in Hartree and dipole moments in A.U unless otherwise stated.
 
-`MolecularGroundStateResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/core/chemistry_operator.py "view source code")
+  ### \_\_init\_\_
 
-Molecular Ground State Energy Result.
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.__init__" name="__init__" signature="__init__(a_dict=None)">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-Energies are in Hartree and dipole moments in A.U unless otherwise stated.
+  ## Methods
 
-### \_\_init\_\_
+  |                                                                                                                                                             |                                                                                                                                                                                                                      |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.core.MolecularGroundStateResult.__init__ "qiskit.chemistry.core.MolecularGroundStateResult.__init__")(\[a\_dict])            | Initialize self.                                                                                                                                                                                                     |
+  | [`clear`](#qiskit.chemistry.core.MolecularGroundStateResult.clear "qiskit.chemistry.core.MolecularGroundStateResult.clear")()                               | **rtype**`None`                                                                                                                                                                                                      |
+  | [`combine`](#qiskit.chemistry.core.MolecularGroundStateResult.combine "qiskit.chemistry.core.MolecularGroundStateResult.combine")(result)                   | Any property from the argument that exists in the receiver is updated.                                                                                                                                               |
+  | `copy`()                                                                                                                                                    |                                                                                                                                                                                                                      |
+  | `fromkeys`(iterable\[, value])                                                                                                                              |                                                                                                                                                                                                                      |
+  | [`get`](#qiskit.chemistry.core.MolecularGroundStateResult.get "qiskit.chemistry.core.MolecularGroundStateResult.get")(k\[,d])                               |                                                                                                                                                                                                                      |
+  | [`has_dipole`](#qiskit.chemistry.core.MolecularGroundStateResult.has_dipole "qiskit.chemistry.core.MolecularGroundStateResult.has_dipole")()                | Returns whether dipole moment is present in result or not                                                                                                                                                            |
+  | [`has_observables`](#qiskit.chemistry.core.MolecularGroundStateResult.has_observables "qiskit.chemistry.core.MolecularGroundStateResult.has_observables")() | Returns whether result has aux op observables such as spin, num particles                                                                                                                                            |
+  | [`items`](#qiskit.chemistry.core.MolecularGroundStateResult.items "qiskit.chemistry.core.MolecularGroundStateResult.items")()                               |                                                                                                                                                                                                                      |
+  | [`keys`](#qiskit.chemistry.core.MolecularGroundStateResult.keys "qiskit.chemistry.core.MolecularGroundStateResult.keys")()                                  |                                                                                                                                                                                                                      |
+  | [`pop`](#qiskit.chemistry.core.MolecularGroundStateResult.pop "qiskit.chemistry.core.MolecularGroundStateResult.pop")(key\[, default])                      | If key is not found, d is returned if given, otherwise KeyError is raised.                                                                                                                                           |
+  | [`popitem`](#qiskit.chemistry.core.MolecularGroundStateResult.popitem "qiskit.chemistry.core.MolecularGroundStateResult.popitem")()                         | as a 2-tuple; but raise KeyError if D is empty.                                                                                                                                                                      |
+  | [`setdefault`](#qiskit.chemistry.core.MolecularGroundStateResult.setdefault "qiskit.chemistry.core.MolecularGroundStateResult.setdefault")(k\[,d])          |                                                                                                                                                                                                                      |
+  | [`update`](#qiskit.chemistry.core.MolecularGroundStateResult.update "qiskit.chemistry.core.MolecularGroundStateResult.update")(\*args, \*\*kwargs)          | If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v |
+  | [`values`](#qiskit.chemistry.core.MolecularGroundStateResult.values "qiskit.chemistry.core.MolecularGroundStateResult.values")()                            |                                                                                                                                                                                                                      |
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.__init__" />
+  ## Attributes
 
-`__init__(a_dict=None)`
+  |                                                                                                                                                                                                        |                                                                                    |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+  | [`algorithm_result`](#qiskit.chemistry.core.MolecularGroundStateResult.algorithm_result "qiskit.chemistry.core.MolecularGroundStateResult.algorithm_result")                                           | Returns raw algorithm result                                                       |
+  | [`computed_dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.computed_dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.computed_dipole_moment")                         | Returns computed electronic part of dipole moment                                  |
+  | [`computed_electronic_energy`](#qiskit.chemistry.core.MolecularGroundStateResult.computed_electronic_energy "qiskit.chemistry.core.MolecularGroundStateResult.computed_electronic_energy")             | Returns computed electronic part of ground state energy                            |
+  | [`dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.dipole_moment")                                                    | Returns dipole moment                                                              |
+  | [`dipole_moment_in_debye`](#qiskit.chemistry.core.MolecularGroundStateResult.dipole_moment_in_debye "qiskit.chemistry.core.MolecularGroundStateResult.dipole_moment_in_debye")                         | Returns dipole moment in Debye                                                     |
+  | [`electronic_dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.electronic_dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.electronic_dipole_moment")                   | Returns electronic dipole moment                                                   |
+  | [`electronic_energy`](#qiskit.chemistry.core.MolecularGroundStateResult.electronic_energy "qiskit.chemistry.core.MolecularGroundStateResult.electronic_energy")                                        | Returns electronic part of ground state energy                                     |
+  | [`energy`](#qiskit.chemistry.core.MolecularGroundStateResult.energy "qiskit.chemistry.core.MolecularGroundStateResult.energy")                                                                         | Returns ground state energy if nuclear\_repulsion\_energy is available from driver |
+  | [`formatted`](#qiskit.chemistry.core.MolecularGroundStateResult.formatted "qiskit.chemistry.core.MolecularGroundStateResult.formatted")                                                                | Formatted result as a list of strings                                              |
+  | [`frozen_extracted_dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.frozen_extracted_dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.frozen_extracted_dipole_moment") | Returns frozen extracted part of dipole moment                                     |
+  | [`frozen_extracted_energy`](#qiskit.chemistry.core.MolecularGroundStateResult.frozen_extracted_energy "qiskit.chemistry.core.MolecularGroundStateResult.frozen_extracted_energy")                      | Returns frozen extracted part of ground state energy                               |
+  | [`hartree_fock_energy`](#qiskit.chemistry.core.MolecularGroundStateResult.hartree_fock_energy "qiskit.chemistry.core.MolecularGroundStateResult.hartree_fock_energy")                                  | Returns Hartree-Fock energy                                                        |
+  | [`magnetization`](#qiskit.chemistry.core.MolecularGroundStateResult.magnetization "qiskit.chemistry.core.MolecularGroundStateResult.magnetization")                                                    | Returns measured magnetization                                                     |
+  | [`nuclear_dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.nuclear_dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.nuclear_dipole_moment")                            | Returns nuclear dipole moment X,Y,Z components in A.U when available from driver   |
+  | [`nuclear_repulsion_energy`](#qiskit.chemistry.core.MolecularGroundStateResult.nuclear_repulsion_energy "qiskit.chemistry.core.MolecularGroundStateResult.nuclear_repulsion_energy")                   | Returns nuclear repulsion energy when available from driver                        |
+  | [`num_particles`](#qiskit.chemistry.core.MolecularGroundStateResult.num_particles "qiskit.chemistry.core.MolecularGroundStateResult.num_particles")                                                    | Returns measured number of particles                                               |
+  | [`ph_extracted_dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.ph_extracted_dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.ph_extracted_dipole_moment")             | Returns particle hole extracted part of dipole moment                              |
+  | [`ph_extracted_energy`](#qiskit.chemistry.core.MolecularGroundStateResult.ph_extracted_energy "qiskit.chemistry.core.MolecularGroundStateResult.ph_extracted_energy")                                  | Returns particle hole extracted part of ground state energy                        |
+  | [`reverse_dipole_sign`](#qiskit.chemistry.core.MolecularGroundStateResult.reverse_dipole_sign "qiskit.chemistry.core.MolecularGroundStateResult.reverse_dipole_sign")                                  | Returns if electronic dipole moment sign should be reversed when adding to nuclear |
+  | [`spin`](#qiskit.chemistry.core.MolecularGroundStateResult.spin "qiskit.chemistry.core.MolecularGroundStateResult.spin")                                                                               | Returns computed spin                                                              |
+  | [`total_angular_momentum`](#qiskit.chemistry.core.MolecularGroundStateResult.total_angular_momentum "qiskit.chemistry.core.MolecularGroundStateResult.total_angular_momentum")                         | Returns total angular momentum (S^2)                                               |
+  | [`total_dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.total_dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.total_dipole_moment")                                  | Returns total dipole of moment                                                     |
+  | [`total_dipole_moment_in_debye`](#qiskit.chemistry.core.MolecularGroundStateResult.total_dipole_moment_in_debye "qiskit.chemistry.core.MolecularGroundStateResult.total_dipole_moment_in_debye")       | Returns total dipole of moment in Debye                                            |
 
-Initialize self. See help(type(self)) for accurate signature.
+  ### algorithm\_result
 
-## Methods
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.algorithm_result" name="algorithm_result" signature="property algorithm_result">
+    Returns raw algorithm result
 
-|                                                                                                                                                             |                                                                                                                                                                                                                      |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.core.MolecularGroundStateResult.__init__ "qiskit.chemistry.core.MolecularGroundStateResult.__init__")(\[a\_dict])            | Initialize self.                                                                                                                                                                                                     |
-| [`clear`](#qiskit.chemistry.core.MolecularGroundStateResult.clear "qiskit.chemistry.core.MolecularGroundStateResult.clear")()                               | **rtype**`None`                                                                                                                                                                                                      |
-| [`combine`](#qiskit.chemistry.core.MolecularGroundStateResult.combine "qiskit.chemistry.core.MolecularGroundStateResult.combine")(result)                   | Any property from the argument that exists in the receiver is updated.                                                                                                                                               |
-| `copy`()                                                                                                                                                    |                                                                                                                                                                                                                      |
-| `fromkeys`(iterable\[, value])                                                                                                                              |                                                                                                                                                                                                                      |
-| [`get`](#qiskit.chemistry.core.MolecularGroundStateResult.get "qiskit.chemistry.core.MolecularGroundStateResult.get")(k\[,d])                               |                                                                                                                                                                                                                      |
-| [`has_dipole`](#qiskit.chemistry.core.MolecularGroundStateResult.has_dipole "qiskit.chemistry.core.MolecularGroundStateResult.has_dipole")()                | Returns whether dipole moment is present in result or not                                                                                                                                                            |
-| [`has_observables`](#qiskit.chemistry.core.MolecularGroundStateResult.has_observables "qiskit.chemistry.core.MolecularGroundStateResult.has_observables")() | Returns whether result has aux op observables such as spin, num particles                                                                                                                                            |
-| [`items`](#qiskit.chemistry.core.MolecularGroundStateResult.items "qiskit.chemistry.core.MolecularGroundStateResult.items")()                               |                                                                                                                                                                                                                      |
-| [`keys`](#qiskit.chemistry.core.MolecularGroundStateResult.keys "qiskit.chemistry.core.MolecularGroundStateResult.keys")()                                  |                                                                                                                                                                                                                      |
-| [`pop`](#qiskit.chemistry.core.MolecularGroundStateResult.pop "qiskit.chemistry.core.MolecularGroundStateResult.pop")(key\[, default])                      | If key is not found, d is returned if given, otherwise KeyError is raised.                                                                                                                                           |
-| [`popitem`](#qiskit.chemistry.core.MolecularGroundStateResult.popitem "qiskit.chemistry.core.MolecularGroundStateResult.popitem")()                         | as a 2-tuple; but raise KeyError if D is empty.                                                                                                                                                                      |
-| [`setdefault`](#qiskit.chemistry.core.MolecularGroundStateResult.setdefault "qiskit.chemistry.core.MolecularGroundStateResult.setdefault")(k\[,d])          |                                                                                                                                                                                                                      |
-| [`update`](#qiskit.chemistry.core.MolecularGroundStateResult.update "qiskit.chemistry.core.MolecularGroundStateResult.update")(\*args, \*\*kwargs)          | If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v |
-| [`values`](#qiskit.chemistry.core.MolecularGroundStateResult.values "qiskit.chemistry.core.MolecularGroundStateResult.values")()                            |                                                                                                                                                                                                                      |
+    **Return type**
 
-## Attributes
+    `AlgorithmResult`
+  </Function>
 
-|                                                                                                                                                                                                        |                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
-| [`algorithm_result`](#qiskit.chemistry.core.MolecularGroundStateResult.algorithm_result "qiskit.chemistry.core.MolecularGroundStateResult.algorithm_result")                                           | Returns raw algorithm result                                                       |
-| [`computed_dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.computed_dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.computed_dipole_moment")                         | Returns computed electronic part of dipole moment                                  |
-| [`computed_electronic_energy`](#qiskit.chemistry.core.MolecularGroundStateResult.computed_electronic_energy "qiskit.chemistry.core.MolecularGroundStateResult.computed_electronic_energy")             | Returns computed electronic part of ground state energy                            |
-| [`dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.dipole_moment")                                                    | Returns dipole moment                                                              |
-| [`dipole_moment_in_debye`](#qiskit.chemistry.core.MolecularGroundStateResult.dipole_moment_in_debye "qiskit.chemistry.core.MolecularGroundStateResult.dipole_moment_in_debye")                         | Returns dipole moment in Debye                                                     |
-| [`electronic_dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.electronic_dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.electronic_dipole_moment")                   | Returns electronic dipole moment                                                   |
-| [`electronic_energy`](#qiskit.chemistry.core.MolecularGroundStateResult.electronic_energy "qiskit.chemistry.core.MolecularGroundStateResult.electronic_energy")                                        | Returns electronic part of ground state energy                                     |
-| [`energy`](#qiskit.chemistry.core.MolecularGroundStateResult.energy "qiskit.chemistry.core.MolecularGroundStateResult.energy")                                                                         | Returns ground state energy if nuclear\_repulsion\_energy is available from driver |
-| [`formatted`](#qiskit.chemistry.core.MolecularGroundStateResult.formatted "qiskit.chemistry.core.MolecularGroundStateResult.formatted")                                                                | Formatted result as a list of strings                                              |
-| [`frozen_extracted_dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.frozen_extracted_dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.frozen_extracted_dipole_moment") | Returns frozen extracted part of dipole moment                                     |
-| [`frozen_extracted_energy`](#qiskit.chemistry.core.MolecularGroundStateResult.frozen_extracted_energy "qiskit.chemistry.core.MolecularGroundStateResult.frozen_extracted_energy")                      | Returns frozen extracted part of ground state energy                               |
-| [`hartree_fock_energy`](#qiskit.chemistry.core.MolecularGroundStateResult.hartree_fock_energy "qiskit.chemistry.core.MolecularGroundStateResult.hartree_fock_energy")                                  | Returns Hartree-Fock energy                                                        |
-| [`magnetization`](#qiskit.chemistry.core.MolecularGroundStateResult.magnetization "qiskit.chemistry.core.MolecularGroundStateResult.magnetization")                                                    | Returns measured magnetization                                                     |
-| [`nuclear_dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.nuclear_dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.nuclear_dipole_moment")                            | Returns nuclear dipole moment X,Y,Z components in A.U when available from driver   |
-| [`nuclear_repulsion_energy`](#qiskit.chemistry.core.MolecularGroundStateResult.nuclear_repulsion_energy "qiskit.chemistry.core.MolecularGroundStateResult.nuclear_repulsion_energy")                   | Returns nuclear repulsion energy when available from driver                        |
-| [`num_particles`](#qiskit.chemistry.core.MolecularGroundStateResult.num_particles "qiskit.chemistry.core.MolecularGroundStateResult.num_particles")                                                    | Returns measured number of particles                                               |
-| [`ph_extracted_dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.ph_extracted_dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.ph_extracted_dipole_moment")             | Returns particle hole extracted part of dipole moment                              |
-| [`ph_extracted_energy`](#qiskit.chemistry.core.MolecularGroundStateResult.ph_extracted_energy "qiskit.chemistry.core.MolecularGroundStateResult.ph_extracted_energy")                                  | Returns particle hole extracted part of ground state energy                        |
-| [`reverse_dipole_sign`](#qiskit.chemistry.core.MolecularGroundStateResult.reverse_dipole_sign "qiskit.chemistry.core.MolecularGroundStateResult.reverse_dipole_sign")                                  | Returns if electronic dipole moment sign should be reversed when adding to nuclear |
-| [`spin`](#qiskit.chemistry.core.MolecularGroundStateResult.spin "qiskit.chemistry.core.MolecularGroundStateResult.spin")                                                                               | Returns computed spin                                                              |
-| [`total_angular_momentum`](#qiskit.chemistry.core.MolecularGroundStateResult.total_angular_momentum "qiskit.chemistry.core.MolecularGroundStateResult.total_angular_momentum")                         | Returns total angular momentum (S^2)                                               |
-| [`total_dipole_moment`](#qiskit.chemistry.core.MolecularGroundStateResult.total_dipole_moment "qiskit.chemistry.core.MolecularGroundStateResult.total_dipole_moment")                                  | Returns total dipole of moment                                                     |
-| [`total_dipole_moment_in_debye`](#qiskit.chemistry.core.MolecularGroundStateResult.total_dipole_moment_in_debye "qiskit.chemistry.core.MolecularGroundStateResult.total_dipole_moment_in_debye")       | Returns total dipole of moment in Debye                                            |
+  ### clear
 
-### algorithm\_result
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.clear" name="clear" signature="clear()">
+    **Return type**
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.algorithm_result" />
+    `None`
+  </Function>
 
-`property algorithm_result`
+  ### combine
 
-Returns raw algorithm result
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-**Return type**
+    **Raises**
 
-`AlgorithmResult`
+    **TypeError** – Argument is None
 
-### clear
+    **Return type**
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.clear" />
+    `None`
+  </Function>
 
-`clear()`
+  ### computed\_dipole\_moment
 
-**Return type**
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.computed_dipole_moment" name="computed_dipole_moment" signature="property computed_dipole_moment">
+    Returns computed electronic part of dipole moment
 
-`None`
+    **Return type**
 
-### combine
+    `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  </Function>
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.combine" />
+  ### computed\_electronic\_energy
 
-`combine(result)`
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.computed_electronic_energy" name="computed_electronic_energy" signature="property computed_electronic_energy">
+    Returns computed electronic part of ground state energy
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    **Return type**
 
-**Raises**
+    `float`
+  </Function>
 
-**TypeError** – Argument is None
+  ### dipole\_moment
 
-**Return type**
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.dipole_moment" name="dipole_moment" signature="property dipole_moment">
+    Returns dipole moment
 
-`None`
+    **Return type**
 
-### computed\_dipole\_moment
+    `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  </Function>
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.computed_dipole_moment" />
+  ### dipole\_moment\_in\_debye
 
-`property computed_dipole_moment`
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.dipole_moment_in_debye" name="dipole_moment_in_debye" signature="property dipole_moment_in_debye">
+    Returns dipole moment in Debye
 
-Returns computed electronic part of dipole moment
+    **Return type**
 
-**Return type**
+    `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  </Function>
 
-`Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  ### electronic\_dipole\_moment
 
-### computed\_electronic\_energy
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.electronic_dipole_moment" name="electronic_dipole_moment" signature="property electronic_dipole_moment">
+    Returns electronic dipole moment
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.computed_electronic_energy" />
+    **Return type**
 
-`property computed_electronic_energy`
+    `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  </Function>
 
-Returns computed electronic part of ground state energy
+  ### electronic\_energy
 
-**Return type**
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.electronic_energy" name="electronic_energy" signature="property electronic_energy">
+    Returns electronic part of ground state energy
 
-`float`
+    **Return type**
 
-### dipole\_moment
+    `float`
+  </Function>
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.dipole_moment" />
+  ### energy
 
-`property dipole_moment`
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.energy" name="energy" signature="property energy">
+    Returns ground state energy if nuclear\_repulsion\_energy is available from driver
 
-Returns dipole moment
+    **Return type**
 
-**Return type**
+    `Optional`\[`float`]
+  </Function>
 
-`Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  ### formatted
 
-### dipole\_moment\_in\_debye
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.formatted" name="formatted" signature="property formatted">
+    Formatted result as a list of strings
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.dipole_moment_in_debye" />
+    **Return type**
 
-`property dipole_moment_in_debye`
+    `List`\[`str`]
+  </Function>
 
-Returns dipole moment in Debye
+  ### frozen\_extracted\_dipole\_moment
 
-**Return type**
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.frozen_extracted_dipole_moment" name="frozen_extracted_dipole_moment" signature="property frozen_extracted_dipole_moment">
+    Returns frozen extracted part of dipole moment
 
-`Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+    **Return type**
 
-### electronic\_dipole\_moment
+    `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  </Function>
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.electronic_dipole_moment" />
+  ### frozen\_extracted\_energy
 
-`property electronic_dipole_moment`
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.frozen_extracted_energy" name="frozen_extracted_energy" signature="property frozen_extracted_energy">
+    Returns frozen extracted part of ground state energy
 
-Returns electronic dipole moment
+    **Return type**
 
-**Return type**
+    `float`
+  </Function>
 
-`Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  ### get
 
-### electronic\_energy
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.get" name="get" signature="get(k[, d]) → D[k] if k in D, else d. d defaults to None." />
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.electronic_energy" />
+  ### hartree\_fock\_energy
 
-`property electronic_energy`
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.hartree_fock_energy" name="hartree_fock_energy" signature="property hartree_fock_energy">
+    Returns Hartree-Fock energy
 
-Returns electronic part of ground state energy
+    **Return type**
 
-**Return type**
+    `float`
+  </Function>
 
-`float`
+  ### has\_dipole
 
-### energy
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.has_dipole" name="has_dipole" signature="has_dipole()">
+    Returns whether dipole moment is present in result or not
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.energy" />
+    **Return type**
 
-`property energy`
+    `bool`
+  </Function>
 
-Returns ground state energy if nuclear\_repulsion\_energy is available from driver
+  ### has\_observables
 
-**Return type**
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.has_observables" name="has_observables" signature="has_observables()">
+    Returns whether result has aux op observables such as spin, num particles
+  </Function>
 
-`Optional`\[`float`]
+  ### items
 
-### formatted
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.items" name="items" signature="items() → a set-like object providing a view on D’s items" />
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.formatted" />
+  ### keys
 
-`property formatted`
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.keys" name="keys" signature="keys() → a set-like object providing a view on D’s keys" />
 
-Formatted result as a list of strings
+  ### magnetization
 
-**Return type**
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.magnetization" name="magnetization" signature="property magnetization">
+    Returns measured magnetization
 
-`List`\[`str`]
+    **Return type**
 
-### frozen\_extracted\_dipole\_moment
+    `Optional`\[`float`]
+  </Function>
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.frozen_extracted_dipole_moment" />
+  ### nuclear\_dipole\_moment
 
-`property frozen_extracted_dipole_moment`
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.nuclear_dipole_moment" name="nuclear_dipole_moment" signature="property nuclear_dipole_moment">
+    Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
 
-Returns frozen extracted part of dipole moment
+    **Return type**
 
-**Return type**
+    `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  </Function>
 
-`Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  ### nuclear\_repulsion\_energy
 
-### frozen\_extracted\_energy
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.nuclear_repulsion_energy" name="nuclear_repulsion_energy" signature="property nuclear_repulsion_energy">
+    Returns nuclear repulsion energy when available from driver
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.frozen_extracted_energy" />
+    **Return type**
 
-`property frozen_extracted_energy`
+    `Optional`\[`float`]
+  </Function>
 
-Returns frozen extracted part of ground state energy
+  ### num\_particles
 
-**Return type**
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.num_particles" name="num_particles" signature="property num_particles">
+    Returns measured number of particles
 
-`float`
+    **Return type**
 
-### get
+    `Optional`\[`float`]
+  </Function>
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.get" />
+  ### ph\_extracted\_dipole\_moment
 
-`get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.ph_extracted_dipole_moment" name="ph_extracted_dipole_moment" signature="property ph_extracted_dipole_moment">
+    Returns particle hole extracted part of dipole moment
 
-### hartree\_fock\_energy
+    **Return type**
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.hartree_fock_energy" />
+    `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  </Function>
 
-`property hartree_fock_energy`
+  ### ph\_extracted\_energy
 
-Returns Hartree-Fock energy
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.ph_extracted_energy" name="ph_extracted_energy" signature="property ph_extracted_energy">
+    Returns particle hole extracted part of ground state energy
 
-**Return type**
+    **Return type**
 
-`float`
+    `float`
+  </Function>
 
-### has\_dipole
+  ### pop
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.has_dipole" />
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.pop" name="pop" signature="pop(key, default=None)">
+    If key is not found, d is returned if given, otherwise KeyError is raised.
 
-`has_dipole()`
+    **Return type**
 
-Returns whether dipole moment is present in result or not
+    `object`
+  </Function>
 
-**Return type**
+  ### popitem
 
-`bool`
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.popitem" name="popitem" signature="popitem()">
+    as a 2-tuple; but raise KeyError if D is empty.
 
-### has\_observables
+    **Return type**
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.has_observables" />
+    `Tuple`\[`object`, `object`]
+  </Function>
 
-`has_observables()`
+  ### reverse\_dipole\_sign
 
-Returns whether result has aux op observables such as spin, num particles
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.reverse_dipole_sign" name="reverse_dipole_sign" signature="property reverse_dipole_sign">
+    Returns if electronic dipole moment sign should be reversed when adding to nuclear
 
-### items
+    **Return type**
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.items" />
+    `bool`
+  </Function>
 
-`items() → a set-like object providing a view on D’s items`
+  ### setdefault
 
-### keys
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.setdefault" name="setdefault" signature="setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D" />
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.keys" />
+  ### spin
 
-`keys() → a set-like object providing a view on D’s keys`
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.spin" name="spin" signature="property spin">
+    Returns computed spin
 
-### magnetization
+    **Return type**
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.magnetization" />
+    `Optional`\[`float`]
+  </Function>
 
-`property magnetization`
+  ### total\_angular\_momentum
 
-Returns measured magnetization
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.total_angular_momentum" name="total_angular_momentum" signature="property total_angular_momentum">
+    Returns total angular momentum (S^2)
 
-**Return type**
+    **Return type**
 
-`Optional`\[`float`]
+    `Optional`\[`float`]
+  </Function>
 
-### nuclear\_dipole\_moment
+  ### total\_dipole\_moment
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.nuclear_dipole_moment" />
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.total_dipole_moment" name="total_dipole_moment" signature="property total_dipole_moment">
+    Returns total dipole of moment
 
-`property nuclear_dipole_moment`
+    **Return type**
 
-Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
+    `Optional`\[`float`]
+  </Function>
 
-**Return type**
+  ### total\_dipole\_moment\_in\_debye
 
-`Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.total_dipole_moment_in_debye" name="total_dipole_moment_in_debye" signature="property total_dipole_moment_in_debye">
+    Returns total dipole of moment in Debye
 
-### nuclear\_repulsion\_energy
+    **Return type**
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.nuclear_repulsion_energy" />
+    `Optional`\[`float`]
+  </Function>
 
-`property nuclear_repulsion_energy`
+  ### update
 
-Returns nuclear repulsion energy when available from driver
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.update" name="update" signature="update(*args, **kwargs)">
+    If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
 
-**Return type**
+    **Return type**
 
-`Optional`\[`float`]
+    `None`
+  </Function>
 
-### num\_particles
+  ### values
 
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.num_particles" />
-
-`property num_particles`
-
-Returns measured number of particles
-
-**Return type**
-
-`Optional`\[`float`]
-
-### ph\_extracted\_dipole\_moment
-
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.ph_extracted_dipole_moment" />
-
-`property ph_extracted_dipole_moment`
-
-Returns particle hole extracted part of dipole moment
-
-**Return type**
-
-`Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
-
-### ph\_extracted\_energy
-
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.ph_extracted_energy" />
-
-`property ph_extracted_energy`
-
-Returns particle hole extracted part of ground state energy
-
-**Return type**
-
-`float`
-
-### pop
-
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.pop" />
-
-`pop(key, default=None)`
-
-If key is not found, d is returned if given, otherwise KeyError is raised.
-
-**Return type**
-
-`object`
-
-### popitem
-
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.popitem" />
-
-`popitem()`
-
-as a 2-tuple; but raise KeyError if D is empty.
-
-**Return type**
-
-`Tuple`\[`object`, `object`]
-
-### reverse\_dipole\_sign
-
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.reverse_dipole_sign" />
-
-`property reverse_dipole_sign`
-
-Returns if electronic dipole moment sign should be reversed when adding to nuclear
-
-**Return type**
-
-`bool`
-
-### setdefault
-
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.setdefault" />
-
-`setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
-
-### spin
-
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.spin" />
-
-`property spin`
-
-Returns computed spin
-
-**Return type**
-
-`Optional`\[`float`]
-
-### total\_angular\_momentum
-
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.total_angular_momentum" />
-
-`property total_angular_momentum`
-
-Returns total angular momentum (S^2)
-
-**Return type**
-
-`Optional`\[`float`]
-
-### total\_dipole\_moment
-
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.total_dipole_moment" />
-
-`property total_dipole_moment`
-
-Returns total dipole of moment
-
-**Return type**
-
-`Optional`\[`float`]
-
-### total\_dipole\_moment\_in\_debye
-
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.total_dipole_moment_in_debye" />
-
-`property total_dipole_moment_in_debye`
-
-Returns total dipole of moment in Debye
-
-**Return type**
-
-`Optional`\[`float`]
-
-### update
-
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.update" />
-
-`update(*args, **kwargs)`
-
-If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
-
-**Return type**
-
-`None`
-
-### values
-
-<span id="qiskit.chemistry.core.MolecularGroundStateResult.values" />
-
-`values() → an object providing a view on D’s values`
+  <Function id="qiskit.chemistry.core.MolecularGroundStateResult.values" name="values" signature="values() → an object providing a view on D’s values" />
+</Class>
 

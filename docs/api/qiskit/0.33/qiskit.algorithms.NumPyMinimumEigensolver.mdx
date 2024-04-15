@@ -8,68 +8,62 @@ python_api_name: qiskit.algorithms.NumPyMinimumEigensolver
 
 # NumPyMinimumEigensolver
 
-<span id="qiskit.algorithms.NumPyMinimumEigensolver" />
+<Class id="qiskit.algorithms.NumPyMinimumEigensolver" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/minimum_eigen_solvers/numpy_minimum_eigen_solver.py" signature="NumPyMinimumEigensolver(filter_criterion=None)">
+  Bases: `qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver`
 
-`NumPyMinimumEigensolver(filter_criterion=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/minimum_eigen_solvers/numpy_minimum_eigen_solver.py "view source code")
+  The Numpy Minimum Eigensolver algorithm.
 
-Bases: `qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver`
+  **Parameters**
 
-The Numpy Minimum Eigensolver algorithm.
+  **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Union`\[`List`\[`Optional`\[`float`]], `Dict`\[`str`, `float`], `None`]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
 
-**Parameters**
+  ## Methods
 
-**filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Union`\[`List`\[`Optional`\[`float`]], `Dict`\[`str`, `float`], `None`]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
+  ### compute\_minimum\_eigenvalue
 
-## Methods
+  <Function id="qiskit.algorithms.NumPyMinimumEigensolver.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="NumPyMinimumEigensolver.compute_minimum_eigenvalue(operator, aux_operators=None)">
+    Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
-### compute\_minimum\_eigenvalue
+    **Parameters**
 
-<span id="qiskit.algorithms.NumPyMinimumEigensolver.compute_minimum_eigenvalue" />
+    *   **operator** (`OperatorBase`) – Qubit operator of the Observable
+    *   **aux\_operators** (`Union`\[`List`\[`Optional`\[`OperatorBase`]], `Dict`\[`str`, `OperatorBase`], `None`]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
 
-`NumPyMinimumEigensolver.compute_minimum_eigenvalue(operator, aux_operators=None)`
+    **Return type**
 
-Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
+    `MinimumEigensolverResult`
 
-**Parameters**
+    **Returns**
 
-*   **operator** (`OperatorBase`) – Qubit operator of the Observable
-*   **aux\_operators** (`Union`\[`List`\[`Optional`\[`OperatorBase`]], `Dict`\[`str`, `OperatorBase`], `None`]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
+    MinimumEigensolverResult
+  </Function>
 
-**Return type**
+  ### supports\_aux\_operators
 
-`MinimumEigensolverResult`
+  <Function id="qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators" name="supports_aux_operators" signature="classmethod NumPyMinimumEigensolver.supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-**Returns**
+    If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
 
-MinimumEigensolverResult
+    **Return type**
 
-### supports\_aux\_operators
+    `bool`
 
-<span id="qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators" />
+    **Returns**
 
-`classmethod NumPyMinimumEigensolver.supports_aux_operators()`
+    True if aux\_operator expectations can be evaluated, False otherwise
+  </Function>
 
-Whether computing the expectation value of auxiliary operators is supported.
+  ## Attributes
 
-If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
+  ### filter\_criterion
 
-**Return type**
+  <Attribute id="qiskit.algorithms.NumPyMinimumEigensolver.filter_criterion" name="filter_criterion">
+    returns the filter criterion if set
 
-`bool`
+    **Return type**
 
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
-
-## Attributes
-
-<span id="qiskit.algorithms.NumPyMinimumEigensolver.filter_criterion" />
-
-### filter\_criterion
-
-returns the filter criterion if set
-
-**Return type**
-
-`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Union`\[`List`\[`Optional`\[`float`]], `Dict`\[`str`, `float`], `None`]], `bool`]]
+    `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Union`\[`List`\[`Optional`\[`float`]], `Dict`\[`str`, `float`], `None`]], `bool`]]
+  </Attribute>
+</Class>
 

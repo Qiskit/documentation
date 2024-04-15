@@ -27,125 +27,113 @@ common module
 
 ### get\_gset\_result
 
-<span id="qiskit.optimization.applications.ising.common.get_gset_result" />
+<Function id="qiskit.optimization.applications.ising.common.get_gset_result" name="get_gset_result" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py" signature="get_gset_result(x)">
+  Get graph solution in Gset format from binary string.
 
-`get_gset_result(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
+  **Parameters**
 
-Get graph solution in Gset format from binary string.
+  **x** (*numpy.ndarray*) – binary string as numpy array.
 
-**Parameters**
+  **Returns**
 
-**x** (*numpy.ndarray*) – binary string as numpy array.
+  graph solution in Gset format.
 
-**Returns**
+  **Return type**
 
-graph solution in Gset format.
-
-**Return type**
-
-Dict\[int, int]
+  Dict\[int, int]
+</Function>
 
 ### parse\_gset\_format
 
-<span id="qiskit.optimization.applications.ising.common.parse_gset_format" />
+<Function id="qiskit.optimization.applications.ising.common.parse_gset_format" name="parse_gset_format" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py" signature="parse_gset_format(filename)">
+  Read graph in Gset format from file.
 
-`parse_gset_format(filename)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
+  **Parameters**
 
-Read graph in Gset format from file.
+  **filename** (*str*) – name of the file.
 
-**Parameters**
+  **Returns**
 
-**filename** (*str*) – name of the file.
+  adjacency matrix as a 2D numpy array.
 
-**Returns**
+  **Return type**
 
-adjacency matrix as a 2D numpy array.
-
-**Return type**
-
-numpy.ndarray
+  numpy.ndarray
+</Function>
 
 ### random\_graph
 
-<span id="qiskit.optimization.applications.ising.common.random_graph" />
+<Function id="qiskit.optimization.applications.ising.common.random_graph" name="random_graph" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py" signature="random_graph(n, weight_range=10, edge_prob=0.3, negative_weight=True, savefile=None, seed=None)">
+  Generate random Erdos-Renyi graph.
 
-`random_graph(n, weight_range=10, edge_prob=0.3, negative_weight=True, savefile=None, seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
+  **Parameters**
 
-Generate random Erdos-Renyi graph.
+  *   **n** (*int*) – number of nodes.
+  *   **weight\_range** (*int*) – weights will be smaller than this value, in absolute value. range: \[1, weight\_range).
+  *   **edge\_prob** (*float*) – probability of edge appearing.
+  *   **negative\_weight** (*bool*) – allow to have edge with negative weights
+  *   **savefile** (*str or None*) – name of file where to save graph.
+  *   **seed** (*int or None*) – random seed - if None, will not initialize.
 
-**Parameters**
+  **Returns**
 
-*   **n** (*int*) – number of nodes.
-*   **weight\_range** (*int*) – weights will be smaller than this value, in absolute value. range: \[1, weight\_range).
-*   **edge\_prob** (*float*) – probability of edge appearing.
-*   **negative\_weight** (*bool*) – allow to have edge with negative weights
-*   **savefile** (*str or None*) – name of file where to save graph.
-*   **seed** (*int or None*) – random seed - if None, will not initialize.
+  adjacency matrix (with weights).
 
-**Returns**
+  **Return type**
 
-adjacency matrix (with weights).
-
-**Return type**
-
-numpy.ndarray
+  numpy.ndarray
+</Function>
 
 ### random\_number\_list
 
-<span id="qiskit.optimization.applications.ising.common.random_number_list" />
+<Function id="qiskit.optimization.applications.ising.common.random_number_list" name="random_number_list" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py" signature="random_number_list(n, weight_range=100, savefile=None, seed=None)">
+  Generate a set of positive integers within the given range.
 
-`random_number_list(n, weight_range=100, savefile=None, seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
+  **Parameters**
 
-Generate a set of positive integers within the given range.
+  *   **n** (*int*) – size of the set of numbers.
+  *   **weight\_range** (*int*) – maximum absolute value of the numbers.
+  *   **savefile** (*str or None*) – write numbers to this file.
+  *   **seed** (*Union(int,None)*) – random seed - if None, will not initialize.
 
-**Parameters**
+  **Returns**
 
-*   **n** (*int*) – size of the set of numbers.
-*   **weight\_range** (*int*) – maximum absolute value of the numbers.
-*   **savefile** (*str or None*) – write numbers to this file.
-*   **seed** (*Union(int,None)*) – random seed - if None, will not initialize.
+  the list of integer numbers.
 
-**Returns**
+  **Return type**
 
-the list of integer numbers.
-
-**Return type**
-
-numpy.ndarray
+  numpy.ndarray
+</Function>
 
 ### read\_numbers\_from\_file
 
-<span id="qiskit.optimization.applications.ising.common.read_numbers_from_file" />
+<Function id="qiskit.optimization.applications.ising.common.read_numbers_from_file" name="read_numbers_from_file" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py" signature="read_numbers_from_file(filename)">
+  Read numbers from a file
 
-`read_numbers_from_file(filename)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
+  **Parameters**
 
-Read numbers from a file
+  **filename** (*str*) – name of the file.
 
-**Parameters**
+  **Returns**
 
-**filename** (*str*) – name of the file.
+  list of numbers as a numpy.ndarray.
 
-**Returns**
+  **Return type**
 
-list of numbers as a numpy.ndarray.
-
-**Return type**
-
-numpy.ndarray
+  numpy.ndarray
+</Function>
 
 ### sample\_most\_likely
 
-<span id="qiskit.optimization.applications.ising.common.sample_most_likely" />
+<Function id="qiskit.optimization.applications.ising.common.sample_most_likely" name="sample_most_likely" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py" signature="sample_most_likely(state_vector)">
+  Compute the most likely binary string from state vector. :param state\_vector: state vector or counts. :type state\_vector: numpy.ndarray or dict
 
-`sample_most_likely(state_vector)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
+  **Returns**
 
-Compute the most likely binary string from state vector. :param state\_vector: state vector or counts. :type state\_vector: numpy.ndarray or dict
+  binary string as numpy.ndarray of ints.
 
-**Returns**
+  **Return type**
 
-binary string as numpy.ndarray of ints.
-
-**Return type**
-
-numpy.ndarray
+  numpy.ndarray
+</Function>
 

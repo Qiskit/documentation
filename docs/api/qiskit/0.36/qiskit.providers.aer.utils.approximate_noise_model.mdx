@@ -8,33 +8,31 @@ python_api_name: qiskit.providers.aer.utils.approximate_noise_model
 
 # qiskit.providers.aer.utils.approximate\_noise\_model
 
-<span id="qiskit.providers.aer.utils.approximate_noise_model" />
+<Function id="qiskit.providers.aer.utils.approximate_noise_model" name="approximate_noise_model" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/utils/noise_transformation.py" signature="approximate_noise_model(model, *, operator_string=None, operator_dict=None, operator_list=None)">
+  Replace all noises in a noise model with ones approximated by a mixture of operators (channels).
 
-`approximate_noise_model(model, *, operator_string=None, operator_dict=None, operator_list=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/utils/noise_transformation.py "view source code")
+  **Parameters**
 
-Replace all noises in a noise model with ones approximated by a mixture of operators (channels).
+  *   **model** ([*NoiseModel*](qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")) – the noise model to be approximated. All noises in the model must be 1- or 2-qubit noises.
+  *   **operator\_string** (*string*) – a name for a pre-made set of building blocks for the output channel (Default: None). Possible values are `'pauli'`, `'reset'`, `'clifford'`.
+  *   **operator\_dict** (*dict*) – a dictionary whose values are the building blocks for the output channel (Default: None). E.g. \{“x”: XGate(), “y”: YGate()}, keys “x” and “y” are not used in transformation.
+  *   **operator\_list** (*list*) – list of building block operators for the output channel (Default: None). E.g. \[XGate(), YGate()]
 
-**Parameters**
+  **Returns**
 
-*   **model** ([*NoiseModel*](qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")) – the noise model to be approximated. All noises in the model must be 1- or 2-qubit noises.
-*   **operator\_string** (*string*) – a name for a pre-made set of building blocks for the output channel (Default: None). Possible values are `'pauli'`, `'reset'`, `'clifford'`.
-*   **operator\_dict** (*dict*) – a dictionary whose values are the building blocks for the output channel (Default: None). E.g. \{“x”: XGate(), “y”: YGate()}, keys “x” and “y” are not used in transformation.
-*   **operator\_list** (*list*) – list of building block operators for the output channel (Default: None). E.g. \[XGate(), YGate()]
+  the approximate noise model.
 
-**Returns**
+  **Return type**
 
-the approximate noise model.
+  [NoiseModel](qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")
 
-**Return type**
+  **Raises**
 
-[NoiseModel](qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")
+  *   **NoiseError** – if any invalid argument is specified or approximation failed.
+  *   **MissingOptionalLibraryError** – if cvxpy is not installed.
 
-**Raises**
-
-*   **NoiseError** – if any invalid argument is specified or approximation failed.
-*   **MissingOptionalLibraryError** – if cvxpy is not installed.
-
-<Admonition title="Note" type="note">
-  The operator input precedence is: `list` \< `dict` \< `string`. If a `string` is given, `dict` is overwritten; if a `dict` is given, `list` is overwritten. The `string` supports only 1- or 2-qubit errors and its possible values are `'pauli'`, `'reset'`, `'clifford'`. The `'clifford'` does not support 2-qubit errors.
-</Admonition>
+  <Admonition title="Note" type="note">
+    The operator input precedence is: `list` \< `dict` \< `string`. If a `string` is given, `dict` is overwritten; if a `dict` is given, `list` is overwritten. The `string` supports only 1- or 2-qubit errors and its possible values are `'pauli'`, `'reset'`, `'clifford'`. The `'clifford'` does not support 2-qubit errors.
+  </Admonition>
+</Function>
 

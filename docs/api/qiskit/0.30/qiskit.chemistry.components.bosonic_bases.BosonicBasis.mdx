@@ -8,37 +8,33 @@ python_api_name: qiskit.chemistry.components.bosonic_bases.BosonicBasis
 
 # BosonicBasis
 
-<span id="qiskit.chemistry.components.bosonic_bases.BosonicBasis" />
+<Class id="qiskit.chemistry.components.bosonic_bases.BosonicBasis" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/bosonic_bases/bosonic_basis.py" signature="BosonicBasis">
+  Bases: `object`
 
-`BosonicBasis` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/bosonic_bases/bosonic_basis.py "view source code")
+  Basis to express a second quantization Bosonic Hamiltonian.
 
-Bases: `object`
+  ## Methods
 
-Basis to express a second quantization Bosonic Hamiltonian.
+  ### convert
 
-## Methods
+  <Function id="qiskit.chemistry.components.bosonic_bases.BosonicBasis.convert" name="convert" signature="BosonicBasis.convert(threshold=1e-06)">
+    This prepares an array object representing a bosonic hamiltonian expressed in the harmonic basis. This object can directly be given to the BosonicOperator class to be mapped to a qubit hamiltonian.
 
-### convert
+    **Parameters**
 
-<span id="qiskit.chemistry.components.bosonic_bases.BosonicBasis.convert" />
+    **threshold** (`float`) – the matrix elements of value below this threshold are discarded
 
-`BosonicBasis.convert(threshold=1e-06)`
+    **Return type**
 
-This prepares an array object representing a bosonic hamiltonian expressed in the harmonic basis. This object can directly be given to the BosonicOperator class to be mapped to a qubit hamiltonian.
+    `List`\[`List`\[`Tuple`\[`List`\[`List`\[`int`]], `float`]]]
 
-**Parameters**
+    **Returns**
 
-**threshold** (`float`) – the matrix elements of value below this threshold are discarded
+    List of modes for input to creation of a bosonic hamiltonian in the harmonic basis
 
-**Return type**
+    **Raises**
 
-`List`\[`List`\[`Tuple`\[`List`\[`List`\[`int`]], `float`]]]
-
-**Returns**
-
-List of modes for input to creation of a bosonic hamiltonian in the harmonic basis
-
-**Raises**
-
-**ValueError** – If problem with order value from computed modes
+    **ValueError** – If problem with order value from computed modes
+  </Function>
+</Class>
 

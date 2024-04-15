@@ -12,154 +12,140 @@ python_api_name: qiskit.providers.ibmq.managed.ManagedJob
 
 # ManagedJob
 
-<span id="qiskit.providers.ibmq.managed.ManagedJob" />
+<Class id="qiskit.providers.ibmq.managed.ManagedJob" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedjob.py" signature="ManagedJob(start_index, experiments_count, job=None)">
+  Bases: `object`
 
-`ManagedJob(start_index, experiments_count, job=None)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedjob.py "view source code")
+  Job managed by the Job Manager.
 
-Bases: `object`
+  ManagedJob constructor.
 
-Job managed by the Job Manager.
+  **Parameters**
 
-ManagedJob constructor.
+  *   **start\_index** (`int`) – Starting index of the experiment set.
+  *   **experiments\_count** (`int`) – Number of experiments.
+  *   **job** (`Optional`\[[`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.ibmqjob.IBMQJob")]) – Job to be managed, or `None` if not already known.
 
-**Parameters**
+  ## Methods
 
-*   **start\_index** (`int`) – Starting index of the experiment set.
-*   **experiments\_count** (`int`) – Number of experiments.
-*   **job** (`Optional`\[[`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.ibmqjob.IBMQJob")]) – Job to be managed, or `None` if not already known.
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-## Methods
+  ### cancel
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+  <Function id="qiskit.providers.ibmq.managed.ManagedJob.cancel" name="cancel" signature="ManagedJob.cancel()">
+    Attempt to cancel the job.
 
-### cancel
+    **Return type**
 
-<span id="qiskit.providers.ibmq.managed.ManagedJob.cancel" />
+    `None`
+  </Function>
 
-`ManagedJob.cancel()`
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-Attempt to cancel the job.
+  ### error\_message
 
-**Return type**
+  <Function id="qiskit.providers.ibmq.managed.ManagedJob.error_message" name="error_message" signature="ManagedJob.error_message()">
+    Provide details about the reason of failure.
 
-`None`
+    **Return type**
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    `Optional`\[`str`]
 
-### error\_message
+    **Returns**
 
-<span id="qiskit.providers.ibmq.managed.ManagedJob.error_message" />
+    An error report if the job failed or `None` otherwise.
+  </Function>
 
-`ManagedJob.error_message()`
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-Provide details about the reason of failure.
+  ### qobj
 
-**Return type**
+  <Function id="qiskit.providers.ibmq.managed.ManagedJob.qobj" name="qobj" signature="ManagedJob.qobj()">
+    Return the Qobj for this job.
 
-`Optional`\[`str`]
+    **Return type**
 
-**Returns**
+    `Union`\[[`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj"), [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj"), `None`]
 
-An error report if the job failed or `None` otherwise.
+    **Returns**
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    The Qobj for this job or `None` if the Qobj could not be retrieved.
+  </Function>
 
-### qobj
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-<span id="qiskit.providers.ibmq.managed.ManagedJob.qobj" />
+  ### result
 
-`ManagedJob.qobj()`
+  <Function id="qiskit.providers.ibmq.managed.ManagedJob.result" name="result" signature="ManagedJob.result(timeout=None, partial=False, refresh=False)">
+    Return the result of the job.
 
-Return the Qobj for this job.
+    **Parameters**
 
-**Return type**
+    *   **timeout** (`Optional`\[`float`]) – Number of seconds to wait for job.
+    *   **partial** (`bool`) – If `True`, attempt to retrieve partial job results.
+    *   **refresh** (`bool`) – If `True`, re-query the server for the result. Otherwise return the cached value.
 
-`Union`\[[`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj"), [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj"), `None`]
+    **Return type**
 
-**Returns**
+    `Optional`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]
 
-The Qobj for this job or `None` if the Qobj could not be retrieved.
+    **Returns**
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    Job result or `None` if result could not be retrieved.
 
-### result
+    **Raises**
 
-<span id="qiskit.providers.ibmq.managed.ManagedJob.result" />
+    [**IBMQJobTimeoutError**](qiskit.providers.ibmq.job.IBMQJobTimeoutError "qiskit.providers.ibmq.job.IBMQJobTimeoutError") – If the job does not return results before a specified timeout.
+  </Function>
 
-`ManagedJob.result(timeout=None, partial=False, refresh=False)`
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-Return the result of the job.
+  ### status
 
-**Parameters**
+  <Function id="qiskit.providers.ibmq.managed.ManagedJob.status" name="status" signature="ManagedJob.status()">
+    Query the server for job status.
 
-*   **timeout** (`Optional`\[`float`]) – Number of seconds to wait for job.
-*   **partial** (`bool`) – If `True`, attempt to retrieve partial job results.
-*   **refresh** (`bool`) – If `True`, re-query the server for the result. Otherwise return the cached value.
+    **Return type**
 
-**Return type**
+    `Optional`\[[`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")]
 
-`Optional`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]
+    **Returns**
 
-**Returns**
+    Current job status, or `None` if an error occurred.
+  </Function>
 
-Job result or `None` if result could not be retrieved.
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-**Raises**
+  ### submit
 
-[**IBMQJobTimeoutError**](qiskit.providers.ibmq.job.IBMQJobTimeoutError "qiskit.providers.ibmq.job.IBMQJobTimeoutError") – If the job does not return results before a specified timeout.
+  <Function id="qiskit.providers.ibmq.managed.ManagedJob.submit" name="submit" signature="ManagedJob.submit(circuits, job_name, backend, executor, submit_lock, job_share_level=None, job_tags=None, **run_config)">
+    Submit the job.
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    **Parameters**
 
-### status
+    *   **circuits** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `List`\[`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]]) – Circuits to run.
+    *   **job\_name** (`str`) – Name of the job.
+    *   **backend** ([`IBMQBackend`](qiskit.providers.ibmq.IBMQBackend "qiskit.providers.ibmq.ibmqbackend.IBMQBackend")) – Backend to execute the experiments on.
+    *   **executor** (`ThreadPoolExecutor`) – The thread pool used to submit the job.
+    *   **submit\_lock** (`allocate_lock`) – Lock used to synchronize job submission.
+    *   **job\_share\_level** (`Optional`\[`ApiJobShareLevel`]) – Job share level.
+    *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job.
+    *   **\*\*run\_config** – Extra arguments used to configure the run.
 
-<span id="qiskit.providers.ibmq.managed.ManagedJob.status" />
+    **Return type**
 
-`ManagedJob.status()`
-
-Query the server for job status.
-
-**Return type**
-
-`Optional`\[[`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")]
-
-**Returns**
-
-Current job status, or `None` if an error occurred.
-
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
-
-### submit
-
-<span id="qiskit.providers.ibmq.managed.ManagedJob.submit" />
-
-`ManagedJob.submit(circuits, job_name, backend, executor, submit_lock, job_share_level=None, job_tags=None, **run_config)`
-
-Submit the job.
-
-**Parameters**
-
-*   **circuits** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `List`\[`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]]) – Circuits to run.
-*   **job\_name** (`str`) – Name of the job.
-*   **backend** ([`IBMQBackend`](qiskit.providers.ibmq.IBMQBackend "qiskit.providers.ibmq.ibmqbackend.IBMQBackend")) – Backend to execute the experiments on.
-*   **executor** (`ThreadPoolExecutor`) – The thread pool used to submit the job.
-*   **submit\_lock** (`allocate_lock`) – Lock used to synchronize job submission.
-*   **job\_share\_level** (`Optional`\[`ApiJobShareLevel`]) – Job share level.
-*   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job.
-*   **\*\*run\_config** – Extra arguments used to configure the run.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

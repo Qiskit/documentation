@@ -8,256 +8,246 @@ python_api_name: qiskit.circuit.library.NormalDistribution
 
 # NormalDistribution
 
-<span id="qiskit.circuit.library.NormalDistribution" />
+<Class id="qiskit.circuit.library.NormalDistribution" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/probability_distributions/normal.py" signature="NormalDistribution(num_qubits, mu=None, sigma=None, bounds=None, upto_diag=False, name='P(X)')">
+  Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
-`NormalDistribution(num_qubits, mu=None, sigma=None, bounds=None, upto_diag=False, name='P(X)')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/probability_distributions/normal.py "view source code")
+  A circuit to encode a discretized normal distribution in qubit amplitudes.
 
-Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
-
-A circuit to encode a discretized normal distribution in qubit amplitudes.
-
-The probability density function of the normal distribution is defined as
+  The probability density function of the normal distribution is defined as
 
 $$
 \mathbb{P}(X = x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x - \mu)^2}{\sigma^2}}
 $$
 
-<Admonition title="Note" type="note">
-  The parameter `sigma` in this class equals the **variance**, $\sigma^2$ and not the standard deviation. This is for consistency with multivariate distributions, where the uppercase sigma, $\Sigma$, is associated with the covariance.
-</Admonition>
+  <Admonition title="Note" type="note">
+    The parameter `sigma` in this class equals the **variance**, $\sigma^2$ and not the standard deviation. This is for consistency with multivariate distributions, where the uppercase sigma, $\Sigma$, is associated with the covariance.
+  </Admonition>
 
-This circuit considers the discretized version of the normal distribution on `2 ** num_qubits` equidistant points, $x_i$, truncated to `bounds`. For a one-dimensional random variable, meaning num\_qubits is a single integer, it applies the operation
+  This circuit considers the discretized version of the normal distribution on `2 ** num_qubits` equidistant points, $x_i$, truncated to `bounds`. For a one-dimensional random variable, meaning num\_qubits is a single integer, it applies the operation
 
 $$
 \mathcal{P}_X |0\rangle^n = \sum_{i=0}^{2^n - 1} \sqrt{\mathbb{P}(x_i)} |i\rangle
 $$
 
-where $n$ is num\_qubits.
+  where $n$ is num\_qubits.
 
-<Admonition title="Note" type="note">
-  The circuit loads the **square root** of the probabilities into the qubit amplitudes such that the sampling probability, which is the square of the amplitude, equals the probability of the distribution.
-</Admonition>
+  <Admonition title="Note" type="note">
+    The circuit loads the **square root** of the probabilities into the qubit amplitudes such that the sampling probability, which is the square of the amplitude, equals the probability of the distribution.
+  </Admonition>
 
-In the multi-dimensional case, the distribution is defined as
+  In the multi-dimensional case, the distribution is defined as
 
 $$
 \mathbb{P}(X = x) = \frac{\Sigma^{-1}}{\sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{\Sigma}}
 $$
 
-where $\Sigma$ is the covariance. To specify a multivariate normal distribution, `num_qubits` is a list of integers, each specifying how many qubits are used to discretize the respective dimension. The arguments `mu` and `sigma` in this case are a vector and square matrix. If for instance, `num_qubits = [2, 3]` then `mu` is a 2d vector and `sigma` is the $2 \times 2$ covariance matrix. The first dimension is discretized using 2 qubits, hence on 4 points, and the second dimension on 3 qubits, hence 8 points. Therefore the random variable is discretized on $4 \times 8 = 32$ points.
+  where $\Sigma$ is the covariance. To specify a multivariate normal distribution, `num_qubits` is a list of integers, each specifying how many qubits are used to discretize the respective dimension. The arguments `mu` and `sigma` in this case are a vector and square matrix. If for instance, `num_qubits = [2, 3]` then `mu` is a 2d vector and `sigma` is the $2 \times 2$ covariance matrix. The first dimension is discretized using 2 qubits, hence on 4 points, and the second dimension on 3 qubits, hence 8 points. Therefore the random variable is discretized on $4 \times 8 = 32$ points.
+
+  Since, in general, it is not yet known how to efficiently prepare the qubit amplitudes to represent a normal distribution, this class computes the expected amplitudes and then uses the `QuantumCircuit.initialize` method to construct the corresponding circuit.
 
-Since, in general, it is not yet known how to efficiently prepare the qubit amplitudes to represent a normal distribution, this class computes the expected amplitudes and then uses the `QuantumCircuit.initialize` method to construct the corresponding circuit.
+  This circuit is for example used in amplitude estimation applications, such as finance \[1, 2], where customer demand or the return of a portfolio could be modelled using a normal distribution.
+
+  **Examples**
 
-This circuit is for example used in amplitude estimation applications, such as finance \[1, 2], where customer demand or the return of a portfolio could be modelled using a normal distribution.
+  ```python
+  >>> circuit = NormalDistribution(3, mu=1, sigma=1, bounds=(0, 2))
+  >>> circuit.draw()
+       ┌────────────────────────────────────────────────────────────────────────────┐
+  q_0: ┤0                                                                           ├
+       │                                                                            │
+  q_1: ┤1 initialize(0.30391,0.3435,0.37271,0.38824,0.38824,0.37271,0.3435,0.30391) ├
+       │                                                                            │
+  q_2: ┤2                                                                           ├
+       └────────────────────────────────────────────────────────────────────────────┘
+  ```
 
-**Examples**
+  ```python
+  >>> mu = [1, 0.9]
+  >>> sigma = [[1, -0.2], [-0.2, 1]]
+  >>> circuit = NormalDistribution([2, 3], mu, sigma)
+  >>> circuit.num_qubits
+  5
+  ```
 
-```python
->>> circuit = NormalDistribution(3, mu=1, sigma=1, bounds=(0, 2))
->>> circuit.draw()
-     ┌────────────────────────────────────────────────────────────────────────────┐
-q_0: ┤0                                                                           ├
-     │                                                                            │
-q_1: ┤1 initialize(0.30391,0.3435,0.37271,0.38824,0.38824,0.37271,0.3435,0.30391) ├
-     │                                                                            │
-q_2: ┤2                                                                           ├
-     └────────────────────────────────────────────────────────────────────────────┘
-```
+  ```python
+  >>> from qiskit import QuantumCircuit
+  >>> mu = [1, 0.9]
+  >>> sigma = [[1, -0.2], [-0.2, 1]]
+  >>> bounds = [(0, 1), (-1, 1)]
+  >>> p_x = NormalDistribution([2, 3], mu, sigma, bounds)
+  >>> circuit = QuantumCircuit(6)
+  >>> circuit.append(p_x, list(range(5)))
+  >>> for i in range(5):
+  ...    circuit.cry(2 ** i, i, 5)
+  >>> circuit.draw()
+       ┌───────┐
+  q_0: ┤0      ├────■─────────────────────────────────────────
+       │       │    │
+  q_1: ┤1      ├────┼────────■────────────────────────────────
+       │       │    │        │
+  q_2: ┤2 P(X) ├────┼────────┼────────■───────────────────────
+       │       │    │        │        │
+  q_3: ┤3      ├────┼────────┼────────┼────────■──────────────
+       │       │    │        │        │        │
+  q_4: ┤4      ├────┼────────┼────────┼────────┼────────■─────
+       └───────┘┌───┴───┐┌───┴───┐┌───┴───┐┌───┴───┐┌───┴────┐
+  q_5: ─────────┤ RY(1) ├┤ RY(2) ├┤ RY(4) ├┤ RY(8) ├┤ RY(16) ├
+                └───────┘└───────┘└───────┘└───────┘└────────┘
+  ```
 
-```python
->>> mu = [1, 0.9]
->>> sigma = [[1, -0.2], [-0.2, 1]]
->>> circuit = NormalDistribution([2, 3], mu, sigma)
->>> circuit.num_qubits
-5
-```
+  **References**
 
-```python
->>> from qiskit import QuantumCircuit
->>> mu = [1, 0.9]
->>> sigma = [[1, -0.2], [-0.2, 1]]
->>> bounds = [(0, 1), (-1, 1)]
->>> p_x = NormalDistribution([2, 3], mu, sigma, bounds)
->>> circuit = QuantumCircuit(6)
->>> circuit.append(p_x, list(range(5)))
->>> for i in range(5):
-...    circuit.cry(2 ** i, i, 5)
->>> circuit.draw()
-     ┌───────┐
-q_0: ┤0      ├────■─────────────────────────────────────────
-     │       │    │
-q_1: ┤1      ├────┼────────■────────────────────────────────
-     │       │    │        │
-q_2: ┤2 P(X) ├────┼────────┼────────■───────────────────────
-     │       │    │        │        │
-q_3: ┤3      ├────┼────────┼────────┼────────■──────────────
-     │       │    │        │        │        │
-q_4: ┤4      ├────┼────────┼────────┼────────┼────────■─────
-     └───────┘┌───┴───┐┌───┴───┐┌───┴───┐┌───┴───┐┌───┴────┐
-q_5: ─────────┤ RY(1) ├┤ RY(2) ├┤ RY(4) ├┤ RY(8) ├┤ RY(16) ├
-              └───────┘└───────┘└───────┘└───────┘└────────┘
-```
+  **\[1]: Gacon, J., Zoufal, C., & Woerner, S. (2020).**
 
-**References**
+  Quantum-Enhanced Simulation-Based Optimization. [arXiv:2005.10780](http://arxiv.org/abs/2005.10780)
 
-**\[1]: Gacon, J., Zoufal, C., & Woerner, S. (2020).**
+  **\[2]: Woerner, S., & Egger, D. J. (2018).**
 
-Quantum-Enhanced Simulation-Based Optimization. [arXiv:2005.10780](http://arxiv.org/abs/2005.10780)
+  Quantum Risk Analysis. [arXiv:1806.06893](http://arxiv.org/abs/1806.06893)
 
-**\[2]: Woerner, S., & Egger, D. J. (2018).**
+  **Parameters**
 
-Quantum Risk Analysis. [arXiv:1806.06893](http://arxiv.org/abs/1806.06893)
+  *   **num\_qubits** (`Union`\[`int`, `List`\[`int`]]) – The number of qubits used to discretize the random variable. For a 1d random variable, `num_qubits` is an integer, for multiple dimensions a list of integers indicating the number of qubits to use in each dimension.
+  *   **mu** (`Union`\[`float`, `List`\[`float`], `None`]) – The parameter $\mu$, which is the expected value of the distribution. Can be either a float for a 1d random variable or a list of floats for a higher dimensional random variable. Defaults to 0.
+  *   **sigma** (`Union`\[`float`, `List`\[`float`], `None`]) – The parameter $\sigma^2$ or $\Sigma$, which is the variance or covariance matrix. Default to the identity matrix of appropriate size.
+  *   **bounds** (`Union`\[`Tuple`\[`float`, `float`], `List`\[`Tuple`\[`float`, `float`]], `None`]) – The truncation bounds of the distribution as tuples. For multiple dimensions, `bounds` is a list of tuples `[(low0, high0), (low1, high1), ...]`. If `None`, the bounds are set to `(-1, 1)` for each dimension.
+  *   **upto\_diag** (`bool`) – If True, load the square root of the probabilities up to multiplication with a diagonal for a more efficient circuit.
+  *   **name** (`str`) – The name of the circuit.
 
-**Parameters**
+  ## Attributes
 
-*   **num\_qubits** (`Union`\[`int`, `List`\[`int`]]) – The number of qubits used to discretize the random variable. For a 1d random variable, `num_qubits` is an integer, for multiple dimensions a list of integers indicating the number of qubits to use in each dimension.
-*   **mu** (`Union`\[`float`, `List`\[`float`], `None`]) – The parameter $\mu$, which is the expected value of the distribution. Can be either a float for a 1d random variable or a list of floats for a higher dimensional random variable. Defaults to 0.
-*   **sigma** (`Union`\[`float`, `List`\[`float`], `None`]) – The parameter $\sigma^2$ or $\Sigma$, which is the variance or covariance matrix. Default to the identity matrix of appropriate size.
-*   **bounds** (`Union`\[`Tuple`\[`float`, `float`], `List`\[`Tuple`\[`float`, `float`]], `None`]) – The truncation bounds of the distribution as tuples. For multiple dimensions, `bounds` is a list of tuples `[(low0, high0), (low1, high1), ...]`. If `None`, the bounds are set to `(-1, 1)` for each dimension.
-*   **upto\_diag** (`bool`) – If True, load the square root of the probabilities up to multiplication with a diagonal for a more efficient circuit.
-*   **name** (`str`) – The name of the circuit.
+  ### ancillas
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.NormalDistribution.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.NormalDistribution.ancillas" />
+  ### bounds
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.NormalDistribution.bounds" name="bounds">
+    Return the bounds of the probability distribution.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **Return type**
 
-<span id="qiskit.circuit.library.NormalDistribution.bounds" />
+    `Union`\[`Tuple`\[`float`, `float`], `List`\[`Tuple`\[`float`, `float`]]]
+  </Attribute>
 
-### bounds
+  ### calibrations
 
-Return the bounds of the probability distribution.
+  <Attribute id="qiskit.circuit.library.NormalDistribution.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-**Return type**
+    **The custom pulse definition of a given gate is of the form**
 
-`Union`\[`Tuple`\[`float`, `float`], `List`\[`Tuple`\[`float`, `float`]]]
+    \{‘gate\_name’: \{(qubits, params): schedule}}
+  </Attribute>
 
-<span id="qiskit.circuit.library.NormalDistribution.calibrations" />
+  ### clbits
 
-### calibrations
+  <Attribute id="qiskit.circuit.library.NormalDistribution.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-Return calibration dictionary.
+  ### data
 
-**The custom pulse definition of a given gate is of the form**
+  <Attribute id="qiskit.circuit.library.NormalDistribution.data" name="data">
+    Return the circuit data (instructions and context).
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+    **Returns**
 
-<span id="qiskit.circuit.library.NormalDistribution.clbits" />
+    a list-like object containing the tuples for the circuit’s data.
 
-### clbits
+    Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
-Returns a list of classical bits in the order that the registers were added.
+    **Return type**
 
-<span id="qiskit.circuit.library.NormalDistribution.data" />
+    QuantumCircuitData
+  </Attribute>
 
-### data
+  ### extension\_lib
 
-Return the circuit data (instructions and context).
+  <Attribute id="qiskit.circuit.library.NormalDistribution.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-**Returns**
+  ### global\_phase
 
-a list-like object containing the tuples for the circuit’s data.
+  <Attribute id="qiskit.circuit.library.NormalDistribution.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
+  </Attribute>
 
-Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
+  ### header
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.NormalDistribution.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-QuantumCircuitData
+  ### instances
 
-<span id="qiskit.circuit.library.NormalDistribution.extension_lib" />
+  <Attribute id="qiskit.circuit.library.NormalDistribution.instances" name="instances" attributeValue="= 16" />
 
-### extension\_lib
+  ### metadata
 
-`= 'include "qelib1.inc";'`
+  <Attribute id="qiskit.circuit.library.NormalDistribution.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-<span id="qiskit.circuit.library.NormalDistribution.global_phase" />
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-### global\_phase
+  ### num\_ancillas
 
-Return the global phase of the circuit in radians.
+  <Attribute id="qiskit.circuit.library.NormalDistribution.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.NormalDistribution.header" />
+  ### num\_clbits
 
-### header
+  <Attribute id="qiskit.circuit.library.NormalDistribution.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-`= 'OPENQASM 2.0;'`
+  ### num\_parameters
 
-<span id="qiskit.circuit.library.NormalDistribution.instances" />
+  <Attribute id="qiskit.circuit.library.NormalDistribution.num_parameters" name="num_parameters">
+    Convenience function to get the number of parameter objects in the circuit.
+  </Attribute>
 
-### instances
+  ### num\_qubits
 
-`= 16`
+  <Attribute id="qiskit.circuit.library.NormalDistribution.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.NormalDistribution.metadata" />
+  ### parameters
 
-### metadata
+  <Attribute id="qiskit.circuit.library.NormalDistribution.parameters" name="parameters">
+    Convenience function to get the parameters defined in the parameter table.
+  </Attribute>
 
-The user provided metadata associated with the circuit
+  ### prefix
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  <Attribute id="qiskit.circuit.library.NormalDistribution.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-<span id="qiskit.circuit.library.NormalDistribution.num_ancillas" />
+  ### probabilities
 
-### num\_ancillas
+  <Attribute id="qiskit.circuit.library.NormalDistribution.probabilities" name="probabilities">
+    Return the sampling probabilities for the values.
 
-Return the number of ancilla qubits.
+    **Return type**
 
-<span id="qiskit.circuit.library.NormalDistribution.num_clbits" />
+    `ndarray`
+  </Attribute>
 
-### num\_clbits
+  ### qubits
 
-Return number of classical bits.
+  <Attribute id="qiskit.circuit.library.NormalDistribution.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.NormalDistribution.num_parameters" />
+  ### values
 
-### num\_parameters
+  <Attribute id="qiskit.circuit.library.NormalDistribution.values" name="values">
+    Return the discretized points of the random variable.
 
-Convenience function to get the number of parameter objects in the circuit.
+    **Return type**
 
-<span id="qiskit.circuit.library.NormalDistribution.num_qubits" />
-
-### num\_qubits
-
-Return number of qubits.
-
-<span id="qiskit.circuit.library.NormalDistribution.parameters" />
-
-### parameters
-
-Convenience function to get the parameters defined in the parameter table.
-
-<span id="qiskit.circuit.library.NormalDistribution.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.NormalDistribution.probabilities" />
-
-### probabilities
-
-Return the sampling probabilities for the values.
-
-**Return type**
-
-`ndarray`
-
-<span id="qiskit.circuit.library.NormalDistribution.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-<span id="qiskit.circuit.library.NormalDistribution.values" />
-
-### values
-
-Return the discretized points of the random variable.
-
-**Return type**
-
-`ndarray`
+    `ndarray`
+  </Attribute>
+</Class>
 

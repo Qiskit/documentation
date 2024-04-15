@@ -8,38 +8,36 @@ python_api_name: qiskit.ignis.verification.process_tomography_circuits
 
 # process\_tomography\_circuits
 
-<span id="qiskit.ignis.verification.process_tomography_circuits" />
+<Function id="qiskit.ignis.verification.process_tomography_circuits" name="process_tomography_circuits" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/basis/circuits.py" signature="process_tomography_circuits(circuit, measured_qubits, prepared_qubits=None, meas_labels='Pauli', meas_basis='Pauli', prep_labels='Pauli', prep_basis='Pauli')">
+  Return a list of quantum process tomography circuits.
 
-`process_tomography_circuits(circuit, measured_qubits, prepared_qubits=None, meas_labels='Pauli', meas_basis='Pauli', prep_labels='Pauli', prep_basis='Pauli')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/basis/circuits.py "view source code")
+  ## This performs preparation in the minimial Pauli-basis eigenstates
 
-Return a list of quantum process tomography circuits.
+  *   `"Z_p"`: $|0\rangle$
+  *   `"Z_m"`: $|1\rangle$
+  *   `"X_p"`: $|+\rangle$
+  *   `"Y_m"`: $|+i\rangle$
 
-## This performs preparation in the minimial Pauli-basis eigenstates
+  on each qubit, and measurement in the Pauli-basis X, Y, Z resulting in $4^n 3^n$ circuits for an n-qubit process tomography experiment.
 
-*   `"Z_p"`: $|0\rangle$
-*   `"Z_m"`: $|1\rangle$
-*   `"X_p"`: $|+\rangle$
-*   `"Y_m"`: $|+i\rangle$
+  **Parameters**
 
-on each qubit, and measurement in the Pauli-basis X, Y, Z resulting in $4^n 3^n$ circuits for an n-qubit process tomography experiment.
+  *   **circuit** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – the QuantumCircuit circuit to be tomographed.
+  *   **measured\_qubits** ([`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")) – the qubits to be measured. This can also be a list of whole QuantumRegisters or individual QuantumRegister qubit tuples.
+  *   **prepared\_qubits** (`Optional`\[[`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")]) – the qubits to have state preparation applied, if different from measured\_qubits. If None measured\_qubits will be used for prepared qubits
+  *   **meas\_labels** (`Union`\[`str`, `Tuple`\[`str`], `List`\[`Tuple`\[`str`]]]) – (default: ‘Pauli’) The measurement operator labels.
+  *   **meas\_basis** (`Union`\[`str`, `TomographyBasis`]) – (default: ‘Pauli’) The measurement basis.
+  *   **prep\_labels** (`Union`\[`str`, `Tuple`\[`str`], `List`\[`Tuple`\[`str`]]]) – (default: ‘Pauli’) The preparation operator labels.
+  *   **prep\_basis** (`Union`\[`str`, `TomographyBasis`]) – (default: ‘Pauli’) The preparation basis.
 
-**Parameters**
+  **Return type**
 
-*   **circuit** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – the QuantumCircuit circuit to be tomographed.
-*   **measured\_qubits** ([`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")) – the qubits to be measured. This can also be a list of whole QuantumRegisters or individual QuantumRegister qubit tuples.
-*   **prepared\_qubits** (`Optional`\[[`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")]) – the qubits to have state preparation applied, if different from measured\_qubits. If None measured\_qubits will be used for prepared qubits
-*   **meas\_labels** (`Union`\[`str`, `Tuple`\[`str`], `List`\[`Tuple`\[`str`]]]) – (default: ‘Pauli’) The measurement operator labels.
-*   **meas\_basis** (`Union`\[`str`, `TomographyBasis`]) – (default: ‘Pauli’) The measurement basis.
-*   **prep\_labels** (`Union`\[`str`, `Tuple`\[`str`], `List`\[`Tuple`\[`str`]]]) – (default: ‘Pauli’) The preparation operator labels.
-*   **prep\_basis** (`Union`\[`str`, `TomographyBasis`]) – (default: ‘Pauli’) The preparation basis.
+  `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
 
-**Return type**
+  **Returns**
 
-`List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
+  A list of QuantumCircuit objects containing the original circuit with state preparation circuits prepended, and measurement circuits appended.
 
-**Returns**
-
-A list of QuantumCircuit objects containing the original circuit with state preparation circuits prepended, and measurement circuits appended.
-
-The returned circuits are named by the preparation and measurement basis.
+  The returned circuits are named by the preparation and measurement basis.
+</Function>
 

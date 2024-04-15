@@ -173,42 +173,38 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
     ).toMatchInlineSnapshot(`
       "# DAGCircuit
 
-      <span id="qiskit.dagcircuit.DAGCircuit" />
+      <Class id="qiskit.dagcircuit.DAGCircuit" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/dagcircuit/dagcircuit.py" signature="qiskit.dagcircuit.DAGCircuit">
+        Bases: \`object\`
 
-      \`qiskit.dagcircuit.DAGCircuit\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/dagcircuit/dagcircuit.py "view source code")
+        Quantum circuit as a directed acyclic graph.
 
-      Bases: \`object\`
+        ## Attributes
 
-      Quantum circuit as a directed acyclic graph.
+        ### ancillas
 
-      ## Attributes
+        <Attribute id="qiskit.circuit.QuantumCircuit.ancillas" name="ancillas">
+          Returns a list of ancilla bits in the order that the registers were added.
+        </Attribute>
 
-      <span id="qiskit.circuit.QuantumCircuit.ancillas" />
+        ## Methods
 
-      ### ancillas
+        ### add\\_calibration
 
-      Returns a list of ancilla bits in the order that the registers were added.
+        <Function id="qiskit.dagcircuit.DAGCircuit.add_calibration" name="add_calibration" signature="add_calibration(gate, qubits, schedule, params=None)">
+          Register a low-level, custom pulse definition for the given gate.
 
-      ## Methods
+          **Parameters**
 
-      ### add\\_calibration
+          *   **gate** (*Union\\[*[*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")*, str]*) – Gate information.
+          *   **qubits** (*Union\\[int, Tuple\\[int]]*) – List of qubits to be measured.
+          *   **schedule** ([*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
+          *   **params** (*Optional\\[List\\[Union\\[float,* [*Parameter*](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
 
-      <span id="qiskit.dagcircuit.DAGCircuit.add_calibration" />
+          **Raises**
 
-      \`add_calibration(gate, qubits, schedule, params=None)\`
-
-      Register a low-level, custom pulse definition for the given gate.
-
-      **Parameters**
-
-      *   **gate** (*Union\\[*[*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")*, str]*) – Gate information.
-      *   **qubits** (*Union\\[int, Tuple\\[int]]*) – List of qubits to be measured.
-      *   **schedule** ([*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
-      *   **params** (*Optional\\[List\\[Union\\[float,* [*Parameter*](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
-
-      **Raises**
-
-      **Exception** – if the gate is of type string and params is None.
+          **Exception** – if the gate is of type string and params is None.
+        </Function>
+      </Class>
       "
     `);
   });
@@ -389,21 +385,21 @@ for execution on present day noisy quantum systems.</p>
     ).toMatchInlineSnapshot(`
     "In addition to the public abstract methods, subclasses should also implement the following private methods:
 
-    \`classmethod _default_options()\`
+    <Function signature="classmethod _default_options()">
+      Return the default options
 
-    Return the default options
+      This method will return a [\`qiskit.providers.Options\`](qiskit.providers.Options#qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
 
-    This method will return a [\`qiskit.providers.Options\`](qiskit.providers.Options#qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
+      **Returns**
 
-    **Returns**
+      **A options object with**
 
-    **A options object with**
+      default values set
 
-    default values set
+      **Return type**
 
-    **Return type**
-
-    [qiskit.providers.Options](qiskit.providers.Options#qiskit.providers.Options "qiskit.providers.Options")
+      [qiskit.providers.Options](qiskit.providers.Options#qiskit.providers.Options "qiskit.providers.Options")
+    </Function>
     "
     `);
   });
@@ -683,11 +679,9 @@ for execution on present day noisy quantum systems.</p>
       "isReleaseNotes": false,
       "markdown": "# Estimator
 
-    <span id="qiskit_ibm_runtime.Sampler" />
-
-    \`SamplerExample(circuits=None, parameters=None) \`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/sampler.py "view source code")
-
-    Class for interacting with Qiskit Runtime Sampler primitive service.
+    <Class id="qiskit_ibm_runtime.Sampler" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/sampler.py" signature="SamplerExample(circuits=None, parameters=None)">
+      Class for interacting with Qiskit Runtime Sampler primitive service.
+    </Class>
     ",
       "meta": {
         "apiName": "qiskit_ibm_runtime.Sampler",
@@ -737,11 +731,9 @@ for execution on present day noisy quantum systems.</p>
       "isReleaseNotes": false,
       "markdown": "# circuits
 
-    <span id="qiskit_ibm_runtime.Estimator.circuits" />
-
-    \`tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]\`
-
-    Quantum circuits that represents quantum states.
+    <Attribute id="qiskit_ibm_runtime.Estimator.circuits" name="circuits" isDedicatedPage={true} signature="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]">
+      Quantum circuits that represents quantum states.
+    </Attribute>
     ",
       "meta": {
         "apiName": "qiskit_ibm_runtime.Estimator.circuits",
@@ -770,11 +762,9 @@ for execution on present day noisy quantum systems.</p>
       "isReleaseNotes": false,
       "markdown": "# run
 
-    <span id="qiskit_ibm_runtime.Estimator.run" />
-
-    \`Estimator.run(circuits, observables, parameter_values=None, **kwargs)\`
-
-    Submit a request to the estimator primitive program.
+    <Function id="qiskit_ibm_runtime.Estimator.run" name="run" isDedicatedPage={true} signature="Estimator.run(circuits, observables, parameter_values=None, **kwargs)">
+      Submit a request to the estimator primitive program.
+    </Function>
     ",
       "meta": {
         "apiName": "qiskit_ibm_runtime.Estimator.run",
@@ -803,9 +793,7 @@ for execution on present day noisy quantum systems.</p>
       "isReleaseNotes": false,
       "markdown": "# callback
 
-    <span id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" />
-
-    \`Optional[Callable] = None\`
+    <Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" isDedicatedPage={true} signature="Optional[Callable] = None" />
     ",
       "meta": {
         "apiName": "qiskit_ibm_runtime.options.EnvironmentOptions.callback",
@@ -853,21 +841,19 @@ By default this is sys.stdout.</p></li>
 
     # job\\_monitor
 
-    <span id="qiskit_ibm_provider.job.job_monitor" />
+    <Function id="qiskit_ibm_provider.job.job_monitor" name="job_monitor" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/job_monitor.py" signature="job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>)">
+      Monitor the status of an \`IBMJob\` instance.
 
-    \`job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>)\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/job_monitor.py "view source code")
+      **Parameters**
 
-    Monitor the status of an \`IBMJob\` instance.
+      *   **job** (\`IBMJob\`) – Job to monitor.
+      *   **interval** (\`Optional\`\\[\`float\`]) – Time interval between status queries.
+      *   **output** (\`TextIO\`) – The file like object to write status messages to. By default this is sys.stdout.
 
-    **Parameters**
+      **Return type**
 
-    *   **job** (\`IBMJob\`) – Job to monitor.
-    *   **interval** (\`Optional\`\\[\`float\`]) – Time interval between status queries.
-    *   **output** (\`TextIO\`) – The file like object to write status messages to. By default this is sys.stdout.
-
-    **Return type**
-
-    \`None\`
+      \`None\`
+    </Function>
     ",
       "meta": {
         "apiName": "qiskit_ibm_provider.job.job_monitor",
@@ -904,13 +890,11 @@ By default this is sys.stdout.</p></li>
 
     # IBMJobError
 
-    <span id="qiskit_ibm_provider.job.IBMJobError" />
+    <Class id="qiskit_ibm_provider.job.IBMJobError" name="IBMJobError" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/exceptions.py" signature="IBMJobError(*message)">
+      Base class for errors raised by the job modules.
 
-    \`IBMJobError(*message)\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/exceptions.py "view source code")
-
-    Base class for errors raised by the job modules.
-
-    Set the error message.
+      Set the error message.
+    </Class>
     ",
       "meta": {
         "apiName": "qiskit_ibm_provider.job.IBMJobError",

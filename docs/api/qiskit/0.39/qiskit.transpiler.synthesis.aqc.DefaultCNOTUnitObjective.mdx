@@ -8,82 +8,76 @@ python_api_name: qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective
 
 # DefaultCNOTUnitObjective
 
-<span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective" />
+<Class id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py" signature="DefaultCNOTUnitObjective(num_qubits, cnots)">
+  Bases: [`qiskit.transpiler.synthesis.aqc.cnot_unit_objective.CNOTUnitObjective`](qiskit.transpiler.synthesis.aqc.CNOTUnitObjective "qiskit.transpiler.synthesis.aqc.cnot_unit_objective.CNOTUnitObjective")
 
-`DefaultCNOTUnitObjective(num_qubits, cnots)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
+  A naive implementation of the objective function based on CNOT units.
 
-Bases: [`qiskit.transpiler.synthesis.aqc.cnot_unit_objective.CNOTUnitObjective`](qiskit.transpiler.synthesis.aqc.CNOTUnitObjective "qiskit.transpiler.synthesis.aqc.cnot_unit_objective.CNOTUnitObjective")
+  **Parameters**
 
-A naive implementation of the objective function based on CNOT units.
+  *   **num\_qubits** (`int`) – number of qubits.
+  *   **cnots** (`ndarray`) – a CNOT structure to be used in the optimization procedure.
 
-**Parameters**
+  ## Methods Defined Here
 
-*   **num\_qubits** (`int`) – number of qubits.
-*   **cnots** (`ndarray`) – a CNOT structure to be used in the optimization procedure.
+  ### gradient
 
-## Methods Defined Here
+  <Function id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.gradient" name="gradient" signature="DefaultCNOTUnitObjective.gradient(param_values)">
+    Computes a gradient with respect to parameters given a vector of parameter values.
 
-### gradient
+    **Parameters**
 
-<span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.gradient" />
+    **param\_values** (`ndarray`) – a vector of parameter values for the optimization problem.
 
-`DefaultCNOTUnitObjective.gradient(param_values)`
+    **Return type**
 
-Computes a gradient with respect to parameters given a vector of parameter values.
+    `ndarray`
 
-**Parameters**
+    **Returns**
 
-**param\_values** (`ndarray`) – a vector of parameter values for the optimization problem.
+    an array of gradient values.
+  </Function>
 
-**Return type**
+  ### objective
 
-`ndarray`
+  <Function id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.objective" name="objective" signature="DefaultCNOTUnitObjective.objective(param_values)">
+    Computes a value of the objective function given a vector of parameter values.
 
-**Returns**
+    **Parameters**
 
-an array of gradient values.
+    **param\_values** (`ndarray`) – a vector of parameter values for the optimization problem.
 
-### objective
+    **Return type**
 
-<span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.objective" />
+    `float`
 
-`DefaultCNOTUnitObjective.objective(param_values)`
+    **Returns**
 
-Computes a value of the objective function given a vector of parameter values.
+    a float value of the objective function.
+  </Function>
 
-**Parameters**
+  ## Attributes
 
-**param\_values** (`ndarray`) – a vector of parameter values for the optimization problem.
+  ### num\_cnots
 
-**Return type**
+  <Attribute id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.num_cnots" name="num_cnots">
+    Returns: A number of CNOT units to be used by the approximate circuit.
+  </Attribute>
 
-`float`
+  ### num\_thetas
 
-**Returns**
+  <Attribute id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.num_thetas" name="num_thetas">
+    Returns: Number of parameters (angles) of rotation gates in this circuit.
+  </Attribute>
 
-a float value of the objective function.
+  ### target\_matrix
 
-## Attributes
+  <Attribute id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.target_matrix" name="target_matrix">
+    Returns: a matrix being approximated
 
-<span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.num_cnots" />
+    **Return type**
 
-### num\_cnots
-
-Returns: A number of CNOT units to be used by the approximate circuit.
-
-<span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.num_thetas" />
-
-### num\_thetas
-
-Returns: Number of parameters (angles) of rotation gates in this circuit.
-
-<span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.target_matrix" />
-
-### target\_matrix
-
-Returns: a matrix being approximated
-
-**Return type**
-
-`ndarray`
+    `ndarray`
+  </Attribute>
+</Class>
 

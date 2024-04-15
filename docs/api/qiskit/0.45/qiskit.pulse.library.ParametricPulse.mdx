@@ -8,131 +8,119 @@ python_api_name: qiskit.pulse.library.ParametricPulse
 
 # ParametricPulse
 
-<span id="qiskit.pulse.library.ParametricPulse" />
+<Class id="qiskit.pulse.library.ParametricPulse" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/parametric_pulses.py" signature="qiskit.pulse.library.ParametricPulse(duration, name=None, limit_amplitude=None)">
+  Bases: `Pulse`
 
-`qiskit.pulse.library.ParametricPulse(duration, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/parametric_pulses.py "view source code")
+  The abstract superclass for parametric pulses.
 
-Bases: `Pulse`
+  <Admonition title="Warning" type="caution">
+    This class is superseded by [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse") and will be deprecated and eventually removed in the future because of the poor flexibility for defining a new waveform type and serializing it through the [`qiskit.qpy`](qpy#module-qiskit.qpy "qiskit.qpy") framework.
+  </Admonition>
 
-The abstract superclass for parametric pulses.
+  Create a parametric pulse and validate the input parameters.
 
-<Admonition title="Warning" type="caution">
-  This class is superseded by [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse") and will be deprecated and eventually removed in the future because of the poor flexibility for defining a new waveform type and serializing it through the [`qiskit.qpy`](qpy#module-qiskit.qpy "qiskit.qpy") framework.
-</Admonition>
+  <Admonition title="Deprecated since version 0.22_pending" type="danger">
+    The class `qiskit.pulse.library.parametric_pulses.ParametricPulse` is pending deprecation as of qiskit-terra 0.22. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Instead, use SymbolicPulse because of QPY serialization support. See qiskit.pulse.library.symbolic\_pulses for details.
+  </Admonition>
 
-Create a parametric pulse and validate the input parameters.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.22_pending" type="danger">
-  The class `qiskit.pulse.library.parametric_pulses.ParametricPulse` is pending deprecation as of qiskit-terra 0.22. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Instead, use SymbolicPulse because of QPY serialization support. See qiskit.pulse.library.symbolic\_pulses for details.
-</Admonition>
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Pulse length in terms of the sampling period dt.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Display name for this pulse envelope.
+  *   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 
-**Parameters**
+  ## Attributes
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Pulse length in terms of the sampling period dt.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Display name for this pulse envelope.
-*   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+  ### duration
 
-## Attributes
+  <Attribute id="qiskit.pulse.library.ParametricPulse.duration" name="duration" />
 
-<span id="qiskit.pulse.library.ParametricPulse.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.pulse.library.ParametricPulse.name" name="name" />
 
-<span id="qiskit.pulse.library.ParametricPulse.name" />
+  ### id
 
-### name
+  <Attribute id="qiskit.pulse.library.ParametricPulse.id" name="id">
+    Unique identifier for this pulse.
+  </Attribute>
 
-<span id="qiskit.pulse.library.ParametricPulse.id" />
+  ### limit\_amplitude
 
-### id
+  <Attribute id="qiskit.pulse.library.ParametricPulse.limit_amplitude" name="limit_amplitude" attributeValue="= True" />
 
-Unique identifier for this pulse.
+  ### parameters
 
-<span id="qiskit.pulse.library.ParametricPulse.limit_amplitude" />
+  <Attribute id="qiskit.pulse.library.ParametricPulse.parameters" name="parameters">
+    Return a dictionary containing the pulse’s parameters.
+  </Attribute>
 
-### limit\_amplitude
+  ## Methods
 
-`= True`
+  ### draw
 
-<span id="qiskit.pulse.library.ParametricPulse.parameters" />
+  <Function id="qiskit.pulse.library.ParametricPulse.draw" name="draw" signature="draw(style=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)">
+    Plot the interpolated envelope of pulse.
 
-### parameters
+    **Parameters**
 
-Return a dictionary containing the pulse’s parameters.
+    *   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
 
-## Methods
+    *   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
-### draw
+    *   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
-<span id="qiskit.pulse.library.ParametricPulse.draw" />
+    *   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
 
-`draw(style=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)`
+    *   **show\_waveform\_info** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
 
-Plot the interpolated envelope of pulse.
+    *   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) –
 
-**Parameters**
+        Name of plotter API to generate an output image. One of following APIs should be specified:
 
-*   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
+        ```python
+        mpl2d: Matplotlib API for 2D image generation.
+            Matplotlib API to generate 2D image. Charts are placed along y axis with
+            vertical offset. This API takes matplotlib.axes.Axes as `axis` input.
+        ```
 
-*   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+        axis and style kwargs may depend on the plotter.
 
-*   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
+    *   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)") *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
 
-*   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
+    **Returns**
 
-*   **show\_waveform\_info** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
+    Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
+  </Function>
 
-*   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) –
+  ### get\_waveform
 
-    Name of plotter API to generate an output image. One of following APIs should be specified:
+  <Function id="qiskit.pulse.library.ParametricPulse.get_waveform" name="get_waveform" signature="abstract get_waveform()">
+    Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
-    ```python
-    mpl2d: Matplotlib API for 2D image generation.
-        Matplotlib API to generate 2D image. Charts are placed along y axis with
-        vertical offset. This API takes matplotlib.axes.Axes as `axis` input.
-    ```
+    **Return type**
 
-    axis and style kwargs may depend on the plotter.
+    [*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+  </Function>
 
-*   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)") *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
+  ### is\_parameterized
 
-**Returns**
+  <Function id="qiskit.pulse.library.ParametricPulse.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the instruction is parameterized.
 
-Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
+    **Return type**
 
-### get\_waveform
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-<span id="qiskit.pulse.library.ParametricPulse.get_waveform" />
+  ### validate\_parameters
 
-`abstract get_waveform()`
+  <Function id="qiskit.pulse.library.ParametricPulse.validate_parameters" name="validate_parameters" signature="abstract validate_parameters()">
+    Validate parameters.
 
-Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
+    **Raises**
 
-**Return type**
-
-[*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
-
-### is\_parameterized
-
-<span id="qiskit.pulse.library.ParametricPulse.is_parameterized" />
-
-`is_parameterized()`
-
-Return True iff the instruction is parameterized.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
-
-### validate\_parameters
-
-<span id="qiskit.pulse.library.ParametricPulse.validate_parameters" />
-
-`abstract validate_parameters()`
-
-Validate parameters.
-
-**Raises**
-
-[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
+    [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
+  </Function>
+</Class>
 

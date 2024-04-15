@@ -8,76 +8,70 @@ python_api_name: qiskit.transpiler.passes.Decompose
 
 # Decompose
 
-<span id="qiskit.transpiler.passes.Decompose" />
+<Class id="qiskit.transpiler.passes.Decompose" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/basis/decompose.py" signature="Decompose(gate=None, gates_to_decompose=None)">
+  Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
-`Decompose(gate=None, gates_to_decompose=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/basis/decompose.py "view source code")
+  Expand a gate in a circuit using its decomposition rules.
 
-Bases: `qiskit.transpiler.basepasses.TransformationPass`
+  Decompose initializer.
 
-Expand a gate in a circuit using its decomposition rules.
+  **Parameters**
 
-Decompose initializer.
+  *   **gate** (`Optional`\[`Type`\[`Gate`]]) – DEPRECATED gate to decompose.
+  *   **gates\_to\_decompose** (`Union`\[`Type`\[`Gate`], `List`\[`Type`\[`Gate`]], `List`\[`str`], `str`, `None`]) – optional subset of gates to be decomposed, identified by gate label, name or type. Defaults to all gates.
 
-**Parameters**
+  ## Methods
 
-*   **gate** (`Optional`\[`Type`\[`Gate`]]) – DEPRECATED gate to decompose.
-*   **gates\_to\_decompose** (`Union`\[`Type`\[`Gate`], `List`\[`Type`\[`Gate`]], `List`\[`str`], `str`, `None`]) – optional subset of gates to be decomposed, identified by gate label, name or type. Defaults to all gates.
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.Decompose.name" name="name" signature="Decompose.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.Decompose.name" />
+  <Function id="qiskit.transpiler.passes.Decompose.run" name="run" signature="Decompose.run(dag)">
+    Run the Decompose pass on dag.
 
-`Decompose.name()`
+    **Parameters**
 
-Return the name of the pass.
+    **dag** (`DAGCircuit`) – input dag.
 
-### run
+    **Return type**
 
-<span id="qiskit.transpiler.passes.Decompose.run" />
+    `DAGCircuit`
 
-`Decompose.run(dag)`
+    **Returns**
 
-Run the Decompose pass on dag.
+    output dag where `gate` was expanded.
+  </Function>
 
-**Parameters**
+  ## Attributes
 
-**dag** (`DAGCircuit`) – input dag.
+  ### gate
 
-**Return type**
+  <Attribute id="qiskit.transpiler.passes.Decompose.gate" name="gate">
+    Returns the gate
 
-`DAGCircuit`
+    **Return type**
 
-**Returns**
+    `Gate`
+  </Attribute>
 
-output dag where `gate` was expanded.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.Decompose.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.Decompose.gate" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### gate
+  ### is\_transformation\_pass
 
-Returns the gate
+  <Attribute id="qiskit.transpiler.passes.Decompose.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-**Return type**
-
-`Gate`
-
-<span id="qiskit.transpiler.passes.Decompose.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.Decompose.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

@@ -8,120 +8,110 @@ python_api_name: qiskit.aqua.algorithms.Shor
 
 # Shor
 
-<span id="qiskit.aqua.algorithms.Shor" />
+<Class id="qiskit.aqua.algorithms.Shor" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/factorizers/shor.py" signature="Shor(N=15, a=2, quantum_instance=None)">
+  Shor’s factoring algorithm.
 
-`Shor(N=15, a=2, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/factorizers/shor.py "view source code")
+  Shor’s Factoring algorithm is one of the most well-known quantum algorithms and finds the prime factors for input integer $N$ in polynomial time.
 
-Shor’s factoring algorithm.
+  The input integer $N$ to be factored is expected to be odd and greater than 2. Even though this implementation is general, its capability will be limited by the capacity of the simulator/hardware. Another input integer $a$ can also be supplied, which needs to be a co-prime smaller than $N$ .
 
-Shor’s Factoring algorithm is one of the most well-known quantum algorithms and finds the prime factors for input integer $N$ in polynomial time.
+  Adapted from [https://github.com/ttlion/ShorAlgQiskit](https://github.com/ttlion/ShorAlgQiskit)
 
-The input integer $N$ to be factored is expected to be odd and greater than 2. Even though this implementation is general, its capability will be limited by the capacity of the simulator/hardware. Another input integer $a$ can also be supplied, which needs to be a co-prime smaller than $N$ .
+  See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph/0205095)
 
-Adapted from [https://github.com/ttlion/ShorAlgQiskit](https://github.com/ttlion/ShorAlgQiskit)
+  **Parameters**
 
-See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph/0205095)
+  *   **N** (`int`) – The integer to be factored, has a min. value of 3.
 
-**Parameters**
+  *   **a** (`int`) – A random integer that satisfies a \< N and gcd(a, N) = 1, has a min. value of 2.
 
-*   **N** (`int`) – The integer to be factored, has a min. value of 3.
+  *   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) –
 
-*   **a** (`int`) – A random integer that satisfies a \< N and gcd(a, N) = 1, has a min. value of 2.
+      Quantum Instance or Backend
 
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) –
+      **Raises:**
 
-    Quantum Instance or Backend
+      ValueError: Invalid input
 
-    **Raises:**
+  ## Attributes
 
-    ValueError: Invalid input
+  ### backend
 
-## Attributes
+  <Attribute id="qiskit.aqua.algorithms.Shor.backend" name="backend" signature="qiskit.providers.basebackend.BaseBackend">
+    Returns backend.
 
-### backend
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.Shor.backend" />
+    [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
+  </Attribute>
 
-`qiskit.providers.basebackend.BaseBackend`
+  ### quantum\_instance
 
-Returns backend.
+  <Attribute id="qiskit.aqua.algorithms.Shor.quantum_instance" name="quantum_instance" signature="Union[None, qiskit.aqua.quantum_instance.QuantumInstance]">
+    Returns quantum instance.
 
-**Return type**
+    **Return type**
 
-[`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
+    `Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
+  </Attribute>
 
-### quantum\_instance
+  ### random
 
-<span id="qiskit.aqua.algorithms.Shor.quantum_instance" />
+  <Attribute id="qiskit.aqua.algorithms.Shor.random" name="random">
+    Return a numpy random.
+  </Attribute>
 
-`Union[None, qiskit.aqua.quantum_instance.QuantumInstance]`
+  ## Methods
 
-Returns quantum instance.
+  ### construct\_circuit
 
-**Return type**
+  <Function id="qiskit.aqua.algorithms.Shor.construct_circuit" name="construct_circuit" signature="Shor.construct_circuit(measurement=False)">
+    Construct circuit.
 
-`Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
+    **Parameters**
 
-### random
+    **measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
 
-Return a numpy random.
+    **Return type**
 
-## Methods
+    [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
-### construct\_circuit
+    **Returns**
 
-<span id="qiskit.aqua.algorithms.Shor.construct_circuit" />
+    Quantum circuit.
+  </Function>
 
-`Shor.construct_circuit(measurement=False)`
+  ### run
 
-Construct circuit.
+  <Function id="qiskit.aqua.algorithms.Shor.run" name="run" signature="Shor.run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-**Parameters**
+    **Parameters**
 
-**measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
+    *   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-**Return type**
+    **Returns**
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+    results of an algorithm.
 
-**Returns**
+    **Return type**
 
-Quantum circuit.
+    dict
 
-### run
+    **Raises**
 
-<span id="qiskit.aqua.algorithms.Shor.run" />
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-`Shor.run(quantum_instance=None, **kwargs)`
+  ### set\_backend
 
-Execute the algorithm with selected backend.
+  <Function id="qiskit.aqua.algorithms.Shor.set_backend" name="set_backend" signature="Shor.set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-**Parameters**
+    **Return type**
 
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.Shor.set_backend" />
-
-`Shor.set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

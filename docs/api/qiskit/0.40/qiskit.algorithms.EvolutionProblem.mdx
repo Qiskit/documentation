@@ -8,59 +8,55 @@ python_api_name: qiskit.algorithms.EvolutionProblem
 
 # EvolutionProblem
 
-<span id="qiskit.algorithms.EvolutionProblem" />
+<Class id="qiskit.algorithms.EvolutionProblem" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/evolvers/evolution_problem.py" signature="EvolutionProblem(hamiltonian, time, initial_state=None, aux_operators=None, truncation_threshold=1e-12, t_param=None, param_value_dict=None)">
+  Bases: `object`
 
-`EvolutionProblem(hamiltonian, time, initial_state=None, aux_operators=None, truncation_threshold=1e-12, t_param=None, param_value_dict=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/evolvers/evolution_problem.py "view source code")
+  Pending deprecation: Evolution problem class.
 
-Bases: `object`
+  The EvolutionProblem class has been superseded by the `qiskit.algorithms.time_evolvers.TimeEvolutionProblem` class. This class will be deprecated in a future release and subsequently removed after that.
 
-Pending deprecation: Evolution problem class.
+  This class is the input to time evolution algorithms and must contain information on the total evolution time, a quantum state to be evolved and under which Hamiltonian the state is evolved.
 
-The EvolutionProblem class has been superseded by the `qiskit.algorithms.time_evolvers.TimeEvolutionProblem` class. This class will be deprecated in a future release and subsequently removed after that.
+  **Parameters**
 
-This class is the input to time evolution algorithms and must contain information on the total evolution time, a quantum state to be evolved and under which Hamiltonian the state is evolved.
+  *   **hamiltonian** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Hamiltonian under which to evolve the system.
+  *   **time** (`float`) – Total time of evolution.
+  *   **initial\_state** (`Union`\[[`StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `None`]) – The quantum state to be evolved for methods like Trotterization. For variational time evolutions, where the evolution happens in an ansatz, this argument is not required.
+  *   **aux\_operators** (`Union`\[`List`\[`Optional`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]], `Dict`\[`str`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")], `None`]) – Optional list of auxiliary operators to be evaluated with the evolved `initial_state` and their expectation values returned.
+  *   **truncation\_threshold** (`float`) – Defines a threshold under which values can be assumed to be 0. Used when `aux_operators` is provided.
+  *   **t\_param** (`Optional`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]) – Time parameter in case of a time-dependent Hamiltonian. This free parameter must be within the `hamiltonian`.
+  *   **param\_value\_dict** (`Optional`\[`Dict`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter"), `complex`]]) – Maps free parameters in the problem to values. Depending on the algorithm, it might refer to e.g. a Hamiltonian or an initial state.
 
-**Parameters**
+  **Raises**
 
-*   **hamiltonian** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Hamiltonian under which to evolve the system.
-*   **time** (`float`) – Total time of evolution.
-*   **initial\_state** (`Union`\[[`StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `None`]) – The quantum state to be evolved for methods like Trotterization. For variational time evolutions, where the evolution happens in an ansatz, this argument is not required.
-*   **aux\_operators** (`Union`\[`List`\[`Optional`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]], `Dict`\[`str`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")], `None`]) – Optional list of auxiliary operators to be evaluated with the evolved `initial_state` and their expectation values returned.
-*   **truncation\_threshold** (`float`) – Defines a threshold under which values can be assumed to be 0. Used when `aux_operators` is provided.
-*   **t\_param** (`Optional`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]) – Time parameter in case of a time-dependent Hamiltonian. This free parameter must be within the `hamiltonian`.
-*   **param\_value\_dict** (`Optional`\[`Dict`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter"), `complex`]]) – Maps free parameters in the problem to values. Depending on the algorithm, it might refer to e.g. a Hamiltonian or an initial state.
+  **ValueError** – If non-positive time of evolution is provided.
 
-**Raises**
+  ## Methods
 
-**ValueError** – If non-positive time of evolution is provided.
+  ### validate\_params
 
-## Methods
+  <Function id="qiskit.algorithms.EvolutionProblem.validate_params" name="validate_params" signature="EvolutionProblem.validate_params()">
+    Checks if all parameters present in the Hamiltonian are also present in the dictionary that maps them to values.
 
-### validate\_params
+    **Raises**
 
-<span id="qiskit.algorithms.EvolutionProblem.validate_params" />
+    **ValueError** – If Hamiltonian parameters cannot be bound with data provided.
 
-`EvolutionProblem.validate_params()`
+    **Return type**
 
-Checks if all parameters present in the Hamiltonian are also present in the dictionary that maps them to values.
+    `None`
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**ValueError** – If Hamiltonian parameters cannot be bound with data provided.
+  ### time
 
-**Return type**
+  <Attribute id="qiskit.algorithms.EvolutionProblem.time" name="time">
+    Returns time.
 
-`None`
+    **Return type**
 
-## Attributes
-
-<span id="qiskit.algorithms.EvolutionProblem.time" />
-
-### time
-
-Returns time.
-
-**Return type**
-
-`float`
+    `float`
+  </Attribute>
+</Class>
 

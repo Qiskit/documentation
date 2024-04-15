@@ -8,46 +8,44 @@ python_api_name: qiskit.quantum_info.process_fidelity
 
 # qiskit.quantum\_info.process\_fidelity
 
-<span id="qiskit.quantum_info.process_fidelity" />
+<Function id="qiskit.quantum_info.process_fidelity" name="process_fidelity" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/measures.py" signature="process_fidelity(channel, target=None, require_cp=True, require_tp=True)">
+  Return the process fidelity of a noisy quantum channel.
 
-`process_fidelity(channel, target=None, require_cp=True, require_tp=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/measures.py "view source code")
-
-Return the process fidelity of a noisy quantum channel.
-
-The process fidelity $F_{\text{pro}}(\mathcal{E}, \mathcal{F})$ between two quantum channels $\mathcal{E}, \mathcal{F}$ is given by
+  The process fidelity $F_{\text{pro}}(\mathcal{E}, \mathcal{F})$ between two quantum channels $\mathcal{E}, \mathcal{F}$ is given by
 
 $$
 F_{\text{pro}}(\mathcal{E}, \mathcal{F})
-    = F(\rho_{\mathcal{E}}, \rho_{\mathcal{F}})
+= F(\rho_{\mathcal{E}}, \rho_{\mathcal{F}})
 $$
 
-where $F$ is the [`state_fidelity()`](qiskit.quantum_info.state_fidelity "qiskit.quantum_info.state_fidelity"), $\rho_{\mathcal{E}} = \Lambda_{\mathcal{E}} / d$ is the normalized [`Choi`](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi") matrix for the channel $\mathcal{E}$, and $d$ is the input dimension of $\mathcal{E}$.
+  where $F$ is the [`state_fidelity()`](qiskit.quantum_info.state_fidelity "qiskit.quantum_info.state_fidelity"), $\rho_{\mathcal{E}} = \Lambda_{\mathcal{E}} / d$ is the normalized [`Choi`](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi") matrix for the channel $\mathcal{E}$, and $d$ is the input dimension of $\mathcal{E}$.
 
-When the target channel is unitary this is equivalent to
+  When the target channel is unitary this is equivalent to
 
 $$
 F_{\text{pro}}(\mathcal{E}, U)
-    = \frac{Tr[S_U^\dagger S_{\mathcal{E}}]}{d^2}
+= \frac{Tr[S_U^\dagger S_{\mathcal{E}}]}{d^2}
 $$
 
-where $S_{\mathcal{E}}, S_{U}$ are the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") matrices for the *input* quantum channel $\mathcal{E}$ and *target* unitary $U$ respectively, and $d$ is the input dimension of the channel.
+  where $S_{\mathcal{E}}, S_{U}$ are the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") matrices for the *input* quantum channel $\mathcal{E}$ and *target* unitary $U$ respectively, and $d$ is the input dimension of the channel.
 
-**Parameters**
+  **Parameters**
 
-*   **channel** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or QuantumChannel*) – input quantum channel.
-*   **target** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or QuantumChannel or None*) – target quantum channel. If None target is the identity operator \[Default: None].
-*   **require\_cp** (*bool*) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
-*   **require\_tp** (*bool*) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\mbox{out}}[\mathcal{E}] - I$ \[Default: True].
+  *   **channel** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or QuantumChannel*) – input quantum channel.
+  *   **target** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or QuantumChannel or None*) – target quantum channel. If None target is the identity operator \[Default: None].
+  *   **require\_cp** (*bool*) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
+  *   **require\_tp** (*bool*) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\mbox{out}}[\mathcal{E}] - I$ \[Default: True].
 
-**Returns**
+  **Returns**
 
-The process fidelity $F_{\text{pro}}$.
+  The process fidelity $F_{\text{pro}}$.
 
-**Return type**
+  **Return type**
 
-float
+  float
 
-**Raises**
+  **Raises**
 
-**QiskitError** – if the channel and target do not have the same dimensions.
+  **QiskitError** – if the channel and target do not have the same dimensions.
+</Function>
 

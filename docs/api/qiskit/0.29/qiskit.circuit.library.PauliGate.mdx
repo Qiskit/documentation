@@ -8,84 +8,78 @@ python_api_name: qiskit.circuit.library.PauliGate
 
 # PauliGate
 
-<span id="qiskit.circuit.library.PauliGate" />
+<Class id="qiskit.circuit.library.PauliGate" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/generalized_gates/pauli.py" signature="PauliGate(label)">
+  Bases: `qiskit.circuit.gate.Gate`
 
-`PauliGate(label)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/generalized_gates/pauli.py "view source code")
+  A multi-qubit Pauli gate.
 
-Bases: `qiskit.circuit.gate.Gate`
+  This gate exists for optimization purposes for the quantum statevector simulation, since applying multiple pauli gates to different qubits at once can be done via a single pass on the statevector.
 
-A multi-qubit Pauli gate.
+  The functionality is equivalent to applying the pauli gates sequentially using standard Qiskit gates
 
-This gate exists for optimization purposes for the quantum statevector simulation, since applying multiple pauli gates to different qubits at once can be done via a single pass on the statevector.
+  Create a new gate.
 
-The functionality is equivalent to applying the pauli gates sequentially using standard Qiskit gates
+  **Parameters**
 
-Create a new gate.
+  *   **name** – The Qobj name of the gate.
+  *   **num\_qubits** – The number of qubits the gate acts on.
+  *   **params** – A list of parameters.
+  *   **label** – An optional label for the gate.
 
-**Parameters**
+  ## Methods Defined Here
 
-*   **name** – The Qobj name of the gate.
-*   **num\_qubits** – The number of qubits the gate acts on.
-*   **params** – A list of parameters.
-*   **label** – An optional label for the gate.
+  ### inverse
 
-## Methods Defined Here
+  <Function id="qiskit.circuit.library.PauliGate.inverse" name="inverse" signature="PauliGate.inverse()">
+    Return inverted pauli gate (itself).
+  </Function>
 
-### inverse
+  ### validate\_parameter
 
-<span id="qiskit.circuit.library.PauliGate.inverse" />
+  <Function id="qiskit.circuit.library.PauliGate.validate_parameter" name="validate_parameter" signature="PauliGate.validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
 
-`PauliGate.inverse()`
+  ## Attributes
 
-Return inverted pauli gate (itself).
+  ### decompositions
 
-### validate\_parameter
+  <Attribute id="qiskit.circuit.library.PauliGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliGate.validate_parameter" />
+  ### definition
 
-`PauliGate.validate_parameter(parameter)`
+  <Attribute id="qiskit.circuit.library.PauliGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Gate parameters should be int, float, or ParameterExpression
+  ### duration
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.PauliGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliGate.decompositions" />
+  ### label
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.PauliGate.label" name="label">
+    Return instruction label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+    **Return type**
 
-<span id="qiskit.circuit.library.PauliGate.definition" />
+    `str`
+  </Attribute>
 
-### definition
+  ### params
 
-Return definition in terms of other basic gates.
+  <Attribute id="qiskit.circuit.library.PauliGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PauliGate.duration" />
+  ### unit
 
-### duration
-
-Get the duration.
-
-<span id="qiskit.circuit.library.PauliGate.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.library.PauliGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.PauliGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.PauliGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

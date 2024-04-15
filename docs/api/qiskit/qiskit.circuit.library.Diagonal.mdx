@@ -8,233 +8,227 @@ python_api_name: qiskit.circuit.library.Diagonal
 
 # Diagonal
 
-<span id="qiskit.circuit.library.Diagonal" />
+<Class id="qiskit.circuit.library.Diagonal" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/diagonal.py#L31-L125" signature="qiskit.circuit.library.Diagonal(diag)">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
-`qiskit.circuit.library.Diagonal(diag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/diagonal.py "view source code")
+  Diagonal circuit.
 
-Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  Circuit symbol:
 
-Diagonal circuit.
+  ```python
+       ┌───────────┐
+  q_0: ┤0          ├
+       │           │
+  q_1: ┤1 Diagonal ├
+       │           │
+  q_2: ┤2          ├
+       └───────────┘
+  ```
 
-Circuit symbol:
-
-```python
-     ┌───────────┐
-q_0: ┤0          ├
-     │           │
-q_1: ┤1 Diagonal ├
-     │           │
-q_2: ┤2          ├
-     └───────────┘
-```
-
-Matrix form:
+  Matrix form:
 
 $$
 \text{DiagonalGate}\ q_0, q_1, .., q_{n-1} =
-    \begin{pmatrix}
-        D[0]    & 0         & \dots     & 0 \\
-        0       & D[1]      & \dots     & 0 \\
-        \vdots  & \vdots    & \ddots    & 0 \\
-        0       & 0         & \dots     & D[n-1]
-    \end{pmatrix}
+\begin{pmatrix}
+D[0]    & 0         & \dots     & 0 \\
+0       & D[1]      & \dots     & 0 \\
+\vdots  & \vdots    & \ddots    & 0 \\
+0       & 0         & \dots     & D[n-1]
+\end{pmatrix}
 
 
 $$
 
-Diagonal gates are useful as representations of Boolean functions, as they can map from $\{0,1\}^{2^n}$ to $\{0,1\}^{2^n}$ space. For example a phase oracle can be seen as a diagonal gate with $\{1, -1\}$ on the diagonals. Such an oracle will induce a $+1$ or :math\`-1\` phase on the amplitude of any corresponding basis state.
+  Diagonal gates are useful as representations of Boolean functions, as they can map from $\{0,1\}^{2^n}$ to $\{0,1\}^{2^n}$ space. For example a phase oracle can be seen as a diagonal gate with $\{1, -1\}$ on the diagonals. Such an oracle will induce a $+1$ or :math\`-1\` phase on the amplitude of any corresponding basis state.
 
-Diagonal gates appear in many classically hard oracular problems such as Forrelation or Hidden Shift circuits.
+  Diagonal gates appear in many classically hard oracular problems such as Forrelation or Hidden Shift circuits.
 
-Diagonal gates are represented and simulated more efficiently than a dense $2^n \times 2^n$ unitary matrix.
+  Diagonal gates are represented and simulated more efficiently than a dense $2^n \times 2^n$ unitary matrix.
 
-The reference implementation is via the method described in Theorem 7 of \[1]. The code is based on Emanuel Malvetti’s semester thesis at ETH in 2018, supervised by Raban Iten and Prof. Renato Renner.
+  The reference implementation is via the method described in Theorem 7 of \[1]. The code is based on Emanuel Malvetti’s semester thesis at ETH in 2018, supervised by Raban Iten and Prof. Renato Renner.
 
-**Reference:**
+  **Reference:**
 
-\[1] Shende et al., Synthesis of Quantum Logic Circuits, 2009 [arXiv:0406176](https://arxiv.org/pdf/quant-ph/0406176.pdf)
+  \[1] Shende et al., Synthesis of Quantum Logic Circuits, 2009 [arXiv:0406176](https://arxiv.org/pdf/quant-ph/0406176.pdf)
 
-**Parameters**
+  **Parameters**
 
-**diag** (*Sequence\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*]*) – List of the $2^k$ diagonal entries (for a diagonal gate on $k$ qubits).
+  **diag** (*Sequence\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*]*) – List of the $2^k$ diagonal entries (for a diagonal gate on $k$ qubits).
 
-**Raises**
+  **Raises**
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the list of the diagonal entries or the qubit list is in bad format; if the number of diagonal entries is not $2^k$, where $k$ denotes the number of qubits.
+  [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the list of the diagonal entries or the qubit list is in bad format; if the number of diagonal entries is not $2^k$, where $k$ denotes the number of qubits.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.Diagonal.ancillas" />
+  ### ancillas
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.Diagonal.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-Returns a list of ancilla bits in the order that the registers were added.
+  ### calibrations
 
-<span id="qiskit.circuit.library.Diagonal.calibrations" />
+  <Attribute id="qiskit.circuit.library.Diagonal.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-### calibrations
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
 
-Return calibration dictionary.
+  ### clbits
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  <Attribute id="qiskit.circuit.library.Diagonal.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.Diagonal.clbits" />
+  ### data
 
-### clbits
+  <Attribute id="qiskit.circuit.library.Diagonal.data" name="data">
+    Return the circuit data (instructions and context).
 
-Returns a list of classical bits in the order that the registers were added.
+    **Returns**
 
-<span id="qiskit.circuit.library.Diagonal.data" />
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
-### data
+    **Return type**
 
-Return the circuit data (instructions and context).
+    QuantumCircuitData
+  </Attribute>
 
-**Returns**
+  ### global\_phase
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+  <Attribute id="qiskit.circuit.library.Diagonal.global_phase" name="global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
 
-**Return type**
+  ### instances
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.Diagonal.instances" name="instances" attributeValue="= 166" />
 
-<span id="qiskit.circuit.library.Diagonal.global_phase" />
+  ### layout
 
-### global\_phase
+  <Attribute id="qiskit.circuit.library.Diagonal.layout" name="layout">
+    Return any associated layout information about the circuit
 
-Return the global phase of the current circuit scope in radians.
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
-<span id="qiskit.circuit.library.Diagonal.instances" />
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
 
-### instances
+  ### metadata
 
-`= 166`
+  <Attribute id="qiskit.circuit.library.Diagonal.metadata" name="metadata">
+    The user provided metadata associated with the circuit.
 
-<span id="qiskit.circuit.library.Diagonal.layout" />
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-### layout
+  ### num\_ancillas
 
-Return any associated layout information about the circuit
+  <Attribute id="qiskit.circuit.library.Diagonal.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+  ### num\_clbits
 
-There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  <Attribute id="qiskit.circuit.library.Diagonal.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.Diagonal.metadata" />
+  ### num\_parameters
 
-### metadata
+  <Attribute id="qiskit.circuit.library.Diagonal.num_parameters" name="num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
 
-The user provided metadata associated with the circuit.
+  ### num\_qubits
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  <Attribute id="qiskit.circuit.library.Diagonal.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.Diagonal.num_ancillas" />
+  ### op\_start\_times
 
-### num\_ancillas
+  <Attribute id="qiskit.circuit.library.Diagonal.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-Return the number of ancilla qubits.
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-<span id="qiskit.circuit.library.Diagonal.num_clbits" />
+    **Returns**
 
-### num\_clbits
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-Return number of classical bits.
+    **Raises**
 
-<span id="qiskit.circuit.library.Diagonal.num_parameters" />
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
 
-### num\_parameters
+  ### parameters
 
-The number of parameter objects in the circuit.
+  <Attribute id="qiskit.circuit.library.Diagonal.parameters" name="parameters">
+    The parameters defined in the circuit.
 
-<span id="qiskit.circuit.library.Diagonal.num_qubits" />
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-### num\_qubits
+    **Examples**
 
-Return number of qubits.
+    The snippet below shows that insertion order of parameters does not matter.
 
-<span id="qiskit.circuit.library.Diagonal.op_start_times" />
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
 
-### op\_start\_times
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
-Return a list of operation start times.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
-**Returns**
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    **Returns**
 
-**Raises**
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  ### prefix
 
-<span id="qiskit.circuit.library.Diagonal.parameters" />
+  <Attribute id="qiskit.circuit.library.Diagonal.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-### parameters
+  ### qubits
 
-The parameters defined in the circuit.
-
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
-
-**Examples**
-
-The snippet below shows that insertion order of parameters does not matter.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
->>> circuit = QuantumCircuit(1)
->>> circuit.rx(b, 0)
->>> circuit.rz(elephant, 0)
->>> circuit.ry(a, 0)
->>> circuit.parameters  # sorted alphabetically!
-ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
-```
-
-Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
->>> circuit = QuantumCircuit(1)
->>> circuit.u(*angles, 0)
->>> circuit.draw()
-   ┌─────────────────────────────┐
-q: ┤ U(angle_1,angle_2,angle_10) ├
-   └─────────────────────────────┘
->>> circuit.parameters
-ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
-```
-
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
->>> x = ParameterVector("x", 12)
->>> circuit = QuantumCircuit(1)
->>> for x_i in x:
-...     circuit.rx(x_i, 0)
->>> circuit.parameters
-ParameterView([
-    ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
-    ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
-    ..., ParameterVectorElement(x[11])
-])
-```
-
-**Returns**
-
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
-
-<span id="qiskit.circuit.library.Diagonal.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.Diagonal.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.Diagonal.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+</Class>
 

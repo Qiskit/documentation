@@ -10,434 +10,384 @@ python_api_name: qiskit.circuit.library.C3SXGate
 
 # qiskit.circuit.library.C3SXGate
 
-<span id="qiskit.circuit.library.C3SXGate" />
+<Class id="qiskit.circuit.library.C3SXGate" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/x.py" signature="C3SXGate(label=None, ctrl_state=None, *, angle=None)">
+  The 3-qubit controlled sqrt-X gate.
 
-`C3SXGate(label=None, ctrl_state=None, *, angle=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/x.py "view source code")
+  This implementation is based on Page 17 of \[1].
 
-The 3-qubit controlled sqrt-X gate.
+  **References**
+
+  \[1] Barenco et al., 1995. [https://arxiv.org/pdf/quant-ph/9503016.pdf](https://arxiv.org/pdf/quant-ph/9503016.pdf)
+
+  Create a new 3-qubit controlled sqrt-X gate.
+
+  **Parameters**
+
+  *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+  *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+  *   **angle** (*float*) – DEPRECATED. The angle used in the controlled-U1 gates. An angle of π/8 yields the sqrt(X) gates, an angle of π/4 the 3-qubit controlled X gate.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.circuit.library.C3SXGate.__init__" name="__init__" signature="__init__(label=None, ctrl_state=None, *, angle=None)">
+    Create a new 3-qubit controlled sqrt-X gate.
+
+    **Parameters**
 
-This implementation is based on Page 17 of \[1].
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+    *   **angle** (*float*) – DEPRECATED. The angle used in the controlled-U1 gates. An angle of π/8 yields the sqrt(X) gates, an angle of π/4 the 3-qubit controlled X gate.
+  </Function>
 
-**References**
+  ## Methods
 
-\[1] Barenco et al., 1995. [https://arxiv.org/pdf/quant-ph/9503016.pdf](https://arxiv.org/pdf/quant-ph/9503016.pdf)
+  |                                                                                                                                                   |                                                                          |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.circuit.library.C3SXGate.__init__ "qiskit.circuit.library.C3SXGate.__init__")(\[label, ctrl\_state, angle])                  | Create a new 3-qubit controlled sqrt-X gate.                             |
+  | [`add_decomposition`](#qiskit.circuit.library.C3SXGate.add_decomposition "qiskit.circuit.library.C3SXGate.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
+  | [`assemble`](#qiskit.circuit.library.C3SXGate.assemble "qiskit.circuit.library.C3SXGate.assemble")()                                              | Assemble a QasmQobjInstruction                                           |
+  | [`broadcast_arguments`](#qiskit.circuit.library.C3SXGate.broadcast_arguments "qiskit.circuit.library.C3SXGate.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.           |
+  | [`c_if`](#qiskit.circuit.library.C3SXGate.c_if "qiskit.circuit.library.C3SXGate.c_if")(classical, val)                                            | Add classical condition on register classical and value val.             |
+  | [`control`](#qiskit.circuit.library.C3SXGate.control "qiskit.circuit.library.C3SXGate.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Return controlled version of gate.                                       |
+  | [`copy`](#qiskit.circuit.library.C3SXGate.copy "qiskit.circuit.library.C3SXGate.copy")(\[name])                                                   | Copy of the instruction.                                                 |
+  | [`inverse`](#qiskit.circuit.library.C3SXGate.inverse "qiskit.circuit.library.C3SXGate.inverse")()                                                 | Invert this gate.                                                        |
+  | [`is_parameterized`](#qiskit.circuit.library.C3SXGate.is_parameterized "qiskit.circuit.library.C3SXGate.is_parameterized")()                      | Return True .IFF.                                                        |
+  | [`mirror`](#qiskit.circuit.library.C3SXGate.mirror "qiskit.circuit.library.C3SXGate.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                              |
+  | [`power`](#qiskit.circuit.library.C3SXGate.power "qiskit.circuit.library.C3SXGate.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                 |
+  | [`qasm`](#qiskit.circuit.library.C3SXGate.qasm "qiskit.circuit.library.C3SXGate.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
+  | [`repeat`](#qiskit.circuit.library.C3SXGate.repeat "qiskit.circuit.library.C3SXGate.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
+  | [`reverse_ops`](#qiskit.circuit.library.C3SXGate.reverse_ops "qiskit.circuit.library.C3SXGate.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.      |
+  | [`to_matrix`](#qiskit.circuit.library.C3SXGate.to_matrix "qiskit.circuit.library.C3SXGate.to_matrix")()                                           | Return a Numpy.array for the gate unitary matrix.                        |
+  | [`validate_parameter`](#qiskit.circuit.library.C3SXGate.validate_parameter "qiskit.circuit.library.C3SXGate.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression             |
 
-Create a new 3-qubit controlled sqrt-X gate.
+  ## Attributes
 
-**Parameters**
+  |                                                                                                                         |                                                                               |
+  | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+  | [`ctrl_state`](#qiskit.circuit.library.C3SXGate.ctrl_state "qiskit.circuit.library.C3SXGate.ctrl_state")                | Return the control state of the gate as a decimal integer.                    |
+  | [`decompositions`](#qiskit.circuit.library.C3SXGate.decompositions "qiskit.circuit.library.C3SXGate.decompositions")    | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
+  | [`definition`](#qiskit.circuit.library.C3SXGate.definition "qiskit.circuit.library.C3SXGate.definition")                | Return definition in terms of other basic gates.                              |
+  | [`duration`](#qiskit.circuit.library.C3SXGate.duration "qiskit.circuit.library.C3SXGate.duration")                      | Get the duration.                                                             |
+  | [`label`](#qiskit.circuit.library.C3SXGate.label "qiskit.circuit.library.C3SXGate.label")                               | Return gate label                                                             |
+  | [`num_ctrl_qubits`](#qiskit.circuit.library.C3SXGate.num_ctrl_qubits "qiskit.circuit.library.C3SXGate.num_ctrl_qubits") | Get number of control qubits.                                                 |
+  | [`params`](#qiskit.circuit.library.C3SXGate.params "qiskit.circuit.library.C3SXGate.params")                            | Get parameters from base\_gate.                                               |
+  | [`unit`](#qiskit.circuit.library.C3SXGate.unit "qiskit.circuit.library.C3SXGate.unit")                                  | Get the time unit of duration.                                                |
 
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-*   **angle** (*float*) – DEPRECATED. The angle used in the controlled-U1 gates. An angle of π/8 yields the sqrt(X) gates, an angle of π/4 the 3-qubit controlled X gate.
+  ### add\_decomposition
 
-### \_\_init\_\_
+  <Function id="qiskit.circuit.library.C3SXGate.add_decomposition" name="add_decomposition" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-<span id="qiskit.circuit.library.C3SXGate.__init__" />
+  ### assemble
 
-`__init__(label=None, ctrl_state=None, *, angle=None)`
+  <Function id="qiskit.circuit.library.C3SXGate.assemble" name="assemble" signature="assemble()">
+    Assemble a QasmQobjInstruction
 
-Create a new 3-qubit controlled sqrt-X gate.
+    **Return type**
 
-**Parameters**
+    `Instruction`
+  </Function>
 
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-*   **angle** (*float*) – DEPRECATED. The angle used in the controlled-U1 gates. An angle of π/8 yields the sqrt(X) gates, an angle of π/4 the 3-qubit controlled X gate.
+  ### broadcast\_arguments
 
-## Methods
+  <Function id="qiskit.circuit.library.C3SXGate.broadcast_arguments" name="broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-|                                                                                                                                                   |                                                                          |
-| ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.circuit.library.C3SXGate.__init__ "qiskit.circuit.library.C3SXGate.__init__")(\[label, ctrl\_state, angle])                  | Create a new 3-qubit controlled sqrt-X gate.                             |
-| [`add_decomposition`](#qiskit.circuit.library.C3SXGate.add_decomposition "qiskit.circuit.library.C3SXGate.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
-| [`assemble`](#qiskit.circuit.library.C3SXGate.assemble "qiskit.circuit.library.C3SXGate.assemble")()                                              | Assemble a QasmQobjInstruction                                           |
-| [`broadcast_arguments`](#qiskit.circuit.library.C3SXGate.broadcast_arguments "qiskit.circuit.library.C3SXGate.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.           |
-| [`c_if`](#qiskit.circuit.library.C3SXGate.c_if "qiskit.circuit.library.C3SXGate.c_if")(classical, val)                                            | Add classical condition on register classical and value val.             |
-| [`control`](#qiskit.circuit.library.C3SXGate.control "qiskit.circuit.library.C3SXGate.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Return controlled version of gate.                                       |
-| [`copy`](#qiskit.circuit.library.C3SXGate.copy "qiskit.circuit.library.C3SXGate.copy")(\[name])                                                   | Copy of the instruction.                                                 |
-| [`inverse`](#qiskit.circuit.library.C3SXGate.inverse "qiskit.circuit.library.C3SXGate.inverse")()                                                 | Invert this gate.                                                        |
-| [`is_parameterized`](#qiskit.circuit.library.C3SXGate.is_parameterized "qiskit.circuit.library.C3SXGate.is_parameterized")()                      | Return True .IFF.                                                        |
-| [`mirror`](#qiskit.circuit.library.C3SXGate.mirror "qiskit.circuit.library.C3SXGate.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                              |
-| [`power`](#qiskit.circuit.library.C3SXGate.power "qiskit.circuit.library.C3SXGate.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                 |
-| [`qasm`](#qiskit.circuit.library.C3SXGate.qasm "qiskit.circuit.library.C3SXGate.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
-| [`repeat`](#qiskit.circuit.library.C3SXGate.repeat "qiskit.circuit.library.C3SXGate.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
-| [`reverse_ops`](#qiskit.circuit.library.C3SXGate.reverse_ops "qiskit.circuit.library.C3SXGate.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.      |
-| [`to_matrix`](#qiskit.circuit.library.C3SXGate.to_matrix "qiskit.circuit.library.C3SXGate.to_matrix")()                                           | Return a Numpy.array for the gate unitary matrix.                        |
-| [`validate_parameter`](#qiskit.circuit.library.C3SXGate.validate_parameter "qiskit.circuit.library.C3SXGate.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression             |
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-## Attributes
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-|                                                                                                                         |                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`ctrl_state`](#qiskit.circuit.library.C3SXGate.ctrl_state "qiskit.circuit.library.C3SXGate.ctrl_state")                | Return the control state of the gate as a decimal integer.                    |
-| [`decompositions`](#qiskit.circuit.library.C3SXGate.decompositions "qiskit.circuit.library.C3SXGate.decompositions")    | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
-| [`definition`](#qiskit.circuit.library.C3SXGate.definition "qiskit.circuit.library.C3SXGate.definition")                | Return definition in terms of other basic gates.                              |
-| [`duration`](#qiskit.circuit.library.C3SXGate.duration "qiskit.circuit.library.C3SXGate.duration")                      | Get the duration.                                                             |
-| [`label`](#qiskit.circuit.library.C3SXGate.label "qiskit.circuit.library.C3SXGate.label")                               | Return gate label                                                             |
-| [`num_ctrl_qubits`](#qiskit.circuit.library.C3SXGate.num_ctrl_qubits "qiskit.circuit.library.C3SXGate.num_ctrl_qubits") | Get number of control qubits.                                                 |
-| [`params`](#qiskit.circuit.library.C3SXGate.params "qiskit.circuit.library.C3SXGate.params")                            | Get parameters from base\_gate.                                               |
-| [`unit`](#qiskit.circuit.library.C3SXGate.unit "qiskit.circuit.library.C3SXGate.unit")                                  | Get the time unit of duration.                                                |
+    The general broadcasting rules are:
 
-### add\_decomposition
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-<span id="qiskit.circuit.library.C3SXGate.add_decomposition" />
+    **Parameters**
 
-`add_decomposition(decomposition)`
+    *   **qargs** (`List`) – List of quantum bit arguments.
+    *   **cargs** (`List`) – List of classical bit arguments.
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    **Return type**
 
-### assemble
+    `Tuple`\[`List`, `List`]
 
-<span id="qiskit.circuit.library.C3SXGate.assemble" />
+    **Returns**
 
-`assemble()`
+    A tuple with single arguments.
 
-Assemble a QasmQobjInstruction
+    **Raises**
 
-**Return type**
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`Instruction`
+  ### c\_if
 
-### broadcast\_arguments
+  <Function id="qiskit.circuit.library.C3SXGate.c_if" name="c_if" signature="c_if(classical, val)">
+    Add classical condition on register classical and value val.
+  </Function>
 
-<span id="qiskit.circuit.library.C3SXGate.broadcast_arguments" />
+  ### control
 
-`broadcast_arguments(qargs, cargs)`
+  <Function id="qiskit.circuit.library.C3SXGate.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
-Validation and handling of the arguments and its relationship.
+    **Parameters**
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+    *   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
+    *   **label** (`Optional`\[`str`]) – optional gate label
+    *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+    **Returns**
 
-The general broadcasting rules are:
+    Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+    **Return type**
 
-**Parameters**
+    [qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
+    **Raises**
 
-**Return type**
+    **QiskitError** – unrecognized mode or invalid ctrl\_state
+  </Function>
 
-`Tuple`\[`List`, `List`]
+  ### copy
 
-**Returns**
+  <Function id="qiskit.circuit.library.C3SXGate.copy" name="copy" signature="copy(name=None)">
+    Copy of the instruction.
 
-A tuple with single arguments.
+    **Parameters**
 
-**Raises**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Returns**
 
-### c\_if
+    **a copy of the current instruction, with the name**
 
-<span id="qiskit.circuit.library.C3SXGate.c_if" />
+    updated if it was provided
 
-`c_if(classical, val)`
+    **Return type**
 
-Add classical condition on register classical and value val.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-### control
+  ### ctrl\_state
 
-<span id="qiskit.circuit.library.C3SXGate.control" />
+  <Function id="qiskit.circuit.library.C3SXGate.ctrl_state" name="ctrl_state" signature="property ctrl_state">
+    Return the control state of the gate as a decimal integer.
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    **Return type**
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+    `int`
+  </Function>
 
-**Parameters**
+  ### decompositions
 
-*   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
-*   **label** (`Optional`\[`str`]) – optional gate label
-*   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
+  <Function id="qiskit.circuit.library.C3SXGate.decompositions" name="decompositions" signature="property decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Function>
 
-**Returns**
+  ### definition
 
-Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
+  <Function id="qiskit.circuit.library.C3SXGate.definition" name="definition" signature="property definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
 
-**Return type**
+    **Return type**
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+    `List`
+  </Function>
 
-**Raises**
+  ### duration
 
-**QiskitError** – unrecognized mode or invalid ctrl\_state
+  <Function id="qiskit.circuit.library.C3SXGate.duration" name="duration" signature="property duration">
+    Get the duration.
+  </Function>
 
-### copy
+  ### inverse
 
-<span id="qiskit.circuit.library.C3SXGate.copy" />
+  <Function id="qiskit.circuit.library.C3SXGate.inverse" name="inverse" signature="inverse()">
+    Invert this gate. The C3X is its own inverse.
+  </Function>
 
-`copy(name=None)`
+  ### is\_parameterized
 
-Copy of the instruction.
+  <Function id="qiskit.circuit.library.C3SXGate.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-**Parameters**
+  ### label
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+  <Function id="qiskit.circuit.library.C3SXGate.label" name="label" signature="property label">
+    Return gate label
 
-**Returns**
+    **Return type**
 
-**a copy of the current instruction, with the name**
+    `str`
+  </Function>
 
-updated if it was provided
+  ### mirror
 
-**Return type**
+  <Function id="qiskit.circuit.library.C3SXGate.mirror" name="mirror" signature="mirror()">
+    DEPRECATED: use instruction.reverse\_ops().
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Returns**
 
-### ctrl\_state
+    **a new instruction with sub-instructions**
 
-<span id="qiskit.circuit.library.C3SXGate.ctrl_state" />
+    reversed.
 
-`property ctrl_state`
+    **Return type**
 
-Return the control state of the gate as a decimal integer.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**Return type**
+  ### num\_ctrl\_qubits
 
-`int`
+  <Function id="qiskit.circuit.library.C3SXGate.num_ctrl_qubits" name="num_ctrl_qubits" signature="property num_ctrl_qubits">
+    Get number of control qubits.
 
-### decompositions
+    **Returns**
 
-<span id="qiskit.circuit.library.C3SXGate.decompositions" />
+    The number of control qubits for the gate.
 
-`property decompositions`
+    **Return type**
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+    int
+  </Function>
 
-### definition
+  ### params
 
-<span id="qiskit.circuit.library.C3SXGate.definition" />
+  <Function id="qiskit.circuit.library.C3SXGate.params" name="params" signature="property params">
+    Get parameters from base\_gate.
 
-`property definition`
+    **Returns**
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+    List of gate parameters.
 
-**Return type**
+    **Return type**
 
-`List`
+    list
 
-### duration
+    **Raises**
 
-<span id="qiskit.circuit.library.C3SXGate.duration" />
+    **CircuitError** – Controlled gate does not define a base gate
+  </Function>
 
-`property duration`
+  ### power
 
-Get the duration.
+  <Function id="qiskit.circuit.library.C3SXGate.power" name="power" signature="power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-### inverse
+    **Parameters**
 
-<span id="qiskit.circuit.library.C3SXGate.inverse" />
+    **exponent** (*float*) – Gate^exponent
 
-`inverse()`
+    **Returns**
 
-Invert this gate. The C3X is its own inverse.
+    To which to\_matrix is self.to\_matrix^exponent.
 
-### is\_parameterized
+    **Return type**
 
-<span id="qiskit.circuit.library.C3SXGate.is_parameterized" />
+    [qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-`is_parameterized()`
+    **Raises**
 
-Return True .IFF. instruction is parameterized else False
+    **CircuitError** – If Gate is not unitary
+  </Function>
 
-### label
+  ### qasm
 
-<span id="qiskit.circuit.library.C3SXGate.label" />
+  <Function id="qiskit.circuit.library.C3SXGate.qasm" name="qasm" signature="qasm()">
+    Return a default OpenQASM string for the instruction.
 
-`property label`
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-Return gate label
+  ### repeat
 
-**Return type**
+  <Function id="qiskit.circuit.library.C3SXGate.repeat" name="repeat" signature="repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-`str`
+    **Parameters**
 
-### mirror
+    **n** (*int*) – Number of times to repeat the instruction
 
-<span id="qiskit.circuit.library.C3SXGate.mirror" />
+    **Returns**
 
-`mirror()`
+    Containing the definition.
 
-DEPRECATED: use instruction.reverse\_ops().
+    **Return type**
 
-**Returns**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**a new instruction with sub-instructions**
+    **Raises**
 
-reversed.
+    **CircuitError** – If n \< 1.
+  </Function>
 
-**Return type**
+  ### reverse\_ops
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit.circuit.library.C3SXGate.reverse_ops" name="reverse_ops" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-### num\_ctrl\_qubits
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-<span id="qiskit.circuit.library.C3SXGate.num_ctrl_qubits" />
+    **Returns**
 
-`property num_ctrl_qubits`
+    **a new instruction with**
 
-Get number of control qubits.
+    sub-instructions reversed.
 
-**Returns**
+    **Return type**
 
-The number of control qubits for the gate.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**Return type**
+  ### to\_matrix
 
-int
+  <Function id="qiskit.circuit.library.C3SXGate.to_matrix" name="to_matrix" signature="to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
 
-### params
+    **Raises**
 
-<span id="qiskit.circuit.library.C3SXGate.params" />
+    **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
 
-`property params`
+    **Return type**
 
-Get parameters from base\_gate.
+    `ndarray`
+  </Function>
 
-**Returns**
+  ### unit
 
-List of gate parameters.
+  <Function id="qiskit.circuit.library.C3SXGate.unit" name="unit" signature="property unit">
+    Get the time unit of duration.
+  </Function>
 
-**Return type**
+  ### validate\_parameter
 
-list
-
-**Raises**
-
-**CircuitError** – Controlled gate does not define a base gate
-
-### power
-
-<span id="qiskit.circuit.library.C3SXGate.power" />
-
-`power(exponent)`
-
-Creates a unitary gate as gate^exponent.
-
-**Parameters**
-
-**exponent** (*float*) – Gate^exponent
-
-**Returns**
-
-To which to\_matrix is self.to\_matrix^exponent.
-
-**Return type**
-
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
-
-**Raises**
-
-**CircuitError** – If Gate is not unitary
-
-### qasm
-
-<span id="qiskit.circuit.library.C3SXGate.qasm" />
-
-`qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.circuit.library.C3SXGate.repeat" />
-
-`repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### reverse\_ops
-
-<span id="qiskit.circuit.library.C3SXGate.reverse_ops" />
-
-`reverse_ops()`
-
-For a composite instruction, reverse the order of sub-instructions.
-
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-**a new instruction with**
-
-sub-instructions reversed.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### to\_matrix
-
-<span id="qiskit.circuit.library.C3SXGate.to_matrix" />
-
-`to_matrix()`
-
-Return a Numpy.array for the gate unitary matrix.
-
-**Raises**
-
-**CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
-
-**Return type**
-
-`ndarray`
-
-### unit
-
-<span id="qiskit.circuit.library.C3SXGate.unit" />
-
-`property unit`
-
-Get the time unit of duration.
-
-### validate\_parameter
-
-<span id="qiskit.circuit.library.C3SXGate.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Gate parameters should be int, float, or ParameterExpression
+  <Function id="qiskit.circuit.library.C3SXGate.validate_parameter" name="validate_parameter" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
+</Class>
 

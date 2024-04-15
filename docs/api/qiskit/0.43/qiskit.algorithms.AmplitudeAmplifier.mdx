@@ -8,35 +8,31 @@ python_api_name: qiskit.algorithms.AmplitudeAmplifier
 
 # AmplitudeAmplifier
 
-<span id="qiskit.algorithms.AmplitudeAmplifier" />
+<Class id="qiskit.algorithms.AmplitudeAmplifier" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/amplitude_amplifier.py" signature="AmplitudeAmplifier">
+  Bases: `ABC`
 
-`AmplitudeAmplifier` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/amplitude_amplifier.py "view source code")
+  The interface for amplification algorithms.
 
-Bases: `ABC`
+  ## Methods
 
-The interface for amplification algorithms.
+  <span id="qiskit-algorithms-amplitudeamplifier-amplify" />
 
-## Methods
+  ### amplify
 
-<span id="qiskit-algorithms-amplitudeamplifier-amplify" />
+  <Function id="qiskit.algorithms.AmplitudeAmplifier.amplify" name="amplify" signature="abstract AmplitudeAmplifier.amplify(amplification_problem)">
+    Run the amplification algorithm.
 
-### amplify
+    **Parameters**
 
-<span id="qiskit.algorithms.AmplitudeAmplifier.amplify" />
+    **amplification\_problem** ([*AmplificationProblem*](qiskit.algorithms.AmplificationProblem "qiskit.algorithms.amplitude_amplifiers.amplification_problem.AmplificationProblem")) – The amplification problem.
 
-`abstract AmplitudeAmplifier.amplify(amplification_problem)`
+    **Returns**
 
-Run the amplification algorithm.
+    The result as a `AmplificationResult`, where e.g. the most likely state can be queried as `result.top_measurement`.
 
-**Parameters**
+    **Return type**
 
-**amplification\_problem** ([*AmplificationProblem*](qiskit.algorithms.AmplificationProblem "qiskit.algorithms.amplitude_amplifiers.amplification_problem.AmplificationProblem")) – The amplification problem.
-
-**Returns**
-
-The result as a `AmplificationResult`, where e.g. the most likely state can be queried as `result.top_measurement`.
-
-**Return type**
-
-AmplitudeAmplifierResult
+    AmplitudeAmplifierResult
+  </Function>
+</Class>
 

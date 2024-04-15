@@ -8,55 +8,51 @@ python_api_name: qiskit.pulse.transforms.AlignEquispaced
 
 # AlignEquispaced
 
-<span id="qiskit.pulse.transforms.AlignEquispaced" />
+<Class id="qiskit.pulse.transforms.AlignEquispaced" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/pulse/transforms/alignments.py#L259-L325" signature="qiskit.pulse.transforms.AlignEquispaced(duration)">
+  Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
-`qiskit.pulse.transforms.AlignEquispaced(duration)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/pulse/transforms/alignments.py "view source code")
+  Align instructions with equispaced interval within a specified duration.
 
-Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+  Instructions played on different channels are also arranged in a sequence. This alignment is convenient to create dynamical decoupling sequences such as PDD.
 
-Align instructions with equispaced interval within a specified duration.
+  Create new equispaced context.
 
-Instructions played on different channels are also arranged in a sequence. This alignment is convenient to create dynamical decoupling sequences such as PDD.
+  **Parameters**
 
-Create new equispaced context.
+  **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
 
-**Parameters**
+  ## Attributes
 
-**duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
+  ### duration
 
-## Attributes
+  <Attribute id="qiskit.pulse.transforms.AlignEquispaced.duration" name="duration">
+    Return context duration.
+  </Attribute>
 
-<span id="qiskit.pulse.transforms.AlignEquispaced.duration" />
+  ### is\_sequential
 
-### duration
+  <Attribute id="qiskit.pulse.transforms.AlignEquispaced.is_sequential" name="is_sequential" />
 
-Return context duration.
+  ## Methods
 
-<span id="qiskit.pulse.transforms.AlignEquispaced.is_sequential" />
+  ### align
 
-### is\_sequential
+  <Function id="qiskit.pulse.transforms.AlignEquispaced.align" name="align" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/pulse/transforms/alignments.py#L286-L325" signature="align(schedule)">
+    Reallocate instructions according to the policy.
 
-## Methods
+    Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
 
-### align
+    **Parameters**
 
-<span id="qiskit.pulse.transforms.AlignEquispaced.align" />
+    **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
 
-`align(schedule)`
+    **Returns**
 
-Reallocate instructions according to the policy.
+    Schedule with reallocated instructions.
 
-Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
+    **Return type**
 
-**Parameters**
-
-**schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
-
-**Returns**
-
-Schedule with reallocated instructions.
-
-**Return type**
-
-[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+    [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+  </Function>
+</Class>
 

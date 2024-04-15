@@ -8,65 +8,63 @@ python_api_name: qiskit.assembler.assemble_schedules
 
 # qiskit.assembler.assemble\_schedules
 
-<span id="qiskit.assembler.assemble_schedules" />
+<Function id="qiskit.assembler.assemble_schedules" name="assemble_schedules" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/assembler/assemble_schedules.py" signature="assemble_schedules(schedules, qobj_id, qobj_header, run_config)">
+  Assembles a list of schedules into a qobj that can be run on the backend.
 
-`assemble_schedules(schedules, qobj_id, qobj_header, run_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/assembler/assemble_schedules.py "view source code")
+  **Parameters**
 
-Assembles a list of schedules into a qobj that can be run on the backend.
+  *   **schedules** (`List`\[`Union`\[[`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction"), `Tuple`\[`int`, `Union`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]]]) – Schedules to assemble.
+  *   **qobj\_id** (`int`) – Identifier for the generated qobj.
+  *   **qobj\_header** ([`QobjHeader`](qiskit.qobj.QobjHeader "qiskit.qobj.common.QobjHeader")) – Header to pass to the results.
+  *   **run\_config** ([`RunConfig`](qiskit.assembler.RunConfig "qiskit.assembler.run_config.RunConfig")) – Configuration of the runtime environment.
 
-**Parameters**
+  **Return type**
 
-*   **schedules** (`List`\[`Union`\[[`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction"), `Tuple`\[`int`, `Union`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]]]) – Schedules to assemble.
-*   **qobj\_id** (`int`) – Identifier for the generated qobj.
-*   **qobj\_header** ([`QobjHeader`](qiskit.qobj.QobjHeader "qiskit.qobj.common.QobjHeader")) – Header to pass to the results.
-*   **run\_config** ([`RunConfig`](qiskit.assembler.RunConfig "qiskit.assembler.run_config.RunConfig")) – Configuration of the runtime environment.
+  [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj")
 
-**Return type**
+  **Returns**
 
-[`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj")
+  The Qobj to be run on the backends.
 
-**Returns**
+  **Raises**
 
-The Qobj to be run on the backends.
+  **QiskitError** – when frequency settings are not supplied.
 
-**Raises**
+  **Examples**
 
-**QiskitError** – when frequency settings are not supplied.
-
-**Examples**
-
-```python
-from qiskit import pulse
-from qiskit.assembler import assemble_schedules
-from qiskit.assembler.run_config import RunConfig
-# Construct a Qobj header for the output Qobj
-header = {"backend_name": "FakeOpenPulse2Q", "backend_version": "0.0.0"}
-# Build a configuration object for the output Qobj
-config = RunConfig(shots=1024,
-                   memory=False,
-                   meas_level=1,
-                   meas_return='avg',
-                   memory_slot_size=100,
-                   parametric_pulses=[],
-                   init_qubits=True,
-                   qubit_lo_freq=[4900000000.0, 5000000000.0],
-                   meas_lo_freq=[6500000000.0, 6600000000.0],
-                   schedule_los=[])
-# Build a Pulse schedule to assemble into a Qobj
-schedule = pulse.Schedule()
-schedule += pulse.Play(pulse.Waveform([0.1] * 16, name="test0"),
-                       pulse.DriveChannel(0),
-                       name="test1")
-schedule += pulse.Play(pulse.Waveform([0.1] * 16, name="test1"),
-                       pulse.DriveChannel(0),
-                       name="test2")
-schedule += pulse.Play(pulse.Waveform([0.5] * 16, name="test0"),
-                       pulse.DriveChannel(0),
-                       name="test1")
-# Assemble a Qobj from the schedule.
-pulseQobj = assemble_schedules(schedules=[schedule],
-                               qobj_id="custom-id",
-                               qobj_header=header,
-                               run_config=config)
-```
+  ```python
+  from qiskit import pulse
+  from qiskit.assembler import assemble_schedules
+  from qiskit.assembler.run_config import RunConfig
+  # Construct a Qobj header for the output Qobj
+  header = {"backend_name": "FakeOpenPulse2Q", "backend_version": "0.0.0"}
+  # Build a configuration object for the output Qobj
+  config = RunConfig(shots=1024,
+                     memory=False,
+                     meas_level=1,
+                     meas_return='avg',
+                     memory_slot_size=100,
+                     parametric_pulses=[],
+                     init_qubits=True,
+                     qubit_lo_freq=[4900000000.0, 5000000000.0],
+                     meas_lo_freq=[6500000000.0, 6600000000.0],
+                     schedule_los=[])
+  # Build a Pulse schedule to assemble into a Qobj
+  schedule = pulse.Schedule()
+  schedule += pulse.Play(pulse.Waveform([0.1] * 16, name="test0"),
+                         pulse.DriveChannel(0),
+                         name="test1")
+  schedule += pulse.Play(pulse.Waveform([0.1] * 16, name="test1"),
+                         pulse.DriveChannel(0),
+                         name="test2")
+  schedule += pulse.Play(pulse.Waveform([0.5] * 16, name="test0"),
+                         pulse.DriveChannel(0),
+                         name="test1")
+  # Assemble a Qobj from the schedule.
+  pulseQobj = assemble_schedules(schedules=[schedule],
+                                 qobj_id="custom-id",
+                                 qobj_header=header,
+                                 run_config=config)
+  ```
+</Function>
 

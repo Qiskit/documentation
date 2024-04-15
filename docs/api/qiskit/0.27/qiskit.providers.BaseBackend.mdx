@@ -8,162 +8,144 @@ python_api_name: qiskit.providers.BaseBackend
 
 # qiskit.providers.BaseBackend
 
-<span id="qiskit.providers.BaseBackend" />
+<Class id="qiskit.providers.BaseBackend" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/basebackend.py" signature="BaseBackend(configuration, provider=None)">
+  Legacy Base class for backends.
 
-`BaseBackend(configuration, provider=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/basebackend.py "view source code")
+  Base class for backends.
 
-Legacy Base class for backends.
+  This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
 
-Base class for backends.
+  **Parameters**
 
-This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+  *   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
 
-**Parameters**
+  **Raises**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
+  **QiskitError** – if an error occurred when instantiating the backend.
 
-**Raises**
+  ### \_\_init\_\_
 
-**QiskitError** – if an error occurred when instantiating the backend.
+  <Function id="qiskit.providers.BaseBackend.__init__" name="__init__" signature="abstract __init__(configuration, provider=None)">
+    Base class for backends.
 
-### \_\_init\_\_
+    This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
 
-<span id="qiskit.providers.BaseBackend.__init__" />
+    **Parameters**
 
-`abstract __init__(configuration, provider=None)`
+    *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+    *   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
 
-Base class for backends.
+    **Raises**
 
-This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
+    **QiskitError** – if an error occurred when instantiating the backend.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
+  |                                                                                                                          |                                   |
+  | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
+  | [`__init__`](#qiskit.providers.BaseBackend.__init__ "qiskit.providers.BaseBackend.__init__")(configuration\[, provider]) | Base class for backends.          |
+  | [`configuration`](#qiskit.providers.BaseBackend.configuration "qiskit.providers.BaseBackend.configuration")()            | Return the backend configuration. |
+  | [`name`](#qiskit.providers.BaseBackend.name "qiskit.providers.BaseBackend.name")()                                       | Return the backend name.          |
+  | [`properties`](#qiskit.providers.BaseBackend.properties "qiskit.providers.BaseBackend.properties")()                     | Return the backend properties.    |
+  | [`provider`](#qiskit.providers.BaseBackend.provider "qiskit.providers.BaseBackend.provider")()                           | Return the backend Provider.      |
+  | [`run`](#qiskit.providers.BaseBackend.run "qiskit.providers.BaseBackend.run")(qobj)                                      | Run a Qobj on the the backend.    |
+  | [`status`](#qiskit.providers.BaseBackend.status "qiskit.providers.BaseBackend.status")()                                 | Return the backend status.        |
+  | [`version`](#qiskit.providers.BaseBackend.version "qiskit.providers.BaseBackend.version")()                              | Return the backend version.       |
 
-**Raises**
+  ### configuration
 
-**QiskitError** – if an error occurred when instantiating the backend.
+  <Function id="qiskit.providers.BaseBackend.configuration" name="configuration" signature="configuration()">
+    Return the backend configuration.
 
-## Methods
+    **Returns**
 
-|                                                                                                                          |                                   |
-| ------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
-| [`__init__`](#qiskit.providers.BaseBackend.__init__ "qiskit.providers.BaseBackend.__init__")(configuration\[, provider]) | Base class for backends.          |
-| [`configuration`](#qiskit.providers.BaseBackend.configuration "qiskit.providers.BaseBackend.configuration")()            | Return the backend configuration. |
-| [`name`](#qiskit.providers.BaseBackend.name "qiskit.providers.BaseBackend.name")()                                       | Return the backend name.          |
-| [`properties`](#qiskit.providers.BaseBackend.properties "qiskit.providers.BaseBackend.properties")()                     | Return the backend properties.    |
-| [`provider`](#qiskit.providers.BaseBackend.provider "qiskit.providers.BaseBackend.provider")()                           | Return the backend Provider.      |
-| [`run`](#qiskit.providers.BaseBackend.run "qiskit.providers.BaseBackend.run")(qobj)                                      | Run a Qobj on the the backend.    |
-| [`status`](#qiskit.providers.BaseBackend.status "qiskit.providers.BaseBackend.status")()                                 | Return the backend status.        |
-| [`version`](#qiskit.providers.BaseBackend.version "qiskit.providers.BaseBackend.version")()                              | Return the backend version.       |
+    the configuration for the backend.
 
-### configuration
+    **Return type**
 
-<span id="qiskit.providers.BaseBackend.configuration" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-`configuration()`
+  ### name
 
-Return the backend configuration.
+  <Function id="qiskit.providers.BaseBackend.name" name="name" signature="name()">
+    Return the backend name.
 
-**Returns**
+    **Returns**
 
-the configuration for the backend.
+    the name of the backend.
 
-**Return type**
+    **Return type**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    str
+  </Function>
 
-### name
+  ### properties
 
-<span id="qiskit.providers.BaseBackend.name" />
+  <Function id="qiskit.providers.BaseBackend.properties" name="properties" signature="properties()">
+    Return the backend properties.
 
-`name()`
+    **Returns**
 
-Return the backend name.
+    the configuration for the backend. If the backend does not support properties, it returns `None`.
 
-**Returns**
+    **Return type**
 
-the name of the backend.
+    [BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+  </Function>
 
-**Return type**
+  ### provider
 
-str
+  <Function id="qiskit.providers.BaseBackend.provider" name="provider" signature="provider()">
+    Return the backend Provider.
 
-### properties
+    **Returns**
 
-<span id="qiskit.providers.BaseBackend.properties" />
+    the Provider responsible for the backend.
 
-`properties()`
+    **Return type**
 
-Return the backend properties.
+    [BaseProvider](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
+  </Function>
 
-**Returns**
+  ### run
 
-the configuration for the backend. If the backend does not support properties, it returns `None`.
+  <Function id="qiskit.providers.BaseBackend.run" name="run" signature="abstract run(qobj)">
+    Run a Qobj on the the backend.
 
-**Return type**
+    **Parameters**
 
-[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+    **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – the Qobj to be executed.
+  </Function>
 
-### provider
+  ### status
 
-<span id="qiskit.providers.BaseBackend.provider" />
+  <Function id="qiskit.providers.BaseBackend.status" name="status" signature="status()">
+    Return the backend status.
 
-`provider()`
+    **Returns**
 
-Return the backend Provider.
+    the status of the backend.
 
-**Returns**
+    **Return type**
 
-the Provider responsible for the backend.
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-**Return type**
+  ### version
 
-[BaseProvider](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
+  <Function id="qiskit.providers.BaseBackend.version" name="version" signature="version()">
+    Return the backend version.
 
-### run
+    **Returns**
 
-<span id="qiskit.providers.BaseBackend.run" />
+    the X.X.X version of the backend.
 
-`abstract run(qobj)`
+    **Return type**
 
-Run a Qobj on the the backend.
-
-**Parameters**
-
-**qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – the Qobj to be executed.
-
-### status
-
-<span id="qiskit.providers.BaseBackend.status" />
-
-`status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-### version
-
-<span id="qiskit.providers.BaseBackend.version" />
-
-`version()`
-
-Return the backend version.
-
-**Returns**
-
-the X.X.X version of the backend.
-
-**Return type**
-
-str
+    str
+  </Function>
+</Class>
 

@@ -10,41 +10,39 @@ python_api_name: qiskit.providers.aer.noise.depolarizing_error
 
 # qiskit.providers.aer.noise.depolarizing\_error
 
-<span id="qiskit.providers.aer.noise.depolarizing_error" />
+<Function id="qiskit.providers.aer.noise.depolarizing_error" name="depolarizing_error" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/noise/errors/standard_errors.py" signature="depolarizing_error(param, num_qubits, standard_gates=True)">
+  Return a depolarizing quantum error channel.
 
-`depolarizing_error(param, num_qubits, standard_gates=True)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/noise/errors/standard_errors.py "view source code")
-
-Return a depolarizing quantum error channel.
-
-The depolarizing channel is defined as:
+  The depolarizing channel is defined as:
 
 $$
 E(ρ) = (1 - λ) ρ + λ \text{Tr}[ρ] \frac{I}{2^n}
 $$
 
-with $0 \le λ \le 4^n / (4^n - 1)$
+  with $0 \le λ \le 4^n / (4^n - 1)$
 
-where $λ$ is the depolarizing error param and :math\`n\` is the number of qubits.
+  where $λ$ is the depolarizing error param and :math\`n\` is the number of qubits.
 
-*   If $λ = 0$ this is the identity channel $E(ρ) = ρ$
-*   If $λ = 1$ this is a completely depolarizing channel $E(ρ) = I / 2^n$
-*   If $λ = 4^n / (4^n - 1)$ this is a uniform Pauli error channel: $E(ρ) = \sum_j P_j ρ P_j / (4^n - 1)$ for all $P_j != I$.
+  *   If $λ = 0$ this is the identity channel $E(ρ) = ρ$
+  *   If $λ = 1$ this is a completely depolarizing channel $E(ρ) = I / 2^n$
+  *   If $λ = 4^n / (4^n - 1)$ this is a uniform Pauli error channel: $E(ρ) = \sum_j P_j ρ P_j / (4^n - 1)$ for all $P_j != I$.
 
-**Parameters**
+  **Parameters**
 
-*   **param** (*double*) – depolarizing error parameter.
-*   **num\_qubits** (*int*) – the number of qubits for the error channel.
-*   **standard\_gates** (*bool*) – if True return the operators as standard qobj Pauli gate instructions. If false return as unitary matrix qobj instructions. (Default: True)
+  *   **param** (*double*) – depolarizing error parameter.
+  *   **num\_qubits** (*int*) – the number of qubits for the error channel.
+  *   **standard\_gates** (*bool*) – if True return the operators as standard qobj Pauli gate instructions. If false return as unitary matrix qobj instructions. (Default: True)
 
-**Returns**
+  **Returns**
 
-The quantum error object.
+  The quantum error object.
 
-**Return type**
+  **Return type**
 
-[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+  [QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
-**Raises**
+  **Raises**
 
-**NoiseError** – If noise parameters are invalid.
+  **NoiseError** – If noise parameters are invalid.
+</Function>
 

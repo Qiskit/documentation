@@ -8,96 +8,84 @@ python_api_name: qiskit.transpiler.passes.DenseLayout
 
 # qiskit.transpiler.passes.DenseLayout
 
-<span id="qiskit.transpiler.passes.DenseLayout" />
+<Class id="qiskit.transpiler.passes.DenseLayout" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/layout/dense_layout.py" signature="DenseLayout(*args, **kwargs)">
+  Choose a Layout by finding the most connected subset of qubits.
 
-`DenseLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/layout/dense_layout.py "view source code")
+  This pass associates a physical qubit (int) to each virtual qubit of the circuit (Qubit).
 
-Choose a Layout by finding the most connected subset of qubits.
+  <Admonition title="Note" type="note">
+    Even though a ‘layout’ is not strictly a property of the DAG, in the transpiler architecture it is best passed around between passes by being set in property\_set.
+  </Admonition>
 
-This pass associates a physical qubit (int) to each virtual qubit of the circuit (Qubit).
+  DenseLayout initializer.
 
-<Admonition title="Note" type="note">
-  Even though a ‘layout’ is not strictly a property of the DAG, in the transpiler architecture it is best passed around between passes by being set in property\_set.
-</Admonition>
+  **Parameters**
 
-DenseLayout initializer.
+  *   **coupling\_map** (*Coupling*) – directed graph representing a coupling map.
+  *   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – backend properties object
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **coupling\_map** (*Coupling*) – directed graph representing a coupling map.
-*   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – backend properties object
+  <Function id="qiskit.transpiler.passes.DenseLayout.__init__" name="__init__" signature="__init__(coupling_map, backend_prop=None)">
+    DenseLayout initializer.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.DenseLayout.__init__" />
+    *   **coupling\_map** (*Coupling*) – directed graph representing a coupling map.
+    *   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – backend properties object
+  </Function>
 
-`__init__(coupling_map, backend_prop=None)`
+  ## Methods
 
-DenseLayout initializer.
+  |                                                                                                                                               |                                  |
+  | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+  | [`__init__`](#qiskit.transpiler.passes.DenseLayout.__init__ "qiskit.transpiler.passes.DenseLayout.__init__")(coupling\_map\[, backend\_prop]) | DenseLayout initializer.         |
+  | [`name`](#qiskit.transpiler.passes.DenseLayout.name "qiskit.transpiler.passes.DenseLayout.name")()                                            | Return the name of the pass.     |
+  | [`run`](#qiskit.transpiler.passes.DenseLayout.run "qiskit.transpiler.passes.DenseLayout.run")(dag)                                            | Run the DenseLayout pass on dag. |
 
-**Parameters**
+  ## Attributes
 
-*   **coupling\_map** (*Coupling*) – directed graph representing a coupling map.
-*   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – backend properties object
+  |                                                                                                                                                        |                                             |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
+  | [`is_analysis_pass`](#qiskit.transpiler.passes.DenseLayout.is_analysis_pass "qiskit.transpiler.passes.DenseLayout.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
+  | [`is_transformation_pass`](#qiskit.transpiler.passes.DenseLayout.is_transformation_pass "qiskit.transpiler.passes.DenseLayout.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-## Methods
+  ### is\_analysis\_pass
 
-|                                                                                                                                               |                                  |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| [`__init__`](#qiskit.transpiler.passes.DenseLayout.__init__ "qiskit.transpiler.passes.DenseLayout.__init__")(coupling\_map\[, backend\_prop]) | DenseLayout initializer.         |
-| [`name`](#qiskit.transpiler.passes.DenseLayout.name "qiskit.transpiler.passes.DenseLayout.name")()                                            | Return the name of the pass.     |
-| [`run`](#qiskit.transpiler.passes.DenseLayout.run "qiskit.transpiler.passes.DenseLayout.run")(dag)                                            | Run the DenseLayout pass on dag. |
+  <Function id="qiskit.transpiler.passes.DenseLayout.is_analysis_pass" name="is_analysis_pass" signature="property is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-## Attributes
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Function>
 
-|                                                                                                                                                        |                                             |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
-| [`is_analysis_pass`](#qiskit.transpiler.passes.DenseLayout.is_analysis_pass "qiskit.transpiler.passes.DenseLayout.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
-| [`is_transformation_pass`](#qiskit.transpiler.passes.DenseLayout.is_transformation_pass "qiskit.transpiler.passes.DenseLayout.is_transformation_pass") | Check if the pass is a transformation pass. |
+  ### is\_transformation\_pass
 
-### is\_analysis\_pass
+  <Function id="qiskit.transpiler.passes.DenseLayout.is_transformation_pass" name="is_transformation_pass" signature="property is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-<span id="qiskit.transpiler.passes.DenseLayout.is_analysis_pass" />
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Function>
 
-`property is_analysis_pass`
+  ### name
 
-Check if the pass is an analysis pass.
+  <Function id="qiskit.transpiler.passes.DenseLayout.name" name="name" signature="name()">
+    Return the name of the pass.
+  </Function>
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  ### run
 
-### is\_transformation\_pass
+  <Function id="qiskit.transpiler.passes.DenseLayout.run" name="run" signature="run(dag)">
+    Run the DenseLayout pass on dag.
 
-<span id="qiskit.transpiler.passes.DenseLayout.is_transformation_pass" />
+    Pick a convenient layout depending on the best matching qubit connectivity, and set the property layout.
 
-`property is_transformation_pass`
+    **Parameters**
 
-Check if the pass is a transformation pass.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to find layout for.
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    **Raises**
 
-### name
-
-<span id="qiskit.transpiler.passes.DenseLayout.name" />
-
-`name()`
-
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.DenseLayout.run" />
-
-`run(dag)`
-
-Run the DenseLayout pass on dag.
-
-Pick a convenient layout depending on the best matching qubit connectivity, and set the property layout.
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to find layout for.
-
-**Raises**
-
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if dag wider than self.coupling\_map
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if dag wider than self.coupling\_map
+  </Function>
+</Class>
 

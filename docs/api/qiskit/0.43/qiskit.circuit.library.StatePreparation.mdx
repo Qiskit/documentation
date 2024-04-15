@@ -8,173 +8,165 @@ python_api_name: qiskit.circuit.library.StatePreparation
 
 # StatePreparation
 
-<span id="qiskit.circuit.library.StatePreparation" />
+<Class id="qiskit.circuit.library.StatePreparation" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/data_preparation/state_preparation.py" signature="StatePreparation(params, num_qubits=None, inverse=False, label=None)">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`StatePreparation(params, num_qubits=None, inverse=False, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
+  Complex amplitude state preparation.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  Class that implements the (complex amplitude) state preparation of some flexible collection of qubit registers.
 
-Complex amplitude state preparation.
+  **Parameters**
 
-Class that implements the (complex amplitude) state preparation of some flexible collection of qubit registers.
+  *   **params** (*str | list | int |* [*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector")) –
 
-**Parameters**
+      *   Statevector: Statevector to initialize to.
+      *   list: vector of complex amplitudes to initialize to.
+      *   string: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
+      *   int: an integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
 
-*   **params** (*str | list | int |* [*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector")) –
+  *   **num\_qubits** (*int | None*) – This parameter is only used if params is an int. Indicates the total number of qubits in the initialize call. Example: initialize covers 5 qubits and params is 3. This allows qubits 0 and 1 to be initialized to $|1\rangle$ and the remaining 3 qubits to be initialized to $|0\rangle$.
 
-    *   Statevector: Statevector to initialize to.
-    *   list: vector of complex amplitudes to initialize to.
-    *   string: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
-    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
+  *   **inverse** (*bool*) – if True, the inverse state is constructed.
 
-*   **num\_qubits** (*int | None*) – This parameter is only used if params is an int. Indicates the total number of qubits in the initialize call. Example: initialize covers 5 qubits and params is 3. This allows qubits 0 and 1 to be initialized to $|1\rangle$ and the remaining 3 qubits to be initialized to $|0\rangle$.
+  *   **label** (*str | None*) – An optional label for the gate
 
-*   **inverse** (*bool*) – if True, the inverse state is constructed.
+  **Raises**
 
-*   **label** (*str | None*) – An optional label for the gate
+  **QiskitError** – `num_qubits` parameter used when `params` is not an integer
 
-**Raises**
+  When a Statevector argument is passed the state is prepared using a recursive initialization algorithm, including optimizations, from \[1], as well as some additional optimizations including removing zero rotations and double cnots.
 
-**QiskitError** – `num_qubits` parameter used when `params` is not an integer
+  **References:** \[1] Shende, Bullock, Markov. Synthesis of Quantum Logic Circuits (2004) \[[https://arxiv.org/abs/quant-ph/0406176v5](https://arxiv.org/abs/quant-ph/0406176v5)]
 
-When a Statevector argument is passed the state is prepared using a recursive initialization algorithm, including optimizations, from \[1], as well as some additional optimizations including removing zero rotations and double cnots.
+  ## Methods Defined Here
 
-**References:** \[1] Shende, Bullock, Markov. Synthesis of Quantum Logic Circuits (2004) \[[https://arxiv.org/abs/quant-ph/0406176v5](https://arxiv.org/abs/quant-ph/0406176v5)]
+  <span id="qiskit-circuit-library-statepreparation-broadcast-arguments" />
 
-## Methods Defined Here
+  ### broadcast\_arguments
 
-<span id="qiskit-circuit-library-statepreparation-broadcast-arguments" />
+  <Function id="qiskit.circuit.library.StatePreparation.broadcast_arguments" name="broadcast_arguments" signature="StatePreparation.broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-### broadcast\_arguments
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-<span id="qiskit.circuit.library.StatePreparation.broadcast_arguments" />
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-`StatePreparation.broadcast_arguments(qargs, cargs)`
+    The general broadcasting rules are:
 
-Validation and handling of the arguments and its relationship.
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+    **Parameters**
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+    *   **qargs** – List of quantum bit arguments.
+    *   **cargs** – List of classical bit arguments.
 
-The general broadcasting rules are:
+    **Returns**
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+    A tuple with single arguments.
 
-**Parameters**
+    **Raises**
 
-*   **qargs** – List of quantum bit arguments.
-*   **cargs** – List of classical bit arguments.
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-**Returns**
+  <span id="qiskit-circuit-library-statepreparation-inverse" />
 
-A tuple with single arguments.
+  ### inverse
 
-**Raises**
+  <Function id="qiskit.circuit.library.StatePreparation.inverse" name="inverse" signature="StatePreparation.inverse()">
+    Return inverted StatePreparation
+  </Function>
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  <span id="qiskit-circuit-library-statepreparation-validate-parameter" />
 
-<span id="qiskit-circuit-library-statepreparation-inverse" />
+  ### validate\_parameter
 
-### inverse
+  <Function id="qiskit.circuit.library.StatePreparation.validate_parameter" name="validate_parameter" signature="StatePreparation.validate_parameter(parameter)">
+    StatePreparation instruction parameter can be str, int, float, and complex.
+  </Function>
 
-<span id="qiskit.circuit.library.StatePreparation.inverse" />
+  ## Attributes
 
-`StatePreparation.inverse()`
+  ### condition\_bits
 
-Return inverted StatePreparation
+  <Attribute id="qiskit.circuit.library.StatePreparation.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit-circuit-library-statepreparation-validate-parameter" />
+  ### decompositions
 
-### validate\_parameter
+  <Attribute id="qiskit.circuit.library.StatePreparation.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.StatePreparation.validate_parameter" />
+  ### definition
 
-`StatePreparation.validate_parameter(parameter)`
+  <Attribute id="qiskit.circuit.library.StatePreparation.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-StatePreparation instruction parameter can be str, int, float, and complex.
+  ### duration
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.StatePreparation.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.StatePreparation.condition_bits" />
+  ### label
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.StatePreparation.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Get Clbits in condition.
+  ### name
 
-<span id="qiskit.circuit.library.StatePreparation.decompositions" />
+  <Attribute id="qiskit.circuit.library.StatePreparation.name" name="name">
+    Return the name.
+  </Attribute>
 
-### decompositions
+  ### num\_clbits
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.StatePreparation.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.StatePreparation.definition" />
+  ### num\_qubits
 
-### definition
+  <Attribute id="qiskit.circuit.library.StatePreparation.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### params
 
-<span id="qiskit.circuit.library.StatePreparation.duration" />
+  <Attribute id="qiskit.circuit.library.StatePreparation.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### duration
+  ### unit
 
-Get the duration.
-
-<span id="qiskit.circuit.library.StatePreparation.label" />
-
-### label
-
-Return instruction label
-
-<span id="qiskit.circuit.library.StatePreparation.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.StatePreparation.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.StatePreparation.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.StatePreparation.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.StatePreparation.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.StatePreparation.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

@@ -8,168 +8,142 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeEssex
 
 # FakeEssex
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex" />
+<Class id="qiskit_ibm_runtime.fake_provider.FakeEssex" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/essex/fake_essex.py#L39-L54" signature="FakeEssex">
+  A fake 5 qubit backend.
 
-`FakeEssex` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/essex/fake_essex.py#L39-L54 "view source code")
+  ```python
+  0 ↔ 1 ↔ 2
+      ↕
+      3
+      ↕
+      4
+  ```
 
-A fake 5 qubit backend.
+  FakeBackend initializer.
 
-```python
-0 ↔ 1 ↔ 2
-    ↕
-    3
-    ↕
-    4
-```
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** (*BackendConfiguration*) – backend configuration
+  *   **time\_alive** (*int*) – time to wait before returning result
 
-**Parameters**
+  ## Attributes
 
-*   **configuration** (*BackendConfiguration*) – backend configuration
-*   **time\_alive** (*int*) – time to wait before returning result
+  ### backend\_name
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeEssex.backend_name" name="backend_name" attributeValue="= 'fake_essex'" />
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex.backend_name" />
+  ### conf\_filename
 
-### backend\_name
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeEssex.conf_filename" name="conf_filename" attributeValue="= 'conf_essex.json'" />
 
-`= 'fake_essex'`
+  ### dirname
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex.conf_filename" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeEssex.dirname" name="dirname" attributeValue="= '/home/runner/work/qiskit-ibm-runtime/qiskit-ibm-runtime/qiskit_ibm_runtime/fake_provider/backends/essex'" />
 
-### conf\_filename
+  ### options
 
-`= 'conf_essex.json'`
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeEssex.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex.dirname" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeEssex.run "qiskit_ibm_runtime.fake_provider.FakeEssex.run") method.
+  </Attribute>
 
-### dirname
+  ### props\_filename
 
-`= '/home/runner/work/qiskit-ibm-runtime/qiskit-ibm-runtime/qiskit_ibm_runtime/fake_provider/backends/essex'`
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeEssex.props_filename" name="props_filename" attributeValue="= 'props_essex.json'" />
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex.options" />
+  ### version
 
-### options
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeEssex.version" name="version" attributeValue="= 1" />
 
-Return the options for the backend
+  ## Methods
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeEssex.run "qiskit_ibm_runtime.fake_provider.FakeEssex.run") method.
+  ### configuration
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex.props_filename" />
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeEssex.configuration" name="configuration" signature="configuration()">
+    Return the backend configuration.
 
-### props\_filename
+    **Returns**
 
-`= 'props_essex.json'`
+    the configuration for the backend.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex.version" />
+    **Return type**
 
-### version
+    BackendConfiguration
+  </Function>
 
-`= 1`
+  ### name
 
-## Methods
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeEssex.name" name="name" signature="name()">
+    Return the backend name.
 
-### configuration
+    **Returns**
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex.configuration" />
+    the name of the backend.
 
-`configuration()`
+    **Return type**
 
-Return the backend configuration.
+    str
+  </Function>
 
-**Returns**
+  ### properties
 
-the configuration for the backend.
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeEssex.properties" name="properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48" signature="properties()">
+    Returns a snapshot of device properties
 
-**Return type**
+    **Return type**
 
-BackendConfiguration
+    `BackendProperties`
+  </Function>
 
-### name
+  ### provider
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex.name" />
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeEssex.provider" name="provider" signature="provider()">
+    Return the backend Provider.
 
-`name()`
+    **Returns**
 
-Return the backend name.
+    the Provider responsible for the backend.
 
-**Returns**
+    **Return type**
 
-the name of the backend.
+    Provider
+  </Function>
 
-**Return type**
+  ### run
 
-str
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeEssex.run" name="run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L544-L575" signature="run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-### properties
+  ### set\_options
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex.properties" />
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeEssex.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-Returns a snapshot of device properties
+    **Parameters**
 
-**Return type**
+    **fields** – The fields to update the options
 
-`BackendProperties`
+    **Raises**
 
-### provider
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex.provider" />
+  ### status
 
-`provider()`
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeEssex.status" name="status" signature="status()">
+    Return the backend status.
 
-Return the backend Provider.
+    **Returns**
 
-**Returns**
+    the status of the backend.
 
-the Provider responsible for the backend.
+    **Return type**
 
-**Return type**
-
-Provider
-
-### run
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex.run" />
-
-`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
-
-Main job in simulator
-
-### set\_options
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeEssex.status" />
-
-`status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-BackendStatus
+    BackendStatus
+  </Function>
+</Class>
 

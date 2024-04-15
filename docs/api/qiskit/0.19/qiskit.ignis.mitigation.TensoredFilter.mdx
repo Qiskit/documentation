@@ -8,75 +8,79 @@ python_api_name: qiskit.ignis.mitigation.TensoredFilter
 
 # TensoredFilter
 
-<span id="qiskit.ignis.mitigation.TensoredFilter" />
+<Class id="qiskit.ignis.mitigation.TensoredFilter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/filters.py" signature="TensoredFilter(cal_matrices, substate_labels_list)">
+  Tensored measurement error mitigation filter.
 
-`TensoredFilter(cal_matrices, substate_labels_list)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/filters.py "view source code")
+  Produced from a tensored measurement calibration fitter and can be applied to data.
 
-Tensored measurement error mitigation filter.
+  Initialize a tensored measurement error mitigation filter using the cal\_matrices from a tensored measurement calibration fitter.
 
-Produced from a tensored measurement calibration fitter and can be applied to data.
+  **Parameters**
 
-Initialize a tensored measurement error mitigation filter using the cal\_matrices from a tensored measurement calibration fitter.
+  *   **cal\_matrices** (`matrix`) – the calibration matrices for applying the correction.
+  *   **substate\_labels\_list** (`list`) – for each calibration matrix a list of the states (as strings, states in the subspace)
 
-**Parameters**
+  ## Attributes
 
-*   **cal\_matrices** (`matrix`) – the calibration matrices for applying the correction.
-*   **substate\_labels\_list** (`list`) – for each calibration matrix a list of the states (as strings, states in the subspace)
+  ### cal\_matrices
 
-## Attributes
+  <Attribute id="qiskit.ignis.mitigation.TensoredFilter.cal_matrices" name="cal_matrices">
+    Return cal\_matrices.
+  </Attribute>
 
-### cal\_matrices
+  ### nqubits
 
-Return cal\_matrices.
+  <Attribute id="qiskit.ignis.mitigation.TensoredFilter.nqubits" name="nqubits">
+    Return the number of qubits. See also MeasurementFilter.apply()
+  </Attribute>
 
-### nqubits
+  ### qubit\_list\_sizes
 
-Return the number of qubits. See also MeasurementFilter.apply()
+  <Attribute id="qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes" name="qubit_list_sizes">
+    Return \_qubit\_list\_sizes.
+  </Attribute>
 
-### qubit\_list\_sizes
+  ### substate\_labels\_list
 
-Return \_qubit\_list\_sizes.
+  <Attribute id="qiskit.ignis.mitigation.TensoredFilter.substate_labels_list" name="substate_labels_list">
+    Return \_substate\_labels\_list
+  </Attribute>
 
-### substate\_labels\_list
+  ## Methods
 
-Return \_substate\_labels\_list
+  ### apply
 
-## Methods
+  <Function id="qiskit.ignis.mitigation.TensoredFilter.apply" name="apply" signature="TensoredFilter.apply(raw_data, method='least_squares')">
+    Apply the calibration matrices to results.
 
-### apply
+    **Parameters**
 
-<span id="qiskit.ignis.mitigation.TensoredFilter.apply" />
+    *   **raw\_data** (*dict or* [*Result*](qiskit.result.Result "qiskit.result.Result")) –
 
-`TensoredFilter.apply(raw_data, method='least_squares')`
+        The data to be corrected. Can be in one of two forms:
 
-Apply the calibration matrices to results.
+        *   A counts dictionary from results.get\_counts
+        *   A Qiskit Result
 
-**Parameters**
+    *   **method** (*str*) –
 
-*   **raw\_data** (*dict or* [*Result*](qiskit.result.Result "qiskit.result.Result")) –
+        fitting method. The following methods are supported:
 
-    The data to be corrected. Can be in one of two forms:
+        *   ’pseudo\_inverse’: direct inversion of the cal matrices.
+        *   ’least\_squares’: constrained to have physical probabilities.
+        *   If None, ‘least\_squares’ is used.
 
-    *   A counts dictionary from results.get\_counts
-    *   A Qiskit Result
+    **Returns**
 
-*   **method** (*str*) –
+    The corrected data in the same form as raw\_data
 
-    fitting method. The following methods are supported:
+    **Return type**
 
-    *   ’pseudo\_inverse’: direct inversion of the cal matrices.
-    *   ’least\_squares’: constrained to have physical probabilities.
-    *   If None, ‘least\_squares’ is used.
+    dict or [Result](qiskit.result.Result "qiskit.result.Result")
 
-**Returns**
+    **Raises**
 
-The corrected data in the same form as raw\_data
-
-**Return type**
-
-dict or [Result](qiskit.result.Result "qiskit.result.Result")
-
-**Raises**
-
-**QiskitError** – if raw\_data is not in a one of the defined forms.
+    **QiskitError** – if raw\_data is not in a one of the defined forms.
+  </Function>
+</Class>
 

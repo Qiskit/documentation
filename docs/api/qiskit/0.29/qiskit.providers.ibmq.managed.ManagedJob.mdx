@@ -8,130 +8,116 @@ python_api_name: qiskit.providers.ibmq.managed.ManagedJob
 
 # ManagedJob
 
-<span id="qiskit.providers.ibmq.managed.ManagedJob" />
+<Class id="qiskit.providers.ibmq.managed.ManagedJob" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/managed/managedjob.py" signature="ManagedJob(start_index, experiments_count, job=None)">
+  Bases: `object`
 
-`ManagedJob(start_index, experiments_count, job=None)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/managed/managedjob.py "view source code")
+  Job managed by the Job Manager.
 
-Bases: `object`
+  ManagedJob constructor.
 
-Job managed by the Job Manager.
+  **Parameters**
 
-ManagedJob constructor.
+  *   **start\_index** (`int`) – Starting index of the experiment set.
+  *   **experiments\_count** (`int`) – Number of experiments.
+  *   **job** (`Optional`\[`IBMQJob`]) – Job to be managed, or `None` if not already known.
 
-**Parameters**
+  ## Methods
 
-*   **start\_index** (`int`) – Starting index of the experiment set.
-*   **experiments\_count** (`int`) – Number of experiments.
-*   **job** (`Optional`\[`IBMQJob`]) – Job to be managed, or `None` if not already known.
+  ### cancel
 
-## Methods
+  <Function id="qiskit.providers.ibmq.managed.ManagedJob.cancel" name="cancel" signature="ManagedJob.cancel()">
+    Attempt to cancel the job.
 
-### cancel
+    **Return type**
 
-<span id="qiskit.providers.ibmq.managed.ManagedJob.cancel" />
+    `None`
+  </Function>
 
-`ManagedJob.cancel()`
+  ### error\_message
 
-Attempt to cancel the job.
+  <Function id="qiskit.providers.ibmq.managed.ManagedJob.error_message" name="error_message" signature="ManagedJob.error_message()">
+    Provide details about the reason of failure.
 
-**Return type**
+    **Return type**
 
-`None`
+    `Optional`\[`str`]
 
-### error\_message
+    **Returns**
 
-<span id="qiskit.providers.ibmq.managed.ManagedJob.error_message" />
+    An error report if the job failed or `None` otherwise.
+  </Function>
 
-`ManagedJob.error_message()`
+  ### qobj
 
-Provide details about the reason of failure.
+  <Function id="qiskit.providers.ibmq.managed.ManagedJob.qobj" name="qobj" signature="ManagedJob.qobj()">
+    Return the Qobj for this job.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`str`]
+    `Union`\[`QasmQobj`, `PulseQobj`, `None`]
 
-**Returns**
+    **Returns**
 
-An error report if the job failed or `None` otherwise.
+    The Qobj for this job or `None` if the Qobj could not be retrieved.
+  </Function>
 
-### qobj
+  ### result
 
-<span id="qiskit.providers.ibmq.managed.ManagedJob.qobj" />
+  <Function id="qiskit.providers.ibmq.managed.ManagedJob.result" name="result" signature="ManagedJob.result(timeout=None, partial=False, refresh=False)">
+    Return the result of the job.
 
-`ManagedJob.qobj()`
+    **Parameters**
 
-Return the Qobj for this job.
+    *   **timeout** (`Optional`\[`float`]) – Number of seconds to wait for job.
+    *   **partial** (`bool`) – If `True`, attempt to retrieve partial job results.
+    *   **refresh** (`bool`) – If `True`, re-query the server for the result. Otherwise return the cached value.
 
-**Return type**
+    **Return type**
 
-`Union`\[`QasmQobj`, `PulseQobj`, `None`]
+    `Optional`\[`Result`]
 
-**Returns**
+    **Returns**
 
-The Qobj for this job or `None` if the Qobj could not be retrieved.
+    Job result or `None` if result could not be retrieved.
 
-### result
+    **Raises**
 
-<span id="qiskit.providers.ibmq.managed.ManagedJob.result" />
+    [**IBMQJobTimeoutError**](qiskit.providers.ibmq.job.IBMQJobTimeoutError "qiskit.providers.ibmq.job.IBMQJobTimeoutError") – If the job does not return results before a specified timeout.
+  </Function>
 
-`ManagedJob.result(timeout=None, partial=False, refresh=False)`
+  ### status
 
-Return the result of the job.
+  <Function id="qiskit.providers.ibmq.managed.ManagedJob.status" name="status" signature="ManagedJob.status()">
+    Query the server for job status.
 
-**Parameters**
+    **Return type**
 
-*   **timeout** (`Optional`\[`float`]) – Number of seconds to wait for job.
-*   **partial** (`bool`) – If `True`, attempt to retrieve partial job results.
-*   **refresh** (`bool`) – If `True`, re-query the server for the result. Otherwise return the cached value.
+    `Optional`\[`JobStatus`]
 
-**Return type**
+    **Returns**
 
-`Optional`\[`Result`]
+    Current job status, or `None` if an error occurred.
+  </Function>
 
-**Returns**
+  ### submit
 
-Job result or `None` if result could not be retrieved.
+  <Function id="qiskit.providers.ibmq.managed.ManagedJob.submit" name="submit" signature="ManagedJob.submit(circuits, job_name, backend, executor, submit_lock, job_share_level=None, job_tags=None, **run_config)">
+    Submit the job.
 
-**Raises**
+    **Parameters**
 
-[**IBMQJobTimeoutError**](qiskit.providers.ibmq.job.IBMQJobTimeoutError "qiskit.providers.ibmq.job.IBMQJobTimeoutError") – If the job does not return results before a specified timeout.
+    *   **circuits** (`Union`\[`QuantumCircuit`, `Schedule`, `List`\[`Union`\[`QuantumCircuit`, `Schedule`]]]) – Circuits to run.
+    *   **job\_name** (`str`) – Name of the job.
+    *   **backend** (`IBMQBackend`) – Backend to execute the experiments on.
+    *   **executor** (`ThreadPoolExecutor`) – The thread pool used to submit the job.
+    *   **submit\_lock** (`allocate_lock`) – Lock used to synchronize job submission.
+    *   **job\_share\_level** (`Optional`\[`ApiJobShareLevel`]) – Job share level.
+    *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job.
+    *   **\*\*run\_config** – Extra arguments used to configure the run.
 
-### status
+    **Return type**
 
-<span id="qiskit.providers.ibmq.managed.ManagedJob.status" />
-
-`ManagedJob.status()`
-
-Query the server for job status.
-
-**Return type**
-
-`Optional`\[`JobStatus`]
-
-**Returns**
-
-Current job status, or `None` if an error occurred.
-
-### submit
-
-<span id="qiskit.providers.ibmq.managed.ManagedJob.submit" />
-
-`ManagedJob.submit(circuits, job_name, backend, executor, submit_lock, job_share_level=None, job_tags=None, **run_config)`
-
-Submit the job.
-
-**Parameters**
-
-*   **circuits** (`Union`\[`QuantumCircuit`, `Schedule`, `List`\[`Union`\[`QuantumCircuit`, `Schedule`]]]) – Circuits to run.
-*   **job\_name** (`str`) – Name of the job.
-*   **backend** (`IBMQBackend`) – Backend to execute the experiments on.
-*   **executor** (`ThreadPoolExecutor`) – The thread pool used to submit the job.
-*   **submit\_lock** (`allocate_lock`) – Lock used to synchronize job submission.
-*   **job\_share\_level** (`Optional`\[`ApiJobShareLevel`]) – Job share level.
-*   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job.
-*   **\*\*run\_config** – Extra arguments used to configure the run.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

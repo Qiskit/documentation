@@ -8,145 +8,143 @@ python_api_name: qiskit.optimization.algorithms.ADMMOptimizationResult
 
 # ADMMOptimizationResult
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizationResult" />
+<Class id="qiskit.optimization.algorithms.ADMMOptimizationResult" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/admm_optimizer.py" signature="ADMMOptimizationResult(x, fval, variables, state, status)">
+  Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationResult`
 
-`ADMMOptimizationResult(x, fval, variables, state, status)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
+  ADMMOptimization Result.
 
-Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationResult`
+  **Parameters**
 
-ADMMOptimization Result.
+  *   **x** (`ndarray`) – the optimal value found by ADMM.
+  *   **fval** (`float`) – the optimal function value.
+  *   **variables** (`List`\[`Variable`]) – the list of variables of the optimization problem.
+  *   **state** (`ADMMState`) – the internal computation state of ADMM.
+  *   **status** (`OptimizationResultStatus`) – Termination status of an optimization algorithm
 
-**Parameters**
+  ## Attributes
 
-*   **x** (`ndarray`) – the optimal value found by ADMM.
-*   **fval** (`float`) – the optimal function value.
-*   **variables** (`List`\[`Variable`]) – the list of variables of the optimization problem.
-*   **state** (`ADMMState`) – the internal computation state of ADMM.
-*   **status** (`OptimizationResultStatus`) – Termination status of an optimization algorithm
+  ### fval
 
-## Attributes
+  <Attribute id="qiskit.optimization.algorithms.ADMMOptimizationResult.fval" name="fval">
+    Returns the optimal function value.
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.fval" />
+    **Return type**
 
-### fval
+    `float`
 
-Returns the optimal function value.
+    **Returns**
 
-**Return type**
+    The function value corresponding to the optimal value found in the optimization.
+  </Attribute>
 
-`float`
+  ### raw\_results
 
-**Returns**
+  <Attribute id="qiskit.optimization.algorithms.ADMMOptimizationResult.raw_results" name="raw_results">
+    Return the original results object from the optimization algorithm.
 
-The function value corresponding to the optimal value found in the optimization.
+    Currently a dump for any leftovers.
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.raw_results" />
+    **Return type**
 
-### raw\_results
+    `Any`
 
-Return the original results object from the optimization algorithm.
+    **Returns**
 
-Currently a dump for any leftovers.
+    Additional result information of the optimization algorithm.
+  </Attribute>
 
-**Return type**
+  ### samples
 
-`Any`
+  <Attribute id="qiskit.optimization.algorithms.ADMMOptimizationResult.samples" name="samples">
+    Returns the list of solution samples
 
-**Returns**
+    **Return type**
 
-Additional result information of the optimization algorithm.
+    `List`\[`SolutionSample`]
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.samples" />
+    **Returns**
 
-### samples
+    The list of solution samples.
+  </Attribute>
 
-Returns the list of solution samples
+  ### state
 
-**Return type**
+  <Attribute id="qiskit.optimization.algorithms.ADMMOptimizationResult.state" name="state">
+    returns state
 
-`List`\[`SolutionSample`]
+    **Return type**
 
-**Returns**
+    `ADMMState`
+  </Attribute>
 
-The list of solution samples.
+  ### status
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.state" />
+  <Attribute id="qiskit.optimization.algorithms.ADMMOptimizationResult.status" name="status">
+    Returns the termination status of the optimization algorithm.
 
-### state
+    **Return type**
 
-returns state
+    `OptimizationResultStatus`
 
-**Return type**
+    **Returns**
 
-`ADMMState`
+    The termination status of the algorithm.
+  </Attribute>
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.status" />
+  ### variable\_names
 
-### status
+  <Attribute id="qiskit.optimization.algorithms.ADMMOptimizationResult.variable_names" name="variable_names">
+    Returns the list of variable names of the optimization problem.
 
-Returns the termination status of the optimization algorithm.
+    **Return type**
 
-**Return type**
+    `List`\[`str`]
 
-`OptimizationResultStatus`
+    **Returns**
 
-**Returns**
+    The list of variable names of the optimization problem.
+  </Attribute>
 
-The termination status of the algorithm.
+  ### variables
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.variable_names" />
+  <Attribute id="qiskit.optimization.algorithms.ADMMOptimizationResult.variables" name="variables">
+    Returns the list of variables of the optimization problem.
 
-### variable\_names
+    **Return type**
 
-Returns the list of variable names of the optimization problem.
+    `List`\[`Variable`]
 
-**Return type**
+    **Returns**
 
-`List`\[`str`]
+    The list of variables.
+  </Attribute>
 
-**Returns**
+  ### variables\_dict
 
-The list of variable names of the optimization problem.
+  <Attribute id="qiskit.optimization.algorithms.ADMMOptimizationResult.variables_dict" name="variables_dict">
+    Returns the optimal value as a dictionary of the variable name and corresponding value.
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.variables" />
+    **Return type**
 
-### variables
+    `Dict`\[`str`, `float`]
 
-Returns the list of variables of the optimization problem.
+    **Returns**
 
-**Return type**
+    The optimal value as a dictionary of the variable name and corresponding value.
+  </Attribute>
 
-`List`\[`Variable`]
+  ### x
 
-**Returns**
+  <Attribute id="qiskit.optimization.algorithms.ADMMOptimizationResult.x" name="x">
+    Returns the optimal value found in the optimization or None in case of FAILURE.
 
-The list of variables.
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.variables_dict" />
+    `Optional`\[`ndarray`]
 
-### variables\_dict
+    **Returns**
 
-Returns the optimal value as a dictionary of the variable name and corresponding value.
-
-**Return type**
-
-`Dict`\[`str`, `float`]
-
-**Returns**
-
-The optimal value as a dictionary of the variable name and corresponding value.
-
-<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.x" />
-
-### x
-
-Returns the optimal value found in the optimization or None in case of FAILURE.
-
-**Return type**
-
-`Optional`\[`ndarray`]
-
-**Returns**
-
-The optimal value found in the optimization.
+    The optimal value found in the optimization.
+  </Attribute>
+</Class>
 

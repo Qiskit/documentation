@@ -8,46 +8,42 @@ python_api_name: qiskit.aqua.components.initial_states.InitialState
 
 # InitialState
 
-<span id="qiskit.aqua.components.initial_states.InitialState" />
+<Class id="qiskit.aqua.components.initial_states.InitialState" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/initial_state.py" signature="InitialState">
+  Bases: `abc.ABC`
 
-`InitialState` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/initial_state.py "view source code")
+  Base class for InitialState.
 
-Bases: `abc.ABC`
+  This method should initialize the module and use an exception if a component of the module is not available.
 
-Base class for InitialState.
+  ## Methods
 
-This method should initialize the module and use an exception if a component of the module is not available.
+  ### construct\_circuit
 
-## Methods
+  <Function id="qiskit.aqua.components.initial_states.InitialState.construct_circuit" name="construct_circuit" signature="abstract InitialState.construct_circuit(mode='circuit', register=None)">
+    Construct the statevector of desired initial state.
 
-### construct\_circuit
+    **Parameters**
 
-<span id="qiskit.aqua.components.initial_states.InitialState.construct_circuit" />
+    *   **mode** (`str`) – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
+    *   **register** (`Optional`\[`QuantumRegister`]) – qubits for circuit construction.
 
-`abstract InitialState.construct_circuit(mode='circuit', register=None)`
+    **Returns**
 
-Construct the statevector of desired initial state.
+    statevector.
 
-**Parameters**
+    **Return type**
 
-*   **mode** (`str`) – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
-*   **register** (`Optional`\[`QuantumRegister`]) – qubits for circuit construction.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
 
-**Returns**
+    **Raises**
 
-statevector.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
+  ### bitstr
 
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
-
-## Attributes
-
-<span id="qiskit.aqua.components.initial_states.InitialState.bitstr" />
-
-### bitstr
+  <Attribute id="qiskit.aqua.components.initial_states.InitialState.bitstr" name="bitstr" />
+</Class>
 

@@ -64,14 +64,16 @@ type FilesToIgnores = { [id: string]: string[] };
 const _QPY_IGNORES = ["#f1", "#f2", "#f3", "#id2", "#id4", "#id6", "#id8"];
 
 const _RUNTIME_OBJECT_INV = Object.fromEntries(
-  ["", "dev/", "0.16/", "0.17/", "0.18/", "0.19/", "0.20/"].map((vers) => [
-    `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
-    [
-      `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.RuntimeEncoder#key_separator`,
-      `/api/qiskit-ibm-runtime/${vers}index#next-steps`,
-      `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
+  ["", "dev/", "0.16/", "0.17/", "0.18/", "0.19/", "0.20/", "0.21/"].map(
+    (vers) => [
+      `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+      [
+        `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.RuntimeEncoder#key_separator`,
+        `/api/qiskit-ibm-runtime/${vers}index#next-steps`,
+        `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
+      ],
     ],
-  ]),
+  ),
 );
 
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = {};
@@ -83,9 +85,14 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
   ],
   "docs/api/qiskit/qpy.mdx": _QPY_IGNORES,
   "docs/api/qiskit/dev/qpy.mdx": _QPY_IGNORES,
+  "docs/api/qiskit/dev/circuit.mdx": [
+    "#qiskit.circuit.SessionEquivalenceLibrary",
+    "#qiskit.circuit.StandardEquivalenceLibrary",
+  ],
   // Runtime
   "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
-    "qiskit_ibm_runtime.Sampler#run",
+    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#runtime",
+    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler#run",
   ],
   // objects.inv
   ..._RUNTIME_OBJECT_INV,
@@ -184,6 +191,8 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
     "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-eval-condition",
     "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-serialize",
     "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation",
+    "/api/qiskit/dev/circuit#qiskit.circuit.SessionEquivalenceLibrary",
+    "/api/qiskit/dev/circuit#qiskit.circuit.StandardEquivalenceLibrary",
   ],
 };
 

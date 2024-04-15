@@ -8,86 +8,82 @@ python_api_name: qiskit.chemistry.drivers.BosonicDriver
 
 # BosonicDriver
 
-<span id="qiskit.chemistry.drivers.BosonicDriver" />
+<Class id="qiskit.chemistry.drivers.BosonicDriver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/bosonic_driver.py" signature="BosonicDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)">
+  Bases: `qiskit.chemistry.drivers.base_driver.BaseDriver`
 
-`BosonicDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/bosonic_driver.py "view source code")
+  Base class for Qiskit’s chemistry bosonic drivers.
 
-Bases: `qiskit.chemistry.drivers.base_driver.BaseDriver`
+  **Parameters**
 
-Base class for Qiskit’s chemistry bosonic drivers.
+  *   **molecule** (`Optional`\[`Molecule`]) – molecule
+  *   **basis** (`str`) – basis set
+  *   **hf\_method** (`str`) – Hartree-Fock Method type
+  *   **supports\_molecule** (`bool`) – Indicates if driver supports molecule
 
-**Parameters**
+  **Raises**
 
-*   **molecule** (`Optional`\[`Molecule`]) – molecule
-*   **basis** (`str`) – basis set
-*   **hf\_method** (`str`) – Hartree-Fock Method type
-*   **supports\_molecule** (`bool`) – Indicates if driver supports molecule
+  [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Molecule passed but driver doesn’t support it.
 
-**Raises**
+  ## Methods
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Molecule passed but driver doesn’t support it.
+  ### run
 
-## Methods
+  <Function id="qiskit.chemistry.drivers.BosonicDriver.run" name="run" signature="abstract BosonicDriver.run()">
+    Runs driver to produce a WatsonHamiltonian output.
 
-### run
+    **Return type**
 
-<span id="qiskit.chemistry.drivers.BosonicDriver.run" />
+    `WatsonHamiltonian`
 
-`abstract BosonicDriver.run()`
+    **Returns**
 
-Runs driver to produce a WatsonHamiltonian output.
+    A WatsonHamiltonian comprising the bosonic data.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`WatsonHamiltonian`
+  ### basis
 
-**Returns**
+  <Attribute id="qiskit.chemistry.drivers.BosonicDriver.basis" name="basis">
+    return basis
 
-A WatsonHamiltonian comprising the bosonic data.
+    **Return type**
 
-## Attributes
+    `str`
+  </Attribute>
 
-<span id="qiskit.chemistry.drivers.BosonicDriver.basis" />
+  ### hf\_method
 
-### basis
+  <Attribute id="qiskit.chemistry.drivers.BosonicDriver.hf_method" name="hf_method">
+    return Hartree-Fock method
 
-return basis
+    **Return type**
 
-**Return type**
+    `str`
+  </Attribute>
 
-`str`
+  ### molecule
 
-<span id="qiskit.chemistry.drivers.BosonicDriver.hf_method" />
+  <Attribute id="qiskit.chemistry.drivers.BosonicDriver.molecule" name="molecule">
+    return molecule
 
-### hf\_method
+    **Return type**
 
-return Hartree-Fock method
+    `Optional`\[`Molecule`]
+  </Attribute>
 
-**Return type**
+  ### supports\_molecule
 
-`str`
+  <Attribute id="qiskit.chemistry.drivers.BosonicDriver.supports_molecule" name="supports_molecule">
+    True for derived classes that support Molecule.
 
-<span id="qiskit.chemistry.drivers.BosonicDriver.molecule" />
+    **Return type**
 
-### molecule
+    `bool`
 
-return molecule
+    **Returns**
 
-**Return type**
-
-`Optional`\[`Molecule`]
-
-<span id="qiskit.chemistry.drivers.BosonicDriver.supports_molecule" />
-
-### supports\_molecule
-
-True for derived classes that support Molecule.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if Molecule is supported.
+    True if Molecule is supported.
+  </Attribute>
+</Class>
 

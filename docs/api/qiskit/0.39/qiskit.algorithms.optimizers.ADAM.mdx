@@ -8,275 +8,255 @@ python_api_name: qiskit.algorithms.optimizers.ADAM
 
 # ADAM
 
-<span id="qiskit.algorithms.optimizers.ADAM" />
+<Class id="qiskit.algorithms.optimizers.ADAM" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/adam_amsgrad.py" signature="ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)">
+  Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
-`ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
+  Adam and AMSGRAD optimizers.
 
-Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
+  Adam \[1] is a gradient-based optimization algorithm that is relies on adaptive estimates of lower-order moments. The algorithm requires little memory and is invariant to diagonal rescaling of the gradients. Furthermore, it is able to cope with non-stationary objective functions and noisy and/or sparse gradients.
 
-Adam and AMSGRAD optimizers.
+  AMSGRAD \[2] (a variant of Adam) uses a ‘long-term memory’ of past gradients and, thereby, improves convergence properties.
 
-Adam \[1] is a gradient-based optimization algorithm that is relies on adaptive estimates of lower-order moments. The algorithm requires little memory and is invariant to diagonal rescaling of the gradients. Furthermore, it is able to cope with non-stationary objective functions and noisy and/or sparse gradients.
+  **References**
 
-AMSGRAD \[2] (a variant of Adam) uses a ‘long-term memory’ of past gradients and, thereby, improves convergence properties.
+  **\[1]: Kingma, Diederik & Ba, Jimmy (2014), Adam: A Method for Stochastic Optimization.**
 
-**References**
+  [arXiv:1412.6980](https://arxiv.org/abs/1412.6980)
 
-**\[1]: Kingma, Diederik & Ba, Jimmy (2014), Adam: A Method for Stochastic Optimization.**
+  **\[2]: Sashank J. Reddi and Satyen Kale and Sanjiv Kumar (2018),**
 
-[arXiv:1412.6980](https://arxiv.org/abs/1412.6980)
+  On the Convergence of Adam and Beyond. [arXiv:1904.09237](https://arxiv.org/abs/1904.09237)
 
-**\[2]: Sashank J. Reddi and Satyen Kale and Sanjiv Kumar (2018),**
+  <Admonition title="Note" type="note">
+    This component has some function that is normally random. If you want to reproduce behavior then you should set the random number generator seed in the algorithm\_globals (`qiskit.utils.algorithm_globals.random_seed = seed`).
+  </Admonition>
 
-On the Convergence of Adam and Beyond. [arXiv:1904.09237](https://arxiv.org/abs/1904.09237)
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  This component has some function that is normally random. If you want to reproduce behavior then you should set the random number generator seed in the algorithm\_globals (`qiskit.utils.algorithm_globals.random_seed = seed`).
-</Admonition>
+  *   **maxiter** (`int`) – Maximum number of iterations
+  *   **tol** (`float`) – Tolerance for termination
+  *   **lr** (`float`) – Value >= 0, Learning rate.
+  *   **beta\_1** (`float`) – Value in range 0 to 1, Generally close to 1.
+  *   **beta\_2** (`float`) – Value in range 0 to 1, Generally close to 1.
+  *   **noise\_factor** (`float`) – Value >= 0, Noise factor
+  *   **eps** (`float`) – Value >=0, Epsilon to be used for finite differences if no analytic gradient method is given.
+  *   **amsgrad** (`bool`) – True to use AMSGRAD, False if not
+  *   **snapshot\_dir** (`Optional`\[`str`]) – If not None save the optimizer’s parameter after every step to the given directory
 
-**Parameters**
+  ## Methods
 
-*   **maxiter** (`int`) – Maximum number of iterations
-*   **tol** (`float`) – Tolerance for termination
-*   **lr** (`float`) – Value >= 0, Learning rate.
-*   **beta\_1** (`float`) – Value in range 0 to 1, Generally close to 1.
-*   **beta\_2** (`float`) – Value in range 0 to 1, Generally close to 1.
-*   **noise\_factor** (`float`) – Value >= 0, Noise factor
-*   **eps** (`float`) – Value >=0, Epsilon to be used for finite differences if no analytic gradient method is given.
-*   **amsgrad** (`bool`) – True to use AMSGRAD, False if not
-*   **snapshot\_dir** (`Optional`\[`str`]) – If not None save the optimizer’s parameter after every step to the given directory
+  ### get\_support\_level
 
-## Methods
+  <Function id="qiskit.algorithms.optimizers.ADAM.get_support_level" name="get_support_level" signature="ADAM.get_support_level()">
+    Return support level dictionary
+  </Function>
 
-### get\_support\_level
+  ### gradient\_num\_diff
 
-<span id="qiskit.algorithms.optimizers.ADAM.get_support_level" />
+  <Function id="qiskit.algorithms.optimizers.ADAM.gradient_num_diff" name="gradient_num_diff" signature="static ADAM.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-`ADAM.get_support_level()`
+    **Parameters**
 
-Return support level dictionary
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped, defaults to 1 (i.e. no batching).
 
-### gradient\_num\_diff
+    **Returns**
 
-<span id="qiskit.algorithms.optimizers.ADAM.gradient_num_diff" />
+    the gradient computed
 
-`static ADAM.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)`
+    **Return type**
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+    grad
+  </Function>
 
-**Parameters**
+  ### load\_params
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped, defaults to 1 (i.e. no batching).
+  <Function id="qiskit.algorithms.optimizers.ADAM.load_params" name="load_params" signature="ADAM.load_params(load_dir)">
+    Load iteration parameters for a file called `adam_params.csv`.
 
-**Returns**
+    **Parameters**
 
-the gradient computed
+    **load\_dir** (`str`) – The directory containing `adam_params.csv`.
 
-**Return type**
+    **Return type**
 
-grad
+    `None`
+  </Function>
 
-### load\_params
+  ### minimize
 
-<span id="qiskit.algorithms.optimizers.ADAM.load_params" />
+  <Function id="qiskit.algorithms.optimizers.ADAM.minimize" name="minimize" signature="ADAM.minimize(fun, x0, jac=None, bounds=None, objective_function=None, initial_point=None, gradient_function=None)">
+    Minimize the scalar function.
 
-`ADAM.load_params(load_dir)`
+    **Parameters**
 
-Load iteration parameters for a file called `adam_params.csv`.
+    *   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
+    *   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
+    *   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
+    *   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+    *   **objective\_function** (`Optional`\[`Callable`\[\[`ndarray`], `float`]]) – DEPRECATED. A function handle to the objective function.
+    *   **initial\_point** (`Optional`\[`ndarray`]) – DEPRECATED. The initial iteration point.
+    *   **gradient\_function** (`Optional`\[`Callable`\[\[`ndarray`], `float`]]) – DEPRECATED. A function handle to the gradient of the objective function.
 
-**Parameters**
+    **Return type**
 
-**load\_dir** (`str`) – The directory containing `adam_params.csv`.
+    [`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
 
-**Return type**
+    **Returns**
 
-`None`
+    The result of the optimization, containing e.g. the result as attribute `x`.
+  </Function>
 
-### minimize
+  ### print\_options
 
-<span id="qiskit.algorithms.optimizers.ADAM.minimize" />
+  <Function id="qiskit.algorithms.optimizers.ADAM.print_options" name="print_options" signature="ADAM.print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-`ADAM.minimize(fun, x0, jac=None, bounds=None, objective_function=None, initial_point=None, gradient_function=None)`
+  ### save\_params
 
-Minimize the scalar function.
+  <Function id="qiskit.algorithms.optimizers.ADAM.save_params" name="save_params" signature="ADAM.save_params(snapshot_dir)">
+    Save the current iteration parameters to a file called `adam_params.csv`.
 
-**Parameters**
+    <Admonition title="Note" type="note">
+      The current parameters are appended to the file, if it exists already. The file is not overwritten.
+    </Admonition>
 
-*   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
-*   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
-*   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
-*   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
-*   **objective\_function** (`Optional`\[`Callable`\[\[`ndarray`], `float`]]) – DEPRECATED. A function handle to the objective function.
-*   **initial\_point** (`Optional`\[`ndarray`]) – DEPRECATED. The initial iteration point.
-*   **gradient\_function** (`Optional`\[`Callable`\[\[`ndarray`], `float`]]) – DEPRECATED. A function handle to the gradient of the objective function.
+    **Parameters**
 
-**Return type**
+    **snapshot\_dir** (`str`) – The directory to store the file in.
 
-[`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
+    **Return type**
 
-**Returns**
+    `None`
+  </Function>
 
-The result of the optimization, containing e.g. the result as attribute `x`.
+  ### set\_max\_evals\_grouped
 
-### print\_options
+  <Function id="qiskit.algorithms.optimizers.ADAM.set_max_evals_grouped" name="set_max_evals_grouped" signature="ADAM.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.ADAM.print_options" />
+  ### set\_options
 
-`ADAM.print_options()`
+  <Function id="qiskit.algorithms.optimizers.ADAM.set_options" name="set_options" signature="ADAM.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-Print algorithm-specific options.
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-### save\_params
+    **Parameters**
 
-<span id="qiskit.algorithms.optimizers.ADAM.save_params" />
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-`ADAM.save_params(snapshot_dir)`
+  ### wrap\_function
 
-Save the current iteration parameters to a file called `adam_params.csv`.
+  <Function id="qiskit.algorithms.optimizers.ADAM.wrap_function" name="wrap_function" signature="static ADAM.wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-<Admonition title="Note" type="note">
-  The current parameters are appended to the file, if it exists already. The file is not overwritten.
-</Admonition>
+    **Parameters**
 
-**Parameters**
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-**snapshot\_dir** (`str`) – The directory to store the file in.
+    **Returns**
 
-**Return type**
+    wrapper
 
-`None`
+    **Return type**
 
-### set\_max\_evals\_grouped
+    function\_wrapper
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.ADAM.set_max_evals_grouped" />
+  ## Attributes
 
-`ADAM.set_max_evals_grouped(limit)`
+  ### bounds\_support\_level
 
-Set max evals grouped
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-### set\_options
+  ### gradient\_support\_level
 
-<span id="qiskit.algorithms.optimizers.ADAM.set_options" />
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-`ADAM.set_options(**kwargs)`
+  ### initial\_point\_support\_level
 
-Sets or updates values in the options dictionary.
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
+  ### is\_bounds\_ignored
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-**kwargs** (*dict*) – options, given as name=value.
+  ### is\_bounds\_required
 
-### wrap\_function
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.ADAM.wrap_function" />
+  ### is\_bounds\_supported
 
-`static ADAM.wrap_function(function, args)`
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-Wrap the function to implicitly inject the args at the call of the function.
+  ### is\_gradient\_ignored
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
+  ### is\_gradient\_required
 
-**Returns**
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-wrapper
+  ### is\_gradient\_supported
 
-**Return type**
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-function\_wrapper
+  ### is\_initial\_point\_ignored
 
-## Attributes
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.ADAM.bounds_support_level" />
+  ### is\_initial\_point\_required
 
-### bounds\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-Returns bounds support level
+  ### is\_initial\_point\_supported
 
-<span id="qiskit.algorithms.optimizers.ADAM.gradient_support_level" />
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-### gradient\_support\_level
+  ### setting
 
-Returns gradient support level
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.setting" name="setting">
+    Return setting
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.ADAM.initial_point_support_level" />
+  ### settings
 
-### initial\_point\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.ADAM.settings" name="settings">
+    **Return type**
 
-Returns initial point support level
-
-<span id="qiskit.algorithms.optimizers.ADAM.is_bounds_ignored" />
-
-### is\_bounds\_ignored
-
-Returns is bounds ignored
-
-<span id="qiskit.algorithms.optimizers.ADAM.is_bounds_required" />
-
-### is\_bounds\_required
-
-Returns is bounds required
-
-<span id="qiskit.algorithms.optimizers.ADAM.is_bounds_supported" />
-
-### is\_bounds\_supported
-
-Returns is bounds supported
-
-<span id="qiskit.algorithms.optimizers.ADAM.is_gradient_ignored" />
-
-### is\_gradient\_ignored
-
-Returns is gradient ignored
-
-<span id="qiskit.algorithms.optimizers.ADAM.is_gradient_required" />
-
-### is\_gradient\_required
-
-Returns is gradient required
-
-<span id="qiskit.algorithms.optimizers.ADAM.is_gradient_supported" />
-
-### is\_gradient\_supported
-
-Returns is gradient supported
-
-<span id="qiskit.algorithms.optimizers.ADAM.is_initial_point_ignored" />
-
-### is\_initial\_point\_ignored
-
-Returns is initial point ignored
-
-<span id="qiskit.algorithms.optimizers.ADAM.is_initial_point_required" />
-
-### is\_initial\_point\_required
-
-Returns is initial point required
-
-<span id="qiskit.algorithms.optimizers.ADAM.is_initial_point_supported" />
-
-### is\_initial\_point\_supported
-
-Returns is initial point supported
-
-<span id="qiskit.algorithms.optimizers.ADAM.setting" />
-
-### setting
-
-Return setting
-
-<span id="qiskit.algorithms.optimizers.ADAM.settings" />
-
-### settings
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
+    `Dict`\[`str`, `Any`]
+  </Attribute>
+</Class>
 

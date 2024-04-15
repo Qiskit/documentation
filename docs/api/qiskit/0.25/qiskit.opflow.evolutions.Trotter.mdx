@@ -8,85 +8,75 @@ python_api_name: qiskit.opflow.evolutions.Trotter
 
 # qiskit.opflow\.evolutions.Trotter
 
-<span id="qiskit.opflow.evolutions.Trotter" />
+<Class id="qiskit.opflow.evolutions.Trotter" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/evolutions/trotterizations/trotter.py" signature="Trotter(reps=1)">
+  Simple Trotter expansion, composing the evolution circuits of each Operator in the sum together `reps` times and dividing the evolution time of each by `reps`.
 
-`Trotter(reps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/evolutions/trotterizations/trotter.py "view source code")
+  **Parameters**
 
-Simple Trotter expansion, composing the evolution circuits of each Operator in the sum together `reps` times and dividing the evolution time of each by `reps`.
+  **reps** (`int`) – The number of times to repeat the Trotterization circuit.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**reps** (`int`) – The number of times to repeat the Trotterization circuit.
+  <Function id="qiskit.opflow.evolutions.Trotter.__init__" name="__init__" signature="__init__(reps=1)">
+    **Parameters**
 
-### \_\_init\_\_
+    **reps** (`int`) – The number of times to repeat the Trotterization circuit.
+  </Function>
 
-<span id="qiskit.opflow.evolutions.Trotter.__init__" />
+  ## Methods
 
-`__init__(reps=1)`
+  |                                                                                                               |                                                                                                                 |
+  | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.opflow.evolutions.Trotter.__init__ "qiskit.opflow.evolutions.Trotter.__init__")(\[reps]) | **type reps**`int`                                                                                              |
+  | [`convert`](#qiskit.opflow.evolutions.Trotter.convert "qiskit.opflow.evolutions.Trotter.convert")(operator)   | Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`. |
 
-**Parameters**
+  ## Attributes
 
-**reps** (`int`) – The number of times to repeat the Trotterization circuit.
+  |                                                                                             |                                                                                               |
+  | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+  | [`order`](#qiskit.opflow.evolutions.Trotter.order "qiskit.opflow.evolutions.Trotter.order") | returns order                                                                                 |
+  | [`reps`](#qiskit.opflow.evolutions.Trotter.reps "qiskit.opflow.evolutions.Trotter.reps")    | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
 
-## Methods
+  ### convert
 
-|                                                                                                               |                                                                                                                 |
-| ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.opflow.evolutions.Trotter.__init__ "qiskit.opflow.evolutions.Trotter.__init__")(\[reps]) | **type reps**`int`                                                                                              |
-| [`convert`](#qiskit.opflow.evolutions.Trotter.convert "qiskit.opflow.evolutions.Trotter.convert")(operator)   | Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`. |
+  <Function id="qiskit.opflow.evolutions.Trotter.convert" name="convert" signature="convert(operator)">
+    Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 
-## Attributes
+    **Parameters**
 
-|                                                                                             |                                                                                               |
-| ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| [`order`](#qiskit.opflow.evolutions.Trotter.order "qiskit.opflow.evolutions.Trotter.order") | returns order                                                                                 |
-| [`reps`](#qiskit.opflow.evolutions.Trotter.reps "qiskit.opflow.evolutions.Trotter.reps")    | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
+    **operator** (`OperatorBase`) – The `SummedOp` to evolve.
 
-### convert
+    **Return type**
 
-<span id="qiskit.opflow.evolutions.Trotter.convert" />
+    `OperatorBase`
 
-`convert(operator)`
+    **Returns**
 
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
+    The Operator approximating op\_sum’s evolution.
 
-**Parameters**
+    **Raises**
 
-**operator** (`OperatorBase`) – The `SummedOp` to evolve.
+    **TypeError** – A non-SummedOps Operator is passed into `convert`.
+  </Function>
 
-**Return type**
+  ### order
 
-`OperatorBase`
+  <Function id="qiskit.opflow.evolutions.Trotter.order" name="order" signature="property order">
+    returns order
 
-**Returns**
+    **Return type**
 
-The Operator approximating op\_sum’s evolution.
+    `int`
+  </Function>
 
-**Raises**
+  ### reps
 
-**TypeError** – A non-SummedOps Operator is passed into `convert`.
+  <Function id="qiskit.opflow.evolutions.Trotter.reps" name="reps" signature="property reps">
+    The number of repetitions to use in the Trotterization, improving the approximation accuracy.
 
-### order
+    **Return type**
 
-<span id="qiskit.opflow.evolutions.Trotter.order" />
-
-`property order`
-
-returns order
-
-**Return type**
-
-`int`
-
-### reps
-
-<span id="qiskit.opflow.evolutions.Trotter.reps" />
-
-`property reps`
-
-The number of repetitions to use in the Trotterization, improving the approximation accuracy.
-
-**Return type**
-
-`int`
+    `int`
+  </Function>
+</Class>
 

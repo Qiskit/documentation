@@ -8,110 +8,104 @@ python_api_name: qiskit.assembler.RunConfig
 
 # RunConfig
 
-<span id="qiskit.assembler.RunConfig" />
+<Class id="qiskit.assembler.RunConfig" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/assembler/run_config.py" signature="RunConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)">
+  Bases: `types.SimpleNamespace`
 
-`RunConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/assembler/run_config.py "view source code")
+  Class for Run Configuration.
 
-Bases: `types.SimpleNamespace`
+  ### shots
 
-Class for Run Configuration.
+  <Attribute id="qiskit.assembler.RunConfig.shots" name="shots">
+    the number of shots
 
-<span id="qiskit.assembler.RunConfig.shots" />
+    **Type**
 
-### shots
+    int
+  </Attribute>
 
-the number of shots
+  ### max\_credits
 
-**Type**
+  <Attribute id="qiskit.assembler.RunConfig.max_credits" name="max_credits">
+    the max\_credits to use on the IBM Q public devices
 
-int
+    **Type**
 
-<span id="qiskit.assembler.RunConfig.max_credits" />
+    int
+  </Attribute>
 
-### max\_credits
+  ### seed\_simulator
 
-the max\_credits to use on the IBM Q public devices
+  <Attribute id="qiskit.assembler.RunConfig.seed_simulator" name="seed_simulator">
+    the seed to use in the simulator
 
-**Type**
+    **Type**
 
-int
+    int
+  </Attribute>
 
-<span id="qiskit.assembler.RunConfig.seed_simulator" />
+  ### memory
 
-### seed\_simulator
+  <Attribute id="qiskit.assembler.RunConfig.memory" name="memory">
+    whether to request memory from backend (per-shot readouts)
 
-the seed to use in the simulator
+    **Type**
 
-**Type**
+    bool
+  </Attribute>
 
-int
+  ### parameter\_binds
 
-<span id="qiskit.assembler.RunConfig.memory" />
+  <Attribute id="qiskit.assembler.RunConfig.parameter_binds" name="parameter_binds">
+    List of parameter bindings
 
-### memory
+    **Type**
 
-whether to request memory from backend (per-shot readouts)
+    list\[dict]
+  </Attribute>
 
-**Type**
+  Initialize a RunConfig object
 
-bool
+  **Parameters**
 
-<span id="qiskit.assembler.RunConfig.parameter_binds" />
+  *   **shots** (*int*) – the number of shots
+  *   **max\_credits** (*int*) – the max\_credits to use on the IBM Q public devices
+  *   **seed\_simulator** (*int*) – the seed to use in the simulator
+  *   **memory** (*bool*) – whether to request memory from backend (per-shot readouts)
+  *   **parameter\_binds** (*list\[dict]*) – List of parameter bindings
+  *   **\*\*kwargs** – optional fields
 
-### parameter\_binds
+  ## Methods
 
-List of parameter bindings
+  ### from\_dict
 
-**Type**
+  <Function id="qiskit.assembler.RunConfig.from_dict" name="from_dict" signature="classmethod RunConfig.from_dict(data)">
+    Create a new RunConfig object from a dictionary.
 
-list\[dict]
+    **Parameters**
 
-Initialize a RunConfig object
+    **data** (*dict*) – A dictionary representing the RunConfig to create. It will be in the same format as output by [`to_dict()`](qiskit.assembler.RunConfig#to_dict "qiskit.assembler.RunConfig.to_dict").
 
-**Parameters**
+    **Returns**
 
-*   **shots** (*int*) – the number of shots
-*   **max\_credits** (*int*) – the max\_credits to use on the IBM Q public devices
-*   **seed\_simulator** (*int*) – the seed to use in the simulator
-*   **memory** (*bool*) – whether to request memory from backend (per-shot readouts)
-*   **parameter\_binds** (*list\[dict]*) – List of parameter bindings
-*   **\*\*kwargs** – optional fields
+    The RunConfig from the input dictionary.
 
-## Methods
+    **Return type**
 
-### from\_dict
+    [RunConfig](qiskit.assembler.RunConfig "qiskit.assembler.RunConfig")
+  </Function>
 
-<span id="qiskit.assembler.RunConfig.from_dict" />
+  ### to\_dict
 
-`classmethod RunConfig.from_dict(data)`
+  <Function id="qiskit.assembler.RunConfig.to_dict" name="to_dict" signature="RunConfig.to_dict()">
+    Return a dictionary format representation of the RunConfig
 
-Create a new RunConfig object from a dictionary.
+    **Returns**
 
-**Parameters**
+    The dictionary form of the RunConfig.
 
-**data** (*dict*) – A dictionary representing the RunConfig to create. It will be in the same format as output by [`to_dict()`](qiskit.assembler.RunConfig#to_dict "qiskit.assembler.RunConfig.to_dict").
+    **Return type**
 
-**Returns**
-
-The RunConfig from the input dictionary.
-
-**Return type**
-
-[RunConfig](qiskit.assembler.RunConfig "qiskit.assembler.RunConfig")
-
-### to\_dict
-
-<span id="qiskit.assembler.RunConfig.to_dict" />
-
-`RunConfig.to_dict()`
-
-Return a dictionary format representation of the RunConfig
-
-**Returns**
-
-The dictionary form of the RunConfig.
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 

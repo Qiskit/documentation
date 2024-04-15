@@ -10,129 +10,115 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase
 
 # qiskit.chemistry.algorithms.pes\_samplers.EnergySurfaceBase
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase" />
+<Class id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py" signature="EnergySurfaceBase">
+  Class to hold a potential energy surface
 
-`EnergySurfaceBase` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+  ### \_\_init\_\_
 
-Class to hold a potential energy surface
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.__init__" />
+  |                                                                                                                                                                                                                      |                                                                              |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.__init__ "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.__init__")()                                                           | Initialize self.                                                             |
+  | [`eval`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.eval "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.eval")(x)                                                                      | After fitting the data to the fit function, predict the energy at a point x. |
+  | [`fit`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.fit "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.fit")(xdata, ydata\[, initial\_vals, bounds\_list])                              | Fits surface to data                                                         |
+  | [`get_equilibrium_geometry`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_equilibrium_geometry "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_equilibrium_geometry")(\[scaling]) | Get the equilibrium energy.                                                  |
+  | [`get_minimal_energy`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_minimal_energy "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_minimal_energy")(\[scaling])                   | Get the minimal energy.                                                      |
+  | [`get_trust_region`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_trust_region "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_trust_region")()                                   | Get the trust region.                                                        |
 
-`__init__()`
+  ### eval
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.eval" name="eval" signature="abstract eval(x)">
+    After fitting the data to the fit function, predict the energy at a point x.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                                                                                                      |                                                                              |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.__init__ "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.__init__")()                                                           | Initialize self.                                                             |
-| [`eval`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.eval "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.eval")(x)                                                                      | After fitting the data to the fit function, predict the energy at a point x. |
-| [`fit`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.fit "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.fit")(xdata, ydata\[, initial\_vals, bounds\_list])                              | Fits surface to data                                                         |
-| [`get_equilibrium_geometry`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_equilibrium_geometry "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_equilibrium_geometry")(\[scaling]) | Get the equilibrium energy.                                                  |
-| [`get_minimal_energy`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_minimal_energy "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_minimal_energy")(\[scaling])                   | Get the minimal energy.                                                      |
-| [`get_trust_region`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_trust_region "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_trust_region")()                                   | Get the trust region.                                                        |
+    **x** (`float`) – value to evaluate surface in
 
-### eval
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.eval" />
+    `float`
 
-`abstract eval(x)`
+    **Returns**
 
-After fitting the data to the fit function, predict the energy at a point x.
+    value of surface in point x
+  </Function>
 
-**Parameters**
+  ### fit
 
-**x** (`float`) – value to evaluate surface in
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.fit" name="fit" signature="abstract fit(xdata, ydata, initial_vals=None, bounds_list=None)">
+    Fits surface to data
 
-**Return type**
+    **Parameters**
 
-`float`
+    *   **xdata** (`List`\[`float`]) – x data to be fitted
+    *   **ydata** (`List`\[`float`]) – y data to be fitted
+    *   **initial\_vals** (`Optional`\[`List`\[`float`]]) – Initial values for fit parameters. None for default. Order of parameters is d\_e, alpha, r\_0 and m\_shift (see fit\_function implementation)
+    *   **bounds\_list** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – Bounds for the fit parameters. None for default. Order of parameters is d\_e, alpha, r\_0 and m\_shift (see fit\_function implementation)
 
-**Returns**
+    **Return type**
 
-value of surface in point x
+    `None`
+  </Function>
 
-### fit
+  ### get\_equilibrium\_geometry
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.fit" />
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_equilibrium_geometry" name="get_equilibrium_geometry" signature="abstract get_equilibrium_geometry(scaling=1.0)">
+    Get the equilibrium energy.
 
-`abstract fit(xdata, ydata, initial_vals=None, bounds_list=None)`
+    Returns the geometry for the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are Angstroms. Scale by 1E-10 to get meters.
 
-Fits surface to data
+    **Parameters**
 
-**Parameters**
+    **scaling** (`float`) – scaling factor
 
-*   **xdata** (`List`\[`float`]) – x data to be fitted
-*   **ydata** (`List`\[`float`]) – y data to be fitted
-*   **initial\_vals** (`Optional`\[`List`\[`float`]]) – Initial values for fit parameters. None for default. Order of parameters is d\_e, alpha, r\_0 and m\_shift (see fit\_function implementation)
-*   **bounds\_list** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – Bounds for the fit parameters. None for default. Order of parameters is d\_e, alpha, r\_0 and m\_shift (see fit\_function implementation)
+    **Return type**
 
-**Return type**
+    `float`
 
-`None`
+    **Returns**
 
-### get\_equilibrium\_geometry
+    equilibrium geometry
+  </Function>
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_equilibrium_geometry" />
+  ### get\_minimal\_energy
 
-`abstract get_equilibrium_geometry(scaling=1.0)`
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_minimal_energy" name="get_minimal_energy" signature="abstract get_minimal_energy(scaling=1.0)">
+    Get the minimal energy.
 
-Get the equilibrium energy.
+    Returns the value of the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are J/mol. Scale appropriately for Hartrees.
 
-Returns the geometry for the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are Angstroms. Scale by 1E-10 to get meters.
+    **Parameters**
 
-**Parameters**
+    **scaling** (`float`) – scaling factor
 
-**scaling** (`float`) – scaling factor
+    **Return type**
 
-**Return type**
+    `float`
 
-`float`
+    **Returns**
 
-**Returns**
+    minimum energy
+  </Function>
 
-equilibrium geometry
+  ### get\_trust\_region
 
-### get\_minimal\_energy
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_trust_region" name="get_trust_region" signature="abstract get_trust_region()">
+    Get the trust region.
 
-<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_minimal_energy" />
+    Returns the bounds of the region (in space) where the energy surface implementation can be trusted. When doing spline interpolation, for example, that would be the region where data is interpolated (vs. extrapolated) from the arguments of fit().
 
-`abstract get_minimal_energy(scaling=1.0)`
+    **Return type**
 
-Get the minimal energy.
+    `Tuple`\[`float`, `float`]
 
-Returns the value of the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are J/mol. Scale appropriately for Hartrees.
+    **Returns**
 
-**Parameters**
-
-**scaling** (`float`) – scaling factor
-
-**Return type**
-
-`float`
-
-**Returns**
-
-minimum energy
-
-### get\_trust\_region
-
-<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_trust_region" />
-
-`abstract get_trust_region()`
-
-Get the trust region.
-
-Returns the bounds of the region (in space) where the energy surface implementation can be trusted. When doing spline interpolation, for example, that would be the region where data is interpolated (vs. extrapolated) from the arguments of fit().
-
-**Return type**
-
-`Tuple`\[`float`, `float`]
-
-**Returns**
-
-the trust region between bounds
+    the trust region between bounds
+  </Function>
+</Class>
 

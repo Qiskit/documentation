@@ -8,201 +8,193 @@ python_api_name: qiskit.circuit.library.FunctionalPauliRotations
 
 # FunctionalPauliRotations
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations" />
+<Class id="qiskit.circuit.library.FunctionalPauliRotations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/functional_pauli_rotations.py#L22-L114" signature="qiskit.circuit.library.FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')">
+  Bases: `BlueprintCircuit`, [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-`qiskit.circuit.library.FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/functional_pauli_rotations.py "view source code")
+  Base class for functional Pauli rotations.
 
-Bases: `BlueprintCircuit`, [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  Create a new functional Pauli rotation circuit.
 
-Base class for functional Pauli rotations.
+  **Parameters**
 
-Create a new functional Pauli rotation circuit.
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits representing the state $|x\rangle$.
+  *   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The kind of Pauli rotation to use. Must be ‘X’, ‘Y’ or ‘Z’.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
 
-**Parameters**
+  ## Attributes
 
-*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits representing the state $|x\rangle$.
-*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The kind of Pauli rotation to use. Must be ‘X’, ‘Y’ or ‘Z’.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
+  ### ancillas
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.ancillas" />
+  ### basis
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.basis" name="basis">
+    The kind of Pauli rotation to be used.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotations respectively.
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.basis" />
+    **Returns**
 
-### basis
+    The kind of Pauli rotation used in controlled rotation.
+  </Attribute>
 
-The kind of Pauli rotation to be used.
+  ### calibrations
 
-Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotations respectively.
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-**Returns**
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
 
-The kind of Pauli rotation used in controlled rotation.
+  ### clbits
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.calibrations" />
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-### calibrations
+  ### data
 
-Return calibration dictionary.
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.data" name="data" />
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  ### global\_phase
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.clbits" />
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.global_phase" name="global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
 
-### clbits
+  ### instances
 
-Returns a list of classical bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.instances" name="instances" attributeValue="= 168" />
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.data" />
+  ### layout
 
-### data
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.layout" name="layout">
+    Return any associated layout information about the circuit
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.global_phase" />
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
-### global\_phase
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
 
-Return the global phase of the current circuit scope in radians.
+  ### metadata
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.instances" />
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.metadata" name="metadata">
+    The user provided metadata associated with the circuit.
 
-### instances
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-`= 168`
+  ### num\_ancilla\_qubits
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.layout" />
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.num_ancilla_qubits" name="num_ancilla_qubits">
+    The minimum number of ancilla qubits in the circuit.
 
-### layout
+    **Returns**
 
-Return any associated layout information about the circuit
+    The minimal number of ancillas required.
+  </Attribute>
 
-This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+  ### num\_ancillas
 
-There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.metadata" />
+  ### num\_captured\_vars
 
-### metadata
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.num_captured_vars" name="num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
 
-The user provided metadata associated with the circuit.
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.FunctionalPauliRotations.num_input_vars "qiskit.circuit.library.FunctionalPauliRotations.num_input_vars") must be zero.
+  </Attribute>
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.num_ancilla_qubits" />
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-### num\_ancilla\_qubits
+  ### num\_declared\_vars
 
-The minimum number of ancilla qubits in the circuit.
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.num_declared_vars" name="num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
-**Returns**
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
 
-The minimal number of ancillas required.
+  ### num\_input\_vars
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.num_ancillas" />
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.num_input_vars" name="num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
 
-### num\_ancillas
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.FunctionalPauliRotations.num_captured_vars "qiskit.circuit.library.FunctionalPauliRotations.num_captured_vars") must be zero.
+  </Attribute>
 
-Return the number of ancilla qubits.
+  ### num\_parameters
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.num_captured_vars" />
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.num_parameters" name="num_parameters" />
 
-### num\_captured\_vars
+  ### num\_qubits
 
-The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.FunctionalPauliRotations.num_input_vars "qiskit.circuit.library.FunctionalPauliRotations.num_input_vars") must be zero.
+  ### num\_state\_qubits
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.num_clbits" />
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.num_state_qubits" name="num_state_qubits">
+    The number of state qubits representing the state $|x\rangle$.
 
-### num\_clbits
+    **Returns**
 
-Return number of classical bits.
+    The number of state qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.num_declared_vars" />
+  ### num\_vars
 
-### num\_declared\_vars
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.num_vars" name="num_vars">
+    The number of real-time classical variables in the circuit.
 
-The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+    This is the length of the `iter_vars()` iterable.
+  </Attribute>
 
-This is the length of the `iter_declared_vars()` iterable.
+  ### op\_start\_times
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.num_input_vars" />
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-### num\_input\_vars
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-The number of runtime classical variables in the circuit marked as circuit inputs.
+    **Returns**
 
-This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.FunctionalPauliRotations.num_captured_vars "qiskit.circuit.library.FunctionalPauliRotations.num_captured_vars") must be zero.
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.num_parameters" />
+    **Raises**
 
-### num\_parameters
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.num_qubits" />
+  ### parameters
 
-### num\_qubits
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.parameters" name="parameters" />
 
-Return number of qubits.
+  ### prefix
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.num_state_qubits" />
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-### num\_state\_qubits
+  ### qregs
 
-The number of state qubits representing the state $|x\rangle$.
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.qregs" name="qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-**Returns**
+  ### qubits
 
-The number of state qubits.
-
-<span id="qiskit.circuit.library.FunctionalPauliRotations.num_vars" />
-
-### num\_vars
-
-The number of runtime classical variables in the circuit.
-
-This is the length of the `iter_vars()` iterable.
-
-<span id="qiskit.circuit.library.FunctionalPauliRotations.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
-
-<span id="qiskit.circuit.library.FunctionalPauliRotations.parameters" />
-
-### parameters
-
-<span id="qiskit.circuit.library.FunctionalPauliRotations.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.FunctionalPauliRotations.qregs" />
-
-### qregs
-
-`list[QuantumRegister]`
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.FunctionalPauliRotations.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.FunctionalPauliRotations.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+</Class>
 

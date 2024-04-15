@@ -10,97 +10,87 @@ python_api_name: qiskit.providers.ibmq.job.QueueInfo
 
 # qiskit.providers.ibmq.job.QueueInfo
 
-<span id="qiskit.providers.ibmq.job.QueueInfo" />
+<Class id="qiskit.providers.ibmq.job.QueueInfo" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/job/queueinfo.py" signature="QueueInfo(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)">
+  Queue information for a job.
 
-`QueueInfo(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/job/queueinfo.py "view source code")
+  QueueInfo constructor.
 
-Queue information for a job.
+  **Parameters**
 
-QueueInfo constructor.
+  *   **position** (`Optional`\[`int`]) – Position in the queue.
+  *   **status** (`Optional`\[`str`]) – Job status.
+  *   **estimated\_start\_time** (`Union`\[`str`, `datetime`, `None`]) – Estimated start time for the job, in UTC.
+  *   **estimated\_complete\_time** (`Union`\[`str`, `datetime`, `None`]) – Estimated complete time for the job, in UTC.
+  *   **hub\_priority** (`Optional`\[`float`]) – Dynamic priority for the hub.
+  *   **group\_priority** (`Optional`\[`float`]) – Dynamic priority for the group.
+  *   **project\_priority** (`Optional`\[`float`]) – Dynamic priority for the project.
+  *   **job\_id** (`Optional`\[`str`]) – Job ID.
+  *   **kwargs** (`Any`) – Additional attributes.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **position** (`Optional`\[`int`]) – Position in the queue.
-*   **status** (`Optional`\[`str`]) – Job status.
-*   **estimated\_start\_time** (`Union`\[`str`, `datetime`, `None`]) – Estimated start time for the job, in UTC.
-*   **estimated\_complete\_time** (`Union`\[`str`, `datetime`, `None`]) – Estimated complete time for the job, in UTC.
-*   **hub\_priority** (`Optional`\[`float`]) – Dynamic priority for the hub.
-*   **group\_priority** (`Optional`\[`float`]) – Dynamic priority for the group.
-*   **project\_priority** (`Optional`\[`float`]) – Dynamic priority for the project.
-*   **job\_id** (`Optional`\[`str`]) – Job ID.
-*   **kwargs** (`Any`) – Additional attributes.
+  <Function id="qiskit.providers.ibmq.job.QueueInfo.__init__" name="__init__" signature="__init__(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)">
+    QueueInfo constructor.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.job.QueueInfo.__init__" />
+    *   **position** (`Optional`\[`int`]) – Position in the queue.
+    *   **status** (`Optional`\[`str`]) – Job status.
+    *   **estimated\_start\_time** (`Union`\[`str`, `datetime`, `None`]) – Estimated start time for the job, in UTC.
+    *   **estimated\_complete\_time** (`Union`\[`str`, `datetime`, `None`]) – Estimated complete time for the job, in UTC.
+    *   **hub\_priority** (`Optional`\[`float`]) – Dynamic priority for the hub.
+    *   **group\_priority** (`Optional`\[`float`]) – Dynamic priority for the group.
+    *   **project\_priority** (`Optional`\[`float`]) – Dynamic priority for the project.
+    *   **job\_id** (`Optional`\[`str`]) – Job ID.
+    *   **kwargs** (`Any`) – Additional attributes.
+  </Function>
 
-`__init__(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)`
+  ## Methods
 
-QueueInfo constructor.
+  |                                                                                                                                    |                                                             |
+  | ---------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+  | [`__init__`](#qiskit.providers.ibmq.job.QueueInfo.__init__ "qiskit.providers.ibmq.job.QueueInfo.__init__")(\[position, status, …]) | QueueInfo constructor.                                      |
+  | [`format`](#qiskit.providers.ibmq.job.QueueInfo.format "qiskit.providers.ibmq.job.QueueInfo.format")()                             | Build a user-friendly report for the job queue information. |
 
-**Parameters**
+  ## Attributes
 
-*   **position** (`Optional`\[`int`]) – Position in the queue.
-*   **status** (`Optional`\[`str`]) – Job status.
-*   **estimated\_start\_time** (`Union`\[`str`, `datetime`, `None`]) – Estimated start time for the job, in UTC.
-*   **estimated\_complete\_time** (`Union`\[`str`, `datetime`, `None`]) – Estimated complete time for the job, in UTC.
-*   **hub\_priority** (`Optional`\[`float`]) – Dynamic priority for the hub.
-*   **group\_priority** (`Optional`\[`float`]) – Dynamic priority for the group.
-*   **project\_priority** (`Optional`\[`float`]) – Dynamic priority for the project.
-*   **job\_id** (`Optional`\[`str`]) – Job ID.
-*   **kwargs** (`Any`) – Additional attributes.
+  |                                                                                                                                                         |                                               |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+  | [`estimated_complete_time`](#qiskit.providers.ibmq.job.QueueInfo.estimated_complete_time "qiskit.providers.ibmq.job.QueueInfo.estimated_complete_time") | Return estimated complete time in local time. |
+  | [`estimated_start_time`](#qiskit.providers.ibmq.job.QueueInfo.estimated_start_time "qiskit.providers.ibmq.job.QueueInfo.estimated_start_time")          | Return estimated start time in local time.    |
 
-## Methods
+  ### estimated\_complete\_time
 
-|                                                                                                                                    |                                                             |
-| ---------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| [`__init__`](#qiskit.providers.ibmq.job.QueueInfo.__init__ "qiskit.providers.ibmq.job.QueueInfo.__init__")(\[position, status, …]) | QueueInfo constructor.                                      |
-| [`format`](#qiskit.providers.ibmq.job.QueueInfo.format "qiskit.providers.ibmq.job.QueueInfo.format")()                             | Build a user-friendly report for the job queue information. |
+  <Function id="qiskit.providers.ibmq.job.QueueInfo.estimated_complete_time" name="estimated_complete_time" signature="property estimated_complete_time">
+    Return estimated complete time in local time.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                                         |                                               |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [`estimated_complete_time`](#qiskit.providers.ibmq.job.QueueInfo.estimated_complete_time "qiskit.providers.ibmq.job.QueueInfo.estimated_complete_time") | Return estimated complete time in local time. |
-| [`estimated_start_time`](#qiskit.providers.ibmq.job.QueueInfo.estimated_start_time "qiskit.providers.ibmq.job.QueueInfo.estimated_start_time")          | Return estimated start time in local time.    |
+    `Optional`\[`datetime`]
+  </Function>
 
-### estimated\_complete\_time
+  ### estimated\_start\_time
 
-<span id="qiskit.providers.ibmq.job.QueueInfo.estimated_complete_time" />
+  <Function id="qiskit.providers.ibmq.job.QueueInfo.estimated_start_time" name="estimated_start_time" signature="property estimated_start_time">
+    Return estimated start time in local time.
 
-`property estimated_complete_time`
+    **Return type**
 
-Return estimated complete time in local time.
+    `Optional`\[`datetime`]
+  </Function>
 
-**Return type**
+  ### format
 
-`Optional`\[`datetime`]
+  <Function id="qiskit.providers.ibmq.job.QueueInfo.format" name="format" signature="format()">
+    Build a user-friendly report for the job queue information.
 
-### estimated\_start\_time
+    **Return type**
 
-<span id="qiskit.providers.ibmq.job.QueueInfo.estimated_start_time" />
+    `str`
 
-`property estimated_start_time`
+    **Returns**
 
-Return estimated start time in local time.
-
-**Return type**
-
-`Optional`\[`datetime`]
-
-### format
-
-<span id="qiskit.providers.ibmq.job.QueueInfo.format" />
-
-`format()`
-
-Build a user-friendly report for the job queue information.
-
-**Return type**
-
-`str`
-
-**Returns**
-
-The job queue information report.
+    The job queue information report.
+  </Function>
+</Class>
 

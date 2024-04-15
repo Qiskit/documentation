@@ -8,371 +8,345 @@ python_api_name: qiskit.providers.ibmq.runtime.IBMRuntimeService
 
 # qiskit.providers.ibmq.runtime.IBMRuntimeService
 
-<span id="qiskit.providers.ibmq.runtime.IBMRuntimeService" />
+<Class id="qiskit.providers.ibmq.runtime.IBMRuntimeService" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runtime/ibm_runtime_service.py" signature="IBMRuntimeService(provider)">
+  Class for interacting with the Qiskit Runtime service.
 
-`IBMRuntimeService(provider)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+  Qiskit Runtime is a new architecture offered by IBM Quantum that streamlines computations requiring many iterations. These experiments will execute significantly faster within its improved hybrid quantum/classical process.
 
-Class for interacting with the Qiskit Runtime service.
+  The Qiskit Runtime Service allows authorized users to upload their Qiskit quantum programs. A Qiskit quantum program, also called a runtime program, is a piece of Python code and its metadata that takes certain inputs, performs quantum and maybe classical processing, and returns the results. The same or other authorized users can invoke these quantum programs by simply passing in parameters.
 
-Qiskit Runtime is a new architecture offered by IBM Quantum that streamlines computations requiring many iterations. These experiments will execute significantly faster within its improved hybrid quantum/classical process.
+  A sample workflow of using the runtime service:
 
-The Qiskit Runtime Service allows authorized users to upload their Qiskit quantum programs. A Qiskit quantum program, also called a runtime program, is a piece of Python code and its metadata that takes certain inputs, performs quantum and maybe classical processing, and returns the results. The same or other authorized users can invoke these quantum programs by simply passing in parameters.
+  ```python
+  from qiskit import IBMQ, QuantumCircuit
+  from qiskit.providers.ibmq import RunnerResult
 
-A sample workflow of using the runtime service:
+  provider = IBMQ.load_account()
+  backend = provider.backend.ibmq_qasm_simulator
 
-```python
-from qiskit import IBMQ, QuantumCircuit
-from qiskit.providers.ibmq import RunnerResult
+  # List all available programs.
+  provider.runtime.pprint_programs()
 
-provider = IBMQ.load_account()
-backend = provider.backend.ibmq_qasm_simulator
+  # Create a circuit.
+  qc = QuantumCircuit(2, 2)
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.measure_all()
 
-# List all available programs.
-provider.runtime.pprint_programs()
+  # Set the "circuit-runner" program parameters
+  params = provider.runtime.program(program_id="circuit-runner").parameters()
+  params.circuits = qc
+  params.measurement_error_mitigation = True
 
-# Create a circuit.
-qc = QuantumCircuit(2, 2)
-qc.h(0)
-qc.cx(0, 1)
-qc.measure_all()
+  # Configure backend options
+  options = {'backend_name': backend.name()}
 
-# Set the "circuit-runner" program parameters
-params = provider.runtime.program(program_id="circuit-runner").parameters()
-params.circuits = qc
-params.measurement_error_mitigation = True
+  # Execute the circuit using the "circuit-runner" program.
+  job = provider.runtime.run(program_id="circuit-runner",
+                             options=options,
+                             inputs=params)
 
-# Configure backend options
-options = {'backend_name': backend.name()}
+  # Get runtime job result.
+  result = job.result(decoder=RunnerResult)
+  ```
 
-# Execute the circuit using the "circuit-runner" program.
-job = provider.runtime.run(program_id="circuit-runner",
-                           options=options,
-                           inputs=params)
+  If the program has any interim results, you can use the `callback` parameter of the [`run()`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run") method to stream the interim results. Alternatively, you can use the [`RuntimeJob.stream_results()`](qiskit.providers.ibmq.runtime.RuntimeJob#stream_results "qiskit.providers.ibmq.runtime.RuntimeJob.stream_results") method to stream the results at a later time, but before the job finishes.
 
-# Get runtime job result.
-result = job.result(decoder=RunnerResult)
-```
+  The [`run()`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run") method returns a [`RuntimeJob`](qiskit.providers.ibmq.runtime.RuntimeJob "qiskit.providers.ibmq.runtime.RuntimeJob") object. You can use its methods to perform tasks like checking job status, getting job result, and canceling job.
 
-If the program has any interim results, you can use the `callback` parameter of the [`run()`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run") method to stream the interim results. Alternatively, you can use the [`RuntimeJob.stream_results()`](qiskit.providers.ibmq.runtime.RuntimeJob#stream_results "qiskit.providers.ibmq.runtime.RuntimeJob.stream_results") method to stream the results at a later time, but before the job finishes.
+  IBMRuntimeService constructor.
 
-The [`run()`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run") method returns a [`RuntimeJob`](qiskit.providers.ibmq.runtime.RuntimeJob "qiskit.providers.ibmq.runtime.RuntimeJob") object. You can use its methods to perform tasks like checking job status, getting job result, and canceling job.
+  **Parameters**
 
-IBMRuntimeService constructor.
+  **provider** (`AccountProvider`) – IBM Quantum account provider.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**provider** (`AccountProvider`) – IBM Quantum account provider.
+  <Function id="qiskit.providers.ibmq.runtime.IBMRuntimeService.__init__" name="__init__" signature="__init__(provider)">
+    IBMRuntimeService constructor.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.__init__" />
+    **provider** (`AccountProvider`) – IBM Quantum account provider.
+  </Function>
 
-`__init__(provider)`
+  ## Methods
 
-IBMRuntimeService constructor.
+  |                                                                                                                                                                                                   |                                                            |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+  | [`__init__`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.__init__ "qiskit.providers.ibmq.runtime.IBMRuntimeService.__init__")(provider)                                                      | IBMRuntimeService constructor.                             |
+  | [`delete_job`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_job "qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_job")(job\_id)                                                 | Delete a runtime job.                                      |
+  | [`delete_program`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_program "qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_program")(program\_id)                                 | Delete a runtime program.                                  |
+  | [`job`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.job "qiskit.providers.ibmq.runtime.IBMRuntimeService.job")(job\_id)                                                                      | Retrieve a runtime job.                                    |
+  | [`jobs`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.jobs "qiskit.providers.ibmq.runtime.IBMRuntimeService.jobs")(\[limit, skip, pending])                                                   | Retrieve all runtime jobs, subject to optional filtering.  |
+  | [`logout`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.logout "qiskit.providers.ibmq.runtime.IBMRuntimeService.logout")()                                                                    | Clears authorization cache on the server.                  |
+  | [`pprint_programs`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.pprint_programs "qiskit.providers.ibmq.runtime.IBMRuntimeService.pprint_programs")(\[refresh])                               | Pretty print information about available runtime programs. |
+  | [`program`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.program "qiskit.providers.ibmq.runtime.IBMRuntimeService.program")(program\_id\[, refresh])                                          | Retrieve a runtime program.                                |
+  | [`programs`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.programs "qiskit.providers.ibmq.runtime.IBMRuntimeService.programs")(\[refresh])                                                    | Return available runtime programs.                         |
+  | [`run`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run")(program\_id, options, inputs\[, callback, …])                                 | Execute the runtime program.                               |
+  | [`set_program_visibility`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.set_program_visibility "qiskit.providers.ibmq.runtime.IBMRuntimeService.set_program_visibility")(program\_id, public) | Sets a program’s visibility.                               |
+  | [`upload_program`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.upload_program "qiskit.providers.ibmq.runtime.IBMRuntimeService.upload_program")(data\[, metadata, name, …])                  | Upload a runtime program.                                  |
 
-**Parameters**
+  ### delete\_job
 
-**provider** (`AccountProvider`) – IBM Quantum account provider.
+  <Function id="qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_job" name="delete_job" signature="delete_job(job_id)">
+    Delete a runtime job.
 
-## Methods
+    Note that this operation cannot be reversed.
 
-|                                                                                                                                                                                                   |                                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`__init__`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.__init__ "qiskit.providers.ibmq.runtime.IBMRuntimeService.__init__")(provider)                                                      | IBMRuntimeService constructor.                             |
-| [`delete_job`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_job "qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_job")(job\_id)                                                 | Delete a runtime job.                                      |
-| [`delete_program`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_program "qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_program")(program\_id)                                 | Delete a runtime program.                                  |
-| [`job`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.job "qiskit.providers.ibmq.runtime.IBMRuntimeService.job")(job\_id)                                                                      | Retrieve a runtime job.                                    |
-| [`jobs`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.jobs "qiskit.providers.ibmq.runtime.IBMRuntimeService.jobs")(\[limit, skip, pending])                                                   | Retrieve all runtime jobs, subject to optional filtering.  |
-| [`logout`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.logout "qiskit.providers.ibmq.runtime.IBMRuntimeService.logout")()                                                                    | Clears authorization cache on the server.                  |
-| [`pprint_programs`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.pprint_programs "qiskit.providers.ibmq.runtime.IBMRuntimeService.pprint_programs")(\[refresh])                               | Pretty print information about available runtime programs. |
-| [`program`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.program "qiskit.providers.ibmq.runtime.IBMRuntimeService.program")(program\_id\[, refresh])                                          | Retrieve a runtime program.                                |
-| [`programs`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.programs "qiskit.providers.ibmq.runtime.IBMRuntimeService.programs")(\[refresh])                                                    | Return available runtime programs.                         |
-| [`run`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run")(program\_id, options, inputs\[, callback, …])                                 | Execute the runtime program.                               |
-| [`set_program_visibility`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.set_program_visibility "qiskit.providers.ibmq.runtime.IBMRuntimeService.set_program_visibility")(program\_id, public) | Sets a program’s visibility.                               |
-| [`upload_program`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.upload_program "qiskit.providers.ibmq.runtime.IBMRuntimeService.upload_program")(data\[, metadata, name, …])                  | Upload a runtime program.                                  |
+    **Parameters**
 
-### delete\_job
+    **job\_id** (`str`) – ID of the job to delete.
 
-<span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_job" />
+    **Raises**
 
-`delete_job(job_id)`
+    *   **RuntimeJobNotFound** – If the job doesn’t exist.
+    *   **QiskitRuntimeError** – If the request failed.
 
-Delete a runtime job.
+    **Return type**
 
-Note that this operation cannot be reversed.
+    `None`
+  </Function>
 
-**Parameters**
+  ### delete\_program
 
-**job\_id** (`str`) – ID of the job to delete.
+  <Function id="qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_program" name="delete_program" signature="delete_program(program_id)">
+    Delete a runtime program.
 
-**Raises**
+    **Parameters**
 
-*   **RuntimeJobNotFound** – If the job doesn’t exist.
-*   **QiskitRuntimeError** – If the request failed.
+    **program\_id** (`str`) – Program ID.
 
-**Return type**
+    **Raises**
 
-`None`
+    *   **RuntimeProgramNotFound** – If the program doesn’t exist.
+    *   **QiskitRuntimeError** – If the request failed.
 
-### delete\_program
+    **Return type**
 
-<span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_program" />
+    `None`
+  </Function>
 
-`delete_program(program_id)`
+  ### job
 
-Delete a runtime program.
+  <Function id="qiskit.providers.ibmq.runtime.IBMRuntimeService.job" name="job" signature="job(job_id)">
+    Retrieve a runtime job.
 
-**Parameters**
+    **Parameters**
 
-**program\_id** (`str`) – Program ID.
+    **job\_id** (`str`) – Job ID.
 
-**Raises**
+    **Return type**
 
-*   **RuntimeProgramNotFound** – If the program doesn’t exist.
-*   **QiskitRuntimeError** – If the request failed.
+    `RuntimeJob`
 
-**Return type**
+    **Returns**
 
-`None`
+    Runtime job retrieved.
 
-### job
+    **Raises**
 
-<span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.job" />
+    *   **RuntimeJobNotFound** – If the job doesn’t exist.
+    *   **QiskitRuntimeError** – If the request failed.
+  </Function>
 
-`job(job_id)`
+  ### jobs
 
-Retrieve a runtime job.
+  <Function id="qiskit.providers.ibmq.runtime.IBMRuntimeService.jobs" name="jobs" signature="jobs(limit=10, skip=0, pending=None)">
+    Retrieve all runtime jobs, subject to optional filtering.
 
-**Parameters**
+    **Parameters**
 
-**job\_id** (`str`) – Job ID.
+    *   **limit** (`int`) – Number of jobs to retrieve.
+    *   **skip** (`int`) – Starting index for the job retrieval.
+    *   **pending** (`Optional`\[`bool`]) – Filter by job pending state. If `True`, ‘QUEUED’ and ‘RUNNING’ jobs are included. If `False`, ‘DONE’, ‘CANCELLED’ and ‘ERROR’ jobs are included.
 
-**Return type**
+    **Return type**
 
-`RuntimeJob`
+    `List`\[`RuntimeJob`]
 
-**Returns**
+    **Returns**
 
-Runtime job retrieved.
+    A list of runtime jobs.
+  </Function>
 
-**Raises**
+  ### logout
 
-*   **RuntimeJobNotFound** – If the job doesn’t exist.
-*   **QiskitRuntimeError** – If the request failed.
+  <Function id="qiskit.providers.ibmq.runtime.IBMRuntimeService.logout" name="logout" signature="logout()">
+    Clears authorization cache on the server.
 
-### jobs
+    For better performance, the runtime server caches each user’s authorization information. This method is used to force the server to clear its cache.
 
-<span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.jobs" />
+    <Admonition title="Note" type="note">
+      Invoke this method ONLY when your access level to the runtime service has changed - for example, the first time your account is given the authority to upload a program.
+    </Admonition>
 
-`jobs(limit=10, skip=0, pending=None)`
+    **Return type**
 
-Retrieve all runtime jobs, subject to optional filtering.
+    `None`
+  </Function>
 
-**Parameters**
+  ### pprint\_programs
 
-*   **limit** (`int`) – Number of jobs to retrieve.
-*   **skip** (`int`) – Starting index for the job retrieval.
-*   **pending** (`Optional`\[`bool`]) – Filter by job pending state. If `True`, ‘QUEUED’ and ‘RUNNING’ jobs are included. If `False`, ‘DONE’, ‘CANCELLED’ and ‘ERROR’ jobs are included.
+  <Function id="qiskit.providers.ibmq.runtime.IBMRuntimeService.pprint_programs" name="pprint_programs" signature="pprint_programs(refresh=False)">
+    Pretty print information about available runtime programs.
 
-**Return type**
+    **Parameters**
 
-`List`\[`RuntimeJob`]
+    **refresh** (`bool`) – If `True`, re-query the server for the programs. Otherwise return the cached value.
 
-**Returns**
+    **Return type**
 
-A list of runtime jobs.
+    `None`
+  </Function>
 
-### logout
+  ### program
 
-<span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.logout" />
+  <Function id="qiskit.providers.ibmq.runtime.IBMRuntimeService.program" name="program" signature="program(program_id, refresh=False)">
+    Retrieve a runtime program.
 
-`logout()`
+    Currently only program metadata is returned.
 
-Clears authorization cache on the server.
+    **Parameters**
 
-For better performance, the runtime server caches each user’s authorization information. This method is used to force the server to clear its cache.
+    *   **program\_id** (`str`) – Program ID.
+    *   **refresh** (`bool`) – If `True`, re-query the server for the program. Otherwise return the cached value.
 
-<Admonition title="Note" type="note">
-  Invoke this method ONLY when your access level to the runtime service has changed - for example, the first time your account is given the authority to upload a program.
-</Admonition>
+    **Return type**
 
-**Return type**
+    `RuntimeProgram`
 
-`None`
+    **Returns**
 
-### pprint\_programs
+    Runtime program.
 
-<span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.pprint_programs" />
+    **Raises**
 
-`pprint_programs(refresh=False)`
+    *   **RuntimeProgramNotFound** – If the program does not exist.
+    *   **QiskitRuntimeError** – If the request failed.
+  </Function>
 
-Pretty print information about available runtime programs.
+  ### programs
 
-**Parameters**
+  <Function id="qiskit.providers.ibmq.runtime.IBMRuntimeService.programs" name="programs" signature="programs(refresh=False)">
+    Return available runtime programs.
 
-**refresh** (`bool`) – If `True`, re-query the server for the programs. Otherwise return the cached value.
+    Currently only program metadata is returned.
 
-**Return type**
+    **Parameters**
 
-`None`
+    **refresh** (`bool`) – If `True`, re-query the server for the programs. Otherwise return the cached value.
 
-### program
+    **Return type**
 
-<span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.program" />
+    `List`\[`RuntimeProgram`]
 
-`program(program_id, refresh=False)`
+    **Returns**
 
-Retrieve a runtime program.
+    A list of runtime programs.
+  </Function>
 
-Currently only program metadata is returned.
+  ### run
 
-**Parameters**
+  <Function id="qiskit.providers.ibmq.runtime.IBMRuntimeService.run" name="run" signature="run(program_id, options, inputs, callback=None, result_decoder=None)">
+    Execute the runtime program.
 
-*   **program\_id** (`str`) – Program ID.
-*   **refresh** (`bool`) – If `True`, re-query the server for the program. Otherwise return the cached value.
+    **Parameters**
 
-**Return type**
+    *   **program\_id** (`str`) – Program ID.
 
-`RuntimeProgram`
+    *   **options** (`Dict`) – Runtime options that control the execution environment. Currently the only available option is `backend_name`, which is required.
 
-**Returns**
+    *   **inputs** (`Union`\[`Dict`, `ParameterNamespace`]) – Program input parameters. These input values are passed to the runtime program.
 
-Runtime program.
+    *   **callback** (`Optional`\[`Callable`]) –
 
-**Raises**
+        Callback function to be invoked for any interim results. The callback function will receive 2 positional parameters:
 
-*   **RuntimeProgramNotFound** – If the program does not exist.
-*   **QiskitRuntimeError** – If the request failed.
+        > 1.  Job ID
+        > 2.  Job interim result.
 
-### programs
+    *   **result\_decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results. `ResultDecoder` is used if not specified.
 
-<span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.programs" />
+    **Return type**
 
-`programs(refresh=False)`
+    `RuntimeJob`
 
-Return available runtime programs.
+    **Returns**
 
-Currently only program metadata is returned.
+    A `RuntimeJob` instance representing the execution.
 
-**Parameters**
+    **Raises**
 
-**refresh** (`bool`) – If `True`, re-query the server for the programs. Otherwise return the cached value.
+    **IBMQInputValueError** – If input is invalid.
+  </Function>
 
-**Return type**
+  ### set\_program\_visibility
 
-`List`\[`RuntimeProgram`]
+  <Function id="qiskit.providers.ibmq.runtime.IBMRuntimeService.set_program_visibility" name="set_program_visibility" signature="set_program_visibility(program_id, public)">
+    Sets a program’s visibility.
 
-**Returns**
+    **Parameters**
 
-A list of runtime programs.
+    *   **program\_id** (`str`) – Program ID.
+    *   **public** (`bool`) – If `True`, make the program visible to all. If `False`, make the program visible to just your account.
 
-### run
+    **Raises**
 
-<span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.run" />
+    *   **RuntimeJobNotFound** – if program not found (404)
+    *   **QiskitRuntimeError** – if update failed (401, 403)
 
-`run(program_id, options, inputs, callback=None, result_decoder=None)`
+    **Return type**
 
-Execute the runtime program.
+    `None`
+  </Function>
 
-**Parameters**
+  ### upload\_program
 
-*   **program\_id** (`str`) – Program ID.
+  <Function id="qiskit.providers.ibmq.runtime.IBMRuntimeService.upload_program" name="upload_program" signature="upload_program(data, metadata=None, name=None, max_execution_time=None, description=None, version=None, backend_requirements=None, parameters=None, return_values=None, interim_results=None)">
+    Upload a runtime program.
 
-*   **options** (`Dict`) – Runtime options that control the execution environment. Currently the only available option is `backend_name`, which is required.
+    In addition to program data, the following program metadata is also required:
 
-*   **inputs** (`Union`\[`Dict`, `ParameterNamespace`]) – Program input parameters. These input values are passed to the runtime program.
+    > *   name
+    > *   max\_execution\_time
+    > *   description
 
-*   **callback** (`Optional`\[`Callable`]) –
+    Program metadata can be specified using the metadata parameter or individual parameter (for example, name and description). If the same metadata field is specified in both places, the individual parameter takes precedence. For example, if you specify:
 
-    Callback function to be invoked for any interim results. The callback function will receive 2 positional parameters:
+    ```python
+    upload_program(metadata={"name": "name1"}, name="name2")
+    ```
 
-    > 1.  Job ID
-    > 2.  Job interim result.
+    `name2` will be used as the program name.
 
-*   **result\_decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results. `ResultDecoder` is used if not specified.
+    **Parameters**
 
-**Return type**
+    *   **data** (`Union`\[`bytes`, `str`]) – Name of the program file or program data to upload.
+    *   **metadata** (`Union`\[`Dict`, `str`, `None`]) – Name of the program metadata file or metadata dictionary. A metadata file needs to be in the JSON format. See `program/program_metadata_sample.yaml` for an example.
+    *   **name** (`Optional`\[`str`]) – Name of the program. Required if not specified via metadata.
+    *   **max\_execution\_time** (`Optional`\[`int`]) – Maximum execution time in seconds. Required if not specified via metadata.
+    *   **description** (`Optional`\[`str`]) – Program description. Required if not specified via metadata.
+    *   **version** (`Optional`\[`float`]) – Program version. The default is 1.0 if not specified.
+    *   **backend\_requirements** (`Optional`\[`str`]) – Backend requirements.
+    *   **parameters** (`Optional`\[`List`\[`ProgramParameter`]]) – A list of program input parameters.
+    *   **return\_values** (`Optional`\[`List`\[`ProgramResult`]]) – A list of program return values.
+    *   **interim\_results** (`Optional`\[`List`\[`ProgramResult`]]) – A list of program interim results.
 
-`RuntimeJob`
+    **Return type**
 
-**Returns**
+    `str`
 
-A `RuntimeJob` instance representing the execution.
+    **Returns**
 
-**Raises**
+    Program ID.
 
-**IBMQInputValueError** – If input is invalid.
+    **Raises**
 
-### set\_program\_visibility
-
-<span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.set_program_visibility" />
-
-`set_program_visibility(program_id, public)`
-
-Sets a program’s visibility.
-
-**Parameters**
-
-*   **program\_id** (`str`) – Program ID.
-*   **public** (`bool`) – If `True`, make the program visible to all. If `False`, make the program visible to just your account.
-
-**Raises**
-
-*   **RuntimeJobNotFound** – if program not found (404)
-*   **QiskitRuntimeError** – if update failed (401, 403)
-
-**Return type**
-
-`None`
-
-### upload\_program
-
-<span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.upload_program" />
-
-`upload_program(data, metadata=None, name=None, max_execution_time=None, description=None, version=None, backend_requirements=None, parameters=None, return_values=None, interim_results=None)`
-
-Upload a runtime program.
-
-In addition to program data, the following program metadata is also required:
-
-> *   name
-> *   max\_execution\_time
-> *   description
-
-Program metadata can be specified using the metadata parameter or individual parameter (for example, name and description). If the same metadata field is specified in both places, the individual parameter takes precedence. For example, if you specify:
-
-```python
-upload_program(metadata={"name": "name1"}, name="name2")
-```
-
-`name2` will be used as the program name.
-
-**Parameters**
-
-*   **data** (`Union`\[`bytes`, `str`]) – Name of the program file or program data to upload.
-*   **metadata** (`Union`\[`Dict`, `str`, `None`]) – Name of the program metadata file or metadata dictionary. A metadata file needs to be in the JSON format. See `program/program_metadata_sample.yaml` for an example.
-*   **name** (`Optional`\[`str`]) – Name of the program. Required if not specified via metadata.
-*   **max\_execution\_time** (`Optional`\[`int`]) – Maximum execution time in seconds. Required if not specified via metadata.
-*   **description** (`Optional`\[`str`]) – Program description. Required if not specified via metadata.
-*   **version** (`Optional`\[`float`]) – Program version. The default is 1.0 if not specified.
-*   **backend\_requirements** (`Optional`\[`str`]) – Backend requirements.
-*   **parameters** (`Optional`\[`List`\[`ProgramParameter`]]) – A list of program input parameters.
-*   **return\_values** (`Optional`\[`List`\[`ProgramResult`]]) – A list of program return values.
-*   **interim\_results** (`Optional`\[`List`\[`ProgramResult`]]) – A list of program interim results.
-
-**Return type**
-
-`str`
-
-**Returns**
-
-Program ID.
-
-**Raises**
-
-*   **IBMQInputValueError** – If required metadata is missing.
-*   **RuntimeDuplicateProgramError** – If a program with the same name already exists.
-*   **IBMQNotAuthorizedError** – If you are not authorized to upload programs.
-*   **QiskitRuntimeError** – If the upload failed.
+    *   **IBMQInputValueError** – If required metadata is missing.
+    *   **RuntimeDuplicateProgramError** – If a program with the same name already exists.
+    *   **IBMQNotAuthorizedError** – If you are not authorized to upload programs.
+    *   **QiskitRuntimeError** – If the upload failed.
+  </Function>
+</Class>
 

@@ -8,68 +8,62 @@ python_api_name: qiskit.aqua.components.reciprocals.LookupRotation
 
 # LookupRotation
 
-<span id="qiskit.aqua.components.reciprocals.LookupRotation" />
+<Class id="qiskit.aqua.components.reciprocals.LookupRotation" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/reciprocals/lookup_rotation.py" signature="LookupRotation(pat_length=None, subpat_length=None, scale=0, negative_evals=False, evo_time=None, lambda_min=None)">
+  Bases: `qiskit.aqua.components.reciprocals.reciprocal.Reciprocal`
 
-`LookupRotation(pat_length=None, subpat_length=None, scale=0, negative_evals=False, evo_time=None, lambda_min=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/reciprocals/lookup_rotation.py "view source code")
+  The Lookup Rotation for Reciprocals.
 
-Bases: `qiskit.aqua.components.reciprocals.reciprocal.Reciprocal`
+  This method applies a variable sized binning to the values. Only a specified number of bits after the most-significant bit is taken into account when assigning rotation angles to the numbers prepared as states in the input register. Using precomputed angles, the reciprocal is multiplied to the amplitude via controlled rotations. While no resolution of the result is lost for small values, towards larger values the bin size increases. The accuracy of the result is tuned by the parameters.
 
-The Lookup Rotation for Reciprocals.
+  A calculation of reciprocals of eigenvalues is performed and controlled rotation of ancillary qubit via a lookup method. It uses a partial table lookup of rotation angles to rotate an ancillary qubit by arcsin(C/lambda).
 
-This method applies a variable sized binning to the values. Only a specified number of bits after the most-significant bit is taken into account when assigning rotation angles to the numbers prepared as states in the input register. Using precomputed angles, the reciprocal is multiplied to the amplitude via controlled rotations. While no resolution of the result is lost for small values, towards larger values the bin size increases. The accuracy of the result is tuned by the parameters.
+  **Parameters**
 
-A calculation of reciprocals of eigenvalues is performed and controlled rotation of ancillary qubit via a lookup method. It uses a partial table lookup of rotation angles to rotate an ancillary qubit by arcsin(C/lambda).
+  *   **pat\_length** (`Optional`\[`int`]) – The number of qubits used for binning pattern. Specifies the number of bits following the most-significant bit that is used to identify a number. This leads to a binning of large values, while preserving the accuracy for smaller values. It should be chosen as $min(k-1,5)$ for an input register with k qubits to limit the error in the rotation to \< 3%.
+  *   **subpat\_length** (`Optional`\[`int`]) – The number of qubits used for binning sub-pattern. This parameter is computed in the circuit creation routine and helps reducing the gate count. For pat\_length\<=5 it is chosen as $\left\lceil(\frac{patlength}{2})\right\rceil$.
+  *   **scale** (`float`) – The scale of rotation angle, corresponds to HHL constant C, has values between 0 and 1. This parameter is used to scale the reciprocals such that for a scale C, the rotation is performed by an angle $\arcsin{\frac{C}{\lambda}}$. If neither the scale nor the evo\_time and lambda\_min parameters are specified, the smallest resolvable Eigenvalue is used.
+  *   **negative\_evals** (`bool`) – Indicate if negative eigenvalues need to be handled
+  *   **evo\_time** (`Optional`\[`float`]) – The evolution time. This parameter scales the Eigenvalues in the phase estimation onto the range (0,1] ( (-0.5,0.5] for negative Eigenvalues ).
+  *   **lambda\_min** (`Optional`\[`float`]) – The smallest expected eigenvalue
 
-**Parameters**
+  ## Methods
 
-*   **pat\_length** (`Optional`\[`int`]) – The number of qubits used for binning pattern. Specifies the number of bits following the most-significant bit that is used to identify a number. This leads to a binning of large values, while preserving the accuracy for smaller values. It should be chosen as $min(k-1,5)$ for an input register with k qubits to limit the error in the rotation to \< 3%.
-*   **subpat\_length** (`Optional`\[`int`]) – The number of qubits used for binning sub-pattern. This parameter is computed in the circuit creation routine and helps reducing the gate count. For pat\_length\<=5 it is chosen as $\left\lceil(\frac{patlength}{2})\right\rceil$.
-*   **scale** (`float`) – The scale of rotation angle, corresponds to HHL constant C, has values between 0 and 1. This parameter is used to scale the reciprocals such that for a scale C, the rotation is performed by an angle $\arcsin{\frac{C}{\lambda}}$. If neither the scale nor the evo\_time and lambda\_min parameters are specified, the smallest resolvable Eigenvalue is used.
-*   **negative\_evals** (`bool`) – Indicate if negative eigenvalues need to be handled
-*   **evo\_time** (`Optional`\[`float`]) – The evolution time. This parameter scales the Eigenvalues in the phase estimation onto the range (0,1] ( (-0.5,0.5] for negative Eigenvalues ).
-*   **lambda\_min** (`Optional`\[`float`]) – The smallest expected eigenvalue
+  ### construct\_circuit
 
-## Methods
+  <Function id="qiskit.aqua.components.reciprocals.LookupRotation.construct_circuit" name="construct_circuit" signature="LookupRotation.construct_circuit(mode, inreg)">
+    Construct the Lookup Rotation circuit.
 
-### construct\_circuit
+    **Parameters**
 
-<span id="qiskit.aqua.components.reciprocals.LookupRotation.construct_circuit" />
+    *   **mode** (*str*) – construction mode, ‘matrix’ not supported
+    *   **inreg** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – input register, typically output register of Eigenvalues
 
-`LookupRotation.construct_circuit(mode, inreg)`
+    **Returns**
 
-Construct the Lookup Rotation circuit.
+    containing the Lookup Rotation circuit.
 
-**Parameters**
+    **Return type**
 
-*   **mode** (*str*) – construction mode, ‘matrix’ not supported
-*   **inreg** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – input register, typically output register of Eigenvalues
+    QuantumCircuit
 
-**Returns**
+    **Raises:**
 
-containing the Lookup Rotation circuit.
+    NotImplementedError: mode not supported
+  </Function>
 
-**Return type**
+  ### sv\_to\_resvec
 
-QuantumCircuit
+  <Function id="qiskit.aqua.components.reciprocals.LookupRotation.sv_to_resvec" name="sv_to_resvec" signature="LookupRotation.sv_to_resvec(statevector, num_q)">
+    Convert statevector to result vector.
 
-**Raises:**
+    **Parameters**
 
-NotImplementedError: mode not supported
+    *   **statevector** (*list*) – The statevector from simulation.
+    *   **num\_q** (*int*) – Number of qubits of result register.
 
-### sv\_to\_resvec
+    **Returns**
 
-<span id="qiskit.aqua.components.reciprocals.LookupRotation.sv_to_resvec" />
-
-`LookupRotation.sv_to_resvec(statevector, num_q)`
-
-Convert statevector to result vector.
-
-**Parameters**
-
-*   **statevector** (*list*) – The statevector from simulation.
-*   **num\_q** (*int*) – Number of qubits of result register.
-
-**Returns**
-
-The result vector.
+    The result vector.
+  </Function>
+</Class>
 

@@ -8,84 +8,78 @@ python_api_name: qiskit.transpiler.passes.BasisTranslator
 
 # BasisTranslator
 
-<span id="qiskit.transpiler.passes.BasisTranslator" />
+<Class id="qiskit.transpiler.passes.BasisTranslator" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/basis/basis_translator.py" signature="BasisTranslator(*args, **kwargs)">
+  Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-`BasisTranslator(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/basis/basis_translator.py "view source code")
+  Translates gates to a target basis by searching for a set of translations from a given EquivalenceLibrary.
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+  This pass operates in several steps:
 
-Translates gates to a target basis by searching for a set of translations from a given EquivalenceLibrary.
+  *   Determine the source basis from the input circuit.
+  *   Perform a Dijkstra search over basis sets, starting from the device’s target\_basis new gates are being generated using the rules from the provided EquivalenceLibrary and the search stops if all gates in the source basis have been generated.
+  *   The found path, as a set of rules from the EquivalenceLibrary, is composed into a set of gate replacement rules.
+  *   The composed replacement rules are applied in-place to each op node which is not already in the target\_basis.
 
-This pass operates in several steps:
+  If the target keyword argument is specified and that [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") objects contains operations which are non-global (i.e. they are defined only for a subset of qubits), as calculated by [`get_non_global_operation_names()`](qiskit.transpiler.Target#get_non_global_operation_names "qiskit.transpiler.Target.get_non_global_operation_names"), this pass will attempt to match the output translation to those constraints. For 1 qubit operations this is straightforward, the pass will perform a search using the union of the set of global operations with the set of operations defined solely on that qubit. For multi-qubit gates this is a bit more involved, while the behavior is initially similar to the single qubit case, just using all the qubits the operation is run on (where order is not significant) isn’t sufficient. We also need to consider any potential local qubits defined on subsets of the quantum arguments for the multi-qubit operation. This means the target used for the search of a non-global multi-qubit gate is the union of global operations, non-global multi-qubit gates sharing the same qubits, and any non-global gates defined on any subset of the qubits used.
 
-*   Determine the source basis from the input circuit.
-*   Perform a Dijkstra search over basis sets, starting from the device’s target\_basis new gates are being generated using the rules from the provided EquivalenceLibrary and the search stops if all gates in the source basis have been generated.
-*   The found path, as a set of rules from the EquivalenceLibrary, is composed into a set of gate replacement rules.
-*   The composed replacement rules are applied in-place to each op node which is not already in the target\_basis.
+  <Admonition title="Note" type="note">
+    In the case of non-global operations it is possible for a single execution of this pass to output an incomplete translation if any non-global gates are defined on qubits that are a subset of a larger multi-qubit gate. For example, if you have a `u` gate only defined on qubit 0 and an `x` gate only on qubit 1 it is possible when translating a 2 qubit operation on qubit 0 and 1 that the output might have `u` on qubit 1 and `x` on qubit 0. Typically running this pass a second time will correct these issues.
+  </Admonition>
 
-If the target keyword argument is specified and that [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") objects contains operations which are non-global (i.e. they are defined only for a subset of qubits), as calculated by [`get_non_global_operation_names()`](qiskit.transpiler.Target#get_non_global_operation_names "qiskit.transpiler.Target.get_non_global_operation_names"), this pass will attempt to match the output translation to those constraints. For 1 qubit operations this is straightforward, the pass will perform a search using the union of the set of global operations with the set of operations defined solely on that qubit. For multi-qubit gates this is a bit more involved, while the behavior is initially similar to the single qubit case, just using all the qubits the operation is run on (where order is not significant) isn’t sufficient. We also need to consider any potential local qubits defined on subsets of the quantum arguments for the multi-qubit operation. This means the target used for the search of a non-global multi-qubit gate is the union of global operations, non-global multi-qubit gates sharing the same qubits, and any non-global gates defined on any subset of the qubits used.
+  Initialize a BasisTranslator instance.
 
-<Admonition title="Note" type="note">
-  In the case of non-global operations it is possible for a single execution of this pass to output an incomplete translation if any non-global gates are defined on qubits that are a subset of a larger multi-qubit gate. For example, if you have a `u` gate only defined on qubit 0 and an `x` gate only on qubit 1 it is possible when translating a 2 qubit operation on qubit 0 and 1 that the output might have `u` on qubit 1 and `x` on qubit 0. Typically running this pass a second time will correct these issues.
-</Admonition>
+  **Parameters**
 
-Initialize a BasisTranslator instance.
+  *   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – The equivalence library which will be used by the BasisTranslator pass. (Instructions in this library will not be unrolled by this pass.)
+  *   **target\_basis** (*list\[str]*) – Target basis names to unroll to, e.g. \[‘u3’, ‘cx’].
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The backend compilation target
 
-**Parameters**
+  ## Methods
 
-*   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – The equivalence library which will be used by the BasisTranslator pass. (Instructions in this library will not be unrolled by this pass.)
-*   **target\_basis** (*list\[str]*) – Target basis names to unroll to, e.g. \[‘u3’, ‘cx’].
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The backend compilation target
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.BasisTranslator.name" name="name" signature="BasisTranslator.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.BasisTranslator.name" />
+  <Function id="qiskit.transpiler.passes.BasisTranslator.run" name="run" signature="BasisTranslator.run(dag)">
+    Translate an input DAGCircuit to the target basis.
 
-`BasisTranslator.name()`
+    **Parameters**
 
-Return the name of the pass.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – input dag
 
-### run
+    **Raises**
 
-<span id="qiskit.transpiler.passes.BasisTranslator.run" />
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the target basis cannot be reached
 
-`BasisTranslator.run(dag)`
+    **Returns**
 
-Translate an input DAGCircuit to the target basis.
+    translated circuit.
 
-**Parameters**
+    **Return type**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – input dag
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  </Function>
 
-**Raises**
+  ## Attributes
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the target basis cannot be reached
+  ### is\_analysis\_pass
 
-**Returns**
+  <Attribute id="qiskit.transpiler.passes.BasisTranslator.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-translated circuit.
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-**Return type**
+  ### is\_transformation\_pass
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  <Attribute id="qiskit.transpiler.passes.BasisTranslator.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-## Attributes
-
-<span id="qiskit.transpiler.passes.BasisTranslator.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.BasisTranslator.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

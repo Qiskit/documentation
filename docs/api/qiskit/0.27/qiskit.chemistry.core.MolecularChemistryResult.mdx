@@ -8,186 +8,154 @@ python_api_name: qiskit.chemistry.core.MolecularChemistryResult
 
 # qiskit.chemistry.core.MolecularChemistryResult
 
-<span id="qiskit.chemistry.core.MolecularChemistryResult" />
+<Class id="qiskit.chemistry.core.MolecularChemistryResult" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/chemistry_operator.py" signature="MolecularChemistryResult(a_dict=None)">
+  Molecular chemistry Result
 
-`MolecularChemistryResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/chemistry_operator.py "view source code")
+  Energies are in Hartree and dipole moments in A.U unless otherwise stated.
 
-Molecular chemistry Result
+  ### \_\_init\_\_
 
-Energies are in Hartree and dipole moments in A.U unless otherwise stated.
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.__init__" name="__init__" signature="__init__(a_dict=None)">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.chemistry.core.MolecularChemistryResult.__init__" />
+  |                                                                                                                                                |                                                                                                                                                                                                                      |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.core.MolecularChemistryResult.__init__ "qiskit.chemistry.core.MolecularChemistryResult.__init__")(\[a\_dict])   | Initialize self.                                                                                                                                                                                                     |
+  | [`clear`](#qiskit.chemistry.core.MolecularChemistryResult.clear "qiskit.chemistry.core.MolecularChemistryResult.clear")()                      | **rtype**`None`                                                                                                                                                                                                      |
+  | [`combine`](#qiskit.chemistry.core.MolecularChemistryResult.combine "qiskit.chemistry.core.MolecularChemistryResult.combine")(result)          | Any property from the argument that exists in the receiver is updated.                                                                                                                                               |
+  | `copy`()                                                                                                                                       |                                                                                                                                                                                                                      |
+  | `fromkeys`(iterable\[, value])                                                                                                                 |                                                                                                                                                                                                                      |
+  | [`get`](#qiskit.chemistry.core.MolecularChemistryResult.get "qiskit.chemistry.core.MolecularChemistryResult.get")(k\[,d])                      |                                                                                                                                                                                                                      |
+  | [`items`](#qiskit.chemistry.core.MolecularChemistryResult.items "qiskit.chemistry.core.MolecularChemistryResult.items")()                      |                                                                                                                                                                                                                      |
+  | [`keys`](#qiskit.chemistry.core.MolecularChemistryResult.keys "qiskit.chemistry.core.MolecularChemistryResult.keys")()                         |                                                                                                                                                                                                                      |
+  | [`pop`](#qiskit.chemistry.core.MolecularChemistryResult.pop "qiskit.chemistry.core.MolecularChemistryResult.pop")(key\[, default])             | If key is not found, d is returned if given, otherwise KeyError is raised.                                                                                                                                           |
+  | [`popitem`](#qiskit.chemistry.core.MolecularChemistryResult.popitem "qiskit.chemistry.core.MolecularChemistryResult.popitem")()                | as a 2-tuple; but raise KeyError if D is empty.                                                                                                                                                                      |
+  | [`setdefault`](#qiskit.chemistry.core.MolecularChemistryResult.setdefault "qiskit.chemistry.core.MolecularChemistryResult.setdefault")(k\[,d]) |                                                                                                                                                                                                                      |
+  | [`update`](#qiskit.chemistry.core.MolecularChemistryResult.update "qiskit.chemistry.core.MolecularChemistryResult.update")(\*args, \*\*kwargs) | If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v |
+  | [`values`](#qiskit.chemistry.core.MolecularChemistryResult.values "qiskit.chemistry.core.MolecularChemistryResult.values")()                   |                                                                                                                                                                                                                      |
 
-`__init__(a_dict=None)`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |                                                                                                                                                                                  |                                                                                  |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+  | [`algorithm_result`](#qiskit.chemistry.core.MolecularChemistryResult.algorithm_result "qiskit.chemistry.core.MolecularChemistryResult.algorithm_result")                         | Returns raw algorithm result                                                     |
+  | [`hartree_fock_energy`](#qiskit.chemistry.core.MolecularChemistryResult.hartree_fock_energy "qiskit.chemistry.core.MolecularChemistryResult.hartree_fock_energy")                | Returns Hartree-Fock energy                                                      |
+  | [`nuclear_dipole_moment`](#qiskit.chemistry.core.MolecularChemistryResult.nuclear_dipole_moment "qiskit.chemistry.core.MolecularChemistryResult.nuclear_dipole_moment")          | Returns nuclear dipole moment X,Y,Z components in A.U when available from driver |
+  | [`nuclear_repulsion_energy`](#qiskit.chemistry.core.MolecularChemistryResult.nuclear_repulsion_energy "qiskit.chemistry.core.MolecularChemistryResult.nuclear_repulsion_energy") | Returns nuclear repulsion energy when available from driver                      |
 
-## Methods
+  ### algorithm\_result
 
-|                                                                                                                                                |                                                                                                                                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.core.MolecularChemistryResult.__init__ "qiskit.chemistry.core.MolecularChemistryResult.__init__")(\[a\_dict])   | Initialize self.                                                                                                                                                                                                     |
-| [`clear`](#qiskit.chemistry.core.MolecularChemistryResult.clear "qiskit.chemistry.core.MolecularChemistryResult.clear")()                      | **rtype**`None`                                                                                                                                                                                                      |
-| [`combine`](#qiskit.chemistry.core.MolecularChemistryResult.combine "qiskit.chemistry.core.MolecularChemistryResult.combine")(result)          | Any property from the argument that exists in the receiver is updated.                                                                                                                                               |
-| `copy`()                                                                                                                                       |                                                                                                                                                                                                                      |
-| `fromkeys`(iterable\[, value])                                                                                                                 |                                                                                                                                                                                                                      |
-| [`get`](#qiskit.chemistry.core.MolecularChemistryResult.get "qiskit.chemistry.core.MolecularChemistryResult.get")(k\[,d])                      |                                                                                                                                                                                                                      |
-| [`items`](#qiskit.chemistry.core.MolecularChemistryResult.items "qiskit.chemistry.core.MolecularChemistryResult.items")()                      |                                                                                                                                                                                                                      |
-| [`keys`](#qiskit.chemistry.core.MolecularChemistryResult.keys "qiskit.chemistry.core.MolecularChemistryResult.keys")()                         |                                                                                                                                                                                                                      |
-| [`pop`](#qiskit.chemistry.core.MolecularChemistryResult.pop "qiskit.chemistry.core.MolecularChemistryResult.pop")(key\[, default])             | If key is not found, d is returned if given, otherwise KeyError is raised.                                                                                                                                           |
-| [`popitem`](#qiskit.chemistry.core.MolecularChemistryResult.popitem "qiskit.chemistry.core.MolecularChemistryResult.popitem")()                | as a 2-tuple; but raise KeyError if D is empty.                                                                                                                                                                      |
-| [`setdefault`](#qiskit.chemistry.core.MolecularChemistryResult.setdefault "qiskit.chemistry.core.MolecularChemistryResult.setdefault")(k\[,d]) |                                                                                                                                                                                                                      |
-| [`update`](#qiskit.chemistry.core.MolecularChemistryResult.update "qiskit.chemistry.core.MolecularChemistryResult.update")(\*args, \*\*kwargs) | If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v |
-| [`values`](#qiskit.chemistry.core.MolecularChemistryResult.values "qiskit.chemistry.core.MolecularChemistryResult.values")()                   |                                                                                                                                                                                                                      |
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.algorithm_result" name="algorithm_result" signature="property algorithm_result">
+    Returns raw algorithm result
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                                                                  |                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [`algorithm_result`](#qiskit.chemistry.core.MolecularChemistryResult.algorithm_result "qiskit.chemistry.core.MolecularChemistryResult.algorithm_result")                         | Returns raw algorithm result                                                     |
-| [`hartree_fock_energy`](#qiskit.chemistry.core.MolecularChemistryResult.hartree_fock_energy "qiskit.chemistry.core.MolecularChemistryResult.hartree_fock_energy")                | Returns Hartree-Fock energy                                                      |
-| [`nuclear_dipole_moment`](#qiskit.chemistry.core.MolecularChemistryResult.nuclear_dipole_moment "qiskit.chemistry.core.MolecularChemistryResult.nuclear_dipole_moment")          | Returns nuclear dipole moment X,Y,Z components in A.U when available from driver |
-| [`nuclear_repulsion_energy`](#qiskit.chemistry.core.MolecularChemistryResult.nuclear_repulsion_energy "qiskit.chemistry.core.MolecularChemistryResult.nuclear_repulsion_energy") | Returns nuclear repulsion energy when available from driver                      |
+    `AlgorithmResult`
+  </Function>
 
-### algorithm\_result
+  ### clear
 
-<span id="qiskit.chemistry.core.MolecularChemistryResult.algorithm_result" />
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.clear" name="clear" signature="clear()">
+    **Return type**
 
-`property algorithm_result`
+    `None`
+  </Function>
 
-Returns raw algorithm result
+  ### combine
 
-**Return type**
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-`AlgorithmResult`
+    **Raises**
 
-### clear
+    **TypeError** – Argument is None
 
-<span id="qiskit.chemistry.core.MolecularChemistryResult.clear" />
+    **Return type**
 
-`clear()`
+    `None`
+  </Function>
 
-**Return type**
+  ### get
 
-`None`
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.get" name="get" signature="get(k[, d]) → D[k] if k in D, else d. d defaults to None." />
 
-### combine
+  ### hartree\_fock\_energy
 
-<span id="qiskit.chemistry.core.MolecularChemistryResult.combine" />
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.hartree_fock_energy" name="hartree_fock_energy" signature="property hartree_fock_energy">
+    Returns Hartree-Fock energy
 
-`combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    `float`
+  </Function>
 
-**Raises**
+  ### items
 
-**TypeError** – Argument is None
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.items" name="items" signature="items() → a set-like object providing a view on D’s items" />
 
-**Return type**
+  ### keys
 
-`None`
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.keys" name="keys" signature="keys() → a set-like object providing a view on D’s keys" />
 
-### get
+  ### nuclear\_dipole\_moment
 
-<span id="qiskit.chemistry.core.MolecularChemistryResult.get" />
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.nuclear_dipole_moment" name="nuclear_dipole_moment" signature="property nuclear_dipole_moment">
+    Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
 
-`get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
+    **Return type**
 
-### hartree\_fock\_energy
+    `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+  </Function>
 
-<span id="qiskit.chemistry.core.MolecularChemistryResult.hartree_fock_energy" />
+  ### nuclear\_repulsion\_energy
 
-`property hartree_fock_energy`
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.nuclear_repulsion_energy" name="nuclear_repulsion_energy" signature="property nuclear_repulsion_energy">
+    Returns nuclear repulsion energy when available from driver
 
-Returns Hartree-Fock energy
+    **Return type**
 
-**Return type**
+    `Optional`\[`float`]
+  </Function>
 
-`float`
+  ### pop
 
-### items
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.pop" name="pop" signature="pop(key, default=None)">
+    If key is not found, d is returned if given, otherwise KeyError is raised.
 
-<span id="qiskit.chemistry.core.MolecularChemistryResult.items" />
+    **Return type**
 
-`items() → a set-like object providing a view on D’s items`
+    `object`
+  </Function>
 
-### keys
+  ### popitem
 
-<span id="qiskit.chemistry.core.MolecularChemistryResult.keys" />
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.popitem" name="popitem" signature="popitem()">
+    as a 2-tuple; but raise KeyError if D is empty.
 
-`keys() → a set-like object providing a view on D’s keys`
+    **Return type**
 
-### nuclear\_dipole\_moment
+    `Tuple`\[`object`, `object`]
+  </Function>
 
-<span id="qiskit.chemistry.core.MolecularChemistryResult.nuclear_dipole_moment" />
+  ### setdefault
 
-`property nuclear_dipole_moment`
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.setdefault" name="setdefault" signature="setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D" />
 
-Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
+  ### update
 
-**Return type**
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.update" name="update" signature="update(*args, **kwargs)">
+    If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
 
-`Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
+    **Return type**
 
-### nuclear\_repulsion\_energy
+    `None`
+  </Function>
 
-<span id="qiskit.chemistry.core.MolecularChemistryResult.nuclear_repulsion_energy" />
+  ### values
 
-`property nuclear_repulsion_energy`
-
-Returns nuclear repulsion energy when available from driver
-
-**Return type**
-
-`Optional`\[`float`]
-
-### pop
-
-<span id="qiskit.chemistry.core.MolecularChemistryResult.pop" />
-
-`pop(key, default=None)`
-
-If key is not found, d is returned if given, otherwise KeyError is raised.
-
-**Return type**
-
-`object`
-
-### popitem
-
-<span id="qiskit.chemistry.core.MolecularChemistryResult.popitem" />
-
-`popitem()`
-
-as a 2-tuple; but raise KeyError if D is empty.
-
-**Return type**
-
-`Tuple`\[`object`, `object`]
-
-### setdefault
-
-<span id="qiskit.chemistry.core.MolecularChemistryResult.setdefault" />
-
-`setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
-
-### update
-
-<span id="qiskit.chemistry.core.MolecularChemistryResult.update" />
-
-`update(*args, **kwargs)`
-
-If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
-
-**Return type**
-
-`None`
-
-### values
-
-<span id="qiskit.chemistry.core.MolecularChemistryResult.values" />
-
-`values() → an object providing a view on D’s values`
+  <Function id="qiskit.chemistry.core.MolecularChemistryResult.values" name="values" signature="values() → an object providing a view on D’s values" />
+</Class>
 

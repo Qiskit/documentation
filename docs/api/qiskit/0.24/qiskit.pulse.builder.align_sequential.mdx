@@ -10,33 +10,31 @@ python_api_name: qiskit.pulse.builder.align_sequential
 
 # qiskit.pulse.builder.align\_sequential
 
-<span id="qiskit.pulse.builder.align_sequential" />
+<Function id="qiskit.pulse.builder.align_sequential" name="align_sequential" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py" signature="align_sequential()">
+  Sequential alignment pulse scheduling context.
 
-`align_sequential()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
+  Pulse instructions within this context are scheduled sequentially in time such that no two instructions will be played at the same time.
 
-Sequential alignment pulse scheduling context.
+  Examples:
 
-Pulse instructions within this context are scheduled sequentially in time such that no two instructions will be played at the same time.
+  ```python
+  from qiskit import pulse
 
-Examples:
+  d0 = pulse.DriveChannel(0)
+  d1 = pulse.DriveChannel(1)
 
-```python
-from qiskit import pulse
+  with pulse.build() as pulse_prog:
+      with pulse.align_sequential():
+          # this pulse will start at t=0
+          pulse.play(pulse.Constant(100, 1.0), d0)
+          # this pulse will also start at t=100
+          pulse.play(pulse.Constant(20, 1.0), d1)
 
-d0 = pulse.DriveChannel(0)
-d1 = pulse.DriveChannel(1)
+  assert pulse_prog.ch_stop_time(d0) == pulse_prog.ch_start_time(d1)
+  ```
 
-with pulse.build() as pulse_prog:
-    with pulse.align_sequential():
-        # this pulse will start at t=0
-        pulse.play(pulse.Constant(100, 1.0), d0)
-        # this pulse will also start at t=100
-        pulse.play(pulse.Constant(20, 1.0), d1)
+  **Return type**
 
-assert pulse_prog.ch_stop_time(d0) == pulse_prog.ch_start_time(d1)
-```
-
-**Return type**
-
-`AbstractContextManager`\[`None`]
+  `AbstractContextManager`\[`None`]
+</Function>
 

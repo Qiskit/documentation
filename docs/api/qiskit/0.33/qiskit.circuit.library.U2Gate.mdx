@@ -8,39 +8,36 @@ python_api_name: qiskit.circuit.library.U2Gate
 
 # U2Gate
 
-<span id="qiskit.circuit.library.U2Gate" />
+<Class id="qiskit.circuit.library.U2Gate" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/u2.py" signature="U2Gate(phi, lam, label=None)">
+  Bases: `qiskit.circuit.gate.Gate`
 
-`U2Gate(phi, lam, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/u2.py "view source code")
+  Single-qubit rotation about the X+Z axis.
 
-Bases: `qiskit.circuit.gate.Gate`
-
-Single-qubit rotation about the X+Z axis.
-
-Implemented using one X90 pulse on IBM Quantum systems:
+  Implemented using one X90 pulse on IBM Quantum systems:
 
 $$
 U2(\phi, \lambda) = RZ(\phi).RY(\frac{\pi}{2}).RZ(\lambda)
 $$
 
-**Circuit symbol:**
+  **Circuit symbol:**
 
-```python
-     ┌─────────┐
-q_0: ┤ U2(φ,λ) ├
-     └─────────┘
-```
+  ```python
+       ┌─────────┐
+  q_0: ┤ U2(φ,λ) ├
+       └─────────┘
+  ```
 
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 \begin{split}U2(\phi, \lambda) = \frac{1}{\sqrt{2}}
-    \begin{pmatrix}
-        1          & -e^{i\lambda} \\
-        e^{i\phi} & e^{i(\phi+\lambda)}
-    \end{pmatrix}\end{split}
+\begin{pmatrix}
+1          & -e^{i\lambda} \\
+e^{i\phi} & e^{i(\phi+\lambda)}
+\end{pmatrix}\end{split}
 $$
 
-**Examples:**
+  **Examples:**
 
 $$
 U2(0, \pi) = H
@@ -48,73 +45,72 @@ U2(0, 0) = RY(\pi/2)
 U2(-\pi/2, \pi/2) = RX(\pi/2)
 $$
 
-<Admonition title="See also" type="note">
-  `U3Gate`: U3 is a generalization of U2 that covers all single-qubit rotations, using two X90 pulses.
-</Admonition>
+  <Admonition title="See also" type="note">
+    `U3Gate`: U3 is a generalization of U2 that covers all single-qubit rotations, using two X90 pulses.
+  </Admonition>
 
-Create new U2 gate.
+  Create new U2 gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-### inverse
+  ### inverse
 
-<span id="qiskit.circuit.library.U2Gate.inverse" />
+  <Function id="qiskit.circuit.library.U2Gate.inverse" name="inverse" signature="U2Gate.inverse()">
+    Return inverted U2 gate.
 
-`U2Gate.inverse()`
+    $U2(\phi, \lambda)^{\dagger} =U2(-\lambda-\pi, -\phi+\pi)$)
+  </Function>
 
-Return inverted U2 gate.
+  ## Attributes
 
-$U2(\phi, \lambda)^{\dagger} =U2(-\lambda-\pi, -\phi+\pi)$)
+  ### condition\_bits
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.U2Gate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-<span id="qiskit.circuit.library.U2Gate.condition_bits" />
+    **Return type**
 
-### condition\_bits
+    `List`\[`Clbit`]
+  </Attribute>
 
-Get Clbits in condition.
+  ### decompositions
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.U2Gate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-`List`\[`Clbit`]
+  ### definition
 
-<span id="qiskit.circuit.library.U2Gate.decompositions" />
+  <Attribute id="qiskit.circuit.library.U2Gate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### decompositions
+  ### duration
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.U2Gate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.U2Gate.definition" />
+  ### label
 
-### definition
+  <Attribute id="qiskit.circuit.library.U2Gate.label" name="label">
+    Return instruction label
 
-Return definition in terms of other basic gates.
+    **Return type**
 
-<span id="qiskit.circuit.library.U2Gate.duration" />
+    `str`
+  </Attribute>
 
-### duration
+  ### params
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.U2Gate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.U2Gate.label" />
+  ### unit
 
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.library.U2Gate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.U2Gate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.U2Gate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

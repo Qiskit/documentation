@@ -8,2080 +8,1844 @@ python_api_name: qiskit.circuit.library.PiecewiseLinearPauliRotations
 
 # PiecewiseLinearPauliRotations
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations" />
+<Class id="qiskit.circuit.library.PiecewiseLinearPauliRotations" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py" signature="PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')">
+  Piecewise-linearly-controlled Pauli rotations.
 
-`PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py "view source code")
-
-Piecewise-linearly-controlled Pauli rotations.
-
-For a piecewise linear (not necessarily continuous) function $f(x)$, which is defined through breakpoints, slopes and offsets as follows. Suppose the breakpoints $(x_0, ..., x_J)$ are a subset of $[0, 2^n-1]$, where $n$ is the number of state qubits. Further on, denote the corresponding slopes and offsets by $a_j$ and $b_j$ respectively. Then f(x) is defined as:
+  For a piecewise linear (not necessarily continuous) function $f(x)$, which is defined through breakpoints, slopes and offsets as follows. Suppose the breakpoints $(x_0, ..., x_J)$ are a subset of $[0, 2^n-1]$, where $n$ is the number of state qubits. Further on, denote the corresponding slopes and offsets by $a_j$ and $b_j$ respectively. Then f(x) is defined as:
 
 $$
 \begin{split}f(x) = \begin{cases}
-    0, x < x_0 \\
-    a_j (x - x_j) + b_j, x_j \leq x < x_{j+1}
-    \end{cases}\end{split}
+0, x < x_0 \\
+a_j (x - x_j) + b_j, x_j \leq x < x_{j+1}
+\end{cases}\end{split}
 $$
 
-where we implicitly assume $x_{J+1} = 2^n$.
+  where we implicitly assume $x_{J+1} = 2^n$.
 
-Construct piecewise-linearly-controlled Pauli rotations.
+  Construct piecewise-linearly-controlled Pauli rotations.
 
-**Parameters**
+  **Parameters**
 
-*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state.
-*   **breakpoints** (`Optional`\[`List`\[`int`]]) – The breakpoints to define the piecewise-linear function. Defaults to `[0]`.
-*   **slopes** (`Optional`\[`List`\[`float`]]) – The slopes for different segments of the piecewise-linear function. Defaults to `[1]`.
-*   **offsets** (`Optional`\[`List`\[`float`]]) – The offsets for different segments of the piecewise-linear function. Defaults to `[0]`.
-*   **basis** (`str`) – The type of Pauli rotation (`'X'`, `'Y'`, `'Z'`).
-*   **name** (`str`) – The name of the circuit.
+  *   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state.
+  *   **breakpoints** (`Optional`\[`List`\[`int`]]) – The breakpoints to define the piecewise-linear function. Defaults to `[0]`.
+  *   **slopes** (`Optional`\[`List`\[`float`]]) – The slopes for different segments of the piecewise-linear function. Defaults to `[1]`.
+  *   **offsets** (`Optional`\[`List`\[`float`]]) – The offsets for different segments of the piecewise-linear function. Defaults to `[0]`.
+  *   **basis** (`str`) – The type of Pauli rotation (`'X'`, `'Y'`, `'Z'`).
+  *   **name** (`str`) – The name of the circuit.
 
-## Attributes
+  ## Attributes
 
-### basis
+  ### basis
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.basis" />
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.basis" name="basis" signature="str">
+    The kind of Pauli rotation to be used.
 
-`str`
+    Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotations respectively.
 
-The kind of Pauli rotation to be used.
+    **Return type**
 
-Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotations respectively.
+    `str`
 
-**Return type**
+    **Returns**
 
-`str`
+    The kind of Pauli rotation used in controlled rotation.
+  </Attribute>
 
-**Returns**
+  ### breakpoints
 
-The kind of Pauli rotation used in controlled rotation.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.breakpoints" name="breakpoints" signature="List[int]">
+    The breakpoints of the piecewise linear function.
 
-### breakpoints
+    The function is linear in the intervals `[point_i, point_{i+1}]` where the last point implicitely is `2**(num_state_qubits + 1)`.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.breakpoints" />
+    **Return type**
 
-`List[int]`
+    `List`\[`int`]
+  </Attribute>
 
-The breakpoints of the piecewise linear function.
+  ### clbits
 
-The function is linear in the intervals `[point_i, point_{i+1}]` where the last point implicitely is `2**(num_state_qubits + 1)`.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-**Return type**
+  ### contains\_zero\_breakpoint
 
-`List`\[`int`]
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.contains_zero_breakpoint" name="contains_zero_breakpoint" signature="bool">
+    Whether 0 is the first breakpoint.
 
-### clbits
+    **Return type**
 
-Returns a list of classical bits in the order that the registers were added.
+    `bool`
 
-### contains\_zero\_breakpoint
+    **Returns**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.contains_zero_breakpoint" />
+    True, if 0 is the first breakpoint, otherwise False.
+  </Attribute>
 
-`bool`
+  ### data
 
-Whether 0 is the first breakpoint.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.data" name="data">
+    Return the circuit data (instructions and context).
 
-**Return type**
+    **Returns**
 
-`bool`
+    a list-like object containing the tuples for the circuit’s data.
 
-**Returns**
+    Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
-True, if 0 is the first breakpoint, otherwise False.
+    **Return type**
 
-### data
+    QuantumCircuitData
+  </Attribute>
 
-Return the circuit data (instructions and context).
+  ### extension\_lib
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.extension_lib" signature="= 'include \&#x22;qelib1.inc\&#x22;;'" />
 
-a list-like object containing the tuples for the circuit’s data.
+  ### header
 
-Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.header" signature="= 'OPENQASM 2.0;'" />
 
-**Return type**
+  ### instances
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.instances" signature="= 8" />
 
-### extension\_lib
+  ### mapped\_offsets
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.extension_lib" />
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mapped_offsets" name="mapped_offsets" signature="List[float]">
+    The offsets mapped to the internal representation.
 
-`= 'include "qelib1.inc";'`
+    **Return type**
 
-### header
+    `List`\[`float`]
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.header" />
+    **Returns**
 
-`= 'OPENQASM 2.0;'`
+    The mapped offsets.
+  </Attribute>
 
-### instances
+  ### mapped\_slopes
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.instances" />
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mapped_slopes" name="mapped_slopes" signature="List[float]">
+    The slopes mapped to the internal representation.
 
-`= 8`
+    **Return type**
 
-### mapped\_offsets
+    `List`\[`float`]
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mapped_offsets" />
+    **Returns**
 
-`List[float]`
+    The mapped slopes.
+  </Attribute>
 
-The offsets mapped to the internal representation.
+  ### n\_qubits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.n_qubits" name="n_qubits">
+    Deprecated, use `num_qubits` instead. Return number of qubits.
+  </Attribute>
 
-`List`\[`float`]
+  ### num\_ancilla\_qubits
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_ancilla_qubits" name="num_ancilla_qubits" signature="int">
+    The number of ancilla qubits.
 
-The mapped offsets.
+    **Return type**
 
-### mapped\_slopes
+    `int`
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mapped_slopes" />
+    **Returns**
 
-`List[float]`
+    The number of ancilla qubits in the circuit.
+  </Attribute>
 
-The slopes mapped to the internal representation.
+  ### num\_clbits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-`List`\[`float`]
+  ### num\_parameters
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_parameters" name="num_parameters">
+    Convenience function to get the number of parameter objects in the circuit.
+  </Attribute>
 
-The mapped slopes.
+  ### num\_qubits
 
-### n\_qubits
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-Deprecated, use `num_qubits` instead. Return number of qubits.
+  ### num\_state\_qubits
 
-### num\_ancilla\_qubits
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_state_qubits" name="num_state_qubits" signature="int">
+    The number of state qubits representing the state $|x\rangle$.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_ancilla_qubits" />
+    **Return type**
 
-`int`
+    `int`
 
-The number of ancilla qubits.
+    **Returns**
 
-**Return type**
+    The number of state qubits.
+  </Attribute>
 
-`int`
+  ### offsets
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.offsets" name="offsets" signature="List[float]">
+    The breakpoints of the piecewise linear function.
 
-The number of ancilla qubits in the circuit.
+    The function is linear in the intervals `[point_i, point_{i+1}]` where the last point implicitely is `2**(num_state_qubits + 1)`.
 
-### num\_clbits
+    **Return type**
 
-Return number of classical bits.
+    `List`\[`float`]
+  </Attribute>
 
-### num\_parameters
+  ### parameters
 
-Convenience function to get the number of parameter objects in the circuit.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.parameters" name="parameters">
+    Convenience function to get the parameters defined in the parameter table.
+  </Attribute>
 
-### num\_qubits
+  ### prefix
 
-Return number of qubits.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.prefix" signature="= 'circuit'" />
 
-### num\_state\_qubits
+  ### qregs
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_state_qubits" />
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.qregs" name="qregs">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-`int`
+  ### qubits
 
-The number of state qubits representing the state $|x\rangle$.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
 
-**Return type**
+  ### slopes
 
-`int`
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.slopes" name="slopes" signature="List[int]">
+    The breakpoints of the piecewise linear function.
 
-**Returns**
+    The function is linear in the intervals `[point_i, point_{i+1}]` where the last point implicitely is `2**(num_state_qubits + 1)`.
 
-The number of state qubits.
+    **Return type**
 
-### offsets
+    `List`\[`int`]
+  </Attribute>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.offsets" />
+  ## Methods
 
-`List[float]`
+  ### AND
 
-The breakpoints of the piecewise linear function.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.AND" name="AND" signature="PiecewiseLinearPauliRotations.AND(qr_variables, qb_target, qr_ancillae, flags=None, mct_mode='no-ancilla')">
+    Build a collective conjunction (AND) circuit in place using mct.
 
-The function is linear in the intervals `[point_i, point_{i+1}]` where the last point implicitely is `2**(num_state_qubits + 1)`.
+    **Parameters**
 
-**Return type**
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to build the conjunction on.
+    *   **qr\_variables** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister holding the variable qubits.
+    *   **qb\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit to hold the conjunction result.
+    *   **qr\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The ancillary QuantumRegister for building the mct.
+    *   **flags** (*list\[int]*) – A list of +1/-1/0 to mark negations or omissions of qubits.
+    *   **mct\_mode** (*str*) – The mct building mode.
+  </Function>
 
-`List`\[`float`]
+  ### OR
 
-### parameters
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.OR" name="OR" signature="PiecewiseLinearPauliRotations.OR(qr_variables, qb_target, qr_ancillae, flags=None, mct_mode='basic')">
+    Build a collective disjunction (OR) circuit in place using mct.
 
-Convenience function to get the parameters defined in the parameter table.
+    **Parameters**
 
-### prefix
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to build the disjunction on.
+    *   **qr\_variables** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister holding the variable qubits.
+    *   **flags** (*list\[int]*) – A list of +1/-1/0 to mark negations or omissions of qubits.
+    *   **qb\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit to hold the disjunction result.
+    *   **qr\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The ancillary QuantumRegister for building the mct.
+    *   **mct\_mode** (*str*) – The mct building mode.
+  </Function>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.prefix" />
+  ### \_\_getitem\_\_
 
-`= 'circuit'`
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.__getitem__" name="__getitem__" signature="PiecewiseLinearPauliRotations.__getitem__(item)">
+    Return indexed operation.
+  </Function>
 
-### qregs
+  ### \_\_len\_\_
 
-A list of the quantum registers associated with the circuit.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.__len__" name="__len__" signature="PiecewiseLinearPauliRotations.__len__()">
+    Return number of operations in circuit.
+  </Function>
 
-### qubits
+  ### add\_register
 
-Returns a list of quantum bits in the order that the registers were added.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.add_register" name="add_register" signature="PiecewiseLinearPauliRotations.add_register(*regs)">
+    Add registers.
+  </Function>
 
-### slopes
+  ### append
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.slopes" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.append" name="append" signature="PiecewiseLinearPauliRotations.append(instruction, qargs=None, cargs=None)">
+    Append one or more instructions to the end of the circuit, modifying the circuit in place. Expands qargs and cargs.
 
-`List[int]`
+    **Parameters**
 
-The breakpoints of the piecewise linear function.
+    *   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – Instruction instance to append
+    *   **qargs** (*list(argument)*) – qubits to attach instruction to
+    *   **cargs** (*list(argument)*) – clbits to attach instruction to
 
-The function is linear in the intervals `[point_i, point_{i+1}]` where the last point implicitely is `2**(num_state_qubits + 1)`.
+    **Returns**
 
-**Return type**
+    a handle to the instruction that was just added
 
-`List`\[`int`]
+    **Return type**
 
-## Methods
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-### AND
+  ### assign\_parameters
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.AND" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.assign_parameters" name="assign_parameters" signature="PiecewiseLinearPauliRotations.assign_parameters(param_dict, inplace=False)">
+    Assign parameters to new parameters or values.
 
-`PiecewiseLinearPauliRotations.AND(qr_variables, qb_target, qr_ancillae, flags=None, mct_mode='no-ancilla')`
+    The keys of the parameter dictionary must be Parameter instances in the current circuit. The values of the dictionary can either be numeric values or new parameter objects. The values can be assigned to the current circuit object or to a copy of it.
 
-Build a collective conjunction (AND) circuit in place using mct.
+    **Parameters**
 
-**Parameters**
+    *   **param\_dict** (*dict*) – A dictionary specifying the mapping from `current_parameter` to `new_parameter`, where `new_parameter` can be a new parameter object or a numeric value.
+    *   **inplace** (*bool*) – If False, a copy of the circuit with the bound parameters is returned. If True the circuit instance itself is modified.
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to build the conjunction on.
-*   **qr\_variables** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister holding the variable qubits.
-*   **qb\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit to hold the conjunction result.
-*   **qr\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The ancillary QuantumRegister for building the mct.
-*   **flags** (*list\[int]*) – A list of +1/-1/0 to mark negations or omissions of qubits.
-*   **mct\_mode** (*str*) – The mct building mode.
+    **Raises**
 
-### OR
+    **CircuitError** – If param\_dict contains parameters not present in the circuit
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.OR" />
+    **Returns**
 
-`PiecewiseLinearPauliRotations.OR(qr_variables, qb_target, qr_ancillae, flags=None, mct_mode='basic')`
+    **A copy of the circuit with bound parameters, if**
 
-Build a collective disjunction (OR) circuit in place using mct.
+    `inplace` is True, otherwise None.
 
-**Parameters**
+    **Return type**
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to build the disjunction on.
-*   **qr\_variables** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister holding the variable qubits.
-*   **flags** (*list\[int]*) – A list of +1/-1/0 to mark negations or omissions of qubits.
-*   **qb\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit to hold the disjunction result.
-*   **qr\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The ancillary QuantumRegister for building the mct.
-*   **mct\_mode** (*str*) – The mct building mode.
+    optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
 
-### \_\_getitem\_\_
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.__getitem__" />
-
-`PiecewiseLinearPauliRotations.__getitem__(item)`
-
-Return indexed operation.
-
-### \_\_len\_\_
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.__len__" />
-
-`PiecewiseLinearPauliRotations.__len__()`
-
-Return number of operations in circuit.
-
-### add\_register
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.add_register" />
-
-`PiecewiseLinearPauliRotations.add_register(*regs)`
-
-Add registers.
-
-### append
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.append" />
-
-`PiecewiseLinearPauliRotations.append(instruction, qargs=None, cargs=None)`
-
-Append one or more instructions to the end of the circuit, modifying the circuit in place. Expands qargs and cargs.
-
-**Parameters**
-
-*   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – Instruction instance to append
-*   **qargs** (*list(argument)*) – qubits to attach instruction to
-*   **cargs** (*list(argument)*) – clbits to attach instruction to
-
-**Returns**
-
-a handle to the instruction that was just added
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### assign\_parameters
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.assign_parameters" />
-
-`PiecewiseLinearPauliRotations.assign_parameters(param_dict, inplace=False)`
-
-Assign parameters to new parameters or values.
-
-The keys of the parameter dictionary must be Parameter instances in the current circuit. The values of the dictionary can either be numeric values or new parameter objects. The values can be assigned to the current circuit object or to a copy of it.
-
-**Parameters**
-
-*   **param\_dict** (*dict*) – A dictionary specifying the mapping from `current_parameter` to `new_parameter`, where `new_parameter` can be a new parameter object or a numeric value.
-*   **inplace** (*bool*) – If False, a copy of the circuit with the bound parameters is returned. If True the circuit instance itself is modified.
-
-**Raises**
-
-**CircuitError** – If param\_dict contains parameters not present in the circuit
-
-**Returns**
-
-**A copy of the circuit with bound parameters, if**
-
-`inplace` is True, otherwise None.
-
-**Return type**
-
-optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
-
-**Examples**
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> circuit = QuantumCircuit(2)
->>> params = [Parameter('A'), Parameter('B'), Parameter('C')]
->>> circuit.ry(params[0], 0)
->>> circuit.crx(params[1], 0, 1)
->>> circuit.draw()
-        ┌───────┐
-q_0: |0>┤ Ry(A) ├────■────
-        └───────┘┌───┴───┐
-q_1: |0>─────────┤ Rx(B) ├
-                 └───────┘
->>> circuit.assign_parameters({params[0]: params[2]}, inplace=True)
->>> circuit.draw()
-        ┌───────┐
-q_0: |0>┤ Ry(C) ├────■────
-        └───────┘┌───┴───┐
-q_1: |0>─────────┤ Rx(B) ├
-                 └───────┘
->>> bound_circuit = circuit.assign_parameters({params[1]: 1, params[2]: 2})
->>> bound_circuit.draw()
-        ┌───────┐
-q_0: |0>┤ Ry(2) ├────■────
-        └───────┘┌───┴───┐
-q_1: |0>─────────┤ Rx(1) ├
-                 └───────┘
->>> bound_circuit.parameters  # this one has no free parameters anymore
-set()
->>> circuit.parameters  # the original one is still parameterized
-{Parameter(A), Parameter(C)}
-```
-
-### barrier
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.barrier" />
-
-`PiecewiseLinearPauliRotations.barrier(*qargs)`
-
-Apply `Barrier`. If qargs is None, applies to all.
-
-### bind\_parameters
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.bind_parameters" />
-
-`PiecewiseLinearPauliRotations.bind_parameters(value_dict)`
-
-Assign numeric parameters to values yielding a new circuit.
-
-To assign new Parameter objects or bind the values in-place, without yielding a new circuit, use the assign\_parameters method.
-
-**Parameters**
-
-**value\_dict** (*dict*) – \{parameter: value, …}
-
-**Raises**
-
-*   **CircuitError** – If value\_dict contains parameters not present in the circuit
-*   **TypeError** – If value\_dict contains a ParameterExpression in the values.
-
-**Returns**
-
-copy of self with assignment substitution.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### cast
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cast" />
-
-`static PiecewiseLinearPauliRotations.cast(value, _type)`
-
-Best effort to cast value to type. Otherwise, returns the value.
-
-### cbit\_argument\_conversion
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cbit_argument_conversion" />
-
-`PiecewiseLinearPauliRotations.cbit_argument_conversion(clbit_representation)`
-
-Converts several classical bit representations (such as indexes, range, etc.) into a list of classical bits.
-
-**Parameters**
-
-**clbit\_representation** (*Object*) – representation to expand
-
-**Returns**
-
-Where each tuple is a classical bit.
-
-**Return type**
-
-List(tuple)
-
-### ccx
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ccx" />
-
-`PiecewiseLinearPauliRotations.ccx(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)`
-
-Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
-
-### ch
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ch" />
-
-`PiecewiseLinearPauliRotations.ch(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
-
-### cls\_instances
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cls_instances" />
-
-`classmethod PiecewiseLinearPauliRotations.cls_instances()`
-
-Return the current number of instances of this class, useful for auto naming.
-
-### cls\_prefix
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cls_prefix" />
-
-`classmethod PiecewiseLinearPauliRotations.cls_prefix()`
-
-Return the prefix to use for auto naming.
-
-### cnot
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cnot" />
-
-`PiecewiseLinearPauliRotations.cnot(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
-
-### combine
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.combine" />
-
-`PiecewiseLinearPauliRotations.combine(rhs)`
-
-Append rhs to self if self contains compatible registers.
-
-Two circuits are compatible if they contain the same registers or if they contain different registers with unique names. The returned circuit will contain all unique registers between both circuits.
-
-Return self + rhs as a new object.
-
-**Parameters**
-
-**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
-
-**Returns**
-
-Returns a new QuantumCircuit object
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**QiskitError** – if the rhs circuit is not compatible
-
-### compose
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.compose" />
-
-`PiecewiseLinearPauliRotations.compose(other, qubits=None, clbits=None, front=False, inplace=False)`
-
-Compose circuit with `other` circuit or instruction, optionally permuting wires.
-
-`other` can be narrower or of equal width to `self`.
-
-**Parameters**
-
-*   **other** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or BaseOperator*) – (sub)circuit to compose onto self.
-*   **qubits** (*list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|int]*) – qubits of self to compose onto.
-*   **clbits** (*list\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|int]*) – clbits of self to compose onto.
-*   **front** (*bool*) – If True, front composition will be performed (not implemented yet).
-*   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
-
-**Returns**
-
-the composed circuit (returns None if inplace==True).
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-*   **CircuitError** – if composing on the front.
-*   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
-
-**Examples**
-
-```python
->>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
-```
-
-```python
-            ┌───┐                   ┌─────┐                ┌───┐
-lqr_1_0: ───┤ H ├───    rqr_0: ──■──┤ Tdg ├    lqr_1_0: ───┤ H ├───────────────
-            ├───┤              ┌─┴─┐└─────┘                ├───┤
-lqr_1_1: ───┤ X ├───    rqr_1: ┤ X ├───────    lqr_1_1: ───┤ X ├───────────────
-         ┌──┴───┴──┐           └───┘                    ┌──┴───┴──┐┌───┐
-lqr_1_2: ┤ U1(0.1) ├  +                     =  lqr_1_2: ┤ U1(0.1) ├┤ X ├───────
-         └─────────┘                                    └─────────┘└─┬─┘┌─────┐
-lqr_2_0: ─────■─────                           lqr_2_0: ─────■───────■──┤ Tdg ├
-            ┌─┴─┐                                          ┌─┴─┐        └─────┘
-lqr_2_1: ───┤ X ├───                           lqr_2_1: ───┤ X ├───────────────
-            └───┘                                          └───┘
-lcr_0: 0 ═══════════                           lcr_0: 0 ═══════════════════════
-
-lcr_1: 0 ═══════════                           lcr_1: 0 ═══════════════════════
-```
-
-### copy
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.copy" />
-
-`PiecewiseLinearPauliRotations.copy(name=None)`
-
-Copy the circuit.
-
-**Parameters**
-
-**name** (*str*) – name to be given to the copied circuit. If None, then the name stays the same
-
-**Returns**
-
-a deepcopy of the current circuit, with the specified name
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### count\_ops
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.count_ops" />
-
-`PiecewiseLinearPauliRotations.count_ops()`
-
-Count each operation kind in the circuit.
-
-**Returns**
-
-a breakdown of how many operations of each kind, sorted by amount.
-
-**Return type**
-
-OrderedDict
-
-### crx
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.crx" />
-
-`PiecewiseLinearPauliRotations.crx(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").
-
-### cry
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cry" />
-
-`PiecewiseLinearPauliRotations.cry(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").
-
-### crz
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.crz" />
-
-`PiecewiseLinearPauliRotations.crz(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").
-
-### cswap
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cswap" />
-
-`PiecewiseLinearPauliRotations.cswap(control_qubit, target_qubit1, target_qubit2, *, label=None, ctrl_state=None, ctl=None, tgt1=None, tgt2=None)`
-
-Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
-
-### cu1
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cu1" />
-
-`PiecewiseLinearPauliRotations.cu1(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").
-
-### cu3
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cu3" />
-
-`PiecewiseLinearPauliRotations.cu3(theta, phi, lam, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").
-
-### cx
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cx" />
-
-`PiecewiseLinearPauliRotations.cx(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
-
-### cy
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cy" />
-
-`PiecewiseLinearPauliRotations.cy(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
-
-### cz
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cz" />
-
-`PiecewiseLinearPauliRotations.cz(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
-
-### dcx
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.dcx" />
-
-`PiecewiseLinearPauliRotations.dcx(qubit1, qubit2)`
-
-Apply [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").
-
-### decompose
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.decompose" />
-
-`PiecewiseLinearPauliRotations.decompose()`
-
-Call a decomposition pass on this circuit, to decompose one level (shallow decompose).
-
-**Returns**
-
-a circuit one level decomposed
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### depth
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.depth" />
-
-`PiecewiseLinearPauliRotations.depth()`
-
-Return circuit depth (i.e., length of critical path). This does not include compiler or simulator directives such as ‘barrier’ or ‘snapshot’.
-
-**Returns**
-
-Depth of circuit.
-
-**Return type**
-
-int
-
-**Notes**
-
-The circuit depth and the DAG depth need not be the same.
-
-### diag\_gate
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.diag_gate" />
-
-`PiecewiseLinearPauliRotations.diag_gate(diag, qubit)`
-
-Deprecated version of QuantumCircuit.diagonal.
-
-### diagonal
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.diagonal" />
-
-`PiecewiseLinearPauliRotations.diagonal(diag, qubit)`
-
-Attach a diagonal gate to a circuit.
-
-The decomposition is based on Theorem 7 given in “Synthesis of Quantum Logic Circuits” by Shende et al. ([https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf)).
-
-**Parameters**
-
-*   **diag** (*list*) – list of the 2^k diagonal entries (for a diagonal gate on k qubits). Must contain at least two entries
-*   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k qubits the diagonal is acting on (the order of the qubits specifies the computational basis in which the diagonal gate is provided: the first element in diag acts on the state where all the qubits in q are in the state 0, the second entry acts on the state where all the qubits q\[1],…,q\[k-1] are in the state zero and q\[0] is in the state 1, and so on)
-
-**Returns**
-
-the diagonal gate which was attached to the circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**QiskitError** – if the list of the diagonal entries or the qubit list is in bad format; if the number of diagonal entries is not 2^k, where k denotes the number of qubits
-
-### draw
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.draw" />
-
-`PiecewiseLinearPauliRotations.draw(output=None, scale=0.7, filename=None, style=None, interactive=False, line_length=None, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=False)`
-
-Draw the quantum circuit.
-
-**text**: ASCII art TextDrawing that can be printed in the console.
-
-**latex**: high-quality images compiled via LaTeX.
-
-**latex\_source**: raw uncompiled LaTeX output.
-
-**matplotlib**: images with color rendered purely in Python.
-
-**Parameters**
-
-*   **output** (*str*) – Select the output method to use for drawing the circuit. Valid choices are `text`, `latex`, `latex_source`, or `mpl`. By default the ‘text’ drawer is used unless a user config file has an alternative backend set as the default. If the output kwarg is set, that backend will always be used over the default in a user config file.
-*   **scale** (*float*) – scale of image to draw (shrink if \< 1)
-*   **filename** (*str*) – file path to save image to
-*   **style** (*dict or str*) – dictionary of style or file name of style file. This option is only used by the `mpl` output type. If a str is passed in that is the path to a json file which contains a dictionary of style, then that will be opened, parsed, and used as the input dict. See: [Style Dict Doc](qiskit.circuit.library.ZZFeatureMap#draw) for more information on the contents.
-*   **interactive** (*bool*) – when set true show the circuit in a new window (for mpl this depends on the matplotlib backend being used supporting this). Note when used with either the text or the latex\_source output type this has no effect and will be silently ignored.
-*   **line\_length** (*int*) – Deprecated; see fold which supersedes this option. Sets the length of the lines generated by text output type. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil.get_terminal_size()`. However, if you’re running in jupyter, the default line length is set to 80 characters. If you don’t want pagination at all, set `line_length=-1`.
-*   **reverse\_bits** (*bool*) – When set to True, reverse the bit order inside registers for the output visualization.
-*   **plot\_barriers** (*bool*) – Enable/disable drawing barriers in the output circuit. Defaults to True.
-*   **justify** (*string*) – Options are `left`, `right` or `none`. If anything else is supplied it defaults to left justified. It refers to where gates should be placed in the output circuit if there is an option. `none` results in each gate being placed in its own column.
-*   **vertical\_compression** (*string*) – `high`, `medium` or `low`. It merges the lines generated by the `text` output so the drawing will take less vertical room. Default is `medium`. Only used by the `text` output, will be silently ignored otherwise.
-*   **idle\_wires** (*bool*) – Include idle wires (wires with no circuit elements) in output visualization. Default is True.
-*   **with\_layout** (*bool*) – Include layout information, with labels on the physical layout. Default is True.
-*   **fold** (*int*) – Sets pagination. It can be disabled using -1. In text, sets the length of the lines. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil. get_terminal_size()`. However, if running in jupyter, the default line length is set to 80 characters. In `mpl` is the number of (visual) layers before folding. Default is 25.
-*   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified, a new matplotlib Figure will be created and used. Additionally, if specified, there will be no returned Figure since it is redundant. This is only used when the `output` kwarg is set to use the `mpl` backend. It will be silently ignored with all other outputs.
-*   **initial\_state** (*bool*) – Optional. Adds `|0>` in the beginning of the wire. Only used by the `text`, `latex` and `latex_source` outputs. Default: `False`.
-*   **cregbundle** (*bool*) – Optional. If set True bundle classical registers. Only used by the `text` output. Default: `False`.
-
-**Returns**
-
-`PIL.Image` or `matplotlib.figure` or `str` or `TextDrawing`:
-
-*   **PIL.Image (output=’latex’)**
-
-    an in-memory representation of the image of the circuit diagram.
-
-*   **matplotlib.figure.Figure (output=’mpl’)**
-
-    a matplotlib figure object for the circuit diagram.
-
-*   **str (output=’latex\_source’)**
-
-    The LaTeX source code for visualizing the circuit diagram.
-
-*   **TextDrawing (output=’text’)**
-
-    A drawing that can be printed as ASCII art.
-
-**Raises**
-
-*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
-*   **ImportError** – when the output methods require non-installed libraries
-
-**Style Dict Details**
-
-The style dict kwarg contains numerous options that define the style of the output circuit visualization. The style dict is only used by the `mpl` output. The options available in the style dict are defined below:
-
-**Parameters**
-
-*   **textcolor** (*str*) – The color code to use for text. Defaults to ‘#000000’
-
-*   **subtextcolor** (*str*) – The color code to use for subtext. Defaults to ‘#000000’
-
-*   **linecolor** (*str*) – The color code to use for lines. Defaults to ‘#000000’
-
-*   **creglinecolor** (*str*) – The color code to use for classical register lines. Defaults to ‘#778899’
-
-*   **gatetextcolor** (*str*) – The color code to use for gate text. Defaults to ‘#000000’
-
-*   **gatefacecolor** (*str*) – The color code to use for gates. Defaults to ‘#ffffff’
-
-*   **barrierfacecolor** (*str*) – The color code to use for barriers. Defaults to ‘#bdbdbd’
-
-*   **backgroundcolor** (*str*) – The color code to use for the background. Defaults to ‘#ffffff’
-
-*   **fontsize** (*int*) – The font size to use for text. Defaults to 13.
-
-*   **subfontsize** (*int*) – The font size to use for subtext. Defaults to 8.
-
-*   **displaytext** (*dict*) –
-
-    A dictionary of the text to use for each element type in the output visualization. The default values are:
+    **Examples**
 
     ```python
-    {
-        'id': 'id',
-        'u0': 'U_0',
-        'u1': 'U_1',
-        'u2': 'U_2',
-        'u3': 'U_3',
-        'x': 'X',
-        'y': 'Y',
-        'z': 'Z',
-        'h': 'H',
-        's': 'S',
-        'sdg': 'S^\dagger',
-        't': 'T',
-        'tdg': 'T^\dagger',
-        'rx': 'R_x',
-        'ry': 'R_y',
-        'rz': 'R_z',
-        'reset': '\left|0\right\rangle'
-    }
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> circuit = QuantumCircuit(2)
+    >>> params = [Parameter('A'), Parameter('B'), Parameter('C')]
+    >>> circuit.ry(params[0], 0)
+    >>> circuit.crx(params[1], 0, 1)
+    >>> circuit.draw()
+            ┌───────┐
+    q_0: |0>┤ Ry(A) ├────■────
+            └───────┘┌───┴───┐
+    q_1: |0>─────────┤ Rx(B) ├
+                     └───────┘
+    >>> circuit.assign_parameters({params[0]: params[2]}, inplace=True)
+    >>> circuit.draw()
+            ┌───────┐
+    q_0: |0>┤ Ry(C) ├────■────
+            └───────┘┌───┴───┐
+    q_1: |0>─────────┤ Rx(B) ├
+                     └───────┘
+    >>> bound_circuit = circuit.assign_parameters({params[1]: 1, params[2]: 2})
+    >>> bound_circuit.draw()
+            ┌───────┐
+    q_0: |0>┤ Ry(2) ├────■────
+            └───────┘┌───┴───┐
+    q_1: |0>─────────┤ Rx(1) ├
+                     └───────┘
+    >>> bound_circuit.parameters  # this one has no free parameters anymore
+    set()
+    >>> circuit.parameters  # the original one is still parameterized
+    {Parameter(A), Parameter(C)}
     ```
+  </Function>
 
-    You must specify all the necessary values if using this. There is no provision for passing an incomplete dict in.
+  ### barrier
 
-*   **displaycolor** (*dict*) –
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.barrier" name="barrier" signature="PiecewiseLinearPauliRotations.barrier(*qargs)">
+    Apply `Barrier`. If qargs is None, applies to all.
+  </Function>
 
-    **The color codes to use for each circuit**
+  ### bind\_parameters
 
-    element. The default values are:
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.bind_parameters" name="bind_parameters" signature="PiecewiseLinearPauliRotations.bind_parameters(value_dict)">
+    Assign numeric parameters to values yielding a new circuit.
+
+    To assign new Parameter objects or bind the values in-place, without yielding a new circuit, use the assign\_parameters method.
+
+    **Parameters**
+
+    **value\_dict** (*dict*) – \{parameter: value, …}
+
+    **Raises**
+
+    *   **CircuitError** – If value\_dict contains parameters not present in the circuit
+    *   **TypeError** – If value\_dict contains a ParameterExpression in the values.
+
+    **Returns**
+
+    copy of self with assignment substitution.
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+
+  ### cast
+
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cast" name="cast" signature="static PiecewiseLinearPauliRotations.cast(value, _type)">
+    Best effort to cast value to type. Otherwise, returns the value.
+  </Function>
+
+  ### cbit\_argument\_conversion
+
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cbit_argument_conversion" name="cbit_argument_conversion" signature="PiecewiseLinearPauliRotations.cbit_argument_conversion(clbit_representation)">
+    Converts several classical bit representations (such as indexes, range, etc.) into a list of classical bits.
+
+    **Parameters**
+
+    **clbit\_representation** (*Object*) – representation to expand
+
+    **Returns**
+
+    Where each tuple is a classical bit.
+
+    **Return type**
+
+    List(tuple)
+  </Function>
+
+  ### ccx
+
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ccx" name="ccx" signature="PiecewiseLinearPauliRotations.ccx(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)">
+    Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
+  </Function>
+
+  ### ch
+
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ch" name="ch" signature="PiecewiseLinearPauliRotations.ch(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
+  </Function>
+
+  ### cls\_instances
+
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cls_instances" name="cls_instances" signature="classmethod PiecewiseLinearPauliRotations.cls_instances()">
+    Return the current number of instances of this class, useful for auto naming.
+  </Function>
+
+  ### cls\_prefix
+
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cls_prefix" name="cls_prefix" signature="classmethod PiecewiseLinearPauliRotations.cls_prefix()">
+    Return the prefix to use for auto naming.
+  </Function>
+
+  ### cnot
+
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cnot" name="cnot" signature="PiecewiseLinearPauliRotations.cnot(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+  </Function>
+
+  ### combine
+
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.combine" name="combine" signature="PiecewiseLinearPauliRotations.combine(rhs)">
+    Append rhs to self if self contains compatible registers.
+
+    Two circuits are compatible if they contain the same registers or if they contain different registers with unique names. The returned circuit will contain all unique registers between both circuits.
+
+    Return self + rhs as a new object.
+
+    **Parameters**
+
+    **rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
+
+    **Returns**
+
+    Returns a new QuantumCircuit object
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+    **Raises**
+
+    **QiskitError** – if the rhs circuit is not compatible
+  </Function>
+
+  ### compose
+
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.compose" name="compose" signature="PiecewiseLinearPauliRotations.compose(other, qubits=None, clbits=None, front=False, inplace=False)">
+    Compose circuit with `other` circuit or instruction, optionally permuting wires.
+
+    `other` can be narrower or of equal width to `self`.
+
+    **Parameters**
+
+    *   **other** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or BaseOperator*) – (sub)circuit to compose onto self.
+    *   **qubits** (*list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|int]*) – qubits of self to compose onto.
+    *   **clbits** (*list\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|int]*) – clbits of self to compose onto.
+    *   **front** (*bool*) – If True, front composition will be performed (not implemented yet).
+    *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
+
+    **Returns**
+
+    the composed circuit (returns None if inplace==True).
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+    **Raises**
+
+    *   **CircuitError** – if composing on the front.
+    *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
+
+    **Examples**
 
     ```python
-    {
-        'id': '#F0E442',
-        'u0': '#E7AB3B',
-        'u1': '#E7AB3B',
-        'u2': '#E7AB3B',
-        'u3': '#E7AB3B',
-        'x': '#58C698',
-        'y': '#58C698',
-        'z': '#58C698',
-        'h': '#70B7EB',
-        's': '#E0722D',
-        'sdg': '#E0722D',
-        't': '#E0722D',
-        'tdg': '#E0722D',
-        'rx': '#ffffff',
-        'ry': '#ffffff',
-        'rz': '#ffffff',
-        'reset': '#D188B4',
-        'target': '#70B7EB',
-        'meas': '#D188B4'
-    }
+    >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
     ```
 
-    Also, just like displaytext there is no provision for an incomplete dict passed in.
+    ```python
+                ┌───┐                   ┌─────┐                ┌───┐
+    lqr_1_0: ───┤ H ├───    rqr_0: ──■──┤ Tdg ├    lqr_1_0: ───┤ H ├───────────────
+                ├───┤              ┌─┴─┐└─────┘                ├───┤
+    lqr_1_1: ───┤ X ├───    rqr_1: ┤ X ├───────    lqr_1_1: ───┤ X ├───────────────
+             ┌──┴───┴──┐           └───┘                    ┌──┴───┴──┐┌───┐
+    lqr_1_2: ┤ U1(0.1) ├  +                     =  lqr_1_2: ┤ U1(0.1) ├┤ X ├───────
+             └─────────┘                                    └─────────┘└─┬─┘┌─────┐
+    lqr_2_0: ─────■─────                           lqr_2_0: ─────■───────■──┤ Tdg ├
+                ┌─┴─┐                                          ┌─┴─┐        └─────┘
+    lqr_2_1: ───┤ X ├───                           lqr_2_1: ───┤ X ├───────────────
+                └───┘                                          └───┘
+    lcr_0: 0 ═══════════                           lcr_0: 0 ═══════════════════════
 
-*   **latexdrawerstyle** (*bool*) – When set to True, enable LaTeX mode, which will draw gates like the latex output modes.
+    lcr_1: 0 ═══════════                           lcr_1: 0 ═══════════════════════
+    ```
+  </Function>
 
-*   **usepiformat** (*bool*) – When set to True, use radians for output.
+  ### copy
 
-*   **fold** (*int*) – The number of circuit elements to fold the circuit at. Defaults to 20.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.copy" name="copy" signature="PiecewiseLinearPauliRotations.copy(name=None)">
+    Copy the circuit.
 
-*   **cregbundle** (*bool*) – If set True, bundle classical registers
+    **Parameters**
 
-*   **showindex** (*bool*) – If set True, draw an index.
+    **name** (*str*) – name to be given to the copied circuit. If None, then the name stays the same
 
-*   **compress** (*bool*) – If set True, draw a compressed circuit.
+    **Returns**
 
-*   **figwidth** (*int*) – The maximum width (in inches) for the output figure.
+    a deepcopy of the current circuit, with the specified name
 
-*   **dpi** (*int*) – The DPI to use for the output image. Defaults to 150.
+    **Return type**
 
-*   **margin** (*list*) – A list of margin values to adjust spacing around output image. Takes a list of 4 ints: \[x left, x right, y bottom, y top].
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-*   **creglinestyle** (*str*) – The style of line to use for classical registers. Choices are ‘solid’, ‘doublet’, or any valid matplotlib linestyle kwarg value. Defaults to doublet
+  ### count\_ops
 
-### evaluate
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.count_ops" name="count_ops" signature="PiecewiseLinearPauliRotations.count_ops()">
+    Count each operation kind in the circuit.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.evaluate" />
+    **Returns**
 
-`PiecewiseLinearPauliRotations.evaluate(x)`
+    a breakdown of how many operations of each kind, sorted by amount.
 
-Classically evaluate the piecewise linear rotation.
+    **Return type**
 
-**Parameters**
+    OrderedDict
+  </Function>
 
-**x** (`float`) – Value to be evaluated at.
+  ### crx
 
-**Return type**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.crx" name="crx" signature="PiecewiseLinearPauliRotations.crx(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").
+  </Function>
 
-`float`
+  ### cry
 
-**Returns**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cry" name="cry" signature="PiecewiseLinearPauliRotations.cry(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").
+  </Function>
 
-Value of piecewise linear function at x.
+  ### crz
 
-### extend
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.crz" name="crz" signature="PiecewiseLinearPauliRotations.crz(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").
+  </Function>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.extend" />
+  ### cswap
 
-`PiecewiseLinearPauliRotations.extend(rhs)`
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cswap" name="cswap" signature="PiecewiseLinearPauliRotations.cswap(control_qubit, target_qubit1, target_qubit2, *, label=None, ctrl_state=None, ctl=None, tgt1=None, tgt2=None)">
+    Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
+  </Function>
 
-Append QuantumCircuit to the right hand side if it contains compatible registers.
+  ### cu1
 
-Two circuits are compatible if they contain the same registers or if they contain different registers with unique names. The returned circuit will contain all unique registers between both circuits.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cu1" name="cu1" signature="PiecewiseLinearPauliRotations.cu1(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").
+  </Function>
 
-Modify and return self.
+  ### cu3
 
-**Parameters**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cu3" name="cu3" signature="PiecewiseLinearPauliRotations.cu3(theta, phi, lam, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").
+  </Function>
 
-**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
+  ### cx
 
-**Returns**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cx" name="cx" signature="PiecewiseLinearPauliRotations.cx(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+  </Function>
 
-Returns this QuantumCircuit object (which has been modified)
+  ### cy
 
-**Return type**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cy" name="cy" signature="PiecewiseLinearPauliRotations.cy(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
+  </Function>
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  ### cz
 
-**Raises**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.cz" name="cz" signature="PiecewiseLinearPauliRotations.cz(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
+  </Function>
 
-**QiskitError** – if the rhs circuit is not compatible
+  ### dcx
 
-### fredkin
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.dcx" name="dcx" signature="PiecewiseLinearPauliRotations.dcx(qubit1, qubit2)">
+    Apply [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").
+  </Function>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.fredkin" />
+  ### decompose
 
-`PiecewiseLinearPauliRotations.fredkin(control_qubit, target_qubit1, target_qubit2, *, ctl=None, tgt1=None, tgt2=None)`
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.decompose" name="decompose" signature="PiecewiseLinearPauliRotations.decompose()">
+    Call a decomposition pass on this circuit, to decompose one level (shallow decompose).
 
-Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
+    **Returns**
 
-### from\_qasm\_file
+    a circuit one level decomposed
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.from_qasm_file" />
+    **Return type**
 
-`static PiecewiseLinearPauliRotations.from_qasm_file(path)`
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-Take in a QASM file and generate a QuantumCircuit object.
+  ### depth
 
-**Parameters**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.depth" name="depth" signature="PiecewiseLinearPauliRotations.depth()">
+    Return circuit depth (i.e., length of critical path). This does not include compiler or simulator directives such as ‘barrier’ or ‘snapshot’.
 
-**path** (*str*) – Path to the file for a QASM program
+    **Returns**
 
-**Returns**
+    Depth of circuit.
 
-The QuantumCircuit object for the input QASM
+    **Return type**
 
-**Return type**
+    int
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **Notes**
 
-### from\_qasm\_str
+    The circuit depth and the DAG depth need not be the same.
+  </Function>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.from_qasm_str" />
+  ### diag\_gate
 
-`static PiecewiseLinearPauliRotations.from_qasm_str(qasm_str)`
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.diag_gate" name="diag_gate" signature="PiecewiseLinearPauliRotations.diag_gate(diag, qubit)">
+    Deprecated version of QuantumCircuit.diagonal.
+  </Function>
 
-Take in a QASM string and generate a QuantumCircuit object.
+  ### diagonal
 
-**Parameters**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.diagonal" name="diagonal" signature="PiecewiseLinearPauliRotations.diagonal(diag, qubit)">
+    Attach a diagonal gate to a circuit.
 
-**qasm\_str** (*str*) – A QASM program string
+    The decomposition is based on Theorem 7 given in “Synthesis of Quantum Logic Circuits” by Shende et al. ([https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf)).
 
-**Returns**
+    **Parameters**
 
-The QuantumCircuit object for the input QASM
+    *   **diag** (*list*) – list of the 2^k diagonal entries (for a diagonal gate on k qubits). Must contain at least two entries
+    *   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k qubits the diagonal is acting on (the order of the qubits specifies the computational basis in which the diagonal gate is provided: the first element in diag acts on the state where all the qubits in q are in the state 0, the second entry acts on the state where all the qubits q\[1],…,q\[k-1] are in the state zero and q\[0] is in the state 1, and so on)
 
-**Return type**
+    **Returns**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    the diagonal gate which was attached to the circuit.
 
-### h
+    **Return type**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.h" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-`PiecewiseLinearPauliRotations.h(qubit, *, q=None)`
+    **Raises**
 
-Apply [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").
+    **QiskitError** – if the list of the diagonal entries or the qubit list is in bad format; if the number of diagonal entries is not 2^k, where k denotes the number of qubits
+  </Function>
 
-### hamiltonian
+  ### draw
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.hamiltonian" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.draw" name="draw" signature="PiecewiseLinearPauliRotations.draw(output=None, scale=0.7, filename=None, style=None, interactive=False, line_length=None, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=False)">
+    Draw the quantum circuit.
 
-`PiecewiseLinearPauliRotations.hamiltonian(operator, time, qubits, label=None)`
+    **text**: ASCII art TextDrawing that can be printed in the console.
 
-Apply hamiltonian evolution to to qubits.
+    **latex**: high-quality images compiled via LaTeX.
 
-### has\_register
+    **latex\_source**: raw uncompiled LaTeX output.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.has_register" />
+    **matplotlib**: images with color rendered purely in Python.
 
-`PiecewiseLinearPauliRotations.has_register(register)`
+    **Parameters**
 
-Test if this circuit has the register r.
+    *   **output** (*str*) – Select the output method to use for drawing the circuit. Valid choices are `text`, `latex`, `latex_source`, or `mpl`. By default the ‘text’ drawer is used unless a user config file has an alternative backend set as the default. If the output kwarg is set, that backend will always be used over the default in a user config file.
+    *   **scale** (*float*) – scale of image to draw (shrink if \< 1)
+    *   **filename** (*str*) – file path to save image to
+    *   **style** (*dict or str*) – dictionary of style or file name of style file. This option is only used by the `mpl` output type. If a str is passed in that is the path to a json file which contains a dictionary of style, then that will be opened, parsed, and used as the input dict. See: [Style Dict Doc](qiskit.circuit.library.ZZFeatureMap#draw) for more information on the contents.
+    *   **interactive** (*bool*) – when set true show the circuit in a new window (for mpl this depends on the matplotlib backend being used supporting this). Note when used with either the text or the latex\_source output type this has no effect and will be silently ignored.
+    *   **line\_length** (*int*) – Deprecated; see fold which supersedes this option. Sets the length of the lines generated by text output type. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil.get_terminal_size()`. However, if you’re running in jupyter, the default line length is set to 80 characters. If you don’t want pagination at all, set `line_length=-1`.
+    *   **reverse\_bits** (*bool*) – When set to True, reverse the bit order inside registers for the output visualization.
+    *   **plot\_barriers** (*bool*) – Enable/disable drawing barriers in the output circuit. Defaults to True.
+    *   **justify** (*string*) – Options are `left`, `right` or `none`. If anything else is supplied it defaults to left justified. It refers to where gates should be placed in the output circuit if there is an option. `none` results in each gate being placed in its own column.
+    *   **vertical\_compression** (*string*) – `high`, `medium` or `low`. It merges the lines generated by the `text` output so the drawing will take less vertical room. Default is `medium`. Only used by the `text` output, will be silently ignored otherwise.
+    *   **idle\_wires** (*bool*) – Include idle wires (wires with no circuit elements) in output visualization. Default is True.
+    *   **with\_layout** (*bool*) – Include layout information, with labels on the physical layout. Default is True.
+    *   **fold** (*int*) – Sets pagination. It can be disabled using -1. In text, sets the length of the lines. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil. get_terminal_size()`. However, if running in jupyter, the default line length is set to 80 characters. In `mpl` is the number of (visual) layers before folding. Default is 25.
+    *   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified, a new matplotlib Figure will be created and used. Additionally, if specified, there will be no returned Figure since it is redundant. This is only used when the `output` kwarg is set to use the `mpl` backend. It will be silently ignored with all other outputs.
+    *   **initial\_state** (*bool*) – Optional. Adds `|0>` in the beginning of the wire. Only used by the `text`, `latex` and `latex_source` outputs. Default: `False`.
+    *   **cregbundle** (*bool*) – Optional. If set True bundle classical registers. Only used by the `text` output. Default: `False`.
 
-**Parameters**
+    **Returns**
 
-**register** (*Register*) – a quantum or classical register.
+    `PIL.Image` or `matplotlib.figure` or `str` or `TextDrawing`:
 
-**Returns**
+    *   **PIL.Image (output=’latex’)**
 
-True if the register is contained in this circuit.
+        an in-memory representation of the image of the circuit diagram.
 
-**Return type**
+    *   **matplotlib.figure.Figure (output=’mpl’)**
 
-bool
+        a matplotlib figure object for the circuit diagram.
 
-### i
+    *   **str (output=’latex\_source’)**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.i" />
+        The LaTeX source code for visualizing the circuit diagram.
 
-`PiecewiseLinearPauliRotations.i(qubit, *, q=None)`
+    *   **TextDrawing (output=’text’)**
 
-Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+        A drawing that can be printed as ASCII art.
 
-### id
+    **Raises**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.id" />
+    *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
+    *   **ImportError** – when the output methods require non-installed libraries
 
-`PiecewiseLinearPauliRotations.id(qubit, *, q=None)`
+    **Style Dict Details**
 
-Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+    The style dict kwarg contains numerous options that define the style of the output circuit visualization. The style dict is only used by the `mpl` output. The options available in the style dict are defined below:
 
-### iden
+    **Parameters**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.iden" />
+    *   **textcolor** (*str*) – The color code to use for text. Defaults to ‘#000000’
 
-`PiecewiseLinearPauliRotations.iden(qubit, *, q=None)`
+    *   **subtextcolor** (*str*) – The color code to use for subtext. Defaults to ‘#000000’
 
-Deprecated identity gate.
+    *   **linecolor** (*str*) – The color code to use for lines. Defaults to ‘#000000’
 
-### initialize
+    *   **creglinecolor** (*str*) – The color code to use for classical register lines. Defaults to ‘#778899’
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.initialize" />
+    *   **gatetextcolor** (*str*) – The color code to use for gate text. Defaults to ‘#000000’
 
-`PiecewiseLinearPauliRotations.initialize(params, qubits)`
+    *   **gatefacecolor** (*str*) – The color code to use for gates. Defaults to ‘#ffffff’
 
-Apply initialize to circuit.
+    *   **barrierfacecolor** (*str*) – The color code to use for barriers. Defaults to ‘#bdbdbd’
 
-### inverse
+    *   **backgroundcolor** (*str*) – The color code to use for the background. Defaults to ‘#ffffff’
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.inverse" />
+    *   **fontsize** (*int*) – The font size to use for text. Defaults to 13.
 
-`PiecewiseLinearPauliRotations.inverse()`
+    *   **subfontsize** (*int*) – The font size to use for subtext. Defaults to 8.
 
-Invert this circuit.
+    *   **displaytext** (*dict*) –
 
-This is done by recursively inverting all gates.
+        A dictionary of the text to use for each element type in the output visualization. The default values are:
 
-**Returns**
+        ```python
+        {
+            'id': 'id',
+            'u0': 'U_0',
+            'u1': 'U_1',
+            'u2': 'U_2',
+            'u3': 'U_3',
+            'x': 'X',
+            'y': 'Y',
+            'z': 'Z',
+            'h': 'H',
+            's': 'S',
+            'sdg': 'S^\dagger',
+            't': 'T',
+            'tdg': 'T^\dagger',
+            'rx': 'R_x',
+            'ry': 'R_y',
+            'rz': 'R_z',
+            'reset': '\left|0\right\rangle'
+        }
+        ```
 
-the inverted circuit
+        You must specify all the necessary values if using this. There is no provision for passing an incomplete dict in.
 
-**Return type**
+    *   **displaycolor** (*dict*) –
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+        **The color codes to use for each circuit**
 
-**Raises**
+        element. The default values are:
 
-**CircuitError** – if the circuit cannot be inverted.
+        ```python
+        {
+            'id': '#F0E442',
+            'u0': '#E7AB3B',
+            'u1': '#E7AB3B',
+            'u2': '#E7AB3B',
+            'u3': '#E7AB3B',
+            'x': '#58C698',
+            'y': '#58C698',
+            'z': '#58C698',
+            'h': '#70B7EB',
+            's': '#E0722D',
+            'sdg': '#E0722D',
+            't': '#E0722D',
+            'tdg': '#E0722D',
+            'rx': '#ffffff',
+            'ry': '#ffffff',
+            'rz': '#ffffff',
+            'reset': '#D188B4',
+            'target': '#70B7EB',
+            'meas': '#D188B4'
+        }
+        ```
 
-### iso
+        Also, just like displaytext there is no provision for an incomplete dict passed in.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.iso" />
+    *   **latexdrawerstyle** (*bool*) – When set to True, enable LaTeX mode, which will draw gates like the latex output modes.
 
-`PiecewiseLinearPauliRotations.iso(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)`
+    *   **usepiformat** (*bool*) – When set to True, use radians for output.
 
-Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
+    *   **fold** (*int*) – The number of circuit elements to fold the circuit at. Defaults to 20.
 
-**Parameters**
+    *   **cregbundle** (*bool*) – If set True, bundle classical registers
 
-*   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
+    *   **showindex** (*bool*) – If set True, draw an index.
 
-**Returns**
+    *   **compress** (*bool*) – If set True, draw a compressed circuit.
 
-the isometry is attached to the quantum circuit.
+    *   **figwidth** (*int*) – The maximum width (in inches) for the output figure.
 
-**Return type**
+    *   **dpi** (*int*) – The DPI to use for the output image. Defaults to 150.
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    *   **margin** (*list*) – A list of margin values to adjust spacing around output image. Takes a list of 4 ints: \[x left, x right, y bottom, y top].
 
-**Raises**
+    *   **creglinestyle** (*str*) – The style of line to use for classical registers. Choices are ‘solid’, ‘doublet’, or any valid matplotlib linestyle kwarg value. Defaults to doublet
+  </Function>
 
-**QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
+  ### evaluate
 
-### isometry
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.evaluate" name="evaluate" signature="PiecewiseLinearPauliRotations.evaluate(x)">
+    Classically evaluate the piecewise linear rotation.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.isometry" />
+    **Parameters**
 
-`PiecewiseLinearPauliRotations.isometry(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)`
+    **x** (`float`) – Value to be evaluated at.
 
-Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
+    **Return type**
 
-**Parameters**
+    `float`
 
-*   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
+    **Returns**
 
-**Returns**
+    Value of piecewise linear function at x.
+  </Function>
 
-the isometry is attached to the quantum circuit.
+  ### extend
 
-**Return type**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.extend" name="extend" signature="PiecewiseLinearPauliRotations.extend(rhs)">
+    Append QuantumCircuit to the right hand side if it contains compatible registers.
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    Two circuits are compatible if they contain the same registers or if they contain different registers with unique names. The returned circuit will contain all unique registers between both circuits.
 
-**Raises**
+    Modify and return self.
 
-**QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
+    **Parameters**
 
-### iswap
+    **rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.iswap" />
+    **Returns**
 
-`PiecewiseLinearPauliRotations.iswap(qubit1, qubit2)`
+    Returns this QuantumCircuit object (which has been modified)
 
-Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").
+    **Return type**
 
-### mcmt
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mcmt" />
+    **Raises**
 
-`PiecewiseLinearPauliRotations.mcmt(gate, control_qubits, target_qubits, ancilla_qubits=None, mode='no-ancilla', *, single_control_gate_fun=None, q_controls=None, q_ancillae=None, q_targets=None)`
+    **QiskitError** – if the rhs circuit is not compatible
+  </Function>
 
-Apply a multi-control, multi-target using a generic gate.
+  ### fredkin
 
-This can also be used to implement a generic multi-control gate, as the target could also be of length 1.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.fredkin" name="fredkin" signature="PiecewiseLinearPauliRotations.fredkin(control_qubit, target_qubit1, target_qubit2, *, ctl=None, tgt1=None, tgt2=None)">
+    Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
+  </Function>
 
-### mcrx
+  ### from\_qasm\_file
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mcrx" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.from_qasm_file" name="from_qasm_file" signature="static PiecewiseLinearPauliRotations.from_qasm_file(path)">
+    Take in a QASM file and generate a QuantumCircuit object.
 
-`PiecewiseLinearPauliRotations.mcrx(theta, q_controls, q_target, use_basis_gates=False)`
+    **Parameters**
 
-Apply Multiple-Controlled X rotation gate
+    **path** (*str*) – Path to the file for a QASM program
 
-**Parameters**
+    **Returns**
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrx gate on.
-*   **theta** (*float*) – angle theta
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
-*   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
+    The QuantumCircuit object for the input QASM
 
-**Raises**
+    **Return type**
 
-**QiskitError** – parameter errors
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-### mcry
+  ### from\_qasm\_str
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mcry" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.from_qasm_str" name="from_qasm_str" signature="static PiecewiseLinearPauliRotations.from_qasm_str(qasm_str)">
+    Take in a QASM string and generate a QuantumCircuit object.
 
-`PiecewiseLinearPauliRotations.mcry(theta, q_controls, q_target, q_ancillae, mode='basic', use_basis_gates=False)`
+    **Parameters**
 
-Apply Multiple-Controlled Y rotation gate
+    **qasm\_str** (*str*) – A QASM program string
 
-**Parameters**
+    **Returns**
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcry gate on.
-*   **theta** (*float*) – angle theta
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
-*   **q\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or tuple(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, int)*) – The list of ancillary qubits.
-*   **mode** (*string*) – The implementation mode to use
-*   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
+    The QuantumCircuit object for the input QASM
 
-**Raises**
+    **Return type**
 
-**QiskitError** – parameter errors
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-### mcrz
+  ### h
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mcrz" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.h" name="h" signature="PiecewiseLinearPauliRotations.h(qubit, *, q=None)">
+    Apply [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").
+  </Function>
 
-`PiecewiseLinearPauliRotations.mcrz(lam, q_controls, q_target, use_basis_gates=False)`
+  ### hamiltonian
 
-Apply Multiple-Controlled Z rotation gate
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.hamiltonian" name="hamiltonian" signature="PiecewiseLinearPauliRotations.hamiltonian(operator, time, qubits, label=None)">
+    Apply hamiltonian evolution to to qubits.
+  </Function>
 
-**Parameters**
+  ### has\_register
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrz gate on.
-*   **lam** (*float*) – angle lambda
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
-*   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.has_register" name="has_register" signature="PiecewiseLinearPauliRotations.has_register(register)">
+    Test if this circuit has the register r.
 
-**Raises**
+    **Parameters**
 
-**QiskitError** – parameter errors
+    **register** (*Register*) – a quantum or classical register.
 
-### mct
+    **Returns**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mct" />
+    True if the register is contained in this circuit.
 
-`PiecewiseLinearPauliRotations.mct(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
+    **Return type**
 
-Apply `MCXGate`.
+    bool
+  </Function>
 
-### mcu1
+  ### i
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mcu1" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.i" name="i" signature="PiecewiseLinearPauliRotations.i(qubit, *, q=None)">
+    Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+  </Function>
 
-`PiecewiseLinearPauliRotations.mcu1(lam, control_qubits, target_qubit)`
+  ### id
 
-Apply `MCU1Gate`.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.id" name="id" signature="PiecewiseLinearPauliRotations.id(qubit, *, q=None)">
+    Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+  </Function>
 
-### mcx
+  ### iden
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mcx" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.iden" name="iden" signature="PiecewiseLinearPauliRotations.iden(qubit, *, q=None)">
+    Deprecated identity gate.
+  </Function>
 
-`PiecewiseLinearPauliRotations.mcx(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
+  ### initialize
 
-Apply `MCXGate`.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.initialize" name="initialize" signature="PiecewiseLinearPauliRotations.initialize(params, qubits)">
+    Apply initialize to circuit.
+  </Function>
 
-The multi-cX gate can be implemented using different techniques, which use different numbers of ancilla qubits and have varying circuit depth. These modes are: - ‘no-ancilla’: Requires 0 ancilla qubits. - ‘recursion’: Requires 1 ancilla qubit if more than 4 controls are used, otherwise 0. - ‘v-chain’: Requires 2 less ancillas than the number of control qubits. - ‘v-chain-dirty’: Same as for the clean ancillas (but the circuit will be longer).
+  ### inverse
 
-### measure
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.inverse" name="inverse" signature="PiecewiseLinearPauliRotations.inverse()">
+    Invert this circuit.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.measure" />
+    This is done by recursively inverting all gates.
 
-`PiecewiseLinearPauliRotations.measure(qubit, cbit)`
+    **Returns**
 
-Measure quantum bit into classical bit (tuples).
+    the inverted circuit
 
-**Parameters**
+    **Return type**
 
-*   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list|tuple*) – quantum register
-*   **cbit** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*|list|tuple*) – classical register
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Returns**
+    **Raises**
 
-the attached measure instruction.
+    **CircuitError** – if the circuit cannot be inverted.
+  </Function>
 
-**Return type**
+  ### iso
 
-qiskit.Instruction
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.iso" name="iso" signature="PiecewiseLinearPauliRotations.iso(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)">
+    Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
 
-**Raises**
+    **Parameters**
 
-**CircuitError** – if qubit is not in this circuit or bad format; if cbit is not in this circuit or not creg.
+    *   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
+    *   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
+    *   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
+    *   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
+    *   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
 
-### measure\_active
+    **Returns**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.measure_active" />
+    the isometry is attached to the quantum circuit.
 
-`PiecewiseLinearPauliRotations.measure_active(inplace=True)`
+    **Return type**
 
-Adds measurement to all non-idle qubits. Creates a new ClassicalRegister with a size equal to the number of non-idle qubits being measured.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-Returns a new circuit with measurements if inplace=False.
+    **Raises**
 
-**Parameters**
+    **QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
+  </Function>
 
-**inplace** (*bool*) – All measurements inplace or return new circuit.
+  ### isometry
 
-**Returns**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.isometry" name="isometry" signature="PiecewiseLinearPauliRotations.isometry(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)">
+    Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
 
-Returns circuit with measurements when inplace = False.
+    **Parameters**
 
-**Return type**
+    *   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
+    *   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
+    *   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
+    *   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
+    *   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **Returns**
 
-### measure\_all
+    the isometry is attached to the quantum circuit.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.measure_all" />
+    **Return type**
 
-`PiecewiseLinearPauliRotations.measure_all(inplace=True)`
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-Adds measurement to all qubits. Creates a new ClassicalRegister with a size equal to the number of qubits being measured.
+    **Raises**
 
-Returns a new circuit with measurements if inplace=False.
+    **QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
+  </Function>
 
-**Parameters**
+  ### iswap
 
-**inplace** (*bool*) – All measurements inplace or return new circuit.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.iswap" name="iswap" signature="PiecewiseLinearPauliRotations.iswap(qubit1, qubit2)">
+    Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").
+  </Function>
 
-**Returns**
+  ### mcmt
 
-Returns circuit with measurements when inplace = False.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mcmt" name="mcmt" signature="PiecewiseLinearPauliRotations.mcmt(gate, control_qubits, target_qubits, ancilla_qubits=None, mode='no-ancilla', *, single_control_gate_fun=None, q_controls=None, q_ancillae=None, q_targets=None)">
+    Apply a multi-control, multi-target using a generic gate.
 
-**Return type**
+    This can also be used to implement a generic multi-control gate, as the target could also be of length 1.
+  </Function>
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  ### mcrx
 
-### mirror
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mcrx" name="mcrx" signature="PiecewiseLinearPauliRotations.mcrx(theta, q_controls, q_target, use_basis_gates=False)">
+    Apply Multiple-Controlled X rotation gate
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mirror" />
+    **Parameters**
 
-`PiecewiseLinearPauliRotations.mirror()`
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrx gate on.
+    *   **theta** (*float*) – angle theta
+    *   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+    *   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+    *   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
 
-Mirror the circuit by reversing the instructions.
+    **Raises**
 
-This is done by recursively mirroring all instructions. It does not invert any gate.
+    **QiskitError** – parameter errors
+  </Function>
 
-**Returns**
+  ### mcry
 
-the mirrored circuit
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mcry" name="mcry" signature="PiecewiseLinearPauliRotations.mcry(theta, q_controls, q_target, q_ancillae, mode='basic', use_basis_gates=False)">
+    Apply Multiple-Controlled Y rotation gate
 
-**Return type**
+    **Parameters**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcry gate on.
+    *   **theta** (*float*) – angle theta
+    *   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+    *   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+    *   **q\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or tuple(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, int)*) – The list of ancillary qubits.
+    *   **mode** (*string*) – The implementation mode to use
+    *   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
 
-### ms
+    **Raises**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ms" />
+    **QiskitError** – parameter errors
+  </Function>
 
-`PiecewiseLinearPauliRotations.ms(theta, qubits)`
+  ### mcrz
 
-Apply [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mcrz" name="mcrz" signature="PiecewiseLinearPauliRotations.mcrz(lam, q_controls, q_target, use_basis_gates=False)">
+    Apply Multiple-Controlled Z rotation gate
 
-### num\_connected\_components
+    **Parameters**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_connected_components" />
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrz gate on.
+    *   **lam** (*float*) – angle lambda
+    *   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+    *   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+    *   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
 
-`PiecewiseLinearPauliRotations.num_connected_components(unitary_only=False)`
+    **Raises**
 
-How many non-entangled subcircuits can the circuit be factored to.
+    **QiskitError** – parameter errors
+  </Function>
 
-**Parameters**
+  ### mct
 
-**unitary\_only** (*bool*) – Compute only unitary part of graph.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mct" name="mct" signature="PiecewiseLinearPauliRotations.mct(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')">
+    Apply `MCXGate`.
+  </Function>
 
-**Returns**
+  ### mcu1
 
-Number of connected components in circuit.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mcu1" name="mcu1" signature="PiecewiseLinearPauliRotations.mcu1(lam, control_qubits, target_qubit)">
+    Apply `MCU1Gate`.
+  </Function>
 
-**Return type**
+  ### mcx
 
-int
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mcx" name="mcx" signature="PiecewiseLinearPauliRotations.mcx(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')">
+    Apply `MCXGate`.
 
-### num\_nonlocal\_gates
+    The multi-cX gate can be implemented using different techniques, which use different numbers of ancilla qubits and have varying circuit depth. These modes are: - ‘no-ancilla’: Requires 0 ancilla qubits. - ‘recursion’: Requires 1 ancilla qubit if more than 4 controls are used, otherwise 0. - ‘v-chain’: Requires 2 less ancillas than the number of control qubits. - ‘v-chain-dirty’: Same as for the clean ancillas (but the circuit will be longer).
+  </Function>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_nonlocal_gates" />
+  ### measure
 
-`PiecewiseLinearPauliRotations.num_nonlocal_gates()`
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.measure" name="measure" signature="PiecewiseLinearPauliRotations.measure(qubit, cbit)">
+    Measure quantum bit into classical bit (tuples).
 
-Return number of non-local gates (i.e. involving 2+ qubits).
+    **Parameters**
 
-Conditional nonlocal gates are also included.
+    *   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list|tuple*) – quantum register
+    *   **cbit** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*|list|tuple*) – classical register
 
-### num\_tensor\_factors
+    **Returns**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_tensor_factors" />
+    the attached measure instruction.
 
-`PiecewiseLinearPauliRotations.num_tensor_factors()`
+    **Return type**
 
-Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
+    qiskit.Instruction
 
-**Notes**
+    **Raises**
 
-This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
+    **CircuitError** – if qubit is not in this circuit or bad format; if cbit is not in this circuit or not creg.
+  </Function>
 
-### num\_unitary\_factors
+  ### measure\_active
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_unitary_factors" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.measure_active" name="measure_active" signature="PiecewiseLinearPauliRotations.measure_active(inplace=True)">
+    Adds measurement to all non-idle qubits. Creates a new ClassicalRegister with a size equal to the number of non-idle qubits being measured.
 
-`PiecewiseLinearPauliRotations.num_unitary_factors()`
+    Returns a new circuit with measurements if inplace=False.
 
-Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
+    **Parameters**
 
-### qasm
+    **inplace** (*bool*) – All measurements inplace or return new circuit.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.qasm" />
+    **Returns**
 
-`PiecewiseLinearPauliRotations.qasm(formatted=False, filename=None)`
+    Returns circuit with measurements when inplace = False.
 
-Return OpenQASM string.
+    **Return type**
 
-**Parameters**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-*   **formatted** (*bool*) – Return formatted Qasm string.
-*   **filename** (*str*) – Save Qasm to file with name ‘filename’.
+  ### measure\_all
 
-**Returns**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.measure_all" name="measure_all" signature="PiecewiseLinearPauliRotations.measure_all(inplace=True)">
+    Adds measurement to all qubits. Creates a new ClassicalRegister with a size equal to the number of qubits being measured.
 
-If formatted=False.
+    Returns a new circuit with measurements if inplace=False.
 
-**Return type**
+    **Parameters**
 
-str
+    **inplace** (*bool*) – All measurements inplace or return new circuit.
 
-**Raises**
+    **Returns**
 
-**ImportError** – If pygments is not installed and `formatted` is `True`.
+    Returns circuit with measurements when inplace = False.
 
-### qbit\_argument\_conversion
+    **Return type**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.qbit_argument_conversion" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-`PiecewiseLinearPauliRotations.qbit_argument_conversion(qubit_representation)`
+  ### mirror
 
-Converts several qubit representations (such as indexes, range, etc.) into a list of qubits.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mirror" name="mirror" signature="PiecewiseLinearPauliRotations.mirror()">
+    Mirror the circuit by reversing the instructions.
 
-**Parameters**
+    This is done by recursively mirroring all instructions. It does not invert any gate.
 
-**qubit\_representation** (*Object*) – representation to expand
+    **Returns**
 
-**Returns**
+    the mirrored circuit
 
-Where each tuple is a qubit.
+    **Return type**
 
-**Return type**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-List(tuple)
+  ### ms
 
-### r
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ms" name="ms" signature="PiecewiseLinearPauliRotations.ms(theta, qubits)">
+    Apply [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").
+  </Function>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.r" />
+  ### num\_connected\_components
 
-`PiecewiseLinearPauliRotations.r(theta, phi, qubit, *, q=None)`
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_connected_components" name="num_connected_components" signature="PiecewiseLinearPauliRotations.num_connected_components(unitary_only=False)">
+    How many non-entangled subcircuits can the circuit be factored to.
 
-Apply `RGate`.
+    **Parameters**
 
-### rcccx
+    **unitary\_only** (*bool*) – Compute only unitary part of graph.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rcccx" />
+    **Returns**
 
-`PiecewiseLinearPauliRotations.rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)`
+    Number of connected components in circuit.
 
-Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
+    **Return type**
 
-### rccx
+    int
+  </Function>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rccx" />
+  ### num\_nonlocal\_gates
 
-`PiecewiseLinearPauliRotations.rccx(control_qubit1, control_qubit2, target_qubit)`
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_nonlocal_gates" name="num_nonlocal_gates" signature="PiecewiseLinearPauliRotations.num_nonlocal_gates()">
+    Return number of non-local gates (i.e. involving 2+ qubits).
 
-Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").
+    Conditional nonlocal gates are also included.
+  </Function>
 
-### remove\_final\_measurements
+  ### num\_tensor\_factors
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.remove_final_measurements" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_tensor_factors" name="num_tensor_factors" signature="PiecewiseLinearPauliRotations.num_tensor_factors()">
+    Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-`PiecewiseLinearPauliRotations.remove_final_measurements(inplace=True)`
+    **Notes**
 
-Removes final measurement on all qubits if they are present. Deletes the ClassicalRegister that was used to store the values from these measurements if it is idle.
+    This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
+  </Function>
 
-Returns a new circuit without measurements if inplace=False.
+  ### num\_unitary\_factors
 
-**Parameters**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_unitary_factors" name="num_unitary_factors" signature="PiecewiseLinearPauliRotations.num_unitary_factors()">
+    Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
+  </Function>
 
-**inplace** (*bool*) – All measurements removed inplace or return new circuit.
+  ### qasm
 
-**Returns**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.qasm" name="qasm" signature="PiecewiseLinearPauliRotations.qasm(formatted=False, filename=None)">
+    Return OpenQASM string.
 
-Returns circuit with measurements removed when inplace = False.
+    **Parameters**
 
-**Return type**
+    *   **formatted** (*bool*) – Return formatted Qasm string.
+    *   **filename** (*str*) – Save Qasm to file with name ‘filename’.
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **Returns**
 
-### reset
+    If formatted=False.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.reset" />
+    **Return type**
 
-`PiecewiseLinearPauliRotations.reset(qubit)`
+    str
 
-Reset q.
+    **Raises**
 
-### rx
+    **ImportError** – If pygments is not installed and `formatted` is `True`.
+  </Function>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rx" />
+  ### qbit\_argument\_conversion
 
-`PiecewiseLinearPauliRotations.rx(theta, qubit, *, label=None, q=None)`
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.qbit_argument_conversion" name="qbit_argument_conversion" signature="PiecewiseLinearPauliRotations.qbit_argument_conversion(qubit_representation)">
+    Converts several qubit representations (such as indexes, range, etc.) into a list of qubits.
 
-Apply [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
+    **Parameters**
 
-### rxx
+    **qubit\_representation** (*Object*) – representation to expand
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rxx" />
+    **Returns**
 
-`PiecewiseLinearPauliRotations.rxx(theta, qubit1, qubit2)`
+    Where each tuple is a qubit.
 
-Apply [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+    **Return type**
 
-### ry
+    List(tuple)
+  </Function>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ry" />
+  ### r
 
-`PiecewiseLinearPauliRotations.ry(theta, qubit, *, label=None, q=None)`
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.r" name="r" signature="PiecewiseLinearPauliRotations.r(theta, phi, qubit, *, q=None)">
+    Apply `RGate`.
+  </Function>
 
-Apply [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
+  ### rcccx
 
-### ryy
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rcccx" name="rcccx" signature="PiecewiseLinearPauliRotations.rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)">
+    Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
+  </Function>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ryy" />
+  ### rccx
 
-`PiecewiseLinearPauliRotations.ryy(theta, qubit1, qubit2)`
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rccx" name="rccx" signature="PiecewiseLinearPauliRotations.rccx(control_qubit1, control_qubit2, target_qubit)">
+    Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").
+  </Function>
 
-Apply [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").
+  ### remove\_final\_measurements
 
-### rz
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.remove_final_measurements" name="remove_final_measurements" signature="PiecewiseLinearPauliRotations.remove_final_measurements(inplace=True)">
+    Removes final measurement on all qubits if they are present. Deletes the ClassicalRegister that was used to store the values from these measurements if it is idle.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rz" />
+    Returns a new circuit without measurements if inplace=False.
 
-`PiecewiseLinearPauliRotations.rz(phi, qubit, *, q=None)`
+    **Parameters**
 
-Apply [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
+    **inplace** (*bool*) – All measurements removed inplace or return new circuit.
 
-### rzx
+    **Returns**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rzx" />
+    Returns circuit with measurements removed when inplace = False.
 
-`PiecewiseLinearPauliRotations.rzx(theta, qubit1, qubit2)`
+    **Return type**
 
-Apply [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-### rzz
+  ### reset
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rzz" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.reset" name="reset" signature="PiecewiseLinearPauliRotations.reset(qubit)">
+    Reset q.
+  </Function>
 
-`PiecewiseLinearPauliRotations.rzz(theta, qubit1, qubit2)`
+  ### rx
 
-Apply [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rx" name="rx" signature="PiecewiseLinearPauliRotations.rx(theta, qubit, *, label=None, q=None)">
+    Apply [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
+  </Function>
 
-### s
+  ### rxx
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.s" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rxx" name="rxx" signature="PiecewiseLinearPauliRotations.rxx(theta, qubit1, qubit2)">
+    Apply [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+  </Function>
 
-`PiecewiseLinearPauliRotations.s(qubit, *, q=None)`
+  ### ry
 
-Apply [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ry" name="ry" signature="PiecewiseLinearPauliRotations.ry(theta, qubit, *, label=None, q=None)">
+    Apply [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
+  </Function>
 
-### sdg
+  ### ryy
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.sdg" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ryy" name="ryy" signature="PiecewiseLinearPauliRotations.ryy(theta, qubit1, qubit2)">
+    Apply [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").
+  </Function>
 
-`PiecewiseLinearPauliRotations.sdg(qubit, *, q=None)`
+  ### rz
 
-Apply [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rz" name="rz" signature="PiecewiseLinearPauliRotations.rz(phi, qubit, *, q=None)">
+    Apply [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
+  </Function>
 
-### size
+  ### rzx
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.size" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rzx" name="rzx" signature="PiecewiseLinearPauliRotations.rzx(theta, qubit1, qubit2)">
+    Apply [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").
+  </Function>
 
-`PiecewiseLinearPauliRotations.size()`
+  ### rzz
 
-Returns total number of gate operations in circuit.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.rzz" name="rzz" signature="PiecewiseLinearPauliRotations.rzz(theta, qubit1, qubit2)">
+    Apply [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
+  </Function>
 
-**Returns**
+  ### s
 
-Total number of gate operations.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.s" name="s" signature="PiecewiseLinearPauliRotations.s(qubit, *, q=None)">
+    Apply [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
+  </Function>
 
-**Return type**
+  ### sdg
 
-int
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.sdg" name="sdg" signature="PiecewiseLinearPauliRotations.sdg(qubit, *, q=None)">
+    Apply [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
+  </Function>
 
-### snapshot
+  ### size
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.snapshot" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.size" name="size" signature="PiecewiseLinearPauliRotations.size()">
+    Returns total number of gate operations in circuit.
 
-`PiecewiseLinearPauliRotations.snapshot(label, snapshot_type='statevector', qubits=None, params=None)`
+    **Returns**
 
-Take a statevector snapshot of the internal simulator representation. Works on all qubits, and prevents reordering (like barrier). :param label: a snapshot label to report the result :type label: str :param snapshot\_type: the type of the snapshot. :type snapshot\_type: str :param qubits: the qubits to apply snapshot to \[Default: None]. :type qubits: list or None :param params: the parameters for snapshot\_type \[Default: None]. :type params: list or None
+    Total number of gate operations.
 
-**Returns**
+    **Return type**
 
-with attached command
+    int
+  </Function>
 
-**Return type**
+  ### snapshot
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.snapshot" name="snapshot" signature="PiecewiseLinearPauliRotations.snapshot(label, snapshot_type='statevector', qubits=None, params=None)">
+    Take a statevector snapshot of the internal simulator representation. Works on all qubits, and prevents reordering (like barrier). :param label: a snapshot label to report the result :type label: str :param snapshot\_type: the type of the snapshot. :type snapshot\_type: str :param qubits: the qubits to apply snapshot to \[Default: None]. :type qubits: list or None :param params: the parameters for snapshot\_type \[Default: None]. :type params: list or None
 
-**Raises**
+    **Returns**
 
-**ExtensionError** – malformed command
+    with attached command
 
-### snapshot\_density\_matrix
+    **Return type**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.snapshot_density_matrix" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-`PiecewiseLinearPauliRotations.snapshot_density_matrix(label, qubits=None)`
+    **Raises**
 
-Take a density matrix snapshot of simulator state.
+    **ExtensionError** – malformed command
+  </Function>
 
-**Parameters**
+  ### snapshot\_density\_matrix
 
-*   **label** (*str*) – a snapshot label to report the result
-*   **qubits** (*list or None*) – the qubits to apply snapshot to. If None all qubits will be snapshot \[Default: None].
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.snapshot_density_matrix" name="snapshot_density_matrix" signature="PiecewiseLinearPauliRotations.snapshot_density_matrix(label, qubits=None)">
+    Take a density matrix snapshot of simulator state.
 
-**Returns**
+    **Parameters**
 
-with attached instruction.
+    *   **label** (*str*) – a snapshot label to report the result
+    *   **qubits** (*list or None*) – the qubits to apply snapshot to. If None all qubits will be snapshot \[Default: None].
 
-**Return type**
+    **Returns**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    with attached instruction.
 
-**Raises**
+    **Return type**
 
-**ExtensionError** – if snapshot is invalid.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-### snapshot\_expectation\_value
+    **Raises**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.snapshot_expectation_value" />
+    **ExtensionError** – if snapshot is invalid.
+  </Function>
 
-`PiecewiseLinearPauliRotations.snapshot_expectation_value(label, op, qubits, single_shot=False, variance=False)`
+  ### snapshot\_expectation\_value
 
-Take a snapshot of expectation value \<O> of an Operator.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.snapshot_expectation_value" name="snapshot_expectation_value" signature="PiecewiseLinearPauliRotations.snapshot_expectation_value(label, op, qubits, single_shot=False, variance=False)">
+    Take a snapshot of expectation value \<O> of an Operator.
 
-**Parameters**
+    **Parameters**
 
-*   **label** (*str*) – a snapshot label to report the result
-*   **op** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot
-*   **qubits** (*list*) – the qubits to snapshot.
-*   **single\_shot** (*bool*) – return list for each shot rather than average \[Default: False]
-*   **variance** (*bool*) – compute variance of probabilities \[Default: False]
+    *   **label** (*str*) – a snapshot label to report the result
+    *   **op** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot
+    *   **qubits** (*list*) – the qubits to snapshot.
+    *   **single\_shot** (*bool*) – return list for each shot rather than average \[Default: False]
+    *   **variance** (*bool*) – compute variance of probabilities \[Default: False]
 
-**Returns**
+    **Returns**
 
-with attached instruction.
+    with attached instruction.
 
-**Return type**
+    **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Raises**
+    **Raises**
 
-**ExtensionError** – if snapshot is invalid.
+    **ExtensionError** – if snapshot is invalid.
+  </Function>
 
-### snapshot\_probabilities
+  ### snapshot\_probabilities
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.snapshot_probabilities" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.snapshot_probabilities" name="snapshot_probabilities" signature="PiecewiseLinearPauliRotations.snapshot_probabilities(label, qubits, variance=False)">
+    Take a probability snapshot of the simulator state.
 
-`PiecewiseLinearPauliRotations.snapshot_probabilities(label, qubits, variance=False)`
+    **Parameters**
 
-Take a probability snapshot of the simulator state.
+    *   **label** (*str*) – a snapshot label to report the result
+    *   **qubits** (*list*) – the qubits to snapshot.
+    *   **variance** (*bool*) – compute variance of probabilities \[Default: False]
 
-**Parameters**
+    **Returns**
 
-*   **label** (*str*) – a snapshot label to report the result
-*   **qubits** (*list*) – the qubits to snapshot.
-*   **variance** (*bool*) – compute variance of probabilities \[Default: False]
+    with attached instruction.
 
-**Returns**
+    **Return type**
 
-with attached instruction.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+    **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **ExtensionError** – if snapshot is invalid.
+  </Function>
 
-**Raises**
+  ### snapshot\_stabilizer
 
-**ExtensionError** – if snapshot is invalid.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.snapshot_stabilizer" name="snapshot_stabilizer" signature="PiecewiseLinearPauliRotations.snapshot_stabilizer(label)">
+    Take a stabilizer snapshot of the simulator state.
 
-### snapshot\_stabilizer
+    **Parameters**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.snapshot_stabilizer" />
+    **label** (*str*) – a snapshot label to report the result.
 
-`PiecewiseLinearPauliRotations.snapshot_stabilizer(label)`
+    **Returns**
 
-Take a stabilizer snapshot of the simulator state.
+    with attached instruction.
 
-**Parameters**
+    **Return type**
 
-**label** (*str*) – a snapshot label to report the result.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Returns**
+    **Raises**
 
-with attached instruction.
+    **ExtensionError** – if snapshot is invalid.
 
-**Return type**
+    #### Additional Information:
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+  </Function>
 
-**Raises**
+  ### snapshot\_statevector
 
-**ExtensionError** – if snapshot is invalid.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.snapshot_statevector" name="snapshot_statevector" signature="PiecewiseLinearPauliRotations.snapshot_statevector(label)">
+    Take a statevector snapshot of the simulator state.
 
-#### Additional Information:
+    **Parameters**
 
-This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+    **label** (*str*) – a snapshot label to report the result.
 
-### snapshot\_statevector
+    **Returns**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.snapshot_statevector" />
+    with attached instruction.
 
-`PiecewiseLinearPauliRotations.snapshot_statevector(label)`
+    **Return type**
 
-Take a statevector snapshot of the simulator state.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Parameters**
+    **Raises**
 
-**label** (*str*) – a snapshot label to report the result.
+    **ExtensionError** – if snapshot is invalid.
 
-**Returns**
+    #### Additional Information:
 
-with attached instruction.
+    This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+  </Function>
 
-**Return type**
+  ### squ
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.squ" name="squ" signature="PiecewiseLinearPauliRotations.squ(unitary_matrix, qubit, mode='ZYZ', up_to_diagonal=False, *, u=None)">
+    Decompose an arbitrary 2\*2 unitary into three rotation gates.
 
-**Raises**
+    Note that the decomposition is up to a global phase shift. (This is a well known decomposition, which can be found for example in Nielsen and Chuang’s book “Quantum computation and quantum information”.)
 
-**ExtensionError** – if snapshot is invalid.
+    **Parameters**
 
-#### Additional Information:
+    *   **unitary\_matrix** (*ndarray*) – 2\*2 unitary (given as a (complex) ndarray).
+    *   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The qubit which the gate is acting on.
+    *   **mode** (*string*) – determines the used decomposition by providing the rotation axes. The allowed modes are: “ZYZ” (default)
+    *   **up\_to\_diagonal** (*bool*) – if set to True, the single-qubit unitary is decomposed up to a diagonal matrix, i.e. a unitary u’ is implemented such that there exists a 2\*2 diagonal gate d with u = d.dot(u’)
+    *   **u** (*ndarray*) – Deprecated, use `unitary_matrix` instead.
 
-This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+    **Returns**
 
-### squ
+    The single-qubit unitary instruction attached to the circuit.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.squ" />
+    **Return type**
 
-`PiecewiseLinearPauliRotations.squ(unitary_matrix, qubit, mode='ZYZ', up_to_diagonal=False, *, u=None)`
+    [InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
-Decompose an arbitrary 2\*2 unitary into three rotation gates.
+    **Raises**
 
-Note that the decomposition is up to a global phase shift. (This is a well known decomposition, which can be found for example in Nielsen and Chuang’s book “Quantum computation and quantum information”.)
+    **QiskitError** – if the format is wrong; if the array u is not unitary
+  </Function>
 
-**Parameters**
+  ### swap
 
-*   **unitary\_matrix** (*ndarray*) – 2\*2 unitary (given as a (complex) ndarray).
-*   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The qubit which the gate is acting on.
-*   **mode** (*string*) – determines the used decomposition by providing the rotation axes. The allowed modes are: “ZYZ” (default)
-*   **up\_to\_diagonal** (*bool*) – if set to True, the single-qubit unitary is decomposed up to a diagonal matrix, i.e. a unitary u’ is implemented such that there exists a 2\*2 diagonal gate d with u = d.dot(u’)
-*   **u** (*ndarray*) – Deprecated, use `unitary_matrix` instead.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.swap" name="swap" signature="PiecewiseLinearPauliRotations.swap(qubit1, qubit2)">
+    Apply [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").
+  </Function>
 
-**Returns**
+  ### t
 
-The single-qubit unitary instruction attached to the circuit.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.t" name="t" signature="PiecewiseLinearPauliRotations.t(qubit, *, q=None)">
+    Apply [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
+  </Function>
 
-**Return type**
+  ### tdg
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.tdg" name="tdg" signature="PiecewiseLinearPauliRotations.tdg(qubit, *, q=None)">
+    Apply [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
+  </Function>
 
-**Raises**
+  ### to\_gate
 
-**QiskitError** – if the format is wrong; if the array u is not unitary
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.to_gate" name="to_gate" signature="PiecewiseLinearPauliRotations.to_gate(parameter_map=None)">
+    Create a Gate out of this circuit.
 
-### swap
+    **Parameters**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.swap" />
+    **parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If None, existing circuit parameters will also parameterize the gate.
 
-`PiecewiseLinearPauliRotations.swap(qubit1, qubit2)`
+    **Returns**
 
-Apply [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").
+    a composite gate encapsulating this circuit (can be decomposed back)
 
-### t
+    **Return type**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.t" />
+    [Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
+  </Function>
 
-`PiecewiseLinearPauliRotations.t(qubit, *, q=None)`
+  ### to\_instruction
 
-Apply [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.to_instruction" name="to_instruction" signature="PiecewiseLinearPauliRotations.to_instruction(parameter_map=None)">
+    Create an Instruction out of this circuit.
 
-### tdg
+    **Parameters**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.tdg" />
+    **parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the instruction. If None, existing circuit parameters will also parameterize the instruction.
 
-`PiecewiseLinearPauliRotations.tdg(qubit, *, q=None)`
+    **Returns**
 
-Apply [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
+    a composite instruction encapsulating this circuit (can be decomposed back)
 
-### to\_gate
+    **Return type**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.to_gate" />
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-`PiecewiseLinearPauliRotations.to_gate(parameter_map=None)`
+  ### toffoli
 
-Create a Gate out of this circuit.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.toffoli" name="toffoli" signature="PiecewiseLinearPauliRotations.toffoli(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)">
+    Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
+  </Function>
 
-**Parameters**
+  ### u1
 
-**parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If None, existing circuit parameters will also parameterize the gate.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.u1" name="u1" signature="PiecewiseLinearPauliRotations.u1(theta, qubit, *, q=None)">
+    Apply [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").
+  </Function>
 
-**Returns**
+  ### u2
 
-a composite gate encapsulating this circuit (can be decomposed back)
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.u2" name="u2" signature="PiecewiseLinearPauliRotations.u2(phi, lam, qubit, *, q=None)">
+    Apply [`U2Gate`](qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").
+  </Function>
 
-**Return type**
+  ### u3
 
-[Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.u3" name="u3" signature="PiecewiseLinearPauliRotations.u3(theta, phi, lam, qubit, *, q=None)">
+    Apply [`U3Gate`](qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").
+  </Function>
 
-### to\_instruction
+  ### uc
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.to_instruction" />
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.uc" name="uc" signature="PiecewiseLinearPauliRotations.uc(gate_list, q_controls, q_target, up_to_diagonal=False)">
+    Attach a uniformly controlled gates (also called multiplexed gates) to a circuit.
 
-`PiecewiseLinearPauliRotations.to_instruction(parameter_map=None)`
+    The decomposition was introduced by Bergholm et al. in [https://arxiv.org/pdf/quant-ph/0410066.pdf](https://arxiv.org/pdf/quant-ph/0410066.pdf).
 
-Create an Instruction out of this circuit.
+    **Parameters**
 
-**Parameters**
+    *   **gate\_list** (*list\[ndarray]*) – list of two qubit unitaries \[U\_0,…,U\_\{2^k-1}], where each single-qubit unitary U\_i is a given as a 2\*2 array
+    *   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)]*) – list of k control qubits. The qubits are ordered according to their significance in the computational basis. For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the unitary U\_0 is performed if q\[1] and q\[2] are in the state zero, U\_1 is performed if q\[2] is in the state zero and q\[1] is in the state one, and so on
+    *   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)*) – target qubit, where we act on with the single-qubit gates.
+    *   **up\_to\_diagonal** (*bool*) – If set to True, the uniformly controlled gate is decomposed up to a diagonal gate, i.e. a unitary u’ is implemented such that there exists a diagonal gate d with u = d.dot(u’), where the unitary u describes the uniformly controlled gate
 
-**parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the instruction. If None, existing circuit parameters will also parameterize the instruction.
+    **Returns**
 
-**Returns**
+    the uniformly controlled gate is attached to the circuit.
 
-a composite instruction encapsulating this circuit (can be decomposed back)
+    **Return type**
 
-**Return type**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Raises**
 
-### toffoli
+    **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  </Function>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.toffoli" />
+  ### ucg
 
-`PiecewiseLinearPauliRotations.toffoli(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)`
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucg" name="ucg" signature="PiecewiseLinearPauliRotations.ucg(angle_list, q_controls, q_target, up_to_diagonal=False)">
+    Deprecated version of uc.
+  </Function>
 
-Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
+  ### ucrx
 
-### u1
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucrx" name="ucrx" signature="PiecewiseLinearPauliRotations.ucrx(angle_list, q_controls, q_target)">
+    Attach a uniformly controlled (also called multiplexed) Rx rotation gate to a circuit.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.u1" />
+    The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
 
-`PiecewiseLinearPauliRotations.u1(theta, qubit, *, q=None)`
+    **Parameters**
 
-Apply [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").
+    *   **angle\_list** (*list*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
+    *   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Rx(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Rx(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
+    *   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
 
-### u2
+    **Returns**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.u2" />
+    the uniformly controlled rotation gate is attached to the circuit.
 
-`PiecewiseLinearPauliRotations.u2(phi, lam, qubit, *, q=None)`
+    **Return type**
 
-Apply [`U2Gate`](qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-### u3
+    **Raises**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.u3" />
+    **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  </Function>
 
-`PiecewiseLinearPauliRotations.u3(theta, phi, lam, qubit, *, q=None)`
+  ### ucry
 
-Apply [`U3Gate`](qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucry" name="ucry" signature="PiecewiseLinearPauliRotations.ucry(angle_list, q_controls, q_target)">
+    Attach a uniformly controlled (also called multiplexed) Ry rotation gate to a circuit.
 
-### uc
+    The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.uc" />
+    **Parameters**
 
-`PiecewiseLinearPauliRotations.uc(gate_list, q_controls, q_target, up_to_diagonal=False)`
+    *   **angle\_list** (*list\[numbers*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
+    *   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Ry(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Ry(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
+    *   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
 
-Attach a uniformly controlled gates (also called multiplexed gates) to a circuit.
+    **Returns**
 
-The decomposition was introduced by Bergholm et al. in [https://arxiv.org/pdf/quant-ph/0410066.pdf](https://arxiv.org/pdf/quant-ph/0410066.pdf).
+    the uniformly controlled rotation gate is attached to the circuit.
 
-**Parameters**
+    **Return type**
 
-*   **gate\_list** (*list\[ndarray]*) – list of two qubit unitaries \[U\_0,…,U\_\{2^k-1}], where each single-qubit unitary U\_i is a given as a 2\*2 array
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)]*) – list of k control qubits. The qubits are ordered according to their significance in the computational basis. For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the unitary U\_0 is performed if q\[1] and q\[2] are in the state zero, U\_1 is performed if q\[2] is in the state zero and q\[1] is in the state one, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)*) – target qubit, where we act on with the single-qubit gates.
-*   **up\_to\_diagonal** (*bool*) – If set to True, the uniformly controlled gate is decomposed up to a diagonal gate, i.e. a unitary u’ is implemented such that there exists a diagonal gate d with u = d.dot(u’), where the unitary u describes the uniformly controlled gate
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Returns**
+    **Raises**
 
-the uniformly controlled gate is attached to the circuit.
+    **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  </Function>
 
-**Return type**
+  ### ucrz
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucrz" name="ucrz" signature="PiecewiseLinearPauliRotations.ucrz(angle_list, q_controls, q_target)">
+    Attach a uniformly controlled (also called multiplexed gates) Rz rotation gate to a circuit.
 
-**Raises**
+    The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
 
-**QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+    **Parameters**
 
-### ucg
+    *   **angle\_list** (*list\[numbers*) – list of (real) rotation angles \[a\_0,…,a\_\{2^k-1}]
+    *   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the rotation Rz(a\_0)is performed if q\[1] and q\[2] are in the state zero, the rotation Rz(a\_1) is performed if q\[1] is in the state one and q\[2] is in the state zero, and so on
+    *   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucg" />
+    **Returns**
 
-`PiecewiseLinearPauliRotations.ucg(angle_list, q_controls, q_target, up_to_diagonal=False)`
+    the uniformly controlled rotation gate is attached to the circuit.
 
-Deprecated version of uc.
+    **Return type**
 
-### ucrx
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucrx" />
+    **Raises**
 
-`PiecewiseLinearPauliRotations.ucrx(angle_list, q_controls, q_target)`
+    **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  </Function>
 
-Attach a uniformly controlled (also called multiplexed) Rx rotation gate to a circuit.
+  ### ucx
 
-The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucx" name="ucx" signature="PiecewiseLinearPauliRotations.ucx(angle_list, q_controls, q_target)">
+    Deprecated version of ucrx.
+  </Function>
 
-**Parameters**
+  ### ucy
 
-*   **angle\_list** (*list*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Rx(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Rx(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucy" name="ucy" signature="PiecewiseLinearPauliRotations.ucy(angle_list, q_controls, q_target)">
+    Deprecated version of ucry.
+  </Function>
 
-**Returns**
+  ### ucz
 
-the uniformly controlled rotation gate is attached to the circuit.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucz" name="ucz" signature="PiecewiseLinearPauliRotations.ucz(angle_list, q_controls, q_target)">
+    Deprecated version of ucrz.
+  </Function>
 
-**Return type**
+  ### unitary
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.unitary" name="unitary" signature="PiecewiseLinearPauliRotations.unitary(obj, qubits, label=None)">
+    Apply unitary gate to q.
+  </Function>
 
-**Raises**
+  ### width
 
-**QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.width" name="width" signature="PiecewiseLinearPauliRotations.width()">
+    Return number of qubits plus clbits in circuit.
 
-### ucry
+    **Returns**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucry" />
+    Width of circuit.
 
-`PiecewiseLinearPauliRotations.ucry(angle_list, q_controls, q_target)`
+    **Return type**
 
-Attach a uniformly controlled (also called multiplexed) Ry rotation gate to a circuit.
+    int
+  </Function>
 
-The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
+  ### x
 
-**Parameters**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.x" name="x" signature="PiecewiseLinearPauliRotations.x(qubit, *, label=None, ctrl_state=None, q=None)">
+    Apply [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
+  </Function>
 
-*   **angle\_list** (*list\[numbers*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Ry(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Ry(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
+  ### y
 
-**Returns**
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.y" name="y" signature="PiecewiseLinearPauliRotations.y(qubit, *, q=None)">
+    Apply [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
+  </Function>
 
-the uniformly controlled rotation gate is attached to the circuit.
+  ### z
 
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
-
-### ucrz
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucrz" />
-
-`PiecewiseLinearPauliRotations.ucrz(angle_list, q_controls, q_target)`
-
-Attach a uniformly controlled (also called multiplexed gates) Rz rotation gate to a circuit.
-
-The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
-
-**Parameters**
-
-*   **angle\_list** (*list\[numbers*) – list of (real) rotation angles \[a\_0,…,a\_\{2^k-1}]
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the rotation Rz(a\_0)is performed if q\[1] and q\[2] are in the state zero, the rotation Rz(a\_1) is performed if q\[1] is in the state one and q\[2] is in the state zero, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
-
-**Returns**
-
-the uniformly controlled rotation gate is attached to the circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
-
-### ucx
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucx" />
-
-`PiecewiseLinearPauliRotations.ucx(angle_list, q_controls, q_target)`
-
-Deprecated version of ucrx.
-
-### ucy
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucy" />
-
-`PiecewiseLinearPauliRotations.ucy(angle_list, q_controls, q_target)`
-
-Deprecated version of ucry.
-
-### ucz
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ucz" />
-
-`PiecewiseLinearPauliRotations.ucz(angle_list, q_controls, q_target)`
-
-Deprecated version of ucrz.
-
-### unitary
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.unitary" />
-
-`PiecewiseLinearPauliRotations.unitary(obj, qubits, label=None)`
-
-Apply unitary gate to q.
-
-### width
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.width" />
-
-`PiecewiseLinearPauliRotations.width()`
-
-Return number of qubits plus clbits in circuit.
-
-**Returns**
-
-Width of circuit.
-
-**Return type**
-
-int
-
-### x
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.x" />
-
-`PiecewiseLinearPauliRotations.x(qubit, *, label=None, ctrl_state=None, q=None)`
-
-Apply [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
-
-### y
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.y" />
-
-`PiecewiseLinearPauliRotations.y(qubit, *, q=None)`
-
-Apply [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
-
-### z
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.z" />
-
-`PiecewiseLinearPauliRotations.z(qubit, *, q=None)`
-
-Apply [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.z" name="z" signature="PiecewiseLinearPauliRotations.z(qubit, *, q=None)">
+    Apply [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").
+  </Function>
+</Class>
 

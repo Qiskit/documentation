@@ -10,28 +10,26 @@ python_api_name: qiskit.pulse.builder.reference
 
 # qiskit.pulse.builder.reference
 
-<span id="qiskit.pulse.builder.reference" />
+<Function id="qiskit.pulse.builder.reference" name="reference" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/builder.py" signature="reference(name, *extra_keys)">
+  Refer to undefined subroutine by string keys.
 
-`reference(name, *extra_keys)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/builder.py "view source code")
+  A [`Reference`](qiskit.pulse.instructions.Reference "qiskit.pulse.instructions.Reference") instruction is implicitly created and a schedule can be separately registered to the reference at a later stage.
 
-Refer to undefined subroutine by string keys.
+  ```python
+  from qiskit import pulse
 
-A [`Reference`](qiskit.pulse.instructions.Reference "qiskit.pulse.instructions.Reference") instruction is implicitly created and a schedule can be separately registered to the reference at a later stage.
+  with pulse.build() as main_prog:
+      pulse.reference("x_gate", "q0")
 
-```python
-from qiskit import pulse
+  with pulse.build() as subroutine:
+      pulse.play(pulse.Gaussian(160, 0.1, 40), pulse.DriveChannel(0))
 
-with pulse.build() as main_prog:
-    pulse.reference("x_gate", "q0")
+  main_prog.assign_references(subroutine_dict={("x_gate", "q0"): subroutine})
+  ```
 
-with pulse.build() as subroutine:
-    pulse.play(pulse.Gaussian(160, 0.1, 40), pulse.DriveChannel(0))
+  **Parameters**
 
-main_prog.assign_references(subroutine_dict={("x_gate", "q0"): subroutine})
-```
-
-**Parameters**
-
-*   **name** (*str*) – Name of subroutine.
-*   **extra\_keys** (*str*) – Helper keys to uniquely specify the subroutine.
+  *   **name** (*str*) – Name of subroutine.
+  *   **extra\_keys** (*str*) – Helper keys to uniquely specify the subroutine.
+</Function>
 

@@ -8,156 +8,132 @@ python_api_name: qiskit.providers.BaseJob
 
 # BaseJob
 
-<span id="qiskit.providers.BaseJob" />
+<Class id="qiskit.providers.BaseJob" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/providers/basejob.py" signature="BaseJob(backend, job_id)">
+  Bases: `abc.ABC`
 
-`BaseJob(backend, job_id)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/providers/basejob.py "view source code")
+  DEPRECATED Legacy Class to handle asynchronous jobs
 
-Bases: `abc.ABC`
+  Initializes the asynchronous job.
 
-DEPRECATED Legacy Class to handle asynchronous jobs
+  **Parameters**
 
-Initializes the asynchronous job.
+  *   **backend** (`BaseBackend`) – the backend used to run the job.
+  *   **job\_id** (`str`) – a unique id in the context of the backend used to run the job.
 
-**Parameters**
+  ## Methods
 
-*   **backend** (`BaseBackend`) – the backend used to run the job.
-*   **job\_id** (`str`) – a unique id in the context of the backend used to run the job.
+  ### backend
 
-## Methods
+  <Function id="qiskit.providers.BaseJob.backend" name="backend" signature="BaseJob.backend()">
+    Return the backend where this job was executed.
 
-### backend
+    **Return type**
 
-<span id="qiskit.providers.BaseJob.backend" />
+    `BaseBackend`
+  </Function>
 
-`BaseJob.backend()`
+  ### cancel
 
-Return the backend where this job was executed.
+  <Function id="qiskit.providers.BaseJob.cancel" name="cancel" signature="abstract BaseJob.cancel()">
+    Attempt to cancel the job.
+  </Function>
 
-**Return type**
+  ### cancelled
 
-`BaseBackend`
+  <Function id="qiskit.providers.BaseJob.cancelled" name="cancelled" signature="BaseJob.cancelled()">
+    Return whether the job has been cancelled.
 
-### cancel
+    **Return type**
 
-<span id="qiskit.providers.BaseJob.cancel" />
+    `bool`
+  </Function>
 
-`abstract BaseJob.cancel()`
+  ### done
 
-Attempt to cancel the job.
+  <Function id="qiskit.providers.BaseJob.done" name="done" signature="BaseJob.done()">
+    Return whether the job has successfully run.
 
-### cancelled
+    **Return type**
 
-<span id="qiskit.providers.BaseJob.cancelled" />
+    `bool`
+  </Function>
 
-`BaseJob.cancelled()`
+  ### in\_final\_state
 
-Return whether the job has been cancelled.
+  <Function id="qiskit.providers.BaseJob.in_final_state" name="in_final_state" signature="BaseJob.in_final_state()">
+    Return whether the job is in a final job state.
 
-**Return type**
+    **Return type**
 
-`bool`
+    `bool`
+  </Function>
 
-### done
+  ### job\_id
 
-<span id="qiskit.providers.BaseJob.done" />
+  <Function id="qiskit.providers.BaseJob.job_id" name="job_id" signature="BaseJob.job_id()">
+    Return a unique id identifying the job.
 
-`BaseJob.done()`
+    **Return type**
 
-Return whether the job has successfully run.
+    `str`
+  </Function>
 
-**Return type**
+  ### result
 
-`bool`
+  <Function id="qiskit.providers.BaseJob.result" name="result" signature="abstract BaseJob.result()">
+    Return the results of the job.
+  </Function>
 
-### in\_final\_state
+  ### running
 
-<span id="qiskit.providers.BaseJob.in_final_state" />
+  <Function id="qiskit.providers.BaseJob.running" name="running" signature="BaseJob.running()">
+    Return whether the job is actively running.
 
-`BaseJob.in_final_state()`
+    **Return type**
 
-Return whether the job is in a final job state.
+    `bool`
+  </Function>
 
-**Return type**
+  ### status
 
-`bool`
+  <Function id="qiskit.providers.BaseJob.status" name="status" signature="abstract BaseJob.status()">
+    Return the status of the job, among the values of `JobStatus`.
+  </Function>
 
-### job\_id
+  ### submit
 
-<span id="qiskit.providers.BaseJob.job_id" />
+  <Function id="qiskit.providers.BaseJob.submit" name="submit" signature="abstract BaseJob.submit()">
+    Submit the job to the backend for execution.
+  </Function>
 
-`BaseJob.job_id()`
+  ### wait\_for\_final\_state
 
-Return a unique id identifying the job.
+  <Function id="qiskit.providers.BaseJob.wait_for_final_state" name="wait_for_final_state" signature="BaseJob.wait_for_final_state(timeout=None, wait=5, callback=None)">
+    Poll the job status until it progresses to a final state such as `DONE` or `ERROR`.
 
-**Return type**
+    **Parameters**
 
-`str`
+    *   **timeout** (`Optional`\[`float`]) – Seconds to wait for the job. If `None`, wait indefinitely.
 
-### result
+    *   **wait** (`float`) – Seconds between queries.
 
-<span id="qiskit.providers.BaseJob.result" />
+    *   **callback** (`Optional`\[`Callable`]) –
 
-`abstract BaseJob.result()`
+        Callback function invoked after each query. The following positional arguments are provided to the callback function:
 
-Return the results of the job.
+        *   job\_id: Job ID
+        *   job\_status: Status of the job from the last query
+        *   job: This BaseJob instance
 
-### running
+        Note: different subclass might provide different arguments to the callback function.
 
-<span id="qiskit.providers.BaseJob.running" />
+    **Raises**
 
-`BaseJob.running()`
+    [**JobTimeoutError**](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not reach a final state before the specified timeout.
 
-Return whether the job is actively running.
+    **Return type**
 
-**Return type**
-
-`bool`
-
-### status
-
-<span id="qiskit.providers.BaseJob.status" />
-
-`abstract BaseJob.status()`
-
-Return the status of the job, among the values of `JobStatus`.
-
-### submit
-
-<span id="qiskit.providers.BaseJob.submit" />
-
-`abstract BaseJob.submit()`
-
-Submit the job to the backend for execution.
-
-### wait\_for\_final\_state
-
-<span id="qiskit.providers.BaseJob.wait_for_final_state" />
-
-`BaseJob.wait_for_final_state(timeout=None, wait=5, callback=None)`
-
-Poll the job status until it progresses to a final state such as `DONE` or `ERROR`.
-
-**Parameters**
-
-*   **timeout** (`Optional`\[`float`]) – Seconds to wait for the job. If `None`, wait indefinitely.
-
-*   **wait** (`float`) – Seconds between queries.
-
-*   **callback** (`Optional`\[`Callable`]) –
-
-    Callback function invoked after each query. The following positional arguments are provided to the callback function:
-
-    *   job\_id: Job ID
-    *   job\_status: Status of the job from the last query
-    *   job: This BaseJob instance
-
-    Note: different subclass might provide different arguments to the callback function.
-
-**Raises**
-
-[**JobTimeoutError**](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not reach a final state before the specified timeout.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

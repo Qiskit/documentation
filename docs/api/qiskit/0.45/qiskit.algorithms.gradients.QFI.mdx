@@ -8,70 +8,64 @@ python_api_name: qiskit.algorithms.gradients.QFI
 
 # QFI
 
-<span id="qiskit.algorithms.gradients.QFI" />
+<Class id="qiskit.algorithms.gradients.QFI" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/gradients/qfi.py" signature="qiskit.algorithms.gradients.QFI(qgt, options=None)">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-`qiskit.algorithms.gradients.QFI(qgt, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/gradients/qfi.py "view source code")
-
-Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
-
-Computes the Quantum Fisher Information (QFI) given a pure, parameterized quantum state. QFI is defined as:
+  Computes the Quantum Fisher Information (QFI) given a pure, parameterized quantum state. QFI is defined as:
 
 $$
 \mathrm{QFI}_{ij}= 4 \mathrm{Re}[\langle \partial_i \psi | \partial_j \psi \rangle
 - \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
 $$
 
-**Parameters**
+  **Parameters**
 
-*   **qgt** ([*BaseQGT*](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.BaseQGT")) – The quantum geometric tensor used to compute the QFI.
-*   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Backend runtime options used for circuit execution. The order of priority is: options in `run` method > QFI’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
+  *   **qgt** ([*BaseQGT*](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.BaseQGT")) – The quantum geometric tensor used to compute the QFI.
+  *   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Backend runtime options used for circuit execution. The order of priority is: options in `run` method > QFI’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.algorithms.gradients.QFI.options" />
+  ### options
 
-### options
+  <Attribute id="qiskit.algorithms.gradients.QFI.options" name="options">
+    Return the union of QGT’s options setting and QFI’s default options, where, if the same field is set in both, the QFI’s default options override the QGT’s default setting.
 
-Return the union of QGT’s options setting and QFI’s default options, where, if the same field is set in both, the QFI’s default options override the QGT’s default setting.
+    **Returns**
 
-**Returns**
+    The QFI default + QGT options.
+  </Attribute>
 
-The QFI default + QGT options.
+  ## Methods
 
-## Methods
+  ### run
 
-### run
+  <Function id="qiskit.algorithms.gradients.QFI.run" name="run" signature="run(circuits, parameter_values, parameters=None, **options)">
+    Run the job of the QFIs on the given circuits.
 
-<span id="qiskit.algorithms.gradients.QFI.run" />
+    **Parameters**
 
-`run(circuits, parameter_values, parameters=None, **options)`
+    *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the QFIs.
+    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – The list of parameter values to be bound to the circuit.
+    *   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the QFIs of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the QFIs of all parameters in each circuit are calculated.
+    *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > QFI’s default options > QGT’s default setting. Higher priority setting overrides lower priority setting.
 
-Run the job of the QFIs on the given circuits.
+    **Returns**
 
-**Parameters**
+    The job object of the QFIs of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`.
 
-*   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the QFIs.
-*   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – The list of parameter values to be bound to the circuit.
-*   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the QFIs of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the QFIs of all parameters in each circuit are calculated.
-*   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > QFI’s default options > QGT’s default setting. Higher priority setting overrides lower priority setting.
+    **Return type**
 
-**Returns**
+    [AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
+  </Function>
 
-The job object of the QFIs of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`.
+  ### update\_default\_options
 
-**Return type**
+  <Function id="qiskit.algorithms.gradients.QFI.update_default_options" name="update_default_options" signature="update_default_options(**options)">
+    Update the gradient’s default options setting.
 
-[AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
+    **Parameters**
 
-### update\_default\_options
-
-<span id="qiskit.algorithms.gradients.QFI.update_default_options" />
-
-`update_default_options(**options)`
-
-Update the gradient’s default options setting.
-
-**Parameters**
-
-**\*\*options** – The fields to update the default options.
+    **\*\*options** – The fields to update the default options.
+  </Function>
+</Class>
 

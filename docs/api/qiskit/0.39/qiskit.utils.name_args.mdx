@@ -8,31 +8,29 @@ python_api_name: qiskit.utils.name_args
 
 # qiskit.utils.name\_args
 
-<span id="qiskit.utils.name_args" />
+<Function id="qiskit.utils.name_args" name="name_args" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/utils/name_unnamed_args.py" signature="name_args(mapping, skip=0)">
+  Decorator to convert unnamed arguments to named ones.
 
-`name_args(mapping, skip=0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/utils/name_unnamed_args.py "view source code")
+  Can be used to deprecate old signatures of a function, e.g.
 
-Decorator to convert unnamed arguments to named ones.
+  ```python
+  old_f(a: TypeA, b: TypeB, c: TypeC)
+  new_f(a: TypeA, d: TypeD, b: TypeB=None, c: TypeC=None)
+  ```
 
-Can be used to deprecate old signatures of a function, e.g.
+  Then, to support the old signature this decorator can be used as
 
-```python
-old_f(a: TypeA, b: TypeB, c: TypeC)
-new_f(a: TypeA, d: TypeD, b: TypeB=None, c: TypeC=None)
-```
-
-Then, to support the old signature this decorator can be used as
-
-```python
-@name_args([
-    ('a'),  # stays the same
-    ('d', {TypeB: 'b'}),  # if arg is of type TypeB, call if 'b' else 'd'
-    ('b', {TypeC: 'c'})
-])
-def new_f(a: TypeA, d: TypeD, b: TypeB=None, c: TypeC=None):
-    if b is not None:
-        # raise warning, this is deprecated!
-    if c is not None:
-        # raise warning, this is deprecated!
-```
+  ```python
+  @name_args([
+      ('a'),  # stays the same
+      ('d', {TypeB: 'b'}),  # if arg is of type TypeB, call if 'b' else 'd'
+      ('b', {TypeC: 'c'})
+  ])
+  def new_f(a: TypeA, d: TypeD, b: TypeB=None, c: TypeC=None):
+      if b is not None:
+          # raise warning, this is deprecated!
+      if c is not None:
+          # raise warning, this is deprecated!
+  ```
+</Function>
 

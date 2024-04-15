@@ -8,52 +8,48 @@ python_api_name: qiskit.primitives.Sampler
 
 # Sampler
 
-<span id="qiskit.primitives.Sampler" />
+<Class id="qiskit.primitives.Sampler" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/primitives/sampler.py" signature="Sampler(circuits: Iterable[QuantumCircuit] | QuantumCircuit, *args, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)">
+  Bases: [`qiskit.primitives.base_sampler.BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.base_sampler.BaseSampler")
 
-`Sampler(circuits: Iterable[QuantumCircuit] | QuantumCircuit, *args, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/primitives/sampler.py "view source code")
+  Sampler class
 
-Bases: [`qiskit.primitives.base_sampler.BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.base_sampler.BaseSampler")
+  **Parameters**
 
-Sampler class
+  *   **circuits** – circuits to be executed
+  *   **parameters** – Parameters of each of the quantum circuits. Defaults to `[circ.parameters for circ in circuits]`.
 
-**Parameters**
+  **Raises**
 
-*   **circuits** – circuits to be executed
-*   **parameters** – Parameters of each of the quantum circuits. Defaults to `[circ.parameters for circ in circuits]`.
+  **QiskitError** – if some classical bits are not used for measurements.
 
-**Raises**
+  ## Methods
 
-**QiskitError** – if some classical bits are not used for measurements.
+  ### close
 
-## Methods
+  <Function id="qiskit.primitives.Sampler.close" name="close" signature="Sampler.close()">
+    Close the session and free resources
+  </Function>
 
-### close
+  ## Attributes
 
-<span id="qiskit.primitives.Sampler.close" />
+  ### circuits
 
-`Sampler.close()`
+  <Attribute id="qiskit.primitives.Sampler.circuits" name="circuits">
+    Quantum circuits to be sampled.
 
-Close the session and free resources
+    **Returns**
 
-## Attributes
+    The quantum circuits to be sampled.
+  </Attribute>
 
-<span id="qiskit.primitives.Sampler.circuits" />
+  ### parameters
 
-### circuits
+  <Attribute id="qiskit.primitives.Sampler.parameters" name="parameters">
+    Parameters of quantum circuits.
 
-Quantum circuits to be sampled.
+    **Returns**
 
-**Returns**
-
-The quantum circuits to be sampled.
-
-<span id="qiskit.primitives.Sampler.parameters" />
-
-### parameters
-
-Parameters of quantum circuits.
-
-**Returns**
-
-List of the parameters in each quantum circuit.
+    List of the parameters in each quantum circuit.
+  </Attribute>
+</Class>
 

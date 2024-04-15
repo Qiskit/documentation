@@ -8,32 +8,30 @@ python_api_name: qiskit.result.marginal_memory
 
 # qiskit.result.marginal\_memory
 
-<span id="qiskit.result.marginal_memory" />
+<Function id="qiskit.result.marginal_memory" name="marginal_memory" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/result/utils.py" signature="marginal_memory(memory, indices=None, int_return=False, hex_return=False, avg_data=False, parallel_threshold=1000)">
+  Marginalize shot memory
 
-`marginal_memory(memory, indices=None, int_return=False, hex_return=False, avg_data=False, parallel_threshold=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/result/utils.py "view source code")
+  This function is multithreaded and will launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-Marginalize shot memory
+  **Parameters**
 
-This function is multithreaded and will launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
+  *   **memory** (`Union`\[`List`\[`str`], `ndarray`]) – The input memory list, this is either a list of hexadecimal strings to be marginalized representing measure level 2 memory or a numpy array representing level 0 measurement memory (single or avg) or level 1 measurement memory (single or avg).
+  *   **indices** (`Optional`\[`List`\[`int`]]) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
+  *   **int\_return** (`bool`) – If set to `True` the output will be a list of integers. By default the return type is a bit string. This and `hex_return` are mutually exclusive and can not be specified at the same time. This option only has an effect with memory level 2.
+  *   **hex\_return** (`bool`) – If set to `True` the output will be a list of hexadecimal strings. By default the return type is a bit string. This and `int_return` are mutually exclusive and can not be specified at the same time. This option only has an effect with memory level 2.
+  *   **avg\_data** (`bool`) – If a 2 dimensional numpy array is passed in for `memory` this can be set to `True` to indicate it’s a avg level 0 data instead of level 1 single data.
+  *   **parallel\_threshold** (`int`) – The number of elements in `memory` to start running in multiple threads. If `len(memory)` is >= this value, the function will run in multiple threads. By default this is set to 1000.
 
-**Parameters**
+  **Returns**
 
-*   **memory** (`Union`\[`List`\[`str`], `ndarray`]) – The input memory list, this is either a list of hexadecimal strings to be marginalized representing measure level 2 memory or a numpy array representing level 0 measurement memory (single or avg) or level 1 measurement memory (single or avg).
-*   **indices** (`Optional`\[`List`\[`int`]]) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
-*   **int\_return** (`bool`) – If set to `True` the output will be a list of integers. By default the return type is a bit string. This and `hex_return` are mutually exclusive and can not be specified at the same time. This option only has an effect with memory level 2.
-*   **hex\_return** (`bool`) – If set to `True` the output will be a list of hexadecimal strings. By default the return type is a bit string. This and `int_return` are mutually exclusive and can not be specified at the same time. This option only has an effect with memory level 2.
-*   **avg\_data** (`bool`) – If a 2 dimensional numpy array is passed in for `memory` this can be set to `True` to indicate it’s a avg level 0 data instead of level 1 single data.
-*   **parallel\_threshold** (`int`) – The number of elements in `memory` to start running in multiple threads. If `len(memory)` is >= this value, the function will run in multiple threads. By default this is set to 1000.
+  The list of marginalized memory
 
-**Returns**
+  **Return type**
 
-The list of marginalized memory
+  marginal\_memory
 
-**Return type**
+  **Raises**
 
-marginal\_memory
-
-**Raises**
-
-**ValueError** – if both `int_return` and `hex_return` are set to `True`
+  **ValueError** – if both `int_return` and `hex_return` are set to `True`
+</Function>
 

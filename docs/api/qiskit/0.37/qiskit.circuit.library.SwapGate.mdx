@@ -8,147 +8,141 @@ python_api_name: qiskit.circuit.library.SwapGate
 
 # SwapGate
 
-<span id="qiskit.circuit.library.SwapGate" />
+<Class id="qiskit.circuit.library.SwapGate" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/swap.py" signature="SwapGate(label=None)">
+  Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`SwapGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/swap.py "view source code")
+  The SWAP gate.
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  This is a symmetric and Clifford gate.
 
-The SWAP gate.
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`swap()`](qiskit.circuit.QuantumCircuit#swap "qiskit.circuit.QuantumCircuit.swap") method.
 
-This is a symmetric and Clifford gate.
+  **Circuit symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`swap()`](qiskit.circuit.QuantumCircuit#swap "qiskit.circuit.QuantumCircuit.swap") method.
+  ```python
+  q_0: ─X─
+        │
+  q_1: ─X─
+  ```
 
-**Circuit symbol:**
-
-```python
-q_0: ─X─
-      │
-q_1: ─X─
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 \begin{split}SWAP =
-    \begin{pmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & 0 & 1 & 0 \\
-        0 & 1 & 0 & 0 \\
-        0 & 0 & 0 & 1
-    \end{pmatrix}\end{split}
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}\end{split}
 $$
 
-The gate is equivalent to a state swap and is a classical logic gate.
+  The gate is equivalent to a state swap and is a classical logic gate.
 
 $$
 |a, b\rangle \rightarrow |b, a\rangle
 $$
 
-Create new SWAP gate.
+  Create new SWAP gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-### control
+  ### control
 
-<span id="qiskit.circuit.library.SwapGate.control" />
+  <Function id="qiskit.circuit.library.SwapGate.control" name="control" signature="SwapGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a (multi-)controlled-SWAP gate.
 
-`SwapGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    One control returns a CSWAP (Fredkin) gate.
 
-Return a (multi-)controlled-SWAP gate.
+    **Parameters**
 
-One control returns a CSWAP (Fredkin) gate.
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-**Parameters**
+    **Returns**
 
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+    controlled version of this gate.
 
-**Returns**
+    **Return type**
 
-controlled version of this gate.
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-**Return type**
+  ### inverse
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  <Function id="qiskit.circuit.library.SwapGate.inverse" name="inverse" signature="SwapGate.inverse()">
+    Return inverse Swap gate (itself).
+  </Function>
 
-### inverse
+  ## Attributes
 
-<span id="qiskit.circuit.library.SwapGate.inverse" />
+  ### condition\_bits
 
-`SwapGate.inverse()`
+  <Attribute id="qiskit.circuit.library.SwapGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-Return inverse Swap gate (itself).
+    **Return type**
 
-## Attributes
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-<span id="qiskit.circuit.library.SwapGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.SwapGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.SwapGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  ### duration
 
-<span id="qiskit.circuit.library.SwapGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.SwapGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.SwapGate.label" name="label">
+    Return instruction label
 
-<span id="qiskit.circuit.library.SwapGate.definition" />
+    **Return type**
 
-### definition
+    `str`
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### name
 
-<span id="qiskit.circuit.library.SwapGate.duration" />
+  <Attribute id="qiskit.circuit.library.SwapGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-### duration
+  ### num\_clbits
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.SwapGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SwapGate.label" />
+  ### num\_qubits
 
-### label
+  <Attribute id="qiskit.circuit.library.SwapGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Return instruction label
+  ### params
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.SwapGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-`str`
+  ### unit
 
-<span id="qiskit.circuit.library.SwapGate.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.SwapGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.SwapGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.SwapGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.SwapGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.SwapGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

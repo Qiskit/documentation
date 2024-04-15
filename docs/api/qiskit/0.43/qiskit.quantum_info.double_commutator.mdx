@@ -10,46 +10,44 @@ python_api_name: qiskit.quantum_info.double_commutator
 
 # qiskit.quantum\_info.double\_commutator
 
-<span id="qiskit.quantum_info.double_commutator" />
+<Function id="qiskit.quantum_info.double_commutator" name="double_commutator" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/utils/double_commutator.py" signature="double_commutator(a, b, c, *, commutator=True)">
+  Compute symmetric double commutator of a, b and c.
 
-`double_commutator(a, b, c, *, commutator=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/utils/double_commutator.py "view source code")
+  See also Equation (13.6.18) in \[1].
 
-Compute symmetric double commutator of a, b and c.
-
-See also Equation (13.6.18) in \[1].
-
-If commutator is True, it returns
+  If commutator is True, it returns
 
 $$
 [[A, B], C]/2 + [A, [B, C]]/2
 = (2ABC + 2CBA - BAC - CAB - ACB - BCA)/2.
 $$
 
-If commutator is False, it returns
+  If commutator is False, it returns
 
 $$
 \lbrace[A, B], C\rbrace/2 + \lbrace A, [B, C]\rbrace/2
 = (2ABC - 2CBA - BAC + CAB - ACB + BCA)/2.
 $$
 
-**Parameters**
+  **Parameters**
 
-*   **a** (*OperatorTypeT*) – Operator a.
-*   **b** (*OperatorTypeT*) – Operator b.
-*   **c** (*OperatorTypeT*) – Operator c.
-*   **commutator** (*bool*) – If `True` compute the double commutator, if `False` the double anti-commutator.
+  *   **a** (*OperatorTypeT*) – Operator a.
+  *   **b** (*OperatorTypeT*) – Operator b.
+  *   **c** (*OperatorTypeT*) – Operator c.
+  *   **commutator** (*bool*) – If `True` compute the double commutator, if `False` the double anti-commutator.
 
-**Returns**
+  **Returns**
 
-The double commutator
+  The double commutator
 
-**Return type**
+  **Return type**
 
-*OperatorTypeT*
+  *OperatorTypeT*
 
-**References**
+  **References**
 
-## \[1]: R. McWeeny.
+  ## \[1]: R. McWeeny.
 
-Methods of Molecular Quantum Mechanics. 2nd Edition, Academic Press, 1992. ISBN 0-12-486552-6.
+  Methods of Molecular Quantum Mechanics. 2nd Edition, Academic Press, 1992. ISBN 0-12-486552-6.
+</Function>
 

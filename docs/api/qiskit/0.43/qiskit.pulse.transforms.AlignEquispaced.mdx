@@ -8,75 +8,69 @@ python_api_name: qiskit.pulse.transforms.AlignEquispaced
 
 # AlignEquispaced
 
-<span id="qiskit.pulse.transforms.AlignEquispaced" />
+<Class id="qiskit.pulse.transforms.AlignEquispaced" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/alignments.py" signature="AlignEquispaced(duration)">
+  Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
-`AlignEquispaced(duration)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/alignments.py "view source code")
+  Align instructions with equispaced interval within a specified duration.
 
-Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+  Instructions played on different channels are also arranged in a sequence. This alignment is convenient to create dynamical decoupling sequences such as PDD.
 
-Align instructions with equispaced interval within a specified duration.
+  Create new equispaced context.
 
-Instructions played on different channels are also arranged in a sequence. This alignment is convenient to create dynamical decoupling sequences such as PDD.
+  **Parameters**
 
-Create new equispaced context.
+  **duration** (*int |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
 
-**Parameters**
+  ## Methods
 
-**duration** (*int |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
+  <span id="qiskit-pulse-transforms-alignequispaced-align" />
 
-## Methods
+  ### align
 
-<span id="qiskit-pulse-transforms-alignequispaced-align" />
+  <Function id="qiskit.pulse.transforms.AlignEquispaced.align" name="align" signature="AlignEquispaced.align(schedule)">
+    Reallocate instructions according to the policy.
 
-### align
+    Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
 
-<span id="qiskit.pulse.transforms.AlignEquispaced.align" />
+    **Parameters**
 
-`AlignEquispaced.align(schedule)`
+    **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
 
-Reallocate instructions according to the policy.
+    **Returns**
 
-Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
+    Schedule with reallocated instructions.
 
-**Parameters**
+    **Return type**
 
-**schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
+    [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+  </Function>
 
-**Returns**
+  <span id="qiskit-pulse-transforms-alignequispaced-to-dict" />
 
-Schedule with reallocated instructions.
+  ### to\_dict
 
-**Return type**
+  <Function id="qiskit.pulse.transforms.AlignEquispaced.to_dict" name="to_dict" signature="AlignEquispaced.to_dict()">
+    Returns dictionary to represent this alignment.
 
-[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+    <Admonition title="Deprecated since version 0.21" type="danger">
+      The method `qiskit.pulse.transforms.alignments.AlignEquispaced.to_dict()` is deprecated as of qiskit-terra 0.21. It will be removed no earlier than 3 months after the release date.
+    </Admonition>
 
-<span id="qiskit-pulse-transforms-alignequispaced-to-dict" />
+    **Return type**
 
-### to\_dict
+    *Dict*\[str, *Any*]
+  </Function>
 
-<span id="qiskit.pulse.transforms.AlignEquispaced.to_dict" />
+  ## Attributes
 
-`AlignEquispaced.to_dict()`
+  ### duration
 
-Returns dictionary to represent this alignment.
+  <Attribute id="qiskit.pulse.transforms.AlignEquispaced.duration" name="duration">
+    Return context duration.
+  </Attribute>
 
-<Admonition title="Deprecated since version 0.21" type="danger">
-  The method `qiskit.pulse.transforms.alignments.AlignEquispaced.to_dict()` is deprecated as of qiskit-terra 0.21. It will be removed no earlier than 3 months after the release date.
-</Admonition>
+  ### is\_sequential
 
-**Return type**
-
-*Dict*\[str, *Any*]
-
-## Attributes
-
-<span id="qiskit.pulse.transforms.AlignEquispaced.duration" />
-
-### duration
-
-Return context duration.
-
-<span id="qiskit.pulse.transforms.AlignEquispaced.is_sequential" />
-
-### is\_sequential
+  <Attribute id="qiskit.pulse.transforms.AlignEquispaced.is_sequential" name="is_sequential" />
+</Class>
 

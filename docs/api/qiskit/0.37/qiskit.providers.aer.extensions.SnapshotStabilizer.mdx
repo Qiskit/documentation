@@ -8,281 +8,253 @@ python_api_name: qiskit.providers.aer.extensions.SnapshotStabilizer
 
 # SnapshotStabilizer
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer" />
+<Class id="qiskit.providers.aer.extensions.SnapshotStabilizer" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/extensions/snapshot_stabilizer.py" signature="SnapshotStabilizer(label, num_qubits=0)">
+  Bases: [`qiskit.providers.aer.extensions.snapshot.Snapshot`](qiskit.providers.aer.extensions.Snapshot "qiskit.providers.aer.extensions.snapshot.Snapshot")
 
-`SnapshotStabilizer(label, num_qubits=0)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/extensions/snapshot_stabilizer.py "view source code")
+  Snapshot instruction for stabilizer method of Qasm simulator.
 
-Bases: [`qiskit.providers.aer.extensions.snapshot.Snapshot`](qiskit.providers.aer.extensions.Snapshot "qiskit.providers.aer.extensions.snapshot.Snapshot")
+  Create a stabilizer state snapshot instruction.
 
-Snapshot instruction for stabilizer method of Qasm simulator.
+  **Parameters**
 
-Create a stabilizer state snapshot instruction.
+  *   **label** (*str*) – the snapshot label.
+  *   **num\_qubits** (*int*) – the instruction barrier size \[Default: 0].
 
-**Parameters**
+  **Raises**
 
-*   **label** (*str*) – the snapshot label.
-*   **num\_qubits** (*int*) – the instruction barrier size \[Default: 0].
+  **ExtensionError** – if snapshot is invalid.
 
-**Raises**
+  **Additional Information:**
 
-**ExtensionError** – if snapshot is invalid.
+  This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
 
-**Additional Information:**
+  <Admonition title="Deprecated since version 0.9.0" type="danger">
+    This instruction has been deprecated and will be removed no earlier than 3 months from the 0.9.0 release date. It has been superseded by the [`qiskit.providers.aer.library.SaveStabilizer`](qiskit.providers.aer.library.SaveStabilizer "qiskit.providers.aer.library.SaveStabilizer") instruction.
+  </Admonition>
 
-This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+  ## Methods
 
-<Admonition title="Deprecated since version 0.9.0" type="danger">
-  This instruction has been deprecated and will be removed no earlier than 3 months from the 0.9.0 release date. It has been superseded by the [`qiskit.providers.aer.library.SaveStabilizer`](qiskit.providers.aer.library.SaveStabilizer "qiskit.providers.aer.library.SaveStabilizer") instruction.
-</Admonition>
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.add_decomposition" name="add_decomposition" signature="SnapshotStabilizer.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.add_decomposition" />
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.assemble" name="assemble" signature="SnapshotStabilizer.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-`SnapshotStabilizer.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.broadcast_arguments" name="broadcast_arguments" signature="SnapshotStabilizer.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`SnapshotStabilizer.assemble()`
+    **Yields**
 
-Assemble a QasmQobjInstruction
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`SnapshotStabilizer.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.c_if" name="c_if" signature="SnapshotStabilizer.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-**Parameters**
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  ### copy
 
-**Yields**
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.copy" name="copy" signature="SnapshotStabilizer.copy(name=None)">
+    Copy of the instruction.
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **Parameters**
 
-**Raises**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Returns**
 
-### c\_if
+    **a copy of the current instruction, with the name**
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.c_if" />
+    updated if it was provided
 
-`SnapshotStabilizer.c_if(classical, val)`
+    **Return type**
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  ### define\_snapshot\_register
 
-### copy
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.define_snapshot_register" name="define_snapshot_register" signature="static SnapshotStabilizer.define_snapshot_register(circuit, label=None, qubits=None)">
+    Defines qubits to snapshot for all snapshot methods
+  </Function>
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.copy" />
+  ### inverse
 
-`SnapshotStabilizer.copy(name=None)`
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.inverse" name="inverse" signature="SnapshotStabilizer.inverse()">
+    Special case. Return self.
+  </Function>
 
-Copy of the instruction.
+  ### is\_parameterized
 
-**Parameters**
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.is_parameterized" name="is_parameterized" signature="SnapshotStabilizer.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+  ### qasm
 
-**Returns**
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.qasm" name="qasm" signature="SnapshotStabilizer.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-**a copy of the current instruction, with the name**
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-updated if it was provided
+  ### repeat
 
-**Return type**
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.repeat" name="repeat" signature="SnapshotStabilizer.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Parameters**
 
-### define\_snapshot\_register
+    **n** (*int*) – Number of times to repeat the instruction
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.define_snapshot_register" />
+    **Returns**
 
-`static SnapshotStabilizer.define_snapshot_register(circuit, label=None, qubits=None)`
+    Containing the definition.
 
-Defines qubits to snapshot for all snapshot methods
+    **Return type**
 
-### inverse
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.inverse" />
+    **Raises**
 
-`SnapshotStabilizer.inverse()`
+    **CircuitError** – If n \< 1.
+  </Function>
 
-Special case. Return self.
+  ### reverse\_ops
 
-### is\_parameterized
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.reverse_ops" name="reverse_ops" signature="SnapshotStabilizer.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.is_parameterized" />
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-`SnapshotStabilizer.is_parameterized()`
+    **Returns**
 
-Return True .IFF. instruction is parameterized else False
+    **a new instruction with**
 
-### qasm
+    sub-instructions reversed.
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.qasm" />
+    **Return type**
 
-`SnapshotStabilizer.qasm()`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Return a default OpenQASM string for the instruction.
+  ### soft\_compare
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.soft_compare" name="soft_compare" signature="SnapshotStabilizer.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-### repeat
+    **Parameters**
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.repeat" />
+    **other** (*instruction*) – other instruction.
 
-`SnapshotStabilizer.repeat(n)`
+    **Returns**
 
-Creates an instruction with gate repeated n amount of times.
+    are self and other equal up to parameter expressions.
 
-**Parameters**
+    **Return type**
 
-**n** (*int*) – Number of times to repeat the instruction
+    bool
+  </Function>
 
-**Returns**
+  ### validate\_parameter
 
-Containing the definition.
+  <Function id="qiskit.providers.aer.extensions.SnapshotStabilizer.validate_parameter" name="validate_parameter" signature="SnapshotStabilizer.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### condition\_bits
 
-**Raises**
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-**CircuitError** – If n \< 1.
+    **Return type**
 
-### reverse\_ops
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.reverse_ops" />
+  ### decompositions
 
-`SnapshotStabilizer.reverse_ops()`
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### definition
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-**Returns**
+  ### duration
 
-**a new instruction with**
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-sub-instructions reversed.
+  ### label
 
-**Return type**
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.label" name="label">
+    Return snapshot label
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### name
 
-### soft\_compare
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.name" name="name">
+    Return the name.
+  </Attribute>
 
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.soft_compare" />
+  ### num\_clbits
 
-`SnapshotStabilizer.soft_compare(other)`
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+  ### num\_qubits
 
-**Parameters**
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-**other** (*instruction*) – other instruction.
+  ### params
 
-**Returns**
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.params" name="params">
+    return instruction params.
+  </Attribute>
 
-are self and other equal up to parameter expressions.
+  ### snapshot\_type
 
-**Return type**
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.snapshot_type" name="snapshot_type">
+    Return snapshot type
+  </Attribute>
 
-bool
+  ### unit
 
-### validate\_parameter
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.validate_parameter" />
-
-`SnapshotStabilizer.validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
-
-## Attributes
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.condition_bits" />
-
-### condition\_bits
-
-Get Clbits in condition.
-
-**Return type**
-
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.label" />
-
-### label
-
-Return snapshot label
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.snapshot_type" />
-
-### snapshot\_type
-
-Return snapshot type
-
-<span id="qiskit.providers.aer.extensions.SnapshotStabilizer.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.providers.aer.extensions.SnapshotStabilizer.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

@@ -8,75 +8,69 @@ python_api_name: qiskit.transpiler.synthesis.aqc.ApproximatingObjective
 
 # ApproximatingObjective
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective" />
+<Class id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/synthesis/aqc/approximate.py" signature="ApproximatingObjective">
+  Bases: `abc.ABC`
 
-`ApproximatingObjective` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
+  A base class for an optimization problem definition. An implementing class must provide at least an implementation of the `objective` method. In such case only gradient free optimizers can be used. Both method, `objective` and `gradient`, preferable to have in an implementation.
 
-Bases: `abc.ABC`
+  ## Methods Defined Here
 
-A base class for an optimization problem definition. An implementing class must provide at least an implementation of the `objective` method. In such case only gradient free optimizers can be used. Both method, `objective` and `gradient`, preferable to have in an implementation.
+  ### gradient
 
-## Methods Defined Here
+  <Function id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective.gradient" name="gradient" signature="abstract ApproximatingObjective.gradient(param_values)">
+    Computes a gradient with respect to parameters given a vector of parameter values.
 
-### gradient
+    **Parameters**
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective.gradient" />
+    **param\_values** (`ndarray`) – a vector of parameter values for the optimization problem.
 
-`abstract ApproximatingObjective.gradient(param_values)`
+    **Return type**
 
-Computes a gradient with respect to parameters given a vector of parameter values.
+    `ndarray`
 
-**Parameters**
+    **Returns**
 
-**param\_values** (`ndarray`) – a vector of parameter values for the optimization problem.
+    an array of gradient values.
+  </Function>
 
-**Return type**
+  ### objective
 
-`ndarray`
+  <Function id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective.objective" name="objective" signature="abstract ApproximatingObjective.objective(param_values)">
+    Computes a value of the objective function given a vector of parameter values.
 
-**Returns**
+    **Parameters**
 
-an array of gradient values.
+    **param\_values** (`ndarray`) – a vector of parameter values for the optimization problem.
 
-### objective
+    **Return type**
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective.objective" />
+    `float`
 
-`abstract ApproximatingObjective.objective(param_values)`
+    **Returns**
 
-Computes a value of the objective function given a vector of parameter values.
+    a float value of the objective function.
+  </Function>
 
-**Parameters**
+  ## Attributes
 
-**param\_values** (`ndarray`) – a vector of parameter values for the optimization problem.
+  ### num\_thetas
 
-**Return type**
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective.num_thetas" name="num_thetas">
+    Returns: the number of parameters in this optimization problem.
 
-`float`
+    **Return type**
 
-**Returns**
+    `int`
+  </Attribute>
 
-a float value of the objective function.
+  ### target\_matrix
 
-## Attributes
+  <Attribute id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective.target_matrix" name="target_matrix">
+    Returns: a matrix being approximated
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective.num_thetas" />
+    **Return type**
 
-### num\_thetas
-
-Returns: the number of parameters in this optimization problem.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective.target_matrix" />
-
-### target\_matrix
-
-Returns: a matrix being approximated
-
-**Return type**
-
-`ndarray`
+    `ndarray`
+  </Attribute>
+</Class>
 

@@ -10,73 +10,65 @@ python_api_name: qiskit.pulse.ControlChannel
 
 # qiskit.pulse.ControlChannel
 
-<span id="qiskit.pulse.ControlChannel" />
+<Class id="qiskit.pulse.ControlChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/channels.py" signature="ControlChannel(index)">
+  Control channels provide supplementary control over the qubit to the drive channel. These are often associated with multi-qubit gate operations. They may not map trivially to a particular qubit index.
 
-`ControlChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/channels.py "view source code")
+  Channel class.
 
-Control channels provide supplementary control over the qubit to the drive channel. These are often associated with multi-qubit gate operations. They may not map trivially to a particular qubit index.
+  **Parameters**
 
-Channel class.
+  **index** (`int`) – Index of channel.
 
-**Parameters**
+  **Raises**
 
-**index** (`int`) – Index of channel.
+  [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-**Raises**
+  ### \_\_init\_\_
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
+  <Function id="qiskit.pulse.ControlChannel.__init__" name="__init__" signature="__init__(index)">
+    Channel class.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.pulse.ControlChannel.__init__" />
+    **index** (`int`) – Index of channel.
 
-`__init__(index)`
+    **Raises**
 
-Channel class.
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-**index** (`int`) – Index of channel.
+  |                                                                                                   |                |
+  | ------------------------------------------------------------------------------------------------- | -------------- |
+  | [`__init__`](#qiskit.pulse.ControlChannel.__init__ "qiskit.pulse.ControlChannel.__init__")(index) | Channel class. |
 
-**Raises**
+  ## Attributes
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
+  |                                                                                   |                                                                                    |
+  | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+  | [`index`](#qiskit.pulse.ControlChannel.index "qiskit.pulse.ControlChannel.index") | Return the index of this channel.                                                  |
+  | [`name`](#qiskit.pulse.ControlChannel.name "qiskit.pulse.ControlChannel.name")    | Return the shorthand alias for this channel, which is based on its type and index. |
+  | `prefix`                                                                          |                                                                                    |
 
-## Methods
+  ### index
 
-|                                                                                                   |                |
-| ------------------------------------------------------------------------------------------------- | -------------- |
-| [`__init__`](#qiskit.pulse.ControlChannel.__init__ "qiskit.pulse.ControlChannel.__init__")(index) | Channel class. |
+  <Function id="qiskit.pulse.ControlChannel.index" name="index" signature="property index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
 
-## Attributes
+    **Return type**
 
-|                                                                                   |                                                                                    |
-| --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [`index`](#qiskit.pulse.ControlChannel.index "qiskit.pulse.ControlChannel.index") | Return the index of this channel.                                                  |
-| [`name`](#qiskit.pulse.ControlChannel.name "qiskit.pulse.ControlChannel.name")    | Return the shorthand alias for this channel, which is based on its type and index. |
-| `prefix`                                                                          |                                                                                    |
+    `int`
+  </Function>
 
-### index
+  ### name
 
-<span id="qiskit.pulse.ControlChannel.index" />
+  <Function id="qiskit.pulse.ControlChannel.name" name="name" signature="property name">
+    Return the shorthand alias for this channel, which is based on its type and index.
 
-`property index`
+    **Return type**
 
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
-
-**Return type**
-
-`int`
-
-### name
-
-<span id="qiskit.pulse.ControlChannel.name" />
-
-`property name`
-
-Return the shorthand alias for this channel, which is based on its type and index.
-
-**Return type**
-
-`str`
+    `str`
+  </Function>
+</Class>
 

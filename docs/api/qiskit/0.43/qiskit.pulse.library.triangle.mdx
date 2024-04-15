@@ -10,46 +10,44 @@ python_api_name: qiskit.pulse.library.triangle
 
 # qiskit.pulse.library.triangle
 
-<span id="qiskit.pulse.library.triangle" />
+<Function id="qiskit.pulse.library.triangle" name="triangle" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py" signature="triangle(duration, amp, freq=None, phase=0, name=None)">
+  Generates triangle wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 
-`triangle(duration, amp, freq=None, phase=0, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py "view source code")
-
-Generates triangle wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
-
-For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
+  For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
 $$
 f(x) = A \left(-2\left|\text{sawtooth}(x, A, T, \phi)\right| + 1\right)
 $$
 
-This a non-sinusoidal wave with linear ramping.
+  This a non-sinusoidal wave with linear ramping.
 
-**Parameters**
+  **Parameters**
 
-*   **duration** (*int*) – Duration of pulse. Must be greater than zero.
-*   **amp** (*complex*) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
-*   **freq** (*float | None*) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
-*   **phase** (*float*) – Pulse phase.
-*   **name** (*str | None*) – Name of pulse.
+  *   **duration** (*int*) – Duration of pulse. Must be greater than zero.
+  *   **amp** (*complex*) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
+  *   **freq** (*float | None*) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
+  *   **phase** (*float*) – Pulse phase.
+  *   **name** (*str | None*) – Name of pulse.
 
-**Return type**
+  **Return type**
 
-[*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+  [*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
 
-**Example**
+  **Example**
 
-```python
-import matplotlib.pyplot as plt
-from qiskit.pulse.library import triangle
-import numpy as np
+  ```python
+  import matplotlib.pyplot as plt
+  from qiskit.pulse.library import triangle
+  import numpy as np
 
-duration = 100
-amp = 1
-freq = 1 / duration
-triangle_wave = np.real(triangle(duration, amp, freq).samples)
-plt.plot(range(duration), triangle_wave)
-plt.show()
-```
+  duration = 100
+  amp = 1
+  freq = 1 / duration
+  triangle_wave = np.real(triangle(duration, amp, freq).samples)
+  plt.plot(range(duration), triangle_wave)
+  plt.show()
+  ```
 
-![../\_images/qiskit-pulse-library-triangle-1.png](/images/api/qiskit/0.43/qiskit-pulse-library-triangle-1.png)
+  ![../\_images/qiskit-pulse-library-triangle-1.png](/images/api/qiskit/0.43/qiskit-pulse-library-triangle-1.png)
+</Function>
 

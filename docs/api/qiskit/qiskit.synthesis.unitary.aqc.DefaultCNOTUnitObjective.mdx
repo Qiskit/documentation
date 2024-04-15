@@ -8,78 +8,72 @@ python_api_name: qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective
 
 # DefaultCNOTUnitObjective
 
-<span id="qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective" />
+<Class id="qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/cnot_unit_objective.py#L61-L299" signature="qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective(num_qubits, cnots)">
+  Bases: [`CNOTUnitObjective`](qiskit.synthesis.unitary.aqc.CNOTUnitObjective "qiskit.synthesis.unitary.aqc.cnot_unit_objective.CNOTUnitObjective")
 
-`qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective(num_qubits, cnots)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/cnot_unit_objective.py "view source code")
+  A naive implementation of the objective function based on CNOT units.
 
-Bases: [`CNOTUnitObjective`](qiskit.synthesis.unitary.aqc.CNOTUnitObjective "qiskit.synthesis.unitary.aqc.cnot_unit_objective.CNOTUnitObjective")
+  **Parameters**
 
-A naive implementation of the objective function based on CNOT units.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
+  *   **cnots** (*np.ndarray*) – a CNOT structure to be used in the optimization procedure.
 
-**Parameters**
+  ## Attributes
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
-*   **cnots** (*np.ndarray*) – a CNOT structure to be used in the optimization procedure.
+  ### num\_cnots
 
-## Attributes
+  <Attribute id="qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective.num_cnots" name="num_cnots">
+    Returns: A number of CNOT units to be used by the approximate circuit.
+  </Attribute>
 
-<span id="qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective.num_cnots" />
+  ### num\_thetas
 
-### num\_cnots
+  <Attribute id="qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective.num_thetas" name="num_thetas">
+    Returns: Number of parameters (angles) of rotation gates in this circuit.
+  </Attribute>
 
-Returns: A number of CNOT units to be used by the approximate circuit.
+  ### target\_matrix
 
-<span id="qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective.num_thetas" />
+  <Attribute id="qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective.target_matrix" name="target_matrix">
+    Returns: a matrix being approximated
+  </Attribute>
 
-### num\_thetas
+  ## Methods
 
-Returns: Number of parameters (angles) of rotation gates in this circuit.
+  ### gradient
 
-<span id="qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective.target_matrix" />
+  <Function id="qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective.gradient" name="gradient" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/cnot_unit_objective.py#L172-L299" signature="gradient(param_values)">
+    Computes a gradient with respect to parameters given a vector of parameter values.
 
-### target\_matrix
+    **Parameters**
 
-Returns: a matrix being approximated
+    **param\_values** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a vector of parameter values for the optimization problem.
 
-## Methods
+    **Returns**
 
-### gradient
+    an array of gradient values.
 
-<span id="qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective.gradient" />
+    **Return type**
 
-`gradient(param_values)`
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
+  </Function>
 
-Computes a gradient with respect to parameters given a vector of parameter values.
+  ### objective
 
-**Parameters**
+  <Function id="qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective.objective" name="objective" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/cnot_unit_objective.py#L79-L170" signature="objective(param_values)">
+    Computes a value of the objective function given a vector of parameter values.
 
-**param\_values** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a vector of parameter values for the optimization problem.
+    **Parameters**
 
-**Returns**
+    **param\_values** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a vector of parameter values for the optimization problem.
 
-an array of gradient values.
+    **Returns**
 
-**Return type**
+    a float value of the objective function.
 
-[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
+    **Return type**
 
-### objective
-
-<span id="qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective.objective" />
-
-`objective(param_values)`
-
-Computes a value of the objective function given a vector of parameter values.
-
-**Parameters**
-
-**param\_values** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a vector of parameter values for the optimization problem.
-
-**Returns**
-
-a float value of the objective function.
-
-**Return type**
-
-[*SupportsFloat*](https://docs.python.org/3/library/typing.html#typing.SupportsFloat "(in Python v3.12)")
+    [*SupportsFloat*](https://docs.python.org/3/library/typing.html#typing.SupportsFloat "(in Python v3.12)")
+  </Function>
+</Class>
 

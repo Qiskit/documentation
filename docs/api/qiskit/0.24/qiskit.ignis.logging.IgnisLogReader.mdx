@@ -10,71 +10,63 @@ python_api_name: qiskit.ignis.logging.IgnisLogReader
 
 # qiskit.ignis.logging.IgnisLogReader
 
-<span id="qiskit.ignis.logging.IgnisLogReader" />
+<Class id="qiskit.ignis.logging.IgnisLogReader" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/logging/ignis_logging.py" signature="IgnisLogReader">
+  Class to read from Ignis log files
 
-`IgnisLogReader` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/logging/ignis_logging.py "view source code")
+  Reads and constructs tabular representation of logged data based on date/time and key criteria
 
-Class to read from Ignis log files
+  ### \_\_init\_\_
 
-Reads and constructs tabular representation of logged data based on date/time and key criteria
+  <Function id="qiskit.ignis.logging.IgnisLogReader.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.ignis.logging.IgnisLogReader.__init__" />
+  |                                                                                                                                             |                                                                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.ignis.logging.IgnisLogReader.__init__ "qiskit.ignis.logging.IgnisLogReader.__init__")()                                | Initialize self.                                                                  |
+  | [`get_log_files`](#qiskit.ignis.logging.IgnisLogReader.get_log_files "qiskit.ignis.logging.IgnisLogReader.get_log_files")()                 | Get Names of all log files (several may be present due to logging file rotation). |
+  | [`read_values`](#qiskit.ignis.logging.IgnisLogReader.read_values "qiskit.ignis.logging.IgnisLogReader.read_values")(\[log\_files, keys, …]) | Retrieve log lines using key and date/time filtering criteria                     |
 
-`__init__()`
+  ### get\_log\_files
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.ignis.logging.IgnisLogReader.get_log_files" name="get_log_files" signature="get_log_files()">
+    Get Names of all log files (several may be present due to logging file rotation). File names are sorted by modification time.
 
-## Methods
+    **Returns**
 
-|                                                                                                                                             |                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.ignis.logging.IgnisLogReader.__init__ "qiskit.ignis.logging.IgnisLogReader.__init__")()                                | Initialize self.                                                                  |
-| [`get_log_files`](#qiskit.ignis.logging.IgnisLogReader.get_log_files "qiskit.ignis.logging.IgnisLogReader.get_log_files")()                 | Get Names of all log files (several may be present due to logging file rotation). |
-| [`read_values`](#qiskit.ignis.logging.IgnisLogReader.read_values "qiskit.ignis.logging.IgnisLogReader.read_values")(\[log\_files, keys, …]) | Retrieve log lines using key and date/time filtering criteria                     |
+    list of all log file names
 
-### get\_log\_files
+    **Return type**
 
-<span id="qiskit.ignis.logging.IgnisLogReader.get_log_files" />
+    list
+  </Function>
 
-`get_log_files()`
+  ### read\_values
 
-Get Names of all log files (several may be present due to logging file rotation). File names are sorted by modification time.
+  <Function id="qiskit.ignis.logging.IgnisLogReader.read_values" name="read_values" signature="read_values(log_files=None, keys=None, from_datetime=None, from_datetime_format=None, to_datetime=None, to_datetime_format=None)">
+    Retrieve log lines using key and date/time filtering criteria
 
-**Returns**
+    **Params:**
 
-list of all log file names
+    log\_files: List of log files to read from keys: Retrieve only key value pairs of corresponding to keys A row with no matching keys will not be retrieved. If not specified, all keys are retrieved (optional)
 
-**Return type**
+    from\_datetime(None): Retrieve only rows newer than the given date and time
 
-list
+    from\_datetime\_format(None): datetime format string. If not specified will assume “%Y/%m/%d %H:%M:%S”
 
-### read\_values
+    to\_datetime(None): Retrieve only rows older than the given date and time
 
-<span id="qiskit.ignis.logging.IgnisLogReader.read_values" />
+    to\_datetime\_format(None): datetime format string. If not specified will assume “%Y/%m/%d %H:%M:%S”
 
-`read_values(log_files=None, keys=None, from_datetime=None, from_datetime_format=None, to_datetime=None, to_datetime_format=None)`
+    **Returns**
 
-Retrieve log lines using key and date/time filtering criteria
+    A list containing the retrieved rows of key pair values
 
-**Params:**
+    **Return type**
 
-log\_files: List of log files to read from keys: Retrieve only key value pairs of corresponding to keys A row with no matching keys will not be retrieved. If not specified, all keys are retrieved (optional)
-
-from\_datetime(None): Retrieve only rows newer than the given date and time
-
-from\_datetime\_format(None): datetime format string. If not specified will assume “%Y/%m/%d %H:%M:%S”
-
-to\_datetime(None): Retrieve only rows older than the given date and time
-
-to\_datetime\_format(None): datetime format string. If not specified will assume “%Y/%m/%d %H:%M:%S”
-
-**Returns**
-
-A list containing the retrieved rows of key pair values
-
-**Return type**
-
-list
+    list
+  </Function>
+</Class>
 

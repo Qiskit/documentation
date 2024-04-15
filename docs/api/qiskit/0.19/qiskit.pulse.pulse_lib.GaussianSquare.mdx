@@ -8,149 +8,129 @@ python_api_name: qiskit.pulse.pulse_lib.GaussianSquare
 
 # GaussianSquare
 
-<span id="qiskit.pulse.pulse_lib.GaussianSquare" />
-
-`GaussianSquare(duration, amp, sigma, width, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
-
-A square pulse with a Gaussian shaped risefall on either side:
+<Class id="qiskit.pulse.pulse_lib.GaussianSquare" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py" signature="GaussianSquare(duration, amp, sigma, width, name=None)">
+  A square pulse with a Gaussian shaped risefall on either side:
 
 $$
- \begin{align}\begin{aligned}risefall = (duration - width) / 2\\0 <= x < risefall\\f(x) = amp * exp( -(1/2) * (x - risefall/2)^2 / sigma^2) )\\risefall <= x < risefall + width\\f(x) = amp\\risefall + width <= x < duration\\f(x) = amp * exp( -(1/2) * (x - (risefall + width)/2)^2 / sigma^2) )\end{aligned}\end{align} 
+\begin{align}\begin{aligned}risefall = (duration - width) / 2\\0 <= x < risefall\\f(x) = amp * exp( -(1/2) * (x - risefall/2)^2 / sigma^2) )\\risefall <= x < risefall + width\\f(x) = amp\\risefall + width <= x < duration\\f(x) = amp * exp( -(1/2) * (x - (risefall + width)/2)^2 / sigma^2) )\end{aligned}\end{align} 
 $$
 
-Initialize the gaussian square pulse.
+  Initialize the gaussian square pulse.
 
-**Parameters**
+  **Parameters**
 
-*   **duration** (`int`) – Pulse length in terms of the the sampling period dt.
-*   **amp** (`complex`) – The amplitude of the Gaussian and of the square pulse.
-*   **sigma** (`float`) – A measure of how wide or narrow the Gaussian risefall is; see the class docstring for more details.
-*   **width** (`float`) – The duration of the embedded square pulse.
-*   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
+  *   **duration** (`int`) – Pulse length in terms of the the sampling period dt.
+  *   **amp** (`complex`) – The amplitude of the Gaussian and of the square pulse.
+  *   **sigma** (`float`) – A measure of how wide or narrow the Gaussian risefall is; see the class docstring for more details.
+  *   **width** (`float`) – The duration of the embedded square pulse.
+  *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 
-## Attributes
+  ## Attributes
 
-### amp
+  ### amp
 
-<span id="qiskit.pulse.pulse_lib.GaussianSquare.amp" />
+  <Attribute id="qiskit.pulse.pulse_lib.GaussianSquare.amp" name="amp" signature="complex">
+    The Gaussian amplitude.
 
-`complex`
+    **Return type**
 
-The Gaussian amplitude.
+    `complex`
+  </Attribute>
 
-**Return type**
+  ### id
 
-`complex`
+  <Attribute id="qiskit.pulse.pulse_lib.GaussianSquare.id" name="id" signature="int">
+    Unique identifier for this pulse.
 
-### id
+    **Return type**
 
-<span id="qiskit.pulse.pulse_lib.GaussianSquare.id" />
+    `int`
+  </Attribute>
 
-`int`
+  ### parameters
 
-Unique identifier for this pulse.
+  <Attribute id="qiskit.pulse.pulse_lib.GaussianSquare.parameters" name="parameters" signature="Dict[str, Any]">
+    Return a dictionary containing the pulse’s parameters.
 
-**Return type**
+    **Return type**
 
-`int`
+    `Dict`\[`str`, `Any`]
+  </Attribute>
 
-### parameters
+  ### sigma
 
-<span id="qiskit.pulse.pulse_lib.GaussianSquare.parameters" />
+  <Attribute id="qiskit.pulse.pulse_lib.GaussianSquare.sigma" name="sigma" signature="float">
+    The Gaussian standard deviation of the pulse width.
 
-`Dict[str, Any]`
+    **Return type**
 
-Return a dictionary containing the pulse’s parameters.
+    `float`
+  </Attribute>
 
-**Return type**
+  ### width
 
-`Dict`\[`str`, `Any`]
+  <Attribute id="qiskit.pulse.pulse_lib.GaussianSquare.width" name="width" signature="float">
+    The width of the square portion of the pulse.
 
-### sigma
+    **Return type**
 
-<span id="qiskit.pulse.pulse_lib.GaussianSquare.sigma" />
+    `float`
+  </Attribute>
 
-`float`
+  ## Methods
 
-The Gaussian standard deviation of the pulse width.
+  ### \_\_call\_\_
 
-**Return type**
+  <Function id="qiskit.pulse.pulse_lib.GaussianSquare.__call__" name="__call__" signature="GaussianSquare.__call__(channel)">
+    Call self as a function.
+  </Function>
 
-`float`
+  ### draw
 
-### width
+  <Function id="qiskit.pulse.pulse_lib.GaussianSquare.draw" name="draw" signature="GaussianSquare.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)">
+    Plot the pulse.
 
-<span id="qiskit.pulse.pulse_lib.GaussianSquare.width" />
+    **Parameters**
 
-`float`
+    *   **dt** (`float`) – Time interval of samples.
+    *   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
+    *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
+    *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
+    *   **scale** (`float`) – Relative visual scaling of waveform amplitudes
+    *   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
+    *   **scaling** (`Optional`\[`float`]) – Deprecated, see scale
 
-The width of the square portion of the pulse.
+    **Returns**
 
-**Return type**
+    A matplotlib figure object of the pulse envelope
 
-`float`
+    **Return type**
 
-## Methods
+    matplotlib.figure
+  </Function>
 
-### \_\_call\_\_
+  ### get\_sample\_pulse
 
-<span id="qiskit.pulse.pulse_lib.GaussianSquare.__call__" />
+  <Function id="qiskit.pulse.pulse_lib.GaussianSquare.get_sample_pulse" name="get_sample_pulse" signature="GaussianSquare.get_sample_pulse()">
+    Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
-`GaussianSquare.__call__(channel)`
+    **Return type**
 
-Call self as a function.
+    [`SamplePulse`](qiskit.pulse.pulse_lib.SamplePulse "qiskit.pulse.pulse_lib.sample_pulse.SamplePulse")
+  </Function>
 
-### draw
+  ### validate\_parameters
 
-<span id="qiskit.pulse.pulse_lib.GaussianSquare.draw" />
+  <Function id="qiskit.pulse.pulse_lib.GaussianSquare.validate_parameters" name="validate_parameters" signature="GaussianSquare.validate_parameters()">
+    Validate parameters.
 
-`GaussianSquare.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)`
+    **Raises**
 
-Plot the pulse.
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
 
-**Parameters**
+    **Return type**
 
-*   **dt** (`float`) – Time interval of samples.
-*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
-*   **filename** (`Optional`\[`str`]) – Name required to save pulse image
-*   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
-*   **scale** (`float`) – Relative visual scaling of waveform amplitudes
-*   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
-*   **scaling** (`Optional`\[`float`]) – Deprecated, see scale
-
-**Returns**
-
-A matplotlib figure object of the pulse envelope
-
-**Return type**
-
-matplotlib.figure
-
-### get\_sample\_pulse
-
-<span id="qiskit.pulse.pulse_lib.GaussianSquare.get_sample_pulse" />
-
-`GaussianSquare.get_sample_pulse()`
-
-Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
-
-**Return type**
-
-[`SamplePulse`](qiskit.pulse.pulse_lib.SamplePulse "qiskit.pulse.pulse_lib.sample_pulse.SamplePulse")
-
-### validate\_parameters
-
-<span id="qiskit.pulse.pulse_lib.GaussianSquare.validate_parameters" />
-
-`GaussianSquare.validate_parameters()`
-
-Validate parameters.
-
-**Raises**
-
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

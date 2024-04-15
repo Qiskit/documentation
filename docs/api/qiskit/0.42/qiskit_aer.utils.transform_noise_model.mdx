@@ -8,28 +8,26 @@ python_api_name: qiskit_aer.utils.transform_noise_model
 
 # qiskit\_aer.utils.transform\_noise\_model
 
-<span id="qiskit_aer.utils.transform_noise_model" />
+<Function id="qiskit_aer.utils.transform_noise_model" name="transform_noise_model" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/utils/noise_transformation.py" signature="transform_noise_model(noise_model, func)">
+  Return a new noise model by applyign a function to all quantum errors.
 
-`transform_noise_model(noise_model, func)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/utils/noise_transformation.py "view source code")
+  This returns a new noise model containing the resulting errors from applying the supplied function to all QuantumErrors in the noise model. This function should have singature func(error: QuantumError) -> QuantumError where the returned quantum error is defined on the same number of qubits as the original error.
 
-Return a new noise model by applyign a function to all quantum errors.
+  **Parameters**
 
-This returns a new noise model containing the resulting errors from applying the supplied function to all QuantumErrors in the noise model. This function should have singature func(error: QuantumError) -> QuantumError where the returned quantum error is defined on the same number of qubits as the original error.
+  *   **noise\_model** ([`NoiseModel`](qiskit_aer.noise.NoiseModel "qiskit_aer.noise.noise_model.NoiseModel")) – the noise model to be transformed.
+  *   **func** (`Callable`) – function for transforming QuantumErrors.
 
-**Parameters**
+  **Return type**
 
-*   **noise\_model** ([`NoiseModel`](qiskit_aer.noise.NoiseModel "qiskit_aer.noise.noise_model.NoiseModel")) – the noise model to be transformed.
-*   **func** (`Callable`) – function for transforming QuantumErrors.
+  [`NoiseModel`](qiskit_aer.noise.NoiseModel "qiskit_aer.noise.noise_model.NoiseModel")
 
-**Return type**
+  **Returns**
 
-[`NoiseModel`](qiskit_aer.noise.NoiseModel "qiskit_aer.noise.noise_model.NoiseModel")
+  The transpiled noise model.
 
-**Returns**
+  **Raises**
 
-The transpiled noise model.
-
-**Raises**
-
-**NoiseError** – if the transformation failed.
+  **NoiseError** – if the transformation failed.
+</Function>
 

@@ -26,93 +26,87 @@ python_api_name: qiskit.result
 
 ### marginal\_counts
 
-<span id="qiskit.result.marginal_counts" />
+<Function id="qiskit.result.marginal_counts" name="marginal_counts" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/result/utils.py" signature="qiskit.result.marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)">
+  Marginalize counts from an experiment over some indices of interest.
 
-`qiskit.result.marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/result/utils.py "view source code")
+  **Parameters**
 
-Marginalize counts from an experiment over some indices of interest.
+  *   **result** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *|*[*Result*](qiskit.result.Result "qiskit.result.result.Result")) – result to be marginalized (a Result object or a dict(str, int) of counts).
+  *   **indices** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
+  *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Default: False. Operates on the original Result argument if True, leading to loss of original Job Result. It has no effect if `result` is a dict.
+  *   **format\_marginal** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Default: False. If True, takes the output of marginalize and formats it with placeholders between cregs and for non-indices.
+  *   **marginalize\_memory** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If True, then also marginalize the memory field (if present). If False, remove the memory field from the result. If None, leave the memory field as is.
 
-**Parameters**
+  **Returns**
 
-*   **result** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *|*[*Result*](qiskit.result.Result "qiskit.result.result.Result")) – result to be marginalized (a Result object or a dict(str, int) of counts).
-*   **indices** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
-*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Default: False. Operates on the original Result argument if True, leading to loss of original Job Result. It has no effect if `result` is a dict.
-*   **format\_marginal** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Default: False. If True, takes the output of marginalize and formats it with placeholders between cregs and for non-indices.
-*   **marginalize\_memory** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If True, then also marginalize the memory field (if present). If False, remove the memory field from the result. If None, leave the memory field as is.
+  **A Result object or a dictionary with**
 
-**Returns**
+  the observed counts, marginalized to only account for frequency of observations of bits of interest.
 
-**A Result object or a dictionary with**
+  **Return type**
 
-the observed counts, marginalized to only account for frequency of observations of bits of interest.
+  [Result](qiskit.result.Result "qiskit.result.Result") or [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")([str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"))
 
-**Return type**
+  **Raises**
 
-[Result](qiskit.result.Result "qiskit.result.Result") or [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")([str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"))
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – in case of invalid indices to marginalize over.
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – in case of invalid indices to marginalize over.
+</Function>
 
 ### marginal\_distribution
 
-<span id="qiskit.result.marginal_distribution" />
+<Function id="qiskit.result.marginal_distribution" name="marginal_distribution" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/result/utils.py" signature="qiskit.result.marginal_distribution(counts, indices=None, format_marginal=False)">
+  Marginalize counts from an experiment over some indices of interest.
 
-`qiskit.result.marginal_distribution(counts, indices=None, format_marginal=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/result/utils.py "view source code")
+  Unlike [`marginal_counts()`](#qiskit.result.marginal_counts "qiskit.result.marginal_counts") this function respects the order of the input `indices`. If the input `indices` list is specified then the order the bit indices are specified will be the output order of the bitstrings in the marginalized output.
 
-Marginalize counts from an experiment over some indices of interest.
+  **Parameters**
 
-Unlike [`marginal_counts()`](#qiskit.result.marginal_counts "qiskit.result.marginal_counts") this function respects the order of the input `indices`. If the input `indices` list is specified then the order the bit indices are specified will be the output order of the bitstrings in the marginalized output.
+  *   **counts** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – result to be marginalized
+  *   **indices** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
+  *   **format\_marginal** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Default: False. If True, takes the output of marginalize and formats it with placeholders between cregs and for non-indices.
 
-**Parameters**
+  **Returns**
 
-*   **counts** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – result to be marginalized
-*   **indices** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
-*   **format\_marginal** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Default: False. If True, takes the output of marginalize and formats it with placeholders between cregs and for non-indices.
+  A marginalized dictionary
 
-**Returns**
+  **Return type**
 
-A marginalized dictionary
+  [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")([str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"))
 
-**Return type**
+  **Raises**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")([str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"))
-
-**Raises**
-
-*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If any value in `indices` is invalid or the `counts` dict
-*   **is invalid.** –
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If any value in `indices` is invalid or the `counts` dict
+  *   **is invalid.** –
+</Function>
 
 ### marginal\_memory
 
-<span id="qiskit.result.marginal_memory" />
+<Function id="qiskit.result.marginal_memory" name="marginal_memory" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/result/utils.py" signature="qiskit.result.marginal_memory(memory, indices=None, int_return=False, hex_return=False, avg_data=False, parallel_threshold=1000)">
+  Marginalize shot memory
 
-`qiskit.result.marginal_memory(memory, indices=None, int_return=False, hex_return=False, avg_data=False, parallel_threshold=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/result/utils.py "view source code")
+  This function is multithreaded and will launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-Marginalize shot memory
+  **Parameters**
 
-This function is multithreaded and will launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
+  *   **memory** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – The input memory list, this is either a list of hexadecimal strings to be marginalized representing measure level 2 memory or a numpy array representing level 0 measurement memory (single or avg) or level 1 measurement memory (single or avg).
+  *   **indices** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
+  *   **int\_return** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `True` the output will be a list of integers. By default the return type is a bit string. This and `hex_return` are mutually exclusive and can not be specified at the same time. This option only has an effect with memory level 2.
+  *   **hex\_return** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `True` the output will be a list of hexadecimal strings. By default the return type is a bit string. This and `int_return` are mutually exclusive and can not be specified at the same time. This option only has an effect with memory level 2.
+  *   **avg\_data** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If a 2 dimensional numpy array is passed in for `memory` this can be set to `True` to indicate it’s a avg level 0 data instead of level 1 single data.
+  *   **parallel\_threshold** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of elements in `memory` to start running in multiple threads. If `len(memory)` is >= this value, the function will run in multiple threads. By default this is set to 1000.
 
-**Parameters**
+  **Returns**
 
-*   **memory** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – The input memory list, this is either a list of hexadecimal strings to be marginalized representing measure level 2 memory or a numpy array representing level 0 measurement memory (single or avg) or level 1 measurement memory (single or avg).
-*   **indices** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
-*   **int\_return** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `True` the output will be a list of integers. By default the return type is a bit string. This and `hex_return` are mutually exclusive and can not be specified at the same time. This option only has an effect with memory level 2.
-*   **hex\_return** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `True` the output will be a list of hexadecimal strings. By default the return type is a bit string. This and `int_return` are mutually exclusive and can not be specified at the same time. This option only has an effect with memory level 2.
-*   **avg\_data** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If a 2 dimensional numpy array is passed in for `memory` this can be set to `True` to indicate it’s a avg level 0 data instead of level 1 single data.
-*   **parallel\_threshold** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of elements in `memory` to start running in multiple threads. If `len(memory)` is >= this value, the function will run in multiple threads. By default this is set to 1000.
+  The list of marginalized memory
 
-**Returns**
+  **Return type**
 
-The list of marginalized memory
+  marginal\_memory
 
-**Return type**
+  **Raises**
 
-marginal\_memory
-
-**Raises**
-
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if both `int_return` and `hex_return` are set to `True`
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if both `int_return` and `hex_return` are set to `True`
+</Function>
 
 ## Distributions
 
@@ -125,30 +119,28 @@ marginal\_memory
 
 ### sampled\_expectation\_value
 
-<span id="qiskit.result.sampled_expectation_value" />
+<Function id="qiskit.result.sampled_expectation_value" name="sampled_expectation_value" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/result/sampled_expval.py" signature="qiskit.result.sampled_expectation_value(dist, oper)">
+  Computes expectation value from a sampled distribution
 
-`qiskit.result.sampled_expectation_value(dist, oper)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/result/sampled_expval.py "view source code")
+  Note that passing a raw dict requires bit-string keys.
 
-Computes expectation value from a sampled distribution
+  **Parameters**
 
-Note that passing a raw dict requires bit-string keys.
+  *   **dist** ([*Counts*](qiskit.result.Counts "qiskit.result.Counts")  *or*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")  *or*[*ProbDistribution*](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")  *or*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Input sampled distribution
+  *   **oper** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")  *or*[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")  *or*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – The operator for the observable
 
-**Parameters**
+  **Returns**
 
-*   **dist** ([*Counts*](qiskit.result.Counts "qiskit.result.Counts")  *or*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")  *or*[*ProbDistribution*](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")  *or*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Input sampled distribution
-*   **oper** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")  *or*[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")  *or*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – The operator for the observable
+  The expectation value
 
-**Returns**
+  **Return type**
 
-The expectation value
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
-**Return type**
+  **Raises**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input distribution or operator is an invalid type
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input distribution or operator is an invalid type
+</Function>
 
 ## Mitigation
 

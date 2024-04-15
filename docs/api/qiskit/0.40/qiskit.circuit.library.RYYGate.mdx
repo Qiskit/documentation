@@ -8,147 +8,141 @@ python_api_name: qiskit.circuit.library.RYYGate
 
 # RYYGate
 
-<span id="qiskit.circuit.library.RYYGate" />
+<Class id="qiskit.circuit.library.RYYGate" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/ryy.py" signature="RYYGate(theta, label=None)">
+  Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`RYYGate(theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/ryy.py "view source code")
+  A parametric 2-qubit $Y \otimes Y$ interaction (rotation about YY).
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  This gate is symmetric, and is maximally entangling at $\theta = \pi/2$.
 
-A parametric 2-qubit $Y \otimes Y$ interaction (rotation about YY).
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`ryy()`](qiskit.circuit.QuantumCircuit#ryy "qiskit.circuit.QuantumCircuit.ryy") method.
 
-This gate is symmetric, and is maximally entangling at $\theta = \pi/2$.
+  **Circuit Symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`ryy()`](qiskit.circuit.QuantumCircuit#ryy "qiskit.circuit.QuantumCircuit.ryy") method.
+  ```python
+       ┌─────────┐
+  q_0: ┤1        ├
+       │  Ryy(ϴ) │
+  q_1: ┤0        ├
+       └─────────┘
+  ```
 
-**Circuit Symbol:**
-
-```python
-     ┌─────────┐
-q_0: ┤1        ├
-     │  Ryy(ϴ) │
-q_1: ┤0        ├
-     └─────────┘
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{YY}(\theta) = \exp\left(-i \th Y{\otimes}Y\right) =
-    \begin{pmatrix}
-        \cos\left(\th\right)   & 0           & 0           & i\sin\left(\th\right) \\
-        0           & \cos\left(\th\right)   & -i\sin\left(\th\right) & 0 \\
-        0           & -i\sin\left(\th\right) & \cos\left(\th\right)   & 0 \\
-        i\sin\left(\th\right)  & 0           & 0           & \cos\left(\th\right)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{YY}(\theta) = \exp\left(-i \th Y{\otimes}Y\right) =
+\begin{pmatrix}
+\cos\left(\th\right)   & 0           & 0           & i\sin\left(\th\right) \\
+0           & \cos\left(\th\right)   & -i\sin\left(\th\right) & 0 \\
+0           & -i\sin\left(\th\right) & \cos\left(\th\right)   & 0 \\
+i\sin\left(\th\right)  & 0           & 0           & \cos\left(\th\right)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
-**Examples:**
+  **Examples:**
 
-> $$
-> R_{YY}(\theta = 0) = I
-> $$
->
-> $$
-> R_{YY}(\theta = \pi) = i Y \otimes Y
-> $$
->
-> $$
-> \begin{split}R_{YY}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
->                         \begin{pmatrix}
->                             1 & 0 & 0 & i \\
->                             0 & 1 & -i & 0 \\
->                             0 & -i & 1 & 0 \\
->                             i & 0 & 0 & 1
->                         \end{pmatrix}\end{split}
-> $$
+  > $$
+  > R_{YY}(\theta = 0) = I
+  > $$
+  >
+  > $$
+  > R_{YY}(\theta = \pi) = i Y \otimes Y
+  > $$
+  >
+  > $$
+  > \begin{split}R_{YY}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
+  >                         \begin{pmatrix}
+  >                             1 & 0 & 0 & i \\
+  >                             0 & 1 & -i & 0 \\
+  >                             0 & -i & 1 & 0 \\
+  >                             i & 0 & 0 & 1
+  >                         \end{pmatrix}\end{split}
+  > $$
 
-Create new RYY gate.
+  Create new RYY gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-### inverse
+  ### inverse
 
-<span id="qiskit.circuit.library.RYYGate.inverse" />
+  <Function id="qiskit.circuit.library.RYYGate.inverse" name="inverse" signature="RYYGate.inverse()">
+    Return inverse RYY gate (i.e. with the negative rotation angle).
+  </Function>
 
-`RYYGate.inverse()`
+  ### power
 
-Return inverse RYY gate (i.e. with the negative rotation angle).
+  <Function id="qiskit.circuit.library.RYYGate.power" name="power" signature="RYYGate.power(exponent)">
+    Raise gate to a power.
+  </Function>
 
-### power
+  ## Attributes
 
-<span id="qiskit.circuit.library.RYYGate.power" />
+  ### condition\_bits
 
-`RYYGate.power(exponent)`
+  <Attribute id="qiskit.circuit.library.RYYGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-Raise gate to a power.
+    **Return type**
 
-## Attributes
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-<span id="qiskit.circuit.library.RYYGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.RYYGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.RYYGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  ### duration
 
-<span id="qiskit.circuit.library.RYYGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.RYYGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.RYYGate.label" name="label">
+    Return instruction label
 
-<span id="qiskit.circuit.library.RYYGate.definition" />
+    **Return type**
 
-### definition
+    `str`
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### name
 
-<span id="qiskit.circuit.library.RYYGate.duration" />
+  <Attribute id="qiskit.circuit.library.RYYGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-### duration
+  ### num\_clbits
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.RYYGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RYYGate.label" />
+  ### num\_qubits
 
-### label
+  <Attribute id="qiskit.circuit.library.RYYGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Return instruction label
+  ### params
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.RYYGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-`str`
+  ### unit
 
-<span id="qiskit.circuit.library.RYYGate.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.RYYGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.RYYGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.RYYGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.RYYGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.RYYGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

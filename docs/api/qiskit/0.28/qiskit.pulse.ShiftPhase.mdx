@@ -8,392 +8,346 @@ python_api_name: qiskit.pulse.ShiftPhase
 
 # qiskit.pulse.ShiftPhase
 
-<span id="qiskit.pulse.ShiftPhase" />
+<Class id="qiskit.pulse.ShiftPhase" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/phase.py" signature="ShiftPhase(phase, channel, name=None)">
+  The shift phase instruction updates the modulation phase of proceeding pulses played on the same [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"). It is a relative increase in phase determined by the `phase` operand.
 
-`ShiftPhase(phase, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/phase.py "view source code")
-
-The shift phase instruction updates the modulation phase of proceeding pulses played on the same [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"). It is a relative increase in phase determined by the `phase` operand.
-
-In particular, a PulseChannel creates pulses of the form
+  In particular, a PulseChannel creates pulses of the form
 
 $$
 Re[\exp(i 2\pi f jdt + \phi) d_j].
 $$
 
-The `ShiftPhase` instruction causes $\phi$ to be increased by the instruction’s `phase` operand. This will affect all pulses following on the same channel.
+  The `ShiftPhase` instruction causes $\phi$ to be increased by the instruction’s `phase` operand. This will affect all pulses following on the same channel.
 
-The qubit phase is tracked in software, enabling instantaneous, nearly error-free Z-rotations by using a ShiftPhase to update the frame tracking the qubit state.
+  The qubit phase is tracked in software, enabling instantaneous, nearly error-free Z-rotations by using a ShiftPhase to update the frame tracking the qubit state.
 
-Instantiate a shift phase instruction, increasing the output signal phase on `channel` by `phase` \[radians].
+  Instantiate a shift phase instruction, increasing the output signal phase on `channel` by `phase` \[radians].
 
-**Parameters**
+  **Parameters**
 
-*   **phase** (`Union`\[`complex`, `ParameterExpression`]) – The rotation angle in radians.
-*   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – The channel this instruction operates on.
-*   **name** (`Optional`\[`str`]) – Display name for this instruction.
+  *   **phase** (`Union`\[`complex`, `ParameterExpression`]) – The rotation angle in radians.
+  *   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – The channel this instruction operates on.
+  *   **name** (`Optional`\[`str`]) – Display name for this instruction.
 
-### \_\_init\_\_
+  ### \_\_init\_\_
 
-<span id="qiskit.pulse.ShiftPhase.__init__" />
+  <Function id="qiskit.pulse.ShiftPhase.__init__" name="__init__" signature="__init__(phase, channel, name=None)">
+    Instantiate a shift phase instruction, increasing the output signal phase on `channel` by `phase` \[radians].
 
-`__init__(phase, channel, name=None)`
+    **Parameters**
 
-Instantiate a shift phase instruction, increasing the output signal phase on `channel` by `phase` \[radians].
+    *   **phase** (`Union`\[`complex`, `ParameterExpression`]) – The rotation angle in radians.
+    *   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – The channel this instruction operates on.
+    *   **name** (`Optional`\[`str`]) – Display name for this instruction.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **phase** (`Union`\[`complex`, `ParameterExpression`]) – The rotation angle in radians.
-*   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – The channel this instruction operates on.
-*   **name** (`Optional`\[`str`]) – Display name for this instruction.
+  |                                                                                                                            |                                                                                                                                                                               |
+  | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.pulse.ShiftPhase.__init__ "qiskit.pulse.ShiftPhase.__init__")(phase, channel\[, name])                | Instantiate a shift phase instruction, increasing the output signal phase on `channel` by `phase` \[radians].                                                                 |
+  | [`append`](#qiskit.pulse.ShiftPhase.append "qiskit.pulse.ShiftPhase.append")(schedule\[, name])                            | Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`. |
+  | [`assign_parameters`](#qiskit.pulse.ShiftPhase.assign_parameters "qiskit.pulse.ShiftPhase.assign_parameters")(value\_dict) | Modify and return self with parameters assigned according to the input.                                                                                                       |
+  | [`ch_duration`](#qiskit.pulse.ShiftPhase.ch_duration "qiskit.pulse.ShiftPhase.ch_duration")(\*channels)                    | Return duration of the supplied channels in this Instruction.                                                                                                                 |
+  | [`ch_start_time`](#qiskit.pulse.ShiftPhase.ch_start_time "qiskit.pulse.ShiftPhase.ch_start_time")(\*channels)              | Return minimum start time for supplied channels.                                                                                                                              |
+  | [`ch_stop_time`](#qiskit.pulse.ShiftPhase.ch_stop_time "qiskit.pulse.ShiftPhase.ch_stop_time")(\*channels)                 | Return maximum start time for supplied channels.                                                                                                                              |
+  | [`draw`](#qiskit.pulse.ShiftPhase.draw "qiskit.pulse.ShiftPhase.draw")(\[dt, style, filename, interp\_method, …])          | Plot the instruction.                                                                                                                                                         |
+  | [`flatten`](#qiskit.pulse.ShiftPhase.flatten "qiskit.pulse.ShiftPhase.flatten")()                                          | Return itself as already single instruction.                                                                                                                                  |
+  | [`insert`](#qiskit.pulse.ShiftPhase.insert "qiskit.pulse.ShiftPhase.insert")(start\_time, schedule\[, name])               | Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.                                              |
+  | [`is_parameterized`](#qiskit.pulse.ShiftPhase.is_parameterized "qiskit.pulse.ShiftPhase.is_parameterized")()               | Return True iff the instruction is parameterized.                                                                                                                             |
+  | [`shift`](#qiskit.pulse.ShiftPhase.shift "qiskit.pulse.ShiftPhase.shift")(time\[, name])                                   | Return a new schedule shifted forward by time.                                                                                                                                |
 
-## Methods
+  ## Attributes
 
-|                                                                                                                            |                                                                                                                                                                               |
-| -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.pulse.ShiftPhase.__init__ "qiskit.pulse.ShiftPhase.__init__")(phase, channel\[, name])                | Instantiate a shift phase instruction, increasing the output signal phase on `channel` by `phase` \[radians].                                                                 |
-| [`append`](#qiskit.pulse.ShiftPhase.append "qiskit.pulse.ShiftPhase.append")(schedule\[, name])                            | Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`. |
-| [`assign_parameters`](#qiskit.pulse.ShiftPhase.assign_parameters "qiskit.pulse.ShiftPhase.assign_parameters")(value\_dict) | Modify and return self with parameters assigned according to the input.                                                                                                       |
-| [`ch_duration`](#qiskit.pulse.ShiftPhase.ch_duration "qiskit.pulse.ShiftPhase.ch_duration")(\*channels)                    | Return duration of the supplied channels in this Instruction.                                                                                                                 |
-| [`ch_start_time`](#qiskit.pulse.ShiftPhase.ch_start_time "qiskit.pulse.ShiftPhase.ch_start_time")(\*channels)              | Return minimum start time for supplied channels.                                                                                                                              |
-| [`ch_stop_time`](#qiskit.pulse.ShiftPhase.ch_stop_time "qiskit.pulse.ShiftPhase.ch_stop_time")(\*channels)                 | Return maximum start time for supplied channels.                                                                                                                              |
-| [`draw`](#qiskit.pulse.ShiftPhase.draw "qiskit.pulse.ShiftPhase.draw")(\[dt, style, filename, interp\_method, …])          | Plot the instruction.                                                                                                                                                         |
-| [`flatten`](#qiskit.pulse.ShiftPhase.flatten "qiskit.pulse.ShiftPhase.flatten")()                                          | Return itself as already single instruction.                                                                                                                                  |
-| [`insert`](#qiskit.pulse.ShiftPhase.insert "qiskit.pulse.ShiftPhase.insert")(start\_time, schedule\[, name])               | Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.                                              |
-| [`is_parameterized`](#qiskit.pulse.ShiftPhase.is_parameterized "qiskit.pulse.ShiftPhase.is_parameterized")()               | Return True iff the instruction is parameterized.                                                                                                                             |
-| [`shift`](#qiskit.pulse.ShiftPhase.shift "qiskit.pulse.ShiftPhase.shift")(time\[, name])                                   | Return a new schedule shifted forward by time.                                                                                                                                |
+  |                                                                                                |                                                                                                                              |
+  | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+  | [`channel`](#qiskit.pulse.ShiftPhase.channel "qiskit.pulse.ShiftPhase.channel")                | Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on. |
+  | [`channels`](#qiskit.pulse.ShiftPhase.channels "qiskit.pulse.ShiftPhase.channels")             | Returns the channels that this schedule uses.                                                                                |
+  | [`duration`](#qiskit.pulse.ShiftPhase.duration "qiskit.pulse.ShiftPhase.duration")             | Duration of this instruction.                                                                                                |
+  | [`id`](#qiskit.pulse.ShiftPhase.id "qiskit.pulse.ShiftPhase.id")                               | Unique identifier for this instruction.                                                                                      |
+  | [`instructions`](#qiskit.pulse.ShiftPhase.instructions "qiskit.pulse.ShiftPhase.instructions") | Iterable for getting instructions from Schedule tree.                                                                        |
+  | [`name`](#qiskit.pulse.ShiftPhase.name "qiskit.pulse.ShiftPhase.name")                         | Name of this instruction.                                                                                                    |
+  | [`operands`](#qiskit.pulse.ShiftPhase.operands "qiskit.pulse.ShiftPhase.operands")             | Return instruction operands.                                                                                                 |
+  | [`parameters`](#qiskit.pulse.ShiftPhase.parameters "qiskit.pulse.ShiftPhase.parameters")       | Parameters which determine the instruction behavior.                                                                         |
+  | [`phase`](#qiskit.pulse.ShiftPhase.phase "qiskit.pulse.ShiftPhase.phase")                      | Return the rotation angle enacted by this instruction in radians.                                                            |
+  | [`start_time`](#qiskit.pulse.ShiftPhase.start_time "qiskit.pulse.ShiftPhase.start_time")       | Relative begin time of this instruction.                                                                                     |
+  | [`stop_time`](#qiskit.pulse.ShiftPhase.stop_time "qiskit.pulse.ShiftPhase.stop_time")          | Relative end time of this instruction.                                                                                       |
 
-## Attributes
+  ### append
 
-|                                                                                                |                                                                                                                              |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| [`channel`](#qiskit.pulse.ShiftPhase.channel "qiskit.pulse.ShiftPhase.channel")                | Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on. |
-| [`channels`](#qiskit.pulse.ShiftPhase.channels "qiskit.pulse.ShiftPhase.channels")             | Returns the channels that this schedule uses.                                                                                |
-| [`duration`](#qiskit.pulse.ShiftPhase.duration "qiskit.pulse.ShiftPhase.duration")             | Duration of this instruction.                                                                                                |
-| [`id`](#qiskit.pulse.ShiftPhase.id "qiskit.pulse.ShiftPhase.id")                               | Unique identifier for this instruction.                                                                                      |
-| [`instructions`](#qiskit.pulse.ShiftPhase.instructions "qiskit.pulse.ShiftPhase.instructions") | Iterable for getting instructions from Schedule tree.                                                                        |
-| [`name`](#qiskit.pulse.ShiftPhase.name "qiskit.pulse.ShiftPhase.name")                         | Name of this instruction.                                                                                                    |
-| [`operands`](#qiskit.pulse.ShiftPhase.operands "qiskit.pulse.ShiftPhase.operands")             | Return instruction operands.                                                                                                 |
-| [`parameters`](#qiskit.pulse.ShiftPhase.parameters "qiskit.pulse.ShiftPhase.parameters")       | Parameters which determine the instruction behavior.                                                                         |
-| [`phase`](#qiskit.pulse.ShiftPhase.phase "qiskit.pulse.ShiftPhase.phase")                      | Return the rotation angle enacted by this instruction in radians.                                                            |
-| [`start_time`](#qiskit.pulse.ShiftPhase.start_time "qiskit.pulse.ShiftPhase.start_time")       | Relative begin time of this instruction.                                                                                     |
-| [`stop_time`](#qiskit.pulse.ShiftPhase.stop_time "qiskit.pulse.ShiftPhase.stop_time")          | Relative end time of this instruction.                                                                                       |
+  <Function id="qiskit.pulse.ShiftPhase.append" name="append" signature="append(schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
-### append
+    **Parameters**
 
-<span id="qiskit.pulse.ShiftPhase.append" />
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-`append(schedule, name=None)`
+    **Returns**
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+    A new schedule with `schedule` a this instruction at t=0.
 
-**Parameters**
+    **Return type**
 
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-**Returns**
+  ### assign\_parameters
 
-A new schedule with `schedule` a this instruction at t=0.
+  <Function id="qiskit.pulse.ShiftPhase.assign_parameters" name="assign_parameters" signature="assign_parameters(value_dict)">
+    Modify and return self with parameters assigned according to the input.
 
-**Return type**
+    **Parameters**
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+    **value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
 
-### assign\_parameters
+    **Return type**
 
-<span id="qiskit.pulse.ShiftPhase.assign_parameters" />
+    `Instruction`
 
-`assign_parameters(value_dict)`
+    **Returns**
 
-Modify and return self with parameters assigned according to the input.
+    Self with updated parameters.
+  </Function>
 
-**Parameters**
+  ### ch\_duration
 
-**value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
+  <Function id="qiskit.pulse.ShiftPhase.ch_duration" name="ch_duration" signature="ch_duration(*channels)">
+    Return duration of the supplied channels in this Instruction.
 
-**Return type**
+    **Parameters**
 
-`Instruction`
+    **\*channels** – Supplied channels
 
-**Returns**
+    **Return type**
 
-Self with updated parameters.
+    `int`
+  </Function>
 
-### ch\_duration
+  ### ch\_start\_time
 
-<span id="qiskit.pulse.ShiftPhase.ch_duration" />
+  <Function id="qiskit.pulse.ShiftPhase.ch_start_time" name="ch_start_time" signature="ch_start_time(*channels)">
+    Return minimum start time for supplied channels.
 
-`ch_duration(*channels)`
+    **Parameters**
 
-Return duration of the supplied channels in this Instruction.
+    **\*channels** – Supplied channels
 
-**Parameters**
+    **Return type**
 
-**\*channels** – Supplied channels
+    `int`
+  </Function>
 
-**Return type**
+  ### ch\_stop\_time
 
-`int`
+  <Function id="qiskit.pulse.ShiftPhase.ch_stop_time" name="ch_stop_time" signature="ch_stop_time(*channels)">
+    Return maximum start time for supplied channels.
 
-### ch\_start\_time
+    **Parameters**
 
-<span id="qiskit.pulse.ShiftPhase.ch_start_time" />
+    **\*channels** – Supplied channels
 
-`ch_start_time(*channels)`
+    **Return type**
 
-Return minimum start time for supplied channels.
+    `int`
+  </Function>
 
-**Parameters**
+  ### channel
 
-**\*channels** – Supplied channels
+  <Function id="qiskit.pulse.ShiftPhase.channel" name="channel" signature="property channel">
+    Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
 
-**Return type**
+    **Return type**
 
-`int`
+    [`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")
+  </Function>
 
-### ch\_stop\_time
+  ### channels
 
-<span id="qiskit.pulse.ShiftPhase.ch_stop_time" />
+  <Function id="qiskit.pulse.ShiftPhase.channels" name="channels" signature="property channels">
+    Returns the channels that this schedule uses.
 
-`ch_stop_time(*channels)`
+    **Return type**
 
-Return maximum start time for supplied channels.
+    `Tuple`\[[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")]
+  </Function>
 
-**Parameters**
+  ### draw
 
-**\*channels** – Supplied channels
+  <Function id="qiskit.pulse.ShiftPhase.draw" name="draw" signature="draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)">
+    Plot the instruction.
 
-**Return type**
+    **Parameters**
 
-`int`
+    *   **dt** (`float`) – Time interval of samples
+    *   **style** (*Optional\[SchedStyle]*) – A style sheet to configure plot appearance
+    *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
+    *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
+    *   **scale** (`float`) – Relative visual scaling of waveform amplitudes
+    *   **plot\_all** (`bool`) – Plot empty channels
+    *   **plot\_range** (`Optional`\[`Tuple`\[`float`]]) – A tuple of time range to plot
+    *   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
+    *   **table** (`bool`) – Draw event table for supported instructions
+    *   **label** (`bool`) – Label individual instructions
+    *   **framechange** (`bool`) – Add framechange indicators
+    *   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
 
-### channel
+    **Returns**
 
-<span id="qiskit.pulse.ShiftPhase.channel" />
+    A matplotlib figure object of the pulse schedule
 
-`property channel`
+    **Return type**
 
-Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+    matplotlib.figure
+  </Function>
 
-**Return type**
+  ### duration
 
-[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")
+  <Function id="qiskit.pulse.ShiftPhase.duration" name="duration" signature="property duration">
+    Duration of this instruction.
 
-### channels
+    **Return type**
 
-<span id="qiskit.pulse.ShiftPhase.channels" />
+    `int`
+  </Function>
 
-`property channels`
+  ### flatten
 
-Returns the channels that this schedule uses.
+  <Function id="qiskit.pulse.ShiftPhase.flatten" name="flatten" signature="flatten()">
+    Return itself as already single instruction.
 
-**Return type**
+    **Return type**
 
-`Tuple`\[[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")]
+    `Instruction`
+  </Function>
 
-### draw
+  ### id
 
-<span id="qiskit.pulse.ShiftPhase.draw" />
+  <Function id="qiskit.pulse.ShiftPhase.id" name="id" signature="property id">
+    Unique identifier for this instruction.
 
-`draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
+    **Return type**
 
-Plot the instruction.
+    `int`
+  </Function>
 
-**Parameters**
+  ### insert
 
-*   **dt** (`float`) – Time interval of samples
-*   **style** (*Optional\[SchedStyle]*) – A style sheet to configure plot appearance
-*   **filename** (`Optional`\[`str`]) – Name required to save pulse image
-*   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
-*   **scale** (`float`) – Relative visual scaling of waveform amplitudes
-*   **plot\_all** (`bool`) – Plot empty channels
-*   **plot\_range** (`Optional`\[`Tuple`\[`float`]]) – A tuple of time range to plot
-*   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
-*   **table** (`bool`) – Draw event table for supported instructions
-*   **label** (`bool`) – Label individual instructions
-*   **framechange** (`bool`) – Add framechange indicators
-*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
+  <Function id="qiskit.pulse.ShiftPhase.insert" name="insert" signature="insert(start_time, schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
-**Returns**
+    **Parameters**
 
-A matplotlib figure object of the pulse schedule
+    *   **start\_time** (`int`) – Time to insert the schedule schedule
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-**Return type**
+    **Returns**
 
-matplotlib.figure
+    A new schedule with `schedule` inserted with this instruction at t=0.
 
-### duration
+    **Return type**
 
-<span id="qiskit.pulse.ShiftPhase.duration" />
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-`property duration`
+  ### instructions
 
-Duration of this instruction.
+  <Function id="qiskit.pulse.ShiftPhase.instructions" name="instructions" signature="property instructions">
+    Iterable for getting instructions from Schedule tree.
 
-**Return type**
+    **Return type**
 
-`int`
+    `Tuple`\[`Tuple`\[`int`, `Instruction`]]
+  </Function>
 
-### flatten
+  ### is\_parameterized
 
-<span id="qiskit.pulse.ShiftPhase.flatten" />
+  <Function id="qiskit.pulse.ShiftPhase.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the instruction is parameterized.
 
-`flatten()`
+    **Return type**
 
-Return itself as already single instruction.
+    `bool`
+  </Function>
 
-**Return type**
+  ### name
 
-`Instruction`
+  <Function id="qiskit.pulse.ShiftPhase.name" name="name" signature="property name">
+    Name of this instruction.
 
-### id
+    **Return type**
 
-<span id="qiskit.pulse.ShiftPhase.id" />
+    `str`
+  </Function>
 
-`property id`
+  ### operands
 
-Unique identifier for this instruction.
+  <Function id="qiskit.pulse.ShiftPhase.operands" name="operands" signature="property operands">
+    Return instruction operands.
 
-**Return type**
+    **Return type**
 
-`int`
+    `Tuple`
+  </Function>
 
-### insert
+  ### parameters
 
-<span id="qiskit.pulse.ShiftPhase.insert" />
+  <Function id="qiskit.pulse.ShiftPhase.parameters" name="parameters" signature="property parameters">
+    Parameters which determine the instruction behavior.
 
-`insert(start_time, schedule, name=None)`
+    **Return type**
 
-Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
+    `Set`
+  </Function>
 
-**Parameters**
+  ### phase
 
-*   **start\_time** (`int`) – Time to insert the schedule schedule
-*   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
+  <Function id="qiskit.pulse.ShiftPhase.phase" name="phase" signature="property phase">
+    Return the rotation angle enacted by this instruction in radians.
 
-**Returns**
+    **Return type**
 
-A new schedule with `schedule` inserted with this instruction at t=0.
+    `Union`\[`complex`, `ParameterExpression`]
+  </Function>
 
-**Return type**
+  ### shift
 
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  <Function id="qiskit.pulse.ShiftPhase.shift" name="shift" signature="shift(time, name=None)">
+    Return a new schedule shifted forward by time.
 
-### instructions
+    **Parameters**
 
-<span id="qiskit.pulse.ShiftPhase.instructions" />
+    *   **time** (`int`) – Time to shift by
+    *   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
 
-`property instructions`
+    **Returns**
 
-Iterable for getting instructions from Schedule tree.
+    The shifted schedule.
 
-**Return type**
+    **Return type**
 
-`Tuple`\[`Tuple`\[`int`, `Instruction`]]
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
 
-### is\_parameterized
+  ### start\_time
 
-<span id="qiskit.pulse.ShiftPhase.is_parameterized" />
+  <Function id="qiskit.pulse.ShiftPhase.start_time" name="start_time" signature="property start_time">
+    Relative begin time of this instruction.
 
-`is_parameterized()`
+    **Return type**
 
-Return True iff the instruction is parameterized.
+    `int`
+  </Function>
 
-**Return type**
+  ### stop\_time
 
-`bool`
+  <Function id="qiskit.pulse.ShiftPhase.stop_time" name="stop_time" signature="property stop_time">
+    Relative end time of this instruction.
 
-### name
+    **Return type**
 
-<span id="qiskit.pulse.ShiftPhase.name" />
-
-`property name`
-
-Name of this instruction.
-
-**Return type**
-
-`str`
-
-### operands
-
-<span id="qiskit.pulse.ShiftPhase.operands" />
-
-`property operands`
-
-Return instruction operands.
-
-**Return type**
-
-`Tuple`
-
-### parameters
-
-<span id="qiskit.pulse.ShiftPhase.parameters" />
-
-`property parameters`
-
-Parameters which determine the instruction behavior.
-
-**Return type**
-
-`Set`
-
-### phase
-
-<span id="qiskit.pulse.ShiftPhase.phase" />
-
-`property phase`
-
-Return the rotation angle enacted by this instruction in radians.
-
-**Return type**
-
-`Union`\[`complex`, `ParameterExpression`]
-
-### shift
-
-<span id="qiskit.pulse.ShiftPhase.shift" />
-
-`shift(time, name=None)`
-
-Return a new schedule shifted forward by time.
-
-**Parameters**
-
-*   **time** (`int`) – Time to shift by
-*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to name of self
-
-**Returns**
-
-The shifted schedule.
-
-**Return type**
-
-[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
-
-### start\_time
-
-<span id="qiskit.pulse.ShiftPhase.start_time" />
-
-`property start_time`
-
-Relative begin time of this instruction.
-
-**Return type**
-
-`int`
-
-### stop\_time
-
-<span id="qiskit.pulse.ShiftPhase.stop_time" />
-
-`property stop_time`
-
-Relative end time of this instruction.
-
-**Return type**
-
-`int`
+    `int`
+  </Function>
+</Class>
 

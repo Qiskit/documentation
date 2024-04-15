@@ -8,81 +8,73 @@ python_api_name: qiskit.algorithms.gradients.ParamShiftSamplerGradient
 
 # ParamShiftSamplerGradient
 
-<span id="qiskit.algorithms.gradients.ParamShiftSamplerGradient" />
+<Class id="qiskit.algorithms.gradients.ParamShiftSamplerGradient" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/param_shift_sampler_gradient.py" signature="ParamShiftSamplerGradient(sampler, options=None)">
+  Bases: [`BaseSamplerGradient`](qiskit.algorithms.gradients.BaseSamplerGradient "qiskit.algorithms.gradients.base_sampler_gradient.BaseSamplerGradient")
 
-`ParamShiftSamplerGradient(sampler, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/param_shift_sampler_gradient.py "view source code")
+  Compute the gradients of the sampling probability by the parameter shift rule \[1].
 
-Bases: [`BaseSamplerGradient`](qiskit.algorithms.gradients.BaseSamplerGradient "qiskit.algorithms.gradients.base_sampler_gradient.BaseSamplerGradient")
+  **Reference:** \[1] Schuld, M., Bergholm, V., Gogolin, C., Izaac, J., and Killoran, N. Evaluating analytic gradients on quantum hardware, [DOI](https://doi.org/10.1103/PhysRevA.99.032331)
 
-Compute the gradients of the sampling probability by the parameter shift rule \[1].
+  **Parameters**
 
-**Reference:** \[1] Schuld, M., Bergholm, V., Gogolin, C., Izaac, J., and Killoran, N. Evaluating analytic gradients on quantum hardware, [DOI](https://doi.org/10.1103/PhysRevA.99.032331)
+  *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")) – The sampler used to compute the gradients.
+  *   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
 
-**Parameters**
+  ## Methods
 
-*   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")) – The sampler used to compute the gradients.
-*   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+  <span id="qiskit-algorithms-gradients-paramshiftsamplergradient-run" />
 
-## Methods
+  ### run
 
-<span id="qiskit-algorithms-gradients-paramshiftsamplergradient-run" />
+  <Function id="qiskit.algorithms.gradients.ParamShiftSamplerGradient.run" name="run" signature="ParamShiftSamplerGradient.run(circuits, parameter_values, parameters=None, **options)">
+    Run the job of the sampler gradient on the given circuits.
 
-### run
+    **Parameters**
 
-<span id="qiskit.algorithms.gradients.ParamShiftSamplerGradient.run" />
+    *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the gradients.
+    *   **parameter\_values** (*Sequence\[Sequence\[float]]*) – The list of parameter values to be bound to the circuit.
+    *   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated. None in the sequence means that the gradients of all parameters in the corresponding circuit are calculated.
+    *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
 
-`ParamShiftSamplerGradient.run(circuits, parameter_values, parameters=None, **options)`
+    **Returns**
 
-Run the job of the sampler gradient on the given circuits.
+    The job object of the gradients of the sampling probability. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`. The j-th quasi-probability distribution in the i-th result corresponds to the gradients of the sampling probability for the j-th parameter in `circuits[i]`.
 
-**Parameters**
+    **Raises**
 
-*   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the gradients.
-*   **parameter\_values** (*Sequence\[Sequence\[float]]*) – The list of parameter values to be bound to the circuit.
-*   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated. None in the sequence means that the gradients of all parameters in the corresponding circuit are calculated.
-*   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+    **ValueError** – Invalid arguments are given.
 
-**Returns**
+    **Return type**
 
-The job object of the gradients of the sampling probability. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`. The j-th quasi-probability distribution in the i-th result corresponds to the gradients of the sampling probability for the j-th parameter in `circuits[i]`.
+    [AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
+  </Function>
 
-**Raises**
+  <span id="qiskit-algorithms-gradients-paramshiftsamplergradient-update-default-options" />
 
-**ValueError** – Invalid arguments are given.
+  ### update\_default\_options
 
-**Return type**
+  <Function id="qiskit.algorithms.gradients.ParamShiftSamplerGradient.update_default_options" name="update_default_options" signature="ParamShiftSamplerGradient.update_default_options(**options)">
+    Update the gradient’s default options setting.
 
-[AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
+    **Parameters**
 
-<span id="qiskit-algorithms-gradients-paramshiftsamplergradient-update-default-options" />
+    **\*\*options** – The fields to update the default options.
+  </Function>
 
-### update\_default\_options
+  ## Attributes
 
-<span id="qiskit.algorithms.gradients.ParamShiftSamplerGradient.update_default_options" />
+  ### SUPPORTED\_GATES
 
-`ParamShiftSamplerGradient.update_default_options(**options)`
+  <Attribute id="qiskit.algorithms.gradients.ParamShiftSamplerGradient.SUPPORTED_GATES" name="SUPPORTED_GATES" attributeValue="= ['x', 'y', 'z', 'h', 'rx', 'ry', 'rz', 'p', 'cx', 'cy', 'cz', 'ryy', 'rxx', 'rzz', 'rzx']" />
 
-Update the gradient’s default options setting.
+  ### options
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.gradients.ParamShiftSamplerGradient.options" name="options">
+    Return the union of sampler options setting and gradient default options, where, if the same field is set in both, the gradient’s default options override the primitive’s default setting.
 
-**\*\*options** – The fields to update the default options.
+    **Returns**
 
-## Attributes
-
-<span id="qiskit.algorithms.gradients.ParamShiftSamplerGradient.SUPPORTED_GATES" />
-
-### SUPPORTED\_GATES
-
-`= ['x', 'y', 'z', 'h', 'rx', 'ry', 'rz', 'p', 'cx', 'cy', 'cz', 'ryy', 'rxx', 'rzz', 'rzx']`
-
-<span id="qiskit.algorithms.gradients.ParamShiftSamplerGradient.options" />
-
-### options
-
-Return the union of sampler options setting and gradient default options, where, if the same field is set in both, the gradient’s default options override the primitive’s default setting.
-
-**Returns**
-
-The gradient default + sampler options.
+    The gradient default + sampler options.
+  </Attribute>
+</Class>
 

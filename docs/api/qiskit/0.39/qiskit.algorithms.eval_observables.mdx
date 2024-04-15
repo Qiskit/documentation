@@ -8,31 +8,29 @@ python_api_name: qiskit.algorithms.eval_observables
 
 # qiskit.algorithms.eval\_observables
 
-<span id="qiskit.algorithms.eval_observables" />
+<Function id="qiskit.algorithms.eval_observables" name="eval_observables" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/aux_ops_evaluator.py" signature="eval_observables(quantum_instance, quantum_state, observables, expectation, threshold=1e-12)">
+  Pending deprecation: Accepts a list or a dictionary of operators and calculates their expectation values - means and standard deviations. They are calculated with respect to a quantum state provided. A user can optionally provide a threshold value which filters mean values falling below the threshold.
 
-`eval_observables(quantum_instance, quantum_state, observables, expectation, threshold=1e-12)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/aux_ops_evaluator.py "view source code")
+  This function has been superseded by the `qiskit.algorithms.observables_evaluator.eval_observables()` function. It will be deprecated in a future release and subsequently removed after that.
 
-Pending deprecation: Accepts a list or a dictionary of operators and calculates their expectation values - means and standard deviations. They are calculated with respect to a quantum state provided. A user can optionally provide a threshold value which filters mean values falling below the threshold.
+  **Parameters**
 
-This function has been superseded by the `qiskit.algorithms.observables_evaluator.eval_observables()` function. It will be deprecated in a future release and subsequently removed after that.
+  *   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), [`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")]) – A quantum instance used for calculations.
+  *   **quantum\_state** (`Union`\[[`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]) – An unparametrized quantum circuit representing a quantum state that expectation values are computed against.
+  *   **observables** (`Union`\[`List`\[`Optional`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]], `Dict`\[`str`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]]) – A list or a dictionary of operators whose expectation values are to be calculated.
+  *   **expectation** ([`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")) – An instance of ExpectationBase which defines a method for calculating expectation values.
+  *   **threshold** (`float`) – A threshold value that defines which mean values should be neglected (helpful for ignoring numerical instabilities close to 0).
 
-**Parameters**
+  **Return type**
 
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), [`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")]) – A quantum instance used for calculations.
-*   **quantum\_state** (`Union`\[[`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]) – An unparametrized quantum circuit representing a quantum state that expectation values are computed against.
-*   **observables** (`Union`\[`List`\[`Optional`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]], `Dict`\[`str`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]]) – A list or a dictionary of operators whose expectation values are to be calculated.
-*   **expectation** ([`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")) – An instance of ExpectationBase which defines a method for calculating expectation values.
-*   **threshold** (`float`) – A threshold value that defines which mean values should be neglected (helpful for ignoring numerical instabilities close to 0).
+  `Union`\[`List`\[`Optional`\[`Tuple`\[`complex`, `complex`]]], `Dict`\[`str`, `Tuple`\[`complex`, `complex`]]]
 
-**Return type**
+  **Returns**
 
-`Union`\[`List`\[`Optional`\[`Tuple`\[`complex`, `complex`]]], `Dict`\[`str`, `Tuple`\[`complex`, `complex`]]]
+  A list or a dictionary of tuples (mean, standard deviation).
 
-**Returns**
+  **Raises**
 
-A list or a dictionary of tuples (mean, standard deviation).
-
-**Raises**
-
-**ValueError** – If a `quantum_state` with free parameters is provided.
+  **ValueError** – If a `quantum_state` with free parameters is provided.
+</Function>
 

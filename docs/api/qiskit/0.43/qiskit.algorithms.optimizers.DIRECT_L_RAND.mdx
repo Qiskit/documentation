@@ -10,242 +10,224 @@ python_api_name: qiskit.algorithms.optimizers.DIRECT_L_RAND
 
 # DIRECT\_L\_RAND
 
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND" />
+<Class id="qiskit.algorithms.optimizers.DIRECT_L_RAND" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/nlopts/direct_l_rand.py" signature="DIRECT_L_RAND(max_evals=1000)">
+  Bases: `NLoptOptimizer`
 
-`DIRECT_L_RAND(max_evals=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/nlopts/direct_l_rand.py "view source code")
+  DIviding RECTangles Locally-biased Randomized optimizer.
 
-Bases: `NLoptOptimizer`
+  DIRECT-L RAND is the “locally biased” variant with some randomization in near-tie decisions. See also [`DIRECT_L`](qiskit.algorithms.optimizers.DIRECT_L "qiskit.algorithms.optimizers.DIRECT_L")
 
-DIviding RECTangles Locally-biased Randomized optimizer.
+  NLopt global optimizer, derivative-free. For further detail, please refer to [http://nlopt.readthedocs.io/en/latest/NLopt\_Algorithms/#direct-and-direct-l](http://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/#direct-and-direct-l)
 
-DIRECT-L RAND is the “locally biased” variant with some randomization in near-tie decisions. See also [`DIRECT_L`](qiskit.algorithms.optimizers.DIRECT_L "qiskit.algorithms.optimizers.DIRECT_L")
+  **Parameters**
 
-NLopt global optimizer, derivative-free. For further detail, please refer to [http://nlopt.readthedocs.io/en/latest/NLopt\_Algorithms/#direct-and-direct-l](http://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/#direct-and-direct-l)
+  **max\_evals** (*int*) – Maximum allowed number of function evaluations.
 
-**Parameters**
+  **Raises**
 
-**max\_evals** (*int*) – Maximum allowed number of function evaluations.
+  **MissingOptionalLibraryError** – NLopt library not installed.
 
-**Raises**
+  ## Methods
 
-**MissingOptionalLibraryError** – NLopt library not installed.
+  <span id="qiskit-algorithms-optimizers-direct-l-rand-get-nlopt-optimizer" />
 
-## Methods
+  ### get\_nlopt\_optimizer
 
-<span id="qiskit-algorithms-optimizers-direct-l-rand-get-nlopt-optimizer" />
+  <Function id="qiskit.algorithms.optimizers.DIRECT_L_RAND.get_nlopt_optimizer" name="get_nlopt_optimizer" signature="DIRECT_L_RAND.get_nlopt_optimizer()">
+    Return NLopt optimizer type
 
-### get\_nlopt\_optimizer
+    **Return type**
 
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.get_nlopt_optimizer" />
+    *NLoptOptimizerType*
+  </Function>
 
-`DIRECT_L_RAND.get_nlopt_optimizer()`
+  <span id="qiskit-algorithms-optimizers-direct-l-rand-get-support-level" />
 
-Return NLopt optimizer type
+  ### get\_support\_level
 
-**Return type**
+  <Function id="qiskit.algorithms.optimizers.DIRECT_L_RAND.get_support_level" name="get_support_level" signature="DIRECT_L_RAND.get_support_level()">
+    return support level dictionary
+  </Function>
 
-*NLoptOptimizerType*
+  <span id="qiskit-algorithms-optimizers-direct-l-rand-gradient-num-diff" />
 
-<span id="qiskit-algorithms-optimizers-direct-l-rand-get-support-level" />
+  ### gradient\_num\_diff
 
-### get\_support\_level
+  <Function id="qiskit.algorithms.optimizers.DIRECT_L_RAND.gradient_num_diff" name="gradient_num_diff" signature="static DIRECT_L_RAND.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.get_support_level" />
+    **Parameters**
 
-`DIRECT_L_RAND.get_support_level()`
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped, defaults to 1 (i.e. no batching).
 
-return support level dictionary
+    **Returns**
 
-<span id="qiskit-algorithms-optimizers-direct-l-rand-gradient-num-diff" />
+    the gradient computed
 
-### gradient\_num\_diff
+    **Return type**
 
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.gradient_num_diff" />
+    grad
+  </Function>
 
-`static DIRECT_L_RAND.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)`
+  <span id="qiskit-algorithms-optimizers-direct-l-rand-minimize" />
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+  ### minimize
 
-**Parameters**
+  <Function id="qiskit.algorithms.optimizers.DIRECT_L_RAND.minimize" name="minimize" signature="DIRECT_L_RAND.minimize(fun, x0, jac=None, bounds=None)">
+    Minimize the scalar function.
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped, defaults to 1 (i.e. no batching).
+    **Parameters**
 
-**Returns**
+    *   **fun** (*Callable\[\[POINT], float]*) – The scalar function to minimize.
+    *   **x0** (*POINT*) – The initial point for the minimization.
+    *   **jac** (*Callable\[\[POINT], POINT] | None*) – The gradient of the scalar function `fun`.
+    *   **bounds** (*list\[tuple\[float, float]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
 
-the gradient computed
+    **Returns**
 
-**Return type**
+    The result of the optimization, containing e.g. the result as attribute `x`.
 
-grad
+    **Return type**
 
-<span id="qiskit-algorithms-optimizers-direct-l-rand-minimize" />
+    [OptimizerResult](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.OptimizerResult")
+  </Function>
 
-### minimize
+  <span id="qiskit-algorithms-optimizers-direct-l-rand-print-options" />
 
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.minimize" />
+  ### print\_options
 
-`DIRECT_L_RAND.minimize(fun, x0, jac=None, bounds=None)`
+  <Function id="qiskit.algorithms.optimizers.DIRECT_L_RAND.print_options" name="print_options" signature="DIRECT_L_RAND.print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-Minimize the scalar function.
+  <span id="qiskit-algorithms-optimizers-direct-l-rand-set-max-evals-grouped" />
 
-**Parameters**
+  ### set\_max\_evals\_grouped
 
-*   **fun** (*Callable\[\[POINT], float]*) – The scalar function to minimize.
-*   **x0** (*POINT*) – The initial point for the minimization.
-*   **jac** (*Callable\[\[POINT], POINT] | None*) – The gradient of the scalar function `fun`.
-*   **bounds** (*list\[tuple\[float, float]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+  <Function id="qiskit.algorithms.optimizers.DIRECT_L_RAND.set_max_evals_grouped" name="set_max_evals_grouped" signature="DIRECT_L_RAND.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-**Returns**
+  <span id="qiskit-algorithms-optimizers-direct-l-rand-set-options" />
 
-The result of the optimization, containing e.g. the result as attribute `x`.
+  ### set\_options
 
-**Return type**
+  <Function id="qiskit.algorithms.optimizers.DIRECT_L_RAND.set_options" name="set_options" signature="DIRECT_L_RAND.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-[OptimizerResult](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.OptimizerResult")
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-<span id="qiskit-algorithms-optimizers-direct-l-rand-print-options" />
+    **Parameters**
 
-### print\_options
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.print_options" />
+  <span id="qiskit-algorithms-optimizers-direct-l-rand-wrap-function" />
 
-`DIRECT_L_RAND.print_options()`
+  ### wrap\_function
 
-Print algorithm-specific options.
+  <Function id="qiskit.algorithms.optimizers.DIRECT_L_RAND.wrap_function" name="wrap_function" signature="static DIRECT_L_RAND.wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-<span id="qiskit-algorithms-optimizers-direct-l-rand-set-max-evals-grouped" />
+    **Parameters**
 
-### set\_max\_evals\_grouped
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.set_max_evals_grouped" />
+    **Returns**
 
-`DIRECT_L_RAND.set_max_evals_grouped(limit)`
+    wrapper
 
-Set max evals grouped
+    **Return type**
 
-<span id="qiskit-algorithms-optimizers-direct-l-rand-set-options" />
+    function\_wrapper
+  </Function>
 
-### set\_options
+  ## Attributes
 
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.set_options" />
+  ### bounds\_support\_level
 
-`DIRECT_L_RAND.set_options(**kwargs)`
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-Sets or updates values in the options dictionary.
+  ### gradient\_support\_level
 
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-**Parameters**
+  ### initial\_point\_support\_level
 
-**kwargs** (*dict*) – options, given as name=value.
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-<span id="qiskit-algorithms-optimizers-direct-l-rand-wrap-function" />
+  ### is\_bounds\_ignored
 
-### wrap\_function
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.wrap_function" />
+  ### is\_bounds\_required
 
-`static DIRECT_L_RAND.wrap_function(function, args)`
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-Wrap the function to implicitly inject the args at the call of the function.
+  ### is\_bounds\_supported
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
+  ### is\_gradient\_ignored
 
-**Returns**
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-wrapper
+  ### is\_gradient\_required
 
-**Return type**
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-function\_wrapper
+  ### is\_gradient\_supported
 
-## Attributes
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.bounds_support_level" />
+  ### is\_initial\_point\_ignored
 
-### bounds\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-Returns bounds support level
+  ### is\_initial\_point\_required
 
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.gradient_support_level" />
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-### gradient\_support\_level
+  ### is\_initial\_point\_supported
 
-Returns gradient support level
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.initial_point_support_level" />
+  ### setting
 
-### initial\_point\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.setting" name="setting">
+    Return setting
+  </Attribute>
 
-Returns initial point support level
+  ### settings
 
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_bounds_ignored" />
-
-### is\_bounds\_ignored
-
-Returns is bounds ignored
-
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_bounds_required" />
-
-### is\_bounds\_required
-
-Returns is bounds required
-
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_bounds_supported" />
-
-### is\_bounds\_supported
-
-Returns is bounds supported
-
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_gradient_ignored" />
-
-### is\_gradient\_ignored
-
-Returns is gradient ignored
-
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_gradient_required" />
-
-### is\_gradient\_required
-
-Returns is gradient required
-
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_gradient_supported" />
-
-### is\_gradient\_supported
-
-Returns is gradient supported
-
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_initial_point_ignored" />
-
-### is\_initial\_point\_ignored
-
-Returns is initial point ignored
-
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_initial_point_required" />
-
-### is\_initial\_point\_required
-
-Returns is initial point required
-
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.is_initial_point_supported" />
-
-### is\_initial\_point\_supported
-
-Returns is initial point supported
-
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.setting" />
-
-### setting
-
-Return setting
-
-<span id="qiskit.algorithms.optimizers.DIRECT_L_RAND.settings" />
-
-### settings
+  <Attribute id="qiskit.algorithms.optimizers.DIRECT_L_RAND.settings" name="settings" />
+</Class>
 

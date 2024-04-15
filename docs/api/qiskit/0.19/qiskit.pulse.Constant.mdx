@@ -8,124 +8,108 @@ python_api_name: qiskit.pulse.Constant
 
 # Constant
 
-<span id="qiskit.pulse.Constant" />
-
-`Constant(duration, amp, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
-
-A simple constant pulse, with an amplitude value and a duration:
+<Class id="qiskit.pulse.Constant" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py" signature="Constant(duration, amp, name=None)">
+  A simple constant pulse, with an amplitude value and a duration:
 
 $$
 f(x) = amp    ,  0 <= x < duration
 f(x) = 0      ,  elsewhere
 $$
 
-Initialize the constant-valued pulse.
+  Initialize the constant-valued pulse.
 
-**Parameters**
+  **Parameters**
 
-*   **duration** (`int`) – Pulse length in terms of the the sampling period dt.
-*   **amp** (`complex`) – The amplitude of the constant square pulse.
-*   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
+  *   **duration** (`int`) – Pulse length in terms of the the sampling period dt.
+  *   **amp** (`complex`) – The amplitude of the constant square pulse.
+  *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 
-## Attributes
+  ## Attributes
 
-### amp
+  ### amp
 
-<span id="qiskit.pulse.Constant.amp" />
+  <Attribute id="qiskit.pulse.Constant.amp" name="amp" signature="complex">
+    The constant value amplitude.
 
-`complex`
+    **Return type**
 
-The constant value amplitude.
+    `complex`
+  </Attribute>
 
-**Return type**
+  ### id
 
-`complex`
+  <Attribute id="qiskit.pulse.Constant.id" name="id" signature="int">
+    Unique identifier for this pulse.
 
-### id
+    **Return type**
 
-<span id="qiskit.pulse.Constant.id" />
+    `int`
+  </Attribute>
 
-`int`
+  ### parameters
 
-Unique identifier for this pulse.
+  <Attribute id="qiskit.pulse.Constant.parameters" name="parameters" signature="Dict[str, Any]">
+    Return a dictionary containing the pulse’s parameters.
 
-**Return type**
+    **Return type**
 
-`int`
+    `Dict`\[`str`, `Any`]
+  </Attribute>
 
-### parameters
+  ## Methods
 
-<span id="qiskit.pulse.Constant.parameters" />
+  ### \_\_call\_\_
 
-`Dict[str, Any]`
+  <Function id="qiskit.pulse.Constant.__call__" name="__call__" signature="Constant.__call__(channel)">
+    Call self as a function.
+  </Function>
 
-Return a dictionary containing the pulse’s parameters.
+  ### draw
 
-**Return type**
+  <Function id="qiskit.pulse.Constant.draw" name="draw" signature="Constant.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)">
+    Plot the pulse.
 
-`Dict`\[`str`, `Any`]
+    **Parameters**
 
-## Methods
+    *   **dt** (`float`) – Time interval of samples.
+    *   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
+    *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
+    *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
+    *   **scale** (`float`) – Relative visual scaling of waveform amplitudes
+    *   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
+    *   **scaling** (`Optional`\[`float`]) – Deprecated, see scale
 
-### \_\_call\_\_
+    **Returns**
 
-<span id="qiskit.pulse.Constant.__call__" />
+    A matplotlib figure object of the pulse envelope
 
-`Constant.__call__(channel)`
+    **Return type**
 
-Call self as a function.
+    matplotlib.figure
+  </Function>
 
-### draw
+  ### get\_sample\_pulse
 
-<span id="qiskit.pulse.Constant.draw" />
+  <Function id="qiskit.pulse.Constant.get_sample_pulse" name="get_sample_pulse" signature="Constant.get_sample_pulse()">
+    Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
-`Constant.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)`
+    **Return type**
 
-Plot the pulse.
+    [`SamplePulse`](qiskit.pulse.pulse_lib.SamplePulse "qiskit.pulse.pulse_lib.sample_pulse.SamplePulse")
+  </Function>
 
-**Parameters**
+  ### validate\_parameters
 
-*   **dt** (`float`) – Time interval of samples.
-*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
-*   **filename** (`Optional`\[`str`]) – Name required to save pulse image
-*   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
-*   **scale** (`float`) – Relative visual scaling of waveform amplitudes
-*   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
-*   **scaling** (`Optional`\[`float`]) – Deprecated, see scale
+  <Function id="qiskit.pulse.Constant.validate_parameters" name="validate_parameters" signature="Constant.validate_parameters()">
+    Validate parameters.
 
-**Returns**
+    **Raises**
 
-A matplotlib figure object of the pulse envelope
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
 
-**Return type**
+    **Return type**
 
-matplotlib.figure
-
-### get\_sample\_pulse
-
-<span id="qiskit.pulse.Constant.get_sample_pulse" />
-
-`Constant.get_sample_pulse()`
-
-Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
-
-**Return type**
-
-[`SamplePulse`](qiskit.pulse.pulse_lib.SamplePulse "qiskit.pulse.pulse_lib.sample_pulse.SamplePulse")
-
-### validate\_parameters
-
-<span id="qiskit.pulse.Constant.validate_parameters" />
-
-`Constant.validate_parameters()`
-
-Validate parameters.
-
-**Raises**
-
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

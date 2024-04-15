@@ -8,257 +8,251 @@ python_api_name: qiskit.circuit.library.HiddenLinearFunction
 
 # HiddenLinearFunction
 
-<span id="qiskit.circuit.library.HiddenLinearFunction" />
+<Class id="qiskit.circuit.library.HiddenLinearFunction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/hidden_linear_function.py#L22-L98" signature="qiskit.circuit.library.HiddenLinearFunction(adjacency_matrix)">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
-`qiskit.circuit.library.HiddenLinearFunction(adjacency_matrix)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/hidden_linear_function.py "view source code")
+  Circuit to solve the hidden linear function problem.
 
-Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  The 2D Hidden Linear Function problem is determined by a 2D adjacency matrix A, where only elements that are nearest-neighbor on a grid have non-zero entries. Each row/column corresponds to one binary variable $x_i$.
 
-Circuit to solve the hidden linear function problem.
+  The hidden linear function problem is as follows:
 
-The 2D Hidden Linear Function problem is determined by a 2D adjacency matrix A, where only elements that are nearest-neighbor on a grid have non-zero entries. Each row/column corresponds to one binary variable $x_i$.
-
-The hidden linear function problem is as follows:
-
-Consider the quadratic form
+  Consider the quadratic form
 
 $$
 q(x) = \sum_{i,j=1}^{n}{x_i x_j} ~(\mathrm{mod}~ 4)
 $$
 
-and restrict $q(x)$ onto the nullspace of A. This results in a linear function.
+  and restrict $q(x)$ onto the nullspace of A. This results in a linear function.
 
 $$
 2 \sum_{i=1}^{n}{z_i x_i} ~(\mathrm{mod}~ 4)  \forall  x \in \mathrm{Ker}(A)
 $$
 
-and the goal is to recover this linear function (equivalently a vector $[z_0, ..., z_{n-1}]$). There can be multiple solutions.
+  and the goal is to recover this linear function (equivalently a vector $[z_0, ..., z_{n-1}]$). There can be multiple solutions.
 
-In \[1] it is shown that the present circuit solves this problem on a quantum computer in constant depth, whereas any corresponding solution on a classical computer would require circuits that grow logarithmically with $n$. Thus this circuit is an example of quantum advantage with shallow circuits.
+  In \[1] it is shown that the present circuit solves this problem on a quantum computer in constant depth, whereas any corresponding solution on a classical computer would require circuits that grow logarithmically with $n$. Thus this circuit is an example of quantum advantage with shallow circuits.
 
-**Reference Circuit:**
+  **Reference Circuit:**
 
-> ![../\_images/qiskit-circuit-library-HiddenLinearFunction-1.png](/images/api/qiskit/dev/qiskit-circuit-library-HiddenLinearFunction-1.png)
+  > ![../\_images/qiskit-circuit-library-HiddenLinearFunction-1.png](/images/api/qiskit/dev/qiskit-circuit-library-HiddenLinearFunction-1.png)
 
-**Reference:**
+  **Reference:**
 
-\[1] S. Bravyi, D. Gosset, R. Koenig, Quantum Advantage with Shallow Circuits, 2017. [arXiv:1704.00690](https://arxiv.org/abs/1704.00690)
+  \[1] S. Bravyi, D. Gosset, R. Koenig, Quantum Advantage with Shallow Circuits, 2017. [arXiv:1704.00690](https://arxiv.org/abs/1704.00690)
 
-Create new HLF circuit.
+  Create new HLF circuit.
 
-**Parameters**
+  **Parameters**
 
-**adjacency\_matrix** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a symmetric n-by-n list of 0-1 lists. n will be the number of qubits.
+  **adjacency\_matrix** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a symmetric n-by-n list of 0-1 lists. n will be the number of qubits.
 
-**Raises**
+  **Raises**
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If A is not symmetric.
+  [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If A is not symmetric.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.ancillas" />
+  ### ancillas
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-Returns a list of ancilla bits in the order that the registers were added.
+  ### calibrations
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.calibrations" />
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-### calibrations
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
 
-Return calibration dictionary.
+  ### clbits
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.clbits" />
+  ### data
 
-### clbits
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.data" name="data">
+    Return the circuit data (instructions and context).
 
-Returns a list of classical bits in the order that the registers were added.
+    **Returns**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.data" />
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
-### data
+    **Return type**
 
-Return the circuit data (instructions and context).
+    QuantumCircuitData
+  </Attribute>
 
-**Returns**
+  ### global\_phase
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.global_phase" name="global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
 
-**Return type**
+  ### instances
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.instances" name="instances" attributeValue="= 198" />
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.global_phase" />
+  ### layout
 
-### global\_phase
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.layout" name="layout">
+    Return any associated layout information about the circuit
 
-Return the global phase of the current circuit scope in radians.
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.instances" />
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
 
-### instances
+  ### metadata
 
-`= 172`
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.metadata" name="metadata">
+    The user provided metadata associated with the circuit.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.layout" />
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-### layout
+  ### num\_ancillas
 
-Return any associated layout information about the circuit
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+  ### num\_captured\_vars
 
-There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_captured_vars" name="num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.metadata" />
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.HiddenLinearFunction.num_input_vars "qiskit.circuit.library.HiddenLinearFunction.num_input_vars") must be zero.
+  </Attribute>
 
-### metadata
+  ### num\_clbits
 
-The user provided metadata associated with the circuit.
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  ### num\_declared\_vars
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_ancillas" />
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_declared_vars" name="num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
-### num\_ancillas
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
 
-Return the number of ancilla qubits.
+  ### num\_input\_vars
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_captured_vars" />
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_input_vars" name="num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
 
-### num\_captured\_vars
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.HiddenLinearFunction.num_captured_vars "qiskit.circuit.library.HiddenLinearFunction.num_captured_vars") must be zero.
+  </Attribute>
 
-The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+  ### num\_parameters
 
-This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.HiddenLinearFunction.num_input_vars "qiskit.circuit.library.HiddenLinearFunction.num_input_vars") must be zero.
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_parameters" name="num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_clbits" />
+  ### num\_qubits
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-Return number of classical bits.
+  ### num\_vars
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_declared_vars" />
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_vars" name="num_vars">
+    The number of real-time classical variables in the circuit.
 
-### num\_declared\_vars
+    This is the length of the `iter_vars()` iterable.
+  </Attribute>
 
-The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+  ### op\_start\_times
 
-This is the length of the `iter_declared_vars()` iterable.
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_input_vars" />
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-### num\_input\_vars
+    **Returns**
 
-The number of runtime classical variables in the circuit marked as circuit inputs.
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.HiddenLinearFunction.num_captured_vars "qiskit.circuit.library.HiddenLinearFunction.num_captured_vars") must be zero.
+    **Raises**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_parameters" />
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
 
-### num\_parameters
+  ### parameters
 
-The number of parameter objects in the circuit.
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.parameters" name="parameters">
+    The parameters defined in the circuit.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_qubits" />
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-### num\_qubits
+    **Examples**
 
-Return number of qubits.
+    The snippet below shows that insertion order of parameters does not matter.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_vars" />
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
 
-### num\_vars
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
-The number of runtime classical variables in the circuit.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
 
-This is the length of the `iter_vars()` iterable.
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.op_start_times" />
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
 
-### op\_start\_times
+    **Returns**
 
-Return a list of operation start times.
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+  ### prefix
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+  ### qubits
 
-**Raises**
-
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.parameters" />
-
-### parameters
-
-The parameters defined in the circuit.
-
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
-
-**Examples**
-
-The snippet below shows that insertion order of parameters does not matter.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
->>> circuit = QuantumCircuit(1)
->>> circuit.rx(b, 0)
->>> circuit.rz(elephant, 0)
->>> circuit.ry(a, 0)
->>> circuit.parameters  # sorted alphabetically!
-ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
-```
-
-Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
->>> circuit = QuantumCircuit(1)
->>> circuit.u(*angles, 0)
->>> circuit.draw()
-   ┌─────────────────────────────┐
-q: ┤ U(angle_1,angle_2,angle_10) ├
-   └─────────────────────────────┘
->>> circuit.parameters
-ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
-```
-
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
->>> x = ParameterVector("x", 12)
->>> circuit = QuantumCircuit(1)
->>> for x_i in x:
-...     circuit.rx(x_i, 0)
->>> circuit.parameters
-ParameterView([
-    ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
-    ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
-    ..., ParameterVectorElement(x[11])
-])
-```
-
-**Returns**
-
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+</Class>
 

@@ -8,145 +8,137 @@ python_api_name: qiskit.circuit.library.RYGate
 
 # RYGate
 
-<span id="qiskit.circuit.library.RYGate" />
+<Class id="qiskit.circuit.library.RYGate" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/ry.py" signature="RYGate(theta, label=None)">
+  Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`RYGate(theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/ry.py "view source code")
+  Single-qubit rotation about the Y axis.
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`ry()`](qiskit.circuit.QuantumCircuit#ry "qiskit.circuit.QuantumCircuit.ry") method.
 
-Single-qubit rotation about the Y axis.
+  **Circuit symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`ry()`](qiskit.circuit.QuantumCircuit#ry "qiskit.circuit.QuantumCircuit.ry") method.
+  ```python
+       ┌───────┐
+  q_0: ┤ Ry(ϴ) ├
+       └───────┘
+  ```
 
-**Circuit symbol:**
-
-```python
-     ┌───────┐
-q_0: ┤ Ry(ϴ) ├
-     └───────┘
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}RY(\theta) = \exp\left(-i \th Y\right) =
-    \begin{pmatrix}
-        \cos{\th} & -\sin{\th} \\
-        \sin{\th} & \cos{\th}
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}RY(\theta) = \exp\left(-i \th Y\right) =
+\begin{pmatrix}
+\cos{\th} & -\sin{\th} \\
+\sin{\th} & \cos{\th}
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
-Create new RY gate.
+  Create new RY gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-### control
+  ### control
 
-<span id="qiskit.circuit.library.RYGate.control" />
+  <Function id="qiskit.circuit.library.RYGate.control" name="control" signature="RYGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a (multi-)controlled-RY gate.
 
-`RYGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    **Parameters**
 
-Return a (multi-)controlled-RY gate.
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-**Parameters**
+    **Returns**
 
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+    controlled version of this gate.
 
-**Returns**
+    **Return type**
 
-controlled version of this gate.
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-**Return type**
+  ### inverse
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  <Function id="qiskit.circuit.library.RYGate.inverse" name="inverse" signature="RYGate.inverse()">
+    Return inverted RY gate.
 
-### inverse
+    $RY(\lambda){\dagger} = RY(-\lambda)$
+  </Function>
 
-<span id="qiskit.circuit.library.RYGate.inverse" />
+  ### power
 
-`RYGate.inverse()`
+  <Function id="qiskit.circuit.library.RYGate.power" name="power" signature="RYGate.power(exponent)">
+    Raise gate to a power.
+  </Function>
 
-Return inverted RY gate.
+  ## Attributes
 
-$RY(\lambda){\dagger} = RY(-\lambda)$
+  ### condition\_bits
 
-### power
+  <Attribute id="qiskit.circuit.library.RYGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-<span id="qiskit.circuit.library.RYGate.power" />
+    **Return type**
 
-`RYGate.power(exponent)`
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-Raise gate to a power.
+  ### decompositions
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.RYGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RYGate.condition_bits" />
+  ### definition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.RYGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get Clbits in condition.
+  ### duration
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.RYGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  ### label
 
-<span id="qiskit.circuit.library.RYGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.RYGate.label" name="label">
+    Return instruction label
 
-### decompositions
+    **Return type**
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+    `str`
+  </Attribute>
 
-<span id="qiskit.circuit.library.RYGate.definition" />
+  ### name
 
-### definition
+  <Attribute id="qiskit.circuit.library.RYGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.RYGate.duration" />
+  <Attribute id="qiskit.circuit.library.RYGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### duration
+  ### num\_qubits
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.RYGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RYGate.label" />
+  ### params
 
-### label
+  <Attribute id="qiskit.circuit.library.RYGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Return instruction label
+  ### unit
 
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.library.RYGate.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.RYGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.RYGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.RYGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.RYGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.RYGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

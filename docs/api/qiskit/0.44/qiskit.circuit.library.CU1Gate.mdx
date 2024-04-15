@@ -8,170 +8,164 @@ python_api_name: qiskit.circuit.library.CU1Gate
 
 # CU1Gate
 
-<span id="qiskit.circuit.library.CU1Gate" />
+<Class id="qiskit.circuit.library.CU1Gate" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/u1.py" signature="qiskit.circuit.library.CU1Gate(theta, label=None, ctrl_state=None)">
+  Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
-`qiskit.circuit.library.CU1Gate(theta, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/u1.py "view source code")
+  Controlled-U1 gate.
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+  This is a diagonal and symmetric gate that induces a phase on the state of the target qubit, depending on the control state.
 
-Controlled-U1 gate.
+  **Circuit symbol:**
 
-This is a diagonal and symmetric gate that induces a phase on the state of the target qubit, depending on the control state.
+  ```python
+  q_0: ─■──
+        │λ
+  q_1: ─■──
+  ```
 
-**Circuit symbol:**
-
-```python
-q_0: ─■──
-      │λ
-q_1: ─■──
-```
-
-**Matrix representation:**
+  **Matrix representation:**
 
 $$
 \begin{split}CU1(\lambda) =
-    I \otimes |0\rangle\langle 0| + U1 \otimes |1\rangle\langle 1| =
-    \begin{pmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & 1 & 0 & 0 \\
-        0 & 0 & 1 & 0 \\
-        0 & 0 & 0 & e^{i\lambda}
-    \end{pmatrix}\end{split}
+I \otimes |0\rangle\langle 0| + U1 \otimes |1\rangle\langle 1| =
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & e^{i\lambda}
+\end{pmatrix}\end{split}
 $$
 
-<Admonition title="See also" type="note">
-  `CRZGate`: Due to the global phase difference in the matrix definitions of U1 and RZ, CU1 and CRZ are different gates with a relative phase difference.
-</Admonition>
+  <Admonition title="See also" type="note">
+    `CRZGate`: Due to the global phase difference in the matrix definitions of U1 and RZ, CU1 and CRZ are different gates with a relative phase difference.
+  </Admonition>
 
-Create new CU1 gate.
+  Create new CU1 gate.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.CU1Gate.condition_bits" />
+  ### condition\_bits
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.CU1Gate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-Get Clbits in condition.
+  ### ctrl\_state
 
-<span id="qiskit.circuit.library.CU1Gate.ctrl_state" />
+  <Attribute id="qiskit.circuit.library.CU1Gate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
 
-### ctrl\_state
+  ### decompositions
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.CU1Gate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CU1Gate.decompositions" />
+  ### definition
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.CU1Gate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### duration
 
-<span id="qiskit.circuit.library.CU1Gate.definition" />
+  <Attribute id="qiskit.circuit.library.CU1Gate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### definition
+  ### label
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  <Attribute id="qiskit.circuit.library.CU1Gate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.library.CU1Gate.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.circuit.library.CU1Gate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-Get the duration.
+    > \<original\_name\_o\<ctrl\_state>
 
-<span id="qiskit.circuit.library.CU1Gate.label" />
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
 
-### label
+  ### num\_clbits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.CU1Gate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CU1Gate.name" />
+  ### num\_ctrl\_qubits
 
-### name
+  <Attribute id="qiskit.circuit.library.CU1Gate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-Get name of gate. If the gate has open controls the gate name will become:
+    **Returns**
 
-> \<original\_name\_o\<ctrl\_state>
+    The number of control qubits for the gate.
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+    **Return type**
 
-<span id="qiskit.circuit.library.CU1Gate.num_clbits" />
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Attribute>
 
-### num\_clbits
+  ### num\_qubits
 
-Return the number of clbits.
+  <Attribute id="qiskit.circuit.library.CU1Gate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CU1Gate.num_ctrl_qubits" />
+  ### params
 
-### num\_ctrl\_qubits
+  <Attribute id="qiskit.circuit.library.CU1Gate.params" name="params">
+    Get parameters from base\_gate.
 
-Get number of control qubits.
+    **Returns**
 
-**Returns**
+    List of gate parameters.
 
-The number of control qubits for the gate.
+    **Return type**
 
-**Return type**
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    **Raises**
 
-<span id="qiskit.circuit.library.CU1Gate.num_qubits" />
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+  </Attribute>
 
-### num\_qubits
+  ### unit
 
-Return the number of qubits.
+  <Attribute id="qiskit.circuit.library.CU1Gate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CU1Gate.params" />
+  ## Methods
 
-### params
+  ### control
 
-Get parameters from base\_gate.
+  <Function id="qiskit.circuit.library.CU1Gate.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Controlled version of this gate.
 
-**Returns**
+    **Parameters**
 
-List of gate parameters.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-**Return type**
+    **Returns**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
+    controlled version of this gate.
 
-**Raises**
+    **Return type**
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-<span id="qiskit.circuit.library.CU1Gate.unit" />
+  ### inverse
 
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### control
-
-<span id="qiskit.circuit.library.CU1Gate.control" />
-
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
-
-Controlled version of this gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.CU1Gate.inverse" />
-
-`inverse()`
-
-Return inverted CU1 gate ($CU1(\lambda)^{\dagger} = CU1(-\lambda)$)
+  <Function id="qiskit.circuit.library.CU1Gate.inverse" name="inverse" signature="inverse()">
+    Return inverted CU1 gate ($CU1(\lambda)^{\dagger} = CU1(-\lambda)$)
+  </Function>
+</Class>
 

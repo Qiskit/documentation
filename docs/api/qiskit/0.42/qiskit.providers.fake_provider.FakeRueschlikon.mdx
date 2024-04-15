@@ -8,133 +8,115 @@ python_api_name: qiskit.providers.fake_provider.FakeRueschlikon
 
 # FakeRueschlikon
 
-<span id="qiskit.providers.fake_provider.FakeRueschlikon" />
+<Class id="qiskit.providers.fake_provider.FakeRueschlikon" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/rueschlikon/fake_rueschlikon.py" signature="FakeRueschlikon">
+  Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
 
-`FakeRueschlikon` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/rueschlikon/fake_rueschlikon.py "view source code")
+  A fake 16 qubit backend.
 
-Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
+  ```python
+  1 →  2 →  3 →  4 ←  5 ←  6 →  7 ← 8
+  ↓    ↑    ↓    ↓    ↑    ↓    ↓   ↑
+  0 ← 15 → 14 ← 13 ← 12 → 11 → 10 ← 9
+  ```
 
-A fake 16 qubit backend.
+  ## Methods
 
-```python
-1 →  2 →  3 →  4 ←  5 ←  6 →  7 ← 8
-↓    ↑    ↓    ↓    ↑    ↓    ↓   ↑
-0 ← 15 → 14 ← 13 ← 12 → 11 → 10 ← 9
-```
+  ### configuration
 
-## Methods
+  <Function id="qiskit.providers.fake_provider.FakeRueschlikon.configuration" name="configuration" signature="FakeRueschlikon.configuration()">
+    Return the backend configuration.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeRueschlikon.configuration" />
+    the configuration for the backend.
 
-`FakeRueschlikon.configuration()`
+    **Return type**
 
-Return the backend configuration.
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-**Returns**
+  ### name
 
-the configuration for the backend.
+  <Function id="qiskit.providers.fake_provider.FakeRueschlikon.name" name="name" signature="FakeRueschlikon.name()">
+    Return the backend name.
 
-**Return type**
+    **Returns**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    the name of the backend.
 
-### name
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeRueschlikon.name" />
+    str
+  </Function>
 
-`FakeRueschlikon.name()`
+  ### properties
 
-Return the backend name.
+  <Function id="qiskit.providers.fake_provider.FakeRueschlikon.properties" name="properties" signature="FakeRueschlikon.properties()">
+    Return backend properties
+  </Function>
 
-**Returns**
+  ### provider
 
-the name of the backend.
+  <Function id="qiskit.providers.fake_provider.FakeRueschlikon.provider" name="provider" signature="FakeRueschlikon.provider()">
+    Return the backend Provider.
 
-**Return type**
+    **Returns**
 
-str
+    the Provider responsible for the backend.
 
-### properties
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeRueschlikon.properties" />
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-`FakeRueschlikon.properties()`
+  ### run
 
-Return backend properties
+  <Function id="qiskit.providers.fake_provider.FakeRueschlikon.run" name="run" signature="FakeRueschlikon.run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-### provider
+  ### set\_options
 
-<span id="qiskit.providers.fake_provider.FakeRueschlikon.provider" />
+  <Function id="qiskit.providers.fake_provider.FakeRueschlikon.set_options" name="set_options" signature="FakeRueschlikon.set_options(**fields)">
+    Set the options fields for the backend
 
-`FakeRueschlikon.provider()`
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-Return the backend Provider.
+    **Parameters**
 
-**Returns**
+    **fields** – The fields to update the options
 
-the Provider responsible for the backend.
+    **Raises**
 
-**Return type**
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  ### status
 
-### run
+  <Function id="qiskit.providers.fake_provider.FakeRueschlikon.status" name="status" signature="FakeRueschlikon.status()">
+    Return the backend status.
 
-<span id="qiskit.providers.fake_provider.FakeRueschlikon.run" />
+    **Returns**
 
-`FakeRueschlikon.run(run_input, **kwargs)`
+    the status of the backend.
 
-Main job in simulator
+    **Return type**
 
-### set\_options
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-<span id="qiskit.providers.fake_provider.FakeRueschlikon.set_options" />
+  ## Attributes
 
-`FakeRueschlikon.set_options(**fields)`
+  ### options
 
-Set the options fields for the backend
+  <Attribute id="qiskit.providers.fake_provider.FakeRueschlikon.options" name="options">
+    Return the options for the backend
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeRueschlikon#run "qiskit.providers.fake_provider.FakeRueschlikon.run") method.
+  </Attribute>
 
-**Parameters**
+  ### version
 
-**fields** – The fields to update the options
-
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit.providers.fake_provider.FakeRueschlikon.status" />
-
-`FakeRueschlikon.status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.fake_provider.FakeRueschlikon.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeRueschlikon#run "qiskit.providers.fake_provider.FakeRueschlikon.run") method.
-
-<span id="qiskit.providers.fake_provider.FakeRueschlikon.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.fake_provider.FakeRueschlikon.version" name="version" attributeValue="= 1" />
+</Class>
 

@@ -8,68 +8,66 @@ python_api_name: qiskit.transpiler.preset_passmanagers.generate_preset_pass_mana
 
 # qiskit.transpiler.preset\_passmanagers.generate\_preset\_pass\_manager
 
-<span id="qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager" />
+<Function id="qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager" name="generate_preset_pass_manager" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/preset_passmanagers/__init__.py" signature="generate_preset_pass_manager(optimization_level, backend=None, target=None, basis_gates=None, inst_map=None, coupling_map=None, instruction_durations=None, backend_properties=None, timing_constraints=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, approximation_degree=None, seed_transpiler=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None)">
+  Generate a preset [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
-`generate_preset_pass_manager(optimization_level, backend=None, target=None, basis_gates=None, inst_map=None, coupling_map=None, instruction_durations=None, backend_properties=None, timing_constraints=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, approximation_degree=None, seed_transpiler=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/preset_passmanagers/__init__.py "view source code")
+  This function is used to quickly generate a preset pass manager. A preset pass manager are the default pass managers used by the [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") function. This function provides a convenient and simple method to construct a standalone [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") object that mirrors what the transpile
 
-Generate a preset [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
+  **Parameters**
 
-This function is used to quickly generate a preset pass manager. A preset pass manager are the default pass managers used by the [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") function. This function provides a convenient and simple method to construct a standalone [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") object that mirrors what the transpile
+  *   **optimization\_level** (*int*) –
 
-**Parameters**
+      The optimization level to generate a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") for. This can be 0, 1, 2, or 3. Higher levels generate more optimized circuits, at the expense of longer transpilation time:
 
-*   **optimization\_level** (*int*) –
+      > *   0: no optimization
+      > *   1: light optimization
+      > *   2: heavy optimization
+      > *   3: even heavier optimization
 
-    The optimization level to generate a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") for. This can be 0, 1, 2, or 3. Higher levels generate more optimized circuits, at the expense of longer transpilation time:
+  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – An optional backend object which can be used as the source of the default values for the `basis_gates`, `inst_map`, `couplig_map`, `backend_properties`, `instruction_durations`, `timing_constraints`, and `target`. If any of those other arguments are specified in addition to `backend` they will take precedence over the value contained in the backend.
 
-    > *   0: no optimization
-    > *   1: light optimization
-    > *   2: heavy optimization
-    > *   3: even heavier optimization
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing a backend compilation target. The following attributes will be inferred from this argument if they are not set: `coupling_map`, `basis_gates`, `instruction_durations`, `inst_map`, `timing_constraints` and `backend_properties`.
 
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – An optional backend object which can be used as the source of the default values for the `basis_gates`, `inst_map`, `couplig_map`, `backend_properties`, `instruction_durations`, `timing_constraints`, and `target`. If any of those other arguments are specified in addition to `backend` they will take precedence over the value contained in the backend.
+  *   **basis\_gates** (*list*) – List of basis gate names to unroll to (e.g: `['u1', 'u2', 'u3', 'cx']`).
 
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing a backend compilation target. The following attributes will be inferred from this argument if they are not set: `coupling_map`, `basis_gates`, `instruction_durations`, `inst_map`, `timing_constraints` and `backend_properties`.
+  *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – Mapping object that maps gate to schedules. If any user defined calibration is found in the map and this is used in a circuit, transpiler attaches the custom gate definition to the circuit. This enables one to flexibly override the low-level instruction implementation.
 
-*   **basis\_gates** (*list*) – List of basis gate names to unroll to (e.g: `['u1', 'u2', 'u3', 'cx']`).
+  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
 
-*   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – Mapping object that maps gate to schedules. If any user defined calibration is found in the map and this is used in a circuit, transpiler attaches the custom gate definition to the circuit. This enables one to flexibly override the low-level instruction implementation.
+  *   **instruction\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Dictionary of duration (in dt) for each instruction.
 
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
+  *   **timing\_constraints** (*TimingConstraints*) – Hardware time alignment restrictions.
 
-*   **instruction\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Dictionary of duration (in dt) for each instruction.
+  *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – Initial position of virtual qubits on physical qubits.
 
-*   **timing\_constraints** (*TimingConstraints*) – Hardware time alignment restrictions.
+  *   **layout\_method** (*str*) – The `Pass` to use for choosing initial qubit placement. Valid choices are `'trivial'`, `'dense'`, `'noise_adaptive'`, and, `'sabre'` repsenting [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"), `DenseLayout`, [`NoiseAdaptiveLayout`](qiskit.transpiler.passes.NoiseAdaptiveLayout "qiskit.transpiler.passes.NoiseAdaptiveLayout"), [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") respectively.
 
-*   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – Initial position of virtual qubits on physical qubits.
+  *   **routing\_method** (*str*) – The pass to use for routing qubits on the architecture. Valid choices are `'basic'`, `'lookahead'`, `'stochastic'`, `'sabre'`, and `'none'` representing [`BasicSwap`](qiskit.transpiler.passes.BasicSwap "qiskit.transpiler.passes.BasicSwap"), [`LookaheadSwap`](qiskit.transpiler.passes.LookaheadSwap "qiskit.transpiler.passes.LookaheadSwap"), [`StochasticSwap`](qiskit.transpiler.passes.StochasticSwap "qiskit.transpiler.passes.StochasticSwap"), [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap"), and erroring if routing is required respectively.
 
-*   **layout\_method** (*str*) – The `Pass` to use for choosing initial qubit placement. Valid choices are `'trivial'`, `'dense'`, `'noise_adaptive'`, and, `'sabre'` repsenting [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"), `DenseLayout`, [`NoiseAdaptiveLayout`](qiskit.transpiler.passes.NoiseAdaptiveLayout "qiskit.transpiler.passes.NoiseAdaptiveLayout"), [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") respectively.
+  *   **translation\_method** (*str*) – The method to use for translating gates to basis gates. Valid choices `'unroller'`, `'translator'`, `'synthesis'` representing [`Unroller`](qiskit.transpiler.passes.Unroller "qiskit.transpiler.passes.Unroller"), [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator"), and [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") respectively.
 
-*   **routing\_method** (*str*) – The pass to use for routing qubits on the architecture. Valid choices are `'basic'`, `'lookahead'`, `'stochastic'`, `'sabre'`, and `'none'` representing [`BasicSwap`](qiskit.transpiler.passes.BasicSwap "qiskit.transpiler.passes.BasicSwap"), [`LookaheadSwap`](qiskit.transpiler.passes.LookaheadSwap "qiskit.transpiler.passes.LookaheadSwap"), [`StochasticSwap`](qiskit.transpiler.passes.StochasticSwap "qiskit.transpiler.passes.StochasticSwap"), [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap"), and erroring if routing is required respectively.
+  *   **scheduling\_method** (*str*) – The pass to use for scheduling instructions. Valid choices are `'alap'` and `'asap'`.
 
-*   **translation\_method** (*str*) – The method to use for translating gates to basis gates. Valid choices `'unroller'`, `'translator'`, `'synthesis'` representing [`Unroller`](qiskit.transpiler.passes.Unroller "qiskit.transpiler.passes.Unroller"), [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator"), and [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") respectively.
+  *   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc.
 
-*   **scheduling\_method** (*str*) – The pass to use for scheduling instructions. Valid choices are `'alap'` and `'asap'`.
+  *   **approximation\_degree** (*float*) – Heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation).
 
-*   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc.
+  *   **seed\_transpiler** (*int*) – Sets random seed for the stochastic parts of the transpiler.
 
-*   **approximation\_degree** (*float*) – Heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation).
+  *   **unitary\_synthesis\_method** (*str*) – The name of the unitary synthesis method to use. By default ‘default’ is used, which is the only method included with qiskit. If you have installed any unitary synthesis plugins you can use the name exported by the plugin.
 
-*   **seed\_transpiler** (*int*) – Sets random seed for the stochastic parts of the transpiler.
+  *   **unitary\_synthesis\_plugin\_config** (*dict*) – An optional configuration dictionary that will be passed directly to the unitary synthesis plugin. By default this setting will have no effect as the default unitary synthesis method does not take custom configuration. This should only be necessary when a unitary synthesis plugin is specified with the `unitary_synthesis` argument. As this is custom for each unitary synthesis plugin refer to the plugin documentation for how to use this option.
 
-*   **unitary\_synthesis\_method** (*str*) – The name of the unitary synthesis method to use. By default ‘default’ is used, which is the only method included with qiskit. If you have installed any unitary synthesis plugins you can use the name exported by the plugin.
+  **Returns**
 
-*   **unitary\_synthesis\_plugin\_config** (*dict*) – An optional configuration dictionary that will be passed directly to the unitary synthesis plugin. By default this setting will have no effect as the default unitary synthesis method does not take custom configuration. This should only be necessary when a unitary synthesis plugin is specified with the `unitary_synthesis` argument. As this is custom for each unitary synthesis plugin refer to the plugin documentation for how to use this option.
+  The preset pass manager for the given options
 
-**Returns**
+  **Return type**
 
-The preset pass manager for the given options
+  [StagedPassManager](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager")
 
-**Return type**
+  **Raises**
 
-[StagedPassManager](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager")
-
-**Raises**
-
-**ValueError** – if an invalid value for `optimization_level` is passed in.
+  **ValueError** – if an invalid value for `optimization_level` is passed in.
+</Function>
 

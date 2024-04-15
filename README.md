@@ -85,15 +85,11 @@ Contributors with write access to this repository can use live previews of the d
 
 To use live previews, push your branch to `upstream` rather than your fork. GitHub will leave a comment with the link to the site. Please prefix your branch name with your initials, e.g. `EA/fix-build-typo`, for good Git hygiene.
 
-The preview application's UI is currently out-of-date so it does not properly show certain navigation like historical API versions. Refer to [Preview the docs locally](#preview-the-docs-locally) for instructions on how to explicitly visit pages.
-
 ## Staging
 
 We also re-deploy the docs every time we merge into `main` at the site https://qiskit-docs-preview-staging.1799mxdls7qz.us-south.codeengine.appdomain.cloud.
 
 This staging environment can be useful to see how the docs are rendering before we push it live to production.
-
-The staging application's UI is currently out-of-date so it does not properly show certain navigation like historical API versions. Refer to [Preview the docs locally](#preview-the-docs-locally) for instructions on how to explicitly visit pages.
 
 ## Execute notebooks
 
@@ -103,6 +99,8 @@ To execute notebooks in a fixed Python environment, first install `tox` using
 ```sh
 pipx install tox
 ```
+
+You also need to install a few system dependencies: TeX, Poppler, and graphviz. On macOS, you can run `brew install mactex-no-gui poppler graphviz`. On Ubuntu, you can run `apt-get install texlive-pictures texlive-latex-extra poppler-utils graphviz`.
 
 - To execute all notebooks, run tox.
   ```sh
@@ -131,6 +129,37 @@ that notebook that was executed in a uniform environment from CI. To do this,
 click "Show all checks" in the info box at the bottom of the pull request page
 on GitHub, then choose "Details" for the "Test notebooks" job. From the job
 page, click "Summary", then download "Executed notebooks".
+
+### Ignoring warnings
+
+We don't want users to see warnings that can be avoided, so it's best to fix
+the code to avoid them. However, if a warning is unavoidable, you can stop it
+blocking CI by adding an `ignore-warnings` tag to the cell. In VSCode,
+right-click the cell, choose "Add cell tag", type `ignore-warnings`, then press
+"Enter". In Jupyter notebook (depending on version), choose View > Right
+Sidebar > Show Notebook Tools, then under "Common Tools" add a tag with text
+`ignore-warnings`.
+
+### Extra code checks
+
+Our CI checks notebooks run from start to finish without errors or warnings.
+You can add extra checks in notebooks to catch other unexpected behavior.
+
+For example, say we claim a cell always returns the string `0011`. It would be
+embarassing if this was not true. We can assert this in CI by adding the
+following code cell, and hide it from users with a `remove-cell` tag.
+
+```python
+# Confirm output is what we expect.
+assert _ == '0011'
+```
+
+In Jupyter notebooks, the underscore `_` variable stores the value of the
+previous cell output. You should also add a comment like
+`# Confirm output is what we expect` so that authors know this
+block is only for testing. Make sure you add the tag `remove-cell`.
+If something ever causes this value to
+change, CI will alert us.
 
 ## Lint notebooks
 
@@ -366,6 +395,8 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 ```
 
 # How to write the documentation
+
+Refer to our [style guide](./style-guide.md) for technical writing guidance.
 
 We use [MDX](https://mdxjs.com), which is like normal markdown but adds extensions for custom components we have.
 

@@ -10,39 +10,37 @@ python_api_name: qiskit.ignis.mitigation.tensored_meas_cal
 
 # qiskit.ignis.mitigation.tensored\_meas\_cal
 
-<span id="qiskit.ignis.mitigation.tensored_meas_cal" />
+<Function id="qiskit.ignis.mitigation.tensored_meas_cal" name="tensored_meas_cal" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/measurement/circuits.py" signature="tensored_meas_cal(mit_pattern=None, qr=None, cr=None, circlabel='')">
+  Return a list of calibration circuits
 
-`tensored_meas_cal(mit_pattern=None, qr=None, cr=None, circlabel='')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/measurement/circuits.py "view source code")
+  **Parameters**
 
-Return a list of calibration circuits
+  *   **mit\_pattern** (`Optional`\[`List`\[`List`\[`int`]]]) – Qubits on which to perform the measurement correction, divided to groups according to tensors. If None and qr is given then assumed to be performed over the entire qr as one group (default None).
+  *   **qr** (`Union`\[`int`, `List`\[`QuantumRegister`], `None`]) – A quantum register (or its size).
+  *   **None** (*If*) –
+  *   **is created** (*one*) –
+  *   **cr** (`Union`\[`int`, `List`\[`ClassicalRegister`], `None`]) – A classical register (or its size).
+  *   **None** –
+  *   **is created** –
+  *   **circlabel** (`str`) – A string to add to the front of circuit names for unique identification (default ‘ ‘).
 
-**Parameters**
+  **Return type**
 
-*   **mit\_pattern** (`Optional`\[`List`\[`List`\[`int`]]]) – Qubits on which to perform the measurement correction, divided to groups according to tensors. If None and qr is given then assumed to be performed over the entire qr as one group (default None).
-*   **qr** (`Union`\[`int`, `List`\[`QuantumRegister`], `None`]) – A quantum register (or its size).
-*   **None** (*If*) –
-*   **is created** (*one*) –
-*   **cr** (`Union`\[`int`, `List`\[`ClassicalRegister`], `None`]) – A classical register (or its size).
-*   **None** –
-*   **is created** –
-*   **circlabel** (`str`) – A string to add to the front of circuit names for unique identification (default ‘ ‘).
+  `Tuple`\[`List`\[`QuantumCircuit`], `List`\[`List`\[`int`]]]
 
-**Return type**
+  **Returns**
 
-`Tuple`\[`List`\[`QuantumCircuit`], `List`\[`List`\[`int`]]]
+  A list of two QuantumCircuit objects containing the calibration circuits mit\_pattern
 
-**Returns**
+  ## Additional Information:
 
-A list of two QuantumCircuit objects containing the calibration circuits mit\_pattern
+  The returned circuits are named circlabel+cal\_XXX where XXX is the basis state, e.g., cal\_000 and cal\_111.
 
-## Additional Information:
+  Pass the results of these circuits to the TensoredMeasurementFitter constructor.
 
-The returned circuits are named circlabel+cal\_XXX where XXX is the basis state, e.g., cal\_000 and cal\_111.
+  **Raises**
 
-Pass the results of these circuits to the TensoredMeasurementFitter constructor.
-
-**Raises**
-
-*   **QiskitError** – if both mit\_pattern and qr are None.
-*   **QiskitError** – if a qubit appears more than once in mit\_pattern.
+  *   **QiskitError** – if both mit\_pattern and qr are None.
+  *   **QiskitError** – if a qubit appears more than once in mit\_pattern.
+</Function>
 

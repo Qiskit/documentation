@@ -8,18 +8,15 @@ python_api_name: qiskit.circuit.library.ExcitationPreserving
 
 # ExcitationPreserving
 
-<span id="qiskit.circuit.library.ExcitationPreserving" />
+<Class id="qiskit.circuit.library.ExcitationPreserving" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/n_local/excitation_preserving.py" signature="ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='ExcitationPreserving')">
+  Bases: `qiskit.circuit.library.n_local.two_local.TwoLocal`
 
-`ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='ExcitationPreserving')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/n_local/excitation_preserving.py "view source code")
+  The heuristic excitation-preserving wave function ansatz.
 
-Bases: `qiskit.circuit.library.n_local.two_local.TwoLocal`
-
-The heuristic excitation-preserving wave function ansatz.
-
-The `ExcitationPreserving` circuit preserves the ratio of $|00\rangle$, $|01\rangle + |10\rangle$ and $|11\rangle$ states. The matrix representing the operation is
+  The `ExcitationPreserving` circuit preserves the ratio of $|00\rangle$, $|01\rangle + |10\rangle$ and $|11\rangle$ states. The matrix representing the operation is
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\theta/2}\\\begin{split}\begin{pmatrix}
+\begin{align}\begin{aligned}\newcommand{\th}{\theta/2}\\\begin{split}\begin{pmatrix}
 1 & 0 & 0 & 0 \\
 0 & \cos(\th) & -\sin(\th) & 0 \\
 0 & \sin(\th) & \cos(\th) & 0 \\
@@ -27,400 +24,393 @@ $$
 \end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
-for the mode `'fsim'` or with $e^{-i\phi} = 1$ for the mode `'iswap'`.
+  for the mode `'fsim'` or with $e^{-i\phi} = 1$ for the mode `'iswap'`.
 
-Note that other wave functions, such as UCC-ansatzes, are also excitation preserving. However these can become complex quickly, while this heuristically motivated circuit follows a simpler pattern.
+  Note that other wave functions, such as UCC-ansatzes, are also excitation preserving. However these can become complex quickly, while this heuristically motivated circuit follows a simpler pattern.
 
-This trial wave function consists of layers of $Z$ rotations with 2-qubit entanglements. The entangling is creating using $XX+YY$ rotations and optionally a controlled-phase gate for the mode `'fsim'`.
+  This trial wave function consists of layers of $Z$ rotations with 2-qubit entanglements. The entangling is creating using $XX+YY$ rotations and optionally a controlled-phase gate for the mode `'fsim'`.
 
-See [`RealAmplitudes`](qiskit.circuit.library.RealAmplitudes "qiskit.circuit.library.RealAmplitudes") for more detail on the possible arguments and options such as skipping unentanglement qubits, which apply here too.
+  See [`RealAmplitudes`](qiskit.circuit.library.RealAmplitudes "qiskit.circuit.library.RealAmplitudes") for more detail on the possible arguments and options such as skipping unentanglement qubits, which apply here too.
 
-The rotations of the ExcitationPreserving ansatz can be written as
+  The rotations of the ExcitationPreserving ansatz can be written as
 
-**Examples**
+  **Examples**
 
-```python
->>> ansatz = ExcitationPreserving(3, reps=1, insert_barriers=True, entanglement='linear')
->>> print(ansatz)  # show the circuit
-     ┌──────────┐ ░ ┌────────────┐┌────────────┐                             ░ ┌──────────┐
-q_0: ┤ RZ(θ[0]) ├─░─┤0           ├┤0           ├─────────────────────────────░─┤ RZ(θ[5]) ├
-     ├──────────┤ ░ │  RXX(θ[3]) ││  RYY(θ[3]) │┌────────────┐┌────────────┐ ░ ├──────────┤
-q_1: ┤ RZ(θ[1]) ├─░─┤1           ├┤1           ├┤0           ├┤0           ├─░─┤ RZ(θ[6]) ├
-     ├──────────┤ ░ └────────────┘└────────────┘│  RXX(θ[4]) ││  RYY(θ[4]) │ ░ ├──────────┤
-q_2: ┤ RZ(θ[2]) ├─░─────────────────────────────┤1           ├┤1           ├─░─┤ RZ(θ[7]) ├
-     └──────────┘ ░                             └────────────┘└────────────┘ ░ └──────────┘
-```
+  ```python
+  >>> ansatz = ExcitationPreserving(3, reps=1, insert_barriers=True, entanglement='linear')
+  >>> print(ansatz)  # show the circuit
+       ┌──────────┐ ░ ┌────────────┐┌────────────┐                             ░ ┌──────────┐
+  q_0: ┤ RZ(θ[0]) ├─░─┤0           ├┤0           ├─────────────────────────────░─┤ RZ(θ[5]) ├
+       ├──────────┤ ░ │  RXX(θ[3]) ││  RYY(θ[3]) │┌────────────┐┌────────────┐ ░ ├──────────┤
+  q_1: ┤ RZ(θ[1]) ├─░─┤1           ├┤1           ├┤0           ├┤0           ├─░─┤ RZ(θ[6]) ├
+       ├──────────┤ ░ └────────────┘└────────────┘│  RXX(θ[4]) ││  RYY(θ[4]) │ ░ ├──────────┤
+  q_2: ┤ RZ(θ[2]) ├─░─────────────────────────────┤1           ├┤1           ├─░─┤ RZ(θ[7]) ├
+       └──────────┘ ░                             └────────────┘└────────────┘ ░ └──────────┘
+  ```
 
-```python
->>> ansatz = ExcitationPreserving(2, reps=1)
->>> qc = QuantumCircuit(2)  # create a circuit and append the RY variational form
->>> qc.cry(0.2, 0, 1)  # do some previous operation
->>> qc.compose(ansatz, inplace=True)  # add the swaprz
->>> qc.draw()
-                ┌──────────┐┌────────────┐┌────────────┐┌──────────┐
-q_0: ─────■─────┤ RZ(θ[0]) ├┤0           ├┤0           ├┤ RZ(θ[3]) ├
-     ┌────┴────┐├──────────┤│  RXX(θ[2]) ││  RYY(θ[2]) │├──────────┤
-q_1: ┤ RY(0.2) ├┤ RZ(θ[1]) ├┤1           ├┤1           ├┤ RZ(θ[4]) ├
-     └─────────┘└──────────┘└────────────┘└────────────┘└──────────┘
-```
+  ```python
+  >>> ansatz = ExcitationPreserving(2, reps=1)
+  >>> qc = QuantumCircuit(2)  # create a circuit and append the RY variational form
+  >>> qc.cry(0.2, 0, 1)  # do some previous operation
+  >>> qc.compose(ansatz, inplace=True)  # add the swaprz
+  >>> qc.draw()
+                  ┌──────────┐┌────────────┐┌────────────┐┌──────────┐
+  q_0: ─────■─────┤ RZ(θ[0]) ├┤0           ├┤0           ├┤ RZ(θ[3]) ├
+       ┌────┴────┐├──────────┤│  RXX(θ[2]) ││  RYY(θ[2]) │├──────────┤
+  q_1: ┤ RY(0.2) ├┤ RZ(θ[1]) ├┤1           ├┤1           ├┤ RZ(θ[4]) ├
+       └─────────┘└──────────┘└────────────┘└────────────┘└──────────┘
+  ```
 
-```python
->>> ansatz = ExcitationPreserving(3, reps=1, mode='fsim', entanglement=[[0,2]],
-... insert_barriers=True)
->>> print(ansatz)
-     ┌──────────┐ ░ ┌────────────┐┌────────────┐        ░ ┌──────────┐
-q_0: ┤ RZ(θ[0]) ├─░─┤0           ├┤0           ├─■──────░─┤ RZ(θ[5]) ├
-     ├──────────┤ ░ │            ││            │ │      ░ ├──────────┤
-q_1: ┤ RZ(θ[1]) ├─░─┤  RXX(θ[3]) ├┤  RYY(θ[3]) ├─┼──────░─┤ RZ(θ[6]) ├
-     ├──────────┤ ░ │            ││            │ │θ[4]  ░ ├──────────┤
-q_2: ┤ RZ(θ[2]) ├─░─┤1           ├┤1           ├─■──────░─┤ RZ(θ[7]) ├
-     └──────────┘ ░ └────────────┘└────────────┘        ░ └──────────┘
-```
+  ```python
+  >>> ansatz = ExcitationPreserving(3, reps=1, mode='fsim', entanglement=[[0,2]],
+  ... insert_barriers=True)
+  >>> print(ansatz)
+       ┌──────────┐ ░ ┌────────────┐┌────────────┐        ░ ┌──────────┐
+  q_0: ┤ RZ(θ[0]) ├─░─┤0           ├┤0           ├─■──────░─┤ RZ(θ[5]) ├
+       ├──────────┤ ░ │            ││            │ │      ░ ├──────────┤
+  q_1: ┤ RZ(θ[1]) ├─░─┤  RXX(θ[3]) ├┤  RYY(θ[3]) ├─┼──────░─┤ RZ(θ[6]) ├
+       ├──────────┤ ░ │            ││            │ │θ[4]  ░ ├──────────┤
+  q_2: ┤ RZ(θ[2]) ├─░─┤1           ├┤1           ├─■──────░─┤ RZ(θ[7]) ├
+       └──────────┘ ░ └────────────┘└────────────┘        ░ └──────────┘
+  ```
 
-Create a new ExcitationPreserving 2-local circuit.
+  Create a new ExcitationPreserving 2-local circuit.
 
-**Parameters**
+  **Parameters**
 
-*   **num\_qubits** (`Optional`\[`int`]) – The number of qubits of the ExcitationPreserving circuit.
-*   **mode** (`str`) – Choose the entangler mode, can be ‘iswap’ or ‘fsim’.
-*   **reps** (`int`) – Specifies how often the structure of a rotation layer followed by an entanglement layer is repeated.
-*   **entanglement** (`Union`\[`str`, `List`\[`List`\[`int`]], `Callable`\[\[`int`], `List`\[`int`]]]) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
-*   **initial\_state** (`Optional`\[`Any`]) – A QuantumCircuit object to prepend to the circuit.
-*   **skip\_unentangled\_qubits** (`bool`) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
-*   **skip\_unentangled\_qubits** – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
-*   **skip\_final\_rotation\_layer** (`bool`) – If True, a rotation layer is added at the end of the ansatz. If False, no rotation layer is added. Defaults to True.
-*   **parameter\_prefix** (`str`) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
-*   **insert\_barriers** (`bool`) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
+  *   **num\_qubits** (`Optional`\[`int`]) – The number of qubits of the ExcitationPreserving circuit.
+  *   **mode** (`str`) – Choose the entangler mode, can be ‘iswap’ or ‘fsim’.
+  *   **reps** (`int`) – Specifies how often the structure of a rotation layer followed by an entanglement layer is repeated.
+  *   **entanglement** (`Union`\[`str`, `List`\[`List`\[`int`]], `Callable`\[\[`int`], `List`\[`int`]]]) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
+  *   **initial\_state** (`Optional`\[`Any`]) – A QuantumCircuit object to prepend to the circuit.
+  *   **skip\_unentangled\_qubits** (`bool`) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
+  *   **skip\_unentangled\_qubits** – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
+  *   **skip\_final\_rotation\_layer** (`bool`) – If True, a rotation layer is added at the end of the ansatz. If False, no rotation layer is added. Defaults to True.
+  *   **parameter\_prefix** (`str`) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
+  *   **insert\_barriers** (`bool`) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
 
-**Raises**
+  **Raises**
 
-**ValueError** – If the selected mode is not supported.
+  **ValueError** – If the selected mode is not supported.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.ExcitationPreserving.ancillas" />
+  ### ancillas
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **Return type**
 
-**Return type**
+    `List`\[`AncillaQubit`]
+  </Attribute>
 
-`List`\[`AncillaQubit`]
+  ### calibrations
 
-<span id="qiskit.circuit.library.ExcitationPreserving.calibrations" />
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-### calibrations
+    **The custom pulse definition of a given gate is of the form**
 
-Return calibration dictionary.
+    \{‘gate\_name’: \{(qubits, params): schedule}}
 
-**The custom pulse definition of a given gate is of the form**
+    **Return type**
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+    `dict`
+  </Attribute>
 
-**Return type**
+  ### clbits
 
-`dict`
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-<span id="qiskit.circuit.library.ExcitationPreserving.clbits" />
+    **Return type**
 
-### clbits
+    `List`\[`Clbit`]
+  </Attribute>
 
-Returns a list of classical bits in the order that the registers were added.
+  ### data
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.data" name="data" />
 
-`List`\[`Clbit`]
+  ### entanglement
 
-<span id="qiskit.circuit.library.ExcitationPreserving.data" />
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.entanglement" name="entanglement">
+    Get the entanglement strategy.
 
-### data
+    **Return type**
 
-<span id="qiskit.circuit.library.ExcitationPreserving.entanglement" />
+    `Union`\[`str`, `List`\[`str`], `List`\[`List`\[`str`]], `List`\[`int`], `List`\[`List`\[`int`]], `List`\[`List`\[`List`\[`int`]]], `List`\[`List`\[`List`\[`List`\[`int`]]]], `Callable`\[\[`int`], `str`], `Callable`\[\[`int`], `List`\[`List`\[`int`]]]]
 
-### entanglement
+    **Returns**
 
-Get the entanglement strategy.
+    The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
+  </Attribute>
 
-**Return type**
+  ### entanglement\_blocks
 
-`Union`\[`str`, `List`\[`str`], `List`\[`List`\[`str`]], `List`\[`int`], `List`\[`List`\[`int`]], `List`\[`List`\[`List`\[`int`]]], `List`\[`List`\[`List`\[`List`\[`int`]]]], `Callable`\[\[`int`], `str`], `Callable`\[\[`int`], `List`\[`List`\[`int`]]]]
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.entanglement_blocks" name="entanglement_blocks">
+    The blocks in the entanglement layers.
 
-**Returns**
+    **Return type**
 
-The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
+    `List`\[`Instruction`]
 
-<span id="qiskit.circuit.library.ExcitationPreserving.entanglement_blocks" />
+    **Returns**
 
-### entanglement\_blocks
+    The blocks in the entanglement layers.
+  </Attribute>
 
-The blocks in the entanglement layers.
+  ### extension\_lib
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-`List`\[`Instruction`]
+  ### global\_phase
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-The blocks in the entanglement layers.
+    **Return type**
 
-<span id="qiskit.circuit.library.ExcitationPreserving.extension_lib" />
+    `Union`\[`ParameterExpression`, `float`]
+  </Attribute>
 
-### extension\_lib
+  ### header
 
-`= 'include "qelib1.inc";'`
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-<span id="qiskit.circuit.library.ExcitationPreserving.global_phase" />
+  ### initial\_state
 
-### global\_phase
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.initial_state" name="initial_state">
+    Return the initial state that is added in front of the n-local circuit.
 
-Return the global phase of the circuit in radians.
+    **Return type**
 
-**Return type**
+    `Any`
 
-`Union`\[`ParameterExpression`, `float`]
+    **Returns**
 
-<span id="qiskit.circuit.library.ExcitationPreserving.header" />
+    The initial state.
+  </Attribute>
 
-### header
+  ### insert\_barriers
 
-`= 'OPENQASM 2.0;'`
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.insert_barriers" name="insert_barriers">
+    If barriers are inserted in between the layers or not.
 
-<span id="qiskit.circuit.library.ExcitationPreserving.initial_state" />
+    **Return type**
 
-### initial\_state
+    `bool`
 
-Return the initial state that is added in front of the n-local circuit.
+    **Returns**
 
-**Return type**
+    True, if barriers are inserted in between the layers, False if not.
+  </Attribute>
 
-`Any`
+  ### instances
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.instances" name="instances" attributeValue="= 9" />
 
-The initial state.
+  ### metadata
 
-<span id="qiskit.circuit.library.ExcitationPreserving.insert_barriers" />
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-### insert\_barriers
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-If barriers are inserted in between the layers or not.
+    **Return type**
 
-**Return type**
+    `dict`
+  </Attribute>
 
-`bool`
+  ### num\_ancillas
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-True, if barriers are inserted in between the layers, False if not.
+    **Return type**
 
-<span id="qiskit.circuit.library.ExcitationPreserving.instances" />
+    `int`
+  </Attribute>
 
-### instances
+  ### num\_clbits
 
-`= 9`
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-<span id="qiskit.circuit.library.ExcitationPreserving.metadata" />
+    **Return type**
 
-### metadata
+    `int`
+  </Attribute>
 
-The user provided metadata associated with the circuit
+  ### num\_layers
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.num_layers" name="num_layers">
+    Return the number of layers in the n-local circuit.
 
-**Return type**
+    **Return type**
 
-`dict`
+    `int`
 
-<span id="qiskit.circuit.library.ExcitationPreserving.num_ancillas" />
+    **Returns**
 
-### num\_ancillas
+    The number of layers in the circuit.
+  </Attribute>
 
-Return the number of ancilla qubits.
+  ### num\_parameters
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.num_parameters" name="num_parameters">
+    **Return type**
 
-`int`
+    `int`
+  </Attribute>
 
-<span id="qiskit.circuit.library.ExcitationPreserving.num_clbits" />
+  ### num\_parameters\_settable
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.num_parameters_settable" name="num_parameters_settable">
+    The number of total parameters that can be set to distinct values.
 
-Return number of classical bits.
+    This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
 
-**Return type**
+    **Return type**
 
-`int`
+    `int`
 
-<span id="qiskit.circuit.library.ExcitationPreserving.num_layers" />
+    **Returns**
 
-### num\_layers
+    The number of parameters originally available in the circuit.
 
-Return the number of layers in the n-local circuit.
+    <Admonition title="Note" type="note">
+      This quantity does not require the circuit to be built yet.
+    </Admonition>
+  </Attribute>
 
-**Return type**
+  ### num\_qubits
 
-`int`
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.num_qubits" name="num_qubits">
+    Returns the number of qubits in this circuit.
 
-**Returns**
+    **Return type**
 
-The number of layers in the circuit.
+    `int`
 
-<span id="qiskit.circuit.library.ExcitationPreserving.num_parameters" />
+    **Returns**
 
-### num\_parameters
+    The number of qubits.
+  </Attribute>
 
-**Return type**
+  ### ordered\_parameters
 
-`int`
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.ordered_parameters" name="ordered_parameters">
+    The parameters used in the underlying circuit.
 
-<span id="qiskit.circuit.library.ExcitationPreserving.num_parameters_settable" />
+    This includes float values and duplicates.
 
-### num\_parameters\_settable
+    **Examples**
 
-The number of total parameters that can be set to distinct values.
+    ```python
+    >>> # prepare circuit ...
+    >>> print(nlocal)
+         ┌───────┐┌──────────┐┌──────────┐┌──────────┐
+    q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
+         └───────┘└──────────┘└──────────┘└──────────┘
+    >>> nlocal.parameters
+    {Parameter(θ[1]), Parameter(θ[3])}
+    >>> nlocal.ordered_parameters
+    [1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
+    ```
 
-This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
+    **Return type**
 
-**Return type**
+    `List`\[`Parameter`]
 
-`int`
+    **Returns**
 
-**Returns**
+    The parameters objects used in the circuit.
+  </Attribute>
 
-The number of parameters originally available in the circuit.
+  ### parameter\_bounds
 
-<Admonition title="Note" type="note">
-  This quantity does not require the circuit to be built yet.
-</Admonition>
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.parameter_bounds" name="parameter_bounds">
+    Return the parameter bounds.
 
-<span id="qiskit.circuit.library.ExcitationPreserving.num_qubits" />
+    **Return type**
 
-### num\_qubits
+    `List`\[`Tuple`\[`float`, `float`]]
 
-Returns the number of qubits in this circuit.
+    **Returns**
 
-**Return type**
+    The parameter bounds.
+  </Attribute>
 
-`int`
+  ### parameters
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.parameters" name="parameters">
+    **Return type**
 
-The number of qubits.
+    `ParameterView`
+  </Attribute>
 
-<span id="qiskit.circuit.library.ExcitationPreserving.ordered_parameters" />
+  ### preferred\_init\_points
 
-### ordered\_parameters
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.preferred_init_points" name="preferred_init_points">
+    The initial points for the parameters. Can be stored as initial guess in optimization.
 
-The parameters used in the underlying circuit.
+    **Return type**
 
-This includes float values and duplicates.
+    `Optional`\[`List`\[`float`]]
 
-**Examples**
+    **Returns**
 
-```python
->>> # prepare circuit ...
->>> print(nlocal)
-     ┌───────┐┌──────────┐┌──────────┐┌──────────┐
-q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
-     └───────┘└──────────┘└──────────┘└──────────┘
->>> nlocal.parameters
-{Parameter(θ[1]), Parameter(θ[3])}
->>> nlocal.ordered_parameters
-[1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
-```
+    The initial values for the parameters, or None, if none have been set.
+  </Attribute>
 
-**Return type**
+  ### prefix
 
-`List`\[`Parameter`]
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-**Returns**
+  ### qregs
 
-The parameters objects used in the circuit.
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.qregs" name="qregs">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-<span id="qiskit.circuit.library.ExcitationPreserving.parameter_bounds" />
+  ### qubits
 
-### parameter\_bounds
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-Return the parameter bounds.
+    **Return type**
 
-**Return type**
+    `List`\[`Qubit`]
+  </Attribute>
 
-`List`\[`Tuple`\[`float`, `float`]]
+  ### reps
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.reps" name="reps">
+    The number of times rotation and entanglement block are repeated.
 
-The parameter bounds.
+    **Return type**
 
-<span id="qiskit.circuit.library.ExcitationPreserving.parameters" />
+    `int`
 
-### parameters
+    **Returns**
 
-**Return type**
+    The number of repetitions.
+  </Attribute>
 
-`ParameterView`
+  ### rotation\_blocks
 
-<span id="qiskit.circuit.library.ExcitationPreserving.preferred_init_points" />
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.rotation_blocks" name="rotation_blocks">
+    The blocks in the rotation layers.
 
-### preferred\_init\_points
+    **Return type**
 
-The initial points for the parameters. Can be stored as initial guess in optimization.
+    `List`\[`Instruction`]
 
-**Return type**
+    **Returns**
 
-`Optional`\[`List`\[`float`]]
-
-**Returns**
-
-The initial values for the parameters, or None, if none have been set.
-
-<span id="qiskit.circuit.library.ExcitationPreserving.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.ExcitationPreserving.qregs" />
-
-### qregs
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.ExcitationPreserving.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[`Qubit`]
-
-<span id="qiskit.circuit.library.ExcitationPreserving.reps" />
-
-### reps
-
-The number of times rotation and entanglement block are repeated.
-
-**Return type**
-
-`int`
-
-**Returns**
-
-The number of repetitions.
-
-<span id="qiskit.circuit.library.ExcitationPreserving.rotation_blocks" />
-
-### rotation\_blocks
-
-The blocks in the rotation layers.
-
-**Return type**
-
-`List`\[`Instruction`]
-
-**Returns**
-
-The blocks in the rotation layers.
+    The blocks in the rotation layers.
+  </Attribute>
+</Class>
 

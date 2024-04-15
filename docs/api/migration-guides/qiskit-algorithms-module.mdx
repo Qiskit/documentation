@@ -145,13 +145,13 @@ This guide describes these common configurations for algorithms that determine w
 * Running an algorithm on an Aer simulator using a custom instruction.  For example, using the [`qiskit.opflow`](../qiskit/0.46/opflow) legacy
 [`qiskit.opflow.expectations.AerPauliExpectation`](../qiskit/0.46/qiskit.opflow.expectations.AerPauliExpectation).
 
-- Aer Primitives with `shots=None`, `approximation=True`.  See [TrotterQRTE](#trotterqrte) for examples.
+- Aer Primitives with default options.  See [TrotterQRTE](#trotterqrte) for examples.
 
 ```python
 from qiskit_aer.primitives import Sampler, Estimator
 
-sampler = Sampler(run_options={"approximation": True, "shots": None})
-estimator = Estimator(run_options={"approximation": True, "shots": None})
+sampler = Sampler()
+estimator = Estimator()
 ```
 
 <span id="eigen"></span>
@@ -706,7 +706,7 @@ time = 1
 evolution_problem = TimeEvolutionProblem(operator, 1, initial_state)
 
 # Aer simulator using custom instruction
-estimator = AerEstimator(run_options={"approximation": True, "shots": None})
+estimator = AerEstimator()
 
 # LieTrotter with 1 rep
 trotter_qrte = TrotterQRTE(estimator=estimator)

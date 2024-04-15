@@ -8,137 +8,131 @@ python_api_name: qiskit.circuit.library.YGate
 
 # YGate
 
-<span id="qiskit.circuit.library.YGate" />
+<Class id="qiskit.circuit.library.YGate" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/y.py" signature="YGate(label=None)">
+  Bases: `qiskit.circuit.gate.Gate`
 
-`YGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/y.py "view source code")
+  The single-qubit Pauli-Y gate ($\sigma_y$).
 
-Bases: `qiskit.circuit.gate.Gate`
-
-The single-qubit Pauli-Y gate ($\sigma_y$).
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 \begin{split}Y = \begin{pmatrix}
-        0 & -i \\
-        i & 0
-    \end{pmatrix}\end{split}
+0 & -i \\
+i & 0
+\end{pmatrix}\end{split}
 $$
 
-**Circuit symbol:**
+  **Circuit symbol:**
 
-```python
-     ┌───┐
-q_0: ┤ Y ├
-     └───┘
-```
+  ```python
+       ┌───┐
+  q_0: ┤ Y ├
+       └───┘
+  ```
 
-Equivalent to a $\pi$ radian rotation about the Y axis.
+  Equivalent to a $\pi$ radian rotation about the Y axis.
 
-<Admonition title="Note" type="note">
-  A global phase difference exists between the definitions of $RY(\pi)$ and $Y$.
+  <Admonition title="Note" type="note">
+    A global phase difference exists between the definitions of $RY(\pi)$ and $Y$.
 
-  $$
-  \begin{split}RY(\pi) = \begin{pmatrix}
-              0 & -1 \\
-              1 & 0
-            \end{pmatrix}
-          = -i Y\end{split}
-  $$
-</Admonition>
+$$
+\begin{split}RY(\pi) = \begin{pmatrix}
+0 & -1 \\
+1 & 0
+\end{pmatrix}
+= -i Y\end{split}
+$$
+  </Admonition>
 
-The gate is equivalent to a bit and phase flip.
+  The gate is equivalent to a bit and phase flip.
 
 $$
 \begin{split}|0\rangle \rightarrow i|1\rangle \\
 |1\rangle \rightarrow -i|0\rangle\end{split}
 $$
 
-Create new Y gate.
+  Create new Y gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-### control
+  ### control
 
-<span id="qiskit.circuit.library.YGate.control" />
+  <Function id="qiskit.circuit.library.YGate.control" name="control" signature="YGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a (multi-)controlled-Y gate.
 
-`YGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    One control returns a CY gate.
 
-Return a (multi-)controlled-Y gate.
+    **Parameters**
 
-One control returns a CY gate.
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-**Parameters**
+    **Returns**
 
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+    controlled version of this gate.
 
-**Returns**
+    **Return type**
 
-controlled version of this gate.
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-**Return type**
+  ### inverse
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  <Function id="qiskit.circuit.library.YGate.inverse" name="inverse" signature="YGate.inverse()">
+    Return inverted Y gate ($Y{\dagger} = Y$)
+  </Function>
 
-### inverse
+  ## Attributes
 
-<span id="qiskit.circuit.library.YGate.inverse" />
+  ### condition\_bits
 
-`YGate.inverse()`
+  <Attribute id="qiskit.circuit.library.YGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-Return inverted Y gate ($Y{\dagger} = Y$)
+    **Return type**
 
-## Attributes
+    `List`\[`Clbit`]
+  </Attribute>
 
-<span id="qiskit.circuit.library.YGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.YGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.YGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-`List`\[`Clbit`]
+  ### duration
 
-<span id="qiskit.circuit.library.YGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.YGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.YGate.label" name="label">
+    Return instruction label
 
-<span id="qiskit.circuit.library.YGate.definition" />
+    **Return type**
 
-### definition
+    `str`
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### params
 
-<span id="qiskit.circuit.library.YGate.duration" />
+  <Attribute id="qiskit.circuit.library.YGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### duration
+  ### unit
 
-Get the duration.
-
-<span id="qiskit.circuit.library.YGate.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.library.YGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.YGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.YGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

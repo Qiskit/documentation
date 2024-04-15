@@ -10,35 +10,33 @@ python_api_name: qiskit.pulse.library.Cos
 
 # qiskit.pulse.library.Cos
 
-<span id="qiskit.pulse.library.Cos" />
+<Function id="qiskit.pulse.library.Cos" name="Cos" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/symbolic_pulses.py" signature="Cos(duration, amp, phase, freq=None, angle=0.0, name=None, limit_amplitude=None)">
+  A cosine pulse.
 
-`Cos(duration, amp, phase, freq=None, angle=0.0, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/symbolic_pulses.py "view source code")
-
-A cosine pulse.
-
-The envelope of the pulse is given by:
+  The envelope of the pulse is given by:
 
 $$
 f(x) = \text{A}\cos\left(2\pi\text{freq}x+\text{phase}\right)  ,  0 <= x < duration
 $$
 
-where $\text{A} = \text{amp} \times\exp\left(i\times\text{angle}\right)$.
+  where $\text{A} = \text{amp} \times\exp\left(i\times\text{angle}\right)$.
 
-**Parameters**
+  **Parameters**
 
-*   **duration** (*int |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Pulse length in terms of the sampling period dt.
-*   **amp** (*float |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The magnitude of the amplitude of the cosine wave. Wave range is \[-amp,\`amp\`].
-*   **phase** (*float |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The phase of the cosine wave (note that this is not equivalent to the angle of the complex amplitude).
-*   **freq** (*float |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| None*) – The frequency of the cosine wave, in terms of 1 over sampling period. If not provided defaults to a single cycle (i.e :math:’frac\{1}\{text\{duration}}’). The frequency is limited to the range $\left(0,0.5\right]$ (the Nyquist frequency).
-*   **angle** (*float |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| None*) – The angle in radians of the complex phase factor uniformly scaling the pulse. Default value 0.
-*   **name** (*str | None*) – Display name for this pulse envelope.
-*   **limit\_amplitude** (*bool | None*) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+  *   **duration** (*int |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Pulse length in terms of the sampling period dt.
+  *   **amp** (*float |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The magnitude of the amplitude of the cosine wave. Wave range is \[-amp,\`amp\`].
+  *   **phase** (*float |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The phase of the cosine wave (note that this is not equivalent to the angle of the complex amplitude).
+  *   **freq** (*float |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| None*) – The frequency of the cosine wave, in terms of 1 over sampling period. If not provided defaults to a single cycle (i.e :math:’frac\{1}\{text\{duration}}’). The frequency is limited to the range $\left(0,0.5\right]$ (the Nyquist frequency).
+  *   **angle** (*float |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| None*) – The angle in radians of the complex phase factor uniformly scaling the pulse. Default value 0.
+  *   **name** (*str | None*) – Display name for this pulse envelope.
+  *   **limit\_amplitude** (*bool | None*) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 
-**Returns**
+  **Returns**
 
-ScalableSymbolicPulse instance.
+  ScalableSymbolicPulse instance.
 
-**Return type**
+  **Return type**
 
-*ScalableSymbolicPulse*
+  *ScalableSymbolicPulse*
+</Function>
 

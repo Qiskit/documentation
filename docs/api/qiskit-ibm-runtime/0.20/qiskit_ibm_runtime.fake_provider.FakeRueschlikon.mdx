@@ -8,131 +8,113 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeRueschlikon
 
 # FakeRueschlikon
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon" />
+<Class id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/rueschlikon/fake_rueschlikon.py#L21-L74" signature="FakeRueschlikon">
+  A fake 16 qubit backend.
 
-`FakeRueschlikon` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/rueschlikon/fake_rueschlikon.py#L21-L74 "view source code")
+  ```python
+  1 →  2 →  3 →  4 ←  5 ←  6 →  7 ← 8
+  ↓    ↑    ↓    ↓    ↑    ↓    ↓   ↑
+  0 ← 15 → 14 ← 13 ← 12 → 11 → 10 ← 9
+  ```
 
-A fake 16 qubit backend.
+  ## Attributes
 
-```python
-1 →  2 →  3 →  4 ←  5 ←  6 →  7 ← 8
-↓    ↑    ↓    ↓    ↑    ↓    ↓   ↑
-0 ← 15 → 14 ← 13 ← 12 → 11 → 10 ← 9
-```
+  ### options
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.options" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeRueschlikon.run "qiskit_ibm_runtime.fake_provider.FakeRueschlikon.run") method.
+  </Attribute>
 
-### options
+  ### version
 
-Return the options for the backend
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.version" name="version" attributeValue="= 1" />
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeRueschlikon.run "qiskit_ibm_runtime.fake_provider.FakeRueschlikon.run") method.
+  ## Methods
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.version" />
+  ### configuration
 
-### version
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.configuration" name="configuration" signature="configuration()">
+    Return the backend configuration.
 
-`= 1`
+    **Returns**
 
-## Methods
+    the configuration for the backend.
 
-### configuration
+    **Return type**
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.configuration" />
+    BackendConfiguration
+  </Function>
 
-`configuration()`
+  ### name
 
-Return the backend configuration.
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.name" name="name" signature="name()">
+    Return the backend name.
 
-**Returns**
+    **Returns**
 
-the configuration for the backend.
+    the name of the backend.
 
-**Return type**
+    **Return type**
 
-BackendConfiguration
+    str
+  </Function>
 
-### name
+  ### properties
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.name" />
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.properties" name="properties" signature="properties()">
+    Return backend properties
+  </Function>
 
-`name()`
+  ### provider
 
-Return the backend name.
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.provider" name="provider" signature="provider()">
+    Return the backend Provider.
 
-**Returns**
+    **Returns**
 
-the name of the backend.
+    the Provider responsible for the backend.
 
-**Return type**
+    **Return type**
 
-str
+    Provider
+  </Function>
 
-### properties
+  ### run
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.properties" />
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.run" name="run" signature="run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-`properties()`
+  ### set\_options
 
-Return backend properties
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-### provider
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.provider" />
+    **Parameters**
 
-`provider()`
+    **fields** – The fields to update the options
 
-Return the backend Provider.
+    **Raises**
 
-**Returns**
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-the Provider responsible for the backend.
+  ### status
 
-**Return type**
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.status" name="status" signature="status()">
+    Return the backend status.
 
-Provider
+    **Returns**
 
-### run
+    the status of the backend.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.run" />
+    **Return type**
 
-`run(run_input, **kwargs)`
-
-Main job in simulator
-
-### set\_options
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeRueschlikon.status" />
-
-`status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-BackendStatus
+    BackendStatus
+  </Function>
+</Class>
 

@@ -10,39 +10,37 @@ python_api_name: qiskit.pulse.library.gaussian
 
 # qiskit.pulse.library.gaussian
 
-<span id="qiskit.pulse.library.gaussian" />
+<Function id="qiskit.pulse.library.gaussian" name="gaussian" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py" signature="gaussian(duration, amp, sigma, name=None, zero_ends=True)">
+  Generates unnormalized gaussian [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 
-`gaussian(duration, amp, sigma, name=None, zero_ends=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py "view source code")
-
-Generates unnormalized gaussian [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
-
-For $A=$ `amp` and $\sigma=$ `sigma`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
+  For $A=$ `amp` and $\sigma=$ `sigma`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
 
 $$
 f(x) = A\exp\left(\left(\frac{x - \mu}{2\sigma}\right)^2 \right),
 $$
 
-with the center $\mu=$ `duration/2`.
+  with the center $\mu=$ `duration/2`.
 
-If `zero_ends==True`, each output sample $y$ is modified according to:
+  If `zero_ends==True`, each output sample $y$ is modified according to:
 
 $$
 y \mapsto A\frac{y-y^*}{A-y^*},
 $$
 
-where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$ while preserving the amplitude at the center. If $A=y^*$, $y$ is set to $1$. By default, the endpoints are at `x = -1, x = duration + 1`.
+  where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$ while preserving the amplitude at the center. If $A=y^*$, $y$ is set to $1$. By default, the endpoints are at `x = -1, x = duration + 1`.
 
-Integrated area under the full curve is `amp * np.sqrt(2*np.pi*sigma**2)`
+  Integrated area under the full curve is `amp * np.sqrt(2*np.pi*sigma**2)`
 
-**Parameters**
+  **Parameters**
 
-*   **duration** (*int*) – Duration of pulse. Must be greater than zero.
-*   **amp** (*complex*) – Pulse amplitude at `duration/2`.
-*   **sigma** (*float*) – Width (standard deviation) of pulse.
-*   **name** (*str | None*) – Name of pulse.
-*   **zero\_ends** (*bool*) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
+  *   **duration** (*int*) – Duration of pulse. Must be greater than zero.
+  *   **amp** (*complex*) – Pulse amplitude at `duration/2`.
+  *   **sigma** (*float*) – Width (standard deviation) of pulse.
+  *   **name** (*str | None*) – Name of pulse.
+  *   **zero\_ends** (*bool*) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
 
-**Return type**
+  **Return type**
 
-[*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+  [*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+</Function>
 

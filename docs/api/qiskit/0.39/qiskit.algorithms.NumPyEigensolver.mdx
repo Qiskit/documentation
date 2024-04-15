@@ -8,85 +8,79 @@ python_api_name: qiskit.algorithms.NumPyEigensolver
 
 # NumPyEigensolver
 
-<span id="qiskit.algorithms.NumPyEigensolver" />
+<Class id="qiskit.algorithms.NumPyEigensolver" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigen_solvers/numpy_eigen_solver.py" signature="NumPyEigensolver(k=1, filter_criterion=None)">
+  Bases: [`qiskit.algorithms.eigen_solvers.eigen_solver.Eigensolver`](qiskit.algorithms.Eigensolver "qiskit.algorithms.eigen_solvers.eigen_solver.Eigensolver")
 
-`NumPyEigensolver(k=1, filter_criterion=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigen_solvers/numpy_eigen_solver.py "view source code")
+  Pending deprecation: NumPy Eigensolver algorithm.
 
-Bases: [`qiskit.algorithms.eigen_solvers.eigen_solver.Eigensolver`](qiskit.algorithms.Eigensolver "qiskit.algorithms.eigen_solvers.eigen_solver.Eigensolver")
+  The NumPyEigensolver class has been superseded by the [`qiskit.algorithms.eigensolvers.NumPyEigensolver`](qiskit.algorithms.eigensolvers.NumPyEigensolver "qiskit.algorithms.eigensolvers.NumPyEigensolver") class. This class will be deprecated in a future release and subsequently removed after that.
 
-Pending deprecation: NumPy Eigensolver algorithm.
+  NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued square matrix of dimension $n \times n$, with $k \leq n$.
 
-The NumPyEigensolver class has been superseded by the [`qiskit.algorithms.eigensolvers.NumPyEigensolver`](qiskit.algorithms.eigensolvers.NumPyEigensolver "qiskit.algorithms.eigensolvers.NumPyEigensolver") class. This class will be deprecated in a future release and subsequently removed after that.
+  <Admonition title="Note" type="note">
+    Operators are automatically converted to SciPy’s `spmatrix` as needed and this conversion can be costly in terms of memory and performance as the operator size, mostly in terms of number of qubits it represents, gets larger.
+  </Admonition>
 
-NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued square matrix of dimension $n \times n$, with $k \leq n$.
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  Operators are automatically converted to SciPy’s `spmatrix` as needed and this conversion can be costly in terms of memory and performance as the operator size, mostly in terms of number of qubits it represents, gets larger.
-</Admonition>
+  *   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
+  *   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Union`\[`List`\[`Optional`\[`float`]], `Dict`\[`str`, `float`], `None`]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates, only feasible eigenstates are returned in the results. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to keep this value in the final returned result or not. If the number of elements that satisfies the criterion is smaller than k then the returned list has fewer elements and can even be empty.
 
-**Parameters**
+  ## Methods
 
-*   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
-*   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Union`\[`List`\[`Optional`\[`float`]], `Dict`\[`str`, `float`], `None`]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates, only feasible eigenstates are returned in the results. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to keep this value in the final returned result or not. If the number of elements that satisfies the criterion is smaller than k then the returned list has fewer elements and can even be empty.
+  ### compute\_eigenvalues
 
-## Methods
+  <Function id="qiskit.algorithms.NumPyEigensolver.compute_eigenvalues" name="compute_eigenvalues" signature="NumPyEigensolver.compute_eigenvalues(operator, aux_operators=None)">
+    Computes eigenvalues. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
-### compute\_eigenvalues
+    **Parameters**
 
-<span id="qiskit.algorithms.NumPyEigensolver.compute_eigenvalues" />
+    *   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Qubit operator of the Observable
+    *   **aux\_operators** (`Union`\[`List`\[`Optional`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]], `Dict`\[`str`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")], `None`]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
 
-`NumPyEigensolver.compute_eigenvalues(operator, aux_operators=None)`
+    **Return type**
 
-Computes eigenvalues. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
+    [`EigensolverResult`](qiskit.algorithms.EigensolverResult "qiskit.algorithms.eigen_solvers.eigen_solver.EigensolverResult")
 
-**Parameters**
+    **Returns**
 
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Qubit operator of the Observable
-*   **aux\_operators** (`Union`\[`List`\[`Optional`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]], `Dict`\[`str`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")], `None`]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
+    EigensolverResult
+  </Function>
 
-**Return type**
+  ### supports\_aux\_operators
 
-[`EigensolverResult`](qiskit.algorithms.EigensolverResult "qiskit.algorithms.eigen_solvers.eigen_solver.EigensolverResult")
+  <Function id="qiskit.algorithms.NumPyEigensolver.supports_aux_operators" name="supports_aux_operators" signature="classmethod NumPyEigensolver.supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-**Returns**
+    **Return type**
 
-EigensolverResult
+    `bool`
 
-### supports\_aux\_operators
+    **Returns**
 
-<span id="qiskit.algorithms.NumPyEigensolver.supports_aux_operators" />
+    True if aux\_operator expectations can be evaluated, False otherwise
+  </Function>
 
-`classmethod NumPyEigensolver.supports_aux_operators()`
+  ## Attributes
 
-Whether computing the expectation value of auxiliary operators is supported.
+  ### filter\_criterion
 
-**Return type**
+  <Attribute id="qiskit.algorithms.NumPyEigensolver.filter_criterion" name="filter_criterion">
+    returns the filter criterion if set
 
-`bool`
+    **Return type**
 
-**Returns**
+    `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Union`\[`List`\[`Optional`\[`float`]], `Dict`\[`str`, `float`], `None`]], `bool`]]
+  </Attribute>
 
-True if aux\_operator expectations can be evaluated, False otherwise
+  ### k
 
-## Attributes
+  <Attribute id="qiskit.algorithms.NumPyEigensolver.k" name="k">
+    returns k (number of eigenvalues requested)
 
-<span id="qiskit.algorithms.NumPyEigensolver.filter_criterion" />
+    **Return type**
 
-### filter\_criterion
-
-returns the filter criterion if set
-
-**Return type**
-
-`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Union`\[`List`\[`Optional`\[`float`]], `Dict`\[`str`, `float`], `None`]], `bool`]]
-
-<span id="qiskit.algorithms.NumPyEigensolver.k" />
-
-### k
-
-returns k (number of eigenvalues requested)
-
-**Return type**
-
-`int`
+    `int`
+  </Attribute>
+</Class>
 

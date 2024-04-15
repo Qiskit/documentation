@@ -8,157 +8,151 @@ python_api_name: qiskit.circuit.library.CSGate
 
 # CSGate
 
-<span id="qiskit.circuit.library.CSGate" />
+<Class id="qiskit.circuit.library.CSGate" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/s.py" signature="CSGate(label=None, ctrl_state=None)">
+  Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
-`CSGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/s.py "view source code")
+  Controlled-S gate.
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cs()`](qiskit.circuit.QuantumCircuit#cs "qiskit.circuit.QuantumCircuit.cs") method.
 
-Controlled-S gate.
+  **Circuit symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cs()`](qiskit.circuit.QuantumCircuit#cs "qiskit.circuit.QuantumCircuit.cs") method.
+  ```python
+  q_0: ──■──
+       ┌─┴─┐
+  q_1: ┤ S ├
+       └───┘
+  ```
 
-**Circuit symbol:**
-
-```python
-q_0: ──■──
-     ┌─┴─┐
-q_1: ┤ S ├
-     └───┘
-```
-
-**Matrix representation:**
+  **Matrix representation:**
 
 $$
 \begin{split}CS \ q_0, q_1 =
 I \otimes |0 \rangle\langle 0| + S \otimes |1 \rangle\langle 1|  =
-    \begin{pmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & 1 & 0 & 0 \\
-        0 & 0 & 1 & 0 \\
-        0 & 0 & 0 & i
-    \end{pmatrix}\end{split}
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & i
+\end{pmatrix}\end{split}
 $$
 
-Create new CS gate.
+  Create new CS gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-<span id="qiskit-circuit-library-csgate-inverse" />
+  <span id="qiskit-circuit-library-csgate-inverse" />
 
-### inverse
+  ### inverse
 
-<span id="qiskit.circuit.library.CSGate.inverse" />
+  <Function id="qiskit.circuit.library.CSGate.inverse" name="inverse" signature="CSGate.inverse()">
+    Return inverse of CSGate (CSdgGate).
+  </Function>
 
-`CSGate.inverse()`
+  <span id="qiskit-circuit-library-csgate-power" />
 
-Return inverse of CSGate (CSdgGate).
+  ### power
 
-<span id="qiskit-circuit-library-csgate-power" />
+  <Function id="qiskit.circuit.library.CSGate.power" name="power" signature="CSGate.power(exponent)">
+    Raise gate to a power.
+  </Function>
 
-### power
+  ## Attributes
 
-<span id="qiskit.circuit.library.CSGate.power" />
+  ### condition\_bits
 
-`CSGate.power(exponent)`
+  <Attribute id="qiskit.circuit.library.CSGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-Raise gate to a power.
+  ### ctrl\_state
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.CSGate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CSGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.CSGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-<span id="qiskit.circuit.library.CSGate.ctrl_state" />
+  <Attribute id="qiskit.circuit.library.CSGate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  </Attribute>
 
-### ctrl\_state
+  ### duration
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.CSGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CSGate.decompositions" />
+  ### label
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.CSGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### name
 
-<span id="qiskit.circuit.library.CSGate.definition" />
+  <Attribute id="qiskit.circuit.library.CSGate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-### definition
+    > \<original\_name\_o\<ctrl\_state>
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CSGate.duration" />
+  ### num\_clbits
 
-### duration
+  <Attribute id="qiskit.circuit.library.CSGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Get the duration.
+  ### num\_ctrl\_qubits
 
-<span id="qiskit.circuit.library.CSGate.label" />
+  <Attribute id="qiskit.circuit.library.CSGate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-### label
+    **Returns**
 
-Return instruction label
+    The number of control qubits for the gate.
 
-<span id="qiskit.circuit.library.CSGate.name" />
+    **Return type**
 
-### name
+    int
+  </Attribute>
 
-Get name of gate. If the gate has open controls the gate name will become:
+  ### num\_qubits
 
-> \<original\_name\_o\<ctrl\_state>
+  <Attribute id="qiskit.circuit.library.CSGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  ### params
 
-<span id="qiskit.circuit.library.CSGate.num_clbits" />
+  <Attribute id="qiskit.circuit.library.CSGate.params" name="params">
+    Get parameters from base\_gate.
 
-### num\_clbits
+    **Returns**
 
-Return the number of clbits.
+    List of gate parameters.
 
-<span id="qiskit.circuit.library.CSGate.num_ctrl_qubits" />
+    **Return type**
 
-### num\_ctrl\_qubits
+    list
 
-Get number of control qubits.
+    **Raises**
 
-**Returns**
+    **CircuitError** – Controlled gate does not define a base gate
+  </Attribute>
 
-The number of control qubits for the gate.
+  ### unit
 
-**Return type**
-
-int
-
-<span id="qiskit.circuit.library.CSGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.CSGate.params" />
-
-### params
-
-Get parameters from base\_gate.
-
-**Returns**
-
-List of gate parameters.
-
-**Return type**
-
-list
-
-**Raises**
-
-**CircuitError** – Controlled gate does not define a base gate
-
-<span id="qiskit.circuit.library.CSGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.CSGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

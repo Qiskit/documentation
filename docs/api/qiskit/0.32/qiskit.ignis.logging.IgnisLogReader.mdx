@@ -8,59 +8,53 @@ python_api_name: qiskit.ignis.logging.IgnisLogReader
 
 # IgnisLogReader
 
-<span id="qiskit.ignis.logging.IgnisLogReader" />
+<Class id="qiskit.ignis.logging.IgnisLogReader" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py" signature="IgnisLogReader">
+  Bases: `object`
 
-`IgnisLogReader` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
+  Class to read from Ignis log files
 
-Bases: `object`
+  Reads and constructs tabular representation of logged data based on date/time and key criteria
 
-Class to read from Ignis log files
+  ## Methods
 
-Reads and constructs tabular representation of logged data based on date/time and key criteria
+  ### get\_log\_files
 
-## Methods
+  <Function id="qiskit.ignis.logging.IgnisLogReader.get_log_files" name="get_log_files" signature="IgnisLogReader.get_log_files()">
+    Get Names of all log files (several may be present due to logging file rotation). File names are sorted by modification time.
 
-### get\_log\_files
+    **Returns**
 
-<span id="qiskit.ignis.logging.IgnisLogReader.get_log_files" />
+    list of all log file names
 
-`IgnisLogReader.get_log_files()`
+    **Return type**
 
-Get Names of all log files (several may be present due to logging file rotation). File names are sorted by modification time.
+    list
+  </Function>
 
-**Returns**
+  ### read\_values
 
-list of all log file names
+  <Function id="qiskit.ignis.logging.IgnisLogReader.read_values" name="read_values" signature="IgnisLogReader.read_values(log_files=None, keys=None, from_datetime=None, from_datetime_format=None, to_datetime=None, to_datetime_format=None)">
+    Retrieve log lines using key and date/time filtering criteria
 
-**Return type**
+    #### Params:
 
-list
+    log\_files: List of log files to read from keys: Retrieve only key value pairs of corresponding to keys A row with no matching keys will not be retrieved. If not specified, all keys are retrieved (optional)
 
-### read\_values
+    from\_datetime(None): Retrieve only rows newer than the given date and time
 
-<span id="qiskit.ignis.logging.IgnisLogReader.read_values" />
+    from\_datetime\_format(None): datetime format string. If not specified will assume “%Y/%m/%d %H:%M:%S”
 
-`IgnisLogReader.read_values(log_files=None, keys=None, from_datetime=None, from_datetime_format=None, to_datetime=None, to_datetime_format=None)`
+    to\_datetime(None): Retrieve only rows older than the given date and time
 
-Retrieve log lines using key and date/time filtering criteria
+    to\_datetime\_format(None): datetime format string. If not specified will assume “%Y/%m/%d %H:%M:%S”
 
-#### Params:
+    **Returns**
 
-log\_files: List of log files to read from keys: Retrieve only key value pairs of corresponding to keys A row with no matching keys will not be retrieved. If not specified, all keys are retrieved (optional)
+    A list containing the retrieved rows of key pair values
 
-from\_datetime(None): Retrieve only rows newer than the given date and time
+    **Return type**
 
-from\_datetime\_format(None): datetime format string. If not specified will assume “%Y/%m/%d %H:%M:%S”
-
-to\_datetime(None): Retrieve only rows older than the given date and time
-
-to\_datetime\_format(None): datetime format string. If not specified will assume “%Y/%m/%d %H:%M:%S”
-
-**Returns**
-
-A list containing the retrieved rows of key pair values
-
-**Return type**
-
-list
+    list
+  </Function>
+</Class>
 

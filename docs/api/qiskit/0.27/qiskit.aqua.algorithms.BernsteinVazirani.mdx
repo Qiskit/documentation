@@ -8,133 +8,117 @@ python_api_name: qiskit.aqua.algorithms.BernsteinVazirani
 
 # qiskit.aqua.algorithms.BernsteinVazirani
 
-<span id="qiskit.aqua.algorithms.BernsteinVazirani" />
+<Class id="qiskit.aqua.algorithms.BernsteinVazirani" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/bernstein_vazirani.py" signature="BernsteinVazirani(oracle, quantum_instance=None)">
+  The Bernstein-Vazirani algorithm.
 
-`BernsteinVazirani(oracle, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/bernstein_vazirani.py "view source code")
+  The Bernstein-Vazirani algorithm is an extension / restriction of the Deutsch-Jozsa algorithm. The goal of the algorithm is to determine a secret string $s \in \{0,1\}^n$, given a black box oracle function, that maps $f:\{0,1\}^n \rightarrow \{0,1\}$ such that $f(x)=s \cdot x (\bmod 2)$.
 
-The Bernstein-Vazirani algorithm.
+  **Parameters**
 
-The Bernstein-Vazirani algorithm is an extension / restriction of the Deutsch-Jozsa algorithm. The goal of the algorithm is to determine a secret string $s \in \{0,1\}^n$, given a black box oracle function, that maps $f:\{0,1\}^n \rightarrow \{0,1\}$ such that $f(x)=s \cdot x (\bmod 2)$.
+  *   **oracle** (`Oracle`) – The oracle component
+  *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **oracle** (`Oracle`) – The oracle component
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
+  <Function id="qiskit.aqua.algorithms.BernsteinVazirani.__init__" name="__init__" signature="__init__(oracle, quantum_instance=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **oracle** (`Oracle`) – The oracle component
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
+  </Function>
 
-<span id="qiskit.aqua.algorithms.BernsteinVazirani.__init__" />
+  ## Methods
 
-`__init__(oracle, quantum_instance=None)`
+  |                                                                                                                                                                 |                                              |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.algorithms.BernsteinVazirani.__init__ "qiskit.aqua.algorithms.BernsteinVazirani.__init__")(oracle\[, quantum\_instance])              | **type oracle**`Oracle`                      |
+  | [`construct_circuit`](#qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit "qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit")(\[measurement]) | Construct the quantum circuit                |
+  | [`run`](#qiskit.aqua.algorithms.BernsteinVazirani.run "qiskit.aqua.algorithms.BernsteinVazirani.run")(\[quantum\_instance])                                     | Execute the algorithm with selected backend. |
+  | [`set_backend`](#qiskit.aqua.algorithms.BernsteinVazirani.set_backend "qiskit.aqua.algorithms.BernsteinVazirani.set_backend")(backend, \*\*kwargs)              | Sets backend with configuration.             |
 
-**Parameters**
+  ## Attributes
 
-*   **oracle** (`Oracle`) – The oracle component
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
+  |                                                                                                                                              |                           |
+  | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+  | [`backend`](#qiskit.aqua.algorithms.BernsteinVazirani.backend "qiskit.aqua.algorithms.BernsteinVazirani.backend")                            | Returns backend.          |
+  | [`quantum_instance`](#qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance "qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance") | Returns quantum instance. |
+  | [`random`](#qiskit.aqua.algorithms.BernsteinVazirani.random "qiskit.aqua.algorithms.BernsteinVazirani.random")                               | Return a numpy random.    |
 
-## Methods
+  ### backend
 
-|                                                                                                                                                                 |                                              |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`__init__`](#qiskit.aqua.algorithms.BernsteinVazirani.__init__ "qiskit.aqua.algorithms.BernsteinVazirani.__init__")(oracle\[, quantum\_instance])              | **type oracle**`Oracle`                      |
-| [`construct_circuit`](#qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit "qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit")(\[measurement]) | Construct the quantum circuit                |
-| [`run`](#qiskit.aqua.algorithms.BernsteinVazirani.run "qiskit.aqua.algorithms.BernsteinVazirani.run")(\[quantum\_instance])                                     | Execute the algorithm with selected backend. |
-| [`set_backend`](#qiskit.aqua.algorithms.BernsteinVazirani.set_backend "qiskit.aqua.algorithms.BernsteinVazirani.set_backend")(backend, \*\*kwargs)              | Sets backend with configuration.             |
+  <Function id="qiskit.aqua.algorithms.BernsteinVazirani.backend" name="backend" signature="property backend">
+    Returns backend.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                              |                           |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| [`backend`](#qiskit.aqua.algorithms.BernsteinVazirani.backend "qiskit.aqua.algorithms.BernsteinVazirani.backend")                            | Returns backend.          |
-| [`quantum_instance`](#qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance "qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance") | Returns quantum instance. |
-| [`random`](#qiskit.aqua.algorithms.BernsteinVazirani.random "qiskit.aqua.algorithms.BernsteinVazirani.random")                               | Return a numpy random.    |
+    `Union`\[`Backend`, `BaseBackend`]
+  </Function>
 
-### backend
+  ### construct\_circuit
 
-<span id="qiskit.aqua.algorithms.BernsteinVazirani.backend" />
+  <Function id="qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit" name="construct_circuit" signature="construct_circuit(measurement=False)">
+    Construct the quantum circuit
 
-`property backend`
+    **Parameters**
 
-Returns backend.
+    **measurement** (*bool*) – Boolean flag to indicate if measurement should be included in the circuit.
 
-**Return type**
+    **Returns**
 
-`Union`\[`Backend`, `BaseBackend`]
+    the QuantumCircuit object for the constructed circuit
 
-### construct\_circuit
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-`construct_circuit(measurement=False)`
+  ### quantum\_instance
 
-Construct the quantum circuit
+  <Function id="qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+    Returns quantum instance.
 
-**Parameters**
+    **Return type**
 
-**measurement** (*bool*) – Boolean flag to indicate if measurement should be included in the circuit.
+    `Optional`\[`QuantumInstance`]
+  </Function>
 
-**Returns**
+  ### random
 
-the QuantumCircuit object for the constructed circuit
+  <Function id="qiskit.aqua.algorithms.BernsteinVazirani.random" name="random" signature="property random">
+    Return a numpy random.
+  </Function>
 
-**Return type**
+  ### run
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.aqua.algorithms.BernsteinVazirani.run" name="run" signature="run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-### quantum\_instance
+    **Parameters**
 
-<span id="qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance" />
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-`property quantum_instance`
+    **Returns**
 
-Returns quantum instance.
+    results of an algorithm.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`QuantumInstance`]
+    dict
 
-### random
+    **Raises**
 
-<span id="qiskit.aqua.algorithms.BernsteinVazirani.random" />
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-`property random`
+  ### set\_backend
 
-Return a numpy random.
+  <Function id="qiskit.aqua.algorithms.BernsteinVazirani.set_backend" name="set_backend" signature="set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-### run
+    **Return type**
 
-<span id="qiskit.aqua.algorithms.BernsteinVazirani.run" />
-
-`run(quantum_instance=None, **kwargs)`
-
-Execute the algorithm with selected backend.
-
-**Parameters**
-
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.BernsteinVazirani.set_backend" />
-
-`set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

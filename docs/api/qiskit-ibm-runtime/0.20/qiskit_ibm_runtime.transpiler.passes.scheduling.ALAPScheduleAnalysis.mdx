@@ -8,146 +8,134 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
 
 # ALAPScheduleAnalysis
 
-<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis" />
+<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L427-L644" signature="ALAPScheduleAnalysis(durations)">
+  Dynamic circuits as-late-as-possible (ALAP) scheduling analysis pass.
 
-`ALAPScheduleAnalysis(durations)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L427-L644 "view source code")
+  This is a scheduler designed to work for the unique scheduling constraints of the dynamic circuits backends due to the limitations imposed by hardware. This is expected to evolve over time as the dynamic circuit backends also change.
 
-Dynamic circuits as-late-as-possible (ALAP) scheduling analysis pass.
+  In its current form this is similar to Qiskit’s ALAP scheduler in which instructions start as late as possible.
 
-This is a scheduler designed to work for the unique scheduling constraints of the dynamic circuits backends due to the limitations imposed by hardware. This is expected to evolve over time as the dynamic circuit backends also change.
+  The primary differences are that:
 
-In its current form this is similar to Qiskit’s ALAP scheduler in which instructions start as late as possible.
+  *   **Resets and control-flow currently trigger the end of a “quantum block”. The period between the end**
 
-The primary differences are that:
+      of the block and the next is *nondeterministic* ie., we do not know when the next block will begin (as we could be evaluating a classical function of nondeterministic length) and therefore the next block starts at a *relative* t=0.
 
-*   **Resets and control-flow currently trigger the end of a “quantum block”. The period between the end**
+  *   During a measurement it is possible to apply gates in parallel on disjoint qubits.
 
-    of the block and the next is *nondeterministic* ie., we do not know when the next block will begin (as we could be evaluating a classical function of nondeterministic length) and therefore the next block starts at a *relative* t=0.
+  *   Measurements and resets on disjoint qubits happen simultaneously and are part of the same block.
 
-*   During a measurement it is possible to apply gates in parallel on disjoint qubits.
+  Scheduler for dynamic circuit backends.
 
-*   Measurements and resets on disjoint qubits happen simultaneously and are part of the same block.
+  **Parameters**
 
-Scheduler for dynamic circuit backends.
+  **durations** (`InstructionDurations`) – Durations of instructions to be used in scheduling.
 
-**Parameters**
+  ## Attributes
 
-**durations** (`InstructionDurations`) – Durations of instructions to be used in scheduling.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.is_analysis_pass" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### is\_analysis\_pass
+  ### is\_transformation\_pass
 
-Check if the pass is an analysis pass.
+  <Attribute id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.is_transformation_pass" />
+  ## Methods
 
-### is\_transformation\_pass
+  ### \_\_call\_\_
 
-Check if the pass is a transformation pass.
+  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.__call__" name="__call__" signature="__call__(circuit, property_set=None)">
+    Runs the pass on circuit.
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    **Parameters**
 
-## Methods
+    *   **circuit** (*QuantumCircuit*) – The dag on which the pass is run.
+    *   **property\_set** (*PropertySet | dict | None*) – Input/output property set. An analysis pass might change the property set in-place.
 
-### \_\_call\_\_
+    **Return type**
 
-<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.__call__" />
+    QuantumCircuit
 
-`__call__(circuit, property_set=None)`
+    **Returns**
 
-Runs the pass on circuit.
+    If on transformation pass, the resulting QuantumCircuit. If analysis pass, the input circuit.
+  </Function>
 
-**Parameters**
+  ### execute
 
-*   **circuit** (*QuantumCircuit*) – The dag on which the pass is run.
-*   **property\_set** (*PropertySet | dict | None*) – Input/output property set. An analysis pass might change the property set in-place.
+  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.execute" name="execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
 
-**Return type**
+    **Parameters**
 
-QuantumCircuit
+    *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
+    *   **state** (`PassManagerState`) – State associated with workflow execution by the pass manager itself.
+    *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
 
-**Returns**
+    **Return type**
 
-If on transformation pass, the resulting QuantumCircuit. If analysis pass, the input circuit.
+    `tuple`\[`Any`, `PassManagerState`]
 
-### execute
+    **Returns**
 
-<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.execute" />
+    Optimized Qiskit IR and state of the workflow.
+  </Function>
 
-`execute(passmanager_ir, state, callback=None)`
+  ### name
 
-Execute optimization task for input Qiskit IR.
+  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.name" name="name" signature="name()">
+    Name of the pass.
 
-**Parameters**
+    **Return type**
 
-*   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
-*   **state** (`PassManagerState`) – State associated with workflow execution by the pass manager itself.
-*   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
+    `str`
+  </Function>
 
-**Return type**
+  ### run
 
-`tuple`\[`Any`, `PassManagerState`]
+  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.run" name="run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L448-L467" signature="run(dag)">
+    Run the ASAPSchedule pass on dag. :type dag: `DAGCircuit` :param dag: DAG to schedule. :type dag: DAGCircuit
 
-**Returns**
+    **Raises**
 
-Optimized Qiskit IR and state of the workflow.
+    *   **TranspilerError** – if the circuit is not mapped on physical qubits.
+    *   **TranspilerError** – if conditional bit is added to non-supported instruction.
 
-### name
+    **Return type**
 
-<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.name" />
+    `None`
 
-`name()`
+    **Returns**
 
-Name of the pass.
+    The scheduled DAGCircuit.
+  </Function>
 
-**Return type**
+  ### update\_status
 
-`str`
+  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.update_status" name="update_status" signature="update_status(state, run_state)">
+    Update workflow status.
 
-### run
+    **Parameters**
 
-<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.run" />
+    *   **state** (`PassManagerState`) – Pass manager state to update.
+    *   **run\_state** (`RunState`) – Completion status of current task.
 
-`run(dag)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L448-L467 "view source code")
+    **Return type**
 
-Run the ASAPSchedule pass on dag. :type dag: `DAGCircuit` :param dag: DAG to schedule. :type dag: DAGCircuit
+    `PassManagerState`
 
-**Raises**
+    **Returns**
 
-*   **TranspilerError** – if the circuit is not mapped on physical qubits.
-*   **TranspilerError** – if conditional bit is added to non-supported instruction.
-
-**Return type**
-
-`None`
-
-**Returns**
-
-The scheduled DAGCircuit.
-
-### update\_status
-
-<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.update_status" />
-
-`update_status(state, run_state)`
-
-Update workflow status.
-
-**Parameters**
-
-*   **state** (`PassManagerState`) – Pass manager state to update.
-*   **run\_state** (`RunState`) – Completion status of current task.
-
-**Return type**
-
-`PassManagerState`
-
-**Returns**
-
-Updated pass manager state.
+    Updated pass manager state.
+  </Function>
+</Class>
 

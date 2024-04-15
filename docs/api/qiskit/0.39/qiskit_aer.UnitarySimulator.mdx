@@ -8,279 +8,251 @@ python_api_name: qiskit_aer.UnitarySimulator
 
 # UnitarySimulator
 
-<span id="qiskit_aer.UnitarySimulator" />
+<Class id="qiskit_aer.UnitarySimulator" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/backends/unitary_simulator.py" signature="UnitarySimulator(configuration=None, properties=None, provider=None, **backend_options)">
+  Bases: `qiskit_aer.backends.aerbackend.AerBackend`
 
-`UnitarySimulator(configuration=None, properties=None, provider=None, **backend_options)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/backends/unitary_simulator.py "view source code")
+  Ideal quantum circuit unitary simulator.
 
-Bases: `qiskit_aer.backends.aerbackend.AerBackend`
+  **Configurable Options**
 
-Ideal quantum circuit unitary simulator.
+  The UnitarySimulator supports CPU and GPU simulation methods and additional configurable options. These may be set using the appropriate kwargs during initialization. They can also be set of updated using the [`set_options()`](qiskit_aer.UnitarySimulator#set_options "qiskit_aer.UnitarySimulator.set_options") method.
 
-**Configurable Options**
+  Run-time options may also be specified as kwargs using the [`run()`](qiskit_aer.UnitarySimulator#run "qiskit_aer.UnitarySimulator.run") method. These will not be stored in the backend and will only apply to that execution. They will also override any previously set options.
 
-The UnitarySimulator supports CPU and GPU simulation methods and additional configurable options. These may be set using the appropriate kwargs during initialization. They can also be set of updated using the [`set_options()`](qiskit_aer.UnitarySimulator#set_options "qiskit_aer.UnitarySimulator.set_options") method.
+  For example, to configure a a single-precision simulator
 
-Run-time options may also be specified as kwargs using the [`run()`](qiskit_aer.UnitarySimulator#run "qiskit_aer.UnitarySimulator.run") method. These will not be stored in the backend and will only apply to that execution. They will also override any previously set options.
+  ```python
+  backend = UnitarySimulator(precision='single')
+  ```
 
-For example, to configure a a single-precision simulator
+  **Backend Options**
 
-```python
-backend = UnitarySimulator(precision='single')
-```
+  The following configurable backend options are supported
 
-**Backend Options**
+  *   `device` (str): Set the simulation device (Default: `"CPU"`). Use [`available_devices()`](qiskit_aer.UnitarySimulator#available_devices "qiskit_aer.UnitarySimulator.available_devices") to return a list of devices supported on the current system.
+  *   `method` (str): \[DEPRECATED] Set the simulation method supported methods are `"unitary"` for CPU simulation, and `"unitary_gpu"` for GPU simulation. This option has been deprecated, use the `device` option to set “CPU” or “GPU” simulation instead.
+  *   `precision` (str): Set the floating point precision for certain simulation methods to either `"single"` or `"double"` precision (default: `"double"`).
+  *   `executor` (futures.Executor): Set a custom executor for asynchronous running of simulation jobs (Default: None).
+  *   `max_shot_size` (int or None): If the number of shots of a noisy circuit exceeds this value simulation will be split into multi circuits for execution and the results accumulated. If `None` circuits will not be split based on shots. When splitting circuits use the `max_job_size` option to control how these split circuits should be submitted to the executor (Default: None).
+  *   `max_shot_size` (int or None): If the number of shots with a noise model exceeds this value, simulation will split the experiments into sub experiments in the qobj. If `None` simulator does nothing (Default: None).
+  *   `"initial_unitary"` (matrix\_like): Sets a custom initial unitary matrix for the simulation instead of identity (Default: None).
+  *   `"validation_threshold"` (double): Sets the threshold for checking if initial unitary and target unitary are unitary matrices. (Default: 1e-8).
+  *   `"zero_threshold"` (double): Sets the threshold for truncating small values to zero in the result data (Default: 1e-10).
+  *   `"max_parallel_threads"` (int): Sets the maximum number of CPU cores used by OpenMP for parallelization. If set to 0 the maximum will be set to the number of CPU cores (Default: 0).
+  *   `"max_parallel_experiments"` (int): Sets the maximum number of qobj experiments that may be executed in parallel up to the max\_parallel\_threads value. If set to 1 parallel circuit execution will be disabled. If set to 0 the maximum will be automatically set to max\_parallel\_threads (Default: 1).
+  *   `"max_memory_mb"` (int): Sets the maximum size of memory to store a state vector. If a state vector needs more, an error is thrown. In general, a state vector of n-qubits uses 2^n complex values (16 Bytes). If set to 0, the maximum will be automatically set to the system memory size (Default: 0).
+  *   `"statevector_parallel_threshold"` (int): Sets the threshold that 2 \* “n\_qubits” must be greater than to enable OpenMP parallelization for matrix multiplication during execution of an experiment. If parallel circuit or shot execution is enabled this will only use unallocated CPU cores up to max\_parallel\_threads. Note that setting this too low can reduce performance (Default: 14).
 
-The following configurable backend options are supported
+  These backend options apply in circuit optimization passes:
 
-*   `device` (str): Set the simulation device (Default: `"CPU"`). Use [`available_devices()`](qiskit_aer.UnitarySimulator#available_devices "qiskit_aer.UnitarySimulator.available_devices") to return a list of devices supported on the current system.
-*   `method` (str): \[DEPRECATED] Set the simulation method supported methods are `"unitary"` for CPU simulation, and `"unitary_gpu"` for GPU simulation. This option has been deprecated, use the `device` option to set “CPU” or “GPU” simulation instead.
-*   `precision` (str): Set the floating point precision for certain simulation methods to either `"single"` or `"double"` precision (default: `"double"`).
-*   `executor` (futures.Executor): Set a custom executor for asynchronous running of simulation jobs (Default: None).
-*   `max_shot_size` (int or None): If the number of shots of a noisy circuit exceeds this value simulation will be split into multi circuits for execution and the results accumulated. If `None` circuits will not be split based on shots. When splitting circuits use the `max_job_size` option to control how these split circuits should be submitted to the executor (Default: None).
-*   `max_shot_size` (int or None): If the number of shots with a noise model exceeds this value, simulation will split the experiments into sub experiments in the qobj. If `None` simulator does nothing (Default: None).
-*   `"initial_unitary"` (matrix\_like): Sets a custom initial unitary matrix for the simulation instead of identity (Default: None).
-*   `"validation_threshold"` (double): Sets the threshold for checking if initial unitary and target unitary are unitary matrices. (Default: 1e-8).
-*   `"zero_threshold"` (double): Sets the threshold for truncating small values to zero in the result data (Default: 1e-10).
-*   `"max_parallel_threads"` (int): Sets the maximum number of CPU cores used by OpenMP for parallelization. If set to 0 the maximum will be set to the number of CPU cores (Default: 0).
-*   `"max_parallel_experiments"` (int): Sets the maximum number of qobj experiments that may be executed in parallel up to the max\_parallel\_threads value. If set to 1 parallel circuit execution will be disabled. If set to 0 the maximum will be automatically set to max\_parallel\_threads (Default: 1).
-*   `"max_memory_mb"` (int): Sets the maximum size of memory to store a state vector. If a state vector needs more, an error is thrown. In general, a state vector of n-qubits uses 2^n complex values (16 Bytes). If set to 0, the maximum will be automatically set to the system memory size (Default: 0).
-*   `"statevector_parallel_threshold"` (int): Sets the threshold that 2 \* “n\_qubits” must be greater than to enable OpenMP parallelization for matrix multiplication during execution of an experiment. If parallel circuit or shot execution is enabled this will only use unallocated CPU cores up to max\_parallel\_threads. Note that setting this too low can reduce performance (Default: 14).
+  *   `fusion_enable` (bool): Enable fusion optimization in circuit optimization passes \[Default: True]
+  *   `fusion_verbose` (bool): Output gates generated in fusion optimization into metadata \[Default: False]
+  *   `fusion_max_qubit` (int): Maximum number of qubits for a operation generated in a fusion optimization \[Default: 5]
+  *   `fusion_threshold` (int): Threshold that number of qubits must be greater than or equal to enable fusion optimization \[Default: 7]
 
-These backend options apply in circuit optimization passes:
+  Aer class for backends.
 
-*   `fusion_enable` (bool): Enable fusion optimization in circuit optimization passes \[Default: True]
-*   `fusion_verbose` (bool): Output gates generated in fusion optimization into metadata \[Default: False]
-*   `fusion_max_qubit` (int): Maximum number of qubits for a operation generated in a fusion optimization \[Default: 5]
-*   `fusion_threshold` (int): Threshold that number of qubits must be greater than or equal to enable fusion optimization \[Default: 7]
+  This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
 
-Aer class for backends.
+  **Parameters**
 
-This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
+  *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
+  *   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
+  *   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
+  *   **backend\_options** (*dict or None*) – Optional set custom backend options.
 
-**Parameters**
+  **Raises**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
-*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
-*   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
-*   **backend\_options** (*dict or None*) – Optional set custom backend options.
+  [**AerError**](qiskit_aer.AerError "qiskit_aer.AerError") – if there is no name in the configuration
 
-**Raises**
+  ## Methods
 
-[**AerError**](qiskit_aer.AerError "qiskit_aer.AerError") – if there is no name in the configuration
+  ### available\_devices
 
-## Methods
+  <Function id="qiskit_aer.UnitarySimulator.available_devices" name="available_devices" signature="UnitarySimulator.available_devices()">
+    Return the available simulation methods.
+  </Function>
 
-### available\_devices
+  ### available\_methods
 
-<span id="qiskit_aer.UnitarySimulator.available_devices" />
+  <Function id="qiskit_aer.UnitarySimulator.available_methods" name="available_methods" signature="UnitarySimulator.available_methods()">
+    Return the available simulation methods.
+  </Function>
 
-`UnitarySimulator.available_devices()`
+  ### clear\_options
 
-Return the available simulation methods.
+  <Function id="qiskit_aer.UnitarySimulator.clear_options" name="clear_options" signature="UnitarySimulator.clear_options()">
+    Reset the simulator options to default values.
+  </Function>
 
-### available\_methods
+  ### configuration
 
-<span id="qiskit_aer.UnitarySimulator.available_methods" />
+  <Function id="qiskit_aer.UnitarySimulator.configuration" name="configuration" signature="UnitarySimulator.configuration()">
+    Return the simulator backend configuration.
 
-`UnitarySimulator.available_methods()`
+    **Returns**
 
-Return the available simulation methods.
+    the configuration for the backend.
 
-### clear\_options
+    **Return type**
 
-<span id="qiskit_aer.UnitarySimulator.clear_options" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-`UnitarySimulator.clear_options()`
+  ### defaults
 
-Reset the simulator options to default values.
+  <Function id="qiskit_aer.UnitarySimulator.defaults" name="defaults" signature="UnitarySimulator.defaults()">
+    Return the simulator backend pulse defaults.
 
-### configuration
+    **Returns**
 
-<span id="qiskit_aer.UnitarySimulator.configuration" />
+    **The backend pulse defaults or `None` if the**
 
-`UnitarySimulator.configuration()`
+    backend does not support pulse.
 
-Return the simulator backend configuration.
+    **Return type**
 
-**Returns**
+    [PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+  </Function>
 
-the configuration for the backend.
+  ### name
 
-**Return type**
+  <Function id="qiskit_aer.UnitarySimulator.name" name="name" signature="UnitarySimulator.name()">
+    Return the backend name.
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    **Returns**
 
-### defaults
+    the name of the backend.
 
-<span id="qiskit_aer.UnitarySimulator.defaults" />
+    **Return type**
 
-`UnitarySimulator.defaults()`
+    str
+  </Function>
 
-Return the simulator backend pulse defaults.
+  ### properties
 
-**Returns**
+  <Function id="qiskit_aer.UnitarySimulator.properties" name="properties" signature="UnitarySimulator.properties()">
+    Return the simulator backend properties if set.
 
-**The backend pulse defaults or `None` if the**
+    **Returns**
 
-backend does not support pulse.
+    **The backend properties or `None` if the**
 
-**Return type**
+    backend does not have properties set.
 
-[PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+    **Return type**
 
-### name
+    [BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+  </Function>
 
-<span id="qiskit_aer.UnitarySimulator.name" />
+  ### provider
 
-`UnitarySimulator.name()`
+  <Function id="qiskit_aer.UnitarySimulator.provider" name="provider" signature="UnitarySimulator.provider()">
+    Return the backend Provider.
 
-Return the backend name.
+    **Returns**
 
-**Returns**
+    the Provider responsible for the backend.
 
-the name of the backend.
+    **Return type**
 
-**Return type**
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-str
+  ### run
 
-### properties
+  <Function id="qiskit_aer.UnitarySimulator.run" name="run" signature="UnitarySimulator.run(circuits, validate=False, parameter_binds=None, **run_options)">
+    Run a qobj on the backend.
 
-<span id="qiskit_aer.UnitarySimulator.properties" />
+    **Parameters**
 
-`UnitarySimulator.properties()`
+    *   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list*) – The QuantumCircuit (or list of QuantumCircuit objects) to run
+    *   **validate** (*bool*) – validate the Qobj before running (default: False).
+    *   **parameter\_binds** (*list*) – A list of parameter binding dictionaries. See additional information (default: None).
+    *   **run\_options** (*kwargs*) – additional run time backend options.
 
-Return the simulator backend properties if set.
+    **Returns**
 
-**Returns**
+    The simulation job.
 
-**The backend properties or `None` if the**
+    **Return type**
 
-backend does not have properties set.
+    [AerJob](qiskit_aer.jobs.AerJob "qiskit_aer.jobs.AerJob")
 
-**Return type**
+    **Raises**
 
-[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+    [**AerError**](qiskit_aer.AerError "qiskit_aer.AerError") – If `parameter_binds` is specified with a qobj input or has a length mismatch with the number of circuits.
 
-### provider
+    #### Additional Information:
 
-<span id="qiskit_aer.UnitarySimulator.provider" />
+    *   Each parameter binding dictionary is of the form:
 
-`UnitarySimulator.provider()`
+        ```python
+        {
+            param_a: [val_1, val_2],
+            param_b: [val_3, val_1],
+        }
+        ```
 
-Return the backend Provider.
+        for all parameters in that circuit. The length of the value list must be the same for all parameters, and the number of parameter dictionaries in the list must match the length of `circuits` (if `circuits` is a single `QuantumCircuit` object it should a list of length 1).
 
-**Returns**
+    *   kwarg options specified in `run_options` will temporarily override any set options of the same name for the current run.
 
-the Provider responsible for the backend.
+    **Raises**
 
-**Return type**
+    **ValueError** – if run is not implemented
+  </Function>
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  ### set\_option
 
-### run
+  <Function id="qiskit_aer.UnitarySimulator.set_option" name="set_option" signature="UnitarySimulator.set_option(key, value)">
+    Special handling for setting backend options.
 
-<span id="qiskit_aer.UnitarySimulator.run" />
+    This method should be extended by sub classes to update special option values.
 
-`UnitarySimulator.run(circuits, validate=False, parameter_binds=None, **run_options)`
+    **Parameters**
 
-Run a qobj on the backend.
+    *   **key** (*str*) – key to update
+    *   **value** (*any*) – value to update.
 
-**Parameters**
+    **Raises**
 
-*   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list*) – The QuantumCircuit (or list of QuantumCircuit objects) to run
-*   **validate** (*bool*) – validate the Qobj before running (default: False).
-*   **parameter\_binds** (*list*) – A list of parameter binding dictionaries. See additional information (default: None).
-*   **run\_options** (*kwargs*) – additional run time backend options.
+    [**AerError**](qiskit_aer.AerError "qiskit_aer.AerError") – if key is ‘method’ and val isn’t in available methods.
+  </Function>
 
-**Returns**
+  ### set\_options
 
-The simulation job.
+  <Function id="qiskit_aer.UnitarySimulator.set_options" name="set_options" signature="UnitarySimulator.set_options(**fields)">
+    Set the simulator options
+  </Function>
 
-**Return type**
+  ### status
 
-[AerJob](qiskit_aer.jobs.AerJob "qiskit_aer.jobs.AerJob")
+  <Function id="qiskit_aer.UnitarySimulator.status" name="status" signature="UnitarySimulator.status()">
+    Return backend status.
 
-**Raises**
+    **Returns**
 
-[**AerError**](qiskit_aer.AerError "qiskit_aer.AerError") – If `parameter_binds` is specified with a qobj input or has a length mismatch with the number of circuits.
+    the status of the backend.
 
-#### Additional Information:
+    **Return type**
 
-*   Each parameter binding dictionary is of the form:
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-    ```python
-    {
-        param_a: [val_1, val_2],
-        param_b: [val_3, val_1],
-    }
-    ```
+  ## Attributes
 
-    for all parameters in that circuit. The length of the value list must be the same for all parameters, and the number of parameter dictionaries in the list must match the length of `circuits` (if `circuits` is a single `QuantumCircuit` object it should a list of length 1).
+  ### options
 
-*   kwarg options specified in `run_options` will temporarily override any set options of the same name for the current run.
+  <Attribute id="qiskit_aer.UnitarySimulator.options" name="options">
+    Return the options for the backend
 
-**Raises**
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit_aer.UnitarySimulator#run "qiskit_aer.UnitarySimulator.run") method.
+  </Attribute>
 
-**ValueError** – if run is not implemented
+  ### version
 
-### set\_option
-
-<span id="qiskit_aer.UnitarySimulator.set_option" />
-
-`UnitarySimulator.set_option(key, value)`
-
-Special handling for setting backend options.
-
-This method should be extended by sub classes to update special option values.
-
-**Parameters**
-
-*   **key** (*str*) – key to update
-*   **value** (*any*) – value to update.
-
-**Raises**
-
-[**AerError**](qiskit_aer.AerError "qiskit_aer.AerError") – if key is ‘method’ and val isn’t in available methods.
-
-### set\_options
-
-<span id="qiskit_aer.UnitarySimulator.set_options" />
-
-`UnitarySimulator.set_options(**fields)`
-
-Set the simulator options
-
-### status
-
-<span id="qiskit_aer.UnitarySimulator.status" />
-
-`UnitarySimulator.status()`
-
-Return backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit_aer.UnitarySimulator.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit_aer.UnitarySimulator#run "qiskit_aer.UnitarySimulator.run") method.
-
-<span id="qiskit_aer.UnitarySimulator.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit_aer.UnitarySimulator.version" name="version" attributeValue="= 1" />
+</Class>
 

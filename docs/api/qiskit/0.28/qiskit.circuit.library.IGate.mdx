@@ -8,410 +8,362 @@ python_api_name: qiskit.circuit.library.IGate
 
 # qiskit.circuit.library.IGate
 
-<span id="qiskit.circuit.library.IGate" />
+<Class id="qiskit.circuit.library.IGate" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/i.py" signature="IGate(label=None)">
+  Identity gate.
 
-`IGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/i.py "view source code")
+  Identity gate corresponds to a single-qubit gate wait cycle, and should not be optimized or unrolled (it is an opaque gate).
 
-Identity gate.
-
-Identity gate corresponds to a single-qubit gate wait cycle, and should not be optimized or unrolled (it is an opaque gate).
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 \begin{split}I = \begin{pmatrix}
-        1 & 0 \\
-        0 & 1
-    \end{pmatrix}\end{split}
+1 & 0 \\
+0 & 1
+\end{pmatrix}\end{split}
 $$
 
-**Circuit symbol:**
+  **Circuit symbol:**
+
+  ```python
+       ┌───┐
+  q_0: ┤ I ├
+       └───┘
+  ```
+
+  Create new Identity gate.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.circuit.library.IGate.__init__" name="__init__" signature="__init__(label=None)">
+    Create new Identity gate.
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                             |                                                                          |
+  | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.circuit.library.IGate.__init__ "qiskit.circuit.library.IGate.__init__")(\[label])                                      | Create new Identity gate.                                                |
+  | [`add_decomposition`](#qiskit.circuit.library.IGate.add_decomposition "qiskit.circuit.library.IGate.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
+  | [`assemble`](#qiskit.circuit.library.IGate.assemble "qiskit.circuit.library.IGate.assemble")()                                              | Assemble a QasmQobjInstruction                                           |
+  | [`broadcast_arguments`](#qiskit.circuit.library.IGate.broadcast_arguments "qiskit.circuit.library.IGate.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.           |
+  | [`c_if`](#qiskit.circuit.library.IGate.c_if "qiskit.circuit.library.IGate.c_if")(classical, val)                                            | Add classical condition on register or cbit classical and value val.     |
+  | [`control`](#qiskit.circuit.library.IGate.control "qiskit.circuit.library.IGate.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Return controlled version of gate.                                       |
+  | [`copy`](#qiskit.circuit.library.IGate.copy "qiskit.circuit.library.IGate.copy")(\[name])                                                   | Copy of the instruction.                                                 |
+  | [`inverse`](#qiskit.circuit.library.IGate.inverse "qiskit.circuit.library.IGate.inverse")()                                                 | Invert this gate.                                                        |
+  | [`is_parameterized`](#qiskit.circuit.library.IGate.is_parameterized "qiskit.circuit.library.IGate.is_parameterized")()                      | Return True .IFF.                                                        |
+  | [`mirror`](#qiskit.circuit.library.IGate.mirror "qiskit.circuit.library.IGate.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                              |
+  | [`power`](#qiskit.circuit.library.IGate.power "qiskit.circuit.library.IGate.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                 |
+  | [`qasm`](#qiskit.circuit.library.IGate.qasm "qiskit.circuit.library.IGate.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
+  | [`repeat`](#qiskit.circuit.library.IGate.repeat "qiskit.circuit.library.IGate.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
+  | [`reverse_ops`](#qiskit.circuit.library.IGate.reverse_ops "qiskit.circuit.library.IGate.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.      |
+  | [`soft_compare`](#qiskit.circuit.library.IGate.soft_compare "qiskit.circuit.library.IGate.soft_compare")(other)                             | Soft comparison between gates.                                           |
+  | [`to_matrix`](#qiskit.circuit.library.IGate.to_matrix "qiskit.circuit.library.IGate.to_matrix")()                                           | Return a Numpy.array for the gate unitary matrix.                        |
+  | [`validate_parameter`](#qiskit.circuit.library.IGate.validate_parameter "qiskit.circuit.library.IGate.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression             |
 
-```python
-     ┌───┐
-q_0: ┤ I ├
-     └───┘
-```
+  ## Attributes
 
-Create new Identity gate.
+  |                                                                                                                |                                                                               |
+  | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+  | [`decompositions`](#qiskit.circuit.library.IGate.decompositions "qiskit.circuit.library.IGate.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
+  | [`definition`](#qiskit.circuit.library.IGate.definition "qiskit.circuit.library.IGate.definition")             | Return definition in terms of other basic gates.                              |
+  | [`duration`](#qiskit.circuit.library.IGate.duration "qiskit.circuit.library.IGate.duration")                   | Get the duration.                                                             |
+  | [`label`](#qiskit.circuit.library.IGate.label "qiskit.circuit.library.IGate.label")                            | Return instruction label                                                      |
+  | [`params`](#qiskit.circuit.library.IGate.params "qiskit.circuit.library.IGate.params")                         | return instruction params.                                                    |
+  | [`unit`](#qiskit.circuit.library.IGate.unit "qiskit.circuit.library.IGate.unit")                               | Get the time unit of duration.                                                |
 
-### \_\_init\_\_
+  ### add\_decomposition
 
-<span id="qiskit.circuit.library.IGate.__init__" />
+  <Function id="qiskit.circuit.library.IGate.add_decomposition" name="add_decomposition" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-`__init__(label=None)`
+  ### assemble
 
-Create new Identity gate.
+  <Function id="qiskit.circuit.library.IGate.assemble" name="assemble" signature="assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-## Methods
+  ### broadcast\_arguments
 
-|                                                                                                                                             |                                                                          |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.circuit.library.IGate.__init__ "qiskit.circuit.library.IGate.__init__")(\[label])                                      | Create new Identity gate.                                                |
-| [`add_decomposition`](#qiskit.circuit.library.IGate.add_decomposition "qiskit.circuit.library.IGate.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
-| [`assemble`](#qiskit.circuit.library.IGate.assemble "qiskit.circuit.library.IGate.assemble")()                                              | Assemble a QasmQobjInstruction                                           |
-| [`broadcast_arguments`](#qiskit.circuit.library.IGate.broadcast_arguments "qiskit.circuit.library.IGate.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.           |
-| [`c_if`](#qiskit.circuit.library.IGate.c_if "qiskit.circuit.library.IGate.c_if")(classical, val)                                            | Add classical condition on register or cbit classical and value val.     |
-| [`control`](#qiskit.circuit.library.IGate.control "qiskit.circuit.library.IGate.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Return controlled version of gate.                                       |
-| [`copy`](#qiskit.circuit.library.IGate.copy "qiskit.circuit.library.IGate.copy")(\[name])                                                   | Copy of the instruction.                                                 |
-| [`inverse`](#qiskit.circuit.library.IGate.inverse "qiskit.circuit.library.IGate.inverse")()                                                 | Invert this gate.                                                        |
-| [`is_parameterized`](#qiskit.circuit.library.IGate.is_parameterized "qiskit.circuit.library.IGate.is_parameterized")()                      | Return True .IFF.                                                        |
-| [`mirror`](#qiskit.circuit.library.IGate.mirror "qiskit.circuit.library.IGate.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                              |
-| [`power`](#qiskit.circuit.library.IGate.power "qiskit.circuit.library.IGate.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                 |
-| [`qasm`](#qiskit.circuit.library.IGate.qasm "qiskit.circuit.library.IGate.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
-| [`repeat`](#qiskit.circuit.library.IGate.repeat "qiskit.circuit.library.IGate.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
-| [`reverse_ops`](#qiskit.circuit.library.IGate.reverse_ops "qiskit.circuit.library.IGate.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.      |
-| [`soft_compare`](#qiskit.circuit.library.IGate.soft_compare "qiskit.circuit.library.IGate.soft_compare")(other)                             | Soft comparison between gates.                                           |
-| [`to_matrix`](#qiskit.circuit.library.IGate.to_matrix "qiskit.circuit.library.IGate.to_matrix")()                                           | Return a Numpy.array for the gate unitary matrix.                        |
-| [`validate_parameter`](#qiskit.circuit.library.IGate.validate_parameter "qiskit.circuit.library.IGate.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression             |
+  <Function id="qiskit.circuit.library.IGate.broadcast_arguments" name="broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-## Attributes
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-|                                                                                                                |                                                                               |
-| -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`decompositions`](#qiskit.circuit.library.IGate.decompositions "qiskit.circuit.library.IGate.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
-| [`definition`](#qiskit.circuit.library.IGate.definition "qiskit.circuit.library.IGate.definition")             | Return definition in terms of other basic gates.                              |
-| [`duration`](#qiskit.circuit.library.IGate.duration "qiskit.circuit.library.IGate.duration")                   | Get the duration.                                                             |
-| [`label`](#qiskit.circuit.library.IGate.label "qiskit.circuit.library.IGate.label")                            | Return instruction label                                                      |
-| [`params`](#qiskit.circuit.library.IGate.params "qiskit.circuit.library.IGate.params")                         | return instruction params.                                                    |
-| [`unit`](#qiskit.circuit.library.IGate.unit "qiskit.circuit.library.IGate.unit")                               | Get the time unit of duration.                                                |
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-### add\_decomposition
+    The general broadcasting rules are:
 
-<span id="qiskit.circuit.library.IGate.add_decomposition" />
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-`add_decomposition(decomposition)`
+    **Parameters**
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    *   **qargs** (`List`) – List of quantum bit arguments.
+    *   **cargs** (`List`) – List of classical bit arguments.
 
-### assemble
+    **Return type**
 
-<span id="qiskit.circuit.library.IGate.assemble" />
+    `Tuple`\[`List`, `List`]
 
-`assemble()`
+    **Returns**
 
-Assemble a QasmQobjInstruction
+    A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.circuit.library.IGate.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation and handling of the arguments and its relationship.
+  <Function id="qiskit.circuit.library.IGate.c_if" name="c_if" signature="c_if(classical, val)">
+    Add classical condition on register or cbit classical and value val.
+  </Function>
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+  ### control
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+  <Function id="qiskit.circuit.library.IGate.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
-The general broadcasting rules are:
+    **Parameters**
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+    *   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
+    *   **label** (`Optional`\[`str`]) – optional gate label
+    *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
 
-**Parameters**
+    **Returns**
 
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
+    Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
 
-**Return type**
+    **Return type**
 
-`Tuple`\[`List`, `List`]
+    [qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
-**Returns**
+    **Raises**
 
-A tuple with single arguments.
+    **QiskitError** – unrecognized mode or invalid ctrl\_state
+  </Function>
 
-**Raises**
+  ### copy
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  <Function id="qiskit.circuit.library.IGate.copy" name="copy" signature="copy(name=None)">
+    Copy of the instruction.
 
-### c\_if
+    **Parameters**
 
-<span id="qiskit.circuit.library.IGate.c_if" />
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-`c_if(classical, val)`
+    **Returns**
 
-Add classical condition on register or cbit classical and value val.
+    **a copy of the current instruction, with the name**
 
-### control
+    updated if it was provided
 
-<span id="qiskit.circuit.library.IGate.control" />
+    **Return type**
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+  ### decompositions
 
-**Parameters**
+  <Function id="qiskit.circuit.library.IGate.decompositions" name="decompositions" signature="property decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Function>
 
-*   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
-*   **label** (`Optional`\[`str`]) – optional gate label
-*   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
+  ### definition
 
-**Returns**
+  <Function id="qiskit.circuit.library.IGate.definition" name="definition" signature="property definition">
+    Return definition in terms of other basic gates.
+  </Function>
 
-Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
+  ### duration
 
-**Return type**
+  <Function id="qiskit.circuit.library.IGate.duration" name="duration" signature="property duration">
+    Get the duration.
+  </Function>
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  ### inverse
 
-**Raises**
+  <Function id="qiskit.circuit.library.IGate.inverse" name="inverse" signature="inverse()">
+    Invert this gate.
+  </Function>
 
-**QiskitError** – unrecognized mode or invalid ctrl\_state
+  ### is\_parameterized
 
-### copy
+  <Function id="qiskit.circuit.library.IGate.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-<span id="qiskit.circuit.library.IGate.copy" />
+  ### label
 
-`copy(name=None)`
+  <Function id="qiskit.circuit.library.IGate.label" name="label" signature="property label">
+    Return instruction label
 
-Copy of the instruction.
+    **Return type**
 
-**Parameters**
+    `str`
+  </Function>
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+  ### mirror
 
-**Returns**
+  <Function id="qiskit.circuit.library.IGate.mirror" name="mirror" signature="mirror()">
+    DEPRECATED: use instruction.reverse\_ops().
 
-**a copy of the current instruction, with the name**
+    **Returns**
 
-updated if it was provided
+    **a new instruction with sub-instructions**
 
-**Return type**
+    reversed.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Return type**
 
-### decompositions
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<span id="qiskit.circuit.library.IGate.decompositions" />
+  ### params
 
-`property decompositions`
+  <Function id="qiskit.circuit.library.IGate.params" name="params" signature="property params">
+    return instruction params.
+  </Function>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### power
 
-### definition
+  <Function id="qiskit.circuit.library.IGate.power" name="power" signature="power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-<span id="qiskit.circuit.library.IGate.definition" />
+    **Parameters**
 
-`property definition`
+    **exponent** (*float*) – Gate^exponent
 
-Return definition in terms of other basic gates.
+    **Returns**
 
-### duration
+    To which to\_matrix is self.to\_matrix^exponent.
 
-<span id="qiskit.circuit.library.IGate.duration" />
+    **Return type**
 
-`property duration`
+    [qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-Get the duration.
+    **Raises**
 
-### inverse
+    **CircuitError** – If Gate is not unitary
+  </Function>
 
-<span id="qiskit.circuit.library.IGate.inverse" />
+  ### qasm
 
-`inverse()`
+  <Function id="qiskit.circuit.library.IGate.qasm" name="qasm" signature="qasm()">
+    Return a default OpenQASM string for the instruction.
 
-Invert this gate.
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-### is\_parameterized
+  ### repeat
 
-<span id="qiskit.circuit.library.IGate.is_parameterized" />
+  <Function id="qiskit.circuit.library.IGate.repeat" name="repeat" signature="repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-`is_parameterized()`
+    **Parameters**
 
-Return True .IFF. instruction is parameterized else False
+    **n** (*int*) – Number of times to repeat the instruction
 
-### label
+    **Returns**
 
-<span id="qiskit.circuit.library.IGate.label" />
+    Containing the definition.
 
-`property label`
+    **Return type**
 
-Return instruction label
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**Return type**
+    **Raises**
 
-`str`
+    **CircuitError** – If n \< 1.
+  </Function>
 
-### mirror
+  ### reverse\_ops
 
-<span id="qiskit.circuit.library.IGate.mirror" />
+  <Function id="qiskit.circuit.library.IGate.reverse_ops" name="reverse_ops" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-`mirror()`
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-DEPRECATED: use instruction.reverse\_ops().
+    **Returns**
 
-**Returns**
+    **a new instruction with**
 
-**a new instruction with sub-instructions**
+    sub-instructions reversed.
 
-reversed.
+    **Return type**
 
-**Return type**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### soft\_compare
 
-### params
+  <Function id="qiskit.circuit.library.IGate.soft_compare" name="soft_compare" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-<span id="qiskit.circuit.library.IGate.params" />
+    **Parameters**
 
-`property params`
+    **other** (*instruction*) – other instruction.
 
-return instruction params.
+    **Returns**
 
-### power
+    are self and other equal up to parameter expressions.
 
-<span id="qiskit.circuit.library.IGate.power" />
+    **Return type**
 
-`power(exponent)`
+    bool
+  </Function>
 
-Creates a unitary gate as gate^exponent.
+  ### to\_matrix
 
-**Parameters**
+  <Function id="qiskit.circuit.library.IGate.to_matrix" name="to_matrix" signature="to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
 
-**exponent** (*float*) – Gate^exponent
+    **Returns**
 
-**Returns**
+    if the Gate subclass has a matrix definition.
 
-To which to\_matrix is self.to\_matrix^exponent.
+    **Return type**
 
-**Return type**
+    np.ndarray
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+    **Raises**
 
-**Raises**
+    **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+  </Function>
 
-**CircuitError** – If Gate is not unitary
+  ### unit
 
-### qasm
+  <Function id="qiskit.circuit.library.IGate.unit" name="unit" signature="property unit">
+    Get the time unit of duration.
+  </Function>
 
-<span id="qiskit.circuit.library.IGate.qasm" />
+  ### validate\_parameter
 
-`qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.circuit.library.IGate.repeat" />
-
-`repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### reverse\_ops
-
-<span id="qiskit.circuit.library.IGate.reverse_ops" />
-
-`reverse_ops()`
-
-For a composite instruction, reverse the order of sub-instructions.
-
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-**a new instruction with**
-
-sub-instructions reversed.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### soft\_compare
-
-<span id="qiskit.circuit.library.IGate.soft_compare" />
-
-`soft_compare(other)`
-
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
-
-**Parameters**
-
-**other** (*instruction*) – other instruction.
-
-**Returns**
-
-are self and other equal up to parameter expressions.
-
-**Return type**
-
-bool
-
-### to\_matrix
-
-<span id="qiskit.circuit.library.IGate.to_matrix" />
-
-`to_matrix()`
-
-Return a Numpy.array for the gate unitary matrix.
-
-**Returns**
-
-if the Gate subclass has a matrix definition.
-
-**Return type**
-
-np.ndarray
-
-**Raises**
-
-**CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
-
-### unit
-
-<span id="qiskit.circuit.library.IGate.unit" />
-
-`property unit`
-
-Get the time unit of duration.
-
-### validate\_parameter
-
-<span id="qiskit.circuit.library.IGate.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Gate parameters should be int, float, or ParameterExpression
+  <Function id="qiskit.circuit.library.IGate.validate_parameter" name="validate_parameter" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
+</Class>
 

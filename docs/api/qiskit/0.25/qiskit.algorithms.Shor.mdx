@@ -8,122 +8,110 @@ python_api_name: qiskit.algorithms.Shor
 
 # qiskit.algorithms.Shor
 
-<span id="qiskit.algorithms.Shor" />
+<Class id="qiskit.algorithms.Shor" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/factorizers/shor.py" signature="Shor(quantum_instance=None)">
+  Shor’s factoring algorithm.
 
-`Shor(quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/factorizers/shor.py "view source code")
+  Shor’s Factoring algorithm is one of the most well-known quantum algorithms and finds the prime factors for input integer $N$ in polynomial time.
 
-Shor’s factoring algorithm.
+  Adapted from [https://github.com/ttlion/ShorAlgQiskit](https://github.com/ttlion/ShorAlgQiskit)
 
-Shor’s Factoring algorithm is one of the most well-known quantum algorithms and finds the prime factors for input integer $N$ in polynomial time.
+  See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph/0205095)
 
-Adapted from [https://github.com/ttlion/ShorAlgQiskit](https://github.com/ttlion/ShorAlgQiskit)
+  **Parameters**
 
-See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph/0205095)
+  **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend
 
-**Parameters**
+  ### \_\_init\_\_
 
-**quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend
+  <Function id="qiskit.algorithms.Shor.__init__" name="__init__" signature="__init__(quantum_instance=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend
+  </Function>
 
-<span id="qiskit.algorithms.Shor.__init__" />
+  ## Methods
 
-`__init__(quantum_instance=None)`
+  |                                                                                                                                   |                                                                                         |
+  | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.Shor.__init__ "qiskit.algorithms.Shor.__init__")(\[quantum\_instance])                            | **type quantum\_instance**`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`] |
+  | [`construct_circuit`](#qiskit.algorithms.Shor.construct_circuit "qiskit.algorithms.Shor.construct_circuit")(N\[, a, measurement]) | Construct circuit.                                                                      |
+  | [`factor`](#qiskit.algorithms.Shor.factor "qiskit.algorithms.Shor.factor")(N\[, a])                                               | Execute the algorithm.                                                                  |
+  | [`modinv`](#qiskit.algorithms.Shor.modinv "qiskit.algorithms.Shor.modinv")(a, m)                                                  | Returns the modular multiplicative inverse of a with respect to the modulus m.          |
 
-**Parameters**
+  ## Attributes
 
-**quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend
+  |                                                                                                          |                           |
+  | -------------------------------------------------------------------------------------------------------- | ------------------------- |
+  | [`quantum_instance`](#qiskit.algorithms.Shor.quantum_instance "qiskit.algorithms.Shor.quantum_instance") | Returns quantum instance. |
 
-## Methods
+  ### construct\_circuit
 
-|                                                                                                                                   |                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.Shor.__init__ "qiskit.algorithms.Shor.__init__")(\[quantum\_instance])                            | **type quantum\_instance**`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`] |
-| [`construct_circuit`](#qiskit.algorithms.Shor.construct_circuit "qiskit.algorithms.Shor.construct_circuit")(N\[, a, measurement]) | Construct circuit.                                                                      |
-| [`factor`](#qiskit.algorithms.Shor.factor "qiskit.algorithms.Shor.factor")(N\[, a])                                               | Execute the algorithm.                                                                  |
-| [`modinv`](#qiskit.algorithms.Shor.modinv "qiskit.algorithms.Shor.modinv")(a, m)                                                  | Returns the modular multiplicative inverse of a with respect to the modulus m.          |
+  <Function id="qiskit.algorithms.Shor.construct_circuit" name="construct_circuit" signature="construct_circuit(N, a=2, measurement=False)">
+    Construct circuit.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                          |                           |
-| -------------------------------------------------------------------------------------------------------- | ------------------------- |
-| [`quantum_instance`](#qiskit.algorithms.Shor.quantum_instance "qiskit.algorithms.Shor.quantum_instance") | Returns quantum instance. |
+    *   **N** (`int`) – The integer to be factored, has a min. value of 3.
+    *   **a** (`int`) – Any integer that satisfies 1 \< a \< N and gcd(a, N) = 1.
+    *   **measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
 
-### construct\_circuit
+    **Return type**
 
-<span id="qiskit.algorithms.Shor.construct_circuit" />
+    `QuantumCircuit`
 
-`construct_circuit(N, a=2, measurement=False)`
+    **Returns**
 
-Construct circuit.
+    Quantum circuit.
 
-**Parameters**
+    **Raises**
 
-*   **N** (`int`) – The integer to be factored, has a min. value of 3.
-*   **a** (`int`) – Any integer that satisfies 1 \< a \< N and gcd(a, N) = 1.
-*   **measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
+    **ValueError** – Invalid N
+  </Function>
 
-**Return type**
+  ### factor
 
-`QuantumCircuit`
+  <Function id="qiskit.algorithms.Shor.factor" name="factor" signature="factor(N, a=2)">
+    Execute the algorithm.
 
-**Returns**
+    The input integer $N$ to be factored is expected to be odd and greater than 2. Even though this implementation is general, its capability will be limited by the capacity of the simulator/hardware. Another input integer $a$ can also be supplied, which needs to be a co-prime smaller than $N$ .
 
-Quantum circuit.
+    **Parameters**
 
-**Raises**
+    *   **N** (`int`) – The integer to be factored, has a min. value of 3.
+    *   **a** (`int`) – Any integer that satisfies 1 \< a \< N and gcd(a, N) = 1.
 
-**ValueError** – Invalid N
+    **Returns**
 
-### factor
+    results of the algorithm.
 
-<span id="qiskit.algorithms.Shor.factor" />
+    **Return type**
 
-`factor(N, a=2)`
+    [ShorResult](qiskit.algorithms.ShorResult "qiskit.algorithms.ShorResult")
 
-Execute the algorithm.
+    **Raises**
 
-The input integer $N$ to be factored is expected to be odd and greater than 2. Even though this implementation is general, its capability will be limited by the capacity of the simulator/hardware. Another input integer $a$ can also be supplied, which needs to be a co-prime smaller than $N$ .
+    *   **ValueError** – Invalid input
+    *   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a quantum instance or backend has not been provided
+  </Function>
 
-**Parameters**
+  ### modinv
 
-*   **N** (`int`) – The integer to be factored, has a min. value of 3.
-*   **a** (`int`) – Any integer that satisfies 1 \< a \< N and gcd(a, N) = 1.
+  <Function id="qiskit.algorithms.Shor.modinv" name="modinv" signature="static modinv(a, m)">
+    Returns the modular multiplicative inverse of a with respect to the modulus m.
 
-**Returns**
+    **Return type**
 
-results of the algorithm.
+    `int`
+  </Function>
 
-**Return type**
+  ### quantum\_instance
 
-[ShorResult](qiskit.algorithms.ShorResult "qiskit.algorithms.ShorResult")
+  <Function id="qiskit.algorithms.Shor.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+    Returns quantum instance.
 
-**Raises**
+    **Return type**
 
-*   **ValueError** – Invalid input
-*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a quantum instance or backend has not been provided
-
-### modinv
-
-<span id="qiskit.algorithms.Shor.modinv" />
-
-`static modinv(a, m)`
-
-Returns the modular multiplicative inverse of a with respect to the modulus m.
-
-**Return type**
-
-`int`
-
-### quantum\_instance
-
-<span id="qiskit.algorithms.Shor.quantum_instance" />
-
-`property quantum_instance`
-
-Returns quantum instance.
-
-**Return type**
-
-`Optional`\[`QuantumInstance`]
+    `Optional`\[`QuantumInstance`]
+  </Function>
+</Class>
 

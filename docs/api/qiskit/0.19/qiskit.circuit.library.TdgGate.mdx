@@ -8,293 +8,269 @@ python_api_name: qiskit.circuit.library.TdgGate
 
 # TdgGate
 
-<span id="qiskit.circuit.library.TdgGate" />
+<Class id="qiskit.circuit.library.TdgGate" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/t.py" signature="TdgGate(label=None)">
+  Single qubit T-adjoint gate (\~Z\*\*0.25).
 
-`TdgGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/t.py "view source code")
+  It induces a $-\pi/4$ phase.
 
-Single qubit T-adjoint gate (\~Z\*\*0.25).
+  This is a non-Clifford gate and a fourth-root of Pauli-Z.
 
-It induces a $-\pi/4$ phase.
-
-This is a non-Clifford gate and a fourth-root of Pauli-Z.
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 \begin{split}Tdg = \begin{pmatrix}
-        1 & 0 \\
-        0 & 1-i
-    \end{pmatrix}\end{split}
+1 & 0 \\
+0 & 1-i
+\end{pmatrix}\end{split}
 $$
 
-**Circuit symbol:**
+  **Circuit symbol:**
 
-```python
-     ┌─────┐
-q_0: ┤ Tdg ├
-     └─────┘
-```
+  ```python
+       ┌─────┐
+  q_0: ┤ Tdg ├
+       └─────┘
+  ```
 
-Equivalent to a $\pi/2$ radian rotation about the Z axis.
+  Equivalent to a $\pi/2$ radian rotation about the Z axis.
 
-Create new Tdg gate.
+  Create new Tdg gate.
 
-## Attributes
+  ## Attributes
 
-### decompositions
+  ### decompositions
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.TdgGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### definition
+  ### definition
 
-Return definition in terms of other basic gates.
+  <Attribute id="qiskit.circuit.library.TdgGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### label
+  ### label
 
-<span id="qiskit.circuit.library.TdgGate.label" />
+  <Attribute id="qiskit.circuit.library.TdgGate.label" name="label" signature="str">
+    Return gate label
 
-`str`
+    **Return type**
 
-Return gate label
+    `str`
+  </Attribute>
 
-**Return type**
+  ### params
 
-`str`
+  <Attribute id="qiskit.circuit.library.TdgGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### params
+  ## Methods
 
-return instruction params.
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.circuit.library.TdgGate.add_decomposition" name="add_decomposition" signature="TdgGate.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.circuit.library.TdgGate.add_decomposition" />
+  <Function id="qiskit.circuit.library.TdgGate.assemble" name="assemble" signature="TdgGate.assemble()">
+    Assemble a QasmQobjInstruction
 
-`TdgGate.add_decomposition(decomposition)`
+    **Return type**
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  </Function>
 
-### assemble
+  ### broadcast\_arguments
 
-<span id="qiskit.circuit.library.TdgGate.assemble" />
+  <Function id="qiskit.circuit.library.TdgGate.broadcast_arguments" name="broadcast_arguments" signature="TdgGate.broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-`TdgGate.assemble()`
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-Assemble a QasmQobjInstruction
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-**Return type**
+    The general broadcasting rules are:
 
-[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-### broadcast\_arguments
+    **Parameters**
 
-<span id="qiskit.circuit.library.TdgGate.broadcast_arguments" />
+    *   **qargs** (`List`) – List of quantum bit arguments.
+    *   **cargs** (`List`) – List of classical bit arguments.
 
-`TdgGate.broadcast_arguments(qargs, cargs)`
+    **Return type**
 
-Validation and handling of the arguments and its relationship.
+    `Tuple`\[`List`, `List`]
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+    **Returns**
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+    A tuple with single arguments.
 
-The general broadcasting rules are:
+    **Raises**
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-**Parameters**
+  ### c\_if
 
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
+  <Function id="qiskit.circuit.library.TdgGate.c_if" name="c_if" signature="TdgGate.c_if(classical, val)">
+    Add classical condition on register classical and value val.
+  </Function>
 
-**Return type**
+  ### control
 
-`Tuple`\[`List`, `List`]
+  <Function id="qiskit.circuit.library.TdgGate.control" name="control" signature="TdgGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
-**Returns**
+    **Parameters**
 
-A tuple with single arguments.
+    *   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
+    *   **label** (`Optional`\[`str`]) – optional gate label
+    *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
 
-**Raises**
+    **Returns**
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
 
-### c\_if
+    **Return type**
 
-<span id="qiskit.circuit.library.TdgGate.c_if" />
+    [qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
-`TdgGate.c_if(classical, val)`
+    **Raises**
 
-Add classical condition on register classical and value val.
+    **QiskitError** – unrecognized mode or invalid ctrl\_state
+  </Function>
 
-### control
+  ### copy
 
-<span id="qiskit.circuit.library.TdgGate.control" />
+  <Function id="qiskit.circuit.library.TdgGate.copy" name="copy" signature="TdgGate.copy(name=None)">
+    Copy of the instruction.
 
-`TdgGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    **Parameters**
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**Parameters**
+    **Returns**
 
-*   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
-*   **label** (`Optional`\[`str`]) – optional gate label
-*   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
+    **a copy of the current instruction, with the name**
 
-**Returns**
+    updated if it was provided
 
-Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
+    **Return type**
 
-**Return type**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  ### inverse
 
-**Raises**
+  <Function id="qiskit.circuit.library.TdgGate.inverse" name="inverse" signature="TdgGate.inverse()">
+    Return inverse Tdg gate (i.e. T).
+  </Function>
 
-**QiskitError** – unrecognized mode or invalid ctrl\_state
+  ### is\_parameterized
 
-### copy
+  <Function id="qiskit.circuit.library.TdgGate.is_parameterized" name="is_parameterized" signature="TdgGate.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-<span id="qiskit.circuit.library.TdgGate.copy" />
+  ### mirror
 
-`TdgGate.copy(name=None)`
+  <Function id="qiskit.circuit.library.TdgGate.mirror" name="mirror" signature="TdgGate.mirror()">
+    For a composite instruction, reverse the order of sub-gates.
 
-Copy of the instruction.
+    This is done by recursively mirroring all sub-instructions. It does not invert any gate.
 
-**Parameters**
+    **Returns**
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    a fresh gate with sub-gates reversed
 
-**Returns**
+    **Return type**
 
-**a copy of the current instruction, with the name**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-updated if it was provided
+  ### power
 
-**Return type**
+  <Function id="qiskit.circuit.library.TdgGate.power" name="power" signature="TdgGate.power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Parameters**
 
-### inverse
+    **exponent** (*float*) – Gate^exponent
 
-<span id="qiskit.circuit.library.TdgGate.inverse" />
+    **Returns**
 
-`TdgGate.inverse()`
+    To which to\_matrix is self.to\_matrix^exponent.
 
-Return inverse Tdg gate (i.e. T).
+    **Return type**
 
-### is\_parameterized
+    [qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-<span id="qiskit.circuit.library.TdgGate.is_parameterized" />
+    **Raises**
 
-`TdgGate.is_parameterized()`
+    **CircuitError** – If Gate is not unitary
+  </Function>
 
-Return True .IFF. instruction is parameterized else False
+  ### qasm
 
-### mirror
+  <Function id="qiskit.circuit.library.TdgGate.qasm" name="qasm" signature="TdgGate.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-<span id="qiskit.circuit.library.TdgGate.mirror" />
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-`TdgGate.mirror()`
+  ### repeat
 
-For a composite instruction, reverse the order of sub-gates.
+  <Function id="qiskit.circuit.library.TdgGate.repeat" name="repeat" signature="TdgGate.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-This is done by recursively mirroring all sub-instructions. It does not invert any gate.
+    **Parameters**
 
-**Returns**
+    **n** (*int*) – Number of times to repeat the instruction
 
-a fresh gate with sub-gates reversed
+    **Returns**
 
-**Return type**
+    Containing the definition.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Return type**
 
-### power
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="qiskit.circuit.library.TdgGate.power" />
+    **Raises**
 
-`TdgGate.power(exponent)`
+    **CircuitError** – If n \< 1.
+  </Function>
 
-Creates a unitary gate as gate^exponent.
+  ### to\_matrix
 
-**Parameters**
-
-**exponent** (*float*) – Gate^exponent
-
-**Returns**
-
-To which to\_matrix is self.to\_matrix^exponent.
-
-**Return type**
-
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
-
-**Raises**
-
-**CircuitError** – If Gate is not unitary
-
-### qasm
-
-<span id="qiskit.circuit.library.TdgGate.qasm" />
-
-`TdgGate.qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.circuit.library.TdgGate.repeat" />
-
-`TdgGate.repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### to\_matrix
-
-<span id="qiskit.circuit.library.TdgGate.to_matrix" />
-
-`TdgGate.to_matrix()`
-
-Return a numpy.array for the inverse T gate.
+  <Function id="qiskit.circuit.library.TdgGate.to_matrix" name="to_matrix" signature="TdgGate.to_matrix()">
+    Return a numpy.array for the inverse T gate.
+  </Function>
+</Class>
 

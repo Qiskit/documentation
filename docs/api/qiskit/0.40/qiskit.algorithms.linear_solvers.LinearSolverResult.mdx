@@ -8,73 +8,69 @@ python_api_name: qiskit.algorithms.linear_solvers.LinearSolverResult
 
 # LinearSolverResult
 
-<span id="qiskit.algorithms.linear_solvers.LinearSolverResult" />
+<Class id="qiskit.algorithms.linear_solvers.LinearSolverResult" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/linear_solver.py" signature="LinearSolverResult">
+  Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 
-`LinearSolverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/linear_solver.py "view source code")
+  The deprecated base class for linear systems results.
 
-Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
+  The linear systems algorithms return an object of the type `LinearSystemsResult` with the information about the solution obtained.
 
-The deprecated base class for linear systems results.
+  ## Methods
 
-The linear systems algorithms return an object of the type `LinearSystemsResult` with the information about the solution obtained.
+  ### combine
 
-## Methods
+  <Function id="qiskit.algorithms.linear_solvers.LinearSolverResult.combine" name="combine" signature="LinearSolverResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-### combine
+    **Raises**
 
-<span id="qiskit.algorithms.linear_solvers.LinearSolverResult.combine" />
+    **TypeError** – Argument is None
 
-`LinearSolverResult.combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    `None`
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**TypeError** – Argument is None
+  ### circuit\_results
 
-**Return type**
+  <Attribute id="qiskit.algorithms.linear_solvers.LinearSolverResult.circuit_results" name="circuit_results">
+    return the results from the circuits
 
-`None`
+    **Return type**
 
-## Attributes
+    `Union`\[`List`\[`float`], `List`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]]
+  </Attribute>
 
-<span id="qiskit.algorithms.linear_solvers.LinearSolverResult.circuit_results" />
+  ### euclidean\_norm
 
-### circuit\_results
+  <Attribute id="qiskit.algorithms.linear_solvers.LinearSolverResult.euclidean_norm" name="euclidean_norm">
+    return the euclidean norm if the algorithm knows how to calculate it
 
-return the results from the circuits
+    **Return type**
 
-**Return type**
+    `float`
+  </Attribute>
 
-`Union`\[`List`\[`float`], `List`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]]
+  ### observable
 
-<span id="qiskit.algorithms.linear_solvers.LinearSolverResult.euclidean_norm" />
+  <Attribute id="qiskit.algorithms.linear_solvers.LinearSolverResult.observable" name="observable">
+    return the (list of) calculated observable(s)
 
-### euclidean\_norm
+    **Return type**
 
-return the euclidean norm if the algorithm knows how to calculate it
+    `Union`\[`float`, `List`\[`float`]]
+  </Attribute>
 
-**Return type**
+  ### state
 
-`float`
+  <Attribute id="qiskit.algorithms.linear_solvers.LinearSolverResult.state" name="state">
+    return either the circuit that prepares the solution or the solution as a vector
 
-<span id="qiskit.algorithms.linear_solvers.LinearSolverResult.observable" />
+    **Return type**
 
-### observable
-
-return the (list of) calculated observable(s)
-
-**Return type**
-
-`Union`\[`float`, `List`\[`float`]]
-
-<span id="qiskit.algorithms.linear_solvers.LinearSolverResult.state" />
-
-### state
-
-return either the circuit that prepares the solution or the solution as a vector
-
-**Return type**
-
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `ndarray`]
+    `Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `ndarray`]
+  </Attribute>
+</Class>
 
