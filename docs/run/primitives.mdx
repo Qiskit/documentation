@@ -204,7 +204,11 @@ sampler.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_val
 * Elements from each are aggregated. For example, each array of parameter values in the PUB is applied to the PUB's circuit.
 * Obeys program outputs. Typically this is a bit array but can also be an array of complex numbers (measurement level 1). 
 * Returns raw data type. Data from each shot is returned (analogous to `memory=True` in the `backend.run` interface), and post-processing is done by using convenience methods.
-* Output data is grouped by output registers.
+* Output data is grouped by output registers. You need the classical register name to get the results. By default, it is named `meas` if you use `measure_all()`. You can find the classical register name by running `<circuit_name>.cregs`. For example, `qc.cregs`.
+* Supports circuits with classical feedforward and control flow (dynamic circuits).
+  <Admonition type = "note">
+  Dynamic circuits do not support dynamical decoupling.
+  </Admonition>
 
 Example: 
 
