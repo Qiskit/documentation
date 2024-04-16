@@ -266,11 +266,11 @@ if __name__ == "__main__":
     start_time = datetime.now()
     print("Executing notebooks:")
     with concurrent.futures.ThreadPoolExecutor(max_workers=len(filtered_paths)) as executor:
-        results = executor.map(
+        results = list(executor.map(
             partial(execute_notebook, args=args),
             filtered_paths,
             chunksize=1
-        )
+        ))
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time))
     if not all(results):
