@@ -10,6 +10,13 @@ tutorials](https://github.com/Qiskit/documentation/actions/workflows/deploy-tuto
 workflow. This will push the notebooks on the main branch to the environment
 you select.
 
+> [!NOTE]
+> One potential gotcha is that the learning platform ignores the top-level
+> heading of the notebook. These headings are only included in the notebook for
+> writers' convenience. If you want to change the title of a notebook, find the
+> page on https://learning-api.quantum.ibm.com/admin and change its title
+> there. Make sure to update the title in the notebook too.
+
 ## Adding new tutorials
 
 Each tutorial has its own folder in `tutorials/`. Within that folder is the content notebook
