@@ -116,9 +116,11 @@ You also need to install a few system dependencies: TeX, Poppler, and graphviz. 
   ```
 
 > [!NOTE]
-> If your notebook submits hardware jobs to IBM Quantum, you must add it to the
-> ignore list in `scripts/nb-tester/test-notebooks.py`. This is not needed if
-> you only retrieve information.
+> When testing notebooks, we avoid sending jobs to IBM Quantum by patching
+> `least_busy` to return a fake backend. Try to make sure your notebook works
+> with this patch. If your notebook can't be tested with this patch, you must
+> add it to the list of `NOTEBOOKS_THAT_CANT_BE_MOCKED` in
+> `scripts/nb-tester/test-notebooks.py`.
 >
 > If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
 > add it to the "Check for notebooks that require LaTeX" step in

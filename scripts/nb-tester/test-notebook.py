@@ -30,16 +30,9 @@ NOTEBOOKS_EXCLUDE = [
     "docs/api/**",
     "**/.ipynb_checkpoints/**",
 ]
-NOTEBOOKS_THAT_SUBMIT_JOBS = [
-    "docs/start/hello-world.ipynb",
-    "docs/analyze/saving-and-retrieving.ipynb",
-    "tutorials/build-repitition-codes/notebook.ipynb",
-    "tutorials/chsh-inequality/notebook.ipynb",
-    "tutorials/grovers-algorithm/notebook.ipynb",
-    "tutorials/quantum-approximate-optimization-algorithm/notebook.ipynb",
-    "tutorials/repeat-until-success/notebook.ipynb",
-    "tutorials/submitting-transpiled-circuits/notebook.ipynb",
-    "tutorials/variational-quantum-eigensolver/notebook.ipynb",
+NOTEBOOKS_THAT_CANT_BE_MOCKED = [
+    # Notebooks that don't work with the fake backend
+    # (e.g. due to large circuits)
 ]
 
 # If not submitting jobs, we mock the real backend by prepending this to each notebook
@@ -60,7 +53,7 @@ def filter_paths(paths: list[Path], args: argparse.Namespace) -> Iterator[Path]:
     """
     Filter out any paths we don't want to run, printing messages.
     """
-    submit_jobs = args.submit_jobs or args.only_submit_jobs
+    submit_jobs = args.submit_jobs or args.only_unmockable
     for path in paths:
         if path.suffix != ".ipynb":
             print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
@@ -73,15 +66,15 @@ def filter_paths(paths: list[Path], args: argparse.Namespace) -> Iterator[Path]:
             )
             continue
 
-        if not submit_jobs and matches(path, NOTEBOOKS_THAT_SUBMIT_JOBS):
+        if not submit_jobs and matches(path, NOTEBOOKS_THAT_CANT_BE_MOCKED):
             print(
-                f"ℹ️ Skipping {path} as it submits jobs; use the --submit-jobs flag to run it."
+                f"ℹ️ Skipping {path} as it doesn't work with mock hardware; use the --submit-jobs flag to run it."
             )
             continue
 
-        if args.only_submit_jobs and not matches(path, NOTEBOOKS_THAT_SUBMIT_JOBS):
+        if args.only_unmockable and not matches(path, NOTEBOOKS_THAT_CANT_BE_MOCKED):
             print(
-                f"ℹ️ Skipping {path} as it does not submit jobs and the --only-submit-jobs flag is set."
+                f"ℹ️ Skipping {path} as it can be tested with a mock backend and the --only-unmockable flag is set."
             )
             continue
 
@@ -178,10 +171,10 @@ def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.Note
     """
     Use nbconvert to execute notebook
     """
-    submit_jobs = args.submit_jobs or args.only_submit_jobs
+    submit_jobs = args.submit_jobs or args.only_unmockable
     nb = nbformat.read(filepath, as_version=4)
     if not submit_jobs:
-        # Patch least_busy
+        # Add code to patch least_busy
         nb.cells.insert(0, nbformat.v4.new_code_cell(source=MOCKING_CODE))
 
     processor = nbconvert.preprocessors.ExecutePreprocessor(
@@ -285,9 +278,9 @@ def create_argument_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--only-submit-jobs",
+        "--only-unmockable",
         action="store_true",
-        help="Same as --submit-jobs, but also skips notebooks that do not submit jobs to IBM Quantum",
+        help="Same as --submit-jobs, but only runs notebooks that can't be tested with the fake backend.",
     )
     return parser
 
@@ -300,7 +293,7 @@ if __name__ == "__main__":
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    if not args.submit_jobs and not args.only_submit_jobs:
+    if not args.submit_jobs and not args.only_unmockable:
         print("ℹ️  Note: Using patched qiskit-ibm-runtime; least_busy will return FakeManilaV2")
     results = [execute_notebook(path, args) for path in filtered_paths]
     print("Checking for trailing jobs...")
