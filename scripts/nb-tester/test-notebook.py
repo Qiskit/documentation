@@ -42,6 +42,16 @@ NOTEBOOKS_THAT_SUBMIT_JOBS = [
     "tutorials/variational-quantum-eigensolver/notebook.ipynb",
 ]
 
+# If not submitting jobs, we mock the real backend by prepending this to each notebook
+MOCKING_CODE = """\
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+
+def patched_least_busy(self, *args, **kwarg):
+  return FakeManilaV2
+
+QiskitRuntimeService.least_busy = patched_least_busy
+"""
 
 def matches(path: Path, glob_list: list[str]) -> bool:
     return any(path.match(glob) for glob in glob_list)
@@ -148,6 +158,21 @@ def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
     print("\r✅")
     return True
 
+def remove_mocking_cell(nb: nbformat.NotebookNode) -> None:
+    """
+    Remove the MOCKING_CODE cell inserted at the start of the notebook and any
+    side effects it caused.
+    """
+    # Remove MOCKING_CODE cell
+    nb.cells.pop(0)
+
+    # Reset execution counts (offset by the MOCKING_CODE cell)
+    for cell in nb.cells:
+        if not hasattr(cell, "execution_count"):
+            continue
+        cell.execution_count -= 1
+        for output in cell.outputs:
+            output.execution_count -= 1
 
 def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.NotebookNode:
     """
@@ -155,6 +180,9 @@ def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.Note
     """
     submit_jobs = args.submit_jobs or args.only_submit_jobs
     nb = nbformat.read(filepath, as_version=4)
+    if not submit_jobs:
+        # Patch least_busy
+        nb.cells.insert(0, nbformat.v4.new_code_cell(source=MOCKING_CODE))
 
     processor = nbconvert.preprocessors.ExecutePreprocessor(
         # If submitting jobs, we want to wait forever (-1 means no timeout)
@@ -167,6 +195,9 @@ def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.Note
 
     if not args.write:
         return nb
+
+    if not submit_jobs:
+        remove_mocking_cell(nb)
 
     for cell in nb.cells:
         # Remove execution metadata to avoid noisy diffs.
@@ -269,6 +300,8 @@ if __name__ == "__main__":
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
+    if not args.submit_jobs and not args.only_submit_jobs:
+        print("ℹ️  Note: Using patched qiskit-ibm-runtime; least_busy will return FakeManilaV2")
     results = [execute_notebook(path, args) for path in filtered_paths]
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time))
