@@ -126,6 +126,38 @@ def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
     return notebook_warnings
 
 
+class PatchRuntime:
+    """
+    Prepend MOCKING_CODE to the start of the notebook before execution, then clean up afterwards.
+    """
+    def __init__(self, nb: nbformat.NotebookNode, submit_jobs: bool):
+        self.nb = nb
+        self.active = not submit_jobs
+
+    def __enter__(self):
+        if self.active:
+            self.nb.cells.insert(0, nbformat.v4.new_code_cell(source=MOCKING_CODE))
+        return self
+
+    def __exit__(self, exception_type, _value, _traceback):
+        if not self.active:
+            return False
+
+        self.nb.cells.pop(0)
+
+        # Reset execution counts (offset by the MOCKING_CODE cell)
+        for cell in self.nb.cells:
+            if hasattr(cell, "execution_count"):
+                cell.execution_count -= 1
+            if not hasattr(cell, "outputs"):
+                continue
+            for output in cell.outputs:
+                if hasattr(output, "execution_count"):
+                    output.execution_count -= 1
+
+        return False
+
+
 def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
     """
     Wrapper function for `_execute_notebook` to print status
@@ -151,31 +183,12 @@ def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
     print("\r✅")
     return True
 
-def remove_mocking_cell(nb: nbformat.NotebookNode) -> None:
-    """
-    Remove the MOCKING_CODE cell inserted at the start of the notebook and any
-    side effects it caused.
-    """
-    # Remove MOCKING_CODE cell
-    nb.cells.pop(0)
-
-    # Reset execution counts (offset by the MOCKING_CODE cell)
-    for cell in nb.cells:
-        if not hasattr(cell, "execution_count"):
-            continue
-        cell.execution_count -= 1
-        for output in cell.outputs:
-            output.execution_count -= 1
-
 def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.NotebookNode:
     """
     Use nbconvert to execute notebook
     """
     submit_jobs = args.submit_jobs or args.only_unmockable
     nb = nbformat.read(filepath, as_version=4)
-    if not submit_jobs:
-        # Add code to patch least_busy
-        nb.cells.insert(0, nbformat.v4.new_code_cell(source=MOCKING_CODE))
 
     processor = nbconvert.preprocessors.ExecutePreprocessor(
         # If submitting jobs, we want to wait forever (-1 means no timeout)
@@ -184,13 +197,11 @@ def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.Note
         extra_arguments=["--InlineBackend.figure_format='svg'"]
     )
 
-    processor.preprocess(nb)
+    with PatchRuntime(nb, submit_jobs=submit_jobs):
+        processor.preprocess(nb)
 
     if not args.write:
         return nb
-
-    if not submit_jobs:
-        remove_mocking_cell(nb)
 
     for cell in nb.cells:
         # Remove execution metadata to avoid noisy diffs.
