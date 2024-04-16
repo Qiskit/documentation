@@ -303,7 +303,16 @@ estimator = Estimator(session=backend, options=options)
 </TabItem>
 </Tabs>
 
+## Options classes
 
+|                                                 Category                                                |                             Description                            |                         Example                        |
+|:-------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------:|:------------------------------------------------------|
+| [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2)                  | Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC. Estimator only. | estimator.options.resilience.measure_mitigation = True |
+| [Dynamical decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions) | Options for dynamical decoupling.                                  | estimator.options.dynamical_decoupling.enable = True   |
+| [Execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptionsV2)  |  Execution options for V2 primitives, including whether to initialize qubits and the repetition delay.   | estimator.options.execution.init_qubits = False   |
+| [Twirling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions)                     | Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.                | estimator.options.twirling.enable_gates = True    |
+| [Environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions)                     | Execution environment options including the logging level to set, a callback function to invoke, and job tags to add.         | estimator.options.environment.log_level = 'ERROR'      |
+| [Simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions)                       | Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to local testing mode only.  | estimator.options.simulator.seed_simulator = 42           |
 
 ## Next steps
 
