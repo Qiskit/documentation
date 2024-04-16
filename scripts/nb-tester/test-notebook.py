@@ -11,11 +11,13 @@
 # been altered from the originals.
 
 import argparse
+import multiprocessing
 import sys
 import warnings
 import textwrap
 from dataclasses import dataclass
 from datetime import datetime
+from functools import partial
 from pathlib import Path
 from typing import Iterator
 
@@ -83,11 +85,11 @@ class NotebookWarning:
     cell_index: int
     msg: str
 
-    def report(self):
+    def report(self) -> str:
         """
-        Format warning and print it
+        Format warning
         """
-        message = f"Warning detected in cell {self.cell_index}:\n"
+        message = f"(Cell {self.cell_index}):\n"
         for line in self.msg.splitlines():
             message += (
                 textwrap.fill(
@@ -95,14 +97,7 @@ class NotebookWarning:
                 )
                 + "\n"
             )
-        print_yellow(message, flush=True)
-
-
-def print_yellow(s: str, **kwargs):
-    """
-    Use ANSI escape codes to print yellow text
-    """
-    print(f"\033[0;33m{s}\033[0m", **kwargs)
+        return message
 
 
 def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
@@ -127,7 +122,7 @@ def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
     """
     Wrapper function for `_execute_notebook` to print status
     """
-    print(f"▶️  {path}", end="", flush=True)
+    print(f"▶️ Executing {path}")
     possible_exceptions = (
         nbconvert.preprocessors.CellExecutionError,
         nbclient.exceptions.CellTimeoutError,
@@ -135,17 +130,18 @@ def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
     try:
         nb = _execute_notebook(path, args)
     except possible_exceptions as err:
-        print("\r❌\n")
-        print(err)
+        print(f"❌ Problem in {path}\n", err)
         return False
 
     notebook_warnings = extract_warnings(nb)
     if notebook_warnings:
-        print("\r⚠️")
-        [w.report() for w in notebook_warnings]
+        print(
+            f"⚠️ Warning in {path}\n"
+            + "\n".join([w.report() for w in notebook_warnings])
+        )
         return False
 
-    print("\r✅")
+    print(f"✅ No problems in {path}")
     return True
 
 
@@ -158,7 +154,7 @@ def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.Note
 
     processor = nbconvert.preprocessors.ExecutePreprocessor(
         # If submitting jobs, we want to wait forever (-1 means no timeout)
-        timeout=-1 if submit_jobs else 100,
+        timeout=-1 if submit_jobs else 300,
         kernel_name="python3",
         extra_arguments=["--InlineBackend.figure_format='svg'"]
     )
@@ -264,12 +260,17 @@ def create_argument_parser() -> argparse.ArgumentParser:
 if __name__ == "__main__":
     args = create_argument_parser().parse_args()
     paths = map(Path, args.filenames or find_notebooks())
-    filtered_paths = filter_paths(paths, args)
+    filtered_paths = list(filter_paths(paths, args))
 
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    results = [execute_notebook(path, args) for path in filtered_paths]
+    with multiprocessing.Pool(len(filtered_paths)) as pool:
+        results = pool.map(
+            partial(execute_notebook, args=args),
+            filtered_paths,
+            chunksize=1
+        )
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time))
     if not all(results):
