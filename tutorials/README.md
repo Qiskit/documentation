@@ -12,7 +12,7 @@ you select.
 
 ## Adding new tutorials
 
-Each tutorial had its own folder, within that folder is the content notebook
+Each tutorial has its own folder in `tutorials/`. Within that folder is the content notebook
 (named `notebook.ipynb`) and an optional `images` folder.
 
 To add a new tutorial to the learning platform, go to
