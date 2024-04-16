@@ -22,7 +22,7 @@ To ensure the most efficient use of the execution modes, the following practices
     
     A job's QPU time is listed in the **Usage** column on the IQP [Jobs](https://quantum.ibm.com/jobs) page, or you can  query it by using  `qiskit-ibm-runtime` with this command `job.metrics()["usage"]["quantum_seconds"]`
 
-- If each of your jobs consume more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, up to five classical jobs can be processed in parallel. You can take advantage of this by submitting multiple jobs in [batch](run-jobs-batch#divide) or [session](run-jobs-in-session#two-vqe) execution mode. 
+- If each of your jobs consume more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, up to five classical jobs can be processed in parallel. You can take advantage of this by submitting multiple jobs in [batch](run-jobs-batch#partition) or [session](run-jobs-in-session#two-vqe) execution mode. 
 
 The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, running smaller jobs in parallel might be more cost effective because of reduced wall clock time.
 

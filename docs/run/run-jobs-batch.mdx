@@ -19,23 +19,24 @@ Batch mode can shorten processing time if all jobs can be provided at the outset
 
 There are multiple ways you can reconfigure your jobs to take advantage of the parallel processing provided by batching.
 
-## Example: Divide a list of circuits into multiple jobs and run them in batch
+<span id="partition"></span>
+## Example: Partition a list of circuits into multiple jobs and run them in batch
 
-The following example shows how you can divide up a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
+The following example shows how you can partition a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
 
-```python
-from qiskit_ibm_runtime import SamplerV2 as Sampler, Batch
-
-max_circuits = 100
-all_partitioned_circuits = []
-for i in range(0, len(circuits), max_circuits):
-    all_partitioned_circuits.append(circuits[i : i + max_circuits])
-jobs = []
-start_idx = 0
-
-with Batch(backend=backend):
-    sampler = Sampler()    
-    for partitioned_circuits in all_partitioned_circuits:
-        job = sampler.run(partitioned_circuits)
-        jobs.append(job)
-```
+ ```python 
+ from qiskit_ibm_runtime import SamplerV2 as Sampler, Batch 
+  
+ max_circuits = 100 
+ all_partitioned_circuits = [] 
+ for i in range(0, len(circuits), max_circuits): 
+     all_partitioned_circuits.append(circuits[i : i + max_circuits]) 
+ jobs = [] 
+ start_idx = 0 
+  
+ with Batch(backend=backend): 
+     sampler = Sampler()     
+     for partitioned_circuits in all_partitioned_circuits: 
+         job = sampler.run(partitioned_circuits) 
+         jobs.append(job) 
+ ``` 
