@@ -11,7 +11,7 @@
 # been altered from the originals.
 
 import argparse
-import multiprocessing
+import concurrent.futures
 import sys
 import warnings
 import textwrap
@@ -265,8 +265,8 @@ if __name__ == "__main__":
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    with multiprocessing.Pool(len(filtered_paths)) as pool:
-        results = pool.map(
+    with concurrent.futures.ThreadPoolExecutor(max_workers=len(filtered_paths)) as executor:
+        results = executor.map(
             partial(execute_notebook, args=args),
             filtered_paths,
             chunksize=1
