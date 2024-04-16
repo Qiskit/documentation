@@ -30,10 +30,8 @@ NOTEBOOKS_EXCLUDE = [
     "docs/api/**",
     "**/.ipynb_checkpoints/**",
 ]
-NOTEBOOKS_THAT_CANT_BE_MOCKED = [
-    # Notebooks that don't work with the fake backend
-    # (e.g. due to large circuits)
-]
+# Notebooks that don't work with the fake backend, e.g. due to large circuits
+NOTEBOOKS_THAT_CANT_BE_MOCKED = []
 
 # If not submitting jobs, we mock the real backend by prepending this to each notebook
 MOCKING_CODE = """\
