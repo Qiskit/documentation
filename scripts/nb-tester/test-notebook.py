@@ -38,10 +38,10 @@ NOTEBOOKS_THAT_CANT_BE_MOCKED = [
 # If not submitting jobs, we mock the real backend by prepending this to each notebook
 MOCKING_CODE = """\
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+from qiskit_ibm_runtime.fake_provider import FakeWashingtonV2
 
 def patched_least_busy(self, *args, **kwarg):
-  return FakeManilaV2
+  return FakeWashingtonV2
 
 QiskitRuntimeService.least_busy = patched_least_busy
 """
@@ -305,7 +305,7 @@ if __name__ == "__main__":
     start_time = datetime.now()
     print("Executing notebooks:")
     if not args.submit_jobs and not args.only_unmockable:
-        print("ℹ️  Note: Using patched qiskit-ibm-runtime; least_busy will return FakeManilaV2")
+        print("ℹ️  Note: Using patched qiskit-ibm-runtime; least_busy will return FakeWashingtonV2")
     results = [execute_notebook(path, args) for path in filtered_paths]
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time))
