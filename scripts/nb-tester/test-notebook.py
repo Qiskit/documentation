@@ -52,7 +52,6 @@ def filter_paths(paths: list[Path], args: argparse.Namespace) -> Iterator[Path]:
     """
     Filter out any paths we don't want to run, printing messages.
     """
-    submit_jobs = args.submit_jobs or args.only_unmockable
     for path in paths:
         if path.suffix != ".ipynb":
             print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
@@ -65,7 +64,7 @@ def filter_paths(paths: list[Path], args: argparse.Namespace) -> Iterator[Path]:
             )
             continue
 
-        if not submit_jobs and matches(path, NOTEBOOKS_THAT_CANT_BE_MOCKED):
+        if not args.submit_jobs and matches(path, NOTEBOOKS_THAT_CANT_BE_MOCKED):
             print(
                 f"ℹ️ Skipping {path} as it doesn't work with mock hardware; use the --submit-jobs flag to run it."
             )
@@ -171,17 +170,16 @@ def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.Note
     """
     Use nbconvert to execute notebook
     """
-    submit_jobs = args.submit_jobs or args.only_unmockable
     nb = nbformat.read(filepath, as_version=4)
 
     processor = nbconvert.preprocessors.ExecutePreprocessor(
         # If submitting jobs, we want to wait forever (-1 means no timeout)
-        timeout=-1 if submit_jobs else 100,
+        timeout=-1 if args.submit_jobs else 100,
         kernel_name="python3",
         extra_arguments=["--InlineBackend.figure_format='svg'"]
     )
 
-    with patch_runtime(nb, should_patch=not submit_jobs):
+    with patch_runtime(nb, should_patch=not args.submit_jobs):
         processor.preprocess(nb)
 
     if not args.write:
@@ -243,7 +241,7 @@ def cancel_trailing_jobs(start_time: datetime) -> bool:
     return False
 
 
-def create_argument_parser() -> argparse.ArgumentParser:
+def get_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="Notebook executor",
         description="For testing notebooks and updating their outputs",
@@ -277,18 +275,21 @@ def create_argument_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Same as --submit-jobs, but only runs notebooks that can't be tested with the fake backend.",
     )
-    return parser
+    args = parser.parse_args()
+    if args.only_unmockable:
+        args.submit_jobs = True
+    return args
 
 
 if __name__ == "__main__":
-    args = create_argument_parser().parse_args()
+    args = get_args()
     paths = map(Path, args.filenames or find_notebooks())
     filtered_paths = filter_paths(paths, args)
 
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    if not args.submit_jobs and not args.only_unmockable:
+    if not args.submit_jobs:
         print("ℹ️  Note: Using patched qiskit-ibm-runtime; least_busy will return FakeWashingtonV2")
     results = [execute_notebook(path, args) for path in filtered_paths]
     print("Checking for trailing jobs...")
