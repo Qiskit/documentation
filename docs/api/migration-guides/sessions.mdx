@@ -56,11 +56,11 @@ with Session(backend=backend), ThreadPoolExecutor() as executor:
 
 Before this release, sessions were terminated after the active window, as shown in the following image.
 
-![This image shows four jobs.  Between each is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job completes, the active window ends and the session terminates.](/images/run/SessionTTL.png 'Figure 1: Session behavior prior to extended sessions') 
+![This image shows four jobs.  Between each is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job completes, the active window ends and the session terminates.](/images/run/sessions/SessionTTL.svg 'Figure 1: Session behavior prior to extended sessions') 
 
 With extended sessions, the session pauses after the active window ends. The session is resumed if more session jobs exit the queue. 
 
-[This image shows multiple sets of jobs.  Within each set, and between each job, is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused.  Another set of jobs then starts and jobs continue in a similar manner.](/images/run/ExtendedSession.svg 'Figure 2: Extended sessions')
+[This image shows multiple sets of jobs.  Within each set, and between each job, is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused.  Another set of jobs then starts and jobs continue in a similar manner.](/images/run/sessions/ExtendedSession.svg 'Figure 2: Extended sessions')
 
 ## Batch
 
@@ -85,7 +85,7 @@ with Batch(backend):
 
 ## Sessions versus batch 
 
-[This image shows multiple sets of jobs.  Within each set, and between each job, is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused.  Another set of jobs then starts and jobs continue in a similar manner.](/images/run/SessionVsBatch.svg 'Figure 3: Sessions compared to batch')
+[This image shows multiple sets of jobs.  One set is being run in sessions mode and the other is being run in batch mode.  For sessions mode, between each job is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The system is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the system.  The system is locked for your use from the time the first job reaches the system until the last job is done processing on the system.  There is no gap between jobs where the system is idle.](/images/run/execution-modes/SessionVsBatch.svg 'Sessions compared to batch')
 
 ## Billing
 
