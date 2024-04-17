@@ -14,6 +14,7 @@ import argparse
 import sys
 import warnings
 import textwrap
+from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -123,38 +124,23 @@ def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
                 )
     return notebook_warnings
 
-
-class PatchRuntime:
-    """
-    Prepend MOCKING_CODE to the start of the notebook before execution, then clean up afterwards.
-    """
-    def __init__(self, nb: nbformat.NotebookNode, submit_jobs: bool):
-        self.nb = nb
-        self.active = not submit_jobs
-
-    def __enter__(self):
-        if self.active:
-            self.nb.cells.insert(0, nbformat.v4.new_code_cell(source=MOCKING_CODE))
-        return self
-
-    def __exit__(self, exception_type, _value, _traceback):
-        if not self.active:
-            return False
-
-        self.nb.cells.pop(0)
-
-        # Reset execution counts (offset by the MOCKING_CODE cell)
-        for cell in self.nb.cells:
-            if hasattr(cell, "execution_count"):
-                cell.execution_count -= 1
-            if not hasattr(cell, "outputs"):
-                continue
-            for output in cell.outputs:
-                if hasattr(output, "execution_count"):
-                    output.execution_count -= 1
-
-        return False
-
+@contextmanager
+def patch_runtime(nb: nbformat.NotebookNode, *, should_patch: bool):
+    if should_patch:
+        nb.cells.insert(0, nbformat.v4.new_code_cell(source=MOCKING_CODE))
+    yield
+    if not should_patch:
+         return
+    nb.cells.pop(0)
+    # Reset execution counts (offset by the MOCKING_CODE cell)
+    for cell in nb.cells:
+        if hasattr(cell, "execution_count"):
+            cell.execution_count -= 1
+        if not hasattr(cell, "outputs"):
+            continue
+        for output in cell.outputs:
+            if hasattr(output, "execution_count"):
+                output.execution_count -= 1
 
 def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
     """
@@ -195,7 +181,7 @@ def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.Note
         extra_arguments=["--InlineBackend.figure_format='svg'"]
     )
 
-    with PatchRuntime(nb, submit_jobs=submit_jobs):
+    with patch_runtime(nb, should_patch=not submit_jobs):
         processor.preprocess(nb)
 
     if not args.write:
