@@ -97,7 +97,7 @@ export class Pkg {
     if (name === "qiskit-ibm-provider") {
       return new Pkg({
         ...args,
-        title: "Qiskit IBM Provider",
+        title: "Qiskit IBM Provider (deprecated)",
         name: "qiskit-ibm-provider",
         githubSlug: "qiskit/qiskit-ibm-provider",
         hasSeparateReleaseNotes: false,
