@@ -11,8 +11,8 @@
 # been altered from the originals.
 
 import argparse
+import asyncio
 import sys
-import warnings
 import textwrap
 from dataclasses import dataclass
 from datetime import datetime
@@ -122,17 +122,17 @@ def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
     return notebook_warnings
 
 
-def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
+async def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
     """
     Wrapper function for `_execute_notebook` to print status
     """
-    print(f"▶️  {path}", end="", flush=True)
+    print(f"▶️  {path}")
     possible_exceptions = (
         nbconvert.preprocessors.CellExecutionError,
         nbclient.exceptions.CellTimeoutError,
     )
     try:
-        nb = _execute_notebook(path, args)
+        nb = await _execute_notebook(path, args)
     except possible_exceptions as err:
         print("\r❌\n")
         print(err)
@@ -148,7 +148,7 @@ def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
     return True
 
 
-def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.NotebookNode:
+async def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.NotebookNode:
     """
     Use nbconvert to execute notebook
     """
@@ -162,7 +162,9 @@ def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.Note
         extra_arguments=["--InlineBackend.figure_format='svg'"]
     )
 
-    processor.preprocess(nb)
+    # This runs the notebook, including possibly submitting jobs. We run it in a
+    # new thread to avoid blocking other notebooks from submitting jobs.
+    await asyncio.to_thread(processor.preprocess(nb))
 
     if not args.write:
         return nb
@@ -191,7 +193,8 @@ def find_notebooks() -> list[Path]:
 def cancel_trailing_jobs(start_time: datetime) -> bool:
     """
     Cancel any runtime jobs created after `start_time`.
-    Return True if non exist, False otherwise.
+
+    Return True if none exist, False otherwise.
 
     Notebooks should not submit jobs during a normal test run. If they do, the
     cell will time out and this function will cancel the job to avoid wasting
@@ -200,16 +203,11 @@ def cancel_trailing_jobs(start_time: datetime) -> bool:
     If a notebook submits a job but does not wait for the result, this check
     will also catch it and cancel the job.
     """
-    # QiskitRuntimeService().jobs() includes qiskit-ibm-provider jobs too
-    service = QiskitRuntimeService()
-
-    def _is_not_finished(job):
-        # Force runtime to update job status
-        # Workaround for Qiskit/qiskit-ibm-runtime#1547
-        job.status()
-        return not job.in_final_state()
-
-    jobs = list(filter(_is_not_finished, service.jobs(created_after=start_time)))
+    jobs = [
+        job
+        for job in QiskitRuntimeService().jobs(created_after=start_time)
+        if not job.in_final_state()
+    ]
     if not jobs:
         return True
 
@@ -260,7 +258,7 @@ def create_argument_parser() -> argparse.ArgumentParser:
     return parser
 
 
-if __name__ == "__main__":
+async def main() -> None:
     args = create_argument_parser().parse_args()
     paths = map(Path, args.filenames or find_notebooks())
     filtered_paths = filter_paths(paths, args)
@@ -268,9 +266,13 @@ if __name__ == "__main__":
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    results = [execute_notebook(path, args) for path in filtered_paths]
+    results = await asyncio.gather(*(execute_notebook(path, args) for path in filtered_paths))
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time))
     if not all(results):
         sys.exit(1)
     sys.exit(0)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
